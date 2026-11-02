@@ -17,6 +17,7 @@ from typing import Any
 
 import pytest
 
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, scan_scope
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from scripts.audit_recovery_sibling_scopes import (
@@ -132,15 +133,22 @@ def test_retained_files_are_the_signed_bytes() -> None:
             assert record["sha256_matches_provenance"] is expected, (key, record["document_id"])
 
 
-def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes() -> None:
+def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Replay the July builders on every page whose rows they still reproduce.
 
     This replays history through ``scripts/recover_ingest_batch.py`` and the shared
     extractor. If it fails after a change to that code, the committed scopes have
-    not changed; re-check the run note's "How the rows were made" section.
+    not changed; re-check the run note's "How the rows were made" section. The
+    July extractor kept navigation blocks, which it now drops
+    (``docs/ingest-runs/2026-10-13-html-navigation-blocks.md``), so the replay
+    turns that filter off.
     """
+    from axiom_corpus.corpus import documents
     from scripts.recover_ingest_batch import _generic, _targeted_state_html
 
+    monkeypatch.setattr(documents, "is_navigation_block", lambda *args, **kwargs: False)
     replayed = 0
     for key in (
         "us-ny/statute/2026-07-13-recovery",
@@ -228,7 +236,7 @@ def test_hollow_statute_scopes_hold_only_chrome_or_already_carried_text() -> Non
         assert entry["carrier_text_in_container_text"] is True
 
 
-def test_sc_block_2_is_other_sections_tables_and_nothing_carries_12_6_520() -> None:
+def test_sc_block_2_is_other_sections_tables_and_the_successor_carries_12_6_520() -> None:
     from axiom_corpus.corpus.state_adapters.south_carolina import (
         parse_south_carolina_chapter_html,
     )
@@ -249,7 +257,12 @@ def test_sc_block_2_is_other_sections_tables_and_nothing_carries_12_6_520() -> N
             if line
         )
     ]
-    assert [path.stem for path in carriers] == ["2026-07-13-recovery"]
+    # The recovery root is empty; the follow-up 1 successor carries the section
+    # (tests/test_sc_act110_with_12_6_520_successor.py).
+    assert [path.stem for path in carriers] == [
+        "2026-07-13-recovery",
+        "2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6",
+    ]
     page = next(iter(_rows("us-sc/statute/2026-07-13-recovery").values()))["source_path"]
     chapter_pages = {
         (CORPUS_ROOT / page).read_bytes(),
@@ -433,11 +446,109 @@ def test_no_text_verdicts_are_the_documented_ones() -> None:
     assert BY_KEY["us-mn/statute/2026-07-13-recovery"].history == "div.history"
 
 
-def test_release_validation_does_not_see_the_defects() -> None:
-    """The gate passes every audited scope alone; only this audit records the defects."""
+KEPT = (
+    ("us", "guidance", "2026-07-13-recovery"),
+    ("us-co", "regulation", "2026-07-13-recovery-r2026-09-11-tanf-consolidated"),
+    ("us-mt", "regulation", "2026-07-13-recovery"),
+)
+
+
+def test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones() -> None:
+    """Follow-up 6 landed: manifests/withdrawn-scopes.yaml carries the swap decision.
+
+    Alone in a new cut, each scope the decision takes out fails; the three this
+    audit keeps (MT until its successor merges) pass, their recorded content
+    findings reported as notices. Before the release gate read the registry and
+    the content baseline, this test asserted that every audited scope passed.
+    """
+    withdrawn = ReleaseGatePolicy.load(REPO_ROOT).withdrawn
+    kept = []
     for scope in SCOPES:
         report = _validate(scope.jurisdiction, scope.document_class, scope.version)
-        assert (report["ok"], report["issue_count"]) == (True, 0), scope.key
+        key = (scope.jurisdiction, scope.document_class, scope.version)
+        if key in withdrawn:
+            assert [issue["code"] for issue in report["issues"]] == ["withdrawn_scope_selected"]
+            assert withdrawn[key].run_note in report["issues"][0]["message"]
+        else:
+            kept.append(key)
+            assert (report["ok"], report["issue_count"]) == (True, 0), scope.key
+    assert tuple(sorted(kept)) == KEPT
+
+
+# Each audit verdict against the release content check's finding for the same
+# row ("-" for none). No row the audit found to carry text (legal_text,
+# document_page_text, document_section_text) is flagged. The no-text rows the
+# check misses are prose landing pages, empty roots with text below them, alias
+# copies, and the UT and MI pages whose chrome is not a link menu. The
+# withdrawal registry stops those rows in withdrawn scopes; the retained
+# us/guidance and CO TANF consolidated scopes keep eleven empty roots, four
+# prose landing pages and three alias copies, which pass the gate.
+VERDICTS_AGAINST_FINDINGS = {
+    ("alias_copy", "-"): 16,
+    ("document_page_text", "-"): 460,
+    ("document_section_text", "-"): 60,
+    ("empty_document_root", "-"): 30,
+    ("empty_document_root", "hollow_document_root"): 10,
+    ("history_note_and_site_chrome", "-"): 5,
+    ("landing_page_text", "-"): 17,
+    ("landing_page_text", "navigation_body"): 6,
+    ("legal_text", "-"): 88,
+    ("page_text_with_chrome", "-"): 4,
+    ("page_text_with_chrome", "navigation_prefixed_body"): 12,
+    ("site_chrome", "-"): 11,
+    ("site_chrome", "navigation_body"): 36,
+    ("tables_from_other_sections", "-"): 1,
+}
+
+
+def test_the_content_check_agrees_with_the_audit() -> None:
+    table: dict[tuple[str, str], int] = {}
+    for scope in SCOPES:
+        scope_key = (scope.jurisdiction, scope.document_class, scope.version)
+        flagged = {
+            finding.path: finding.code for finding in scan_scope(CORPUS_ROOT, scope_key).findings
+        }
+        for path, verdict in _verdicts(scope.key).items():
+            key = (verdict, flagged.get(path, "-"))
+            table[key] = table.get(key, 0) + 1
+    assert table == VERDICTS_AGAINST_FINDINGS
+    text_verdicts = {"legal_text", "document_page_text", "document_section_text"}
+    assert all(finding == "-" for verdict, finding in table if verdict in text_verdicts)
+
+
+def test_the_maine_menu_under_the_navigation_bar_is_left_to_the_withdrawal() -> None:
+    """ME §5219-SS lost its text, and its menu is 69.2% navigation, under the 0.7 bar.
+
+    The hollow-root audit (2026-10-13) found the miss. Lowering the bar was
+    measured over every locked scope (docs/release-gate-policy.md, "Navigation
+    threshold"): 0.69 adds nine navigation_body findings, among them a UK
+    sentence on new National Insurance rates and an Israeli statute heading,
+    and the band down to 0.65 holds repeal notices and manual prose with
+    linked terms. So the bar stays; the scope is withdrawn, and the chapter
+    scope that replaces it carries the section's text (most of it: its history
+    notes and one paragraph are missing there, docs/source-coverage-check.md).
+    """
+    from axiom_corpus.corpus.content_quality import (
+        NAVIGATION_COVERAGE,
+        classify_body,
+        page_navigation,
+    )
+
+    rows = _rows("us-me/statute/2026-07-13-recovery")
+    menu = rows["us-me/statute/36/5219-SS/block-1"]
+    page = page_navigation((CORPUS_ROOT / menu["source_path"]).read_bytes())
+    tokens = menu["body"].split()
+    share = page.coverage(tokens).share
+    assert round(share, 3) == 0.692 and share < NAVIGATION_COVERAGE
+    verdict = classify_body(menu["body"], page, heading=menu.get("heading"))
+    assert (verdict.navigation, verdict.substantive) == (False, True)
+    assert ("us-me", "statute", "2026-07-13-recovery") in ReleaseGatePolicy.load(
+        REPO_ROOT
+    ).withdrawn
+    chapter = _rows("us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36")
+    section = chapter["us-me/statute/36/5219-SS"]
+    assert classify_body(section["body"], None).substantive
+    assert len(section["body"]) > 5000
 
 
 @pytest.mark.parametrize(

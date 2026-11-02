@@ -60,7 +60,12 @@ states:
     H, LIHEAP, 96.80-96.89, inside the whole part) taken as us/regulation 2026-09-13-title-45-part-96 (see the federal_regulation_ecfr
     row below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md). 2026-09-13 closure run (needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/SMI):
     the 2026 HHS poverty guidelines notice (91 FR 1797) and ASPE page, and ACF LIHEAP IM 2026-01 with its FPG and SMI tables
-    (acf.gov). The statute, 45 CFR 96 subpart H and the model plan (LIHEAP-F-GUID-MODELPLAN) are not part of this scope.'
+    (acf.gov). The statute, 45 CFR 96 subpart H and the model plan (LIHEAP-F-GUID-MODELPLAN) are not part of this scope. 2026-09-15
+    wave-5 closure run (needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN): the FY 2027 (LIHEAP-AT-2026-4, 2026-06-10) and
+    FY 2026 (LIHEAP-AT-2025-04, 2025-04-02) Model Plan Application action transmittals from the ACF OCS action-transmittal
+    index, each with its OLDC cloning instructions, Model Plan Reference Guide and OMB 0970-0075 Model Plan template (10 documents).
+    acf.gov fronted an AWS WAF challenge to the plain client on 2026-09-15 (HTTP 202, empty body) and served a chrome120 TLS
+    fingerprint; fetched with browser impersonation, TLS verification on.'
   annual_figures_scope:
     jurisdiction: us
     document_class: guidance
@@ -82,6 +87,31 @@ states:
     notes: '2026-09-13 closure run (needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/SMI): the 2026 HHS poverty guidelines notice
       (91 FR 1797) and ASPE page, and ACF LIHEAP IM 2026-01 with its FPG and SMI tables (acf.gov). The statute, 45 CFR 96
       subpart H and the model plan (LIHEAP-F-GUID-MODELPLAN) are not part of this scope.'
+  model_plan_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-09-15-liheap-model-plan
+    target_manifest: manifests/us-liheap-model-plan-2026-09-15.yaml
+    document_count: 10
+    citation_paths:
+    - us/guidance/acf/ocs/liheap-at/2026-4
+    - us/guidance/acf/ocs/liheap-at/2026-4/transmittal
+    - us/guidance/acf/ocs/liheap-at/2026-4/attachment-1-oldc-cloning-instructions
+    - us/guidance/acf/ocs/liheap-at/2026-4/attachment-2-model-plan-reference-guide
+    - us/guidance/acf/ocs/liheap-at/2026-4/attachment-3-model-plan-template
+    - us/guidance/acf/ocs/liheap-at/2025-04
+    - us/guidance/acf/ocs/liheap-at/2025-04/transmittal
+    - us/guidance/acf/ocs/liheap-at/2025-04/attachment-1-oldc-cloning-instructions
+    - us/guidance/acf/ocs/liheap-at/2025-04/attachment-model-plan-reference-guide
+    - us/guidance/acf/ocs/liheap-at/2025-04/attachment-model-plan-template
+    closure_elements:
+    - LIHEAP-F-GUID-MODELPLAN
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
+    notes: '2026-09-15 wave-5 closure run (needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN): the FY 2027 (LIHEAP-AT-2026-4,
+      2026-06-10) and FY 2026 (LIHEAP-AT-2025-04, 2025-04-02) Model Plan Application action transmittals from the ACF OCS
+      action-transmittal index, each with its OLDC cloning instructions, Model Plan Reference Guide and OMB 0970-0075 Model
+      Plan template (10 documents). acf.gov fronted an AWS WAF challenge to the plain client on 2026-09-15 (HTTP 202, empty
+      body) and served a chrome120 TLS fingerprint; fetched with browser impersonation, TLS verification on.'
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready
@@ -225,7 +255,8 @@ states:
     version: '2026-09-10'
   notes: 'FY 2026 Detailed Model Plan from the ACF LIHEAP Clearinghouse index. Primary source confirmed by the agent from
     the publisher''s index; agency policy manuals listed there are a separate, later document family. 2026-09-14: the benefit-matrix
-    family (LIHEAP-ST-09/ST-18) was taken as us-ar/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope).'
+    family (LIHEAP-ST-09/ST-18) was taken as us-ar/policy/2026-09-14-liheap-benefit-matrix (see benefit_matrix_scope). 2026-09-15:
+    the state policy-manual family (LIHEAP-ST-18) was taken as us-ar/manual/2026-09-15-liheap-policy-manual (see policy_manual_scope).'
   benefit_matrix_scope:
     status: taken
     scopes:
@@ -249,6 +280,33 @@ states:
       refers to these attachments. Publisher: Arkansas Department of Energy and Environment, Arkansas Energy Office. Access:
       adeq.state.ar.us HTTP 200 to the plain client; the Clearinghouse link (/docs/2026/manuals/AR_Manual_2026.pdf) answers
       404 (its FFY 2025 predecessor is served but not linked).'
+  policy_manual_scope:
+    status: taken
+    scopes:
+    - jurisdiction: us-ar
+      document_class: manual
+      version: 2026-09-15-liheap-policy-manual
+      manifest: manifests/us-ar-liheap-policy-manual-manual.yaml
+      document_count: 1
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    index_document_count: 39
+    publisher_index_url: https://adeq.state.ar.us/energy/assistance/liheap.aspx
+    on_clearinghouse_index: true
+    taken_count: 1
+    matrix_status: taken
+    closure_elements:
+    - LIHEAP-ST-18
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
+    notes: '2026-09-15 closure run: Arkansas Energy Office LIHEAP Policy and Procedures Manual, FFY 2025 (190 pages, effective
+      2024-10-01 to 2025-09-30 as printed; the crisis benefit table is Appendix J on PDF page 178; the regular-assistance
+      benefit matrices are the separate FFY 2026 attachments taken on 2026-09-14), the Clearinghouse-hosted copy: the index''s
+      FFY 2026 link is dead and the agency posts no manual of its own. Publisher: Arkansas Department of Energy and Environment,
+      Arkansas Energy Office. Access: liheapch.acf.gov HTTP 200 with the Entrust intermediate in the CA bundle (9,871,526
+      bytes, Last-Modified 2024-12-04); the Clearinghouse manuals index links /sites/default/files/webfiles/docs/2026/manuals/AR_Manual_2026.pdf,
+      which answers HTTP 404 (re-read 2026-09-15), while /docs/2025/manuals/AR_Manual_2025.pdf is served under the publisher''s
+      own naming and is not linked from any index page read; adeq.state.ar.us HTTP 200 to the plain client (the LIHEAP page
+      posts the FY 2026 matrices, eligibility chart, application form, brochure and the proposed FY 2027 model plan, no policy
+      manual).'
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}

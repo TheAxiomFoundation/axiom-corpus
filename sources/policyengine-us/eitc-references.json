@@ -1,0 +1,3676 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "eitc",
+ "folders": [
+  "gov/irs/credits/eitc"
+ ],
+ "state_folders": "^tax/income/credits/(eitc|earned_income)",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 159,
+ "references": [
+  {
+   "url": "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=ad7daeaa-b9cd-4f50-9c62-7bddb226d77c&nodeid=ABPAACAACAABAACABH&nodepath=%2FROOT%2FABP%2FABPAAC%2FABPAACAAC%2FABPAACAACAAB%2FABPAACAACAABAAC%2FABPAACAACAABAACABH&level=6&haschildren=&populated=false&title=39-22-123.5.+Earned+income+tax+credit+-+legislative+declaration+-+repeal.&config=014FJAAyNGJkY2Y4Zi1mNjgyLTRkN2YtYmE4OS03NTYzNzYzOTg0OGEKAFBvZENhdGFsb2d592qv2Kywlf8caKqYROP5&pddocfullpath=%2Fshared%2Fdocument%2Fstatutes-legislation%2Furn%3AcontentItem%3A6B7G-SG43-RTYH-3036-00008-00&ecomp=6gf59kk&prid=22d89c10-a7eb-48af-90ff-837a5559904e",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "C.R.S. 39-22-123.5"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://budget.lis.virginia.gov/amendment/2026/2/HB30/Introduced/CR/4-14/1c",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 30 (2026 Appropriation Act, Special Session I, Chapter 1), Item 4-14"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.04",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "variables/gov/states/dc/tax/income/credits/eitc/dc_eitc.py",
+    "variables/gov/states/dc/tax/income/credits/eitc/dc_eitc_with_qualifying_child.py",
+    "variables/gov/states/dc/tax/income/credits/eitc/dc_eitc_without_qualifying_child.py"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.04#(f)(1)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of the District of Columbia § 47–1806.04 (f)(1)"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/with_children/match.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.04#(f)(1)(C)(ii)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of the District of Columbia § 47–1806.04 (f)(1)(C)(ii)"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/rate.yaml",
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/laws/23-149",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "variables/gov/states/dc/tax/income/credits/eitc/dc_eitc.py"
+   ]
+  },
+  {
+   "url": "https://codes.ohio.gov/ohio-revised-code/section-5747.71",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio Revised Code Section 5747.71 | Earned income tax credit"
+   ],
+   "states": [
+    "oh"
+   ],
+   "files": [
+    "parameters/gov/states/oh/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://content.leg.colorado.gov/sites/default/files/images/olls/crs2024-title-39.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "C.R.S. 39-22-123.5"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/eligible_at_max_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/homeless_or_foster_min_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/max_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/it1040-sd100-instructionbooklet.pdf#page=29",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio Income Tax Form 2023 Instructions (line 13)"
+   ],
+   "states": [
+    "oh"
+   ],
+   "files": [
+    "parameters/gov/states/oh/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.assets.ohio.gov/image/upload/v1735920104/tax.ohio.gov/forms/ohio_individual/individual/2024/it1040-booklet.pdf#page=29",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio Income Tax Form 2024 Instructions (line 13)"
+   ],
+   "states": [
+    "oh"
+   ],
+   "files": [
+    "parameters/gov/states/oh/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=30",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio Income Tax Form 2025 Instructions (Page 30)"
+   ],
+   "states": [
+    "oh"
+   ],
+   "files": [
+    "parameters/gov/states/oh/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.ldr.la.gov/taxforms/IT540WEB(2023)%20F.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Louisiana Resident Income Tax Return, Line 15"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.ldr.la.gov/taxforms/IT540i%20WEB%20(2024)D18%20INSTRUCTIONS.pdf#page=29",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Louisiana Resident Income Tax Return Instructions, Earned Income Credit Worksheet"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.ldr.la.gov/taxforms/IT540i%20WEB(2025)D11.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Louisiana Resident Income Tax Return Instructions, Line 16"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://dam.ldr.la.gov/taxforms/IT540iWEB(2022)D1.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Louisiana Resident Income Tax Return, Line 15"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://delcode.delaware.gov/title30/c011/sc02/index.html#1117",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "The Delaware Code Online - Title 30 - Chapter 11 - Subchapter II - § 1117"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/tax/income/credits/eitc/non_refundable.yaml",
+    "parameters/gov/states/de/tax/income/credits/eitc/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://docs.legis.wisconsin.gov/misc/lfb/informational_papers/january_2023/0002_individual_income_tax_informational_paper_2.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "variables/gov/states/wi/tax/income/credits/earned_income/wi_earned_income_credit.py"
+   ]
+  },
+  {
+   "url": "https://dor.sc.gov/forms-site/Forms/TC60_2023.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "South Carolina Schedule TC-60 2023 (2023)"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SC 1040 tax form instructions (2025)"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dor.sc.gov/sites/dor/files/forms/TC60_2021.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "South Carolina Schedule TC-60 2021 (2021)"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/tax/income/credits/eitc/rate.yaml",
+    "variables/gov/states/sc/tax/income/credits/eitc/sc_eitc.py",
+    "variables/gov/states/sc/tax/income/credits/eitc/sc_eitc_potential.py"
+   ]
+  },
+  {
+   "url": "https://dor.sc.gov/sites/dor/files/forms/TC60_2022.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "South Carolina Schedule TC-60 2022 (2022)"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://files.hawaii.gov/tax/forms/2022/n356_i.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Tax Form N-356 2022"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://files.hawaii.gov/tax/forms/2023/n356_i.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Tax Form N-356 2023"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://files.hawaii.gov/tax/forms/current/n356_i.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Hawaii Form N-356 Instructions"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://files.hawaii.gov/tax/legal/hrs/hrs_235.pdf#page=43",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Income Tax Law, Chapter 235, Section 235-55.75"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://files.hawaii.gov/tax/news/announce/ann23-04.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Tax Information Release No. 2023-04 - Act 163 Tax Law Changes"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://files.tax.utah.gov/tax/forms/2022/tc-40inst.pdf#page=22",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah TC-40A Supplemental Schedule Instructions (2022), Part 3, (AM)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://files.tax.utah.gov/tax/forms/2023/tc-40inst.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah TC-40A Supplemental Schedule Instructions (2023), Part 3, (AM)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Utah TC-40 Instructions, Earned Income Tax Credit Worksheet"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://forms.in.gov/Download.aspx?id=15784",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 IT-40 Income Tax Form, Schedule IN-EIC"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/max_children.yaml"
+   ]
+  },
+  {
+   "url": "https://forms.in.gov/Download.aspx?id=15792#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 IT-40 Individual Income Tax Booklet (Indiana EITC discussion)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/decoupled.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/static_conformity_in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://forms.in.gov/Download.aspx?id=16915",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 IT-40 Income Tax Form Instruction Booklet, pg. 30",
+    "2025 IT-40 Income Tax Form",
+    "2025 IT-40 Income Tax Form Instruction Booklet, pg. 31"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/investment_income_limit.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/match_rate.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/max_children.yaml"
+   ]
+  },
+  {
+   "url": "https://forms.in.gov/Download.aspx?id=16915#page=30",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 IT-40 Income Tax Form Instruction Booklet"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/decoupled.yaml"
+   ]
+  },
+  {
+   "url": "https://iga.in.gov/laws/2021/ic/titles/6#6-3.1-21",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IC 6-3.1-21 - Indiana Earned Income Tax Credit (2021 childless override)",
+    "Indiana General Assembly Laws"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/in_effect.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/max_age.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/maximum.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/min_age.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/phase_in_rate.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/phase_out_rate.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/childless/phase_out_start.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/investment_income_limit.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/max_children.yaml",
+    "variables/gov/states/in/tax/income/credits/earned_income_credit/in_eitc.py",
+    "variables/gov/states/in/tax/income/credits/earned_income_credit/in_eitc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://iga.in.gov/laws/2024/ic/titles/6#6-3-1-11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IC 6-3-1-11 - Indiana definition of Internal Revenue Code (fixes the federal-law reference date for the decoupled branch)",
+    "IC 6-3-1-11 - Indiana definition of Internal Revenue Code, fixing the federal-law reference date"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/decoupled.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/static_conformity_in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://iga.in.gov/laws/2024/ic/titles/6#6-3.1-21",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IC 6-3.1-21 - Indiana Earned Income Tax Credit chapter",
+    "IC 6-3.1-21 Earned Income Tax Credit"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/decoupled.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/match_rate.yaml",
+    "parameters/gov/states/in/tax/income/credits/earned_income/static_conformity_in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://iga.in.gov/legislative/2025/bills/senate/243",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana SEA 243 (2025) - Advances IRC conformity to January 1, 2026"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/tax/income/credits/earned_income/static_conformity_in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://incometax.utah.gov/tc-40a/#AM",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Earned Income Tax Credit"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2021.pdf#page=19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Maryland Resident Booklet Individual"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/married_or_has_child/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/max_amount.yaml",
+    "variables/gov/states/md/tax/income/credits/eitc/refundable/md_unmarried_childless_refundable_eitc.py"
+   ]
+  },
+  {
+   "url": "https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2021.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "variables/gov/states/md/tax/income/credits/eitc/refundable/md_married_or_has_child_refundable_eitc.py"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=35",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Personal Income Tax Form Packet"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nm/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf#page=36",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Personal Income Tax Form Packet"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nm/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/856ebf4b-3814-49dd-8631-ebe579d6a42b/Personal%20Income%20Tax.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Mexico Income Tax Act, 7-2-18.15, part A"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "variables/gov/states/nm/tax/income/credits/eitc/nm_eitc.py",
+    "variables/gov/states/nm/tax/income/credits/eitc/nm_eitc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/856ebf4b-3814-49dd-8631-ebe579d6a42b/Personal%20Income%20Tax.pdf#page=133",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Mexico Income Tax Act, 7-2-18.15, A"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf#page=37",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Personal Income Tax Form Packet"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nm/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf#page=38",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Personal Income Tax Form Packet"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nm/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://kslegislature.gov/b2023_24/laws/079_000_0000_chapter/079_032_0000_article/079_032_0205_section/079_032_0205_k/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas 2022 Statute Article 32 79-32,205"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/tax/income/credits/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/montana/2021/title-15/chapter-30/part-23/section-15-30-2318/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Montana Code 2021, § 15-30-2318 (2), Earned income tax credit"
+   ],
+   "states": [
+    "mt"
+   ],
+   "files": [
+    "parameters/gov/states/mt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/montana/2022/title-15/chapter-30/part-23/section-15-30-2318/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Montana Code 2022, § 15-30-2318 (2), Earned income tax credit"
+   ],
+   "states": [
+    "mt"
+   ],
+   "files": [
+    "parameters/gov/states/mt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-7/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "54A:4-7 New Jersey Earned Income Tax Credit program."
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nj/tax/income/credits/eitc/match.yaml",
+    "variables/gov/states/nj/tax/income/credits/eitc/nj_childless_eitc_age_eligible.py",
+    "variables/gov/states/nj/tax/income/credits/eitc/nj_eitc.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/oklahoma/title-68/section-68-2357-43/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/eligible/ok_federal_eitc_demographic_eligible.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/eligible/ok_federal_eitc_eligible.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/eligible/ok_federal_eitc_investment_income_eligible.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/ok_federal_eitc.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/ok_federal_eitc_maximum.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/ok_federal_eitc_phase_in_rate.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/ok_federal_eitc_phase_out_rate.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/ok_federal_eitc_phase_out_start.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/federal_credit/ok_federal_eitc_reduction.py",
+    "variables/gov/states/ok/tax/income/credits/eitc/ok_eitc.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/utah/2022/title-59/chapter-10/part-10/section-1044/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Utah legal code| 59-10-1044 (2)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-339.8/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of Virginia § 58.1-339.8.B.1",
+    "Code of Virginia § 58.1-339.8. D",
+    "Code of Virginia § 58.1-339.8.B.2",
+    "Code of Virginia § 58.1-339.8.B.3"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/base.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/ineligible_programs.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/non_refundable.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1044.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah legal code| UC §59-10-1044 (2) (a)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/bills/hb24-1134",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HB24-1134"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/sites/default/files/images/olls/crs2023-title-39.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "variables/gov/states/co/tax/income/credits/eitc/co_eitc.py"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/sites/default/files/te19_colorado_earned_income_tax_credit.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Colorado Office of the State Auditor - Tax Expenditure Evaluation 19 - Colorado EITC"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/eligible_at_max_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/homeless_or_foster_min_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/max_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/min_age.yaml",
+    "variables/gov/states/co/tax/income/credits/eitc/co_eitc.py"
+   ]
+  },
+  {
+   "url": "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0180/0150-0300-0230-0180.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Montana Code 2023, § 15-30-2318 (2), Earned income tax credit"
+   ],
+   "states": [
+    "mt"
+   ],
+   "files": [
+    "parameters/gov/states/mt/tax/income/credits/eitc/match.yaml",
+    "variables/gov/states/mt/tax/income/credits/eitc/mt_eitc.py"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/billPdf.xhtml?bill_id=202120220AB178&version=20210AB17895CHP",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Budget Act, 7730-001-0001 (5) [page 337]"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/adjustment/factor.yaml"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California legal code 17052(a)(2)(B)",
+    "California Legal code REVENUE AND TAXATION CODE - RTC (2019)",
+    "California Revenue and Taxation Code 17052(c)(2)",
+    "California Revenue and Taxation Code 17052(b)(1)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/adjustment/factor.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/earned_income_amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/age/max.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/age/min.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_in/rate.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/start.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/rate.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_is_qualifying_child_for_caleitc.py"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052.",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Revenue and Taxation Code Section 17052(o)(3)-(4)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/end.yaml",
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_eitc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf#page=783",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 1600 (2025 Appropriations Act)"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://legislature.maine.gov/statutes/36/title36sec5219-S.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "36 M.R.S. § 5219-S(6) - \"eligible individual\" also includes an individual without a qualifying child who is at least 18 and has not attained 25 years of age",
+    "36 M.R.S. § 5219-S(5) - credit for a childless individual under 25 is calculated as if the individual were eligible for a federal earned income credit"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "variables/gov/states/me/tax/income/credits/eitc/me_childless_eitc_age_eligible.py",
+    "variables/gov/states/me/tax/income/credits/eitc/me_pro_forma_childless_eitc.py"
+   ]
+  },
+  {
+   "url": "https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%20House%20and%20Senate%20Official.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "S.51 (2025) - Vermont tax credit package",
+    "S.51 (2025) - Vermont tax credit package, enhanced EITC for workers without children"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/enhanced_structure/in_effect.yaml",
+    "parameters/gov/states/vt/tax/income/credits/eitc/enhanced_structure/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://legislature.vermont.gov/bill/status/2026/S.51",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vermont Legislature S.51 Bill Status"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/enhanced_structure/in_effect.yaml",
+    "parameters/gov/states/vt/tax/income/credits/eitc/enhanced_structure/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://legislature.vermont.gov/statutes/section/32/151/05828b",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "32 V.S.A. § 5828b Earned income tax credit (a)"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/2023RS/fnotes/bil_0007/hb0547.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Family Prosperity Act of 2023"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Md. Code, Tax-Gen. § 10-704(d)",
+    "Md. Code, Tax-Gen. § 10-704(c)(1)(i)",
+    "Md. Code, Tax-Gen. § 10-704(c)(3)(ii)",
+    "Md. Code, Tax-Gen. § 10-704(c)(3)(iii)",
+    "Md. Code, Tax-Gen. § 10-704(c)(2)(ii)"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/local/rate_multiplier.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/married_or_has_child/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/max_amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/refundable/married_or_has_child/match.yaml",
+    "variables/gov/states/md/tax/income/credits/eitc/federal_eitc_without_age_minimum.py",
+    "variables/gov/states/md/tax/income/credits/eitc/md_eitc.py",
+    "variables/gov/states/md/tax/income/credits/eitc/md_qualifies_for_unmarried_childless_eitc.py",
+    "variables/gov/states/md/tax/income/credits/eitc/non_refundable/md_married_or_has_child_non_refundable_eitc.py",
+    "variables/gov/states/md/tax/income/credits/eitc/non_refundable/md_non_refundable_eitc.py",
+    "variables/gov/states/md/tax/income/credits/eitc/non_refundable/md_non_refundable_eitc_potential.py",
+    "variables/gov/states/md/tax/income/credits/eitc/non_refundable/md_unmarried_childless_non_refundable_eitc.py",
+    "variables/gov/states/md/tax/income/credits/eitc/refundable/md_refundable_eitc.py"
+   ]
+  },
+  {
+   "url": "https://nmonesource.com/nmos/nmsa/en/item/4340/index.do#!fragment/zoupio-_Toc140503780/BQCwhgziBcwMYgK4DsDWszIQewE4BUBTADwBdoAvbRABwEtsBaAfX2zgEYAWABgFYeAZgDsADh4BKADTJspQhACKiQrgCe0AOSapEQmFwJlqjdt37DIAMp5SAIQ0AlAKIAZZwDUAggDkAws5SpGAARtCk7BISQA",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Mexico Income Tax, Title 3, Chapter 7, 7-2-18.15 - Working families tax credit"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nm/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-EIC.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/tax/income/credits/eitc/ok_eitc.py"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form 511 instructions"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/tax/income/credits/earned_income/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2021/511-Pkt-2021.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Form 511 instructions"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/tax/income/credits/earned_income/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2022/511-Pkt-2022.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Form 511 instructions"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/tax/income/credits/earned_income/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2023/511-Pkt.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Form 511 instructions"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/tax/income/credits/earned_income/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2024/511-Pkt-2024.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Form 511 instructions"
+   ],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "parameters/gov/states/ok/tax/income/credits/earned_income/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://olis.oregonlegislature.gov/liz/2026R1/Downloads/MeasureDocument/SB1507/Enrolled#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SB 1507 (2026) Section 3, Oregon Laws 2026 chapter 142 - amends ORS 315.266(1)(b)",
+    "SB 1507 (2026) Section 3, Oregon Laws 2026 chapter 142 - amends ORS 315.266(1)(a)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml"
+   ]
+  },
+  {
+   "url": "https://olis.oregonlegislature.gov/liz/2026R1/Measures/Overview/SB1507",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SB 1507 (2026) Measure Overview - Oregon Laws 2026 chapter 142"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/release/district-columbia-tax-changes-take-effect-october1-24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "District of Columbia Tax Changes Take Effect October 1st 2024"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/with_children/match.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 DC Form D-40 Booklet, Page 23, Line 5"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 DC Form D-40 Booklet, Page 23, Line 5"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf#page=34",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 DC Form D-40 Booklet, Page 34, Line 27c"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/with_children/match.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2024_D40_Booklet_011525.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 DC Form D-40 Booklet, Page 23, Line 5"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2024_D40_Booklet_011525.pdf#page=34",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 DC Form D-40 Booklet, Page 34, Line 27c"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/with_children/match.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 DC Form D-40 Booklet, Line 5"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=43",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 DC Form D-40 Booklet, Line 27c"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/with_children/match.yaml"
+   ]
+  },
+  {
+   "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/52926_D-40_12.21.21_Final_Rev011122.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 DC Form D-40 Booklet, Page 24, Line 5"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/eitc/without_children/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/DRS/Forms/2020/Income/Schedule-CT-EITC_0121.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Earned Income Tax Credit Form (2020)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/DRS/Forms/2021/Income/Schedule-CT-EITC_1221.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Earned Income Tax Credit Form (2021)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/DRS/Forms/2022/Income/Schedule-CT-EITC_1222.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Earned Income Tax Credit Form (2022)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/DRS/Forms/2023/Income/Schedule-CT-EITC_1223.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Earned Income Tax Credit Form (2023)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/drs/forms/2024/income/2024-ct-1040-instructions_1224.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Earned Income Tax Credit Form (2024)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
+    "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions, Line 20a"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml",
+    "parameters/gov/states/ct/tax/income/credits/eitc/qualifying_child_bonus/amount.yaml",
+    "parameters/gov/states/ct/tax/income/credits/eitc/qualifying_child_bonus/in_effect.yaml",
+    "variables/gov/states/ct/tax/income/credits/eitc/ct_eitc.py"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/drs/miscellaneous-taxes/other-tax-page/state-tax-developments/2025-developments/income-tax",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CT DRS 2025 Income Tax Developments"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/qualifying_child_bonus/amount.yaml",
+    "parameters/gov/states/ct/tax/income/credits/eitc/qualifying_child_bonus/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://pub.njleg.gov/bills/2020/PL21/130_.PDF#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "variables/gov/states/nj/tax/income/credits/eitc/nj_eitc_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://revenue.iowa.gov/media/2650/download?inline#page=88",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 IA1040 Income Tax Return instructions"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.iowa.gov/media/2721/download?inline#page=87",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 IA1040 Income Tax Return instructions"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.iowa.gov/media/4152/download?inline#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 IA1040 Iowa Income Tax Return Instruction, Line 26"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.iowa.gov/sites/default/files/2022-01/IA1040%2841-001%29.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 IA1040 Iowa Income Tax Return, Line 61"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.iowa.gov/sites/default/files/2023-01/2022IA1040%2841001%29.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 IA1040 Iowa Income Tax Return, Line 61"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-earned-income-tax-credit",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 IA 1040 Expanded Instructions, Iowa Earned Income Tax Credit"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/about/legal-information/regulations/chapter-22-individual-income-tax",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "316 Nebraska Administrative Code | Chapter 22 | §019.21 | 002.05M"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/eitc/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/files/doc/2022_Ne_Individual_Income_Tax_Booklet_8-307-2022_final_5.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 NE income tax form and instruction booklet"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/eitc/fraction.yaml",
+    "variables/gov/states/ne/tax/income/credits/eitc/ne_eitc.py"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/files/doc/tax-forms/2021/f_1040n_booklet.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 NE income tax form and instruction booklet"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/eitc/fraction.yaml",
+    "variables/gov/states/ne/tax/income/credits/eitc/ne_eitc.py"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Nebraska Individual Income Tax Booklet, Line 42"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/eitc/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Nebraska Individual Income Tax Booklet, Line 44"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/eitc/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/sites/revenue.nebraska.gov/files/doc/tax-forms/2023/incometax/f_1040n_booklet_2023_Final.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 NE Individual Income Tax Booklet"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/eitc/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.delaware.gov/2022/PIT-RES_TY22_2022-02_Instructions.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "PIT-RES_TY22_2022-02_Instructions.pdf"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/tax/income/credits/eitc/non_refundable.yaml",
+    "parameters/gov/states/de/tax/income/credits/eitc/refundable.yaml",
+    "variables/gov/states/de/tax/income/credits/eitc/de_eitc.py",
+    "variables/gov/states/de/tax/income/credits/eitc/de_non_refundable_eitc.py",
+    "variables/gov/states/de/tax/income/credits/eitc/de_non_refundable_eitc_if_claimed.py",
+    "variables/gov/states/de/tax/income/credits/eitc/de_non_refundable_eitc_potential.py",
+    "variables/gov/states/de/tax/income/credits/eitc/de_refundable_eitc.py",
+    "variables/gov/states/de/tax/income/credits/eitc/de_refundable_eitc_if_claimed.py"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.delaware.gov/2023/PIT-RES_TY23_2023-01_Instructions.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Delaware Individual Income Tax Return Line 33"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/tax/income/credits/eitc/non_refundable.yaml",
+    "parameters/gov/states/de/tax/income/credits/eitc/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.delaware.gov/2024/PIT_2024_Forms/PIT_Instructions/PIT-RES_TY24_2024-01_Instructions.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Delaware Individual Income Tax Return Line 34"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/tax/income/credits/eitc/non_refundable.yaml",
+    "parameters/gov/states/de/tax/income/credits/eitc/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Delaware Individual Income Tax Return Instructions"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/tax/income/credits/eitc/non_refundable.yaml",
+    "parameters/gov/states/de/tax/income/credits/eitc/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2-Instructions/2024_Montana_Individual_Income_Tax_Return_Form_2_Instructions.pdf#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Montana Form 2 Instructions"
+   ],
+   "states": [
+    "mt"
+   ],
+   "files": [
+    "parameters/gov/states/mt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2-Instructions/2025_Montana_Individual_Income_Tax_Return_Form_2_Instructions.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Montana Form 2 Instructions"
+   ],
+   "states": [
+    "mt"
+   ],
+   "files": [
+    "parameters/gov/states/mt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2023_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Montana Form 2 Individual Income Tax Instructions, line 23b"
+   ],
+   "states": [
+    "mt"
+   ],
+   "files": [
+    "parameters/gov/states/mt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/income-tax-topics-earned-income-tax-credit",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Colorado Department of Revenue - Income Tax Topics - Earned Income Tax Credit (administrative interpretation of CRS 39-22-123.5)"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/eligible_at_max_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/homeless_or_foster_min_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/max_age.yaml",
+    "parameters/gov/states/co/tax/income/credits/eitc/under_25_expansion/min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Colorado Individual Tax Filing Guide 104 Book, Line 5"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=25",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Colorado Individual Tax Filing Guide 104 Book, Line 5"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR0104_book_2024.pdf#page=25",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Colorado Individual Tax Filing Guide 104 Book, Instructions for Select Credits from the DR 0104CR, Line 5"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104EP_2022_0.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Individual Estimated Income Tax"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Colorado Individual Income Tax Filing Guide, Line 5"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Department of Revenue 2025 Schedule IL-E/EIC"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.illinois.gov/programs/eitc.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Department of Revenue - Illinois Earned Income Tax Credit eligibility"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/childless_min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ohio.gov/static/forms/ohio_individual/individual/2022/it1040-sd100-instruction-booklet.pdf#page=21",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio 2022 Instructions for Filing Original and Amended - Line 13"
+   ],
+   "states": [
+    "oh"
+   ],
+   "files": [
+    "parameters/gov/states/oh/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2022-01/2021_1040we_w.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Form RI-1040 Resident Individual Income Tax Return"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2022-12/2022_1040WE_w_0.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Form RI-1040 Resident Individual Income Tax Return - page 3"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2023-02/RI-MA%20NATP%20Jan%205%202023-CA.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Rhode Island Department of Revenue Division of Taxation - page 16"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2024-12/2024_1040WE_w.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Form RI-1040 Resident Individual Income Tax Return - page 3, line 40"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-12/2025%201040R%20Instructions%20122025.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 RI-1040 Instructions"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/forms/2014/Income/2014-1040_h.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2014 Form RI-1040 - RI Schedule EIC"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/refundable_percent.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/forms/2015/Income/2015-1040_hhh.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2015 Form RI-1040 - RI Schedule EIC"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/refundable_percent.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.utah.gov/forms/current/tc-40inst.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Form TC-40A Supplemental Schedule Instructions (Current)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/IN-112-2022.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Schedule IN-112 Vermont Tax Adjustments and Credits"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/IN-112-2023.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Form IN-112 Vermont Tax Adjustments and Credits"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/IN-112-2024.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Form IN-112 Vermont Tax Adjustments and Credits"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf#page=34",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Vermont Income Tax Return Booklet"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/enhanced_structure/in_effect.yaml",
+    "parameters/gov/states/vt/tax/income/credits/eitc/enhanced_structure/rate.yaml",
+    "parameters/gov/states/vt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2021/individual/il-1040-schedule-il-e-eic.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Department of Revenue 2021 Schedule IL-E/EIC"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2022/individual/il-1040-schedule-il-e-eic.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Department of Revenue 2022 Schedule IL-E/EIC"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2023/individual/il-1040-schedule-il-e-eic.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Department of Revenue 2023 Schedule IL-E/EIC"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual/il-1040-schedule-il-e-eic.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Department of Revenue 2024 Schedule IL-E/EIC"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://taxsim.nber.org/historical_state_tax_forms/VT/2021/IN-112-2021.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Schedule IN-112 Vermont Tax Adjustments and Credits"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20230616200742/https://www.mass.gov/doc/2022-form-1-instructions/download#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Form 1 2022 Massachusetts Resident Income Tax (line 43)"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-30/44-I/44-30-2.6.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "R.I. Gen. Laws § 44-30-2.6.(c)(2)(N)",
+    "R.I. Gen. Laws § 44-30-2.6.(c)(2)(N)(2)"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/eitc/match.yaml",
+    "parameters/gov/states/ri/tax/income/credits/eitc/refundable_percent.yaml",
+    "variables/gov/states/ri/tax/income/credits/eitc/ri_refundable_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.capitol.hawaii.gov/slh/Years/SLH2023/SLH2023_Act163.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Act 163 (SLH 2023) Section 4 - Sunset provision"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cbo.gov/system/files/2024-02/53724-2024-02-Tax-Parameters.xlsx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CBO Tax Parameters and Effective Marginal Tax Rates | Feb 2024"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cbo.gov/system/files/2025-01/53724-2025-01-Tax-Parameters.xlsx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CBO Tax Parameters and Effective Marginal Tax Rates | Jan 2025"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-704e",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Earned Income Tax Credit Legal Code Sec. 12-704e (a)",
+    "Connecticut General Statutes, Chapter 229, Sec. 12-704e"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/tax/income/credits/eitc/match.yaml",
+    "parameters/gov/states/ct/tax/income/credits/eitc/qualifying_child_bonus/amount.yaml",
+    "parameters/gov/states/ct/tax/income/credits/eitc/qualifying_child_bonus/in_effect.yaml",
+    "variables/gov/states/ct/tax/income/credits/eitc/ct_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/bill/117th-congress/house-bill/1319/text",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "American Rescue Plan Act Sec. 9623"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/eligibility/separate_filer.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/about-ftb/data-reports-plans/California-Earned-Income-Tax-Credit-and-Young-Child-Tax-credit-Report.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Earned Income Tax Credit and Young Child Tax Credit Report | Economic and Statistical Research Bureau"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/adjustment/factor.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/about-ftb/data-reports-plans/california-earned-income-tax-credit-report-2019.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Earned Income Tax Credit and Young Child Tax Credit Report Economic and Statistical Research Bureau"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/max_investment_income.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/file/personal/credits/EITC-calculator/Help/QualifyingChildren",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_is_qualifying_child_for_caleitc.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2021/2021-3514-instructions.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Form 3514 instructions (2021)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/earned_income_amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/max_investment_income.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/end.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/start.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2022/2022-3514-instructions.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Form 3514 instructions (2022)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/earned_income_amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/max_investment_income.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/end.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2023/2023-3514-instructions.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Form 3514 instructions (2023)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/earned_income_amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/max_investment_income.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/end.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2024/2024-3514-booklet.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 California Earned Income Tax Credit Booklet"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/earned_income_amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/max_investment_income.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/end.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_eitc.py",
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_eitc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 California Earned Income Tax Credit Booklet"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/earned_income/earned_income_amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/eligibility/max_investment_income.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_in/rate.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/final/end.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/rate.yaml",
+    "parameters/gov/states/ca/tax/income/credits/earned_income/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.ilga.gov/Legislation/ILCS/fulltext.asp?DocName=003500050K212&SeqStart=15400000&SeqEnd=16000000",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "35 ILCS 5/212 (Illinois Earned Income Tax Credit, including the age-18 minimum for filers without qualifying children added by P.A. 102-0700)"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/childless_min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ilga.gov/Legislation/PublicActs/Fulltext.asp?Name=102-0700&GA=102",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois Public Act 102-0700 (HB 4920) - Illinois EITC expansion to childless filers age 18+"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/eitc/childless_min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-16-55.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2017 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-17-58.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2018 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-18-57.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2019 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-18-57.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2019 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-19-44.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2020 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-20-45.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-21-45.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-22-38.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 IRS data release",
+    "IRS data release 2023"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-23-34.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-23-34.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-24-40.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ksrevenue.gov/pdf/ip21.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Form K-40 instructions"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/tax/income/credits/eitc_fraction.yaml",
+    "variables/gov/states/ks/tax/income/credits/eitc/ks_nonrefundable_eitc.py",
+    "variables/gov/states/ks/tax/income/credits/eitc/ks_refundable_eitc.py",
+    "variables/gov/states/ks/tax/income/credits/eitc/ks_total_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.ksrevenue.gov/pdf/ip22.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Form K-40 instructions"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/tax/income/credits/eitc_fraction.yaml",
+    "variables/gov/states/ks/tax/income/credits/eitc/ks_nonrefundable_eitc.py",
+    "variables/gov/states/ks/tax/income/credits/eitc/ks_refundable_eitc.py",
+    "variables/gov/states/ks/tax/income/credits/eitc/ks_total_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.ksrevenue.gov/pdf/ip23.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Form K-40 instructions"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/tax/income/credits/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ksrevenue.gov/pdf/ip24.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Form K-40 instructions - Line 17"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/tax/income/credits/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form K-40 instructions - Line 17"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/tax/income/credits/eitc_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/152#c_3_B",
+   "kind": "statute",
+   "citation": "us/statute/26/152/c/3/B",
+   "titles": [],
+   "states": [
+    "ca",
+    "co",
+    "dc"
+   ],
+   "files": [
+    "variables/gov/states/ca/tax/income/credits/earned_income/ca_is_qualifying_child_for_caleitc.py",
+    "variables/gov/states/co/tax/income/credits/eitc/co_eitc.py",
+    "variables/gov/states/dc/tax/income/credits/eitc/dc_eitc_with_qualifying_child.py",
+    "variables/gov/states/dc/tax/income/credits/eitc/dc_eitc_without_qualifying_child.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#b",
+   "kind": "statute",
+   "citation": "us/statute/26/32/b",
+   "titles": [
+    "26 U.S.C. § 32(b) - Earned Income Credit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#b_1",
+   "kind": "statute",
+   "citation": "us/statute/26/32/b/1",
+   "titles": [
+    "26 U.S. Code § 32 - Earned income"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_in_rate.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#c_1_A_ii_II",
+   "kind": "statute",
+   "citation": "us/statute/26/32/c/1/A/ii",
+   "titles": [
+    "26 U.S. Code § 32(c)(1)(A)(ii)(II) - Earned income credit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/eligibility/age/max.yaml",
+    "parameters/gov/irs/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/irs/credits/eitc/eligibility/age/min_student.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#d",
+   "kind": "statute",
+   "citation": "us/statute/26/32/d",
+   "titles": [
+    "26 U.S. Code § 32(d) - Earned income credit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/eligibility/separate_filer.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#i_1",
+   "kind": "statute",
+   "citation": "us/statute/26/32/i/1",
+   "titles": [
+    "26 U.S. Code § 32 - Earned income (i)(1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_out/max_investment_income.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#n_1_A",
+   "kind": "statute",
+   "citation": "us/statute/26/32/n/1/A",
+   "titles": [
+    "26 U.S. Code § 32(n)(1)(A) - Earned income credit",
+    "26 U.S. Code § 32(n)(1)(B)(2) - Earned income credit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/irs/credits/eitc/eligibility/age/min_student.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#n_2",
+   "kind": "statute",
+   "citation": "us/statute/26/32/n/2",
+   "titles": [
+    "26 U.S. Code § 32(n)(2) - Earned income credit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/eligibility/age/max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#n_3",
+   "kind": "statute",
+   "citation": "us/statute/26/32/n/3",
+   "titles": [
+    "26 U.S. Code § 32(n)(3)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_in_rate.yaml",
+    "parameters/gov/irs/credits/eitc/phase_out/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#n_4_A_ii",
+   "kind": "statute",
+   "citation": "us/statute/26/32/n/4/A/ii",
+   "titles": [
+    "26 U.S. Code § 32(n)(4)(A)(ii)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.legis.la.gov/legis/Law.aspx?d=453085",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Louisiana Revised Statutes, RS 47:297.8 - Earned income tax credit (A)"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "INCOME TAX ACT OF 1967 - Section 206.272, (1)"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_earned_income_cred_ff.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Maine Earned Income Tax Credit Worksheet"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/no_qualifying_child.yaml",
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/with_qualifying_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_earned_income_cred_ff.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Maine Earned Income Tax Credit Worksheet Line 3",
+    "2023 Maine Earned Income Tax Credit Worksheet Line 2"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/no_qualifying_child.yaml",
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/with_qualifying_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_earned_income_cred_ff_0.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Maine Earned Income Tax Credit Worksheet Line 3",
+    "2024 Maine Earned Income Tax Credit Worksheet Line 2"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/no_qualifying_child.yaml",
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/with_qualifying_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_gen_instr_w_cover_pg.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Instructions for Form 1040ME - Schedule A, Line 2 (Maine EIC Worksheet)",
+    "2025 Instructions for Form 1040ME - Schedule A, Line 2"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/no_qualifying_child.yaml",
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/with_qualifying_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.mainelegislature.org/legis/statutes/36/title36sec5219-S.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maine Legal Code §5219-S. Earned income credit (1)&(1-A)"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/no_qualifying_child.yaml",
+    "parameters/gov/states/me/tax/income/credits/eitc/rate/with_qualifying_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2024/Resident-Booklet.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2024 State & Local Tax Forms & Instructions - Line 22 - Earned Income Credit"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/married_or_has_child/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/max_amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/refundable/married_or_has_child/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2025 Resident Tax Forms and Instructions - Line 22 - Earned Income Credit"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/married_or_has_child/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/match.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/max_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2025 Resident Tax Forms and Instructions - Local Earned Income Credit Worksheet (19B)"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/local/rate_multiplier.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2025 Resident Tax Forms and Instructions - Line 22 - Earned Income Credit"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/refundable/married_or_has_child/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf#page=20",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Maryland Resident Booklet Individual"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf#page=21",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 State & Local Tax Forms & Instructions Maryland"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/married_or_has_child/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf#page=25",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2023 Resident Tax Forms and Instructions",
+    "2023 State & Local Tax Forms & Instructions Maryland"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/eitc/non_refundable/unmarried_childless/max_amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/eitc/refundable/married_or_has_child/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/doc/2023-form-1-instructions/download#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Form 1 2023 Massachusetts Resident Income Tax (line 43)"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/doc/2024-form-1-instructions/download#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Form 1 2024 Massachusetts Resident Income Tax - Line 43"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/info-details/mass-general-laws-c62-ss-6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mass. General Laws c.62 § 6(h)(1)"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/MI-1040.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 MICHIGAN Individual Income Tax Return MI-1040 Form, Line 27"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2023/MI-1040.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 MICHIGAN Individual Income Tax Return MI-1040 Form, Line 27"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/MI-1040-Instructions.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Michigan 2024 Individual Income Tax Instructions, Line 27"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2025/MI-1040-Book.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Michigan 2025 Individual Income Tax Instructions, Line 27"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 NJ-1040 Instructions (line 58)",
+    "2025 NJ-1040 Instructions (Line 58)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nj/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf#page=42",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 NJ-1040 Instructions (line 57)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nj/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf#page=43",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 NJ-1040 Instructions (line 58)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nj/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2024/1040i.pdf#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "variables/gov/states/nj/tax/income/credits/eitc/nj_eitc_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.nysenate.gov/legislation/laws/TAX/606",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Section 606 Credits against tax (d)",
+    "Section 606 Credits against tax (d)(8)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/match.yaml",
+    "parameters/gov/states/ny/tax/income/credits/eitc/supplemental_match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oklegislature.gov/cf_pdf/2021-22%20ENR/hB/HB2962%20ENR.PDF",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ok"
+   ],
+   "files": [
+    "variables/gov/states/ok/tax/income/credits/eitc/ok_eitc.py"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2021.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/old_child_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2022.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/old_child_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2023.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/old_child_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2024.pdf#page=19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/old_child_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf#page=22",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/old_child_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregonlegislature.gov/bills_laws/ors/ors315.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Chapter 315 — Personal and Corporate Income or Excise Tax Credits 315.266 (1)(b)",
+    "Chapter 315 — Personal and Corporate Income or Excise Tax Credits 315.266 (1)(a)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/eitc/match/has_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/match/no_young_child.yaml",
+    "parameters/gov/states/or/tax/income/credits/eitc/old_child_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.palegis.us/legislation/bills/text/PDF/2025/0/HB0416/PN2576#page=50",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "PA House Bill 416 - Article XVI-W.2 Working Pennsylvanians Tax Credit, Section 1603-W.2(C)"
+   ],
+   "states": [
+    "pa"
+   ],
+   "files": [
+    "parameters/gov/states/pa/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2021/2021-Form1-Inst.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "variables/gov/states/wi/tax/income/credits/earned_income/wi_earned_income_credit.py"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2021/2021-Form1-Inst.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Wisconsin Form 1 instructions for Line 26"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/tax/income/credits/earned_income/apply_federal_investment_income_limit.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/fraction.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/investment_income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2021/2021-Form1f.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "variables/gov/states/wi/tax/income/credits/earned_income/wi_earned_income_credit.py"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2022/2022-Form1-Inst.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "variables/gov/states/wi/tax/income/credits/earned_income/wi_earned_income_credit.py"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2022/2022-Form1-Inst.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Wisconsin Form 1 instructions for Line 29"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/tax/income/credits/earned_income/apply_federal_investment_income_limit.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/fraction.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/investment_income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2022/2022-Form1f.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "variables/gov/states/wi/tax/income/credits/earned_income/wi_earned_income_credit.py"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2023/2023-Form1-Inst.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Form 1 instructions"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/tax/income/credits/earned_income/apply_federal_investment_income_limit.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/investment_income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2023/2023-Form1-Inst.pdf#page=28",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Form 1 instructions"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2024/2024-Form1-inst.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Form 1 instructions"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/tax/income/credits/earned_income/apply_federal_investment_income_limit.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://www.revenue.wi.gov/TaxForms2025/2025-Form1-inst.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form 1 instructions"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/tax/income/credits/earned_income/apply_federal_investment_income_limit.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/fraction.yaml",
+    "parameters/gov/states/wi/tax/income/credits/earned_income/investment_income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scstatehouse.gov/code/t12c006.php",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "South Carolina Code of Laws Section 12-6-3632"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/tax/income/credits/eitc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SC H.4216 Section 7 - Section 12-6-3632"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/tax/income/credits/eitc/max.yaml",
+    "variables/gov/states/sc/tax/income/credits/eitc/sc_eitc.py",
+    "variables/gov/states/sc/tax/income/credits/eitc/sc_eitc_potential.py"
+   ]
+  },
+  {
+   "url": "https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf#page=45",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 NJ-1040 Instructions (line 58)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/eitc/eligibility/age/min.yaml",
+    "parameters/gov/states/nj/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm#step-8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Instructions for Form IT-201 Line 65"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/match.yaml",
+    "parameters/gov/states/ny/tax/income/credits/eitc/supplemental_match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/legal/2020/pit-corp-changes.htm#decoupling",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Tax Law 607(a), Part WWW of Chapter 58 of the Laws of 2020"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/decoupled.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/legal/2022/pit-corp-changes.htm#recoupling",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 PIT Changes - Recoupling"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/decoupled.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pdf/2021/inc/it215i_2021.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 IT-215 Instructions"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/decoupled.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pdf/current_forms/it/it201i.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form IT-201-I Instructions"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/match.yaml",
+    "parameters/gov/states/ny/tax/income/credits/eitc/supplemental_match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pdf/current_forms/it/it215_fill_in.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Form IT-215 Line 11"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/eitc/match.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/inline-files/2026-legislative-summary.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia Department of Taxation 2026 Legislative Summary - refundable EITC"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions.pdf#page=31",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2021 Form 760 Resident Individual Income Tax Booklet"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/match/non_refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions.pdf#page=32",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2021 Form 760 Resident Individual Income Tax Booklet"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/base.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2022-760-instructions.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2022 Form 760 Resident Individual Income Tax Booklet"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/ineligible_programs.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2022-760-instructions.pdf#page=32",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2022 Form 760 Resident Individual Income Tax Booklet"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/base.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/non_refundable.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml",
+    "variables/gov/states/va/tax/income/credits/eitc/va_eitc.py",
+    "variables/gov/states/va/tax/income/credits/eitc/va_eitc_person.py",
+    "variables/gov/states/va/tax/income/credits/eitc/va_non_refundable_eitc.py",
+    "variables/gov/states/va/tax/income/credits/eitc/va_non_refundable_eitc_if_claimed.py",
+    "variables/gov/states/va/tax/income/credits/eitc/va_non_refundable_eitc_potential.py",
+    "variables/gov/states/va/tax/income/credits/eitc/va_refundable_eitc.py",
+    "variables/gov/states/va/tax/income/credits/eitc/va_refundable_eitc_if_claimed.py"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2023-760-instructions.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2023 Form 760 Resident Individual Income Tax Booklet"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/ineligible_programs.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2023-760-instructions.pdf#page=31",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2023 Form 760 Resident Individual Income Tax Instructions"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/base.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/non_refundable.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2024-760-instructions.pdf#page=30",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2024 Form 760 Resident Individual Income Tax Booklet"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/ineligible_programs.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2024-760-instructions.pdf#page=31",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2024 Form 760 Resident Individual Income Tax Instructions"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/base.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/non_refundable.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2025-760-instructions.pdf#page=31",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia 2025 Form 760 Resident Individual Income Tax Instructions"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/tax/income/credits/eitc/low_income_tax/base.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/non_refundable.yaml",
+    "parameters/gov/states/va/tax/income/credits/eitc/match/refundable.yaml"
+   ]
+  },
+  {
+   "url": "https://www.taxformfinder.org/forms/2021/2021-utah-tc-40-full-packet.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah TC-40  Utah Individual Income Tax Form"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/earned_income/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.taxpolicycenter.org/statistics/eitc-parameters",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "EITC Parameters | TPC"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/eitc/phase_out/joint_bonus.yaml"
+   ]
+  }
+ ]
+}

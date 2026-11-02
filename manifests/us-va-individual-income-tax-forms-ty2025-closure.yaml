@@ -1,0 +1,70 @@
+version: '2026-09-15'
+documents:
+- source_id: us-va-tax-form-760-ty2025
+  jurisdiction: us-va
+  document_class: form
+  title: 2025 Virginia Form 760 Resident Income Tax Return
+  source_url: https://www.tax.virginia.gov/sites/default/files/taxforms/individual-income-tax/2025/760-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-va/form/tax/ty2025/form-760
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.tax.virginia.gov/forms/search?category=1&year=657
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.tax.virginia.gov/forms/search?category=1&year=657
+      (read 2026-09-14)
+    page_count_at_research: 2
+    first_page_first_line: WEB 2025 Virginia Form 760 Resident Income Tax Return File by May 1, 2026
+- source_id: us-va-tax-form-760-instructions-ty2025
+  jurisdiction: us-va
+  document_class: form
+  title: 2025 Form 760 Resident Individual Income Tax Instructions
+  source_url: https://www.tax.virginia.gov/sites/default/files/vatax-pdf/2025-760-instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-va/form/tax/ty2025/form-760-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.tax.virginia.gov/forms/search?category=1&year=657
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.tax.virginia.gov/forms/search?category=1&year=657
+      (read 2026-09-14)
+    page_count_at_research: 43
+    first_page_first_line: VIRGINIA 2025 Form 760 Resident Individual Income Tax Instructions
+- source_id: us-va-tax-tax-table-ty2025
+  jurisdiction: us-va
+  document_class: form
+  title: 2025 Virginia Tax Table and Tax Rate Schedule
+  source_url: https://www.tax.virginia.gov/sites/default/files/vatax-pdf/tax-table-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-va/form/tax/ty2025/tax-table
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Taxation
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.tax.virginia.gov/forms/search?category=1&year=657
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.tax.virginia.gov/forms/search?category=1&year=657
+      (read 2026-09-14)
+    page_count_at_research: 9
+    first_page_first_line: 'TAX RATE SCHEDULE IF YOUR VIRGINIA TAXABLE INCOME IS: Not over $3,000, your tax is 2% of your
+      Virginia taxable income.'

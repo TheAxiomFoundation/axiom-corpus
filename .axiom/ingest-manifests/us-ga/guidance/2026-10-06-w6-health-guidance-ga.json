@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/guidance/2026-10-06-w6-health-guidance-ga.json",
+      "sha256": "9939f956f327a3821b9eee3f2147a51e7308c44c93cabbb999ea945c00242a14"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/guidance/2026-10-06-w6-health-guidance-ga.json",
+      "sha256": "cca7f24b50be1455e4bd13097e5c062354d9ce47de097d17ff602a85fff17979"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/guidance/2026-10-06-w6-health-guidance-ga.jsonl",
+      "sha256": "913ca5b7907f0544579a08a4713686cbee036cc503b6e0c20136b4d70f372211"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-health-guidance-ga/official-documents/us-ga-w6-health-dch-mmis-medicaid-fair-spring-2021-nemt.pdf",
+      "sha256": "a75eb7e2893c569d25580af5ec7a60ab0bd6ba138d82bdf3b7082b8a9cd0d3d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-health-guidance-ga/official-documents/us-ga-w6-health-dch-peachcare-copayments-premiums-resume-2024-10-01.html",
+      "sha256": "09646a7b9a2ff161d383217a76f83fa072ad6b64e18f7aaa378e06dad89f5a59"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-health-guidance-ga/official-documents/us-ga-w6-health-macpac-exhibit-36-2024-07.pdf",
+      "sha256": "8f9218ddbb5008595bdb3c751a3844f8ece556af84d5e9cbca119d92145aad03"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-10-06-w6-health-guidance-ga/official-documents/us-ga-w6-health-macpac-exhibit-36-2025-07.pdf",
+      "sha256": "423b654a0cc2a452b8090aa3e26fc86ea619204a4d094d5c741268f44f6ced5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 35,
+    "missing_count": 0,
+    "provision_count": 35,
+    "source_count": 35
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:43.224063+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qcN+WL6jhGd0P+xBVFNp1PBH5EtZzaWF0UY2t2N9Wc+lRuH9rrwXD2ERi/sUE/6m4VyetoT+Ljwxq0ciOVkzAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-ga"
+}

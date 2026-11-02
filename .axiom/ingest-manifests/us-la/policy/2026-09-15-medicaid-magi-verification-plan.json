@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "c4d224ed95b23650a8e203ed45ccefc5972370dbe8669367ff39dd695f59b5f8"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "d8ef19ee60d1b16339140e1f5a2fd22436ddc00ace9915690ea2d9955953d2c1"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "162fb397a6f2267ab51765a933bc4bcf797098a347e93fbd3dacc9be8b7699fc"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-la-cms-magi-verification-plan-louisiana-verification-plan-template-final.pdf",
+      "sha256": "00967d9cb3c90ee3eb6d1449cce33a9c2dd2de041eea16ff2e612c0e57fa3c03"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:54.553027+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "73zeBqa870ctYOJfw9K1pBnF7nKoz2y3kiNiJZTVNAeLjoHsuKDfebdY+Otxj7kjl7K+G6A3ygq6wKv1o6C9Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

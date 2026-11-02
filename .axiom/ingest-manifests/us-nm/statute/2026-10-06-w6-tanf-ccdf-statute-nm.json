@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/statute/2026-10-06-w6-tanf-ccdf-statute-nm.json",
+      "sha256": "db7729419dd573b4effe16f0dbe784c268326eda5acb18a7edca050fd317c20a"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/statute/2026-10-06-w6-tanf-ccdf-statute-nm.json",
+      "sha256": "029c36fceaf0ea17344ca37d56c64dd5e56777ad61b8dd9e7a236879aaa049a6"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/statute/2026-10-06-w6-tanf-ccdf-statute-nm.jsonl",
+      "sha256": "3a5907d5b207750f82b16293b27e6e002e8fcde49b784d7cd4eae95cdb7ce99f"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-10-06-w6-tanf-ccdf-statute-nm/official-documents/us-nm-w6-session-laws-2026-sb241.pdf",
+      "sha256": "2d65f73f53e96e5425ef65efb14bdf1f8990f05aadc8df0ea6d1b8bbeaaa2da3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:56:29.607521+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EVJBjMi+UfFn0fI8KY+cdvacYVLZXlrBSW59UY1EqCkxYGPX4J+t+4Yda6UFf8tU5YmqpAKJ8mI1lKTN/TUvAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statute-nm"
+}

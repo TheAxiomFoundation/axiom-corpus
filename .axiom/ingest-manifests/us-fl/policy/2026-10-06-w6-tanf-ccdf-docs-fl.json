@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/policy/2026-10-06-w6-tanf-ccdf-docs-fl.json",
+      "sha256": "852dfcd0af2348c729294c4befe1c32296196768cc664421058f5b20386f12ca"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/policy/2026-10-06-w6-tanf-ccdf-docs-fl.json",
+      "sha256": "673fa81b549bfd9af0c8f72cf7625dd283b85337b98a42d30aaa9f057a9278f8"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/policy/2026-10-06-w6-tanf-ccdf-docs-fl.jsonl",
+      "sha256": "89a8c4837a17085488ff6319fe638bdb3512672f04ddb7c55ef52ef78cb4e499"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/policy/2026-10-06-w6-tanf-ccdf-docs-fl/official-documents/us-fl-w6-dcf-tanf-temporary-cash-assistance.html",
+      "sha256": "7958c5abc7b2238fe363b138a1689c38521bf9ec246501878dc34fa38f0121ad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:50:33.798069+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fW9mcZLdzPYXCKIdA53tNlASH3H+7GP9iQK6mnqB9QUqnjm2PXeeeWXEoy0s748W4ATpQbfeZPbwSvgUu+pMBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-fl"
+}

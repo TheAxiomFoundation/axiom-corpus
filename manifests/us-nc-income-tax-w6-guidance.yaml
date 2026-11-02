@@ -1,0 +1,64 @@
+version: 2026-10-06-w6-income-tax-guidance-nc
+documents:
+- source_id: us-nc-guidance-ncdor-north-carolina-child-deduction
+  jurisdiction: us-nc
+  document_class: guidance
+  title: North Carolina Child Deduction
+  source_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-child-deduction
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nc/guidance/ncdor/north-carolina-child-deduction
+  extraction:
+    html_content_selector: main#main-wrapper
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-child-deduction
+    - https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children
+- source_id: us-nc-guidance-ncdor-military-retirement
+  jurisdiction: us-nc
+  document_class: guidance
+  title: Military Retirement
+  source_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/military-retirement
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nc/guidance/ncdor/military-retirement
+  extraction:
+    html_content_selector: main#main-wrapper
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/military-retirement
+- source_id: us-nc-guidance-ncdor-north-carolina-standard-deduction-or-itemized-deductions
+  jurisdiction: us-nc
+  document_class: guidance
+  title: North Carolina Standard Deduction or North Carolina Itemized Deductions
+  source_url: https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-standard-deduction-or-north-carolina-itemized-deductions
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nc/guidance/ncdor/north-carolina-standard-deduction-or-itemized-deductions
+  extraction:
+    html_content_selector: main#main-wrapper
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-standard-deduction-or-north-carolina-itemized-deductions
+    - https://www.ncdor.gov/taxes-forms/individual-income-tax/north-carolina-standard-deduction-or-north-carolina-itemized-deductions

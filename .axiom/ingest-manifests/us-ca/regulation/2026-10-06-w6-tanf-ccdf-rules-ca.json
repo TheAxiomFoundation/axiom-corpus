@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca.json",
+      "sha256": "593108f09ca0a2c16cd535878eb10e87eb62efe3fd33dd2d151eafc5de1aec97"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca.json",
+      "sha256": "c5bd1578748dbd2598e16d9074426c3ea587d250e8e9cae37b45fb7e7b2824e7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca.jsonl",
+      "sha256": "5724b22510747a9cd6574c6f109b2d5d5a27a2d416fa73c90ee8247ff94bf94d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca/official-documents/us-ca-w6-cdss-mpp-eas-pdf-10eas.pdf",
+      "sha256": "67b255d28e0ce8290d66fed1f2db0d4445a3a3079cf2e67ed1898678d4242aaa"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca/official-documents/us-ca-w6-cdss-mpp-eas-pdf-12eas.pdf",
+      "sha256": "cc89ebe68240448328e15aa45921f0ab1a8f01e7e12ccbc8342659568e2762e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca/official-documents/us-ca-w6-cdss-mpp-eas-pdf-14eas.pdf",
+      "sha256": "209e15f045bd24c5d01576c71331e60809b5709d7c9eb4ae275b0e8e95a0a908"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-10-06-w6-tanf-ccdf-rules-ca/official-documents/us-ca-w6-cdss-mpp-eas-pdf-4eas.pdf",
+      "sha256": "40fad1aae2a35fc01574ba18bddc347074af01adcbcada5e0407be57c049a3b5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 240,
+    "missing_count": 0,
+    "provision_count": 240,
+    "source_count": 240
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:49:28.959439+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fTgfzr//zKQmkbPkTrCBxSX2myYHL92IyC3JOQ9HszWGDvgAboh7KiCh8DospoK/4DzeKVz3MS98ftBICuLuCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-ca"
+}

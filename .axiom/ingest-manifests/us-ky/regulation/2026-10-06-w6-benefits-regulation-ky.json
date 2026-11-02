@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/regulation/2026-10-06-w6-benefits-regulation-ky.json",
+      "sha256": "99acacab23e2e1e845b00e5c073898d4b6f38cff689a5f755535ad81977f462e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/regulation/2026-10-06-w6-benefits-regulation-ky.json",
+      "sha256": "8498bd9f0cadfe72a7160e210997fbf84622b24296f8d4da3e51328685a889ec"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/regulation/2026-10-06-w6-benefits-regulation-ky.jsonl",
+      "sha256": "02877b15c4aeada2b77eff258d132f22000ae2d51a871f4c749ed0cda44a50dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-benefits-regulation-ky/official-documents/us-ky-regulation-kar-921-004-116.html",
+      "sha256": "3da16392ee2eacfdaaf1e3c03fdc3f4639714c4d865bc7344704b926340d8ec4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:52:27.799658+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Rl476aFyZBlO6dIW4r2Xi54ZCUd0poZnV/oqs7nLqkOmXOcruWjqQ3iFnLoPdmqW1gxI+pIVxRyta5Qs+SoVBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-regulation-ky"
+}

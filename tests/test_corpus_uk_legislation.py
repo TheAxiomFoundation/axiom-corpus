@@ -1,10 +1,13 @@
 import json
-from datetime import date
+import re
+from datetime import date, datetime, timedelta, timezone
 
 import pytest
+from hypothesis import given
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-from axiom_corpus.corpus.uk_legislation import extract_uk_legislation_sections
+from axiom_corpus.corpus.uk_legislation import _date_text, extract_uk_legislation_sections
 from axiom_corpus.fetchers.legislation_uk import UKLegislationFetcher
 from axiom_corpus.models_uk import UKCitation
 from axiom_corpus.parsers.clml import parse_section
@@ -813,3 +816,178 @@ def test_extract_uk_legislation_lex_matches_section_case_insensitively(tmp_path,
     )
     assert row["citation_path"] == "uk/statute/ukpga/2007/3/11D"
     assert row["body"] == "Savings nil rate."
+
+
+# ---------------------------------------------------------------------------
+# _date_text: fail-closed date-text resolution (axiom-corpus#358 /
+# rulespec-uk#140). The fallback chain is
+#   source_as_of_text = _date_text(source_as_of, version, flag="--source-as-of")
+#   expression_date_text = _date_text(expression_date, source_as_of_text, ...)
+# so both ``value`` (when given) and ``fallback`` (when ``value`` is None) are
+# validated by the exact same code path -- these cases exercise both roles.
+# ---------------------------------------------------------------------------
+
+
+def test_date_text_date_instance_returns_isoformat():
+    # (a) a `date` instance is converted via isoformat, regardless of fallback.
+    assert _date_text(date(2026, 4, 6), "unused-fallback", flag="--expression-date") == "2026-04-06"
+
+
+def test_date_text_exact_iso_string_value_unchanged():
+    # (b) an exact ISO string value is returned unchanged; fallback is not consulted.
+    assert _date_text("2026-04-06", "unused-fallback", flag="--expression-date") == "2026-04-06"
+
+
+def test_date_text_exact_iso_string_fallback_unchanged():
+    # (b) via the None-value fallback path.
+    assert _date_text(None, "2026-04-06", flag="--source-as-of") == "2026-04-06"
+
+
+def test_date_text_slug_value_extracts_leading_date():
+    # (c) a leading YYYY-MM-DD prefix followed by non-date content (the ingest
+    # version-slug shape) has the validated prefix extracted.
+    assert (
+        _date_text("2026-07-13-uk-ctr-enp-regs", "unused-fallback", flag="--expression-date")
+        == "2026-07-13"
+    )
+
+
+def test_date_text_slug_fallback_extracts_leading_date():
+    # (c) via the None-value fallback path -- this is the exact shape of the
+    # rulespec-uk#140 bug: value is None, fallback is the ingest version slug.
+    assert _date_text(None, "2026-07-13-uk-ctr-enp-regs", flag="--source-as-of") == "2026-07-13"
+
+
+def test_date_text_non_date_value_raises_naming_value_and_flag():
+    # (d) anything else raises, naming both the offending value and the flag
+    # the caller must pass explicitly.
+    with pytest.raises(ValueError, match=r"--expression-date") as exc_info:
+        _date_text("ctr", "unused-fallback", flag="--expression-date")
+    assert "'ctr'" in str(exc_info.value)
+
+
+def test_date_text_non_date_fallback_raises_naming_value_and_flag():
+    # (d) via the None-value fallback path.
+    with pytest.raises(ValueError, match=r"--source-as-of") as exc_info:
+        _date_text(None, "ctr", flag="--source-as-of")
+    assert "'ctr'" in str(exc_info.value)
+
+
+def test_date_text_invalid_calendar_date_raises():
+    # (d) a string shaped like a leading ISO date but not a real calendar date
+    # (2026-02-30: February has no 30th) must not be silently truncated to a
+    # bogus prefix -- it is fail-closed like any other non-date text.
+    with pytest.raises(ValueError, match=r"--expression-date"):
+        _date_text("2026-02-30-uk-thing", "unused-fallback", flag="--expression-date")
+
+
+def test_extract_uk_legislation_slug_version_writes_iso_prefix_dates(tmp_path):
+    """Regression test for axiom-corpus#358 / rulespec-uk#140.
+
+    When neither --source-as-of nor --expression-date is given (the exact
+    campaign call shape that produced the bug), the writer must derive both
+    date fields from the leading ISO date in the version slug -- never
+    persist the raw slug, trailing description included, into a date field.
+    """
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "child-benefit-reg-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_REGULATION_XML)
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-07-13-uk-ctr-enp-regs",
+        source_xmls=(source_xml,),
+    )
+
+    assert report.provisions_written == 1
+    provisions_path = base / "provisions/uk/regulation/2026-07-13-uk-ctr-enp-regs.jsonl"
+    row = json.loads(provisions_path.read_text().strip())
+    assert row["source_as_of"] == "2026-07-13"
+    assert row["expression_date"] == "2026-07-13"
+    assert row["source_as_of"] != "2026-07-13-uk-ctr-enp-regs"
+    assert row["expression_date"] != "2026-07-13-uk-ctr-enp-regs"
+
+
+def test_extract_uk_legislation_non_date_version_without_explicit_dates_raises(tmp_path):
+    # End-to-end fail-closed check: a version with no leading date and no
+    # explicit --source-as-of/--expression-date must raise rather than write
+    # a bare label like "ctr" into a date field.
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "child-benefit-reg-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_REGULATION_XML)
+
+    with pytest.raises(ValueError, match="--source-as-of"):
+        extract_uk_legislation_sections(
+            CorpusArtifactStore(base),
+            version="ctr",
+            source_xmls=(source_xml,),
+        )
+
+
+# ---------------------------------------------------------------------------
+# _date_text: a ``datetime`` is a ``date`` subclass (axiom-corpus#809). It must
+# resolve to the date it falls on, never to a ``YYYY-MM-DDTHH:MM:SS`` string.
+# ---------------------------------------------------------------------------
+
+
+def test_date_text_datetime_value_resolves_to_its_date():
+    value = datetime(2026, 4, 6, 12, 30)
+    assert _date_text(value, "unused-fallback", flag="--expression-date") == "2026-04-06"
+
+
+def test_date_text_aware_datetime_resolves_to_its_own_calendar_date():
+    # The date the value names in its own offset, which is also the prefix of
+    # its isoformat() string: no conversion to UTC or to the host's zone.
+    value = datetime(2026, 4, 6, 23, 30, tzinfo=timezone(timedelta(hours=-5)))
+    assert _date_text(value, "unused-fallback", flag="--source-as-of") == "2026-04-06"
+    assert _date_text(value.isoformat(), "unused", flag="--source-as-of") == "2026-04-06"
+
+
+@pytest.mark.parametrize("field", ["source_as_of", "expression_date"])
+def test_extract_uk_legislation_datetime_writes_date_only_field(tmp_path, field):
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "child-benefit-reg-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_REGULATION_XML)
+
+    extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-05-29-uk-benefits",
+        source_xmls=(source_xml,),
+        **{field: datetime(2026, 4, 6, 12, 30)},
+    )
+
+    provisions_path = base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl"
+    row = json.loads(provisions_path.read_text().strip())
+    assert row[field] == "2026-04-06"
+    for date_field in ("source_as_of", "expression_date"):
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", row[date_field]), row[date_field]
+
+
+_DATE_TEXT_STRINGS = st.one_of(
+    st.dates().map(date.isoformat),
+    st.datetimes().map(datetime.isoformat),
+    st.tuples(st.dates(), st.text()).map(lambda pair: pair[0].isoformat() + pair[1]),
+    st.text(),
+)
+_DATE_TEXT_VALUES = st.one_of(
+    st.none(),
+    st.dates(),
+    st.datetimes(timezones=st.none() | st.timezones()),
+    _DATE_TEXT_STRINGS,
+)
+
+
+@given(value=_DATE_TEXT_VALUES, fallback=_DATE_TEXT_STRINGS)
+def test_date_text_accepted_result_is_always_a_calendar_date(value, fallback):
+    # The fallback is the version slug or the resolved source_as_of text, so
+    # it is always a string. Every accepted input resolves to a date-only
+    # ISO string; a date or datetime resolves to the date it names.
+    try:
+        result = _date_text(value, fallback, flag="--expression-date")
+    except ValueError:
+        return
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", result), result
+    assert date.fromisoformat(result).isoformat() == result
+    if isinstance(value, date):
+        expected = value.date() if isinstance(value, datetime) else value
+        assert result == expected.isoformat()

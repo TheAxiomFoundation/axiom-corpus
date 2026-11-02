@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "40962aacd11af4ae98a3b6fa1f838835e20697a5468d36c6cafd7a63e65cc4a5"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "af63b49af4a7d3e946ff9e4730e76e67ba4bafa6eb154260202bca4609988651"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "d502e7d018ebea94b1fbf5c081bf26504f7fe874e0a20ab33acc08b96130d232"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/policy/2026-09-15-medicaid-1115-stc/official-documents/us-sd-cms-1115-stc-former-foster-care-youth.pdf",
+      "sha256": "8fd50d1561780035ccb338c160dcb80e41ff59b8559a83e1ee06dcc961990bad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 32,
+    "missing_count": 0,
+    "provision_count": 32,
+    "source_count": 32
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:26.033502+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kyFu8EU/DPv46Fx9ZjKKCn/p7qbxzc1XIPQXqOXRjC9WsFGSlL0GTpIjwhqY0DgF84K5HRzsZ8RIzmXBJtiOCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}

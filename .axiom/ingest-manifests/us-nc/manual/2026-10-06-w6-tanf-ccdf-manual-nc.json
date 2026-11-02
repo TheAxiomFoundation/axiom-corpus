@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc.json",
+      "sha256": "7c8ebcd5a888cfd7140bbb87b1dfcf5e5d176a653a95e6fa453582cfd6045772"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc.json",
+      "sha256": "c669d254afbccbe8d4cf331aa8dc3b99291ccb0e0b0edfcbd829abf13dc38450"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc.jsonl",
+      "sha256": "bf4532509c1b91e097b8e52b4c6126a27edd79b9453b793c858e63497cac1910"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc/official-documents/us-nc-w6-dcdee-subsidized-child-care-acronyms-and-definitions.pdf",
+      "sha256": "b405917213f2f98e62b203cbe13ac7b6dfdd91d12bef96a46a874a7c7c735b64"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc/official-documents/us-nc-w6-dcdee-subsidized-child-care-chapter-4-cn-26-03.pdf",
+      "sha256": "e36c7691eea8dfdb77d55b8f7be321fb89df599e35ce6511f8668cea2d6e2611"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc/official-documents/us-nc-w6-dcdee-subsidized-child-care-chapter-7-2024-08-05.pdf",
+      "sha256": "64bfb67b581bb82e1b0a0b904a91fc82ad435da739a557d44027aa4341a2dcc4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc/official-documents/us-nc-w6-dcdee-subsidized-child-care-chapter-7-2024-08-black.pdf",
+      "sha256": "e8eeae2746489beaa7290bcbac45ad78d43d4e7468f512b640cd4b245778621e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-tanf-ccdf-manual-nc/official-documents/us-nc-w6-dcdee-subsidized-child-care-chapter-8-cn-26-03.pdf",
+      "sha256": "e11c356b843172aa88903f35ce831958343c85eadbfb1577b9a988a2cd81a4ef"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 190,
+    "missing_count": 0,
+    "provision_count": 190,
+    "source_count": 190
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:55:09.018752+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NSVZVLMLj5AnrwiEC62RRkwwvnx6C5FgpaOl8Yytzsz1XvnGkjLNWdxv4qqHUoJqG4fXBdKqskTrQxsGdVp0Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-nc"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "be43daefee6a3cd0e532cc2334e35dacffae532c5603e28922e5498b0513d7d4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "4b4cfffb264b1ac42cc6fd35da1bd5352cb2f40d3e2f11bb8bb8e1f2b5358b67"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "e0fe8fde3d5e1aabd39c206fe0d1eb195d5b10f0fed430796a3fc969cf6b5fd2"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ca-ftb-form-540-booklet-ty2025.pdf",
+      "sha256": "b48ee24bd2f9b9e74fe9a5bbc548d15bae0bd1ce53306bef1ff33fc76f8078c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ca-ftb-form-540-ty2025.pdf",
+      "sha256": "3be81dcc5d2be3d303596f6fa528e8fdb7cda6644afac6ccf869fc5ebeb7bf1c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:48:59.023367+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jUxteRJRq6osLmtAekSBWPO0Z331xwSXKJfwFhdkAHikGAencmOhr4K1Bk8ziLOyqG3WoEQ168Tr0GnlSHI+CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

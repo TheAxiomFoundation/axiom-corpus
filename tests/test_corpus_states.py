@@ -1077,17 +1077,17 @@ def test_nebraska_extraction_reports_source_errors(tmp_path):
     )
     chapter_path.write_text("<html><body><div>No statutory sections.</div></body></html>")
 
-    report = extract_nebraska_revised_statutes(
-        CorpusArtifactStore(tmp_path / "corpus-bad-section"),
-        version="2026-05-04",
-        source_dir=bad_section_dir,
-        source_as_of="2026-05-04",
-        only_title="1",
-        limit=3,
-    )
-
-    assert report.section_count == 0
-    assert report.errors == ("chapter 1: no sections parsed",)
+    # The only chapter yields no sections, so it is an inventory gap and the
+    # run has no provisions to write.
+    with pytest.raises(ValueError, match="no Nebraska Revised Statutes provisions extracted"):
+        extract_nebraska_revised_statutes(
+            CorpusArtifactStore(tmp_path / "corpus-bad-section"),
+            version="2026-05-04",
+            source_dir=bad_section_dir,
+            source_as_of="2026-05-04",
+            only_title="1",
+            limit=3,
+        )
 
 
 def test_nebraska_live_source_helpers_cover_success_and_exhausted_retry(tmp_path, monkeypatch):
@@ -2135,3 +2135,29 @@ def test_extract_cic_state_odt_cli(tmp_path, capsys):
     assert exit_code == 0
     assert '"jurisdiction": "us-va"' in output
     assert '"provisions_written": 3' in output
+
+
+def test_texas_duplicate_section_variant_uses_grammar_separator():
+    """A repeated Texas section number joins its variant with `--`, never `@` (citation grammar)."""
+    from axiom_corpus.corpus.states import _texas_section_variant, _TexasSection
+
+    variant = _texas_section_variant("NOTIFICATION OF FAMILY VIOLENCE CALLS", 2)
+    section = _TexasSection(
+        code="HR",
+        section="42.0448",
+        variant=variant,
+        marker="Sec.",
+        heading="NOTIFICATION OF FAMILY VIOLENCE CALLS",
+        body="text",
+        source_id="42.0448",
+        source_url="https://statutes.capitol.texas.gov/Docs/HR/htm/HR.42.htm#42.0448",
+        source_document_id="HR.42",
+        parent_citation_path="us-tx/statute/hr/title-2/subtitle-d/chapter-42",
+        level=4,
+        ordinal=1,
+        references_to=(),
+        anchors=("42.0448",),
+    )
+    assert "@" not in section.citation_path
+    assert section.citation_path == f"us-tx/statute/hr/42.0448--{variant}"
+    assert _texas_section_variant("HEADING", 1) is None

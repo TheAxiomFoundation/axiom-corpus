@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/policy/2026-09-15-ccdf-rate-schedules.json",
+      "sha256": "cc76ad0815c9b762b86a1ace381545142a90de3249d1fdecb23b074c4da4a030"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/policy/2026-09-15-ccdf-rate-schedules.json",
+      "sha256": "36b1f5ef11cdbcdb8a514350d2669539705085a908e7ecd3014649213215fd8c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/policy/2026-09-15-ccdf-rate-schedules.jsonl",
+      "sha256": "3793dc331463212b3a57f13f18f62d1a14b0a6ba84173a57251f251a7eea9ffc"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/policy/2026-09-15-ccdf-rate-schedules/official-documents/us-wi-ccdf-rate-schedule-wisconsin-shares-copayment-schedule-2026-02-01.pdf",
+      "sha256": "e70fb168fbc350418d4dfe275595ea4ecf94d0e6eef3baaba18251298e7a7062"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/policy/2026-09-15-ccdf-rate-schedules/official-documents/us-wi-ccdf-rate-schedule-wisconsin-shares-maximum-rates-2025-10-01.pdf",
+      "sha256": "42190ad3636ce4ca4bdb9ec25a0f0eb6acc27f814cd57b85e137e8418610a608"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-11T18:28:24.211959+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AT58p7pKl+xpYOgFHaQigLpOhnszFCi0Z/otkB4FUxb60P9CE0Qx6EDdiTClmObYFoT3wqPG1ZpGsUdNKyHVDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-rate-schedules"
+}

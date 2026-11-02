@@ -1,0 +1,161 @@
+version: 2026-10-06-w6-income-tax-forms-de
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Delaware
+documents:
+- source_id: us-de-w6-dor-ty2021-pit-res-instructions
+  jurisdiction: us-de
+  document_class: form
+  title: 2021 Delaware Resident Individual Income Tax Return Instructions (PIT-RES)
+  source_url: https://revenuefiles.delaware.gov/2021/PIT-RES_TY21_2021-01_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-de/form/dor/ty2021/pit-res-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DELAWARE Individual Income Tax Return RESIDENT 2021
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 320
+- source_id: us-de-w6-dor-ty2021-pit-res
+  jurisdiction: us-de
+  document_class: form
+  title: 2021 Delaware Form PIT-RES, Resident Individual Income Tax Return
+  source_url: https://revenuefiles.delaware.gov/2021/PIT-RES_TY21_2021-01_PaperBase.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-de/form/dor/ty2021/pit-res
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Form PIT-RES 2021 (paper base)
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 321
+- source_id: us-de-w6-dor-ty2022-pit-res
+  jurisdiction: us-de
+  document_class: form
+  title: 2022 Delaware Form PIT-RES, Resident Individual Income Tax Return (interactive)
+  source_url: https://revenuefiles.delaware.gov/2022/PIT-RES_TY22_2022-01_PaperInteractive.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-de/form/dor/ty2022/pit-res
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Form PIT-UND If you were a part-year resident in 2022
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 322
+- source_id: us-de-w6-dor-ty2022-pit-res-instructions
+  jurisdiction: us-de
+  document_class: form
+  title: 2022 Delaware Resident Individual Income Tax Return Instructions (PIT-RES)
+  source_url: https://revenuefiles.delaware.gov/2022/PIT-RES_TY22_2022-02_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-de/form/dor/ty2022/pit-res-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DELAWARE Individual Income Tax Return RESIDENT 2022
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 323
+- source_id: us-de-w6-dor-ty2022-pit-rsa
+  jurisdiction: us-de
+  document_class: form
+  title: 2022 Delaware Form PIT-RSA, Resident Schedule A Itemized Deductions (interactive)
+  source_url: https://revenuefiles.delaware.gov/2022/TY22_PIT-RSA_2022-02_PaperInteractive.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-de/form/dor/ty2022/pit-rsa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: TOTAL ITEMIZED DEDUCTIONS (PIT-RSA 2022)
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 324
+- source_id: us-de-w6-dor-ty2023-pit-res-instructions
+  jurisdiction: us-de
+  document_class: form
+  title: 2023 Delaware Resident Individual Income Tax Return Instructions (PIT-RES)
+  source_url: https://revenuefiles.delaware.gov/2023/PIT-RES_TY23_2023-01_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-de/form/dor/ty2023/pit-res-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DELAWARE Individual Income Tax Return RESIDENT 2023
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 325
+- source_id: us-de-w6-dor-ty2024-pit-res-instructions
+  jurisdiction: us-de
+  document_class: form
+  title: 2024 Delaware Resident Individual Income Tax Return and Instructions (PIT-RES)
+  source_url: https://revenuefiles.delaware.gov/2024/PIT_2024_Forms/PIT_Instructions/PIT-RES_TY24_2024-01_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-de/form/dor/ty2024/pit-res-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: DELAWARE Individual Income Tax Return RESIDENT AND INSTRUCTIONS 2024
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 326

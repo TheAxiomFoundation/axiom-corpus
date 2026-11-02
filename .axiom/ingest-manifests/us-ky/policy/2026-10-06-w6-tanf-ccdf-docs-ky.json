@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky.json",
+      "sha256": "1175c360d33ae635b98e3ea631d8dd96a183fbcd589f83d58a2e55d451e0283b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky.json",
+      "sha256": "8666a6ba898814f436c9b73e22952a48c98f555c8397fde878912beaa1c64a36"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky.jsonl",
+      "sha256": "872bbe82a0aefac3b22fb3a458fed3c92112f80eba91de5f5e8213fcfcfa4036"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky/official-documents/us-ky-w6-chfs-ccdf-dcc-113.pdf",
+      "sha256": "c2c20fca42b6273db20fcd9a989038a6db327d101a8138badf5403b9ed084742"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky/official-documents/us-ky-w6-chfs-ccdf-dcc-300-ky-max-payment-chart.pdf",
+      "sha256": "b8780906c548afc1664399684c2708e674692783596000a0f1b7c61727772393"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-10-06-w6-tanf-ccdf-docs-ky/official-documents/us-ky-w6-chfs-tanf-kentucky-transitional-assistance-program.html",
+      "sha256": "46429691623438cb904268ac6a7ed4e124e018a65dce066c3a5a11dd4840eaf5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:52:25.965597+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GdP7VtF2NJ3EcsQQB+DOaL9t9F2pX7k84IjlGOdgcFH3ykg+//OekrxKl/C0Qp+fFx7nM2O9y883ul7/QnHADw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-ky"
+}

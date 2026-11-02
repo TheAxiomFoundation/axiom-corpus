@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo.json",
+      "sha256": "e1a5a392b7f3fe862b12e632f3bba8b4c9cbeeed7e6b0e97a00fc5ae5476609f"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo.json",
+      "sha256": "daef6160917527c3c5352c98567a2a4e879eed27e7948318f60b165caf057bde"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo.jsonl",
+      "sha256": "219c4ffdcf6c358a8431e56aef7d4ce33c9bc2d9f5de5fcfde203cabf256601e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo/official-documents/us-mo-w6-dese-child-care-manual-2010-045-00.html",
+      "sha256": "1a9f493a99aad28970f1cb20b691fa6f17b77c16c0458092eb32883ad22c66bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo/official-documents/us-mo-w6-dese-child-care-subsidy-eligibility-policy-manual-2026-05.pdf",
+      "sha256": "8b876df91d366d0136c787651adf3cbc8903c8751ddb064fa7fccfd598d53f3d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo/official-documents/us-mo-w6-dss-tanf-0210-015-30-10.html",
+      "sha256": "057c49826cb02a124416519fea3afe9fe06c5939d03820b9edbf2c00cfee5197"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo/official-documents/us-mo-w6-dss-tanf-memos-im-109-99.html",
+      "sha256": "9f899979789f33149f3e888406f9abbe3a87764583a247aace0df6ce4d2aebb9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-06-w6-tanf-ccdf-manual-mo/official-documents/us-mo-w6-dss-tanf-memos-im-67-03.html",
+      "sha256": "d1e67e03af0575d160e7b8dfecb0f584dfd412bac94026a5832d52095965d2aa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 32,
+    "missing_count": 0,
+    "provision_count": 32,
+    "source_count": 32
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:54:14.975207+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9wq+jZiZN41Gc7EospdFzAh8x37qrIr4Jg2EjALROxqOu0G5g65gmD43DuAV/mT5jDCoOemUWTKGIefHVBbGAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-mo"
+}

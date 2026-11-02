@@ -10,7 +10,16 @@ MED-F-IOM-100-16 / MED-F-IOM-100-18).
 
 Pub 100-16 numbers its cost-plan and special-plan chapters with letters
 ("Chapter 16a - Subchapter A - Private Fee-for-Service (PFFS) Plans"); the
-chapter key keeps the letter (``chapter-16a``). Pub 100-18's IOM publication
+chapter key keeps the letter (``chapter-16a``). Pub 100-03 (Medicare National
+Coverage Determinations Manual) posts its one chapter as four part PDFs
+("Chapter 1 - Coverage Determinations, Part 2 Sections 90 - 160.26"); each part
+is a document keyed ``chapter-1-part-N`` with the section range in metadata.
+Pub 100-05 (Medicare Secondary Payer Manual) chapters 4 and 8 were deleted by
+transmittal R11756MSP (2022-12-22): their PDFs print only the transmittal table
+(chapter 8 adds "This chapter is obsolete and is not being used"), so they are
+``pointer_chapters``, recorded and not taken; chapter 7 is posted under
+``/files/document/``. Both publications are the 2026-09-15 wave-5 closure run
+(needs-closure-2026-09-14 MED-F-IOM-100-03 / MED-F-IOM-100-05). Pub 100-18's IOM publication
 page links only a two-page table of contents (``pub100_18.pdf``); the chapter
 PDFs are posted on the publisher's Prescription Drug Benefit Manual page
 (``Publication.chapter_page``), some without a ``.pdf`` extension
@@ -66,7 +75,7 @@ cms.gov serves both HTML and PDF to the corpus user agent over a complete TLS
 chain; no certificate bundle or browser impersonation is needed.
 
     uv run python scripts/build_cms_iom_100_01_manifests.py \
-        [--publication 100-01|100-24|100-02|100-04] \
+        [--publication 100-01|100-24|100-02|100-04|100-16|100-18|100-03|100-05] \
         [--download-dir ~/.axiom/cache/cms-iom-<pub>]
 """
 from __future__ import annotations
@@ -205,19 +214,22 @@ TRANSMITTALS_RE = re.compile(r"^Transmittals (?:Issued )?for (?:this )?Chapter")
 CHAPTER_LINK_RE = re.compile(r"^Chapter\s*(?P<number>\d+[a-z]?)\s*[-–—]+\s*(?P<title>\S.*)$", re.I)
 # trailing "(PDF)" and version tags "(v9.20.11)", "(v09 14 2018)" on the Pub 100-18 page
 TITLE_TAG_RE = re.compile(r"\s*\((?:PDF|v\.?\s*[\d. ]+)\)\s*$", re.I)
+# Pub 100-03 posts chapter 1 in parts: "Coverage Determinations, Part 2 Sections 90 - 160.26"
+CHAPTER_PART_RE = re.compile(r"^(?P<title>.+?),\s*Part\s+(?P<part>\d+)\s+(?P<sections>Sections\s+\S.*)$", re.I)
 
 
 def chapter_key(number: str) -> str:
-    """'16a' -> '16a', '05' -> '5'."""
-    match = re.match(r"^(\d+)([a-z]?)$", number.lower())
+    """'16a' -> '16a', '05' -> '5', '1-part-2' -> '1-part-2'."""
+    match = re.match(r"^(\d+)([a-z]?)(?:-part-(\d+))?$", number.lower())
     assert match is not None, number
-    return f"{int(match.group(1))}{match.group(2)}"
+    key = f"{int(match.group(1))}{match.group(2)}"
+    return f"{key}-part-{int(match.group(3))}" if match.group(3) else key
 
 
-def chapter_sort_key(key: str) -> tuple[int, str]:
-    match = re.match(r"^(\d+)([a-z]?)$", key)
+def chapter_sort_key(key: str) -> tuple[int, str, int]:
+    match = re.match(r"^(\d+)([a-z]?)(?:-part-(\d+))?$", key)
     assert match is not None, key
-    return int(match.group(1)), match.group(2)
+    return int(match.group(1)), match.group(2), int(match.group(3) or 0)
 
 
 def clean_chapter_title(title: str) -> tuple[str, str | None]:
@@ -425,6 +437,58 @@ PUBLICATIONS = {
             "CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page "
             "cms050485 links only the table of contents PDF)"
         ),
+    ),
+    "100-03": Publication(
+        number="100-03",
+        version="2026-09-15-medicare-cms-iom-100-03",
+        section_heading_pattern=IOM_HEADING_PATTERN,
+        heading_continuation_pattern=IOM_HEADING_CONTINUATION_PATTERN,
+        heading_style=(
+            "bold 'N - Title' / 'N – Title' headings (a few print 'N Title' or 'N- Title'); chapter 1 is posted as "
+            "four part PDFs, each with its own table of contents; the body starts after the table of contents"
+        ),
+        queue_note=(
+            "Pub 100-03 (Medicare National Coverage Determinations Manual, the NCD text by section) taken in full: its "
+            "one chapter, Coverage Determinations, is posted as four part PDFs (part 1 sections 10-80.12, part 2 "
+            "90-160.26, part 3 170-190.34, part 4 200-310.1), each a document keyed chapter-1-part-N; the two CIM/NCD "
+            "crosswalk PDFs on the same page are finding aids and are not taken. 2026-09-15 wave-5 closure run "
+            "(needs-closure-2026-09-14 MED-F-IOM-100-03)."
+        ),
+        source_as_of="2026-09-15",
+        run_note="docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md",
+        adaptive_heading_pattern=True,
+    ),
+    "100-05": Publication(
+        number="100-05",
+        version="2026-09-15-medicare-cms-iom-100-05",
+        section_heading_pattern=IOM_HEADING_PATTERN,
+        heading_continuation_pattern=IOM_HEADING_CONTINUATION_PATTERN,
+        heading_style=(
+            "bold 'N - Title' / 'N – Title' headings (chapter 1 prints 'N- Title' in places); the body starts after "
+            "the table of contents"
+        ),
+        queue_note=(
+            "Pub 100-05 (Medicare Secondary Payer Manual) taken as posted: chapters 1, 2, 3, 5, 6 and 7 (chapter 7 is "
+            "posted under /files/document/); chapters 4 (COBC requirements) and 8 (affiliated contractor interaction "
+            "with MSP RACs) were deleted by transmittal R11756MSP of 2022-12-22, their PDFs print only the transmittal "
+            "table (chapter 8 adds 'This chapter is obsolete and is not being used') and they are recorded, not taken; "
+            "the 'Chapter 5.1 ECRS Web User Guide' and 'Chapter 5.2 ECRS Quick Reference Card' attachments and the "
+            "eight per-chapter crosswalks are not chapters and are not taken. 2026-09-15 wave-5 closure run "
+            "(needs-closure-2026-09-14 MED-F-IOM-100-05)."
+        ),
+        source_as_of="2026-09-15",
+        run_note="docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md",
+        adaptive_heading_pattern=True,
+        pointer_chapters={
+            "4": (
+                "deleted chapter: transmittal R11756MSP (12/22/2022, CR 13002, 'Deleting Internet Only Manuals (IOM) "
+                "Pub. 100-05, Chapter 4 and Chapter 8') left a PDF with the title page and transmittal table only"
+            ),
+            "8": (
+                "deleted chapter: the PDF prints 'This chapter is obsolete and is not being used' under the title and "
+                "the transmittal table (R11756MSP, 12/22/2022, CR 13002)"
+            ),
+        },
     ),
     "100-04": Publication(
         number="100-04",
@@ -727,6 +791,13 @@ def build_documents(
         assert match is not None
         key = chapter_key(match.group("number"))
         chapter_title, version_tag = clean_chapter_title(match.group("title"))
+        base_key, chapter_part, part_sections = key, None, None
+        if (part_match := CHAPTER_PART_RE.match(chapter_title)) is not None:
+            # Pub 100-03: one chapter posted as part PDFs; the key carries the part
+            chapter_part = int(part_match.group("part"))
+            part_sections = part_match.group("sections").strip()
+            chapter_title = part_match.group("title").strip()
+            key = f"{base_key}-part-{chapter_part}"
         if key in publication.pointer_chapters:
             skipped.append((text, publication.pointer_chapters[key]))
             continue
@@ -751,7 +822,7 @@ def build_documents(
             # and close it without reading the body.
             with session.get(href, timeout=60, stream=True) as resp:
                 last_modified = resp.headers.get("Last-Modified") if resp.ok else None
-        facts = chapter_facts(pdf_path, heading_re, key)
+        facts = chapter_facts(pdf_path, heading_re, base_key)
         if facts["transmittals"]:
             issued, rev, rev_line = facts["transmittals"][-1]
             expression_date = issued.isoformat()
@@ -770,7 +841,7 @@ def build_documents(
             "publication": publication.number,
             "publication_title": pub_row["title"],
             "publication_page": pub_row["url"],
-            "chapter": int(key) if key.isdigit() else key,
+            "chapter": int(base_key) if base_key.isdigit() else base_key,
             "chapter_title": chapter_title,
             "latest_transmittal": latest_transmittal,
             "expression_date_source": expression_source,
@@ -785,6 +856,13 @@ def build_documents(
         }
         if last_modified:
             metadata["http_last_modified"] = last_modified
+        if chapter_part is not None:
+            metadata["chapter_part"] = chapter_part
+            metadata["chapter_part_sections"] = part_sections
+            metadata["chapter_part_note"] = (
+                "the publisher posts this chapter as part PDFs; each part is one document keyed chapter-N-part-M "
+                "and the section labels run continuously across the parts"
+            )
         if version_tag:
             metadata["chapter_page_version_tag"] = version_tag
         if publication.chapter_page:
@@ -799,7 +877,10 @@ def build_documents(
                 "source_id": f"us-cms-iom-{publication.number}-chapter-{key}",
                 "jurisdiction": "us",
                 "document_class": "manual",
-                "title": f"CMS Pub {publication.number} {pub_row['title']}, Chapter {key} - {chapter_title}",
+                "title": (
+                    f"CMS Pub {publication.number} {pub_row['title']}, Chapter {base_key} - {chapter_title}"
+                    + (f", Part {chapter_part} ({part_sections})" if chapter_part is not None else "")
+                ),
                 "source_url": href,
                 "source_format": "pdf",
                 "source_as_of": publication.source_as_of,
@@ -816,7 +897,7 @@ def build_documents(
                 "metadata": metadata,
             }
         )
-    documents.sort(key=lambda doc: chapter_sort_key(str(doc["metadata"]["chapter"])))
+    documents.sort(key=lambda doc: chapter_sort_key(doc["citation_path"].rsplit("chapter-", 1)[1]))
     return documents, skipped
 
 

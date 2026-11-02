@@ -1,0 +1,28 @@
+version: 2026-10-06-w6-health-manual-wi
+documents:
+- source_id: us-wi-w6-health-dhs-badgercare-plus-48-1
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'BadgerCare Plus Handbook 48.1: BadgerCare Plus Children''s Premium Tables (Release 26-03, August 12, 2026)'
+  source_url: https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-08-12'
+  citation_path: us-wi/manual/dhs/badgercare-plus/48-1
+  extraction:
+    html_drop_selectors:
+    - .topic-header
+    - .topic-header-shadow
+    - .breadcrumbs
+    - .minitoc
+    - .expanding-content
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    program: CHIP
+    document_subtype: policy_handbook_topic
+    source_discovery_group: us-wi/manual/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 126
+    bundle_url: https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm

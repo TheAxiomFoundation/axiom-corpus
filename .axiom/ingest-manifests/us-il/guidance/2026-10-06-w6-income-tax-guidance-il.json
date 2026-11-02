@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/guidance/2026-10-06-w6-income-tax-guidance-il.json",
+      "sha256": "cb21a377617971ae03430ce26ded1bf1348da98165e4dacdb2b12f53cacd5404"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/guidance/2026-10-06-w6-income-tax-guidance-il.json",
+      "sha256": "84a5c3017915e712c64a113f2532b762199ad27f273f7a151fca5614b0400fac"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/guidance/2026-10-06-w6-income-tax-guidance-il.jsonl",
+      "sha256": "fddf8da24bae76c74e8f66e17b6df7434c83fcd31526090f1724b0bf000b17f5"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-06-w6-income-tax-guidance-il/official-documents/us-il-guidance-governor-press-releases-2022-09-12-tax-rebate-payments.html",
+      "sha256": "caf63be46bd67f134732c70fe6f3f5a50b1017616c9a3ab97ebb53d478e52f02"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-06-w6-income-tax-guidance-il/official-documents/us-il-guidance-idor-eitc.html",
+      "sha256": "e31b65c3dee05e6e0ee19140c0e15f901b206003ffdd4a563081670e12b6de8b"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-06-w6-income-tax-guidance-il/official-documents/us-il-guidance-idor-income-tax-rates.html",
+      "sha256": "7fea2512bc1e8b64b69a4660ea74c7a7f24ea7f37c0b833095a1488dc486b576"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-06-w6-income-tax-guidance-il/official-documents/us-il-guidance-idor-pub-120.pdf",
+      "sha256": "c264ca07fb3c12330fa89250079ffa9101d02d2d662d01e92cccf7a0b2bf5e36"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-06-w6-income-tax-guidance-il/official-documents/us-il-guidance-idor-questions-and-answers-206.html",
+      "sha256": "43e693a3a0085ffda4929219914b01cf0a4cf8fb38fc5ba547ac0453ad9ef7bb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:51:37.537638+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yZ4EkOc1R2TOhvGrDqgBt7DyIn8N2fG+DK6KLTwD4WCmRufBHeXKyK8m3HP930TZTqLBISjFQ9S0NELOapn6CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-il"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/statute/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-wic-r2026-10-07-without-released-sections-consolidated.json",
+      "sha256": "7c86c0cc93983f23383054d676c7e0d69a8a707406c8d783ec77c9a6b64213c1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/statute/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-wic-r2026-10-07-without-released-sections-consolidated.json",
+      "sha256": "3a7d1d0fbb518f0b34ea639aea98c98e2d0d0b9c6a68365cc1963ab605f67c34"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/statute/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-wic-r2026-10-07-without-released-sections-consolidated.jsonl",
+      "sha256": "ef4ed19cfd6d478a4e746eecec48138425680954a63f33f3b18b267cc3fe30a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-wic-r2026-10-07-without-released-sections-consolidated/2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-WIC/california-leginfo-bulk/pubinfo_2025.zip",
+      "sha256": "2b443092fc6ad7fbee78d694dd885ec9a44337ebc2b9557980c8846d27978f2c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-07-w6-release-consolidation.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7979,
+    "missing_count": 0,
+    "provision_count": 7979,
+    "source_count": 7979
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:49:31.958004+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5DaStAnJepq6a2KnRrofjQb1bZRlcSE3BL4lZEuP3rzFyh2cFwpO43QgePOERASJZYflQiTLa/p3qx28OA21Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-wic-r2026-10-07-without-released-sections-consolidated"
+}

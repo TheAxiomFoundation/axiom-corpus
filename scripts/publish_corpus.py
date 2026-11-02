@@ -26,7 +26,7 @@ import json
 import os
 import sys
 import time
-from collections.abc import Iterator, Mapping, Sequence
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
@@ -37,6 +37,7 @@ from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.navigation import build_navigation_nodes
 from axiom_corpus.corpus.navigation_supabase import write_navigation_nodes_to_supabase
 from axiom_corpus.corpus.r2 import DEFAULT_R2_BUCKET, R2Config, load_r2_config
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy
 from axiom_corpus.corpus.release_quality import ReleaseValidationReport, validate_release
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
@@ -175,6 +176,9 @@ def publish_named_release(
         raise ValueError("r2_workers must be positive")
     root = repo_root.resolve()
     corpus_root = base.resolve()
+    # The repository's release policy, read from the checkout being published
+    # rather than discovered from the corpus path (docs/release-gate-policy.md).
+    gate_policy = _release_gate_policy(root)
     public_key, legacy_public_keys = _trusted_release_public_keys(
         public_key,
         legacy_public_keys,
@@ -197,7 +201,7 @@ def publish_named_release(
     # A cheap local gate runs before any external writes. The authoritative
     # validation attestation is generated again after remote readback/counting.
     with _phase(progress_stream, "preflight-deep-validation", scopes=len(release.scopes)) as done:
-        preflight = validate_release(corpus_root, release, max_issues=200)
+        preflight = validate_release(corpus_root, release, max_issues=200, policy=gate_policy)
         _require_deep_validation(preflight, phase="preflight")
         done.update(errors=preflight.error_count, warnings=preflight.warning_count)
 
@@ -367,7 +371,7 @@ def publish_named_release(
     with _phase(
         progress_stream, "post-readback-deep-validation", scopes=len(release.scopes)
     ) as done:
-        deep_report = validate_release(corpus_root, release, max_issues=200)
+        deep_report = validate_release(corpus_root, release, max_issues=200, policy=gate_policy)
         _require_deep_validation(deep_report, phase="post-readback")
         done.update(errors=deep_report.error_count, warnings=deep_report.warning_count)
 
@@ -429,6 +433,11 @@ def publish_named_release(
     )
 
 
+def _release_gate_policy(root: Path) -> ReleaseGatePolicy:
+    """The checkout's release policy; required wherever corpus locks exist."""
+    return ReleaseGatePolicy.for_checkout(root)
+
+
 def _require_local_row_count(scope: ReleaseScope, expected: int, actual: int) -> None:
     if actual != expected:
         raise ReleaseManifestError(
@@ -466,7 +475,11 @@ def plan_named_release(
     _require_canonical_selector(repo_root.resolve(), selector_path, release)
     _require_publishable_quality_profile(release)
     ensure_corpus_scopes(release.scope_keys, repo=repo_root.resolve())
-    report = validate_release(base, release, max_issues=200)
+    # The repository's release policy, read from the checkout being published
+    # rather than discovered from the corpus path (docs/release-gate-policy.md).
+    report = validate_release(
+        base, release, max_issues=200, policy=_release_gate_policy(repo_root.resolve())
+    )
     _require_deep_validation(report, phase="dry-run")
     base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()
     content = build_release_content(
@@ -649,18 +662,33 @@ def _require_safe_released_scope_reuse(
     expected_keys = set(_expected_scope_evidence(content))
     if set(released) != expected_keys:
         raise ReleaseManifestError("released-scope lookup did not cover the requested scopes")
+    # A union release reuses the same twenty-odd signed prior objects (up to
+    # 26 MB each) for over a thousand scopes. Verifying an object's signature
+    # and scanning its whole inventory once per scope took the
+    # released-scope-lookup phase 4 h 26 min (run 38305879426) while its
+    # database reads took 24 s: each object is verified once, and each
+    # content's scope identities are built in one pass.
+    expected_identities = _scope_publication_identities(content, released)
+    keys_by_object: dict[tuple[str, str], list[tuple[str, str, str]]] = {}
+    objects_by_identity: dict[tuple[str, str], ReleasedScopeObject] = {}
     for key, objects in released.items():
-        expected_identity = _scope_publication_identity(content, key)
         for released_object in objects:
-            if not _verifies_with_any_key(released_object.release_object, trusted_keys):
-                raise ReleaseManifestError(
-                    "database returned an untrusted prior release object for "
-                    f"{'/'.join(key)}: {released_object.release_name}"
-                )
-            prior_content = released_object.release_object.get("content")
-            if not isinstance(prior_content, dict):
-                raise ReleaseManifestError("verified prior release object lacks content")
-            if _scope_publication_identity(prior_content, key) != expected_identity:
+            identity = (released_object.release_name, released_object.content_sha256)
+            keys_by_object.setdefault(identity, []).append(key)
+            objects_by_identity.setdefault(identity, released_object)
+    for identity, keys in keys_by_object.items():
+        released_object = objects_by_identity[identity]
+        if not _verifies_with_any_key(released_object.release_object, trusted_keys):
+            raise ReleaseManifestError(
+                "database returned an untrusted prior release object for "
+                f"{'/'.join(keys[0])}: {released_object.release_name}"
+            )
+        prior_content = released_object.release_object.get("content")
+        if not isinstance(prior_content, dict):
+            raise ReleaseManifestError("verified prior release object lacks content")
+        prior_identities = _scope_publication_identities(prior_content, keys)
+        for key in keys:
+            if prior_identities[key] != expected_identities[key]:
                 raise ReleaseManifestError(
                     "immutable released scope differs from the requested artifacts or "
                     f"database projection: {'/'.join(key)} "
@@ -679,6 +707,77 @@ def _verifies_with_any_key(
             continue
         return True
     return False
+
+
+def _scope_publication_identities(
+    content: Mapping[str, Any],
+    keys: Iterable[tuple[str, str, str]],
+) -> dict[tuple[str, str, str], bytes]:
+    """_scope_publication_identity for many scopes of one content, in one pass
+    over its scopes and artifacts."""
+    wanted = set(keys)
+    raw_scopes = content.get("scopes")
+    raw_artifacts = content.get("artifacts")
+    if not isinstance(raw_scopes, list) or not isinstance(raw_artifacts, list):
+        raise ReleaseManifestError("release content lacks scope or artifact inventory")
+    # A key with a "/" in a component cannot be read back from an artifact path.
+    slow = {key for key in wanted if any("/" in part for part in key)}
+    fast = wanted - slow
+    scopes: dict[tuple[str, str, str], list[Mapping[str, Any]]] = {key: [] for key in fast}
+    for raw in raw_scopes:
+        if not isinstance(raw, dict):
+            continue
+        key = tuple(
+            str(raw.get(field) or "") for field in ("jurisdiction", "document_class", "version")
+        )
+        if key in scopes:
+            scopes[key].append(raw)
+    artifacts: dict[tuple[str, str, str], list[dict[str, Any]]] = {key: [] for key in fast}
+    suffixes = {"inventory": ".json", "provisions": ".jsonl", "coverage": ".json"}
+    for raw in raw_artifacts:
+        if not isinstance(raw, dict):
+            continue
+        parts = str(raw.get("path") or "").split("/")
+        if len(parts) < 6 or parts[0] != "data" or parts[1] != "corpus":
+            continue
+        kind, jurisdiction, document_class = parts[2], parts[3], parts[4]
+        if kind == "sources":
+            if len(parts) < 7:
+                continue
+            key = (jurisdiction, document_class, parts[5])
+        elif kind in suffixes and len(parts) == 6 and parts[5].endswith(suffixes[kind]):
+            key = (jurisdiction, document_class, parts[5][: -len(suffixes[kind])])
+        else:
+            continue
+        if key in artifacts:
+            artifacts[key].append(dict(raw))
+    identities = {key: _scope_publication_identity(content, key) for key in slow}
+    for key in fast:
+        identities[key] = _identity_from(key, scopes[key], artifacts[key])
+    return identities
+
+
+def _identity_from(
+    key: tuple[str, str, str],
+    matches: Sequence[Mapping[str, Any]],
+    artifacts: Sequence[dict[str, Any]],
+) -> bytes:
+    if len(matches) != 1:
+        raise ReleaseManifestError(f"release content does not contain scope {'/'.join(key)}")
+    jurisdiction, document_class, version = key
+    exact_paths = {
+        f"data/corpus/inventory/{jurisdiction}/{document_class}/{version}.json",
+        f"data/corpus/provisions/{jurisdiction}/{document_class}/{version}.jsonl",
+        f"data/corpus/coverage/{jurisdiction}/{document_class}/{version}.json",
+    }
+    if len(artifacts) < 4 or exact_paths - {str(raw.get("path")) for raw in artifacts}:
+        raise ReleaseManifestError(f"release content lacks artifacts for scope {'/'.join(key)}")
+    return canonical_json_bytes(
+        {
+            "scope": matches[0],
+            "artifacts": sorted(artifacts, key=lambda raw: str(raw["path"])),
+        }
+    )
 
 
 def _scope_publication_identity(

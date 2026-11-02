@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/statute/2026-10-06-w6-benefits-statute-ut.json",
+      "sha256": "4b913a504855734249c340eeedf66cf9b562078c6fddb551d707269142294194"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/statute/2026-10-06-w6-benefits-statute-ut.json",
+      "sha256": "8368e35071505104ebe82c0c9d94d191533de91a89d1ff0265787fee1ee256f1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/statute/2026-10-06-w6-benefits-statute-ut.jsonl",
+      "sha256": "d23efc1122ee71ec59c107962a1e45a4a8d93531512cb1fdae8063b8234f71d2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-10-06-w6-benefits-statute-ut/official-documents/us-ut-statute-35a-4-201.html",
+      "sha256": "37632c28ef34ea4df88bebdc79e8da8aacacf79b7a13d04424ab84354a9067e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-10-06-w6-benefits-statute-ut/official-documents/us-ut-statute-35a-4-207.html",
+      "sha256": "d694d55ad4ff7e5bef0e0acb7b3ed96365b71679d5cce35f4f04024f8d808367"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-10-06-w6-benefits-statute-ut/official-documents/us-ut-statute-35a-4-401.html",
+      "sha256": "690109d4df2450ae80d297bb79bcfd4e334e95fa869e475b133bcbcbb27aa0fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-10-06-w6-benefits-statute-ut/official-documents/us-ut-statute-35a-4-403.html",
+      "sha256": "992a17e2f66c40f3b9a1249adcefd457d3a17de9a5ded73f4aa8e168d046ae23"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:59:27.572972+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iszSTdslkkHlUaicamJ7gp+l32vcMnB5QtCjG8oeFbbYG9jhv7xaHZpt5B/EeJ4OU9OxdJ9wdkm0jXBYDNaLAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-ut"
+}

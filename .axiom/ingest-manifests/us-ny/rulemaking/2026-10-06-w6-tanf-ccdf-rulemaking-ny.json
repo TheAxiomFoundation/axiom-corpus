@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-ny.json",
+      "sha256": "6d978a6548d575d82519b080caa3042788a4c84dc639cf8fb4f66e9a0bdff3fb"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-ny.json",
+      "sha256": "fc8037de06c9a710ef19696b3437fdae71914ea3078b813d75ccfcc06b74bf37"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-ny.jsonl",
+      "sha256": "01fa802eb6c7a695d0752c4601a5e0aa715093dc130991bf8b5244a5c3f4ccfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-ny/official-documents/us-ny-w6-dos-state-register-2024-05-01.pdf",
+      "sha256": "5cdc58a7ce0c45efff7d51f6d5d26cbd7d5fa8945ccc2dde14d2c65c548c57b5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 117,
+    "missing_count": 0,
+    "provision_count": 117,
+    "source_count": 117
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T17:56:46.024252+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sXzogp8D+L22wmKsfSQTaJEWY4M2w+SW2yv7sTS6MERCPZ86VbeDfhYEye0vt+BrjmJ4e8p4Oy8c0u+YMAP2BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rulemaking-ny"
+}

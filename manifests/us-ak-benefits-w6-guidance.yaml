@@ -1,0 +1,98 @@
+version: 2026-10-06-w6-benefits-guidance-ak
+documents:
+- source_id: us-ak-guidance-doh-hr-1-ak-impacts
+  jurisdiction: us-ak
+  document_class: guidance
+  title: Alaska Department of Health, H.R. 1 - AK Impacts
+  source_url: https://health.alaska.gov/en/education/hr-1-ak-impacts/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ak/guidance/doh/hr-1-ak-impacts
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health
+    document_subtype: agency_web_page
+    program: SNAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 0)
+    wave6_rows:
+    - 0
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ak-guidance-doh-adult-public-assistance-apa
+  jurisdiction: us-ak
+  document_class: guidance
+  title: Alaska Department of Health, Adult Public Assistance (APA)
+  source_url: https://health.alaska.gov/en/services/adult-public-assistance-apa/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ak/guidance/doh/adult-public-assistance-apa
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health
+    document_subtype: agency_web_page
+    program: SSI state supplement (Adult Public Assistance)
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 1)
+    wave6_rows:
+    - 1
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ak-guidance-doh-assisted-living-licensing-and-renewals
+  jurisdiction: us-ak
+  document_class: guidance
+  title: Alaska Department of Health, Assisted Living Licensing and Renewals
+  source_url: https://health.alaska.gov/en/services/assisted-living-licensing-and-renewals/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ak/guidance/doh/assisted-living-licensing-and-renewals
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health
+    document_subtype: agency_web_page
+    program: SSI state supplement (Adult Public Assistance)
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 2)
+    wave6_rows:
+    - 2
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ak-guidance-doh-snap-nutrition-assistance
+  jurisdiction: us-ak
+  document_class: guidance
+  title: Alaska Department of Health, Supplemental Nutrition Assistance Program (SNAP)
+  source_url: https://health.alaska.gov/en/services/division-of-public-assistance-dpa-services/snap-nutrition-assistance/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ak/guidance/doh/snap-nutrition-assistance
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health
+    document_subtype: agency_web_page
+    program: SNAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 3)
+    wave6_rows:
+    - 3
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ak-guidance-dpa-apa-standards-2017-2020
+  jurisdiction: us-ak
+  document_class: guidance
+  title: Adult Public Assistance (APA) Need and Maximum Payment Standards, 1/1/2017 to 1/1/2020
+  source_url: https://www.akleg.gov/basis/get_documents.asp?session=31&docid=60171
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-ak/guidance/dpa/apa/standards/2017-2020
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health and Social Services, Division of Public Assistance; filed in the Alaska
+      Legislature's BASIS document system (31st Legislature)
+    document_subtype: payment_standards_table
+    program: SSI state supplement (Adult Public Assistance)
+    expression_date_note: the latest effective date the table prints (1/1/2020)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 4)
+    wave6_rows:
+    - 4
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

@@ -1,0 +1,194 @@
+version: 2026-10-06-w6-benefits-guidance-nj
+documents:
+- source_id: us-nj-guidance-dhs-njsnap-covid19
+  jurisdiction: us-nj
+  document_class: guidance
+  title: 'NJ SNAP: COVID-19 (what you need to know about SNAP during the public health crisis)'
+  source_url: https://www.nj.gov/humanservices/njsnap/emergency/covid19/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nj/guidance/dhs/njsnap/covid19
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Human Services
+    document_subtype: agency_web_page
+    program: SNAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 169)
+    wave6_rows:
+    - 169
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-employer-handbook-unemployment-insurance
+  jurisdiction: us-nj
+  document_class: guidance
+  title: 'Employer Handbook: Unemployment Insurance'
+  source_url: https://www.nj.gov/labor/ea/help/employer_handbook/ui.shtml
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_web_page
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 170)
+    wave6_rows:
+    - 170
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-press-2023-12-27-minimum-wage
+  jurisdiction: us-nj
+  document_class: guidance
+  title: New Jersey's Minimum Wage to Exceed Governor Murphy's $15/Hour Goal on January 1 (December 27, 2023)
+  source_url: https://www.nj.gov/labor/lwdhome/press/2023/20231227_minimumwage.shtml
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-12-27'
+  citation_path: us-nj/guidance/lwd/press/2023-12-27-minimum-wage
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_news_release
+    program: Unemployment insurance
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 171)
+    wave6_rows:
+    - 171
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-press-2024-12-17-new-benefit-rates-2025
+  jurisdiction: us-nj
+  document_class: guidance
+  title: NJ Department of Labor and Workforce Development Announces New Benefit Rates for 2025 (December 17, 2024)
+  source_url: https://www.nj.gov/labor/lwdhome/press/2024/20241217_new_benefit_rates.shtml
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2024-12-17'
+  citation_path: us-nj/guidance/lwd/press/2024-12-17-new-benefit-rates-2025
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_news_release
+    program: Unemployment insurance
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 172)
+    wave6_rows:
+    - 172
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-press-2025-12-29-new-benefit-rates-2026
+  jurisdiction: us-nj
+  document_class: guidance
+  title: NJ Department of Labor and Workforce Development Announces New Benefit Rates for 2026 (December 29, 2025)
+  source_url: https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-12-29'
+  citation_path: us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_news_release
+    program: Unemployment insurance
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 173)
+    wave6_rows:
+    - 173
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-myunemployment-how-we-calculate-benefits
+  jurisdiction: us-nj
+  document_class: guidance
+  title: How we calculate benefits (Division of Unemployment Insurance)
+  source_url: https://www.nj.gov/labor/myunemployment/before/about/calculator/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_web_page
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 175)
+    wave6_rows:
+    - 175
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-myunemployment-dependency-benefits
+  jurisdiction: us-nj
+  document_class: guidance
+  title: How to claim dependency benefits, if you're eligible
+  source_url: https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nj/guidance/lwd/myunemployment/dependency-benefits
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_web_page
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 176)
+    wave6_rows:
+    - 176
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-myunemployment-who-is-eligible
+  jurisdiction: us-nj
+  document_class: guidance
+  title: Who is eligible for benefits? (Division of Unemployment Insurance)
+  source_url: https://www.nj.gov/labor/myunemployment/before/about/who/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nj/guidance/lwd/myunemployment/who-is-eligible
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_web_page
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 177)
+    wave6_rows:
+    - 177
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-myunemployment-faq-factors-that-affect-your-weekly-benefit-rate
+  jurisdiction: us-nj
+  document_class: guidance
+  title: 'FAQ: Factors that affect your weekly benefit rate'
+  source_url: https://www.nj.gov/labor/myunemployment/help/faqs/reducebenefits.shtml
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-nj/guidance/lwd/myunemployment/faq-factors-that-affect-your-weekly-benefit-rate
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_faq
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 178)
+    wave6_rows:
+    - 178
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nj-guidance-lwd-unemployment-compensation-law-compilation
+  jurisdiction: us-nj
+  document_class: guidance
+  title: New Jersey Unemployment Compensation Law, Extended Benefits Law, Workforce Development Partnership Act, supplementary
+    legislation (LWD compilation)
+  source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-12-19'
+  citation_path: us-nj/guidance/lwd/unemployment-compensation-law-compilation
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development
+    document_subtype: agency_statute_compilation
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the compilation (2024-12-19)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 174)
+    class_note: the agency's reprint of N.J.S.A. 43:21; kept as guidance so a later legislature statute scope is not shadowed
+    wave6_rows:
+    - 174
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

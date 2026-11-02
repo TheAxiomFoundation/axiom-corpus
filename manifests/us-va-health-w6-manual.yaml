@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-health-manual-va
+documents:
+- source_id: us-va-w6-health-dmas-medicaid-m03-2024-07-01
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual Chapter M03: Covered Groups Requirements (7-1-24 file)'
+  source_url: https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-07-01'
+  citation_path: us-va/manual/dmas/medicaid/m03-2024-07-01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services (DMAS)
+    program: MEDICAID
+    document_subtype: eligibility_manual_chapter_pdf
+    source_discovery_group: us-va/manual/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 114
+    bundle_url: https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf
+    note: Superseded edition; the 4-1-26 file is held at us-va/manual/dmas/medicaid/m03 (us-va/manual/2026-09-10-medicaid-state-eligibility-manual)

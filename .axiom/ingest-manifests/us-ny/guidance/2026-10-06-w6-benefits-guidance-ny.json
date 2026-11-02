@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny.json",
+      "sha256": "8fedde83e4c0d65625ea0ca505da09c7b3374e7c82bc0a70d9206b60858bded4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny.json",
+      "sha256": "7ed1206f14032226b55c0a210ebb7a1840338376281057dce169f3b17ec374af"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny.jsonl",
+      "sha256": "d2071181f2ead4254cef53009a1512362ca93e5bd0de0041e17b1a0a176e3fbd"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny/official-documents/us-ny-guidance-dol-p803-partial-ui-faqs-10-3-25.pdf",
+      "sha256": "955d406479217d3454c2f185ea7dce8bad9eeaac928842c381c002e931f715f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny/official-documents/us-ny-guidance-dol-p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf",
+      "sha256": "042fe4c352d06059058415deef3e4b62b5a386b848fe9d0501e097ec1c6fb813"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny/official-documents/us-ny-guidance-dol-p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es.pdf",
+      "sha256": "dcb1a34af8fdc2eaa4110e2cf47908aace588d6f813b43caf4b91074668e9d74"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny/official-documents/us-ny-guidance-dtf-nys-50-2024-12.html",
+      "sha256": "de3ca534111b5e5bf927ecd927e6ae9ddcae4a7b5679ce171b995f3c531a6959"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny/official-documents/us-ny-guidance-dtf-nys-50-current.html",
+      "sha256": "24d93c4cd6060d27e6a2b09dcf5726f51aaa9e310b30cf6d02a777c899393c72"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-benefits-guidance-ny/official-documents/us-ny-guidance-governor-news-2025-10-08-maximum-weekly-benefit-increase.html",
+      "sha256": "51e39d8d14419b27cfbd2591fdaaeac9d0de01285462ba7a6fd55e5e91ae2529"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 441,
+    "missing_count": 0,
+    "provision_count": 441,
+    "source_count": 441
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:41.889967+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YnkKljR84O2I7f4FcwNkxbSHUWQx6dmCqm+USFfwlKFYGzDxCDbA8df/ySBQhdKYaZavfOY5jCz7obeEcmJ2Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-ny"
+}

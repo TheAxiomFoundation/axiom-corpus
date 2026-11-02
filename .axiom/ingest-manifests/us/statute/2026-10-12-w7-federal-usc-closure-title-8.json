@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-10-12-w7-federal-usc-closure-title-8.json",
+      "sha256": "203f33d498081cfdf2f708eae442966ca907fed88fa9cf98886512a49287a4cd"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-10-12-w7-federal-usc-closure-title-8.json",
+      "sha256": "fce1abbf6a1389e5ff90df824b3f7e9a61bc5b94f19224caf43cb3e03b31d660"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-10-12-w7-federal-usc-closure-title-8.jsonl",
+      "sha256": "e35219555ca421fdc68283ee91a30a044c351cb0798472b8f6c9981be46ca180"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-12-w7-federal-usc-closure-title-8/olrc/xml_usc08@119-120.zip",
+      "sha256": "2b3b98d32e247c5eedfe2481ae01864302c08df50141b956f19e757e6c4e907e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-federal.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-13T12:05:51.545713+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZBPOoAJhxkyxjOTDZNzmTcJmdTDKtBOEUjZXzf2c4uyoHAz+4ZV25cGzN46Ha0dpm2XytNTug8XN/J0Mtgd/Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-federal-usc-closure-title-8"
+}

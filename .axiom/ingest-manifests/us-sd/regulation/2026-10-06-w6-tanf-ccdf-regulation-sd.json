@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd.json",
+      "sha256": "7d702dac0534084a6b7cfc41940c4ca9b47dec6ec790512886567f0eceb35988"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd.json",
+      "sha256": "4c8f437fa2822398f71b4c9aa2aa07cc56f0a680b1a575693a89a3c9bace0218"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd.jsonl",
+      "sha256": "5b4277fe0adbb34ec7808227f0289d000edb4a9f32586f8b7a624b2ea217d29f"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd/official-documents/us-sd-w6-arsd-67-10-05-03--archived-10994.pdf",
+      "sha256": "3354901a7fbe199c73e8884fffe2bd410bed352f04df2e79de6c11245d71ff65"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd/official-documents/us-sd-w6-arsd-67-10-05-03--archived-11393.pdf",
+      "sha256": "25727089b059473db96be0e64f924345857942e9939b4adcc56759b653ab17eb"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd/official-documents/us-sd-w6-arsd-67-10-05-03--archived-12036.pdf",
+      "sha256": "ae297fcb491d54454b36022c9a50e70530815e2ceea477478f99989a325fbe49"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/regulation/2026-10-06-w6-tanf-ccdf-regulation-sd/official-documents/us-sd-w6-arsd-67-10-05-03--archived-14008.pdf",
+      "sha256": "c0518006cc91491f4a7c8b5036f8bb7357c0f65ace7a2735e8db349c0eb8ca90"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:58:52.930943+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WK1UOTh0Hi2Mk8APFKATx1QHXBAxBZUz8C3nzQYw+bB4SjY7DEd4yYTZq2gSo+3iAB/4v/AtYc8XpyiKR3MGCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-sd"
+}

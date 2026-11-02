@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/regulation/2026-10-06-w6-benefits-regulation-ak.json",
+      "sha256": "60d8c691f2fbb9486942440a4cfe4b8751429bf548ae80dc6d7f7458618e421a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/regulation/2026-10-06-w6-benefits-regulation-ak.json",
+      "sha256": "8208dfddd76a1cb6adbb7dc744a4b99d5e21c059a920d1986d2121061d3ef61b"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/regulation/2026-10-06-w6-benefits-regulation-ak.jsonl",
+      "sha256": "2b1187249a9a7ff44f5d14a5014ff72f40119ea7a34442881859ab3d36a2365a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/regulation/2026-10-06-w6-benefits-regulation-ak/official-documents/us-ak-regulation-aac-title-7-pdf.pdf",
+      "sha256": "9ffd6a1ed8ac38a0d4b5e1dfa90e18fd4bb548c361ad2984f82431a14514807d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3055,
+    "missing_count": 0,
+    "provision_count": 3055,
+    "source_count": 3055
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:48:00.288502+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ski+PcJQAiEuoIi7Kt1y1oax4nmvCLXNjPAtMkMZDPyvtYH+cmlSISYY53FUUnPUxsWHuxb8bZPmFaU+7wNlCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-regulation-ak"
+}

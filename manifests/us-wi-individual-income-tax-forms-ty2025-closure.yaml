@@ -1,0 +1,48 @@
+version: '2026-09-15'
+documents:
+- source_id: us-wi-dor-form-1-ty2025
+  jurisdiction: us-wi
+  document_class: form
+  title: 2025 Form 1 Wisconsin Income Tax
+  source_url: https://www.revenue.wi.gov/TaxForms2025/2025-Form1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-wi/form/dor/ty2025/form-1
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.revenue.wi.gov/Pages/Form/2025Individual.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.revenue.wi.gov/Pages/Form/2025Individual.aspx
+      (read 2026-09-14)
+    page_count_at_research: 5
+    first_page_first_line: 1 Wisconsin income tax For the year Jan. 1-Dec. 31, 2025
+- source_id: us-wi-dor-form-1-instructions-ty2025
+  jurisdiction: us-wi
+  document_class: form
+  title: 2025 Form 1 Instructions, Wisconsin Income Tax
+  source_url: https://www.revenue.wi.gov/TaxForms2025/2025-Form1-Inst.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-wi/form/dor/ty2025/form-1-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.revenue.wi.gov/Pages/Form/2025Individual.aspx
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.revenue.wi.gov/Pages/Form/2025Individual.aspx
+      (read 2026-09-14)
+    page_count_at_research: 46
+    first_page_first_line: 1 Wisconsin Income Tax 2025 Form 1 Instructions
+    source_note: The tax table and standard deduction table are inside the instructions.

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/guidance/2026-10-06-w6-income-tax-guidance-nc.json",
+      "sha256": "fb3870e1a34a6c9889c0984ac978912b33115de2372c153f50cf8ff584146d85"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/guidance/2026-10-06-w6-income-tax-guidance-nc.json",
+      "sha256": "6c6732b2f7fba730bb71b5fcfdeed8a5d6ee2ca95839c4681a24b5f2ce83629d"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/guidance/2026-10-06-w6-income-tax-guidance-nc.jsonl",
+      "sha256": "d53eceb63f8776adc9b5f5416e7558e186a78f97d5646f8279e24d80cfb78081"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/guidance/2026-10-06-w6-income-tax-guidance-nc/official-documents/us-nc-guidance-ncdor-military-retirement.html",
+      "sha256": "14ecefcac3ef948db879dd28ea08782f11daf11ff7e856a7669e1fcb1e894ef2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/guidance/2026-10-06-w6-income-tax-guidance-nc/official-documents/us-nc-guidance-ncdor-north-carolina-child-deduction.html",
+      "sha256": "a87cffe7d461b360d085771dc23f6d77592ed52a3f2ef4a1454be34c62d131a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/guidance/2026-10-06-w6-income-tax-guidance-nc/official-documents/us-nc-guidance-ncdor-north-carolina-standard-deduction-or-itemized-deductions.html",
+      "sha256": "4d5264ed11d2947fe203f212a97a2e86998d7c555a5fc49a435e3c02782851f4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:55:04.986222+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rwofpxV+7lve7aNc5g8d8rlgS5phtbVIq8xPtG7fFDiVgcAZDK5kYK+H6ICQhhgav6Z178WzUh6RegSqKNlwBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-nc"
+}

@@ -1,0 +1,26 @@
+version: "2026-10-06-w6-income-tax-statute-al"
+# Wave 6 tax-al-hi (docs/ingest-runs/2026-10-06-w6-tax-al-hi.md): Code of Alabama 1975 Title 16
+# (Education), which carries Ala. Code 16-33C-16 (CollegeCounts 529 contribution deduction)
+# cited by PolicyEngine through a Justia mirror and the CollegeCounts program site. The ALISON
+# adapter filters at title grain, so the whole title is taken (the 2026-09-14 Title 40
+# convention); version prefix + adapter suffix = 2026-10-06-w6-income-tax-statute-al-us-al-title-16.
+sources:
+  - source_id: us-al-code-title-16
+    jurisdiction: us-al
+    document_class: statute
+    adapter: alabama-code
+    source_url: https://alison.legislature.state.al.us/code-of-alabama
+    version: "2026-10-06-w6-income-tax-statute-al"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-06"
+      only_title: "16"
+      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-al-code/2026-10-06-w6-income-tax-statute-al
+      request_delay_seconds: 0.3
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      source_authority: Alabama Legislature (ALISON)
+      source_scope_note: >-
+        Code of Alabama 1975 Title 16 (Education) from the official ALISON GraphQL code service,
+        taken for section 16-33C-16 (deduction for contributions to the CollegeCounts 529 fund).

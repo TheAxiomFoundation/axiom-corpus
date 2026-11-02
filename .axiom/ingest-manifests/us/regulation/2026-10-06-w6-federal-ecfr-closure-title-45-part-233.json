@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-233.json",
+      "sha256": "0e1427d279635f1eb3f886c833e0f24e7c88b0c958215314faefe3755a8c23bd"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-233.json",
+      "sha256": "c6ae72a01c2739651370331917c2ba20c48f3a90306c7754eb32b12ad2972f0a"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-233.jsonl",
+      "sha256": "bd5c00d22c3b0ebd373f5b40230100fee9fb77d397fee90ab4ca3b9beeec10e4"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-06-w6-federal-ecfr-closure-title-45-part-233/ecfr/title-45-part-233.xml",
+      "sha256": "b3fe6eb1dee5426fff4bb61ddff4d431cfe5da682353c7f42259c9e356c4174b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-federal.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:47:32.161864+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OCtbFirBfeFkbdpOCl2EC7vw+j5NkFA3bnxCB9/qPuZkaW0g8+bhhIW507QK3bqGOE2pO5XOgslKzMV1yrq6BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-federal-ecfr-closure-title-45-part-233"
+}

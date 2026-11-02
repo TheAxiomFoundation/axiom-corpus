@@ -950,13 +950,168 @@ def _verify(documents: list[dict[str, Any]]) -> int:
     return failures
 
 
+# ---------------------------------------------------------------------------
+# Wave 5 federal closure (2026-09-15): the IRS products and revenue procedures the
+# 2026-09-14 needs-closure recount still marks EXTRACTABLE (tax elements F088, F108,
+# F133, F141-F163). Every URL was read on 2026-09-14 from the product's irs.gov about
+# page (or the Schedules for Form 1040 index for Schedule 1-A, which has no about page)
+# and the PDF first pages were checked for the printed tax year (run note
+# docs/ingest-runs/2026-09-15-tax.md).
+# ---------------------------------------------------------------------------
+W5_SOURCE_AS_OF = "2026-09-15"
+W5_FORMS_VERSION = "2026-09-15-irs-forms-ty2025"
+W5_GUIDANCE_VERSION = "2026-09-15-irs-guidance-rev-proc"
+W5_DISCOVERED_VIA = (
+    "manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under "
+    "https://www.irs.gov/forms-pubs/ and https://www.irs.gov/forms-pubs/schedules-for-form-1040 "
+    "(read 2026-09-14)"
+)
+IRS_PRIOR_YEAR = "https://www.irs.gov/pub/irs-prior/"
+
+
+def _w5_pdf(form_id: str, title: str, about_url: str, subtype: str, tax_year: str,
+            download_url: str | None = None, product_id: str | None = None) -> dict[str, Any]:
+    product_id = product_id or form_id
+    return {
+        "source_id": f"irs-{product_id}-ty{tax_year}",
+        "jurisdiction": "us",
+        "document_class": "form",
+        "title": title,
+        "source_url": about_url,
+        "download_url": download_url or f"https://www.irs.gov/pub/irs-pdf/{form_id}.pdf",
+        "source_format": "pdf",
+        "source_as_of": W5_SOURCE_AS_OF,
+        "expression_date": f"{tax_year}-01-01",
+        "citation_path": f"us/form/irs/ty{tax_year}/{product_id}",
+        "extraction": SINGLE_BLOCK,
+        "metadata": {
+            "primary_source": True,
+            "source_authority": "Internal Revenue Service",
+            "document_subtype": subtype,
+            "irs_product_id": form_id,
+            "tax_year": tax_year,
+            "source_discovery_group": "us/form/irs-individual-income-tax-forms",
+            "source_family": "irs-individual-income-tax-forms-ty2025-closure",
+            "index_url": IRS_FORMS_INDEX,
+            "discovered_via": W5_DISCOVERED_VIA,
+        },
+    }
+
+
+def _w5_html(product_id: str, title: str, html_url: str, subtype: str, tax_year: str) -> dict[str, Any]:
+    return {
+        "source_id": f"irs-{product_id}-ty{tax_year}",
+        "jurisdiction": "us",
+        "document_class": "form",
+        "title": title,
+        "source_url": html_url,
+        "source_format": "html",
+        "source_as_of": W5_SOURCE_AS_OF,
+        "expression_date": f"{tax_year}-01-01",
+        "citation_path": f"us/form/irs/ty{tax_year}/{product_id}",
+        "extraction": IRS_HTML,
+        "metadata": {
+            "primary_source": True,
+            "source_authority": "Internal Revenue Service",
+            "document_subtype": subtype,
+            "irs_product_id": product_id,
+            "tax_year": tax_year,
+            "print_version_pdf": f"https://www.irs.gov/pub/irs-pdf/{product_id}.pdf",
+            "source_discovery_group": "us/form/irs-individual-income-tax-forms",
+            "source_family": "irs-individual-income-tax-forms-ty2025-closure",
+            "index_url": IRS_FORMS_INDEX,
+            "discovered_via": W5_DISCOVERED_VIA,
+        },
+    }
+
+
+W5_FEDERAL_FORMS = [
+    # F141: Schedule 1-A (no about page; listed on the Schedules for Form 1040 index)
+    _w5_pdf("f1040s1a", "Schedule 1-A (Form 1040), Additional Deductions (2025)", IRS_SCHEDULES_INDEX, "schedule", "2025"),
+    # F144
+    _w5_pdf("f1040sc", "Schedule C (Form 1040), Profit or Loss From Business (2025)", "https://www.irs.gov/forms-pubs/about-schedule-c-form-1040", "schedule", "2025"),
+    _w5_html("i1040sc", "Instructions for Schedule C (Form 1040), Profit or Loss From Business (2025)", "https://www.irs.gov/instructions/i1040sc", "instructions", "2025"),
+    # F146
+    _w5_pdf("f1040se", "Schedule E (Form 1040), Supplemental Income and Loss (2025)", "https://www.irs.gov/forms-pubs/about-schedule-e-form-1040", "schedule", "2025"),
+    _w5_html("i1040se", "Instructions for Schedule E (Form 1040), Supplemental Income and Loss (2025)", "https://www.irs.gov/instructions/i1040se", "instructions", "2025"),
+    # F151
+    _w5_pdf("f2441", "Form 2441, Child and Dependent Care Expenses (2025)", "https://www.irs.gov/forms-pubs/about-form-2441", "form", "2025"),
+    _w5_html("i2441", "Instructions for Form 2441, Child and Dependent Care Expenses (2025)", "https://www.irs.gov/instructions/i2441", "instructions", "2025"),
+    # F152
+    _w5_pdf("f8863", "Form 8863, Education Credits (American Opportunity and Lifetime Learning Credits) (2025)", "https://www.irs.gov/forms-pubs/about-form-8863", "form", "2025"),
+    _w5_html("i8863", "Instructions for Form 8863, Education Credits (2025)", "https://www.irs.gov/instructions/i8863", "instructions", "2025"),
+    # F153
+    _w5_pdf("f6251", "Form 6251, Alternative Minimum Tax - Individuals (2025)", "https://www.irs.gov/forms-pubs/about-form-6251", "form", "2025"),
+    _w5_html("i6251", "Instructions for Form 6251, Alternative Minimum Tax - Individuals (2025)", "https://www.irs.gov/instructions/i6251", "instructions", "2025"),
+    # F154
+    _w5_pdf("f8959", "Form 8959, Additional Medicare Tax (2025)", "https://www.irs.gov/forms-pubs/about-form-8959", "form", "2025"),
+    _w5_html("i8959", "Instructions for Form 8959, Additional Medicare Tax (2025)", "https://www.irs.gov/instructions/i8959", "instructions", "2025"),
+    _w5_pdf("f8960", "Form 8960, Net Investment Income Tax - Individuals, Estates, and Trusts (2025)", "https://www.irs.gov/forms-pubs/about-form-8960", "form", "2025"),
+    _w5_html("i8960", "Instructions for Form 8960, Net Investment Income Tax (2025)", "https://www.irs.gov/instructions/i8960", "instructions", "2025"),
+    # F155
+    _w5_pdf("f8995", "Form 8995, Qualified Business Income Deduction Simplified Computation (2025)", "https://www.irs.gov/forms-pubs/about-form-8995", "form", "2025"),
+    _w5_html("i8995", "Instructions for Form 8995, Qualified Business Income Deduction Simplified Computation (2025)", "https://www.irs.gov/instructions/i8995", "instructions", "2025"),
+    _w5_pdf("f8995a", "Form 8995-A, Qualified Business Income Deduction (2025)", "https://www.irs.gov/forms-pubs/about-form-8995-a", "form", "2025"),
+    _w5_pdf("i8995a", "Instructions for Form 8995-A, Qualified Business Income Deduction (2025)", "https://www.irs.gov/forms-pubs/about-form-8995-a", "instructions", "2025"),
+    # F156
+    _w5_pdf("f8880", "Form 8880, Credit for Qualified Retirement Savings Contributions (2025)", "https://www.irs.gov/forms-pubs/about-form-8880", "form", "2025"),
+    # F157
+    _w5_pdf("f1040es", "Form 1040-ES, Estimated Tax for Individuals (2026)", "https://www.irs.gov/forms-pubs/about-form-1040-es", "form", "2026"),
+    # F158
+    _w5_pdf("fw4", "Form W-4, Employee's Withholding Certificate (2026)", "https://www.irs.gov/forms-pubs/about-form-w-4", "form", "2026"),
+    # F160-F162
+    _w5_html("p501", "Publication 501 (2025), Dependents, Standard Deduction, and Filing Information", "https://www.irs.gov/publications/p501", "publication", "2025"),
+    _w5_html("p596", "Publication 596 (2025), Earned Income Credit (EIC)", "https://www.irs.gov/publications/p596", "publication", "2025"),
+    _w5_html("p970", "Publication 970 (2025), Tax Benefits for Education", "https://www.irs.gov/publications/p970", "publication", "2025"),
+    # F163: the IRS product id of Form 1040-SR is f1040s (f1040sr is Schedule R)
+    _w5_pdf("f1040s", "Form 1040-SR, U.S. Income Tax Return for Seniors (2025)", "https://www.irs.gov/forms-pubs/about-form-1040-sr", "form", "2025", product_id="f1040sr"),
+    # F108: Publication 15-T, current (2026) HTML edition and the 2025 edition from the prior-year archive
+    _w5_html("p15t", "Publication 15-T (2026), Federal Income Tax Withholding Methods", "https://www.irs.gov/publications/p15t", "publication", "2026"),
+    _w5_pdf("p15t", "Publication 15-T (2025), Federal Income Tax Withholding Methods", "https://www.irs.gov/forms-pubs/about-publication-15-t", "publication", "2025",
+            download_url=f"{IRS_PRIOR_YEAR}p15t--2025.pdf"),
+]
+
+W5_FEDERAL_GUIDANCE = [
+    # F088: 2026 HSA inflation-adjusted amounts
+    _irs_guidance("rev-proc-2025-19", "Rev. Proc. 2025-19", "Rev. Proc. 2025-19, 2026 inflation adjusted amounts for Health Savings Accounts", "2025-23", "2025-06-02", "rp-25-19", "revenue_procedure", "2026-01-01", "2026"),
+    # F133: tax year 2025 inflation adjustments (pre-OBBBA base amounts still governing non-amended items)
+    _irs_guidance("rev-proc-2024-40", "Rev. Proc. 2024-40", "Rev. Proc. 2024-40, tax year 2025 inflation adjustments", "2024-45", "2024-11-04", "rp-24-40", "revenue_procedure", "2025-01-01", "2025"),
+]
+for _doc in W5_FEDERAL_GUIDANCE:
+    _doc["source_as_of"] = W5_SOURCE_AS_OF
+    _doc["metadata"]["source_family"] = "irs-guidance-closure-2026-09-15"
+    _doc["metadata"]["discovered_via"] = (
+        "manual-review:needs-closure-2026-09-14 tax-extractable.csv (F088, F133); index "
+        "https://www.irs.gov/internal-revenue-bulletins, issue pages read 2026-09-14"
+    )
+
+
+def build_wave5_federal(verify_only: bool) -> int:
+    """Write the two wave-5 federal closure manifests (no queue rewrite)."""
+    docs = W5_FEDERAL_FORMS + W5_FEDERAL_GUIDANCE
+    if verify_only:
+        failures = _verify(docs)
+        print(f"verified {len(docs)} documents, {failures} failures")
+        return 1 if failures else 0
+    forms_path = ROOT / "manifests" / "us-irs-individual-income-tax-forms-ty2025-closure.yaml"
+    guidance_path = ROOT / "manifests" / "us-irs-guidance-rev-proc-2024-40-2025-19.yaml"
+    _write_manifest(forms_path, W5_FEDERAL_FORMS, W5_SOURCE_AS_OF)
+    _write_manifest(guidance_path, W5_FEDERAL_GUIDANCE, W5_SOURCE_AS_OF)
+    print(f"wrote {forms_path.name} ({len(W5_FEDERAL_FORMS)}) and {guidance_path.name} ({len(W5_FEDERAL_GUIDANCE)})")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--verify", action="store_true", help="probe every download URL; write nothing")
     parser.add_argument("--only", help="comma-separated territory jurisdictions whose queue rows are added or "
                         "refreshed (state rows are always rewritten from the static tables)")
+    parser.add_argument("--wave5-federal", action="store_true",
+                        help="write only the 2026-09-15 federal closure manifests (forms + revenue procedures)")
     args = parser.parse_args()
     only = set(args.only.split(",")) if args.only else None
+    if args.wave5_federal:
+        return build_wave5_federal(args.verify)
 
     manifests_dir = ROOT / "manifests"
     federal_forms_path = manifests_dir / "us-irs-individual-income-tax-forms-ty2025.yaml"

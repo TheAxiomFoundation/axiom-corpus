@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-10-06-w6-federal-public-laws.json",
+      "sha256": "54dc314292736121c8a45f9c298ca1f893cc3806524afb908c31cd7d386bd68a"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-10-06-w6-federal-public-laws.json",
+      "sha256": "ebc484c85064580c61946327f73f490e889f04006dbe822c53b931826c0617b4"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-10-06-w6-federal-public-laws.jsonl",
+      "sha256": "31aa3b90ca80945dcdf9bd8156f1f8ec14eb4e7a305830c95a9c298034a59787"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-06-w6-federal-public-laws/official-documents/public-law-103-66.pdf",
+      "sha256": "da2019293df36e19762ee03c28daa24aba730f396896e934e1025e71f4da3711"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-06-w6-federal-public-laws/official-documents/public-law-113-186.pdf",
+      "sha256": "a9c787b074a5dc2981ce62aa316caf84d35d1222f79d7039245e3aec8c2f0884"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-06-w6-federal-public-laws/official-documents/public-law-115-97.pdf",
+      "sha256": "4f9ad9b1029a98a99c94b46e7d06b57251e199b6fb502b062648a7dee7c0d00e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-06-w6-federal-public-laws/official-documents/public-law-117-169.pdf",
+      "sha256": "5bd9bebe719d3d1738e751fe7978ef7bf05167ed8150471f306e010185baed4f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-06-w6-federal-public-laws/official-documents/public-law-119-21.pdf",
+      "sha256": "42f86c3d408bccb1a663c11a51a90d207b3dbc25e689240da51726154be51c8b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-10-06-w6-federal-public-laws/official-documents/public-law-98-21.pdf",
+      "sha256": "eebc09899a9a4f0a02e46ea9175253586f2b4f8e4e8602a97d2f963f0a8b08fb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-federal.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1311,
+    "missing_count": 0,
+    "provision_count": 1311,
+    "source_count": 1311
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:47:38.229436+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lzXsfXs1+zkAk3xs/WMuKyv6Tbcv63Z0YD/EsCFmsvVr4eF2ZZvVdtEh9oowVkqCOvn+pyfPxliB8CWefnKRDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-federal-public-laws"
+}

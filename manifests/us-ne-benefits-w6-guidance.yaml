@@ -1,0 +1,41 @@
+version: 2026-10-06-w6-benefits-guidance-ne
+documents:
+- source_id: us-ne-guidance-dhhs-liheap-guidance-document-2026
+  jurisdiction: us-ne
+  document_class: guidance
+  title: Low Income Home Energy Assistance Program Guidance Document 10/1/2025 (DHHS Documents copy)
+  source_url: https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-10-01'
+  citation_path: us-ne/guidance/dhhs/liheap-guidance-document-2026
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: guidance_document
+    program: LIHEAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 163)
+    related_scope: us-ne/guidance/2026-09-14-liheap-benefit-matrix holds the 'Guidance Docs' copy at a different URL
+    wave6_rows:
+    - 163
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ne-guidance-dhhs-obbb-snap-changes-faq
+  jurisdiction: us-ne
+  document_class: guidance
+  title: OBBBA SNAP Changes Frequently Asked Questions (updated August 17, 2026)
+  source_url: https://dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-08-17'
+  citation_path: us-ne/guidance/dhhs/obbb-snap-changes-faq
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: agency_faq
+    program: SNAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 164)
+    wave6_rows:
+    - 164
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/bo/regulation/2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url.json",
+      "sha256": "8957d83e1b52192911d6ac65fe45690de0f9c67b3b8955b45dd91bcf420ee1ad"
+    },
+    {
+      "path": "data/corpus/inventory/bo/regulation/2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url.json",
+      "sha256": "2cb38605ced7c941da37917eb3b0c3b3958b8129f838d24215de4e6ed8c8a4e8"
+    },
+    {
+      "path": "data/corpus/provisions/bo/regulation/2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "ef73d4b02115e0248ad4d3063db9a25651aaa4a133608fc73d71f96934ca0f5e"
+    },
+    {
+      "path": "data/corpus/sources/bo/regulation/2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url/official-documents/bo-ds-0066-2009-bono-juana-azurduy.pdf",
+      "sha256": "657fd970901c2a50c7bd6802c7a6d7cb52b963c2e15115031afbf1ebb50fb606"
+    },
+    {
+      "path": "data/corpus/sources/bo/regulation/2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url/official-documents/bo-ds-28899-2006-bono-juancito-pinto.pdf",
+      "sha256": "67f62ef553fd75b81f1396591ce40ff42dfc950093eb737ef2024d29c40215d9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope bo/regulation/2026-07-23-bo-bolmod-t1-regulations --manifest manifests/bo-bolmod-t1-regulations-official-documents.yaml --tag r2026-10-14-portable-download-url (successor of bo/regulation/2026-07-23-bo-bolmod-t1-regulations without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-bomz.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-23T15:06:20.915152+00:00",
+  "jurisdiction": "bo",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-bomz-audit.json",
+      "sha256": "89eb3c6fe737344a829f7ee1b3807e1bd94a8679c72b10469295d4cb3dca3cfa"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-bomz.md",
+      "sha256": "382603628a90bb794b65faf0c015791c96cf4c5682e7dd8b75557e4f970b86ce"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TKfvckvsvQZPRVvkaoO9lQKWA71DBjeKHnqtoBk/jSgkKS6wGDDXZ+FPSGaOffbWYaFgHluXCoMWxLMws8i2CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url"
+}

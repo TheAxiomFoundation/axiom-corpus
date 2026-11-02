@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-10-06-w6-health-manual-tx.json",
+      "sha256": "25422d7f03de924fb6ef64c9bda49dec594021e4fd54edb12adb5e0c7d10ba7f"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-10-06-w6-health-manual-tx.json",
+      "sha256": "0f9d90ac3e21813d1898161473346cb6b55de1558685acf5310a13097df8a7e7"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-10-06-w6-health-manual-tx.jsonl",
+      "sha256": "cf3559cfb2c82130655c898bf1f1f7dff09f0c90f8ad162c84e4ad5345272050"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-10-06-w6-health-manual-tx/official-documents/us-tx-w6-health-hhsc-umcm-6-3.pdf",
+      "sha256": "0dbfeb0c55000119082dc4742a475fe4dc85cae466461baf9dea32b69448c2b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:59:03.919427+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xe4/sDsz9+jvOvLLK22U9XnpJ9lzTnm5pePNTqQZoX7ijp6HVBgE6kgpLdG0DqP1P+LcYp99+hAIXTsKqK2SCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-manual-tx"
+}

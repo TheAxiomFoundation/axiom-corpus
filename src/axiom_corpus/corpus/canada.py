@@ -7,11 +7,11 @@ match the convention used by every other jurisdiction.
 
 Path convention:
 
-* ``canada/statute/{consolidated_number}`` — act-level container row
+* ``ca/statute/{consolidated_number}`` — act-level container row
   (no body, heading is the act's short title).
-* ``canada/statute/{consolidated_number}/{section_number}`` — section row
+* ``ca/statute/{consolidated_number}/{section_number}`` — section row
   (section_number preserves dots, e.g. ``7.2``).
-* ``canada/statute/{consolidated_number}/{section_number}/{label_chain}`` —
+* ``ca/statute/{consolidated_number}/{section_number}/{label_chain}`` —
   subsection / paragraph / subparagraph / clause row, where each label
   segment has its surrounding parens stripped (``(1)`` → ``1``, ``(a)`` →
   ``a``). Empty labels fall back to a 1-indexed ordinal so paths remain
@@ -46,8 +46,9 @@ from axiom_corpus.parsers.canada import CanadaStatuteParser
 CANADA_LEGISLATION_BASE_URL = "https://laws-lois.justice.gc.ca"
 CANADA_LEGISLATION_SOURCE_FORMAT = "canada-lims-xml"
 
-# Match the canonical jurisdiction slug (matches axiom-foundation.org/repo-map.ts).
-CANADA_JURISDICTION = "canada"
+# Canonical source identity matches signed Canada releases and encoder routing.
+# Catalog presentation may call the country "canada"; it is not a source alias.
+CANADA_JURISDICTION = "ca"
 
 
 @dataclass(frozen=True)

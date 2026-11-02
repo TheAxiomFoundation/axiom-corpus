@@ -7,9 +7,13 @@ documents:
     source_format: pdf
     source_as_of: '2025-02-20'
     citation_path: be/statute/fisconetplus/cir92/revenus-2025
-    extraction:
-      start_page: 182
-      end_page: 186
+    # This entry used to set start_page: 182 and end_page: 186: the rate
+    # schedule from article 130, cut off inside article 134, which runs on to
+    # PDF page 187. The default per-page segmentation never read page filters,
+    # so the scope 2026-06-30-be-income-tax-consolidated holds a row for every
+    # page of the code that has text, and rulespec-be cites pages from all of
+    # it. Page filters under the default segmentation are now an error, so the
+    # keys are gone and extraction is unchanged.
     metadata:
       upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel
       legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur

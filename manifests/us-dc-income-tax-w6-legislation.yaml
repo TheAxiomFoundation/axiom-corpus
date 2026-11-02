@@ -1,0 +1,65 @@
+version: 2026-10-06-w6-income-tax-legislation-dc
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: District of Columbia
+documents:
+- source_id: us-dc-w6-session-laws-acts-26-214
+  jurisdiction: us-dc
+  document_class: statute
+  title: D.C. Act 26-214, D.C. Income and Franchise Tax Conformity and Revision Emergency Amendment Act of 2025
+  source_url: https://code.dccouncil.gov/us/dc/council/acts/26-214
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-dc/statute/session-laws/acts/26-214
+  metadata:
+    primary_source: true
+    source_authority: Council of the District of Columbia
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: D.C. Act 26-214, D.C. Income and Franchise Tax Conformity and Revision Emergency Amendment Act
+      of 2025
+    wave6_work_order_rows:
+    - 305
+- source_id: us-dc-w6-session-laws-laws-23-149
+  jurisdiction: us-dc
+  document_class: statute
+  title: D.C. Law 23-149, Fiscal Year 2021 Budget Support Act of 2020
+  source_url: https://code.dccouncil.gov/us/dc/council/laws/23-149
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-dc/statute/session-laws/laws/23-149
+  metadata:
+    primary_source: true
+    source_authority: Council of the District of Columbia
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: D.C. Law 23-149, Fiscal Year 2021 Budget Support Act of 2020
+    wave6_work_order_rows:
+    - 309
+- source_id: us-dc-w6-session-laws-laws-24-301
+  jurisdiction: us-dc
+  document_class: statute
+  title: D.C. Law 24-301, Give SNAP a Raise Amendment Act of 2022
+  source_url: https://code.dccouncil.gov/us/dc/council/laws/24-301
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-dc/statute/session-laws/laws/24-301
+  metadata:
+    primary_source: true
+    source_authority: Council of the District of Columbia
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: D.C. Law 24-301, Give SNAP a Raise Amendment Act of 2022
+    wave6_work_order_rows:
+    - 310

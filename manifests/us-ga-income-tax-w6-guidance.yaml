@@ -1,0 +1,65 @@
+version: 2026-10-06-w6-income-tax-guidance-ga
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Georgia
+documents:
+- source_id: us-ga-w6-dor-it-511-individual-income-tax-booklet
+  jurisdiction: us-ga
+  document_class: guidance
+  title: IT-511 Individual Income Tax Instruction Booklet (DOR page listing the 2020-2025 booklets)
+  source_url: https://dor.georgia.gov/it-511-individual-income-tax-booklet
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ga/guidance/dor/it-511-individual-income-tax-booklet
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: agency_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: IT-511 Individual Income Tax Instruction Booklet
+    wave6_work_order_rows:
+    - 334
+    - 335
+- source_id: us-ga-w6-dor-tax-tables-georgia-tax-rate-schedule
+  jurisdiction: us-ga
+  document_class: guidance
+  title: Tax Tables & Georgia Tax Rate Schedule (DOR page)
+  source_url: https://dor.georgia.gov/tax-tables-georgia-tax-rate-schedule
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ga/guidance/dor/tax-tables-georgia-tax-rate-schedule
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: agency_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Tax Tables & Georgia Tax Rate Schedule
+    wave6_work_order_rows:
+    - 336
+- source_id: us-ga-w6-governor-press-releases-2024-04-18-tax-cut-package
+  jurisdiction: us-ga
+  document_class: guidance
+  title: Gov. Kemp Signs Historic Tax Cut Package Into Law (2024-04-18)
+  source_url: https://gov.georgia.gov/press-releases/2024-04-18/gov-kemp-signs-historic-tax-cut-package-law
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ga/guidance/governor/press-releases/2024-04-18-tax-cut-package
+  metadata:
+    primary_source: true
+    source_authority: Office of the Governor of Georgia
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Gov. Kemp Signs Historic Tax Cut Package Into Law
+    wave6_work_order_rows:
+    - 337

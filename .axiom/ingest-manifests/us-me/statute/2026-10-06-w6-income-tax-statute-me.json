@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/statute/2026-10-06-w6-income-tax-statute-me.json",
+      "sha256": "c6f4f658e1b1924d7a4a24998cba4020036d843a820b3c107204f388b5d6b69c"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/statute/2026-10-06-w6-income-tax-statute-me.json",
+      "sha256": "affdb1bd32201181131af656e3d6c2801f45d69d569a07d190d087c0ccc4e908"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/statute/2026-10-06-w6-income-tax-statute-me.jsonl",
+      "sha256": "e62b2b61da1574d2e4c910dce64103687797cccd945c84d343efb35ebff35577"
+    },
+    {
+      "path": "data/corpus/sources/us-me/statute/2026-10-06-w6-income-tax-statute-me/official-documents/us-me-statute-session-laws-130-ld23.pdf",
+      "sha256": "7101a8dfb1ef42b9eb5a163337e644a94a334f7c625fecbd3b0143c37f07cd75"
+    },
+    {
+      "path": "data/corpus/sources/us-me/statute/2026-10-06-w6-income-tax-statute-me/official-documents/us-me-statute-session-laws-132-ld210-committee-amendment-120256.pdf",
+      "sha256": "102b19bf9a3b4ec98e00a5afbfe9c9165ff0cabd664f03a9d763a55b8e81a164"
+    },
+    {
+      "path": "data/corpus/sources/us-me/statute/2026-10-06-w6-income-tax-statute-me/official-documents/us-me-statute-session-laws-132-ld2212.pdf",
+      "sha256": "6d2fc2d2766b2903c432b4f31d43e6d861e3b466bbfe7d3bb99aac5efc87bd81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:32.707585+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CTtC9HUIGfjEkdILBb8yqfxRP+Nphx7bWYmkW+Ci+4h9NWVn2iBWZbf4GY3VZg+rkydPZprwzvOmh9/E2H5rAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-me"
+}

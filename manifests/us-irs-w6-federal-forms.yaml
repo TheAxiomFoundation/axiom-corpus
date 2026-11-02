@@ -1,0 +1,1472 @@
+version: 2026-10-06-w6-federal-irs-forms
+documents:
+- source_id: irs-f5695-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 5695, Residential Energy Credits (2025)
+  source_url: https://www.irs.gov/pub/irs-pdf/f5695.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f5695
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f5695
+    tax_year: '2025'
+    printed_edition: Form 5695 2025
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8917-ty2020
+  jurisdiction: us
+  document_class: form
+  title: Form 8917, Tuition and Fees Deduction (Rev. January 2020)
+  source_url: https://www.irs.gov/pub/irs-pdf/f8917.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us/form/irs/ty2020/f8917
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8917
+    tax_year: '2020'
+    printed_edition: Form 8917 (Rev. January 2020)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sr-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule R (Form 1040), Credit for the Elderly or the Disabled (2025)
+  source_url: https://www.irs.gov/pub/irs-pdf/i1040sr.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sr
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sr
+    tax_year: '2025'
+    printed_edition: 2025 Instructions for Schedule R (Form 1040)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i5695-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 5695, Residential Energy Credits (2025)
+  source_url: https://www.irs.gov/pub/irs-pdf/i5695.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i5695
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i5695
+    tax_year: '2025'
+    printed_edition: 2025 Instructions for Form 5695
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8814-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8814, Parents' Election To Report Child's Interest and Dividends (2025)
+  source_url: https://www.irs.gov/pub/irs-pdf/i8814.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8814
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8814
+    tax_year: '2025'
+    printed_edition: 2025 Instructions for Form 8814
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8936-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8936, Clean Vehicle Credits (2025)
+  source_url: https://www.irs.gov/pub/irs-pdf/i8936.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8936
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8936
+    tax_year: '2025'
+    printed_edition: 2025 Instructions for Form 8936
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i940-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 940, Employer's Annual Federal Unemployment (FUTA) Tax Return (2025)
+  source_url: https://www.irs.gov/pub/irs-pdf/i940.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i940
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i940
+    tax_year: '2025'
+    printed_edition: 2025 Instructions for Form 940
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p1101-ty2026
+  jurisdiction: us
+  document_class: form
+  title: Publication 1101 (Rev. 4-2026), Tax Counseling for the Elderly Application Package and Guidelines
+  source_url: https://www.irs.gov/pub/irs-pdf/p1101.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-04-01'
+  citation_path: us/form/irs/ty2026/p1101
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p1101
+    tax_year: '2026'
+    printed_edition: Publication 1101 (Rev. 4-2026)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p590a-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 590-A (2025), Contributions to Individual Retirement Arrangements (IRAs)
+  source_url: https://www.irs.gov/pub/irs-pdf/p590a.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p590a
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p590a
+    tax_year: '2025'
+    printed_edition: Publication 590-A, For use in preparing 2025 Returns
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p6126-ty2026
+  jurisdiction: us
+  document_class: form
+  title: Publication 6126 (1-2026), Purchased A New Vehicle?
+  source_url: https://www.irs.gov/pub/irs-pdf/p6126.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-01-01'
+  citation_path: us/form/irs/ty2026/p6126
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p6126
+    tax_year: '2026'
+    printed_edition: Publication 6126 (1-2026)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f1040-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Form 1040, U.S. Individual Income Tax Return (2021)
+  source_url: https://www.irs.gov/pub/irs-prior/f1040--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/f1040
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f1040
+    tax_year: '2021'
+    printed_edition: Form 1040 2021
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f1040s1-ty2024
+  jurisdiction: us
+  document_class: form
+  title: Schedule 1 (Form 1040), Additional Income and Adjustments to Income (2024)
+  source_url: https://www.irs.gov/pub/irs-prior/f1040s1--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/f1040s1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s1
+    tax_year: '2024'
+    printed_edition: SCHEDULE 1 (Form 1040) 2024
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f1040s8-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Schedule 8812 (Form 1040), Credits for Qualifying Children and Other Dependents (2021)
+  source_url: https://www.irs.gov/pub/irs-prior/f1040s8--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/f1040s8
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s8
+    tax_year: '2021'
+    printed_edition: SCHEDULE 8812 (Form 1040) 2021
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f2555-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 2555, Foreign Earned Income (2025)
+  source_url: https://www.irs.gov/pub/irs-prior/f2555--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f2555
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f2555
+    tax_year: '2025'
+    printed_edition: Form 2555 (2025 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f461-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 461, Limitation on Business Losses (2025)
+  source_url: https://www.irs.gov/pub/irs-prior/f461--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f461
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f461
+    tax_year: '2025'
+    printed_edition: Form 461 (2025 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f4952-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 4952, Investment Interest Expense Deduction (2025)
+  source_url: https://www.irs.gov/pub/irs-prior/f4952--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f4952
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f4952
+    tax_year: '2025'
+    printed_edition: Form 4952 2025
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f5695-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Form 5695, Residential Energy Credits (2013)
+  source_url: https://www.irs.gov/pub/irs-prior/f5695--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/f5695
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f5695
+    tax_year: '2013'
+    printed_edition: Form 5695 (2013 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8815-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8815, Exclusion of Interest From Series EE and I U.S. Savings Bonds Issued After 1989 (2025)
+  source_url: https://www.irs.gov/pub/irs-prior/f8815--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8815
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8815
+    tax_year: '2025'
+    printed_edition: Form 8815 (2025 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8863-ty2015
+  jurisdiction: us
+  document_class: form
+  title: Form 8863, Education Credits (2015)
+  source_url: https://www.irs.gov/pub/irs-prior/f8863--2015.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2015-01-01'
+  citation_path: us/form/irs/ty2015/f8863
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8863
+    tax_year: '2015'
+    printed_edition: Form 8863 (2015 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8863-ty2020
+  jurisdiction: us
+  document_class: form
+  title: Form 8863, Education Credits (2020)
+  source_url: https://www.irs.gov/pub/irs-prior/f8863--2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us/form/irs/ty2020/f8863
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8863
+    tax_year: '2020'
+    printed_edition: Form 8863 (2020 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8880-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Form 8880, Credit for Qualified Retirement Savings Contributions (2013)
+  source_url: https://www.irs.gov/pub/irs-prior/f8880--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/f8880
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8880
+    tax_year: '2013'
+    printed_edition: Form 8880 (2013 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8880-ty2018
+  jurisdiction: us
+  document_class: form
+  title: Form 8880, Credit for Qualified Retirement Savings Contributions (2018)
+  source_url: https://www.irs.gov/pub/irs-prior/f8880--2018.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us/form/irs/ty2018/f8880
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8880
+    tax_year: '2018'
+    printed_edition: Form 8880 (2018 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f8880-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Form 8880, Credit for Qualified Retirement Savings Contributions (2021)
+  source_url: https://www.irs.gov/pub/irs-prior/f8880--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/f8880
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8880
+    tax_year: '2021'
+    printed_edition: Form 8880 (2021 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f940sa-ty2013
+  jurisdiction: us
+  document_class: form
+  title: 'Schedule A (Form 940) for 2013: Multi-State Employer and Credit Reduction Information'
+  source_url: https://www.irs.gov/pub/irs-prior/f940sa--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/f940sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f940sa
+    tax_year: '2013'
+    printed_edition: Schedule A (Form 940) for 2013
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f940sa-ty2014
+  jurisdiction: us
+  document_class: form
+  title: 'Schedule A (Form 940) for 2014: Multi-State Employer and Credit Reduction Information'
+  source_url: https://www.irs.gov/pub/irs-prior/f940sa--2014.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2014-01-01'
+  citation_path: us/form/irs/ty2014/f940sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f940sa
+    tax_year: '2014'
+    printed_edition: Schedule A (Form 940) for 2014
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-f940sa-ty2023
+  jurisdiction: us
+  document_class: form
+  title: 'Schedule A (Form 940) for 2023: Multi-State Employer and Credit Reduction Information'
+  source_url: https://www.irs.gov/pub/irs-prior/f940sa--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us/form/irs/ty2023/f940sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f940sa
+    tax_year: '2023'
+    printed_edition: Schedule A (Form 940) for 2023
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040gi-ty2009
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 1040 (2009)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040gi--2009.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2009-01-01'
+  citation_path: us/form/irs/ty2009/i1040gi
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040gi
+    tax_year: '2009'
+    printed_edition: 2009 Form 1040 instructions (2009 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040s8-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule 8812, Credits for Qualifying Children and Other Dependents (2022)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040s8--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i1040s8
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040s8
+    tax_year: '2022'
+    printed_edition: 2022 Instructions for Schedule 8812
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2013)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2013'
+    printed_edition: 2013 Schedule A instructions (2013 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2014
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2014)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2014.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2014-01-01'
+  citation_path: us/form/irs/ty2014/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2014'
+    printed_edition: 2014 Instructions for Schedule A
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2015
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2015)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2015.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2015-01-01'
+  citation_path: us/form/irs/ty2015/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2015'
+    printed_edition: 2015 Instructions for Schedule A
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2016
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2016)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2016.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2016-01-01'
+  citation_path: us/form/irs/ty2016/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2016'
+    printed_edition: 2016 Instructions for Schedule A
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2017
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2017)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2017.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2017-01-01'
+  citation_path: us/form/irs/ty2017/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2017'
+    printed_edition: 2017 Instructions for Schedule A
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2018
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2018)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2018.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us/form/irs/ty2018/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2018'
+    printed_edition: 2018 Instructions for Schedule A (Rev. February 2020)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2019
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2019)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2019.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2019-01-01'
+  citation_path: us/form/irs/ty2019/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2019'
+    printed_edition: 2019 Instructions for Schedule A (Rev. January 2020)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sca-ty2020
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule A (Form 1040), Itemized Deductions (2020)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sca--2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us/form/irs/ty2020/i1040sca
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sca
+    tax_year: '2020'
+    printed_edition: 2020 Instructions for Schedule A
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040se-ty2024
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule E (Form 1040), Supplemental Income and Loss (2024)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040se--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/i1040se
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040se
+    tax_year: '2024'
+    printed_edition: 2024 Instructions for Schedule E
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sr-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule R (Form 1040A or 1040), Credit for the Elderly or the Disabled (2013)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sr--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/i1040sr
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sr
+    tax_year: '2013'
+    printed_edition: 2013 Instructions for Schedule R
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i1040sr-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule R (Form 1040), Credit for the Elderly or the Disabled (2021)
+  source_url: https://www.irs.gov/pub/irs-prior/i1040sr--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/i1040sr
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sr
+    tax_year: '2021'
+    printed_edition: 2021 Instructions for Schedule R
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i2441-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 2441, Child and Dependent Care Expenses (2013)
+  source_url: https://www.irs.gov/pub/irs-prior/i2441--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/i2441
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i2441
+    tax_year: '2013'
+    printed_edition: 2013 Instructions for Form 2441
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i2441-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 2441, Child and Dependent Care Expenses (2021)
+  source_url: https://www.irs.gov/pub/irs-prior/i2441--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/i2441
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i2441
+    tax_year: '2021'
+    printed_edition: 2021 Instructions for Form 2441
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i5695-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 5695, Residential Energy Credits (2022)
+  source_url: https://www.irs.gov/pub/irs-prior/i5695--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i5695
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i5695
+    tax_year: '2022'
+    printed_edition: 2022 Instructions for Form 5695
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i706-ty2011
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 706 (Rev. August 2011), United States Estate (and Generation-Skipping Transfer) Tax Return
+  source_url: https://www.irs.gov/pub/irs-prior/i706--2011.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2011-08-01'
+  citation_path: us/form/irs/ty2011/i706
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i706
+    tax_year: '2011'
+    printed_edition: Instructions for Form 706 (Rev. August 2011)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i706-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 706 (Rev. September 2021), United States Estate (and Generation-Skipping Transfer) Tax Return
+  source_url: https://www.irs.gov/pub/irs-prior/i706--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-09-01'
+  citation_path: us/form/irs/ty2021/i706
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i706
+    tax_year: '2021'
+    printed_edition: Instructions for Form 706 (Rev. September 2021)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i706-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 706 (Rev. September 2022), United States Estate (and Generation-Skipping Transfer) Tax Return
+  source_url: https://www.irs.gov/pub/irs-prior/i706--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-09-01'
+  citation_path: us/form/irs/ty2022/i706
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i706
+    tax_year: '2022'
+    printed_edition: Instructions for Form 706 (Rev. September 2022)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i706-ty2023
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 706 (Rev. September 2023), United States Estate (and Generation-Skipping Transfer) Tax Return
+  source_url: https://www.irs.gov/pub/irs-prior/i706--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-09-01'
+  citation_path: us/form/irs/ty2023/i706
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i706
+    tax_year: '2023'
+    printed_edition: Instructions for Form 706 (Rev. September 2023)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i706-ty2024
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 706 (Rev. October 2024), United States Estate (and Generation-Skipping Transfer) Tax Return
+  source_url: https://www.irs.gov/pub/irs-prior/i706--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-10-01'
+  citation_path: us/form/irs/ty2024/i706
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i706
+    tax_year: '2024'
+    printed_edition: Instructions for Form 706 (Rev. October 2024)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8863-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8863, Education Credits (2013)
+  source_url: https://www.irs.gov/pub/irs-prior/i8863--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/i8863
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8863
+    tax_year: '2013'
+    printed_edition: 2013 Instructions for Form 8863
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8863-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8863, Education Credits (2021)
+  source_url: https://www.irs.gov/pub/irs-prior/i8863--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/i8863
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8863
+    tax_year: '2021'
+    printed_edition: 2021 Instructions for Form 8863
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8936-ty2017
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8936, Qualified Plug-in Electric Drive Motor Vehicle Credit (2017)
+  source_url: https://www.irs.gov/pub/irs-prior/i8936--2017.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2017-01-01'
+  citation_path: us/form/irs/ty2017/i8936
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8936
+    tax_year: '2017'
+    printed_edition: 2017 Instructions for Form 8936
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8936-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8936 (Rev. January 2022), Qualified Plug-in Electric Drive Motor Vehicle Credit
+  source_url: https://www.irs.gov/pub/irs-prior/i8936--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/i8936
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8936
+    tax_year: '2022'
+    printed_edition: Instructions for Form 8936 (Rev. January 2022)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8936-ty2023
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8936, Clean Vehicle Credits (2023)
+  source_url: https://www.irs.gov/pub/irs-prior/i8936--2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us/form/irs/ty2023/i8936
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8936
+    tax_year: '2023'
+    printed_edition: 2023 Instructions for Form 8936
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i8960-ty2024
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8960, Net Investment Income Tax (2024)
+  source_url: https://www.irs.gov/pub/irs-prior/i8960--2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us/form/irs/ty2024/i8960
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8960
+    tax_year: '2024'
+    printed_edition: 2024 Instructions for Form 8960
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p501-ty2014
+  jurisdiction: us
+  document_class: form
+  title: Publication 501 (2014), Exemptions, Standard Deduction, and Filing Information
+  source_url: https://www.irs.gov/pub/irs-prior/p501--2014.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2014-01-01'
+  citation_path: us/form/irs/ty2014/p501
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p501
+    tax_year: '2014'
+    printed_edition: Publication 501 (2014 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p501-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Publication 501 (2022), Dependents, Standard Deduction, and Filing Information
+  source_url: https://www.irs.gov/pub/irs-prior/p501--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/p501
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p501
+    tax_year: '2022'
+    printed_edition: Publication 501 (2022 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p526-ty2020
+  jurisdiction: us
+  document_class: form
+  title: Publication 526 (2020), Charitable Contributions
+  source_url: https://www.irs.gov/pub/irs-prior/p526--2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us/form/irs/ty2020/p526
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p526
+    tax_year: '2020'
+    printed_edition: Publication 526 (2020 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p526-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Publication 526 (2021), Charitable Contributions
+  source_url: https://www.irs.gov/pub/irs-prior/p526--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/p526
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p526
+    tax_year: '2021'
+    printed_edition: Publication 526 (2021 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p535-ty2018
+  jurisdiction: us
+  document_class: form
+  title: Publication 535 (2018), Business Expenses
+  source_url: https://www.irs.gov/pub/irs-prior/p535--2018.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us/form/irs/ty2018/p535
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p535
+    tax_year: '2018'
+    printed_edition: Publication 535 (2018 file; page 1 is the IRS prior-year caution page)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p590a-ty2018
+  jurisdiction: us
+  document_class: form
+  title: Publication 590-A (2018), Contributions to Individual Retirement Arrangements (IRAs)
+  source_url: https://www.irs.gov/pub/irs-prior/p590a--2018.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us/form/irs/ty2018/p590a
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p590a
+    tax_year: '2018'
+    printed_edition: Publication 590-A (2018 file; page 1 is the IRS prior-year caution page)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p596-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Publication 596 (2021), Earned Income Credit (EIC)
+  source_url: https://www.irs.gov/pub/irs-prior/p596--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/p596
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p596
+    tax_year: '2021'
+    printed_edition: Publication 596, For use in preparing 2021 Returns
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p915-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Publication 915 (2022), Social Security and Equivalent Railroad Retirement Benefits
+  source_url: https://www.irs.gov/pub/irs-prior/p915--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/p915
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p915
+    tax_year: '2022'
+    printed_edition: Publication 915 (2022 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p929-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Publication 929 (2021), Tax Rules for Children and Dependents
+  source_url: https://www.irs.gov/pub/irs-prior/p929--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/p929
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p929
+    tax_year: '2021'
+    printed_edition: Publication 929, For use in preparing 2021 Returns
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p970-ty2021
+  jurisdiction: us
+  document_class: form
+  title: Publication 970 (2021), Tax Benefits for Education
+  source_url: https://www.irs.gov/pub/irs-prior/p970--2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/form/irs/ty2021/p970
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p970
+    tax_year: '2021'
+    printed_edition: Publication 970, For use in preparing 2021 Returns
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p970-ty2022
+  jurisdiction: us
+  document_class: form
+  title: Publication 970 (2022), Tax Benefits for Education
+  source_url: https://www.irs.gov/pub/irs-prior/p970--2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/form/irs/ty2022/p970
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p970
+    tax_year: '2022'
+    printed_edition: Publication 970, For use in preparing 2022 Returns
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p972-ty2013
+  jurisdiction: us
+  document_class: form
+  title: Publication 972 (2013), Child Tax Credit
+  source_url: https://www.irs.gov/pub/irs-prior/p972--2013.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us/form/irs/ty2013/p972
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p972
+    tax_year: '2013'
+    printed_edition: Publication 972, For use in preparing 2013 Returns
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p972-ty2020
+  jurisdiction: us
+  document_class: form
+  title: Publication 972 (2020), Child Tax Credit and Credit for Other Dependents
+  source_url: https://www.irs.gov/pub/irs-prior/p972--2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us/form/irs/ty2020/p972
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p972
+    tax_year: '2020'
+    printed_edition: Publication 972 (2020 file)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-i461-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 461 (2025)
+  source_url: https://www.irs.gov/instructions/i461
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i461
+  extraction:
+    html_content_selector: .book
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i461
+    tax_year: '2025'
+    printed_edition: Instructions for Form 461 (2025)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p15-ty2026
+  jurisdiction: us
+  document_class: form
+  title: Publication 15 (2026), (Circular E), Employer's Tax Guide
+  source_url: https://www.irs.gov/publications/p15
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-01-01'
+  citation_path: us/form/irs/ty2026/p15
+  extraction:
+    html_content_selector: .book
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p15
+    tax_year: '2026'
+    printed_edition: Publication 15 (2026)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p590b-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 590-B (2025), Distributions from Individual Retirement Arrangements (IRAs)
+  source_url: https://www.irs.gov/publications/p590b
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p590b
+  extraction:
+    html_content_selector: .book
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p590b
+    tax_year: '2025'
+    printed_edition: Publication 590-B (2025)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: irs-p915-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 915 (2025), Social Security and Equivalent Railroad Retirement Benefits
+  source_url: https://www.irs.gov/publications/p915
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p915
+  extraction:
+    html_content_selector: .book
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p915
+    tax_year: '2025'
+    printed_edition: Publication 915 (2025)
+    source_family: w6-federal-irs-forms
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md

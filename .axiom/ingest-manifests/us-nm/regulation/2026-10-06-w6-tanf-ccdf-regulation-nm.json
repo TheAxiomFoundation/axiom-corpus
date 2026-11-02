@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/regulation/2026-10-06-w6-tanf-ccdf-regulation-nm.json",
+      "sha256": "cf6024b02b712f95fbd13b006abd8569506062126e44effb39b752ec031d5157"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/regulation/2026-10-06-w6-tanf-ccdf-regulation-nm.json",
+      "sha256": "1710144a3e1f790f0a086111c93fd5028cbb0aa0b193554be35733906a553f9f"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/regulation/2026-10-06-w6-tanf-ccdf-regulation-nm.jsonl",
+      "sha256": "0dedced9e42d310f586ee7a837def7d35a634b61a98ae8e7f8863d1dcd318b2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/regulation/2026-10-06-w6-tanf-ccdf-regulation-nm/official-documents/us-nm-w6-nmac-8-15-2.html",
+      "sha256": "23a15a34e48a9e1c86b644c997807b999cceff0cd45edeaeca3a9ea71e2a63e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/regulation/2026-10-06-w6-tanf-ccdf-regulation-nm/official-documents/us-nm-w6-nmac-8-9-3--ececd-integrated-text-2025-11.pdf",
+      "sha256": "fb956e956f03ecf10b23cd21220f387917733572f273fb1214d44e5f69263480"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:56:23.258062+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tJ4vA/PFd8lzli6H91ID5pL9VNm8wB2CpLwSjhxIOxSIo0d4zafqNZgyu9Zfi6qSTuldZ3opgRg/adqUit3aAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-nm"
+}

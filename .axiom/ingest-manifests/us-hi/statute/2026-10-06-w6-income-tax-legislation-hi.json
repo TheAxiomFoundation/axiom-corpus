@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi.json",
+      "sha256": "1513a11351239406ac77d56bbec7b788a586304ef24b43f1f9f1c8e49457337c"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi.json",
+      "sha256": "9d8388e36f5304d9021bcf156c6c6df55d9aa0a60983aa3b1bba1dee8bae38cf"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi.jsonl",
+      "sha256": "931829a81d925be924d1ba8b7b886321822d154122a0948eff8ae7c6f0ce3b79"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi/official-documents/us-hi-w6-571-2.html",
+      "sha256": "850bc3eb3745636f88eac95f03fb8cfd0de2ef253152ac593c859932334f6821"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi/official-documents/us-hi-w6-bills-2022-sb514-cd2.pdf",
+      "sha256": "372c74116bdca5426a0a47fdae4cfd66a06a175d377c6abd8fe7ada84b4c97d2"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi/official-documents/us-hi-w6-bills-2024-hb2404-cd1.html",
+      "sha256": "822df972303197b68a8e3410c69700a682993b4640cc89223e3bc663131b35ed"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi/official-documents/us-hi-w6-bills-2026-sb3125-cd1.html",
+      "sha256": "367cec5cb410e4da299a0cea9d1ae359aed17193f4b20b1aae4df810a26535bb"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-10-06-w6-income-tax-legislation-hi/official-documents/us-hi-w6-session-laws-2023-act-163.pdf",
+      "sha256": "5d4d5a5f6a519667ce1c6f09a583f5e3ae89686afb098523c0336fd5e9ee2e17"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:51:07.148685+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "svZS0qo/gr2rs15mtzldToWWBUNLn95uSZxX+nzRCzUEtcTC2mk8lgB8g+fvAseOptP5PRh6BREj3U176XBwDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-legislation-hi"
+}

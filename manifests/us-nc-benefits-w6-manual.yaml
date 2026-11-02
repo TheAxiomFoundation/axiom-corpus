@@ -1,0 +1,59 @@
+version: 2026-10-06-w6-benefits-manual-nc
+documents:
+- source_id: us-nc-manual-dss-energy-programs-ep-cn-03-2026
+  jurisdiction: us-nc
+  document_class: manual
+  title: Energy Programs Manual Change Notice 03-2026 (Policy Updates, effective October 1, 2026)
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-01'
+  citation_path: us-nc/manual/dss/energy-programs/ep-cn-03-2026
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Social Services
+    document_subtype: manual_change_notice
+    program: LIHEAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 160)
+    wave6_rows:
+    - 160
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nc-manual-dss-energy-programs-ep-150
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'Energy Programs Manual EP-150 Household Composition (Change #2-2023)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/eps150.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-06-02'
+  citation_path: us-nc/manual/dss/energy-programs/ep-150
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Social Services
+    document_subtype: manual_section
+    program: LIHEAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 161)
+    wave6_rows:
+    - 161
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-nc-manual-dss-energy-programs-ep-175
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'Energy Programs Manual EP-175 United States Citizenship (Change #1-2011)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/eps175.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2011-12-01'
+  citation_path: us-nc/manual/dss/energy-programs/ep-175
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Social Services
+    document_subtype: manual_section
+    program: LIHEAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 162)
+    wave6_rows:
+    - 162
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

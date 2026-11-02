@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/regulation/2026-10-06-w6-tanf-ccdf-regulation-pa.json",
+      "sha256": "3f72940e71487549eb699b2b1e8f56dac2d3560e632c0164b458772749559499"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/regulation/2026-10-06-w6-tanf-ccdf-regulation-pa.json",
+      "sha256": "15c3020c4dd22f84a9094b88b932f951e4c60d66d1704b99395457bd16f2f7ed"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/regulation/2026-10-06-w6-tanf-ccdf-regulation-pa.jsonl",
+      "sha256": "8e18435c73b01ed3bd4d7d4add29e94454ac91dac75d8ecb66a757e5576bf49c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/regulation/2026-10-06-w6-tanf-ccdf-regulation-pa/official-documents/us-pa-w6-title-55-chapter-183-pdf.pdf",
+      "sha256": "29f09ef25bce503786ca652c2d28bc10ccf651706072ad6c1e7701e2f6d5fca8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/regulation/2026-10-06-w6-tanf-ccdf-regulation-pa/official-documents/us-pa-w6-title-55-chapter-3042-pdf.pdf",
+      "sha256": "5fa6f3e32162b8a7f62fa2db7d27e96866adf8799a5a9d8ea7fe57b7800fc090"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 130,
+    "missing_count": 0,
+    "provision_count": 130,
+    "source_count": 130
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:57:59.662419+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DDSA31j23lUIw1FzWSZVlTrdLOfRbD24TVgFNtvl4gykX3KUh49SG6fXtnHhC3nmsM1/W/M927JikG8ayDn+CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-pa"
+}

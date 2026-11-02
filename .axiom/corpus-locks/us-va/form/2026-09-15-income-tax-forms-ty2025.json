@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-va",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-va/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "b97f7488e639f7e640241932a24145707ab8ba444874d2abf1b38704423f7c0a", "size": 330},
+    {"path": "data/corpus/inventory/us-va/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "31ab19b3cdae0c81d69a2e8945fdf1b7a150ce39877e4f703f5a7e2f2323fdd0", "size": 8813},
+    {"path": "data/corpus/provisions/us-va/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "6ef057b92a17e5983c7ec1e714300531f939de711ed38db74e8f38612073c404", "size": 291198},
+    {"path": "data/corpus/sources/us-va/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-va-tax-form-760-instructions-ty2025.pdf", "sha256": "d557ee51d6e1e572d3db05624d2882db0093b6f85ef1075140754a845653ec18", "size": 1343520},
+    {"path": "data/corpus/sources/us-va/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-va-tax-form-760-ty2025.pdf", "sha256": "bb271a15f9ad173ed900bb23dc7d154c0cb2056bdd05957fb25e5faedbc27575", "size": 2146839},
+    {"path": "data/corpus/sources/us-va/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-va-tax-tax-table-ty2025.pdf", "sha256": "0d596f4107df528fb3c43cfc07051e450b41bf101f6a39268dc0df5064d879b6", "size": 1574527}
+  ]
+}

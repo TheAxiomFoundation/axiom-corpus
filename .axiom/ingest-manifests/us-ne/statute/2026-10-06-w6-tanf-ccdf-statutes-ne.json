@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne.json",
+      "sha256": "460959cf4208c898dd1ee39058ae3eb24cda8a8bf90b95d699661860acf62f0b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne.json",
+      "sha256": "7e10038d761e5abfb99d104242af848b6c07bf54686800559c29d2e74ff1ebf1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne.jsonl",
+      "sha256": "1be98c7ce9609391f767feb78b7b7f1283022743e57a5ab1c42ec7bfd8c0e2e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-43-43-512.html",
+      "sha256": "8d7e5ed2eda59de89300b55b520250ad43283339f40d92e2f066ff11be7b5e14"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-43-43-513.html",
+      "sha256": "00c2d68654b5c843b2a2001dff5f14816db1a1dce9b6a15dfe969f3da5de8492"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-68-68-1206.html",
+      "sha256": "af156c636f1dfb2f29e1d955093607ba4cdec51a03106ffa8fd3a7daf293ba7d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-68-68-1713.html",
+      "sha256": "ab3419e40e929fd3b1e456ec4a28817194dac4d37287e6eb1efaff2a63cbf923"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-68-68-1726.html",
+      "sha256": "afbe5ee80bdee6f536e3e3dfb3ec87687f3419d3fd10d166918ffc5be4120be5"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-session-laws-103-lb359.pdf",
+      "sha256": "eca5753a4bf4328ebd49bc1022af62dfa80af4a01dbee91d4b1992f49a531271"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-10-06-w6-tanf-ccdf-statutes-ne/official-documents/us-ne-w6-session-laws-109-lb304.pdf",
+      "sha256": "ae6ef8e0b8f6f0a1594f6a70bacca01158c1174bb236a5636395a1a2732b8a3a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 31,
+    "missing_count": 0,
+    "provision_count": 31,
+    "source_count": 31
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:55:48.117673+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UipxrFeM7qsyNNtOvU/J5zY9IiGXe0/lUFzKwtldC9yHyN/gg1NaSrUDOJlAAYx9xYdaxUWUZtGf1+dhA9i4BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-ne"
+}

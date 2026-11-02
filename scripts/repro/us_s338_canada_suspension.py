@@ -17,7 +17,9 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import OfficialDocumentSource, _DocumentBlock
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
 VERSION = "2026-08-18-canada-338-suspension"
 JURISDICTION = "us"
 DOCUMENT_CLASS = DocumentClass.RULEMAKING.value
@@ -210,11 +212,27 @@ def reproduce(base: Path, source_path: Path | None = None) -> dict[str, Any]:
     return {"files": hashes, "scope": scope, "version": VERSION}
 
 
+def ensure_corpus_inputs(
+    *,
+    repo: Path = REPO_ROOT,
+    base: Path | None = None,
+    source_path: Path | None = None,
+) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    if source_path is not None:
+        input_path = source_path.resolve()
+    else:
+        input_root = base.resolve() if base is not None else Path("data/corpus")
+        input_path = input_root / SOURCE_RELATIVE_PATH
+    ensure_corpus_paths([input_path], repo=repo)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", type=Path, required=True)
     parser.add_argument("--source-path", type=Path)
     args = parser.parse_args()
+    ensure_corpus_inputs(base=args.base, source_path=args.source_path)
     print(json.dumps(reproduce(args.base, args.source_path), indent=2, sort_keys=True))
     return 0
 

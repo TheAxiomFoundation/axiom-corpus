@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn.json",
+      "sha256": "3ebebaa21e44b4f2b49071d56f269237dcab96f3e31491298b043afb75b4d07e"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn.json",
+      "sha256": "bf5a2d717c0db0d235f2a56e231c657cd0b7b78f9c34ddc147e2c76003ffbc8f"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn.jsonl",
+      "sha256": "53242236d52f6d804244c772693def6928bac4a7012ef22baf16cd0c310d0cf0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn/official-documents/us-mn-w6-minnesota-rules-3400-3400-0040.html",
+      "sha256": "b01ab85fc2b054afe481478deb0f2a51a31520d9d65b0b31e05e299557a56682"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn/official-documents/us-mn-w6-minnesota-rules-3400-3400-0170.html",
+      "sha256": "20bc8bb6695b3bd09aa9ab0942d812e2b63674e34c0797f2d9ee7ec172528c98"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn/official-documents/us-mn-w6-minnesota-rules-3400.html",
+      "sha256": "f153929a690cdb02493bb62c2e1002116ed420800219578d614d2a52c8ddb164"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn/official-documents/us-mn-w6-minnesota-rules-9502-9502-0315.html",
+      "sha256": "f9d70b9da2b027a57e0bd6243fa534b1d74b6bf5ca48391af162ea601df16497"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/regulation/2026-10-06-w6-tanf-ccdf-rules-mn/official-documents/us-mn-w6-minnesota-rules-9503-9503-0005.html",
+      "sha256": "599d36ae676f3a8cc00bc6e05d7724f6c88208b545f23420ff32a129b4b0b13e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 276,
+    "missing_count": 0,
+    "provision_count": 276,
+    "source_count": 276
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:53:58.506816+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dWPlGxBO8vd5TdhrbKYAV7jLM7hlyscrJ13ZqMLjxdVAssP2dTy58mYgZYx1K5Jew2k/eXYM+IDFmVbMUz0/CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-mn"
+}

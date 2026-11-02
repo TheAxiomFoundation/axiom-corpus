@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-guidance-al
+documents:
+- source_id: us-al-guidance-adol-uc-benefit-rights-and-responsibilities
+  jurisdiction: us-al
+  document_class: guidance
+  title: Alabama Unemployment Compensation Benefit Rights and Responsibilities (claimant handbook)
+  source_url: https://labor.alabama.gov/docs/guides/uc_brr.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Workforce (formerly Department of Labor)
+    document_subtype: claimant_handbook
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 10)
+    wave6_rows:
+    - 10
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

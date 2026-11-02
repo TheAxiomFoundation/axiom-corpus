@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/statute/2026-10-06-w6-benefits-statute-fl.json",
+      "sha256": "4e6fc19e71872a82ac7b038923d05eee3c3e2dd50b7e44859fb279d05866f6db"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/statute/2026-10-06-w6-benefits-statute-fl.json",
+      "sha256": "095217e3a8b73588db1574205420fc81d14095b1d54ceae439874a577ea0e893"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/statute/2026-10-06-w6-benefits-statute-fl.jsonl",
+      "sha256": "4d9c32ed150f1666c2e382a1f5a61ca4ffad47c3b141f767b5bea684699fb985"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/statute/2026-10-06-w6-benefits-statute-fl/official-documents/us-fl-statute-session-laws-2024-hb5001.pdf",
+      "sha256": "93ade1ea30cac9462194206b239b5593cd4b032de86e76427da27d4f61b03e22"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 525,
+    "missing_count": 0,
+    "provision_count": 525,
+    "source_count": 525
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:50:37.477110+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wtR+j2nVrsjwu16Yp2RFNE+bTA17TCN1d4q24CKTGYq4uzcrzyihHtDQX0VeIjRE20Kh6ArJDW9415c1VDB8Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-fl"
+}

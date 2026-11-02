@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/statute/2026-10-06-w6-income-tax-statute-mo.json",
+      "sha256": "511aee6cc0170804ac64c952bfc9f05bddfaebdac691760a4e4c6ca2e8401942"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/statute/2026-10-06-w6-income-tax-statute-mo.json",
+      "sha256": "ec4beeb1b9e683f879d4a6e6a856aa01f5e7ab3f632b8c6a385872a9cb91d62c"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/statute/2026-10-06-w6-income-tax-statute-mo.jsonl",
+      "sha256": "47e294954756a189476ae43b78bb3d3fce442095091b1a4f8a4e560ed5ca68a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-010--effective-2008-08-28.html",
+      "sha256": "54018dfd70ec18d2f19d2891ecf3fe01e924abd7d9e721681d0d0ebd16d27371"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-010.html",
+      "sha256": "f372c3b10321e2d8e77ee59e5b6362cf359b817f5c44f568bac6c09bffd6ae74"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-020.html",
+      "sha256": "4ce0b44da10c1d5fa2debad0f6e248c15650f0fe7ec7b577ecd25ceb49c9268c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-025--effective-2008-08-28.html",
+      "sha256": "9d6427b68266d2de2b97bbba639f4b42a199850f6fed1c368d6616761605d9b1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-025.html",
+      "sha256": "425ae74c161092c1f6b241249685d9c3b4e670d5e4ea1d0a2da760f1574dea5d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-030--effective-2008-08-28.html",
+      "sha256": "e2b63b21f93f323e09fa74c88db424cf3dd454aaf902673b278e08284542b919"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-135-030.html",
+      "sha256": "6839e51ba58ac556621f723b12ed42c2b18b680cc35fae795f6ec86635e338a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-143-121--effective-2007-08-28.html",
+      "sha256": "15bf7b1089e45217d9492995ff70c7c506a4cbb8a67f7cbc452bfeedcb59de72"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-income-tax-statute-mo/official-documents/us-mo-statute-bills-2025-hb594-bill-information.html",
+      "sha256": "00393a96ce198dab6a0a72f8494f529a64ac0c36ae16abfde0634cdb000cb050"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:25.705031+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rQSLrpIbVQdhcfcDQ6YAN0sdLyX7O6ZM77P0vUbpdcc00CiTuaw/Tablg98zZ9GFpwbcmxalLc3gr7+/QxecBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-mo"
+}

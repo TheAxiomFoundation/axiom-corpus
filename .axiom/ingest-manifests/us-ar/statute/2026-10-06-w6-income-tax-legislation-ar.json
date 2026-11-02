@@ -1,0 +1,97 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar.json",
+      "sha256": "672438c1ed3bc5c4b6b8fa7272193873848a0a468702b086bb66607ff5e583c8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar.json",
+      "sha256": "49f138d4b022778c1b9f4401095cab2305fed1beccbb9a34318be12dd5335db7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar.jsonl",
+      "sha256": "dff9275caa66ccad51afba308c991dccd0d3a5b65121a1ed323500b61193832c"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-bills-2026s1-hb1001.pdf",
+      "sha256": "3f17397990e16030cff4656d3e8891ce3c85d82ff5ed118646131869eb959432"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-1987r-act-382.pdf",
+      "sha256": "eaa21df36d408b3d919f07dd02bafc25c94a430bb4fbef1b719c401e13eec183"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2009r-act-372.pdf",
+      "sha256": "c93573a4bd99742b5d0d5718f260a85b63bd8622315d1207baac1af534ed9102"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2011r-act-787.pdf",
+      "sha256": "c1b143bbf1f7b4b0b477f85ac348aa20681f866f6ab5e4e03dcffa5297f0247d"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2013r-act-1459.pdf",
+      "sha256": "b9e279c1c7a92f17d23543f530bc796020dc09fa6fce6b3a7437a4a4cd830655"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2015r-act-22.pdf",
+      "sha256": "6ab997778f44af575b8fba76de412502444ba9e4b11ed5c103396eb32bb89f80"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2017r-act-141.pdf",
+      "sha256": "0caa5d08ecd63b6ae38ba7a31e1527f4b4b045911d67700241007de197c822a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2017r-act-78.pdf",
+      "sha256": "3f72982790b84dedb96c202e66b96cfc341f3ab56e1ba83b541607aad5eb4586"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2019r-act-182.pdf",
+      "sha256": "e664063014b9ba94efbe452abea05e018373d1ad90c1d7b494782487f788c119"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2021r-act-154.pdf",
+      "sha256": "e12db4d0a0a5b30f84458d4d19c135abd2d690cb3a90cc65f6871d8ff72792c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2023r-act-532.pdf",
+      "sha256": "bcd9ac601c576e3053e234925cc41dfbf7b0f801afb785c03c72ce330e1e49d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2025r-act-614.pdf",
+      "sha256": "aeb10e934b490e992e80b9c18969e1bc95cf2ef3475df954efad2a0fdbd75578"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-10-06-w6-income-tax-legislation-ar/official-documents/us-ar-w6-session-laws-2026s1-act-1.pdf",
+      "sha256": "69fcb0e3897e988a664df66a124c2cc59870ad27d0b46690b9fc6e6e94bbcb8a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 26,
+    "missing_count": 0,
+    "provision_count": 26,
+    "source_count": 26
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:48:40.863438+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HZjD8Txa8hRnyR4oWm6X+YnBZZdXHqSYJZ4H9hkG11DXsmEEQovh3RshplkbuUyxDiA4meUB2gw8nEia6f3RBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-legislation-ar"
+}

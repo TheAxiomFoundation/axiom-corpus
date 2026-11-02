@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/form/2026-10-06-w6-tanf-ccdf-forms-ca.json",
+      "sha256": "7775991414e20709f08592070a7644cb6f3aac76d0cb0db209dc5f136680a2f0"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/form/2026-10-06-w6-tanf-ccdf-forms-ca.json",
+      "sha256": "f6ba98f94fb4c67a0e34dd05f48f0bd1ff88a7a2a19bbcff7d0159045455b041"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/form/2026-10-06-w6-tanf-ccdf-forms-ca.jsonl",
+      "sha256": "a64f0d03b9ca277d94b15bdd132d49f1f6ab5dae515f022beaf3eb9ae72eaad4"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/form/2026-10-06-w6-tanf-ccdf-forms-ca/official-documents/us-ca-w6-official-forms-cdss-ca-gov-cdssweb-entres-forms-english-temp2250.pdf",
+      "sha256": "8ef6434ec2ba901c2d7d0feb59fe215401417d739a178d0e03b831abd715837f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:49:07.926845+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vd3mBuzTsqdQSR1dHpkmHuKPcri3nBRmwtrKG+/zGs2eX9TC5keRCd96p4mydGTFckDGyCZojfx9ZlizFD/qAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-forms-ca"
+}

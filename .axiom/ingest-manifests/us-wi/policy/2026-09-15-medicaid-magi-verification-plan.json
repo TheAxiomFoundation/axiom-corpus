@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "248ce095351f567a9bceb8ca56f190f875f0e03531a29a0dfdcafaec51a97059"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "8d02d9703a66353f0dc3b53ce6f8efd3816603a498d03cdef55796c67f03712f"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "2291c31d134ffda2c826b552601196bbcc5ca5aef1359fabfa2116b5dda9fa34"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-wi-cms-magi-verification-plan-wisconsin-updated-verification-plan-template.pdf",
+      "sha256": "38133134366c1d2ff7486088eeb38f43958de823a30811d196ddd05153dc68ad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:47:05.260786+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "x095kRdrlZs3GDBkprHvFrYUF82dAOQguMI0a9QW9dHV35YrTftTO6HXmCi0c116CtVhenq6VWoDBy5cYHXuAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

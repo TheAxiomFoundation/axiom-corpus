@@ -1,0 +1,48 @@
+version: '2026-09-15'
+documents:
+- source_id: irs-rev-proc-2025-19
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/rev-proc-2025-19
+  title: Rev. Proc. 2025-19, 2026 inflation adjusted amounts for Health Savings Accounts
+  source_url: https://www.irs.gov/irb/2025-23_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/rp-25-19.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2025-19
+    irb_citation: 2025-23 IRB
+    irb_issue_date: '2025-06-02'
+    tax_year: '2026'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv (F088, F133); index https://www.irs.gov/internal-revenue-bulletins,
+      issue pages read 2026-09-14
+    source_family: irs-guidance-closure-2026-09-15
+- source_id: irs-rev-proc-2024-40
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/rev-proc-2024-40
+  title: Rev. Proc. 2024-40, tax year 2025 inflation adjustments
+  source_url: https://www.irs.gov/irb/2024-45_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/rp-24-40.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2024-40
+    irb_citation: 2024-45 IRB
+    irb_issue_date: '2024-11-04'
+    tax_year: '2025'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv (F088, F133); index https://www.irs.gov/internal-revenue-bulletins,
+      issue pages read 2026-09-14
+    source_family: irs-guidance-closure-2026-09-15

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "9516b7f772c8171d1d6b268121ff8e0a77b5b6ad8159b788fd897faaa4a72797"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "b7927a07755310385f5445fc93b2b90b1c0e111ebe261e40dd024b8d2e960e5b"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "cfcf58e24dbfe8ab1dded9fc0e19f5dc72a369cf6c24d75fccfdbadc91711a9a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-il-idor-form-il-1040-instructions-ty2025.pdf",
+      "sha256": "e888e819a62d34fba51dae317960c9bb5e12889d21d153ac78ab6bd67646d35a"
+    },
+    {
+      "path": "data/corpus/sources/us-il/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-il-idor-form-il-1040-ty2025.pdf",
+      "sha256": "7af662f99b31f6aa0d00df5ae93c2a50c4c15e01a0c1dcf5f722fc0bde0799cd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:25.176704+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9GnDlpn+ZTCNMDPeRdnr5oE/26+W+Vd8q6TBjm8y7YrqNEe8yQUfhuBLp7DELcBOP2uBw/B6UJss5fTXobwPAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

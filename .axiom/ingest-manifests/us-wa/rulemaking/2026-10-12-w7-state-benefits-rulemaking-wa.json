@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/rulemaking/2026-10-12-w7-state-benefits-rulemaking-wa.json",
+      "sha256": "0a38a65133325e3742c3ef4cb428717917b51ae711d60510ec215bcf077efbb5"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/rulemaking/2026-10-12-w7-state-benefits-rulemaking-wa.json",
+      "sha256": "6adc5a7ae3538261754c96acb38282f43afbd874c2deb0ce407cbf33a7ed4958"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/rulemaking/2026-10-12-w7-state-benefits-rulemaking-wa.jsonl",
+      "sha256": "15c28231c7036a73bd4866bbe730c51123444800534e0b1491a46f68286d570a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-12-w7-state-benefits-rulemaking-wa/official-documents/us-wa-rulemaking-wsr-09-15-085.html",
+      "sha256": "d5cb51c135bc2eafc27d7e7a21598f421e1247697dd74f14b613db97a0af8e07"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-12-w7-state-benefits-rulemaking-wa/official-documents/us-wa-rulemaking-wsr-09-16-095.html",
+      "sha256": "45b16e4ba01a47f9a29abef748975f8584abff0057b9922f9966e2a28596f477"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-13T12:06:58.508471+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GgAZNYWzQheTjuwJgODDskxrQ5q79Pbia4NjoAiOc3q2LTa2f07RcApQEoT9e9N4dvOuCTRLGcdZo3NfZHmHCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-rulemaking-wa"
+}

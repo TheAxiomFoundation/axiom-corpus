@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-15-irs-guidance-rev-proc.json",
+      "sha256": "b0bead969c1f8c5f3e95c1f33b0e61f7fabec3cfc9605e931556d1b7dc56ad90"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-15-irs-guidance-rev-proc.json",
+      "sha256": "a0f7b64834bb2a1a8ab90fdbb5419e3fbf45309ccd5f960f5ca6196848eb5204"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-15-irs-guidance-rev-proc.jsonl",
+      "sha256": "1e31004de4edc871219d890662f658b05d3906d41d174830392a143c8529f052"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-irs-guidance-rev-proc/official-documents/irs-rev-proc-2024-40.pdf",
+      "sha256": "4de9db6b6662b5c305a59100a027051628823b42fd5817ea4e383ad4c302af1f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-irs-guidance-rev-proc/official-documents/irs-rev-proc-2025-19.pdf",
+      "sha256": "ff2ba4bac62ef6940c57578d70f8be88ff3898ac806e921ad52787c11da35bf4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 31,
+    "missing_count": 0,
+    "provision_count": 31,
+    "source_count": 31
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-11T18:27:13.640993+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2IEHgm2xKNINdlMU6CHsAL++udAFr5Ct1LDAZNMwMLFW9NNxP2EOyTNMPdtXmVI1JcbSmojo0LskPSRdF4erAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-irs-guidance-rev-proc"
+}

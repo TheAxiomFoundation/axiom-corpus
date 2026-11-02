@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/manual/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "0d5879c02b612139b11b5cc04d4ddcf70fdf018f361aaf6eebf367bec83fe0e5"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/manual/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "13941c6e9e75b6f8c02e233a8901f631bd21d19a172241bc5c578f0aa5d51e22"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/manual/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "191dfe413acd7a87038e1a0c3d74d70cdb3a24ff49655294aa906aa3822d89ba"
+    },
+    {
+      "path": "data/corpus/sources/us-in/manual/2026-09-15-ccdf-subsidy-rules/official-documents/us-in-fssa-ccdf-policy-manual.pdf",
+      "sha256": "96bf0c46ae8338b9b825a0461ff2c4d7f6f1a5b667c8d27be8819093754d000d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-11T18:27:56.548768+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ggv51sUc3O2KjlLNEEUn7Ce72ZFErepBuGUaqSo0Ak6fCuk/GkVZ7ixV2Hb3y1iDepXlmtmdI76JnivUzchCAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}

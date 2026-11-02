@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/manual/2026-10-06-w6-health-manual-wi.json",
+      "sha256": "7c067e2674866b819279feb74b649533e8c55605e512a3449b8f6c0b3c2c3872"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/manual/2026-10-06-w6-health-manual-wi.json",
+      "sha256": "09246bf02546e28cc5f1eb9d4fd489cf6063e17d35a4ddbaf5e076733164edef"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/manual/2026-10-06-w6-health-manual-wi.jsonl",
+      "sha256": "820a9a1d9571e3447862428d072bb5a3cc78dbd52a71909f7c91c508a1939b54"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-10-06-w6-health-manual-wi/official-documents/us-wi-w6-health-dhs-badgercare-plus-48-1.html",
+      "sha256": "8b21540e9c4344f57f82deda49f19a6cd3c499d189e36107a6074d6769067aee"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T18:00:52.055265+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mjASlQeikezQ+WeNnLtRiB0lHyC604pMmuM15sFMeDg8Il35T5ipw58RBPa8HhaGQR4vaI9QLY2n4K1CvDjxCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-manual-wi"
+}

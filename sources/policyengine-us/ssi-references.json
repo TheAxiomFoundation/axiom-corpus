@@ -1,0 +1,4407 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "ssi",
+ "folders": [
+  "gov/ssa/ssi",
+  "gov/ssa/sga",
+  "gov/ssa/revenue"
+ ],
+ "state_folders": "ssp|oss|ossp|sspp|state_supplement|ssi_state_supplement|ssi_supplement|aabd",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 391,
+ "references": [
+  {
+   "url": "http://dpaweb.hss.state.ak.us/POLICY/PDF/APA-Standards.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alaska DPA Adult Public Assistance Need and Maximum Payment Standards, 2023-2026"
+   ],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/ssp/payment_standard.yaml",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://admincode.legislature.state.al.us/api/chapter/660-2-4#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "variables/gov/states/al/dhr/ssp/al_level_b_care.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_care_setting.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_living_arrangement.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://admincode.legislature.state.al.us/api/chapter/660-2-4#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "variables/gov/states/al/dhr/ssp/al_meets_snf_criteria.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_care_setting.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_living_arrangement.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://admincode.legislature.state.al.us/api/chapter/660-2-4#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ala. Admin. Code r. 660-2-4-.19a -- Attachment, Special Needs of Applicants and Recipients"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/dhr/ssp/amount.yaml",
+    "variables/gov/states/al/dhr/ssp/al_ssp.py"
+   ]
+  },
+  {
+   "url": "https://admincode.legislature.state.al.us/api/chapter/660-2-4#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "variables/gov/states/al/dhr/ssp/al_meets_snf_criteria.py",
+    "variables/gov/states/al/dhr/ssp/al_receives_elderly_disabled_medicaid_waiver.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_care_setting.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_eligible.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_grandfathered.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_living_arrangement.py",
+    "variables/gov/states/al/dhr/ssp/al_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://admincode.legislature.state.al.us/api/rule/660-2-4-.26",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "variables/gov/states/al/dhr/ssp/al_ssp_grandfathered.py"
+   ]
+  },
+  {
+   "url": "https://adminrules.idaho.gov/rules/2022%20Archive/16/160305.pdf#page=53",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAPA 16.03.05.501 - Basic Living Allowance (2022 Archive)"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/dhw/aabd/payment/basic_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://adminrules.idaho.gov/rules/2022%20Archive/16/160305.pdf#page=55",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAPA 16.03.05.514 - AABD Cash Payments (2022 Archive)"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/dhw/aabd/payment/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://adminrules.idaho.gov/rules/current/16/160305.pdf#page=39",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAPA 16.03.05.501 - Basic Living Allowance"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/dhw/aabd/payment/basic_allowance.yaml",
+    "variables/gov/states/id/dhw/aabd/id_aabd_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://adminrules.idaho.gov/rules/current/16/160305.pdf#page=40",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAPA 16.03.05.512 - Room and Board Allowance"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/dhw/aabd/payment/basic_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://adminrules.idaho.gov/rules/current/16/160305.pdf#page=41",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAPA 16.03.05.514 - AABD Cash Payments"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/dhw/aabd/payment/amount.yaml",
+    "variables/gov/states/id/dhw/aabd/id_aabd.py",
+    "variables/gov/states/id/dhw/aabd/id_aabd_eligible.py"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=388-474-0012",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 388-474-0012(2)(e) Eligibility for state supplemental payment"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/eligibility/disabled_category/in_effect.yaml",
+    "variables/gov/states/wa/dshs/ssp/wa_ssp.py",
+    "variables/gov/states/wa/dshs/ssp/wa_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=388-478-0055",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 388-478-0055(2)(a) Monthly state supplemental payment standards — STANDARD rates",
+    "WAC 388-478-0055(2)(c) Monthly state supplemental payment standards — MEDICAL_INSTITUTION rates"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml",
+    "variables/gov/states/wa/dshs/ssp/wa_ssp.py"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=388-478-0057",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 388-478-0057 — End-of-year SSP rate adjustment authority"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://apps.legislature.ky.gov/law/kar/titles/921/002/015/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "921 KAR 2:015 Section 9 — Standard of Need",
+    "921 KAR 2:015 Section 9(4)",
+    "921 KAR 2:015 Section 9(3)"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/ssp/payment_standard.yaml",
+    "parameters/gov/states/ky/dcbs/ssp/personal_needs_allowance/fch.yaml",
+    "parameters/gov/states/ky/dcbs/ssp/personal_needs_allowance/pch.yaml",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_care_receivers.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_category.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_claim_type.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_countable_income.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_eligible.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_payment_standard.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_personal_needs_allowance.py"
+   ]
+  },
+  {
+   "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=7671",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KRS 205.245"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/ssp/payment_standard.yaml",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://caselaw.findlaw.com/court/in-court-of-appeals/1602790.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Gargano v. Lee Alan Bryant Health Care Facilities, Inc. (2012) - confirms $49.35 per diem since July 2008"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/rcap/per_diem/licensed.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/4-205.49",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DC Code § 4-205.49(c)-(d) - Special living arrangements",
+    "DC Code § 4-205.49 - Special living arrangements"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/facility_size_threshold.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_eligible.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_facility_size.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_in_adult_foster_care.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_living_arrangement.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_payment_amount.py"
+   ]
+  },
+  {
+   "url": "https://dhhs.ne.gov/Documents/469-000-211.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "469 NAC 469-000-211 AABD or SDP Standard of Need (effective 2021-01-01)"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/aabd/alternate_living_standard.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/shelter_allowance/multiple.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/shelter_allowance/single.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/standard_of_need/independent.yaml",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_alternate_living_arrangement.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_living_arrangement.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_standard_of_need.py"
+   ]
+  },
+  {
+   "url": "https://dhhs.ne.gov/Documents/Title-469-Complete.pdf#page=126",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dhhs.ne.gov/Documents/Title-469-Complete.pdf#page=130",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_couple_rate_applies.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/december-1973-eligibility-requirements/1035-000-00/1035-005-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS December 1973 Eligibility Requirements Manual § 1035.005.00 — Real or Personal Property Limit"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-020-00/1805-020-10/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO HealthNet for Families Manual § 1805.020.10 — Qualified Immigrant"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/qualified_statuses.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-020-00/1805-020-10/1805-020-10-05/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO HealthNet for Families Manual § 1805.020.10.05 — Qualified Immigrants Entering Prior to 8/22/96"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/qualified_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-020-00/1805-020-10/1805-020-10-10/1805-020-10-10-05/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO HealthNet for Families Manual § 1805.020.10.10.05 — Qualified Immigrants With No Waiting Period"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/no_waiting_period_statuses.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-020-00/1805-020-10/1805-020-10-10/1805-020-10-10-10/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO HealthNet for Families Manual § 1805.020.10.10.10 — Qualified Immigrants With a Five-Year Period of Ineligibility"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/waiting_period.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-030-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0405.030.00 — Citizenship and Immigrant Status"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/no_waiting_period_statuses.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/qualified_statuses.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/waiting_period.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-050-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0405.050.00 — Real or Personal Property"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0410.015.05 — Earned Income"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/sources/earned.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/0410-015-05-20/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0410.015.05.20 — Standard Earned Income Exemption Table"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/earned_exemption/amount.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/earned_exemption/rate.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/personal_standard_rate.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py",
+    "variables/gov/states/mo/dss/ssp/mo_sab_reported_earnings_taxes.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-05/0410-015-05-25/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0410.015.05.25 — Other Expenses of Producing Income"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/expenses_of_producing_income.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/personal_standard_rate.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py",
+    "variables/gov/states/mo/dss/ssp/mo_sab_reported_earnings_taxes.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-10/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0410.015.10 — Unearned Income"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/expenses_of_producing_income.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/sources/unearned.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-015-00/0410-015-15/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0410.015.15 — Excluded Income"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/sources/unearned.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0410-000-00/0410-020-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0410.020.00 — Need Determination"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/sources/unearned.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0415-000-00/0415-005-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Aid to the Blind Manual § 0415.005.00 — Maximum and Minimum Payments"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_ssp.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-nursing-care/0605-000-00/0605-010-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS Supplemental Nursing Care Manual § 0605.010.00 — December 1973 Eligibility Requirements"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/no_waiting_period_statuses.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/qualified_statuses.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/waiting_period.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-005-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "variables/gov/states/mo/dss/ssp/mo_snc_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-025-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "variables/gov/states/mo/dss/ssp/mo_snc_countable_income.py",
+    "variables/gov/states/mo/dss/ssp/mo_snc_facility_base_charge.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2018/10/appendix_k.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix K (07/2026) — SNC resource limits"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/individual.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2018/10/appendix_k.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix K (07/2026) — SAB resource limits",
+    "MO DSS MHABD Appendix K (07/2026) — SAB grant $949"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2020/10/im-72.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "variables/gov/states/mo/dss/ssp/mo_snc_facility_base_charge.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix J (10/2026) — SAB couple resource maximum $12,441 effective 07-01-26",
+    "MO DSS MHABD Appendix J (10/2026) — SAB resource maximum $6,220.50 effective 07-01-26",
+    "MO DSS MHABD Appendix J (10/2026) — SAB consolidated standard $1,073 effective 01-01-26"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix J (10/2026) — SNC couple resource maximum $12,441 effective 07-01-26",
+    "MO DSS MHABD Appendix J (10/2026) — SNC resource maximum $6,220.50 effective 07-01-26",
+    "MO DSS MHABD Appendix J — SNC maximum grants",
+    "MO DSS MHABD Appendix J — Personal Needs Allowance"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/max_grant/rcf_level_i.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/max_grant/rcf_level_ii_or_alf.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/max_grant/snf_or_icf_non_medicaid.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/personal_needs_allowance.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_living_arrangement.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_personal_needs_allowance.py"
+   ]
+  },
+  {
+   "url": "https://ffic.myflfamilies.com/manual/200.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "variables/gov/states/fl/dcf/oss/fl_oss_eligible.py"
+   ]
+  },
+  {
+   "url": "https://ffic.myflfamilies.com/manual/2600.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "variables/gov/states/fl/dcf/oss/fl_oss.py"
+   ]
+  },
+  {
+   "url": "https://health.alaska.gov/en/services/adult-public-assistance-apa/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://health.alaska.gov/en/services/assisted-living-licensing-and-renewals/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/states/ak/dpa/ssp/ak_resides_in_assisted_living_home.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://khap.kdhe.ks.gov/kfmam/policydocs/state%20supplemental%20payment%20program%20policy%20memo.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KHPA Policy No. 2007-05-01 Section III(4) - State Supplemental Payment Program Eligibility Criteria",
+    "KHPA Policy No. 2007-05-01 Section IV - State Supplemental Payment Program Benefits"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/kdhe/sspp/eligibility/age_threshold.yaml",
+    "parameters/gov/states/ks/kdhe/sspp/payment/amount.yaml",
+    "variables/gov/states/ks/kdhe/sspp/ks_sspp.py",
+    "variables/gov/states/ks/kdhe/sspp/ks_sspp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://ksrevisor.gov/statutes/chapters/ch39/039_009_0072.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "K.S.A. 39-972(b) - State Supplemental Payment Program"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/kdhe/sspp/payment/amount.yaml",
+    "variables/gov/states/ks/kdhe/sspp/ks_sspp.py",
+    "variables/gov/states/ks/kdhe/sspp/ks_sspp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/california/code-wic/division-9/part-3/chapter-3/article-4/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "variables/gov/states/ca/cdss/state_supplement/ca_state_supplement_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/indiana/title-12/article-10/chapter-6/section-12-10-6-2-1/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IC 12-10-6-2.1(a)(1) - Residential care assistance; eligibility",
+    "IC 12-10-6-2.1(d) - Personal allowance retained from recipient's income"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/age_threshold.yaml",
+    "parameters/gov/states/in/fssa/ssp/personal_needs_allowance.yaml",
+    "variables/gov/states/in/fssa/ssp/in_ssp_rcap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2006/16/06-16-071.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 06-16-071 (eff. 2006-08-28)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2007/22/07-22-022.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 07-22-022 (eff. 2007-11-26)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2008/16/08-16-067.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 08-16-067 (eff. 2008-09-01)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2013/22/13-22-037.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 13-22-037 (eff. 2013-12-01)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2018/24/18-24-032.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 18-24-032 (eff. 2019-01-01)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2020/23/20-23-053.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 20-23-053 (eff. 2021-01-01)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2023/14/23-14-065.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 23-14-065 (emergency, eff. 2023-07-01) — initial $70 medical institution rate per HB 1128",
+    "WSR 23-14-065 — Emergency rule adding standalone disabled category (eff. 2023-07-01) per HB 1128"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml",
+    "parameters/gov/states/wa/dshs/ssp/eligibility/disabled_category/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2023/24/23-24-009.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 23-24-009 (permanent, eff. 2023-12-28) — permanent adoption",
+    "WSR 23-24-009 — Permanent rule replacing the emergency rule (eff. 2023-12-28)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml",
+    "parameters/gov/states/wa/dshs/ssp/eligibility/disabled_category/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2024/02/24-02EMER.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 24-02-041 (emergency, eff. 2024-01-01)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2024/06/24-06-025.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WSR 24-06-025 (eff. 2024-04-01)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-800.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "LDH Medicaid Eligibility Manual H-831.6, Personal Care Needs Allowance"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/oss/personal_care_needs_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-800.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "variables/gov/states/la/hhs/oss/la_oss_eligible.py"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/J-0000.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "LDH Medicaid Eligibility Manual J-300, Optional State Supplement Payment",
+    "LDH Medicaid Eligibility Manual J-300, Optional State Supplement Payment Formula"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/oss/maximum_payment.yaml",
+    "parameters/gov/states/la/hhs/oss/personal_care_needs_allowance.yaml",
+    "variables/gov/states/la/hhs/oss/la_oss.py",
+    "variables/gov/states/la/hhs/oss/la_oss_eligible.py"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/Z-700.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "LDH Medicaid Eligibility Manual Z-700, Personal Care Maintenance Needs Allowance and OSS Chart"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/oss/maximum_payment.yaml",
+    "parameters/gov/states/la/hhs/oss/personal_care_needs_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/assets/medicaid/StatePlan/Amend2025/25-0013/25-0013-CMS-Approval.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Louisiana SPA 25-0013, Approved Attachment 2.6-A page 4a (effective July 1, 2025)"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/oss/personal_care_needs_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/assets/medicaid/StatePlan/Amend2025/25-0013/Supplement-12-to-Attachment-2.6-A-Redlined.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Louisiana SPA 25-0013, Supplement 12 to Attachment 2.6-A (Redlined)"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/oss/personal_care_needs_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=12200",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (d)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (c)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (e)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (h)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (g)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (b)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (a)",
+    "California Welfare and Institutions Code Division 9, Part 3, Chapter 3, Article 5, Section 12200 (f)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/aged_or_disabled/amount/married.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/aged_or_disabled/amount/single.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/food/married.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/food/single.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/medical_care_facility.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/out_of_home_care.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/blind/married/one_blind.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/blind/married/two_blind.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/blind/single.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/dependent/age_limit.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/dependent/amount.yaml",
+    "variables/gov/states/ca/cdss/state_supplement/ca_state_supplement.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_aged_blind_disabled_amount.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_aged_disabled_amount.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_aged_disabled_count.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_blind_amount.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_dependent_amount.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_food_allowance.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_food_allowance_eligible.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_medical_care_facility_amount.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_out_of_home_care_facility_amount.py",
+    "variables/gov/states/ca/cdss/state_supplement/payment_standard/ca_state_supplement_payment_standard.py"
+   ]
+  },
+  {
+   "url": "https://legislature.maine.gov/statutes/22/title22sec3271.html",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "variables/gov/states/me/dhhs/ssp/me_ssp.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/660.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_couple_eligible.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_living_arrangement.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/660.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_couple_amount.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_eligible.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_person.py"
+   ]
+  },
+  {
+   "url": "https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/660.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MDHHS BEM 660, State SSI Payment, Legal Base"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml",
+    "parameters/gov/states/mi/mdhhs/ssp/payment/individual.yaml",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_couple_amount.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_couple_eligible.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_eligible.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_living_arrangement.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_payment_category.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_person.py"
+   ]
+  },
+  {
+   "url": "https://mdhhs-pres-prod.michigan.gov/olmweb/ex/RF/Public/RFT/248.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MDHHS RFT 248, SSI Payment Levels"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml",
+    "parameters/gov/states/mi/mdhhs/ssp/payment/individual.yaml",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_couple_amount.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_couple_eligible.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_individual_amount.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_living_arrangement.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_payment_category.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_person.py"
+   ]
+  },
+  {
+   "url": "https://pamms.dhs.ga.gov/dfcs/medicaid/2136/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "variables/gov/states/ga/dhs/ssp/ga_ssp_eligible_person.py",
+    "variables/gov/states/ga/dhs/ssp/ga_ssp_in_nursing_home_or_institutionalized_hospice.py"
+   ]
+  },
+  {
+   "url": "https://pamms.dhs.ga.gov/dfcs/medicaid/2578/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Georgia DFCS PAMMS Section 2578 — SSI Recipients State Supplement, Payment Amounts Table"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/dhs/ssp/amount.yaml",
+    "variables/gov/states/ga/dhs/ssp/ga_ssp.py",
+    "variables/gov/states/ga/dhs/ssp/ga_ssp_eligible_person.py",
+    "variables/gov/states/ga/dhs/ssp/ga_ssp_in_nursing_home_or_institutionalized_hospice.py",
+    "variables/gov/states/ga/dhs/ssp/ga_ssp_person.py"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/fact-sheets-and-issue-briefs/fact-sheets/dss-program-standards-chart-effective-010126.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DSS Program Standards Chart (January 2026)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/rate.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/unearned.yaml",
+    "parameters/gov/states/ct/dss/ssp/shelter_allowance.yaml",
+    "parameters/gov/states/ct/dss/ssp/special_needs/therapeutic_diet.yaml",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_unearned_income_disregard.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_personal_needs_allowance.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_shelter_allowance.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_special_needs.py"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/fact-sheets-and-issue-briefs/fact-sheets/dss-program-standards-chart.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DSS Program Standards Chart (October 2025)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/unearned.yaml",
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance.yaml",
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance_married.yaml",
+    "parameters/gov/states/ct/dss/ssp/special_needs/therapeutic_diet.yaml"
+   ]
+  },
+  {
+   "url": "https://revisor.mo.gov/main/OneSection.aspx?section=208.010",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py"
+   ]
+  },
+  {
+   "url": "https://revisor.mo.gov/main/OneSection.aspx?section=208.030",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "RSMo § 208.030(4) — Aid to the blind supplemental payments",
+    "RSMo § 208.030(5) — Supplemental Nursing Care eligibility",
+    "RSMo § 208.030.4 — Aid to the blind supplemental payments",
+    "RSMo § 208.030(5) — Supplemental Nursing Care",
+    "RSMo § 208.030(5) — Supplemental Nursing Care personal needs allowance"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/age_threshold/sab.yaml",
+    "parameters/gov/states/mo/dss/ssp/age_threshold/snc.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/max_grant/rcf_level_i.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/max_grant/rcf_level_ii_or_alf.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/max_grant/snf_or_icf_non_medicaid.yaml",
+    "parameters/gov/states/mo/dss/ssp/snc/personal_needs_allowance.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_age_eligible.py",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_category_eligible.py",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_eligible.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_living_arrangement.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_personal_needs_allowance.py"
+   ]
+  },
+  {
+   "url": "https://revisor.mo.gov/main/OneSection.aspx?section=209.030",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "RSMo § 209.030 — Aid to the blind eligibility (age 18+)"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/age_threshold/sab.yaml"
+   ]
+  },
+  {
+   "url": "https://revisor.mo.gov/main/OneSection.aspx?section=209.040",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "RSMo § 209.040.3 — Blind Pension grant amount"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_ssp.py"
+   ]
+  },
+  {
+   "url": "https://revisor.mo.gov/main/OneSection.aspx?section=209.240",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "RSMo § 209.240.1 — Amount of pension, need, how determined"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/earned_exemption/amount.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/earned_exemption/rate.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://rockfordha.org/wp-content/uploads/2020/04/Public-Benefits-Quick-Reference-Guide-Updated.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "variables/gov/states/il/dhs/aabd/payment/il_aabd_need_standard_person.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/POMS.NSF/lnx/0501415057",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "variables/gov/states/hi/dhs/oss/hi_oss.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_couple_rate_applies.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_eligible.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_living_arrangement.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_payment_amount.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.Nsf/lnx/0501415057#d",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.057 - Coding and Monthly Payment Levels for the District of Columbia, January 2025"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0500520001",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_medical_treatment_facility.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0500520011",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/ssi_medicaid_pays_majority_of_care.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0500835200",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_another_persons_household.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_others_pay_all_meals.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_receives_shelter_from_others_in_household.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0500835300",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "POMS SI 00835.300 - Presumed Maximum Value (PMV) Rule"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/ism/pmv_fbr_fraction.yaml",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_receives_outside_shelter_support.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415050#d",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.050 - Coding and Monthly Payment Levels for the District of Columbia, January 2018"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415055",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.055 - Coding and Monthly Payment Levels for the District of Columbia, January 2023"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415055#e",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.055 - Federally Administered Optional Supplemental Payment Programs for January 2023"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/oss/payment/couple/amount.yaml",
+    "parameters/gov/states/hi/dhs/oss/payment/individual/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415056#e",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.056 - Federally Administered Optional Supplementary Payment Programs for January 2024"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/oss/payment/couple/amount.yaml",
+    "parameters/gov/states/hi/dhs/oss/payment/individual/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415057#e",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.057 - Federally Administered Optional Supplementary Payment Programs for January 2025"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/oss/payment/couple/amount.yaml",
+    "parameters/gov/states/hi/dhs/oss/payment/individual/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "variables/gov/states/de/dhss/ssp/de_ssp.py",
+    "variables/gov/states/de/dhss/ssp/de_ssp_eligible.py",
+    "variables/gov/states/de/dhss/ssp/de_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#d",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.058 - Coding and Monthly Payment Levels for the District of Columbia, January 2026"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_payment_amount.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058#e",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01415.058 - Federally Administered Optional Supplementary Payment Programs for January 2026"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/oss/payment/couple/amount.yaml",
+    "parameters/gov/states/hi/dhs/oss/payment/individual/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415200SF",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "variables/gov/states/hi/dhs/oss/hi_oss.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_couple_rate_applies.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_eligible.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0500501154",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/00501.154",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/ssi_couple_computation_applies.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0500502100",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/00502.100",
+   "titles": [
+    "SI 00502.100 - Basic SSI Noncitizen Eligibility Requirements"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/status/qualified_noncitizen_status.yaml",
+    "variables/gov/ssa/ssi/eligibility/status/is_ssi_qualified_noncitizen.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0500502135",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/00502.135",
+   "titles": [
+    "SI 00502.135 - Lawfully Admitted for Permanent Residence (LAPR) with 40 Qualifying Quarters of Earnings"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/sources/qualifying_quarters_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0500835300",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/00835.300",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_amount.py",
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_shelter_support_value.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501110000",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01110.000",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/resources/meets_ssi_resource_test.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501140000",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01140.000",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/resources/ssi_countable_resources.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501140200",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01140.200",
+   "titles": [
+    "SSA POMS SI 01140.200 - Checking and Savings Accounts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/resources/countable.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501140220",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01140.220",
+   "titles": [
+    "SSA POMS SI 01140.220 - Stocks"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/resources/countable.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501140240",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01140.240",
+   "titles": [
+    "SSA POMS SI 01140.240 - U.S. Savings Bonds"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/resources/countable.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501140250",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01140.250",
+   "titles": [
+    "SSA POMS SI 01140.250 - Municipal, Corporate and Government Bonds"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/resources/countable.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501320150",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01320.150",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_amount.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501401001CHI",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01401.001",
+   "titles": [
+    "SI CHI01401.001 - (IN) Indiana State Supplementary Payments"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/sapn/amount/couple.yaml",
+    "parameters/gov/states/in/fssa/ssp/sapn/amount/individual.yaml",
+    "variables/gov/states/in/fssa/ssp/in_ssp.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_eligible.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_living_arrangement.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_sapn.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_sapn_eligible.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501415008PHI",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01415.008",
+   "titles": [
+    "SSA POMS SI PHI01415.008 - Delaware State Supplementary Payment Amounts"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/dhss/ssp/amount/couple.yaml",
+    "parameters/gov/states/de/dhss/ssp/amount/individual.yaml",
+    "variables/gov/states/de/dhss/ssp/de_ssp.py",
+    "variables/gov/states/de/dhss/ssp/de_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501415056#d",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01415.056",
+   "titles": [
+    "SSA POMS SI 01415.056 - Coding and Monthly Payment Levels for the District of Columbia, January 2024"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501415058",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01415.058",
+   "titles": [
+    "SSA POMS SI 01415.058 - Payment Levels for State Supplementation, January 2026"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/dhss/ssp/amount/couple.yaml",
+    "parameters/gov/states/de/dhss/ssp/amount/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/poms.nsf/lnx/0501415210SF",
+   "kind": "manual",
+   "citation": "us/manual/ssa/poms/si/01415.210",
+   "titles": [],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "variables/gov/states/hi/dhs/oss/hi_oss_care_facility_type.py",
+    "variables/gov/states/hi/dhs/oss/hi_oss_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://srca.nm.gov/parts/title08/08.106.0100.html",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "variables/gov/states/nm/hca/ssi_supplement/is_in_adult_residential_care.py"
+   ]
+  },
+  {
+   "url": "https://srca.nm.gov/parts/title08/08.106.0500.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "8.106.500.10 NMAC - Payments to Adults in Residential Care"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/hca/ssi_supplement/amount.yaml",
+    "variables/gov/states/nm/hca/ssi_supplement/nm_ssi_state_supplement.py",
+    "variables/gov/states/nm/hca/ssi_supplement/nm_ssi_state_supplement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://statutes.capitol.texas.gov/Docs/HR/htm/HR.32.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Texas Human Resources Code Section 32.024(w)"
+   ],
+   "states": [
+    "tx"
+   ],
+   "files": [
+    "parameters/gov/states/tx/hhsc/ssi_state_supplement/personal_needs_allowance.yaml",
+    "variables/gov/states/tx/hhsc/ssi_state_supplement/tx_ssi_state_supplement.py",
+    "variables/gov/states/tx/hhsc/ssi_state_supplement/tx_ssi_state_supplement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20150907223322/https://dhhs.ne.gov/Documents/469-000-211.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "469 NAC 469-000-211 AABD or SDP Standard of Need (effective 2015-01-01, Manual Letter"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/aabd/alternate_living_standard.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/shelter_allowance/multiple.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/shelter_allowance/single.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/standard_of_need/independent.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20161221055507/https://dhhs.ne.gov/Documents/469-000-211.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "469 NAC 469-000-211 AABD or SDP Standard of Need (effective 2017-01-01, Manual Letter"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/aabd/alternate_living_standard.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/standard_of_need/independent.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20161223122049id_/https://dhhs.michigan.gov/OLMWEB/EX/RF/Public/RFT/248.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MDHHS RFT 248, SSI Payment Levels (RFB 2016-001 archive)"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml",
+    "parameters/gov/states/mi/mdhhs/ssp/payment/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20200923083110id_/https://dhhs.michigan.gov/OLMWEB/EX/RF/Public/RFT/248.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MDHHS RFT 248, SSI Payment Levels (RFB 2020-001 archive)"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20220309172236id_/https://dhhs.michigan.gov/OLMWEB/EX/RF/Public/RFT/248.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MDHHS RFT 248, SSI Payment Levels (RFB 2022-002 archive)"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20220802064906id_/https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix J (07/2022) — SAB consolidated standard $908 effective 01-01-22"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20221124121428/https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/Fact-Sheets-and-Issue-Briefs/Fact-Sheets/DSS-Program-Standards-Chart-Effective-7-1-2022-1.xlsx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DSS Program Standards Chart (July 2022)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/unearned.yaml",
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance.yaml",
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance_married.yaml",
+    "parameters/gov/states/ct/dss/ssp/special_needs/therapeutic_diet.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20230130014550/https://dssmanuals.mo.gov/2022/12/05/im-143-2/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS IM-143 (12/05/2022) — SAB standard $987 for 2023"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20230925041524/https://dssmanuals.mo.gov/2023/06/08/im-57-4/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS IM-57 (06/08/2023) — SAB grant $789 effective 07-01-23"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/2024/https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/me.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Maine, Table 1"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/dhhs/ssp/amount/couple.yaml",
+    "parameters/gov/states/me/dhhs/ssp/amount/individual.yaml",
+    "parameters/gov/states/me/dhhs/ssp/disregard/couple.yaml",
+    "parameters/gov/states/me/dhhs/ssp/disregard/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20240112012718id_/https://dhhs.michigan.gov/OLMWEB/EX/RF/Public/RFT/248.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MDHHS RFT 248, SSI Payment Levels (RFB 2024-001 archive)"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20240612134513id_/https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix J (07/2024) — SAB couple resource maximum $11,818.45 effective 07-01-24",
+    "MO DSS MHABD Appendix J (07/2024) — SAB resource maximum $5,909.25 effective 07-01-24",
+    "MO DSS MHABD Appendix J (07/2024) — SAB consolidated standard $1,019 effective 01-01-24"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250202215415id_/https://dssmanuals.mo.gov/wp-content/uploads/2018/10/appendix_k.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix K (12/2024) — SAB grant $828"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250809181856/https://dssmanuals.mo.gov/december-1973-eligibility-requirements/1010-000-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS December 1973 Eligibility Requirements Manual § 1010.000.00 — Reasonable Opportunity, Citizenship, and Immigrant Status (IM-97, 07/11/2022; archived 08/2025)"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/no_waiting_period_statuses.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/qualified_statuses.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/immigration/waiting_period.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250831223642id_/https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix J (07/2025) — SAB couple resource maximum $12,137.55 effective 07-01-25",
+    "MO DSS MHABD Appendix J (07/2025) — SAB resource maximum $6,068.80 effective 07-01-25",
+    "MO DSS MHABD Appendix J (07/2025) — SAB consolidated standard $1,044 effective 01-01-25"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250831223642id_/https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix J (07/2025) — SNC couple resource maximum $12,137.55 effective 07-01-25",
+    "MO DSS MHABD Appendix J (07/2025) — SNC resource maximum $6,068.80 effective 07-01-25"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250831223648id_/https://dssmanuals.mo.gov/wp-content/uploads/2018/10/appendix_k.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MO DSS MHABD Appendix K (07/2025) — SAB grant $917"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20251030232040/https://www.myflfamilies.com/sites/default/files/2025-05/Appendix%20A-12%20-%20State%20Funded%20Programs%20Eligibility%20Standards.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — back-calculation 2×$991.40-$1,885.80 = $97 for Jan 2025 Redesign; 2×$1,152-$2,207 = $97 for Jan 2025 Protected)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — PNA $160 per person for Jul 2024 and Jan 2025)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — Protected Max OSS $690(C) for Jul 2024 and Jan 2025)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — Protected Max OSS $345(I) for Jul 2024 and Jan 2025)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — Protected provider rate $1,152 at Jan 2025; SSI FBR $967)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — Redesign income standard $1,045.40(I) - provider rate $991.40 = $54 offset at Jan 2025)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — Redesign Max OSS $184.40(I) at Jul 2024 / Jan 2025)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2025-01-01 — Redesign provider rate $991.40(I) at Jan 2025 / FBR $967 = $24.40 offset)"
+   ],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "parameters/gov/states/fl/dcf/oss/couple_provider_rate_reduction.yaml",
+    "parameters/gov/states/fl/dcf/oss/pna.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/in_effect.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/max_oss/couple.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/max_oss/individual.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/provider_rate_offset.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/income_standard_pna_offset.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/max_oss/individual.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/provider_rate_offset.yaml",
+    "variables/gov/states/fl/dcf/oss/fl_oss.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_community_care_type.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_couple_rate_applies.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_income_standard.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_max_oss.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_program_track.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_provider_rate.py"
+   ]
+  },
+  {
+   "url": "https://www.akleg.gov/basis/get_documents.asp?session=31&docid=60171",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alaska DPA Adult Public Assistance Need and Maximum Payment Standards, 2017-2020"
+   ],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/ssp/payment_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.akleg.gov/basis/statutes.asp#47.25.430",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "AS 47.25.430–47.25.615",
+    "AS 47.25.430-47.25.615"
+   ],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/ssp/eligibility/age_threshold.yaml",
+    "parameters/gov/states/ak/dpa/ssp/payment_standard.yaml",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.akleg.gov/statutesPDF/Title-47.pdf#page=310",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/states/ak/dpa/ssp/ak_resides_in_assisted_living_home.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.akleg.gov/statutesPDF/aac%20Title%207.pdf#page=830",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/states/ak/dpa/ssp/ak_resides_in_assisted_living_home.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.akleg.gov/statutesPDF/aac%20Title%207.pdf#page=833",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.akleg.gov/statutesPDF/aac%20Title%207.pdf#page=834",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.cdss.ca.gov/Portals/9/CAPI/CAPI_Regulations-Accessible.pdf#page=19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Eligibility and Assistance Standards Chapter 49-025 (.1)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/aged_or_disabled/age_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.cga.ct.gov/current/pub/chap_319s.htm#sec_17b-600",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CGS 17b-600 - State Supplement to the Aged, Blind or Disabled"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/eligibility/income_cap_rate.yaml",
+    "variables/gov/states/ct/dss/ssp/ct_ssp.py",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_person.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_categorically_eligible.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_eligible_person.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLV.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_category.py"
+   ]
+  },
+  {
+   "url": "https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLV.pdf#page=41",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_claim_type.py"
+   ]
+  },
+  {
+   "url": "https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLV.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CHFS Division of Family Support Operation Manual, Volume V, MS 1200 — State Supplementation Standards (OMTL-690, R. 3/9/26)"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/ssp/payment_standard.yaml",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_care_receivers.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_countable_income.py",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_payment_standard.py"
+   ]
+  },
+  {
+   "url": "https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLV.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CHFS Division of Family Support Operation Manual, Volume V, MS 1200(C)(2) — Personal Needs Allowance",
+    "CHFS Division of Family Support Operation Manual, Volume V, MS 1200(C)(1) — Personal Needs Allowance"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/ssp/personal_needs_allowance/fch.yaml",
+    "parameters/gov/states/ky/dcbs/ssp/personal_needs_allowance/pch.yaml",
+    "variables/gov/states/ky/dcbs/ssp/ky_ssp_personal_needs_allowance.py"
+   ]
+  },
+  {
+   "url": "https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=10694#page=73",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "9 CCR 2503-5, Section 3.546, AND-CS Program (effective 2023)"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/ssa/state_supplement/age_range.yaml",
+    "parameters/gov/states/co/ssa/state_supplement/grant_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=5834#page=25",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "9 CCR 2503-5, Section 3.520, Age Requirements"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/ssa/state_supplement/age_range.yaml"
+   ]
+  },
+  {
+   "url": "https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=5834#page=73",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "9 CCR 2503-5, Section 3.546, AND-CS Program (effective 2014)"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/ssa/state_supplement/grant_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/bill/103rd-congress/house-bill/2264",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "OBRA 1993 Section 13215(c) - Medicare HI allocation"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/revenue/oasdi_share_of_gross_ss.yaml"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/bill/98th-congress/house-bill/1900",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "PL 98-21 Section 121(e)(1) - Trust fund appropriations"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/revenue/oasdi_share_of_gross_ss.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ctdssmap.com/CTPortal/Information/Get/UPM#4005.05",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_gross_income.py"
+   ]
+  },
+  {
+   "url": "https://www.ctdssmap.com/CTPortal/Information/Get/UPM#4005.10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "UPM 4005.10 - Resource Limits"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/eligibility/asset_limit/couple.yaml",
+    "parameters/gov/states/ct/dss/ssp/eligibility/asset_limit/individual.yaml",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_resource_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ctdssmap.com/CTPortal/Information/Get/UPM#4520.10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "UPM 4520.10 - Community Living Arrangements"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/shelter_allowance.yaml",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_living_arrangement.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_need_standard.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_shelter_allowance.py"
+   ]
+  },
+  {
+   "url": "https://www.ctdssmap.com/CTPortal/Information/Get/UPM#4520.20",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "UPM 4520.20 - Medicaid Facility Residents"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ctdssmap.com/CTPortal/Information/Get/UPM#5030.10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "UPM 5030.10 - Earned Income Disregards"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/aged_disabled_initial.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/blind_initial.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/rate.yaml",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_countable_income.py",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_earned_income_disregard.py"
+   ]
+  },
+  {
+   "url": "https://www.ctdssmap.com/CTPortal/Information/Get/UPM#5030.15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "UPM 5030.15 - Unearned Income Disregards"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/unearned.yaml",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_countable_income.py",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_unearned_income_disregard.py"
+   ]
+  },
+  {
+   "url": "https://www.dhs.state.il.us/page.aspx?item=12668",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAG 25-03-03 AABD Fuel and Utility Allowances by Area"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_1.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_2.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_3.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_4.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_5.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_6.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_7.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/area/area_8.yaml",
+    "variables/gov/states/il/dhs/aabd/il_aabd_area.py"
+   ]
+  },
+  {
+   "url": "https://www.dhs.state.il.us/page.aspx?item=15910",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "variables/gov/states/il/dhs/aabd/eligibility/il_aabd_non_financial_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.dhs.state.il.us/page.aspx?item=15913",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAG 11-01-01:Personal Allowance"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/personal_allowance/active.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/personal_allowance/bedfast.yaml",
+    "variables/gov/states/il/dhs/aabd/payment/personal_allowance/il_aabd_is_bedfast.py",
+    "variables/gov/states/il/dhs/aabd/payment/personal_allowance/il_aabd_personal_allowance.py"
+   ]
+  },
+  {
+   "url": "https://www.dhs.state.il.us/page.aspx?item=15948",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "PM 11-01-07:Grant Adjustment"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/grant_amount.yaml",
+    "variables/gov/states/il/dhs/aabd/payment/il_aabd_grant_amount.py"
+   ]
+  },
+  {
+   "url": "https://www.dhs.state.il.us/page.aspx?item=19812",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAG 25-06-01:AABD Grant Adjustment Changes"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/grant_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-20/section-416.1131",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1131",
+   "titles": [],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/documents/2024/03/27/2024-06464/omitting-food-from-in-kind-support-and-maintenance-calculations",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "89 FR 21199 - Omitting Food from In-Kind Support and Maintenance Calculations"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/ism/food_counts.yaml",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_receives_food_from_others.py"
+   ]
+  },
+  {
+   "url": "https://www.flrules.org/gateway/RuleNo.asp?title=PUBLIC%20ASSISTANCE&ID=65A-2.032",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "variables/gov/states/fl/dcf/oss/fl_oss_community_care_type.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_eligible.py",
+    "variables/gov/states/fl/dcf/oss/fl_oss_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.flrules.org/gateway/RuleNo.asp?title=PUBLIC%20ASSISTANCE&ID=65A-2.033",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "variables/gov/states/fl/dcf/oss/fl_oss_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.flrules.org/gateway/RuleNo.asp?title=PUBLIC%20ASSISTANCE&ID=65A-2.036",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "variables/gov/states/fl/dcf/oss/fl_oss.py"
+   ]
+  },
+  {
+   "url": "https://www.flsenate.gov/Session/Bill/2024/5001",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Florida HB 5001, 2024-25 General Appropriations Act"
+   ],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "parameters/gov/states/fl/dcf/oss/pna.yaml"
+   ]
+  },
+  {
+   "url": "https://www.hca.wa.gov/assets/free-or-low-cost/income-standards-20240101.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Washington Apple Health Income and Resource Standards (eff. 2024-01-01) (see institutional PNA table)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.hca.wa.gov/assets/free-or-low-cost/income-standards-20250101.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Washington Apple Health Income and Resource Standards (eff. 2025-01-01) (see institutional PNA table)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.hca.wa.gov/assets/free-or-low-cost/income-standards-20260101.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Washington Apple Health Income and Resource Standards (eff. 2026-01-01) (see institutional PNA table)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/dshs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.hhs.texas.gov/handbooks/medicaid-elderly-people-disabilities-handbook/h-1500-personal-needs-allowance",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HHSC MEPD Handbook Section H-1500 - Personal Needs Allowance"
+   ],
+   "states": [
+    "tx"
+   ],
+   "files": [
+    "parameters/gov/states/tx/hhsc/ssi_state_supplement/personal_needs_allowance.yaml"
+   ]
+  },
+  {
+   "url": "https://www.hhs.texas.gov/handbooks/medicaid-elderly-people-disabilities-handbook/h-6000-co-payment-ssi-cases",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HHSC MEPD Handbook Section H-6000 - Co-Payment for SSI Cases"
+   ],
+   "states": [
+    "tx"
+   ],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/institutional/couple.yaml",
+    "parameters/gov/ssa/ssi/amount/institutional/individual.yaml",
+    "variables/gov/states/tx/hhsc/ssi_state_supplement/tx_ssi_state_supplement.py",
+    "variables/gov/states/tx/hhsc/ssi_state_supplement/tx_ssi_state_supplement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/fssa/ddars/files/RCAP-Provider-Guide.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FSSA RCAP Provider Guide (Sept 2017) - confirms $1,501.06 income limit for licensed facilities",
+    "FSSA RCAP Provider Guide (Sept 2017) - confirms $1,125.41 income limit for county homes"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/rcap/per_diem/licensed.yaml",
+    "parameters/gov/states/in/fssa/ssp/rcap/per_diem/unlicensed.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/fssa/ompp/files/Medicaid_PM_5000.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana Health Coverage Program Policy Manual Chapter 5000 - SAPN"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/sapn/amount/individual.yaml",
+    "variables/gov/states/in/fssa/ssp/in_ssp_sapn.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_sapn_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1110",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1110",
+   "titles": [
+    "20 CFR § 416.1110 - What is earned income."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/sources/earned.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1112#c_3",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1112/c/3",
+   "titles": [
+    "20 CFR § 416.1112 - Earned income we do not count."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml",
+    "variables/gov/ssa/ssi/eligibility/income/is_ssi_blind_or_disabled_working_student_exclusion_eligible.py",
+    "variables/gov/ssa/ssi/eligibility/income/ssi_blind_or_disabled_working_student_exclusion.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1112#c_4",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1112/c/4",
+   "titles": [
+    "20 CFR § 416.1112 - Earned income we do not count."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/general.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1112#c_5",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1112/c/5",
+   "titles": [
+    "20 CFR § 416.1112 - Earned income we do not count."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/earned.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1112#c_7",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1112/c/7",
+   "titles": [
+    "20 CFR § 416.1112 - Earned income we do not count."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/earned_share.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1121",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1121",
+   "titles": [
+    "United States Code of Federal Regulations, Title 20, Subsection 416.1121"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/sources/unearned.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1130",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1130",
+   "titles": [
+    "20 CFR § 416.1130 - Introduction to in-kind support and maintenance (as amended)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/ism/food_counts.yaml",
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_in_kind_support_and_maintenance.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_receives_food_from_others.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1131",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1131",
+   "titles": [
+    "20 CFR § 416.1131 - The one-third reduction rule"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/one_third_reduction_rate.yaml",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_others_pay_all_meals.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_receives_shelter_from_others_in_household.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1132",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1132",
+   "titles": [],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_another_persons_household.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1140",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1140",
+   "titles": [
+    "20 CFR § 416.1140 - The presumed value rule"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/ism/pmv_fbr_fraction.yaml",
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_in_kind_support_and_maintenance.py",
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_amount.py",
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_applies.py",
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_shelter_support_value.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_receives_outside_shelter_support.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1141",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1141",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/ism/ssi_pmv_applies.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1163",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1163",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/is_ssi_spousal_deeming_applies.py",
+    "variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/ssi_earned_income_deemed_from_ineligible_spouse.py",
+    "variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/ssi_income_deemed_from_ineligible_spouse.py",
+    "variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_spouse/ssi_unearned_income_deemed_from_ineligible_spouse.py",
+    "variables/gov/ssa/ssi/eligibility/income/deemed/ssi_ineligible_child_allocation.py",
+    "variables/gov/ssa/ssi/eligibility/income/deemed/ssi_ineligible_parent_allocation.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1165",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1165",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/deemed/from_ineligible_parent/ssi_unearned_income_deemed_from_ineligible_parent.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1205#c",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1205/c",
+   "titles": [
+    "20 CFR § 416.1205 - Limitation on resources."
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/resources/limit/couple.yaml",
+    "parameters/gov/ssa/ssi/eligibility/resources/limit/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.202#a_1",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/202/a/1",
+   "titles": [
+    "20 CFR § 416.202(a)(1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/eligibility/aged_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.414",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/414",
+   "titles": [
+    "20 CFR § 416.414 - Amount of benefits; eligible individual or eligible couple in a medical treatment facility"
+   ],
+   "states": [
+    "ak",
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/medical_facility.yaml",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_federal_living_arrangement.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_lives_in_medical_treatment_facility.py",
+    "variables/gov/ssa/ssi/eligibility/status/ssi_medicaid_pays_majority_of_care.py",
+    "variables/gov/ssa/ssi/ssi_couple_computation_applies.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py",
+    "variables/gov/states/ga/dhs/ssp/ga_ssp_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/idaho/IDAPA-16.03.05.514",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Idaho Admin. Code r. 16.03.05.514"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/dhw/aabd/payment/amount.yaml",
+    "variables/gov/states/id/dhw/aabd/id_aabd.py",
+    "variables/gov/states/id/dhw/aabd/id_aabd_eligible.py",
+    "variables/gov/states/id/dhw/aabd/id_aabd_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.10 - Citizenship"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/qualified_noncitizen_statuses.yaml",
+    "variables/gov/states/il/dhs/aabd/eligibility/il_aabd_immigration_status_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.100",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.100 - Unearned Income"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/income/sources/unearned.yaml",
+    "variables/gov/states/il/dhs/aabd/income/il_aabd_gross_unearned_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.112",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.112 - Earned Income"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/income/sources/earned.yaml",
+    "variables/gov/states/il/dhs/aabd/income/earned/il_aabd_gross_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.113",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.113 - Exempt Unearned Income"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/income/sources/unearned.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.120",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.120 - Exempt Earned Income"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/income/exemption/blind.yaml",
+    "parameters/gov/states/il/dhs/aabd/income/exemption/elderly_or_disabled.yaml",
+    "parameters/gov/states/il/dhs/aabd/income/exemption/flat.yaml",
+    "variables/gov/states/il/dhs/aabd/income/earned/il_aabd_earned_income_after_exemption_person.py",
+    "variables/gov/states/il/dhs/aabd/income/il_aabd_countable_unearned_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.125",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.125 - Recognized Employment Expenses (b)",
+    "Ill. Admin. Code tit. 89, § 113.125 - Recognized Employment Expenses"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/income/exemption/child_care.yaml",
+    "parameters/gov/states/il/dhs/aabd/income/exemption/sources.yaml",
+    "variables/gov/states/il/dhs/aabd/income/expense/il_aabd_child_care_expense_exemption.py",
+    "variables/gov/states/il/dhs/aabd/income/expense/il_aabd_expense_exemption_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.140",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.140 - Assets"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/asset/sources.yaml",
+    "variables/gov/states/il/dhs/aabd/asset/il_aabd_countable_assets.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.141",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.141 - Exempt Assets",
+    "Ill. Admin. Code tit. 89, § 113.141 - Exempt Assets (a)(4)(B)"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/asset/sources.yaml",
+    "parameters/gov/states/il/dhs/aabd/asset/vehicle_exemption/amount.yaml",
+    "variables/gov/states/il/dhs/aabd/asset/il_aabd_countable_vehicle_value.py",
+    "variables/gov/states/il/dhs/aabd/asset/il_aabd_vehicle_is_essential.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.142",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.142 - Asset Disregard"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/asset/disregard/additional.yaml",
+    "parameters/gov/states/il/dhs/aabd/asset/disregard/base.yaml",
+    "variables/gov/states/il/dhs/aabd/asset/il_aabd_asset_value_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.247",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.247 - Personal Allowance Amounts"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/personal_allowance/active.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/personal_allowance/bedfast.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.248",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.248 - Shelter (c)",
+    "Ill. Admin. Code tit. 89, § 113.248 - Shelter (b)"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/shelter_allowance/homestead.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/shelter_allowance/rent.yaml",
+    "variables/gov/states/il/dhs/aabd/payment/shelter/il_aabd_shelter_allowance.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.253",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.253 - Allowances for Increase in SSI Benefits"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/grant_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.259",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ill. Admin. Code tit. 89, § 113.259 - AABD Fuel and Utility Allowances by Area"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dhs/aabd/payment/utility/bottled_gas.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/coal.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/cooking_fuel.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/electricity.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/fuel_oil.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/metered_gas.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/utility_types.yaml",
+    "parameters/gov/states/il/dhs/aabd/payment/utility/water.yaml",
+    "variables/gov/states/il/dhs/aabd/payment/utility/il_utility_allowance.py",
+    "variables/gov/states/il/dhs/aabd/payment/utility/il_utility_allowance_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/Ill-Admin-Code-tit-89-SS-113.70",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "variables/gov/states/il/dhs/aabd/il_aabd_institutional_status.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/illinois/title-89/part-113/subpart-B",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "variables/gov/states/il/dhs/aabd/eligibility/il_aabd_non_financial_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/indiana/455-IAC-1-3-3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "455 IAC 1-3-3 - Per diem reimbursement rates (licensed under IC 16-28)",
+    "455 IAC 1-3-3 - Per diem reimbursement rates (not licensed under IC 16-28)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/rcap/per_diem/licensed.yaml",
+    "parameters/gov/states/in/fssa/ssp/rcap/per_diem/unlicensed.yaml",
+    "variables/gov/states/in/fssa/ssp/in_resides_in_licensed_residential_facility.py",
+    "variables/gov/states/in/fssa/ssp/in_resides_in_unlicensed_residential_facility.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_rcap.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-332-SS-11-5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "10-144 C.M.R. ch. 332, Part 11, § 11-5 Types of Living Arrangements"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/dhhs/ssp/amount/couple.yaml",
+    "parameters/gov/states/me/dhhs/ssp/amount/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-332-SS-7-3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "10-144 C.M.R. ch. 332, Part 7, § 3.1 SSI-Related Budgets for an Individual"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/dhhs/ssp/disregard/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/maine/10-144-C-M-R-ch-332-SS-7-4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "10-144 C.M.R. ch. 332, Part 7, § 4.1 Budget for a Couple"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/dhhs/ssp/disregard/couple.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/massachusetts/106-CMR-327-220",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "variables/gov/states/ma/dta/ssp/ma_state_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/massachusetts/106-CMR-327-330",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "106 CMR, § 327.330 - Payment Standards"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/dta/ssp/amount.yaml",
+    "variables/gov/states/ma/dta/ssp/ma_state_supplement.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/missouri/13-CSR-40-2-050",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "13 CSR 40-2.050(1) — Definition of Earned Income"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/earned_exemption/amount.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/earned_exemption/rate.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/income/sources/earned.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/missouri/13-CSR-40-2-120",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "variables/gov/states/mo/dss/ssp/mo_sab_countable_income.py",
+    "variables/gov/states/mo/dss/ssp/mo_sab_reported_earnings_taxes.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/missouri/13-CSR-40-2-130",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "13 CSR 40-2.130(2) — Maximum Supplemental Aid to the Blind Payments"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_ssp.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/south-carolina/R-126-910",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "S.C. Code Regs. 126-910(B)",
+    "S.C. Code Regs. 126-910(D)",
+    "S.C. Code Regs. 126-910(G)"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/maximum_facility_payment.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/net_income_limit.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/other_income.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/ssi_only.yaml",
+    "variables/gov/states/sc/scdhhs/ssi_state_supplement/sc_ssi_state_supplement.py",
+    "variables/gov/states/sc/scdhhs/ssi_state_supplement/sc_ssi_state_supplement_pna.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/south-carolina/R-126-920",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "variables/gov/states/sc/scdhhs/ssi_state_supplement/sc_ssi_state_supplement.py",
+    "variables/gov/states/sc/scdhhs/ssi_state_supplement/sc_ssi_state_supplement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382",
+   "kind": "statute",
+   "citation": "us/statute/42/1382",
+   "titles": [
+    "42 USC 1382(e)(1)(B)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/institutional/couple.yaml",
+    "parameters/gov/ssa/ssi/amount/institutional/individual.yaml",
+    "variables/gov/ssa/ssi/is_in_medicaid_facility.py",
+    "variables/gov/ssa/ssi/ssi.py",
+    "variables/gov/ssa/ssi/ssi_if_takes_up.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382#b",
+   "kind": "statute",
+   "citation": "us/statute/42/1382/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/ssi_amount_if_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382#e_1_A",
+   "kind": "statute",
+   "citation": "us/statute/42/1382/e/1/A",
+   "titles": [
+    "42 U.S.C. § 1382(e)(1)(A) - Amount of benefits for individuals in medical treatment facilities"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/medical_facility.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382a#a_2_A_i",
+   "kind": "statute",
+   "citation": "us/statute/42/1382a/a/2/A/i",
+   "titles": [
+    "42 U.S.C. § 1382a(a)(2)(A)(i) - One-third reduction in lieu of counting in-kind support and maintenance"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/one_third_reduction_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382a#b",
+   "kind": "statute",
+   "citation": "us/statute/42/1382a/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/ssi_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382c#a_1",
+   "kind": "statute",
+   "citation": "us/statute/42/1382c/a/1",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/is_ssi_aged_blind_disabled.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382c#a_3",
+   "kind": "statute",
+   "citation": "us/statute/42/1382c/a/3",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/is_ssi_blind_or_disabled_working_student_exclusion_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382c#a_3_A",
+   "kind": "statute",
+   "citation": "us/statute/42/1382c/a/3/A",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/is_ssi_disabled.py",
+    "variables/gov/ssa/ssi/eligibility/status/meets_ssi_disability_criteria.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382c#b",
+   "kind": "statute",
+   "citation": "us/statute/42/1382c/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/status/is_ssi_eligible_spouse.py",
+    "variables/gov/ssa/ssi/eligibility/status/is_ssi_ineligible_spouse.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/401",
+   "kind": "statute",
+   "citation": "us/statute/42/401",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/revenue/tob_revenue_medicare_hi.py",
+    "variables/gov/ssa/revenue/tob_revenue_oasdi.py",
+    "variables/gov/ssa/revenue/tob_revenue_total.py"
+   ]
+  },
+  {
+   "url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-400-10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MCL 400.10, Social Welfare Act, supplementary payments"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml",
+    "parameters/gov/states/mi/mdhhs/ssp/payment/individual.yaml",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp.py"
+   ]
+  },
+  {
+   "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/144c332-appendices-charts.docx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "10-144 C.M.R. ch. 332 Appendices and Charts, Chart 3.6"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/dhhs/ssp/amount/couple.yaml",
+    "parameters/gov/states/me/dhhs/ssp/amount/individual.yaml",
+    "variables/gov/states/me/dhhs/ssp/me_ssp.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_couple.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_individual.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_living_arrangement.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20%28AMD%29_0.docx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "10-144 C.M.R. ch. 332, Part 11, § 5 (MaineCare Eligibility Manual)"
+   ],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "parameters/gov/states/me/dhhs/ssp/amount/couple.yaml",
+    "parameters/gov/states/me/dhhs/ssp/amount/individual.yaml",
+    "variables/gov/states/me/dhhs/ssp/me_ssp.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_couple.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_eligible.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_individual.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_living_arrangement.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_payment_category.py"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2022/download",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Massachusetts State Supplement Calendar Year 2022 Payment Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/dta/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2025/download",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Massachusetts State Supplement Calendar Year 2025 Payment Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/dta/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-18-0004.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS State Plan Amendment GA 18-0004, Attachment 2.6-A Page 4a — Personal Needs Allowance"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/dhs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-19-0010.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS State Plan Amendment GA 19-0010, Attachment 2.6-A Page 4a — Personal Needs Allowance"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/dhs/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.myflfamilies.com/sites/default/files/2024-06/Appendix%20A-12.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — back-calculation 2×$938.40-$1,803.80 = $73 for Jan 2023 Redesign; 2×$1,099-$2,125 = $73 for Jan 2023 Protected)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — PNA $54 per person for Jan 2023 and Jan 2024; $160 per person for Jul 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01, shows Protected columns for Jan 2023, Jan 2024, Jul 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Protected Max OSS $478(C) for Jan 2023 and Jan 2024; $690(C) for Jul 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Protected Max OSS $239(I) for Jan 2023 and Jan 2024; $345(I) for Jul 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Protected provider rate $1,099 at Jan 2023, $1,128 at Jan 2024 / Jul 2024; SSI FBR $914 at Jan 2023, $943 at Jan 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Redesign income standard $992.40(I) - provider rate $938.40 = $54 offset at Jan 2023; $1,021.40 - $967.40 = $54 at Jan 2024 / Jul 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Redesign Max OSS $156.80(C) at Jan 2023 / Jan 2024 = 2×$78.40; $368.80(C) at Jul 2024 = 2×$184.40)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Redesign Max OSS $78.40(I) at Jan 2023 / Jan 2024; $184.40(I) at Jul 2024)",
+    "FL DCF Appendix A-12, Optional State Supplementation Payment Standards (effective 2024-07-01 — Redesign provider rate $938.40(I) at Jan 2023 / FBR $914 = $24.40 offset; $967.40 at Jan 2024 / Jul 2024 / FBR $943 = $24.40 offset)"
+   ],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "parameters/gov/states/fl/dcf/oss/couple_provider_rate_reduction.yaml",
+    "parameters/gov/states/fl/dcf/oss/pna.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/in_effect.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/max_oss/couple.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/max_oss/individual.yaml",
+    "parameters/gov/states/fl/dcf/oss/protected/provider_rate_offset.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/income_standard_pna_offset.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/max_oss/couple.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/max_oss/individual.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/provider_rate_offset.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/communications/optional-state-supplementation-oss-rate-increases",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SCDHHS MB# 22-013 - OSS Rate Increases effective July 2022"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/maximum_facility_payment.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/net_income_limit.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/other_income.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/ssi_only.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/communications/optional-state-supplementation-oss-rate-increases-0",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SCDHHS MB# 23-009 - OSS Rate Increases effective July 2023"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/maximum_facility_payment.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/net_income_limit.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/other_income.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/ssi_only.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/communications/social-security-and-supplemental-security-income-cost-living-adjustment-increases",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SCDHHS 2025 COLA Bulletin"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/maximum_facility_payment.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/net_income_limit.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/other_income.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/ssi_only.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/communications/social-security-and-supplemental-security-income-cost-living-adjustment-increases-0",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SCDHHS MB# 26-001 - 2026 COLA Adjustments"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/maximum_facility_payment.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/net_income_limit.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/other_income.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/ssi_only.yaml",
+    "variables/gov/states/sc/scdhhs/ssi_state_supplement/sc_ssi_state_supplement_eligible.py",
+    "variables/gov/states/sc/scdhhs/ssi_state_supplement/sc_ssi_state_supplement_pna.py"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/communications/social-security-and-supplemental-security-income-ssi-cost-living-adjustment-cola",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SCDHHS 2024 COLA Bulletin"
+   ],
+   "states": [
+    "sc"
+   ],
+   "files": [
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/maximum_facility_payment.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/net_income_limit.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/other_income.yaml",
+    "parameters/gov/states/sc/scdhhs/ssi_state_supplement/personal_needs_allowance/ssi_only.yaml"
+   ]
+  },
+  {
+   "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-2.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "13 CSR 40-2.120(3)(A)2 — Annual increase in the SAB consolidated standard"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-2.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "variables/gov/states/mo/dss/ssp/mo_sab_reported_earnings_taxes.py"
+   ]
+  },
+  {
+   "url": "https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-2.pdf#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "13 CSR 40-2.120(8) — Standard Earned Income Exemption Table"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/sab/income/personal_standard_rate.yaml",
+    "variables/gov/states/mo/dss/ssp/mo_sab_reported_earnings_taxes.py"
+   ]
+  },
+  {
+   "url": "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=9+CCR+2503-5&ruleVersionId=12428#page=99",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "9 CCR 2503-5, Section 3.546, AND-CS Program"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/ssa/state_supplement/grant_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/OACT/ssir/SSI12/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2012 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/OACT/ssir/SSI24/V_E_WorkIncentives.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/OP_Home/cfr20/416/416-0971.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/ssa/ssi/eligibility/income/ssi_engaged_in_sga.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/OP_Home/cfr20/416/416-0974.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "416.974. Evaluation guides if you are an employee (b)(2)(ii)(B)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/sga/blind.yaml",
+    "parameters/gov/ssa/sga/non_blind.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/cola/SSIamts.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSI Federal Payment Amounts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/amount/couple.yaml",
+    "parameters/gov/ssa/ssi/amount/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/cola/sga.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Substantial Gainful Activity"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/sga/blind.yaml",
+    "parameters/gov/ssa/sga/non_blind.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/cola/studentEIE.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Student Earned Income Exclusion for SSI"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI11/Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2011 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI13/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2013 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI14/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2014 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI15/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2015 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI16/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2016 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI17/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2017 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI18/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2018 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI19/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2019 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI20/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2020 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI21/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI22/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/oact/ssir/SSI23/V_B_Exclusions.html#39619",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Annual Report of the SSI Program - B. INCOME AND RESOURCE EXCLUSIONS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/age_limit.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/amount.yaml",
+    "parameters/gov/ssa/ssi/income/exclusions/blind_or_disabled_working_student/cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2002/co.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2002 - Colorado"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/ssa/state_supplement/grant_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2002/ma.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2002 - Massachusetts"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/dta/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2005/ct.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2005 - Connecticut"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/rate.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/unearned.yaml",
+    "parameters/gov/states/ct/dss/ssp/eligibility/income_cap_rate.yaml",
+    "parameters/gov/states/ct/dss/ssp/shelter_allowance.yaml",
+    "parameters/gov/states/ct/dss/ssp/special_needs/therapeutic_diet.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2005/ma.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2005 - Massachusetts"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/dta/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ak.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 — Alaska"
+   ],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/ssp/eligibility/age_threshold.yaml",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_eligible.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_excluded_institutional_setting.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ak.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 — Alaska, Table 1"
+   ],
+   "states": [
+    "ak"
+   ],
+   "files": [
+    "parameters/gov/states/ak/dpa/ssp/payment_standard.yaml",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_claim_type.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_living_arrangement.py",
+    "variables/gov/states/ak/dpa/ssp/ak_ssp_payment_standard.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/co.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Colorado"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/ssa/state_supplement/grant_standard.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ct.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Connecticut"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/aged_disabled_initial.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/blind_initial.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/earned/rate.yaml",
+    "parameters/gov/states/ct/dss/ssp/disregard/unearned.yaml",
+    "parameters/gov/states/ct/dss/ssp/eligibility/asset_limit/couple.yaml",
+    "parameters/gov/states/ct/dss/ssp/eligibility/asset_limit/individual.yaml",
+    "parameters/gov/states/ct/dss/ssp/eligibility/income_cap_rate.yaml",
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance.yaml",
+    "parameters/gov/states/ct/dss/ssp/personal_needs_allowance_married.yaml",
+    "parameters/gov/states/ct/dss/ssp/shelter_allowance.yaml",
+    "parameters/gov/states/ct/dss/ssp/special_needs/therapeutic_diet.yaml",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_has_therapeutic_diet.py",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_lives_with_others.py",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_living_arrangement.py",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_person.py",
+    "variables/gov/states/ct/dss/ssp/ct_ssp_resides_in_boarding_home.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_categorically_eligible.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_eligible_person.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_income_eligible.py",
+    "variables/gov/states/ct/dss/ssp/eligibility/ct_ssp_resource_eligible.py",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_countable_income.py",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_earned_income_disregard.py",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_gross_income.py",
+    "variables/gov/states/ct/dss/ssp/income/ct_ssp_unearned_income_disregard.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_need_standard.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_personal_needs_allowance.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_shelter_allowance.py",
+    "variables/gov/states/ct/dss/ssp/payment/ct_ssp_special_needs.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/dc.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - District of Columbia Table 1"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/dhcf/ossp/payment/couple.yaml",
+    "parameters/gov/states/dc/dhcf/ossp/payment/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/de.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Delaware, Table 1"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/dhss/ssp/amount/couple.yaml",
+    "parameters/gov/states/de/dhss/ssp/amount/individual.yaml",
+    "variables/gov/states/de/dhss/ssp/de_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/fl.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Florida, Table 1 (shows \"b\" for couple amounts = treated as two individuals, i.e., reduction = $0)",
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Florida, Table 1 (PNA $54)",
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Florida, Table 1",
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Florida, Table 1 (Redesign Max OSS $156.80(C), = 2 × $78.40(I))",
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Florida, Table 1 (Redesign Max OSS $78.40(I))",
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Florida, Table 1 (Redesign base rate $698.40 - FBR $674 = $24.40 offset)"
+   ],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "parameters/gov/states/fl/dcf/oss/couple_provider_rate_reduction.yaml",
+    "parameters/gov/states/fl/dcf/oss/pna.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/income_standard_pna_offset.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/max_oss/couple.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/max_oss/individual.yaml",
+    "parameters/gov/states/fl/dcf/oss/redesign/provider_rate_offset.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/hi.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Hawaii Table 1"
+   ],
+   "states": [
+    "hi"
+   ],
+   "files": [
+    "parameters/gov/states/hi/dhs/oss/payment/couple/amount.yaml",
+    "parameters/gov/states/hi/dhs/oss/payment/individual/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/in.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Indiana"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/ssp/age_threshold.yaml",
+    "parameters/gov/states/in/fssa/ssp/personal_needs_allowance.yaml",
+    "parameters/gov/states/in/fssa/ssp/sapn/amount/couple.yaml",
+    "parameters/gov/states/in/fssa/ssp/sapn/amount/individual.yaml",
+    "variables/gov/states/in/fssa/ssp/in_resides_in_licensed_residential_facility.py",
+    "variables/gov/states/in/fssa/ssp/in_resides_in_unlicensed_residential_facility.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_eligible.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_living_arrangement.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_rcap.py",
+    "variables/gov/states/in/fssa/ssp/in_ssp_rcap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/la.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA Publication No. 13-11975, State Assistance Programs for SSI Recipients, January 2011 - Louisiana, Table 1"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/oss/maximum_payment.yaml",
+    "parameters/gov/states/la/hhs/oss/personal_care_needs_allowance.yaml",
+    "variables/gov/states/la/hhs/oss/la_oss.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ma.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Massachusetts"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/dta/ssp/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/me.html",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "me"
+   ],
+   "files": [
+    "variables/gov/states/me/dhhs/ssp/me_ssp.py",
+    "variables/gov/states/me/dhhs/ssp/me_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/mi.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA 2011 State Assistance Programs, Michigan baseline",
+    "SSA State Assistance Programs for SSI Recipients, Michigan, Table 1"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/ssp/payment/couple.yaml",
+    "parameters/gov/states/mi/mdhhs/ssp/payment/individual.yaml",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp.py",
+    "variables/gov/states/mi/mdhhs/ssp/mi_ssp_person.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/mo.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 — Missouri"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/sab/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/couple.yaml",
+    "parameters/gov/states/mo/dss/ssp/eligibility/resource_limit/snc/individual.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/consolidated_standard.yaml",
+    "parameters/gov/states/mo/dss/ssp/sab/maximum_payment.yaml",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_age_eligible.py",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_category_eligible.py",
+    "variables/gov/states/mo/dss/ssp/eligibility/mo_ssp_resource_eligible.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp.py",
+    "variables/gov/states/mo/dss/ssp/mo_ssp_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ne.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_eligible.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_living_arrangement.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ne.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Nebraska, Table 1",
+    "SSA State Assistance Programs for SSI Recipients, January 2011 - Nebraska"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/aabd/alternate_living_standard.yaml",
+    "parameters/gov/states/ne/dhhs/aabd/standard_of_need/independent.yaml",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_couple_rate_applies.py",
+    "variables/gov/states/ne/dhhs/aabd/ne_aabd_standard_of_need.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/nm.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA State Assistance Programs for SSI Recipients - New Mexico (2011)"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/hca/ssi_supplement/amount.yaml",
+    "parameters/gov/states/nm/hca/ssi_supplement/min_age.yaml",
+    "variables/gov/states/nm/hca/ssi_supplement/nm_ssi_state_supplement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/pubs/EN-05-11125.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Supplemental Security Income (SSI) in California"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/aged_or_disabled/amount/married.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/aged_or_disabled/amount/single.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/food/married.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/food/single.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/medical_care_facility.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/allowance/out_of_home_care.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/blind/married/one_blind.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/blind/married/two_blind.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/blind/single.yaml",
+    "parameters/gov/states/ca/cdss/state_supplement/payment_standard/dependent/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/pubs/EN-05-11162.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_eligible.py",
+    "variables/gov/states/dc/dhcf/ossp/dc_ossp_living_arrangement.py"
+   ]
+  }
+ ]
+}

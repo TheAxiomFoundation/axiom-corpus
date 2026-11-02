@@ -78,6 +78,9 @@ def test_extract_nyc_admin_code_writes_source_first_records(tmp_path) -> None:
     records = load_provisions(report.provisions_path)
     assert [record.citation_path for record in records] == ["us-ny/statute/NYC/11-1701"]
     assert records[0].legal_identifier == "NYC Administrative Code § 11-1701"
+    # The scope has no us-ny/statute/NYC container row, so section rows carry
+    # no parent link (release validation rejects a dangling parent).
+    assert records[0].parent_citation_path is None
     assert records[0].source_format == "nyc-admin-code-amlegal-html"
     inventory = load_source_inventory(report.inventory_path)
     assert inventory[0].citation_path == "us-ny/statute/NYC/11-1701"

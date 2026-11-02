@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/guidance/2026-10-06-w6-benefits-guidance-dc.json",
+      "sha256": "1d99e8a99d8c6f563bbd235df3ff29ee875d10e67136534148484b42ffbc4d1c"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/guidance/2026-10-06-w6-benefits-guidance-dc.json",
+      "sha256": "5f32bb74f7d06e55594125cde1cbcf40c6a84b40b9da2e64066680da9decdbab"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/guidance/2026-10-06-w6-benefits-guidance-dc.jsonl",
+      "sha256": "c4692e5072533558ca1e59b20b1f6686c2d50cb6a25f222d8374330e576db203"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/guidance/2026-10-06-w6-benefits-guidance-dc/official-documents/us-dc-guidance-dhs-give-snap-a-raise.html",
+      "sha256": "a9fb78823094244b05084280abb29fd931843384c6024cd3b63be77cd1c11695"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/guidance/2026-10-06-w6-benefits-guidance-dc/official-documents/us-dc-guidance-doee-liheap.html",
+      "sha256": "4364cf9f6b65710b6fd8f1ba8341d1e14c12aec8a8703393800bcd0b81845261"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:14.883642+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bkN6/ePw0GY2EZTvv1Zhl8OROgxCx0OVKqjGKKViVd0OOfpePOOgsQbazJypjyIJgA2BvcZE0K3gBC0wllOmDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-dc"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn.json",
+      "sha256": "3448044c8db453598644e1330620a993e4be34b98c3774d7061c743b8516aae6"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn.json",
+      "sha256": "0e721fa4d5df967bde0149ceba00f361bd9c38c27804243674338f1bac8118d0"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn.jsonl",
+      "sha256": "966992bce71ccd66a634febaedc5f5d60ccdb45ddf589b8f6c2a0ba18ae4b5ac"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn/official-documents/us-mn-w6-dhs-ccap-policy-manual-2023-07.pdf",
+      "sha256": "454003e3663525614d28d78772f9f0a884d48964e4acf31ee308a795d46a13e3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-10-06-w6-tanf-ccdf-manual-mn/official-documents/us-mn-w6-dhs-combined-manual-2021-12.pdf",
+      "sha256": "d11fed80d6b393944c79c66f96bf0aad3f441db8e2137950811e433c6581658d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1861,
+    "missing_count": 0,
+    "provision_count": 1861,
+    "source_count": 1861
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:53:54.797442+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GJqwCnrLOTYbDdrsIaPMX7VoRavcAJ1ofVUILF1XcH8xmxStxe+H7tRGYzXzTk20A+CIzKXezN4j/P3V/yKwCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-mn"
+}

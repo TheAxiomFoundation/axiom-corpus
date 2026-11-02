@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-form-mo
+documents:
+- source_id: us-mo-form-dss-fsd-im-72
+  jurisdiction: us-mo
+  document_class: form
+  title: IM-72 FNIS Facility Notification Information Sheet (7/2026)
+  source_url: https://dssmanuals.mo.gov/wp-content/uploads/2020/10/im-72.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-07-01'
+  citation_path: us-mo/form/dss/fsd/im-72
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: agency_form
+    program: SSI state supplement
+    expression_date_note: the form's revision line IM-72FNIS (7/2026)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 148)
+    wave6_rows:
+    - 148
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

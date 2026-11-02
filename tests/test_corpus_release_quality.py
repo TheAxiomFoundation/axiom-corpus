@@ -8,6 +8,7 @@ from axiom_corpus.corpus.r2 import ArtifactReport, ArtifactScopeRow, ArtifactSup
 from axiom_corpus.corpus.release_quality import (
     _citation_uniqueness_grandfathered,
     validate_release,
+    validate_releases,
 )
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
@@ -808,3 +809,125 @@ def test_validate_release_reports_missing_and_invalid_artifacts(tmp_path):
         "missing_inventory",
         "missing_provisions",
     }.issubset(codes)
+
+
+def _shared_scope_corpus(store: CorpusArtifactStore) -> dict[str, ReleaseScope]:
+    """Three scopes: a clean one, one with deep-check errors and warnings, and
+    one that repeats the clean scope's citation path."""
+    scopes = {}
+    for version, citation, extra in (
+        ("clean", "us-co/statute/1", False),
+        ("broken", "us-co/statute/2", True),
+        ("repeat", "us-co/statute/1", False),
+    ):
+        source = store.source_path("us-co", "statute", version, "source.html")
+        sha = store.write_text(source, f"<p>{version}</p>")
+        relative = source.relative_to(store.root).as_posix()
+        provisions = [
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path=citation,
+                body="Text.",
+                version=version,
+                source_path=relative,
+                source_as_of="2026-07-19",
+                expression_date="2026-07-19",
+            )
+        ]
+        if extra:
+            provisions += [
+                ProvisionRecord(
+                    jurisdiction="us-ny",
+                    document_class="statute",
+                    citation_path=f"{citation}/a",
+                    version=version,
+                    parent_citation_path="missing-parent",
+                    source_path=relative,
+                ),
+                ProvisionRecord(
+                    jurisdiction="us-co",
+                    document_class="statute",
+                    citation_path=f"{citation}/b",
+                    body="Text.",
+                    version=version,
+                    parent_citation_path=citation,
+                    source_path=relative,
+                ),
+            ]
+        _write_source_scope(
+            store,
+            version=version,
+            inventory=[
+                SourceInventoryItem(citation_path=p.citation_path, source_path=relative, sha256=sha)
+                for p in provisions
+            ],
+            provisions=provisions,
+        )
+        scopes[version] = ReleaseScope("us-co", "statute", version)
+    return scopes
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+def test_validate_releases_equals_validate_release_per_selector(tmp_path, workers):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    s = _shared_scope_corpus(store)
+    remote_only = ReleaseScope("us-co", "statute", "remote")
+    releases = [
+        ReleaseManifest(name="plain", scopes=(s["clean"], s["broken"])),
+        ReleaseManifest(
+            name="profiled",
+            scopes=(s["clean"], s["broken"], s["repeat"]),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+        ReleaseManifest(name="repeat-only", scopes=(s["repeat"], s["broken"])),
+        ReleaseManifest(name="with-remote", scopes=(s["clean"], remote_only)),
+    ]
+    remote_report = ArtifactReport(
+        local_root=store.root,
+        prefixes=("inventory", "provisions", "coverage"),
+        local_count=0,
+        local_bytes=0,
+        local_by_prefix={},
+        remote_count=3,
+        remote_bytes=3,
+        remote_by_prefix={},
+        rows=(
+            ArtifactScopeRow(
+                jurisdiction="us-co",
+                document_class="statute",
+                version="remote",
+                local_inventory=False,
+                local_provisions=False,
+                local_coverage=False,
+                remote_inventory=True,
+                remote_provisions=True,
+                remote_coverage=True,
+                coverage_complete=True,
+                provision_count=1,
+            ),
+        ),
+        supabase_groups=(),
+    )
+    reports = [None, None, None, remote_report]
+    for max_issues in (2, 200):
+        expected = [
+            validate_release(store.root, release, artifact_report=report, max_issues=max_issues)
+            for release, report in zip(releases, reports, strict=True)
+        ]
+        actual = validate_releases(
+            store.root,
+            releases,
+            artifact_reports=reports,
+            max_issues=max_issues,
+            workers=workers,
+        )
+        assert [r.to_mapping() for r in actual] == [r.to_mapping() for r in expected]
+    codes = {i.code for r in expected for i in r.issues}
+    assert {
+        "duplicate_release_citation",
+        "missing_parent_citation",
+        "provision_jurisdiction_mismatch",
+        "remote_only_scope_not_deep_validated",
+    } <= codes
+    assert any(r.truncated for r in validate_releases(store.root, releases, max_issues=2))

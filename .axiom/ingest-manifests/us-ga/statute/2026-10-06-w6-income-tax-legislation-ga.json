@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/statute/2026-10-06-w6-income-tax-legislation-ga.json",
+      "sha256": "90f12f419894def0148a991185d64bb05a0fb26e24a408e1ac8e655263ded706"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/statute/2026-10-06-w6-income-tax-legislation-ga.json",
+      "sha256": "027519449bbbe057beedc91fb53f51992b1765a62c0e126fd22f09a71dc4b2ae"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/statute/2026-10-06-w6-income-tax-legislation-ga.jsonl",
+      "sha256": "4d579363b2e93739b33a02f3f095d0ccf720caf2921c43047a3b85267438b231"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-10-06-w6-income-tax-legislation-ga/official-documents/us-ga-w6-session-laws-2022-hb1437.pdf",
+      "sha256": "39a40d10e0d436d0efdd46199a1d716f2cf9380ad42f0698ee7c830c76481058"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-10-06-w6-income-tax-legislation-ga/official-documents/us-ga-w6-session-laws-2023-hb162.pdf",
+      "sha256": "e46c2294671ae365f35e262fe3b20f67652b9ed14b801ef24b3bcf97f269e571"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-10-06-w6-income-tax-legislation-ga/official-documents/us-ga-w6-session-laws-2024-hb1015.pdf",
+      "sha256": "2c7732b49d5a0a239b910421fa2e50171e45bd6886135e6f4cff15237bcee2c0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:50:52.642183+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xhS7Q648kCz3TeQoA9SiLrP3jImm/MnQyfKj0+CUoC0s8rM+fVe4lbNplE8CzJms0HnaHbUrupElqjjzsiTkCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-legislation-ga"
+}

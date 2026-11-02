@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va.json",
+      "sha256": "065d3ef5cdcf4c42ae19fcd459fb115a16ef209f02c3ccb3f153debffd9a3972"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va.json",
+      "sha256": "b2b23c36c63cf5f33c86283a0759213f453ea555f5b6b5bb5c9743fa1ede394e"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va.jsonl",
+      "sha256": "7990ad345f97a7e94603cb3ec4dc876c9e278d03812656135d9abf39d338dbc2"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-budget-2015-hb1400-item-335-1c.html",
+      "sha256": "e1483676a5e6a4503d81be853f5deb258b162fe8948745ca8aaae4736ef40711"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-budget-2019-sb1100-item-340-1s.html",
+      "sha256": "4fba62b7d2a71ac8b785d06f99b6691d0e2b189903417e2c47b877359fe35b23"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-budget-2020-hb30-item-350-1c.html",
+      "sha256": "6c6dbb63c5496f07aaad9025ea8b763ccb69466a6266683c6234c01aac0ebb3f"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-budget-2021-hb1800-item-350-2c.html",
+      "sha256": "71b3346fe700ebfb0ffde8721e17c3b2539522e85dcababddeae149793f7cc36"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-budget-2022-hb30-item-341-2c.html",
+      "sha256": "56fb94e18b0cdbfab98d71c4eca61c7a8ffb67c8bd26f6883e53ebe93c22f7e5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-budget-2025-hb1600-chapter-725-item-125-10.html",
+      "sha256": "4aced22246919c3b96b4b305672b902e50e73179e16ad5fc2ca3e6d30d59ec71"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-rga-2023-rd81.pdf",
+      "sha256": "e62ec335253aa5a0c23bc89f550505dbf128f8cf6b733ad60eae340be079c006"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-10-06-w6-tanf-ccdf-guidance-va/official-documents/us-va-w6-townhall-doe-gdoc-8298-ccsp-guidance-manual-proposed-2025.pdf",
+      "sha256": "88f362199943fe37d568f13f729c484612c705a7f727134ecd2228b51fe9906f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 306,
+    "missing_count": 0,
+    "provision_count": 306,
+    "source_count": 306
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:59:38.959771+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iOphkEq3/jLKr27vf/Ng9UrhHgK0i2BfAQSHhWZiD88lDTxFCrw8JrB2nhoY11bMn4cf3xU3ESs+Fe8TyyHHBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-va"
+}

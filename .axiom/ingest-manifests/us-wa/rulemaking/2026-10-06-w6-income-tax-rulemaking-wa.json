@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/rulemaking/2026-10-06-w6-income-tax-rulemaking-wa.json",
+      "sha256": "4d64643fb407860f86cfe390dc286e05081fbca8a67c611856833f9dc4726fba"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/rulemaking/2026-10-06-w6-income-tax-rulemaking-wa.json",
+      "sha256": "cd95723f9f8f01a1bf911916a3c7a10c5178e05a3ef11850c21084d3d8459bfb"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/rulemaking/2026-10-06-w6-income-tax-rulemaking-wa.jsonl",
+      "sha256": "19802d86f4ee3901a78244b9a55d5176596d8d7091515b60d1384f63094979ef"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-06-w6-income-tax-rulemaking-wa/official-documents/us-wa-rulemaking-wsr-25-10-017.pdf",
+      "sha256": "2aca3dd1b9bbee47972d2d8a732edc0f1de41bf50a70196ab39d0b34057f3ad4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T18:00:30.825226+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ptF4kRQ1Dj1ruL1ICpzMIAOKvrDW5/JXwMvOl2QhcZUvlvnkM0LEY/rz0kV6F7LLPMYmqnG67i1rY7IqmmzLCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-rulemaking-wa"
+}

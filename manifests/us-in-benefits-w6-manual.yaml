@@ -1,0 +1,22 @@
+version: 2026-10-06-w6-benefits-manual-in
+documents:
+- source_id: us-in-manual-ihcda-liheap-intake-and-operations-manual
+  jurisdiction: us-in
+  document_class: manual
+  title: Indiana Energy Assistance Program Intake and Operations Program Manual 2025-2026 (PY2026)
+  source_url: https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-10-01'
+  citation_path: us-in/manual/ihcda/liheap-intake-and-operations-manual
+  metadata:
+    primary_source: true
+    source_authority: Indiana Housing and Community Development Authority
+    document_subtype: program_manual
+    program: LIHEAP
+    expression_date_note: program year 2026 (2025-2026 heating season) edition
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 103)
+    supersedes: us-in/manual/2026-09-14-liheap-benefit-matrix (PY2024 version 1.0, same citation path)
+    wave6_rows:
+    - 103
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

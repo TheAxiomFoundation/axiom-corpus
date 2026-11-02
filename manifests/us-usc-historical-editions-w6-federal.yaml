@@ -1,0 +1,47 @@
+version: 2026-10-06-w6-federal-usc-historical-editions
+documents:
+- source_id: usc-1994-42-606
+  jurisdiction: us
+  document_class: statute
+  title: 42 U.S.C. 606 (1994 edition), Definitions (AFDC)
+  source_url: https://www.govinfo.gov/content/pkg/USCODE-1994-title42/html/USCODE-1994-title42-chap6-subchapIV_2-partA-sec606.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '1994-01-01'
+  citation_path: us/statute/edition-1994/42/606
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: United States Code (historical printed edition)
+    document_subtype: us_code_historical_edition
+    edition: United States Code, 1994 Edition
+    publisher: U.S. Government Publishing Office (govinfo)
+    edition_note: expression_date is the edition year; the page prints no currency date
+    source_family: w6-federal-usc-editions
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+    bundle_addresses:
+    - https://uscode.house.gov/view.xhtml?req=granuleid:USC-1994-title42-section606&num=0&edition=1994
+- source_id: usc-1976-title-26-volume
+  jurisdiction: us
+  document_class: statute
+  title: United States Code, 1976 Edition, Title 26 - Internal Revenue Code (Library of Congress scan, uscode1976-007026001)
+  source_url: https://tile.loc.gov/storage-services/service/ll/uscode/uscode1976-00702/uscode1976-007026001/uscode1976-007026001.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '1976-01-01'
+  citation_path: us/statute/edition-1976/26/uscode1976-007026001
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: United States Code (historical printed edition)
+    document_subtype: us_code_historical_edition
+    edition: United States Code, 1976 Edition
+    publisher: Library of Congress (scanned GPO print edition)
+    edition_note: expression_date is the edition year (the scan prints no currency date in this volume); the OCR text layer
+      is the Library of Congress's own
+    source_family: w6-federal-usc-editions
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md

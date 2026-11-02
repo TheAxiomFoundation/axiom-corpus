@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/statute/2026-10-06-w6-income-tax-statute-ma.json",
+      "sha256": "2a7af9abfb062ef7c012f2d0be7dfee408e2d3611af5ac9571f2c53572368e4c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/statute/2026-10-06-w6-income-tax-statute-ma.json",
+      "sha256": "2d30395bc722668d0f5f0fa6d1f393984e70ab9b982a0d45bb33c06bbe1f585a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/statute/2026-10-06-w6-income-tax-statute-ma.jsonl",
+      "sha256": "05f6063a628de0df7091a3a7ca97482082cfbc9645d713957d2a737ae445e786"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-10-06-w6-income-tax-statute-ma/official-documents/us-ma-statute-session-laws-2019-h86.html",
+      "sha256": "ad3094a7b7d5e872df14b96f33b33d5acb929f284bd691f574263088ed241c37"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-10-06-w6-income-tax-statute-ma/official-documents/us-ma-statute-session-laws-2023-chapter-50.html",
+      "sha256": "31ba9f32f658203b04e8aa86a3a267b8f2c1adbd699fffe8fd8c12a25a08a4ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/statute/2026-10-06-w6-income-tax-statute-ma/official-documents/us-ma-statute-session-laws-2023-h4104-bill-history.html",
+      "sha256": "540702cecdcc31b71bb720122c6001a7623a8a100277e4be64e181de120ccf27"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:59.481477+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HC7Rbypv6aAyg9IVnn17dOoIUHwb4qKK2n5HHlhcAtzyf8MvQ3wsZjaKyr4RG665g8ucv/XlTLdJ71WvokcaCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ma"
+}

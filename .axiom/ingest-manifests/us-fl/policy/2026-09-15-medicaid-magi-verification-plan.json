@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "1b8210a828f0335a1fa38b8da2fac527a31527aace58a97d3ff60e03a9d1c632"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "04dab4ffd5c14914ff0d80ef1693f80061b4573217e0f1328f3dad6af527821c"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "da4f2e1106beff5e85b5aa9d375ce29d1b94f44bd088d480c345103f40f5b616"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-fl-cms-magi-verification-plan-florida-verification-plan-template-final.pdf",
+      "sha256": "f5be858c65b3db26add335d751cc5c0e9d5c0fc5d7aea3e6435176a6d82e5d5a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:18.394404+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "x/OdhPrxsyzI3eseBBtGKmV+1RRBuo2HMVV8QovczwWvWwVy+7SQzN670R4JSUpdg//4TE4bbrOhJuhZJBbNAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

@@ -1,0 +1,453 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated.json",
+      "sha256": "9973edcb00b2bbb5b0315c5c3bd8edc85f1002e6e3e60e9134510df455fdafd0"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated.json",
+      "sha256": "b43d974fe179f58681778e7cb90e6bf579c78c9327a47f7805402617374d6952"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated.jsonl",
+      "sha256": "605d90781be07a407307b4cb44180501e3952c9bd8409d4bdcfd9affaa1f72b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-1.html",
+      "sha256": "206873b9cb96db9e75b3e843138f6e3c282e77fff9f9b2c551cf1d6e6ef8e949"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-10.html",
+      "sha256": "9a7a64371c495d80f15ce81180963c9e731d10db4dc356eb7a0ba928d461ca54"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-10A.html",
+      "sha256": "a2d4228d3c99ff68d2781423dc935798dd1674e43df8fed29f55bba648a7707d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-11.html",
+      "sha256": "98942ae6c9e1733f8515489616742605ecdb25168a344a06ca4aee0ffd5a7dbb"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-12.html",
+      "sha256": "6aa021d866f0426991f23d23714e991d182abd75fa081955140e550124b41b18"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-14.html",
+      "sha256": "1649c08c40b6858b34d0263d7096b3b282cfd92e58a3f42ee662b7240a71c8df"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-15.html",
+      "sha256": "e92a447aa660d18eecd159afde67b3e04a098f57f5156238cff2be1aa46c6b8d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-16.html",
+      "sha256": "3beaa125484d412ea4fbf495edea7879323385d0e3d90e77588cde58cc2c9d6b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-17.html",
+      "sha256": "2c8a6544f6a23759b68b6a4e29584d7b36a6b4d6d04f3ccc8a64e9a63bc3a62a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-19.html",
+      "sha256": "dac77c58e13d0eda86c687f1f1c2e14e9ab69e12f32ff59e4b36aa05ff04e011"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-2.html",
+      "sha256": "06d203d18aa8449bf74bad96e4beeb09c76a1677b12532564d4c3d36aec6ea21"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-20.html",
+      "sha256": "2e014ccc6eef8b1e5b98966b2716f256270f3f8d5e8c277683477faf4fd5b071"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-21.html",
+      "sha256": "944a82f6b3cc765fd36a9cc0ad86affd61e882df9c6b21abd4a56311d0b0353f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-23.html",
+      "sha256": "7357de780770511e3f7f7f4c67894ae566514e3c70e4619dee972abaf027772b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-24.html",
+      "sha256": "de4dc2c30b5687cfddd8e3b43cd80a54f0cb8fbd9f5222da1ebd3f3128400a07"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-25.html",
+      "sha256": "c2aefd2f70d7f9e7f700538510fd6cd9f28ca5c00d8ceb8ac7dc4e3d1cac22f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-26.html",
+      "sha256": "904288e25954ec22926a1f1fed43c5d040f6e5a1c091a600b30ea7350ede5200"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-27A.html",
+      "sha256": "f3b207f575f4cd111c9917f668b5eed25688b76aab272f55c1bcfb26df23e764"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-3.html",
+      "sha256": "590cd4b90fb4d9aebcceb4aebeef008b20afcec3e6ec9cda80addfe82cdfdefe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-34.html",
+      "sha256": "e17a4ecf307f5b09369717662b9328d64c1512fb7d952fc70d36131c7f73f16c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-34A.html",
+      "sha256": "bed79b94479f3e69cbd7ae3411ec175b28d641514219f5ad5ccbffabbde07c9f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-4.html",
+      "sha256": "e93c4ff758f8b46b35e0eff9812e62207188426d42ce4e44bd84df34b09de965"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-45.html",
+      "sha256": "e545fada7be5aaf70081d57293fd16781763697c211d59d4ddeaf778976c6a15"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-46.html",
+      "sha256": "45d36bdd2acfd9f5184b0968847222eff7b277b6cf91162714e6812ef0286cfd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-4A.html",
+      "sha256": "7eb42ca5aa8e4b8b483e585e6c2d8ebed44872b0dba242ba12bdfdbb458c95e7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-4B.html",
+      "sha256": "18cb3852e8d23a24948567f165fc1e6d7a02af4f3232bcb5eadddb5f6e2e36e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-5.html",
+      "sha256": "bfa6a001c806b6b53af5a28d9048688f8042bcffb07176db0c5a233acba06596"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-5A.html",
+      "sha256": "ee2ec839f7423dfea6251b332ce7723409c41aac16d2c0a800bfa2ecf240c59b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-5B.html",
+      "sha256": "317b5f2e3820e710d470549d9fc4aeb31d6283c68ccdcf4c45e7e1405287d9f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-7A.html",
+      "sha256": "7e4616615b4de3b504d6b399662a135570751522543ba5d89590ed256ba7a62a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-7B.html",
+      "sha256": "c6369e4484b6bc1dae4034ec36ce869b9df5a8c3cd68472cd1a1441658ed60d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-8.html",
+      "sha256": "4c4d1508b062e46f99928dfb82fc7563384edc0b8b27129f5e2cbe6b7ef8ac06"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-8A.html",
+      "sha256": "94e00cc7e79459ace3b8e885d3abd21a425d9157991060b67192c495f83c0487"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130-9.html",
+      "sha256": "f3871d13596f3483e7080fa891dc71906e0e47cb9b6cd993a1c1b95eb8e070bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-130.html",
+      "sha256": "4abc8baa6489bcb647fd643457cf434fc02d0eaeee9559442da08a6e7837477c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-1.html",
+      "sha256": "bae0a70279afdea6e5819518c596589589fa58a23df6b2c6a5daadf51f378dfc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-1A.html",
+      "sha256": "7b4d0ae310a537194e3aa0b12625e160ddfe95a06da8c5dfe8c7c1a9763e2c66"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-2.html",
+      "sha256": "3283872593dd5a2953bf765734fa3342d3d529a0d3775baeb0c9a8f84544fe25"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-3.html",
+      "sha256": "5fedf21ac7a4171a2a5f6b95e10d224d31de8d7b9fc28d6402d392688c140fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-4.html",
+      "sha256": "fbf63e643f2630a5d0a689b5a3eb10524ec4dc35df3fa6ee1b9fbb1170f18dc7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-5.html",
+      "sha256": "88f8f1443d55cd639c7719dc5c0e167e3f791bfd28895a83a24f1c59fce0595d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-6.html",
+      "sha256": "c7d470486d308ec82d03c82a57e078eaee7613345eb79cbe8f9108ef7c1c060b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-7.html",
+      "sha256": "0f7a7c8ff62ee6624d8bb287c4140de4fefefa9323889d65dd44d5d4339dca4f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131-8.html",
+      "sha256": "71b5bd06c0e79214809e952db85b6136586d2579f336254ce36131ff49ed8ddb"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-131.html",
+      "sha256": "14573c29eea4a5e958f52aca9e3d5e54d6e1310782059341c7b2c946288a50c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-133.html",
+      "sha256": "b537ce365e6c2a9e625f6cb0eb30f2738fe1af1063a87a3aa62ae8f517b3a5fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-134.html",
+      "sha256": "8a431cf25a97e227b5d707b63fd953948719caa2929098774d53aa26fb9aeec4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-150.html",
+      "sha256": "fd409f1ad9200d8ee15668472bde90d2c8659cd931e9e006a41a87c9a2f80fe9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-151-12.html",
+      "sha256": "dc1e8b8488a4b47278dad30ca2fc69607c071ffff203ead201eecd684be821f4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-151-2.html",
+      "sha256": "6fe01df7ee6df485383004129a337fe678531ff32723e06e980bb7d3a5acada5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-151-3.html",
+      "sha256": "edd3174b1061ca33698b7bd697e84e85b68457888fd22253b0b9fe95877e9d12"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-151-5.html",
+      "sha256": "8d601d335a2c9a22b2615ace2b15f34b571cf90167b7f4a1f899e93bbeec913b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-151.html",
+      "sha256": "8bfa220b69ee9bb7cb512733814c108c9bbfda7379e10d833f0f5565ea3236d3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-152.html",
+      "sha256": "ae7f5c055ee06c0dd223728087f3bb291291c8b64b5b79ccdf6628f2c85b15ed"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-1.html",
+      "sha256": "d4242986cd0c1ed23b228f6b7da28fafb7ee01144431328c2cbf5c6b18d7c89f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-11.html",
+      "sha256": "379b94c81e93c3e2058e695e0a0781b74eb98da715f0ad5d1b345432ae444e9f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-2.html",
+      "sha256": "79d020251553cd4c155147fb210806eef8411985558272af8e683fba775e54bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-3.html",
+      "sha256": "23d37f9882d625431a4425e39f7a4ff56fd141df1bf2a4716163de378af73182"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-4.html",
+      "sha256": "77ec163bdd9437c8efa261fd9076150f4a1e6fdca3ee11a0392fabf8054d692c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-5.html",
+      "sha256": "fbabef42f237bf00a45168daaab1a3066fb47e2a3cfb9b6343ce81e3c5780706"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-5A.html",
+      "sha256": "3f894c82c4270f00534f1696a784d7e37ba9cf373a2813dcfcd68c8f142d5831"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-6.html",
+      "sha256": "c2b4d8ba58801909090d901c636bc7e0dea0023d8e0bc36c7a9f04d234bd361b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-7.html",
+      "sha256": "32b3852efdedb19b585193c53e5f3c4fe5941301ca9d49f3c75977437d52ecfe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-8.html",
+      "sha256": "772663fd3a0696564188406dd1522386c2e20cdf4a568a0a1a27829a699457ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-8A.html",
+      "sha256": "c563a7086cb56d11f983e979738bcd4f4a925469389b1f66378d7712c3dfcc71"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153-9.html",
+      "sha256": "92e18aa2292a78b21d58d97e1200d53caceb5d9afad0898877a6b4a363a36ddf"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-153.html",
+      "sha256": "c8f1b296c1fc11de7cdf8ce46cfba2eebab8f5344cfff6275ef415858f0987be"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-154-1.html",
+      "sha256": "757fc69de1ee9ba4aab7138a783eaa268850434496c6c89b235370edafac3a5b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-154.html",
+      "sha256": "5a44e01b68e93bae409958dca79b6829f1ec99e06084c0872567fe34dfbc9703"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-155.html",
+      "sha256": "bd7d0e6ace11209f986037fc521b17bc3bd006bafd8f3a320255ff32741d9a16"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-156.html",
+      "sha256": "7ded61073f6a656c04bdcf93a2bf1de67ba7abade310033dda92950214147b7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-157.html",
+      "sha256": "fc3ce91dfa735a2b073680e53ff7ebf0a49a9a98cb94502a3e75bcfea5079256"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-158.html",
+      "sha256": "6a56137a9891fdb164b5ac355be97b1167699a0e043d45ce99cb3f0f05494fe7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-159.html",
+      "sha256": "215b252c222c42f81aa31717983df88f1a75cc4e1341cf4308a29b75ec5b1f3c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-1.html",
+      "sha256": "1e874c2bf8955810d387c5b5da10683c61c1da9b5aea9a2b95caef5860527149"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-2.html",
+      "sha256": "74767a3b5c7ccb44060c5b382176d86a91d2f919057945312d2df386aab15fb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-3.html",
+      "sha256": "bf485608cd6e65dade3a6a4725b2133399cd2f8c1f5f4869a8d8ec45f2bea2de"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-4.html",
+      "sha256": "034820baaa24b77e811f6fdf7157e85fabb9d06451da1acd1406b348053e6308"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-5.html",
+      "sha256": "47ec186b854b4e2b42f7536a10d02c704b586756eb0217656b8abb473f1c1db1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-6.html",
+      "sha256": "1f540d99f324693a26d6da38c44b3f36657d0f862889c7bb90393eae71a87534"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-7.html",
+      "sha256": "40c1d7ee0050e94ff0b45fa00e541e7b5e0b9778616d51472f173fc187d5f704"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160-8.html",
+      "sha256": "050f5aa78babe0af4f8e77fa568ce35aec1c7829955f449fc957f062ca48cba3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-160.html",
+      "sha256": "1bae3b285cca046d00baa069f31e735b59d6b9e587161bf11b3cb31593a65318"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-1.html",
+      "sha256": "f4d0ca45323618cba8c7baacac9657198092e6dfa97b9e8f87726f12311d2124"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-10.html",
+      "sha256": "8fe472e066b8a4f285552a51b2ec762ac24e4bad1ef6f6247291526fbdb42484"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-15.html",
+      "sha256": "22636b1443e071e3006b05e4bde17d116b8a9554b397230420cd5b2cac5acb63"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-16.html",
+      "sha256": "668518cc5dca5245c41a616cbacb4c6e43c6a650347b9c2eddbadafd32e02b03"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-1A.html",
+      "sha256": "79bf39e32de004d4385fe91d16a8ac332977f94ae4f012caff0502ce77775cc5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-2.html",
+      "sha256": "83ee11517f134aeb2614d3f2c55f50efea3a5a82ce5cff1ef460f094f30691e1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-22.html",
+      "sha256": "7ee38df84766ed26b860491b2805ef9bc03e5e9d418148b1b9f40c9d0240278e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-23.html",
+      "sha256": "dec66c07018a097631f8c087acc34fe396155ce608fbf759bb2a8fb18a620d90"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-24.html",
+      "sha256": "6662a3eaddb8ce00d4bcfe8704dc1bcad88d2f5243a475500a69f4c77f4b3c5f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-2A.html",
+      "sha256": "d52decbea0cba850f74da4c0e1fd029953da2fce4eca637dac5b590343fb310b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-2B.html",
+      "sha256": "f134538cb79d161a1ea56a35f6a292e18a5687ef2fdf60c6ca9e03ad9e2b1aee"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-3.html",
+      "sha256": "7d5d15b3bc69abb1d8a8d89c75eda236f44c65ab9122a1ae473f0ef77244f892"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-4.html",
+      "sha256": "d8155cfd05a81331813a8932be8b1879e515ed44ccf2ca097fba1893dcb15d36"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-5.html",
+      "sha256": "921b69c6e74d841969238ac4e6b92866fa0fde96e7c7f88203c6ba4b2364654d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-6.html",
+      "sha256": "91105fc864353a7d607edaa2d0144f66aad8f9ad42d5d88a0b0868a387656e0b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-6A.html",
+      "sha256": "2852d7a8ec53677265cf91c6c61de19bdee38667afdbe1055481a90b1e1996c3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-7.html",
+      "sha256": "0535c039b306f3700c46825637e2402667494d9228ac29f4317e59560aadcdbc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-8.html",
+      "sha256": "3ee0927aff022d14586b0f134ab2944e9313fbb2d6731f0dc3b16ba9a9d7e800"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated/2026-09-15-income-tax-chapter/official-documents/us-nc-gs-105-163-9.html",
+      "sha256": "510817f6a7d6abda224240f4f3106ef9335934d6e9eb8431b7be24bf1e1b8928"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-11-w5-remainder-release.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 197,
+    "missing_count": 0,
+    "provision_count": 197,
+    "source_count": 197
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-11T18:28:27.450878+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V3qHOOyekRU20PlMwZv/1/o32frhGDHwZcDLyLZHb8zEFOgaQMSfN6HPE7Yha1IGXkeD7s7X6BtGiO2Y3wU4BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-chapter-r2026-10-11-without-union-sections-consolidated"
+}

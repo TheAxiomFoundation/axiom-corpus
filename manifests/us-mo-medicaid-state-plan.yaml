@@ -16,6 +16,9 @@ documents:
     html_drop_selectors:
     - .mailto
     - a.mailto
+    html_keep_default_drop_selectors:
+    - button
+    html_text_selector: h4.usa-accordion__heading, .usa-accordion-content-wrapper > .grid-row > div
   metadata:
     primary_source: true
     source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
@@ -45,6 +48,9 @@ documents:
     html_drop_selectors:
     - .mailto
     - a.mailto
+    html_keep_default_drop_selectors:
+    - button
+    html_text_selector: h4.usa-accordion__heading, .usa-accordion-content-wrapper > .grid-row > div
   metadata:
     primary_source: true
     source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
@@ -74,6 +80,9 @@ documents:
     html_drop_selectors:
     - .mailto
     - a.mailto
+    html_keep_default_drop_selectors:
+    - button
+    html_text_selector: h4.usa-accordion__heading, .usa-accordion-content-wrapper > .grid-row > div
   metadata:
     primary_source: true
     source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)

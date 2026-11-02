@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/form/2026-10-06-w6-income-tax-forms-dc.json",
+      "sha256": "d5b857e8385b19f3b75dcbd667f90eb3109fd1ac52fd383246e0cefb5fce25a9"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/form/2026-10-06-w6-income-tax-forms-dc.json",
+      "sha256": "f63bc13e979abe26aa5ef57f938869797a45c9dac072fdcf7f40250b781ca793"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/form/2026-10-06-w6-income-tax-forms-dc.jsonl",
+      "sha256": "bc6dc281679f71a2064a0be8061a87e63bd5b6e71f184d0b7ad982526bf64d4b"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/form/2026-10-06-w6-income-tax-forms-dc/official-documents/us-dc-w6-otr-ty2020-schedule-elc.pdf",
+      "sha256": "b5b280e262910dccaf35747b053aedbffd5c36d751af2a971202bc14cdcd162a"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/form/2026-10-06-w6-income-tax-forms-dc/official-documents/us-dc-w6-otr-ty2021-d-40-booklet.pdf",
+      "sha256": "0c571a58aa74787112315a925330c00896ed49b29e0a147989661f496bfbeb1e"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/form/2026-10-06-w6-income-tax-forms-dc/official-documents/us-dc-w6-otr-ty2024-d-40-booklet.pdf",
+      "sha256": "5170d03f19a4cb07a5b9d0163c9426372dd7aebe3b2cae4e4fd5a2b9717c0261"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:50:13.014133+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gpriUfZdDTQSQSfwYlJ4XjS/Dc7YowlaRIUubvzaMbqmX1F1RovPbqIYCFViamwQZ0Hf0kcqLzVQ5Gm1DlzQCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-dc"
+}

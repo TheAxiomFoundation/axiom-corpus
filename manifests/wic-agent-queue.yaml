@@ -42,6 +42,21 @@ states:
     jurisdiction: us
     document_class: guidance
     version: 2026-09-10-wic-fns-guidance
+  federal_register_scope:
+    jurisdiction: us
+    document_class: rulemaking
+    version: 2026-09-15-wic-federal-register-2024-07437-types-rule-term-revisions-in-the-wic-food-packages-limit-1
+    citation_paths:
+    - us/rulemaking/federal-register/2024-04-18/2024-07437
+    closure_elements:
+    - wic_g06
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:16
+    run_note: docs/ingest-runs/2026-09-15-snap-wic.md
+    notes: 'Wave 5 (2026-09-15): the 2024 food package final rule (89 FR 28488, FR document 2024-07437) extracted with
+      extract-federal-register from the federalregister.gov API (one document, full text). The FNA WIC Federal Register index
+      (resource_type 16; 7 pages read from the origin host fns-prod.azureedge.us, 17 distinct items) also lists the 2016 EBT
+      final rule (2016-04261), the 2014 food package rules, the 2023 online-ordering rule and the 2026-06-24 technical
+      corrections, none taken; the two income-guideline notices are the wic_g01 scope.'
   lead_counts:
     needs_review: 6
     excluded_secondary: 3
@@ -243,6 +258,14 @@ states:
       formula rebate and vendor cost-containment guidance, and the ABFA state-plan memorandum from the FNA resource browser''s
       WIC Guidance Documents family (195 documents). The pre-FY 2025 policy memoranda (wic_g05) and the Federal Register notices
       family (wic_g06) remain not taken.'
+  wave6_federal_scopes:
+  - scope: us/guidance/2026-10-06-w6-federal-agency-guidance
+    work_order_documents: 1
+    scope_provision_rows: 43
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/fns/wic/food-packages
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready
@@ -752,27 +775,50 @@ states:
   lead_counts: {}
   candidate_sources: []
   queue_status: blocked_primary_source
-  source_kind: official_state_agency_manual_not_published
-  primary_source_url: null
+  source_kind: official_state_agency_manual_no_static_index
+  primary_source_url: https://www.kdhe.ks.gov/1149/For-Local-WIC-Agencies
   target_manifest: manifests/us-ks-wic-policy-manual.yaml
   target_scope:
     jurisdiction: us-ks
     document_class: manual
     version: null
-  index_url: https://www.kdhe.ks.gov/1149/Information-for-WIC-Local-Agencies
+  index_url: https://www.kdhe.ks.gov/DocumentCenter/Index/903
   index_document_count: 0
   taken_count: 0
-  notes: 'Kansas Department of Health and Environment: www.kdhe.ks.gov answered HTTP 403 (Cloudflare) in batch 3. Retried
-    2026-09-10T21:34Z from a US network: the host now answers 200 and the For Local WIC Agencies page links the Policy & Procedure
-    Manual folder (DocumentCenter/Index/903), but that page is an empty React shell whose document list is fetched from an
-    admin-area endpoint (Admin/DocumentCenter/.../Document_AjaxBinding); the endpoint returned the site HTML to the plain
-    client and, after five requests, a Cloudflare ''Just a moment'' HTTP 429 challenge, which was not worked around. The manual
-    policies demonstrably exist on the host (DocumentCenter/View/<id>/<POLICY>-PDF) but no static index lists them. No mirror
-    was used. Selected in the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing
-    state. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the For Local WIC Agencies page
-    answers HTTP 200 (122,556 bytes, 0.7 s) and still links the Policy & Procedure Manual to DocumentCenter/Index/903, which
-    answers HTTP 200 (101,809 bytes) as the empty CivicEngage Document Center shell; the admin binding endpoint that challenged
-    on 2026-09-10 was not requested again. Same finding on two dates: no static manual index.'
+  notes: 'Kansas Department of Health and Environment: www.kdhe.ks.gov answered HTTP 403 (Cloudflare) in batch 3. Retried 2026-09-10T21:34Z
+    from a US network: the host now answers 200 and the For Local WIC Agencies page links the Policy & Procedure Manual folder
+    (DocumentCenter/Index/903), but that page is an empty React shell whose document list is fetched from an admin-area endpoint
+    (Admin/DocumentCenter/.../Document_AjaxBinding); the endpoint returned the site HTML to the plain client and, after five
+    requests, a Cloudflare ''Just a moment'' HTTP 429 challenge, which was not worked around. The manual policies demonstrably
+    exist on the host (DocumentCenter/View/<id>/<POLICY>-PDF) but no static index lists them. No mirror was used. Selected in
+    the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: the For Local WIC Agencies page answers HTTP 200 (122,556 bytes, 0.7
+    s) and still links the Policy & Procedure Manual to DocumentCenter/Index/903, which answers HTTP 200 (101,809 bytes) as
+    the empty CivicEngage Document Center shell; the admin binding endpoint that challenged on 2026-09-10 was not requested
+    again. Same finding on two dates: no static manual index. Re-probed 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md)
+    with curl_cffi chrome120 browser impersonation, the route the official-document fetcher offers as request.browser_impersonation:
+    www.kdhe.ks.gov answers HTTP 200 to that client (/1149/Information-for-WIC-Local-Agencies redirects to /1149/For-Local-WIC-Agencies,
+    124,981 bytes of real page). Every response was judged by its body, not its status line. The access gate is narrower than
+    the queue recorded but still needs that profile: the plain extractor client and the extractor''s own browser-user-agent
+    fallback (the 403/404/406 retry) both answer HTTP 403 with a Cloudflare challenge body of 5,490 to 5,893 bytes (titles ''Attention
+    Required! | Cloudflare'' and ''Just a moment...''), because a Chrome user agent on a non-Chrome TLS fingerprint is itself
+    a bot signal; a future assignment on this host must set request.browser_impersonation and must not rely on the built-in
+    fallback. The gate is not why the row stays blocked. The block is the index: DocumentCenter/Index/903 (window.folderName
+    ''Policy & Procedure Manual'', window.parentId 898 ''Information for WIC Local Agencies'') answers HTTP 200 (103,708 bytes)
+    as the CivicEngage React shell with zero DocumentCenter/View links, and folder 898 likewise; the document list comes only
+    from the admin-area AJAX binding endpoint, which www.kdhe.ks.gov/robots.txt disallows (Disallow: /admin), so it was not
+    requested. www.kdhe.ks.gov/sitemap.xml (234,656 bytes) lists page URLs and one /DocumentCenter home entry and no document
+    URLs. Every one of the 31 WIC, nutrition and policy pages in that sitemap was read: 583 distinct DocumentCenter/View documents
+    in total and not one manual-chapter document. Same finding on three dates (2026-09-10, 2026-09-13, 2026-10-20): the Policy
+    & Procedure Manual is on no KDHE static index, and nothing was taken. New pointer for a future assignment: /1206/Policy-Information-Updates
+    is a KDHE-own static index listing 63 WIC documents (Policy Memos P-Memo FFY 2021 to FFY 2025 and the monthly KS WIC Update
+    slides and supplements) as plain DocumentCenter/View links; that is a guidance family, not this row''s manual target, and
+    it was not taken.'
+  index_families: 'Policy & Procedure Manual (DocumentCenter folder 903): 0 found / 0 taken (React shell, no document list;
+    the admin-area binding endpoint is robots-disallowed). Sitemap sweep 2026-10-20 of all 31 WIC, nutrition and policy pages:
+    583 DocumentCenter/View documents found / 0 taken, 0 of them manual chapters. Policy memoranda (/1206/Policy-Information-Updates,
+    KDHE-own static index): 63 found / 0 taken (guidance family, out of this row''s manual scope).'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
@@ -1447,6 +1493,21 @@ states:
   index_url: https://www.tn.gov/health/health-program-areas/fhw/wic.html
   index_document_count: 0
   taken_count: 0
+  state_regulation_scope:
+    jurisdiction: us-tn
+    document_class: regulation
+    version: 2026-09-15-wic-state-regulation
+    manifest: manifests/us-tn-wic-state-regulation.yaml
+    index_url: https://publications.tnsosfiles.com/rules/1200/1200-15/1200-15.htm
+    citation_paths:
+    - us-tn/regulation/1200-15/02
+    closure_elements:
+    - wic_s31
+    run_note: docs/ingest-runs/2026-09-15-snap-wic.md
+    notes: 'Wave 5 (2026-09-15): the WIC state rule chapter 1200-15-02 (Tenn. Comp. R. & Regs., rules .01-.10, September 2004
+      revision) taken from the Secretary of State compilation (publications.tnsosfiles.com; HTTP 403 to the plain client, served
+      to the browser-impersonated client as for the CoverKids rules); tn.gov/health/wic.html links the same PDF as "WIC State
+      Regulations" (not taken). The policy manual row above is unchanged.'
   notes: 'Tennessee Department of Health: www.tn.gov answered HTTP 403 (awselb/2.0) or timed out for every client in batch
     2. Retried 2026-09-10T21:34Z from a US network: the host now answers (two of six requests still failed with a TLS EOF),
     the batch-2 WIC URL (health-program-areas/fhw/wic.html) is 404 and the relocated WIC page (health/wic.html) links participant,

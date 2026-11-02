@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv.json",
+      "sha256": "7706ed0837e876d063bd6bb58e263589d83c0bfb66e863bdcb0f441b8fcb8682"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv.json",
+      "sha256": "2f9a6c44681a2231a808fb5cd88fa728f0b80efdb1d4edcffd4935ba1c5280e6"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv.jsonl",
+      "sha256": "f102e74301ab3e78ba14547419bbfbedd0beafb098ba378670d33d6f89f30783"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv/official-documents/us-nv-w6-dss-tanf-faq-earned-income-disregards.html",
+      "sha256": "08e3e09b80619f2a7cfd291eba275880271ea66bc5c423c3cb30cad8fa7cac6d"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv/official-documents/us-nv-w6-dss-tanf-faq-eligibility-criteria-f-i.html",
+      "sha256": "6425dc0190d0c1afb8bade3d1539032ad3a65fd7b0a9dbd6ea24c1b2fca9d5c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv/official-documents/us-nv-w6-dss-tanf-faq-eligibility-criteria-r-s.html",
+      "sha256": "2ff530bca61e8ecbceaf467cccab78549da1e8c32b726e0a81ffc8731ba27aa0"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv/official-documents/us-nv-w6-dss-tanf-faq-facts-and-faqs.html",
+      "sha256": "eba351d480643c50a9b2668a699f10355cccf0ceb205bc72ce977aa8471ae1c1"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/guidance/2026-10-06-w6-tanf-ccdf-guidance-nv/official-documents/us-nv-w6-dss-tanf-faq-need-and-payment-standards.html",
+      "sha256": "c585bfcf28abd6253d00283ce813fbde0ecaca6497823371f6b152304869569e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 32,
+    "missing_count": 0,
+    "provision_count": 32,
+    "source_count": 32
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:33.688336+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Itu7JitHeplfa9R1i9y43G53JUSkb7vg8M9k5p+LbNPdx5+FsERNmNEHF09hppSvMeCtjmrasJxpFSX5tF+XAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-nv"
+}

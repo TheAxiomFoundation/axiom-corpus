@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/policy/2026-10-06-w6-benefits-policy-la.json",
+      "sha256": "841b2174293baeb6079348698f427324c174ce19913f6b73e4ed7ecfe959923f"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/policy/2026-10-06-w6-benefits-policy-la.json",
+      "sha256": "7c811eccdf1fdc7974e13aebb39eeacf44b78227170a165a8862a2351c04a5f0"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/policy/2026-10-06-w6-benefits-policy-la.jsonl",
+      "sha256": "faa2297d23c2d5b38eea091ab0f0e2c242dd2efba51ee20c468f6c583bc6fbb1"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-benefits-policy-la/official-documents/us-la-policy-cms-medicaid-state-plan-spa-la-25-0013-cms-approval.pdf",
+      "sha256": "6f35333df980a1f3fda37e5c3706d0a240cf72f8dbe00d89c0b672ecd9b4f5b2"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-benefits-policy-la/official-documents/us-la-policy-cms-medicaid-state-plan-spa-la-25-0013-supplement-12-to-attachment-2-6-a-redlined.pdf",
+      "sha256": "58e0990e124fef9c9c0085c64746067b7ac503c2425471158fea94e27bee8717"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:52:38.833598+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pz9fSNaHQDmSBBlgH1oOJeC3dzocE+ExM0/CceYRLKV3s11sI2ehdxtCl+o7hrIQ+ALsLjj7LhW2RJLG99cQCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-policy-la"
+}

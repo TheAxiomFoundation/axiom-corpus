@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky.json",
+      "sha256": "263d501487212d114291fedc3be9682846f2bcb957413e33f5356e4d2ba197c2"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky.json",
+      "sha256": "d2cc7e1c7623ac32ccd095000901ab0a458aaf67568156cc7bdab31391883571"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky.jsonl",
+      "sha256": "b800dafe60f0454c6353b2055aa09bfbe84db1932e8c628aa01cfbf4cd5292bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky/official-documents/us-ky-guidance-dor-news-2022-09-21-individual-income-tax-updates-2023.html",
+      "sha256": "4d4217c0552396d494813dac2cf1a5b3faa8b6450e573bba709dd62beb6b8455"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/guidance/2026-10-06-w6-income-tax-guidance-ky/official-documents/us-ky-guidance-dor-news-2025-standard-deduction.html",
+      "sha256": "152afc671965ae934a1eb64d8cbea0b77600912a663e016340de6301bd38b3ab"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:52:22.237981+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LtSuuOfeOBjh4MoZlwmH4Mzm6XMvFGeKoWvnhP+AxbvEyA0Xe6Az9O5xuS7Thm/ajXaYqEgxPLVjbWhQGwSFAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ky"
+}

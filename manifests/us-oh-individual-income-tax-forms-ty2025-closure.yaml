@@ -1,0 +1,56 @@
+version: '2026-09-15'
+documents:
+- source_id: us-oh-odt-form-it-1040-ty2025
+  jurisdiction: us-oh
+  document_class: form
+  title: 2025 Ohio IT 1040 Individual Income Tax Return (original, fillable bundle with schedules)
+  source_url: https://tax.ohio.gov/static/forms/ohio_individual/individual/2025/1040-bundle-original-fi.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/form/odt/ty2025/form-it-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.ohio.gov/individual/get-a-form
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.ohio.gov/individual/get-a-form
+      (read 2026-09-14)
+    page_count_at_research: 13
+    first_page_first_line: 2025 Ohio IT 1040 Individual Income Tax Return
+    source_note: tax.ohio.gov answers the corpus client with a 404 whose body is a 403 error page and serves a Chrome user
+      agent (browser fallback documented for this host in the 2026-09-14 run note).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-oh-odt-it-1040-sd-100-instructions-ty2025
+  jurisdiction: us-oh
+  document_class: form
+  title: Tax Year 2025 Instructions for Filing Original and Amended Individual Income Tax (IT 1040) and School District Income
+    Tax (SD 100)
+  source_url: https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-oh/form/odt/ty2025/it-1040-sd-100-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.ohio.gov/individual/get-a-form
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.ohio.gov/individual/get-a-form
+      (read 2026-09-14)
+    page_count_at_research: 64
+    first_page_first_line: 'Tax Year 2025 Instructions for Filing Original and Amended: Individual Income Tax (IT 1040), School
+      District Income Tax (SD 100)'
+    source_note: Hosted on the state's dam.assets.ohio.gov asset host, which serves the corpus client; the brackets are on
+      page 18 (Ohio publishes brackets, no tax table).
