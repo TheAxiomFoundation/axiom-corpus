@@ -1,0 +1,72 @@
+version: 2026-10-20-w8-ccdf-plan-fy2025-2027
+documents:
+- source_id: us-in-acf-ccdf-plan-fy2025-2027
+  jurisdiction: us-in
+  document_class: policy
+  title: Indiana CCDF Plan, FFY 2025-2027
+  source_url: https://www.in.gov/fssa/uploads/ACF-118-CCDF-FY2025-2027-IN-Amend3.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2024-10-01'
+  citation_path: us-in/policy/acf/ccdf-plan/fy2025-2027
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: '^(?P<label>\d{1,2}\.[1-9])(?:\s+(?P<heading>CCDF\ Leadership|CCDF\ Policy\ Decision\ Authority|Consultation\
+      in\ the\ Development\ of\ the\ CCDF\ Plan|Reducing\ Barriers\ to\ Family\ Enrollment\ and\ Redetermination|Eligible\
+      Children\ and\ Families|Prioritizing\ Services\ for\ Vulnerable\ Children\ and\ Families|Promoting\ Continuity\ of\
+      Care|Family\ Co\-payments|Calculation\ of\ Co\-Payment|Waiving\ Family\ Co\-payment|Access\ to\ Full\ Range\ of\ Provider\
+      Options|Assess\ Market\ Rates\ and\ Analyze\ the\ Cost\ of\ Child\ Care|Adequate\ Payment\ Rates|Payment\ Practices\
+      to\ Providers|Supply\ Building|Licensing\ Requirements|Ratios,\ Group\ Size,\ and\ Qualifications\ for\ CCDF\ Providers|Health\
+      and\ Safety\ Standards\ for\ CCDF\ Providers|Pre\-Service\ or\ Orientation\ Training\ on\ Health\ and\ Safety\ Standards|Monitoring\
+      and\ Enforcement\ of\ Licensing\ and\ Health\ and\ Safety\ Requirements|Ongoing\ Health\ and\ Safety\ Training|Comprehensive\
+      Background\ Checks|Exemptions\ for\ Relative\ Providers|Supporting\ the\ Child\ Care\ Workforce|Professional\ Development\
+      Framework|Ongoing\ Training\ and\ Professional\ Development|Early\ Learning\ and\ Developmental\ Guidelines|Quality\
+      Activities\ Needs\ Assessment|Use\ of\ Quality\ Set\-Aside\ Funds|Coordination\ with\ Partners\ to\ Expand\ Accessibility\
+      and\ Continuity\ of\ Care|Optional\ Use\ of\ Combined\ Funds,\ CCDF\ Matching,\ and\ Maintenance\-of\-Effort\ Funds|Coordination\
+      with\ Child\ Care\ Resource\ and\ Referral\ Systems|Public\-Private\ Partnerships|Disaster\ Preparedness\ and\ Response\
+      Plan|Parental\ Complaint\ Process|Consumer\ Education\ Website|Increasing\ Engagement\ and\ Access\ to\ Information|Providing\
+      Information\ on\ Developmental\ Screenings|Effective\ Internal\ Controls|Fraud\ Investigation,\ Payment\ Recovery,\
+      and\ Sanctions|Lead Agency Outreach to Families Experiencing Homelessness, Families with Limited(?: English)?))?\s*$'
+    heading_continuation_pattern: ^(?P<heading>(?:English )?Proficiency, and Persons with Disabilities)$
+    start_after_pattern: ^Overview$
+    drop_line_patterns:
+    - ^\d+ \| P a g e\s*$
+    - ^FFY 2025[–-]2027 CCDF State Plan\s*$
+    label_only_heading_pattern: '^(?:CCDF\ Leadership|CCDF\ Policy\ Decision\ Authority|Consultation\ in\ the\ Development\
+      of\ the\ CCDF\ Plan|Reducing\ Barriers\ to\ Family\ Enrollment\ and\ Redetermination|Eligible\ Children\ and\ Families|Prioritizing\
+      Services\ for\ Vulnerable\ Children\ and\ Families|Promoting\ Continuity\ of\ Care|Family\ Co\-payments|Calculation\
+      of\ Co\-Payment|Waiving\ Family\ Co\-payment|Access\ to\ Full\ Range\ of\ Provider\ Options|Assess\ Market\ Rates\ and\
+      Analyze\ the\ Cost\ of\ Child\ Care|Adequate\ Payment\ Rates|Payment\ Practices\ to\ Providers|Supply\ Building|Licensing\
+      Requirements|Ratios,\ Group\ Size,\ and\ Qualifications\ for\ CCDF\ Providers|Health\ and\ Safety\ Standards\ for\ CCDF\
+      Providers|Pre\-Service\ or\ Orientation\ Training\ on\ Health\ and\ Safety\ Standards|Monitoring\ and\ Enforcement\
+      of\ Licensing\ and\ Health\ and\ Safety\ Requirements|Ongoing\ Health\ and\ Safety\ Training|Comprehensive\ Background\
+      Checks|Exemptions\ for\ Relative\ Providers|Supporting\ the\ Child\ Care\ Workforce|Professional\ Development\ Framework|Ongoing\
+      Training\ and\ Professional\ Development|Early\ Learning\ and\ Developmental\ Guidelines|Quality\ Activities\ Needs\
+      Assessment|Use\ of\ Quality\ Set\-Aside\ Funds|Coordination\ with\ Partners\ to\ Expand\ Accessibility\ and\ Continuity\
+      of\ Care|Optional\ Use\ of\ Combined\ Funds,\ CCDF\ Matching,\ and\ Maintenance\-of\-Effort\ Funds|Coordination\ with\
+      Child\ Care\ Resource\ and\ Referral\ Systems|Public\-Private\ Partnerships|Disaster\ Preparedness\ and\ Response\ Plan|Parental\
+      Complaint\ Process|Consumer\ Education\ Website|Increasing\ Engagement\ and\ Access\ to\ Information|Providing\ Information\
+      on\ Developmental\ Screenings|Effective\ Internal\ Controls|Fraud\ Investigation,\ Payment\ Recovery,\ and\ Sanctions|Lead
+      Agency Outreach to Families Experiencing Homelessness, Families with Limited(?: English)?)\s*$'
+    label_only_requires_heading: true
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Child Care (ACF-118 CCDF Plan; published by
+      the state or territory CCDF Lead Agency)
+    document_subtype: state_plan_pdf
+    program: CCDF
+    form: ACF-118
+    fiscal_years: 2025-2027
+    plan_period: 2024-10-01 to 2027-09-30
+    plan_version: Amendment 3
+    plan_status: 'Approved as of 2026-07-01 (located on the 2026-10-20T19:00Z index-repair re-probe: the carefinder page the
+      relocated ACF index links now posts ''CCDF state plan 2025-2027'' as ACF-118-CCDF-FY2025-2027-IN-Amend3.pdf and no longer
+      links the certified 2024-06-30 submission the first three runs found non-conforming; HTTP 200 application/pdf, 119,271,642
+      bytes, Last-Modified 2026-09-29, a ''Microsoft: Print To PDF'' render of the CARS template, 243 pages, Plan Status line
+      ''Approved as of 2026-07-01''; the only FFY 2025-2027 version posted, so taken under the MN and LA precedent; the public-comment
+      summary, waiver request and the CAP documents and letters are posted separately, not taken)'
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://www.in.gov/fssa/carefinder/information-and-resources2/
+    acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/IN-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
+    source_discovery_group: us-in/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027

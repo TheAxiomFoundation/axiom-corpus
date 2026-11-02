@@ -4,13 +4,15 @@ The 2026-09-13 CMS state-plan attachments (for example OH-12-004-Att.pdf) are pa
 whose only text is a date stamp ("9/4/13"). Their manifests set ``ocr: true``, but the stamp
 made the text layer non-empty, so OCR never ran and each page's body was the stamp. Such a
 page is now read by OCR, and the text-layer lines OCR did not reproduce are kept after it,
-so exact typed values (dates, transmittal numbers, amounts) are never lost.
+so nothing typed onto the scan (dates, transmittal numbers, amounts, the signing official's
+name and title) is lost. The rule's invariants are in tests/test_ocr_layer_line_properties.py.
 """
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import fitz
 import pytest
@@ -18,6 +20,7 @@ import pytest
 import axiom_corpus.corpus.documents as documents_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.documents import (
+    _pdf_layer_lines,
     _pdf_page_image_coverage,
     _pdf_page_needs_ocr,
     _pdf_page_text,
@@ -54,6 +57,8 @@ def _pdf(
     rotation: int = 0,
     cropbox: tuple[float, float, float, float] | None = None,
     mediabox: tuple[float, float, float, float] | None = None,
+    render_mode: int = 0,
+    fill_opacity: float = 1,
 ) -> Path:
     document = fitz.open()
     page = document.new_page(width=612, height=792)
@@ -73,7 +78,13 @@ def _pdf(
         # A scan placed partly off the page: 60% of the page is covered.
         page.insert_image(fitz.Rect(-200, 0, 367.2, 792), stream=_gray_png(), keep_proportion=False)
     if overlay:
-        page.insert_textbox(fitz.Rect(72, 72, 540, 720), overlay, fontsize=9)
+        page.insert_textbox(
+            fitz.Rect(72, 72, 540, 720),
+            overlay,
+            fontsize=9,
+            render_mode=render_mode,
+            fill_opacity=fill_opacity,
+        )
     if cropbox:
         page.set_cropbox(fitz.Rect(*cropbox))
     if rotation:
@@ -121,10 +132,11 @@ def test_typed_form_fields_over_a_page_scan_are_read_by_ocr_and_kept_exactly(tmp
 
     text = _first_page_text(pdf, {"ocr": True})
 
-    assert text.startswith(SCAN_TEXT)
-    # The fake OCR read none of the typed values, so every layer line with a digit is kept.
-    dated = [line for line in _layer_lines(pdf) if any(char.isdigit() for char in line)]
-    assert dated and all(line in text for line in dated)
+    # The fake OCR read none of the typed fields, so every layer line is kept, in order:
+    # the dates, and the name and title that have no digit.
+    lines = _layer_lines(pdf)
+    assert "Hughes" in " ".join(lines) and "Administrator" in " ".join(lines)
+    assert text == SCAN_TEXT + "\n\n" + "\n".join(lines)
     assert ocr_calls == ["ocr"]
 
 
@@ -150,6 +162,24 @@ def test_layer_values_ocr_misreads_are_kept(tmp_path, monkeypatch):
     text = _first_page_text(pdf, {"ocr": True})
 
     assert text == "FEDERAL BUDGET IMPACT\nFFY 2013 $1.234.S67\n\nFFY 2013 $1,234,567"
+
+
+def test_a_typed_date_whose_day_and_year_ocr_read_elsewhere_is_kept(tmp_path, monkeypatch):
+    # CMS-179 forms carry several dates. OCR reading "19" and "2014" in one of them must
+    # not count as reading another (HI-14-005: DATE APPROVED was lost this way).
+    pdf = _pdf(tmp_path / "form.pdf", image_rect="page", overlay="November 19, 2014")
+    ocr = "17. DATE RECEIVED: March 19, 2014\n18. DATE APPROVED:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+
+    assert _first_page_text(pdf, {"ocr": True}) == ocr.rstrip("\n") + "\n\nNovember 19, 2014"
+
+
+def test_a_typed_name_and_title_ocr_did_not_read_are_kept(tmp_path, monkeypatch):
+    pdf = _pdf(tmp_path / "form.pdf", image_rect="page", overlay="Hye Sun Lee")
+    ocr = "21. TYPED NAME: Hye Sun Lec\n22. TITLE:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+
+    assert _first_page_text(pdf, {"ocr": True}) == ocr.rstrip("\n") + "\n\nHye Sun Lee"
 
 
 def test_layer_lines_ocr_reproduced_are_not_repeated(tmp_path, monkeypatch):
@@ -197,20 +227,706 @@ def test_with_unread_layer_lines_cases():
     # No OCR text: the layer exactly as it was.
     assert _with_unread_layer_lines("", " 9/4/13 \n\n9/4/13") == " 9/4/13 \n\n9/4/13"
     assert _with_unread_layer_lines("A\n9/4/13", "9/4/13\n9/4/13") == "A\n9/4/13"
-    # Kept once; a line with no digit adds nothing OCR lacks.
-    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n\n9/4/13"
-    # Tokens compare whole: "24" is not read by "2024".
+    # Each unread line is kept once, with or without a digit.
+    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n\n9/4/13\nB"
+    # Tokens compare whole: "24" is not read by "2024", nor "Lee" by "Leeward".
     assert _with_unread_layer_lines("Total 2024", "24") == "Total 2024\n\n24"
-    # Edge punctuation does not matter.
+    assert _with_unread_layer_lines("Leeward", "Lee") == "Leeward\n\nLee"
+    # A line is read as a run: its words scattered over the page do not count.
+    assert _with_unread_layer_lines("March 19, 2014 November", "November 19, 2014") == (
+        "March 19, 2014 November\n\nNovember 19, 2014"
+    )
+    # OCR's line breaks do not matter, and neither does punctuation around the run.
+    assert _with_unread_layer_lines("Hye\nSun\nLee", "Hye Sun Lee") == "Hye\nSun\nLee"
     assert _with_unread_layer_lines("Amount: ($1,234,567).", "$1,234,567") == (
         "Amount: ($1,234,567)."
     )
+    assert _with_unread_layer_lines("(Check One):", "Check One)") == "(Check One):"
+    # A currency sign, a minus and a percent sign are part of a value.
+    assert _with_unread_layer_lines("$5 -5 5%", "5") == "$5 -5 5%\n\n5"
+    # A line starts at the start of a token and ends at the end of one: not in the
+    # punctuation trailing the token before it, nor inside a run of punctuation.
+    assert _with_unread_layer_lines("2024. 5 items", ".5") == "2024. 5 items\n\n.5"
+    assert _with_unread_layer_lines("a .. b", ". b") == "a .. b\n\n. b"
+    # Spacing next to a letter is not compared: layers and OCR break words differently.
+    assert _with_unread_layer_lines("Page 12 of 36", "Page12of36") == "Page 12 of 36"
+    assert _with_unread_layer_lines("EffectiveDate", "Effective Date") == "EffectiveDate"
+    # Spacing between digits and punctuation is: OCR's "1" and "2" are not a typed "12".
+    assert _with_unread_layer_lines("1\n2", "12") == "1\n2\n\n12"
+    assert _with_unread_layer_lines("3.1", "3. 1") == "3.1\n\n3. 1"
+    # Letter case and every character count.
+    assert _with_unread_layer_lines("january 1, 2018", "January 1, 2018") == (
+        "january 1, 2018\n\nJanuary 1, 2018"
+    )
+    assert _with_unread_layer_lines("Isl", "/s/") == "Isl\n\n/s/"
     # A soft hyphen (format character) does not make a line garbage.
     assert _with_unread_layer_lines("Total", "Amount\u00ad 1,000") == "Total\n\nAmount\u00ad 1,000"
     # A garbled-font layer (control characters) is never appended.
     assert _with_unread_layer_lines("March 1, 2021", ".BSDI\x01\x14\x12 0DUPCFS") == (
         "March 1, 2021"
     )
+    # A line with no letter or digit is not text.
+    assert _with_unread_layer_lines("Total", "\u00b7 \u00b7\u00b7.\n\u25a1\n~") == "Total"
+
+
+@pytest.mark.parametrize(
+    ("render_mode", "fill_opacity", "painted", "mapped"),
+    [(0, 1, True, True), (3, 1, False, None), (0, 0, False, True), (1, 1, True, True)],
+    ids=["filled", "invisible-mode-3", "transparent", "stroked"],
+)
+def test_layer_lines_report_whether_text_is_painted(
+    tmp_path, render_mode, fill_opacity, painted, mapped
+):
+    # Helvetica's characters come from its encoding (mapped); invisible text reports no
+    # flags, so its provenance is unknown.
+    pdf = _pdf(
+        tmp_path / "scan.pdf",
+        image_rect="page",
+        overlay="Associate Regional Administrator\nJanuary 1, 2018",
+        render_mode=render_mode,
+        fill_opacity=fill_opacity,
+    )
+    with fitz.open(pdf) as document:
+        span_lines = _pdf_layer_lines(document[0], extraction={})
+        text = document[0].get_text("text")
+
+    assert ["".join(span[0] for span in spans) for spans in span_lines] == text.splitlines()
+    spans = [span for spans in span_lines for span in spans if span[0].strip()]
+    assert spans and all(span[1] is painted and span[3] is mapped for span in spans)
+
+
+# A recognition layer that agrees with none of OCR's words: five words of 3+ letters.
+NOISE_LAYER = "Ckm rML err\nurrr jhofe\nAl"
+
+
+def test_a_failed_invisible_recognition_layer_is_not_appended(tmp_path, monkeypatch):
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    hidden = _pdf(tmp_path / "hidden.pdf", image_rect="page", overlay=NOISE_LAYER, render_mode=3)
+    painted = _pdf(tmp_path / "painted.pdf", image_rect="page", overlay=NOISE_LAYER)
+
+    assert _first_page_text(hidden, {"ocr": True}) == ocr
+    # The same lines painted are typed onto the scan, and every one is kept.
+    assert _first_page_text(painted, {"ocr": True}) == (
+        "Applicant Household Size\n\nCkm rML err\nurrr jhofe\nAl"
+    )
+
+
+def test_an_agreeing_recognition_layer_keeps_what_ocr_missed_but_not_fragments(
+    tmp_path, monkeypatch
+):
+    # The layer's words mostly occur in the OCR text, so the layer is trusted; OCR missed
+    # the title, and "cc:" is a fragment of a recognition layer.
+    overlay = "Sincerely,\nAssociate Regional Administrator\nDivision of Medicaid Operations\ncc:"
+    ocr = "Sincerely,\nDivision of Medicaid Operations\nce:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    hidden = _pdf(tmp_path / "hidden.pdf", image_rect="page", overlay=overlay, render_mode=3)
+    painted = _pdf(tmp_path / "painted.pdf", image_rect="page", overlay=overlay)
+
+    assert _first_page_text(hidden, {"ocr": True}) == (
+        ocr.rstrip("\n") + "\n\nAssociate Regional Administrator"
+    )
+    assert _first_page_text(painted, {"ocr": True}) == (
+        ocr.rstrip("\n") + "\n\nAssociate Regional Administrator\ncc:"
+    )
+
+
+def test_blank_ocr_keeps_an_invisible_layer_as_it_is(tmp_path, monkeypatch):
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: "")
+    hidden = _pdf(tmp_path / "hidden.pdf", image_rect="page", overlay=NOISE_LAYER, render_mode=3)
+
+    assert _first_page_text(hidden, {"ocr": True}).split() == NOISE_LAYER.split()
+
+
+def _set_page_font(document, page, resource: str, value: str) -> None:
+    resources = document.xref_get_key(page.xref, "Resources")
+    holder = int(resources[1].split()[0]) if resources[0] == "xref" else page.xref
+    prefix = "" if resources[0] == "xref" else "Resources/"
+    fonts = document.xref_get_key(holder, prefix + "Font")
+    if fonts[0] == "xref":
+        document.xref_set_key(int(fonts[1].split()[0]), resource, value)
+    else:
+        document.xref_set_key(holder, f"{prefix}Font/{resource}", value)
+
+
+def _type3_scan_pdf(lines: list[str], *, font_keys: str = "", render_mode: int = 0) -> bytes:
+    """A scanned page whose lines are set in a Type3 font (``font_keys`` adds /Name or
+    /BaseFont; render mode 0 fills the glyphs, 3 makes them invisible)."""
+    document = fitz.open()
+    page = document.new_page(width=612, height=792)
+    page.insert_image(page.rect, stream=SCAN_PNG, keep_proportion=False)
+    page.insert_text((0, 0), " ", fontsize=1)  # gives the page a /Font dictionary
+    names = {code: chr(code) for code in range(65, 91)} | {
+        code: chr(code) for code in range(97, 123)
+    }
+    names |= {32: "space", 46: "period", 47: "slash"}
+    proc = document.get_new_xref()
+    document.update_object(proc, "<< >>")
+    document.update_stream(proc, b"600 0 0 0 500 700 d1 0 0 500 700 re f")
+    differences = " ".join(f"{code} /{name}" for code, name in sorted(names.items()))
+    procs = " ".join(f"/{name} {proc} 0 R" for name in sorted(set(names.values())))
+    font = document.get_new_xref()
+    document.update_object(
+        font,
+        "<< /Type /Font /Subtype /Type3 /FontBBox [0 0 1000 1000] "
+        "/FontMatrix [0.001 0 0 0.001 0 0] "
+        f"/CharProcs << {procs} >> /Encoding << /Type /Encoding /Differences [{differences}] >> "
+        f"/FirstChar 32 /LastChar 126 /Widths [{' '.join(['600'] * 95)}] /Resources << >> "
+        f"{font_keys} >>",
+    )
+    _set_page_font(document, page, "F3", f"{font} 0 R")
+    body = b" ".join(
+        b"BT %d Tr /F3 12 Tf 72 %d Td (%s) Tj ET" % (render_mode, 700 - 20 * index, line.encode())
+        for index, line in enumerate(lines)
+    )
+    content = document.get_new_xref()
+    document.update_object(content, "<< >>")
+    document.update_stream(content, body)
+    contents = document.xref_get_key(page.xref, "Contents")
+    if contents[0] == "array":
+        document.xref_set_key(page.xref, "Contents", contents[1][:-1] + f" {content} 0 R]")
+    else:
+        document.xref_set_key(page.xref, "Contents", f"[{contents[1]} {content} 0 R]")
+    return document.tobytes()
+
+
+TYPE3_OCR = "DEPARTMENT OF HEALTH AND HUMAN SERVICES\n20. SIGNATURE OF REGIONAL OFFICIAL:\n"
+TYPE3_LINES = ["/s/", "Hye Sun Lee", "Acting Associate Regional Administrator"]
+
+
+@pytest.mark.parametrize(
+    ("font_keys", "span_name"),
+    [
+        ("", "Unnamed-T3"),
+        ("/Name /T3F", "T3F"),
+        ("/BaseFont /Foo /Name /Bar", "Bar"),
+        ("/BaseFont /Foo", "Unnamed-T3"),
+        ("/Name /ABCDEF+Foo", "Foo"),
+        ("/Name /ab12cd+Foo", "Foo"),
+        ("/Name /Foo#20Bar", "Foo Bar"),
+        ("/Name /A#2341", "A#41"),
+        ("/Name /F#E9", "F\u00e9"),
+        ("/Name /F#C3#A9", "F\u00c3\u00a9"),
+    ],
+)
+def test_typed_lines_in_a_type3_font_are_kept(monkeypatch, font_keys, span_name):
+    # Review r3/r4: PyMuPDF before 1.27 (1.26 is locked here) reports filled Type3 glyphs as
+    # unpainted, so typed lines in a Type3 font looked like a failed recognition layer.
+    # There a Type3 font's spans count as painted, matched by the name MuPDF gives them
+    # (/Name without a subset prefix, else "Unnamed-T3"; 1.28 names an unnamed font
+    # "Type3 (<object> 0 R)"); 1.27 and later report the paint.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys=font_keys)) as document:
+        span_lines = _pdf_layer_lines(document[0], extraction={})
+        names = documents_module._pdf_type3_font_names(document[0])
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    typed = [span for line in span_lines for span in line if span[0].strip()]
+    assert typed and all(painted for _, painted, _, _ in typed)
+    # Every version: the Type3 spans are named as listed, and their glyph names are not
+    # taken as a Unicode map.
+    assert all(font in names and mapped is None for _, _, font, mapped in typed)
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert {font for _, _, font, _ in typed} == {span_name}
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _type3_font_written_inline(document, page) -> None:
+    font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
+    _set_page_font(document, page, "F3", document.xref_object(font, compressed=True))
+
+
+def _type3_name_made_indirect(printed: str):
+    def change(document, page) -> None:
+        font = next(font[0] for font in page.get_fonts(full=True) if font[2] == "Type3")
+        name = document.get_new_xref()
+        document.update_object(name, printed)
+        document.xref_set_key(font, "Name", f"{name} 0 R")
+
+    return change
+
+
+def _type3_resource_named(printed: str):
+    """Renames the page's Type3 font resource /F3 (``printed`` as PDF writes the name)."""
+
+    def change(document, page) -> None:
+        for xref in page.get_contents():
+            stream = document.xref_stream(xref)
+            document.update_stream(xref, stream.replace(b"/F3 ", f"/{printed} ".encode()))
+        kind, resources = document.xref_get_key(page.xref, "Resources")
+        holder = int(resources.split()[0]) if kind == "xref" else page.xref
+        fonts = document.xref_get_key(holder, "Font" if kind == "xref" else "Resources/Font")
+        target = int(fonts[1].split()[0]) if fonts[0] == "xref" else holder
+        text = document.xref_object(target, compressed=True)
+        assert text.count("/F3") == 1
+        document.update_object(target, text.replace("/F3", f"/{printed}"))
+
+    return change
+
+
+def _resources_inherited_from_the_page_tree(document, page) -> None:
+    resources = document.xref_get_key(page.xref, "Resources")[1]
+    pages = int(document.xref_get_key(page.xref, "Parent")[1].split()[0])
+    document.xref_set_key(pages, "Resources", resources)
+    document.xref_set_key(page.xref, "Resources", "null")
+
+
+def _resources_written_into_the_page(document, page) -> None:
+    kind, resources = document.xref_get_key(page.xref, "Resources")
+    assert kind == "xref"
+    resources = document.xref_object(int(resources.split()[0]), compressed=True)
+    document.xref_set_key(page.xref, "Resources", resources)
+
+
+def _page_drawn_by_a_form(document, page) -> None:
+    content = b"\n".join(document.xref_stream(xref) for xref in page.get_contents())
+    resources = document.xref_get_key(page.xref, "Resources")[1]
+    form = document.get_new_xref()
+    document.update_object(
+        form, f"<< /Type /XObject /Subtype /Form /BBox [0 0 612 792] /Resources {resources} >>"
+    )
+    document.update_stream(form, content)
+    contents = document.get_new_xref()
+    document.update_object(contents, "<< >>")
+    document.update_stream(contents, b"q /Fm1 Do Q")
+    document.xref_set_key(page.xref, "Resources", f"<< /XObject << /Fm1 {form} 0 R >> >>")
+    document.xref_set_key(page.xref, "Contents", f"{contents} 0 R")
+
+
+@pytest.mark.parametrize(
+    ("font_keys", "changes", "span_name"),
+    [
+        ("/BaseFont /Foo /Name /Bar", [_type3_font_written_inline], "Bar"),
+        ("/BaseFont /Foo", [_type3_font_written_inline], "Unnamed-T3"),
+        ("/Name /ab12cd+Bar", [_type3_font_written_inline], "Bar"),
+        (
+            "/BaseFont /Foo /Name /Bar",
+            [_type3_font_written_inline, _resources_written_into_the_page],
+            "Bar",
+        ),
+        (
+            "/BaseFont /Foo /Name /Bar",
+            [_type3_font_written_inline, _resources_inherited_from_the_page_tree],
+            "Bar",
+        ),
+        ("/Name /T3F", [_resources_inherited_from_the_page_tree], "T3F"),
+        ("/BaseFont /Foo /Name /Bar", [_type3_font_written_inline, _page_drawn_by_a_form], "Bar"),
+        ("/Name /T3F", [_page_drawn_by_a_form], "T3F"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/Ind")], "Ind"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/F#E9")], "F\u00e9"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/Foo#20Bar")], "Foo Bar"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/AB12CD+X")], "X"),
+        (
+            "/BaseFont /Foo /Name /Bar",
+            [_type3_font_written_inline, _type3_resource_named("F#203")],
+            "Bar",
+        ),
+        ("/Name /Bar", [_type3_font_written_inline, _type3_resource_named("F#2F3")], "Bar"),
+        ("/Name /Bar", [_type3_font_written_inline, _type3_resource_named("F#E9")], "Bar"),
+    ],
+)
+def test_type3_fonts_are_named_however_they_are_written(monkeypatch, font_keys, changes, span_name):
+    # Review r4: a Type3 font written inline in the resources has no object number, and
+    # reading its /Name by object number raised ValueError, failing the page. Its /Name is
+    # read through the resources that hold it (inherited or in a form too), and an indirect
+    # /Name is resolved (its #xx escapes undone), so the name matches the spans' under
+    # PyMuPDF before 1.27. An inline font whose resource name can't be addressed ("F/3", or
+    # a byte that isn't UTF-8, which made the lookup raise TypeError) is named by the name
+    # get_fonts lists, its /Name.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys=font_keys)) as document:
+        for change in changes:
+            change(document, document[0])
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        page = document[0]
+        fonts = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
+        span_fonts = {
+            span[2]
+            for line in _pdf_layer_lines(page, extraction={})
+            for span in line
+            if span[0].strip()
+        }
+        names = documents_module._pdf_type3_font_names(page)
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert len(fonts) == 1
+    assert (fonts[0][0] == 0) == (_type3_font_written_inline in changes)
+    assert (fonts[0][6] != 0) == (_page_drawn_by_a_form in changes)
+    unnamed = {f"Type3 ({fonts[0][0]} 0 R)"} if span_name == "Unnamed-T3" else set()
+    assert names == {span_name} | unnamed
+    assert span_fonts <= names
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert span_fonts == {span_name}
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _decoy_type3_font_named_f(document, page) -> None:
+    """Adds a copy of the page's Type3 font, named /Decoy, as resource /F."""
+    font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
+    text = document.xref_object(font, compressed=True)
+    assert "/Name/Bar" in text
+    decoy = document.get_new_xref()
+    document.update_object(decoy, text.replace("/Name/Bar", "/Name/Decoy"))
+    _set_page_font(document, page, "F", f"{decoy} 0 R")
+
+
+def test_a_slash_in_an_inline_type3_resource_name_never_reaches_another_font(monkeypatch):
+    # Review r5: "/F#2FResources" is "F/Resources". Looked up as a path it reached font
+    # /F's resources, which exist, so the font was named "Unnamed-T3" and, under PyMuPDF
+    # before 1.27, its typed lines were judged as a recognition layer and dropped. A name
+    # with a "/" is now named as get_fonts lists it.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys="/Name /Bar")) as document:
+        page = document[0]
+        _decoy_type3_font_named_f(document, page)
+        _type3_font_written_inline(document, page)
+        _type3_resource_named("F#2FResources")(document, page)
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        page = document[0]
+        fonts = sorted(font[4] for font in page.get_fonts(full=True) if font[2] == "Type3")
+        names = documents_module._pdf_type3_font_names(page)
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert fonts == ["F", "F/Resources"]
+    assert names == {"Bar", "Decoy"}
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+@pytest.mark.parametrize("resource", ["F#2F3", "F#E9"])
+def test_an_unaddressable_inline_type3_font_with_a_base_font_is_a_known_limit(
+    monkeypatch, resource
+):
+    # Limit, pinned: a Type3 font has no /BaseFont in a conforming file. If an inline one
+    # has one and its resource name can't be addressed, get_fonts lists the /BaseFont, so
+    # under PyMuPDF before 1.27 its spans (named by /Name) are not counted painted and the
+    # typed lines are judged as a recognition layer. Nothing raises.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    pdf = _type3_scan_pdf(TYPE3_LINES, font_keys="/BaseFont /Foo /Name /Bar")
+    with fitz.open("pdf", pdf) as document:
+        _type3_font_written_inline(document, document[0])
+        _type3_resource_named(resource)(document, document[0])
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        names = documents_module._pdf_type3_font_names(document[0])
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    assert names == {"Foo"}
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert result == TYPE3_OCR
+    else:
+        assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _type3_in_an_annotation_pdf(
+    lines: list[str],
+    *,
+    font_keys: str,
+    where: str,
+    resource: str = "F3",
+    states: bool = False,
+    generation: int = 0,
+    indirect_name: bool = False,
+) -> bytes:
+    """A scanned page whose typed lines are drawn by a FreeText annotation's appearance
+    stream in a Type3 font, which the page's own resources do not hold: referenced by the
+    appearance ("xref"), written inline in its resources ("inline"), or in a form the
+    appearance draws ("form"); under the resource name ``resource`` (as PDF writes it),
+    through a dictionary of appearance states (``states``), from an annotation reference
+    of generation ``generation``."""
+    with fitz.open("pdf", _type3_scan_pdf(lines, font_keys=font_keys)) as document:
+        page = document[0]
+        font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
+        contents = page.get_contents()
+        typed = document.xref_stream(contents[-1]).replace(b"/F3 ", f"/{resource} ".encode())
+        kept = " ".join(f"{xref} 0 R" for xref in contents[:-1])
+        document.xref_set_key(page.xref, "Contents", f"[{kept}]")
+        _set_page_font(document, page, "F3", "null")
+        annot = page.add_freetext_annot(fitz.Rect(0, 0, 612, 792), "x")
+        annot.update()
+        appearance = int(document.xref_get_key(annot.xref, "AP/N")[1].split()[0])
+        if indirect_name:
+            name = document.get_new_xref()
+            document.update_object(name, document.xref_get_key(font, "Name")[1])
+            document.xref_set_key(font, "Name", f"{name} 0 R")
+        fonts = f"<< /{resource} {font} 0 R >>"
+        if where == "inline":
+            fonts = f"<< /{resource} {document.xref_object(font, compressed=True)} >>"
+        if where == "form":
+            form = document.get_new_xref()
+            document.update_object(
+                form,
+                "<< /Type /XObject /Subtype /Form /BBox [0 0 612 792] "
+                f"/Resources << /Font {fonts} >> >>",
+            )
+            document.update_stream(form, typed)
+            document.update_stream(appearance, b"/Fm1 Do")
+            document.xref_set_key(appearance, "Resources", f"<< /XObject << /Fm1 {form} 0 R >> >>")
+        else:
+            document.update_stream(appearance, typed)
+            document.xref_set_key(appearance, "Resources", f"<< /Font {fonts} >>")
+        document.xref_set_key(appearance, "BBox", "[0 0 612 792]")
+        document.xref_set_key(appearance, "Matrix", "[1 0 0 1 0 0]")
+        if states:
+            choice = document.get_new_xref()
+            document.update_object(choice, f"<< /On {appearance} 0 R >>")
+            document.xref_set_key(annot.xref, "AP", f"<< /N {choice} 0 R >>")
+            document.xref_set_key(annot.xref, "AS", "/On")
+        if generation:
+            document.xref_set_key(page.xref, "Annots", f"[{annot.xref} {generation} R]")
+        return document.tobytes()
+
+
+@pytest.mark.parametrize(
+    ("where", "shape"),
+    [
+        ("xref", {}),
+        ("inline", {}),
+        ("form", {}),
+        # Review r7: shapes the first scan missed.
+        ("inline", {"resource": "F#2F3"}),
+        ("inline", {"resource": "F#E9"}),
+        ("xref", {"states": True}),
+        ("xref", {"generation": 1}),
+        # Review r7b: an inline font's /Name held by reference.
+        ("inline", {"indirect_name": True}),
+    ],
+)
+def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where, shape):
+    # Review r6: text in annotation appearance streams is extracted, but get_fonts lists
+    # only the page's own resources and forms. A Type3 font there is found too, so under
+    # PyMuPDF before 1.27 its typed lines count as painted, and on every version its spans
+    # are not taken as mapped.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    pdf = _type3_in_an_annotation_pdf(TYPE3_LINES, font_keys="/Name /AnnT3", where=where, **shape)
+    with fitz.open("pdf", pdf) as document:
+        page = document[0]
+        listed = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
+        names = documents_module._pdf_type3_font_names(page)
+        typed = [
+            span
+            for line in _pdf_layer_lines(page, extraction={})
+            for span in line
+            if span[0].strip()
+        ]
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert listed == []
+    assert names == {"AnnT3"}
+    assert {font for _, _, font, _ in typed} == {"AnnT3"}
+    assert all(painted and mapped is None for _, painted, _, mapped in typed)
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _annotation_with(document, page, key: str, value: str) -> None:
+    annot = page.add_freetext_annot(fitz.Rect(72, 300, 300, 340), "x")
+    annot.update()
+    if key == "AP":
+        document.xref_set_key(annot.xref, "AP", value)
+        return
+    appearance = int(document.xref_get_key(annot.xref, "AP/N")[1].split()[0])
+    if key == "Font object":
+        fonts = document.get_new_xref()
+        document.update_object(fonts, value)
+        value = f"<< /Font {fonts} 0 R >>"
+    document.xref_set_key(appearance, "Resources", value)
+
+
+@pytest.mark.parametrize(
+    "broken",
+    [
+        ("Annots", "[9999 0 R]"),
+        ("Annots", "[0 0 R]"),
+        ("Annots", "9999 0 R"),
+        ("AP", "<< /N 9999 0 R >>"),
+        ("Resources", "<< /XObject << /Fm9 9999 0 R >> >>"),
+        ("Font object", "<< /A\u0100 5 0 R >>"),
+        ("Resources", "<< /Font << /A\u0100 5 0 R >> >>"),
+        ("Font object", r"<< /A\u0100 5 0 R >>"),  # a name with a backslash in it (review r7b)
+    ],
+    ids=[
+        "missing-annot",
+        "object-0",
+        "missing-annots-array",
+        "missing-ap",
+        "missing-form",
+        "non-ascii-name-in-an-object",
+        "non-ascii-name-inline",
+        "backslash-name",
+    ],
+)
+def test_broken_annotation_references_never_fail_a_page(tmp_path, monkeypatch, broken):
+    # Review r7 (P1): the appearance scan passed every object number it found to PyMuPDF,
+    # which raises for one outside the cross-reference table, so one dangling reference
+    # failed the page and its document. It skips what it can't read.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
+    key, value = broken
+    with fitz.open(pdf) as document:
+        page = document[0]
+        if key == "Annots":
+            document.xref_set_key(page.xref, "Annots", value)
+        else:
+            _annotation_with(document, page, key, value)
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        names = documents_module._pdf_type3_font_names(document[0])
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    assert names == frozenset()
+    assert result.startswith(ocr.rstrip("\n")) and "9/4/13" in result
+
+
+def test_an_accent_of_a_garbled_line_sorted_clean_is_kept(tmp_path, monkeypatch):
+    # Review r7 (P2): sort_text drops a garbled font's control "spaces", so the text output
+    # holds "Name: Jose\u0301" where the spans hold "\x01Name:\x01" and " Jose". The
+    # accent has no span to go in, so the page uses the text output's lines and keeps it.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    spans = [[("\x01Name:\x01", True, "G", False), (" Jose", True, "F", True)]]
+    monkeypatch.setattr(documents_module, "_pdf_layer_lines", lambda page, *, extraction: spans)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="Jose")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "Name: Jose\u0301\n")
+        result = _pdf_page_text(page, extraction={"ocr": True, "sort_text": True})
+
+    assert result == "Applicant Household Size\n\nName: Jose\u0301"
+
+
+def _unreadable_xref(xref, key):
+    raise ValueError("bad xref")
+
+
+def test_an_inline_type3_font_not_in_its_holders_resources_takes_the_listed_name():
+    # A font get_fonts lists that the lookup does not find where its referencer points is
+    # named as get_fonts lists it, not "Unnamed-T3" (the name of a font without a /Name).
+    keys = {"Resources": ("dict", "<< >>"), "Resources/Font/F3": ("null", "null")}
+    document = SimpleNamespace(xref_get_key=lambda xref, key: keys.get(key, ("null", "null")))
+    page = SimpleNamespace(xref=5, parent=document)
+    font = (0, "n/a", "Type3", "ABCDEF+Foo", "F3", "", 0)
+    assert documents_module._pdf_type3_span_name(page, font) == "Foo"
+    # Found, without a /Name: "Unnamed-T3", as MuPDF names it.
+    keys["Resources/Font/F3"] = ("dict", "<< /Subtype /Type3 >>")
+    assert documents_module._pdf_type3_span_name(page, font) == "Unnamed-T3"
+
+
+@pytest.mark.parametrize(
+    ("font", "span_name"),
+    [
+        ((12, "n/a", "Type3", "ABCDEF+Foo", "F3", "", 0), "Foo"),
+        ((0, "n/a", "Type3", "Foo", "F3", "", 0), "Foo"),
+        ((12, "n/a", "Type3", "", "F3", "", 0), "Unnamed-T3"),
+    ],
+)
+def test_a_type3_name_that_cannot_be_read_falls_back_to_the_listed_name(font, span_name):
+    page = SimpleNamespace(xref=5, parent=SimpleNamespace(xref_get_key=_unreadable_xref))
+    assert documents_module._pdf_type3_span_name(page, font) == span_name
+
+
+def test_an_invisible_type3_layer_is_judged_where_paint_is_reported(monkeypatch):
+    # A failed recognition layer set invisibly (render mode 3) in a Type3 font. PyMuPDF
+    # 1.27+ reports it unpainted and it is dropped. Before 1.27 invisible and filled Type3
+    # text look alike, so it counts as painted and is kept (a known limit of the lock).
+    noise = ["Ckm rML Qzvx Plort Wexd", "Brnq Tholv Gremz Fuxt", "Yolp Kranv Dext Mopr"]
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    pdf = _type3_scan_pdf(noise, font_keys="/Name /T3F", render_mode=3)
+    with fitz.open("pdf", pdf) as document:
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(noise)
+    else:
+        assert result == TYPE3_OCR
+
+
+class _TextOutputPage:
+    """A real page whose text output is replaced (to give it a separator control)."""
+
+    def __init__(self, page, text: str):
+        self._page, self._text = page, text
+
+    def get_text(self, kind="text", **kwargs):
+        return self._text if kind == "text" else self._page.get_text(kind, **kwargs)
+
+    def __getattr__(self, name):
+        return getattr(self._page, name)
+
+
+def test_the_text_line_fallback_still_drops_garbled_lines(tmp_path, monkeypatch):
+    # Review r3: the fallback used splitlines(), which breaks "2EQI\x1e" at U+001E and
+    # leaves a clean-looking "2EQI". It splits at newlines only, so the line keeps its
+    # control character and is dropped; the typed line is kept.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    monkeypatch.setattr(
+        documents_module,
+        "_pdf_layer_lines",
+        lambda page, *, extraction: [[("x", True, "F", True)]],
+    )
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "2EQI\x1e\nJanuary 1, 2018\n")
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert result == "Applicant Household Size\n\nJanuary 1, 2018"
+
+
+@pytest.mark.parametrize(
+    ("char_flags", "mapped"),
+    [
+        (None, None),  # no flags reported
+        (0, None),  # neither painted nor flagged: invisible text under PyMuPDF 1.26
+        (16, True),  # filled
+        (32, True),  # stroked
+        (16 | 128, False),  # MuPDF found no Unicode: the glyph's CID stands in
+        (16 | 256, False),  # ... or its glyph id
+        (128, False),
+        (0 | 256, False),
+    ],
+)
+def test_span_provenance_comes_from_mupdfs_flags(char_flags, mapped):
+    span = {} if char_flags is None else {"char_flags": char_flags}
+    assert documents_module._pdf_span_mapped(span) is mapped
+
+
+def test_marks_the_spans_lack_are_put_back_on_the_page(tmp_path, monkeypatch):
+    # Review r5: the text output prints "Jose\u0301" where the spans hold "Jose"; the page
+    # text keeps the accent.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="Jose")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "Jose\u0301\n")
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert result == "Applicant Household Size\n\nJose\u0301"
+
+
+def test_marks_with_no_line_to_go_on_use_the_text_outputs_lines(tmp_path, monkeypatch):
+    # The spans' lines "Jo" and "se" hold the text output's letters, but no line is "Jose"
+    # for its accent to go on, so the text output's lines are used and the accent stays.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="Jo\nse")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "Jose\u0301\n")
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert result == "Applicant Household Size\n\nJose\u0301"
 
 
 def test_page_needs_ocr_rules(tmp_path):
@@ -246,7 +962,8 @@ def test_image_coverage_is_the_share_of_the_page(tmp_path):
     assert _coverage(_pdf(tmp_path / "none.pdf", image_rect=None, overlay="text")) == 0.0
     assert _coverage(_pdf(tmp_path / "strips.pdf", image_rect="strips", overlay=None)) == 1.0
     overhang = _coverage(_pdf(tmp_path / "over.pdf", image_rect="overhang", overlay=None))
-    assert overhang == pytest.approx(0.6, abs=1e-6)
+    # PDF image placement is rounded by MuPDF when the saved page is reopened.
+    assert overhang == pytest.approx(0.6, abs=1e-5)
     assert _coverage(_pdf(tmp_path / "slide.pdf", image_rect="slide", overlay=None)) == 0.0
 
 

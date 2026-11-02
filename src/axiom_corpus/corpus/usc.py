@@ -413,7 +413,28 @@ def build_usc_inventory_from_xml(
     allowed_citation_paths: set[str] | None = None,
     source_path: str | None = None,
 ) -> UscInventory:
-    document = parse_uslm_title(xml_content, title=title)
+    return _build_usc_inventory(
+        parse_uslm_title(xml_content, title=title),
+        run_id=run_id,
+        source_sha256=source_sha256,
+        source_download_url=source_download_url,
+        limit=limit,
+        allowed_citation_paths=allowed_citation_paths,
+        source_path=source_path,
+    )
+
+
+def _build_usc_inventory(
+    document: UscTitleDocument,
+    *,
+    run_id: str | None = None,
+    source_sha256: str | None = None,
+    source_download_url: str | None = None,
+    limit: int | None = None,
+    allowed_citation_paths: set[str] | None = None,
+    source_path: str | None = None,
+) -> UscInventory:
+    """Inventory an already-parsed title, so a caller holding one parses it only once."""
     if source_path is None:
         source_path = (
             _usc_source_key(run_id, document.title)
@@ -722,7 +743,29 @@ def iter_usc_title_provisions(
     source_download_url: str | None = None,
     allowed_citation_paths: set[str] | None = None,
 ) -> Iterator[ProvisionRecord]:
-    document = parse_uslm_title(xml_content, title=title)
+    # ``yield from`` keeps this a generator: the parse still runs on first iteration.
+    yield from _iter_usc_provisions(
+        parse_uslm_title(xml_content, title=title),
+        version=version,
+        source_path=source_path,
+        source_as_of=source_as_of,
+        expression_date=expression_date,
+        source_download_url=source_download_url,
+        allowed_citation_paths=allowed_citation_paths,
+    )
+
+
+def _iter_usc_provisions(
+    document: UscTitleDocument,
+    *,
+    version: str,
+    source_path: str,
+    source_as_of: str | None = None,
+    expression_date: str | None = None,
+    source_download_url: str | None = None,
+    allowed_citation_paths: set[str] | None = None,
+) -> Iterator[ProvisionRecord]:
+    """Yield the provisions of an already-parsed title, so a caller parses it only once."""
     source_as_of_text = source_as_of or document.created_date or version
     expression_date_text = expression_date or source_as_of_text
     emitted_citation_paths: set[str] = set()
@@ -1075,9 +1118,8 @@ def extract_usc(
         if archive_member is None
         else f"sources/us/{DocumentClass.STATUTE.value}/{run_id}/{source_relative_name}"
     )
-    inventory = build_usc_inventory_from_xml(
-        xml_content,
-        title=document.title,
+    inventory = _build_usc_inventory(
+        document,
         run_id=run_id,
         source_sha256=source_sha256,
         source_download_url=source_download_url,
@@ -1096,11 +1138,10 @@ def extract_usc(
     inventory_citation_paths = {item.citation_path for item in inventory.items}
     records = tuple(
         record
-        for record in iter_usc_title_provisions(
-            xml_content,
+        for record in _iter_usc_provisions(
+            document,
             version=run_id,
             source_path=source_key,
-            title=document.title,
             source_as_of=source_as_of,
             expression_date=(
                 _date_text(expression_date, source_as_of or version)
@@ -1189,9 +1230,8 @@ def extract_usc_directory(
         source_key = _usc_source_key(run_id, document.title)
         source_as_of_text = source_as_of or document.created_date or version
         expression_date_text = _date_text(expression_date, source_as_of_text)
-        inventory = build_usc_inventory_from_xml(
-            xml_content,
-            title=document.title,
+        inventory = _build_usc_inventory(
+            document,
             run_id=run_id,
             source_sha256=source_sha256,
             source_download_url=source_download_url,
@@ -1200,11 +1240,10 @@ def extract_usc_directory(
         allowed_citation_paths = {item.citation_path for item in inventory.items}
         records = tuple(
             record
-            for record in iter_usc_title_provisions(
-                xml_content,
+            for record in _iter_usc_provisions(
+                document,
                 version=run_id,
                 source_path=source_key,
-                title=document.title,
                 source_as_of=source_as_of_text,
                 expression_date=expression_date_text,
                 source_download_url=source_download_url,
@@ -1288,16 +1327,13 @@ def _clean_title_token(value: str | int) -> str:
 
 
 def _local_name(tag: str) -> str:
-    if "}" in tag:
-        return tag.rsplit("}", 1)[1]
-    return tag
+    return tag.rpartition("}")[2]
 
 
 def _iter_by_local(elem: ET.Element, name: str) -> Iterator[ET.Element]:
-    if _local_name(elem.tag) == name:
-        yield elem
-    for child in elem:
-        yield from _iter_by_local(child, name)
+    for descendant in elem.iter():
+        if _local_name(descendant.tag) == name:
+            yield descendant
 
 
 def _iter_structural_sections(elem: ET.Element) -> Iterator[ET.Element]:
@@ -1310,22 +1346,29 @@ def _iter_structural_sections(elem: ET.Element) -> Iterator[ET.Element]:
 
 
 def _clean_text(value: str | None) -> str:
-    return re.sub(r"\s+", " ", value or "").strip()
+    return " ".join((value or "").split())
 
 
 def _element_text(elem: ET.Element) -> str:
     if _local_name(elem.tag) == "table":
         return _table_to_markdown(elem)
+    # Parts are joined with spaces and whitespace is collapsed once, here. Collapsing
+    # each child's text before joining would give the same string, more slowly.
     parts: list[str] = []
+    _append_text_parts(elem, parts)
+    return _clean_text(" ".join(parts))
+
+
+def _append_text_parts(elem: ET.Element, parts: list[str]) -> None:
     if elem.text:
         parts.append(elem.text)
     for child in elem:
-        child_text = _element_text(child)
-        if child_text:
-            parts.append(child_text)
+        if _local_name(child.tag) == "table":
+            parts.append(_table_to_markdown(child))
+        else:
+            _append_text_parts(child, parts)
         if child.tail:
             parts.append(child.tail)
-    return _clean_text(" ".join(parts))
 
 
 def _table_to_markdown(table: ET.Element) -> str:

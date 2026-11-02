@@ -20,6 +20,8 @@ permissions:
 
 jobs:
   publish:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    environment: release-publish
     runs-on: ubuntu-latest
     # Large union releases perform deep validation plus content-addressed R2 and
     # Supabase readback for every selected object and scope, and that work grows

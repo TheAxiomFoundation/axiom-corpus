@@ -17,6 +17,7 @@ from axiom_corpus.corpus.ecfr import (
     part_targets_from_structure,
 )
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CORPUS_BASE = REPO_ROOT / "data" / "corpus"
@@ -312,8 +313,18 @@ def reproduce(base: Path, source_base: Path) -> dict[str, Any]:
     return summary
 
 
+def ensure_corpus_inputs(*, repo: Path = REPO_ROOT, source_base: Path | None = None) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    input_root = source_base.resolve() if source_base is not None else Path("data/corpus")
+    ensure_corpus_paths(
+        [input_root / relative_path for relative_path in EXPECTED_SOURCE_SHA256],
+        repo=repo,
+    )
+
+
 def main() -> int:
     args = _parse_args()
+    ensure_corpus_inputs(source_base=args.source_base or args.base)
     result = reproduce(args.base, args.source_base or args.base)
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0

@@ -14,6 +14,7 @@ import zipfile
 from collections.abc import Iterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
+from dataclasses import replace as _dataclass_replace
 from datetime import date
 from io import BytesIO, TextIOWrapper
 from pathlib import Path
@@ -24,11 +25,27 @@ from xml.etree import ElementTree as ET
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import NavigableString, PageElement, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
+from axiom_corpus.corpus.california_versions import (
+    ALL_VERSIONS,
+    LegInfoPicker,
+    LegInfoPickerLink,
+    LegInfoVersion,
+    leginfo_note_clauses,
+    leginfo_page_version,
+    leginfo_variant_slug,
+    parse_leginfo_picker,
+    validate_leginfo_selector,
+)
 from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
+from axiom_corpus.corpus.html_text import (
+    has_statute_text,
+    is_nonrendered_element,
+    statute_text_children,
+)
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.models import Section
@@ -511,14 +528,23 @@ class _CaliforniaSection:
     article: str | None
     content_file: str | None
     content_sha256: str
+    variant: str | None = None
 
     @property
     def code_token(self) -> str:
         return self.law_code.lower()
 
     @property
-    def citation_path(self) -> str:
+    def canonical_citation_path(self) -> str:
         return f"us-ca/statute/{self.code_token}/{_california_section_token(self.section)}"
+
+    @property
+    def citation_path(self) -> str:
+        """The plain section path, or its ``--<variant>`` sibling for a pinned version."""
+        return (
+            f"us-ca/statute/{self.code_token}/"
+            f"{_california_section_variant_token(self.section, self.variant)}"
+        )
 
 
 @dataclass(frozen=True)
@@ -1123,11 +1149,21 @@ def extract_dc_code(
     items: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
     source_paths: list[Path] = []
+    errors: list[str] = []
+    seen: set[str] = set()
     title_count = 0
     container_count = 0
     section_count = 0
     remaining = limit
 
+    # A title index is the table of contents for every container and section
+    # under it. A title is written only once its index parses and lists
+    # something, unless the index marks the title reserved; containers it
+    # lists stay complete as listed (a "[Reserved]" container lists nothing
+    # by law). A section the index lists is written only once its file reads
+    # and parses. Otherwise each stays an inventory gap, so coverage reads
+    # incomplete: sourced from the index when the file cannot be read, from
+    # the file itself when it was read but is unusable.
     for title_dir in _iter_dc_title_dirs(title_root, only_title_token):
         if remaining is not None and remaining <= 0:
             break
@@ -1141,15 +1177,30 @@ def extract_dc_code(
         index_sha256 = store.write_bytes(index_artifact_path, index_bytes)
         source_paths.append(index_artifact_path)
         index_key = _state_source_key("us-dc", run_id, index_relative)
-        root = ET.fromstring(index_bytes)
+        try:
+            root = ET.fromstring(index_bytes)
+        except ET.ParseError as exc:
+            errors.append(f"title {title}: {index_relative}: {exc}")
+            title_container = _dc_index_items(
+                ET.Element("container"),
+                title=title,
+                source_path=index_key,
+                source_sha256=index_sha256,
+            )[0][0]
+            _append_container_gap(seen, items, title_container)
+            continue
 
-        title_count += 1
         containers, targets = _dc_index_items(
             root,
             title=title,
             source_path=index_key,
             source_sha256=index_sha256,
         )
+        if len(containers) == 1 and not targets and not _dc_is_reserved(containers[0].heading):
+            errors.append(f"title {title}: {index_relative} lists no containers or sections")
+            _append_container_gap(seen, items, containers[0])
+            continue
+        title_count += 1
         for container in containers:
             if remaining is not None and remaining <= 0:
                 break
@@ -1172,10 +1223,20 @@ def extract_dc_code(
             if remaining is not None and remaining <= 0:
                 break
             section_path = title_dir / "sections" / f"{target.section}.xml"
-            if not section_path.exists():
-                continue
-            section_bytes = section_path.read_bytes()
             section_relative = f"dc-law-xml/titles/{title}/sections/{target.section}.xml"
+            try:
+                section_bytes = section_path.read_bytes()
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"section {target.section}: {section_relative}: {exc}")
+                _append_dc_section_gap(
+                    seen,
+                    items,
+                    target,
+                    source_url=_dc_title_url(title),
+                    source_path=index_key,
+                    sha256=index_sha256,
+                )
+                continue
             section_artifact_path = store.source_path(
                 "us-dc",
                 DocumentClass.STATUTE,
@@ -1185,7 +1246,20 @@ def extract_dc_code(
             section_sha256 = store.write_bytes(section_artifact_path, section_bytes)
             source_paths.append(section_artifact_path)
             section_source_key = _state_source_key("us-dc", run_id, section_relative)
-            document = _parse_dc_section_xml(section_bytes)
+            try:
+                document = _parse_dc_section_xml(section_bytes)
+            except (ET.ParseError, ValueError) as exc:
+                errors.append(f"section {target.section}: {section_relative}: {exc}")
+                _append_dc_section_gap(
+                    seen,
+                    items,
+                    target,
+                    source_url=_dc_section_url(target.section),
+                    source_path=section_source_key,
+                    sha256=section_sha256,
+                )
+                continue
+            seen.add(document.citation_path)
             item = SourceInventoryItem(
                 citation_path=document.citation_path,
                 source_url=_dc_section_url(document.section),
@@ -1219,7 +1293,7 @@ def extract_dc_code(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError(f"no DC Code provisions extracted from {title_root}")
 
     inventory_path = store.inventory_path("us-dc", DocumentClass.STATUTE, run_id)
@@ -1246,6 +1320,7 @@ def extract_dc_code(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
 
 
@@ -1289,7 +1364,7 @@ def extract_ohio_revised_code(
         index_relative,
     )
     index_sha = store.write_bytes(index_path, index_bytes)
-    del index_sha
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
     titles = _parse_ohio_titles(index_bytes)
     if only_title_token is not None:
@@ -1310,13 +1385,30 @@ def extract_ohio_revised_code(
         if remaining is not None and remaining <= 0:
             break
         title_relative = f"ohio-revised-code/titles/{_ohio_title_file_token(title)}.html"
-        title_bytes = _load_ohio_html(
-            session,
-            source_root,
-            download_root,
-            relative_name=title_relative,
-            url=title.source_url,
-        )
+        try:
+            title_bytes = _load_ohio_html(
+                session,
+                source_root,
+                download_root,
+                relative_name=title_relative,
+                url=title.source_url,
+            )
+        except (requests.RequestException, OSError) as exc:
+            # A failed download, or a --source-dir title file that cannot be read.
+            errors.append(f"title {title.num}: {exc}")
+            if title.citation_path not in seen_citation_paths:
+                seen_citation_paths.add(title.citation_path)
+                # The index TOC is the source evidence for the rejected title.
+                items.append(
+                    _container_inventory_item(
+                        _ohio_title_container(
+                            title, source_path=index_source_key, sha256=index_sha
+                        )
+                    )
+                )
+                if remaining is not None:
+                    remaining -= 1
+            continue
         title_path = store.source_path(
             jurisdiction,
             DocumentClass.STATUTE,
@@ -1332,9 +1424,17 @@ def extract_ohio_revised_code(
             source_path=title_source_key,
             sha256=title_sha,
         )
+        # A title is written as a provision only when its TOC lists chapters;
+        # otherwise it stays an inventory gap and coverage reads incomplete.
+        chapters = _parse_ohio_chapters(title_bytes, title=title)
         if title_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(title_container.citation_path)
             items.append(_container_inventory_item(title_container))
+            if not chapters:
+                errors.append(f"title {title.num}: no chapters parsed")
+                if remaining is not None:
+                    remaining -= 1
+                continue
             records.append(
                 _container_provision(
                     title_container,
@@ -1348,7 +1448,6 @@ def extract_ohio_revised_code(
             if remaining is not None:
                 remaining -= 1
 
-        chapters = _parse_ohio_chapters(title_bytes, title=title)
         for chapter in chapters:
             if remaining is not None and remaining <= 0:
                 break
@@ -1363,6 +1462,18 @@ def extract_ohio_revised_code(
                 )
             except requests.RequestException as exc:
                 errors.append(f"chapter {chapter.num}: {exc}")
+                if chapter.citation_path not in seen_citation_paths:
+                    seen_citation_paths.add(chapter.citation_path)
+                    # The title TOC is the source evidence for the rejected chapter.
+                    items.append(
+                        _container_inventory_item(
+                            _ohio_chapter_container(
+                                chapter, source_path=title_source_key, sha256=title_sha
+                            )
+                        )
+                    )
+                    if remaining is not None:
+                        remaining -= 1
                 continue
             chapter_path = store.source_path(
                 jurisdiction,
@@ -1378,9 +1489,15 @@ def extract_ohio_revised_code(
                 source_path=chapter_source_key,
                 sha256=chapter_sha,
             )
+            sections = _parse_ohio_sections(chapter_bytes, chapter=chapter)
             if chapter_container.citation_path not in seen_citation_paths:
                 seen_citation_paths.add(chapter_container.citation_path)
                 items.append(_container_inventory_item(chapter_container))
+                if remaining is not None:
+                    remaining -= 1
+                if not sections:
+                    errors.append(f"chapter {chapter.num}: no sections parsed")
+                    continue
                 records.append(
                     _container_provision(
                         chapter_container,
@@ -1390,10 +1507,8 @@ def extract_ohio_revised_code(
                     )
                 )
                 container_count += 1
-                if remaining is not None:
-                    remaining -= 1
 
-            for section in _parse_ohio_sections(chapter_bytes, chapter=chapter):
+            for section in sections:
                 if remaining is not None and remaining <= 0:
                     break
                 if section.citation_path in seen_citation_paths:
@@ -1420,6 +1535,12 @@ def extract_ohio_revised_code(
                         "parent_citation_path": chapter.citation_path,
                     },
                 )
+                items.append(item)
+                if remaining is not None:
+                    remaining -= 1
+                if section.body is None:
+                    errors.append(f"section {section.section}: no statute body parsed")
+                    continue
                 records.append(
                     _ohio_section_provision(
                         section,
@@ -1429,10 +1550,7 @@ def extract_ohio_revised_code(
                         expression_date=expression_date_text,
                     )
                 )
-                items.append(item)
                 section_count += 1
-                if remaining is not None:
-                    remaining -= 1
 
     if not items:
         raise ValueError("no Ohio Revised Code provisions extracted")
@@ -1507,7 +1625,8 @@ def extract_minnesota_statutes(
         url=f"{MINNESOTA_STATUTES_BASE_URL}/statutes/",
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     parts = _parse_minnesota_parts(index_bytes)
@@ -1525,6 +1644,14 @@ def extract_minnesota_statutes(
     selected_parts: dict[str, _MinnesotaPart] = {}
     chapters: list[_MinnesotaChapter] = []
     part_sources: dict[str, tuple[str, str]] = {}
+    # A part, or a chapter, is written as a provision only once its own page
+    # lists children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A page that
+    # could not be fetched is sourced from the listing that names it; a page
+    # that was fetched but is unusable from itself. A chapter-filtered run
+    # leaves out parts it cannot read: it cannot tell whether they hold the
+    # chapter, and fails if no part does.
+    part_gaps: dict[str, _StateContainer] = {}
 
     for part in parts:
         part_relative = f"minnesota-statutes-html/parts/{_clean_path_token(part.token)}.html"
@@ -1536,8 +1663,13 @@ def extract_minnesota_statutes(
                 relative_name=part_relative,
                 url=part.source_url,
             )
-        except requests.RequestException as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"part {part.heading}: {exc}")
+            if only_chapter is None:
+                part_gaps[part.citation_path] = _dataclass_replace(
+                    _minnesota_part_container(part, source_path=index_source_key, sha256=index_sha),
+                    source_url=f"{MINNESOTA_STATUTES_BASE_URL}/statutes/",
+                )
             continue
         part_path = store.source_path(
             jurisdiction,
@@ -1548,7 +1680,15 @@ def extract_minnesota_statutes(
         part_sha = store.write_bytes(part_path, part_bytes)
         source_paths.append(part_path)
         part_source_key = _state_source_key(jurisdiction, run_id, part_relative)
-        part_chapters = _parse_minnesota_chapters(part_bytes, part=part)
+        listed_chapters = _parse_minnesota_chapters(part_bytes, part=part)
+        if not listed_chapters:
+            errors.append(f"part {part.heading}: no chapters listed on part page")
+            if only_chapter is None:
+                part_gaps[part.citation_path] = _minnesota_part_container(
+                    part, source_path=part_source_key, sha256=part_sha
+                )
+            continue
+        part_chapters = listed_chapters
         if only_chapter is not None:
             part_chapters = tuple(chapter for chapter in part_chapters if chapter.num == only_chapter)
         if not part_chapters:
@@ -1564,9 +1704,14 @@ def extract_minnesota_statutes(
     if not chapters:
         raise ValueError(f"no Minnesota Statutes chapters selected for filter: {only_title!r}")
 
-    for part in selected_parts.values():
+    for part in parts:
         if remaining is not None and remaining <= 0:
             break
+        if part.citation_path in part_gaps:
+            _append_container_gap(seen_citation_paths, items, part_gaps[part.citation_path])
+            continue
+        if part.citation_path not in selected_parts:
+            continue
         source_key, source_sha = part_sources[part.citation_path]
         part_container = _minnesota_part_container(part, source_path=source_key, sha256=source_sha)
         seen_citation_paths.add(part_container.citation_path)
@@ -1593,10 +1738,20 @@ def extract_minnesota_statutes(
         ):
             if remaining is not None and remaining <= 0:
                 break
-            if error is not None:
-                errors.append(f"chapter {chapter.num}: {error}")
-                continue
-            if chapter_bytes is None:
+            if error is not None or chapter_bytes is None:
+                errors.append(f"chapter {chapter.num}: {error or 'unknown source error'}")
+                # The part page lists the chapter; it is the source until the chapter is read.
+                part_source_key, part_sha = part_sources[chapter.part.citation_path]
+                _append_container_gap(
+                    seen_citation_paths,
+                    items,
+                    _dataclass_replace(
+                        _minnesota_chapter_container(
+                            chapter, source_path=part_source_key, sha256=part_sha
+                        ),
+                        source_url=chapter.part.source_url,
+                    ),
+                )
                 continue
             chapter_relative = _minnesota_chapter_relative(chapter)
             chapter_path = store.source_path(
@@ -1608,10 +1763,21 @@ def extract_minnesota_statutes(
             chapter_sha = store.write_bytes(chapter_path, chapter_bytes)
             source_paths.append(chapter_path)
             chapter_source_key = _state_source_key(jurisdiction, run_id, chapter_relative)
-            parsed_heading, sections = _parse_minnesota_chapter_sections(
-                chapter_bytes,
-                chapter=chapter,
-            )
+            try:
+                parsed_heading, sections = _parse_minnesota_chapter_sections(
+                    chapter_bytes,
+                    chapter=chapter,
+                )
+            except ValueError as exc:
+                errors.append(f"chapter {chapter.num}: {exc}")
+                _append_container_gap(
+                    seen_citation_paths,
+                    items,
+                    _minnesota_chapter_container(
+                        chapter, source_path=chapter_source_key, sha256=chapter_sha
+                    ),
+                )
+                continue
             chapter_with_heading = _MinnesotaChapter(
                 part=chapter.part,
                 num=chapter.num,
@@ -1624,6 +1790,10 @@ def extract_minnesota_statutes(
                 source_path=chapter_source_key,
                 sha256=chapter_sha,
             )
+            if not sections:
+                errors.append(f"chapter {chapter.num}: no sections on chapter page")
+                _append_container_gap(seen_citation_paths, items, chapter_container)
+                continue
             if chapter_container.citation_path not in seen_citation_paths:
                 seen_citation_paths.add(chapter_container.citation_path)
                 items.append(_container_inventory_item(chapter_container))
@@ -1677,7 +1847,7 @@ def extract_minnesota_statutes(
                 if remaining is not None:
                     remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Minnesota Statutes provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -1743,7 +1913,8 @@ def extract_nebraska_revised_statutes(
         url=f"{NEBRASKA_STATUTES_BASE_URL}/browse-statutes.php",
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     chapters = _parse_nebraska_chapters(index_bytes)
@@ -1763,6 +1934,11 @@ def extract_nebraska_revised_statutes(
     # Full chapter HTML is the Nebraska extraction unit; keep the shared CLI option accepted.
     del workers
 
+    # A chapter is written as a provision only once its full-chapter page
+    # yields sections. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing every section under it. A page
+    # that could not be fetched is sourced from the index that lists the
+    # chapter; a page that was fetched but is unusable from itself.
     for chapter in chapters:
         if remaining is not None and remaining <= 0:
             break
@@ -1775,8 +1951,18 @@ def extract_nebraska_revised_statutes(
                 relative_name=chapter_relative,
                 url=chapter.full_source_url,
             )
-        except (OSError, requests.RequestException) as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"chapter {chapter.num}: {exc}")
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _nebraska_chapter_container(
+                        chapter, source_path=index_source_key, sha256=index_sha
+                    ),
+                    source_url=f"{NEBRASKA_STATUTES_BASE_URL}/browse-statutes.php",
+                ),
+            )
             continue
         chapter_path = store.source_path(
             jurisdiction,
@@ -1798,6 +1984,11 @@ def extract_nebraska_revised_statutes(
             source_path=chapter_source_key,
             sha256=chapter_sha,
         )
+        sections = _parse_nebraska_chapter_sections(chapter_bytes, chapter=chapter_with_heading)
+        if not sections:
+            errors.append(f"chapter {chapter.num}: no sections parsed")
+            _append_container_gap(seen_citation_paths, items, chapter_container)
+            continue
         if chapter_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(chapter_container.citation_path)
             items.append(_container_inventory_item(chapter_container))
@@ -1814,9 +2005,6 @@ def extract_nebraska_revised_statutes(
             if remaining is not None:
                 remaining -= 1
 
-        sections = _parse_nebraska_chapter_sections(chapter_bytes, chapter=chapter_with_heading)
-        if not sections:
-            errors.append(f"chapter {chapter.num}: no sections parsed")
         for section in sections:
             if remaining is not None and remaining <= 0:
                 break
@@ -1856,7 +2044,7 @@ def extract_nebraska_revised_statutes(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Nebraska Revised Statutes provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -1924,7 +2112,8 @@ def extract_washington_rcw(
         url=WASHINGTON_RCW_BASE_URL,
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     titles = _parse_washington_titles(index_bytes)
@@ -1943,7 +2132,17 @@ def extract_washington_rcw(
     section_count = 0
     skipped_source_count = 0
     seen_citation_paths: set[str] = set()
+    # Title page (source key, sha256, URL) by title number: the evidence for a
+    # chapter whose own page cannot be fetched.
+    title_sources: dict[str, tuple[str, str, str]] = {}
 
+    # A title, or a chapter, is written as a provision only once its own page
+    # lists children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A page that
+    # could not be fetched is sourced from the listing that names it; a page
+    # that was fetched but is unusable from itself. A chapter page that names
+    # its chapter and carries no section anchors (a recodified or wholly
+    # repealed chapter) stays a complete, skipped source.
     for title in titles:
         if remaining is not None and remaining <= 0:
             break
@@ -1956,8 +2155,18 @@ def extract_washington_rcw(
                 relative_name=title_relative,
                 url=title.source_url,
             )
-        except (OSError, requests.RequestException) as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"title {title.num}: {exc}")
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _washington_title_container(
+                        title, source_path=index_source_key, sha256=index_sha
+                    ),
+                    source_url=WASHINGTON_RCW_BASE_URL,
+                ),
+            )
             continue
         title_path = store.source_path(
             jurisdiction,
@@ -1979,6 +2188,12 @@ def extract_washington_rcw(
             source_path=title_source_key,
             sha256=title_sha,
         )
+        listed_chapters = _parse_washington_chapters(title_bytes, title=title_with_heading)
+        if not listed_chapters:
+            errors.append(f"title {title.num}: no chapters parsed")
+            _append_container_gap(seen_citation_paths, items, title_container)
+            continue
+        title_sources[title.num] = (title_source_key, title_sha, title.source_url)
         if title_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(title_container.citation_path)
             items.append(_container_inventory_item(title_container))
@@ -1995,7 +2210,7 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-        title_chapters = _parse_washington_chapters(title_bytes, title=title_with_heading)
+        title_chapters = listed_chapters
         if only_chapter_num is not None:
             title_chapters = tuple(
                 chapter for chapter in title_chapters if chapter.num == only_chapter_num
@@ -2020,6 +2235,17 @@ def extract_washington_rcw(
             break
         if error is not None or chapter_bytes is None:
             errors.append(f"chapter {chapter.num}: {error or 'unknown source error'}")
+            title_source_key, title_sha, title_url = title_sources[chapter.title.num]
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _washington_chapter_container(
+                        chapter, source_path=title_source_key, sha256=title_sha
+                    ),
+                    source_url=title_url,
+                ),
+            )
             continue
         chapter_relative = _washington_chapter_relative(chapter)
         chapter_path = store.source_path(
@@ -2043,6 +2269,19 @@ def extract_washington_rcw(
             source_path=chapter_source_key,
             sha256=chapter_sha,
         )
+        sections = _parse_washington_chapter_sections(
+            chapter_bytes,
+            chapter=chapter_with_heading,
+        )
+        if not sections:
+            if _washington_chapter_without_sections(
+                chapter_bytes
+            ) and _washington_page_names_chapter(chapter_bytes, chapter.num):
+                skipped_source_count += 1
+            else:
+                errors.append(f"chapter {chapter.num}: no sections parsed")
+                _append_container_gap(seen_citation_paths, items, chapter_container)
+                continue
         if chapter_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(chapter_container.citation_path)
             items.append(_container_inventory_item(chapter_container))
@@ -2058,15 +2297,6 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-        sections = _parse_washington_chapter_sections(
-            chapter_bytes,
-            chapter=chapter_with_heading,
-        )
-        if not sections:
-            if _washington_chapter_without_sections(chapter_bytes):
-                skipped_source_count += 1
-            else:
-                errors.append(f"chapter {chapter.num}: no sections parsed")
         for section in sections:
             if remaining is not None and remaining <= 0:
                 break
@@ -2108,7 +2338,7 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Revised Code of Washington provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -2377,11 +2607,32 @@ def extract_california_code_sections(
     ``preserve_tables`` keeps every table cell and row label (see
     ``_california_html_section_body``); it defaults to False so rerunning an
     existing scope reproduces its output under the same version.
+
+    A section spec may select concurrent LegInfo versions: ``WIC:11450@all``
+    captures every version LegInfo's picker offers, and
+    ``WIC:11450@operative-2024-07-01`` captures one of them (see
+    ``california_versions.leginfo_variant_slug``). Each selected version is
+    written at its own same-number variant path
+    (``us-ca/statute/wic/11450--operative-2024-07-01``), never at the plain path,
+    and the picker that offered the versions is retained under
+    ``california-leginfo-pickers/``. A selection LegInfo cannot satisfy exactly
+    raises :class:`CaliforniaVersionError`. Specs without a selector behave
+    exactly as before.
     """
     jurisdiction = "us-ca"
-    selected = tuple(dict.fromkeys(_california_section_spec(section) for section in sections))
+    selected = tuple(_california_section_request(section) for section in sections)
     if not selected:
         raise ValueError("extract_california_code_sections: sections must be non-empty")
+    requested: dict[tuple[str, str], list[str | None]] = {}
+    for law_code, section_num, selector in selected:
+        requested.setdefault((law_code, _california_section_token(section_num)), []).append(selector)
+    for (law_code, token), selectors in requested.items():
+        if len(selectors) > 1 and any(selector is not None for selector in selectors):
+            raise ValueError(
+                f"extract_california_code_sections: {law_code} {token} is requested more than "
+                "once with a version selector; request it once (with @all for every version)"
+            )
+    selected = tuple(dict.fromkeys(selected))
     run_id = _california_sections_run_id(version, selected)
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
@@ -2395,58 +2646,108 @@ def extract_california_code_sections(
     errors: list[str] = []
     seen_citation_paths: set[str] = set()
 
-    for index, (law_code, section_num) in enumerate(selected):
+    for index, (law_code, section_num, selector) in enumerate(selected):
         if index:
             time.sleep(max(request_delay_seconds, 0.0))
         source_url = _california_section_url(law_code, section_num)
-        relative_name = _california_section_html_relative_name(law_code, section_num)
+        pages: list[tuple[bytes, str, _CaliforniaCapturedVersion | None]] = []
+        capture: _CaliforniaVersionCapture | None = None
         try:
-            html_bytes = _load_california_section_html(
-                session,
-                source_url=source_url,
-                download_root=cache_root,
-                relative_name=relative_name,
-                timeout_seconds=timeout_seconds,
-                request_attempts=request_attempts,
-            )
+            if selector is None:
+                relative_name = _california_section_html_relative_name(law_code, section_num)
+                html_bytes = _load_california_section_html(
+                    session,
+                    source_url=source_url,
+                    download_root=cache_root,
+                    relative_name=relative_name,
+                    timeout_seconds=timeout_seconds,
+                    request_attempts=request_attempts,
+                )
+                pages.append((html_bytes, relative_name, None))
+            else:
+                capture = _load_california_section_versions(
+                    session,
+                    law_code=law_code,
+                    section_num=section_num,
+                    selector=selector,
+                    source_url=source_url,
+                    download_root=cache_root,
+                    timeout_seconds=timeout_seconds,
+                    request_attempts=request_attempts,
+                    request_delay_seconds=request_delay_seconds,
+                )
+                pages.extend(
+                    (
+                        captured.html_bytes,
+                        _california_section_html_relative_name(
+                            law_code, section_num, captured.variant
+                        ),
+                        captured,
+                    )
+                    for captured in capture.versions
+                )
         except requests.RequestException as exc:
+            if selector is not None:
+                raise CaliforniaVersionError(f"{law_code} {section_num}@{selector}: {exc}") from exc
             errors.append(f"{law_code} {section_num}: {exc}")
             continue
-        html_sha = sha256_bytes(html_bytes)
-        if not _california_html_has_section(html_bytes):
-            errors.append(f"{law_code} {section_num}: no single_law_section found")
-            continue
-        section = _california_section_from_html(
-            law_code=law_code,
-            section=section_num,
-            html_bytes=html_bytes,
-            content_sha256=html_sha,
-            preserve_tables=preserve_tables,
-        )
-        if section.citation_path in seen_citation_paths:
-            continue
-        seen_citation_paths.add(section.citation_path)
-        artifact_path = store.source_path(
-            jurisdiction,
-            DocumentClass.STATUTE,
-            run_id,
-            relative_name,
-        )
-        store.write_bytes(artifact_path, html_bytes)
-        source_paths.append(artifact_path)
-        source_key = _state_source_key(jurisdiction, run_id, relative_name)
-        items.append(
-            SourceInventoryItem(
-                citation_path=section.citation_path,
-                source_url=section.source_url,
-                source_path=source_key,
-                source_format=CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
-                sha256=html_sha,
-                metadata=_california_section_metadata(section),
+        except ValueError as exc:
+            if selector is None or isinstance(exc, CaliforniaVersionError):
+                raise
+            raise CaliforniaVersionError(f"{law_code} {section_num}@{selector}: {exc}") from exc
+        picker_source_key: str | None = None
+        if capture is not None and capture.picker_bytes is not None:
+            picker_relative_name = _california_picker_html_relative_name(law_code, section_num)
+            picker_path = store.source_path(
+                jurisdiction, DocumentClass.STATUTE, run_id, picker_relative_name
             )
-        )
-        records.append(
-            _california_section_provision(
+            store.write_bytes(picker_path, capture.picker_bytes)
+            source_paths.append(picker_path)
+            picker_source_key = _state_source_key(jurisdiction, run_id, picker_relative_name)
+        for html_bytes, relative_name, captured in pages:
+            html_sha = sha256_bytes(html_bytes)
+            if not _california_html_has_section(html_bytes):
+                errors.append(f"{law_code} {section_num}: no single_law_section found")
+                continue
+            section = _california_section_from_html(
+                law_code=law_code,
+                section=section_num,
+                html_bytes=html_bytes,
+                content_sha256=html_sha,
+                preserve_tables=preserve_tables,
+            )
+            extra_metadata: dict[str, Any] = {}
+            if capture is not None and captured is not None:
+                section, extra_metadata = _california_version_section(
+                    section,
+                    capture=capture,
+                    captured=captured,
+                    picker_source_key=picker_source_key,
+                )
+            if section.citation_path in seen_citation_paths:
+                continue
+            seen_citation_paths.add(section.citation_path)
+            artifact_path = store.source_path(
+                jurisdiction,
+                DocumentClass.STATUTE,
+                run_id,
+                relative_name,
+            )
+            store.write_bytes(artifact_path, html_bytes)
+            source_paths.append(artifact_path)
+            source_key = _state_source_key(jurisdiction, run_id, relative_name)
+            metadata = _california_section_metadata(section) | extra_metadata
+            items.append(
+                SourceInventoryItem(
+                    citation_path=section.citation_path,
+                    source_url=section.source_url,
+                    source_path=source_key,
+                    source_format=CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
+                    sha256=html_sha,
+                    metadata=metadata,
+                )
+            )
+            record = _california_section_provision(
                 section,
                 version=run_id,
                 source_path=source_key,
@@ -2454,7 +2755,9 @@ def extract_california_code_sections(
                 source_as_of=source_as_of_text,
                 expression_date=expression_date_text,
             )
-        )
+            records.append(
+                _dataclass_replace(record, metadata=metadata) if extra_metadata else record
+            )
 
     if not items:
         detail = f": {'; '.join(errors)}" if errors else ""
@@ -2475,7 +2778,7 @@ def extract_california_code_sections(
     store.write_json(coverage_path, coverage.to_mapping())
     return StateStatuteExtractReport(
         jurisdiction=jurisdiction,
-        title_count=len({law_code for law_code, _ in selected}),
+        title_count=len({spec[0] for spec in selected}),
         container_count=0,
         section_count=len(records),
         provisions_written=len(records),
@@ -2885,6 +3188,42 @@ def _iter_dc_title_dirs(title_root: Path, only_title: str | None) -> Iterator[Pa
         title = _clean_title_token(title_dir.name)
         if only_title is None or title == only_title:
             yield title_dir
+
+
+def _dc_is_reserved(heading: str | None) -> bool:
+    """Whether a DC index heading marks its container reserved (e.g. "[Reserved].")."""
+    return heading is not None and re.search(r"\breserved\b", heading, re.I) is not None
+
+
+def _append_dc_section_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    target: _DcSectionTarget,
+    *,
+    source_url: str,
+    source_path: str,
+    sha256: str,
+) -> None:
+    """Record a section the title index lists but whose file yielded nothing."""
+    citation_path = f"us-dc/statute/{target.title}/{target.section}"
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source_url,
+            source_path=source_path,
+            source_format=DC_XML_SOURCE_FORMAT,
+            sha256=sha256,
+            metadata={
+                "kind": "section",
+                "title": target.title,
+                "section": target.section,
+                "parent_citation_path": target.parent_citation_path,
+            },
+        )
+    )
 
 
 def _dc_index_items(
@@ -3333,7 +3672,7 @@ def _parse_ohio_sections(
             continue
         head = content.select_one(".content-head-text a")
         body_tag = content.select_one("section.laws-body")
-        if not isinstance(head, Tag) or not isinstance(body_tag, Tag):
+        if not isinstance(head, Tag):
             continue
         header_text = _clean_text(head.get_text(" ", strip=True))
         parsed = _parse_ohio_section_header(header_text)
@@ -3341,7 +3680,7 @@ def _parse_ohio_sections(
             continue
         section_num, heading = parsed
         source_url = urljoin(chapter.source_url, str(head.get("href") or ""))
-        body = _ohio_laws_body_text(body_tag)
+        body = _ohio_laws_body_text(body_tag) if isinstance(body_tag, Tag) else None
         effective_date, latest_legislation, pdf_url = _ohio_section_info(content)
         sections.append(
             _OhioSection(
@@ -3354,8 +3693,8 @@ def _parse_ohio_sections(
                 effective_date=effective_date,
                 latest_legislation=latest_legislation,
                 pdf_url=pdf_url,
-                last_updated=_ohio_last_updated(body_tag),
-                references_to=_ohio_references(body_tag),
+                last_updated=_ohio_last_updated(body_tag) if isinstance(body_tag, Tag) else None,
+                references_to=_ohio_references(body_tag) if isinstance(body_tag, Tag) else (),
             )
         )
     return tuple(sections)
@@ -3373,15 +3712,61 @@ def _parse_ohio_section_header(text: str) -> tuple[str, str | None] | None:
 
 
 def _ohio_laws_body_text(body_tag: Tag) -> str | None:
-    body_span = body_tag.find("span")
-    root = body_span if isinstance(body_span, Tag) else body_tag
-    paragraphs = [
-        _clean_text(paragraph.get_text(" ", strip=True))
-        for paragraph in root.find_all("p")
-        if isinstance(paragraph, Tag)
-    ]
-    text = "\n".join(paragraph for paragraph in paragraphs if paragraph)
-    return text or None
+    """Read operative text once in DOM order using explicit DOM exclusions.
+
+    Only ordinary NavigableString nodes count: special string types, browser
+    default non-content elements, hidden/aria-hidden subtrees, navigation,
+    and notice/section metadata are excluded, including at body ancestors.
+    CSS styles and classes do not hide text from this reader.
+    Paragraphs and table rows keep their boundaries; inline references and
+    table headers remain operative text. This is Ohio's body-presence rule.
+    """
+    lines: list[str] = []
+    fragments: list[str] = []
+    metadata_classes = {
+        "laws-notice", "laws-section-info", "laws-section-info-module", "content-head-text"
+    }
+
+    def rendered(node: Tag) -> bool:
+        return not (
+            is_nonrendered_element(node)
+            or node.name == "nav"
+            or str(node.get("role", "")).strip().lower() == "navigation"
+            or node.has_attr("hidden")
+            or str(node.get("aria-hidden", "")).strip().lower() == "true"
+            or metadata_classes.intersection(node.get("class") or ())
+        )
+
+    if any(not rendered(parent) for parent in body_tag.parents if isinstance(parent, Tag)):
+        return None
+
+    def flush() -> None:
+        text = _clean_text(" ".join(fragments))
+        if has_statute_text(text):
+            lines.append(text)
+        fragments.clear()
+
+    def visit(node: PageElement, *, in_row: bool = False) -> None:
+        if type(node) is NavigableString:
+            text = str(node).strip()
+            if text:
+                fragments.append(text)
+            return
+        if not isinstance(node, Tag) or not rendered(node):
+            return
+        # A paragraph inside a cell belongs to its row, rather than a second
+        # output block. Walking leaves also avoids duplicating nested markup.
+        boundary = node.name == "tr" or (node.name == "p" and not in_row)
+        if boundary:
+            flush()
+        for child in statute_text_children(node):
+            visit(child, in_row=in_row or node.name == "tr")
+        if boundary:
+            flush()
+
+    visit(body_tag)
+    flush()
+    return "\n".join(lines) or None
 
 
 def _ohio_section_info(content: Tag) -> tuple[str | None, str | None, str | None]:
@@ -3713,7 +4098,7 @@ def _load_minnesota_chapter_source(
             url=chapter.full_source_url,
         )
         return chapter, data, None
-    except requests.RequestException as exc:
+    except Exception as exc:  # noqa: BLE001
         return chapter, None, str(exc)
 
 
@@ -4415,7 +4800,7 @@ def _load_washington_chapter_source(
             url=chapter.full_source_url,
         )
         return chapter, data, None
-    except (OSError, requests.RequestException) as exc:
+    except Exception as exc:  # noqa: BLE001
         return chapter, None, str(exc)
 
 
@@ -4495,6 +4880,17 @@ def _washington_chapter_without_sections(data: bytes) -> bool:
     soup = BeautifulSoup(data.decode("utf-8", errors="replace"), "html.parser")
     expanded = soup.select_one("#ContentPlaceHolder1_pnlExpanded")
     return not (isinstance(expanded, Tag) and expanded.select("a[name]"))
+
+
+def _washington_page_names_chapter(data: bytes, chapter: str) -> bool:
+    """Whether ``data`` is the RCW page for ``chapter``: it carries "Chapter N RCW".
+
+    A maintenance, empty or unrelated page has no section anchors either, so
+    the sectionless-chapter exemption also needs the page to be the chapter's.
+    """
+    soup = BeautifulSoup(data.decode("utf-8", errors="replace"), "html.parser")
+    text = _clean_text(soup.get_text(" ", strip=True))
+    return re.search(rf"\bChapter\s+{re.escape(chapter)}\s+RCW\b", text, re.I) is not None
 
 
 def _washington_listing_heading(link: Tag) -> str | None:
@@ -5283,6 +5679,23 @@ def _california_section_url(law_code: str, section: str) -> str:
 
 
 def _california_section_spec(value: str) -> tuple[str, str]:
+    """Parse an unpinned section spec. Version-pinned specs go through
+    :func:`_california_section_request`."""
+    law_code, section, variant = _california_section_request(value)
+    if variant is not None:
+        raise ValueError(f"California section spec pins a LegInfo version: {value!r}")
+    return (law_code, section)
+
+
+def _california_section_request(value: str) -> tuple[str, str, str | None]:
+    """Parse ``LAW:SECTION``, ``LAW SECTION`` or a LegInfo URL, with an optional selector.
+
+    ``LAW:SECTION@all`` selects every concurrent LegInfo version of the section
+    and ``LAW:SECTION@<variant slug>`` selects one (see
+    ``california_versions.leginfo_variant_slug``). Without a selector the third
+    element is ``None`` and the request is exactly the historical
+    ``(law_code, section)`` spec. URL specs never carry a selector.
+    """
     text = value.strip()
     if not text:
         raise ValueError("California section spec must not be empty")
@@ -5292,7 +5705,7 @@ def _california_section_spec(value: str) -> tuple[str, str]:
         law_code = (query.get("lawCode") or query.get("lawcode") or [""])[0].strip().upper()
         section = (query.get("sectionNum") or query.get("sectionnum") or [""])[0].strip()
         if law_code and section:
-            return (law_code, section)
+            return (law_code, section, None)
         raise ValueError(f"California section URL must include lawCode and sectionNum: {value!r}")
     if ":" in text:
         law_code, section = text.split(":", 1)
@@ -5305,25 +5718,48 @@ def _california_section_spec(value: str) -> tuple[str, str]:
         law_code, section = parts
     law_code = law_code.strip().upper()
     section = section.strip()
+    selector: str | None = None
+    if "@" in section:
+        section, raw_selector = section.rsplit("@", 1)
+        section = section.strip()
+        selector = validate_leginfo_selector(raw_selector)
     if not re.fullmatch(r"[A-Z0-9]+", law_code) or not section:
         raise ValueError(f"invalid California section spec: {value!r}")
-    return (law_code, section)
+    return (law_code, section, selector)
 
 
-def _california_sections_run_id(version: str, sections: tuple[tuple[str, str], ...]) -> str:
+def _california_sections_run_id(
+    version: str, sections: tuple[tuple[str, str] | tuple[str, str, str | None], ...]
+) -> str:
+    """Return the scope version for a set of section requests.
+
+    Unpinned requests (2-tuples, or 3-tuples ending in ``None``) give the
+    historical token ``<code>-<section>``; a pinned request adds its variant
+    (``wic-11450--stats-2024-ch-798-sec-2``).
+    """
     scope = "-".join(
-        f"{law_code.lower()}-{_california_section_token(section)}"
-        for law_code, section in sections
+        f"{spec[0].lower()}-"
+        f"{_california_section_variant_token(spec[1], spec[2] if len(spec) > 2 else None)}"
+        for spec in sections
     )
     if len(scope) > 120:
         scope = hashlib.sha256(scope.encode("utf-8")).hexdigest()[:16]
     return f"{version}-us-ca-sections-{scope}"
 
 
-def _california_section_html_relative_name(law_code: str, section: str) -> str:
+def _california_section_html_relative_name(
+    law_code: str, section: str, variant: str | None = None
+) -> str:
     return (
         "california-leginfo-sections/"
-        f"{law_code.upper()}-{_california_section_token(section)}.html"
+        f"{law_code.upper()}-{_california_section_variant_token(section, variant)}.html"
+    )
+
+
+def _california_picker_html_relative_name(law_code: str, section: str) -> str:
+    """Where the ``selectFromMultiples`` page behind pinned versions is kept."""
+    return (
+        f"california-leginfo-pickers/{law_code.upper()}-{_california_section_token(section)}.html"
     )
 
 
@@ -5341,15 +5777,12 @@ def _load_california_section_html(
         content = cache_path.read_bytes()
         if _california_html_has_section(content):
             return content
-    attempts = max(request_attempts, 1)
-    response: requests.Response | None = None
-    for attempt in range(attempts):
-        response = session.get(source_url, timeout=timeout_seconds)
-        if response.status_code < 500 or attempt == attempts - 1:
-            break
-        time.sleep(min(2**attempt, 8))
-    assert response is not None
-    response.raise_for_status()
+    response = _california_get(
+        session,
+        source_url,
+        timeout_seconds=timeout_seconds,
+        request_attempts=request_attempts,
+    )
     content = _resolve_california_multiple_section_html(
         session,
         source_url=source_url,
@@ -5360,6 +5793,301 @@ def _load_california_section_html(
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_bytes(content)
     return content
+
+
+def _california_get(
+    session: requests.Session,
+    url: str,
+    *,
+    timeout_seconds: float,
+    request_attempts: int,
+) -> requests.Response:
+    """GET ``url``, retrying only 5xx answers with capped exponential backoff."""
+    attempts = max(request_attempts, 1)
+    response: requests.Response | None = None
+    for attempt in range(attempts):
+        response = session.get(url, timeout=timeout_seconds)
+        if response.status_code < 500 or attempt == attempts - 1:
+            break
+        time.sleep(min(2**attempt, 8))
+    assert response is not None
+    response.raise_for_status()
+    return response
+
+
+@dataclass(frozen=True)
+class _CaliforniaCapturedVersion:
+    """One concurrent LegInfo version page and its variant slug."""
+
+    variant: str
+    html_bytes: bytes
+    version: LegInfoVersion
+    link: LegInfoPickerLink | None
+
+
+@dataclass(frozen=True)
+class _CaliforniaVersionCapture:
+    """The selected versions of one section and the picker that offered them."""
+
+    selector: str
+    picker_bytes: bytes | None
+    picker: LegInfoPicker | None
+    versions: tuple[_CaliforniaCapturedVersion, ...]
+
+    @property
+    def variants(self) -> tuple[str, ...]:
+        return tuple(captured.variant for captured in self.versions)
+
+
+class CaliforniaVersionError(ValueError):
+    """Concurrent LegInfo versions could not be captured exactly as selected."""
+
+
+def _california_page_variant(
+    html_bytes: bytes, *, label: str
+) -> tuple[LegInfoVersion, str] | None:
+    """Return a version page's triple and its variant slug, or ``None`` without a triple.
+
+    A note the slug rules cannot read (an impossible date, an unsafe op value)
+    raises :class:`CaliforniaVersionError` with that cause.
+    """
+    version = leginfo_page_version(html_bytes)
+    if version is None:
+        return None
+    soup = BeautifulSoup(html_bytes, "html.parser")
+    history = _california_html_history(soup.find(id="single_law_section") or soup)
+    try:
+        return version, leginfo_variant_slug(history, version)
+    except ValueError as exc:
+        raise CaliforniaVersionError(f"{label}: {exc}") from exc
+
+
+def _select_california_versions(
+    captured: list[_CaliforniaCapturedVersion],
+    *,
+    selector: str,
+    label: str,
+) -> tuple[_CaliforniaCapturedVersion, ...]:
+    slugs = [item.variant for item in captured]
+    duplicates = sorted({slug for slug in slugs if slugs.count(slug) > 1})
+    if duplicates:
+        raise CaliforniaVersionError(
+            f"{label}: concurrent LegInfo versions share variant slug {', '.join(duplicates)}"
+        )
+    if selector == ALL_VERSIONS:
+        return tuple(captured)
+    chosen = tuple(item for item in captured if item.variant == selector)
+    if not chosen:
+        raise CaliforniaVersionError(
+            f"{label}: LegInfo offers {', '.join(slugs) or 'no version'}, not {selector}"
+        )
+    return chosen
+
+
+def _cached_california_versions(
+    download_root: Path,
+    *,
+    law_code: str,
+    section_num: str,
+    selector: str,
+    label: str,
+) -> _CaliforniaVersionCapture | None:
+    """Rebuild a capture from the download cache, or return ``None`` if it is incomplete.
+
+    The cache must hold the picker and a version page for every link it offers,
+    each named by its own variant slug, so a rerun from retained bytes needs no
+    request and selects exactly what the network run selected. Without a cached
+    picker the section is refetched, so missing versions cannot pass for a
+    single-version section. Two cached pages of one version raise.
+    """
+    token = _california_section_token(section_num)
+    picker_path = download_root / _california_picker_html_relative_name(law_code, section_num)
+    pages_dir = download_root / "california-leginfo-sections"
+    by_version: dict[tuple[str, str, str], tuple[bytes, LegInfoVersion, str]] = {}
+    if pages_dir.is_dir():
+        for path in sorted(pages_dir.glob(f"{law_code.upper()}-{token}--*.html")):
+            content = path.read_bytes()
+            if not _california_html_has_section(content):
+                continue
+            identified = _california_page_variant(content, label=label)
+            if identified is None:
+                continue
+            page_version, slug = identified
+            expected_name = _california_section_html_relative_name(law_code, section_num, slug)
+            if path.name != Path(expected_name).name:
+                continue
+            if page_version.normalized() in by_version:
+                raise CaliforniaVersionError(
+                    f"{label}: the download cache holds two pages of {page_version.label}"
+                )
+            by_version[page_version.normalized()] = (content, page_version, slug)
+    if not picker_path.exists():
+        return None
+    picker_bytes = picker_path.read_bytes()
+    picker = parse_leginfo_picker(picker_bytes)
+    if picker is None or not picker.links:
+        return None
+    if any(link.version.normalized() not in by_version for link in picker.links):
+        return None
+    captured = [
+        _CaliforniaCapturedVersion(
+            variant=by_version[link.version.normalized()][2],
+            html_bytes=by_version[link.version.normalized()][0],
+            version=by_version[link.version.normalized()][1],
+            link=link,
+        )
+        for link in picker.links
+    ]
+    return _CaliforniaVersionCapture(
+        selector=selector,
+        picker_bytes=picker_bytes,
+        picker=picker,
+        versions=_select_california_versions(captured, selector=selector, label=label),
+    )
+
+
+def _load_california_section_versions(
+    session: requests.Session,
+    *,
+    law_code: str,
+    section_num: str,
+    selector: str,
+    source_url: str,
+    download_root: Path | None,
+    timeout_seconds: float,
+    request_attempts: int,
+    request_delay_seconds: float,
+) -> _CaliforniaVersionCapture:
+    """Capture every concurrent LegInfo version of a section, then keep the selected ones.
+
+    LegInfo serves a multi-version section as a ``selectFromMultiples``
+    picker. Its links post back through one JSF form, and the view state in
+    that form is good for one post: a second post with the same token gets the
+    picker again (observed live on 2026-09-25 and 2026-09-26; the legacy
+    resolver therefore keeps whichever post happens to succeed). So every
+    version gets its own GET of the picker, whose version list must not change,
+    then one POST of that link with that GET's form fields. A response is
+    accepted only when it is a section page whose ``printPopup()`` triple is
+    the link's. Every version is fetched, whatever the selector, so a variant
+    slug shared by two versions is always caught. Any failure raises
+    :class:`CaliforniaVersionError`.
+
+    With ``download_root`` the first picker and every version page are cached
+    (pages under their variant slugs), and a complete cache is reused with no
+    request at all.
+    """
+    label = f"{law_code} {section_num}@{selector}"
+    if download_root is not None:
+        cached = _cached_california_versions(
+            download_root,
+            law_code=law_code,
+            section_num=section_num,
+            selector=selector,
+            label=label,
+        )
+        if cached is not None:
+            return cached
+    response = _california_get(
+        session,
+        source_url,
+        timeout_seconds=timeout_seconds,
+        request_attempts=request_attempts,
+    )
+    picker_bytes: bytes | None = None
+    picker: LegInfoPicker | None = None
+    captured: list[_CaliforniaCapturedVersion] = []
+    if _california_html_has_section(response.content):
+        identified = _california_page_variant(response.content, label=label)
+        if identified is None:
+            raise CaliforniaVersionError(f"{label}: LegInfo's section page has no version triple")
+        captured.append(
+            _CaliforniaCapturedVersion(identified[1], response.content, identified[0], None)
+        )
+    else:
+        picker = parse_leginfo_picker(response.content)
+        if picker is None or not picker.links:
+            raise CaliforniaVersionError(
+                f"{label}: LegInfo returned neither a section nor a picker"
+            )
+        picker_bytes = response.content
+        current = picker
+        attempts = max(request_attempts, 1)
+        for link in picker.links:
+            post: requests.Response | None = None
+            for attempt in range(attempts):
+                try:
+                    if link.index or attempt:
+                        # The form's view state is spent by any post, so every
+                        # post after the first, retries included, needs a fresh GET.
+                        time.sleep(max(request_delay_seconds, 0.0))
+                        fresh = _california_get(
+                            session,
+                            source_url,
+                            timeout_seconds=timeout_seconds,
+                            request_attempts=request_attempts,
+                        )
+                        reparsed = parse_leginfo_picker(fresh.content)
+                        if reparsed is None or reparsed.versions != picker.versions:
+                            raise CaliforniaVersionError(
+                                f"{label}: LegInfo's picker changed while its versions were "
+                                "fetched"
+                            )
+                        current = reparsed
+                    post = session.post(
+                        urljoin(source_url, current.action),
+                        data=current.post_payload(current.links[link.index]),
+                        timeout=timeout_seconds,
+                    )
+                    post.raise_for_status()
+                    break
+                except requests.RequestException:
+                    if attempt == attempts - 1:
+                        raise
+                    time.sleep(min(2**attempt, 8))
+            assert post is not None
+            content = post.content
+            identified = (
+                _california_page_variant(content, label=label)
+                if _california_html_has_section(content)
+                else None
+            )
+            if identified is None or not identified[0].same_as(link.version):
+                raise CaliforniaVersionError(
+                    f"{label}: posting LegInfo's {link.version.label} link did not return it"
+                )
+            captured.append(_CaliforniaCapturedVersion(identified[1], content, identified[0], link))
+    capture = _CaliforniaVersionCapture(
+        selector=selector,
+        picker_bytes=picker_bytes,
+        picker=picker,
+        versions=_select_california_versions(captured, selector=selector, label=label),
+    )
+    if download_root is not None:
+        if picker_bytes is not None:
+            picker_cache = download_root / _california_picker_html_relative_name(
+                law_code, section_num
+            )
+            picker_cache.parent.mkdir(parents=True, exist_ok=True)
+            picker_cache.write_bytes(picker_bytes)
+        for item in captured:
+            page_cache = download_root / _california_section_html_relative_name(
+                law_code, section_num, item.variant
+            )
+            page_cache.parent.mkdir(parents=True, exist_ok=True)
+            page_cache.write_bytes(item.html_bytes)
+    return capture
+
+
+def _california_print_section_url(
+    law_code: str, section_param: str, version: LegInfoVersion
+) -> str:
+    """LegInfo's GET-addressable page for one version (its ``printPopup()`` target)."""
+    return (
+        f"{CALIFORNIA_LEGINFO_BASE_URL}/faces/printCodeSectionWindow.xhtml"
+        f"?lawCode={quote(law_code)}&sectionNum={quote(section_param)}"
+        f"&op_statues={quote(version.op_statues)}&op_chapter={quote(version.op_chapter)}"
+        f"&op_section={quote(version.op_section)}"
+    )
 
 
 def _california_html_has_section(html_bytes: bytes) -> bool:
@@ -5554,6 +6282,10 @@ def _california_section_token(section: str) -> str:
     return _clean_path_token(section.rstrip("."))
 
 
+def _california_section_variant_token(section: str, variant: str | None) -> str:
+    return variant_segment(_california_section_token(section), variant)
+
+
 def _california_section_heading_body(
     content_bytes: bytes,
     *,
@@ -5676,7 +6408,79 @@ def _california_section_metadata(section: _CaliforniaSection) -> dict[str, Any]:
         "content_file": section.content_file,
         "content_sha256": section.content_sha256,
         "references_to": list(section.references_to),
+    } | (
+        {
+            "variant": section.variant,
+            "canonical_citation_path": section.canonical_citation_path,
+        }
+        if section.variant
+        else {}
+    )
+
+
+def _california_version_section(
+    section: _CaliforniaSection,
+    *,
+    capture: _CaliforniaVersionCapture,
+    captured: _CaliforniaCapturedVersion,
+    picker_source_key: str | None,
+) -> tuple[_CaliforniaSection, dict[str, Any]]:
+    """Turn one captured version page into its variant row and provenance metadata.
+
+    The row takes the version's own ``printPopup()`` triple as ``op_*`` and
+    LegInfo's GET-addressable print page for that triple as ``source_url``
+    (the display URL answers with the picker). The metadata records every
+    version the picker offered, in picker order, the variant paths this
+    capture carries, and the exact form post that retrieved this version,
+    without its per-request view state.
+    """
+    version = captured.version
+    section_param = (
+        captured.link.param_map.get("sectionNum") if captured.link is not None else None
+    ) or f"{section.section.rstrip('.')}."
+    display_url = _california_section_url(section.law_code, section.section)
+    variant_section = _dataclass_replace(
+        section,
+        variant=captured.variant,
+        op_statues=version.op_statues,
+        op_chapter=version.op_chapter,
+        op_section=version.op_section,
+        source_url=_california_print_section_url(section.law_code, section_param, version),
+    )
+    metadata: dict[str, Any] = {
+        "leginfo_version_label": version.label,
+        "variant_citation_paths": [
+            _dataclass_replace(section, variant=variant).citation_path
+            for variant in capture.variants
+        ],
     }
+    metadata["leginfo_note_clauses"] = leginfo_note_clauses(section.history)
+    metadata["leginfo_version_count"] = (
+        len(capture.picker.links) if capture.picker is not None else 1
+    )
+    if capture.picker is not None and captured.link is not None:
+        metadata["leginfo_picker"] = {
+            "source_path": picker_source_key,
+            "sha256": sha256_bytes(capture.picker_bytes or b""),
+            "index": captured.link.index,
+            "versions": [
+                {
+                    "op_statues": link.version.op_statues,
+                    "op_chapter": link.version.op_chapter,
+                    "op_section": link.version.op_section,
+                    "text": link.text,
+                }
+                for link in capture.picker.links
+            ],
+        }
+        metadata["leginfo_retrieval"] = {
+            "method": "POST",
+            "url": urljoin(display_url, capture.picker.action),
+            "fields": capture.picker.retrieval_fields(captured.link),
+        }
+    else:
+        metadata["leginfo_retrieval"] = {"method": "GET", "url": display_url}
+    return variant_section, metadata
 
 
 def _california_section_provision(
@@ -5713,7 +6517,8 @@ def _california_section_provision(
         identifiers={
             "california:law_code": section.law_code,
             "california:section": section.section,
-        },
+        }
+        | ({"california:variant": section.variant} if section.variant else {}),
         metadata=_california_section_metadata(section),
     )
 
@@ -7567,6 +8372,22 @@ def _replace_container_source(
         sha256=sha256,
         metadata=metadata,
     )
+
+
+def _append_container_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    container: _StateContainer,
+) -> None:
+    """Record a container whose listing yielded nothing as an inventory gap.
+
+    The item has no matching provision, so coverage lists it in
+    ``missing_from_provisions`` and reads incomplete.
+    """
+    if container.citation_path in seen:
+        return
+    seen.add(container.citation_path)
+    items.append(_container_inventory_item(container))
 
 
 def _container_inventory_item(container: _StateContainer) -> SourceInventoryItem:

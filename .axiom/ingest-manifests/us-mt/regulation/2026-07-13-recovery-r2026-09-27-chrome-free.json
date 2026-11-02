@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free.json",
+      "sha256": "adbc2ed7ce1830a97478cbfa0f4b9783f00986bfe73e26c48cf6c8da58397b1f"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free.json",
+      "sha256": "a4c610dc76ef40b8fc46c13744e2c306edacc42e9d351d2666c825ecca6aba1d"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free.jsonl",
+      "sha256": "00aba96672b0d3cb87946a6411670965e3e4fcb0ce061a4f563caa485e1946ef"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/montana-rules/html/37-78-420-81418fed-12b0-4ed9-a953-50b600e353d1-d13f3962-467e-4fbc-9c2a-f0fdba477711.html",
+      "sha256": "d94053c9aa73addab6916b7bb9c557c0e94116d74613f1fca23080d3f18c28ae"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/montana-rules/pdf/37-78-420-81418fed-12b0-4ed9-a953-50b600e353d1-d13f3962-467e-4fbc-9c2a-f0fdba477711.pdf",
+      "sha256": "d3d670b45101aa1b401c57253999144670bfba62a57261a882089154073a35a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/montana-rules/policies/37-78-420-81418fed-12b0-4ed9-a953-50b600e353d1.json",
+      "sha256": "4b29c34efe4b2b30c25ddf9b53b5674f76751931f06371030975bd2874ad4459"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/official-documents/us-mt-arm-37-78",
+      "sha256": "9d51d895c08913793e6a33ab459c914d0f0a706ec97093fac114081902bc8406"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/provenance/us-mt-arm-37-78-420-policy.json",
+      "sha256": "6883531f13a10dc6cf0e5b6163aaeca87acbf157c7b5c46848016f49e54678fc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/provenance/us-mt-arm-37-78-420-version-33678-html.json",
+      "sha256": "e7fedd7c7cede95763b371560cbc74d59d42d8b254a1bc6d86b06f4c201ddca8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/provenance/us-mt-arm-37-78-420-version-33678-pdf.json",
+      "sha256": "c95ca614deb31df7156e28c9d8179d7313400c1bbd53b3434c0751796847cbe9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/provenance/us-mt-arm-37-78.json",
+      "sha256": "4a02c4aefc5c1549f63804f6fa7ca873c178359245cf3b13afc36a08f0cbafb9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0777314cc03a480b2ab6da28543a00fb7ce3d56c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_mt_arm_37_78_420_successor.py build --base data/corpus (verification sources: scripts/repro/us_mt_arm_37_78_420_successor.py fetch --base data/corpus, 2026-09-27; run note: docs/ingest-runs/2026-09-27-us-mt-arm-37-78-420-successor.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-27T19:31:22.789388+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QrDQFBV4VEM1f8R5d+uLWv7gs5Vu1nCjmk+1G8jXXe5fn8Sx93j/p+05ukEMomQoOm2AWHeO688FqPpPG9XRCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-09-27-chrome-free"
+}

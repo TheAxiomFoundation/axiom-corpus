@@ -1,0 +1,16 @@
+# Reviewed against the retained official XML and the principal rows selected by
+# nz-rulespec-2026-10-20. Dates, principal identity and Part bindings come from XML.
+targets:
+  section/4: section/20
+  section/6: section/63
+  section/7: section/113
+  section/10: schedule/1
+  section/11: schedule/2
+  section/12: schedule/3
+  section/13: schedule/1
+  section/14: schedule/2
+  section/15: schedule/4/part/7/clause/lms118453
+insertions:
+  - section/5
+  - section/8
+  - section/9

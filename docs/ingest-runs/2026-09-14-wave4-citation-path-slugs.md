@@ -3,7 +3,7 @@
 Date: 2026-09-14
 Branch `fix/wave4-citation-path-slugs` cut from `origin/main` in the sparse worktree
 `~/axiom-corpus-worktrees/slug-fix` (`data/corpus/` excluded, never symlinked); every extraction
-wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`).
+wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`).
 
 ## Problem
 
@@ -142,7 +142,7 @@ Verification:
 
 ## Controller
 
-Artifacts are unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`
+Artifacts are unsigned, on the controller's disk under `<axiom-corpus checkout>/data/corpus`
 (provisions, inventory, coverage, sources), not committed; no `.axiom/ingest-manifests` entry exists
 yet for the `-r2` versions. Remaining steps are the controller's: `sign-ingest-manifest` per scope,
 merge into the next selector (in place of the five held-out first-run scopes), re-validate, sign,
@@ -167,7 +167,7 @@ with the `-r2` scopes.
 ## Rebuild
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 uv run axiom-corpus-ingest extract-state-statutes --base $B \
   --manifest manifests/state-income-tax-chapters-2026-09-14.yaml \
   --only-jurisdiction us-ne --only-jurisdiction us-de --only-jurisdiction us-al

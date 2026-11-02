@@ -944,7 +944,7 @@ def build_program(
                 "title": tiers_cfg["screener"]["title"],
                 "definition": tiers_cfg["screener"]["definition"],
                 "membership": {
-                    "rule": "The PolicyEngine-US references of the release it was built from (the newest, by "
+                    "rule": "The reference model's citations at the release it was built from (the newest, by "
                     "default) and the plan's documents, each in the layer of the law it names, grouped into "
                     "documents",
                     "references": cfg["policyengine_us"]["references"].format(program=pid),
@@ -968,7 +968,7 @@ def build_program(
                 "title": tiers_cfg["full"]["title"],
                 "definition": tiers_cfg["full"]["definition"],
                 "membership": {
-                    "rule": "Every in-scope document of the screener tier; the federal law of the program, "
+                    "rule": "Every in-scope document of Tier 1; the federal law of the program, "
                     "section by section, from its needs-closure schema, and its federal guidance manifests; "
                     "each state's own sources from its manifests for the program; and the sources the "
                     "config knows the corpus does not hold yet",

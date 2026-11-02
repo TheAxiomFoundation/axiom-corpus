@@ -1,0 +1,1 @@
+Add the `uk-rulespec-2026-11-02-uc-retirement-pension-income` release selector: rulespec-uk's corpus pin plus the two scopes that define the retirement pension income Universal Credit counts as unearned income (195 scopes, publish-only).
