@@ -319,6 +319,49 @@ def extract_arizona_revised_statutes(
     for title in titles:
         if limit is not None and section_count >= limit:
             break
+        title_metadata: dict[str, Any] = {
+            "kind": "title",
+            "title": title.number,
+            "repealed": title.repealed,
+        }
+        # A container is written as a provision only once its own table of
+        # contents lists children. Otherwise it stays an inventory gap, so
+        # coverage reads incomplete instead of silently losing everything
+        # under it. A page that could not be fetched is sourced from the
+        # parent listing that names it; a page that was read but lists nothing
+        # is sourced from that page. A title the index lists without a link
+        # (a repealed title) has no detail page and is written as before.
+        document: ArizonaTitleDocument | None = None
+        if title.source_url is not None:
+            try:
+                title_source = fetcher.fetch_title_detail(title)
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"title {title.number}: {exc}")
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=title.citation_path,
+                    source_url=title.source_url,
+                    recorded=title_index_recorded,
+                    metadata=title_metadata,
+                )
+                continue
+            title_path, title_recorded = _record_source(store, jurisdiction, run_id, title_source)
+            source_paths.append(title_path)
+            document = parse_arizona_title_detail(
+                title_source.data, title=title, base_url=base_url
+            )
+            if not document.chapters:
+                errors.append(f"title {title.number}: no chapters listed in title detail page")
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=title.citation_path,
+                    source_url=title_source.source_url,
+                    recorded=title_recorded,
+                    metadata=title_metadata,
+                )
+                continue
         if title.citation_path not in seen:
             seen.add(title.citation_path)
             title_count += 1
@@ -343,22 +386,37 @@ def extract_arizona_revised_statutes(
                 level=0,
                 ordinal=title.ordinal,
                 identifiers={"arizona:title": title.number},
-                metadata={
-                    "kind": "title",
-                    "title": title.number,
-                    "repealed": title.repealed,
-                },
+                metadata=title_metadata,
             )
-        if title.source_url is None:
+        if document is None:
             continue
 
-        title_source = fetcher.fetch_title_detail(title)
-        title_path, title_recorded = _record_source(store, jurisdiction, run_id, title_source)
-        source_paths.append(title_path)
-        document = parse_arizona_title_detail(title_source.data, title=title, base_url=base_url)
-
+        listed_chapters = {section.chapter for section in document.sections}
+        listed_articles = {
+            section.article.citation_path
+            for section in document.sections
+            if section.article is not None
+        }
         for chapter in document.chapters:
             if chapter.citation_path in seen:
+                continue
+            if chapter.chapter not in listed_chapters:
+                errors.append(
+                    f"title {title.number} chapter {chapter.chapter}: "
+                    "no sections listed in title detail page"
+                )
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=chapter.citation_path,
+                    source_url=title_source.source_url,
+                    recorded=title_recorded,
+                    metadata={
+                        "kind": "chapter",
+                        "title": title.number,
+                        "chapter": chapter.chapter,
+                    },
+                )
                 continue
             seen.add(chapter.citation_path)
             container_count += 1
@@ -396,6 +454,25 @@ def extract_arizona_revised_statutes(
 
         for article in document.articles:
             if article.citation_path in seen:
+                continue
+            if article.citation_path not in listed_articles:
+                errors.append(
+                    f"title {title.number} chapter {article.chapter} article {article.article}: "
+                    "no sections listed in title detail page"
+                )
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=article.citation_path,
+                    source_url=title_source.source_url,
+                    recorded=title_recorded,
+                    metadata={
+                        "kind": "article",
+                        "title": title.number,
+                        "chapter": article.chapter,
+                        "article": article.article,
+                    },
+                )
                 continue
             seen.add(article.citation_path)
             container_count += 1
@@ -852,6 +929,36 @@ def _append_record(
             kind=kind,
             legal_identifier=legal_identifier,
             identifiers=identifiers,
+            metadata=metadata,
+        )
+    )
+
+
+def _append_inventory_gap(
+    items: list[SourceInventoryItem],
+    seen: set[str],
+    *,
+    citation_path: str,
+    source_url: str,
+    recorded: _RecordedSource,
+    metadata: dict[str, Any],
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``recorded`` is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source_url,
+            source_path=recorded.source_path,
+            source_format=recorded.source_format,
+            sha256=recorded.sha256,
             metadata=metadata,
         )
     )
