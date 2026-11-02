@@ -10,6 +10,8 @@ unusable is sourced from its own page.
 """
 
 import json
+from io import BytesIO
+from zipfile import ZipFile
 
 import pytest
 
@@ -23,6 +25,7 @@ from axiom_corpus.corpus.state_adapters.michigan import extract_michigan_compile
 from axiom_corpus.corpus.state_adapters.missouri import extract_missouri_revised_statutes
 from axiom_corpus.corpus.state_adapters.nevada import extract_nevada_nrs
 from axiom_corpus.corpus.state_adapters.new_hampshire import extract_new_hampshire_rsa
+from axiom_corpus.corpus.state_adapters.new_mexico import extract_new_mexico_statutes
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -63,6 +66,8 @@ from tests.test_corpus_new_hampshire import (
 )
 from tests.test_corpus_new_hampshire import SAMPLE_ROOT_HTML as NH_ROOT_HTML
 from tests.test_corpus_new_hampshire import SAMPLE_TITLE_HTML as NH_TITLE_HTML
+from tests.test_corpus_new_mexico import SAMPLE_NAV_HTML as NM_NAV_HTML
+from tests.test_corpus_new_mexico import _sample_epub as nm_sample_epub
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -594,3 +599,70 @@ def test_new_hampshire_repealed_chapter_without_sections_stays_complete(tmp_path
     assert report.coverage.complete is True
     provisions = {record.citation_path for record in load_provisions(report.provisions_path)}
     assert provisions == NH_EXTRACTED | {"us-nh/statute/chapter-77-b"}
+
+
+# --- New Mexico: navigation pages -> one chapter ePub per chapter ---
+
+NM_NAV = "new-mexico-nmonesource-nav-html/nav_date-page-1.html"
+NM_EPUB_27 = "new-mexico-nmonesource-epub/chapter-27/n-4358-en.epub"
+NM_EXTRACTED = {
+    "us-nm/statute/chapter-7",
+    "us-nm/statute/chapter-7/article-1",
+    "us-nm/statute/7-1-1",
+    "us-nm/statute/7-1-2",
+    "us-nm/statute/7-1-1--effective-2026-07-01",
+    "us-nm/statute/7-1-2.1",
+    "us-nm/statute/7-1-2.2",
+    "us-nm/statute/7-1-3",
+}
+
+
+def _zip(files: dict[str, str]) -> bytes:
+    buffer = BytesIO()
+    with ZipFile(buffer, "w") as archive:
+        for name, text in files.items():
+            archive.writestr(name, text)
+    return buffer.getvalue()
+
+
+NM_FAILED_EPUB = {
+    "maintenance": MAINTENANCE.encode(),
+    "empty": b"",
+    # A zip that is not an ePub of the chapter: no table of contents.
+    "wrong-shape": _zip({"mimetype": "application/epub+zip"}),
+    "no-children": _zip(
+        {
+            "mimetype": "application/epub+zip",
+            "OEBPS/toc.ncx": '<?xml version="1.0"?><ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"><navMap/></ncx>',
+        }
+    ),
+}
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_new_mexico_failed_chapter_epub_remains_inventory_gap(tmp_path, failure):
+    # On main a chapter ePub that could not be fetched, or held no table of
+    # contents, raised out of the run, and one that could not be unzipped was
+    # logged as an error with no inventory item.
+    source = tmp_path / "source"
+    _write_sources(source, {NM_NAV: NM_NAV_HTML})
+    epub_7 = source / "new-mexico-nmonesource-epub/chapter-7/n-4340-en.epub"
+    epub_7.parent.mkdir(parents=True)
+    epub_7.write_bytes(nm_sample_epub())
+    if failure != "missing-file":
+        epub_27 = source / NM_EPUB_27
+        epub_27.parent.mkdir(parents=True)
+        epub_27.write_bytes(NM_FAILED_EPUB[failure])
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_new_mexico_statutes(
+        store, version="2026-05-08", source_dir=source, request_delay_seconds=0
+    )
+    assert report.section_count == 6
+    assert "chapter 27" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NM_EXTRACTED | {"us-nm/statute/chapter-27"},
+        missing={"us-nm/statute/chapter-27"},
+        gap_source=NM_NAV if failure == "missing-file" else NM_EPUB_27,
+    )
