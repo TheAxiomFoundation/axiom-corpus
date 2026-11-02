@@ -1,0 +1,1 @@
+Add signed UK statute and regulation scopes `2026-11-02-uk-uc-retirement-pension-income`: State Pension Credit Act 2002 s.16, Universal Credit Regulations 2013 regs 67 and 73, and State Pension Credit Regulations 2002 reg 16, which define the retirement pension income that Universal Credit counts as unearned income.

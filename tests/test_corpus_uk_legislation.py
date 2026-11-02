@@ -1,7 +1,10 @@
 import json
-from datetime import date
+import re
+from datetime import date, datetime, timedelta, timezone
 
 import pytest
+from hypothesis import given
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.uk_legislation import _date_text, extract_uk_legislation_sections
@@ -919,3 +922,72 @@ def test_extract_uk_legislation_non_date_version_without_explicit_dates_raises(t
             version="ctr",
             source_xmls=(source_xml,),
         )
+
+
+# ---------------------------------------------------------------------------
+# _date_text: a ``datetime`` is a ``date`` subclass (axiom-corpus#809). It must
+# resolve to the date it falls on, never to a ``YYYY-MM-DDTHH:MM:SS`` string.
+# ---------------------------------------------------------------------------
+
+
+def test_date_text_datetime_value_resolves_to_its_date():
+    value = datetime(2026, 4, 6, 12, 30)
+    assert _date_text(value, "unused-fallback", flag="--expression-date") == "2026-04-06"
+
+
+def test_date_text_aware_datetime_resolves_to_its_own_calendar_date():
+    # The date the value names in its own offset, which is also the prefix of
+    # its isoformat() string: no conversion to UTC or to the host's zone.
+    value = datetime(2026, 4, 6, 23, 30, tzinfo=timezone(timedelta(hours=-5)))
+    assert _date_text(value, "unused-fallback", flag="--source-as-of") == "2026-04-06"
+    assert _date_text(value.isoformat(), "unused", flag="--source-as-of") == "2026-04-06"
+
+
+@pytest.mark.parametrize("field", ["source_as_of", "expression_date"])
+def test_extract_uk_legislation_datetime_writes_date_only_field(tmp_path, field):
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "child-benefit-reg-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_REGULATION_XML)
+
+    extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-05-29-uk-benefits",
+        source_xmls=(source_xml,),
+        **{field: datetime(2026, 4, 6, 12, 30)},
+    )
+
+    provisions_path = base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl"
+    row = json.loads(provisions_path.read_text().strip())
+    assert row[field] == "2026-04-06"
+    for date_field in ("source_as_of", "expression_date"):
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", row[date_field]), row[date_field]
+
+
+_DATE_TEXT_STRINGS = st.one_of(
+    st.dates().map(date.isoformat),
+    st.datetimes().map(datetime.isoformat),
+    st.tuples(st.dates(), st.text()).map(lambda pair: pair[0].isoformat() + pair[1]),
+    st.text(),
+)
+_DATE_TEXT_VALUES = st.one_of(
+    st.none(),
+    st.dates(),
+    st.datetimes(timezones=st.none() | st.timezones()),
+    _DATE_TEXT_STRINGS,
+)
+
+
+@given(value=_DATE_TEXT_VALUES, fallback=_DATE_TEXT_STRINGS)
+def test_date_text_accepted_result_is_always_a_calendar_date(value, fallback):
+    # The fallback is the version slug or the resolved source_as_of text, so
+    # it is always a string. Every accepted input resolves to a date-only
+    # ISO string; a date or datetime resolves to the date it names.
+    try:
+        result = _date_text(value, fallback, flag="--expression-date")
+    except ValueError:
+        return
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", result), result
+    assert date.fromisoformat(result).isoformat() == result
+    if isinstance(value, date):
+        expected = value.date() if isinstance(value, datetime) else value
+        assert result == expected.isoformat()

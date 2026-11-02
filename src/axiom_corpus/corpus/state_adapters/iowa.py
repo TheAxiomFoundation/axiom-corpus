@@ -330,9 +330,57 @@ def extract_iowa_code(
     if not titles:
         raise ValueError(f"no Iowa titles selected for filter: {only_title!r}")
 
+    # A container is written as a provision only once its own table of
+    # contents lists children. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing everything under
+    # it. A page that could not be fetched is sourced from the parent listing
+    # that names it; a page that was read but lists nothing is sourced from
+    # that page. A chapter headed "RESERVED" is skipped, and a title whose
+    # index lists only reserved chapters is written as before.
     for title in titles:
         if remaining_sections is not None and remaining_sections <= 0:
             break
+        title_metadata: dict[str, Any] = {
+            "kind": "title",
+            "source_year": source_year,
+            **(
+                {"chapter_range": title.chapter_range}
+                if title.chapter_range is not None
+                else {}
+            ),
+        }
+        try:
+            chapter_index = fetcher.fetch_chapter_index(title)
+        except (requests.RequestException, OSError) as exc:
+            errors.append(f"title {title.roman}: {exc}")
+            _append_inventory_gap(
+                items,
+                seen,
+                citation_path=title.citation_path,
+                source_url=title.source_url,
+                recorded=title_index_recorded,
+                metadata=title_metadata,
+            )
+            continue
+        chapter_index_path, chapter_index_recorded = _record_source(
+            store,
+            jurisdiction,
+            run_id,
+            chapter_index,
+        )
+        source_paths.append(chapter_index_path)
+        chapters = parse_iowa_chapter_index(chapter_index.data, title=title, base_url=base_url)
+        if not chapters and not _lists_reserved_chapter(chapter_index.data):
+            errors.append(f"title {title.roman}: no chapters listed in chapter index")
+            _append_inventory_gap(
+                items,
+                seen,
+                citation_path=title.citation_path,
+                source_url=chapter_index_recorded.source_url,
+                recorded=chapter_index_recorded,
+                metadata=title_metadata,
+            )
+            continue
         if title.citation_path not in seen:
             seen.add(title.citation_path)
             title_count += 1
@@ -357,31 +405,58 @@ def extract_iowa_code(
                 level=0,
                 ordinal=title.ordinal,
                 identifiers={"iowa:title": title.roman},
-                metadata={
-                    "kind": "title",
-                    "source_year": source_year,
-                    **(
-                        {"chapter_range": title.chapter_range}
-                        if title.chapter_range is not None
-                        else {}
-                    ),
-                },
+                metadata=title_metadata,
             )
 
-        chapter_index = fetcher.fetch_chapter_index(title)
-        chapter_index_path, chapter_index_recorded = _record_source(
-            store,
-            jurisdiction,
-            run_id,
-            chapter_index,
-        )
-        source_paths.append(chapter_index_path)
-        chapters = parse_iowa_chapter_index(chapter_index.data, title=title, base_url=base_url)
         if chapter_filter is not None:
             chapters = tuple(chapter for chapter in chapters if chapter.chapter == chapter_filter)
         for chapter in chapters:
             if remaining_sections is not None and remaining_sections <= 0:
                 break
+            chapter_metadata: dict[str, Any] = {
+                "kind": "chapter",
+                "source_year": source_year,
+                "title": title.roman,
+                "chapter": chapter.chapter,
+                **({"chapter_pdf_url": chapter.pdf_url} if chapter.pdf_url else {}),
+                **({"chapter_rtf_url": chapter.rtf_url} if chapter.rtf_url else {}),
+            }
+            try:
+                section_index = fetcher.fetch_section_index(chapter)
+            except (requests.RequestException, OSError) as exc:
+                errors.append(f"chapter {chapter.chapter}: {exc}")
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=chapter.citation_path,
+                    source_url=chapter.source_url,
+                    recorded=chapter_index_recorded,
+                    metadata=chapter_metadata,
+                )
+                continue
+            section_index_path, section_index_recorded = _record_source(
+                store,
+                jurisdiction,
+                run_id,
+                section_index,
+            )
+            source_paths.append(section_index_path)
+            sections = parse_iowa_section_index(
+                section_index.data,
+                chapter=chapter,
+                base_url=base_url,
+            )
+            if not sections:
+                errors.append(f"chapter {chapter.chapter}: no sections listed in section index")
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=chapter.citation_path,
+                    source_url=section_index_recorded.source_url,
+                    recorded=section_index_recorded,
+                    metadata=chapter_metadata,
+                )
+                continue
             if chapter.citation_path not in seen:
                 seen.add(chapter.citation_path)
                 container_count += 1
@@ -406,31 +481,9 @@ def extract_iowa_code(
                     level=1,
                     ordinal=chapter.ordinal,
                     identifiers={"iowa:title": title.roman, "iowa:chapter": chapter.chapter},
-                    metadata={
-                        "kind": "chapter",
-                        "source_year": source_year,
-                        "title": title.roman,
-                        "chapter": chapter.chapter,
-                        **({"chapter_pdf_url": chapter.pdf_url} if chapter.pdf_url else {}),
-                        **({"chapter_rtf_url": chapter.rtf_url} if chapter.rtf_url else {}),
-                    },
+                    metadata=chapter_metadata,
                 )
 
-            section_index = fetcher.fetch_section_index(chapter)
-            section_index_path, section_index_recorded = _record_source(
-                store,
-                jurisdiction,
-                run_id,
-                section_index,
-            )
-            source_paths.append(section_index_path)
-            sections = parse_iowa_section_index(
-                section_index.data,
-                chapter=chapter,
-                base_url=base_url,
-            )
-            if not sections:
-                continue
             selected_sections: list[IowaSectionListing] = []
             for section in sections:
                 if (
@@ -675,6 +728,17 @@ def parse_iowa_chapter_index(
             )
         )
     return tuple(chapters)
+
+
+def _lists_reserved_chapter(html: str | bytes) -> bool:
+    """Whether a chapter index lists a chapter headed "RESERVED"."""
+    soup = BeautifulSoup(_decode(html), "lxml")
+    for row in soup.select("#iacList tbody tr") or soup.find_all("tr"):
+        cells = row.find_all("td")
+        match = _CHAPTER_RE.match(_clean_text(cells[0])) if cells else None
+        if match is not None and match.group("heading").strip().upper() == "RESERVED":
+            return True
+    return False
 
 
 def parse_iowa_section_index(
@@ -962,6 +1026,36 @@ def _append_record(
             kind=kind,
             legal_identifier=legal_identifier,
             identifiers=identifiers,
+            metadata=metadata,
+        )
+    )
+
+
+def _append_inventory_gap(
+    items: list[SourceInventoryItem],
+    seen: set[str],
+    *,
+    citation_path: str,
+    source_url: str,
+    recorded: _RecordedSource,
+    metadata: dict[str, Any],
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``recorded`` is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source_url,
+            source_path=recorded.source_path,
+            source_format=recorded.source_format,
+            sha256=recorded.sha256,
             metadata=metadata,
         )
     )

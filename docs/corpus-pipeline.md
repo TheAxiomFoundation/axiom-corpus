@@ -185,7 +185,7 @@ from the title structure, and `extract-ecfr` gives the same evidence to the XML 
 the two passes confirm the same sections. Headings drop one designation (`Sec. 1-1`,
 `Section 03`, `§ 52. 36`). The inventory records that heading because the eCFR's
 `label_description` splits inside `52. 36`. `--section` selectors take the PART.SECTION
-form (`241.19-8.1`, `105-60.001`). Before 2026-10-12 the inventory skipped 61 of these 62
+form (`241.19-8.1`, `105-60.001`). Before this change the inventory skipped 61 of these 62
 sections and filed `105.60.001` under part 105 (`us/regulation/41/105/60.001`), and the
 XML pass read `19-8.1` as part 8, section 1. No locked eCFR source contains these parts.
 

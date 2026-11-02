@@ -471,8 +471,29 @@ def test_lettered_appendix_of_a_hyphenated_part():
     ],
 )
 def test_hyphenated_part_appendix_rejects_unicode_lookalikes(identifier):
-    assert ecfr._appendix_citation_from_identifier(41, identifier) is None
-    assert ecfr._appendix_citation_from_identifier(41, identifier, require_supported=False) is None
+    assert ecfr._part_appendix_from_identifier(identifier) is None
+    assert ecfr._part_appendix_from_identifier(identifier, require_supported=False) is None
+
+
+@pytest.mark.parametrize(
+    "identifier,path,legal",
+    [
+        ("Appendix to Part 60-20", "us/regulation/41/60-20/appendix", "41 CFR part 60-20, appendix"),
+        (
+            "Appendix II to Part 60-300",
+            "us/regulation/41/60-300/appendix-ii",
+            "41 CFR part 60-300, appendix II",
+        ),
+    ],
+)
+def test_hyphenated_part_takes_unnumbered_and_roman_appendices(identifier, path, legal):
+    """The part-appendix grammar reads a hyphenated part in every designator form."""
+    appendix = ecfr._part_appendix_from_identifier(identifier)
+
+    assert appendix is not None
+    assert appendix.citation_path(41) == path
+    assert appendix.legal_identifier(41) == legal
+    assert _valid_citation_path(path)
 
 
 def test_hyphenated_part_appendix_naming_another_part_fails_closed():
@@ -741,25 +762,31 @@ def _old_appendix(title, identifier, supported):
 )
 def test_property_appendix_part_grammar(title, designator, part, supported):
     identifier = f"Appendix {designator} to Part {part}"
-    new = ecfr._appendix_citation_from_identifier(title, identifier, require_supported=supported)
-    if "-" not in part:
-        # The alphanumeric form parses exactly as before, lookalikes included.
-        assert new == _old_appendix(title, identifier, supported)
-        return
-    # A hyphenated part is new: ASCII only, and every path it yields is schema-valid.
+    parsed = ecfr._part_appendix_from_identifier(identifier, require_supported=supported)
+    new = (
+        None
+        if parsed is None
+        else (parsed.citation_path(title), parsed.part, parsed.appendix)
+    )
+    # Every part, hyphenated or not, matches ASCII only, and every path it yields is
+    # schema-valid. The part-appendix grammar (#831) also supports roman numerals.
     grammatical = (
         re.fullmatch(ecfr._PART_IDENTIFIER_PATTERN, part) is not None
         and re.fullmatch("[0-9A-Za-z]+", designator) is not None
     )
-    designator_ok = not supported or designator.isdigit() or (
-        len(designator) == 1 and designator.isalpha()
-    )
+    designator_ok = not supported or ecfr._is_supported_appendix_designator(designator)
     if grammatical and designator_ok:
         appendix = designator.lower()
         assert new == (f"us/regulation/{title}/{part}/appendix-{appendix}", part, appendix)
         assert _valid_citation_path(new[0])
     else:
         assert new is None
+    if "-" not in part and designator.isascii() and part.isascii():
+        # The alphanumeric form parses as before, except that a roman numeral is now
+        # supported; non-ASCII look-alikes, which it once read, now fail closed.
+        old = _old_appendix(title, identifier, supported)
+        if old is not None or not (supported and ecfr._is_roman_numeral(designator)):
+            assert new == old
 
 
 def _old_filter(items, only_sections):
