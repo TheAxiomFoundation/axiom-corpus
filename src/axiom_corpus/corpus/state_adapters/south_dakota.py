@@ -979,12 +979,14 @@ def _inventory_item(
     )
 
 
-_EMPTY_BY_LAW_STATUSES = frozenset({"repealed", "transferred", "superseded"})
+# Whole words only, bracketed or not: ``_status`` matches substrings, so a
+# word that merely contains one of these would read as a status there.
+_EMPTY_BY_LAW_RE = re.compile(r"\b(?:reserved|repealed|transferred|superseded)\b", re.I)
 
 
 def _empty_by_law(heading: str | None) -> bool:
     """Whether a title or chapter catchline says it lists nothing by law."""
-    return _status(heading, None) in _EMPTY_BY_LAW_STATUSES
+    return heading is not None and _EMPTY_BY_LAW_RE.search(heading) is not None
 
 
 def _html_field(payload: dict[str, Any]) -> str:

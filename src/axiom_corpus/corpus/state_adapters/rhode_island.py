@@ -299,7 +299,7 @@ def extract_rhode_island_general_laws(
         title_index = parse_rhode_island_title_index(title_page.data, title=title)
         title_heading = title_index.heading or title.heading
         if not title_index.child_containers and not _empty_by_law(
-            title_index.status or _status(title.heading, None, ())
+            title.heading, title_index.heading, *title_index.source_history
         ):
             errors.append(f"title {title.number}: no chapters listed on title page")
             _append_gap(
@@ -366,7 +366,9 @@ def extract_rhode_island_general_laws(
             if (
                 not chapter_index.child_containers
                 and not chapter_index.section_links
-                and not _empty_by_law(chapter_provision.status)
+                and not _empty_by_law(
+                    chapter_link.heading, chapter_index.heading, *chapter_index.source_history
+                )
             ):
                 errors.append(f"chapter {chapter_link.source_id}: no sections or parts listed")
                 _append_container_gap(seen, items, chapter_provision, source=chapter_source)
@@ -416,7 +418,7 @@ def extract_rhode_island_general_laws(
                         source_year=source_year,
                     )
                     if not child_index.section_links and not _empty_by_law(
-                        child_provision.status
+                        child_link.heading, child_index.heading, *child_index.source_history
                     ):
                         errors.append(f"{child_label}: no sections listed")
                         _append_container_gap(seen, items, child_provision, source=child_source)
@@ -858,12 +860,14 @@ def _append_section(
     )
 
 
-_EMPTY_BY_LAW_STATUSES = frozenset({"repealed", "reserved", "obsolete", "superseded"})
+# Whole words only, bracketed or not ("[Repealed.]", "Reserved"): ``_status``
+# matches substrings, so "Preserved" would read as reserved there.
+_EMPTY_BY_LAW_RE = re.compile(r"\b(?:reserved|repealed|transferred|superseded)\b", re.I)
 
 
-def _empty_by_law(status: str | None) -> bool:
-    """Whether a container's status means it lists nothing by law."""
-    return status in _EMPTY_BY_LAW_STATUSES
+def _empty_by_law(*texts: str | None) -> bool:
+    """Whether a container's listing caption, heading or history says it lists nothing by law."""
+    return any(text and _EMPTY_BY_LAW_RE.search(text) for text in texts)
 
 
 def _title_metadata(title: RhodeIslandTitle) -> dict[str, Any]:

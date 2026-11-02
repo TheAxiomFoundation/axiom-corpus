@@ -822,13 +822,16 @@ def test_rhode_island_failed_part_toc_remains_inventory_gap(tmp_path, monkeypatc
     )
 
 
-def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(tmp_path, monkeypatch):
-    # The title index marks chapter 1-1 "[Repealed.]" and its page lists no
-    # sections: empty by law, so the chapter is written and coverage is complete.
+@pytest.mark.parametrize("marker", ["[Repealed.]", "[Reserved.]", "Reserved", "Superseded"])
+def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(
+    tmp_path, monkeypatch, marker
+):
+    # The title index marks chapter 1-1 (as in "[Repealed.]") and its page lists
+    # no sections: empty by law, so the chapter is written and coverage is complete.
     pages = dict(RI_GOOD_PAGES)
     pages["TITLE1/INDEX.HTM"] = RI_TITLE_1.replace(
         '<p><a href="1-2',
-        '<p><a href="1-1/INDEX.htm">Chapter 1-1&nbsp;Airports Division [Repealed.]</a></p>\n'
+        f'<p><a href="1-1/INDEX.htm">Chapter 1-1&nbsp;Airports Division {marker}</a></p>\n'
         '<p><a href="1-2',
     )
     pages["TITLE1/1-1/INDEX.htm"] = RI_EMPTY_CHAPTER.replace(
@@ -839,6 +842,28 @@ def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(tmp_path, 
     assert report.coverage.complete is True
     inventory, provisions = _report_paths(report)
     assert inventory == provisions == RI_TITLE_1_PATHS | {"us-ri/statute/1-1"}
+
+
+def test_rhode_island_preserved_is_not_a_reserved_chapter(tmp_path, monkeypatch):
+    # "Preserved" contains "reserved", which the record status matches as a
+    # substring. The exemption matches whole words, so a chapter whose heading
+    # says "Preserved" and whose page lists nothing is a gap.
+    pages = dict(RI_GOOD_PAGES)
+    pages["TITLE1/INDEX.HTM"] = RI_TITLE_1.replace(
+        "</p>\n</body>",
+        '</p>\n<p><a href="1-3/INDEX.htm">Chapter 1-3&nbsp;Preserved Airfields</a></p>\n</body>',
+    )
+    failed = "TITLE1/1-3/INDEX.htm"
+    pages[failed] = RI_EMPTY_CHAPTER.replace("Airport Zoning", "Preserved Airfields")
+    store, report = _extract_rhode_island(tmp_path, monkeypatch, pages, only_title="1")
+    assert report.errors[0].startswith("chapter 1-3:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=RI_TITLE_1_PATHS | {"us-ri/statute/1-3"},
+        missing={"us-ri/statute/1-3"},
+        gap_source="rhode-island-general-laws-html/" + failed,
+    )
 
 
 @pytest.mark.parametrize(
@@ -1013,19 +1038,43 @@ def test_south_dakota_failed_chapter_remains_inventory_gap(
     )
 
 
+@pytest.mark.parametrize(
+    "catchline", ["Repealed by SL 2010, ch 1, \u00a7 1", "[Transferred]", "SUPERSEDED"]
+)
 def test_south_dakota_repealed_chapter_listing_nothing_stays_complete(
-    tmp_path, no_south_dakota_network
+    tmp_path, no_south_dakota_network, catchline
 ):
     # A chapter whose catchline says it was repealed carries no sections by law.
     pages = dict(SD_GOOD_PAGES)
     pages[f"{SD_FORMAT}/statute-1-2.json"] = _sd_chapter(
-        "1-2", "Repealed by SL 2010, ch 1, § 1", "<html><body><p>CHAPTER 1-2</p></body></html>"
+        "1-2", catchline, "<html><body><p>CHAPTER 1-2</p></body></html>"
     )
     store, report = _extract_south_dakota(tmp_path, pages, only_title="1")
     assert report.errors == ()
     assert report.coverage.complete is True
     inventory, provisions = _report_paths(report)
     assert inventory == provisions == SD_CHAPTER_1_1 | {"us-sd/statute/title-1/chapter-1-2"}
+
+
+def test_south_dakota_word_containing_a_status_is_not_empty_by_law(
+    tmp_path, no_south_dakota_network
+):
+    # "Unrepealed" contains "repealed", which the record status matches as a
+    # substring. The exemption matches whole words, so this empty chapter is a gap.
+    failed = f"{SD_FORMAT}/statute-1-2.json"
+    pages = dict(SD_GOOD_PAGES)
+    pages[failed] = _sd_chapter(
+        "1-2", "UNREPEALED TERRITORIAL ACTS", "<html><body><p>CHAPTER 1-2</p></body></html>"
+    )
+    store, report = _extract_south_dakota(tmp_path, pages, only_title="1")
+    assert report.errors[0].startswith("chapter 1-2:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=SD_CHAPTER_1_1 | {"us-sd/statute/title-1/chapter-1-2"},
+        missing={"us-sd/statute/title-1/chapter-1-2"},
+        gap_source=failed,
+    )
 
 
 @pytest.mark.parametrize("workers", [1, 2])
