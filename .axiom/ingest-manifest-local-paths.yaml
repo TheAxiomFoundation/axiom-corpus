@@ -21,10 +21,11 @@
 #   for their run notes only, keeping the same command text; on 2026-11-02 the
 #   set took those three at their new bytes in place of the old.
 #
-# Scrubbing re-signs the manifest, which needs the corpus ingest key: the
-# hub's to do; agents never read the key. For each scope: fetch it
-# (`axiom-corpus-ingest corpus fetch <jurisdiction>/<class>/<version>`), sign
-# it with `sign-ingest-manifest --jurisdiction ... --document-class ...
+# Scrubbing re-signs the manifest, which needs the corpus ingest key, so a
+# maintainer who holds the key does it; agents never read the key. For each
+# scope: fetch it (`axiom-corpus-ingest corpus fetch
+# <jurisdiction>/<class>/<version>`), sign it with `sign-ingest-manifest
+# --jurisdiction ... --document-class ...
 # --version ... --command '<scrubbed text>' --output data/resign/<name>.json`,
 # passing each of the old manifest's reasoning_logs as --reasoning-log, and
 # check that the new applied_files equal the old ones, so that only
