@@ -441,6 +441,11 @@ def extract_arizona_revised_statutes(
         ]
         if limit is not None:
             selected_sections = selected_sections[: max(0, limit - section_count)]
+        # A section the title detail page names stays an inventory gap when its
+        # page cannot be fetched or read, so coverage reads incomplete instead
+        # of silently losing it. A page that could not be fetched is sourced
+        # from the title detail page; a page that was fetched but could not be
+        # read from itself.
         for result in _fetch_arizona_section_results(
             fetcher,
             selected_sections,
@@ -449,6 +454,13 @@ def extract_arizona_revised_statutes(
             target = result.target
             if result.error is not None:
                 errors.append(f"section {target.section}: {result.error}")
+                gap_source = title_recorded
+                if result.source is not None:
+                    gap_path, gap_source = _record_source(
+                        store, jurisdiction, run_id, result.source
+                    )
+                    source_paths.append(gap_path)
+                _append_section_gap(items, seen, target, gap_source)
                 continue
             assert result.source is not None
             assert result.parsed is not None
@@ -736,10 +748,47 @@ def _fetch_arizona_section_result(
 ) -> _ArizonaSectionFetchResult:
     try:
         source = fetcher.fetch_section(section)
-        parsed = parse_arizona_section(source.data, fallback_heading=section.heading)
-        return _ArizonaSectionFetchResult(target=section, source=source, parsed=parsed)
-    except BaseException as exc:  # pragma: no cover
+    except Exception as exc:  # noqa: BLE001
         return _ArizonaSectionFetchResult(target=section, error=exc)
+    try:
+        parsed = parse_arizona_section(source.data, fallback_heading=section.heading)
+    except Exception as exc:  # noqa: BLE001
+        return _ArizonaSectionFetchResult(target=section, source=source, error=exc)
+    return _ArizonaSectionFetchResult(target=section, source=source, parsed=parsed)
+
+
+def _append_section_gap(
+    items: list[SourceInventoryItem],
+    seen: set[str],
+    target: ArizonaSectionTarget,
+    source: _RecordedSource,
+) -> None:
+    """Record a listed section whose page yielded no provision.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the section
+    is expected: the title detail page, or the section's own unreadable page.
+    """
+    if target.citation_path in seen:
+        return
+    seen.add(target.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=target.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=source.source_format,
+            sha256=source.sha256,
+            metadata={
+                "kind": "section",
+                "title": target.title_number,
+                "chapter": target.chapter,
+                "section": target.section,
+                **({"article": target.article.article} if target.article is not None else {}),
+                "target_source_url": target.source_url,
+            },
+        )
+    )
 
 
 def _append_record(

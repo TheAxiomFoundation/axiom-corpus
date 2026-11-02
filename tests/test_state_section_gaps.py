@@ -16,10 +16,20 @@ import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.state_adapters import arizona
+from axiom_corpus.corpus.state_adapters.arizona import (
+    ARIZONA_SECTION_SOURCE_FORMAT,
+    ARIZONA_TITLE_DETAIL_SOURCE_FORMAT,
+    ARIZONA_TITLE_INDEX_SOURCE_FORMAT,
+    extract_arizona_revised_statutes,
+)
 from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
 )
+from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
+from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
+from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
 from tests.test_corpus_maryland import SAMPLE_EMPTY_SECTION_HTML as MD_EMPTY_SECTION_HTML
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
@@ -188,3 +198,78 @@ def test_massachusetts_repealed_section_page_stays_complete(tmp_path):
     _assert_complete(report, expected=MA_EXTRACTED)
     records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
     assert records["us-ma/statute/62/2"].metadata["status"] == "repealed"
+
+
+# --- Arizona: title index -> title detail page -> section pages ---
+
+AZ_INDEX = f"{ARIZONA_TITLE_INDEX_SOURCE_FORMAT}/index.html"
+AZ_DETAIL = f"{ARIZONA_TITLE_DETAIL_SOURCE_FORMAT}/title-1.html"
+AZ_SECTION_201 = f"{ARIZONA_SECTION_SOURCE_FORMAT}/title-1/1-201.html"
+AZ_SECTION_202 = f"{ARIZONA_SECTION_SOURCE_FORMAT}/title-1/1-202.html"
+AZ_SECTION_202_ROW = """        <ul>
+          <li class="colleft">
+            <a class="stat" href="/viewdocument/?docName=https://www.azleg.gov/ars/1/00202.htm">1-202</a>
+          </li>
+          <li class="colright">Statutes; construction</li>
+        </ul>
+      </div>
+    </div>"""
+AZ_GOOD_PAGES = {
+    AZ_INDEX: AZ_TITLE_INDEX_HTML,
+    AZ_DETAIL: AZ_TITLE_DETAIL_HTML.replace("      </div>\n    </div>", AZ_SECTION_202_ROW, 1),
+    AZ_SECTION_201: AZ_SECTION_HTML,
+    AZ_SECTION_202: AZ_SECTION_HTML.replace("1-201", "1-202"),
+}
+AZ_EXTRACTED = {
+    "us-az/statute/title-1",
+    "us-az/statute/title-1/chapter-2",
+    "us-az/statute/title-1/chapter-2/article-1",
+    "us-az/statute/1-201",
+    "us-az/statute/1-202",
+}
+
+
+def _extract_arizona(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_arizona_revised_statutes(
+        store, version="2026-05-09", source_dir=tmp_path / "source", only_title="1", workers=1
+    )
+    return store, report
+
+
+def test_arizona_fixture_lists_both_sections(tmp_path):
+    _, report = _extract_arizona(tmp_path, dict(AZ_GOOD_PAGES))
+    assert report.section_count == 2
+    _assert_complete(report, expected=AZ_EXTRACTED)
+
+
+# Arizona's section parser reads any page, so a maintenance, empty or
+# wrong-shape page is written as a section with no text rather than an error;
+# only a page that cannot be fetched or that raises while parsing reaches here.
+@pytest.mark.parametrize("failure", ["missing-file", "parse-error"])
+def test_arizona_failed_section_page_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    # On main a section page that could not be fetched was logged as an error
+    # with no inventory item, so coverage still read complete.
+    pages = dict(AZ_GOOD_PAGES)
+    if failure == "missing-file":
+        del pages[AZ_SECTION_202]
+    else:
+        parse = arizona.parse_arizona_section
+
+        def reject_202(html, *, fallback_heading=None):
+            if b"<TITLE>1-202" in (html if isinstance(html, bytes) else html.encode()):
+                raise ValueError("unreadable section page")
+            return parse(html, fallback_heading=fallback_heading)
+
+        monkeypatch.setattr(arizona, "parse_arizona_section", reject_202)
+    store, report = _extract_arizona(tmp_path, pages)
+    assert report.section_count == 1
+    assert "section 1-202" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=AZ_EXTRACTED,
+        missing={"us-az/statute/1-202"},
+        gap_source=AZ_DETAIL if failure == "missing-file" else AZ_SECTION_202,
+    )
