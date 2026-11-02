@@ -171,36 +171,15 @@ TREE_COLUMNS = (
     "encoded_descendant_count",
 )
 
-# Root-document counts as open PR #666 (20260910140000) defines them: served
-# roots only, the intended definition. The 20260910150000 index comment assumes
-# it, and production's function returns it (checked read-only, in the PR
-# body). This repository last defined the function in 20260910120000, which
-# counts every stored root; test_root_counts_are_served_roots_not_every_stored_root
-# shows where the two differ.
-PR_666_ROOT_COUNTS = """
-CREATE OR REPLACE FUNCTION corpus.get_root_document_counts()
-RETURNS TABLE (
-  jurisdiction text,
-  doc_type text,
-  document_count bigint
+# Root-document counts as 20260910140000 (#666) defines them on main, read from
+# the migration file: served roots only. 20260910120000 counted every stored
+# root; test_root_counts_are_served_roots_not_every_stored_root shows where the
+# two differ.
+SERVED_ROOT_COUNTS = _migration_slice(
+    "20260910140000_root_document_counts_current_release.sql",
+    "CREATE OR REPLACE FUNCTION corpus.get_root_document_counts()",
+    "NOTIFY pgrst",
 )
-LANGUAGE sql
-STABLE
-SECURITY DEFINER
-SET search_path = corpus, public
-AS $$
-  SELECT
-    jurisdiction,
-    COALESCE(NULLIF(doc_type, ''), 'unknown') AS doc_type,
-    COUNT(*)::bigint AS document_count
-  FROM corpus.current_navigation_nodes
-  WHERE parent_path IS NULL
-    AND jurisdiction IS NOT NULL
-  GROUP BY jurisdiction, COALESCE(NULLIF(doc_type, ''), 'unknown')
-  ORDER BY jurisdiction, doc_type
-$$;
-GRANT EXECUTE ON FUNCTION corpus.get_root_document_counts() TO anon, authenticated;
-"""
 
 
 def _production_serving_sql() -> str:
@@ -236,7 +215,7 @@ def _production_serving_sql() -> str:
             "GRANT SELECT ON corpus.current_release_scopes TO anon, authenticated;",
             "GRANT SELECT ON corpus.current_provisions TO anon, authenticated;",
             "GRANT SELECT ON corpus.current_provision_counts TO anon, authenticated;",
-            PR_666_ROOT_COUNTS,
+            SERVED_ROOT_COUNTS,
             # Citation references (20260416220000) with the current-release RPC
             # of 20260507150000, and provision anchors (20260704120000).
             (MIGRATIONS / "20260416220000_corpus_provision_references.sql").read_text(
@@ -257,7 +236,8 @@ def _production_serving_sql() -> str:
 # The pre-layer definitions, unchanged except for living in their own schema:
 # current_release_scopes (20260718193000), current_provisions, legacy_provisions,
 # current_navigation_nodes and the navigation policy (20260513180000), the
-# current_provision_counts aggregate (20260507110000) and #666's root counts.
+# current_provision_counts aggregate (20260507110000) and the root counts of
+# 20260910140000.
 REFERENCE_SQL = """
 CREATE SCHEMA reference;
 CREATE VIEW reference.current_release_scopes AS
@@ -1435,9 +1415,9 @@ def _root_count(scope: Scope) -> int:
 
 
 def test_root_counts_are_served_roots_not_every_stored_root(db: Any) -> None:
-    """This repository's 20260910120000 counts every stored root. The intended
-    count (#666, this migration) leaves out roots of superseded and of never
-    released scopes, so the two differ wherever such roots are stored."""
+    """20260910120000 counted every stored root. 20260910140000 (#666) and this
+    migration leave out roots of superseded and of never released scopes, so
+    the two differ wherever such roots are stored."""
     with db.cursor() as cursor:
         cursor.execute(
             _migration_slice(
@@ -1445,7 +1425,7 @@ def test_root_counts_are_served_roots_not_every_stored_root(db: Any) -> None:
                 "CREATE OR REPLACE FUNCTION corpus.get_root_document_counts()",
                 "GRANT EXECUTE",
             ).replace(
-                "corpus.get_root_document_counts()", "reference.repository_root_document_counts()"
+                "corpus.get_root_document_counts()", "reference.stored_root_document_counts()"
             )
         )
     db.commit()
@@ -1454,30 +1434,30 @@ def test_root_counts_are_served_roots_not_every_stored_root(db: Any) -> None:
         return (
             _rows(db, "SELECT * FROM corpus.get_root_document_counts()"),
             _rows(db, "SELECT * FROM reference.root_document_counts ORDER BY 1, 2"),
-            _rows(db, "SELECT * FROM reference.repository_root_document_counts()"),
+            _rows(db, "SELECT * FROM reference.stored_root_document_counts()"),
         )
 
     _publish(db, "fx-rulespec-2026-09-01", PRIMARY_TITLE, OTHER_PAIR)
-    served, pr_666, repository = counts()
-    assert served == pr_666 == repository
+    served, previous, stored_roots = counts()
+    assert served == previous == stored_roots
     successor = replace(PRIMARY_TITLE, version="2026-09-25-title-1")
     _publish(db, "fx-rulespec-2026-09-25", successor, OTHER_PAIR)
     _stage(db, STRAY)
-    served, pr_666, repository = counts()
+    served, previous, stored_roots = counts()
     assert (
         served
-        == pr_666
+        == previous
         == [
             ("fx", "regulation", _root_count(OTHER_PAIR)),
             ("fx", "statute", _root_count(successor)),
         ]
     )
-    # The repository's definition adds the superseded and the unreleased roots.
-    assert repository == [
+    # 20260910120000 adds the superseded and the unreleased roots.
+    assert stored_roots == [
         ("fx", "regulation", _root_count(OTHER_PAIR)),
         ("fx", "statute", sum(map(_root_count, (successor, PRIMARY_TITLE, STRAY)))),
     ]
-    assert repository != served
+    assert stored_roots != served
 
 
 def test_same_layer_duplicate_in_a_layered_pair_is_rejected_atomically(db: Any) -> None:
@@ -3691,6 +3671,160 @@ def test_merge_follows_its_rules_on_arbitrary_parents(
     layered_dsn: str, scopes: tuple[Scope, ...]
 ) -> None:
     _check_layered_pair(layered_dsn, scopes)
+
+
+# ---------------------------------------------------------------------------
+# Precedence and withdrawal across generated release histories.
+# ---------------------------------------------------------------------------
+
+_HISTORY_PAIRS = (("fx", "statute"), ("fx", "regulation"))
+_HISTORY_PATHS = ("1", "1/a", "1/b", "2", "2/a", "3")
+
+
+@dataclass(frozen=True)
+class _History:
+    """Candidate scopes, the releases cut from them, and the activation order.
+
+    ``steps`` names a release by index; a release named again is the earlier
+    signed object re-activated, as a rollback does.
+    """
+
+    candidates: tuple[Scope, ...]
+    releases: tuple[tuple[Scope, ...], ...]
+    steps: tuple[int, ...]
+
+
+@st.composite
+def _layered_histories(draw: st.DrawFn) -> _History:
+    """Releases over two pairs, each pair with or without a base scope.
+
+    Each candidate scope has one layer for life (a version cannot change layer
+    on reuse). A release carries at most one base scope per pair, and primary
+    scopes whose paths do not meet, so every release is one the publisher signs
+    and activation accepts. Some candidates are staged and then never selected
+    again after a release drops them: their rows are the withdrawn rows.
+    """
+    candidates: list[Scope] = []
+    for jurisdiction, document_class in _HISTORY_PAIRS:
+        for index in range(draw(st.integers(1, 4))):
+            layer = draw(st.sampled_from([LAYER_BASE, LAYER_PRIMARY]))
+            suffixes = draw(st.lists(st.sampled_from(_HISTORY_PATHS), min_size=1, unique=True))
+            root = f"{jurisdiction}/{document_class}"
+            nodes = tuple(
+                Node(
+                    f"{root}/{suffix}",
+                    f"{root}/{suffix.rsplit('/', 1)[0]}" if "/" in suffix else None,
+                    draw(st.sampled_from([None, f"H{suffix}"])),
+                )
+                for suffix in sorted(suffixes)
+            )
+            candidates.append(
+                Scope(jurisdiction, document_class, f"2026-0{index + 1}-01-{layer}", nodes, layer)
+            )
+    releases: list[tuple[Scope, ...]] = []
+    for _ in range(draw(st.integers(1, 4))):
+        chosen: list[Scope] = []
+        for pair in draw(
+            st.lists(st.sampled_from(_HISTORY_PAIRS), min_size=1, max_size=2, unique=True)
+        ):
+            pool = [scope for scope in candidates if scope.pair == pair]
+            picked = draw(st.lists(st.sampled_from(pool), min_size=1, unique=True))
+            base_taken = False
+            primary_paths: set[str] = set()
+            for scope in picked:
+                paths = {node.path for node in scope.nodes}
+                if scope.layer == LAYER_BASE:
+                    if base_taken:
+                        continue
+                    base_taken = True
+                elif paths & primary_paths:
+                    continue
+                else:
+                    primary_paths |= paths
+                chosen.append(scope)
+        releases.append(tuple(chosen))
+    first_pass = list(range(len(releases)))
+    replays = draw(st.lists(st.integers(0, len(releases) - 1), max_size=3))
+    return _History(tuple(candidates), tuple(releases), tuple(first_pass + replays))
+
+
+def _served_by_precedence(scopes: Sequence[Scope]) -> dict[tuple[str, str, str], str]:
+    """Each served (jurisdiction, class, path) and the id of the row serving it.
+
+    The highest-precedence layer that holds a path serves it: a primary row,
+    else the base row. Only scopes in ``scopes`` (the serving membership) count.
+    """
+    served: dict[tuple[str, str, str], str] = {}
+    for layer in (LAYER_PRIMARY, LAYER_BASE):
+        for scope in scopes:
+            if scope.layer != layer:
+                continue
+            for node in scope.nodes:
+                served.setdefault(
+                    (*scope.pair, node.path), _provision_id(node.path, scope.version)
+                )
+    return served
+
+
+@settings(
+    max_examples=40,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture, HealthCheck.too_slow],
+)
+@given(history=_layered_histories())
+def test_each_path_resolves_to_its_highest_layer_and_withdrawn_rows_stay_withdrawn(
+    layered_dsn: str, history: _History
+) -> None:
+    """Over generated release histories, serving follows layer precedence.
+
+    After every activation (and every re-activation of an earlier release):
+
+    - each served path is served by the highest-precedence layer of the pair's
+      serving release that holds it, and by no other row;
+    - no row of a scope outside the pair's serving membership is served, so a
+      withdrawn scope stays withdrawn whichever layers surround it, and a
+      release that drops a layer exposes no row of a scope it does not select;
+    - the derived state equals a derivation from scratch, and with no base
+      scope served every view equals its pre-layer definition.
+    """
+    _reset(layered_dsn)
+    with closing(psycopg2.connect(layered_dsn)) as connection:
+        _stage(connection, *history.candidates)
+        objects: dict[int, dict[str, Any]] = {}
+        serving: dict[tuple[str, str], tuple[Scope, ...]] = {}
+        for step in history.steps:
+            release = history.releases[step]
+            if step not in objects:
+                objects[step] = _release_object(connection, f"fx-history-{step}", release)
+            _activate(connection, objects[step])
+            for pair in {scope.pair for scope in release}:
+                serving[pair] = tuple(scope for scope in release if scope.pair == pair)
+            members = [scope for scopes in serving.values() for scope in scopes]
+            expected = _served_by_precedence(members)
+            served = {
+                (row[0], row[1], row[2]): row[3]
+                for row in _rows(
+                    connection,
+                    "SELECT jurisdiction, COALESCE(NULLIF(doc_type, ''), 'unknown'), "
+                    "citation_path, id::text FROM corpus.current_provisions",
+                )
+            }
+            assert served == expected
+            member_ids = {
+                _provision_id(node.path, scope.version)
+                for scope in members
+                for node in scope.nodes
+            }
+            withdrawn = _ids(connection, "corpus.provisions") - member_ids
+            assert withdrawn.isdisjoint(served.values())
+            assert withdrawn <= _ids(connection, "corpus.legacy_provisions")
+            navigation = _navigation(connection)
+            assert {row["provision_id"] for row in navigation.values()} == set(served.values())
+            for role in ("anon", "authenticated"):
+                assert _ids(connection, "corpus.navigation_nodes", role=role) == set(navigation)
+            _assert_serving_is_consistent(connection)
+            if not any(scope.layer == LAYER_BASE for scope in members):
+                _assert_matches_reference(connection)
 
 
 # ---------------------------------------------------------------------------

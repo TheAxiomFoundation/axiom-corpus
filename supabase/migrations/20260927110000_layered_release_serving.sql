@@ -1657,14 +1657,11 @@ CREATE POLICY authenticated_read ON corpus.navigation_nodes
 -- ---------------------------------------------------------------------------
 -- 7. Root-document counts from served winners.
 --
--- The intended count is served roots only. In this repository the function
--- was last defined by 20260910120000, which counts every stored root,
--- superseded and never-released versions included; against that definition
--- this one returns less wherever such roots are stored. Open PR #666
--- (20260910140000, never merged here, and the definition 20260910150000's
--- comment assumes) counts roots through current_navigation_nodes; this
--- supersedes it and, with no base scope active, returns exactly what it
--- returns. It counts exactly the roots current_navigation_nodes serves
+-- The intended count is served roots only. 20260910120000 counted every
+-- stored root, superseded and never-released versions included;
+-- 20260910140000 (#666) counts roots through current_navigation_nodes. This
+-- replaces 20260910140000 and, with no base scope active, returns exactly what
+-- it returns. It counts exactly the roots current_navigation_nodes serves
 -- (tests/test_layered_serving_postgres.py compares the two), reading the
 -- stored roots of each served scope through
 -- idx_navigation_nodes_roots_by_scope_version (20260910150000) instead of

@@ -307,7 +307,7 @@ Both tables are empty for a pair served without a base scope, so serving is
 then exactly what it was. Served counts (`current_provision_counts`,
 `get_root_document_counts()`) count winners; a scope's signed and staged row
 count still includes its shadowed base rows. `get_root_document_counts()`
-counts served roots only, as open PR #666 defined it; the repository's earlier
+counts served roots only, as `20260910140000` (#666) defines it; the earlier
 `20260910120000` counted every stored root, superseded and unreleased versions
 included.
 
