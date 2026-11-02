@@ -21,6 +21,7 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
 )
 from axiom_corpus.corpus.state_adapters.michigan import extract_michigan_compiled_laws
 from axiom_corpus.corpus.state_adapters.missouri import extract_missouri_revised_statutes
+from axiom_corpus.corpus.state_adapters.nevada import extract_nevada_nrs
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -45,6 +46,8 @@ from tests.test_corpus_michigan import SAMPLE_INDEX_HTML as MI_INDEX_HTML
 from tests.test_corpus_missouri import SAMPLE_CHAPTER_HTML as MO_CHAPTER_HTML
 from tests.test_corpus_missouri import SAMPLE_ROOT_HTML as MO_ROOT_HTML
 from tests.test_corpus_missouri import SAMPLE_VIEW_CHAPTER_HTML as MO_VIEW_HTML
+from tests.test_corpus_nevada import SAMPLE_NEVADA_CHAPTER as NV_CHAPTER_HTML
+from tests.test_corpus_nevada import SAMPLE_NEVADA_INDEX as NV_INDEX_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -389,4 +392,75 @@ def test_missouri_failed_full_chapter_text_remains_inventory_gap(tmp_path, failu
         expected=MO_EXTRACTED | {"us-mo/statute/chapter-144"},
         missing={"us-mo/statute/chapter-144"},
         gap_source=MO_CHAPTER_144 if failure == "missing-file" else MO_VIEW_144,
+    )
+
+
+# --- Nevada: index (titles and chapters) -> one chapter page per chapter ---
+
+NV_EXTRACTED = {
+    "us-nv/statute/title-32",
+    "us-nv/statute/361",
+    "us-nv/statute/361.010",
+    "us-nv/statute/361.013",
+    "us-nv/statute/361.013@effective-2026-07-01",
+}
+NV_EMPTY_CHAPTER = (
+    "<html><body><p>[Rev. 4/15/2026 2:20:22 PM--2025]</p>"
+    '<p class="Chapter">CHAPTER 361A - AGRICULTURAL REAL PROPERTY</p></body></html>'
+)
+
+
+def _extract_nevada(tmp_path, pages: dict[str, str], **filters):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_nevada_nrs(
+        store, version="2026-05-05", source_dir=tmp_path / "source", workers=1, **filters
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_nevada_failed_chapter_page_remains_inventory_gap(tmp_path, failure):
+    # On main a chapter page that could not be fetched was counted as skipped
+    # with no inventory item, so coverage still read complete.
+    pages = {"index.html": NV_INDEX_HTML, "NRS-361.html": NV_CHAPTER_HTML}
+    pages["NRS-361A.html"] = NV_CHAPTER_HTML.replace("361", "361A")
+    _fail_page(pages, "NRS-361A.html", failure, {"no-children": NV_EMPTY_CHAPTER})
+    store, report = _extract_nevada(tmp_path, pages, only_title="32")
+    assert report.section_count == 3
+    assert "NRS-361A.html" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NV_EXTRACTED | {"us-nv/statute/361A"},
+        missing={"us-nv/statute/361A"},
+        gap_source="index.html" if failure == "missing-file" else "NRS-361A.html",
+    )
+
+
+def test_nevada_title_listing_no_chapters_remains_inventory_gap(tmp_path):
+    # Titles have no page of their own: the index lists each title's chapters.
+    # On main a title listed with no chapters was left out of the inventory.
+    index = NV_INDEX_HTML.split('<div class="card">\n  <h3 class="card-title h5">TITLE 1 ')[0]
+    index += """<div class="card">
+  <h3 class="card-title h5">TITLE 32-REVENUE AND TAXATION</h3>
+  <ul><li class="list-group-item"><a href="NRS-361.html">Chapter 361</a> - Property Tax</li></ul>
+</div>
+<div class="card">
+  <h3 class="card-title h5">TITLE 33 - LIBRARIES AND ARCHIVES</h3>
+  <ul></ul>
+</div>
+</body></html>"""
+    index = index.replace(
+        '<h3 class="card-title h5"><a href="NRS-000.html">PRELIMINARY CHAPTER</a></h3>', ""
+    )
+    pages = {"index.html": index, "NRS-361.html": NV_CHAPTER_HTML}
+    store, report = _extract_nevada(tmp_path, pages)
+    assert "title 33" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NV_EXTRACTED | {"us-nv/statute/title-33"},
+        missing={"us-nv/statute/title-33"},
+        gap_source="index.html",
     )
