@@ -308,3 +308,158 @@ def test_ohio_selected_targets_are_extracted_or_covered_as_gaps(tmp_path, case):
             missing={f"us-oh/statute/5160.{i + 1:02}" for i in failures},
             gap_source="ohio-revised-code/chapters/chapter-5160.html",
         )
+
+
+# A container whose own table of contents cannot be read, is a maintenance or
+# empty page, or lists no children stays an inventory gap (axiom-corpus#890).
+# Its children are never seen, so the container itself must be the gap.
+EMPTY_PAGE = ""
+WRONG_SHAPE = "<html><body><main><h1>Revised Statutes</h1><p>No entries.</p></main></body></html>"
+TOC_FAILURES = ["missing-file", "maintenance", "empty", "wrong-shape"]
+_FAILED_TOC_BODY = {"maintenance": MAINTENANCE, "empty": EMPTY_PAGE, "wrong-shape": WRONG_SHAPE}
+MAINE_SECTIONS = {"us-me/statute/36/5219-S", "us-me/statute/36/5219-T"}
+MAINE_GOOD_PAGES = {
+    MAINE_REVISED_STATUTES_INDEX: SAMPLE_TITLE_INDEX_HTML,
+    "36/title36ch0sec0.html": SAMPLE_TITLE_HTML,
+    "36/title36ch822sec0.html": SAMPLE_CHAPTER_HTML,
+    "36/title36sec5219-S.html": SAMPLE_SECTION_HTML,
+    "36/title36sec5219-T.html": SAMPLE_SECTION_HTML.replace("5219-S", "5219-T"),
+}
+
+
+def _fail_page(pages: dict[str, str], relative: str, failure: str) -> None:
+    if failure == "missing-file":
+        pages.pop(relative, None)
+    else:
+        pages[relative] = _FAILED_TOC_BODY[failure]
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_maine_failed_chapter_toc_remains_inventory_gap(tmp_path, failure):
+    source = tmp_path / "source"
+    second_chapter = (
+        '<div class="MRSChapter_toclist">'
+        '<a href="./title36ch823sec0.html">Chapter 823: OTHER CREDITS</a></div>'
+    )
+    pages = dict(MAINE_GOOD_PAGES)
+    pages["36/title36ch0sec0.html"] = SAMPLE_TITLE_HTML.replace(
+        "  </div>\n</div>", f"  {second_chapter}\n  </div>\n</div>", 1
+    )
+    _fail_page(pages, "36/title36ch823sec0.html", failure)
+    _write_sources(source, pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_maine_revised_statutes(
+        store, version="2026-05-09", source_dir=source, only_title="36", workers=1
+    )
+    assert report.section_count == 2
+    assert "36/title36ch823sec0.html" in report.errors[0]
+    chapter = "us-me/statute/title-36/chapter-823"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MAINE_CONTAINERS | MAINE_SECTIONS | {chapter},
+        missing={chapter},
+        # An unreadable page is evidenced by the title page that lists it; a
+        # page that was read but lists nothing is its own evidence.
+        gap_source=(
+            "36/title36ch0sec0.html" if failure == "missing-file" else "36/title36ch823sec0.html"
+        ),
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_maine_failed_title_toc_remains_inventory_gap(tmp_path, failure):
+    source = tmp_path / "source"
+    pages = dict(MAINE_GOOD_PAGES)
+    _fail_page(pages, "1/title1ch0sec0.html", failure)
+    _write_sources(source, pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_maine_revised_statutes(
+        store, version="2026-05-09", source_dir=source, workers=1
+    )
+    assert report.section_count == 2
+    assert "1/title1ch0sec0.html" in report.errors[0]
+    title = "us-me/statute/title-1"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MAINE_CONTAINERS | MAINE_SECTIONS | {title},
+        missing={title},
+        gap_source=(
+            MAINE_REVISED_STATUTES_INDEX if failure == "missing-file" else "1/title1ch0sec0.html"
+        ),
+    )
+
+
+@pytest.mark.parametrize(
+    "failure", ["request-error", "missing-file", "maintenance", "empty", "wrong-shape"]
+)
+def test_ohio_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    source = tmp_path / "source"
+    pages = {
+        "ohio-revised-code/index.html": SAMPLE_OHIO_INDEX,
+        "ohio-revised-code/titles/title-51.html": SAMPLE_OHIO_TITLE,
+        "ohio-revised-code/chapters/chapter-5160.html": SAMPLE_OHIO_CHAPTER,
+    }
+    failed = "ohio-revised-code/titles/general-provisions.html"
+    if failure == "request-error":
+        load_html = states._load_ohio_html
+
+        def reject_title(*args, **kwargs):
+            if kwargs["relative_name"] == failed:
+                raise requests.RequestException("source unavailable")
+            return load_html(*args, **kwargs)
+
+        monkeypatch.setattr(states, "_load_ohio_html", reject_title)
+    elif failure != "missing-file":
+        # A missing --source-dir title file is left out of the pages entirely.
+        pages[failed] = _FAILED_TOC_BODY[failure]
+    _write_sources(source, pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_ohio_revised_code(store, version="2026-05-09", source_dir=source)
+    assert report.section_count == 2
+    assert "general-provisions" in report.errors[0]
+    title = "us-oh/statute/general-provisions"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=OHIO_CONTAINERS | {title, "us-oh/statute/5160.01", "us-oh/statute/5160.011"},
+        missing={title},
+        gap_source=(
+            "ohio-revised-code/index.html"
+            if failure in {"request-error", "missing-file"}
+            else failed
+        ),
+    )
+
+
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+def test_ohio_empty_chapter_toc_remains_inventory_gap(tmp_path, failure):
+    # Chapters were already covered on main; this pins the empty and
+    # wrong-shape pages beside the maintenance page.
+    source = tmp_path / "source"
+    extra_chapter = '<a href="/ohio-revised-code/chapter-5161">Chapter 5161 | Other law</a>'
+    _write_sources(
+        source,
+        {
+            "ohio-revised-code/index.html": SAMPLE_OHIO_INDEX,
+            "ohio-revised-code/titles/title-51.html": SAMPLE_OHIO_TITLE.replace(
+                "</main>", extra_chapter + "</main>"
+            ),
+            "ohio-revised-code/chapters/chapter-5160.html": SAMPLE_OHIO_CHAPTER,
+            "ohio-revised-code/chapters/chapter-5161.html": _FAILED_TOC_BODY[failure],
+        },
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_ohio_revised_code(
+        store, version="2026-05-09", source_dir=source, only_title="51"
+    )
+    assert "5161" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=OHIO_CONTAINERS
+        | {"us-oh/statute/chapter-5161", "us-oh/statute/5160.01", "us-oh/statute/5160.011"},
+        missing={"us-oh/statute/chapter-5161"},
+        gap_source="ohio-revised-code/chapters/chapter-5161.html",
+    )

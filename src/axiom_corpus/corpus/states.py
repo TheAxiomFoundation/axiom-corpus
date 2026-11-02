@@ -1315,7 +1315,7 @@ def extract_ohio_revised_code(
         index_relative,
     )
     index_sha = store.write_bytes(index_path, index_bytes)
-    del index_sha
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
     titles = _parse_ohio_titles(index_bytes)
     if only_title_token is not None:
@@ -1336,13 +1336,30 @@ def extract_ohio_revised_code(
         if remaining is not None and remaining <= 0:
             break
         title_relative = f"ohio-revised-code/titles/{_ohio_title_file_token(title)}.html"
-        title_bytes = _load_ohio_html(
-            session,
-            source_root,
-            download_root,
-            relative_name=title_relative,
-            url=title.source_url,
-        )
+        try:
+            title_bytes = _load_ohio_html(
+                session,
+                source_root,
+                download_root,
+                relative_name=title_relative,
+                url=title.source_url,
+            )
+        except (requests.RequestException, OSError) as exc:
+            # A failed download, or a --source-dir title file that cannot be read.
+            errors.append(f"title {title.num}: {exc}")
+            if title.citation_path not in seen_citation_paths:
+                seen_citation_paths.add(title.citation_path)
+                # The index TOC is the source evidence for the rejected title.
+                items.append(
+                    _container_inventory_item(
+                        _ohio_title_container(
+                            title, source_path=index_source_key, sha256=index_sha
+                        )
+                    )
+                )
+                if remaining is not None:
+                    remaining -= 1
+            continue
         title_path = store.source_path(
             jurisdiction,
             DocumentClass.STATUTE,
@@ -1358,9 +1375,17 @@ def extract_ohio_revised_code(
             source_path=title_source_key,
             sha256=title_sha,
         )
+        # A title is written as a provision only when its TOC lists chapters;
+        # otherwise it stays an inventory gap and coverage reads incomplete.
+        chapters = _parse_ohio_chapters(title_bytes, title=title)
         if title_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(title_container.citation_path)
             items.append(_container_inventory_item(title_container))
+            if not chapters:
+                errors.append(f"title {title.num}: no chapters parsed")
+                if remaining is not None:
+                    remaining -= 1
+                continue
             records.append(
                 _container_provision(
                     title_container,
@@ -1374,7 +1399,6 @@ def extract_ohio_revised_code(
             if remaining is not None:
                 remaining -= 1
 
-        chapters = _parse_ohio_chapters(title_bytes, title=title)
         for chapter in chapters:
             if remaining is not None and remaining <= 0:
                 break
