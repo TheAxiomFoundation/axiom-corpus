@@ -22,11 +22,31 @@ import requests
 from axiom_corpus.corpus import states
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.state_adapters import rhode_island
+from axiom_corpus.corpus.state_adapters.rhode_island import extract_rhode_island_general_laws
 from axiom_corpus.corpus.states import (
     extract_dc_code,
     extract_minnesota_statutes,
     extract_nebraska_revised_statutes,
     extract_washington_rcw,
+)
+from tests.test_corpus_rhode_island import (
+    SAMPLE_CHAPTER_1_2 as RI_CHAPTER_1_2,
+)
+from tests.test_corpus_rhode_island import (
+    SAMPLE_CHAPTER_6A_11 as RI_CHAPTER_6A_11,
+)
+from tests.test_corpus_rhode_island import (
+    SAMPLE_EFFECTIVE_SECTION as RI_EFFECTIVE_SECTION,
+)
+from tests.test_corpus_rhode_island import (
+    SAMPLE_PART_6A_11_1 as RI_PART_6A_11_1,
+)
+from tests.test_corpus_rhode_island import (
+    SAMPLE_SECTION_1_2_1 as RI_SECTION_1_2_1,
+)
+from tests.test_corpus_rhode_island import (
+    SAMPLE_SECTION_1_2_5 as RI_SECTION_1_2_5,
 )
 from tests.test_corpus_states import (
     SAMPLE_DC_INDEX,
@@ -523,3 +543,218 @@ def test_dc_run_of_only_gaps_still_fails(tmp_path):
     # is now a gap, and a run with no provisions still raises.
     with pytest.raises((SyntaxError, ValueError)):
         _extract_dc(tmp_path, {"1/index.xml": EMPTY_PAGE})
+
+
+# --- Rhode Island: Statutes.html -> title -> chapter -> part/article -> sections ---
+
+RI_ROOT = """<!doctype html>
+<html><body><table>
+<tr><td><a href="/Statutes/TITLE1/INDEX.HTM">1</a></td><td>Aeronautics</td></tr>
+<tr><td><a href="/Statutes/TITLE2/INDEX.HTM">2</a></td><td>Agriculture and Forestry</td></tr>
+</table></body></html>
+"""
+# Only title 6A, so the part case runs unfiltered: a filtered Rhode Island run
+# id keeps the uppercase letter of "6A", which release validation rejects.
+RI_ROOT_6A_ONLY = """<!doctype html>
+<html><body><table>
+<tr><td><a href="/Statutes/TITLE6A/INDEX.HTM">6A</a></td><td>Uniform Commercial Code</td></tr>
+</table></body></html>
+"""
+RI_TITLE_1 = """<!doctype html>
+<html><body>
+<div><h1><center>Title 1<br>Aeronautics</center></h1></div>
+<center><h3>Index of Chapters</h3></center>
+<p><a href="1-2/INDEX.htm">Chapter 1-2&nbsp;Airports and Landing Fields</a></p>
+</body></html>
+"""
+RI_TITLE_2 = """<!doctype html>
+<html><body>
+<div><h1><center>Title 2<br>Agriculture and Forestry</center></h1></div>
+<center><h3>Index of Chapters</h3></center>
+</body></html>
+"""
+RI_EMPTY_CHAPTER = """<!doctype html>
+<html><body>
+<div><h2><center>Chapter 3<br>Airport Zoning</center></h2></div>
+<center><h3>Index of Sections</h3></center>
+</body></html>
+"""
+RI_EMPTY_PART = """<!doctype html>
+<html><body>
+<div><h3><center>Part 2<br>Transition Rules</center></h3></div>
+<center><h3>Index of Sections</h3></center>
+</body></html>
+"""
+RI_GOOD_PAGES = {
+    "Statutes.html": RI_ROOT,
+    "TITLE1/INDEX.HTM": RI_TITLE_1,
+    "TITLE1/1-2/INDEX.htm": RI_CHAPTER_1_2,
+    "TITLE1/1-2/1-2-1.htm": RI_SECTION_1_2_1,
+    "TITLE1/1-2/1-2-5.htm": RI_SECTION_1_2_5,
+    "TITLE2/INDEX.HTM": RI_TITLE_2.replace(
+        "</center>\n</body>",
+        '</center>\n<p><a href="2-1/INDEX.htm">Chapter 2-1&nbsp;Agricultural Functions</a></p>\n</body>',
+    ),
+    "TITLE2/2-1/INDEX.htm": RI_CHAPTER_1_2.replace("1-2", "2-1"),
+    "TITLE2/2-1/2-1-1.htm": RI_SECTION_1_2_1.replace("1-2", "2-1"),
+    "TITLE2/2-1/2-1-5.htm": RI_SECTION_1_2_5.replace("1-2", "2-1"),
+    # Chapter 1-3 and Part 2 of 6A-11 are listed only by the cases that need them.
+    "TITLE1/1-3/INDEX.htm": RI_CHAPTER_1_2.replace("1-2", "1-3"),
+    "TITLE1/1-3/1-3-1.htm": RI_SECTION_1_2_1.replace("1-2", "1-3"),
+    "TITLE1/1-3/1-3-5.htm": RI_SECTION_1_2_5.replace("1-2", "1-3"),
+    "TITLE6A/INDEX.HTM": """<!doctype html>
+<html><body>
+<div><h1><center>Title 6A<br>Uniform Commercial Code</center></h1></div>
+<p><a href="6A-11/INDEX.htm">Chapter 6A-11&nbsp;Transitional Provisions</a></p>
+</body></html>
+""",
+    "TITLE6A/6A-11/INDEX.htm": RI_CHAPTER_6A_11.replace(
+        "</p>\n</body>",
+        '</p>\n<p><a href="6A-2/INDEX.htm">Part 2&nbsp;Transition Rules</a></p>\n</body>',
+    ),
+    "TITLE6A/6A-11/6A-1/INDEX.htm": RI_PART_6A_11_1,
+    "TITLE6A/6A-11/6A-1/6A-11-101_6A-11-101.htm": RI_EFFECTIVE_SECTION,
+    "TITLE6A/6A-11/6A-2/INDEX.htm": RI_PART_6A_11_1.replace("Part 1", "Part 2")
+    .replace("General Provisions and Definitions", "Transition Rules")
+    .replace("6A-11-101", "6A-11-201"),
+    "TITLE6A/6A-11/6A-2/6A-11-201_6A-11-201.htm": RI_EFFECTIVE_SECTION.replace(
+        "6A-11-101", "6A-11-201"
+    ),
+}
+RI_TITLE_1_PATHS = {
+    "us-ri/statute/title-1",
+    "us-ri/statute/1-2",
+    "us-ri/statute/1-2-1",
+    "us-ri/statute/1-2-5",
+}
+RI_6A_PART_1 = {
+    "us-ri/statute/title-6a",
+    "us-ri/statute/6a-11",
+    "us-ri/statute/6a-11/part-1",
+    "us-ri/statute/6a-11-101",
+    "us-ri/statute/6a-11-101-effective-2026-01-01",
+}
+
+
+def _extract_rhode_island(
+    tmp_path, monkeypatch, pages, *, failed=None, failure=None, raise_=None, **filters
+):
+    _write_sources(tmp_path / "source", pages)
+    if failure == "request-error" or raise_ is not None:
+        fetch = rhode_island._RhodeIslandFetcher.fetch
+
+        def failing_fetch(self, relative_path):
+            if relative_path == failed:
+                if raise_ is not None:
+                    raise raise_
+                # What _download_rhode_island_page raises once its retries are spent.
+                raise ValueError(f"failed to fetch Rhode Island source page {relative_path}")
+            return fetch(self, relative_path)
+
+        monkeypatch.setattr(rhode_island._RhodeIslandFetcher, "fetch", failing_fetch)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_rhode_island_general_laws(
+        store, version="2026-05-05", source_dir=tmp_path / "source", workers=1, **filters
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_rhode_island_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    failed = "TITLE2/INDEX.HTM"
+    pages = dict(RI_GOOD_PAGES)
+    _fail_page(pages, failed, failure, {"no-children": RI_TITLE_2})
+    store, report = _extract_rhode_island(
+        tmp_path, monkeypatch, pages, failed=failed, failure=failure
+    )
+    assert report.section_count == 2
+    assert report.errors[0].startswith("title 2:")
+    prefix = "rhode-island-general-laws-html/"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=RI_TITLE_1_PATHS | {"us-ri/statute/title-2"},
+        missing={"us-ri/statute/title-2"},
+        gap_source=prefix + ("Statutes.html" if failure in FETCH_FAILURES else failed),
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_rhode_island_failed_chapter_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    failed = "TITLE1/1-3/INDEX.htm"
+    pages = dict(RI_GOOD_PAGES)
+    pages["TITLE1/INDEX.HTM"] = RI_TITLE_1.replace(
+        "</p>\n</body>",
+        '</p>\n<p><a href="1-3/INDEX.htm">Chapter 1-3&nbsp;Airport Zoning</a></p>\n</body>',
+    )
+    _fail_page(pages, failed, failure, {"no-children": RI_EMPTY_CHAPTER})
+    store, report = _extract_rhode_island(
+        tmp_path, monkeypatch, pages, failed=failed, failure=failure, only_title="1"
+    )
+    assert report.section_count == 2
+    assert report.errors[0].startswith("chapter 1-3:")
+    prefix = "rhode-island-general-laws-html/"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=RI_TITLE_1_PATHS | {"us-ri/statute/1-3"},
+        missing={"us-ri/statute/1-3"},
+        gap_source=prefix + ("TITLE1/INDEX.HTM" if failure in FETCH_FAILURES else failed),
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_rhode_island_failed_part_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    failed = "TITLE6A/6A-11/6A-2/INDEX.htm"
+    pages = dict(RI_GOOD_PAGES)
+    pages["Statutes.html"] = RI_ROOT_6A_ONLY
+    _fail_page(pages, failed, failure, {"no-children": RI_EMPTY_PART})
+    store, report = _extract_rhode_island(
+        tmp_path, monkeypatch, pages, failed=failed, failure=failure
+    )
+    assert report.section_count == 2
+    assert report.errors[0].startswith("part 2 of chapter 6A-11:")
+    prefix = "rhode-island-general-laws-html/"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=RI_6A_PART_1 | {"us-ri/statute/6a-11/part-2"},
+        missing={"us-ri/statute/6a-11/part-2"},
+        gap_source=prefix + ("TITLE6A/6A-11/INDEX.htm" if failure in FETCH_FAILURES else failed),
+    )
+
+
+def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(tmp_path, monkeypatch):
+    # The title index marks chapter 1-1 "[Repealed.]" and its page lists no
+    # sections: empty by law, so the chapter is written and coverage is complete.
+    pages = dict(RI_GOOD_PAGES)
+    pages["TITLE1/INDEX.HTM"] = RI_TITLE_1.replace(
+        '<p><a href="1-2',
+        '<p><a href="1-1/INDEX.htm">Chapter 1-1&nbsp;Airports Division [Repealed.]</a></p>\n'
+        '<p><a href="1-2',
+    )
+    pages["TITLE1/1-1/INDEX.htm"] = RI_EMPTY_CHAPTER.replace(
+        "Chapter 3<br>Airport Zoning", "Chapter 1<br>Airports Division"
+    )
+    store, report = _extract_rhode_island(tmp_path, monkeypatch, pages, only_title="1")
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == RI_TITLE_1_PATHS | {"us-ri/statute/1-1"}
+
+
+@pytest.mark.parametrize(
+    "failed", ["TITLE2/INDEX.HTM", "TITLE1/1-2/INDEX.htm"], ids=["title", "chapter"]
+)
+def test_rhode_island_interrupt_during_fetch_stops_the_run(tmp_path, monkeypatch, failed):
+    with pytest.raises(KeyboardInterrupt):
+        _extract_rhode_island(
+            tmp_path, monkeypatch, dict(RI_GOOD_PAGES), failed=failed, raise_=KeyboardInterrupt()
+        )
+
+
+def test_rhode_island_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
+    # Both title pages are missing: main raised FileNotFoundError.
+    pages = {"Statutes.html": RI_ROOT}
+    with pytest.raises((OSError, ValueError)):
+        _extract_rhode_island(tmp_path, monkeypatch, pages)

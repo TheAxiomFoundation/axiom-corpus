@@ -255,7 +255,7 @@ def extract_rhode_island_general_laws(
     remaining_sections = limit
 
     root_page = fetcher.fetch(RHODE_ISLAND_GENERAL_LAWS_INDEX)
-    _record_source_page(
+    root_source = _record_source_page(
         store,
         jurisdiction=jurisdiction,
         run_id=run_id,
@@ -269,11 +269,25 @@ def extract_rhode_island_general_laws(
     if not titles:
         raise ValueError(f"no Rhode Island General Laws titles selected for filter: {only_title!r}")
 
+    # A title, chapter, part or article is written as a provision only once its
+    # own index page lists children. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing everything under
+    # it. A page that could not be fetched is sourced from the index that
+    # lists it; a page that was fetched but is unusable from itself. A
+    # container its listing or page marks repealed, reserved, obsolete or
+    # superseded lists nothing by law and stays complete.
     selected_chapter_count = 0
     for title in titles:
         if remaining_sections is not None and remaining_sections <= 0:
             break
-        title_page = fetcher.fetch(title.relative_path)
+        try:
+            title_page = fetcher.fetch(title.relative_path)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"title {title.number}: {exc}")
+            _append_gap(
+                seen, items, title.citation_path, source=root_source, metadata=_title_metadata(title)
+            )
+            continue
         title_source = _record_source_page(
             store,
             jurisdiction=jurisdiction,
@@ -284,6 +298,14 @@ def extract_rhode_island_general_laws(
         )
         title_index = parse_rhode_island_title_index(title_page.data, title=title)
         title_heading = title_index.heading or title.heading
+        if not title_index.child_containers and not _empty_by_law(
+            title_index.status or _status(title.heading, None, ())
+        ):
+            errors.append(f"title {title.number}: no chapters listed on title page")
+            _append_gap(
+                seen, items, title.citation_path, source=title_source, metadata=_title_metadata(title)
+            )
+            continue
         if title.citation_path not in seen:
             seen.add(title.citation_path)
             title_count += 1
@@ -318,7 +340,12 @@ def extract_rhode_island_general_laws(
         for chapter_link in chapter_links:
             if remaining_sections is not None and remaining_sections <= 0:
                 break
-            chapter_page = fetcher.fetch(chapter_link.relative_path)
+            try:
+                chapter_page = fetcher.fetch(chapter_link.relative_path)
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"chapter {chapter_link.source_id}: {exc}")
+                _append_container_gap(seen, items, chapter_link, source=title_source)
+                continue
             chapter_source = _record_source_page(
                 store,
                 jurisdiction=jurisdiction,
@@ -336,6 +363,14 @@ def extract_rhode_island_general_laws(
                 page=chapter_index,
                 source_year=source_year,
             )
+            if (
+                not chapter_index.child_containers
+                and not chapter_index.section_links
+                and not _empty_by_law(chapter_provision.status)
+            ):
+                errors.append(f"chapter {chapter_link.source_id}: no sections or parts listed")
+                _append_container_gap(seen, items, chapter_provision, source=chapter_source)
+                continue
             if chapter_provision.citation_path not in seen:
                 seen.add(chapter_provision.citation_path)
                 container_count += 1
@@ -353,7 +388,16 @@ def extract_rhode_island_general_laws(
                 for child_link in chapter_index.child_containers:
                     if remaining_sections is not None and remaining_sections <= 0:
                         break
-                    child_page = fetcher.fetch(child_link.relative_path)
+                    child_label = (
+                        f"{child_link.kind} {child_link.display_number}"
+                        f" of chapter {chapter_link.source_id}"
+                    )
+                    try:
+                        child_page = fetcher.fetch(child_link.relative_path)
+                    except Exception as exc:  # noqa: BLE001
+                        errors.append(f"{child_label}: {exc}")
+                        _append_container_gap(seen, items, child_link, source=chapter_source)
+                        continue
                     child_source = _record_source_page(
                         store,
                         jurisdiction=jurisdiction,
@@ -371,6 +415,12 @@ def extract_rhode_island_general_laws(
                         page=child_index,
                         source_year=source_year,
                     )
+                    if not child_index.section_links and not _empty_by_law(
+                        child_provision.status
+                    ):
+                        errors.append(f"{child_label}: no sections listed")
+                        _append_container_gap(seen, items, child_provision, source=child_source)
+                        continue
                     if child_provision.citation_path not in seen:
                         seen.add(child_provision.citation_path)
                         container_count += 1
@@ -425,7 +475,7 @@ def extract_rhode_island_general_laws(
         raise ValueError(
             f"no Rhode Island General Laws chapters selected for filter: {only_chapter!r}"
         )
-    if not items:
+    if not records:
         raise ValueError("no Rhode Island General Laws provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -805,6 +855,59 @@ def _append_section(
         ordinal=section.ordinal,
         identifiers=_section_identifiers(section),
         metadata=_section_metadata(section, source_year=source_year),
+    )
+
+
+_EMPTY_BY_LAW_STATUSES = frozenset({"repealed", "reserved", "obsolete", "superseded"})
+
+
+def _empty_by_law(status: str | None) -> bool:
+    """Whether a container's status means it lists nothing by law."""
+    return status in _EMPTY_BY_LAW_STATUSES
+
+
+def _title_metadata(title: RhodeIslandTitle) -> dict[str, Any]:
+    return {"kind": "title", "title": title.number, "display_number": title.number}
+
+
+def _append_container_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    provision: RhodeIslandContainerLink,
+    *,
+    source: _RecordedSource,
+) -> None:
+    metadata = _container_metadata(provision)
+    metadata["parent_citation_path"] = provision.parent_citation_path
+    _append_gap(seen, items, provision.citation_path, source=source, metadata=metadata)
+
+
+def _append_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    citation_path: str,
+    *,
+    source: _RecordedSource,
+    metadata: dict[str, Any],
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``.
+    """
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    metadata = _canonical_citation_metadata(metadata)
+    items.append(
+        SourceInventoryItem(
+            citation_path=_canonical_citation_path(citation_path),
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=RHODE_ISLAND_GENERAL_LAWS_SOURCE_FORMAT,
+            sha256=source.sha256,
+            metadata={key: value for key, value in metadata.items() if value not in (None, [], ())},
+        )
     )
 
 
