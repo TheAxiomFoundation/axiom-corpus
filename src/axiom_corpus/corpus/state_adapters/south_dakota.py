@@ -278,8 +278,14 @@ def extract_south_dakota_codified_laws(
         run_id,
         f"{SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT}/titles.json",
     )
-    store.write_bytes(titles_path, titles_data)
+    titles_sha256 = store.write_bytes(titles_path, titles_data)
     source_paths.append(titles_path)
+    titles_source = SouthDakotaSource(
+        source_url=urljoin(fetcher.base_url, "/api/Statutes/Title"),
+        source_path=_store_relative_path(store, titles_path),
+        source_format=SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT,
+        sha256=titles_sha256,
+    )
 
     title_rows = _title_rows(titles_data, only_title=title_filter)
     if not title_rows:
@@ -288,15 +294,37 @@ def extract_south_dakota_codified_laws(
     records: list[ProvisionRecord] = []
     items: list[SourceInventoryItem] = []
     seen: set[str] = set()
+    errors: list[str] = []
     title_count = 0
     chapter_count = 0
     section_count = 0
     limit_remaining = limit
 
-    chapter_targets: list[tuple[str, str, int, str]] = []
-    title_details = _fetch_south_dakota_statutes(fetcher, [title["Statute"] for title in title_rows], workers=workers)
-    for title_source_doc, title_row in zip(title_details, title_rows, strict=True):
+    # A title, or a chapter, is written as a provision only once its own API
+    # document lists children. Otherwise it stays an inventory gap, so coverage
+    # reads incomplete instead of silently losing everything under it. A
+    # document that could not be fetched is sourced from the listing that names
+    # it (titles.json for a title, the title document for a chapter); one that
+    # was fetched but is unusable from itself. A container whose catchline says
+    # it was repealed, transferred or superseded lists nothing by law and stays
+    # complete.
+    chapter_targets: list[tuple[str, str, int, str, SouthDakotaSource]] = []
+    title_results = _fetch_south_dakota_statutes(fetcher, [title["Statute"] for title in title_rows], workers=workers)
+    for title_result, title_row in zip(title_results, title_rows, strict=True):
         title_label = str(title_row["Statute"])
+        title = SouthDakotaTitle(
+            label=title_label,
+            heading=_clean_whitespace(title_row.get("CatchLine")),
+            statute_id=_optional_int(title_row.get("StatuteId")),
+            ordinal=len(records) + 1,
+            raw=title_row,
+        )
+        title_metadata = _title_metadata(title, effective_date_text=effective_date_text)
+        if title_result.source is None:
+            errors.append(f"title {title_label}: {title_result.error}")
+            _append_gap(seen, items, _inventory_item(title.citation_path, source=titles_source, metadata=title_metadata))
+            continue
+        title_source_doc = title_result.source
         title_source_path = store.source_path(
             jurisdiction,
             DocumentClass.STATUTE,
@@ -311,13 +339,17 @@ def extract_south_dakota_codified_laws(
             source_format=SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT,
             sha256=title_sha256,
         )
-        title = SouthDakotaTitle(
-            label=title_label,
-            heading=_clean_whitespace(title_row.get("CatchLine")),
-            statute_id=_optional_int(title_row.get("StatuteId")),
-            ordinal=len(records) + 1,
-            raw=title_row,
-        )
+        try:
+            title_payload = _json_object(title_source_doc.data)
+        except ValueError as exc:
+            errors.append(f"title {title_label}: {exc}")
+            _append_gap(seen, items, _inventory_item(title.citation_path, source=title_source, metadata=title_metadata))
+            continue
+        chapter_labels = _chapter_labels_from_title_html(_html_field(title_payload), title_label)
+        if not chapter_labels and not _empty_by_law(title.heading):
+            errors.append(f"title {title_label}: no chapters listed")
+            _append_gap(seen, items, _inventory_item(title.citation_path, source=title_source, metadata=title_metadata))
+            continue
         _append_unique(
             title.citation_path,
             seen=seen,
@@ -339,21 +371,42 @@ def extract_south_dakota_codified_laws(
         )
         title_count += 1
 
-        title_payload = _json_object(title_source_doc.data)
-        chapter_labels = _chapter_labels_from_title_html(title_payload.get("Html") or "", title_label)
         for ordinal, chapter_label in enumerate(chapter_labels, start=1):
             if chapter_filter is not None and _chapter_filter(chapter_label) != chapter_filter:
                 continue
-            chapter_targets.append((title_label, chapter_label, ordinal, title.citation_path))
+            chapter_targets.append((title_label, chapter_label, ordinal, title.citation_path, title_source))
 
     fetched_chapters = _fetch_south_dakota_statutes(
         fetcher,
-        [chapter_label for _, chapter_label, _, _ in chapter_targets],
+        [target[1] for target in chapter_targets],
         workers=workers,
     )
-    chapter_by_label = {source.label: source for source in fetched_chapters}
-    for title_label, chapter_label, chapter_ordinal, title_citation_path in chapter_targets:
-        source_doc = chapter_by_label[chapter_label]
+    chapter_by_label = {result.label: result for result in fetched_chapters}
+    for title_label, chapter_label, chapter_ordinal, title_citation_path, title_source in chapter_targets:
+        chapter_result = chapter_by_label[chapter_label]
+        if chapter_result.source is None:
+            errors.append(f"chapter {chapter_label}: {chapter_result.error}")
+            listed = SouthDakotaChapter(
+                label=chapter_label,
+                title=title_label,
+                heading=None,
+                statute_id=None,
+                parent_citation_path=title_citation_path,
+                ordinal=chapter_ordinal,
+                raw={},
+                source=title_source,
+            )
+            _append_gap(
+                seen,
+                items,
+                _inventory_item(
+                    listed.citation_path,
+                    source=title_source,
+                    metadata=_chapter_metadata(listed, effective_date_text=effective_date_text),
+                ),
+            )
+            continue
+        source_doc = chapter_result.source
         chapter_source_path = store.source_path(
             jurisdiction,
             DocumentClass.STATUTE,
@@ -368,7 +421,12 @@ def extract_south_dakota_codified_laws(
             source_format=SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT,
             sha256=chapter_sha256,
         )
-        chapter_payload = _json_object(source_doc.data)
+        chapter_error: str | None = None
+        try:
+            chapter_payload = _json_object(source_doc.data)
+        except ValueError as exc:
+            chapter_payload = {}
+            chapter_error = str(exc)
         chapter = SouthDakotaChapter(
             label=chapter_label,
             title=title_label,
@@ -379,6 +437,27 @@ def extract_south_dakota_codified_laws(
             raw=chapter_payload,
             source=source,
         )
+        sections = parse_south_dakota_chapter_html(
+            _html_field(chapter_payload),
+            chapter_label=chapter_label,
+            source=source,
+            parent_citation_path=chapter.citation_path,
+            limit=limit_remaining,
+        )
+        if chapter_error is None and not sections and not _empty_by_law(chapter.heading):
+            chapter_error = "no sections listed"
+        if chapter_error is not None:
+            errors.append(f"chapter {chapter_label}: {chapter_error}")
+            _append_gap(
+                seen,
+                items,
+                _inventory_item(
+                    chapter.citation_path,
+                    source=source,
+                    metadata=_chapter_metadata(chapter, effective_date_text=effective_date_text),
+                ),
+            )
+            continue
         _append_unique(
             chapter.citation_path,
             seen=seen,
@@ -399,13 +478,6 @@ def extract_south_dakota_codified_laws(
         )
         chapter_count += 1
 
-        sections = parse_south_dakota_chapter_html(
-            chapter_payload.get("Html") or "",
-            chapter_label=chapter_label,
-            source=source,
-            parent_citation_path=chapter.citation_path,
-            limit=limit_remaining,
-        )
         for section in sections:
             _append_unique(
                 section.citation_path,
@@ -433,6 +505,9 @@ def extract_south_dakota_codified_laws(
         if limit_remaining is not None and limit_remaining <= 0:
             break
 
+    if not records:
+        raise ValueError("no South Dakota Codified Laws provisions extracted")
+
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)
     provisions_path = store.provisions_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -457,6 +532,7 @@ def extract_south_dakota_codified_laws(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
 
 
@@ -580,13 +656,18 @@ def _fetch_south_dakota_statutes(
     labels: list[str],
     *,
     workers: int,
-) -> tuple[_SourceDocument, ...]:
+) -> tuple[_FetchResult, ...]:
+    """Fetch each label's API document; a failed fetch is a result with its error.
+
+    Only Exception is caught, so KeyboardInterrupt and SystemExit stop the run,
+    whether the fetch ran in this thread or in the pool.
+    """
     results: list[_FetchResult] = []
     if workers <= 1 or len(labels) <= 1:
         for label in labels:
             try:
                 results.append(_FetchResult(label, source=fetcher.fetch_statute(label)))
-            except BaseException as exc:
+            except Exception as exc:  # noqa: BLE001
                 results.append(_FetchResult(label, error=exc))
     else:
         with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -595,13 +676,10 @@ def _fetch_south_dakota_statutes(
                 label = futures[future]
                 try:
                     results.append(_FetchResult(label, source=future.result()))
-                except BaseException as exc:
+                except Exception as exc:  # noqa: BLE001
                     results.append(_FetchResult(label, error=exc))
-    errors = [f"{result.label}: {result.error}" for result in results if result.error]
-    if errors:
-        raise RuntimeError("; ".join(errors[:5]))
-    by_label = {result.label: result.source for result in results if result.source is not None}
-    return tuple(by_label[label] for label in labels if by_label.get(label) is not None)
+    by_label = {result.label: result for result in results}
+    return tuple(by_label[label] for label in labels)
 
 
 def _download_south_dakota_json(
@@ -895,6 +973,35 @@ def _inventory_item(
         sha256=source.sha256,
         metadata=metadata,
     )
+
+
+_EMPTY_BY_LAW_STATUSES = frozenset({"repealed", "transferred", "superseded"})
+
+
+def _empty_by_law(heading: str | None) -> bool:
+    """Whether a title or chapter catchline says it lists nothing by law."""
+    return _status(heading, None) in _EMPTY_BY_LAW_STATUSES
+
+
+def _html_field(payload: dict[str, Any]) -> str:
+    html = payload.get("Html")
+    return html if isinstance(html, str) else ""
+
+
+def _append_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
 
 
 def _append_unique(

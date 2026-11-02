@@ -16,14 +16,20 @@ are not yet in force) stay complete, and an interrupt during a fetch still stops
 the run.
 """
 
+import json
+
 import pytest
 import requests
 
 from axiom_corpus.corpus import states
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.state_adapters import rhode_island
+from axiom_corpus.corpus.state_adapters import rhode_island, south_dakota
 from axiom_corpus.corpus.state_adapters.rhode_island import extract_rhode_island_general_laws
+from axiom_corpus.corpus.state_adapters.south_dakota import (
+    SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT,
+    extract_south_dakota_codified_laws,
+)
 from axiom_corpus.corpus.states import (
     extract_dc_code,
     extract_minnesota_statutes,
@@ -48,6 +54,7 @@ from tests.test_corpus_rhode_island import (
 from tests.test_corpus_rhode_island import (
     SAMPLE_SECTION_1_2_5 as RI_SECTION_1_2_5,
 )
+from tests.test_corpus_south_dakota import SAMPLE_CHAPTER_HTML as SD_CHAPTER_HTML
 from tests.test_corpus_states import (
     SAMPLE_DC_INDEX,
     SAMPLE_DC_SECTION,
@@ -758,3 +765,192 @@ def test_rhode_island_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
     pages = {"Statutes.html": RI_ROOT}
     with pytest.raises((OSError, ValueError)):
         _extract_rhode_island(tmp_path, monkeypatch, pages)
+
+
+# --- South Dakota: titles.json -> title JSON (chapter list) -> chapter JSON ---
+
+SD_FORMAT = SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT
+
+
+def _sd_title(label: str, catchline: str, chapters: list[str]) -> str:
+    links = "".join(
+        f'<p><a href="https://sdlegislature.gov/Statutes/{chapter}">{chapter.split("-")[1]}</a> Chapter</p>'
+        for chapter in chapters
+    )
+    return json.dumps(
+        {
+            "StatuteId": int(label),
+            "Statute": label,
+            "Type": "Title",
+            "CatchLine": catchline,
+            "Html": f"<html><body><p>TITLE {label}</p>{links}</body></html>",
+        }
+    )
+
+
+def _sd_chapter(label: str, catchline: str, html: str) -> str:
+    return json.dumps(
+        {
+            "StatuteId": 100,
+            "Statute": label,
+            "Type": "Chapter",
+            "CatchLine": catchline,
+            "Html": html,
+        }
+    )
+
+
+SD_GOOD_PAGES = {
+    f"{SD_FORMAT}/effective-date.json": json.dumps("2026-04-16T00:00:00-05:00"),
+    f"{SD_FORMAT}/titles.json": json.dumps(
+        [
+            {"StatuteId": 1, "Statute": "1", "Type": "Title", "CatchLine": "STATE AFFAIRS"},
+            {"StatuteId": 2, "Statute": "2", "Type": "Title", "CatchLine": "LEGISLATURE"},
+        ]
+    ),
+    f"{SD_FORMAT}/statute-1.json": _sd_title("1", "STATE AFFAIRS", ["1-1", "1-2"]),
+    f"{SD_FORMAT}/statute-1-1.json": _sd_chapter("1-1", "STATE SOVEREIGNTY", SD_CHAPTER_HTML),
+    f"{SD_FORMAT}/statute-1-2.json": _sd_chapter(
+        "1-2", "STATE BOUNDARIES", SD_CHAPTER_HTML.replace("1-1", "1-2")
+    ),
+    f"{SD_FORMAT}/statute-2.json": _sd_title("2", "LEGISLATURE", ["2-1"]),
+    f"{SD_FORMAT}/statute-2-1.json": _sd_chapter(
+        "2-1", "MEMBERS", SD_CHAPTER_HTML.replace("1-1", "2-1")
+    ),
+}
+SD_CHAPTER_1_1 = {
+    "us-sd/statute/title-1",
+    "us-sd/statute/title-1/chapter-1-1",
+    "us-sd/statute/1-1-1",
+    "us-sd/statute/1-1-2",
+    "us-sd/statute/1-1-3",
+}
+SD_TITLE_2 = {
+    "us-sd/statute/title-2",
+    "us-sd/statute/title-2/chapter-2-1",
+    "us-sd/statute/2-1-1",
+    "us-sd/statute/2-1-2",
+    "us-sd/statute/2-1-3",
+}
+SD_FETCH_FAILURES = ["request-error"]
+SD_TOC_FAILURES = SD_FETCH_FAILURES + PAGE_FAILURES
+
+
+@pytest.fixture
+def no_south_dakota_network(monkeypatch):
+    # A file missing from --source-dir falls through to a live request; every
+    # live request in this module fails like an unreachable API.
+    def unavailable(source_url, **kwargs):
+        raise requests.ConnectionError(f"source unavailable: {source_url}")
+
+    monkeypatch.setattr(south_dakota, "_download_south_dakota_json", unavailable)
+
+
+def _extract_south_dakota(tmp_path, pages, **kwargs):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    kwargs.setdefault("workers", 1)
+    report = extract_south_dakota_codified_laws(
+        store, version="2026-05-10", source_dir=tmp_path / "source", **kwargs
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", SD_TOC_FAILURES)
+def test_south_dakota_failed_title_toc_remains_inventory_gap(
+    tmp_path, no_south_dakota_network, failure
+):
+    failed = f"{SD_FORMAT}/statute-2.json"
+    pages = dict(SD_GOOD_PAGES)
+    pages.pop(f"{SD_FORMAT}/statute-1-2.json")
+    pages[f"{SD_FORMAT}/statute-1.json"] = _sd_title("1", "STATE AFFAIRS", ["1-1"])
+    _fail_page(
+        pages,
+        failed,
+        failure,
+        {
+            "wrong-shape": json.dumps({"Message": "An error has occurred."}),
+            "no-children": _sd_title("2", "LEGISLATURE", []),
+        },
+    )
+    store, report = _extract_south_dakota(tmp_path, pages)
+    assert report.section_count == 3
+    assert report.errors[0].startswith("title 2:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=SD_CHAPTER_1_1 | {"us-sd/statute/title-2"},
+        missing={"us-sd/statute/title-2"},
+        gap_source=f"{SD_FORMAT}/titles.json" if failure in SD_FETCH_FAILURES else failed,
+    )
+
+
+@pytest.mark.parametrize("failure", SD_TOC_FAILURES)
+def test_south_dakota_failed_chapter_remains_inventory_gap(
+    tmp_path, no_south_dakota_network, failure
+):
+    failed = f"{SD_FORMAT}/statute-1-2.json"
+    pages = dict(SD_GOOD_PAGES)
+    _fail_page(
+        pages,
+        failed,
+        failure,
+        {
+            "wrong-shape": json.dumps({"Message": "An error has occurred."}),
+            "no-children": _sd_chapter(
+                "1-2", "STATE BOUNDARIES", "<html><body><p>CHAPTER 1-2</p></body></html>"
+            ),
+        },
+    )
+    store, report = _extract_south_dakota(tmp_path, pages, only_title="1")
+    assert report.section_count == 3
+    assert report.errors[0].startswith("chapter 1-2:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=SD_CHAPTER_1_1 | {"us-sd/statute/title-1/chapter-1-2"},
+        missing={"us-sd/statute/title-1/chapter-1-2"},
+        gap_source=f"{SD_FORMAT}/statute-1.json" if failure in SD_FETCH_FAILURES else failed,
+    )
+
+
+def test_south_dakota_repealed_chapter_listing_nothing_stays_complete(
+    tmp_path, no_south_dakota_network
+):
+    # A chapter whose catchline says it was repealed carries no sections by law.
+    pages = dict(SD_GOOD_PAGES)
+    pages[f"{SD_FORMAT}/statute-1-2.json"] = _sd_chapter(
+        "1-2", "Repealed by SL 2010, ch 1, § 1", "<html><body><p>CHAPTER 1-2</p></body></html>"
+    )
+    store, report = _extract_south_dakota(tmp_path, pages, only_title="1")
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == SD_CHAPTER_1_1 | {"us-sd/statute/title-1/chapter-1-2"}
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+@pytest.mark.parametrize("label", ["2", "1-2"], ids=["title", "chapter"])
+def test_south_dakota_interrupt_during_fetch_stops_the_run(
+    tmp_path, monkeypatch, no_south_dakota_network, workers, label
+):
+    # Before, the fetch helper caught BaseException and turned an interrupt
+    # into a RuntimeError, so Ctrl-C never surfaced as KeyboardInterrupt.
+    fetch = south_dakota._SouthDakotaFetcher.fetch_statute
+
+    def interrupt(self, statute):
+        if statute == label:
+            raise KeyboardInterrupt
+        return fetch(self, statute)
+
+    monkeypatch.setattr(south_dakota._SouthDakotaFetcher, "fetch_statute", interrupt)
+    with pytest.raises(KeyboardInterrupt):
+        _extract_south_dakota(tmp_path, dict(SD_GOOD_PAGES), workers=workers)
+
+
+def test_south_dakota_run_of_only_gaps_still_fails(tmp_path, no_south_dakota_network):
+    pages = dict(SD_GOOD_PAGES)
+    pages.pop(f"{SD_FORMAT}/statute-1.json")
+    pages.pop(f"{SD_FORMAT}/statute-2.json")
+    with pytest.raises((RuntimeError, ValueError)):
+        _extract_south_dakota(tmp_path, pages)
