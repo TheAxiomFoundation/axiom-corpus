@@ -292,13 +292,14 @@ def extract_oregon_ors(
         raise ValueError(f"no Oregon ORS chapters selected for filters: {only_title!r}, {only_chapter!r}")
 
     title_by_number = {title.number: title for title in titles}
-    # A chapter is written as a provision only once its page lists a section
-    # under it. A chapter page that cannot be fetched stays an inventory gap
-    # sourced from the landing page whose title ranges name the chapter; a
-    # page that was fetched but has no chapter heading or lists no section
-    # stays a gap sourced from that page. Either way coverage reads incomplete
-    # instead of silently losing the chapter. A chapter of former provisions
-    # may list no section (ORS chapter 27) and is written as before.
+    # The run writes a chapter as a provision only once its page lists a
+    # section under it. A chapter whose page the run cannot fetch stays an
+    # inventory gap whose source is the landing page, whose title ranges name
+    # the chapter; a page the run fetched that has no chapter heading or lists
+    # no section stays a gap whose source is that page. Either way coverage
+    # reads incomplete instead of silently losing the chapter. A chapter of
+    # former provisions may list no section (ORS chapter 27), and the run
+    # writes it as before.
     for chapter in chapters:
         if remaining_sections is not None and remaining_sections <= 0:
             break
@@ -837,8 +838,8 @@ def _append_inventory_gap(
     """Record an expected provision whose page yielded nothing.
 
     The inventory item has no matching provision, so coverage lists it in
-    ``missing_from_provisions``. Its source is the page that shows the
-    chapter is expected: the landing page, or the chapter's own unusable page.
+    ``missing_from_provisions``. Its source is the page that shows the run
+    expects the chapter: the landing page, or the chapter's own unusable page.
     """
     if item.citation_path in seen:
         return

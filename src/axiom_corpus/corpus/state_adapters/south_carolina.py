@@ -374,16 +374,17 @@ def extract_south_carolina_code(
         "index_source_path": master_source_key,
         "index_sha256": master_sha,
     }
-    # A title or chapter is written as a provision only once its own page
-    # lists children. A page that cannot be fetched stays an inventory gap
-    # sourced from the listing that names it (the master index for a title,
-    # the title page for a chapter); a page that was fetched but lists nothing
-    # stays a gap sourced from that page. Either way coverage reads incomplete
-    # instead of silently losing everything under it. A chapter that lists no
-    # section is written as before only when its page carries a note and the
-    # note or the chapter's heading marks it repealed or reserved (every such
-    # chapter in the live Code does). A title whose chapters the chapter filter
-    # leaves out is skipped, not lost.
+    # The run writes a title or chapter as a provision only once its own page
+    # lists children. A container whose page the run cannot fetch stays an
+    # inventory gap whose source is the listing that names it (the master
+    # index for a title, the title page for a chapter); a page the run fetched
+    # that lists nothing stays a gap whose source is that page. Either way
+    # coverage reads incomplete instead of silently losing everything under
+    # it. The run writes a chapter that lists no section as before only when
+    # its page carries a note and the note or the chapter's heading marks it
+    # repealed or reserved (every such chapter in the live Code does). The run
+    # skips, rather than loses, a title whose chapters the chapter filter
+    # leaves out.
     for title in titles:
         if remaining_sections is not None and remaining_sections <= 0:
             break
@@ -1179,8 +1180,8 @@ def _append_inventory_gap(
     """Record an expected provision whose page yielded nothing.
 
     The inventory item has no matching provision, so coverage lists it in
-    ``missing_from_provisions``. Its source is the page that shows the
-    provision is expected: its parent listing, or its own unusable page.
+    ``missing_from_provisions``. Its source is the page that shows the run
+    expects the provision: its parent listing, or its own unusable page.
     """
     if item.citation_path in seen:
         return

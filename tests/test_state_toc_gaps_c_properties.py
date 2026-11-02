@@ -4,7 +4,7 @@ For any set of containers and any assignment of outcomes to them, the run keeps
 every container it selected in the inventory, writes a provision only for what
 it could read, logs one error per lost container, and reads complete exactly
 when nothing failed. Every gap points at a file the run wrote, with a matching
-hash: the parent listing when the page could not be fetched, otherwise the
+hash: the parent listing when the run could not fetch the page, otherwise the
 page itself. A container empty by law stays complete. Indiana writes the same
 artifacts from a source directory as from the Code ZIP, and Oregon the same
 whether one worker or several discover its chapters. A run that writes no

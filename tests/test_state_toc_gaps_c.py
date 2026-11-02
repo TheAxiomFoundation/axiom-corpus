@@ -1,18 +1,18 @@
-"""A container whose page cannot be read stays a coverage gap: Indiana to West Virginia.
+"""Indiana, Oregon and South Carolina keep a container they cannot read as a coverage gap.
 
-Follow-up to axiom-corpus#951 and #952 for the container-level failures
-#953's survey found in no other fix: Indiana titles, Oregon chapters, South
-Carolina titles and chapters, and West Virginia articles. A container is
-written as a provision only once its own page lists children. When the page
-cannot be fetched, is a maintenance, empty or wrong-shape page, or lists no
-children, the run records an error and an inventory gap, so coverage and
-strict release validation read incomplete.
+Follow-up to axiom-corpus#951 and #952 for container-level failures that
+#953's survey found in no other fix: Indiana titles, Oregon chapters, and
+South Carolina titles and chapters. (West Virginia articles follow #953, which
+rewrites the same loop.) The run writes a container as a provision only once
+its own page lists children. When the run cannot fetch the page, or the page
+is a maintenance, empty or wrong-shape page, or lists no children, the run
+records an error and an inventory gap, so coverage and release validation
+read incomplete.
 
-A gap is sourced from the page the run could not use, or from the parent
-listing that names the container when its page could not be fetched at all.
-A container that is empty by law stays complete: a repealed Indiana title, an
-Oregon chapter of former provisions, a repealed or reserved South Carolina
-chapter.
+A gap takes its source from the page the run could not use, or from the parent
+listing that names the container when the run could not fetch its page at all.
+A container empty by law stays complete: a repealed Indiana title, an Oregon
+chapter of former provisions, a repealed or reserved South Carolina chapter.
 """
 
 from pathlib import Path

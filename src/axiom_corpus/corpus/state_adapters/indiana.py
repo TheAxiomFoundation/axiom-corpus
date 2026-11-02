@@ -114,12 +114,12 @@ def extract_indiana_code(
     errors: list[str] = []
     remaining = limit
 
-    # A title is written as a provision only once its page lists an article,
-    # chapter or section under it. A title page that cannot be parsed, parses
-    # to nothing or lists nothing under the title stays an inventory gap,
-    # sourced from that page, so coverage reads incomplete instead of silently
-    # losing the title. A repealed title (IC 17, 18 and 19) lists nothing and
-    # is written as before.
+    # The run writes a title as a provision only once its page lists an
+    # article, chapter or section under it. A title page that fails to parse,
+    # parses to nothing or lists nothing under the title stays an inventory
+    # gap whose source is that page, so coverage reads incomplete instead of
+    # silently losing the title. A repealed title (IC 17, 18 and 19) lists
+    # nothing, and the run writes it as before.
     for source in title_sources:
         if remaining is not None and remaining <= 0:
             break
