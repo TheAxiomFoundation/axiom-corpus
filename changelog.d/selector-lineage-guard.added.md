@@ -1,0 +1,1 @@
+Refuse, in the required test job, a release selector that selects no version of a (jurisdiction, document_class) pair its predecessor carries, or that names a predecessor another selector already succeeds; the one drop and six forks already on main are recorded in `manifests/selector-lineage-baseline.yaml`, pinned to their selector digests.

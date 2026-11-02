@@ -1,4 +1,4 @@
-# Release gate policy: withdrawn scopes and the content check
+# Release gate policy: withdrawn scopes, selector lineage and the content check
 
 `validate_release` (`src/axiom_corpus/corpus/release_quality.py`) checks each
 selected scope's artifacts: inventory, provisions, sources, coverage, dates and
@@ -130,6 +130,91 @@ scope before the gate listed it.
 
 A cut that must keep a withdrawn scope adds an `exceptions` entry with its
 reason; that is a release decision and is reviewed as one.
+
+## Selector lineage
+
+Selectors are cut as lines: each cut names the selector it succeeds and
+carries that selector's scopes forward. A cut derived from a selector that
+another cut already superseded drops what the newer cuts added, and whichever
+release is pinned or activated last decides what remains
+([#935](https://github.com/TheAxiomFoundation/axiom-corpus/issues/935)). Both
+consumers are affected:
+
+- A rules repository pins one release and reads only what it selects.
+- Activation repoints the serving pointer of each `(jurisdiction,
+  document_class)` pair the release carries, and the pair then serves exactly
+  that release's versions; a pair the release does not carry keeps its release
+  (`supabase/migrations/20260719043000_profiled_release_activation.sql`, the
+  per-pair loop at line 248; `corpus.current_release_scopes` in
+  `20260718193000_scope_level_activation.sql`, line 156).
+
+`axiom_corpus.corpus.selector_lineage` checks the selector files alone, with no
+corpus, database or git history. A selector's **predecessor** is the first
+tracked selector its description names ("Successor to <name>", "after <name>",
+"<name>'s scope set"). Every successor on main names its predecessor first. The
+check fails on:
+
+| Finding | Rule |
+| --- | --- |
+| dropped pair | the selector selects no version of a pair its predecessor carries, so the pair's last version leaves the line |
+| fork | two or more selectors name the same predecessor, so at most one of them is the newest cut of the line |
+
+A new version of a pair counts as its replacement: swapping
+`us-ny/statute/2026-06-05-nyc-admin-code` for `2026-09-28-nyc-admin-code` is not
+a drop. Which versions a release may move between at activation is the
+`scope_monotonicity` check of `scripts/check_release_gate.py`. A selector whose
+description names no tracked selector is the first of its line and is not
+compared.
+
+It compares a cut with its own predecessor because that is the claim every cut
+already makes ("It preserves every prior scope"), and the check makes it
+mechanical. Other comparisons fail:
+
+- The serving set lives in Supabase and depends on the order releases were
+  activated, so CI cannot read it.
+- Every earlier selector, or every selector with the same name prefix, mixes
+  lines that are not comparable: the dated cuts since 2026-10-13 (267 to 276
+  scopes) and the union lineage (1,567 scopes in its tenth release) both start
+  `us-rulespec-`.
+- Merge order needs main's full history and makes the verdict depend on the
+  clone.
+- A predecessor alone misses a cut from a stale base: it keeps every pair of the
+  base it names. The fork rule closes that. On 2026-10-25,
+  `us-rulespec-2026-10-23-ks-liheap` merged after
+  `us-rulespec-2026-10-25-ssi-poms-public-laws`, `-nyc-ch127-title-52` and
+  `-mt-separate-filing` had moved the line on, and still named
+  `us-rulespec-2026-10-22-ca-concurrent-versions`, which the SSI POMS cut already
+  succeeded. Neither branch carries the other's additions.
+
+At main `980e39792` the check reads 161 selectors. 61 name a predecessor and
+100 name none. It reports one dropped pair (`uk-rulespec-2026-08-02` retires the
+`uk-shropshire` manual by omission, as its description says) and six forks.
+None of the three 2026-10-25 cuts drops a pair. They form a line: SSI POMS,
+then NYC chapter 127 and Title 52, then Montana separate filing.
+
+`manifests/selector-lineage-baseline.yaml` records the drops and forks that are
+allowed. Every selector an entry names is pinned to its digest
+(`axiom_corpus.release.manifest.selector_sha256`) under `selector_digests`, so
+an entry holds only for those exact selectors. A drop entry names the
+`selector`, its `predecessor` and the `pair`, and may list under `replaced_by`
+the scopes the selector selects that carry the pair's text; its `reason` says
+why nothing does when nothing does. A fork entry lists every selector that names
+the `predecessor`, and a further successor is a new fork. Each entry has
+`listed_on` and a `reason`. The entries listed on 2026-11-02 are the drop and
+forks main held when the check began, and
+`tests/test_selector_lineage_repository.py` fixes that set. An entry that no
+longer matches a finding, or whose pinned selector changed, fails the check.
+
+### Cutting a successor
+
+1. Find the newest selector of the line, the one no tracked selector names
+   yet, and derive the cut from it.
+2. Name it first in the description: `Successor to <name>.`
+3. Run `uv run --extra dev python -m pytest -q tests/test_selector_lineage_repository.py`.
+   A failure prints the finding and the baseline entry that would record it.
+
+Dropping a pair, or splitting a line, is a release decision: record it with
+its reason and review it as one.
 
 ## Content check
 

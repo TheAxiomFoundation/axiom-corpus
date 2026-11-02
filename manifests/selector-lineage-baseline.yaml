@@ -50,8 +50,8 @@ forks:
     listed_on: 2026-11-02
     reason: >-
       On main before the lineage check began. The line continued from
-      us-rulespec-2026-07-22-current; us-rulespec-2026-07-21-oh-hb96-current has
-      no successor.
+      us-rulespec-2026-07-22-current; no tracked selector names
+      us-rulespec-2026-07-21-oh-hb96-current as its predecessor.
   - predecessor: us-rulespec-2026-07-22-current-la-status-fix
     successors:
       - us-rulespec-2026-07-22-hi-capital-gain-current
@@ -59,8 +59,8 @@ forks:
     listed_on: 2026-11-02
     reason: >-
       On main before the lineage check began. The line continued from
-      us-rulespec-2026-07-24-cms-435-correction;
-      us-rulespec-2026-07-22-hi-capital-gain-current has no successor.
+      us-rulespec-2026-07-24-cms-435-correction; no tracked selector names
+      us-rulespec-2026-07-22-hi-capital-gain-current as its predecessor.
   - predecessor: us-rulespec-2026-08-08-obbb-alien-snap
     successors:
       - us-rulespec-2026-08-09-cutover-surface-union
@@ -70,8 +70,8 @@ forks:
     reason: >-
       On main before the lineage check began. The union lineage continued from
       us-rulespec-2026-08-09-cutover-surface-union and the dated cuts from
-      us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected;
-      us-rulespec-2026-09-24-snap-fy2027-cola has no successor.
+      us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected; no tracked
+      selector names us-rulespec-2026-09-24-snap-fy2027-cola as its predecessor.
   - predecessor: us-rulespec-2026-08-23-canada-338-suspension-union
     successors:
       - us-rulespec-2026-09-11-program-ingestion-union
@@ -79,8 +79,8 @@ forks:
     listed_on: 2026-11-02
     reason: >-
       On main before the lineage check began. The union lineage continued from
-      us-rulespec-2026-09-11-program-ingestion-union;
-      us-rulespec-2026-09-24-irs-sales-tax-tables-union has no successor.
+      us-rulespec-2026-09-11-program-ingestion-union; no tracked selector names
+      us-rulespec-2026-09-24-irs-sales-tax-tables-union as its predecessor.
   - predecessor: us-rulespec-2026-10-09-az-des-ece-dated
     successors:
       - us-rulespec-2026-10-16-snap-abawd-memo-source-corrected
@@ -88,8 +88,8 @@ forks:
     listed_on: 2026-11-02
     reason: >-
       On main before the lineage check began. The line continued from
-      us-rulespec-2026-10-20-fs-pilot-reg-e-f;
-      us-rulespec-2026-10-16-snap-abawd-memo-source-corrected has no successor.
+      us-rulespec-2026-10-20-fs-pilot-reg-e-f; no tracked selector names
+      us-rulespec-2026-10-16-snap-abawd-memo-source-corrected as its predecessor.
   - predecessor: us-rulespec-2026-10-22-ca-concurrent-versions
     successors:
       - us-rulespec-2026-10-23-ks-liheap
@@ -97,7 +97,7 @@ forks:
     listed_on: 2026-11-02
     reason: >-
       On main before the lineage check began. The line continued from
-      us-rulespec-2026-10-25-ssi-poms-public-laws;
-      us-rulespec-2026-10-23-ks-liheap has no successor, and its us-ks/policy
+      us-rulespec-2026-10-25-ssi-poms-public-laws; no tracked selector names
+      us-rulespec-2026-10-23-ks-liheap as its predecessor, and its us-ks/policy
       scopes are not in the line's newest cut,
       us-rulespec-2026-10-29-ecfr-section-text (axiom-corpus#935).

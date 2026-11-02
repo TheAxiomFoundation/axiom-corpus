@@ -97,6 +97,12 @@ uv run axiom-corpus-ingest content-check <jurisdiction>/<document_class>/<versio
 A selector may not select a scope listed in `manifests/withdrawn-scopes.yaml`
 unless its entry grandfathers that selector; see `docs/release-gate-policy.md`.
 
+A new selector names the selector it succeeds first in its description, cuts
+from the newest selector of its line, and keeps a version of every
+`(jurisdiction, document_class)` pair that selector carries, unless
+`manifests/selector-lineage-baseline.yaml` records the drop or the fork; see
+`docs/release-gate-policy.md#selector-lineage`.
+
 ## Named-release visibility model
 
 `load-supabase` only stages immutable version rows. A tracked named selector is
