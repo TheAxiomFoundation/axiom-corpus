@@ -45,6 +45,16 @@ def _audit(event: str, args: tuple[object, ...]) -> None:
         _absent_opens.add(rel)
 
 
+def pytest_configure(config: pytest.Config) -> None:
+    # Importing axiom_corpus.api.main builds the module's default app, whose
+    # archive creates the tables of ./axiom.db when they are missing. Under
+    # pytest-xdist every worker imports it while collecting, and concurrent
+    # table creation fails with "database is locked"; create them once, here in
+    # the controlling process, before any worker starts.
+    if not hasattr(config, "workerinput"):
+        import axiom_corpus.api.main  # noqa: F401
+
+
 def pytest_sessionstart(session: pytest.Session) -> None:
     global _locked
     from axiom_corpus.corpus.corpus_locks import load_locks

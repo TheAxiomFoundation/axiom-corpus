@@ -1,0 +1,1 @@
+Re-extract the Uganda NSSF Act ss. 10-12 rows as `2026-09-25-ug-nssf-contributions` with the scan's OCR misreads and right-margin crops corrected, running heads dropped and section 12 stopped before section 13, and cut `ug-rulespec-2026-09-25` to carry it. The superseded `2026-07-08-ug-nssf-contributions` stays for the two published releases that name it.

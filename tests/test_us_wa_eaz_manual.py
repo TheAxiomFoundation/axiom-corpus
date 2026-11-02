@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
 import yaml
 
 from axiom_corpus.corpus import documents as documents_module
@@ -19,6 +20,10 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage" / "us-wa" / "manual" / f"{VERSION}.json
 
 EXPECTED_DOCUMENT_COUNT = 200
 EXPECTED_BLOCK_COUNT = 1_065
+# Seven link-list blocks the navigation-block filter drops, and 178 blocks that are
+# only the manifest's declared "Clarifying Information" / "Worker Responsibilities"
+# jump links (html_navigation_selectors).
+EXPECTED_NAVIGATION_BLOCK_COUNT = 7 + 178
 EXPECTED_ROW_COUNT = EXPECTED_DOCUMENT_COUNT + EXPECTED_BLOCK_COUNT
 EXPECTED_SOURCE_BYTES = 20_353_997
 EXPECTED_URL_AGGREGATE = "4b2eaaae9969afdca2d4aa2edb5984fca75f8bf26e9cf303a4f45aa3cc527a44"
@@ -74,11 +79,20 @@ def test_washington_retained_sources_match_inventory_and_aggregate() -> None:
     assert hashlib.sha256(ordered_hashes.encode()).hexdigest() == EXPECTED_SOURCE_AGGREGATE
 
 
+# This test extracts all 200 Washington sources three times (first pass, second
+# pass, and once more unfiltered), so it is the longest test in the suite: a
+# scheduled main run measured it at 34 s against the global --timeout=60. That
+# leaves under 2x headroom, and on a loaded shared runner it overran the budget
+# and failed four unrelated pull requests in one day (#900), each of which passed
+# on a re-run. The budget below matches the work rather than the fastest run. The
+# determinism assertions are unchanged: this governs only how long they may take.
+@pytest.mark.timeout(300)
 def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
     manifest = documents_module.OfficialDocumentManifest.load(MANIFEST_PATH)
     inventory_by_citation = {item["citation_path"]: item for item in _inventory()}
     first_pass = []
     second_pass = []
+    unfiltered = []
 
     for source in manifest.documents:
         item = inventory_by_citation[source.citation_path]
@@ -90,9 +104,27 @@ def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
         }
         first_pass.append(documents_module._extract_blocks(content, "html", **kwargs))
         second_pass.append(documents_module._extract_blocks(content, "html", **kwargs))
+        kwargs["extraction"] = {
+            **{
+                key: value
+                for key, value in (source.extraction or {}).items()
+                if key not in {"html_navigation_selectors", "html_navigation_heading_selectors"}
+            },
+            "html_keep_navigation_blocks": True,
+        }
+        unfiltered.append(documents_module._extract_blocks(content, "html", **kwargs))
 
     assert first_pass == second_pass
-    assert sum(len(blocks) for blocks in first_pass) == EXPECTED_BLOCK_COUNT
+    # The locked scope predates the navigation-block filter and the declared tab
+    # links: the unfiltered extraction still makes exactly its blocks, and the
+    # filter and the declaration drop 185 blocks without renumbering the rest.
+    assert sum(len(blocks) for blocks in unfiltered) == EXPECTED_BLOCK_COUNT
+    assert (
+        sum(len(blocks) for blocks in first_pass)
+        == EXPECTED_BLOCK_COUNT - EXPECTED_NAVIGATION_BLOCK_COUNT
+    )
+    for kept, every in zip(first_pass, unfiltered, strict=True):
+        assert all(block in every for block in kept)
 
 
 def test_washington_generated_scope_has_complete_coverage() -> None:

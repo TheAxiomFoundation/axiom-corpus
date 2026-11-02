@@ -25,7 +25,7 @@ PROVISIONS_DIR = Path(__file__).resolve().parents[1] / "data" / "corpus" / "prov
 # value, so a lower number here would shorten these tests' limit on a small tree.
 SUITE_TIMEOUT_SECONDS = 60
 MIN_SCAN_BYTES_PER_SECOND = 10_000_000
-# The test job has timeout-minutes: 30 for setup and the whole suite. Keep the
+# The test job has timeout-minutes: 90 for setup and the whole suite. Keep the
 # budget well inside it, so a hang is normally reported by pytest-timeout rather
 # than cut off by the runner.
 MAX_TIMEOUT_SECONDS = 20 * 60

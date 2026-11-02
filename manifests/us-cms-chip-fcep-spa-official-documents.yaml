@@ -21,6 +21,9 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-4036 .usa-accordion-content-wrapper"
+      # The summary, state, dates and topics are bare text in the card's grid cells, which
+      # the default paragraph and list-item text nodes skip (2026-10-13 hollow-root audit).
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -70,6 +73,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-109811 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -119,6 +123,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-147101 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -168,6 +173,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-164786 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -217,6 +223,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-167541 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -266,6 +273,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-126251 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -315,6 +323,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-145381 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -364,6 +373,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-144706 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -413,6 +423,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-144711 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -462,6 +473,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-126246 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -511,6 +523,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-3381 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -560,6 +573,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-152926 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -609,6 +623,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-158866 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -658,6 +673,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-144721 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -707,6 +723,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-144716 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -756,6 +773,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-147821 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -805,6 +823,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-3216 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -854,6 +873,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-3596 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -903,6 +923,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-136871 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -952,6 +973,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-3401 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1001,6 +1023,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-1396 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1050,6 +1073,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-158071 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1099,6 +1123,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-192526 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1148,6 +1173,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-1801 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1197,6 +1223,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-1401 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1270,6 +1297,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-186976 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1319,6 +1347,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-1591 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1392,6 +1421,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-148841 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1441,6 +1471,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-1641 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1514,6 +1545,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-1451 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1587,6 +1619,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-170526 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1636,6 +1669,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-3686 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1685,6 +1719,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-167536 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1734,6 +1769,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-110751 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1783,6 +1819,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-184011 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"
@@ -1832,6 +1869,7 @@ documents:
       document_subtype: "chip_state_plan_amendment_summary"
     extraction:
       html_content_selector: "#node-3246 .usa-accordion-content-wrapper"
+      html_text_selector: ".grid-row > div"
       html_drop_selectors:
         - ".views-field-share"
         - ".field--name-field-chip-spa-docs"

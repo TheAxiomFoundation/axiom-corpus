@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "3fb23c9c84a10a61a6e74b8ca9929c6c6868d81cfd4e1db8fc9721f152b6473c"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "9c582d1273f7f09f46a6521e79161c9030ce6ec95b18b9c55b46ada55e1655ed"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "dc3bd75ebc3bc6ee58fc548c1332e2459e99649686c4d85d1f1884e1fdab4d53"
+    },
+    {
+      "path": "data/corpus/sources/us-va/policy/2026-09-15-medicaid-1115-stc/official-documents/us-va-cms-1115-stc-btcsshv.pdf",
+      "sha256": "c98c62baefacaeb9e73af809c1cf356a42879dd055c1cf62afeeacdb9bd76da3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/policy/2026-09-15-medicaid-1115-stc/official-documents/us-va-cms-1115-stc-famis-moms-famis-select.pdf",
+      "sha256": "7e68d1b3818c6515dd9f087b5b015a046879ee88eea564ee5101cab2d42fa7f5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 127,
+    "missing_count": 0,
+    "provision_count": 127,
+    "source_count": 127
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:48.488894+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V46kd9qFc88Mk0cNuWWoEOpBTO5uQ6CKzDNi1FakEnaADXQK5Y86XvbYBncfZYjtCaL9AfQSl7GKYEIjzvgvCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}

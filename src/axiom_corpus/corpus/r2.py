@@ -313,14 +313,25 @@ def load_r2_config(
     )
 
 
-def make_r2_client(config: R2Config, *, max_pool_connections: int = 10) -> Any:
+def make_r2_client(
+    config: R2Config, *, max_pool_connections: int = 10, sdk_retries: bool = True
+) -> Any:
     """Create a boto3 S3-compatible client for Cloudflare R2.
 
     ``max_pool_connections`` sizes botocore's per-client connection pool. A
     caller that drives the client from a thread pool must size it to at least
     the worker count, otherwise botocore serializes the surplus threads on the
     pool and logs "Connection pool is full" warnings.
+
+    ``sdk_retries=False`` makes every call one HTTP request, for a caller that
+    retries on its own (``content_store.R2ObjectStore`` reads); otherwise
+    botocore's standard mode retries up to five times.
     """
+    retries = (
+        {"max_attempts": 5, "mode": "standard"}
+        if sdk_retries
+        else {"total_max_attempts": 1, "mode": "standard"}
+    )
     return boto3.client(
         "s3",
         endpoint_url=config.endpoint_url,
@@ -330,7 +341,7 @@ def make_r2_client(config: R2Config, *, max_pool_connections: int = 10) -> Any:
         config=Config(
             connect_timeout=10,
             read_timeout=30,
-            retries={"max_attempts": 5, "mode": "standard"},
+            retries=retries,
             max_pool_connections=max(10, max_pool_connections),
         ),
     )
@@ -586,13 +597,21 @@ def build_artifact_report(
     remote_coverage: Mapping[str, Mapping[str, Any]] | None = None,
     release_name: str | None = None,
     release_scopes: Iterable[ScopeKey] | None = None,
+    local_artifacts: Iterable[LocalArtifact] | None = None,
 ) -> ArtifactReport:
+    """``local_artifacts``: the result of ``iter_local_artifacts(root, prefixes)``
+    when the caller already walked the tree (one walk for many selectors)."""
     prefix_tuple = _normalize_prefixes(prefixes)
     root_path = Path(root)
     release_scope_keys = _normalize_release_scopes(release_scopes)
+    walked = (
+        local_artifacts
+        if local_artifacts is not None
+        else iter_local_artifacts(root_path, prefixes=prefix_tuple)
+    )
     local = tuple(
         artifact
-        for artifact in iter_local_artifacts(root_path, prefixes=prefix_tuple)
+        for artifact in walked
         if _artifact_matches_scope(
             artifact.key,
             jurisdiction=jurisdiction,

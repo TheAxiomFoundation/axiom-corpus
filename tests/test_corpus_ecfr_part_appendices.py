@@ -247,7 +247,6 @@ def test_part_appendix_identifier_parses(identifier, segment, legal_identifier, 
         # ...the rest never parse.
         ("Appendix D-1 to Part 208", None),
         ("Appendix I(F) to Part 13", None),
-        ("Appendix to Part 60-20", None),
         ("Appendixes L-M to Part 50", None),
         ("Appendix to 19 CFR Part 0", None),
         ("Appendix A to Subpart B of Part 604", None),

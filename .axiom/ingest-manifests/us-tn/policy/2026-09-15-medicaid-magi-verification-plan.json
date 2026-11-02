@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "9c89e7b4807b25e442265d9b2b8aa82ef35ff77f6d52f55aaab7184a8c6584fa"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "d3dab4c33cfe0de1bf903a17ab0f56a1480a712aae79b066908faf3ab0c7149e"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "32a7f4cb6ac6379c55931d4dfb9747b98103f13d5084fd452c4f6e9d2cb4bfa8"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-tn-cms-magi-verification-plan-tennessee-verification-plan-template-final.pdf",
+      "sha256": "155bbd026d3a63c25c72980c43b0926a6feb797b5972b208f3950fa500558d61"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:32.587793+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UOj/nWB/+w/+ylvODDq4DFAV/kn2+pFJ93wbE/axJCMmdElaaHykJy9oLX2Rok1ctwkdiX+26g7UU/kvK68tBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

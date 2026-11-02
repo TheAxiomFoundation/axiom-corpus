@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/manual/2026-10-12-w7-state-benefits-manual-mo.json",
+      "sha256": "725a39de57b4663a58f6253bb8c3f35a96b97539ef3cd560cb0c500007077190"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/manual/2026-10-12-w7-state-benefits-manual-mo.json",
+      "sha256": "242b280d3dff5dbb4c518b77629614f4f7fafea2975fe150661a3f6098b30777"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/manual/2026-10-12-w7-state-benefits-manual-mo.jsonl",
+      "sha256": "e7dd58ee51b5639e0f6da2a8452b0145ed218ae193ae59f6444c11c403180184"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-12-w7-state-benefits-manual-mo/official-documents/us-mo-manual-dss-snap-memos-im-34-13.html",
+      "sha256": "8e9de44d63cba7fc689a116d8d34b356fcec2b360efca9398129b50b6ac5b7bd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-10-12-w7-state-benefits-manual-mo/official-documents/us-mo-manual-dss-snap-memos-im-39-03.html",
+      "sha256": "d61e91660aed2fce59fc339a070704692e860e37bd7a35492511a9f3e2992dd4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-13T12:06:30.582339+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0T4YWLA9fpoXGv87Myz2ctrPSsEUMVLAzjAB7xb2YgGTmbykkOfHDvO1NWkqCkDewEqO73eQ9s+HJDP7raiyAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-manual-mo"
+}

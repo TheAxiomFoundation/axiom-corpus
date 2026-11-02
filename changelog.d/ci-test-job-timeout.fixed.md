@@ -1,0 +1,1 @@
+Give the CI test job 90 minutes instead of 30. After checkout a green run takes 15 to 26 minutes, and the full-history checkout it needs has taken 11 to more than 30 minutes at busy hours, so the old cap cancelled healthy runs, including the daily run on main, before they finished.

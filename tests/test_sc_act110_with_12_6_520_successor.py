@@ -25,6 +25,7 @@ from hypothesis import strategies as st
 
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.state_adapters.south_carolina import (
@@ -333,21 +334,38 @@ def test_every_act110_selector_also_selects_the_recovery_scope() -> None:
 
 @pytest.mark.parametrize("name", SELECTORS)
 def test_the_paired_swap_validates_on_every_act110_selector(name: str) -> None:
-    """Every us-sc scope of the cut, with both predecessors swapped for the successor."""
+    """Every us-sc scope of the cut, with both predecessors swapped for the successor.
+
+    The next cut also drops the cut's other withdrawn us-sc scopes (the SC manual
+    and regulation landing pages, manifests/withdrawn-scopes.yaml), as the release
+    gate requires of any new cut.
+    """
     predecessors = {_statute(RECOVERY), _statute(ACT110)}
+    withdrawn = ReleaseGatePolicy.load(ROOT).withdrawn
+    assert set(predecessors) <= set(withdrawn)
     us_sc = [
-        scope for scope in _selected(name) if scope[0] == "us-sc" and scope not in predecessors
+        scope
+        for scope in _selected(name)
+        if scope[0] == "us-sc" and scope not in predecessors and scope not in withdrawn
     ]
     report = _validate(*us_sc, _statute(NEW))
     assert (report["ok"], report["issue_count"]) == (True, 0), report["issues"][:3]
 
 
 def test_keeping_either_predecessor_beside_it_is_a_duplicate_citation() -> None:
+    """Both predecessors are withdrawn, and each also collides with the successor."""
     with_recovery = _validate(_statute(RECOVERY), _statute(NEW))
     assert Counter(issue["code"] for issue in with_recovery["issues"]) == {
-        "duplicate_release_citation": 1
+        "withdrawn_scope_selected": 1,
+        "duplicate_release_citation": 1,
     }
-    assert SECTION in with_recovery["issues"][0]["message"]
+    [duplicate] = [
+        issue for issue in with_recovery["issues"] if issue["code"] == "duplicate_release_citation"
+    ]
+    assert SECTION in duplicate["message"]
     with_act110 = _validate(_statute(ACT110), _statute(NEW))
-    assert with_act110["error_count"] == 158
-    assert {issue["code"] for issue in with_act110["issues"]} == {"duplicate_release_citation"}
+    assert with_act110["error_count"] == 1 + 158
+    assert {issue["code"] for issue in with_act110["issues"]} == {
+        "withdrawn_scope_selected",
+        "duplicate_release_citation",
+    }

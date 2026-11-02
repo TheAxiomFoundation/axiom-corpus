@@ -168,7 +168,9 @@ def _extract_sections(
         records = load_provisions(report.provisions_path)
 
     source_path = _sources_prefix(VERSION) + RETAINED_SOURCE
-    provenance_metadata = {"download_url": provenance["url"]}
+    # The committed successor was extracted before a local_path copy recorded
+    # its source format's media type (axiom-corpus#878), so it carries none.
+    provenance_metadata = {"download_url": provenance["url"], "content_type": None}
     successor_metadata = {
         "successor_of_version": SOURCE_VERSION,
         "successor_of_citation_path": REPLACED_ROOT,

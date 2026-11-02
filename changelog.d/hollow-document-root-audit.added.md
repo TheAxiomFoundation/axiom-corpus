@@ -1,0 +1,1 @@
+Add the 2026-10-13 run note classifying all 188 `hollow_document_root` findings in the release content baseline, with their code paths or sources, release-selector and rulespec-us exposure, and recommendations.

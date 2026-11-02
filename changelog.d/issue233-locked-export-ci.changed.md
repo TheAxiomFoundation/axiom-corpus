@@ -1,0 +1,1 @@
+Install CI and authenticated artifact export from the committed dependency lock, carrying the scoped installer and test contract from PR #867 (5cd1f8fc94ea3b70dcb41006b9b162a274866743) while preserving base-verifier and release-content gates.

@@ -1,0 +1,1 @@
+Add a publish-only Kansas LIHEAP corpus selector that preserves the current RuleSpec pin and includes dated FY2025/FY2026 Kansas sources, the 2024/2025 HHS poverty notices, and the federal LIHEAP statute.

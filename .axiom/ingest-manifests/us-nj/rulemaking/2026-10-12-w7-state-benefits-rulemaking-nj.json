@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/rulemaking/2026-10-12-w7-state-benefits-rulemaking-nj.json",
+      "sha256": "dbd2d6895facac0003a09525fecd9f30adc627a6a5e6a9c34ed9eb646cb36322"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/rulemaking/2026-10-12-w7-state-benefits-rulemaking-nj.json",
+      "sha256": "46156922d006d176bffefacae7a8b56811b86c2cfd23bd35cb75ebb82c9bf007"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/rulemaking/2026-10-12-w7-state-benefits-rulemaking-nj.jsonl",
+      "sha256": "2fdc319d1ae24f1fef4a57858e9f59edbb2c1a90d06514a5e0dd0235cf9f978b"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/rulemaking/2026-10-12-w7-state-benefits-rulemaking-nj/official-documents/us-nj-rulemaking-new-jersey-register-2016-05-02-prn-2016-017.pdf",
+      "sha256": "64f265bc860a1f675099484f7ab1d2abf8c7e7c933c6d0f6626d99e0da5c893f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-13T12:06:39.810063+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UjEt5Fg+u+FTG+N1mMZPu4oSILX4e7OKYFd0SjI/jWNtA3HtOMuYEE36a3VhG79EhMnGu9o7w1MCO/D05lieDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-rulemaking-nj"
+}

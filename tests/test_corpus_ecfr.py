@@ -516,10 +516,20 @@ def test_retained_source_inventory_failure_preserves_existing_run_bytes(tmp_path
     import axiom_corpus.corpus.ecfr as ecfr
 
     # A retained-source run must be section-scoped. Its unsupported appendix is
-    # excluded, but the requested foreign-part section fails inventory validation
-    # after the local XML was read and the scoped structure was constructed.
+    # excluded, and § 605.100 belongs to part 604, which holds it (as 43 CFR 3809.1
+    # belongs to part 3800). The two requested sections fold to one citation path
+    # (604.100(a) and 604.100-a are both .../604/100-a), which fails inventory
+    # validation after the local XML was read and the scoped structure was constructed.
     xml = SAMPLE_APPENDIX_XML.replace("§ 604.100", "§ 605.100").replace(
         "Appendix A to Part 604", "Appendix M1 to Part 604"
+    )
+    xml = xml.replace(
+        '    <DIV9 N="Appendix',
+        '    <DIV8 N="§ 604.100(a)" TYPE="SECTION"><HEAD>§ 604.100(a) Folded.</HEAD>'
+        '<P>Text.</P></DIV8>\n'
+        '    <DIV8 N="§ 604.100-a" TYPE="SECTION"><HEAD>§ 604.100-a Folded.</HEAD>'
+        '<P>Text.</P></DIV8>\n    <DIV9 N="Appendix',
+        1,
     )
     source = tmp_path / "official.xml"
     source.write_bytes(xml.encode())
@@ -531,10 +541,11 @@ def test_retained_source_inventory_failure_preserves_existing_run_bytes(tmp_path
     monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda *args: pytest.fail("local run fetched structure"))
     monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: pytest.fail("local run fetched XML"))
 
-    with pytest.raises(ValueError, match=r"eCFR section selector\(s\) not found: 605\.100"):
+    with pytest.raises(ValueError, match=r"'us/regulation/45/604/100-a' is claimed twice"):
         extract_ecfr(
             store, version="2026-08-30", as_of="2026-08-27", source_xml=source,
-            only_title=45, only_part="604", only_sections=("605.100",), include_appendices=True,
+            only_title=45, only_part="604", only_sections=("604.100(a)", "604.100-a"),
+            include_appendices=True,
         )
 
     assert source.read_bytes() == xml.encode()
@@ -592,7 +603,7 @@ def test_extract_ecfr_preserves_ordinary_section_body_and_formula_only_capture(
       <HD1>Legacy omitted HD1<IMG src="/graphics/SECTION.002.gif"/><P>Nested paragraph</P></HD1>
       <HD2>Legacy omitted HD2</HD2><HD3>Legacy omitted HD3</HD3>
       <P>Paragraph text<IMG src="/graphics/SECTION.003.gif"/></P>
-      <TABLE><TR><TD>Table text<IMG src="/graphics/SECTION.004.gif"/></TD></TR></TABLE>
+      <TABLE><CAPTION><P>Table 1</P><P>[In dollars]</P></CAPTION><TR><TD>Table<br/>text<IMG src="/graphics/SECTION.004.gif"/></TD></TR></TABLE>
       <IMG src="/graphics/SECTION.005.gif"/>
       <MATH><IMG src="/graphics/ER07OC94.022.gif"/></MATH>
     """
@@ -621,8 +632,10 @@ def test_extract_ecfr_preserves_ordinary_section_body_and_formula_only_capture(
     assert report.title_errors == ()
     assert report.coverage.complete
     records = load_provisions(report.provisions_path)
+    # The table keeps its caption and breaks the word at <br/>; HD1 text and
+    # non-formula images stay out of sections.
     assert records[1].body.split("\n\n") == [
-        "Retained HED", "Nested paragraph", "Paragraph text", "Table text",
+        "Retained HED", "Nested paragraph", "Paragraph text", "[Table caption: Table 1 [In dollars]]", "Table text",
         "[Official formula image: ecfr/graphics/ER07OC94.022.png]",
     ]
     expected_ids = list(graphics) if include_appendices else ["ER07OC94.022"]

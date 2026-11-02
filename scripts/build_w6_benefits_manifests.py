@@ -589,17 +589,35 @@ for row, sec, ver in ((234, "201", "C35A-4-S201_1800010118000101"), (235, "207",
         subtype="statute_section_html", utah_code_version=ver,
         source_url_note="source_url is the section page the bundle cites, which loads the current version file named by its versionDefault; download_url is that file")
 
+# Repaired 2026-10-20: the Office of Administrative Rules relaunched eRules v1.0.0 on 2026-10-16 and the two
+# addresses this row used before (/public/rule/R994-401/Current%20Rules and the /api/public/getfile/... HTML)
+# both answer HTTP 404. The replacement is one address, the rule page, which server-renders the publisher's own
+# converted rule HTML; its trailing /undefined segment is required, because /Rule/2241/51/4501 alone 404s.
+UT_R994_401_PAGE = "https://adminrules.utah.gov/Rule/2241/51/4501/undefined"
 doc([232, 233], "us-ut", "regulation", "us-ut/regulation/admin-rules/r994/401",
     "Utah Administrative Code R994-401: Payment of Benefits (Workforce Services, Unemployment Insurance)",
-    "https://adminrules.utah.gov/public/rule/R994-401/Current%20Rules", "html",
-    download_url="https://adminrules.utah.gov/api/public/getfile/uac-html/ffc52bcf-88e1-4d58-a0c3-a18af6a6e3b6.html/R994-401.html",
-    request={"browser_user_agent": True, "range_fetch": True, "range_backend": "curl", "range_chunk_size": 4194304},
-    extraction={"html_content_selector": "body"},
+    UT_R994_401_PAGE, "html",
+    # the CSS-module hash prefix changes per build, so match the stable _ruleHtml suffix; this keeps the
+    # page's own chrome out of the block, which the earlier "body" selector would now include
+    extraction={"html_content_selector": "div[class$='_ruleHtml']"},
     program="Unemployment insurance", authority="Utah Office of Administrative Rules", subtype="administrative_code_rule",
     expression_date="2022-04-21", expression_note="the rule's effective date in the eRules record (4/21/2022)",
-    rule_id=2241, reference_number="R994-401",
-    source_url_note="source_url is the eRules rule route; download_url is the current rule HTML named by the public "
-    "API record (searchRuleDataTotal/R994-401), fetched with Accept */* as the FEP R986-200 manifest does")
+    rule_id=2241, rule_version_id=4501, rule_type_id=51, reference_number="R994-401",
+    official_rule_route=UT_R994_401_PAGE,
+    source_url_note="Repaired 2026-10-20. The Office of Administrative Rules relaunched eRules v1.0.0 on 2026-10-16, "
+    "and the addresses this row used before (/public/rule/R994-401/Current%20Rules and the "
+    "/api/public/getfile/uac-html/... download) both answer HTTP 404. The replacement is one address, the new rule "
+    "page, whose trailing /undefined segment is required, because /Rule/2241/51/4501 alone answers 404. The page "
+    "server-renders the publisher's own converted rule HTML (Aspose div.awdiv / span.awtext1), so "
+    "html_content_selector div[class$='_ruleHtml'] replaces the earlier body selector and keeps the page's own "
+    "chrome out of the block; the CSS-module hash prefix changes per build, so the selector matches the stable "
+    "_ruleHtml suffix. The plain corpus client reads the full body, so the browser user agent and the curl range "
+    "backend are no longer needed and the separate download_url is gone. The rule record now comes from "
+    "POST /api/search and POST /api/ruleVersion, which still name htmlName "
+    "ffc52bcf-88e1-4d58-a0c3-a18af6a6e3b6.html and effectiveDate 04/21/2022, so this is the same rule version the "
+    "2026-10-06 run took. The new /api/storage/<file> route answers HTTP 500 for every file name, so no direct file "
+    "route is used.",
+    repair_note="docs/ingest-runs/2026-10-20-ut-erules-url-repair.md")
 
 # us-wa
 doc([247], "us-wa", "regulation", "us-wa/regulation/388/388-414/388-414-0001",
