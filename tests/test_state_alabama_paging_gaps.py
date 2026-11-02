@@ -148,11 +148,13 @@ def _write_source(
     pages: dict[str, dict | bytes],
     *,
     scaffold_sections: bool = True,
+    extra_containers: tuple[tuple[str, str, str, str], ...] = (),
 ) -> Path:
     source = root / "source"
     (source / ALABAMA_GRAPHQL_SOURCE_FORMAT).mkdir(parents=True)
-    scaffold_rows = [(code_id, parent, display) for code_id, parent, display, _ in CONTAINERS]
-    title_rows = [(code_id, title) for code_id, _, _, title in CONTAINERS]
+    containers = [*CONTAINERS, *extra_containers]
+    scaffold_rows = [(code_id, parent, display) for code_id, parent, display, _ in containers]
+    title_rows = [(code_id, title) for code_id, _, _, title in containers]
     if scaffold_sections:
         scaffold_rows.extend(SECTIONS)
         title_rows.extend((code_id, _section_title(display)) for code_id, _, display in SECTIONS)
@@ -313,6 +315,54 @@ def test_container_with_no_section_beneath_it_stays_a_record(tmp_path):
     assert ARTICLE_2_3_1 in missing
     assert records[EMPTY_DIVISION].parent_citation_path == ARTICLE_2_3_1
     assert not any(path in error for path in EMPTY_CONTAINERS for error in report.errors)
+
+
+# Live shapes: childless scaffold nodes with a section number for a
+# ``displayId`` whose titles text reads as a container.
+SECTION_NUMBERED_NODES = (
+    ("A3", "C4", "3", "Article 3 Sex Offenders."),
+    (
+        "V1",
+        "A3",
+        "32-6-49.24",
+        "Division 32-6-49.24 Disqualification of Person Convicted of Crime Requiring Regi...",
+    ),
+    ("A4", "C4", "45-46A-60", "Article 45-46A-60 Reserved."),
+)
+SECTION_NUMBERED_HOLDER = "us-al/statute/title-2/chapter-3/article-3"
+SECTION_NUMBERED_GAPS = {
+    f"{SECTION_NUMBERED_HOLDER}/division-32-6-49-24",
+    "us-al/statute/title-2/chapter-3/article-45-46a-60",
+}
+
+
+def test_childless_section_numbered_node_is_a_gap_and_its_container_holds_it(tmp_path):
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2, extra_containers=SECTION_NUMBERED_NODES)
+    store, report = _extract(tmp_path, source, page_size=2)
+
+    missing = MISSING_AFTER_S2 | SECTION_NUMBERED_GAPS | {SECTION_NUMBERED_HOLDER}
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=ALL_PATHS | SECTION_NUMBERED_GAPS | {SECTION_NUMBERED_HOLDER},
+        missing=missing,
+        gap_source=_page_name(2, 2),
+    )
+    # A childless real container ("Division 2 Hog Cholera.") is still kept.
+    records = {record.citation_path for record in load_provisions(report.provisions_path)}
+    assert EMPTY_DIVISION in records
+
+
+def test_section_numbered_nodes_keep_their_records_in_a_complete_listing(tmp_path):
+    # The gap rule doesn't change any node's kind or record.
+    pages = {_page_name(0, 7): _page([row[0] for row in SECTIONS])}
+    source = _write_source(tmp_path, pages, extra_containers=SECTION_NUMBERED_NODES)
+    _, report = _extract(tmp_path, source, page_size=7)
+
+    records = {record.citation_path: record for record in load_provisions(report.provisions_path)}
+    assert report.coverage.complete is True
+    assert set(records) == ALL_PATHS | SECTION_NUMBERED_GAPS | {SECTION_NUMBERED_HOLDER}
+    assert {records[path].kind for path in SECTION_NUMBERED_GAPS} == {"division", "article"}
 
 
 def test_status_heading_over_unfetched_sections_is_a_gap(tmp_path):
@@ -541,3 +591,19 @@ def test_listing_does_not_page_past_count(tmp_path, monkeypatch):
     monkeypatch.setattr(alabama._AlabamaFetcher, "fetch_sections_page", recording)
     _extract(tmp_path, source, page_size=3)
     assert offsets == [0, 3, 6]
+
+
+def test_section_numbered_node_with_a_child_reads_as_a_container(tmp_path):
+    # Only a childless node counts as a section by its number. This one has an
+    # empty child, so both are containers the scaffold gives no section.
+    extra = (
+        ("A5", "C4", "2-3-500", "Article 2-3-500 Grouping."),
+        ("D5", "A5", "5", "Division 5 Empty."),
+    )
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2, extra_containers=extra)
+    _, report = _extract(tmp_path, source, page_size=2)
+
+    article = "us-al/statute/title-2/chapter-3/article-2-3-500"
+    records = {record.citation_path for record in load_provisions(report.provisions_path)}
+    assert {article, f"{article}/division-5"} <= records
+    assert article not in report.coverage.missing_from_provisions

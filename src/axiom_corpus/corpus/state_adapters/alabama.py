@@ -700,13 +700,10 @@ def _alabama_listing_gaps(
 
     candidates = {node.code_id for node in nodes if in_selection(node)}
     covered = _alabama_ancestors_of(section_ids, by_code_id)
-    holders = _alabama_containers_holding_sections(nodes, by_code_id)
+    sections = _alabama_gap_sections(nodes)
+    holders = _alabama_ancestors_of(sections, by_code_id) - sections
     uncovered = candidates - covered
-    kept = {
-        code_id
-        for code_id in uncovered
-        if by_code_id[code_id].kind != "section" and code_id not in holders
-    }
+    kept = {code_id for code_id in uncovered if code_id not in sections | holders}
     gaps = uncovered - kept
     if gaps:
         return _AlabamaListingGaps(gaps=frozenset(gaps), kept=frozenset(kept))
@@ -738,13 +735,29 @@ def _alabama_ancestors_of(
     return found
 
 
-def _alabama_containers_holding_sections(
-    nodes: list[AlabamaNode],
-    by_code_id: dict[str, AlabamaNode],
-) -> set[str]:
-    """Code ids of the containers the scaffold gives at least one section beneath them."""
-    sections = {node.code_id for node in nodes if node.kind == "section"}
-    return _alabama_ancestors_of(sections, by_code_id) - sections
+_SECTION_NUMBER_RE = re.compile(r"\d+[A-Z]?-\d+[A-Z]?-[0-9A-Z.]+")
+
+
+def _alabama_gap_sections(nodes: list[AlabamaNode]) -> set[str]:
+    """Code ids the gap logic counts as sections.
+
+    A node reads as a section from its titles text. A node with no child in the
+    scaffold whose ``displayId`` has the section-number shape counts too: the
+    live titles data heads a few such nodes "Division ..." or "Article ...".
+    This affects only which nodes a run that ended early names as gaps, not any
+    node's ``kind`` or record.
+    """
+    parents = {node.parent_id for node in nodes if node.parent_id}
+    return {
+        node.code_id
+        for node in nodes
+        if node.kind == "section"
+        or (
+            node.code_id not in parents
+            and node.display_id is not None
+            and _SECTION_NUMBER_RE.fullmatch(node.display_id) is not None
+        )
+    }
 
 
 def _alabama_marker_error(source: _RecordedSource, reason: str, citation_path: str) -> str:
