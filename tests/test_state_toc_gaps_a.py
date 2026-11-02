@@ -15,11 +15,18 @@ from pathlib import Path
 import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.io import load_source_inventory
 from axiom_corpus.corpus.state_adapters.alaska import (
     ALASKA_CHAPTER_PRINT_SOURCE_FORMAT,
     ALASKA_TITLE_INDEX_SOURCE_FORMAT,
     ALASKA_TITLE_TOC_SOURCE_FORMAT,
     extract_alaska_statutes,
+)
+from axiom_corpus.corpus.state_adapters.arizona import (
+    ARIZONA_SECTION_SOURCE_FORMAT,
+    ARIZONA_TITLE_DETAIL_SOURCE_FORMAT,
+    ARIZONA_TITLE_INDEX_SOURCE_FORMAT,
+    extract_arizona_revised_statutes,
 )
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
@@ -29,6 +36,15 @@ from tests.test_corpus_alaska import (
 )
 from tests.test_corpus_alaska import (
     SAMPLE_TITLE_TOC_HTML as AK_TITLE_TOC,
+)
+from tests.test_corpus_arizona import (
+    SAMPLE_SECTION_HTML as AZ_SECTION,
+)
+from tests.test_corpus_arizona import (
+    SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL,
+)
+from tests.test_corpus_arizona import (
+    SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX,
 )
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
@@ -139,3 +155,128 @@ def test_alaska_failed_chapter_print_remains_inventory_gap(tmp_path, failure):
         missing={"us-ak/statute/01.10"},
         gap_source=AK_TOC_01 if failure == "missing-file" else AK_PRINT_0110,
     )
+
+
+# --- Arizona ----------------------------------------------------------------
+
+AZ_INDEX = f"{ARIZONA_TITLE_INDEX_SOURCE_FORMAT}/index.html"
+AZ_DETAIL_1 = f"{ARIZONA_TITLE_DETAIL_SOURCE_FORMAT}/title-1.html"
+AZ_DETAIL_3 = f"{ARIZONA_TITLE_DETAIL_SOURCE_FORMAT}/title-3.html"
+# Title 2 is listed without a link and headed "THIS TITLE HAS BEEN REPEALED";
+# the adapter writes it without fetching anything.
+AZ_GOOD = {
+    "us-az/statute/title-1",
+    "us-az/statute/title-1/chapter-2",
+    "us-az/statute/title-1/chapter-2/article-1",
+    "us-az/statute/1-201",
+    "us-az/statute/title-2",
+}
+AZ_TITLE_3_ROW = """  <tr>
+    <td><input value="3"></td>
+    <td><a href="https://www.azleg.gov/arsDetail?title=3">Title 3</a></td>
+    <td>Agriculture</td>
+  </tr>
+</table>"""
+AZ_EMPTY_CHAPTER = """
+<div id="chapter3" class="accordion">
+  <h5>
+    <a class="one-sixth first" href="">Chapter 3</a>
+    <div class="two-thirds">SUPPLEMENTARY PROVISIONS</div>
+    <div class="one-sixth">Sec: 1-301-1-309</div>
+  </h5>
+  <div></div>
+</div>
+"""
+AZ_EMPTY_ARTICLE = """
+    <div class="article">
+      <a class="one-sixth first" href="">Article 2</a>
+      <span class="five-sixths">Statutes</span>
+      <div></div>
+    </div>
+  </div>
+</div>
+"""
+
+
+def _arizona_pages() -> dict[str, str]:
+    return {
+        AZ_INDEX: AZ_TITLE_INDEX.replace("</table>", AZ_TITLE_3_ROW, 1),
+        AZ_DETAIL_1: AZ_TITLE_DETAIL,
+        f"{ARIZONA_SECTION_SOURCE_FORMAT}/title-1/1-201.html": AZ_SECTION,
+    }
+
+
+def _extract_arizona(tmp_path: Path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_arizona_revised_statutes(
+        store, version=VERSION, source_dir=tmp_path / "source", workers=1
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_arizona_failed_title_detail_remains_inventory_gap(tmp_path, failure):
+    pages = _arizona_pages()
+    _fail_page(
+        pages,
+        AZ_DETAIL_3,
+        failure,
+        '<html><body><div class="accordion"><h5>Title 3 Agriculture</h5></div></body></html>',
+    )
+    store, report = _extract_arizona(tmp_path, pages)
+    assert report.section_count == 1
+    assert "title 3" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=AZ_GOOD | {"us-az/statute/title-3"},
+        missing={"us-az/statute/title-3"},
+        gap_source=AZ_INDEX if failure == "missing-file" else AZ_DETAIL_3,
+    )
+
+
+def test_arizona_chapter_listing_no_sections_remains_inventory_gap(tmp_path):
+    pages = _arizona_pages()
+    pages[AZ_INDEX] = AZ_TITLE_INDEX
+    pages[AZ_DETAIL_1] = AZ_TITLE_DETAIL + AZ_EMPTY_CHAPTER
+    store, report = _extract_arizona(tmp_path, pages)
+    chapter = "us-az/statute/title-1/chapter-3"
+    assert "chapter 3" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=AZ_GOOD | {chapter},
+        missing={chapter},
+        gap_source=AZ_DETAIL_1,
+    )
+
+
+def test_arizona_article_listing_no_sections_remains_inventory_gap(tmp_path):
+    pages = _arizona_pages()
+    pages[AZ_INDEX] = AZ_TITLE_INDEX
+    pages[AZ_DETAIL_1] = AZ_TITLE_DETAIL.replace(
+        "    </div>\n  </div>\n</div>\n", "    </div>" + AZ_EMPTY_ARTICLE, 1
+    )
+    assert "Article 2" in pages[AZ_DETAIL_1]
+    store, report = _extract_arizona(tmp_path, pages)
+    article = "us-az/statute/title-1/chapter-2/article-2"
+    assert "article 2" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=AZ_GOOD | {article},
+        missing={article},
+        gap_source=AZ_DETAIL_1,
+    )
+
+
+def test_arizona_repealed_title_without_link_stays_complete(tmp_path):
+    # Pins existing behaviour: the index lists a repealed title with no link
+    # to a detail page, and the adapter writes it as a complete container.
+    pages = _arizona_pages()
+    pages[AZ_INDEX] = AZ_TITLE_INDEX
+    store, report = _extract_arizona(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    assert {item.citation_path for item in load_source_inventory(report.inventory_path)} == AZ_GOOD
