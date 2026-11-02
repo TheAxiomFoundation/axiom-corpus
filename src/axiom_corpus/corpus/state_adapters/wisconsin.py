@@ -392,18 +392,50 @@ def extract_wisconsin_statutes(
     if limit is not None:
         chapter_links = chapter_links[: max(0, limit)]
 
-    chapter_pages = _fetch_chapter_pages(fetcher, chapter_links, workers=workers)
+    # A chapter is written as a provision only once its page yields sections.
+    # Otherwise it stays an inventory gap, so coverage reads incomplete instead
+    # of silently losing every section under it. A page that could not be
+    # fetched is sourced from the TOC that lists the chapter (the source of
+    # every chapter row); a page that was fetched but is unusable from itself.
+    chapter_results = _fetch_chapter_pages(fetcher, chapter_links, workers=workers)
+    errors: list[str] = []
     section_count = 0
     subchapter_count = 0
-    for chapter_link, chapter_page in zip(chapter_links, chapter_pages, strict=True):
+    for chapter_link, chapter_result in zip(chapter_links, chapter_results, strict=True):
+        if chapter_result.page is None:
+            errors.append(f"chapter {chapter_link.label}: {chapter_result.error}")
+            _append_gap(
+                chapter_link,
+                source=toc_source,
+                seen=seen,
+                items=items,
+                publication_note=publication_note,
+            )
+            continue
         chapter_source = _write_source(
             store,
             jurisdiction=jurisdiction,
             run_id=run_id,
-            page=chapter_page,
+            page=chapter_result.page,
             source_paths=source_paths,
             source_document_id=f"chapter-{chapter_link.label}",
         )
+        subchapters, sections = parse_wisconsin_chapter_page(
+            chapter_result.page.data,
+            chapter=chapter_link,
+            source=chapter_source,
+            include_subunits=include_subunits,
+        )
+        if not sections:
+            errors.append(f"chapter {chapter_link.label}: no sections on chapter page")
+            _append_gap(
+                chapter_link,
+                source=chapter_source,
+                seen=seen,
+                items=items,
+                publication_note=publication_note,
+            )
+            continue
         _append_chapter_record(
             chapter_link,
             source=toc_source,
@@ -414,12 +446,6 @@ def extract_wisconsin_statutes(
             source_as_of=source_as_of_text,
             expression_date=expression_date_text,
             publication_note=publication_note,
-        )
-        subchapters, sections = parse_wisconsin_chapter_page(
-            chapter_page.data,
-            chapter=chapter_link,
-            source=chapter_source,
-            include_subunits=include_subunits,
         )
         for subchapter in subchapters:
             _append_subchapter_record(
@@ -460,6 +486,9 @@ def extract_wisconsin_statutes(
         subchapter_count += len(subchapters)
         section_count += len(sections)
 
+    if items and not records:
+        raise ValueError("no Wisconsin Statutes provisions extracted")
+
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)
     provisions_path = store.provisions_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -484,6 +513,7 @@ def extract_wisconsin_statutes(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
 
 
@@ -617,17 +647,22 @@ def _fetch_chapter_pages(
     chapters: list[WisconsinChapterLink],
     *,
     workers: int,
-) -> tuple[_SourcePage, ...]:
+) -> tuple[_FetchResult, ...]:
+    """Fetch each chapter page; a failed fetch is a result with its error, in order.
+
+    Only Exception is caught, so KeyboardInterrupt and SystemExit stop the run,
+    whether the fetch ran in this thread or in the pool.
+    """
+    results: list[_FetchResult] = []
     if workers <= 1 or len(chapters) <= 1:
-        results = [
-            _FetchResult(
-                chapter.source_url,
-                page=fetcher.fetch(chapter.source_url, chapter.relative_path),
-            )
-            for chapter in chapters
-        ]
+        for chapter in chapters:
+            try:
+                page = fetcher.fetch(chapter.source_url, chapter.relative_path)
+            except Exception as exc:  # noqa: BLE001
+                results.append(_FetchResult(chapter.source_url, error=exc))
+            else:
+                results.append(_FetchResult(chapter.source_url, page=page))
     else:
-        results = []
         with ThreadPoolExecutor(max_workers=workers) as pool:
             futures = {
                 pool.submit(fetcher.fetch, chapter.source_url, chapter.relative_path): chapter
@@ -637,13 +672,10 @@ def _fetch_chapter_pages(
                 chapter = futures[future]
                 try:
                     results.append(_FetchResult(chapter.source_url, page=future.result()))
-                except BaseException as exc:
+                except Exception as exc:  # noqa: BLE001
                     results.append(_FetchResult(chapter.source_url, error=exc))
-    errors = [f"{result.key}: {result.error}" for result in results if result.error]
-    if errors:
-        raise RuntimeError("; ".join(errors[:5]))
-    by_url = {result.key: result.page for result in results if result.page is not None}
-    return tuple(by_url[chapter.source_url] for chapter in chapters if chapter.source_url in by_url)
+    by_url = {result.key: result for result in results}
+    return tuple(by_url[chapter.source_url] for chapter in chapters)
 
 
 def _download_wisconsin_source(source_url: str, *, fetcher: _WisconsinFetcher) -> bytes:
@@ -681,6 +713,34 @@ def _write_source(
         source_format=WISCONSIN_STATUTES_SOURCE_FORMAT,
         sha256=sha256,
         source_document_id=source_document_id,
+    )
+
+
+def _append_gap(
+    chapter: WisconsinChapterLink,
+    *,
+    source: WisconsinSource,
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    publication_note: str | None,
+) -> None:
+    """Record an expected chapter whose page yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``.
+    """
+    if chapter.citation_path in seen:
+        return
+    seen.add(chapter.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=chapter.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=source.source_format,
+            sha256=source.sha256,
+            metadata=_base_metadata(source, publication_note=publication_note),
+        )
     )
 
 
