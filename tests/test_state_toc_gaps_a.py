@@ -39,6 +39,13 @@ from axiom_corpus.corpus.state_adapters.florida import (
     FLORIDA_TITLE_INDEX_SOURCE_FORMAT,
     extract_florida_statutes,
 )
+from axiom_corpus.corpus.state_adapters.iowa import (
+    IOWA_CHAPTER_INDEX_SOURCE_FORMAT,
+    IOWA_SECTION_INDEX_SOURCE_FORMAT,
+    IOWA_SECTION_PDF_SOURCE_FORMAT,
+    IOWA_TITLE_INDEX_SOURCE_FORMAT,
+    extract_iowa_code,
+)
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
 )
@@ -77,6 +84,10 @@ from tests.test_corpus_delaware import (
 )
 from tests.test_corpus_florida import SAMPLE_CHAPTER as FL_CHAPTER_409
 from tests.test_corpus_florida import SAMPLE_TITLE_INDEX as FL_TITLE_XXX
+from tests.test_corpus_iowa import SAMPLE_CHAPTER_INDEX_HTML as IA_CHAPTER_INDEX
+from tests.test_corpus_iowa import SAMPLE_SECTION_INDEX_HTML as IA_SECTION_INDEX
+from tests.test_corpus_iowa import SAMPLE_TITLE_INDEX_HTML as IA_TITLE_INDEX
+from tests.test_corpus_iowa import _sample_pdf as ia_sample_pdf
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 VERSION = "2026-05-09"
@@ -691,3 +702,106 @@ def test_florida_part_listing_no_sections_remains_inventory_gap(tmp_path, monkey
         missing={part},
         gap_source=FL_CHAPTER_409_PATH,
     )
+
+
+# --- Iowa -------------------------------------------------------------------
+# The adapter skips a chapter its title index heads "RESERVED"; the fixture's
+# chapter 423 is one.
+
+IA_INDEX = f"{IOWA_TITLE_INDEX_SOURCE_FORMAT}/2026.html"
+IA_CHAPTERS_X = f"{IOWA_CHAPTER_INDEX_SOURCE_FORMAT}/title-X.html"
+IA_CHAPTERS_XI = f"{IOWA_CHAPTER_INDEX_SOURCE_FORMAT}/title-XI.html"
+IA_SECTIONS_422 = f"{IOWA_SECTION_INDEX_SOURCE_FORMAT}/chapter-422.html"
+IA_SECTIONS_424 = f"{IOWA_SECTION_INDEX_SOURCE_FORMAT}/chapter-424.html"
+IA_GOOD = {"us-ia/statute/title-x", "us-ia/statute/chapter-422", "us-ia/statute/422.1"}
+IA_TITLE_XI_ROW = """<tr>
+      <td>Title XI - NATURAL RESOURCES (Ch. 455 - 485)</td>
+      <td><a href="/law/iowaCode/chapters?title=XI&amp;year=2026">Chapters</a></td>
+    </tr>
+  </tbody>"""
+IA_CHAPTER_424_ROW = """<tr>
+      <td>Chapter 424 - ENVIRONMENTAL PROTECTION CHARGE</td>
+      <td><a href="/law/iowaCode/sections?codeChapter=424&amp;year=2026">Sections</a></td>
+    </tr>
+  </tbody>"""
+IA_EMPTY_LISTING = '<html><body><table id="iacList"><tbody></tbody></table></body></html>'
+
+
+def _extract_iowa(tmp_path: Path, pages: dict[str, str], **kwargs):
+    source = tmp_path / "source"
+    _write_sources(source, pages)
+    pdf = source / IOWA_SECTION_PDF_SOURCE_FORMAT / "chapter-422" / "422.1.pdf"
+    pdf.parent.mkdir(parents=True, exist_ok=True)
+    pdf.write_bytes(ia_sample_pdf())
+    store = _store(tmp_path)
+    report = extract_iowa_code(store, version=VERSION, source_dir=source, **kwargs)
+    return store, report
+
+
+def _iowa_pages() -> dict[str, str]:
+    return {
+        IA_INDEX: IA_TITLE_INDEX,
+        IA_CHAPTERS_X: IA_CHAPTER_INDEX,
+        IA_SECTIONS_422: IA_SECTION_INDEX,
+    }
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_iowa_failed_title_chapter_index_remains_inventory_gap(tmp_path, failure):
+    pages = _iowa_pages()
+    pages[IA_INDEX] = IA_TITLE_INDEX.replace("</tbody>", IA_TITLE_XI_ROW, 1)
+    _fail_page(pages, IA_CHAPTERS_XI, failure, IA_EMPTY_LISTING)
+    store, report = _extract_iowa(tmp_path, pages)
+    assert report.section_count == 1
+    assert "title XI" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=IA_GOOD | {"us-ia/statute/title-xi"},
+        missing={"us-ia/statute/title-xi"},
+        gap_source=IA_INDEX if failure == "missing-file" else IA_CHAPTERS_XI,
+    )
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_iowa_failed_chapter_section_index_remains_inventory_gap(tmp_path, failure):
+    pages = _iowa_pages()
+    pages[IA_CHAPTERS_X] = IA_CHAPTER_INDEX.replace("</tbody>", IA_CHAPTER_424_ROW, 1)
+    _fail_page(pages, IA_SECTIONS_424, failure, IA_EMPTY_LISTING)
+    store, report = _extract_iowa(tmp_path, pages, only_title="X")
+    assert report.section_count == 1
+    assert "chapter 424" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=IA_GOOD | {"us-ia/statute/chapter-424"},
+        missing={"us-ia/statute/chapter-424"},
+        gap_source=IA_CHAPTERS_X if failure == "missing-file" else IA_SECTIONS_424,
+    )
+
+
+def test_iowa_reserved_chapter_stays_out_of_inventory(tmp_path):
+    # Pins existing behaviour: the fixture's "Chapter 423 - RESERVED" row is
+    # skipped, fetches nothing and leaves coverage complete.
+    store, report = _extract_iowa(tmp_path, _iowa_pages(), only_title="X")
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    assert {item.citation_path for item in load_source_inventory(report.inventory_path)} == IA_GOOD
+
+
+def test_iowa_title_listing_only_reserved_chapters_stays_complete(tmp_path):
+    # A title whose chapter index lists only reserved chapters lists nothing
+    # by law: it is written as a complete container with no gap.
+    pages = _iowa_pages()
+    pages[IA_INDEX] = IA_TITLE_INDEX.replace("</tbody>", IA_TITLE_XI_ROW, 1)
+    pages[IA_CHAPTERS_XI] = (
+        '<html><body><table id="iacList"><tbody><tr class="reservedChapterRow">'
+        "<td>Chapter 455 - RESERVED</td>"
+        '<td><a href="/law/iowaCode/sections?codeChapter=455&amp;year=2026">Sections</a></td>'
+        "</tr></tbody></table></body></html>"
+    )
+    store, report = _extract_iowa(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
+    assert inventory == IA_GOOD | {"us-ia/statute/title-xi"}
