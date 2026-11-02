@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence.json",
+      "sha256": "f3fed0b81e848ad368b52aebdf87f6762ead8631a7926df3554aece2cb62c420"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence.json",
+      "sha256": "97469c5ceb57a68eef64fad72ab9208cb28b133440b853ba3ccaa0c732eda9d5"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence.jsonl",
+      "sha256": "c93ef687e659a8c491a15c6a52d6d2d4ea53ff42da76f829cfb67dab886f065c"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence/official-documents/de-bzst-dakg-2025-a19-2.pdf",
+      "sha256": "33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "42e37c388e775b784d9c9a9cbf6a45fed11b27a6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native extract-official-documents --base data/corpus --version 2026-09-14-de-kindergeld-dakg2025-evidence --manifest runtime-manifest.json; public manifest manifests/de-kindergeld-dakg2025-evidence.yaml plus local_path to exact retained snapshot in companion audit; non-government mirror transport explicitly disclosed."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-15T02:07:23.222383+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-14-de-kindergeld-dakg2025-evidence.md",
+      "sha256": "3a6e433f776d8939d36a602b78d8c654f1dee1bab1d4681c4bec63b60174c946"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dHFK2QTa9KcltIIFicJ4lD9mmbqa0GM8NempyQEuDNXlb/xaG6Jmi3HCDOCY5a6CbgArlnHxH+ofAjPijEOcAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-de-kindergeld-dakg2025-evidence"
+}

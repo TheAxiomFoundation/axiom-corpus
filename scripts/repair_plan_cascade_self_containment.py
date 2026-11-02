@@ -18,6 +18,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 ARTIFACT_KINDS = ("coverage", "inventory", "provisions", "sources")
@@ -298,6 +299,8 @@ def main() -> int:
     release_path = repo / args.release
     release = _json(release_path)
     scopes = _release_scopes(release)
+    # Corpus bytes may live outside git: fetch every scope this repair reads.
+    ensure_corpus_scopes([tuple(scope) for scope in scopes], repo=repo)
     by_path, by_legacy_id = _artifact_index(base, scopes)
 
     repair: set[tuple[str, str, str]] = set()

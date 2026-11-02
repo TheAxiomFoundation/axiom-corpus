@@ -1,0 +1,28 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-sc-guidance-scdhhs-program-eligibility-and-income-limits
+  jurisdiction: us-sc
+  document_class: guidance
+  title: 'South Carolina Healthy Connections Medicaid: Program Eligibility and Income Limits (Optional State Supplementation
+    net income limit, January 1, 2026)'
+  source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-sc/guidance/scdhhs/program-eligibility-and-income-limits
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Health and Human Services
+    document_subtype: agency_web_page_html
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: SC
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    source_discovery_group: us-sc/guidance/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    extraction_granularity: html_blocks
+    expression_date_note: the OSS section prints 'January 1, 2026'; other sections print 03/01/2026 income limits
+    access_note: www.scdhhs.gov HTTP 200 to the plain client; img1.scdhhs.gov (the MPPM index) omits its Go Daddy G2 intermediate
+      (data/certs) and lists Chapter 103 with no link (Chapter_103.docx answers 404)

@@ -1,0 +1,4013 @@
+program: snap
+generated: 2026-09-12T09:19:38-0400
+generator: docs/coverage/needs-closure-2026-09-11/check_snap_wic.py
+element_count: 393
+levels:
+  federal_statute: set by Congress; inherited by every state
+  federal_regulation: set by USDA; inherited; sections carrying a state option are marked federal_with_state_option and have state-level children
+  federal_guidance: FNS/FNA annual tables and memos; inherited
+  state: state-set value or state election, carried by the state's own rulebook family
+families:
+- federal_statute
+- federal_regulation
+- fns_guidance
+- state_manual_or_regulation
+- state_table_or_transmittal
+- state_plan
+- state_statute
+- state_regulation
+notes:
+- Federal statute elements are every section of 7 USC ch. 51 (2011-2036d; 2030 and 2033 are repealed container rows) plus every subsection of 2012, 2014, 2015 and 2017 and the state-plan subsections 2020(e),(i),(s)
+  and 2025(h); 2012 subsections a-i, l, n-q, s-t, v are definitional and folded into the 2012 section element.
+- Federal regulation elements are every non-reserved section of 7 CFR 271-285 as listed by the eCFR structure API (current edition, read 2026-09-12) plus 54 paragraph-level elements of 7 CFR 273. The selected
+  273 scopes are section-granular (273.2 is one 154 KB body), so paragraph elements are verified by keyword over the section body, not by citation path; 7 CFR 246 is paragraph-granular in its scope.
+- 'Schema uncertainty: the paragraph-level split of 273 is a reviewer''s reading of the section headings, not an exhaustive paragraph list; 273.2 (application processing) and 273.7 (work provisions) each
+  carry more distinct facts than the elements enumerated here.'
+- 'Federal guidance elements: the FY 2026 COLA tables and income standards are read from the two-page FNS tables held in the corpus (the 165% table is on page 2 of the income standards); the full COLA memo,
+  which carries the minimum benefit, is a separate document. The FY 2024 COLA memo in the corpus is excluded from the FY 2026 checks. The State Options Report is listed as a cross-check only because the
+  queue policy forbids it as a source.'
+- 'State elements: 61 elements grouped by carrying family. ''mandatory'' means every state''s rulebook must carry the fact (a restatement or a state-set value); optional elections (BBCE, homeless deduction,
+  SMD, TBA, CAP/ESAP, RMP, drug-felony opt-out, state-funded supplements) are ABSENT when a fully inventoried rulebook carries no text for them.'
+- Regex evidence is a keyword search of provision bodies; a PRESENT hit cites the provision that matched and a snippet. A hit shows the rulebook text carries the fact, not that the encoder can read the
+  exact value from that row (single-block manuals such as KY, RI put a whole volume in one provision).
+- Table elements (snap_s15-s18, s20) ask for the state's own applied FY 2026 table; the federal FY 2026 value is present at the federal level, so an ABSENT/EXTRACTABLE there is a provenance gap, not a missing
+  fact.
+policyengine_cross_check:
+  elements_pe_does_not_model: 289
+  ids:
+  - snap_usc_2011
+  - snap_usc_2012a
+  - snap_usc_2013
+  - snap_usc_2014a
+  - snap_usc_2016
+  - snap_usc_2016a
+  - snap_usc_2018
+  - snap_usc_2019
+  - snap_usc_2020
+  - snap_usc_2021
+  - snap_usc_2022
+  - snap_usc_2023
+  - snap_usc_2024
+  - snap_usc_2025
+  - snap_usc_2026
+  - snap_usc_2026a
+  - snap_usc_2027
+  - snap_usc_2028
+  - snap_usc_2029
+  - snap_usc_2031
+  - snap_usc_2032
+  - snap_usc_2034
+  - snap_usc_2035
+  - snap_usc_2036
+  - snap_usc_2036a
+  - snap_usc_2036b
+  - snap_usc_2036c
+  - snap_usc_2036d
+  - snap_usc_2012_k
+  - snap_usc_2012_o
+  - snap_usc_2012_r
+  - snap_usc_2014_b
+  - snap_usc_2014_f
+  - snap_usc_2014_h
+  - snap_usc_2014_i
+  - snap_usc_2014_k
+  - snap_usc_2014_l
+  - snap_usc_2015_a
+  - snap_usc_2015_b
+  - snap_usc_2015_c
+  - snap_usc_2015_g
+  - snap_usc_2015_h
+  - snap_usc_2015_i
+  - snap_usc_2015_j
+  - snap_usc_2015_k
+  - snap_usc_2015_l
+  - snap_usc_2015_m
+  - snap_usc_2015_n
+  - snap_usc_2015_p
+  - snap_usc_2015_q
+  - snap_usc_2015_r
+  - snap_usc_2015_s
+  - snap_usc_2017_b
+  - snap_usc_2017_d
+  - snap_usc_2017_e
+  - snap_usc_2017_f
+  - snap_usc_2020_e
+  - snap_usc_2020_i
+  - snap_usc_2020_s
+  - snap_usc_2025_h
+  - snap_cfr_271_1
+  - snap_cfr_271_2
+  - snap_cfr_271_3
+  - snap_cfr_271_4
+  - snap_cfr_271_5
+  - snap_cfr_271_6
+  - snap_cfr_271_7
+  - snap_cfr_271_8
+  - snap_cfr_271_9
+  - snap_cfr_272_1
+  - snap_cfr_272_2
+  - snap_cfr_272_3
+  - snap_cfr_272_4
+  - snap_cfr_272_5
+  - snap_cfr_272_6
+  - snap_cfr_272_7
+  - snap_cfr_272_8
+  - snap_cfr_272_9
+  - snap_cfr_272_10
+  - snap_cfr_272_11
+  - snap_cfr_272_12
+  - snap_cfr_272_13
+  - snap_cfr_272_14
+  - snap_cfr_272_15
+  - snap_cfr_272_16
+  - snap_cfr_272_17
+  - snap_cfr_272_18
+  - snap_cfr_273_3
+  - snap_cfr_273_6
+  - snap_cfr_273_12
+  - snap_cfr_273_13
+  - snap_cfr_273_14
+  - snap_cfr_273_15
+  - snap_cfr_273_16
+  - snap_cfr_273_17
+  - snap_cfr_273_18
+  - snap_cfr_273_20
+  - snap_cfr_273_21
+  - snap_cfr_273_23
+  - snap_cfr_273_25
+  - snap_cfr_273_26
+  - snap_cfr_273_27
+  - snap_cfr_273_28
+  - snap_cfr_273_29
+  - snap_cfr_273_30
+  - snap_cfr_273_31
+  - snap_cfr_273_32
+  - snap_cfr_274_1
+  - snap_cfr_274_2
+  - snap_cfr_274_3
+  - snap_cfr_274_4
+  - snap_cfr_274_5
+  - snap_cfr_274_6
+  - snap_cfr_274_7
+  - snap_cfr_274_8
+  - snap_cfr_275_1
+  - snap_cfr_275_2
+  - snap_cfr_275_3
+  - snap_cfr_275_4
+  - snap_cfr_275_5
+  - snap_cfr_275_6
+  - snap_cfr_275_7
+  - snap_cfr_275_8
+  - snap_cfr_275_9
+  - snap_cfr_275_10
+  - snap_cfr_275_11
+  - snap_cfr_275_12
+  - snap_cfr_275_13
+  - snap_cfr_275_14
+  - snap_cfr_275_15
+  - snap_cfr_275_16
+  - snap_cfr_275_17
+  - snap_cfr_275_18
+  - snap_cfr_275_19
+  - snap_cfr_275_20
+  - snap_cfr_275_21
+  - snap_cfr_275_22
+  - snap_cfr_275_23
+  - snap_cfr_275_24
+  - snap_cfr_276_1
+  - snap_cfr_276_2
+  - snap_cfr_276_3
+  - snap_cfr_276_4
+  - snap_cfr_276_5
+  - snap_cfr_276_6
+  - snap_cfr_276_7
+  - snap_cfr_277_1
+  - snap_cfr_277_2
+  - snap_cfr_277_3
+  - snap_cfr_277_4
+  - snap_cfr_277_5
+  - snap_cfr_277_6
+  - snap_cfr_277_7
+  - snap_cfr_277_8
+  - snap_cfr_277_9
+  - snap_cfr_277_10
+  - snap_cfr_277_11
+  - snap_cfr_277_12
+  - snap_cfr_277_13
+  - snap_cfr_277_14
+  - snap_cfr_277_16
+  - snap_cfr_277_17
+  - snap_cfr_277_18
+  - snap_cfr_278_1
+  - snap_cfr_278_2
+  - snap_cfr_278_3
+  - snap_cfr_278_4
+  - snap_cfr_278_5
+  - snap_cfr_278_6
+  - snap_cfr_278_7
+  - snap_cfr_278_9
+  - snap_cfr_279_1
+  - snap_cfr_279_2
+  - snap_cfr_279_3
+  - snap_cfr_279_4
+  - snap_cfr_279_5
+  - snap_cfr_279_6
+  - snap_cfr_279_7
+  - snap_cfr_279_8
+  - snap_cfr_280_1
+  - snap_cfr_281_1
+  - snap_cfr_281_2
+  - snap_cfr_281_3
+  - snap_cfr_281_4
+  - snap_cfr_281_5
+  - snap_cfr_281_6
+  - snap_cfr_281_7
+  - snap_cfr_281_8
+  - snap_cfr_281_9
+  - snap_cfr_281_10
+  - snap_cfr_282_1
+  - snap_cfr_282_2
+  - snap_cfr_283_1
+  - snap_cfr_283_2
+  - snap_cfr_283_3
+  - snap_cfr_283_4
+  - snap_cfr_283_5
+  - snap_cfr_283_6
+  - snap_cfr_283_7
+  - snap_cfr_283_8
+  - snap_cfr_283_9
+  - snap_cfr_283_10
+  - snap_cfr_283_11
+  - snap_cfr_283_12
+  - snap_cfr_283_13
+  - snap_cfr_283_14
+  - snap_cfr_283_15
+  - snap_cfr_283_16
+  - snap_cfr_283_17
+  - snap_cfr_283_18
+  - snap_cfr_283_19
+  - snap_cfr_283_20
+  - snap_cfr_283_21
+  - snap_cfr_283_22
+  - snap_cfr_283_23
+  - snap_cfr_283_24
+  - snap_cfr_283_25
+  - snap_cfr_283_26
+  - snap_cfr_283_27
+  - snap_cfr_283_28
+  - snap_cfr_283_29
+  - snap_cfr_283_30
+  - snap_cfr_283_31
+  - snap_cfr_283_32
+  - snap_cfr_284_1
+  - snap_cfr_285_1
+  - snap_cfr_285_2
+  - snap_cfr_285_3
+  - snap_cfr_285_4
+  - snap_cfr_285_5
+  - snap_cfr_273_2_2e
+  - snap_cfr_273_2_2f
+  - snap_cfr_273_2_2g
+  - snap_cfr_273_2_2i
+  - snap_cfr_273_2_2k
+  - snap_cfr_273_2_2o
+  - snap_cfr_273_4_4c
+  - snap_cfr_273_7_7c
+  - snap_cfr_273_7_7d
+  - snap_cfr_273_7_7f
+  - snap_cfr_273_7_7j
+  - snap_cfr_273_8_8e
+  - snap_cfr_273_8_8f
+  - snap_cfr_273_10_10c
+  - snap_cfr_273_10_10d
+  - snap_cfr_273_10_10f
+  - snap_cfr_273_11_11b
+  - snap_cfr_273_11_11k
+  - snap_cfr_273_12_12a
+  - snap_cfr_273_12_12c
+  - snap_cfr_273_13_13a
+  - snap_cfr_273_14_14b
+  - snap_cfr_273_15_15
+  - snap_cfr_273_16_16
+  - snap_cfr_273_18_18
+  - snap_cfr_273_21_21
+  - snap_cfr_273_24_24e
+  - snap_cfr_273_26_26
+  - snap_g08
+  - snap_s02
+  - snap_s03
+  - snap_s08
+  - snap_s10
+  - snap_s22
+  - snap_s23
+  - snap_s24
+  - snap_s25
+  - snap_s29
+  - snap_s31
+  - snap_s32
+  - snap_s33
+  - snap_s38
+  - snap_s39
+  - snap_s40
+  - snap_s41
+  - snap_s42
+  - snap_s43
+  - snap_s44
+  - snap_s45
+  - snap_s46
+  - snap_s48
+  - snap_s49
+  - snap_s55
+  - snap_s56
+  - snap_s57
+  - snap_s58
+  - snap_s59
+  - snap_s60
+  - snap_s61
+elements:
+- id: snap_usc_2011
+  label: 7 USC 2011 Congressional declaration of policy
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2011
+  citation_path: us/statute/7/2011
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2012
+  label: 7 USC 2012 Definitions
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2012
+  citation_path: us/statute/7/2012
+  pe_modeled: 'partial (definitions: elderly/disabled, household via snap_unit, TFP)'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2012a
+  label: 7 USC 2012a Publicly operated community health centers
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2012a
+  citation_path: us/statute/7/2012a
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2013
+  label: 7 USC 2013 Establishment of supplemental nutrition assistance program
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2013
+  citation_path: us/statute/7/2013
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014
+  label: 7 USC 2014 Eligible households
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2014
+  citation_path: us/statute/7/2014
+  pe_modeled: 'partial (a,c,d,e,g,m,n: categorical eligibility, income tests, exclusions, deductions, resources)'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2014a
+  label: 7 USC 2014a Notice of change in State of residence of certified household
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2014a
+  citation_path: us/statute/7/2014a
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015
+  label: 7 USC 2015 Eligibility disqualifications
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2015
+  citation_path: us/statute/7/2015
+  pe_modeled: 'partial (d,e,f,o: work requirements, students, immigrants, ABAWD; not IPV/quit/felony detail)'
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body
+- id: snap_usc_2016
+  label: 7 USC 2016 Issuance and use of program benefits
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2016
+  citation_path: us/statute/7/2016
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2016a
+  label: 7 USC 2016a EBT benefit fraud prevention
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2016a
+  citation_path: us/statute/7/2016a
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2017
+  label: 7 USC 2017 Value of allotment
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2017
+  citation_path: us/statute/7/2017
+  pe_modeled: 'partial (a,c: allotment, minimum benefit, proration)'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2018
+  label: 7 USC 2018 Approval of retail food stores and wholesale food concerns
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2018
+  citation_path: us/statute/7/2018
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2019
+  label: 7 USC 2019 Redemption of program benefits
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2019
+  citation_path: us/statute/7/2019
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2020
+  label: 7 USC 2020 Administration
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2020
+  citation_path: us/statute/7/2020
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2021
+  label: 7 USC 2021 Civil penalties and disqualification of retail food stores and wholesale food concerns
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2021
+  citation_path: us/statute/7/2021
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2022
+  label: 7 USC 2022 Disposition of claims
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2022
+  citation_path: us/statute/7/2022
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2023
+  label: 7 USC 2023 Administrative and judicial review; restoration of rights
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2023
+  citation_path: us/statute/7/2023
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2024
+  label: 7 USC 2024 Violations and enforcement
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2024
+  citation_path: us/statute/7/2024
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2025
+  label: 7 USC 2025 Administrative cost-sharing and quality control
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2025
+  citation_path: us/statute/7/2025
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2026
+  label: 7 USC 2026 Research, demonstration, and evaluations
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2026
+  citation_path: us/statute/7/2026
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2026a
+  label: 7 USC 2026a Healthy fluid milk incentives projects
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2026a
+  citation_path: us/statute/7/2026a
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2027
+  label: 7 USC 2027 Appropriations and allotments
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2027
+  citation_path: us/statute/7/2027
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2028
+  label: 7 USC 2028 Consolidated block grants for Puerto Rico and American Samoa
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2028
+  citation_path: us/statute/7/2028
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2029
+  label: 7 USC 2029 Workfare
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2029
+  citation_path: us/statute/7/2029
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2031
+  label: 7 USC 2031 Minnesota Family Investment Project
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2031
+  citation_path: us/statute/7/2031
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2032
+  label: 7 USC 2032 Automated data processing and information retrieval systems
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2032
+  citation_path: us/statute/7/2032
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2034
+  label: 7 USC 2034 Assistance for community food projects
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2034
+  citation_path: us/statute/7/2034
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2035
+  label: 7 USC 2035 Simplified supplemental nutrition assistance program
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2035
+  citation_path: us/statute/7/2035
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2036
+  label: 7 USC 2036 Availability of commodities for emergency food assistance program
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2036
+  citation_path: us/statute/7/2036
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2036a
+  label: 7 USC 2036a Nutrition education and obesity prevention grant program
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2036a
+  citation_path: us/statute/7/2036a
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2036b
+  label: 7 USC 2036b Retail food store and recipient trafficking
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2036b
+  citation_path: us/statute/7/2036b
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2036c
+  label: 7 USC 2036c Annual State report on verification of SNAP participation
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2036c
+  citation_path: us/statute/7/2036c
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2036d
+  label: 7 USC 2036d Pilot projects to encourage the use of public-private partnerships committed to addressing food insecurity
+  level: federal_statute
+  family: federal_statute
+  authority: 7 USC 2036d
+  citation_path: us/statute/7/2036d
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2012_j
+  label: 7 USC 2012(j) Definition of elderly or disabled member (age 60; SSI, SSDI, VA, RR disability)
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2012(j)
+  citation_path: us/statute/7/2012/j
+  pe_modeled: yes (has_snap_elderly_disabled_member)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2012_k
+  label: 7 USC 2012(k) Definition of food; State restaurant meals option for elderly, disabled, homeless
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2012(k)
+  citation_path: us/statute/7/2012/k
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2012_m
+  label: 7 USC 2012(m) Definition of household; purchase-and-prepare; separate households (m)(4) state option for institution residents
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2012(m)
+  citation_path: us/statute/7/2012/m
+  pe_modeled: partial (snap_unit)
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body
+- id: snap_usc_2012_o
+  label: 7 USC 2012(o) Definition of retail food store
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2012(o)
+  citation_path: us/statute/7/2012/o
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2012_r
+  label: 7 USC 2012(r) Definition of State agency
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2012(r)
+  citation_path: us/statute/7/2012/r
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2012_u
+  label: '7 USC 2012(u) Thrifty Food Plan: definition, re-evaluation limits and regional adjustments (AK/HI/GU/VI)'
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2012(u)
+  citation_path: us/statute/7/2012/u
+  pe_modeled: yes (max_allotment by region; uprating)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_a
+  label: 7 USC 2014(a) Income and resources as substantial limiting factors; categorical eligibility for TANF/SSI/GA households
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(a)
+  citation_path: us/statute/7/2014/a
+  pe_modeled: yes (categorical_eligibility)
+  rulespec_scoped: yes (encoded; cited by us-al, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2014_b
+  label: 7 USC 2014(b) Eligibility standards; uniform national standards
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(b)
+  citation_path: us/statute/7/2014/b
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_c
+  label: '7 USC 2014(c) Gross income standard: 130 percent of poverty; elderly/disabled exemption'
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(c)
+  citation_path: us/statute/7/2014/c
+  pe_modeled: yes (income/limit/gross)
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body
+- id: snap_usc_2014_d
+  label: 7 USC 2014(d) Exclusions from income (every enumerated exclusion; child support pass-through, education, (d)(7) child earned income under 18)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(d)
+  citation_path: us/statute/7/2014/d
+  pe_modeled: partial (income/sources; child_income_exclusion_age)
+  rulespec_scoped: yes (encoded; cited by us-al, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2014_e
+  label: '7 USC 2014(e) Deductions from income: standard (e)(1), earned income 20% (e)(2), dependent care (e)(3), homeless shelter (e)(4)?, medical (e)(5), shelter cap and SUA (e)(6), child support (e)(4)'
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(e)
+  citation_path: us/statute/7/2014/e
+  pe_modeled: yes (income/deductions/*)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2014_f
+  label: 7 USC 2014(f) Calculation of household income; prospective or retrospective accounting; simplified reporting
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(f)
+  citation_path: us/statute/7/2014/f
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_g
+  label: '7 USC 2014(g) Allowable financial resources: $2,000/$3,000 base (indexed), vehicle rules, TANF/Medicaid substitution, state option'
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(g)
+  citation_path: us/statute/7/2014/g
+  pe_modeled: partial (asset_test/limit; vehicles not modeled)
+  rulespec_scoped: yes (encoded; cited by us-al, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2014_h
+  label: 7 USC 2014(h) Temporary emergency (disaster) standards of eligibility
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(h)
+  citation_path: us/statute/7/2014/h
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_i
+  label: 7 USC 2014(i) Attribution of income and resources of sponsors to sponsored aliens (deeming)
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(i)
+  citation_path: us/statute/7/2014/i
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_j
+  label: 7 USC 2014(j) Resource exemption for otherwise exempt (categorically eligible) households
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(j)
+  citation_path: us/statute/7/2014/j
+  pe_modeled: partial (categorical_eligibility)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_k
+  label: 7 USC 2014(k) Assistance to third parties (vendor payments) counted or excluded
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(k)
+  citation_path: us/statute/7/2014/k
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_l
+  label: 7 USC 2014(l) Earnings of on-the-job training participants under 19
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2014(l)
+  citation_path: us/statute/7/2014/l
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_m
+  label: 7 USC 2014(m) Simplified calculation of income for the self-employed (state option)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(m)
+  citation_path: us/statute/7/2014/m
+  pe_modeled: yes (deductions/self_employment)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2014_n
+  label: 7 USC 2014(n) State options to simplify determination of child support payments
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2014(n)
+  citation_path: us/statute/7/2014/n
+  pe_modeled: partial (deductions/child_support)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_a
+  label: 7 USC 2015(a) Additional conditions rendering individuals ineligible
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(a)
+  citation_path: us/statute/7/2015/a
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_b
+  label: '7 USC 2015(b) Fraud and misrepresentation: IPV disqualification periods 12 months / 24 months / permanent'
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(b)
+  citation_path: us/statute/7/2015/b
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body
+- id: snap_usc_2015_c
+  label: 7 USC 2015(c) Refusal to provide necessary information; SSN
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(c)
+  citation_path: us/statute/7/2015/c
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_d
+  label: '7 USC 2015(d) Conditions of participation: work registration, exemptions (age, child under 6, etc.), sanctions, E&T, voluntary quit'
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(d)
+  citation_path: us/statute/7/2015/d
+  pe_modeled: partial (work_requirements/general)
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body
+- id: snap_usc_2015_e
+  label: '7 USC 2015(e) Students: ineligibility of higher-education students and exceptions'
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(e)
+  citation_path: us/statute/7/2015/e
+  pe_modeled: yes (student/*)
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body
+- id: snap_usc_2015_f
+  label: '7 USC 2015(f) Aliens: eligible non-citizen categories (as amended by P.L. 119-21)'
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(f)
+  citation_path: us/statute/7/2015/f
+  pe_modeled: yes (eligible_immigration_statuses)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_g
+  label: 7 USC 2015(g) Residents of States providing SSI state supplementary payments (cash-out)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(g)
+  citation_path: us/statute/7/2015/g
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_h
+  label: 7 USC 2015(h) Transfer of assets to qualify
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(h)
+  citation_path: us/statute/7/2015/h
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_i
+  label: 7 USC 2015(i) Comparable treatment for disqualification under other programs
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(i)
+  citation_path: us/statute/7/2015/i
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_j
+  label: 7 USC 2015(j) Disqualification for receipt of multiple benefits
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(j)
+  citation_path: us/statute/7/2015/j
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_k
+  label: 7 USC 2015(k) Disqualification of fleeing felons and probation/parole violators
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(k)
+  citation_path: us/statute/7/2015/k
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_l
+  label: 7 USC 2015(l) Custodial parent cooperation with child support agency (state option)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(l)
+  citation_path: us/statute/7/2015/l
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_m
+  label: 7 USC 2015(m) Noncustodial parent cooperation with child support agency (state option)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(m)
+  citation_path: us/statute/7/2015/m
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_n
+  label: 7 USC 2015(n) Disqualification for child support arrears (state option)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(n)
+  citation_path: us/statute/7/2015/n
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_o
+  label: '7 USC 2015(o) Work requirement (ABAWD): 3 months in 36; age range (18-64 after P.L. 119-21); exceptions; waivers at 10% unemployment; discretionary exemptions; good-faith AK/HI'
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2015(o)
+  citation_path: us/statute/7/2015/o
+  pe_modeled: yes (work_requirements/abawd/*)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_p
+  label: 7 USC 2015(p) Disqualification for destroying food to obtain cash
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(p)
+  citation_path: us/statute/7/2015/p
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_q
+  label: 7 USC 2015(q) Disqualification for sale of food purchased with benefits
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(q)
+  citation_path: us/statute/7/2015/q
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_r
+  label: 7 USC 2015(r) Disqualification for certain convicted felons (murder, sexual assault)
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(r)
+  citation_path: us/statute/7/2015/r
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2015_s
+  label: 7 USC 2015(s) Ineligibility due to substantial lottery or gambling winnings
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2015(s)
+  citation_path: us/statute/7/2015/s
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2017_a
+  label: '7 USC 2017(a) Allotment calculation: TFP cost less 30 percent of net income; minimum benefit 8 percent of TFP for 1-2 person households'
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2017(a)
+  citation_path: us/statute/7/2017/a
+  pe_modeled: yes (max_allotment, min_allotment, expected_contribution)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body
+- id: snap_usc_2017_b
+  label: 7 USC 2017(b) Benefits not deemed income or resources
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2017(b)
+  citation_path: us/statute/7/2017/b
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2017_c
+  label: 7 USC 2017(c) First month benefits prorated; $10 minimum initial allotment
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2017(c)
+  citation_path: us/statute/7/2017/c
+  pe_modeled: partial (proration)
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2017_d
+  label: 7 USC 2017(d) Reduction of public assistance benefits does not increase SNAP
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2017(d)
+  citation_path: us/statute/7/2017/d
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2017_e
+  label: 7 USC 2017(e) Allotments for residents of drug and alcohol treatment centers
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2017(e)
+  citation_path: us/statute/7/2017/e
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2017_f
+  label: 7 USC 2017(f) Alternative procedures for residents of group facilities
+  level: federal_only
+  family: federal_statute
+  authority: 7 USC 2017(f)
+  citation_path: us/statute/7/2017/f
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2020_e
+  label: '7 USC 2020(e) Requisites of State plan of operation: application processing, expedited service, interviews, certification periods, verification, hearings, SUA and other elections'
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2020(e)
+  citation_path: us/statute/7/2020/e
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2020_i
+  label: 7 USC 2020(i) Application and denial procedures; combined application projects
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2020(i)
+  citation_path: us/statute/7/2020/i
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2020_s
+  label: 7 USC 2020(s) Transitional benefits option (state election)
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2020(s)
+  citation_path: us/statute/7/2020/s
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_usc_2025_h
+  label: 7 USC 2025(h) Funding of employment and training programs; E&T state plan
+  level: federal_with_state_option
+  family: federal_statute
+  authority: 7 USC 2025(h)
+  citation_path: us/statute/7/2025/h
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body
+- id: snap_cfr_271_1
+  label: 7 CFR 271.1 General purpose and scope
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.1
+  citation_path: us/regulation/7/271/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_2
+  label: 7 CFR 271.2 Definitions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.2
+  citation_path: us/regulation/7/271/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_3
+  label: 7 CFR 271.3 Delegations to FNS for administration
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.3
+  citation_path: us/regulation/7/271/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_4
+  label: 7 CFR 271.4 Delegations to State agencies for administration
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.4
+  citation_path: us/regulation/7/271/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_5
+  label: 7 CFR 271.5 Benefits as obligations of the United States, crimes and offenses
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.5
+  citation_path: us/regulation/7/271/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_6
+  label: 7 CFR 271.6 Complaint procedure
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.6
+  citation_path: us/regulation/7/271/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_7
+  label: 7 CFR 271.7 Allotment reduction procedures
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.7
+  citation_path: us/regulation/7/271/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_8
+  label: 7 CFR 271.8 Information collection/recordkeeping—OMB assigned control numbers
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.8
+  citation_path: us/regulation/7/271/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_271_9
+  label: 7 CFR 271.9 Promotional activities
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 271.9
+  citation_path: us/regulation/7/271/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_1
+  label: 7 CFR 272.1 General terms and conditions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.1
+  citation_path: us/regulation/7/272/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_2
+  label: 7 CFR 272.2 Plan of operation
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.2
+  citation_path: us/regulation/7/272/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_3
+  label: 7 CFR 272.3 Operating guidelines and forms
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.3
+  citation_path: us/regulation/7/272/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_4
+  label: 7 CFR 272.4 Program administration and personnel requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.4
+  citation_path: us/regulation/7/272/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_5
+  label: 7 CFR 272.5 Program informational activities
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.5
+  citation_path: us/regulation/7/272/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_6
+  label: 7 CFR 272.6 Nondiscrimination compliance
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.6
+  citation_path: us/regulation/7/272/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_7
+  label: 7 CFR 272.7 Procedures for program administration in Alaska
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.7
+  citation_path: us/regulation/7/272/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_8
+  label: 7 CFR 272.8 State income and eligibility verification system
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.8
+  citation_path: us/regulation/7/272/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_9
+  label: 7 CFR 272.9 Approval of homeless meal providers
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.9
+  citation_path: us/regulation/7/272/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_10
+  label: 7 CFR 272.10 ADP/CIS Model Plan
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.10
+  citation_path: us/regulation/7/272/10
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_11
+  label: 7 CFR 272.11 Systematic Alien Verification for Entitlements (SAVE) Program
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.11
+  citation_path: us/regulation/7/272/11
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_12
+  label: 7 CFR 272.12 Computer matching requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.12
+  citation_path: us/regulation/7/272/12
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_13
+  label: 7 CFR 272.13 Prisoner verification system (PVS)
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.13
+  citation_path: us/regulation/7/272/13
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_14
+  label: 7 CFR 272.14 Deceased matching system
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.14
+  citation_path: us/regulation/7/272/14
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_15
+  label: 7 CFR 272.15 Major changes in program design
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.15
+  citation_path: us/regulation/7/272/15
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_16
+  label: 7 CFR 272.16 National Directory of New Hires
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.16
+  citation_path: us/regulation/7/272/16
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_17
+  label: 7 CFR 272.17 Substantial lottery or gambling winnings
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.17
+  citation_path: us/regulation/7/272/17
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_272_18
+  label: 7 CFR 272.18 National Accuracy Clearinghouse
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 272.18
+  citation_path: us/regulation/7/272/18
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_1
+  label: 7 CFR 273.1 Household concept
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.1
+  citation_path: us/regulation/7/273/1
+  pe_modeled: partial (snap_unit / household concept)
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_2
+  label: 7 CFR 273.2 Office operations and application processing
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.2
+  citation_path: us/regulation/7/273/2
+  pe_modeled: 'partial (j: categorical eligibility incl. BBCE)'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_3
+  label: 7 CFR 273.3 Residency
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.3
+  citation_path: us/regulation/7/273/3
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_4
+  label: 7 CFR 273.4 Citizenship and alien status
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.4
+  citation_path: us/regulation/7/273/4
+  pe_modeled: partial (eligible_immigration_statuses, ineligible-member proration)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_5
+  label: 7 CFR 273.5 Students
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.5
+  citation_path: us/regulation/7/273/5
+  pe_modeled: partial (student rules)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_6
+  label: 7 CFR 273.6 Social security numbers
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.6
+  citation_path: us/regulation/7/273/6
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_7
+  label: 7 CFR 273.7 Work provisions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.7
+  citation_path: us/regulation/7/273/7
+  pe_modeled: partial (general work requirements, E&T hours)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_8
+  label: 7 CFR 273.8 Resource eligibility standards
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.8
+  citation_path: us/regulation/7/273/8
+  pe_modeled: partial (asset limit; vehicle rules not modeled)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_9
+  label: 7 CFR 273.9 Income and deductions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.9
+  citation_path: us/regulation/7/273/9
+  pe_modeled: partial (income sources, standard/earned/medical/shelter/utility/child-support deductions)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_10
+  label: 7 CFR 273.10 Determining household eligibility and benefit levels
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.10
+  citation_path: us/regulation/7/273/10
+  pe_modeled: partial (gross/net tests, max/min allotment, proration)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_11
+  label: 7 CFR 273.11 Action on households with special circumstances
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.11
+  citation_path: us/regulation/7/273/11
+  pe_modeled: partial (ineligible member income counting, self-employment)
+  rulespec_scoped: yes (encoded)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_12
+  label: 7 CFR 273.12 Reporting requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.12
+  citation_path: us/regulation/7/273/12
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_13
+  label: 7 CFR 273.13 Notice of adverse action
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.13
+  citation_path: us/regulation/7/273/13
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_14
+  label: 7 CFR 273.14 Recertification
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.14
+  citation_path: us/regulation/7/273/14
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_15
+  label: 7 CFR 273.15 Fair hearings
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.15
+  citation_path: us/regulation/7/273/15
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_16
+  label: 7 CFR 273.16 Disqualification for intentional Program violation
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.16
+  citation_path: us/regulation/7/273/16
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_17
+  label: 7 CFR 273.17 Restoration of lost benefits
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.17
+  citation_path: us/regulation/7/273/17
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_18
+  label: 7 CFR 273.18 Claims against households
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.18
+  citation_path: us/regulation/7/273/18
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_20
+  label: 7 CFR 273.20 SSI cash-out
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.20
+  citation_path: us/regulation/7/273/20
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_21
+  label: 7 CFR 273.21 Monthly Reporting and Retrospective Budgeting (MRRB)
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.21
+  citation_path: us/regulation/7/273/21
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_23
+  label: 7 CFR 273.23 Simplified application and standardized benefit projects
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.23
+  citation_path: us/regulation/7/273/23
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_24
+  label: 7 CFR 273.24 Time limit for able-bodied adults
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.24
+  citation_path: us/regulation/7/273/24
+  pe_modeled: partial (ABAWD time limit, waived areas, discretionary exemptions)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_25
+  label: 7 CFR 273.25 Simplified SNAP
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.25
+  citation_path: us/regulation/7/273/25
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_26
+  label: 7 CFR 273.26 General eligibility guidelines
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.26
+  citation_path: us/regulation/7/273/26
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_27
+  label: 7 CFR 273.27 General administrative guidelines
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.27
+  citation_path: us/regulation/7/273/27
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_28
+  label: 7 CFR 273.28 Application for SNAP recertification
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.28
+  citation_path: us/regulation/7/273/28
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_29
+  label: 7 CFR 273.29 Transitional notice requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.29
+  citation_path: us/regulation/7/273/29
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_30
+  label: 7 CFR 273.30 Transitional benefit alternative change reporting requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.30
+  citation_path: us/regulation/7/273/30
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_31
+  label: 7 CFR 273.31 Closing the transitional period
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.31
+  citation_path: us/regulation/7/273/31
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_32
+  label: 7 CFR 273.32 Households that return to TANF, MOE, or SFCA program during the transitional period
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 273.32
+  citation_path: us/regulation/7/273/32
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_1
+  label: 7 CFR 274.1 Issuance system approval standards
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.1
+  citation_path: us/regulation/7/274/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_2
+  label: 7 CFR 274.2 Providing benefits to participants
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.2
+  citation_path: us/regulation/7/274/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_3
+  label: 7 CFR 274.3 Retailer management
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.3
+  citation_path: us/regulation/7/274/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_4
+  label: 7 CFR 274.4 Reconciliation and reporting
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.4
+  citation_path: us/regulation/7/274/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_5
+  label: 7 CFR 274.5 Record retention and forms security
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.5
+  citation_path: us/regulation/7/274/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_6
+  label: 7 CFR 274.6 Replacement issuances and cards to households
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.6
+  citation_path: us/regulation/7/274/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_7
+  label: 7 CFR 274.7 Benefit redemption by eligible households
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.7
+  citation_path: us/regulation/7/274/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_274_8
+  label: 7 CFR 274.8 Functional and technical EBT system requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 274.8
+  citation_path: us/regulation/7/274/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_1
+  label: 7 CFR 275.1 General scope and purpose
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.1
+  citation_path: us/regulation/7/275/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_2
+  label: 7 CFR 275.2 State agency responsibilities
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.2
+  citation_path: us/regulation/7/275/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_3
+  label: 7 CFR 275.3 Federal monitoring
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.3
+  citation_path: us/regulation/7/275/3
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_4
+  label: 7 CFR 275.4 Record retention
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.4
+  citation_path: us/regulation/7/275/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_5
+  label: 7 CFR 275.5 Scope and purpose
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.5
+  citation_path: us/regulation/7/275/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_6
+  label: 7 CFR 275.6 Management units
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.6
+  citation_path: us/regulation/7/275/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_7
+  label: 7 CFR 275.7 Selection of sub-units for review
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.7
+  citation_path: us/regulation/7/275/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_8
+  label: 7 CFR 275.8 Review coverage
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.8
+  citation_path: us/regulation/7/275/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_9
+  label: 7 CFR 275.9 Review process
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.9
+  citation_path: us/regulation/7/275/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_10
+  label: 7 CFR 275.10 Scope and purpose
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.10
+  citation_path: us/regulation/7/275/10
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_11
+  label: 7 CFR 275.11 Sampling
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.11
+  citation_path: us/regulation/7/275/11
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_12
+  label: 7 CFR 275.12 Review of active cases
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.12
+  citation_path: us/regulation/7/275/12
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_13
+  label: 7 CFR 275.13 Review of negative cases
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.13
+  citation_path: us/regulation/7/275/13
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_14
+  label: 7 CFR 275.14 Review processing
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.14
+  citation_path: us/regulation/7/275/14
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_15
+  label: 7 CFR 275.15 Data management
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.15
+  citation_path: us/regulation/7/275/15
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_16
+  label: 7 CFR 275.16 Corrective action planning
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.16
+  citation_path: us/regulation/7/275/16
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_17
+  label: 7 CFR 275.17 State corrective action plan
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.17
+  citation_path: us/regulation/7/275/17
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_18
+  label: 7 CFR 275.18 Project area/management unit corrective action plan
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.18
+  citation_path: us/regulation/7/275/18
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_19
+  label: 7 CFR 275.19 Monitoring and evaluation
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.19
+  citation_path: us/regulation/7/275/19
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_20
+  label: 7 CFR 275.20 ME review schedules
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.20
+  citation_path: us/regulation/7/275/20
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_21
+  label: 7 CFR 275.21 Quality control review reports
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.21
+  citation_path: us/regulation/7/275/21
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_22
+  label: 7 CFR 275.22 Administrative procedure
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.22
+  citation_path: us/regulation/7/275/22
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_23
+  label: 7 CFR 275.23 Determination of State agency program performance
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.23
+  citation_path: us/regulation/7/275/23
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-fl, us-ga, us-ny)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_275_24
+  label: 7 CFR 275.24 High performance bonuses
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 275.24
+  citation_path: us/regulation/7/275/24
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded)
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_1
+  label: 7 CFR 276.1 Responsibilities and rights
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.1
+  citation_path: us/regulation/7/276/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_2
+  label: 7 CFR 276.2 State agency liabilities
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.2
+  citation_path: us/regulation/7/276/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_3
+  label: 7 CFR 276.3 Negligence or fraud
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.3
+  citation_path: us/regulation/7/276/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_4
+  label: 7 CFR 276.4 Suspension/disallowance of administrative funds
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.4
+  citation_path: us/regulation/7/276/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_5
+  label: 7 CFR 276.5 Injunctive relief
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.5
+  citation_path: us/regulation/7/276/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_6
+  label: 7 CFR 276.6 Good cause
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.6
+  citation_path: us/regulation/7/276/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_276_7
+  label: 7 CFR 276.7 Administrative review process
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 276.7
+  citation_path: us/regulation/7/276/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_1
+  label: 7 CFR 277.1 General purpose and scope
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.1
+  citation_path: us/regulation/7/277/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_2
+  label: 7 CFR 277.2 Definitions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.2
+  citation_path: us/regulation/7/277/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_3
+  label: 7 CFR 277.3 Budgets and budget revision procedures
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.3
+  citation_path: us/regulation/7/277/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_4
+  label: 7 CFR 277.4 Funding
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.4
+  citation_path: us/regulation/7/277/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_5
+  label: 7 CFR 277.5 Methods of payment
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.5
+  citation_path: us/regulation/7/277/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_6
+  label: 7 CFR 277.6 Standards for financial management systems
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.6
+  citation_path: us/regulation/7/277/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_7
+  label: 7 CFR 277.7 Cash depositories
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.7
+  citation_path: us/regulation/7/277/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_8
+  label: 7 CFR 277.8 Bonding and insurance
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.8
+  citation_path: us/regulation/7/277/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_9
+  label: 7 CFR 277.9 Administrative costs principles
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.9
+  citation_path: us/regulation/7/277/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_10
+  label: 7 CFR 277.10 Program income
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.10
+  citation_path: us/regulation/7/277/10
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_11
+  label: 7 CFR 277.11 Financial reporting requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.11
+  citation_path: us/regulation/7/277/11
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_12
+  label: 7 CFR 277.12 Retention and custody of records
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.12
+  citation_path: us/regulation/7/277/12
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_13
+  label: 7 CFR 277.13 Property
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.13
+  citation_path: us/regulation/7/277/13
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_14
+  label: 7 CFR 277.14 Procurement standards
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.14
+  citation_path: us/regulation/7/277/14
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_16
+  label: 7 CFR 277.16 Suspension, disallowance and program closeout
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.16
+  citation_path: us/regulation/7/277/16
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_17
+  label: 7 CFR 277.17 Audit requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.17
+  citation_path: us/regulation/7/277/17
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_277_18
+  label: 7 CFR 277.18 State Systems Advance Planning Document (APD) process
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 277.18
+  citation_path: us/regulation/7/277/18
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_1
+  label: 7 CFR 278.1 Approval of retail food stores and wholesale food concerns
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.1
+  citation_path: us/regulation/7/278/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_2
+  label: 7 CFR 278.2 Participation of retail food stores
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.2
+  citation_path: us/regulation/7/278/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_3
+  label: 7 CFR 278.3 Participation of wholesale food concerns
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.3
+  citation_path: us/regulation/7/278/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_4
+  label: 7 CFR 278.4 Procedure for redeeming coupons
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.4
+  citation_path: us/regulation/7/278/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_5
+  label: 7 CFR 278.5 Participation of insured financial institutions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.5
+  citation_path: us/regulation/7/278/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_6
+  label: 7 CFR 278.6 Disqualification of retail food stores and wholesale food concerns, and imposition of civil money penalties in lieu of disqualifications
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.6
+  citation_path: us/regulation/7/278/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_7
+  label: 7 CFR 278.7 Determination and disposition of claims—retail food stores and wholesale food concerns
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.7
+  citation_path: us/regulation/7/278/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_278_9
+  label: 7 CFR 278.9 Implementation of amendments relating to the participation of retail food stores, wholesale food concerns and insured financial institutions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 278.9
+  citation_path: us/regulation/7/278/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_1
+  label: 7 CFR 279.1 Jurisdiction and authority
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.1
+  citation_path: us/regulation/7/279/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_2
+  label: 7 CFR 279.2 Manner of filing requests for review
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.2
+  citation_path: us/regulation/7/279/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_3
+  label: 7 CFR 279.3 Content of request for review
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.3
+  citation_path: us/regulation/7/279/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_4
+  label: 7 CFR 279.4 Action upon receipt of a request for review
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.4
+  citation_path: us/regulation/7/279/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_5
+  label: 7 CFR 279.5 Determination of the designated reviewer
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.5
+  citation_path: us/regulation/7/279/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_6
+  label: 7 CFR 279.6 Legal advice and extensions of time
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.6
+  citation_path: us/regulation/7/279/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_7
+  label: 7 CFR 279.7 Judicial review
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.7
+  citation_path: us/regulation/7/279/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_279_8
+  label: 7 CFR 279.8 Implementation of amendments relating to administrative and judicial review
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 279.8
+  citation_path: us/regulation/7/279/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_280_1
+  label: 7 CFR 280.1 Interim disaster procedures
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 280.1
+  citation_path: us/regulation/7/280/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_1
+  label: 7 CFR 281.1 General purpose and scope
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.1
+  citation_path: us/regulation/7/281/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_2
+  label: 7 CFR 281.2 Administration
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.2
+  citation_path: us/regulation/7/281/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_3
+  label: 7 CFR 281.3 Determination of failure
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.3
+  citation_path: us/regulation/7/281/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_4
+  label: 7 CFR 281.4 Determining Indian tribal organization capability
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.4
+  citation_path: us/regulation/7/281/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_5
+  label: 7 CFR 281.5 Responsibilities of an Indian tribal organization designated as State agency
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.5
+  citation_path: us/regulation/7/281/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_6
+  label: 7 CFR 281.6 Liabilities and sanctions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.6
+  citation_path: us/regulation/7/281/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_7
+  label: 7 CFR 281.7 Indian tribal organization failure
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.7
+  citation_path: us/regulation/7/281/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_8
+  label: 7 CFR 281.8 Transfer of program administration
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.8
+  citation_path: us/regulation/7/281/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_9
+  label: 7 CFR 281.9 Funding
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.9
+  citation_path: us/regulation/7/281/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_281_10
+  label: 7 CFR 281.10 Appeals
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 281.10
+  citation_path: us/regulation/7/281/10
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_282_1
+  label: 7 CFR 282.1 Legislative authority and notice requirements
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 282.1
+  citation_path: us/regulation/7/282/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_282_2
+  label: 7 CFR 282.2 Funding
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 282.2
+  citation_path: us/regulation/7/282/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_1
+  label: 7 CFR 283.1 Meaning of words
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.1
+  citation_path: us/regulation/7/283/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_2
+  label: 7 CFR 283.2 Scope and applicability
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.2
+  citation_path: us/regulation/7/283/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_3
+  label: 7 CFR 283.3 Definitions
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.3
+  citation_path: us/regulation/7/283/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_4
+  label: 7 CFR 283.4 Filing appeals for QC claims of $50,000 or more
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.4
+  citation_path: us/regulation/7/283/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_5
+  label: 7 CFR 283.5 Motion to dismiss
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.5
+  citation_path: us/regulation/7/283/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_6
+  label: 7 CFR 283.6 Answer
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.6
+  citation_path: us/regulation/7/283/6
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_7
+  label: 7 CFR 283.7 Procedures upon failure to file an answer
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.7
+  citation_path: us/regulation/7/283/7
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_8
+  label: 7 CFR 283.8 Rebuttal or amendment of appeal or answer
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.8
+  citation_path: us/regulation/7/283/8
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_9
+  label: 7 CFR 283.9 Withdrawal of appeal
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.9
+  citation_path: us/regulation/7/283/9
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_10
+  label: 7 CFR 283.10 Consent decision
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.10
+  citation_path: us/regulation/7/283/10
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_11
+  label: 7 CFR 283.11 Prehearing conference and procedure
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.11
+  citation_path: us/regulation/7/283/11
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_12
+  label: 7 CFR 283.12 Discovery
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.12
+  citation_path: us/regulation/7/283/12
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_13
+  label: 7 CFR 283.13 Subpoenas
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.13
+  citation_path: us/regulation/7/283/13
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_14
+  label: 7 CFR 283.14 Fees of witnesses
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.14
+  citation_path: us/regulation/7/283/14
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_15
+  label: 7 CFR 283.15 Procedure for hearing
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.15
+  citation_path: us/regulation/7/283/15
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_16
+  label: 7 CFR 283.16 Consolidation of issues
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.16
+  citation_path: us/regulation/7/283/16
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_17
+  label: 7 CFR 283.17 Post-hearing procedure
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.17
+  citation_path: us/regulation/7/283/17
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_18
+  label: 7 CFR 283.18 Motions and requests
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.18
+  citation_path: us/regulation/7/283/18
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_19
+  label: 7 CFR 283.19 ALJs
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.19
+  citation_path: us/regulation/7/283/19
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_20
+  label: 7 CFR 283.20 Review by the Judicial Officer
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.20
+  citation_path: us/regulation/7/283/20
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_21
+  label: 7 CFR 283.21 Ex parte communications
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.21
+  citation_path: us/regulation/7/283/21
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_22
+  label: 7 CFR 283.22 Form; filing; service; proof of service; computation of time; and extensions of time
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.22
+  citation_path: us/regulation/7/283/22
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_23
+  label: 7 CFR 283.23 Procedural matters
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.23
+  citation_path: us/regulation/7/283/23
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_24
+  label: 7 CFR 283.24 Incorporation of procedures by reference
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.24
+  citation_path: us/regulation/7/283/24
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_25
+  label: 7 CFR 283.25 Filing appeals for QC claims of less than $50,000
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.25
+  citation_path: us/regulation/7/283/25
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_26
+  label: 7 CFR 283.26 Request that appeals be handled under procedures in subpart B for appeals of QC claims of $50,000 or more
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.26
+  citation_path: us/regulation/7/283/26
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_27
+  label: 7 CFR 283.27 Procedures upon failure to file an answer
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.27
+  citation_path: us/regulation/7/283/27
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_28
+  label: 7 CFR 283.28 Discovery
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.28
+  citation_path: us/regulation/7/283/28
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_29
+  label: 7 CFR 283.29 Scheduling conference
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.29
+  citation_path: us/regulation/7/283/29
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_30
+  label: 7 CFR 283.30 Cross motions for summary judgment
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.30
+  citation_path: us/regulation/7/283/30
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_31
+  label: 7 CFR 283.31 Review of the record
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.31
+  citation_path: us/regulation/7/283/31
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_283_32
+  label: 7 CFR 283.32 ALJ's initial decision
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 283.32
+  citation_path: us/regulation/7/283/32
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_284_1
+  label: 7 CFR 284.1 Pandemic Electronic Benefits Transfer (P-EBT)
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 284.1
+  citation_path: us/regulation/7/284/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_285_1
+  label: 7 CFR 285.1 General purpose and scope
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 285.1
+  citation_path: us/regulation/7/285/1
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_285_2
+  label: 7 CFR 285.2 Funding
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 285.2
+  citation_path: us/regulation/7/285/2
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_285_3
+  label: 7 CFR 285.3 Plan of operation
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 285.3
+  citation_path: us/regulation/7/285/3
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_285_4
+  label: 7 CFR 285.4 Audits
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 285.4
+  citation_path: us/regulation/7/285/4
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_285_5
+  label: 7 CFR 285.5 Failure to comply
+  level: federal_regulation
+  family: federal_regulation
+  authority: 7 CFR 285.5
+  citation_path: us/regulation/7/285/5
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: citation_path row with body (or paragraph children with bodies)
+- id: snap_cfr_273_1_1a
+  label: 7 CFR 273.1(a) Household definition (purchase and prepare together)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.1(a)
+  citation_path: us/regulation/7/273/1
+  regex: purchase food and prepare meals|purchases? food and prepares?
+  pe_modeled: partial (snap_unit)
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_1_1b
+  label: 7 CFR 273.1(b) Special household requirements (spouses, children under 22, boarders, institutions)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.1(b)
+  citation_path: us/regulation/7/273/1
+  regex: \bboarder|under 22 years|children under 22
+  pe_modeled: partial (snap_unit)
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2e
+  label: 7 CFR 273.2(e) Interview requirements and telephone-interview waiver
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.2(e)
+  citation_path: us/regulation/7/273/2
+  regex: telephone interview|face-to-face interview
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2f
+  label: 7 CFR 273.2(f) Verification requirements (mandatory and optional)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.2(f)
+  citation_path: us/regulation/7/273/2
+  regex: verif(y|ication) (of|prior to certification)
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2g
+  label: 7 CFR 273.2(g) Normal processing standard (30 days)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.2(g)
+  citation_path: us/regulation/7/273/2
+  regex: 30 days following the date the application was filed|within 30 days
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2i
+  label: 7 CFR 273.2(i) Expedited service (7-day standard; $150 gross income / $100 liquid resources test)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.2(i)
+  citation_path: us/regulation/7/273/2
+  regex: expedited service|\$150 in monthly gross income
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2j
+  label: 7 CFR 273.2(j) Categorical eligibility including broad-based categorical eligibility (state option)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.2(j)
+  citation_path: us/regulation/7/273/2
+  regex: categorically eligible|categorical eligibility
+  pe_modeled: yes (categorical_eligibility)
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2k
+  label: 7 CFR 273.2(k) Joint processing with public assistance (PA/GA) applications
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.2(k)
+  citation_path: us/regulation/7/273/2
+  regex: joint (PA|processing|application)
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_2_2o
+  label: 7 CFR 273.2(o) Attestation of disqualified-felon status by applicants (P.L. 113-79 sec. 4008)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.2(o)
+  citation_path: us/regulation/7/273/2
+  regex: attest.{0,120}(felon|convicted)
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-ca, us-fl, us-ga, us-ny)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_4_4a
+  label: '7 CFR 273.4(a) Eligible non-citizens: qualified alien categories and waiting periods'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.4(a)
+  citation_path: us/regulation/7/273/4
+  regex: qualified alien|lawfully admitted for permanent residence
+  pe_modeled: yes (eligible_immigration_statuses)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_4_4c
+  label: '7 CFR 273.4(c) Sponsored aliens: deeming of sponsor income and resources'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.4(c)
+  citation_path: us/regulation/7/273/4
+  regex: sponsor.{0,40}(deem|income)
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_5_5b
+  label: 7 CFR 273.5(b) Student eligibility exemptions (20 hours work, work study, parents, E&T/TANF/state programs)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.5(b)
+  citation_path: us/regulation/7/273/5
+  regex: 20 hours|work.study
+  pe_modeled: yes (student/*)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_7_7a
+  label: 7 CFR 273.7(a) Work registration requirement and age range (16-59 pre-OBBBA; as amended)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.7(a)
+  citation_path: us/regulation/7/273/7
+  regex: work registration|register for work
+  pe_modeled: partial (work_requirements/general)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_7_7b
+  label: 7 CFR 273.7(b) Exemptions from work registration (age, child under 6, disability, students, 30 hours)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.7(b)
+  citation_path: us/regulation/7/273/7
+  regex: exempt from work registration|exemptions? from the work requirement|30 hours
+  pe_modeled: partial (work_requirements/general)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_7_7c
+  label: 7 CFR 273.7(c) E&T program requirements and (e) components; State E&T plan
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.7(c)
+  citation_path: us/regulation/7/273/7
+  regex: employment and training program|E&T plan|E&T component
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_7_7d
+  label: 7 CFR 273.7(d) E&T participant reimbursement and support services (transportation, dependent care)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.7(d)
+  citation_path: us/regulation/7/273/7
+  regex: participant reimbursement|reimburs.{0,80}dependent care|transportation
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_7_7f
+  label: '7 CFR 273.7(f) Failure to comply: sanction periods (1, 3, 6 months; state option up to 6)'
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.7(f)
+  citation_path: us/regulation/7/273/7
+  regex: (one|1) month.{0,120}(three|3) months.{0,200}(six|6) months|minimum (disqualification|sanction) period
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_7_7j
+  label: 7 CFR 273.7(j) Voluntary quit and reduction of work effort
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.7(j)
+  citation_path: us/regulation/7/273/7
+  regex: voluntar(y|ily) quit|reduc(e|ing|tion of) (work|hours)
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_8_8b
+  label: 7 CFR 273.8(b) Resource limits ($2,000 / $3,000 elderly-disabled, indexed)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.8(b)
+  citation_path: us/regulation/7/273/8
+  regex: \$2,?000|\$3,?000|resource limit
+  pe_modeled: yes (asset_test/limit)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_8_8e
+  label: 7 CFR 273.8(e) Excluded resources (home, retirement, education accounts, etc.)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.8(e)
+  citation_path: us/regulation/7/273/8
+  regex: exclusions from resources|excluded (from )?resources|shall be excluded
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_8_8f
+  label: 7 CFR 273.8(f) Vehicle treatment (fair market value / equity tests; TANF vehicle rule substitution)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.8(f)
+  citation_path: us/regulation/7/273/8
+  regex: fair market value|licensed vehicle
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9a
+  label: '7 CFR 273.9(a) Income eligibility standards: net 100% FPL, gross 130% FPL, 165% for elderly/disabled separate households'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.9(a)
+  citation_path: us/regulation/7/273/9
+  regex: 130 percent|165 percent
+  pe_modeled: yes (income/limit)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9b
+  label: 7 CFR 273.9(b) Definition of earned and unearned income
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.9(b)
+  citation_path: us/regulation/7/273/9
+  regex: earned income shall include|unearned income shall include
+  pe_modeled: yes (income/sources)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9c
+  label: 7 CFR 273.9(c) Income exclusions (all enumerated); (c)(17) child support exclusion option
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.9(c)
+  citation_path: us/regulation/7/273/9
+  regex: income exclusions|shall be excluded from (household )?income|excluded from income
+  pe_modeled: partial (income/sources)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d1
+  label: 7 CFR 273.9(d)(1) Standard deduction (8.31% of net income standard, floor/ceiling by area)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(1)
+  citation_path: us/regulation/7/273/9
+  regex: standard deduction
+  pe_modeled: yes (deductions/standard)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d2
+  label: 7 CFR 273.9(d)(2) Earned income deduction (20 percent)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(2)
+  citation_path: us/regulation/7/273/9
+  regex: earned income deduction
+  pe_modeled: yes (deductions/earned_income)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d3
+  label: 7 CFR 273.9(d)(3) Excess medical deduction ($35 threshold, elderly/disabled); standard medical deduction demonstrations
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(3)
+  citation_path: us/regulation/7/273/9
+  regex: excess medical deduction|\$35 per month
+  pe_modeled: yes (excess_medical_expense)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d4
+  label: 7 CFR 273.9(d)(4) Dependent care deduction (uncapped)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(4)
+  citation_path: us/regulation/7/273/9
+  regex: dependent care deduction|dependent care
+  pe_modeled: yes (dependent_care)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d5
+  label: 7 CFR 273.9(d)(5) Child support deduction (legally obligated payments); exclusion alternative
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(5)
+  citation_path: us/regulation/7/273/9
+  regex: child support (deduction|payments)
+  pe_modeled: yes (deductions/child_support)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d6i
+  label: 7 CFR 273.9(d)(6)(i) Homeless shelter deduction (state option; $143 indexed)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(6)(i)
+  citation_path: us/regulation/7/273/9
+  regex: homeless shelter deduction
+  pe_modeled: yes (excess_shelter_expense/homeless)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d6ii
+  label: '7 CFR 273.9(d)(6)(ii) Excess shelter deduction: 50 percent of income after other deductions; cap except elderly/disabled'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(6)(ii)
+  citation_path: us/regulation/7/273/9
+  regex: excess shelter deduction
+  pe_modeled: yes (excess_shelter_expense/cap, income_share_disregard)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_9_9d6iii
+  label: '7 CFR 273.9(d)(6)(iii) Standard utility allowances: HCSUA, LUA, telephone; mandatory SUA state option; LIHEAP heat-and-eat threshold'
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.9(d)(6)(iii)
+  citation_path: us/regulation/7/273/9
+  regex: standard utility allowance
+  pe_modeled: yes (deductions/utility/*)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_10_10a
+  label: '7 CFR 273.10(a) Month of application: proration of the initial month''s benefit'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.10(a)
+  citation_path: us/regulation/7/273/10
+  regex: prorat
+  pe_modeled: partial (proration)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_10_10c
+  label: '7 CFR 273.10(c) Determining income: prospective budgeting, anticipating income, averaging'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.10(c)
+  citation_path: us/regulation/7/273/10
+  regex: anticipat(ed|ing) income|prospective(ly)?
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_10_10d
+  label: '7 CFR 273.10(d) Determining deductions: anticipated expenses, averaging, billed vs paid'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.10(d)
+  citation_path: us/regulation/7/273/10
+  regex: anticipated expenses|deductible expenses
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_10_10e1
+  label: 7 CFR 273.10(e)(1) Net income computation steps
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.10(e)(1)
+  citation_path: us/regulation/7/273/10
+  regex: net monthly income
+  pe_modeled: yes (snap_net_income)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_10_10e2
+  label: '7 CFR 273.10(e)(2) Benefit computation: 30 percent of net income; minimum benefit 8 percent of TFP; $1-$4 rounding'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.10(e)(2)
+  citation_path: us/regulation/7/273/10
+  regex: 30 percent|minimum benefit|8 percent
+  pe_modeled: yes (expected_contribution, min_allotment)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_10_10f
+  label: 7 CFR 273.10(f) Certification periods (up to 12 months; 24 months elderly/disabled; 36 months ESAP)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.10(f)
+  citation_path: us/regulation/7/273/10
+  regex: certification period
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_11_11a
+  label: '7 CFR 273.11(a) Self-employment income: annualizing, costs of producing income, standard percentage option'
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.11(a)
+  citation_path: us/regulation/7/273/11
+  regex: self-employment
+  pe_modeled: yes (deductions/self_employment)
+  rulespec_scoped: yes (encoded)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_11_11b
+  label: 7 CFR 273.11(b) Boarders; (d) treatment centers; (e) group living arrangements; (f) shelters for battered women
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.11(b)
+  citation_path: us/regulation/7/273/11
+  regex: boarder|group living arrangement
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_11_11c
+  label: 7 CFR 273.11(c) Treatment of income and resources of ineligible/disqualified members (all vs prorated share; state option for ineligible aliens)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.11(c)
+  citation_path: us/regulation/7/273/11
+  regex: pro rata share|prorated share|ineligible alien
+  pe_modeled: yes (ineligible_members/*)
+  rulespec_scoped: yes (encoded)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_11_11k
+  label: 7 CFR 273.11(k) Reduction of benefits for failure to comply with other program requirements (comparable disqualification); (m) drug felony disqualification opt-out
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.11(k)
+  citation_path: us/regulation/7/273/11
+  regex: comparable (disqualification|penalt)|convicted.{0,60}(felony|controlled substance)
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_12_12a
+  label: '7 CFR 273.12(a) Reporting requirements: change reporting (10 days, $100/125 earned), simplified reporting, 130% threshold'
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.12(a)
+  citation_path: us/regulation/7/273/12
+  regex: simplified reporting|within 10 days
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_12_12c
+  label: 7 CFR 273.12(c) State agency action on changes; (e) mass changes (COLA)
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.12(c)
+  citation_path: us/regulation/7/273/12
+  regex: mass change
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_13_13a
+  label: 7 CFR 273.13(a) Notice of adverse action timing (10 days) and content
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.13(a)
+  citation_path: us/regulation/7/273/13
+  regex: 10 days|adverse action
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_14_14b
+  label: 7 CFR 273.14(b) Recertification process, application, interview, notice of expiration
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.14(b)
+  citation_path: us/regulation/7/273/14
+  regex: notice of expiration|recertification
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_15_15
+  label: '7 CFR 273.15 Fair hearings: request period (90 days), timeliness, continuation of benefits'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.15
+  citation_path: us/regulation/7/273/15
+  regex: 90 days|fair hearing
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_16_16
+  label: '7 CFR 273.16 IPV disqualification: 12 months, 24 months, permanent; administrative disqualification hearings'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.16
+  citation_path: us/regulation/7/273/16
+  regex: twelve months|12 months|permanent(ly)?
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_18_18
+  label: '7 CFR 273.18 Claims against households: IHE, IPV, AE claims; 20/10 percent allotment reduction; compromise'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.18
+  citation_path: us/regulation/7/273/18
+  regex: inadvertent household error|allotment reduction|20 percent
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_21_21
+  label: 7 CFR 273.21 Monthly reporting and retrospective budgeting (state option)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.21
+  citation_path: us/regulation/7/273/21
+  regex: retrospective budgeting|monthly report
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_24_24a
+  label: '7 CFR 273.24(a)-(b) ABAWD time limit: 3 countable months in 36; qualifying work 80 hours; exceptions (age, disability, dependents, pregnancy, homeless, veterans, foster youth)'
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.24(a)-(b)
+  citation_path: us/regulation/7/273/24
+  regex: 80 hours|three countable months|3 countable months
+  pe_modeled: yes (work_requirements/abawd)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_24_24e
+  label: 7 CFR 273.24(e) Regaining eligibility after the time limit
+  level: federal_only
+  family: federal_regulation
+  authority: 7 CFR 273.24(e)
+  citation_path: us/regulation/7/273/24
+  regex: regain
+  pe_modeled: 'no'
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_24_24f
+  label: 7 CFR 273.24(f) Waivers of the time limit for areas with high unemployment (10 percent) or insufficient jobs
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.24(f)
+  citation_path: us/regulation/7/273/24
+  regex: waiver|unemployment rate
+  pe_modeled: yes (abawd/waived_states, waived_counties)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_24_24g
+  label: 7 CFR 273.24(g) Discretionary (percentage) exemptions and carryover
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.24(g)
+  citation_path: us/regulation/7/273/24
+  regex: exemptions? (which|that) may be used|percentage|15 percent|12 percent|8 percent
+  pe_modeled: yes (abawd/discretionary_exemption_rate)
+  rulespec_scoped: yes (encoded; cited by us-al, us-az, us-ca, us-fl, us-ga, us-ma, us-nc, us-ny, us-sc, us-tn)
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_cfr_273_26_26
+  label: 7 CFR 273.26-273.32 Transitional benefits alternative (state option; 5-month TBA)
+  level: federal_with_state_option
+  family: federal_regulation
+  authority: 7 CFR 273.26-273.32
+  citation_path: us/regulation/7/273/26
+  regex: transitional benefit
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the section body (selected 273 scopes are section-granular)
+- id: snap_g01
+  label: 'FY 2026 COLA memo: maximum allotments by household size and region (48 states/DC, AK urban/rural 1/rural 2, HI, GU, VI)'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Maximum Monthly Allotment
+  pe_modeled: yes (max_allotment)
+  rulespec_scoped: yes (fy-2026-cola policies)
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g02
+  label: 'FY 2026 COLA memo: standard deductions by household size and region'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Standard Deductions
+  pe_modeled: yes (deductions/standard)
+  rulespec_scoped: yes (fy-2026-cola policies)
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g03
+  label: 'FY 2026 COLA memo: maximum excess shelter deduction by region'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Maximum Excess Shelter Deduction
+  pe_modeled: yes (excess_shelter_expense/cap)
+  rulespec_scoped: yes (fy-2026-cola policies)
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g04
+  label: 'FY 2026 COLA memo: homeless shelter deduction amount'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Homeless Shelter Deduction
+  pe_modeled: yes (excess_shelter_expense/homeless/deduction)
+  rulespec_scoped: 'no'
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g05
+  label: 'FY 2026 COLA memo: maximum asset limits ($4,500 elderly/disabled; $3,000 other)'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Maximum Asset Limits
+  pe_modeled: yes (asset_test/limit)
+  rulespec_scoped: 'no'
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g06
+  label: 'FY 2026 income eligibility standards: net (100% FPL) by size and region'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Net Monthly Income Limit
+  pe_modeled: yes (income/limit/net)
+  rulespec_scoped: yes (fy-2026-cola policies)
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g07
+  label: 'FY 2026 income eligibility standards: gross (130% FPL) by size and region'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: Gross Monthly Income Limit \(130
+  pe_modeled: yes (income/limit/gross)
+  rulespec_scoped: yes (fy-2026-cola policies)
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g08
+  label: 'FY 2026 income eligibility standards: 165% FPL elderly/disabled separate-household test'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: 165% of Federal Poverty Level|165 percent
+  pe_modeled: no (165% separate-household test not modeled)
+  rulespec_scoped: 'no'
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g09
+  label: FY 2026 minimum benefit amount (8 percent of TFP for 1-2 person households, by region)
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: minimum (benefit|allotment).{0,80}\$\s?\d
+  pe_modeled: yes (min_allotment/rate)
+  rulespec_scoped: 'no'
+  publisher_index: FNS COLA memo 'FY 2026 Cost-of-Living Adjustments' (the full memo carries the minimum benefit; the corpus holds only the two-page allotments/deductions and income-standards tables), fns.usda.gov/snap/allotment/cola
+    (origin fns-prod.azureedge.us)
+  check: regex over selected federal guidance bodies
+- id: snap_g10
+  label: FNS annual table of state standard utility allowances (HCSUA, LUA, telephone) by state
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: standard utility allowance.{0,600}(Alabama|Alaska|Arizona)
+  pe_modeled: yes (deductions/utility/* by state)
+  rulespec_scoped: 'no'
+  publisher_index: FNS SUA page fns.usda.gov/snap/eligibility/deduction/standard-utility-allowances (annual state table); also FY2024 SNAP QC Technical Documentation Table F.7 held on disk but not selected
+    (us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation)
+  check: regex over selected federal guidance bodies
+- id: snap_g11
+  label: FNS ABAWD time-limit waiver status list by state and area
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: (waiver|waived).{0,200}able.bodied|ABAWD.{0,200}waiver.{0,200}(state|area|county)
+  pe_modeled: yes (abawd/waived_states, waived_counties)
+  rulespec_scoped: 'no'
+  publisher_index: FNS ABAWD waivers page fns.usda.gov/snap/abawd/waivers (per-state approval letters and status table)
+  check: regex over selected federal guidance bodies
+- id: snap_g12
+  label: FNS broad-based categorical eligibility state chart (gross income and asset thresholds elected)
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: broad.based categorical.{0,600}(Alabama|Alaska|Arizona)
+  pe_modeled: partial (categorical_eligibility; BBCE thresholds not state-specific)
+  rulespec_scoped: 'no'
+  publisher_index: FNS BBCE chart fns.usda.gov/snap/broad-based-categorical-eligibility
+  check: regex over selected federal guidance bodies
+- id: snap_g13
+  label: OBBBA (P.L. 119-21) ABAWD exceptions implementation memo
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: One Big Beautiful Bill.{0,400}(ABAWD|able-bodied)
+  pe_modeled: yes (abawd age thresholds, hr1_in_effect)
+  rulespec_scoped: 'no'
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g14
+  label: OBBBA alien eligibility implementation memo
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: One Big Beautiful Bill.{0,400}(alien|non-?citizen)
+  pe_modeled: yes (eligible_immigration_statuses)
+  rulespec_scoped: 'no'
+  publisher_index: null
+  check: regex over selected federal guidance bodies
+- id: snap_g15
+  label: 'Other OBBBA implementation memos: SUA/LIHEAP heat-and-eat limit to elderly/disabled, internet excluded from SUA, TFP re-evaluation limits, work requirement age 65 and parents of children 14+,
+    state cost share'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: internet.{0,200}(utility|SUA)|heat.and.eat|cost.shar(e|ing).{0,200}(payment error|state)
+  pe_modeled: partial (SUA and work-requirement age changes modeled; cost share n/a)
+  rulespec_scoped: 'no'
+  publisher_index: FNS OBBBA implementation memo series fna.usda.gov/snap/obbb (front door 403; origin host serves)
+  check: regex over selected federal guidance bodies
+- id: snap_g16
+  label: 'FNS State Options Report (elections by state: BBCE, SUA, simplified reporting, TBA, child support, vehicles, etc.)'
+  level: federal_guidance
+  family: fns_guidance
+  authority: FNS/FNA guidance
+  regex: State Options Report
+  pe_modeled: n/a
+  rulespec_scoped: 'no'
+  publisher_index: FNS SNAP State Options Report (fns.usda.gov/snap/waivers/state-options-report); queue policy lists State Options Reports as a forbidden source for state rules, so it is a cross-check
+    only
+  check: regex over selected federal guidance bodies
+- id: snap_s01
+  label: BBCE / expanded categorical eligibility election (TANF-funded non-cash benefit conferring eligibility)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(j)(2)
+  mandatory: false
+  regex: broad.based categorical|expanded categorical|modified categorical|\bBBCE\b|\bECE\b households|categorical eligibility is expanded|categorical(ly)? eligib[^.]{0,200}\b(200|185|165|160|150)\s?(%|percent)|\b(200|185|165|160|150)\s?(%|percent)[^.]{0,200}categorical(ly)?
+    eligib|categorical eligibility income standard|information and referral[^.]{0,120}(TANF|categorical)|(TANF|MOE)[- ]funded[^.]{0,160}(categorical|service|brochure)|healthy (and stable )?marriage[^.]{0,160}categorical|(authorized
+    to receive|receipt of|receives?)[^.]{0,120}(TANF|MFIP|FIP|ADC|TCA|CalWORKs|W-2|FEP|Families First|Work First|Ohio Works|POWER|KTAP|TEA|JOBS|TAFDC|TANF-MOE)[^.]{0,150}(non.?cash|informational (brochure|pamphlet|notice)|pamphlet|brochure|WSP|supportive
+    service|Support For You)
+  pe_modeled: partial (categorical_eligibility lists TANF non-cash; thresholds not per state)
+  rulespec_scoped: us-ca (modified-categorical-eligibility), us-az
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s02
+  label: BBCE gross income threshold elected (130/165/185/200 percent of poverty)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(j)(2)(ii)
+  mandatory: false
+  regex: (categorical(ly)?|BBCE|expanded)[^.]{0,300}\b(200|185|165|160|150)\s?(%|percent)|\b(200|185|165|160|150)\s?(%|percent)[^.]{0,200}(categorical|BBCE)
+  pe_modeled: no (PE applies the federal 130/100 tests plus a generic categorical flag)
+  rulespec_scoped: us-ca (modified-categorical-eligibility)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s03
+  label: BBCE asset test waived or elected asset limit
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(j)(2)(ii)
+  mandatory: false
+  regex: (categorical(ly)?|BBCE|expanded|\bECE\b)[^.]{0,300}(resource|asset)s? (test|limit)s?[^.]{0,120}(not apply|waive|no |exempt|does not|not subject)|(no|without an?|not subject to|exempt from) (the
+    )?(resource|asset)s? (test|limit)s?[^.]{0,200}(categorical|BBCE|\bECE\b)|(resource|asset)s? (test|limit)s?[^.]{0,120}(do(es)? not apply|waived|not applicable)[^.]{0,200}(categorical|BBCE)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s04
+  label: Heating/cooling standard utility allowance (HCSUA) amount
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(6)(iii)
+  mandatory: true
+  regex: (heating|cooling|standard) utility (allowance|standard)[^.]{0,200}\$\s?\d{2,4}|\bHCSUA\b[^.]{0,200}\$\s?\d{2,4}|\bSUA\b[^.]{0,200}\$\s?\d{2,4}|\$\s?\d{2,4}[^.]{0,120}(heating|cooling|standard)
+    utility
+  pe_modeled: yes (deductions/utility/standard by state)
+  rulespec_scoped: us-ca (standard-utility-allowance)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s05
+  label: Limited/basic (non-heating) utility allowance amount
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(6)(iii)
+  mandatory: true
+  regex: (limited|basic|non.heating|nonheating) utility (allowance|standard)|\bLUA\b|\bBUA\b|\bNHSUA\b|non.heating standard
+  pe_modeled: yes (deductions/utility/limited by state)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s06
+  label: Telephone / single-utility standard amount
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(6)(iii)
+  mandatory: true
+  regex: telephone (standard|allowance|utility)|phone (standard|allowance)|single utility (allowance|standard)|\bTUA\b|one.utility standard
+  pe_modeled: yes (deductions/utility/single/phone)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s07
+  label: Mandatory SUA election (standards used in place of actual utility costs)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(6)(iii)(E)
+  mandatory: false
+  regex: mandatory (standard )?utility|(SUA|HCSUA|standard utility allowance|utility (allowance|standard))s? (is|are) mandatory|must use the (standard utility|SUA|HCSUA|utility (standard|allowance))|(SUA|HCSUA|utility
+    (allowance|standard))s?[^.]{0,80}(in lieu of|instead of|rather than) actual utility|cannot (use|claim) actual utility
+  pe_modeled: yes (utility/always_standard)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s08
+  label: LIHEAP nominal-payment (heat-and-eat) SUA entitlement and post-OBBBA limitation
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(6)(iii)(C)
+  mandatory: false
+  regex: (LIHEAP|LIEAP|\bHEAP\b|\bLEAP\b|energy assistance)[^.]{0,200}(SUA|HCSUA|standard utility|heating|utility (standard|allowance))|heat.and.eat|\$20(\.01)?[^.]{0,80}(energy|LIHEAP)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s09
+  label: Homeless shelter deduction election and amount
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(6)(i)
+  mandatory: false
+  regex: homeless (household )?(shelter|standard) (deduction|allowance)|homeless[^.]{0,120}shelter (deduction|standard)
+  pe_modeled: yes (excess_shelter_expense/homeless)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s10
+  label: Standard medical deduction (demonstration) amount and threshold
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(3), 7 USC 2026(b)
+  mandatory: false
+  regex: standard medical (deduction|expense deduction|expense \(SME\)|expense standard|allowance)|\bSMD\b|\bSMED\b
+  pe_modeled: no (PE uses the federal $35 excess-medical rule)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s11
+  label: Excess medical deduction as applied ($35 threshold; elderly/disabled)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(3)
+  mandatory: true
+  regex: medical (expense|deduction|cost)s?[^.]{0,120}(\$\s?35|excess|exceed|over \$)
+  pe_modeled: yes (excess_medical_expense)
+  rulespec_scoped: us (273/9)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s12
+  label: 'Child support: deduction vs income exclusion election'
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(c)(17), 273.9(d)(5)
+  mandatory: true
+  regex: child support[^.]{0,120}(deduction|exclu|disregard)
+  pe_modeled: yes (deductions/child_support)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s13
+  label: Dependent care deduction (uncapped) as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(4)
+  mandatory: true
+  regex: dependent care (deduction|expense|cost)|child care (deduction|expense)s?[^.]{0,80}(deduct|allow)
+  pe_modeled: yes (dependent_care)
+  rulespec_scoped: us (273/9)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s14
+  label: Earned income deduction (20 percent) as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(d)(2)
+  mandatory: true
+  regex: earned income (deduction|disregard)[^.]{0,80}(20|twenty)\s?(%|percent)|(20|twenty)\s?(%|percent)[^.]{0,60}earned income
+  pe_modeled: yes (deductions/earned_income)
+  rulespec_scoped: us (273/9)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s15
+  label: Standard deduction amount by household size (state's applied table)
+  level: state
+  family: state_table_or_transmittal
+  authority: 273.9(d)(1)
+  mandatory: true
+  regex: standard deduction[^.]{0,160}\$\s?\d{3}\b
+  pe_modeled: yes (deductions/standard)
+  rulespec_scoped: us (fy-2026-cola/deductions)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s16
+  label: Excess shelter deduction cap amount (state's applied table)
+  level: state
+  family: state_table_or_transmittal
+  authority: 273.9(d)(6)(ii)
+  mandatory: true
+  regex: (maximum|cap(ped)?|limit(ed)?)[^.]{0,60}(excess )?shelter (deduction|expense|cost)s?[^.]{0,120}\$\s?\d{3}|(excess )?shelter (deduction|expense|cost)s?[^.]{0,80}(cap|maximum|limit)[^.]{0,120}\$\s?\d{3}|\$\s?\d{3}[^.]{0,60}(shelter
+    (cap|maximum)|maximum (excess )?shelter)|shelter (cap|maximum)[^.]{0,60}\$\s?\d{3}
+  pe_modeled: yes (excess_shelter_expense/cap)
+  rulespec_scoped: us (fy-2026-cola/deductions)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s17
+  label: Gross and net income limits by household size (state's applied table)
+  level: state
+  family: state_table_or_transmittal
+  authority: 273.9(a), 273.10(e)
+  mandatory: true
+  regex: (gross|net) (monthly )?income (limit|standard|test|eligibility)s?[^.]{0,300}\$\s?\d{3}|income eligibility standards?[^.]{0,200}\$\s?\d{3}|130\s?(%|percent)[^.]{0,200}\$\s?\d{3}|maximum gross (monthly
+    )?income[^.]{0,120}\$\s?\d{3}
+  pe_modeled: yes (income/limit + FPG)
+  rulespec_scoped: us (income-eligibility-standards)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s18
+  label: Maximum allotment by household size (state's applied table)
+  level: state
+  family: state_table_or_transmittal
+  authority: 273.10(e)(2)(ii)
+  mandatory: true
+  regex: maximum (monthly )?(allotment|benefit)s?[^.]{0,200}\$\s?\d{3}|thrifty food plan[^.]{0,120}\$\s?\d{3}|(allotment|basis of issuance|benefit issuance) (table|chart|schedule)s?|basis of (coupon|EBT)
+    issuance
+  pe_modeled: yes (max_allotment)
+  rulespec_scoped: us (maximum-allotments)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s19
+  label: Minimum benefit and initial-month proration as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.10(a)(1)(ii), 273.10(e)(2)(ii)(C)
+  mandatory: true
+  regex: prorat[^.]{0,120}(initial|first) month|initial month[^.]{0,120}prorat|minimum (benefit|allotment)[^.]{0,120}\$\s?\d
+  pe_modeled: yes (min_allotment, proration)
+  rulespec_scoped: us (273/10)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s20
+  label: Current-FY change transmittal / COLA notice carrying the state's applied FY 2026 amounts
+  level: state
+  family: state_table_or_transmittal
+  authority: 273.9(d), 273.10(e)
+  mandatory: true
+  regex: (October 1, 2025|FY ?2026|fiscal year 2026|FFY ?2026|10/1/(20)?25|10/01/(20)?25|effective (October|Oct\.?) (1, )?2025)[^.]{0,300}(allotment|income (limit|standard)|standard deduction|utility|shelter)|(allotment|income
+    (limit|standard)|standard deduction|utility allowance|shelter cap)[^.]{0,300}(October 1, 2025|FY ?2026|fiscal year 2026|FFY ?2026|10/1/(20)?25|10/01/(20)?25)
+  pe_modeled: n/a (PE carries FY amounts federally)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s21
+  label: Resource limit as applied ($3,000 / $4,500) and countable resources
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.8(b)
+  mandatory: true
+  regex: resource (limit|standard|maximum)s?[^.]{0,120}\$\s?\d|asset limit[^.]{0,120}\$\s?\d|countable resources?[^.]{0,80}\$\s?\d|\$\s?[34],[05]00[^.]{0,80}(resource|asset)
+  pe_modeled: partial (asset_test/limit)
+  rulespec_scoped: us (273/8)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s22
+  label: Vehicle exclusion policy (federal FMV/equity tests or TANF vehicle-rule substitution)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.8(f)
+  mandatory: true
+  regex: vehicle[^.]{0,150}(exclu|fair market|equity|countable|resource)|(licensed|motor) vehicle
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s23
+  label: Simplified reporting election and periodic report requirements
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.12(a)(5)
+  mandatory: true
+  regex: simplified report|semi.annual report|periodic report|six.month report|interim report|\bSR\b household
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s24
+  label: Certification period lengths by household type (state-set within 273.10(f))
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.10(f)
+  mandatory: true
+  regex: certification period[^.]{0,200}\b(6|12|24|36|six|twelve|twenty.four)\b[^.]{0,20}months?|\b(6|12|24|36|six|twelve|twenty.four)\b.month certification
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s25
+  label: Change reporting thresholds and timeframes (10 days; 130 percent gross; ABAWD hours)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.12(a)
+  mandatory: true
+  regex: report[^.]{0,120}change[^.]{0,200}(10 days|ten days|130 percent|130%|gross (monthly )?income)|change[^.]{0,80}within (10|ten) (calendar )?days
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s26
+  label: 'ABAWD time limit as applied: countable months, qualifying activities, exceptions (post-OBBBA age range)'
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.24(a)-(c)
+  mandatory: true
+  regex: able.bodied|\bABAWD|time.limit[^.]{0,120}(countable|36.month|three months|3 months)
+  pe_modeled: yes (abawd/*)
+  rulespec_scoped: us (273/24)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s27
+  label: ABAWD waived areas in effect and discretionary (percentage) exemption policy
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.24(f),(g)
+  mandatory: true
+  regex: (ABAWD|time.limit|work requirement)[^.]{0,200}(waiver|waived|exempt(ion)? (area|county|counties))|discretionary exemption|percentage exemption|15 percent exemption|(waived|waiver) (area|count(y|ies)|region)
+  pe_modeled: yes (abawd/waived_states, waived_counties, discretionary_exemption_rate)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s28
+  label: Work registration exemptions and sanction durations for noncompliance (state-set within 273.7(f))
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.7(a),(b),(f)
+  mandatory: true
+  regex: work registration|register(ed)? for work|work requirement[^.]{0,100}(sanction|disqualif|penalt)|failure to comply[^.]{0,80}work
+  pe_modeled: partial (general work requirements; sanctions not modeled)
+  rulespec_scoped: us (273/7)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s29
+  label: Voluntary quit and reduction of work effort policy
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.7(j)
+  mandatory: true
+  regex: voluntar(y|ily) quit|reduc(e|ed|ing|tion of) (work|hours)[^.]{0,80}(sanction|disqualif|good cause|penalt)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s30
+  label: 'E&T program design: mandatory vs voluntary, components, participant reimbursements'
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.7(e)
+  mandatory: true
+  regex: employment (and|&) training|\bE&T\b|\bE ?& ?T\b|SNAP E ?& ?T|\bSNAP ?ET\b
+  pe_modeled: partial (work program participation)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s31
+  label: SNAP E&T State Plan (annual, filed with FNS)
+  level: state
+  family: state_plan
+  authority: 273.7(c)
+  mandatory: true
+  regex: null
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: queue row / run-note inventory (no corpus family exists)
+- id: snap_s32
+  label: State Plan of Operation (272.2) with elected options attachments
+  level: state
+  family: state_plan
+  authority: '272.2'
+  mandatory: true
+  regex: null
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: queue row / run-note inventory (no corpus family exists)
+- id: snap_s33
+  label: Transitional benefits alternative (TBA) election and period
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.26-273.32
+  mandatory: false
+  regex: transitional benefits? (alternative|assistance|period|reporting|option)|\bTBA\b|transitional (SNAP|food|CalFresh|FoodShare|food stamp)|\bTSNAP\b|\bTFA\b
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s34
+  label: Student eligibility as applied, including state/local E&T programs that qualify students
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.5(b)
+  mandatory: true
+  regex: student[^.]{0,250}(higher education|institution of higher|college|post.secondary)|ineligible student|higher education[^.]{0,120}student
+  pe_modeled: partial (student/*)
+  rulespec_scoped: us (273/5)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s35
+  label: Non-citizen eligibility as applied (federal categories restated; OBBBA changes; sponsor deeming)
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.4'
+  mandatory: true
+  regex: (alien|non.?citizen|immigrant|immigration status|qualified alien|lawful permanent resident|LPR)s?[^.]{0,200}eligib|sponsor[^.]{0,80}deem
+  pe_modeled: yes (eligible_immigration_statuses)
+  rulespec_scoped: us (273/4)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s36
+  label: 'Income and deductions of ineligible non-citizen members: all vs prorated share (state option)'
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.11(c)(3)
+  mandatory: true
+  regex: (ineligible|disqualified|excluded) (alien|non.?citizen|immigrant|household member|member|individual)s?[^.]{0,300}(income|resource)s?[^.]{0,200}(prorat|count|all)|prorat[^.]{0,200}(alien|non.?citizen|immigrant|ineligible|disqualified)|(alien|non.?citizen|immigrant)s?[^.]{0,200}prorat
+  pe_modeled: yes (ineligible_members/*)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s37
+  label: State-funded food assistance for non-citizens ineligible under federal rules (if any)
+  level: state
+  family: state_statute
+  authority: state statute
+  mandatory: false
+  regex: state.funded[^.]{0,200}(non.?citizen|immigrant|alien|legal permanent|CFAP|\bFAP\b)|(non.?citizen|immigrant|alien)s?[^.]{0,200}state.funded (food|nutrition|snap|benefit|supplemental)|California
+    Food Assistance Program|\bCFAP\b|Food Assistance Program for Legal Immigrants|Minnesota Food Assistance Program|\bMFAP\b|State Funded Supplemental Nutrition Assistance|\bSFSNAP\b|State Food Assistance
+    Program|state.funded (food|SNAP|nutrition)[^.]{0,120}(immigrant|non.?citizen|alien)
+  pe_modeled: partial (ca_snap_immigration_status_eligible only)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s38
+  label: 'Drug-felony disqualification: state opt-out or modification (21 USC 862a)'
+  level: state
+  family: state_manual_or_regulation
+  authority: 21 USC 862a, 273.11(m)
+  mandatory: false
+  regex: (drug|controlled substance)[^.]{0,100}(felony|conviction|felon)[^.]{0,250}(disqualif|eligib|ineligib)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s39
+  label: Combined application project / elderly simplified application project
+  level: state
+  family: state_manual_or_regulation
+  authority: 7 USC 2020(i), 273.2(o)
+  mandatory: false
+  regex: combined application project|\bCAP\b[^.]{0,80}\bSSI\b|elderly simplified application|\bESAP\b|\bSCAP\b|\bNYSCAP\b|\bMSCAP\b|\bSSI CAP\b
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s40
+  label: Restaurant meals program election
+  level: state
+  family: state_manual_or_regulation
+  authority: 7 USC 2012(k), 274.7
+  mandatory: false
+  regex: restaurant meals? program|\bRMP\b|restaurant meals?[^.]{0,120}(elderly|disabled|homeless)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s41
+  label: Interview mode (telephone/on-demand) and interview waiver policy
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(e)
+  mandatory: true
+  regex: (telephone|phone|video) interview|waive[^.]{0,40}interview|on.demand interview|interview[^.]{0,80}(waived|by telephone)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s42
+  label: Expedited service criteria and timeframe as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(i)
+  mandatory: true
+  regex: expedited (service|benefit|processing|issuance|snap|calfresh|foodshare)|\$150[^.]{0,120}(gross|liquid)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s43
+  label: 'Verification standards: mandatory items, acceptable documents, questionable information'
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(f)
+  mandatory: true
+  regex: verif(y|ication)[^.]{0,150}(identity|residency|income|questionable|mandatory|required)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s44
+  label: Fair hearing procedures and timeframes
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.15'
+  mandatory: true
+  regex: fair hearing|administrative hearing|state hearing|hearing request
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s45
+  label: IPV disqualification periods and administrative disqualification hearings
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.16'
+  mandatory: true
+  regex: intentional program violation|\bIPV\b|administrative disqualification hearing|\bADH\b
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s46
+  label: Claims and overpayment recovery (IHE/AE/IPV; allotment reduction; compromise)
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.18'
+  mandatory: true
+  regex: overpayment|claim[^.]{0,60}(establish|collect|recover|recoup)|inadvertent household error|agency error claim
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s47
+  label: Household composition and separate-household rules as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.1'
+  mandatory: true
+  regex: household (composition|definition|concept|member)|purchase and prepare|purchases? and prepares?|\bboarder
+  pe_modeled: partial (snap_unit)
+  rulespec_scoped: us-ca 63-402
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s48
+  label: Residency requirement as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.3'
+  mandatory: true
+  regex: residen(cy|t)[^.]{0,80}(requirement|of the state|in the state|in the county|in the project area)|reside in the state
+  pe_modeled: 'no'
+  rulespec_scoped: us (273/3)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s49
+  label: Social security number requirement as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.6'
+  mandatory: true
+  regex: social security number|\bSSN\b
+  pe_modeled: 'no'
+  rulespec_scoped: us (273/6)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s50
+  label: 'Self-employment income: expense method (actual vs standard percentage)'
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.11(a)
+  mandatory: true
+  regex: self.employ(ment|ed)[^.]{0,250}(expense|deduction|percent|%|cost of (doing|producing))
+  pe_modeled: yes (deductions/self_employment)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s51
+  label: Elderly/disabled definition (age 60; disability sources) as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 271.2, 273.9(d)(3)
+  mandatory: true
+  regex: (elderly|disabled)[^.]{0,150}\b(60|sixty)\b[^.]{0,40}(age|older|years)|age 60 or older|60 years of age or older|\b60 (years )?(of age )?(or|and) older
+  pe_modeled: yes (has_snap_elderly_disabled_member)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s52
+  label: Categorical eligibility (TANF/SSI/GA recipients) as applied by the state
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.2(j)(1)
+  mandatory: true
+  regex: categorical(ly)? eligib
+  pe_modeled: yes (categorical_eligibility)
+  rulespec_scoped: us (273/2/j)
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s53
+  label: State-funded minimum benefit supplement (NJ, MD, DC and others; if any)
+  level: state
+  family: state_statute
+  authority: state statute
+  mandatory: false
+  regex: (state|district|locally)[- ]funded[^.]{0,120}(minimum (benefit|allotment)|minimum brings|SNAP supplement|supplemental (SNAP|food)|Any size \$)|minimum state supplement|\bMSS\b benefits|state (snap
+    )?supplement[^.]{0,150}(allotment is less|minimum|\$\s?\d)|(minimum (benefit|allotment))[^.]{0,120}(state|district)[- ]funded|federally funded SNAP benefit is less than
+  pe_modeled: yes for NJ, MD, DC (gov/states/*/snap/min_allotment)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s54
+  label: Income exclusions as applied (federal list restated; state-specific exclusions)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.9(c)
+  mandatory: true
+  regex: (excluded|exempt) income|income exclusions?|not counted as income|disregarded income
+  pe_modeled: partial (income/sources)
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s55
+  label: Prospective budgeting / income anticipation and conversion factors (4.3 / 4.33 / 2.15)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.10(c)
+  mandatory: true
+  regex: 4\.3\b|4\.33\b|2\.15\b|prospective(ly)? budget|anticipat(ed|ing) income
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s56
+  label: Notice of adverse action / advance notice period as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.13'
+  mandatory: true
+  regex: adverse action|advance notice|timely notice
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s57
+  label: Recertification and notice of expiration process as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: '273.14'
+  mandatory: true
+  regex: recertif|notice of expiration|redetermination
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s58
+  label: Treatment center / group living / shelter resident rules as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.11(e),(f), 7 USC 2017(e),(f)
+  mandatory: true
+  regex: (drug|alcohol)[^.]{0,60}treatment (center|facilit)|group living arrangement|shelter for battered
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s59
+  label: SSI cash-out / SSI recipients' treatment (CA CalFresh expansion, state supplement states)
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.20, 7 USC 2015(g)
+  mandatory: false
+  regex: cash.out (state|project|program|payments)|SSI recipients? (in|from) (a )?[^.]{0,20}cash.out|SSI/SSP recipients?[^.]{0,80}(eligible|ineligible)|SSI recipients? (are|is|shall be) (eligible|ineligible)
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s60
+  label: Fleeing felon / parole violator disqualification as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.11(n)
+  mandatory: true
+  regex: fleeing felon|probation or parole|parole violat
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies
+- id: snap_s61
+  label: Lottery/gambling winnings disqualification threshold as applied
+  level: state
+  family: state_manual_or_regulation
+  authority: 273.11(r), 272.17
+  mandatory: true
+  regex: lottery|gambling
+  pe_modeled: 'no'
+  rulespec_scoped: 'no'
+  check: regex over the jurisdiction's selected SNAP scope bodies

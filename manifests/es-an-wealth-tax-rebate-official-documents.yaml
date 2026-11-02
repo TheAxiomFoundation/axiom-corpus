@@ -1,0 +1,29 @@
+documents:
+  - source_id: es-an-decreto-ley-7-2022-wealth-tax-rebate
+    jurisdiction: es-an
+    document_class: statute
+    citation_path: es-an/statute/decreto-ley-7-2022/impuesto-patrimonio
+    title: Decreto-ley 7/2022, de 20 de septiembre, de Andalucía
+    source_url: 'https://www.juntadeandalucia.es/boja/2022/182/1'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-09-21'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>primero)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+      stop_text_pattern: '^Artículo\s+segundo\.'
+    metadata:
+      primary_source: true
+      source_authority: Junta de Andalucía, Boletín Oficial de la Junta de Andalucía
+      source_family: wealth-tax/regional-rebate
+      source_note: >-
+        Extraction retains Article 1 and stops before Article 2. Article 1.Tres
+        inserts article 25 bis in Ley 5/2021, granting a 100
+        percent wealth-tax quota rebate. Do not describe this clause itself as
+        expressly retroactive to 1 January: the decree was operative before
+        the tax's 31 December 2022 accrual, while the final provision's explicit
+        1 January effects language identifies its IRPF clauses.

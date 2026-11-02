@@ -1,0 +1,29 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-de-dor-pit-est-instructions-ty2026
+  jurisdiction: us-de
+  document_class: form
+  title: Form PIT-EST Delaware Estimated Income Tax Voucher Instructions (2026)
+  source_url: https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-EST_Instructions_2026-01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-de/form/dor/ty2026/pit-est-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-11-10'
+    amounts_carried:
+    - rate schedule (2.2%-6.6%)
+    - standard deduction ($3,250/$6,500)
+    - additional standard deduction ($2,500)
+    - personal credit ($110)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://revenue.delaware.gov/personal-income-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.delaware.gov/personal-income-tax-forms/ (read 2026-09-13)

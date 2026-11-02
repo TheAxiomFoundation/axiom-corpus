@@ -1,0 +1,1 @@
+Publication reads the prior signed release objects of its scopes one object per request (memberships from `corpus.release_scopes` in version batches checked against an exact count), so a release whose scopes sit in large union releases no longer fails when one reply would exceed what the gateway delivers; a reply cut off before its end is retried.

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "adc5a52482c03987d1b66fa142c5e10dc8956313c9cd093a8daf0dba23d0f04f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "3c5216f30afd039f942cedb2a0f95b51a9a140c0ce1b26558ff0af39a1e90038"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "3c1567a7fbff62d45a1c646ff73d6dd44154b56848d35f27edf3bff344f96ec8"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ks-kdor-form-k-40-ty2025.pdf",
+      "sha256": "dfff7caae33d2527ae9655f562a3469835556cc6ec6ab40297641caf10379fdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ks-kdor-individual-income-tax-instruction-booklet-ty2025.pdf",
+      "sha256": "8cbc2ea8d4f877a0d57e1e008c203ec06aa087fb3d4ab7319d91c157ee628871"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:28.625632+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dhsY2OXfJgZAYNedkqypCpWuYsaqT6dYUy+srQDlt6dVdtAT5wcx3rX4cQADQGVX0TDP1TykWJOTTUNsz3ciDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "de-kindergeld.eu-service-predecessor-capture.v1",
+  "scope": "2026-09-10-de-kindergeld-eu-service-predecessors",
+  "capture_date": "2026-09-10",
+  "source_manifest": "manifests/de-kindergeld-eu-service-predecessors.yaml",
+  "sources": [
+    {
+      "citation_path": "de/regulation/eu-2018-1475",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32018R1475",
+      "source_sha256": "4b51416c446f9866607e7f87eff571a0cda1a60f3895e228dfe3df26cae0d0f2",
+      "source_bytes": 521046,
+      "pages": 20,
+      "every_page_has_extractable_text": true,
+      "body_citation_path": "de/regulation/eu-2018-1475/document-1",
+      "body_sha256": "0b132ef52aa7981ddcbc7280c11ae829d3ee7d13214dc2296ff05405881159ba",
+      "body_characters": 87452,
+      "first_page_prefix": "4.10.2018          DE                              Amtsblatt der Europäischen Union                                                  L 250/1\n\n\n\n                                                                     I\n\n                                                            (Gesetzgebungsakte)\n\n\n\n\n                                                    VERORDNUNGEN\n\n                  VERORDNUNG (EU) ",
+      "last_page_suffix": "Europäischen Solidaritätskorps erhalten haben,\n     i) Gesamtzufriedenheit der Teilnehmer mit der Qualität der Aktivitäten,\n     j) Anzahl der unmittelbar oder mittelbar durch solidarische Aktivitäten unterstützten Personen.\n     Außerdem ist gegebenenfalls für Kohärenz mit den in Anhang I der Verordnung (EU) Nr. 288/2013 genannten\n     wichtigsten Indikatoren für das Programm „Jugend“ zu sorgen.\n",
+      "expression_date": "2018-10-02",
+      "source_path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-predecessors/official-documents/de-kindergeld-eu-2018-1475.pdf"
+    },
+    {
+      "citation_path": "de/regulation/eu-1288-2013",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32013R1288",
+      "source_sha256": "13b72c32f1929f094876a86a6ee36737b104afa93eb1f82d630fe981a9bd4528",
+      "source_bytes": 1288021,
+      "pages": 24,
+      "every_page_has_extractable_text": true,
+      "body_citation_path": "de/regulation/eu-1288-2013/document-1",
+      "body_sha256": "04fae9469ebf8abff1ea7f9dbfe301a21ce53af6e2e151f03c780905eb575a29",
+      "body_characters": 115047,
+      "first_page_prefix": "L 347/50              DE                               Amtsblatt der Europäischen Union                                         20.12.2013\n\n\n                 VERORDNUNG (EU) Nr. 1288/2013 DES EUROPÄISCHEN PARLAMENTS UND DES RATES\n                                                           vom 11. Dezember 2013\n              zur Einrichtung von \"Erasmus+\", dem Programm der Union für allgemeine und b",
+      "last_page_suffix": "Förderung der Bürgschaftsfazilität\n                für Studiendarlehen, indem sie künftige Studierende informieren. Zu diesem Zweck übermittelt die Kommission unter\n                anderem den nationalen Agenturen in den Programmländern die erforderlichen Informationen, damit sie als Infor­\n                mationsstellen hinsichtlich der Bürgschaftsfazilität für Studiendarlehen tätig sein können.\n",
+      "expression_date": "2013-12-11",
+      "source_path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-predecessors/official-documents/de-kindergeld-eu-2013-1288.pdf"
+    },
+    {
+      "citation_path": "de/regulation/eu-2021-817",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32021R0817",
+      "source_sha256": "e16ee42f8307f80c9522011484d2fa22ce11b2ba01067fa60e22836b8de97478",
+      "source_bytes": 793534,
+      "pages": 33,
+      "every_page_has_extractable_text": true,
+      "body_citation_path": "de/regulation/eu-2021-817/document-1",
+      "body_sha256": "017f6c2e1a9ad306502218ae1bd5c623b50ed0238feb088d389d655f918bc02e",
+      "body_characters": 145192,
+      "first_page_prefix": "28.5.2021          DE                              Amtsblatt der Europäischen Union                                                    L 189/1\n\n\n\n                                                                      I\n                                                             (Gesetzgebungsakte)\n\n\n\n\n                                                    VERORDNUNGEN\n\n                   VERORDNUNG (",
+      "last_page_suffix": "nd Einrichtungen, die der Ansicht sind, dass die Verfahren für die Teilnahme am\n                    Programm verhältnismäßig und einfach sind;\n        2.6. Beitrag zum Klimaschutz:\n             2.6.1. Anteil der Aktivitäten im Rahmen der Leitaktion 1, durch die Klimaziele angegangen werden;\n             2.6.2. Anteil der Projekte im Rahmen der Leitaktion 2, durch die Klimaziele angegangen werden.\n",
+      "expression_date": "2021-05-20",
+      "source_path": "data/corpus/sources/de/regulation/2026-09-10-de-kindergeld-eu-service-predecessors/official-documents/de-kindergeld-eu-2021-817.pdf"
+    }
+  ],
+  "coverage": {
+    "complete": true,
+    "document_class": "regulation",
+    "duplicate_provision_citations": [],
+    "duplicate_source_citations": [],
+    "extra_provisions": [],
+    "jurisdiction": "de",
+    "matched_count": 6,
+    "missing_from_provisions": [],
+    "provision_count": 6,
+    "source_count": 6,
+    "version": "2026-09-10-de-kindergeld-eu-service-predecessors"
+  },
+  "review_scope": "Original German Official Journal identities, page counts, extractable text on every page, first-page titles, article/signature and final-annex boundaries inspected. Complete Regulation2021/817 Articles35–37 also read and retained below. No claim that all77 pages received legal review. Current consolidation, amendments and continuation of individual service activities remain for separate source-bound review. No executable module or certified claim.",
+  "reviewed_articles": [
+    {
+      "article": 35,
+      "corpus_citation_path": "de/regulation/eu-2021-817/document-1",
+      "corpus_body_sha256": "017f6c2e1a9ad306502218ae1bd5c623b50ed0238feb088d389d655f918bc02e",
+      "full_article": "Artikel 35 Aufhebung Die Verordnung (EU) Nr. 1288/2013 wird mit Wirkung vom 1. Januar 2021 aufgehoben.",
+      "excerpt_sha256": "cea67c3e7a830a0a7509db7e8e29d7e93b54ec70f6330c3eb8c2fd5ba0572f7b"
+    },
+    {
+      "article": 36,
+      "corpus_citation_path": "de/regulation/eu-2021-817/document-1",
+      "corpus_body_sha256": "017f6c2e1a9ad306502218ae1bd5c623b50ed0238feb088d389d655f918bc02e",
+      "full_article": "Artikel 36 Übergangsbestimmungen (1) Die vorliegende Verordnung lässt die Weiterführung oder Änderung der Maßnahmen, die im Rahmen der Verordnung (EU) Nr. 1288/2013 eingeleitet wurden, unberührt; die genannte Verordnung gilt für diese Maßnahmen bis zu deren Abschluss. (2) Die Finanzausstattung des Programms kann auch zur Deckung der Ausgaben für technische und administrative Hilfe verwendet werden, die für den Übergang zwischen dem Programm und den gemäß der Verordnung (EU) Nr. 1288/2013 angenommenen Maßnahmen erforderlich sind. (3) Gemäß Artikel 193 Absatz 2 Unterabsatz 2 Buchstabe a der Haushaltsordnung und abweichend von Artikel 193 Absatz 4 der Haushaltsordnung können im Rahmen der vorliegenden Verordnung geförderte Aktivitäten und die zugrunde liegenden im Jahr 2021 anfallenden Kosten in hinreichend begründeten, im Finanzierungsbeschluss genannten Fällen ab dem 1. Januar 2021 als förderfähig betrachtet werden, auch wenn diese Aktivitäten bereits vor dem Zeitpunkt der Finanzhilfeantragstellung durchgeführt wurden bzw. diese Kosten davor entstanden sind. Die Finanzhilfeverein­ barungen für die Beiträge zu den Betriebskosten für das Haushaltsjahr 2021 können ausnahmsweise innerhalb von sechs Monaten nach Beginn des Rechnungsjahres des Begünstigten unterzeichnet werden. (4) Um die Verwaltung von Maßnahmen und Aktivitäten, die bis zum 31. Dezember 2027 noch nicht abgeschlossen sind, zu ermöglichen, können erforderlichenfalls über das Jahr 2027 hinaus Mittel zur Deckung der in Artikel 17 Absatz 7 genannten Ausgaben in den Unionshaushalt eingesetzt werden. (5) Die Mitgliedstaaten sorgen auf nationaler Ebene für einen reibungslosen Übergang zwischen den im Rahmen des Programms 2014-2020 durchgeführten und den im Rahmen des Programms durchzuführenden Maßnahmen.",
+      "excerpt_sha256": "ff0e2feabdc8c96ae310923472e368f05eddcf3494f5f6b25feaf084e3f8907e"
+    },
+    {
+      "article": 37,
+      "corpus_citation_path": "de/regulation/eu-2021-817/document-1",
+      "corpus_body_sha256": "017f6c2e1a9ad306502218ae1bd5c623b50ed0238feb088d389d655f918bc02e",
+      "full_article_and_closing_text": "Artikel 37 Inkrafttreten Diese Verordnung tritt am Tag ihrer Veröffentlichung im Amtsblatt der Europäischen Union in Kraft. Sie gilt ab dem 1. Januar 2021. Diese Verordnung ist in allen ihren Teilen verbindlich und gilt unmittelbar in jedem Mitgliedstaat. Geschehen zu Brüssel am 20. Mai 2021. Im Namen des Europäischen Parlaments Der Präsident D. M. SASSOLI Im Namen des Rates Die Präsidentin A. P. ZACARIAS DE Amtsblatt der Europäischen Union L 189/30 28.5.2021",
+      "excerpt_sha256": "ce5680c2806b82b2b48945e05a5ffce1053d35b535b24a518b53a88c4b611abc"
+    }
+  ]
+}

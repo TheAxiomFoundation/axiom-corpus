@@ -1,0 +1,3274 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "medicaid",
+ "folders": [
+  "gov/hhs/medicaid",
+  "gov/hhs/fpg"
+ ],
+ "state_folders": "medicaid|medi_cal|apple_health|healthy_michigan|healthier_oregon|hip",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 247,
+ "references": [
+  {
+   "url": "https://admincode.legislature.state.al.us/api/chapter/560-X-25#page=40",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ala. Admin. Code r. 560-X-25-.15(1)(c) - dependent child \"under the age of 19\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://adminrules.idaho.gov/rules/current/16/160301.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAPA 16.03.01.411, Income Limits for Parents and Caretaker Relatives, Table 411 | Idaho Department of Health and Welfare - $365/month for a household of three"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://ahca.myflorida.com/content/download/7808/file/S25_CMS_Approval_FL-13-0015-MM1-2.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Florida approved state plan S25 (FL-13-0015-MM1), student option unchecked"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "RCW 74.09.470 - Medical care for children"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/kids/eligibility/age_limit.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/eligibility/in_effect.yaml",
+    "variables/gov/states/wa/hca/apple_health/kids/eligibility/wa_apple_health_kids_eligible.py"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0100",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 182-505-0100 - Income standards (210% FPL statutory)",
+    "WAC 182-505-0100 - Income standards (312% FPL statutory)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/kids/income_limit/free.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/income_limit/tier_2.yaml",
+    "variables/gov/states/wa/hca/apple_health/kids/eligibility/wa_apple_health_kids_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0210",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 182-505-0210 - Children's eligibility"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/kids/eligibility/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=182-505-0225",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 182-505-0225 - Premium requirements (260% FPL statutory)",
+    "WAC 182-505-0225 - Premium requirements (no more than 2 children)",
+    "WAC 182-505-0225 - Premium requirements ($20/child for 210-260% FPL)",
+    "WAC 182-505-0225 - Premium requirements ($30/child for 260-312% FPL)"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/kids/income_limit/tier_1.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_1_household_max.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_1_per_child.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_2_household_max.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_2_per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=182-512-0010",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Washington Administrative Code 182-512-0010(4) - SSI-related categorically needy income level"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=182-512-0100",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Washington Administrative Code 182-512-0100(2)(a) - SSI-related categorically needy medical eligibility (\"at or below\")",
+    "Washington Administrative Code 182-512-0100(2)(a) - SSI-related categorically needy medical eligibility"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://app.leg.wa.gov/wac/default.aspx?cite=182-525-0300",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WAC 182-525-0300 - Apple Health expansion coverage"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/expansion/eligibility/in_effect.yaml",
+    "parameters/gov/states/wa/hca/apple_health/expansion/eligibility/income_limit.yaml",
+    "parameters/gov/states/wa/hca/apple_health/expansion/eligibility/min_age.yaml",
+    "variables/gov/states/wa/hca/apple_health/expansion/eligibility/wa_apple_health_expansion_eligible.py",
+    "variables/gov/states/wa/hca/apple_health/expansion/eligibility/wa_apple_health_expansion_immigration_status_eligible.py",
+    "variables/gov/states/wa/hca/apple_health/expansion/eligibility/wa_apple_health_expansion_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://ch461rules.odhs.oregon.gov/historical/461-155-0250_history.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon Administrative Rule 461-155-0250, versions effective January 1, 2014 through January 1, 2025 (section (4) until April 2017)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://ch461rules.odhs.oregon.gov/rules/461-155-0250.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon Administrative Rule 461-155-0250(3) - Income and Payment Standard; OSIPM (\"must have adjusted income ... below the standard\")",
+    "Oregon Administrative Rule 461-155-0250(3) - Income and Payment Standard; OSIPM"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_optional_senior_or_disabled_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://codes.ohio.gov/ohio-administrative-code/rule-5160:1-3-02.4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio Administrative Code 5160:1-3-02.4(B)(3) - Medicaid coverage for the categorically needy (\"does not exceed the income standard\")",
+    "Ohio Administrative Code 5160:1-3-02.4 - Medicaid coverage for the categorically needy"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://codes.ohio.gov/ohio-administrative-code/rule-5160:1-3-03.5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Ohio Administrative Code 5160:1-3-03.5 - Medicaid application of income standards"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov dataset page (April 1, 2018)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://dhhs.michigan.gov/olmweb/ex/BP/Mobile/BEM/BEM%20Mobile.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "variables/gov/states/mi/mdhhs/healthy_michigan/is_mi_healthy_michigan_adult.py"
+   ]
+  },
+  {
+   "url": "https://docs.legis.wisconsin.gov/statutes/statutes/49/iv/471",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Wis. Stat. § 49.471(4)(a)4.a. - dependent child includes an 18-year-old full-time student expected to complete school before 19"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SHO #10-006, definition of lawfully present"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/immigration_statuses.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_lawfully_residing_option_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dphhs.mt.gov/assets/hcsd/mamanual/ABD008.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Montana DPHHS Medicaid manual, ABD 008 Table of Standards - Categorically Needy Income (\"equal to or less than these income standards\")",
+    "Montana DPHHS Medicaid manual, ABD 008 Table of Standards - Categorically Needy Income (effective January 1, 2026)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dphhs.mt.gov/assets/hcsd/mamanual/ABD200July012016.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Montana DPHHS Medicaid manual, ABD 200 Groups Covered - Overview"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-10/1805-030-10-25/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1805-000-00/1805-030-00/1805-030-20/1805-030-20-20/1805-030-20-20-05/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Manual § 1805.030.20.20.05 - 5% FPL disregard"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-10/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1810-000-00/1810-020-00/1810-020-20/1810-020-20-20/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Manual § 1810.020.20.20 - Eligibility for 18-Year-Olds"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1830-000-00/1830-010-00/1830-010-05/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Manual § 1830.010.05 - MO HealthNet for Kids income maximums (148% FPL, ages 1-18)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-010-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Manual § 1865.010.00 - Legal Basis (Mo. Const. art. IV, § 36(c), expansion effective July 1, 2021)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/family-mo-healthnet-magi/1865-000-00/1865-020-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Manual § 1865.020.00 - Adult Expansion Group (\"Not receiving SSI\")"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid_nfc.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_optional_senior_or_disabled_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-05/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/deemed/from_ineligible_spouse/medicaid_optional_senior_or_disabled_income_deemed_from_ineligible_spouse.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-25/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_optional_senior_or_disabled_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-40/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_optional_senior_or_disabled_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/mo-healthnet-for-the-aged-blind-and-disabled/0805-000-00/0805-015-00/0805-015-45-income-maximum/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/medicaid_optional_senior_or_disabled_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/medicaid_optional_senior_or_disabled_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Wyoming Eligibility Operations Manual POL M1204A - caretaker relative of \"a child under the age of 18\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://ffic.myflfamilies.com/manual/essfiles/30446.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "ESS Policy Manual Appendix A-7 (April 2026) | Florida DCF - for a family of three, a $303 adults (parents, caretakers) standard, a $183 standard disregard and a $114 5% MAGI disregard, which sum to $600/month; the $600 total appears nowhere in the appendix"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/a-520-relationship",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Texas Works Handbook A-521 - dependent child \"under age 18; or if age 18, attends school full-time\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/c-130-medical-programs",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Texas Works Handbook C-131.2, Parents and Caretaker Relatives Medicaid income limits - $230/month for a family of three in the One Parent column, beside a Two Parents column of $251, plus the C-131.4 standard MAGI disregard of $113.85"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/REPORT-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf#page=33",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility and Enrollment Policies as of January 2022 | KFF"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/age_range.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/REPORT-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf#page=36",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility and Enrollment Policies as of January 2022 | KFF"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_adult/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/REPORT-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf#page=40",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility and Enrollment Policies as of January 2022 | KFF"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Report-Medicaid-and-CHIP-Eligibility-Enrollment-Renewal-and-Cost-Sharing-Policies-as-of-January-2018#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility, Enrollment, Renewal, and Cost Sharing Policies as of January 2018"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Report-Medicaid-and-CHIP-Eligibility-Enrollment-Renewal-and-Cost-Sharing-Policies-as-of-January-2018#page=33",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility, Enrollment, Renewal, and Cost Sharing Policies as of January 2018"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Report-Medicaid-and-CHIP-Eligibility-Enrollment-Renewal-and-Cost-Sharing-Policies-as-of-January-2018#page=36",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility, Enrollment, Renewal, and Cost Sharing Policies as of January 2018"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility and Enrollment Policies as of January 2023: Findings from a 50-State Survey"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/undocumented_immigrant.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF and Georgetown CCF, Medicaid and CHIP Eligibility, Enrollment, and Renewal Policies as of January 2023, Table 3 and footnote 7"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility and Enrollment Policies as of January 2022: Findings from a 50-State Survey"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/undocumented_immigrant.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF and Georgetown CCF, Medicaid and CHIP Eligibility and Enrollment Policies as of January 2022, Table 3"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-State-Adoption-of-Options-to-Cover-Immigrant-Populations-January-2021.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility and Enrollment Policies as of January 2021: Findings from a 50-State Survey"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/undocumented_immigrant.yaml"
+   ]
+  },
+  {
+   "url": "https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Proposed Extension of Existing Loss of Medicaid SEP | DC Health Benefit Exchange Authority"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://hcopub.dhs.state.mn.us/epm/2_2_2_1.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Minnesota Health Care Programs Eligibility Policy Manual § 2.2.2.1 - \"Is not a Supplemental Security Income (SSI) recipient\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Income Requirements | Wyoming Department of Health - Family MAGI $873/month for a family of three"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://hfs.illinois.gov/medicalprograms/hbwd.html",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/is_working_disabled_buy_in_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://hfs.illinois.gov/medicalprograms/hbwd/premiums.html",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium.py",
+    "variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium_person.py"
+   ]
+  },
+  {
+   "url": "https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1718-ADULT-GROUP-Final-10-31-16-1.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Hawaii Administrative Rules § 17-1718-10(a)(3) - Adults Group, \"Not in receipt of Supplemental Security Income (SSI)\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://khap.kdhe.ks.gov/kfmam/main.asp?tier1=02000&tier2=02100",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas KFMAM § 02100 - Child in Family, \"A child must be under 19 years of age\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://khap.kdhe.ks.gov/kfmam/policydocs/state%20supplemental%20payment%20program%20policy%20memo.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid_enrolled_for_ssi_state_supplement.py"
+   ]
+  },
+  {
+   "url": "https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session%20Laws/Senate/5187-S.SL.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "ESSB 5187 Section 211(83) - 2023-2025 budget proviso"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/expansion/eligibility/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=2.&article=",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/pregnant/is_pregnant_for_medicaid_fc.py"
+   ]
+  },
+  {
+   "url": "https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/income-limits-for-medicaid-and-chip-programs/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Income Limits for Medicaid and CHIP Programs | Mississippi Division of Medicaid (effective March 1, 2026) - parents/caretakers $498/month for a family of three"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/working-disabled/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/is_working_disabled_buy_in_for_medicaid.py",
+    "variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium.py",
+    "variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium_person.py"
+   ]
+  },
+  {
+   "url": "https://medicaid.ms.gov/wp-content/uploads/2017/10/Chapter-101.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi Eligibility Manual Chapter 101 § 101.02.01 - dependent child under age 18"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://medicaid.nv.gov/Downloads/provider/web_announcement_3748_20251020.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Nevada Medicaid Web Announcement 3748 (200% FPL pregnancy standard)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://mydss.mo.gov/benefit-program-income-limits",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS benefit program income limits (MO HealthNet for Kids ages 1-18 at 148% FPL)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://ndlegis.gov/assembly/69-2025/testimony/HHUMSER-1067-20250114-28935-F-FREMMING_KRISTA.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Dakota Department of Health and Human Services, testimony on House Bill 1067 (2025)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://olis.oregonlegislature.gov/liz/2021R1/Downloads/MeasureDocument/HB3352/Enrolled",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon House Bill 3352",
+    "Oregon HB 3352 - Cover All People Act"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/in_effect.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/qualified_immigration_statuses.yaml",
+    "variables/gov/states/or/oha/healthier_oregon/eligibility/or_healthier_oregon_eligible.py",
+    "variables/gov/states/or/oha/healthier_oregon/eligibility/or_healthier_oregon_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://oregon.public.law/statutes/ors_414.231",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "ORS 414.231(4) - Coverage for noncitizens",
+    "ORS 414.231 - Coverage for noncitizens",
+    "ORS 414.231(1)(a) - Coverage for noncitizens (300% FPL for children)",
+    "ORS 414.231 - Coverage for noncitizens (defines child as under 19)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/adult_income_limit.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/aged_threshold.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/child_income_limit.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/child_max_age.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/in_effect.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/qualified_immigration_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://pamms.dhs.ga.gov/dfcs/medicaid/2162/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Georgia DFCS Medicaid Policy Manual § 2162 - Parent/Caretaker with Children"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://pamms.dhs.ga.gov/dfcs/medicaid/2255/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Georgia DFCS Medicaid Policy Manual § 2255 - Age (Family Medicaid), child under 19 for Parent/Caretaker"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://pamms.dhs.ga.gov/dfcs/medicaid/appendix-a2/2026-family-limits/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Appendix A2, 2026 Family Limits | Georgia DFCS Medicaid manual - parents/caretakers $662/month for a family of three, \"plus 5%\" column"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/Departments-and-Agencies/DSS/HIT/MedCoverageGroupsOLD.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut DSS UPM 2540 coverage groups chart - HUSKY D (X02) criteria, no SSI test"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/benefitsquickguide.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Benefits Quick Guide (Revised May 6, 2024)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/aginganddisability/agingservices/choices/quick-guide---accessible-version-21523.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut Benefits Quick Guide (Revised February 15, 2023)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/ads/-/media/ads-beta/choices/choices-benefits-quick-guide.pdf?rev=3b8c59ca12224218bc4c4438649e7ac7#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut CHOICES Benefits Quick Guide (Rev 04.04.2025)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0501715010",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 01715.010 Medicaid and the Supplemental Security Income Program"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/classification/section_1634.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/classification/section_209b.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/classification/ssi_criteria.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/is_covered.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/section_209b/excludes_nonblind_disabled_children.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_ssi_recipient_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/medicaid_ssi_recipient_state_classification.py"
+   ]
+  },
+  {
+   "url": "https://secure.ssa.gov/apps10/poms.nsf/lnx/0502005001",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "SSA POMS SI 02005.001.C.3 - Retrospective Monthly Accounting Computation, the Federal eligibility test (\"If the CI is equal to or less than the FBR ... the individual, based on income, is eligible\")"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de5530.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon Health Plan (OHP), Health Systems Division (HSD) Medical Programs - 2025 income thresholds"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/adult_income_limit.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/child_income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title8-section1613&num=0&edition=prelim",
+   "kind": "statute",
+   "citation": "us/statute/8/1613",
+   "titles": [
+    "8 USC 1613(b)(1) - Exceptions to five-year limited eligibility",
+    "8 USC 1613(a) - Five-year limited eligibility"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/bar_exempt_immigration_statuses.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/five_year_bar_years.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf#page=236",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/medicaid_community_engagement_pass_through_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf#page=238",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/was_recently_incarcerated_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf#page=242",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/bill/111th-congress/house-bill/3590/text",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Patient Protection and Affordable Care Act of 2010, Pub. L. 111-148, § 2001(a)(3)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/expansion_fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/bill/119th-congress/house-bill/1/text",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "H.R. 1, 119th Congress, Sec. 71108 - Revising home equity limit for determining eligibility for long-term care services under the Medicaid program",
+    "H.R.1 - One Big Beautiful Bill Act"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/age_range.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/applies.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/dependent_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/former_foster_care_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/monthly_hours_threshold.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_medicaid_1115_mec_adult.py",
+    "variables/gov/hhs/medicaid/eligibility/is_american_indian_or_alaska_native_for_medicaid_ce.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_ineligible_due_to_work_requirement.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_long_term_care_eligible.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_long_term_care_home_equity_eligible.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_work_requirement_applicable_adult.py",
+    "variables/gov/hhs/medicaid/eligibility/medicaid_work_requirement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "variables/gov/states/ca/dhcs/medi_cal/ca_medicaid_household_pregnancies.py"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/infant/is_infant_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/older_child/is_older_child_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/young_child/is_young_child_for_medicaid_fc.py"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/infant/is_infant_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/older_child/is_older_child_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/young_child/is_young_child_for_medicaid_fc.py"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/medi-cal/eligibility/Pages/Asset-Limit-Changes-for-Non-MAGI-Medi-Cal.aspx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Asset Limit Changes for Non-MAGI Medi-Cal | California DHCS (asset limit reinstated at $130,000 plus $65,000 per additional household member effective January 1, 2026)",
+    "Asset Limit Changes for Non-MAGI Medi-Cal | California DHCS (asset limit reinstated at $130,000 for an individual effective January 1, 2026)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-14.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California DHCS All County Welfare Directors Letter 25-14 (reinstatement of the non-MAGI Medi-Cal asset limit)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/individual.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/working-disabled-program/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/is_working_disabled_buy_in_for_medicaid.py",
+    "variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium.py",
+    "variables/gov/hhs/medicaid/medicaid_working_disabled_buy_in_premium_person.py"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_household_size.py",
+    "variables/gov/states/ca/dhcs/medi_cal/ca_medicaid_household_pregnancies.py"
+   ]
+  },
+  {
+   "url": "https://www.dhhs.nh.gov/mam_htm/html/230_01_granite_advantage_eligibility_criteria_mam.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Hampshire Medical Assistance Manual § 230.01 - Granite Advantage criteria (mandatory-group and Medicare exclusions only, no SSI-receipt test)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhs.state.il.us/page.aspx?item=61206",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois HFS Medical Policy PM 06-25-01 - ACA Adult nonfinancial requirements, no SSI test"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf#page=51",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia Medical Assistance Eligibility Manual, Chapter M04, Appendix 3"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/dmas/medicaid/lifc/in_effect.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group1/additional.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group1/main.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group2/additional.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group2/main.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group3/additional.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/group3/main.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/income_limit/max_household_size.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/medicaid_parent_income_limit.py",
+    "variables/gov/states/va/dmas/medicaid/lifc/va_medicaid_lifc_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf#page=52",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia Medical Assistance Eligibility Manual, Chapter M04, Appendix 4"
+   ],
+   "states": [
+    "va"
+   ],
+   "files": [
+    "parameters/gov/states/va/dmas/medicaid/lifc/localities/group1.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/localities/group2.yaml",
+    "parameters/gov/states/va/dmas/medicaid/lifc/localities/group3.yaml",
+    "variables/gov/states/va/dmas/medicaid/lifc/va_medicaid_lifc_locality_group.py"
+   ]
+  },
+  {
+   "url": "https://www.dmas.virginia.gov/media/ifujac10/m03-7-1-24.pdf#page=125",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Virginia DMAS Eligibility Manual M0330.250.B - MAGI Adults (\"not be eligible in a Medicaid mandatory covered group\")"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/part-435/section-435.554#p-435.554(c)(7)",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/554/c/7",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/medicaid_community_engagement_pass_through_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/section-435.210",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/210",
+   "titles": [
+    "42 CFR 435.210 - Optional eligibility for individuals who meet the income and resource requirements of the cash assistance programs"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/medicaid_optional_senior_or_disabled_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/section-435.554",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/554",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid_enrolled_for_ssi_state_supplement.py"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2016-27424",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2018 FMAP Federal Register notice (81 FR 80077, Nov 15 2016)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2017-24953",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2019 FMAP Federal Register notice (82 FR 55383, Nov 21 2017)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2018-25944",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2020 FMAP Federal Register notice (83 FR 61157, Nov 28 2018)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2019-26207",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2021 FMAP Federal Register notice (84 FR 66204, Dec 3 2019)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2020-26387",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2022 FMAP Federal Register notice (85 FR 76586, Nov 30 2020)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2021-25798",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2023 FMAP Federal Register notice (86 FR 67265, Nov 26 2021)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2022-26390",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2024 FMAP Federal Register notice (87 FR 74429, Dec 5 2022)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2023-25636",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2025 FMAP Federal Register notice (88 FR 81253, Nov 21 2023)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/d/2024-27910",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY2026 FMAP Federal Register notice (89 FR 94742, Nov 29 2024)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.federalregister.gov/documents/2026/06/03/2026-11094/medicaid-program-community-engagement-requirement-for-certain-individuals",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/medicaid_community_engagement_pass_through_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Fla. Admin. Code R. 65A-1.703(2)(e) - child under age 18, no student extension"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_in_medicaid_community_engagement_treatment_program.py"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf#page=125",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf#page=126",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/has_long_distance_medical_travel_for_medicaid_ce.py",
+    "variables/gov/hhs/medicaid/eligibility/is_hospitalized_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-06-03/pdf/2026-11094.pdf#page=59",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/PLAW-111publ3/pdf/PLAW-111publ3.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Public Law 111-3, section 3(a)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/immigration_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/PLAW-111publ3/pdf/PLAW-111publ3.pdf#page=50",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Public Law 111-3, section 214(a)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/immigration_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/link/cfr/42/435?link-type=pdf&sectionnum=121&year=mostrecent",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_income_eligible_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.hca.wa.gov/about-hca/programs-and-initiatives/apple-health-medicaid/apple-health-expansion",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HCA Apple Health Expansion Overview"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/expansion/eligibility/in_effect.yaml",
+    "variables/gov/states/wa/hca/apple_health/costs/wa_apple_health_cost_if_enrolled.py",
+    "variables/gov/states/wa/hca/apple_health/costs/wa_apple_health_group.py",
+    "variables/gov/states/wa/hca/apple_health/expansion/eligibility/wa_apple_health_expansion_eligible.py",
+    "variables/gov/states/wa/hca/apple_health/expansion/eligibility/wa_apple_health_expansion_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.hca.wa.gov/assets/free-or-low-cost/income-standards.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HCA Income Standards (HCA 19-0096)",
+    "HCA Income Standards (HCA 19-0096) - operational thresholds with 5pp disregard"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/expansion/eligibility/income_limit.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/income_limit/free.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/income_limit/tier_1.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/income_limit/tier_2.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_1_household_max.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_1_per_child.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_2_household_max.yaml",
+    "parameters/gov/states/wa/hca/apple_health/kids/premium/tier_2_per_child.yaml",
+    "variables/gov/states/wa/hca/apple_health/expansion/eligibility/wa_apple_health_expansion_income_eligible.py",
+    "variables/gov/states/wa/hca/apple_health/kids/eligibility/wa_apple_health_kids_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HCA Apple Health for Children"
+   ],
+   "states": [
+    "wa"
+   ],
+   "files": [
+    "parameters/gov/states/wa/hca/apple_health/kids/eligibility/in_effect.yaml",
+    "variables/gov/states/wa/hca/apple_health/costs/wa_apple_health_group.py",
+    "variables/gov/states/wa/hca/apple_health/kids/eligibility/wa_apple_health_kids_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.healthcare.gov/glossary/federal-poverty-level-fpl/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/tax_unit_medicaid_income_level.py"
+   ]
+  },
+  {
+   "url": "https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Modified Adjusted Gross Income (MAGI)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/income/modification.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/fssa/ddars/bba/provider-resources/residential-care-assistance-program/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid_enrolled_for_ssi_state_supplement.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/fssa/hip/about-hip/power-accounts/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana FSSA HIP POWER Accounts"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/hip/power_account/contribution_amount.yaml",
+    "variables/gov/states/in/fssa/hip/in_hip_power_account_contribution.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/fssa/ompp/files/Medicaid_PM_5000.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid_enrolled_for_ssi_state_supplement.py"
+   ]
+  },
+  {
+   "url": "https://www.indianapca.org/cost-sharing-for-hip-program-to-remain-paused-at-this-time/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana Primary Care Association announcement (HIP cost-sharing paused)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/hip/power_account/active.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/publications/p501",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_person_is_required_to_file.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/affordable-care-act/state-indicator/medicaid-and-chip-income-eligibility-limits-for-pregnant-women-as-a-percent-of-the-federal-poverty-level/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Income Eligibility Limits for Pregnant Women as a Percent of the Federal Poverty Level | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/issue-brief/an-early-look-at-implementation-of-medicaid-work-requirements-in-arkansas/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "An Early Look at Implementation of Medicaid Work Requirements in Arkansas | KFF"
+   ],
+   "states": [
+    "ar"
+   ],
+   "files": [
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/monthly_hours_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/issue-brief/state-data-for-medicaid-work-requirements-in-arkansas/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Data for Medicaid Work Requirements in Arkansas | KFF"
+   ],
+   "states": [
+    "ar"
+   ],
+   "files": [
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/age_range.yaml",
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/dependent_age_limit.yaml",
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/income_limit.yaml",
+    "variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_eligible.py",
+    "variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_subject.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/medicaid-financial-eligibility-for-seniors-and-people-with-disabilities-findings-from-a-50-state-survey/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_optional_senior_or_disabled_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-children-ages-1-5/?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Income Eligibility Limits for Children Ages 1 – 5, 2000-2025 | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-children-ages-6-18/?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Income Eligibility Limits for Children Ages 6 – 18, 2000-2025 | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-infants-ages-0-1/?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Income Eligibility Limits for Infants Ages 0 – 1, 2000-2025 | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-other-adults/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid adult income limit"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/healthy_michigan/contribution/income_threshold/upper.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-other-adults/?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Income Eligibility Limits for Other Adults, 2011-2025 | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/medicaid-income-eligibility-limits-for-parents/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF - Medicaid Eligibility for Parents"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/requires_deprivation.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/racial-equity-and-health-policy/fact-sheet/key-facts-on-health-coverage-of-immigrants",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/racial-equity-and-health-policy/fact-sheet/key-facts-on-health-coverage-of-immigrants/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/report-section/medicaid-eligibility-and-enrollment-policies-for-seniors-and-people-with-disabilities-non-magi-during-the-unwinding-appendix/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Eligibility and Enrollment Policies for Seniors and People with Disabilities (Non-MAGI) During the Unwinding | KFF (June 2024)",
+    "Medicaid Eligibility and Enrollment Policies for Seniors and People with Disabilities (Non-MAGI) During the Unwinding Appendix Table 6| KFF\"",
+    "KFF, Medicaid Eligibility and Enrollment Policies for Seniors and People with Disabilities (Non-MAGI) During the Unwinding (June 2024), Appendix Tables 1 and 2"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/report-section/medicaid-financial-eligibility-for-seniors-and-people-with-disabilities-findings-from-a-50-state-survey-appendix-tables/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Financial Eligibility for Seniors and People with Disabilities: Findings from a 50-State Survey | KFF",
+    "Medicaid Eligibility and Enrollment Policies for Seniors and People with Disabilities (Non-MAGI) During the Unwinding | KFF (June 2024)",
+    "Medicaid Financial Eligibility for Seniors and People with Disabilities Findings from a 50-State Survey 2018",
+    "Medicaid Financial Eligibility for Seniors and People with Disabilities Findings from a 50-State Survey",
+    "KFF, Medicaid Financial Eligibility for Seniors and People with Disabilities - Findings from a 50-State Survey (2018), Appendix Tables 1 and 2"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/child/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/child/child_categories.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/disabled.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/parent.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/pregnant.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/categories/senior.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/limit/assets/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/limit/assets/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/limit/income/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/medically_needy/limit/income/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/assets/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/disregard/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/couple.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/individual.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/tracking-the-medicaid-provisions-in-the-2025-budget-bill/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Health Provisions in the 2025 Federal Budget Reconciliation Bill | KFF"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1163",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1163",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/deemed/from_ineligible_spouse/medicaid_optional_senior_or_disabled_income_deemed_from_ineligible_spouse.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/20/416.1165",
+   "kind": "regulation",
+   "citation": "us/regulation/20/416/1165",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/deemed/from_ineligible_parent/medicaid_optional_senior_or_disabled_unearned_income_deemed_from_ineligible_parent.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.110",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/110",
+   "titles": [
+    "42 CFR 435.110 - parents and other caretaker relatives"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/medicaid_parent_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.116",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/116",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/pregnant/is_pregnant_for_medicaid_fc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.118",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/118",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/infant/is_infant_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/older_child/is_older_child_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/young_child/is_young_child_for_medicaid_fc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.119",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/119",
+   "titles": [
+    "42 CFR 435.119(b)(4) - adult group mandatory-coverage exclusion"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid_fc.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid_nfc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.222",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/222",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/young_adult/is_young_adult_for_medicaid_fc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.4",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/4",
+   "titles": [
+    "42 CFR 435.4 - definition of dependent child",
+    "42 CFR 435.4 - definition of dependent child, paragraph (1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid_nfc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.406",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/406",
+   "titles": [
+    "42 CFR 435.406 - Citizenship and Noncitizen Eligibility"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/emergency_medicaid/uses_medicaid_income_thresholds.yaml",
+    "variables/gov/hhs/medicaid/emergency_medicaid/is_emergency_medicaid_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_income_level.py",
+    "variables/gov/hhs/medicaid/income/tax_unit_medicaid_income_level.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#b",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_household_size.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#d",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/d",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_household_income.py",
+    "variables/gov/hhs/medicaid/income/medicaid_household_income_member.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#d_2",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/d/2",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_irs_gross_income.py",
+    "variables/gov/hhs/medicaid/income/medicaid_person_is_required_to_file.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_household_size.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_2",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/2",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_claimed_by_parent_in_tax_unit.py",
+    "variables/gov/hhs/medicaid/income/medicaid_claiming_tax_unit_id.py",
+    "variables/gov/hhs/medicaid/income/medicaid_has_known_claiming_tax_unit.py",
+    "variables/gov/hhs/medicaid/income/medicaid_is_tax_dependent.py",
+    "variables/gov/hhs/medicaid/income/medicaid_uses_missing_claimant_fallback.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_2_i",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/2/i",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_tax_dependent_exception_other_than_spouse_or_child.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_2_ii",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/2/ii",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_tax_dependent_exception_living_with_both_parents.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_2_iii",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/2/iii",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_tax_dependent_exception_non_custodial_parent.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_3",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/3",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_uses_non_filer_rules.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_3_iv",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/3/iv",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_non_filer_child_age_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_3_iv_A",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/3/iv",
+   "titles": [
+    "42 CFR 435.603(f)(3)(iv)(A)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/household/child_age_limit/non_student.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/435.603#f_3_iv_B",
+   "kind": "regulation",
+   "citation": "us/regulation/42/435/603/f/3/iv",
+   "titles": [
+    "42 CFR 435.603(f)(3)(iv)(B)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/household/child_age_limit/student.yaml",
+    "parameters/gov/hhs/medicaid/household/uses_full_time_student_under_21_rule.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/440.255#c",
+   "kind": "regulation",
+   "citation": "us/regulation/42/440/255/c",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/emergency_medicaid/has_emergency_medical_condition.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/part-435/subpart-D",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/medically_needy/is_medically_needy_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/medically_needy/medicaid_medically_needy_medical_expenses.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/arkansas/016-20-18-Ark-Code-R-003",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Arkansas Works Program Updates | Arkansas Code Rule 016.20.18 Ark. Code R. 003"
+   ],
+   "states": [
+    "ar"
+   ],
+   "files": [
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/dependent_age_limit.yaml",
+    "variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/colorado/10-CCR-2505-10-8.100_v2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Colorado 10 CCR 2505-10 § 8.100.3.F.1.d (persons eligible for SSI but not receiving the money payment)",
+    "Colorado 10 CCR 2505-10 § 8.100.1 (definition of FBR) and § 8.100.3.F.1.d"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/iowa/Iowa-Admin-Code-r-441-75-1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Iowa Administrative Code 441-75.1(17) (persons who meet the income guidelines of SSI but are not receiving cash assistance)",
+    "Iowa Administrative Code 441-75.1(17)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/louisiana/La-Admin-Code-tit-50-SS-III-2305",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Louisiana Administrative Code 50:III.2305(B) - Provisional Medicaid Program (\"income equal to or less than the federal benefit rate\")",
+    "Louisiana Administrative Code 50:III.2305 - Provisional Medicaid Program"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/massachusetts/130-CMR-505-002",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "130 CMR 505.002(C) - MassHealth Standard for a parent or caretaker relative of \"a child younger than 19 years old\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/36B#d_2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "26 U.S. Code § 36B(d)(2) - Refundable credit for coverage under a qualified health plan"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/income/modification.yaml",
+    "variables/gov/hhs/medicaid/income/medicaid_magi.py",
+    "variables/gov/hhs/medicaid/income/medicaid_magi_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/61",
+   "kind": "statute",
+   "citation": "us/statute/26/61",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_irs_gross_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/62",
+   "kind": "statute",
+   "citation": "us/statute/26/62",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_adjusted_gross_income_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382#a",
+   "kind": "statute",
+   "citation": "us/statute/42/1382/a",
+   "titles": [
+    "42 U.S. Code § 1382(a)(1)(A) and (2)(A) - SSI eligible individual (income \"at a rate of not more than\" the benefit rate)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1382c#a_3",
+   "kind": "statute",
+   "citation": "us/statute/42/1382c/a/3",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/medicaid_work_requirement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396#a_10_A",
+   "kind": "statute",
+   "citation": "us/statute/42/1396/a/10/A",
+   "titles": [
+    "42 U.S. Code § 1396(a)(10)(A)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/covered.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid.py",
+    "variables/gov/hhs/medicaid/medicaid_cost.py",
+    "variables/gov/hhs/medicaid/medicaid_enrolled.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#a_10",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/a/10",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#a_10_A_i_VIII",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/a/10/A/i",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/adult/is_adult_for_medicaid_nfc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#e_14_G",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/e/14/G",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_magi.py",
+    "variables/gov/hhs/medicaid/income/medicaid_magi_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#e_5",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/e/5",
+   "titles": [
+    "42 U.S. Code § 1396a(e)(5)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/postpartum_coverage.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#f",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/f",
+   "titles": [
+    "42 U.S. Code § 1396(f)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/ssi_recipient/is_covered.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_ssi_recipient_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#l_1_A",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/l/1/A",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/pregnant/is_pregnant_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#l_1_B",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/l/1/B",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/infant/is_infant_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/young_child/is_young_child_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#l_1_D",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/l/1/D",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/older_child/is_older_child_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#m",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/m",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/is_optional_senior_or_disabled_asset_eligible.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_optional_senior_or_disabled_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_optional_senior_or_disabled_income_eligible.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/medicaid_optional_senior_or_disabled_income_limit.py",
+    "variables/gov/hhs/medicaid/income/medicaid_optional_senior_or_disabled_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396a#m_1_B",
+   "kind": "statute",
+   "citation": "us/statute/42/1396a/m/1/B",
+   "titles": [
+    "42 U.S. Code § 1396a(m)(1)(B) - poverty-level aged and disabled group (income that \"does not exceed\" the state's standard)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/requires_income_below_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/costs/medicaid_federal_cost.py",
+    "variables/gov/hhs/medicaid/costs/medicaid_state_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b#v",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b/v",
+   "titles": [
+    "42 USC § 1396b(v) - Medicaid eligibility for aliens",
+    "42 USC 1396b(v)(2) - Exception for Emergency Medical Services"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml",
+    "parameters/gov/hhs/medicaid/emergency_medicaid/enabled.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b#v_2",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b/v/2",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/emergency_medicaid/is_emergency_medicaid_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b#v_2_B",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b/v/2/B",
+   "titles": [
+    "42 USC 1396b(v)(2)(B) - Emergency Medicaid Eligibility Requirements"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/emergency_medicaid/uses_medicaid_income_thresholds.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b#v_3",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b/v/3",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/emergency_medicaid/has_emergency_medical_condition.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396b#v_4_A",
+   "kind": "statute",
+   "citation": "us/statute/42/1396b/v/4/A",
+   "titles": [
+    "42 U.S.C. 1396b(v)(4)(A)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/immigration_statuses.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_lawfully_residing_option_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396d",
+   "kind": "statute",
+   "citation": "us/statute/42/1396d",
+   "titles": [
+    "42 U.S.C. § 1396d(y) — FMAP for the adult group",
+    "42 U.S.C. § 1396d(b) — FMAP formula (50%/83% bounds)",
+    "42 U.S.C. § 1396d(b) — District of Columbia 70 percent (Balanced Budget Act of 1997, § 4725(b))"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/cost_share/expansion_fmap.yaml",
+    "parameters/gov/hhs/medicaid/cost_share/fmap.yaml",
+    "variables/gov/hhs/medicaid/costs/medicaid_federal_share.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396d#a_i",
+   "kind": "statute",
+   "citation": "us/statute/42/1396d/a/i",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/young_adult/is_young_adult_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396p#f",
+   "kind": "statute",
+   "citation": "us/statute/42/1396p/f",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_long_term_care_eligible.py",
+    "variables/gov/hhs/medicaid/eligibility/receives_medicaid_long_term_care_services.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396p#f_2",
+   "kind": "statute",
+   "citation": "us/statute/42/1396p/f/2",
+   "titles": [
+    "42 U.S. Code § 1396p(f)(2) - Home equity limit family exception"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/family_exception/child_age_threshold.yaml",
+    "variables/gov/hhs/medicaid/eligibility/medicaid_home_equity_limit_family_exception.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1396u-1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Section 1931 Medicaid Eligibility"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/requires_deprivation.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/parent/is_parent_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1397gg#e_1_R",
+   "kind": "statute",
+   "citation": "us/statute/42/1397gg/e/1/R",
+   "titles": [
+    "42 U.S.C. 1397gg(e)(1)(R) - Application of the Medicaid alien eligibility limit to CHIP"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/8/1611#b_1_A",
+   "kind": "statute",
+   "citation": "us/statute/8/1611/b/1/A",
+   "titles": [
+    "8 USC 1611(b)(1)(A) - Exception for Emergency Medical Care"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/emergency_medicaid/enabled.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/8/1641",
+   "kind": "statute",
+   "citation": "us/statute/8/1641",
+   "titles": [
+    "8 USC § 1641 - Definition of qualified alien"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Iowa SF 2251 Fiscal Note, Pregnancy and Postpartum Medicaid Coverage"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.macpac.gov/wp-content/uploads/2024/12/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-FPL-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-July-2024.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2024) - Georgia parents/caretakers 28% + 5% MAGI disregard"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.macpac.gov/wp-content/uploads/2026/01/EXHIBIT-36.-Medicaid-Income-Eligibility-Levels-as-a-Percentage-of-the-Federal-Poverty-Level-for-Non-Aged-Non-Disabled-Non-Pregnant-Adults-by-State-2025.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MACPAC Exhibit 36, Medicaid Income Eligibility Levels as a Percentage of the FPL (July 2025, data as of January 2025) - Georgia parents/caretakers 26% + 5% MAGI disregard"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/ar/Health-Care-Independence-Program-Private-Option/ar-works-annl-rpt-jan-dec-2018.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Annual Report January-December 2018 | Arkansas Works Section 1115"
+   ],
+   "states": [
+    "ar"
+   ],
+   "files": [
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/age_range.yaml",
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/applies.yaml",
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/income_limit.yaml",
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/monthly_hours_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/mi/Healthy-Michigan/mi-healthy-michigan-waiver-amend-req-11082013.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Healthy Michigan Plan Waiver Amendment Request | IV. MI Health Account; B. Cost Sharing Requirements; 1. Account Contributions"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/healthy_michigan/contribution/income_threshold/lower.yaml",
+    "parameters/gov/states/mi/mdhhs/healthy_michigan/contribution/rate.yaml",
+    "variables/gov/states/mi/mdhhs/healthy_michigan/mi_healthy_michigan_contribution.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/mi/Healthy-Michigan/mi-healthy-michigan-waiver-amend-req-11082013.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Healthy Michigan Plan Waiver Amendment Request | II. Eligibility; A. Eligible Population"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/healthy_michigan/contribution/income_threshold/upper.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AL/AL-13-0021-MM1.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama approved state plan S25 (AL-13-0021-MM1) - under-18 base, student option unchecked (conflicts with current admin code)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/LA/LA-14-04.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Louisiana Medicaid State Plan, Supplement 1 to Attachment 2.6-A, page 5 (TN 14-04, effective February 9, 2014)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/MS/MS-13-0019-MM1.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi approved state plan S25 (MS 13-0019-MM1), student option unchecked"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/SC/SC-13-0014-MM1.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "South Carolina approved state plan S25 (SC-13-0014-MM1), student option checked"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WI/WI-13-021-MM1.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Wisconsin approved state plan S25 (WI-13-021-MM1), student option checked"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/WY/WY-13-0008-MM1.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Wyoming approved state plan S25 (WY-13-0008-MM1), student option unchecked"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/was_recently_incarcerated_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SHO #12-002, Individuals with Deferred Action for Childhood Arrivals"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/immigration_statuses.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_lawfully_residing_option_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib04272026.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 SSI, Spousal Impoverishment, and Medicare Savings Program Resource Standards"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib05282025.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Updated 2025 SSI and Spousal Impoverishment Standards"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib11182025.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMCS Informational Bulletin, Nov. 18, 2025"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMCS Informational Bulletin, Dec. 8, 2025"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/applies.yaml",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_medicaid_1115_mec_adult.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_work_requirement_applicable_adult.py",
+    "variables/gov/hhs/medicaid/eligibility/is_medically_frail_or_has_special_medical_needs_for_medicaid_ce.py",
+    "variables/gov/hhs/medicaid/eligibility/medicaid_work_requirement_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMCS Informational Bulletin, Dec. 8, 2025"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/former_foster_care_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/work_requirements/monthly_hours_threshold.yaml",
+    "variables/gov/hhs/medicaid/eligibility/is_american_indian_or_alaska_native_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_hospitalized_for_medicaid_ce.py",
+    "variables/gov/hhs/medicaid/eligibility/medicaid_community_engagement_pass_through_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/has_long_distance_medical_travel_for_medicaid_ce.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/cib12092025.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMCS Informational Bulletin, Dec. 9, 2025"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/long_term_care/home_equity/agricultural_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho21007.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_lawfully_residing_option_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SHO #26-001, Considerations for Applicants and Current Beneficiaries who are Not FFP-Eligible Noncitizens, footnote 44"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/immigration_statuses.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SHO #26-001, Background, footnote 3, and Overview of Section 71109 of the WFTC Legislation",
+    "CMS SHO #26-001, Background, footnote 3"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/eligible_immigration_statuses.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/five_year_bar_years.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/is_medicaid_lawfully_residing_option_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SHO #26-001, Interaction between Section 71109 of the WFTC Legislation and PRWORA"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/bar_exempt_immigration_statuses.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/five_year_bar_years.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid-spa/2023-11-22/156086",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Georgia State Plan Amendment GA-23-0002"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid-spa/2025-05-07/179381",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NV-25-0006, Medicaid State Plan Amendment"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/pregnant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Medicaid and CHIP Coverage of Lawfully Residing Children and Pregnant Individuals (updated April 2, 2026)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels",
+    "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels | CMS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/age_range/other.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels#footnote10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels | CMS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/age_range/in_mn.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels#footnote6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels | CMS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/age_range/in_ca.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81021",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Arkansas Works | Medicaid"
+   ],
+   "states": [
+    "ar"
+   ],
+   "files": [
+    "parameters/gov/states/ar/dhs/medicaid/work_requirements/applies.yaml",
+    "variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_eligible.py",
+    "variables/gov/states/ar/dhs/medicaid/eligibility/ar_medicaid_work_requirement_subject.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/section-1115-demonstrations/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/medicaid_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/in-healthy-indiana-plan-support-20-ca-20230321.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana HIP Section 1115 Waiver Special Terms and Conditions"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/fssa/hip/power_account/contribution_amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0003.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, New Hampshire State Plan Amendment NH-24-0003, approval letter"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/spa/downloads/NH-24-0003.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, New Hampshire State Plan Amendment NH-24-0003, Citizenship and Non-Citizen Eligibility, section C.1"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child_age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/spa/downloads/RI-22-0024.pdf#page=11",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Rhode Island State Plan Amendment RI-22-0024, Citizenship and Non-Citizen Eligibility, section C"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/spa/downloads/RI-22-0024.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Rhode Island State Plan Amendment RI-22-0024, Submission Summary, SPA ID and Effective Date"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_209b_ssi_recipient_income_eligible_for_medicaid.py",
+    "variables/gov/hhs/medicaid/eligibility/categories/is_ssi_recipient_for_medicaid.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/2023-03/NV-22-0026.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Nevada State Plan Amendment NV-22-0026, approval letter"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/2024-05/MT-24-0002.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Montana Medicaid State Plan, Attachment 3.1-F, page 7 (TN 24-0002, effective July 1, 2024)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/senior_or_disabled/income/limit/uses_ssi_federal_benefit_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/medicaid/income/medicaid_income_level.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaidscreener.com/?p=table",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "medicaidscreener.com"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/infant/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/older_child/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_adult/income_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/categories/young_child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/healthymiplan",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Michigan Department of Health and Human Services | Healthy Michigan Plan Program Changes"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/healthy_michigan/contribution/active.yaml",
+    "variables/gov/states/mi/mdhhs/healthy_michigan/mi_healthy_michigan_contribution.py"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/healthymiplan/-/media/Project/Websites/healthymiplan/B-23-07-HMP-Final.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Michigan Department of Health and Human Services | B 23-07 Changes to your health coverage in 2024"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/mdhhs/healthy_michigan/contribution/active.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Assistance-Programs/Medicaid-BPHASA/2023-Bulletins/Final-Bulletin-MMP-24-20-Eligibility.pdf?rev=dbb27d49587c40f6bb87c2669287edf6&hash=8F47918C2161E23831CC56F0BF4A3AD0#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Michigan Department of Health and Human Services Bulletin MMP 24-20"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/child_age_limit.yaml",
+    "parameters/gov/hhs/medicaid/eligibility/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nd.gov/dhs/policymanuals/51003/Content/510-03-30-05.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Dakota Medicaid Policy Manual § 510-03-30-05 - adult expansion group \"may include SSI recipients ... who fail the Medicaid asset limits\""
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/adult/excludes_ssi_recipients.yaml"
+   ]
+  },
+  {
+   "url": "https://www.opb.org/article/2023/07/10/oregon-expands-health-coverage-low-income-residents-immigrants/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "variables/gov/states/or/oha/healthier_oregon/eligibility/or_healthier_oregon_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/oha/hsd/ohp/pages/healthier-oregon.aspx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon Health Authority - Healthier Oregon"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/in_effect.yaml",
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/qualified_immigration_statuses.yaml",
+    "variables/gov/states/or/oha/healthier_oregon/eligibility/or_healthier_oregon_eligible.py",
+    "variables/gov/states/or/oha/healthier_oregon/eligibility/or_healthier_oregon_immigration_status_eligible.py",
+    "variables/gov/states/or/oha/healthier_oregon/eligibility/or_healthier_oregon_income_eligible.py",
+    "variables/gov/states/or/oha/healthier_oregon/or_healthier_oregon_cost.py",
+    "variables/gov/states/or/oha/healthier_oregon/or_healthier_oregon_cost_if_enrolled.py",
+    "variables/gov/states/or/oha/healthier_oregon/or_healthier_oregon_group.py"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/sites/dhhs/files/pdf/links/Medicaid%20Eligibility%20Groups%20Effective%201.1.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid Eligibility Programs (effective March 1, 2026) | South Carolina DHHS - Parent/Caretaker Relative family income cannot exceed 67% of FPL, $1,842.50/month for a family of four"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Palmetto Pathways to Independence, section 1115 waiver application (June 23, 2025) | South Carolina DHHS - CMS approved the predecessor Healthy Connections Community Engagement Initiative waivers in December 2019, SCDHHS paused implementation for the COVID-19 public health emergency, and CMS withdrew the approval on August 10, 2021"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/OP_Home/ssact/title16b/1614.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Social Security Act Section 1614(a)(1)(A) - Definition of aged (42 USC 1382c)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/oha/healthier_oregon/eligibility/aged_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Tennessee approved state plan S25 (TN-21-0010), student option checked"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/medicaid/eligibility/categories/parent/dependent_child/student_option.yaml"
+   ]
+  }
+ ]
+}

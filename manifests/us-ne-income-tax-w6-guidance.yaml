@@ -1,0 +1,63 @@
+version: 2026-10-06-w6-income-tax-guidance-ne
+documents:
+- source_id: us-ne-guidance-dor-tax-rate-chronology-table-1
+  jurisdiction: us-ne
+  document_class: guidance
+  title: 'Nebraska Tax Rate Chronologies, Table 1: Income Tax and Sales Tax Rates'
+  source_url: https://revenue.nebraska.gov/sites/default/files/doc/research/chronology/4-607table1_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ne/guidance/dor/tax-rate-chronology-table-1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Revenue
+    document_subtype: research_table
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revenue.nebraska.gov/sites/default/files/doc/research/chronology/4-607table1_0.pdf
+- source_id: us-ne-guidance-dor-2023-nebraska-legislative-changes
+  jurisdiction: us-ne
+  document_class: guidance
+  title: 2023 Nebraska Legislative Changes
+  source_url: https://revenue.nebraska.gov/about/2023-nebraska-legislative-changes
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ne/guidance/dor/2023-nebraska-legislative-changes
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revenue.nebraska.gov/about/2023-nebraska-legislative-changes
+- source_id: us-ne-guidance-dor-child-care-tax-credit-act
+  jurisdiction: us-ne
+  document_class: guidance
+  title: Child Care Tax Credit Act
+  source_url: https://revenue.nebraska.gov/businesses/child-care-tax-credit-act
+  download_url: https://revenue.nebraska.gov/tax-credits/child-care-tax-credit-act
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ne/guidance/dor/child-care-tax-credit-act
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revenue.nebraska.gov/businesses/child-care-tax-credit-act

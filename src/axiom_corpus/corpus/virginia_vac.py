@@ -200,7 +200,7 @@ def virginia_vac_run_id(
     if only_agency:
         parts.append(f"agency-{_path_token(only_agency)}")
     if only_chapter:
-        parts.append(f"chapter-{_path_token(only_chapter)}")
+        parts.append(f"chapter-{_path_token(only_chapter.replace(',', '-'))}")
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)
@@ -397,7 +397,9 @@ def extract_virginia_vac(
                 chapter_number = str(chapter_row.get("ChapterNumber") or "")
                 if chapter_number.lower() == "preface":
                     continue
-                if only_chapter is not None and not _same_token(chapter_number, only_chapter):
+                if only_chapter is not None and not _matches_selector(
+                    chapter_number, only_chapter
+                ):
                     continue
                 sections_snapshot = _snapshot_json_source(
                     store,
@@ -1088,6 +1090,15 @@ def _path_token(value: str) -> str:
 
 def _same_token(left: str, right: str) -> bool:
     return _path_token(left) == _path_token(right)
+
+
+def _matches_selector(value: str, selector: str) -> bool:
+    """Return whether ``value`` matches any comma-separated token of ``selector``."""
+
+    tokens = [token for token in selector.split(",") if token.strip()]
+    if not tokens:
+        return False
+    return any(_same_token(value, token) for token in tokens)
 
 
 def _date_text(value: date | str | None, fallback: str) -> str:

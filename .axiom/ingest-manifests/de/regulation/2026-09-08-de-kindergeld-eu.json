@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-08-de-kindergeld-eu.json",
+      "sha256": "84f99710df88e09fd5993d08b8e5e58f78ae239ed5d6c982d6a9d871d16db8cd"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-08-de-kindergeld-eu.json",
+      "sha256": "3b977d73c0702ed2e46684fb6695983d5f50d5b10474a2a36f686f2dbf3c8b58"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-08-de-kindergeld-eu.jsonl",
+      "sha256": "5e1d4de7f1e5ef4201f4f313a6fc977d5720760b95c3af3ec244cfcb43b64bf1"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-eu/official-documents/de-kindergeld-1231-2010.pdf",
+      "sha256": "c47b4038f4230bb85a02c9e04ddfb7a3ffe0ae8dca113227439917c0929727f7"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-eu/official-documents/de-kindergeld-859-2003.pdf",
+      "sha256": "9425aa4928d00747bf48a35d3a74c6e57459da3499647b72119af6b51ea828e0"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-eu/official-documents/de-kindergeld-883-2004.pdf",
+      "sha256": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-eu/official-documents/de-kindergeld-987-2009.pdf",
+      "sha256": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-08T14:21:50.957024+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zUBw39+qHUXPK9oXCYducpN1miuUZxAStdrSnaFoethWBDb4yHF1RWJVbJX5mKHKTzahu+O5dvfFXk18AC1VDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-eu"
+}

@@ -1,0 +1,1 @@
+Capture the complete official FamFG for the court-decision effectiveness prerequisite cited by DE Kindergeld recipient-priority guidance, with a signed 598-row scope and a release selector preserving all prior DE scopes. Historical applicability and recipient-priority encoding remain open.

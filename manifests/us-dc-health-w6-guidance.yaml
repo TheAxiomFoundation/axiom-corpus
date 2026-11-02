@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-health-guidance-dc
+documents:
+- source_id: us-dc-w6-health-hbx-proposed-extension-loss-of-medicaid-sep-2025-11
+  jurisdiction: us-dc
+  document_class: guidance
+  title: 'DC HBX: Proposed Extension of Existing Loss of Medicaid SEP (November 24, 2025)'
+  source_url: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-11-24'
+  citation_path: us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Health Benefit Exchange Authority (DC HBX)
+    program: MEDICAID
+    document_subtype: board_proposal_pdf
+    source_discovery_group: us-dc/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 38
+    bundle_url: https://hbx.dc.gov/sites/default/files/dc/sites/hbx/event_content/attachments/PROPOSED%20EXTENSION%20OF%20LOSS%20OF%20MEDICAID%20SEP%20Nov%202025_0.pdf

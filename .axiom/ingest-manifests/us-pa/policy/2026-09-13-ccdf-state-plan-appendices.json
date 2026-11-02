@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "41b997eb07b6093ffd9b6216d091291a8a877d0d61f258817f1b6de27d0d9b69"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "1508ec7bc08c5f3f6e329162d53103b6e696fead9e6170ef43fbe4147ef2ccc5"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "7eca9f81de62cb019b2583227d267ee901b168c03359e126d524f5925210f3b2"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-pa-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "145a10bd085d99cb03f6cc9a490b967c1e6a4844a12dfe3cd3b4b5b925b9e7e8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:10:19.343486+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TjksIiI/9Bl5T8mkrgguT0nWEkSWyV8/u/1cAAqolSu1KyJbuZXeCTDNzkX+s1jDGtIse1fjmawmgZR/zaigDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs.json",
+      "sha256": "4ec7984a5cae1fc01e1d73729560a7e02452378c5ab0712e5dd5402fd292feac"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs.json",
+      "sha256": "6b4a7dc1c3467ba664ce03e0833dc6337b44caa2e42a91eb00cfdf069442651a"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs.jsonl",
+      "sha256": "e142529c96493b97b968a23e8d7195d2b21ca1bfa924e82816ec0d4a00e3bd40"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs/official-documents/de-estg-32-absatz-1.pdf",
+      "sha256": "e9480c773127a89216c2439b02534d56321c9174f28f1f4d591afa8b754a5445"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs/official-documents/de-estg-32-absatz-2.pdf",
+      "sha256": "e9480c773127a89216c2439b02534d56321c9174f28f1f4d591afa8b754a5445"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs/official-documents/de-estg-32-absatz-3.pdf",
+      "sha256": "e9480c773127a89216c2439b02534d56321c9174f28f1f4d591afa8b754a5445"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs/official-documents/de-estg-32-absatz-4.pdf",
+      "sha256": "e9480c773127a89216c2439b02534d56321c9174f28f1f4d591afa8b754a5445"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs/official-documents/de-estg-32-absatz-5.pdf",
+      "sha256": "e9480c773127a89216c2439b02534d56321c9174f28f1f4d591afa8b754a5445"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-estg32-paragraphs/official-documents/de-estg-32-absatz-6.pdf",
+      "sha256": "e9480c773127a89216c2439b02534d56321c9174f28f1f4d591afa8b754a5445"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3ddf26c41edc41079c5db362e608922745788855",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-estg32-paragraphs --manifest manifests/de-kindergeld-estg32-paragraphs.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-09T05:06:01.346285+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fibunExEh3nBKnT9bToGOOcQeZBr35U/4APem9VI+VeJEL8+TVINx/kN+U2NvYK7Z3X5jrZA3fupDHX2TWAYCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-estg32-paragraphs"
+}

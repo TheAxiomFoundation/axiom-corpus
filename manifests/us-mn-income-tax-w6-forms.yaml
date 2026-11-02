@@ -1,0 +1,1234 @@
+version: 2026-10-06-w6-income-tax-forms-mn
+documents:
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1ref
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1REF, Refundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2021-12/m1ref_21_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1ref
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2021-12/m1ref_21_0.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1ref
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1REF, Refundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2022-12/m1ref_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1ref
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2022-12/m1ref_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1c
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1C, Nonrefundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1c_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1c
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1c_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1cd
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1CD, Child and Dependent Care Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1cd_22_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1cd
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1cd_22_0.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1ma
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1MA, Marriage Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1ma_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1ma
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1ma_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1ma
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1MA, Marriage Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1ma_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1ma
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1ma_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1mt
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1MT, Alternative Minimum Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1mt_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1mt
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1mt_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1r
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1R, Age 65 or Older/Disabled Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1r_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1r
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1r_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1r
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1R, Age 65 or Older/Disabled Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1r_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1r
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1r_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1sa
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1SA, Minnesota Itemized Deductions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-01/m1sa_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-01/m1sa_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1cd
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1CD, Child and Dependent Care Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-02/m1cd_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1cd
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-02/m1cd_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1mt
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1MT, Alternative Minimum Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-02/m1mt_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1mt
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-02/m1mt_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1cd
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1CD, Child and Dependent Care Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1cd-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1cd
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1cd-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1ma
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1MA, Marriage Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1ma-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1ma
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1ma-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1mt
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1MT, Alternative Minimum Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1mt-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1mt
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1mt-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1r
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1R, Age 65 or Older/Disabled Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1r-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1r
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1r-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1c
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1C, Nonrefundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-01/m1c_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1c
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-01/m1c_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-schedule-m1m
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Schedule M1M, Income Additions and Subtractions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-01/m1m-22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/schedule-m1m
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-01/m1m-22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1m
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1M, Income Additions and Subtractions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-04/m1m-23_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1m
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-04/m1m-23_0.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1ref
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1REF, Refundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-04/m1ref-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1ref
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-04/m1ref-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1cd
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1CD, Child and Dependent Care Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-12/m1cd-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1cd
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-12/m1cd-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1ma
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1MA, Marriage Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-12/m1ma-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1ma
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-12/m1ma-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1qpen
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1QPEN, Qualified Public Pension Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-12/m1qpen-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1qpen
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-12/m1qpen-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1r
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1R, Age 65 or Older/Disabled Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-12/m1r-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1r
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-12/m1r-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1sa
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1SA, Minnesota Itemized Deductions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-12/m1sa-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-12/m1sa-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1cwfc
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1CWFC, Minnesota Child and Working Family Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-01/m1cwfc-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1cwfc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-01/m1cwfc-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1cwfc
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1CWFC, Minnesota Child and Working Family Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-01/m1cwfc-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1cwfc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-01/m1cwfc-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1c
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1C, Nonrefundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-02/m1c-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1c
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-02/m1c-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1mt
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1MT, Alternative Minimum Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-07/m1mt-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1mt
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-07/m1mt-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1ref
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1REF, Refundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-08/m1ref-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1ref
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-08/m1ref-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-schedule-m1m
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Schedule M1M, Income Additions and Subtractions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-11/m1m-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/schedule-m1m
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-11/m1m-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1c
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1C, Nonrefundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/m1c-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1c
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-12/m1c-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1ref
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1REF, Refundable Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/m1ref-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1ref
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-12/m1ref-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-schedule-m1sa
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Schedule M1SA, Minnesota Itemized Deductions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/m1sa-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/schedule-m1sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-12/m1sa-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1sa
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1SA, Minnesota Itemized Deductions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/m1sa-25_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-12/m1sa-25_0.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-niit
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule NIIT, Net Investment Income Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/niit-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-niit
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-12/niit-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1dqc
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1DQC, Dependents and Qualifying Children
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-01/m1dqc-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1dqc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-01/m1dqc-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1cd
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1CD, Child and Dependent Care Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cd-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1cd
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cd-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1cwfc
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1CWFC, Minnesota Child and Working Family Credits
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cwfc-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1cwfc
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cwfc-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1ed
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1ED, K-12 Education Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ed-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1ed
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ed-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1m
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1M, Income Additions and Subtractions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1m-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1m
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1m-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1ma
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1MA, Marriage Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ma-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1ma
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ma-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1mt
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1MT, Alternative Minimum Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1mt
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1qpen
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1QPEN, Qualified Public Pension Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1qpen-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1qpen
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1qpen-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1r
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1R, Age 65 or Older/Disabled Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1r-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1r
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1r-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1rent
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1RENT, Renter's Credit
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1rent-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1rent
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-07/m1rent-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2025-schedule-m1529
+  jurisdiction: us-mn
+  document_class: form
+  title: 2025 Schedule M1529, Education Savings Account Contribution Credit or Subtraction
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-08/m1529-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2025/schedule-m1529
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-08/m1529-25.pdf
+    tax_year: '2025'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1sa
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1SA, Minnesota Itemized Deductions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-02/m1sa_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1sa
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://taxsim.nber.org/historical_state_tax_forms/MN/2021/m1sa_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-schedule-m1m
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Schedule M1M, Income Additions and Subtractions
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-01/m1m-21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/schedule-m1m
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.taxformfinder.org/forms/2021/2021-minnesota-form-m1m.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-form-m1
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Form M1, Minnesota Individual Income Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1_21_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/form-m1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1_21_0.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-form-m1
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Form M1, Minnesota Individual Income Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1_22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/form-m1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1_22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-form-m1
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Form M1, Minnesota Individual Income Tax
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-01/m1-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/form-m1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-01/m1-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2021-form-m1-instructions
+  jurisdiction: us-mn
+  document_class: form
+  title: 2021 Minnesota Individual Income Tax Instructions (Form M1)
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2023-12/m1_inst_21.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2021/form-m1-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2023-12/m1_inst_21.pdf
+    tax_year: '2021'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2022-form-m1-instructions
+  jurisdiction: us-mn
+  document_class: form
+  title: 2022 Minnesota Individual Income Tax Instructions (Form M1)
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2024-02/m1-inst-22.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2022/form-m1-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2024-02/m1-inst-22.pdf
+    tax_year: '2022'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2023-form-m1-instructions
+  jurisdiction: us-mn
+  document_class: form
+  title: 2023 Minnesota Individual Income Tax Instructions (Form M1)
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-06/m1-inst-23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2023/form-m1-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2025-06/m1-inst-23.pdf
+    tax_year: '2023'
+    index_url: https://www.revenue.state.mn.us/form-search
+- source_id: us-mn-form-department-of-revenue-ty2024-form-m1-instructions
+  jurisdiction: us-mn
+  document_class: form
+  title: 2024 Minnesota Individual Income Tax Instructions (Form M1)
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2026-01/m1-inst-24.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-mn/form/department-of-revenue/ty2024/form-m1-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revenue.state.mn.us/sites/default/files/2026-01/m1-inst-24.pdf
+    tax_year: '2024'
+    index_url: https://www.revenue.state.mn.us/form-search

@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny.json",
+      "sha256": "94ee2fbd4648159a12ec93b9606f7d799f39b2397d3339072496ecb6ea422c2a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny.json",
+      "sha256": "835366142ba2deddc89d9f43653983fcd2bdebbbfcc267017c6634f606123579"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny.jsonl",
+      "sha256": "a678af3d7e33c11a9f24d90e9e97e1c9b2ba077886a90587645713d02a17807b"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-additional-empire-state-child-credit-payments.html",
+      "sha256": "2d60afcbe5b6fc1e9b571987b03a41531ef61b3f7d2caa252d6f06b3a3b35459"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-empire-state-child-credit.html",
+      "sha256": "3020bfd6267519d2ef4d19f8ce046aef8099662218e6eb344843b29bfb5b6164"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-geothermal-energy-system-credit.html",
+      "sha256": "d8e730d42de71b929f017c95929371c13872bd633c32ac4b39ad991c9a938b75"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-itemized-deductions.html",
+      "sha256": "756471c30fbf01e7798c3d88c4cdbc5eea9186a6e6b9a598dbc669f8c8a5c3ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-solar-energy-system-equipment-credit.html",
+      "sha256": "b1a251039bc18ee85a27280ea15abd2bf9d6ce47f9334e4051eb3ef5fe0e9830"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-tsb-m-98-7-i.pdf",
+      "sha256": "c411af650d0021995de29af4b324fb38afce3c944dd457827446a67e435dac97"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-ty2020-pit-corp-changes.html",
+      "sha256": "cc875949f49ac850e2d4873b4922afa70586c6f60c7d04fc3a6c89b1fe626a86"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-ty2022-pit-corp-changes.html",
+      "sha256": "bedebb21ff8ead8cda116340d7ba832672f4068f567b0ff5590ad63981cc047c"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-ty2025-pit-corp-changes.html",
+      "sha256": "aa9220928d0f585fd67013a4016e03292669e1566610a8bd9438976259ba71e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/guidance/2026-10-06-w6-income-tax-guidance-ny/official-documents/us-ny-guidance-tax-vita-and-tce.html",
+      "sha256": "afa7f9d4dc12c4eca011e97b4e23b8a7d9f00c617b28959fac5128a232eef985"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 128,
+    "missing_count": 0,
+    "provision_count": 128,
+    "source_count": 128
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:43.964391+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IZsGXcnRcJ2iMuBw0mnpsEH7IGUvw98J7HP60lAd6Z1pcwHZmCCm99WI+7+833TqcwjtjXi65pw49g5uZphlDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ny"
+}

@@ -1,0 +1,34 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: sd-lrc-arsd-67-12-14
+  jurisdiction: us-sd
+  document_class: regulation
+  title: ARSD Chapter 67:12:14 Optional State Supplemental Program
+  source_url: https://sdlegislature.gov/api/Rules/67:12:14
+  source_format: json
+  source_as_of: '2026-09-11'
+  expression_date: '1993-12-31'
+  citation_path: us-sd/regulation/arsd/67/12/14
+  extraction:
+    json_html_field: Html
+    segmentation: labeled_sections
+    section_heading_pattern: ^67:12:14:(?P<num>\d{2})\s*\.\s+(?P<heading>[^.]+\.)\s*(?P<body>.*)$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: South Dakota Department of Social Services (ARSD Article 67:12), published by the South Dakota Legislative
+      Research Council
+    document_subtype: administrative_rule_chapter
+    legal_identifier: ARSD 67:12:14
+    program: ssi_state_supplement
+    state_program: Optional State Supplemental Program
+    federal_program: SSI
+    state: SD
+    landing_page: https://sdlegislature.gov/Rules/Administrative/67:12:14
+    article_index: https://sdlegislature.gov/api/Rules/67:12
+    index_url: https://sdlegislature.gov/api/Rules/67:12
+    section_count: 11
+    latest_source_effective_date: '1993-12-31'
+    source_discovery_group: us-sd/regulation/arsd/67/12
+    discovered_via: manual-review:ssi-agent-queue batch 3 (state-administered supplements); publisher index https://sdlegislature.gov/api/Rules/67:12
+    expression_date_note: latest 'effective' date in the chapter's SDR source notes

@@ -1,0 +1,23 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ia-hhs-employees-manual-5-e-hawki
+  jurisdiction: us-ia
+  document_class: manual
+  title: 'Iowa HHS Employees'' Manual Title 5 Chapter E: Healthy and Well Kids in Iowa (hawk-i)'
+  source_url: https://hhs.iowa.gov/media/3983/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2010-08-20'
+  citation_path: us-ia/manual/hhs/chip/employees-manual-5-e
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    document_subtype: policy_manual_chapter_pdf
+    program: CHIP
+    source_discovery_group: us-ia/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: hawk-i
+    manual_title: '5'
+    manual_chapter: E

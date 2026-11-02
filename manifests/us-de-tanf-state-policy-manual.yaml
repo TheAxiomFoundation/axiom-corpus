@@ -1,0 +1,43 @@
+version: '2026-09-14'
+documents:
+- source_id: de-dhss-dss-3000-technical-eligibility-for-cash-assistance
+  jurisdiction: us-de
+  document_class: regulation
+  title: Delaware Administrative Code Title 16, 3000 Technical Eligibility for Cash Assistance
+  source_url: https://regulations.delaware.gov/AdminCode/title16/3000
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  citation_path: us-de/regulation/title-16/3000-technical-eligibility-for-cash-assistance
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\d{3}(?:\.\d+)*)\s+(?P<heading>[A-Z][A-Za-z0-9 ().,'’&:/\[\]-]+)$
+    section_label_pattern: ^(?P<label>3\d{3}(?:\.\d+)*)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,'’&:/#\[\]-]+$
+    label_only_requires_heading: true
+    drop_lines:
+    - TITLE 16 HEALTH AND SAFETY
+    - DELAWARE ADMINISTRATIVE CODE
+    - Office of the Registrar of Regulations,
+    - Legislative Council,
+    - State of Delaware
+    - DEPARTMENT OF HEALTH AND SOCIAL SERVICES
+    - Division of Social Services
+    - 3000 Technical Eligibility for Cash Assistance
+    drop_line_patterns:
+    - ^\d{1,3}$
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: administrative_code
+    program: TANF
+    state_program: Delaware TANF
+    federal_program: TANF
+    manual_landing_page: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://regulations.delaware.gov/AdminCode/title16
+    api_pdf_file_id: ebbded60-25b1-4945-a8d0-366813270452
+    official_regulation_name: 3000 Technical Eligibility for Cash Assistance
+    manual: Delaware Social Services Manual (DSSM), section 3000 (DAC Title 16)
+    extraction_granularity: labeled_section
+  download_url: https://regulations.delaware.gov/api/AdminCode/title16/3000/ebbded60-25b1-4945-a8d0-366813270452

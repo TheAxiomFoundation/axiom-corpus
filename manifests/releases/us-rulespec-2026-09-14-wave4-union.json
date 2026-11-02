@@ -1,0 +1,5207 @@
+{
+  "name": "us-rulespec-2026-09-14-wave4-union",
+  "description": "Fifth release after us-rulespec-2026-09-13-cms-state-plans-union: the five wave-4 ingestion runs of 2026-09-14. It adds the state Medicare Savings Program income/resource charts and the SNAP FY 2026 state transmittals (49 scopes, docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md), the LIHEAP benefit matrices and state manuals with the SSI state-supplement payment standards plus K.S.A. 39-972 (66 scopes, 2026-09-14-liheap-matrix-ssi-standards.md), the whole state income-tax statute chapters of 18 states with the TY2026 indexed amounts of 27 states (48 scopes in, 19 superseded recovery and core-section scopes out, 2026-09-14-state-tax-statute-ty2026.md), the whole CT UPM, GA TANF and DE DSSM 3000 manuals (two swaps and one addition, 2026-09-14-tanf-whole-manuals-md-comar.md), and the income-tax regulations of 37 states (2026-09-14-state-tax-regulations.md), of which the Maryland COMAR 03.04, Ohio OAC 5703-7 and Oregon OAR 150-316 scopes are carried by consolidated successors of the released us-md, us-oh and us-or regulation scopes (Maryland also absorbing the July COMAR 07.03.03 TCA chapter); see docs/ingest-runs/2026-09-14-wave4-release-consolidation.md. Held out of this cut pending slug-safe citation paths (grammar gate): NE, DE and AL whole-chapter statute scopes (their released originals stay selected) and the CT and CO income-tax regulation scopes.",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "jurisdiction": "us",
+      "document_class": "form",
+      "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "form",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "form",
+      "version": "2026-09-10-tax-irs-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-03-10-cms-original-medicare-part-a-b"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-05-01-snap-fy2026-cola-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-05-17-ssa-automatic-determinations-2026"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-05-26-ssa-contribution-and-benefit-base-2024"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-07-03-dc-ossp-ssa-poms"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-07-05-ssa-cola-2026"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-07-08-snap-fy2024-cola"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-07-23-irs-notice-2025-67"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-08-03-snap-obbb-abawd-exceptions-implementation-memo"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-08-07-snap-obbb-alien-eligibility-implementation-memo"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-09-10-tax-irs-guidance"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-09-10-wic-fns-guidance"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-09-13-liheap-annual-figures-2026"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-09-13-medicare-annual-notices-2026"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-09-13-snap-fns-guidance"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "guidance",
+      "version": "2026-09-13-wic-fns-guidance-documents"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-10-medicare-cms-iom-100-01"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-10-medicare-cms-iom-100-24"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-poms-si"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-11-medicare-cms-iom-100-02"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-11-medicare-cms-iom-100-04"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-13-medicare-cms-iom-100-16"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-13-medicare-cms-iom-100-18"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-13-medicare-poms-hi"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-09-13-ssi-poms-si-remainder"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "policy",
+      "version": "2026-07-05-cms-chip-fcep-spa"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-06-15-title-7-part-275"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-06-18-title-47-part-54-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-06-24-title-45-part-1302"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-06-25-title-42-part-435"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-06-29-cms-2454-ifc-42-cfr-435-community-engagement-corrected-r2026-07-24-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-07-24-1401-coordination-repair-title-26-part-1-r2026-09-13-closure-sections-consolidated"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-11-title-20-part-416"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-11-title-42-part-436"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-11-title-45-part-98"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-26-part-31"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-42-part-406"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-42-part-407"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-42-part-408"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-42-part-423"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-42-part-447"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-260"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-261"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-262"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-263"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-264"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-265"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-45-part-96"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-271"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-272"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-274"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-276"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-277"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-278"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-279"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-280"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-281"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-282"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-283"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-284"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-09-13-title-7-part-285"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "rulemaking",
+      "version": "2026-08-09-rulespec-tariff-rulemaking-union"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "rulemaking",
+      "version": "2026-08-18-canada-338-suspension"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-03-us-usc-26-85-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-15-hr6644-current-law-r2026-07-19-expression-date"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-16-hr6644-dependencies-current-law-title-12"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-17-hr6644-dependency-closure-title-15-title-15"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-17-hr6644-dependency-closure-title-26-title-26-r2026-07-18-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-17-hr6644-dependency-closure-title-38-title-38"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-17-hr6644-dependency-closure-title-42-title-42-r2026-07-18-dedup"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-19-rulespec-title-42-consolidated"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-07-22-rulespec-title-7-consolidated"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-08-03-rulespec-title-26-current-union"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-08-03-tariff-title-19-spine-with-root-title-19"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-08-04-usitc-hts-2026-rev15-notes"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-ccdf-statute-ccdbg-title-42"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-liheap-statute-chapter-94-title-42"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-medicaid-statute-closure-title-42"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-medicare-statute-eligibility-premiums-title-42"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-ssi-statute-1381a-1383f-title-42"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-tanf-statute-part-a-title-42"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-tax-statute-closure-31-title-26"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "statute",
+      "version": "2026-09-13-wic-statute-1786-title-42"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "guidance",
+      "version": "2026-06-30-ak-apa-standards-ak-dpa-apa-standards-2026"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "guidance",
+      "version": "2026-07-01-ak-atap-standards"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "manual",
+      "version": "2026-07-16-ak-snap-manual"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "regulation",
+      "version": "2026-07-01-ak-atap-regulations"
+    },
+    {
+      "jurisdiction": "us-ak",
+      "document_class": "statute",
+      "version": "2026-07-24-ak-individual-income-tax"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "manual",
+      "version": "2026-05-27-al-snap-poe-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-07-02-al-tanf-official-documents"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "regulation",
+      "version": "2026-05-29-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "regulation",
+      "version": "2026-06-30-al-admin-code-660-2-4"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "regulation",
+      "version": "2026-07-02-al-admin-code-660-2-2"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-al",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "manual",
+      "version": "2026-09-11-ar-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-07-02-ar-tea-official-documents"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ar",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-east-us-ar-act-2"
+    },
+    {
+      "jurisdiction": "us-as",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "form",
+      "version": "2026-07-21-az-140es-2026"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "manual",
+      "version": "2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "manual",
+      "version": "2026-06-25-az-ccap"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "manual",
+      "version": "2026-07-12-az-des-faa6-utility-amounts"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "manual",
+      "version": "2026-07-17-faa5-recovery"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "regulation",
+      "version": "2026-06-25-az-aac-title-6-chapter-5-article-49"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-az",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-az-title-43"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "form",
+      "version": "2026-07-23-ca-2025-tax-materials-for-2026-estimates"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "form",
+      "version": "2026-07-23-ca-2026-form-540-es"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "guidance",
+      "version": "2025-09-03-ca-cdss-acin"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "guidance",
+      "version": "2026-06-24-ca-cdss-calworks-acl"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "guidance",
+      "version": "2026-06-27-ca-dor-ssi-ssp-newsletter"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "guidance",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "guidance",
+      "version": "2026-07-28-ca-cdss-calfresh-bbce-authority"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "regulation",
+      "version": "2026-06-27-ca-capi-regulations"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "regulation",
+      "version": "2026-07-17-ca-cdss-mpp-calfresh"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "statute",
+      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "statute",
+      "version": "2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "statute",
+      "version": "2026-07-28-ca-cdss-calfresh-bbce-authority-us-ca-sections-wic-18901.3-wic-18901.5"
+    },
+    {
+      "jurisdiction": "us-ca",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-07-21-co-snap-policy"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "regulation",
+      "version": "2026-06-19-co-oap-9-ccr-2503-5-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "regulation",
+      "version": "2026-07-16-10-ccr-2506-1"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "regulation",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "statute",
+      "version": "2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date"
+    },
+    {
+      "jurisdiction": "us-co",
+      "document_class": "statute",
+      "version": "2026-07-19-rulespec-us-co-title-39-consolidated"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "manual",
+      "version": "2026-07-17-ct-snap-manual"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "policy",
+      "version": "2026-09-14-tanf-manual-whole"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "statute",
+      "version": "2026-07-24-ct-income-tax-supplement"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "statute",
+      "version": "2026-07-26-ct-12-700-a-10"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-title-12-chapter-229"
+    },
+    {
+      "jurisdiction": "us-ct",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-title-17b"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "manual",
+      "version": "2026-07-17-dc-snap-manual"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "statute",
+      "version": "2026-05-19-title-4"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-dc",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-east-title-47"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "guidance",
+      "version": "2026-07-03-de-ssi-state-supplement-poms"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "regulation",
+      "version": "2026-07-03-de-tanf-rules"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "regulation",
+      "version": "2026-07-17-de-snap-rules"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "regulation",
+      "version": "2026-09-14-tanf-manual-whole"
+    },
+    {
+      "jurisdiction": "us-de",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "manual",
+      "version": "2026-05-27-fl-ess-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "regulation",
+      "version": "2026-05-29-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-fl",
+      "document_class": "statute",
+      "version": "2026-07-24-fl-individual-income-tax-zero-liability"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "form",
+      "version": "2026-07-21-ga-it-511-2025"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "guidance",
+      "version": "2026-06-25-ga-tanf"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-06-25-ga-caps"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-09-11-ga-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "manual",
+      "version": "2026-09-14-tanf-manual-whole"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "statute",
+      "version": "2026-07-21-ga-ocga-title-48-release86-us-ga-title-48"
+    },
+    {
+      "jurisdiction": "us-ga",
+      "document_class": "statute",
+      "version": "2026-07-21-ga-pit-session-laws"
+    },
+    {
+      "jurisdiction": "us-gu",
+      "document_class": "form",
+      "version": "2026-09-11-tax-territory-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-gu",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-gu",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-gu",
+      "document_class": "policy",
+      "version": "2026-09-11-tanf-territory-state-plan"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "form",
+      "version": "2026-07-22-hi-2025-n11-capital-gain-worksheet"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "regulation",
+      "version": "2026-05-27-hi-snap-rules-r2026-07-15-self-contained-r2026-09-13-tanf-consolidated"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "regulation",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-hi",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-east-us-hi-volume-04-chapter-235"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "manual",
+      "version": "2026-07-17-ia-snap-manual"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "regulation",
+      "version": "2026-07-03-ia-fip-admin-rules"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ia",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-rate-schedules"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "regulation",
+      "version": "2026-05-27-id-food-stamp-rules-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "regulation",
+      "version": "2026-07-04-id-aabd-rules"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-id",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-id-title-63-chapter-30"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "guidance",
+      "version": "2026-07-24-il-personal-exemption-guidance"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "manual",
+      "version": "2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations-title-086-part-00100"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "statute",
+      "version": "2026-06-26-ilcs-320-30-us-il-chapter-320-act-30-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-il",
+      "document_class": "statute",
+      "version": "2026-07-24-il-individual-income-tax-resident-core"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "guidance",
+      "version": "2026-07-24-in-2026-individual-income-tax-source-hold"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "manual",
+      "version": "2026-05-27-in-snap-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "manual",
+      "version": "2026-07-04-in-ssp-sapn"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-in",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-east-us-in-title-6"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "guidance",
+      "version": "2026-07-04-ks-sspp-guidance"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "guidance",
+      "version": "2026-07-21-ks-k40es-2026"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "guidance",
+      "version": "2026-07-24-ks-2026-income-tax-rate-determination"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "manual",
+      "version": "2026-05-27-ks-keesm-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "manual",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "statute",
+      "version": "2026-07-04-ks-sspp-statute"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-west-us-ks-chapter-79-article-32"
+    },
+    {
+      "jurisdiction": "us-ks",
+      "document_class": "statute",
+      "version": "2026-07-24-ks-resident-income-tax-core"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "form",
+      "version": "2026-740-es"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "manual",
+      "version": "2026-09-10-snap-state-manual-completion"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "manual",
+      "version": "2026-09-11-ky-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ky",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "form",
+      "version": "2026-07-23-la-2026-it-540es-instructions"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "manual",
+      "version": "2026-07-17-la-snap-manual"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-la",
+      "document_class": "statute",
+      "version": "2026-07-22-la-title-47-official-current-us-la-title-47"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "form",
+      "version": "2026-07-22-ma-2026-form-1-es"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "guidance",
+      "version": "2026-07-22-ma-2026-surtax-guidance"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "guidance",
+      "version": "2026-08-03-ma-dta-snap-cola-official-source-recovery"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "guidance",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "regulation",
+      "version": "2026-06-27-ma-tafdc-regulations"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "regulation",
+      "version": "2026-07-24-ma-dta-regulations-snap-current-union"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ma",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "guidance",
+      "version": "2026-07-05-md-tca-2026-guidance"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "guidance",
+      "version": "2026-07-05-md-tca-guidance"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "guidance",
+      "version": "2026-07-12-md-fia-snap-fy2026"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "manual",
+      "version": "2026-07-17-md-snap-manual"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapters-06-07-r2026-09-14-chapter-03-title-03-subtitle-04-consolidated"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "statute",
+      "version": "2026-07-03-md-tca-statutes"
+    },
+    {
+      "jurisdiction": "us-md",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-md-article-gtg"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "guidance",
+      "version": "2026-07-23-me-individual-income-tax-rates-2026"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-rate-schedules"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-07-03-me-tanf-regulation"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-07-03-me-tanf-rule-125a"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-09-11-me-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "regulation",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "statute",
+      "version": "2026-07-03-me-tanf-statute"
+    },
+    {
+      "jurisdiction": "us-me",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-me-title-36"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "guidance",
+      "version": "2026-07-21-mi-2026-income-tax-rate-notice"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "manual",
+      "version": "2026-09-11-mi-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "manual",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-mi",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-mi-chapter-206"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-05-27-mn-combined-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "manual",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-142g"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-256p"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-290"
+    },
+    {
+      "jurisdiction": "us-mn",
+      "document_class": "statute",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-05-27-mo-snap-manual-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-mo",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-mo-143"
+    },
+    {
+      "jurisdiction": "us-mp",
+      "document_class": "form",
+      "version": "2026-09-11-tax-territory-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-mp",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-mp",
+      "document_class": "policy",
+      "version": "2026-09-11-snap-nap-mou"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "manual",
+      "version": "2026-07-17-ms-snap-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "regulation",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ms",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-ms-section-27-7-5"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "manual",
+      "version": "2026-07-17-mt-snap-policy-manual"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations-title-42-section-42-15"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-mt",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-mt-title-15"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-07-03-nc-work-first-manual"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-09-11-nc-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "manual",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-rate-schedules"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "regulation",
+      "version": "2026-05-29"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-nc",
+      "document_class": "statute",
+      "version": "2026-08-03-nc-income-tax-current-union"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-07-21-nd-snap-manual"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-09-10-snap-state-manual-completion"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "manual",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nd",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-nd-title-57-38"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "form",
+      "version": "2026-07-22-ne-1040n-es-2026"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "guidance",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "manual",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "regulation",
+      "version": "2026-09-11-ne-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "regulation",
+      "version": "2026-09-13-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ne",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "guidance",
+      "version": "2026-09-10-tax-state-guidance-ty2025"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "guidance",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-10-snap-state-manual-completion"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "manual",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "regulation",
+      "version": "2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nh",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-nh-title-v-chapter-77"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "regulation",
+      "version": "2026-07-17-nj-snap-rules"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nj",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-nj-title-54a"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "regulation",
+      "version": "2026-07-17-nm-snap-regulations"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nm",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "manual",
+      "version": "2026-09-11-nv-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-nv",
+      "document_class": "statute",
+      "version": "2026-07-24-nv-individual-income-tax-zero-liability"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "form",
+      "version": "2026-06-05-ny-tax-current-forms"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "manual",
+      "version": "2026-07-17-ny-snap-manuals"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "policy",
+      "version": "2026-08-09-ny-tanf-official-source-recovery-with-aliases"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "regulation",
+      "version": "2026-07-17-ny-snap-regulations"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "statute",
+      "version": "2026-06-05-nyc-admin-code"
+    },
+    {
+      "jurisdiction": "us-ny",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "guidance",
+      "version": "2026-07-21-oh-hb96-final-analysis"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "guidance",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "regulation",
+      "version": "2026-07-16-agency-5101-4-r2026-09-11-5101-1-5122-36-r2026-09-14-5703-7-consolidated"
+    },
+    {
+      "jurisdiction": "us-oh",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-us-oh-title-57"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "manual",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-07-21-ok-snap-policy"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "regulation",
+      "version": "2026-07-21-ok-snap-rules"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ok",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-ok-title-68-r2026-07-24-immutable"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "form",
+      "version": "2026-07-22-or-estimate-2026"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "manual",
+      "version": "2026-07-16-or-programs-eligibility-notebook"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual-chapter-461-r2026-09-14-150-316-consolidated"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-west-us-or-chapter-316"
+    },
+    {
+      "jurisdiction": "us-or",
+      "document_class": "statute",
+      "version": "2026-07-24-or-pit-session-laws"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "guidance",
+      "version": "2026-07-21-pa-personal-income-tax-rates"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "manual",
+      "version": "2026-07-21-pa-snap-handbook"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations-title-61-chapter-101-103-105-107-109-111-113-115-117-119-121-123-125"
+    },
+    {
+      "jurisdiction": "us-pa",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-west-us-pa-act-1971-2-article-3"
+    },
+    {
+      "jurisdiction": "us-pr",
+      "document_class": "form",
+      "version": "2026-09-11-tax-territory-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-pr",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-pr",
+      "document_class": "regulation",
+      "version": "2026-09-11-snap-nap-regulation"
+    },
+    {
+      "jurisdiction": "us-pr",
+      "document_class": "regulation",
+      "version": "2026-09-11-tanf-territory-regulation"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "guidance",
+      "version": "2026-07-23-ri-pit-adv-2025-22"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "regulation",
+      "version": "2026-07-21-ri-snap-rules"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ri",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-west-us-ri-chapter-44-30"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "guidance",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "manual",
+      "version": "2026-05-27-sc-snap-manual"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-rate-schedules"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "regulation",
+      "version": "2026-05-29-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-sc",
+      "document_class": "statute",
+      "version": "2026-07-24-sc-act110-us-sc-title-12-chapter-6"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "guidance",
+      "version": "2026-07-24-sd-personal-income-tax-zero-liability"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "manual",
+      "version": "2026-07-21-sd-snap-manual"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "regulation",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-sd",
+      "document_class": "statute",
+      "version": "2026-07-24-sd-bank-income-tax-boundary"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "guidance",
+      "version": "2026-07-24-tn-individual-income-tax-zero-liability-guidance"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "guidance",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "manual",
+      "version": "2026-09-11-tn-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-rate-schedules"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "regulation",
+      "version": "2026-05-29-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "regulation",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-tn",
+      "document_class": "statute",
+      "version": "2026-07-24-tn-hall-income-tax-zero-rate-statute"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "manual",
+      "version": "2026-05-27-tx-manuals-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "manual",
+      "version": "2026-09-10-snap-state-manual-completion"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-tx",
+      "document_class": "statute",
+      "version": "2026-07-24-tx-individual-income-tax-prohibition"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-05-27-ut-manuals-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "manual",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "regulation",
+      "version": "2026-07-02-ut-fep-official-documents"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "regulation",
+      "version": "2026-07-04-ut-fep-r986-239-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us-ut",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter-title-59"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "guidance",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "manual",
+      "version": "2026-07-21-va-snap-manual"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations-title-23-agency-10-chapter-110-140"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "regulation",
+      "version": "2026-09-14-ssi-state-supplement-standards"
+    },
+    {
+      "jurisdiction": "us-va",
+      "document_class": "statute",
+      "version": "2026-09-14-income-tax-chapter"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "form",
+      "version": "2026-09-10-tax-state-forms-ty2025"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "form",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "manual",
+      "version": "2026-07-21-vt-3squaresvt-manual"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "manual",
+      "version": "2026-09-14-snap-fy2026-state-transmittal"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "regulation",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "regulation",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "regulation",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-vt",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-vt-title-32-chapter-151"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "guidance",
+      "version": "2026-09-10-tax-state-guidance-ty2025"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "guidance",
+      "version": "2026-09-14-msp-income-standards"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "manual",
+      "version": "2026-07-21-wa-eaz-manual"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "manual",
+      "version": "2026-09-10-chip-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-amendments"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "policy",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "regulation",
+      "version": "2026-06-25-388-450-r2026-07-15-self-contained"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "regulation",
+      "version": "2026-06-25-388-478-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "regulation",
+      "version": "2026-07-01-388-474-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-wa",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-central-us-wa-title-82.87"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "form",
+      "version": "2026-07-22-wi-form1-es-2026"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "manual",
+      "version": "2026-07-21-wi-foodshare-manual"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "manual",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "manual",
+      "version": "2026-09-10-ssi-state-supplement"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "manual",
+      "version": "2026-09-10-tanf-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "manual",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-wi",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-west-chapter-71"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "guidance",
+      "version": "2026-09-14-ty2026-indexed-amounts"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "manual",
+      "version": "2026-07-21-wv-income-maintenance-manual"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "manual",
+      "version": "2026-07-21-wv-snap-healthy-choices-overlay"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "manual",
+      "version": "2026-09-10-wic-state-policy-manual"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-13-tanf-state-plan"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "policy",
+      "version": "2026-09-13-wic-state-plan"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "regulation",
+      "version": "2026-09-14-income-tax-regulations"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "statute",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-wv",
+      "document_class": "statute",
+      "version": "2026-07-16-pit-west-us-wv-chapter-11-article-21"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "guidance",
+      "version": "2026-07-24-wy-individual-income-tax-absence"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "manual",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "manual",
+      "version": "2026-09-10-snap-state-manual-completion"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "manual",
+      "version": "2026-09-11-wy-snap-manual-supersede"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "policy",
+      "version": "2026-09-10"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "policy",
+      "version": "2026-09-10-ccdf-plan-fy2025-2027"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "policy",
+      "version": "2026-09-13-ccdf-state-plan-appendices"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "policy",
+      "version": "2026-09-13-chip-state-plan"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "policy",
+      "version": "2026-09-13-medicaid-state-plan"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "policy",
+      "version": "2026-09-13-snap-et-state-plan"
+    },
+    {
+      "jurisdiction": "us-wy",
+      "document_class": "statute",
+      "version": "2026-07-24-wy-constitution-income-tax-credit"
+    }
+  ]
+}

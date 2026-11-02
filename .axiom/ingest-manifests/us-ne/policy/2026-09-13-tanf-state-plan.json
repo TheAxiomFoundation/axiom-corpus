@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "94563a34f0735f1358100683860ae630ec669b882be99698b8323d2309ec3589"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "498af90bdcbc1a020a41540a8f60dadee29cc115fd29e00bf2cf1a6d211d75bc"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "935e83e197dbd76d9b357199b19a7366fef205362fad602fec04b5309eabe3ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-tanf-state-plan/official-documents/us-ne-tanf-state-plan-2024.pdf",
+      "sha256": "e0974ecf0ee9891c582ef961ea6cf8cad334f9fa28c8386204650d439b50a963"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 38,
+    "missing_count": 0,
+    "provision_count": 38,
+    "source_count": 38
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:56:19.794377+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gxKeEaVaTvpZIpwxECMNGz4luY9EaYneRB9W8U7KuJ+7guJcN9TL9YUwqQBdiqMdHZ3UYyTeYivjJ+oXR3aHCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

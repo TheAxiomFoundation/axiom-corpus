@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-08-de-kindergeld-ristbv.json",
+      "sha256": "cef89d81a29da3c2a35010f41678cae75696d3597b0899e786757bc9231a0bf7"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-08-de-kindergeld-ristbv.json",
+      "sha256": "9babd54bdf9bb21617eee3e6ab5893b2783e65149f7cd258e432c9773b6e0cb0"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-08-de-kindergeld-ristbv.jsonl",
+      "sha256": "436fece03eb7134430846ed4eb689155f93976bac46e0d413c29f091bb346cac"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-ristbv/official-documents/de-ristbv-2023.html",
+      "sha256": "4bf57d4c7b6bdb980f8a91a389c1a894adf449f3d00a01fbf04e7d8201dbf60f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T14:21:46.120985+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "INQ+FCLmlTGzxDot8w1mTyjH52s3rFB+P6lRmCbSsTT0kwOgLDkSQboQkrnO4d/BPfvfgzbGLHnPLDb337cgAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-ristbv"
+}

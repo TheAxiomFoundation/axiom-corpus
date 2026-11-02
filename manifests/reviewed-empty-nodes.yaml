@@ -1,0 +1,265 @@
+# Bodyless document rows that review found correctly empty: the official node has no
+# operative text of its own. A listed row is not a hollow_document_root finding (see
+# docs/release-gate-policy.md, "Reviewed-empty rows"). List a row only after reading its
+# retained source (or, where the scope retains none, the official page) and record the
+# review in a run note. content-check --check-baseline fails on a listed row that is not
+# a hollow root of its scope, so a row that gains text below it must leave this list.
+# Scopes sorted by jurisdiction, document class and version; nodes sorted by path.
+# reason: table_of_contents | index | cross_reference | reserved | deleted | repealed | empty_in_source
+schema_version: axiom-corpus/reviewed-empty-nodes/v1
+scopes:
+  - scope: us-ak/manual/2026-07-16-ak-snap-manual
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-ak/manual/dpa/snap/608-608
+        reason: index
+        note: "Heading, blank paragraphs and Previous/Next links only; substantive hearing rules are separately retained sibling documents."
+  - scope: us-ct/manual/2026-07-17-ct-snap-manual
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-ct/manual/dss/snap/deskaidsandexamples
+        reason: index
+        note: "Selected article contains only Desk Aids and Examples links, with no substantive prose."
+      - path: us-ct/manual/dss/snap/examples
+        reason: index
+        note: "Selected article contains six links to separate example topics and no example prose."
+      - path: us-ct/manual/dss/snap/toc
+        reason: table_of_contents
+        note: "Retained JSON contains 277 navigation entries; the manifest deliberately configures segmentation: source_only."
+  - scope: us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-il/manual/dhs/csmm/12255
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/12290
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/12388
+        reason: reserved
+        note: "\"Reserved\" item: the content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/12676
+        reason: empty_in_source
+        note: "Content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/13473
+        reason: table_of_contents
+        note: "Manual table of contents: 10 words and 25 links; its one child block is link labels; basis: the scope's one retained source (this page) and the live page fetched 2026-10-13"
+      - path: us-il/manual/dhs/csmm/14097
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/15866
+        reason: deleted
+        note: "Content area holds only a \"Deleted Text\" marker image; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16212
+        reason: reserved
+        note: "\"Reserved\" item: the content area holds only a deleted-text marker; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16214
+        reason: reserved
+        note: "\"Reserved\" item: the content area holds only a deleted-text marker; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16626
+        reason: index
+        note: "Heading whose only content is 9 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16627
+        reason: index
+        note: "Heading whose only content is 1 sidebar link to its sub-item (a separate document in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16755
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16776
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16781
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16874
+        reason: index
+        note: "Heading whose only content is 5 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/16946
+        reason: index
+        note: "Heading whose only content is 5 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17069
+        reason: empty_in_source
+        note: "Content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17070
+        reason: empty_in_source
+        note: "Content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/171143
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17245
+        reason: deleted
+        note: "Content area holds only a \"Deleted Text\" marker image; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17265
+        reason: index
+        note: "Heading whose only content is 3 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17274
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17277
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17396
+        reason: reserved
+        note: "\"Reserved\" item: the content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17514
+        reason: index
+        note: "Heading whose only content is 12 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17529
+        reason: index
+        note: "Heading whose only content is 4 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/17703
+        reason: reserved
+        note: "\"Reserved\" item: the content area holds only a deleted-text marker; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18483
+        reason: reserved
+        note: "\"Reserved\" item: the content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18827
+        reason: reserved
+        note: "\"Reserved\" item: the content area holds only a deleted-text marker; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18860
+        reason: deleted
+        note: "Content area holds only a \"Deleted Text\" marker image; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18863
+        reason: deleted
+        note: "Content area holds only a \"Deleted Text\" marker image; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18952
+        reason: index
+        note: "Heading whose only content is 3 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18958
+        reason: reserved
+        note: "\"Reserved\" item: the content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18964
+        reason: index
+        note: "Heading whose only content is 1 sidebar link to its sub-item (a separate document in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/18985
+        reason: index
+        note: "Heading whose only content is 4 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19009
+        reason: index
+        note: "Heading whose only content is 8 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19021
+        reason: index
+        note: "Heading whose only content is 3 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19029
+        reason: reserved
+        note: "\"Reserved\" item: the content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19030
+        reason: index
+        note: "Heading whose only content is 4 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19031
+        reason: reserved
+        note: "\"Reserved\" item: the content area is empty; basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19038
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19061
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19105
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19110
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19120
+        reason: index
+        note: "Heading whose only content is 3 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19133
+        reason: index
+        note: "Heading whose only content is 1 sidebar link to its sub-item (a separate document in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19143
+        reason: index
+        note: "Heading whose only content is 1 sidebar link to its sub-item (a separate document in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/19814
+        reason: index
+        note: "Heading whose only content is 3 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/21815
+        reason: index
+        note: "Heading whose only content is 15 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/24753
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+      - path: us-il/manual/dhs/csmm/74655
+        reason: index
+        note: "Heading whose only content is 2 sidebar links to its sub-items (separate documents in the scope); basis: live IDHS page fetched 2026-10-13 (the page as ingested 2026-05-27 is not retained); no descendants in the scope"
+  - scope: us-il/manual/2026-07-13-recovery-r2026-07-17-dedup
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-il/manual/recovery/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual
+        reason: table_of_contents
+        note: "Synthetic recovery row for the manual table of contents (the same page as item 13473)"
+  - scope: us-nd/manual/2026-10-06-w6-ccap-manual-nd
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-nd/manual/hhs/ccap/archived-ims
+        reason: index
+        note: "Selected main content is an archive index linking 42 distinct memo PDFs, without memo prose; the builder deliberately enumerates HTML TOC topics."
+  - scope: us-nh/manual/2026-09-10-snap-state-manual-completion
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-nh/manual/dhhs/fsm/511-green-thumb-fsm
+        reason: cross_reference
+        note: "Official cross-reference alias points to Senior Citizen Community Service Employment Income; the separately retained canonical policy includes Green Thumb and its income treatment."
+      - path: us-nh/manual/dhhs/fsm/introduction-navigating-the-food-stamp-manual-fsm
+        reason: index
+        note: "Retained HTML has a heading and 11 link-only paragraphs, with no introduction prose; the Introduction topic is separately retained."
+  - scope: us-nh/manual/2026-09-10-ssi-state-supplement
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-nh/manual/dhhs/aam/introduction-navigating-the-adult-assistance-manual-aam
+        reason: index
+        note: "Retained HTML has a heading and 10 link-only paragraphs, with no introduction prose; the Introduction topic is separately retained."
+  - scope: us-nh/manual/2026-09-10-tanf-state-policy-manual
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-nh/manual/dhhs/fam/introduction-navigating-the-family-assistance-manual-fam
+        reason: index
+        note: "Retained HTML has a heading and 12 link-only paragraphs, with no introduction prose; the Introduction topic is separately retained, while the SRs-retained target is a separate coverage gap."
+  - scope: us-nm/regulation/2026-07-17-nm-snap-regulations
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-nm/regulation/nmac/8/139/640
+        reason: repealed
+        note: "Repealed NMAC part: the page holds a repeal notice and filing history and no operative provisions"
+      - path: us-nm/regulation/nmac/8/139/650
+        reason: repealed
+        note: "Repealed NMAC part: the page holds a repeal notice and filing history and no operative provisions"
+  - scope: us-ny/regulation/2026-07-17-ny-snap-regulations
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-ny/regulation/18-nycrr/387/refs
+        reason: empty_in_source
+        note: "Westlaw Refs page whose co_refsAnnos block is empty"
+  - scope: us-ny/regulation/2026-09-14-income-tax-regulations
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-ny/regulation/20-nycrr/151/refs
+        reason: empty_in_source
+        note: "Westlaw Refs page whose co_refsAnnos block is empty"
+      - path: us-ny/regulation/20-nycrr/152/refs
+        reason: empty_in_source
+        note: "Westlaw Refs page whose co_refsAnnos block is empty"
+  - scope: us-wa/manual/2026-07-21-wa-eaz-manual
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-wa/manual/dshs/eaz/esa-citizenship-and-alien-status-citizenship-and-immigration-status-requirements-all-programs
+        reason: index
+        note: "Selected official body contains six links to separate manual topics and no policy prose."
+      - path: us-wa/manual/dshs/eaz/esa-citizenship-and-alien-status-citizenship-and-immigration-status-requirements-specific-program
+        reason: index
+        note: "Selected official body consists only of links to food-benefit and state-cash-program topics."
+      - path: us-wa/manual/dshs/eaz/esa-citizenship-and-immigration-status-resources-desk-aids-and-links
+        reason: index
+        note: "Official body contains a revision date and two resource links, without substantive policy; linked desk aids are outside the documented HTML-manual scope."
+      - path: us-wa/manual/dshs/eaz/esa-eligibility-z-manual-ea-z-citizenship-and-immigration-status
+        reason: index
+        note: "Selected body is a nested topic-link index with no substantive policy of its own."
+      - path: us-wa/manual/dshs/eaz/esa-eligibility-z-manual-ea-z-consolidated-emergency-assistance-program-ceap
+        reason: cross_reference
+        note: "Relocation stub (\"Please see Consolidated Emergency Assistance Program (CEAP)\"); its target page is retained in the same scope"
+  - scope: us-wa/manual/2026-09-10-medicaid-state-eligibility-manual
+    run_note: docs/ingest-runs/2026-10-13-hollow-document-root-audit.md
+    nodes:
+      - path: us-wa/manual/hca/medicaid/long-term-services-and-supports-index
+        reason: index
+        note: "Selected article is an alphabetical-index purpose sentence followed by 67 topic links; the large source file mostly contains surrounding site navigation."

@@ -1,0 +1,27 @@
+version: '2026-09-14'
+documents:
+- source_id: ct-eregs-title-12-income-tax-drs
+  jurisdiction: us-ct
+  document_class: regulation
+  citation_path: us-ct/regulation/rcsa/12/income-tax
+  title: 'Regulations of Connecticut State Agencies, Title 12: Income Tax (Department of Revenue Services, sections
+    12-701(a)(1)-1 to 12-740(c)-2)'
+  source_url: https://eregulations.ct.gov/eRegsPortal/Browse/getDocument?guid=%7B80F3E757-0000-CC89-BCB7-C50B40EC8ECF%7D
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    html_drop_selectors:
+    - p:has(> a[href^='#_'])
+    section_heading_pattern: ^Sec\.\s*(?P<label>12-7\d\d[^\s]*?-\d+[a-z]?)\.?\s*(?P<heading>.*)$
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    official_publisher: Connecticut Secretary of the State, eRegulations System
+    document_subtype: administrative_code_subject_matter
+    program: individual_income_tax
+    source_discovery_group: us-ct/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_12
+    eregs_pdf_guid: '{80F3E757-0100-C329-9AB2-7F04B3D642EB}'
+    eregs_subject_matter: 12-740(a) INCOME TAX

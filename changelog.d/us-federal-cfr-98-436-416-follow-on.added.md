@@ -1,0 +1,1 @@
+Ingest the federal regulation parts the 2026-09-10 program run inventoried but did not take, each as a complete-coverage eCFR scope at as-of 2026-09-09: 45 CFR part 98 (CCDF, 73 rows), 42 CFR part 436 (Medicaid eligibility in Guam, Puerto Rico and the Virgin Islands, 87 rows) and the full 20 CFR part 416 (SSI, 622 rows), recorded on the CCDF, Medicaid and SSI agent queues.

@@ -1,0 +1,30 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-ny-tax-it-2105-i-ty2026
+  jurisdiction: us-ny
+  document_class: form
+  title: Instructions for Form IT-2105 Estimated Income Tax Payment Voucher for Individuals, tax year 2026 (IT-2105-I)
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it2105i.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ny/form/tax/ty2026/it-2105-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-02-12'
+    amounts_carried:
+    - standard deduction table 2026
+    - dependent exemption ($1,000)
+    - New York State rate schedules
+    - New York City rate schedules
+    - tax computation worksheets
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.tax.ny.gov/forms/income_estimated_forms.htm
+    discovered_via: manual-review:tax-agent-queue; index https://www.tax.ny.gov/forms/income_estimated_forms.htm (read 2026-09-13)

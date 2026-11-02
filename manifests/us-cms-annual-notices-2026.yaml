@@ -1,0 +1,206 @@
+version: 2026-09-13-medicare-annual-notices-2026
+documents:
+- source_id: us-cms-cy2026-part-a-premiums-notice
+  jurisdiction: us
+  document_class: guidance
+  title: Medicare Program; CY 2026 Part A Premiums for the Uninsured Aged and for Certain Disabled Individuals Who Have Exhausted
+    Other Entitlement (90 FR 52060)
+  source_url: https://www.govinfo.gov/content/pkg/FR-2025-11-19/html/2025-20250.htm
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-19'
+  citation_path: us/guidance/cms/part-a-premiums/2026/federal-register
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services via U.S. Government Publishing Office
+    document_subtype: federal_register_notice
+    federal_register_citation: 90 FR 52060
+    federal_register_document_number: 2025-20250
+    federal_register_publication_date: '2025-11-19'
+    federal_register_pdf_url: https://www.govinfo.gov/content/pkg/FR-2025-11-19/pdf/2025-20250.pdf
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-AB
+    determination: part_a_premiums
+- source_id: us-cms-cy2026-part-a-deductible-coinsurance-notice
+  jurisdiction: us
+  document_class: guidance
+  title: Medicare Program; CY 2026 Inpatient Hospital Deductible and Hospital and Extended Care Services Coinsurance Amounts
+    (90 FR 52075)
+  source_url: https://www.govinfo.gov/content/pkg/FR-2025-11-19/html/2025-20249.htm
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-19'
+  citation_path: us/guidance/cms/part-a-deductible-coinsurance/2026/federal-register
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services via U.S. Government Publishing Office
+    document_subtype: federal_register_notice
+    federal_register_citation: 90 FR 52075
+    federal_register_document_number: 2025-20249
+    federal_register_publication_date: '2025-11-19'
+    federal_register_pdf_url: https://www.govinfo.gov/content/pkg/FR-2025-11-19/pdf/2025-20249.pdf
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-AB
+    determination: part_a_deductible_coinsurance
+- source_id: us-cms-cy2026-part-b-premium-deductible-notice
+  jurisdiction: us
+  document_class: guidance
+  title: Medicare Program; Medicare Part B Monthly Actuarial Rates, Premium Rates, and Annual Deductible Beginning January
+    1, 2026 (90 FR 52063)
+  source_url: https://www.govinfo.gov/content/pkg/FR-2025-11-19/html/2025-20251.htm
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-19'
+  citation_path: us/guidance/cms/part-b-premium-deductible/2026/federal-register
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services via U.S. Government Publishing Office
+    document_subtype: federal_register_notice
+    federal_register_citation: 90 FR 52063
+    federal_register_document_number: 2025-20251
+    federal_register_publication_date: '2025-11-19'
+    federal_register_pdf_url: https://www.govinfo.gov/content/pkg/FR-2025-11-19/pdf/2025-20251.pdf
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-AB
+    determination: part_b_premium_deductible_irmaa
+- source_id: us-cms-2026-parts-a-b-premiums-deductibles-fact-sheet
+  jurisdiction: us
+  document_class: guidance
+  title: 2026 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet, November 14, 2025)
+  source_url: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-14'
+  citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2026/fact-sheet
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: fact_sheet
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-AB
+    determination: part_a_b_premiums_deductibles_irmaa
+- source_id: us-cms-2026-part-d-bid-information-fact-sheet
+  jurisdiction: us
+  document_class: guidance
+  title: 2026 Medicare Part D Bid Information and Part D Premium Stabilization Demonstration Parameters (CMS fact sheet, July
+    28, 2025)
+  source_url: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-part-d-bid-information-and-part-d-premium-stabilization-demonstration-parameters
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-28'
+  citation_path: us/guidance/cms/part-d-bid-information/2026/fact-sheet
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: fact_sheet
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-D
+    determination: part_d_base_beneficiary_premium
+- source_id: us-cms-2026-part-d-national-average-bid-announcement
+  jurisdiction: us
+  document_class: guidance
+  title: Annual Release of Part D National Average Bid Amount and Other Part C & D Bid Information for CY 2026 (CMS memorandum,
+    July 28, 2025)
+  source_url: https://www.cms.gov/files/document/july-28-2025-parts-c-d-announcement.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-28'
+  citation_path: us/guidance/cms/part-d-national-average-bid-amount/2026
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: annual_announcement
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-D
+    determination: part_d_national_average_bid_base_premium_irmaa
+    index_url: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-part-d-bid-information-and-part-d-premium-stabilization-demonstration-parameters
+- source_id: us-cms-2026-ma-part-d-rate-announcement
+  jurisdiction: us
+  document_class: guidance
+  title: Announcement of Calendar Year (CY) 2026 Medicare Advantage (MA) Capitation Rates and Part C and Part D Payment Policies
+    (April 7, 2025)
+  source_url: https://www.cms.gov/files/document/2026-announcement.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-04-07'
+  citation_path: us/guidance/cms/ma-part-d-rate-announcement/2026
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: annual_announcement
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-D
+    determination: part_d_defined_standard_benefit_parameters (Attachment V) and Part C rates
+    index_url: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-advantage-part-d-rate-announcement
+- source_id: us-cms-cy2026-lis-resource-limits-memo
+  jurisdiction: us
+  document_class: guidance
+  title: Calendar Year (CY) 2026 Resource and Cost-Sharing Limits for Low-Income Subsidy (LIS) (CMS memorandum, October 31,
+    2025)
+  source_url: https://www.cms.gov/files/document/cy2026-lis-resource-limits-memo.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-31'
+  citation_path: us/guidance/cms/part-d-lis-resource-limits/2026
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: annual_memorandum
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-ANN-LIS
+    determination: part_d_lis_resource_limits_cost_sharing
+- source_id: us-cms-cy2026-c-d-enrollment-disenrollment-guidance
+  jurisdiction: us
+  document_class: guidance
+  title: Medicare Advantage and Part D Enrollment and Disenrollment Guidance (CY 2026; updated August 8, 2024 and August 1,
+    2025)
+  source_url: https://www.cms.gov/medicare/enrollment-renewal/part-d-enrollment-eligibility
+  download_url: https://www.cms.gov/files/document/cy-2026-cd-enrollment-and-disenrollment-guidance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-08-01'
+  citation_path: us/guidance/cms/part-c-d-enrollment-disenrollment-guidance/2026
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: enrollment_guidance
+    program: MEDICARE
+    source_discovery_group: us/guidance/cms
+    calendar_year: '2026'
+    discovered_via: manual-review:medicare-agent-queue; needs-closure-2026-09-11 MED-F-ANN-AB/MED-F-ANN-D/MED-F-ANN-LIS/MED-F-IOM-100-18
+    closure_elements:
+    - MED-F-IOM-100-18
+    provenance_note: Pub 100-18 chapter 3 (Eligibility, Enrollment and Disenrollment) is no longer posted as a manual chapter;
+      the CMS Prescription Drug Benefit Manual page points to this standalone guidance, which CMS reissues each contract year.

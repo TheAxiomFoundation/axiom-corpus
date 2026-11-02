@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-id-tanf-state-plan-fy2026-2028
+  jurisdiction: us-id
+  document_class: policy
+  title: Idaho TANF State Plan Renewal FY2026-FY2028
+  source_url: https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=35475&dbid=0&repo=PUBLIC-DOCUMENTS
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-id/policy/acf/tanf-plan/fy2026-2028
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare (Temporary Assistance for Families in Idaho)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Idaho State Plan Renewal for TANF FY2026-FY2028, effective October 1, 2025 (Laserfiche WebLink DocView id=35475,
+      served by the repository's ElectronicFile endpoint)
+    publisher_index_url: https://healthandwelfare.idaho.gov/services-programs/financial-assistance/about-tafi
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-id/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://healthandwelfare.idaho.gov/services-programs/financial-assistance/about-tafi
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

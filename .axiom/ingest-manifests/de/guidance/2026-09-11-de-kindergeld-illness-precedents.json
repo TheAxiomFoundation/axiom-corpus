@@ -1,0 +1,78 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-11-de-kindergeld-illness-precedents.json",
+      "sha256": "98120501e691a639117012353d9b3874764dde50a53ef54ac582208b03091457"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-11-de-kindergeld-illness-precedents.json",
+      "sha256": "cb645cdb33c96563e9868759bc146eb76fdbfc4ddb5e092690231204a24ac077"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-11-de-kindergeld-illness-precedents.jsonl",
+      "sha256": "1ffd1192323fdc71ba5e81fa8dfcc8cd5ade7cbe323fd1ccda095c0afa88b9ee"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-illness-precedents/official-documents/bfh-iii-r-24-08-2011-04-07.pdf",
+      "sha256": "6439d45600fb8f471153ddd9b0e819ad42edde10a788e56a43af124a5415dad5"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-illness-precedents/official-documents/bfh-iii-r-44-14-2017-01-19.pdf",
+      "sha256": "e7d59f4e58eb9fca91a441f9e81f6d3eb45865f404f2d344a4588689bccec444"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-illness-precedents/official-documents/bfh-iii-r-44-17-2019-11-27.pdf",
+      "sha256": "ea39ab05e23d041900c8721a54469b1f27cb2e6c1146ff9f3f693536bccfd92f"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-illness-precedents/official-documents/bfh-iii-r-65-18-2019-11-27.pdf",
+      "sha256": "fbb28287ccbc9feb7f504e22f6bc7592b50084c1e9b5c7849794479a7ffb8060"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-illness-precedents/official-documents/bfh-iii-r-70-11-2012-09-27.pdf",
+      "sha256": "1612ae48208c19941b2b0af29af0db033121e3aa28dc1f7626315238567e7f9d"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-illness-precedents/official-documents/bfh-vi-r-31-14-2015-06-18.pdf",
+      "sha256": "e5c347c4968b7a4903bfc7e27d9ed6bddeb3ab92d0a9f7edea0e6ca3a16c7649"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4618a3b768952281b9988d8a13a88effacdeb83",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-de-kindergeld-illness-precedents --manifest manifests/de-kindergeld-illness-precedents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-10T22:24:34.909942+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-11-de-kindergeld-illness-precedents-audit.json",
+      "sha256": "163d207049b7802714c14dafa1fa1dcdbf93ea7d3401d07d68f496997379fd92"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-11-de-kindergeld-illness-precedents.md",
+      "sha256": "338093570f029f0f64e4f4ed23c588c39d554bf5a3f00859da34c75d0dc11b5e"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5i55tT/Ju3rIfQiz/IE+sx8rPF7hkYoHEQG1VRjWY0W+NIqvIUU8EIj6xIAPOcZp/bUAIMbXM2P9wlI0QJIKBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-illness-precedents"
+}

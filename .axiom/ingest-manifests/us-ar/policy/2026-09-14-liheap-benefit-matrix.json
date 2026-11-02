@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "6c8cdcb6457362b391a301557cdf91d1c64cdb12f0ae45d56d3ba1cf8a808596"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/policy/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "0716c8a886aca3168bc8d3169170594de84955cd87ec40be7b79d222f40d71eb"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/policy/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "7b47a5af98f48cfdc8248b2eb1dd032766ef55da5022e0e05a1ed437d87e856a"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-aeo-liheap-benefit-matrix-ffy2026-electric.pdf",
+      "sha256": "59e5cfcfe6f0c218f0e4725f6a9df8101e04605660b7fa0f9e1226a1c15935be"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-aeo-liheap-benefit-matrix-ffy2026-eligibility-chart.pdf",
+      "sha256": "db2ba8c5b21ff7027c0184d50296a7d1f5cf4bcc74a512a242fc5ade9ff3c7c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-aeo-liheap-benefit-matrix-ffy2026-fuel-oil.pdf",
+      "sha256": "4a1453e8c9507d7429175245b86240745c7608a5b839ac9977bc7847a626acc5"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-aeo-liheap-benefit-matrix-ffy2026-natural-gas.pdf",
+      "sha256": "0b5f687ef81dceda1e6bca5dda8bfbef1eebfc9c1b02179f9c213e0cf695bc9e"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-aeo-liheap-benefit-matrix-ffy2026-other-wood-pellets.pdf",
+      "sha256": "3a25b86823d47a6a28be4cf8a4be50ba76710695029564c30e4bcebc768148e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-aeo-liheap-benefit-matrix-ffy2026-propane.pdf",
+      "sha256": "1dd3922159af6a0dd7ab3de0872aedb66f646fd2e34ff82271a27018bf885289"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-ffy2026-electric.pdf",
+      "sha256": "59e5cfcfe6f0c218f0e4725f6a9df8101e04605660b7fa0f9e1226a1c15935be"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-ffy2026-eligibility-chart.pdf",
+      "sha256": "db2ba8c5b21ff7027c0184d50296a7d1f5cf4bcc74a512a242fc5ade9ff3c7c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-ffy2026-fuel-oil.pdf",
+      "sha256": "4a1453e8c9507d7429175245b86240745c7608a5b839ac9977bc7847a626acc5"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-ffy2026-natural-gas.pdf",
+      "sha256": "0b5f687ef81dceda1e6bca5dda8bfbef1eebfc9c1b02179f9c213e0cf695bc9e"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-ffy2026-other-wood-pellets.pdf",
+      "sha256": "3a25b86823d47a6a28be4cf8a4be50ba76710695029564c30e4bcebc768148e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-09-14-liheap-benefit-matrix/official-documents/us-ar-liheap-ffy2026-propane.pdf",
+      "sha256": "1dd3922159af6a0dd7ab3de0872aedb66f646fd2e34ff82271a27018bf885289"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-ar-liheap-benefit-matrix-attachments.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T16:12:16.636386+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OaD3SmbryAY8wPiUhiRv5eFXFGbyYpbvVbI82CsHSWKYvJ4gyTW7OzLprSqcM2KZAgbNFjL1GMlSEfwR7q+LBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

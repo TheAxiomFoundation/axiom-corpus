@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa.json",
+      "sha256": "abdc187ee51f0f030580b19ae66cee1f4b282d402dcfb16160708acbae57f1e8"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa.json",
+      "sha256": "abc5ebac9aaca79ad07656f8d9f5eebe28b2a37d59df5834a649bf235cf9884c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa.jsonl",
+      "sha256": "068748af43f42ca9f1bd76c8b31a87340d5a4b5b1203835573cefcdcae2d63fd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-eta-3240-2026.pdf",
+      "sha256": "d3b40565a203f0022678a4728eb96cb5037f630dcefd771378e892d15e828e4a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-news-releases-2023-applications-now-being-accepted-working-families-tax-credit.html",
+      "sha256": "b264ad3ca8a49bed5aa4a6280ecf4319f5389fb08043f0a13f8c2209f7a3a782"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-news-releases-2024-tax-year-2023-applications-now-being-accepted-working-families-tax-credit.html",
+      "sha256": "a9fc5e4b3d83e0bf78075b75f009fd6da56018d8a2b7484b2c76452c357aaba1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-news-releases-2025-working-families-tax-credit-application-window-opens-feb-1.html",
+      "sha256": "1cd4a244600e5fcb4367d62e29270420ec6f9247f42529cb11a2c78b8fcd5fa2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-news-releases-2026-working-families-tax-credit-application-window-opens-feb-1.html",
+      "sha256": "864d01a9243c7b7e4d96e44f68e03d76b2154bef5b6a1a3d0c62aed7ac767686"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-tax-topics-2021-tax-legislation.html",
+      "sha256": "96797b2c9d4f2523fb73646d0ecc24a38df8b3643772b15e4472b1cc35db1a17"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-income-tax-guidance-wa/official-documents/us-wa-guidance-dor-working-families-tax-credit-eligibility.html",
+      "sha256": "b5c9389305177dfdcfbacc55f8d4d311a4306885d8741acfcb4821db49306d06"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 70,
+    "missing_count": 0,
+    "provision_count": 70,
+    "source_count": 70
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T18:00:15.675984+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "G9RkmcWH99/4DZP0SDzvzTWZw3ef6T6Q2ADtAzzVzyu76qGN4bcabYgv+3h3ykHIASPfjnTMkyAJpO+L7x8ACA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-wa"
+}

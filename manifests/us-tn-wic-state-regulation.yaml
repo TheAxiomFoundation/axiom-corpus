@@ -1,0 +1,43 @@
+version: 2026-09-15-wic-state-regulation
+documents:
+- source_id: tn-doh-rules-1200-15-02-wic
+  jurisdiction: us-tn
+  document_class: regulation
+  title: Rules of the Tennessee Department of Health, Bureau of Health Services Administration, Nutrition Services Section, Chapter 1200-15-02 Special Supplemental Nutrition Program for Women, Infants and Children
+  source_url: https://publications.tnsosfiles.com/rules/1200/1200-15/1200-15-02.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2004-09-14'
+  citation_path: us-tn/regulation/1200-15/02
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^1200-15-2-\.(?P<num>\d{2})\s+(?P<heading>[A-Z][A-Z0-9 ,'&/()-]*?)\.(?:\s+(?P<body>\S.*))?\s*$
+    section_label_template: '{num}'
+    heading_continuation_pattern: (?!)
+    drop_lines:
+    - SPECIAL SUPPLEMENTAL NUTRITION PROGRAM FOR WOMEN,
+    - INFANTS AND CHILDREN
+    - CHAPTER 1200-15-2
+    drop_line_patterns:
+    - ^\(Rule 1200-15-2-\.\d{2}, continued\)\s*$
+    - ^SPECIAL SUPPLEMENTAL NUTRITION PROGRAM FOR WOMEN,\s+CHAPTER 1200-15-2\s*$
+    - ^[A-Z][a-z]+, \d{4} \(Revised\)(\s+\d{1,2})?\s*$
+    - ^\d{1,2}\s*$
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Health, Bureau of Health Services Administration, Nutrition Services Section (Tennessee Secretary of State official compilation of rules)
+    document_subtype: administrative_rules_chapter
+    program: WIC
+    source_discovery_group: us-tn/regulation/wic
+    discovered_via: manual-review:wic-agent-queue batch 4 retry; needs-closure-2026-09-14 wic_s31; Secretary of State chapter index https://publications.tnsosfiles.com/rules/1200/1200-15/1200-15.htm read 2026-09-15
+    index_url: https://publications.tnsosfiles.com/rules/1200/1200-15/1200-15.htm
+    rule_chapter: '1200-15-02'
+    sos_revision: September, 2004 (Revised)
+    expression_date_note: the chapter's latest amendment (filed July 1, 2004) is effective September 14, 2004 per the rule history lines; the PDF footer prints "September, 2004 (Revised)" and the file carries no date suffix on the SOS index (HTTP Last-Modified 2021-12-03)
+    closure_elements:
+    - wic_s31
+    access_note: publications.tnsosfiles.com answers HTTP 403 to the plain extractor client and serves the chapter index and PDF to the browser-impersonated client, the fallback the released TennCare CoverKids rules scope (us-tn/regulation/2026-09-10-chip-state-eligibility-manual) already documents for this host
+    agency_repost_url: https://www.tn.gov/content/dam/tn/health/documents/1200-15-02.pdf
+    agency_repost_note: tn.gov/health/wic.html links the same chapter as "WIC State Regulations"; the Secretary of State compilation is the official publisher and is the copy taken

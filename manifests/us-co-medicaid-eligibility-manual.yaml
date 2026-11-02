@@ -1,0 +1,30 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-co-medicaid-10-ccr-2505-10-8-100
+  jurisdiction: us-co
+  document_class: manual
+  title: 'Colorado Medical Assistance Rules: 10 CCR 2505-10 Section 8.100 Eligibility, Provider Screening, NPI'
+  source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2918&deptID=7&agencyID=69&deptName=Department
+    of Health Care Policy and Financing&agencyName=Medical Services Board (Volume 8; Medical Assistance, Children's Health
+    Plan)&seriesNum=10 CCR 2505-10 8.100
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Health Care Policy and Financing, Medical Services Board
+    document_subtype: eligibility_rule_pdf
+    program: MEDICAID
+    manual: Colorado Medical Assistance Eligibility Rules (10 CCR 2505-10 Section 8.100)
+    manual_index_url: https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=7&deptName=2505,1305%20Department%20of%20Health%20Care%20Policy%20and%20Financing&agencyID=69&agencyName=2505%20Medical%20Services%20Board%20(Volume%208;%20Medical%20Assistance,%20Children's%20Health%20Plan)
+    source_discovery_group: us-co/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.sos.state.co.us/CCR/NumericalCCRDocList.do?deptID=7&deptName=2505,1305%20Department%20of%20Health%20Care%20Policy%20and%20Financing&agencyID=69&agencyName=2505%20Medical%20Services%20Board%20(Volume%208;%20Medical%20Assistance,%20Children's%20Health%20Plan)
+    extraction_granularity: pdf_page
+    official_publisher: Colorado Secretary of State
+    code_rule: 10 CCR 2505-10 8.100
+    rule_version_id: '12656'
+    rule_effective_date: '2026-08-14'
+  download_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12656&fileName=10%20CCR%202505-10%208.100

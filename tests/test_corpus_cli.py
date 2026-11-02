@@ -1,7 +1,7 @@
 import json
 import subprocess
 from base64 import b64encode
-from zipfile import ZipFile
+from pathlib import Path
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
@@ -45,11 +45,6 @@ SAMPLE_USLM_CLI = """
   </title>
 </uscDoc>
 """
-SAMPLE_USLM_CLI_OFFICIAL = SAMPLE_USLM_CLI.replace(
-    "<uscDoc ",
-    '<uscDoc xmlns="http://xml.house.gov/schemas/uslm/1.0" ',
-    1,
-)
 
 
 def _git(repo, *args):
@@ -1170,8 +1165,7 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
     )
 
     def fake_extract(*args, **kwargs):
-        assert kwargs["source_payload"].source_path == source_xml
-        assert "source_xml" not in kwargs
+        assert kwargs["source_xml"] == source_xml
         assert kwargs["allowed_citation_paths"] is None
         return UscExtractReport(
             title="26",
@@ -1206,66 +1200,6 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
     assert '"provisions_written": 2' in output
 
 
-def test_extract_usc_archive_cli(tmp_path, capsys, monkeypatch):
-    import axiom_corpus.corpus.cli as cli
-
-    base = tmp_path / "corpus"
-    source_archive = tmp_path / "xml_usc26@119-102.zip"
-    with ZipFile(source_archive, "w") as archive:
-        archive.writestr("official/usc26.xml", SAMPLE_USLM_CLI_OFFICIAL)
-    coverage = ProvisionCoverageReport(
-        jurisdiction="us",
-        document_class="statute",
-        version="2026-04-29-title-26",
-        source_count=2,
-        provision_count=2,
-        matched_count=2,
-        missing_from_provisions=(),
-        extra_provisions=(),
-    )
-
-    def fake_extract(*args, **kwargs):
-        assert kwargs["source_payload"].source_path == source_archive
-        assert kwargs["source_payload"].archive_member == "official/usc26.xml"
-        assert "source_xml" not in kwargs
-        assert "source_archive" not in kwargs
-        assert "archive_member" not in kwargs
-        assert kwargs["allowed_citation_paths"] is None
-        return UscExtractReport(
-            title="26",
-            title_count=1,
-            section_count=1,
-            provisions_written=2,
-            inventory_path=base / "inventory/us/statute/2026-04-29-title-26.json",
-            provisions_path=base / "provisions/us/statute/2026-04-29-title-26.jsonl",
-            coverage_path=base / "coverage/us/statute/2026-04-29-title-26.json",
-            coverage=coverage,
-            source_paths=(
-                base / "sources/us/statute/2026-04-29-title-26/olrc/xml_usc26@119-102.zip",
-            ),
-        )
-
-    monkeypatch.setattr(cli, "extract_usc", fake_extract)
-
-    exit_code = main(
-        [
-            "extract-usc",
-            "--base",
-            str(base),
-            "--version",
-            "2026-04-29",
-            "--source-archive",
-            str(source_archive),
-            "--archive-member",
-            "official/usc26.xml",
-        ]
-    )
-    output = capsys.readouterr().out
-
-    assert exit_code == 0
-    assert '"source_file_count": 1' in output
-
-
 def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
@@ -1284,8 +1218,7 @@ def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
     )
 
     def fake_extract(*args, **kwargs):
-        assert kwargs["source_payload"].source_path == source_xml
-        assert "source_xml" not in kwargs
+        assert kwargs["source_xml"] == source_xml
         assert kwargs["allowed_citation_paths"] == {"us/statute/26/32"}
         return UscExtractReport(
             title="26",
@@ -1318,6 +1251,60 @@ def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
 
     assert exit_code == 0
     assert '"provisions_written": 1' in output
+
+
+def test_extract_usc_cli_prior_release_point_passes_through(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "usc26.xml"
+    source_xml.write_text(SAMPLE_USLM_CLI)
+    download_url = "https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/x.zip"
+    coverage = ProvisionCoverageReport(
+        jurisdiction="us",
+        document_class="statute",
+        version="2026-09-23-vintage-title-26",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["prior_release_point"] is True
+        assert kwargs["source_download_url"] == download_url
+        return UscExtractReport(
+            title="26",
+            title_count=1,
+            section_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory/us/statute/2026-09-23-vintage-title-26.json",
+            provisions_path=base / "provisions/us/statute/2026-09-23-vintage-title-26.jsonl",
+            coverage_path=base / "coverage/us/statute/2026-09-23-vintage-title-26.json",
+            coverage=coverage,
+            source_paths=(base / "sources/us/statute/2026-09-23-vintage-title-26/uslm/usc26.xml",),
+        )
+
+    monkeypatch.setattr(cli, "extract_usc", fake_extract)
+    common = [
+        "extract-usc",
+        "--base",
+        str(base),
+        "--version",
+        "2026-09-23-vintage",
+        "--source-xml",
+        str(source_xml),
+        "--section",
+        "32",
+        "--prior-release-point",
+    ]
+
+    assert main(common) == 2
+    assert "--prior-release-point requires --source-url" in capsys.readouterr().out
+
+    assert main([*common, "--source-url", download_url]) == 0
+    assert '"provisions_written": 1' in capsys.readouterr().out
 
 
 def test_extract_uk_legislation_cli(tmp_path, capsys, monkeypatch):
@@ -3054,6 +3041,8 @@ sources:
       timeout_seconds: 90
       request_attempts: 5
       workers: 8
+      include_subunits: false
+      include_publication_note: false
 """
     )
 
@@ -3066,6 +3055,8 @@ sources:
         assert kwargs["timeout_seconds"] == 90.0
         assert kwargs["request_attempts"] == 5
         assert kwargs["workers"] == 8
+        assert kwargs["include_subunits"] is False
+        assert kwargs["include_publication_note"] is False
         return StateStatuteExtractReport(
             jurisdiction="us-wi",
             title_count=1,
@@ -3104,6 +3095,62 @@ sources:
     assert exit_code == 0
     assert payload["completed_count"] == 1
     assert payload["provisions_written"] == 1
+
+
+def test_current_wisconsin_manifest_keeps_section_grain(tmp_path, capsys, monkeypatch):
+    """The whole-state 2026-05-10 Wisconsin entry sets no include_subunits option.
+
+    Rerunning it must keep the section grain it was released with, so the
+    option defaults to False rather than emitting child rows under the same
+    version.
+    """
+    import axiom_corpus.corpus.cli as cli
+
+    manifest = Path(__file__).resolve().parents[1] / "manifests/state-statutes.current.yaml"
+    base = tmp_path / "corpus"
+    seen: dict[str, object] = {}
+
+    def fake_wisconsin(*args, **kwargs):
+        seen.update(kwargs)
+        return StateStatuteExtractReport(
+            jurisdiction="us-wi",
+            title_count=1,
+            container_count=0,
+            section_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory/us-wi/statute/2026-05-10.json",
+            provisions_path=base / "provisions/us-wi/statute/2026-05-10.jsonl",
+            coverage_path=base / "coverage/us-wi/statute/2026-05-10.json",
+            coverage=ProvisionCoverageReport(
+                jurisdiction="us-wi",
+                document_class="statute",
+                version="2026-05-10",
+                source_count=1,
+                provision_count=1,
+                matched_count=1,
+                missing_from_provisions=(),
+                extra_provisions=(),
+            ),
+            source_paths=(base / "sources/us-wi/statute/2026-05-10/chapter.html",),
+        )
+
+    monkeypatch.setattr(cli, "extract_wisconsin_statutes", fake_wisconsin)
+
+    exit_code = main(
+        [
+            "extract-state-statutes",
+            "--base",
+            str(base),
+            "--manifest",
+            str(manifest),
+            "--only-source-id",
+            "us-wi-statutes",
+        ]
+    )
+    capsys.readouterr()
+
+    assert exit_code == 0
+    assert seen["include_subunits"] is False
 
 
 def test_extract_state_statutes_batch_dry_run_checks_california_source_zip(tmp_path, capsys):
@@ -3307,6 +3354,47 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
     assert payload["ok"] is True
     assert payload["error_count"] == 0
     assert payload["warning_count"] == 0
+    # Several selectors in one pass print the same report as one run each.
+    second = release_dir / "test-release-v2.json"
+    second.write_text(
+        json.dumps(
+            {
+                "name": "test-release-v2",
+                "scopes": [
+                    {"jurisdiction": "us-co", "document_class": "policy", "version": "2026-04-30"},
+                    {"jurisdiction": "us-co", "document_class": "policy", "version": "missing"},
+                ],
+            }
+        )
+    )
+    singles = []
+    for path in (release_path, second):
+        code = main(["validate-release", "--base", str(store.root), "--release", str(path)])
+        singles.append((code, json.loads(capsys.readouterr().out)))
+    exit_code = main(
+        [
+            "validate-release",
+            "--base",
+            str(store.root),
+            "--release",
+            str(release_path),
+            "--release",
+            str(second),
+            "--workers",
+            "2",
+        ]
+    )
+    out = capsys.readouterr().out
+    decoder = json.JSONDecoder()
+    payloads, index = [], 0
+    while index < len(out.strip()):
+        payload, index = decoder.raw_decode(out, index)
+        payloads.append(payload)
+        while index < len(out) and out[index].isspace():
+            index += 1
+    assert payloads == [payload for _, payload in singles]
+    assert [code for code, _ in singles] == [0, 2]
+    assert exit_code == 2
 
 
 def test_resolve_encoded_paths_supports_monorepo_and_legacy_layouts(tmp_path):

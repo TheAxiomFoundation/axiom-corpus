@@ -1,0 +1,23 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-ut-dws-eligibility-manual-table-2-fy2026
+  jurisdiction: us-ut
+  document_class: manual
+  title: 'Eligibility Manual Table 2: SNAP Monthly Income Limits and Maximum Assistance Amounts (Table Effective October 1,
+    2025)'
+  source_url: https://jobs.utah.gov/infosource/eligibilitymanual/Tables,_Appendicies,_and_Charts/Tables,_Appendicies,_and_Charts/Table_2_-_SNAP_Monthly_Income_Limits_and_Maximum_Assistance_Amounts.htm
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-ut/manual/dws/eligibility-manual/tables/table-2-snap-monthly-income-limits/fy2026
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services (Eligibility Manual)
+    program: SNAP
+    source_discovery_group: us-ut/manual
+    index_url: https://jobs.utah.gov/infosource/eligibilitymanual/
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: manual_table
+    fiscal_year: '2026'

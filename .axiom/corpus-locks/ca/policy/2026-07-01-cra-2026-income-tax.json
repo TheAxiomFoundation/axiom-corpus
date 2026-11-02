@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "ca",
+  "document_class": "policy",
+  "version": "2026-07-01-cra-2026-income-tax",
+  "files": [
+    {"path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-income-tax.json", "sha256": "0bd0cc93041ba4ce47c85bd173a94804ae1b2ec569f066ba0c28d3c34aed8358", "size": 325, "git_blob": "f688f743b36a3545890770338222a10b51356447"},
+    {"path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-income-tax.json", "sha256": "255c4fd945b7835f1cf811481e09519f208fcbc52a76aa333a9a91decac3bd55", "size": 1561, "git_blob": "e490d39e2947b703fff0905c21234111d321de9b"},
+    {"path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-income-tax.jsonl", "sha256": "e11dad21be4953bf212ef16ef73b0c6f44a8d11824b7ae29bfed28bb2be6c7e7", "size": 186420, "git_blob": "00743f2d878f2b6289790ff83f6e29d4568ed7a7"},
+    {"path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-tax-rates-current-year.html", "sha256": "d0913edef2c9a14ba68b6a3ecb8615cc5e632a7d65c81f5f0c9b0ad1f23dab39", "size": 63936, "git_blob": "34bc4b344849ccdded7aa347bb4909be775ff537"},
+    {"path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-t4127-payroll-deductions-formulas.html", "sha256": "a383303be8ecf3c055ec58cceb48fc0f61f552d4d14e3255b8c3758e3ca3b0de", "size": 324042, "git_blob": "031fcdbf55ae8230449c058e5c3ddee7a752a0dd"},
+    {"path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/reasoning/cra-2026-federal-income-tax.txt", "sha256": "65244fb6f1d9b0eed870dd9af526e70e4cf8d284742ae6c7ff93a132785f6ac5", "size": 2488, "git_blob": "9ad83afee6622f87d382addfbf79b17a3e36d78b"}
+  ]
+}

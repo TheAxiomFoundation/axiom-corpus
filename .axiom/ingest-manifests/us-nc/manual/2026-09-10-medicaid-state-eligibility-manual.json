@@ -1,0 +1,641 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "f5338162bd8965560e6a2d2bd4faec710d851eab14b1e5cb68c8547613706fa4"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "d31255845f1963736f479d49b439be9d93a132d81b1731377cd05b2bf685eff3"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "3f48541c7ec5477f67f3416e50cc9e1ada7ae6bed0d1accbbb57af24e7b27043"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-abd-adult-medicaid-table-of-contents.pdf",
+      "sha256": "fdbd999bc409a2a46879d6c8bfafdbf5b8d9dff1d0b81674318f71bc8f3be4c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-basic-medicaid-eligibility-requirements.pdf",
+      "sha256": "9eab5a5ed5af5a4a16c2596dfe08d5c0156b3503cc38cbb8f1557c35ff82a3c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-fcm-family-and-children-s-medicaid-table-of-contents.pdf",
+      "sha256": "8c197cbfaa191ef15245551d1821a895bb9e00d3f0ad1a5e50a74fd4273126e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-1000.pdf",
+      "sha256": "e7325163c9a1db1818980f65d6a33d57115d0361ad02566c4f0205e45054579b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-1100.pdf",
+      "sha256": "ef9ec8aac1b80d74a05c6a2beb39692c7fa4eba2317785bab45440da4dff4cca"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-200.pdf",
+      "sha256": "fec4f0eec19b10b991de04dead6115ff723626b560e9ff29c99150f11bdf0f38"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2000.pdf",
+      "sha256": "12ce4f5877294d96877604b9ad1541f0eb8c0e9c8c48d11f0af7c8c4e314cfeb"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2100.pdf",
+      "sha256": "abe305b451f1ac13f5479a87e03acdbe560e03bba5164570ecf504f8702ab029"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2110.pdf",
+      "sha256": "3ddfe801296fdb8d11ceb9bf82144e828d68d196da107a474697e5fd1f466567"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2120.pdf",
+      "sha256": "66220e96c8f862f1afaf29210f293d7e79d4a1636ecd12d2b5cf7477cec2cd61"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2130.pdf",
+      "sha256": "bdac14ca836084920bb62ff54346ef0518be131f11ec39d1fdbd4d9c69676ae9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2140.pdf",
+      "sha256": "2ad34ea7b8f557110918abb35cbabb23dd3ad39cc2b2785fb0f2ad83fca5a9f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2150.pdf",
+      "sha256": "e7296fa9862ce528d7fd603b505c95c5d641a7d5eb7ec147e9cbf31bd216a04a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2160.pdf",
+      "sha256": "c24e0b75cdc8d5a830e9f84794bf6a915c41cda5e558357b5ba6053c58315878"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2170.pdf",
+      "sha256": "0758fca075df82131fb76d0916bd692fa66db9047834e73f373769680ccb83bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2180.pdf",
+      "sha256": "41c4a2e68db59f1811229f4642f6a6d7b0f9df0d636b082ea8722a0204ffb334"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2220.pdf",
+      "sha256": "a6cbe65bb03ab6602a7113eedfda911385dd29b69bf8e4ae8223d7f8c4009d56"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2221.pdf",
+      "sha256": "11f98b8c129099c2377bedb28ae1606b4d51368e2a38e8c522646343e81d8317"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2230.pdf",
+      "sha256": "7329c4bf6092489a15ec9dcb9db90fe2feb224a6a5c626fd89905413d99be518"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2231.pdf",
+      "sha256": "1b16d6c7086928310eca091a54ce206ca614214a6418d579fa7d8a4a56bc4b9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2240.pdf",
+      "sha256": "b4c89276392da678bef80f880f89f97e5ad4ac859b60f301a39eb84991830796"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2242.pdf",
+      "sha256": "dbeceb623d69e5c4075f7731020012489d7f629009fb6efb259aa5b134f459d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2245.pdf",
+      "sha256": "944364635f9ac1083bc19506ac62a53277647ec2dbaeefb76583461b681362e7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2250.pdf",
+      "sha256": "c7b770c7a8b21d8b4080d8ce100a77581fe1bf1ec085aacff7f126d0533280aa"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2251.pdf",
+      "sha256": "ee48c9eeb4995cf29994a38e42dadcecc459b1f2cb7c3e4db387d77dbbf87cd8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2252.pdf",
+      "sha256": "750757eece7a3248d4a0967a7bc851375008298b611627233154a048fbdd7402"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2260.pdf",
+      "sha256": "ce85d9e230cb85e0c7d0197b3bdf6904adcf0896c51cde751cfd7468fb478c81"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2261.pdf",
+      "sha256": "5c8c7f7acb67fb7306e82324bb2e6fa3a3ff80e18ab1c7dc950a99d2e85167bc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2262.pdf",
+      "sha256": "64d52f342b48b866f62745e089350fdb060e9e9c223156b1254eca1c8d89cc16"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2270.pdf",
+      "sha256": "cbad89cbd8fcb96e64df3e04687861b8104958dc392a2cc21e2c71899c6ed58c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2275.pdf",
+      "sha256": "6ff4c126dc389c3858742811dc97d6ebbb2db403abb849f8021b3e1f60135821"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2280.pdf",
+      "sha256": "bc4b75bbe1bce8c084291276b942bf7f6bb7e2ef33760af4016d6d9b88c1e472"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2282.pdf",
+      "sha256": "4456c8160cf7949abf83b51ec62fe1654e155cc880ae3f6909e242e20b6a5755"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2283.pdf",
+      "sha256": "3c0a7204be26ef30f09ef68c8a1500e32537505e434cc3d2b5f15772a96a85c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2284.pdf",
+      "sha256": "699036e871eadee38591ed9a49661030c0307b01666515447ec6a06cb7facb9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2285.pdf",
+      "sha256": "ecd35acbd3d45d8031c50f10ce2cdb3a45ee6a0a8a7713a691394f9e08c40861"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2290.pdf",
+      "sha256": "b123d864b96955fdc0b81d0e550f314eeca149d2b954b67bbcd3f6e0865ecd0d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2295.pdf",
+      "sha256": "e6dca9690911d8f610080ba6cefca7758cc3598db8889355eed4be9b90b2b016"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2296.pdf",
+      "sha256": "ccda395947291b741fbda691541469e564d25e11b4267144f421d255404d3a2f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2300.pdf",
+      "sha256": "531b769ca8370cb12a6601e7727a574d90a0a402f5b863c1b51870f531bccbb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2301.pdf",
+      "sha256": "13ccd949824ca9aaf07e890423bfb7b934036142b80dd6e6f742a4f7ea2e9082"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2302.pdf",
+      "sha256": "52cad847115f6c7f39b0af726b51a3992f14b5996ce9e34bf4c1ddd561135699"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2305.pdf",
+      "sha256": "cf7acc4a547401103074615cda19a165b163e03ddf8dff4468d57584341e1eb3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2306.pdf",
+      "sha256": "379715d43a79a874fedb60134365596bfd87153d8071bb77d9ce12ce749efd9b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2309.pdf",
+      "sha256": "8304d1c85daadb4f05678b55c8fb676ac2038a4ef61281adc0ec6f6bcbbf0d44"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2310.pdf",
+      "sha256": "dcc7caea835b309c3e135f14be46146df250654ebfdb91f741887d9ff1c477d3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2311.pdf",
+      "sha256": "8d95a698ffad877f8dc67e41f637441ebbdecf8f15c7b0c3f5bc577b635a4737"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2312.pdf",
+      "sha256": "4c2783ebf767bc97f8f3cad8d764dec58563198e828be617dd567735f4fc819e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2320.pdf",
+      "sha256": "76df4edbcb4240e61d9be937942d2fbfa9bfdc01f5eece84a65bbcaba5202440"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2321.pdf",
+      "sha256": "c11929193ac5a15f7692fbd0798909045179abcffce83a145b11c18d123fd268"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2340.pdf",
+      "sha256": "ffeee3db342c7e21e5a0b98ec48fefb8f05766f3cb86d49d23977ddc5dd60fa7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2350.pdf",
+      "sha256": "16417f3704b54ad4072ac733b0bd75d0d149079fa20116eb9f3008dc09f84d96"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2352.pdf",
+      "sha256": "6d0f1f09a96caac2fc1d21116650cecdd09334f96e5cfa3f8cb2304336433570"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2355.pdf",
+      "sha256": "a1189614b50a70ae8f02d2d7290b5b1403d00a0af3c1fd8d5b0c8f8c36233b28"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2360.pdf",
+      "sha256": "b87ddf818c07150e9f7eebeafa84618a24a5868267dc202ae133241543f6ccda"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2375.pdf",
+      "sha256": "12937cc4a17e8f27eaca980cf4e6bca191cc8898fddb8156deb3918eac8354a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2380.pdf",
+      "sha256": "110d9d95320d6d7e3184f798089e1d83070eb0036e79ce4ee7b0f5db6ea7b74f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2395.pdf",
+      "sha256": "b86176ba1e178d974065f0cc5f9b05c0481634f3cdadc179c487071cb5856d57"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2400.pdf",
+      "sha256": "ff76c2a7594130541e721a2b7265df254092fe9e3bc62127bd7b5f9903fa6bc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2410.pdf",
+      "sha256": "72bdbdb8dba21e75954d685c86f7927cb9c348513310780ebad6d75b848d0cf3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2420.pdf",
+      "sha256": "a30d3bf799f4b90b9e381f8cb00e86ebbcadb808463db8dce18fbde072c78869"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2425.pdf",
+      "sha256": "2baa72e08c34b68403abb21c6684a422efcf2a6b98b8a4478d25521b38f1c3f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2430.pdf",
+      "sha256": "5974ad4716fe9b487081f25307b6a469d1cda5edea34e962e47f8864e47ba4e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2440.pdf",
+      "sha256": "d0419d8279b09b0473e8ae0459717dab07f5cc9aaebeb9683364a2d908d11ada"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2450.pdf",
+      "sha256": "29b54ef4b47ec9d4d2577c0e769996bd59c3ba9ca285d7f2c157732a28616bde"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2500.pdf",
+      "sha256": "c2ae5d1130e7cb380c398a081a1e76866dc2b4106eb15edf9bdc3e0b63bf19ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2504.pdf",
+      "sha256": "ab16bcb26a90d11899c25f0fcbcfb3dce6f35dbab570aefccffb14ea363a7c8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2505.pdf",
+      "sha256": "d7a523c7e220ad74705bd7f038fd9e425132c0c78505edf221197153e894a69f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2506.pdf",
+      "sha256": "fa991aa238e54e477065d85543899ece273e3b0462915da8f5e172755405b9c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2507.pdf",
+      "sha256": "e5edc812a0cccdb2b1aa893565fdd502751c5c4b3dcd20062b9272e7daed73e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2510.pdf",
+      "sha256": "8d964c6c34069c9518f942b55980e88a975f57c9aab0f1dda5de56785ef6f2bc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2525.pdf",
+      "sha256": "19d960565d1bd240443b2e34979f3ddfa295226e696e006c2fbf6126cf2e2ca1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2531.pdf",
+      "sha256": "5362b7989880895fe81b4540fdd2784612f6cc2c8931f95edcf3c36ad1227643"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2900.pdf",
+      "sha256": "4b64243c21008a9133100d0def6b528f64a02be6caf17e0a06d4b27917553542"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2905.pdf",
+      "sha256": "2fcef90792caf5e9517bbf6b0f79ca53886e39bf75ca5b9a8d2130b2187b5db9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2910.pdf",
+      "sha256": "cb6b8efae900771b83ca438e7460578493339c494dd0cc38e41572b69c69f156"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2930.pdf",
+      "sha256": "8cf3f91911b70450d6b35778fa15a6d49ca977cf745345247ca5a2280094d1cd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-2940.pdf",
+      "sha256": "c507ac5c10b2c2aaede20d9769707696a9ab06c84632be550b2f61b022465ea7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-300.pdf",
+      "sha256": "33353b84b67abf41bb7e80dccfbae17acf3804f12de791d7dee2056e3290cd46"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3100.pdf",
+      "sha256": "49e7c2b9a0695745d160bda889268a76b7b4635cfefcbc2e40af3f544eb0c0b5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3110.pdf",
+      "sha256": "bf38e9656ef40aac403029fcef8522ff42d6bd20ef0306a26bf132cfcb39d28d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3120.pdf",
+      "sha256": "1f58d2182e51b136758a0c4e28f9112c98aa79f8d9a460684fd28e35f4ca6ca4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3185.pdf",
+      "sha256": "cf27d04ef330610d7d2c230851de565fc75e12d6079dc4647bc66188c90790b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3190.pdf",
+      "sha256": "915f329ea10f7e732d9041c7db6f25e11073e8ec484c058d7e23fd0656e91c7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3200.pdf",
+      "sha256": "a5f1e4aea72249f08b810ec68c0f3ad902fd85248ff896cf8aca62945cce9917"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3205.pdf",
+      "sha256": "d8bb8f0bbbcf9784eaef495b93380c79b2be545ee0d7b6a4597a054d07e5419b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3207.pdf",
+      "sha256": "0ea00412f2ec0e553949db140666032c9ef6f8f3373be4270771a6a677d67eb3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3217.pdf",
+      "sha256": "4c35530293410a4fc54a05faf3405f2fd896680089e391e2071fc97741915845"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3225.pdf",
+      "sha256": "9bab758e591d74849094ac0e422cb63f68ed87b12c1efe906021c3f919666d82"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3230.pdf",
+      "sha256": "85cf756d175d485b912c8324713ed2b21561eaf1d92efb3e6900445aeebadeb7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3231.pdf",
+      "sha256": "36c64a10e399e4d4f3c2ceefb122537f79c42a60c7042c722376ceb71f0837b3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3232.pdf",
+      "sha256": "003751d1f42d94a61c924a522bdb1d5e1932b8e747a3f300a45b0ed6e97db430"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3233-a.pdf",
+      "sha256": "bfbf653135331dbdeae42eb5ddc183972e6374d7598750d13c679e9a687eb80b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3233-b.pdf",
+      "sha256": "2a83eed6a3608cac142b6dad6a88303d8f52ba972cf6b47957ec352b28f20901"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3234.pdf",
+      "sha256": "9dcb9669fe6891b6381c8b1098534f7f6d3dcf6f70bcfe797d5038b56fbd8a5e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3235.pdf",
+      "sha256": "dac237a05c69426f789cc050712451eb4a13ba8d89ecb586d380a09bceb3390a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3236.pdf",
+      "sha256": "1d3f44cd6676c385cd9223f81feff7bbaddf364ecfec5da63c6d2f6053d38513"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3240.pdf",
+      "sha256": "6732908ffaf70ac319f954d98a9f8c2f5021171c6981a93e03aa21dc05aeb04e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3245.pdf",
+      "sha256": "e527b8357eee9ed377d0f3277a34b29fb1babc74c971b6dda45c25e393149108"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3246.pdf",
+      "sha256": "625436357885b55a73f832f1d5d2f5a10f86e2c2ff6e4f1cfdad15a69dd8df58"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3250.pdf",
+      "sha256": "2a8ba35529faab65938687643d6d9e2d05c8aa5795d79f5d7885c7ff8d60698c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3260.pdf",
+      "sha256": "e4e95736114267f91214d36de7d75d2d92c296e852db9121f675e20734190b2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3262.pdf",
+      "sha256": "f53f30c5948b48f722de7945cba750fd76011abc4f21d04e6f60c51f765df773"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3263.pdf",
+      "sha256": "45576fdaf6a4500da1d9c6b58ed43283595202e0b7157a74c3506d9f0f82c66c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3265.pdf",
+      "sha256": "70dacbe8cb335691ef8ae195d20ce9725da7fd5e905032d5ef17c6fffdf939a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3270.pdf",
+      "sha256": "17dd98ba3ad3199b129248d6345897724a66f688b93b5bac0feb129b82908a74"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3300.pdf",
+      "sha256": "63831c03b697bfb0bd3a5733632655a0d0520e87f900a0746334873760cef5e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3305.pdf",
+      "sha256": "9314fd94240749f492386b7b3a6bd1c67d64c2dab3cc614315ede4af52f02c58"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3306.pdf",
+      "sha256": "c36f8424c1808ec69c5c62f0707670ae1dc624695796c1c093cbc7e56a156902"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3310.pdf",
+      "sha256": "0f5478d86fa05418d1aa305a066015eefdccd8c7177d8e914f0176c85c2f4af4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3313.pdf",
+      "sha256": "5795e9d86bc4810ccf52176803318f6f87bf4ead91bcc37045b1a3c3325c205d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3315.pdf",
+      "sha256": "b1b3d16f9732c73341620e540594cf8648a12c440c164e18ec83989a11673fd5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3320.pdf",
+      "sha256": "b972f49283a57d6fdd52831215336c294dfda36762d1de1cd9ae5a4883ed2b4e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3322.pdf",
+      "sha256": "ad958512e3b5f8849aba1cd043983a365dbf39a66bc9646725982f74d725579c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3325.pdf",
+      "sha256": "b98f5270209d399d54000773b2da0f035aa514a334efa300eff5fab3b27b1236"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3326.pdf",
+      "sha256": "b60e899f72955c22943f9da2d5f268530022a6538aab565bab0a1e42f1550159"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3330.pdf",
+      "sha256": "712f954b63fd8949aedc7f24800dfbf38ccb5ce0e2d56ef984fb220e1f656f2e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3331.pdf",
+      "sha256": "83b41f367295a5b5c05f5c827c0ea068422106d3b5d097353872caeeb4a7b888"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3332.pdf",
+      "sha256": "cb2bbb66a7fdbbad075aa66e87dc4dcc7c07791f48938e51c2b3742ea7a6a65b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3333.pdf",
+      "sha256": "615bdbc89bcb1a2d7cbc8407e48ab7a1164430b4d7f49ea732169aa73d25be88"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3335.pdf",
+      "sha256": "08bdc074310a97686fde2692bfdfa4bae7e988af31dafd42ffeb933c0609a549"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3340.pdf",
+      "sha256": "1ff0b8c3fe3375acd03db121823d0988bca817d35b94b9b415d01e8208cc4fc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3345.pdf",
+      "sha256": "f58431bdf39112b341dba6fa7bdf2d1003d59a48aa04c32614ddf0dc0651c5ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3355.pdf",
+      "sha256": "81f7d09c4bebc17ff47ed2a346f42ebd945b5cefa82a75ddb2797436b7bb8f4b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3360.pdf",
+      "sha256": "acac6d92554c8d46664287c6a826427facecc95e8789ae1ef0eaafb048242e75"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3365.pdf",
+      "sha256": "439e27371d7b4a94d7a6df2ea5c21fe2820f248680512272e54f745231f75ec4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3400.pdf",
+      "sha256": "e1ae03ac463c2c487885eee4b744e6803dd6b14ea7fde1459f12f578f0965c3e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3405.pdf",
+      "sha256": "72a2c8c8114458629afaefb427fd7a6651889b62da7210571d2a2d3c737b1b74"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3410.pdf",
+      "sha256": "eade5194a08da741a46d8a5e554d9f57c3a5bd12b760dda7f4d65999e4eac639"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3415.pdf",
+      "sha256": "f389a033fe16aab9d70b7db4681a9d701563b954b5e1665baab562bea328be08"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3420.pdf",
+      "sha256": "0d27c8a7733f7332751a08200633f5ba7781bc16940106fe482dff5e9594d919"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3421.pdf",
+      "sha256": "8aa65c00a80ad766dcf67b1054094a00310ce246e4ae9fa073506e108e32bc8d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3425.pdf",
+      "sha256": "8fd342be9639602137a1e6c573e598b51f0070b84cca26f5432e761952475732"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3430.pdf",
+      "sha256": "8e94617408a7c77844180e027d07f209af770a08b10e0191a30a518d12de6178"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3435.pdf",
+      "sha256": "c4c7630729624c59283454e2b8f10b463db19efea95f424c2416190ce8ed85a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3500.pdf",
+      "sha256": "68a9481f6a190d1d4b1f38ba83f48e8ba3433c7e0188bdd41e726f12928edab5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3505.pdf",
+      "sha256": "76f06ff9cc999d4c382606ee0d55be84cb0f5cf5a9e6266e5d0c1bde601e1169"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3510.pdf",
+      "sha256": "d21fbe0cdf7e0354dcea1e86ce149d28dec2b31f563e3ac07e72ed5879b13c02"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3515.pdf",
+      "sha256": "db27cad0b504ffa1941e3f25ce4dfae9154b8bba318d666e674a450e2cedccf5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3520.pdf",
+      "sha256": "f8c46aeb8b40db4cbbc9f7b1427fa1f5950b331a5c2be7f6a0d66030e29f99ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3525.pdf",
+      "sha256": "c400b68aca437e9f87e28015865e35ebc7eab2da0d6852ad702acbf0579d00e7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3530.pdf",
+      "sha256": "625556e15940c56d64e62cf4172d3b23a3a5684d6a2103587dc551432c6b3162"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3535.pdf",
+      "sha256": "1c31ef4379102c54dac4c01c7e97f61ee7bd03f94d8381dec974184645261723"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3540.pdf",
+      "sha256": "95d9e1bd172fb8a31b23d8e0430c3bf7209d02b35290529f8a9c3b396d837f33"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3550.pdf",
+      "sha256": "21bad2a6a3538948b09dfc872550f72c898bd1c4224edd6e3da20492fe300256"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3560.pdf",
+      "sha256": "b251d380995ab0f98b81ccf00e15846ca6abcbb0febc6140a0346bc939a88c82"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-3570.pdf",
+      "sha256": "0a8e85041f34f6a4c01a062167962922652186fa41d6801dc4c5c24948b0c485"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-400.pdf",
+      "sha256": "13021ea3aa9b0b2a4d5d03d6c762c0aded21039f6690076ed52a878d4b178ffa"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nc-medicaid-ma-500.pdf",
+      "sha256": "612e8578561b704101e9ccac8887133fd1a56780013fa737b77971bf637dfade"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-nc-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2509,
+    "missing_count": 0,
+    "provision_count": 2509,
+    "source_count": 2509
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:08:41.922564+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HMQSzBoHo9kjKZwC9T6AY68ZBs+pc3GOGzav18JWVmlyCPdPw3OwFwtlxnpnlOq6HIxbmyu+lnhUAnCGdtnGDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

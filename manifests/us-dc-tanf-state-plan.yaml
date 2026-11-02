@@ -1,0 +1,27 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-dc-tanf-state-plan-2023
+  jurisdiction: us-dc
+  document_class: policy
+  title: District of Columbia TANF State Plan, effective October 1, 2023
+  source_url: https://dhs.dc.gov/sites/default/files/dc/sites/dhs/service_content/attachments/DC%20TANF%20State%20Plan_Oct-2023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-dc/policy/acf/tanf-plan/2023
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Human Services
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: 2023 District of Columbia State Plan for Administration of the TANF Block Grant, effective October 1, 2023
+    publisher_index_url: https://dhs.dc.gov/service/temporary-cash-assistance-needy-families-tanf
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-dc/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://dhs.dc.gov/service/temporary-cash-assistance-needy-families-tanf
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

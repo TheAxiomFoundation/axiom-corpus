@@ -1,0 +1,44 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ct-dss-husky-b-article
+  jurisdiction: us-ct
+  document_class: manual
+  title: 'Connecticut DSS: What is HUSKY B? (Children''s Health Insurance Program)'
+  source_url: https://portal.ct.gov/dss/knowledge-base/articles/healthcare-coverage/husky-b
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-06-13'
+  citation_path: us-ct/manual/dss/chip/husky-b
+  request: &id001
+    browser_impersonation: true
+  extraction:
+    html_content_selector: div.article-body
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services
+    document_subtype: agency_eligibility_policy_page
+    program: CHIP
+    source_discovery_group: us-ct/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: HUSKY B
+- source_id: ct-dss-husky-monthly-income-chart-2026
+  jurisdiction: us-ct
+  document_class: manual
+  title: 'Connecticut DSS: HUSKY Health Monthly Income Chart, March 1, 2026'
+  source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/fact-sheets-and-issue-briefs/fact-sheets/husky-income-charts/husky-health-monthly-income-chart-march-1-2026.pdf?rev=eafe894baf074727b4ace4651ae19df7&hash=630A05F5CEF1DF1D2C753B40745E36A1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-03-01'
+  citation_path: us-ct/manual/dss/chip/husky-monthly-income-chart-2026
+  request: *id001
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services
+    document_subtype: agency_income_standards_chart_pdf
+    program: CHIP
+    source_discovery_group: us-ct/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: HUSKY B
+    chart_article: https://portal.ct.gov/dss/knowledge-base/articles/fact-sheets-and-brochures-articles/income-tables-articles/husky-income-charts

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-gu/form/2026-09-11-tax-territory-forms-ty2025.json",
+      "sha256": "448a846d8ec5a44e7fe70b78461b7cc3f10d64e065ccc6b6e94012ebcc7bbe7b"
+    },
+    {
+      "path": "data/corpus/inventory/us-gu/form/2026-09-11-tax-territory-forms-ty2025.json",
+      "sha256": "49e1c6ed71675147c07fcd234a6c0aac05f0998e297bd94a99ebd5ecc5e92e94"
+    },
+    {
+      "path": "data/corpus/provisions/us-gu/form/2026-09-11-tax-territory-forms-ty2025.jsonl",
+      "sha256": "c58e2d151073c3152f632e3bb272ff5d5d446d48634ef9f179b8dbd8b94710e0"
+    },
+    {
+      "path": "data/corpus/sources/us-gu/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-gu-drt-form-1040-guam-ty2025.pdf",
+      "sha256": "caf3e1adc0a47551c0ce8bbbe80bcf04d34cec2af47c42bbeecb806d6eb29e9d"
+    },
+    {
+      "path": "data/corpus/sources/us-gu/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-gu-drt-form-1040-sr-guam-ty2025.pdf",
+      "sha256": "256fdeb400bba45ceca022cc919038ea2387830d9b0465b86425ae7e5b6ca251"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de9a23d2d7610775f446ff26f26e48c9b04a9b7e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-tax-territory-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-13T19:32:32.630499+00:00",
+  "jurisdiction": "us-gu",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YEDmdcUnErAVr+H2rjVKJUB8tW9SEUKHrzepmNir7ebjCBBXMEOpymUMprR91/0T5JgzMqT4z6SAhjIhb4SoAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-tax-territory-forms-ty2025"
+}

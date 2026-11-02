@@ -1,0 +1,31 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: la-ldh-medicaid-eligibility-manual-j-0000
+  jurisdiction: us-la
+  document_class: manual
+  title: Louisiana Medicaid Eligibility Manual J - 0000 Medicaid Eligibility Cards and Optional State Supplement Payments
+  source_url: https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/J-0000.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-07-21'
+  citation_path: us-la/manual/ldh/medicaid-eligibility/j-0000
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health, Bureau of Health Services Financing (Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: ssi_state_supplement
+    state_program: Optional State Supplement (OSS)
+    federal_program: SSI
+    state: LA
+    manual_section: J-0000
+    reissued_printed: Reissued July 21, 2025 (replacing September 30, 2024)
+    index_url: https://ldh.la.gov/page/medicaid-eligibility-manual
+    source_discovery_group: us-la/manual/ldh/medicaid-eligibility
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://ldh.la.gov/page/medicaid-eligibility-manual
+    extraction_granularity: pdf_page
+    access_note: 'ldh.la.gov: HTTP 403 (118-byte body) to a plain client, HTTP 200 to a chrome120 TLS fingerprint on 2026-09-10;
+      fetched with the extractor''s browser_impersonation option, TLS verification on'

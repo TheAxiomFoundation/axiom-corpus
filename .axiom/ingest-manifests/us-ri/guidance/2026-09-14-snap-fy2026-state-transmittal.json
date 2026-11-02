@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "dca9469260861884cbe31e8232a821aa236342aa698471cdae009e6d54e3be5f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "4112fe98f5503e7cf9d658be941429cd0376df9bd20d84b9fed915bf282839cd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "5b33b21bc076d553cd067a1398992cde549fa435ff95a23db4030c3e5aa387d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ri-dhs-snap-cola-fy2026.pdf",
+      "sha256": "b6208cad99cace63fcf0517985c8c3ebe9f83b8dc8fa85e26fe20dcb95444172"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ri-dhs-snap-monthly-income-guidelines-fy2026.pdf",
+      "sha256": "ca6d312352cedfdfe9d49a69ee00908cd63a70c48f78be63abc48d1ade377ffc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-ri-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:59:02.124601+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zvuRukQ1eXVM7YzjGrobqWs5CFOekh6Yguqfla8Gmops1HEGNx9J5wgt5mNpGxT91GoldvbqQf+2jNnrejxGCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

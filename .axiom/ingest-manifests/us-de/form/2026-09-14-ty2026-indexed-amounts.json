@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "6477bd57f64bc345c87d7bff5df4625c02e35c668982d41fd012c16795b54d1c"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "0c36bd431fa10bab51a2f71c31c06cbbdda266858848ae3272649f381fa2d575"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "d73b263db966490a74529ad7f102f03e4b221894b08a8404d7860bf69e890ec6"
+    },
+    {
+      "path": "data/corpus/sources/us-de/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-de-dor-pit-est-instructions-ty2026.pdf",
+      "sha256": "08a8e73cf064f2599fd476d199581f71cf0f224da36525a68debc475bc31b8a5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-de-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T16:21:04.252327+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "roQggM+ea3iJuT0FIvixkmbCFupsTQwdwDoDxAh0/En1bRRH9dxSK6XqgJoK9t8L431yALGWk23H1Hz695/eAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "85cf63fddf1d8b60a8f8cc7b9582625b8b2e6d8725f6cd21030a7ce5f9e85f36"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "fe9950be0b003a359010790da73dd6837050cffb739de16569f748b1b1daadf2"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "ba98d74e49b0e799ec265f7877d1be2fafbd24bfe491ca0790af4ae875499737"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ar-medicaid-appendices.pdf",
+      "sha256": "bd2993eed26b4c62a798dda075dfa822408e603d3c27af18a1d8129434b717f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ar-medicaid-policy-manual.pdf",
+      "sha256": "0a51c10880241bc10d80768b4d25bae1ae6a4552db2351492d8164683811ca4e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ar-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 563,
+    "missing_count": 0,
+    "provision_count": 563,
+    "source_count": 563
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:35:01.927087+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BFwlGW8SuTzTzGUi/7rg2UP1OKMi9qoVHzZHcSxvE2hgg1bX6yXyDHxqpA8b3jwqLKSOP+iAOMtttDYQdXqeAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

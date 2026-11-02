@@ -1,0 +1,633 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "0f4dd261cd7b0460982b733b04352d82778d5747d45bf24df5075ceff15c33fe"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "6fd79de23477c613372527a5af0ccf67df435d3e3a2174e87e51e028ff1816b6"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "607b399c648b9267369493d30a0eb54dd2acfa075dd241606b23bddae2bb48d6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-01.0.pdf",
+      "sha256": "68cc4856e971fbd5d736c106b9abc6b12165d98c874c29f9377c4ed964f1bccb"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-02.0.pdf",
+      "sha256": "0526fad4fe233dd7e1361893e8f3c8e05591537cfc98b57501b3ba73237f65f3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-02.1.pdf",
+      "sha256": "3d919b57aee12aae4997653d862158c4b605dba1afeb7e240ed5e2d7acc44843"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.0.pdf",
+      "sha256": "4df65c2e775523a7c348178efdd3f7f3b660c87976e3b56746f7a796160cc3dc"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.10.pdf",
+      "sha256": "b2676cf95e4afd7ab0a41e9099a514954381e560e1810c944090bf5c2d8eaae7"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.11.pdf",
+      "sha256": "4795c65af0cf11b69df2a4f6f7240954ff6582f32754b82e4291c887f6c5a171"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.3.pdf",
+      "sha256": "78022eaa3993b6330cb50ecb822ea88f49e51c20d1cb7c6c18e80ff0d5bf3a31"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.4.pdf",
+      "sha256": "9e6d7a0f1a1e9ae2a9c6a977efc67fc4e6872e3843fc96363c96fe775b12b462"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.5.pdf",
+      "sha256": "0cd7b70fbd145f9a3429d458516b9cf97abe9498e0875fdb1bfc7fdb1c15e188"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.6.pdf",
+      "sha256": "c5014820198b1761d95da49b9cfbfb2db12e5acd0a8d19f6f3ccf533bf17fee5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.7.pdf",
+      "sha256": "b466eed688a7154cce5945b68d402c91d204562516d779113dd144b022159ad5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.8.pdf",
+      "sha256": "bd926c5233936687ef251695feae6665dcf08627893bb5379579875796095c2c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-03.9.pdf",
+      "sha256": "05100e5cf31e0b202467039265d7115cf2bd187ac4aabb0643f4d0c253bc74e9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-04.0.1.pdf",
+      "sha256": "6a40e1271ab9c3396e85309597147eba281b9ae437845417330edd0a2cd0ea97"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-04.0.2.pdf",
+      "sha256": "2856b112654209422bb5318b8f0850866f2f651bb637dd1806e36c177fcf3e64"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-04.1.pdf",
+      "sha256": "99363323b4450b500b5183bd03cb5e828d04a7fbb72418f413bedb895ae8f9a3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-04.2.pdf",
+      "sha256": "6b196900674ac0d6915f58f0619949ab937ef25280fefddcfb874431dae2f6e0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-05.0.pdf",
+      "sha256": "055e0ca60c5752a54a249f36b8d43361c166eefcf9e391193d12dfa887493bd7"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-05.1.pdf",
+      "sha256": "c9257539d9bb1f4add8a58581abf22b32b53b4972451aab205871369cc9dbc9d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-05.2.pdf",
+      "sha256": "fb5b968a8eebadc121fdf632f961f5494c761089ee96940ea82cb29d4e21ef9d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-06.0.pdf",
+      "sha256": "e699f9dfbe3980451eeb6672ca7e3584b96022dfa420f4a9557a4b524bb0f442"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-06.1.pdf",
+      "sha256": "ca7ca7b02d033c6c2e928d1b5e8f962a4d5482587c990e4ce3c2799ac2db6b0d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-08.0.pdf",
+      "sha256": "79a4d98e9157410746df62cf04c4c01388a94349b0a7dc048346c58d55fe1101"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-08.1.pdf",
+      "sha256": "05c9abb10a26c2935ff51d405b9d67ea8ef128e7daea70303198d656ffd6683f"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-09.0.pdf",
+      "sha256": "4adc4c558e45904cb899a2a6cbc2ab3c0398f071f96bf746f68ca8cfcd8fa6e9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-10.0.pdf",
+      "sha256": "aaac7f77127e1bdc7d8917e539790646a08985aa87c331e49cc1bb637ed49d89"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-11.0.pdf",
+      "sha256": "71b7ab9edac7692a11c5ddf7a8b773038821c043b42f46b147ab69f05177fdbf"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-11.1.pdf",
+      "sha256": "7c904b57bc6b3a48a2a86a86928ebb8218c4308ba09d3e02d0b50c87528fa3f3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-12.0.pdf",
+      "sha256": "5a4e2c78a56aafb17f3909a4d45ce1ca01d86ac6d7dd0fb78db64b45bc820755"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-adm-13.0.pdf",
+      "sha256": "b85e9decd82b501aef29dd4be8044b872a61877e01cf83e3ec1a75eaf0ae3697"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-01.0.pdf",
+      "sha256": "c603e1706b1f8d35de52370cccadf43579514b9ef10ec98d0afe5c50356773f6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-01.1.pdf",
+      "sha256": "440659aa3c4078e194592aa37efefb8049f13d36e98a22b1f8f4b49b3f38d33b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-01.2.pdf",
+      "sha256": "45b39049eae112007345835f2b6c33f4ab2480c56c034a30e046da7810486750"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-01.3.pdf",
+      "sha256": "49911edfdaf169e1d4ff6bb367499f8b8846897aeddc123e63c26f14b0f0ce2e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-01.4.pdf",
+      "sha256": "524a7aeaf65fae9cea01fd478624ee125509bed99fbbe544494004c6d9bfbdb4"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-02.0.pdf",
+      "sha256": "f3aeaa6bf03e3e5d7e1682b8c23a37c214f58b692dba0a1f1289f2987d86ca2e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.0.pdf",
+      "sha256": "607c193e323dc6461a9b2f104d99886c95d1465bcdb9920a35361abff3257065"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.1.pdf",
+      "sha256": "b2a51cacaa18cd69e87296f85ebbf874e9bbff2aae814e00ea29900bfdbfc07a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.2.pdf",
+      "sha256": "a68d00c860d27c81892167e6cc64ff323cfed114bfbb66a45d318a6497b32d2c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.3.pdf",
+      "sha256": "e280a909a0ed3034d73b1fca93c6860292a77af53bc826be3f716aece26e5f4c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.4.pdf",
+      "sha256": "6ebb101ad438cafbd637eab29b100a0f35198e2d061ae2e567a26187e6e7f16e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.6.pdf",
+      "sha256": "36184782704fbb4c9c3456792a6132ffeccd6f2a813e187209a414f1307dbe36"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-04.7.pdf",
+      "sha256": "aaaff7f4ce68545e5ed2d5161cfdbcc992b5346c6740e56a55e7561dcdc2a044"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-bf-05.0.pdf",
+      "sha256": "b2a152c3b6c7b8901a7992f6c45794f21903fd2da027375db79c6f86ab45732b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-01.0.pdf",
+      "sha256": "53eb5815e276310254f7de353e06714a2862cd4b2dd9b5e342ab7ffd70b38cf6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-01.1.1.pdf",
+      "sha256": "09eaf996c4ce247de929883512ebb8fb4765e03d4326de5488b7e7a37647e187"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-01.1.pdf",
+      "sha256": "0245a37c3060b188b90393dfd40da9bbf7742ab3e66e409aef546be9bfed714e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-02.0.pdf",
+      "sha256": "279fda7972ff0ef1dc4577f7327f14322a26061fe2d4f425359b112547ed8a8b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-03.0.pdf",
+      "sha256": "9106c729a9027980ddf02e168aed0eb0aade244bf0abd1a28e31bd50ba1b0fb3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-04.0.pdf",
+      "sha256": "083e102d39565e061fcf2f1066cf70268b0bf8fa010b3097ab3e224bdd17e9d5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-04.1.pdf",
+      "sha256": "7027406dc03438447d80d24daa10045d05d8a7f42282f2ae94815787bcfdfc79"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.0.pdf",
+      "sha256": "307131d6e192bcabd528eb1bd9ff26d430c50cc010d4770a12c186371142cc61"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.1.pdf",
+      "sha256": "d7594782438e21ec5441229a76ebfdd2e98de49a977fc631488b74a6fcfb54c6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.1.pdf",
+      "sha256": "44b3f3fc937d75258e54f4293f2cb23247284cfa4c05b0064cf12602771c1477"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.2.pdf",
+      "sha256": "ddcb64bd41896c208894f25343b6712ce1c3335d7e046110fc4b0596ceee3260"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.3.pdf",
+      "sha256": "9808c6fc15dd6d9f3ae9fe8462532ef0b35817379047da39aaf9466162a1590e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.4.pdf",
+      "sha256": "fc94f1a03e79e95ae52dfabd2c61c27125b38a6331e10f2b5873110a68f9221e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.5.pdf",
+      "sha256": "bc1d59c845bd867a0d90c98259fd3de80064502cc581c07616d7684a20494d0a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.6.pdf",
+      "sha256": "74359e910a2fa348db8ada8a86afc9e20f9b97f70dd5d3b0ce918e399fb6fdfc"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-05.2.pdf",
+      "sha256": "bd174e3d3696e4a6490bbe1994dcf7fc894ede43b2bc0e5c83ffb774220811bc"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-06.0.pdf",
+      "sha256": "7a646c8dec9b4446a4953e8630a86db15f9f3556638126fc04eba4672980934a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-06.1.pdf",
+      "sha256": "73cc223a849ec24ec5ff6b9a009e08015082604d96a885354e6467955e379ba2"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-06.2.pdf",
+      "sha256": "9dbb32b2cb74b753b8efea9e8b9a0cbbfd3f1147a9d69ad2abf09f385208edf9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-06.3.pdf",
+      "sha256": "931c30c0080fd12ea242ac469502dfea0a229d214c0e67413fe1f01c540aecf3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-06.4.pdf",
+      "sha256": "0b2a52d33ae20cf14c72b80642f408dd6c1960ae980c9e4b21090f5fbe8cb3e6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-06.5.pdf",
+      "sha256": "45b43624b0793ec507ba7c2d4b2b0b63688d00c6abcd7889827d2d406ad4c374"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-07.0.pdf",
+      "sha256": "9a2c698c0a496812980a616c1623686a4e5493cb2affde91e5d1ae5998c08e73"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-08.0.1.pdf",
+      "sha256": "d2ce9fd4f1bc56ba9d8ffff5bad9e6a9e5d0651be6d53101737183c0d4b3b254"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-08.0.2.pdf",
+      "sha256": "12a45e19018265306df7b0b129c34a844c5df338a774a6db68507004ca7602c6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-08.0.3.pdf",
+      "sha256": "adfd91e43a2d143ecf8b1662e664a6b176bcb00d55ecda4e67e03aa1c8a1b00e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-08.0.4.pdf",
+      "sha256": "694416da0818a2194ac559e91fb3c1bc8682779e62232f83eb026234adaf9528"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-08.0.pdf",
+      "sha256": "115ec6cd39acc7c13465680b17815d1f92c39f273706befdee84ef8a247aa46f"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-09.0.pdf",
+      "sha256": "bc2d33228eaa4b0e1a3e1338fcb5364d0ae84239309d73bd3ce3e66fb72cafbd"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-09.1.pdf",
+      "sha256": "c8a1efe73ea77171d49aa808f14efb4647da9b55d710596cc4d2715b30697b62"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-11.0.pdf",
+      "sha256": "f78d8272ecafe6f6822237c6439de5e0305e912065091f29cbf51afbd1afac08"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-13.0.pdf",
+      "sha256": "62290200d651ef24274b984f5d1304fdf1283259518c656dc3cb4267f8da9277"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-13.1.1.pdf",
+      "sha256": "00625f5c53ea65139b813d3e074056ed411d8b3ab1f53fd2ae8f169d59576f97"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-crt-13.2.pdf",
+      "sha256": "2724cb84f74ebd831ccce6ef64f18fde63ae6718c468b22e86c01dd486aa959b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ep-1.0.pdf",
+      "sha256": "7225631a653ad051f2edccf615e920c70bd66fbbd97851c0ca8628e07008708f"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ep-2.0.pdf",
+      "sha256": "85e01c187503a3b0f2a6314ad0a3e3740f9c7a22923577dca0c173d4d8e9b25b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ep-3.0.pdf",
+      "sha256": "2ecb6759974144cab6af0723a3b018802ed9db9c7ae23c72e4250d417e43292d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ep-4.0.pdf",
+      "sha256": "2ae26b7ac6c84b5a3df3154caa58458c839a1515473e7841d45d468b90d9bcae"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-01.0.pdf",
+      "sha256": "af4b1f60ca12a9d249671319f2e9300373dc144a4f1ac5265904cb8de078cfc0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-01.1.pdf",
+      "sha256": "2575f0560aa4ff30d31ac2aad0b98f77cc400844554bc5da8faf3d598d75a367"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.0.pdf",
+      "sha256": "b30a7eca3a7abd5c1a136ae18250ee5acce8d03d7acbd8e0cc2745aa82cbbc43"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.1.pdf",
+      "sha256": "2376ebc0cff71e7963117a727fb3b5b762cae46a5ee9819c72a6f182c85e8ef6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.1.pdf",
+      "sha256": "c7bf75332d90e1a5c9a6c8d4d51164dec773d61e313c5e3889da5fc03cb6c295"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.2.pdf",
+      "sha256": "4aa2055ee42627df64ad2a825d0a7ad292099d2e9f96918053b933e8a2963e22"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.3.pdf",
+      "sha256": "bf5c2043e80a40d748d7dbd44fe674a45a9d7e4fa4f28045fcc894ce5052ceae"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.4.pdf",
+      "sha256": "31844b7a2cb07b54576dded266688f6afc3de29cf1aeed6db7d8ac3fd7152ce5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.5.pdf",
+      "sha256": "3eea81444632c128aebd9892ccfea60a7e4d21e665e403452443dd1f9969c06b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.6.pdf",
+      "sha256": "6f67549a639e461c6155a4b9b8e7e6a0b0265fc8950aa27fc466e36a11c2d532"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.2.pdf",
+      "sha256": "c80cf464be4ccc115fc2222be5f136ca84fb8fd605c0c9e4e9e6ea43c9d4dd87"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.3.1.pdf",
+      "sha256": "95e8b0cee9ed74ac4b2392f78df85e40cafa0363bdfed317a5a7b5b765634c17"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.3.2.pdf",
+      "sha256": "9e159306f4dd3503fced6968f0181132877f015f64781670d520149f77f5d14d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.3.4.pdf",
+      "sha256": "afd0f037783e3c24684f4cf7b016561d07a45d6c3244f7bf5c5fa63fbefe6ce4"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.3.5.pdf",
+      "sha256": "cc98373aa5164be31cbe5ded4e8e7860f97f4d3e586db1ca0228e5699041ad8d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.3.pdf",
+      "sha256": "8efe9dbb5b9de07bda2a262089468a9b73aef44d0b1ab15530a77d338b28e4fe"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.4.1.pdf",
+      "sha256": "7b7ebdfb324c72ce2c857df3c2d547a9660d37c3b19208d18366581f0f5825e6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-02.4.pdf",
+      "sha256": "42c1541fab437c14b35fcbade698c12ef5845777584884c31d266472ff310e24"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.1.pdf",
+      "sha256": "116581ef8b361165dca5604d80a8f34fb26de3e73ed4d55ec7c8385ff3b38944"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.2.1.pdf",
+      "sha256": "21b9439de302f2b3709a78b90c5b0412437a0e2b86e3c904dff2ed218b963028"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.2.2.pdf",
+      "sha256": "948c9e38253951d48521ef673ca55498086fd93994a920a8e2173217110a4a0d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.2.3.pdf",
+      "sha256": "cdb5a02bbec3a8f7f923236fbc5f010b6135363abdc79ebeebc99158a41f89f0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.2.4.pdf",
+      "sha256": "5de6d6ea603a4801b24f728dad67a95ba273f36e5f8bcf50d4e10ff181c6122f"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.2.pdf",
+      "sha256": "8c29c1efe90d7f67ea6f3003bc7d927fa2b8804f3feeaf70e4a5f7ef0f7d0a48"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.3.pdf",
+      "sha256": "3a426802b5afe2fbb6795d811427c393747b55fd2c5fdd05c609895e94a27584"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-03.4.pdf",
+      "sha256": "ff23087001eb63973a7e114bdd61343bd7b203685d28eadadd12a9a3c2151c20"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-04.1.pdf",
+      "sha256": "a740e4b4d993b415838685db5828a9d1f17ecf048f2a059906d1ccfb7f5ab903"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-04.2.1.pdf",
+      "sha256": "1c8ec800494dcfe47b6f3ae052b984613073432e0a3f7e9d78650ef54af9819c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-04.2.pdf",
+      "sha256": "6aec146581f6a7340206f52844922d9a5e77a2727d136ccfb7b4c6ee34bf655d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-04.4.pdf",
+      "sha256": "e17f1afcebd43190bbd0c067929078569a46d3d7fe03de2743deb8d001a845ed"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-04.6.pdf",
+      "sha256": "038b7e28d7c0c035b16507f19e580dd5aa06a3e04da1cb731922cbd80f580c2d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-fds-04.7.pdf",
+      "sha256": "da3e9dfa55be6300d181111935d496c0bf78c2dab0e90694368eb65e6eb8ff22"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-int-01.0.pdf",
+      "sha256": "ed958550f1baf7235ae378b6a2d64acdee69a4185eb2d2e4f31e3e696cf0d96b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-int-02.2.pdf",
+      "sha256": "3096384298e5eb2ecfe374c4c22da33cd828fd6a5eb916fb6c8100d6f9e67b84"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-int-02.3.pdf",
+      "sha256": "5025d6ec9d5ef7f91ee195347850eea6a64ab04e46ecc67c4271725d7936df14"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-01.0.pdf",
+      "sha256": "6ad8f3fd789211ff680398c2fc589330fd84bf3e39624d2506073b8fe19434b0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-01.1.pdf",
+      "sha256": "e9573d46c92fb6ee037f4f882b7361fe58d2e0c3a43d8749c6aae6db19a722c0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-02.0.pdf",
+      "sha256": "90ff1e928b62e1be2197007c505ba7d94eb1204180356136615007768ff8c0f5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-02.1.pdf",
+      "sha256": "59219024133f4f2df974b556960e734cbfbedb1e72fb5c9b8f10daf3bff19d5d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-02.2.pdf",
+      "sha256": "44b544d69e0e8147aceeb4a02776e446e9cadac97b49da1b9041e31f7de94352"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-02.3.pdf",
+      "sha256": "e3e9ad345b5fdd266649f521afa29d071e7f325d5652715ce45080acca26e9e3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-03.0.pdf",
+      "sha256": "17461dbb80de74c5eec82a9f4aa545f10c73a652f49b6a3b369ae92a23fdd0ef"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-03.1.pdf",
+      "sha256": "0762b6f42b7b4cd0a1822c12cc76e90ad9113b433b83f5a7afad1ff02ba7e9e5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-03.2.pdf",
+      "sha256": "57be4889bc70ee3b2eb0bc8b5f2df3fff77c659ceae886e0b4effec772ffd94c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-03.3.pdf",
+      "sha256": "82374ded0bdf4cbf95a5488025927fbc5d494fd286226b1d820d8357f849d6d9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-04.0.pdf",
+      "sha256": "4412df222528fd6d30f94baaee141a4fc6ecf0bff6ac4974804aaeebdfb18f0a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-08.0.pdf",
+      "sha256": "9dd1a91c7c7ff27635ead5c08b50aa1d53ddd3712788fb11fe92be561d2de39b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ned-09.0.pdf",
+      "sha256": "2c4d0c72044bd7b0d63806e53d4c8fcc5edaaac7620ee5c9127d3b44bf863cc5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-overview.pdf",
+      "sha256": "56115298651dcc4dd134e961aeac92553c6afebd4fd845058737723b68a96d34"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-prr-01.0.pdf",
+      "sha256": "c38d9b88355905d3b4ff07ca85636cb4fe4dc3068518b20b7fb194f3bd21c642"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-prr-02.0.pdf",
+      "sha256": "e034596304368d11e1f8b3f47d4b73e09ae637498d695b4795f3130e121d4ed3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-prr-02.1.pdf",
+      "sha256": "a2414ff2fc6dbd131cfa98d72fc6e3c27d2a8afdf1c1a2782785a57bfaa21396"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-prr-03.0.pdf",
+      "sha256": "424f2c822059671060f22b7cd350cc47e882c7e51e4b853eb0c11c6da2465bfe"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-prr-04.1.pdf",
+      "sha256": "e75c4f06e7625ec069561c6c95b04934f70dee1d1ff7171239b706134bb758c0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-prr-06.0.pdf",
+      "sha256": "9904bbfc0bf8615ab538ce2f14ff84fab64183141770095ac57fb67fefc1e244"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-remote-wic-services.pdf",
+      "sha256": "024f26aaaaccf4a8f9444f84eea54df3f9e1f98ab523064508f08ab62d6b6133"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-01.0.pdf",
+      "sha256": "7dfa6abf66c34dc235bf3f2113d5e9bf985b02923284279ef61a1d980b900e1d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-03.0.pdf",
+      "sha256": "b7bd2ae534ed9f1ed9bd9eec1e184bf1b19a7ea951aee2d7a4332768ac6a2ac9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-04.0.pdf",
+      "sha256": "815052f27336c082b987c47f29fd1a511389fdc42bfa350e2a5bda218c244a5c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-04.1.pdf",
+      "sha256": "47a9fcf5584a954c19d6fe3812145b232fe44ed0701df5bcd4a3ff40fd849fd1"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-05.0.pdf",
+      "sha256": "b16bfe990d4328812539c22f4f72a124c996a51c62bd99a5aaf8e297cc34d569"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-06.0.pdf",
+      "sha256": "1b2e151cab00891a5f2a8fcdebbef3abcde170f928872c6e21e236ca1def2100"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-07.0.pdf",
+      "sha256": "ca04f63651eca4aec8da640f5aaa7fa7505ae2fcbb4e6841ee2a22f19fdcb733"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-08.0.pdf",
+      "sha256": "d120df950e8f8f90ba4a665a5649c75ced605b3178a4172fe334ddec64288cb0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-wic-state-policy-manual/official-documents/us-va-wic-manual-ven-09.0.pdf",
+      "sha256": "40e186264f12d9fdd1d0eab51716addbfa1b1c7dbe46a797ba88d38759f6269f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-va-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 294,
+    "missing_count": 0,
+    "provision_count": 294,
+    "source_count": 294
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:00:40.824859+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WQcRQuNg7bMECkY5kv+5pG6vVMJ6Vdf17YJ0xVPhLR3NPM3B4QPqPmTGNv/WRcEZCHi4wNoN8NBUEKny0sjrBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

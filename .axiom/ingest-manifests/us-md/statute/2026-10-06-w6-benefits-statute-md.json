@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-10-06-w6-benefits-statute-md.json",
+      "sha256": "d17f587eafde6b66762a2a982a90fa06ed626693293430c3c98de0440aed726a"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-10-06-w6-benefits-statute-md.json",
+      "sha256": "944587e116021167234610fbf3d7ed1cda5c0fbf2401ffe3126ff326153b7a3c"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-10-06-w6-benefits-statute-md.jsonl",
+      "sha256": "3bf7d54d410db63631d4d849a89cfc6b1b23596edf4ae0cbb3eee56b1b91f1b8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-benefits-statute-md/official-documents/us-md-statute-bills-2022-hb0456.pdf",
+      "sha256": "e58073244eb900988053a6984d1be236a9be0dd1d9b286be158b85deba0077a3"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-benefits-statute-md/official-documents/us-md-statute-human-services-5-501.html",
+      "sha256": "0e556d1cb275cfde3933d65ec53091494ff1fc402d51b52e079154912ca8d0c4"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-10-06-w6-benefits-statute-md/official-documents/us-md-statute-session-laws-2016-hb0445.pdf",
+      "sha256": "c90b8d07e201761da2558007f7416d06d1d4765ef7c0ac276835bed60107dd63"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:12.645509+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fFK7F2p4GaxB+IOrfoiJidy/bbebexskw2EZMkN8V+J1+ae9DvnuKK241X9yvwjRPd3T7v/Eikyk00allWaSDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-md"
+}

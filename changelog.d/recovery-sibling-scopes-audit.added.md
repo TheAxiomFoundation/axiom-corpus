@@ -1,0 +1,1 @@
+Audit every row of the 18 July 2026 recovery scopes flagged after the us-ca audit: a deterministic classifier over the retained sources, the rulespec-us citations each release line resolves to them, and the successor decision and swap for each scope.

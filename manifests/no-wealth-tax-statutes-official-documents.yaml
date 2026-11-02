@@ -1,0 +1,56 @@
+# Operative Storting tax decisions for the 2022 and 2023 wealth-tax scales.
+documents:
+  - source_id: no-stortingets-skattevedtak-2022-wealth-tax
+    jurisdiction: 'no'
+    document_class: statute
+    citation_path: no/statute/stortingets-skattevedtak/2022/formuesskatt
+    title: Stortingsvedtak om skatt av inntekt og formue mv. for inntektsåret 2022
+    source_url: 'https://lovdata.no/dokument/LTI/forskrift/2021-12-14-3571'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-01-01'
+    language: 'no'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^§\s*(?P<number>2-[123])\.\s*(?P<heading>.*)$'
+      section_label_template: 'section-{number}'
+      stop_text_pattern: '^Kapittel 3'
+    metadata:
+      primary_source: true
+      source_authority: Stortinget / Norsk Lovtidend
+      legal_identifier: FOR-2021-12-14-3571
+      source_family: wealth-tax/annual-tax-decision
+      source_note: >-
+        Sections 2-1 and 2-3 set the 2022 state and maximum or default
+        municipal rates, NOK 1.7 million individual and NOK 3.4 million joint
+        allowances, and NOK 20 million individual and NOK 40 million joint
+        upper thresholds.
+  - source_id: no-stortingets-skattevedtak-2023-wealth-tax
+    jurisdiction: 'no'
+    document_class: statute
+    citation_path: no/statute/stortingets-skattevedtak/2023/formuesskatt
+    title: Stortingsvedtak om skatt av inntekt og formue mv. for inntektsåret 2023
+    source_url: 'https://lovdata.no/dokument/LTI/forskrift/2022-12-13-2199'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2023-01-01'
+    language: 'no'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^§\s*(?P<number>2-[123])\.\s*(?P<heading>.*)$'
+      section_label_template: 'section-{number}'
+      stop_text_pattern: '^Kapittel 3'
+    metadata:
+      primary_source: true
+      source_authority: Stortinget / Norsk Lovtidend
+      legal_identifier: FOR-2022-12-13-2199
+      source_family: wealth-tax/annual-tax-decision
+      source_note: >-
+        Sections 2-1 and 2-3 set the 2023 state and maximum or default
+        municipal rates, NOK 1.7 million individual and NOK 3.4 million joint
+        allowances, and NOK 20 million individual and NOK 40 million joint
+        upper thresholds.

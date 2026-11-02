@@ -1,0 +1,313 @@
+version: 2026-09-10-wic-fns-guidance
+documents:
+- source_id: us-fns-wic-income-eligibility-guidelines-2026-2027
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC: 2026/2027 Income Eligibility Guidelines (91 FR 23050)'
+  source_url: https://www.govinfo.gov/content/pkg/FR-2026-04-29/html/2026-08323.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-29'
+  citation_path: us/guidance/fns/wic/income-eligibility-guidelines/2026-2027
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01) via U.S. Government
+      Publishing Office
+    document_subtype: federal_register_notice
+    program: WIC
+    federal_register_citation: 91 FR 23050
+    federal_register_document_number: 2026-08323
+    federal_register_publication_date: '2026-04-29'
+    federal_register_pdf_url: https://www.govinfo.gov/content/pkg/FR-2026-04-29/pdf/2026-08323.pdf
+    effective_start: '2026-07-01'
+    effective_end: '2027-06-30'
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA WIC agency page 'View guidelines' link and policy memo transmitting
+      the notice
+- source_id: us-fns-wic-income-eligibility-guidelines-2025-2026
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC: 2025/2026 Income Eligibility Guidelines (90 FR 11598)'
+  source_url: https://www.govinfo.gov/content/pkg/FR-2025-03-10/html/2025-03576.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-03-10'
+  citation_path: us/guidance/fns/wic/income-eligibility-guidelines/2025-2026
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01) via U.S. Government
+      Publishing Office
+    document_subtype: federal_register_notice
+    program: WIC
+    federal_register_citation: 90 FR 11598
+    federal_register_document_number: 2025-03576
+    federal_register_publication_date: '2025-03-10'
+    federal_register_pdf_url: https://www.govinfo.gov/content/pkg/FR-2025-03-10/pdf/2025-03576.pdf
+    effective_start: '2025-07-01'
+    effective_end: '2026-06-30'
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA WIC agency page 'View guidelines' link and policy memo transmitting
+      the notice
+- source_id: us-fns-wic-policy-memo-2025-1
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2025-1: Clarification on Corporate Changes of Ownership'
+  source_url: https://www.fna.usda.gov/wic/clarification-corporate-changes-ownership
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/FNS.wic-pm2025-1-clarificationcorporatechangesownership.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-12-06'
+  citation_path: us/guidance/fns/wic/policy-memo/2025-1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2025-1
+    memo_date: '2024-12-06'
+    fiscal_year: '2025'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2025-2
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2025-2: Cancellation of WIC Policy Memorandum #1994-9 WIC Exit Counseling Brochure'
+  source_url: https://www.fna.usda.gov/wic/cancellation-exit-counseling-brochure
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/FNS.wic-pm2025-2cancellation-pm1994-9.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-12-20'
+  citation_path: us/guidance/fns/wic/policy-memo/2025-2
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2025-2
+    memo_date: '2024-12-20'
+    fiscal_year: '2025'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2025-3
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2025-3: Policy Memorandum Revision: Use of Banked Human Breast Milk in WIC'
+  source_url: https://www.fna.usda.gov/wic/banked-human-breastmilk
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-donorMilk-memo-011025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-10'
+  citation_path: us/guidance/fns/wic/policy-memo/2025-3
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2025-3
+    memo_date: '2025-01-10'
+    fiscal_year: '2025'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2025-4
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2025-4: Publication of the 2025-2026 WIC Income Eligibility Guidelines'
+  source_url: https://www.fna.usda.gov/wic/income-eligibility-guidelines-2025-26
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-iegs-2025-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-03-27'
+  citation_path: us/guidance/fns/wic/policy-memo/2025-4
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2025-4
+    memo_date: '2025-03-27'
+    fiscal_year: '2025'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2025-5
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2025-5: Implementing Revisions to the WIC Food Packages: Flexibilities to Support Healthy
+    Choices, Healthy Outcomes, and Healthy Families'
+  source_url: https://www.fna.usda.gov/wic/revised-food-packages-flexibilities
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-revised-food-package-flexibilities.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-08-19'
+  citation_path: us/guidance/fns/wic/policy-memo/2025-5
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2025-5
+    memo_date: '2025-08-19'
+    fiscal_year: '2025'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2026-1
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2026-1: Implementation of P.L. 119-37, Temporary Increase to the Maximum Monthly Allowance
+    of Fluid Milk'
+  source_url: https://www.fna.usda.gov/wic/agency/increase-mma-fluidmilk
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-2026-1-mma-increase.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-12-05'
+  citation_path: us/guidance/fns/wic/policy-memo/2026-1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2026-1
+    memo_date: '2025-12-05'
+    fiscal_year: '2026'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2026-2
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2026-2: Fiscal Year 2026 Cash-Value Voucher/Benefit Amounts'
+  source_url: https://www.fna.usda.gov/wic/agency/cvvb-fy26
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fna.wic-2026-2-cvvb-amounts.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-12-10'
+  citation_path: us/guidance/fns/wic/policy-memo/2026-2
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2026-2
+    memo_date: '2025-12-10'
+    fiscal_year: '2026'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2026-4
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2026-4: Dietary Guidelines for Americans, 2025-2030 - Eat Real Food'
+  source_url: https://www.fna.usda.gov/wic/agency/dgas-eat-real-food
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/wic-pm2026-4-dgas-eatRealFood.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-03-30'
+  citation_path: us/guidance/fns/wic/policy-memo/2026-4
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2026-4
+    memo_date: '2026-03-30'
+    fiscal_year: '2026'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.
+- source_id: us-fns-wic-policy-memo-2026-5
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2026-5: Publication of 2026-2027 WIC Income Eligibility Guidelines'
+  source_url: https://www.fna.usda.gov/wic/agency/ieg-2026-27
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/wic-ieg2026-2027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-04-29'
+  citation_path: us/guidance/fns/wic/policy-memo/2026-5
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    document_subtype: policy_memorandum
+    program: WIC
+    memo_number: 2026-5
+    memo_date: '2026-04-29'
+    fiscal_year: '2026'
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
+    source_discovery_group: us/guidance/fns/wic
+    discovered_via: manual-review:wic-agent-queue; FNA resource browser WIC/Policy Memos
+    access_note: www.fna.usda.gov / www.fns.usda.gov answer HTTP 403 to every client; the memo page was read from the publisher's
+      origin host fns-prod.azureedge.us and carries only an embedded PDF from the USDA guidance portal, which is downloaded
+      with browser impersonation.

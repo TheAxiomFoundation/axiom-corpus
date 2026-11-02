@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-ct-liheap-dss-liheap-allocation-plan-ffy2026
+  jurisdiction: us-ct
+  document_class: policy
+  title: Connecticut LIHEAP Block Grant Allocation Plan, FFY 2026 (as approved August 7, 2025)
+  source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/state-plans-and-federal-reports/liheap-allocation-plans/ffy-2026-liheap-allocation-plan-approved.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-ct/policy/dss/liheap-allocation-plan/ffy2026
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services
+    document_subtype: state_allocation_plan_pdf
+    program: LIHEAP
+    state: CT
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://portal.ct.gov/dss/knowledge-base/articles/state-plans-and-federal-reports/community-services-allocation-plans
+    on_clearinghouse_index: true
+    source_discovery_group: us-ct/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://portal.ct.gov/dss/knowledge-base/articles/state-plans-and-federal-reports/community-services-allocation-plans
+    extraction_granularity: pdf_page
+    expression_date_note: plan period October 1, 2025 to September 30, 2026; approved August 7, 2025
+    access_note: portal.ct.gov HTTP 200 to the plain client (400,574 bytes); the Clearinghouse-listed FFY 2025 plan URL answers
+      404 (portal 404 page)
+    page_count: 19
+    benefit_matrix_pdf_pages: 10-11
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

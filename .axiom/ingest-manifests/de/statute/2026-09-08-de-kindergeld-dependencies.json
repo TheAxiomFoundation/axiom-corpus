@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-dependencies.json",
+      "sha256": "0294e8be39eddc385a90073e301ffb46c6e90148a1888877bb949f339f40d800"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-dependencies.json",
+      "sha256": "9894e4d836a873d7c44c57d82407395ffbfa5e9ad470dd51746229bfc7bf3f7e"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-dependencies.jsonl",
+      "sha256": "a864c05c97085b3d601ff204ccdc20c4c845ec1e0469b7a237ff0b3719088bac"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-dependencies/ao_1977/BJNR006130976.xml",
+      "sha256": "3c138548236c53e4f7f04327837272cfeec962b848ae6f007152f56f8dd47ba8"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-dependencies/aufenthg_2004/BJNR195010004.xml",
+      "sha256": "1891f80f4f20002e0c483c42f2b291ef6ea5978fe0f679a3c0bfccae088448df"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-dependencies/freiz_gg_eu_2004/BJNR198600004.xml",
+      "sha256": "01044ed51591be7d39000021bf84bbad45ca07d8a7ac2e1fc97e75928c3c9aa8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 854,
+    "missing_count": 0,
+    "provision_count": 854,
+    "source_count": 854
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T14:21:53.564916+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8zEp6ZZ+ySVvY7QDhzPq9NvzNN1+2D7m37L54ZYoF+XhtSpbWKcV2ZvNmL4ludlRg5nTCbClYGwovruza05GBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-dependencies"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "eaebb86fe37be9d08b760da4cf929992445262e8bad722a55427b5a6e9ff81b7"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "c0013db021832a72bdc27cb3ca720e7565b025563856561bcde49f1754a86c34"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/policy/2026-09-10-ccdf-plan-fy2025-2027.jsonl",
+      "sha256": "2ca82e692f0d50a95ffd248dab275d9e50ae1d25cc1eca537538293f178d5791"
+    },
+    {
+      "path": "data/corpus/sources/us-va/policy/2026-09-10-ccdf-plan-fy2025-2027/official-documents/us-va-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "5df33c33656554dd0533f7f73ffd230fc919eb4e31de88a2d547baf2f2084688"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ccdf-plan-fy2025-2027 --manifest manifests/us-va-ccdf-state-plan-fy2025-2027.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-12T13:01:38.292192+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/WmJuXc3pWwvo236nhtPZ6n2dfMEquTSJApwb1jcPnJKjb6TiXs9NHma9noBuuBEKUGGBdUNoCO6Z0NcAC3kAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ccdf-plan-fy2025-2027"
+}

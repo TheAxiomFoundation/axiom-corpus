@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "f6d6bc3bd4a5986c1bd2ace3bc65a2185590a2221654c8cc86bcccb29fb5dc77"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "75dc7d00600d190d6f87be1ff6ef68cea91dee73e7d8154ba261929b0181c29b"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "c4cc2cdecbf4da5996e329411819ad4ee6dfb8280b374875b12d46ecb53dcd64"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-nd-otc-form-nd-1-ty2025.pdf",
+      "sha256": "e7c35d515b7b1e101bef3ceb04cd8363d5df3e44da19654982b8f26bfeed83da"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-nd-otc-individual-income-tax-booklet-ty2025.pdf",
+      "sha256": "cea20eda0416339cdd2b049c67c772ca62665eafe2f0384795204c4197b4d75b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:55:19.260019+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iXmfKjdMkMvPdC5Lc5dx+ugwg1dMkVY+lRGhKPTqqFgbl9H94e87fbY2YofziGnKi031nUkZSkF/KwL5wPgKBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

@@ -105,6 +105,32 @@ EXPECTED_SOURCES = {
     ),
 }
 
+# The manifest now pins the superseding edition (2026-09-11 re-take, fetched through the
+# Safari browser-impersonation profile because humanservices.arkansas.gov answers HTTP 403
+# to the plain client): the July 1, 2026 manual, the July 30, 2026 appendices and the two
+# program pages revised in place in September 2026. The released scope above is immutable.
+MANIFEST_OVERRIDES = {
+    "ar-dhs-snap-policy-manual": {
+        "source_url": "https://humanservices.arkansas.gov/wp-content/uploads/"
+        "SNAP-Policy-Manual-07.01.2026.pdf",
+        "download_url": "https://humanservices.arkansas.gov/wp-content/uploads/"
+        "SNAP-Policy-Manual-07.01.2026.pdf?download=1",
+        "source_as_of": "2026-09-11",
+        "expression_date": "2026-07-01",
+    },
+    "ar-dhs-snap-manual-appendices": {
+        "source_url": "https://humanservices.arkansas.gov/wp-content/uploads/"
+        "SNAP-Appendices-07.30.2026.pdf",
+        "download_url": "https://humanservices.arkansas.gov/wp-content/uploads/"
+        "SNAP-Appendices-07.30.2026.pdf?download=1",
+        "source_as_of": "2026-09-11",
+        "expression_date": "2026-07-30",
+    },
+    "ar-dhs-snap-nutrition-waiver": {"source_as_of": "2026-09-11", "expression_date": "2026-09-10"},
+    "ar-dhs-snap-time-limit-rules": {"source_as_of": "2026-09-11", "expression_date": "2026-09-08"},
+}
+MANIFEST_REQUEST = {"browser_impersonation": "safari17_0", "browser_impersonation_direct": True}
+
 
 def test_arkansas_snap_scope_retains_complete_current_policy_set() -> None:
     documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
@@ -129,6 +155,13 @@ def test_arkansas_snap_scope_retains_complete_current_policy_set() -> None:
             count,
         ) = expected
         document = documents_by_id[source_id]
+        manifest = {
+            "source_url": source_url,
+            "download_url": download_url,
+            "source_as_of": source_as_of,
+            "expression_date": expression_date,
+            **MANIFEST_OVERRIDES.get(source_id, {}),
+        }
         assert (
             document["citation_path"],
             document["source_url"],
@@ -137,14 +170,16 @@ def test_arkansas_snap_scope_retains_complete_current_policy_set() -> None:
             document["source_as_of"],
             document["expression_date"],
             (document.get("extraction") or {}).get("html_content_selector"),
+            document["request"],
         ) == (
             citation_path,
-            source_url,
-            download_url,
+            manifest["source_url"],
+            manifest["download_url"],
             source_format,
-            source_as_of,
-            expression_date,
+            manifest["source_as_of"],
+            manifest["expression_date"],
             selector,
+            MANIFEST_REQUEST,
         )
 
         item = document_items_by_url[source_url]

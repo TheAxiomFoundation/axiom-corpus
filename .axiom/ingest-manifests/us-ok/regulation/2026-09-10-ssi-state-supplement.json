@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "6dbceb76ce0069d253921a1b65c882b6f4f362bcd53219b7372324b4df7de0b7"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "b2adec8b403fef155c07bf33fde85228f1928eb931dd0725b87c1d158c9391c9"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "63e3f72f948263308778cdb6884e3f96af36cbc8da73deabc06d62635db2cef2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/regulation/2026-09-10-ssi-state-supplement/official-documents/ok-oac-340-15-state-supplemental-payment.json",
+      "sha256": "a3f559546f33237e2233a00f15d4e11f172c87145f646431047e4587fb37c108"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-ok-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:40:54.242889+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pAcXU9jFt0pjj3XKLnlx7IWcXJnU8Dy18WcMZ26CaS05g+t+i5yQNpW3eURsHw3gBdWjlFuAbVpDq7ADPyC8Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

@@ -1,0 +1,477 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/policy/2026-09-13-medicaid-state-plan.json",
+      "sha256": "0943dcd22da0b289d5fad0d5a93e8e26e51115416e01fd2b2a748ad61d0a7c02"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/policy/2026-09-13-medicaid-state-plan.json",
+      "sha256": "72db6dafef4982cb5959c9ef030b2ef1492e2ac349ee62c49dae6776bb8235ea"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/policy/2026-09-13-medicaid-state-plan.jsonl",
+      "sha256": "e025d30ac9180b881a9ce23f1cff13b9735b4aaf273e210a46abfd960c16ace1"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-index-p01.html",
+      "sha256": "1afaca1c6cfc57e4cc7a287151e7a51ed6bcc9deed5311100287d53775eacb7e"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-index-p02.html",
+      "sha256": "97efb94621c4baac0ded2ed5698d9a2fe7bac408f32792e80ed192d60003a92c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-index-p03.html",
+      "sha256": "2daed3147e2eb54b137d5831edd22e825a72405795b83114770bd8f754e20182"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-09-06-approval-document.pdf",
+      "sha256": "8ec7aefe665ddd973ca56c48677581d92aa7ddae04d8e9763bac696f5f6b260e"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-09-06-attachment.pdf",
+      "sha256": "122599489aac5eeb550d7d6e47973e6b264015d36eea10837dbf2c496473252a"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-09-06-form-cms-179.pdf",
+      "sha256": "34e921ed7a76d06fce961292b5743369ae027c91f5e390f78ef764e8cabc1c0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-09-08-approval-document.pdf",
+      "sha256": "6287aed1943cbf9c9b31ff356fa39c3f31943b3bc27a896f2a0663dcc757aa5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-09-08-attachment.pdf",
+      "sha256": "d317198c39bffbb4729301ffa987ecf614a6759c9944486dc1d79dbf5ed8ac77"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-09-08-form-cms-179.pdf",
+      "sha256": "9b895e64af4552c1d30568731eda9f082103c81ddad13382c1b85d9377ebbf7c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-01-approval-document.pdf",
+      "sha256": "97df4f1d56903d27a14563e2c40bccf6c138bbfd91e8b7f1ef56ebbdcf828133"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-012-approval-document.pdf",
+      "sha256": "e19ec20d0da4b45ae0e8bac89cf94832c94a7664ea45cba81970e12fc91cd544"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-012-attachment.pdf",
+      "sha256": "7455023f6cced540f1a50ebc5884d09cba737ac4c2370200b6c0dbbf8c165204"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-012-form-cms-179.pdf",
+      "sha256": "3b995f730afe766974daeeedf03e172dba9a02f5cca3694352e603fd8d9d67d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-20-approval-document.pdf",
+      "sha256": "4a64daf9cb3b8f8f1a207591ca82741798d3b445dc7c3a285b156d91a3e5798b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-20-attachment.pdf",
+      "sha256": "ee880c254c3e1e91657861d4eff64463cc0ca1312ee87d1568c524512802812f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-10-20-form-cms-179.pdf",
+      "sha256": "4156bf4a74c2f463a29fada6cbd46172346f2d416a130f7af42474a71df1984b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-016-approval-document.pdf",
+      "sha256": "b02f6bd7e668c1a52ea195b3196309a61b2598cdea1638c4479cc929eca68249"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-016-attachment.pdf",
+      "sha256": "d515180b09f1c2b007a3d2d2e161a4685cd8dc29e18b9d8b54d40d5cf4c3dc0d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-016-form-cms-179.pdf",
+      "sha256": "3cee41acc726c087792ac905f2b3c585997617da00289db01d4d136fdf5015e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-08-approval-document.pdf",
+      "sha256": "d030a3830d663f7da9c2df06ecc6b074ca0c070a98ed57b04f175d43f655302d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-08-attachment.pdf",
+      "sha256": "2bf00f2120c7949c0671a60ffdb8b64f3412ddda52751c74bfeb133b892aca44"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-08-form-cms-179.pdf",
+      "sha256": "df22c2fceb81b9317c365c053f552bb0c2a73d10107ee10df092d027d92205b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-14-approval-document.pdf",
+      "sha256": "1ca00c42302fd85328a0bde1b117bbcfbe36f95f2a2ad0dcf493c3fc87b23cfa"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-14-attachment.pdf",
+      "sha256": "4663687563344df31242fc0e050a4347a5a258ec7c976f593523cdf4e0f2bde5"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-14-form-cms-179.pdf",
+      "sha256": "7041c06df7342896ca07d5af5b21039734e219e4ec662e961bcaffc0d450ef8f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-15-approval-document.pdf",
+      "sha256": "176e4fefd4ea357299f5a062377f2b67f4d1b4f7001a9d337e262e1f88c209e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-15-attachment.pdf",
+      "sha256": "93921eddfb13ecf3105d58ddd868f6427a4bfa1d51e94fd8ec0adf340b63f8cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-15-form-cms-179.pdf",
+      "sha256": "372db06ee5698070235404d1ca52c56e27d76cc975f89e388c4da5a0edcea826"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-19-m-approval-document.pdf",
+      "sha256": "f39a5f870ee98262be9e18f6992079f0e28260de6671f1f9fd4ee9c5a3192a01"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-19-m-attachment.pdf",
+      "sha256": "89fc84112f14109badff948ddf751c47e8bb8ce40e90410d6f3cb2f07a4e25c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-19-m-form-cms-179.pdf",
+      "sha256": "601c6be18525fbd656a1fb8d76d2e6676e99f14588cd409f65dbab039459adde"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-20-approval-document.pdf",
+      "sha256": "8084d82cb9f1bf27d8b7200f94a12962b064497c17ce102f4d61131d69d94826"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-20-attachment.pdf",
+      "sha256": "2f417cedf08cff0a8664cc50b4eca12caa5af26a4c70f15ebd83837e69a7e1d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-20-form-cms-179.pdf",
+      "sha256": "94dae9390a533f367d2503730fa0e693ec708d308570755134464036ed41a068"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-23-m-approval-document.pdf",
+      "sha256": "505c4ab6b2c715226e5e27d2d2b6f275cdc9a6292b82a6146f046cead12a6ed6"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-23-m-attachment.pdf",
+      "sha256": "aa0e5db0dda257797287164e57838637cf55f7ebb225a69b94bb27c9bfbae949"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-23-m-form-cms-179.pdf",
+      "sha256": "b0ad80e46eceb3851de034313f3cec9e25def511e1f6bdbbaae1dcb8d5a553bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-24-m-approval-document.pdf",
+      "sha256": "065a45a395559e66fecc8cb35728b078eca2bff229fdbfc835d61abbce2a9cf3"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-24-m-attachment.pdf",
+      "sha256": "d8b36251085c68814da3f8ae01e2d344fd5a18ee08b7abdcfcaffc4af4b5b202"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-24-m-form-cms-179.pdf",
+      "sha256": "0236f783c537c0bb82bfeba19b52a9f7fa48730315af84c70f23ed6ea0ee2ddd"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-25-m-approval-document.pdf",
+      "sha256": "b773de64d49b7d4192d21e04476ff9622d2f3c428e9a648633de2199712ae200"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-25-m-attachment.pdf",
+      "sha256": "151f753832a0c7246e9381c13f11e94a8f368accf14d7e7945324070ccd0421f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-25-m-form-cms-179.pdf",
+      "sha256": "3da9f3754d0b23780a360d3a378fc9eb77bebe227b2335d93aba2454559d6dff"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-28-m-approval-document.pdf",
+      "sha256": "cd47fe29cf28f5964e31b2e28bf60c9033e0a1c0c8ef1c16ac35c08432435a6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-28-m-attachment.pdf",
+      "sha256": "e72506b7edcb3ebc21a5802698908112f947f0d8526eb7c0293a09f82137c0c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-28-m-form-cms-179.pdf",
+      "sha256": "cb06dd1f40d0b8dff086bb6ce206fa509ada1b6cd87f8152e847ceb498e7808c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-29-m-approval-document.pdf",
+      "sha256": "dc36f1d4194fb9945956e89bb39e7d6818f35f98e67d6e6c0bb64958df141497"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-29-m-attachment.pdf",
+      "sha256": "0fad4fe019a654a9e82478b1902b0f6bc3d6f87af0f18846a25c7f7c57e75748"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-29-m-form-cms-179.pdf",
+      "sha256": "d679fa404cd818b880665d1ec950a56bace0fd80ee255315fabe0d8012e2e1dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-32-m-approval-document.pdf",
+      "sha256": "68fe48da82b304c62068e05eaa4ed7ae99e31da65da8eddc2768f87ecff1384c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-32-m-attachment.pdf",
+      "sha256": "21bca7e47303cf1268f09ca65025eece5ec6d8ed892efabecc78261b892b41c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-11-32-m-form-cms-179.pdf",
+      "sha256": "84bdcb713f65adc055b8e9ceed2acf0089a2b593bc893d42486b3d2385851293"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-04-approval-document.pdf",
+      "sha256": "48266aff06ba4ffe89c453ba6e53517e6ab09d9bdb0bc2bf90fcc6b83f7f5e4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-04-attachment.pdf",
+      "sha256": "502624faac38709bde5cb04252aafa17d71032a7f03c2b5fbab6e824176f8af1"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-04-form-cms-179.pdf",
+      "sha256": "782c75fa68fac0649fc132b46e502e750cceaa73d10977026edbf00e0f76b76e"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-07-approval-document.pdf",
+      "sha256": "baef7150b991790d111b9a523909f0f3c3fd86d17c705177def0fe491f14f754"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-07-attachment.pdf",
+      "sha256": "3d2cc7f70de32ec91fb6018debee742da8912448bd786904c39b33241bfc00d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-07-form-cms-179.pdf",
+      "sha256": "04c8440c814422ff869cc0246f664aeaf8dc8d4dec0603cbc18b132abb898aed"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-09-approval-document.pdf",
+      "sha256": "1532b56e0cf22eaa3564fb2fb6057dedd71871596348fe5666319cd590f30dda"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-09-attachment.pdf",
+      "sha256": "b2f58d9b55be57c96a72db57b585a173f13c271c236990df8df6f8cd4683e843"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-09-form-cms-179.pdf",
+      "sha256": "e4e83c661a7a6b688fbffa87887af993a7ca087befea0abb7c77c3f1816a41c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-10-approval-document.pdf",
+      "sha256": "720d75d2aacc3e484ba11c5d98f84601f5dd608edcccf0ffcb204f7aa3734053"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-10-attachment.pdf",
+      "sha256": "178178a9a91080d2ce273ce0fc6d609b863c8789b5c122b2f0a7df0aa1283e0d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-10-form-cms-179.pdf",
+      "sha256": "33c48f179870c9712a73d407ab6fc69df48bae4612565385647c0c3cb364a873"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-11-approval-document.pdf",
+      "sha256": "16b192fa52e7ccaf46140c4fd22bbc70d444b4e51a85c0977621f38263ea8130"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-11-attachment.pdf",
+      "sha256": "9b87e8634cf13ed3e5111c64cc09d86761046728390981655d125d37a34e8e1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-11-form-cms-179.pdf",
+      "sha256": "e78a17d630d46c346fdbba5a7cfd4e0e8837b3b41d0b70313f12e6f3d6cd1146"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-13-approval-document.pdf",
+      "sha256": "0332d2459714ca0eb17bcedca21ee7f60e179c6e01d4fc8891f49d8c260df31e"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-13-attachment.pdf",
+      "sha256": "2723241042da11a74c2c6d21302dab235af1e2c7466bf68742837206c87a849d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-13-form-cms-179.pdf",
+      "sha256": "9f66ccf5fb6a4ee5792250ef1bf9ade0ed646331620fa0f5b0971c1f004b15fb"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-17-approval-document.pdf",
+      "sha256": "db763fb030ae55cff1e1feae5e2d7c53b537f4e1fc4b6baa6e5395eeaa965a91"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-17-attachment.pdf",
+      "sha256": "13d8bd440fee93220c742a20d9583a9e387419f1e3f4a8805ba1cd74240de369"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-17-form-cms-179.pdf",
+      "sha256": "0490afb46655203e0b9d637cbbb2670af9f717f13fb9ed0a88b18b8cd6987914"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-18-approval-document.pdf",
+      "sha256": "e2a6a3226acc79bfa0318843878c9307299bd5e2e9df996d22e14a96eaeabed4"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-18-attachment.pdf",
+      "sha256": "3449cc09dcb8201f12e09643c100df301c6d6062a146bb068bc0a9295952466d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-12-18-form-cms-179.pdf",
+      "sha256": "2108d6d00436ef1053ac61430583c6aa8573ef8b88c96ac09147026e10b01a2d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-0028-mm2-approval-document.pdf",
+      "sha256": "330ed88fa97f099ddc8aca55558e95beda85a49f2d2e079fb6981c8a5e8e1634"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-0029-mm3-approval-document.pdf",
+      "sha256": "03919a7495eb46679d898ea3ed7b4fe0069c5200f09fba39ced945eda9081a18"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-0030-mm4-approval-document.pdf",
+      "sha256": "5ca0468327f009d1c7e211dd56ef5e271ceebb49f22d51e3082747fae06b449b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-0031-mm5-approval-document.pdf",
+      "sha256": "4363b0400d87f0c6b689c933a2a176af50a101302fd9e20ff142faa13e18a310"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-0032-mm6-approval-document.pdf",
+      "sha256": "55550c9dc8f06bf002b430905813569360292726c433a993a365b79da053159f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-0033-mm7-approval-document.pdf",
+      "sha256": "be4da63be12fb1dd35e279541c4ebd10583c63f1d7245c461a2988ad2722cf17"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-012-approval-document.pdf",
+      "sha256": "7b613e7eca13a5b00c42212c9937aa45bf05c70327e34604a4d690da616ce5c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-19-approval-document.pdf",
+      "sha256": "1bb7573589bf9e0468a8f49da1e4e40114ccdf684cd4e13016f27fbe8a2c757c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-19-attachment.pdf",
+      "sha256": "60ecee70cca020ab3f0a71b3a4d64f205e61df363b990134c8787e4d55188cd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-13-19-form-cms-179.pdf",
+      "sha256": "4b36698c15c7067ff5be621383949a3dd45737dc0005c888a1b382ff678d3fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-14-017-approval-document.pdf",
+      "sha256": "01eff68cdcb23cd99ed3a5cb5d781273f3acff7f0e0e45e0550b6456190ed7cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-15-0005-approval-document.pdf",
+      "sha256": "6a4e4cd7ba0c98eda8f7e0fde8018d78084401bd05d1b9c130aeb43bc490e473"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-15-0011-mm1-approval-document.pdf",
+      "sha256": "7ac55a3302b92756647907f0dac03e8ea6eb654f5cd801fb73d990336a6994e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-15-0012-approval-document.pdf",
+      "sha256": "8813a668c4cd5f29239cb46c3c43fa37944885b5a1f45527bd18cdccdd3754ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-19-0001-approval-document.pdf",
+      "sha256": "32c5c0db3a2c5c0100dfb9e9cf5eb6dbeabeab03a37e72a2b7d9a4ba3844e411"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-19-0002-approval-document.pdf",
+      "sha256": "01b697b3b891d99ebf0937fb0b5fdb51ea838b333dc6089d8ce6bfd9b93d77a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-19-0014-approval-document.pdf",
+      "sha256": "6125a112dd0f8c6e2dfc393e126ee8ee67d98fc247f05f5ccfb461afb5c38fda"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-20-0010-approval-document.pdf",
+      "sha256": "3a67f036a2bc5d04b211912d06012445731c88d7526bc90036ae1601025eb84b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-20-0011-approval-document.pdf",
+      "sha256": "4b979c1012808a411dbce55890c023408d1c66c905da2f1bba2358d5ad9c110d"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-20-0014-approval-document.pdf",
+      "sha256": "cb753613d11352433348ed3758071cce54316f55592708eb248e7b084d6117ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-21-0012-approval-document.pdf",
+      "sha256": "bd0988f20c8e26edab25292fc04f9ff7e942e841eefaa7772dc1379273652ed6"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-23-0004-approval-document.pdf",
+      "sha256": "21a83accbb9c7df1a4b4f4b4a027579ff9108e8bf675a0c181b1aa677bb21ea1"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-23-0005-approval-document.pdf",
+      "sha256": "f5ed2dc4152c0de41cc4fb4fae3697667ef3dc60bb96e95ab4074e6c22f52f13"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-23-0013-approval-document.pdf",
+      "sha256": "099ec1d4832d3156c0fdeeab1fd3b773c55b73dac55796ecec186feefd66a3d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-23-0014-approval-document.pdf",
+      "sha256": "ed56fdd90a160792326b32f08471fbe58fd70c7a056740fd343ceaa31a7c379f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-23-0016-approval-document.pdf",
+      "sha256": "5c1da85917c3fc5ca3c7d20dd507c05c64ef5bf8d25d40ff55778982e1467220"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-24-0004-approval-document.pdf",
+      "sha256": "b9da4288bcbe857ca0f0c881ab0874ca606d0cd3c7438e6949f80529e77eda4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-24-0016-approval-document.pdf",
+      "sha256": "df237cec0250506df8b124ddf7312d4ede4470df1cce36417288767fd6c2b240"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-24-0017-approval-document.pdf",
+      "sha256": "8cc617cf7d3e61925c55ba362d71cebb9c19c87cbfccc63b7d1c50f8b5a63413"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-24-0018-a-approval-document.pdf",
+      "sha256": "2f2e70f534fc6347288c1566662fb47bd59906d76d16204723853713b7affb94"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-25-0019-approval-document.pdf",
+      "sha256": "e40ce29888acc6cc86a98f7a385807ebb42554b7030a7c15b1ba584963f20a5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-medicaid-state-plan/official-documents/us-ne-cms-medicaid-state-plan-spa-ne-26-0002-approval-document.pdf",
+      "sha256": "42e9bec04404e764e4c355b6d3bf20253ae99f3aa308d808aa2c4ca64ff1506b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-medicaid-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 868,
+    "missing_count": 0,
+    "provision_count": 868,
+    "source_count": 868
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:10:21.929287+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0C6e4pUcwqKNnEwWC66nYfILA4WkTlscL6UpgG8m7AWWPNHJeQ//JZKstq4adPcNaMAWCpq6j0ZE0+PVqwYUCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-medicaid-state-plan"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "d1ae7e62925f4d7ec5696387672b06952dcd2074197f35521559f7f4303e4fb5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "abcb4dea47571b5550a7bd2a0f77dfc04f9ca70553ee95c99136e57a044ccbb5"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "473bb16f2133ffea94d13e21e7b90dd71af7157733d89c538d991d8ea7690d3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ms-mdhs-snap-income-limits-and-max-benefits-fy2026.html",
+      "sha256": "38e20f94caf6f69fc99654f62c78ed75c5e243ce8fccb1abdb216df896c83119"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-ms-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:05:14.131764+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nkZjG6M9wL0UozvCz6z7qN4/0KsZb2ckhO4sFeE1qfYHB1fbW/O9bGD20ru53d63IE73HjUOac9kLdxaHxRNBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

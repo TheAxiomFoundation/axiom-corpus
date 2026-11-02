@@ -1,0 +1,116 @@
+version: 2026-10-06-w6-benefits-guidance-ny
+documents:
+- source_id: us-ny-guidance-dol-p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 'P832S (1/25, Spanish): How your weekly UI benefit payment is calculated'
+  source_url: https://dol.ny.gov/system/files/documents/2025/02/p832s-how-your-weekly-ui-benefits-are-calculated-1-25es-us.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/guidance/dol/p832s-how-your-weekly-ui-benefits-are-calculated-1-25-es
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Labor
+    document_subtype: claimant_publication
+    program: Unemployment insurance
+    expression_date_note: the edition date the publication number carries
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 180)
+    wave6_rows:
+    - 180
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-guidance-dol-p803-partial-ui-faqs-10-3-25
+  jurisdiction: us-ny
+  document_class: guidance
+  title: P803 Partial Unemployment FAQs (10/3/25)
+  source_url: https://dol.ny.gov/system/files/documents/2025/10/p803-partial-ui-faqs-10-3-25.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-10-03'
+  citation_path: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Labor
+    document_subtype: claimant_publication
+    program: Unemployment insurance
+    expression_date_note: the edition date the publication number carries
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 181)
+    wave6_rows:
+    - 181
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-guidance-dol-p832-how-your-weekly-ui-benefits-are-calculated-2-26
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 'P832 (2/26): How your weekly unemployment insurance benefit payment is calculated'
+  source_url: https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-02-01'
+  citation_path: us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Labor
+    document_subtype: claimant_publication
+    program: Unemployment insurance
+    expression_date_note: the edition date the publication number carries
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 182)
+    wave6_rows:
+    - 182
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-guidance-governor-news-2025-10-08-maximum-weekly-benefit-increase
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Governor Hochul and Labor Leaders Announce Maximum Weekly Benefit Increase for Unemployed Workers (October 8, 2025)
+  source_url: https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-10-08'
+  citation_path: us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase
+  metadata:
+    primary_source: true
+    source_authority: Office of the Governor of New York
+    document_subtype: news_release
+    program: Unemployment insurance
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 187)
+    wave6_rows:
+    - 187
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-guidance-dtf-nys-50-2024-12
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 2024 Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (12/24)
+  source_url: https://www.tax.ny.gov/forms/publications/2024/wt/nys50-1224.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2024-12-01'
+  citation_path: us-ny/guidance/dtf/nys-50/2024-12
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: employer_guide
+    program: Unemployment insurance
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 188)
+    wave6_rows:
+    - 188
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-guidance-dtf-nys-50-current
+  jurisdiction: us-ny
+  document_class: guidance
+  title: Form NYS-50, Employer's Guide to Unemployment Insurance, Wage Reporting, and Withholding Tax (current edition)
+  source_url: https://www.tax.ny.gov/forms/publications/wt/nys50.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/guidance/dtf/nys-50/current
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: employer_guide
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 189)
+    wave6_rows:
+    - 189
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

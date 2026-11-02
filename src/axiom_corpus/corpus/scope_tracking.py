@@ -1,4 +1,8 @@
-"""Verify that corpus scope references point to git-tracked artifacts."""
+"""Verify that corpus scope references point to committed artifacts.
+
+An artifact is committed when git tracks it or a corpus lock file pins it
+(``.axiom/corpus-locks``; see ``docs/corpus-storage.md``).
+"""
 
 from __future__ import annotations
 
@@ -8,6 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from axiom_corpus.corpus.corpus_locks import LockSet, load_locks_from_index
+
 
 @dataclass(frozen=True)
 class ScopeTrackingResult:
@@ -16,10 +22,11 @@ class ScopeTrackingResult:
     scopes_checked: int
     files_verified: int
     missing_paths: tuple[str, ...]
+    lock_errors: tuple[str, ...] = ()
 
     @property
     def passed(self) -> bool:
-        return not self.missing_paths
+        return not self.missing_paths and not self.lock_errors
 
 
 def verify_scope_tracked(
@@ -29,9 +36,27 @@ def verify_scope_tracked(
     document_class: str | None = None,
     version: str | None = None,
 ) -> ScopeTrackingResult:
-    """Check scoped inventory and signed-manifest references against git's index."""
+    """Check scoped inventory and signed-manifest references against committed files."""
     repo = repo.resolve()
     tracked_paths = _git_cached_paths(repo)
+    # The staged locks, like the staged files, are what the next commit carries.
+    locks = load_locks_from_index(repo)
+    if locks.errors:
+        # Invalid locks cannot say which files they pin; checking the rest
+        # would report success over an unknown set.
+        return ScopeTrackingResult(
+            scopes_checked=0, files_verified=0, missing_paths=(), lock_errors=locks.errors
+        )
+    locked_inventories = sorted(
+        path
+        for path in locks.by_path
+        if _scope_matches(
+            _inventory_scope(path),
+            jurisdiction=jurisdiction,
+            document_class=document_class,
+            version=version,
+        )
+    )
     inventory_paths = sorted(
         path
         for path in tracked_paths
@@ -55,6 +80,8 @@ def verify_scope_tracked(
     indexed_payloads = _git_indexed_json_batch(
         repo, [*inventory_paths, *manifest_paths]
     )
+    indexed_payloads.update(_locked_json_payloads(repo, locks, locked_inventories))
+    inventory_paths = sorted({*inventory_paths, *locked_inventories})
 
     referenced_paths: set[str] = set()
     for inventory_path in inventory_paths:
@@ -79,12 +106,34 @@ def verify_scope_tracked(
             if isinstance(path, str) and path.strip():
                 referenced_paths.add(_repo_relative_path(path))
 
-    missing_paths = tuple(sorted(referenced_paths - tracked_paths))
+    missing_paths = tuple(sorted(referenced_paths - tracked_paths - set(locks.by_path)))
     return ScopeTrackingResult(
         scopes_checked=len(inventory_paths),
         files_verified=len(referenced_paths),
         missing_paths=missing_paths,
     )
+
+
+def _locked_json_payloads(
+    repo: Path,
+    locks: LockSet,
+    paths: list[str],
+) -> dict[str, dict[str, Any]]:
+    """Read the locked bytes of JSON artifacts (hash-verified; fetched if absent)."""
+    if not paths:
+        return {}
+    from axiom_corpus.corpus.content_store import read_entry_bytes
+    from axiom_corpus.corpus.resolver import CorpusResolver
+
+    resolver = CorpusResolver(repo)
+    payloads: dict[str, dict[str, Any]] = {}
+    for path in paths:
+        raw = read_entry_bytes(repo, locks.by_path[path], resolver.cache, resolver.sources)
+        payload = json.loads(raw.decode("utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError(f"Expected a JSON object in {path}")
+        payloads[path] = payload
+    return payloads
 
 
 def _git_cached_paths(repo: Path) -> set[str]:

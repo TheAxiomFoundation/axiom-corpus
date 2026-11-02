@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa.json",
+      "sha256": "4921b47482c9673055220555aa7fa237e907f46f34fce5c7843f751e2f7bbff8"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa.json",
+      "sha256": "f37c088f504439b0ff8f62f79471c35ca74726c92519b65df13ec1fedfd7625b"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa.jsonl",
+      "sha256": "f74c722f70780b03429064b851cdd0c51d71531276ef8cf14c4ff506ace13de1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa/official-documents/us-wa-w6-ccdf-rate-schedules-child-care-subsidy-rates-regional-map-eps-0004.pdf",
+      "sha256": "24bc7e59c1e357ebcb85629bec392eb0ccd4f29d0efff6259b5c7e02e01fbf4c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa/official-documents/us-wa-w6-ccdf-rate-schedules-income-eligibility-and-copay-calculation-table-2026-10-01.pdf",
+      "sha256": "13c4a63acf09fae6af3a2a6b2aa84c8a2a689f0a9456700e6a38a11f7efc66da"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa/official-documents/us-wa-w6-ccdf-rate-schedules-licensed-center-base-rates-2026-07-01.pdf",
+      "sha256": "522fe8035d43238df048ce0ff0bf9b188af4dbef63e9d2c5543a0b671664f7eb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-10-06-w6-tanf-ccdf-policy-wa/official-documents/us-wa-w6-ccdf-rate-schedules-licensed-family-home-base-rates-2025-07-01.pdf",
+      "sha256": "49e0a0d42ab628332199a78674d29580f8208e7da1c06b5ce2df2171a3d55409"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T18:00:20.094814+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dFeyAo10/XvjHTxc1eZRlymg+C3bsAy+l8En3qQzVSTplQfv3IocczB8bykp7i0apRGUmNYjrIyRjQG1vutRAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-wa"
+}

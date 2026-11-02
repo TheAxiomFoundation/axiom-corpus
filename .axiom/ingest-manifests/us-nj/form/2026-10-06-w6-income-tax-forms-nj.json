@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/form/2026-10-06-w6-income-tax-forms-nj.json",
+      "sha256": "d1f48f9fc0ac9355681132cd3ff811f34245896557d0d9942255cbe20b6b1d29"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/form/2026-10-06-w6-income-tax-forms-nj.json",
+      "sha256": "372f9c82230f1fca2416057fa2de4adc615fe190f82636877582162d8a8ae6aa"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/form/2026-10-06-w6-income-tax-forms-nj.jsonl",
+      "sha256": "ac961af8798735ad34e7f9f688b765930f4ad45d25c94ae413500695d04b26a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-10-06-w6-income-tax-forms-nj/official-documents/us-nj-form-taxation-ty2021-nj-1040-instructions.pdf",
+      "sha256": "e46ae187cee009eb29cda7095655fc710ce00b0b6e634e13187025e0d71f6a47"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-10-06-w6-income-tax-forms-nj/official-documents/us-nj-form-taxation-ty2022-nj-1040-instructions.pdf",
+      "sha256": "8cf9dec7770285fb60cb751b7549949500e814c51eedcb6d8ea0aa3ff59db3a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-10-06-w6-income-tax-forms-nj/official-documents/us-nj-form-taxation-ty2024-nj-1040-instructions.pdf",
+      "sha256": "06d08e69b2c732e1882dda507149efed7c364c8b77efee0f242bd0158d7ad6d3"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/form/2026-10-06-w6-income-tax-forms-nj/official-documents/us-nj-form-taxation-ty2025-pas-1-instructions.pdf",
+      "sha256": "dae453f102d3ead7a7f20c5b120738b951184880c2e551664edbda5c24a69906"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:55:57.894062+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "t67Zg96mTfKda8bLXedhYLko2EoPaoTwsvoJ78Ke+eXcm0MR0EqRlaznZFk2Q1vWLmLA57zoPp9+T7W5nFOgDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-nj"
+}

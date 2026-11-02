@@ -1,0 +1,58 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-nh-guidance-dhhs-sr-26-01
+  jurisdiction: us-nh
+  document_class: guidance
+  title: 'New Hampshire DHHS Supervisory Release SR 26-01 (dated 01/26): COLA for 2026 and the OAA, APTD and ANB standards
+    of need'
+  source_url: https://www.dhhs.nh.gov/sr_htm/html/sr_26-01_dated_01_26.htm
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-nh/guidance/dhhs/sr/26-01
+  request:
+    browser_impersonation: chrome120
+  metadata:
+    primary_source: true
+    source_authority: New Hampshire Department of Health and Human Services
+    document_subtype: supervisory_release_html
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: NH
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm
+    source_discovery_group: us-nh/guidance/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm
+    extraction_granularity: html_blocks
+    expression_date_note: SR 26-01 dated 01/26, effective with the 2026 COLA
+    access_note: dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14;
+      fetched with the extractor's browser_impersonation option, TLS verification on
+- source_id: us-nh-guidance-dhhs-bds-2026-standard-of-need-and-income-changes
+  jurisdiction: us-nh
+  document_class: guidance
+  title: 'New Hampshire DHHS Bureau of Developmental Services: 2026 Standard of Need and Income Changes (January 1, 2026)'
+  source_url: https://www.dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bdsstandardofneed.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-nh/guidance/dhhs/bds/2026-standard-of-need-and-income-changes
+  request:
+    browser_impersonation: chrome120
+  metadata:
+    primary_source: true
+    source_authority: New Hampshire Department of Health and Human Services
+    document_subtype: agency_memo_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: NH
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm
+    source_discovery_group: us-nh/guidance/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.dhhs.nh.gov/aam_htm/html/601_income_limits_aam.htm
+    extraction_granularity: pdf_page
+    expression_date_note: printed 'January 1, 2026'
+    access_note: dhhs.nh.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14;
+      fetched with the extractor's browser_impersonation option, TLS verification on
+    page_count: 2

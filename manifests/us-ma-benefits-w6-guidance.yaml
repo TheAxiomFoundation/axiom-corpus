@@ -1,0 +1,97 @@
+version: 2026-10-06-w6-benefits-guidance-ma
+documents:
+- source_id: us-ma-guidance-dta-policy-online-helpful-charts-and-figures
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Helpful Charts and Figures (DTA Policy Online, SNAP and cash standards)
+  source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/guides/Helpful%20Charts%20and%20Figures.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ma/guidance/dta/policy-online/helpful-charts-and-figures
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: standards_chart
+    program: SNAP; TAFDC
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 117)
+    wave6_rows:
+    - 117
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-dta-online-guide-transmittal-2025-31
+  jurisdiction: us-ma
+  document_class: guidance
+  title: DTA Online Guide Transmittal 2025-31 (July 25, 2025)
+  source_url: https://eohhs.ehs.state.ma.us/DTA/PolicyOnline/olg%20docs/olgtm/2025/31.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-07-25'
+  citation_path: us-ma/guidance/dta/online-guide-transmittal/2025-31
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: online_guide_transmittal
+    program: SNAP
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 118)
+    wave6_rows:
+    - 118
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-dta-ssp-payment-levels-cy2022
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Federal and State Payment Levels for Calendar Year (CY) 2022
+  source_url: https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2022/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ma/guidance/dta/ssp-payment-levels/cy2022
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: payment_levels_chart
+    program: SSI state supplement (SSP)
+    expression_date_note: calendar year 2022 chart (Last-Modified 2021-10-27)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 123)
+    wave6_rows:
+    - 123
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-dta-ssp-payment-levels-cy2025
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Federal and State Payment Levels for Calendar Year (CY) 2025
+  source_url: https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2025/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ma/guidance/dta/ssp-payment-levels/cy2025
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: payment_levels_chart
+    program: SSI state supplement (SSP)
+    expression_date_note: calendar year 2025 chart (Last-Modified 2024-11-01)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 124)
+    wave6_rows:
+    - 124
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ma-guidance-eohlc-learn-about-home-energy-assistance-heap
+  jurisdiction: us-ma
+  document_class: guidance
+  title: Learn about Home Energy Assistance - HEAP (Mass.gov, EOHLC)
+  source_url: https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ma/guidance/eohlc/learn-about-home-energy-assistance-heap
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Executive Office of Housing and Livable Communities
+    document_subtype: agency_web_page
+    program: LIHEAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 125)
+    wave6_rows:
+    - 125
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

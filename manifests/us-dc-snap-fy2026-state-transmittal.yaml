@@ -1,0 +1,43 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-dc-dhs-snap-eligibility-requirements-fy2026
+  jurisdiction: us-dc
+  document_class: guidance
+  title: 'SNAP Eligibility Requirements: income limits effective October 1, 2025 to September 30, 2026 (DHS page)'
+  source_url: https://dhs.dc.gov/service/snap-eligibility-requirements
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-dc/guidance/dhs/snap-eligibility-requirements/fy2026
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Human Services, Economic Security Administration
+    program: SNAP
+    source_discovery_group: us-dc/guidance
+    index_url: https://dhs.dc.gov/service/snap-eligibility-requirements
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: agency_program_page
+    fiscal_year: '2026'
+    caveat: the deduction paragraph still prints FY 2025 standard deduction, shelter cap and SUA
+- source_id: us-dc-dhs-snap-monthly-benefit-fy2026
+  jurisdiction: us-dc
+  document_class: guidance
+  title: 'SNAP Monthly Benefit: maximum monthly allotment levels October 1, 2025 to September 30, 2026 (DHS page)'
+  source_url: https://dhs.dc.gov/service/snap-monthly-benefit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-dc/guidance/dhs/snap-monthly-benefit/fy2026
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Human Services, Economic Security Administration
+    program: SNAP
+    source_discovery_group: us-dc/guidance
+    index_url: https://dhs.dc.gov/service/snap-eligibility-requirements
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: agency_program_page
+    fiscal_year: '2026'

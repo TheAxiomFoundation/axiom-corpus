@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "0649182a751a975ea7f719fcb619c416c818589532872564684c77f20bf49c5c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "5abe88f14530e08ccea793450f56843c5249473526c8d07584ef62cfaca16dfa"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "3af3edeb82c87a2273ffef7154a64162d0cc178f8ddf65238f083f405ef98dbd"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-ne-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "712af824c263187c97abed0dfa79183bacfc218560e1fe6511a53a02178e9080"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:55:16.427772+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Yno5Wvk4hiceGTWWFiK7ApL5SDKLQJe+5hHfx1JAZNX9xNPHGMwuniWNSRYAaJr2hhgLjjae0Wf9nCthsJeTCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la.json",
+      "sha256": "3ef55f5c3f3c935c30b0772cc5aa57499266ae6b22c86cde517596dcff1ec00a"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la.json",
+      "sha256": "1289ec09a3213d730ad45e98c1eb3fb24ccce48820423fc2904d35cd806dc71a"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la.jsonl",
+      "sha256": "99f5988a21de40df43fff16c6e34d4650b14cef23d0ba6155a5477cf1e6d228e"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la/official-documents/us-la-w6-dcfs-tanf-louisiana-to-increase-tanf-cash-assistance-benefits-2022.html",
+      "sha256": "cd15d89516063d1985a6c74e8592d09eed4e0bed8160b133804ac9f44c9a0adf"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la/official-documents/us-la-w6-ldoe-ccdf-bulletin-139.pdf",
+      "sha256": "ee42debdfffdb7492df01d954c0744877d7e9e6343524fd77c56844847fe9db5"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la/official-documents/us-la-w6-ldoe-ccdf-ccap-rate-changes.pdf",
+      "sha256": "e8db3cf2021fb76296dfa50fd7c090a978021d25b7f5f6be3086eb7a77ee934d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la/official-documents/us-la-w6-ldoe-ccdf-ccap-sliding-fee-scale.pdf",
+      "sha256": "ff2e13a2708705ac07c675219990c6485cb99338606582208c5f8a18f49bdc39"
+    },
+    {
+      "path": "data/corpus/sources/us-la/policy/2026-10-06-w6-tanf-ccdf-docs-la/official-documents/us-la-w6-ldoe-ccdf-early-childhood-provider-updates-2025-02.pdf",
+      "sha256": "577bfc391a8a72f7ab16efa40d6b4fcb74e9d81ec4fd85bbc3720f16c842dc7d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 102,
+    "missing_count": 0,
+    "provision_count": 102,
+    "source_count": 102
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:52:40.676857+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/io3y/XYAb4BLyVdlRBzez4lcevJkAHA++qRcsYKV/Sr52bn4QJu2Gh1LRg9cX++JwjRtgVKDcCUGBT1IElyAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-la"
+}

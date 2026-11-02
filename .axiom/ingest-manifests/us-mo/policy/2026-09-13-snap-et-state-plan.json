@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "fc69b838fe1bea2acfdaeaa5558c09d9697f046fe7554572c3096b10aba7a807"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "a3c87c4a45f257ee2876afe253581e1b87244e1e78833f770c0fab8e9f150ee4"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "b62dff55397e66a68baa859711b6dc74e44f95bbbde574ddec3d3e150adbb50e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/policy/2026-09-13-snap-et-state-plan/official-documents/mo-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "18015a8ff528f8a087804fb5de525407402c1cafa48838559f6a3b424420655f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 227,
+    "missing_count": 0,
+    "provision_count": 227,
+    "source_count": 227
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:46:32.610291+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nzQ4MeYwCyikZxD0cvJwkSjdRGeDeRsqMT/ntB20vAu5HpD4wEEA8CKpChYzQTobUQOkj+CaHj9g/e5AbcUAAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

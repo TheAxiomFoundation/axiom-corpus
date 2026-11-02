@@ -1,0 +1,529 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/policy/2026-09-13-medicaid-state-plan.json",
+      "sha256": "966472a119fb0030a3be8dd2f1b9f023c02477315ddcb8339ce8d86024d38e3e"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/policy/2026-09-13-medicaid-state-plan.json",
+      "sha256": "2809c48bcdf0256b460e43c22a16a3e57e015429a2e6da99d6f9d4b061ae356c"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/policy/2026-09-13-medicaid-state-plan.jsonl",
+      "sha256": "5206d84d69d114c8f1ff313ab931dcdf685c900b993c5b1dba02f96419ca1390"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-index-p01.html",
+      "sha256": "c915f0afbe78eab233755bc9844feca263283b913fb33f14e4e45d927298c462"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-index-p02.html",
+      "sha256": "f743a853d4fdc045835874c06703bebff78c792e9f91d2be6896b24100238bed"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-index-p03.html",
+      "sha256": "162a2cae26560a4028d98420670617d4cece2f43176aed753d44368c27290153"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-index-p04.html",
+      "sha256": "fada67cfd3ba15ee976c5edff0fc7d91ae1e6b88446ebbd23194190e777873c4"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-index-p05.html",
+      "sha256": "eba8df7584b272e382312a6bc531534efcab670536e2be9badcc639fb3053e36"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-index-p06.html",
+      "sha256": "5970efe03352c4b2a2da7da1385bbd62df6d8ddcb3979429d3ea7436747f313a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-021-approval-document.pdf",
+      "sha256": "50d75680e77d8783556c03d2e833f827648daead696386aa49158098943b3cbc"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-021-attachment.pdf",
+      "sha256": "930dbba3b8c04ca684e5bc35508d2c57883695526fe3e98f44fdf9805659fba6"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-021-form-cms-179.pdf",
+      "sha256": "6f070365f1c08de566b740d851ba5934e8b9c8e62a7284425fd01327653310f0"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-027-approval-document.pdf",
+      "sha256": "16ce4861345268b151ea7451dc717049c4688f9c84ccf0b596887fe82e706860"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-027-attachment.pdf",
+      "sha256": "2b61ab5079ff1ffbc782804f58680a81f2f20154c04c17e3b2bf14dda50807af"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-027-form-cms-179.pdf",
+      "sha256": "7ef5c1d012aedf9a0110ba59d4cb35990a5d1f585ee52d00a9c09234b56d78e5"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-032-approval-document.pdf",
+      "sha256": "29a03a6702f972e7f29e950dfc6b87ceccef3873b200faacfbc73faf303a50e1"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-032-attachment.pdf",
+      "sha256": "0b733210a47ef982b0b77ea65fb15d6e1d73ae23d7520351bb7961e52b6bf997"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-09-032-form-cms-179.pdf",
+      "sha256": "a68cb80c4bd643f4b7ebf38bc684323dc6256340b140bf742bda6e2add5f6cc9"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-001-approval-document.pdf",
+      "sha256": "62983d3b47b43024d569368ffceccc1ef781334bbd1b9ebe766c7d34438777ff"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-001-attachment.pdf",
+      "sha256": "70cb4bc90843ebad369d6b355bc61a01d00d85b273673adf2451631bef4c770d"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-001-form-cms-179.pdf",
+      "sha256": "b215554bde2fb98ee1a7e87c5ca0c1f07b0dfd1e01d21a4ee31fb15b2a9165b5"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-005-approval-document.pdf",
+      "sha256": "2be5ca18f9c07a6f848b06f6a32624a93d64f57245a4abf57ec2627e1a76f509"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-005-attachment.pdf",
+      "sha256": "be0be4335eba69d2afb11c70e34560e14e82c5afa95d66085971d67ae8b3efb2"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-005-form-cms-179.pdf",
+      "sha256": "924c0b32c1606af3a071b9453f02c5c1b97536ca391cd0f3b1322ea83583e0bd"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-006-approval-document.pdf",
+      "sha256": "f766a3483f67bc9d57eeba64bdd50d0051978cf5cd20e4cb3fac4830b118ddaa"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-006-attachment.pdf",
+      "sha256": "467b628b3c4da32a608a19aa4c1bea74a5f210bb4a81c8c480dcdc29a460d1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-006-form-cms-179.pdf",
+      "sha256": "156d9735618739fcd8db9d6a715b7be5a948f3297b1aac1f5d76573a45b8890a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-011-approval-document.pdf",
+      "sha256": "d2f2d0e2b1b0662bbb8a658380cc83eb78d18de3b9d9026682db0e4bbd95d5a5"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-011-attachment.pdf",
+      "sha256": "334b16f3e05bd31d2ee837d17ba923a9fee22eb0e369ae708825391ac79c54df"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-011-form-cms-179.pdf",
+      "sha256": "e78be5d3c0e88136d6c922ab6beaf71a51bfad9e6adea9de5fe931f8d369be7e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-013-approval-document.pdf",
+      "sha256": "42cb2e41189d9f4a0227a713dc59e8e6dc1e95329993b7188094af73e99a46ad"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-013-attachment.pdf",
+      "sha256": "1d09cbbd535763873924171358d3519f0d6477896892ce34527aac336efa09bf"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-10-013-form-cms-179.pdf",
+      "sha256": "51f68ab0ddd33477e91d27cb597403e783b04ada03c6916aa13cb05533ad3da2"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-11-008-approval-document.pdf",
+      "sha256": "c5c14e567e058fdbec31804837daf178a169a0f01b471b6c736b6546e5aa617e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-11-008-attachment.pdf",
+      "sha256": "aadc32e0f11c0661ce05c4b099bc79536398a894d1fddd5587f63e054ba3ba6e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-11-008-form-cms-179.pdf",
+      "sha256": "61f24ef363caced2912b232b77956e7ecec24684ba2b579fc006601dfa434af7"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-003-approval-document.pdf",
+      "sha256": "8fdfa2a98437be40bfd643c9f6369b109c1d58cb290c1ebfae23cfef3c0fe08a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-003-attachment.pdf",
+      "sha256": "4f41bf091c4ff44f377b0dc81fb4d955f192f6d4ed1b4eb7e12e905cd78a4f8a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-003-form-cms-179.pdf",
+      "sha256": "a8fe172474e8d45bd7f58ab308ba03d3715a129097879c3bead2c3f3829fe15d"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-004-approval-document.pdf",
+      "sha256": "91a9c191b869fb1e90b4a3c48fc462293631a6909e5bd1db75ebb427fe04962f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-004-attachment.pdf",
+      "sha256": "f6cdfb71300b9815d17796a6e8c25186d012d718312febfe0d51666bdbfca79b"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-004-form-cms-179.pdf",
+      "sha256": "646b7944e335651bb80fff8e47170ba4d1263e113694a0a2daa80d2544a18046"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-006-approval-document.pdf",
+      "sha256": "737b76c7d7027000a02c216bd1cbb1f3b079d063d75bc583fcba66b5d2a3e0bb"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-006-attachment.pdf",
+      "sha256": "4ced70aac8809e029734bef72471263287be58ecde11c45a6fe55ee20e1e3b7a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-12-006-form-cms-179.pdf",
+      "sha256": "cb2c4f14a9564b87aa4ff3f23594acaadb100993e2b8c24c7ce10dda73db9e89"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-001-approval-document.pdf",
+      "sha256": "32308358b2c8fa54b5fc3b3dd1a3531990db4e63cb01c893a73ea074058307c2"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-001-attachment.pdf",
+      "sha256": "6ba3254b2c3a6aff1d153c93f885ae9e8f34fe721c84dcb6c05c26bd6ff2ebb6"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-001-form-cms-179.pdf",
+      "sha256": "441e781115e69cf63306c126f8e60aa469fe1be3d1d578fafd73306f8e1eaff8"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0018-approval-document.pdf",
+      "sha256": "70c29fe772bb0e34724f5e7d540a9d50137f8784c008a358cd4e97009bffa08a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0025-approval-document.pdf",
+      "sha256": "2f9e61b31a8d725008e52b164d851255e64bb6d86535ea4aaccd0f49f653ac65"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0025-mm-approval-document.pdf",
+      "sha256": "2e68b3fa8b32b54271ad604fb2f5a6ae74f39fc3c21764c891bab40561208f69"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0026-approval-document.pdf",
+      "sha256": "0d68d31422aac83261288953216c4c0a1e9c353a74d72302c55950cc209993b8"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0027-approval-document-2.pdf",
+      "sha256": "6295d9cd5c957340b6f65673fdebf03091b38734f9d4e154fa7eefa8d7076c67"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0027-approval-document.pdf",
+      "sha256": "a6b36dd5b718366ec5c4f5d3bdd48d8737c64278878175f4441048ce537a0cc3"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0028-approval-document.pdf",
+      "sha256": "a523e3ed619dbe352366962f95aa85a504d05db1002afc42c0d5e5d7fcf3b670"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0029-approval-document.pdf",
+      "sha256": "05a4c6bd7dd492731d4427e655484fb41930e94e52895763b11f600c5b3461d3"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0030-approval-document.pdf",
+      "sha256": "1850071ae0829e5dfc3d93840f08577a746f9280c104ab6f07cf1c6035e1af4f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-0032-approval-document.pdf",
+      "sha256": "79f2bdb3c19e8f1e6cdb9c09221442a964c72a8bc218c2425e9e56f010798061"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-013-approval-document.pdf",
+      "sha256": "2dc305b1150e22bf8615cf199e16aceaa15d1cf43d710a8fc2f87d09e332ab70"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-13-014-approval-document.pdf",
+      "sha256": "178326804340f8914ecd99d8a3aa7e25d15dc42651f700681781248f66257d40"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-14-0001-approval-document.pdf",
+      "sha256": "a8af32c08e23af1e410f14ab9a0dd82ce7be1c46395741df2b9fe6bf5ae1f7f1"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-14-0007-approval-document.pdf",
+      "sha256": "600cc348249f2ca4fb2edad341072bfe48b190638b37ee6b643febc32caef04f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-14-0013-approval-document.pdf",
+      "sha256": "58cf369bdd7c232a24fa25453c5f757f4c3573bd7b85dc5abebff2c993afa799"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-14-0026-approval-document.pdf",
+      "sha256": "60c75a42ac97af1ae00bef59ff98904fa2d6390f1b3c5d7b90c022a072814f31"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-14-003-approval-document.pdf",
+      "sha256": "95635a3ddfd76a7a3182c70d072515337298f13334e2cfe22d2ee8bd63b08935"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-15-001-approval-document.pdf",
+      "sha256": "5135d13bbb41b7dfabdafe487d2f1781ec66e1ef0dd9ed4ac26271f902329a63"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-15-019-approval-document.pdf",
+      "sha256": "acb72ea7e828ad4a1e97f599cfc52dadbc7a9ef5c9722e82669d55804409b64e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-15-020-approval-document.pdf",
+      "sha256": "8e645d18caf1bc1ebf7377e3c80b130caec869053a909c77b8b939dc5b5d5831"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-15-021-approval-document.pdf",
+      "sha256": "44aefac23b65d01b0cc2bc1fd555b57226479a4fd8d8d79613c0d19dec209663"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-16-0002-approval-document.pdf",
+      "sha256": "f171d4e2f6af32bb89a875744b132acea20bafad398853d114122a472bfd7bde"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-16-003-approval-document.pdf",
+      "sha256": "12ab4081311d0cedabd177786665bb4c6fc6976829bb35fcb8148823fa23a6c7"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-16-0030-approval-document.pdf",
+      "sha256": "cd35409237ae3850b0a2220012d9df3820a2a387fc75019d0ccd7ce47c6c2258"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-17-0014-approval-document.pdf",
+      "sha256": "a4cfe71f445df7c515f662f6aab0ba1c0ef5c10ae2ebe15d44b4e6f7f89111d7"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-17-016-approval-document.pdf",
+      "sha256": "c457f266fe3828b147f4bdb76beb9a3fc2e248fd2bece4d8ee456e72bf34e5e9"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-17-022-approval-document.pdf",
+      "sha256": "6416e8adeb64f08a7501349730e036867d78b6dd97e36118685381b11c9e7fe8"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-18-010-approval-document.pdf",
+      "sha256": "378bee99b2df70b23221454419452eaaf32bac13b41c107b97b745fc9de0e457"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-18-026-approval-document.pdf",
+      "sha256": "1e0a2bf182edcab570caf43049a777db0018d6b394c5bf62173b6e11eb7e0c23"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-19-0024-approval-document.pdf",
+      "sha256": "106c40758d91fc24439b0bd0dbc736456d34eeb0803b0e7f71a7fced9cee0d4b"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-19-0025-approval-document.pdf",
+      "sha256": "74a25f4d973ffd4b9c5df3de9b8e8865280363669c8832bcfbb8592ba0934063"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-19-0026-approval-document.pdf",
+      "sha256": "236ed047a2f39ce5911952782608b32af08d91e7615cde5167db3f2c157e76ea"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0002-approval-document.pdf",
+      "sha256": "b116c0eede26606004aa10c0554ba42b5e1912fec25e8bbfc0699d8ed60baabf"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0003-approval-document.pdf",
+      "sha256": "a96731de9eba4904a66232f75fde054736386c9b0f9292f974c7a7e90e78866c"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0005-approval-document.pdf",
+      "sha256": "39dd2b4f4400f6c306d8a3fa7a16add8b5c91389c5314b7b212c6c615862434c"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0010-approval-document.pdf",
+      "sha256": "4f23255e1c3c2a7795835a84de30cd7bc5ccf1d17055309872cddca038b8c99b"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0011-approval-document.pdf",
+      "sha256": "8891ac796097e6e1c7face755b9869af1aacd958e48154d8194dbf0349544a1c"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0012-approval-document.pdf",
+      "sha256": "e514c094625228249d41e396620287f8153657cef9088569d160be5662a044ec"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-20-0015-approval-document.pdf",
+      "sha256": "2deb3d492328b08c0cc27d23c3a90792414853660b55c5ce567f71443f7b0f8e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-21-0001-approval-document.pdf",
+      "sha256": "282c52f2951187f4941408cdcaa718f7f7dd1ba281c7f57d0159a41652c14d45"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-21-0002-approval-document.pdf",
+      "sha256": "3a5601920b14e8103030ca6fca6097157193d503ce258c9bf4d689e78005128a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-21-0006-approval-document.pdf",
+      "sha256": "cc8c6cf4bf4dcf868ac87d10f769d6f6cd046cc09532a088b3d102df2d1d705b"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-21-0014-approval-document.html",
+      "sha256": "1d5fce91d246acec1fab8dcdf17c097aef379acbf5d1a8fccebd700607ebaf5b"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-21-0029-approval-document.html",
+      "sha256": "8a44952a193ae7d14b240c5c040b6af88552b43b9963903ae20a7203435b4b1d"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0012-approval-document.pdf",
+      "sha256": "190a4f8fdad727336f6280653609238eee177e850eaa5d828b92513d7aa93ea3"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0013-approval-document.pdf",
+      "sha256": "26f67182473f02d5dcb10eeaca261d14b555ed754006e955714c9b1ddc52d604"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0020-approval-document.pdf",
+      "sha256": "44785aeb1fb20c1690d2dd78f7960f2f6b218ff79b9f58d10fc63958e519d27e"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0022-approval-document.pdf",
+      "sha256": "17ef5a08e38b4a12f86b6b72b63b3f4814e83996fd94b947ce1a443953eb3275"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0028-approval-document.pdf",
+      "sha256": "8a426a87e8751a9e3625456d0c835d3c2d523b6f2c522599720700193f2757f3"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0035-approval-document.pdf",
+      "sha256": "9fcf4c97317ff9b7d92e4d62a6d48347dc794bc61c587eb0de686d3b97185b87"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0039-approval-document.pdf",
+      "sha256": "f64a41389759ede1ba105e9c6d5fbca6ad5200bec28fbde1aeb2213c711e30ab"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-22-0040-approval-document.pdf",
+      "sha256": "96b367bb3758ab28b51d4048715b92ef04e800d940ca67fad56dbe7a4cbb21bf"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0006-approval-document.pdf",
+      "sha256": "1900a26a21b18f53e40950dca6be5f0010742def8ae57ffd164c274a104677e7"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0007-approval-document.pdf",
+      "sha256": "2941958c613493e5f9e7e771f6741c54d555df53b40c1d61be4464cfe52f76bf"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0013-approval-document.pdf",
+      "sha256": "d94953490d99549d3b042fd25d0854727d14e3a9e1ce22fed5222a0429b666b6"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0014-approval-document.pdf",
+      "sha256": "8b457a16e5686524f7cfae4a9b1fb7ebb29cc3fcbd597ffb3a5aa94085941baa"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0015-approval-document.pdf",
+      "sha256": "fc3b3b6bf321da93f09a782e5a1d57938705597a25c6bccca180f9e645ca09bd"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0018-approval-document.pdf",
+      "sha256": "4ff2aa0e4e0cc4165a427bee62ebb3e897f7db34b756859d6fe1aff1a2d0479f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0024-approval-document.pdf",
+      "sha256": "8961c73bff84ae63c13d00a4970f05147ebcad96472694aa4673e75052188581"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0028-approval-document.pdf",
+      "sha256": "393d878b31917fde8c340b687556f2478f7ad18f2ddd9cd09c64cf6dc569c072"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-23-0031-approval-document.pdf",
+      "sha256": "211089e39dcabc81830c72b179503e3fc467fd983968296fd4253756ad5646c5"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-24-0013-approval-document.pdf",
+      "sha256": "cfd6ef1f0080550585c1b0e0e577415cd9dc8d15e15511c330204263778cea48"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-24-0014-approval-document.pdf",
+      "sha256": "e50086e67cb84ed42bebe86f92fc9530c3d02dfa5f48dde6742bf89e6cf825cf"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0002-approval-document.pdf",
+      "sha256": "0274c7c24b3913b3687ece3602380b626b9cd64d4b9ee3c0c228d30066f8469a"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0003-approval-document.pdf",
+      "sha256": "312a79197641742ef8832c6d6eb317fe08cf5f8443be9ce4ea0a3f3039c3ce89"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0004-approval-document.pdf",
+      "sha256": "41031fca0301e2923e95b6e26568c554e5967cba4d363417eb5fe6a05933e496"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0006-approval-document.pdf",
+      "sha256": "bdb4e1fc639fa3cd427096db548c1cebd18875e9f250fbe7249e0caf9ca42787"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0008-approval-document.pdf",
+      "sha256": "11ef13afda1663e77aaa9f364a3415631dd68c1d78613838bfa389b39192cca9"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0016-approval-document.pdf",
+      "sha256": "709d66fb35633ec4de8e051a3893b093fe564567e1199973550ceb0bb11bea21"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0022-approval-document.pdf",
+      "sha256": "f79e3044f5c7881757f1f3f644ecddf7ba61465f5a4adb5cc5df518a010ced1f"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-25-0030-approval-document.pdf",
+      "sha256": "949783dce3829c480428388f2dc5edf0bdbb424732b4c70347c41b86a5be1aef"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-26-0001-approval-document.pdf",
+      "sha256": "fabc04b9530dabb8914c64ac47e297b18abaf75b061f45d1a4fed62fd6beab00"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-26-0004-approval-document.pdf",
+      "sha256": "4c94d1d07c88c8ffe060aeca18f1f68b726d3cb6992c3d8aa441a49d416e4cde"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-26-0005-approval-document.pdf",
+      "sha256": "f6f7ccef8f4109c78d43d7ab79f25c437224ba77c10cdf556fe43837c5099a93"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-26-0008-approval-document.pdf",
+      "sha256": "34e68019f956efa3901dcebaa26be27a41874fc23682ff0e9e355732150d938c"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/policy/2026-09-13-medicaid-state-plan/official-documents/us-oh-cms-medicaid-state-plan-spa-oh-26-0011-approval-document.pdf",
+      "sha256": "95c7b6d41569d48cde05371a9f51d48c5669226dc7275e56c0793c4303853ab3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-medicaid-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1512,
+    "missing_count": 0,
+    "provision_count": 1512,
+    "source_count": 1512
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:17:32.138012+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0Gttz+5cT3nqbtZnyda4wroGK6SgEfBn8sSI6bg8dl8RipYlZYh+t1P754Y7PR2OxtlsIxVf7dr2l1Xfg/VpCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-medicaid-state-plan"
+}

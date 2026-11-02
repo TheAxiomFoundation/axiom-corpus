@@ -1,0 +1,28 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-ma",
+  "document_class": "regulation",
+  "version": "2026-09-14-income-tax-regulations",
+  "files": [
+    {"path": "data/corpus/coverage/us-ma/regulation/2026-09-14-income-tax-regulations.json", "sha256": "6c78fa828aadb89e0c7aa5a2382d689d1c2933f9574f12467e1d46d0aad6fd1e", "size": 341, "git_blob": "58ef3ac6ebc60488ff9539dd34d89e769337ede1"},
+    {"path": "data/corpus/inventory/us-ma/regulation/2026-09-14-income-tax-regulations.json", "sha256": "70b6865e60222d489076e8895e055231d7ec4000f7380dd9efc7c9d44adf589d", "size": 225349, "git_blob": "cddbf02ffc53f2452034c096aa0c5833dd0176fb"},
+    {"path": "data/corpus/provisions/us-ma/regulation/2026-09-14-income-tax-regulations.jsonl", "sha256": "321d3e47327e448dfc74aa14f1d76f90adea5b9b0b50ca13848569dd16b8932b", "size": 725157, "git_blob": "deffff2359a665734ac9a2132313f68a6659ada4"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-17a-2.html", "sha256": "bdeace52e8470bb4209dac71938d7c51954ff6a5db4dd95ede4bd2e99daadf6e", "size": 297484, "git_blob": "173178fe0b742d44b190562a09f2579294bc0ace"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-3-1.html", "sha256": "55e9cfd5cf5e331a034b5e2789d836c24a46fddb1ab7d49ed26f66e83180dd6d", "size": 193099, "git_blob": "dd2b39f3f0f527de13c430fe939c9dd414e37a15"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-3-2.html", "sha256": "ec2ab37893cfc07ef9979bb49ce19e5e2fab8baa750e7b616aa958895bd4dacb", "size": 197644, "git_blob": "40ab3c734aa3c2ebf67fc8e9d585a33881e9d7ee"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-5a-1.html", "sha256": "33f80a0e778e1a332be9c3772bd78ba491c9e67e86fec43b72312b0bfae2cc9a", "size": 292555, "git_blob": "b3c869a0feeb98747316c74884aeb01c2fb1bd11"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-5a-2.html", "sha256": "138529e43b3a8a59f5bf28fd00717e88c5a8b4fb54a9285943810cbac3d9003d", "size": 210069, "git_blob": "20a6d6cfc61e8930d5c856fbb068f6f3ac594b7e"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-5a-3.html", "sha256": "b568bd4d421f36a1e1b9ca5c30e69d14309dff46a36cba4e34aedee52bf95e88", "size": 195419, "git_blob": "2ba206a173f6562fc960d6d96f7532c586cd1ac5"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-6-1.html", "sha256": "92579f0dd2d3d641764b69c39b7483ea31b65c17edcd0559702427806e8c70b2", "size": 194159, "git_blob": "45a450f8b433511433f804838cfb077d3c1fe5bc"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-6-3.html", "sha256": "6f010ddb8988e673581b2933a21c34bf8844c8f22b85b58dc0d4ec495a5a95b0", "size": 201128, "git_blob": "2e9577982fe1cfba2d56b2e48c57015c982e9109"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-6-4.html", "sha256": "f9cbca753974102a072a55d658367722f580378926d4d0839ebbce3474b1aa20", "size": 197454, "git_blob": "9231d4f1f23507440dbd41c0dd3516207bbba9c2"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-6-5.html", "sha256": "8e63dde061c7926c04ad95e0afc3a0ae33a015c8deeeff1f128a1337c752612d", "size": 216469, "git_blob": "f6ef05e68a359379f2882885ebaf0101bb4416d1"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-63-1.html", "sha256": "fa784f747e25c9964bac3c92dfb0cf5da3ceeea29c2bee7e0ba3dc1f2654808a", "size": 201267, "git_blob": "1c8c41d170ab1e913fb74a0298d363a866078b26"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-6m-1.html", "sha256": "303c553c647a58c826fe73b724ef7ed3bcbf6a407d2c634ae619b54b296825ab", "size": 216195, "git_blob": "a98f2a3a8e9f7284e137fc0376e70be077a8561f"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62-6w-1.html", "sha256": "4b13be5f752033a65aa9b7b6a4718dd69ce518e156ee9a3a0bebeecb8b7ee48e", "size": 199904, "git_blob": "9756e7160b37950dbe7857d264bbf14e72ca5258"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62b-2-1.html", "sha256": "f95e317d2d04332e2ad6cdb5de9b2519c872e5bb241884215ec64d0206204d60", "size": 243472, "git_blob": "246159e1ea99a35ae0a557a68ccaaa719226bbd5"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62b-2-2.html", "sha256": "c03b9c5dff0f26811a53e353cc25bcc0c69973e082631608cf2ce9db8f5b7b2f", "size": 215276, "git_blob": "73e0a181e3c0bf9c53abb94be11a167be3b45323"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62b-2-3.html", "sha256": "b9dca86fc0bf775d7deb8381d669f4f5348db72cbe893947d3228984659221aa", "size": 201546, "git_blob": "119447de3e25771afd864fd4092a48b2a80281bd"},
+    {"path": "data/corpus/sources/us-ma/regulation/2026-09-14-income-tax-regulations/official-documents/ma-dor-830-cmr-62b-2-4.html", "sha256": "f0104c78b3ecfbc25e42f00abac23fed2a4e189ecf67e1419a1e8dfd9f2057ff", "size": 218092, "git_blob": "9825d6c24eab33365bc936fb6d4ed848adaeabe3"}
+  ]
+}

@@ -1,0 +1,46 @@
+version: 2026-09-13-ccdf-rate-schedules
+documents:
+- source_id: us-id-ccdf-rate-schedule-iccp-copay-chart-2025-10-01
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho: Idaho Child Care Copay Chart, effective October 1, 2025'
+  source_url: https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=4671&dbid=0&repo=PUBLIC-DOCUMENTS
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-id/policy/ccdf/rate-schedules/iccp-copay-chart-2025-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare, Idaho Child Care Program (ICCP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources
+    source_discovery_group: us-id/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources
+    closure_elements:
+    - ccdf-s30
+    source_note: Laserfiche WebLink DocView id=4671 served through the repository's ElectronicFile endpoint
+- source_id: us-id-ccdf-rate-schedule-iccp-local-market-rates-2025-07-01
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho: Idaho Child Care Program Local Market Rates, effective July 1, 2025'
+  source_url: https://publicdocuments.dhw.idaho.gov/WebLink/ElectronicFile.aspx?docid=19508&dbid=0&repo=PUBLIC-DOCUMENTS
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-id/policy/ccdf/rate-schedules/iccp-local-market-rates-2025-07-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare, Idaho Child Care Program (ICCP)
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources
+    source_discovery_group: us-id/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources
+    closure_elements:
+    - ccdf-s30
+    source_note: Laserfiche WebLink DocView id=19508

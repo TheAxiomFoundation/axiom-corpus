@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-10-de-kindergeld-disability-case.json",
+      "sha256": "eecbcad1b7ad6f48d08f17d98fa9421a573db296df1795e5fc4404a2cc376fbe"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-10-de-kindergeld-disability-case.json",
+      "sha256": "f053e5330c3ddf189a60b8b3b95eaa2461324239f0388de290cf51ef3a42249d"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-10-de-kindergeld-disability-case.jsonl",
+      "sha256": "a8e5f98df7c31e5688de5da7689ebc87e99e37aa74e8c63fc5692f209eb04408"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-10-de-kindergeld-disability-case/official-documents/bfh-iii-r-42-22-2024-01-30.pdf",
+      "sha256": "275820dfebd8c3dee3d3b5404923231674ba2d0d4b7a78f00c40c87f20ffc920"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "68d2c17af5b917ba829e2ed4d0cec797b11de1e0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-09-10-de-kindergeld-disability-case --manifest manifests/de-kindergeld-disability-case.yaml --source-as-of 2026-09-10; supported local_path replay of unchanged official BFH PDF, all five pages retained"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-10T14:25:41.311174+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-disability-case-audit.json",
+      "sha256": "e592438d93d640f0d2838bc6c945b1cae5b030ef96593372c46f77eb78c9c2f0"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-disability-case.md",
+      "sha256": "84c2dac93e70b8add0a7ac7cafc0d008484e201922ebfdb4ba2049141a911871"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nk65J/JVw5lpTyXHJz/0swfVAQGoMHdOeF4LuXOJRnT5Nt5vkxZJ9fqxfU3dOztAqYAGYxkO5713iRdjNlLCAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-disability-case"
+}

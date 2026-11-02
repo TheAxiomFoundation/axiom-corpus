@@ -1,0 +1,35 @@
+{
+  "documents": [
+    {
+      "source_id": "de-bzst-dakg-2025-a19-2",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bzst-dakg-2025/a-19-2",
+      "title": "DA-KG Stand 2025 A 19.2 — Nachweis der Behinderung",
+      "source_url": "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-14",
+      "expression_date": "2026-09-14",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block",
+        "page_windows": [
+          {
+            "start_page": 54,
+            "end_page": 54,
+            "start_at_pattern": "^A\\s+19\\.2$",
+            "stop_at_pattern": "^A\\s+19\\.3$"
+          }
+        ]
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundeszentralamt für Steuern (document author)",
+        "source_host": "Tacheles (retained original-document mirror, not an official government host)",
+        "edition_year": 2025,
+        "snapshot_sha256": "33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd",
+        "source_note": "Exact original BZSt-authored DA-KG Stand 2025 PDF retained by the mirror. Its bytes match axiom-oracles de-subject-003 and all 2025 DA-KG ledger rows (SHA-256 33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd). The live legacy BZSt endpoint now supplies Stand 2026 with a different hash, so no claim of a current government-hosted 2025 capture is made. Full source PDF retained; this row contains complete A 19.2 paragraphs 1 and 2 only, selected by exact page anchors. Edition date records capture date, not legal commencement or issuance; edition year identifies the historic text. The rule limits the evidence period and distinguishes card expiry from award termination; substantive eligibility remains separate."
+      }
+    }
+  ]
+}

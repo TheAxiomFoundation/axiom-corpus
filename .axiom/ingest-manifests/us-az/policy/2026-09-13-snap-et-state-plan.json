@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "5dd2c4762900d9cb493589c4f41d09c498cf18230e7ece365f884aae9babf4e9"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "3b51aab7953a19b4198f233fbca114e3774dec3bad55356a66abccbcaaadc966"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "3b384d72524cf1045c3e138e7d90fa02f8c17ac96da32162f0a5c41038a84d21"
+    },
+    {
+      "path": "data/corpus/sources/us-az/policy/2026-09-13-snap-et-state-plan/official-documents/az-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "fd7afc08c084f9baaf64e92f5203b9086970c7f72637306f79051d0b564e3c5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 131,
+    "missing_count": 0,
+    "provision_count": 131,
+    "source_count": 131
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:04:44.614908+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PMoMM5zvVjp1LEWa+juLD8yDJ5ZdUyH4K+EtgSohNyeiBXsRVYQwJ5JC8EKg2AqfseKunp8p8JxxjsZbyXcGDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

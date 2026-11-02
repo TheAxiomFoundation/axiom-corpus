@@ -1,0 +1,54 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: nc-dss-special-assistance-manual
+  jurisdiction: us-nc
+  document_class: manual
+  title: NC DSS State/County Special Assistance Manual (revised June 1, 2026)
+  source_url: https://policies.ncdhhs.gov/document/special-assistance-manual/
+  download_url: https://policies.ncdhhs.gov/wp-content/uploads/Special-Assistance-Manual-Rev-June-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-01'
+  citation_path: us-nc/manual/dss/special-assistance/manual
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Social Services
+    document_subtype: program_manual_pdf
+    program: ssi_state_supplement
+    state_program: State/County Special Assistance
+    federal_program: SSI
+    state: NC
+    revision_printed: 'Revised: June 1, 2026 (file Rev-June-2026)'
+    index_url: https://policies.ncdhhs.gov/divisional-n-z/social-services/special-assistance/special-assistance/
+    source_discovery_group: us-nc/manual/dss/special-assistance
+    discovered_via: manual-review:ssi-agent-queue batch 1 (state-administered supplements); publisher index https://policies.ncdhhs.gov/divisional-n-z/social-services/special-assistance/special-assistance/
+    extraction_granularity: pdf_page
+    download_note: the document page carries only the PDF; the PDF is fetched as download_url
+- source_id: nc-dss-special-assistance-in-home-program-manual
+  jurisdiction: us-nc
+  document_class: manual
+  title: NC DSS Special Assistance In-Home Program Manual (revised June 1, 2026)
+  source_url: https://policies.ncdhhs.gov/document/special-assistance-in-home-program-manual/
+  download_url: https://policies.ncdhhs.gov/wp-content/uploads/Special-Assistance-In-Home-Program-Manual-Rev-June-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-01'
+  citation_path: us-nc/manual/dss/special-assistance/in-home-manual
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Social Services
+    document_subtype: program_manual_pdf
+    program: ssi_state_supplement
+    state_program: State/County Special Assistance
+    federal_program: SSI
+    state: NC
+    revision_printed: 'Revised: June 1, 2026 (file Rev-June-2026)'
+    index_url: https://policies.ncdhhs.gov/divisional-n-z/social-services/special-assistance/special-assistance/
+    source_discovery_group: us-nc/manual/dss/special-assistance
+    discovered_via: manual-review:ssi-agent-queue batch 1 (state-administered supplements); publisher index https://policies.ncdhhs.gov/divisional-n-z/social-services/special-assistance/special-assistance/
+    extraction_granularity: pdf_page
+    download_note: the document page carries only the PDF; the PDF is fetched as download_url

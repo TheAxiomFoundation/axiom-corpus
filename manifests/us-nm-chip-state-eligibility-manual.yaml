@@ -1,0 +1,122 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: nm-srca-nmac-8-291-400
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.291.400 NMAC Eligibility Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.291.0400.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-09-01'
+  citation_path: us-nm/regulation/nmac/8/291/400
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\s*\.\s*291\s*\.\s*400\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 8.291.400.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    document_subtype: administrative_code
+    program: CHIP
+    source_discovery_group: us-nm/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    issuing_agency: New Mexico Health Care Authority
+    legal_identifier: 8.291.400 NMAC
+    nmac_title: '8'
+    nmac_chapter: '291'
+    nmac_part: '400'
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    state_program: Medicaid eligibility - affordable care (MAGI children incl. Title XXI-funded)
+- source_id: nm-srca-nmac-8-291-410
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.291.410 NMAC General Recipient Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.291.0410.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-01'
+  citation_path: us-nm/regulation/nmac/8/291/410
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\s*\.\s*291\s*\.\s*410\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 8.291.410.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    document_subtype: administrative_code
+    program: CHIP
+    source_discovery_group: us-nm/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    issuing_agency: New Mexico Health Care Authority
+    legal_identifier: 8.291.410 NMAC
+    nmac_title: '8'
+    nmac_chapter: '291'
+    nmac_part: '410'
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    state_program: Medicaid eligibility - affordable care (MAGI children incl. Title XXI-funded)
+- source_id: nm-srca-nmac-8-291-420
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.291.420 NMAC Recipient Rights and Responsibilities
+  source_url: https://www.srca.nm.gov/parts/title08/08.291.0420.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-01'
+  citation_path: us-nm/regulation/nmac/8/291/420
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\s*\.\s*291\s*\.\s*420\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 8.291.420.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    document_subtype: administrative_code
+    program: CHIP
+    source_discovery_group: us-nm/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    issuing_agency: New Mexico Health Care Authority
+    legal_identifier: 8.291.420 NMAC
+    nmac_title: '8'
+    nmac_chapter: '291'
+    nmac_part: '420'
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    state_program: Medicaid eligibility - affordable care (MAGI children incl. Title XXI-funded)
+- source_id: nm-srca-nmac-8-291-430
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.291.430 NMAC Financial Responsibility Requirements
+  source_url: https://www.srca.nm.gov/parts/title08/08.291.0430.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-01'
+  citation_path: us-nm/regulation/nmac/8/291/430
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\s*\.\s*291\s*\.\s*430\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 8.291.430.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    document_subtype: administrative_code
+    program: CHIP
+    source_discovery_group: us-nm/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    issuing_agency: New Mexico Health Care Authority
+    legal_identifier: 8.291.430 NMAC
+    nmac_title: '8'
+    nmac_chapter: '291'
+    nmac_part: '430'
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    state_program: Medicaid eligibility - affordable care (MAGI children incl. Title XXI-funded)

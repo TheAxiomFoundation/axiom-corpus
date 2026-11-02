@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-adult-services.json",
+      "sha256": "c36da570fb150106b9b0babcf52275324828c549cb995600486ff1f68c8aa868"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-adult-services.json",
+      "sha256": "d92f3f4c52b434dfe24a7acd8add10db4c757053dc6157a40d7d45356cf4b5b1"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-adult-services.jsonl",
+      "sha256": "1dcc002b1d05a29b124c50a7a52adc04b98fbe4f67752f5dca578b0f8dfee5e2"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-adult-services/official-documents/de-kindergeld-ijfd-2021.pdf",
+      "sha256": "167f7f0fe4edf6125a41575e12be752a87f615aad60eb84116c17b03e0f58664"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-adult-services/official-documents/de-kindergeld-weltwaerts-2016.pdf",
+      "sha256": "28b0e86682aef921afc52f6a569633435c1b3e309dc72add0db5b4747bf6d058"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "718990701633256c831dbb317d8f5548d5288b8c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-adult-services --manifest /private/tmp/de-kindergeld-closure/adult-service-guidance-replay.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-09T07:07:54.939705+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tfksTjeVKVmMBYYjJoyR/HDw2IuoS7VgAIDdJxp6IFcy9QCAjPWcnV8EPx380sxOlGyEgmuEH88hEXsAp7m9DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-adult-services"
+}

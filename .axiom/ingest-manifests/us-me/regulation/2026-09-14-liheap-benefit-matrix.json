@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "7b889c1cedb554791f07b1c3c2d4c981d33febc3d5b494578d58af401ba6fddd"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "2a19ffee0aa9f8faae371a584bcfef04f0bb6ef61ee3cada5c234d83ae693708"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "62c257eb4fdd80845b6613d1bd3f911fcb254a9493d39d69c4a7bc5b5e2111cf"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-liheap-benefit-matrix/official-documents/us-me-liheap-mainehousing-rules-chapter-24.pdf",
+      "sha256": "8d2e48b5476dd1ad27e6c43b73d020d3d2993488f80525cbe0012eecee360c37"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-me-liheap-benefit-matrix-rule.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 34,
+    "missing_count": 0,
+    "provision_count": 34,
+    "source_count": 34
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:48:33.602466+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xtmmHWDAA7rP77RNAx5fDTSK+hvMOPnFzXPB1g4Jd7tY8LqOZS1A53x3aemoTRYcQWpkPR5onqDToU8WcZJnAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

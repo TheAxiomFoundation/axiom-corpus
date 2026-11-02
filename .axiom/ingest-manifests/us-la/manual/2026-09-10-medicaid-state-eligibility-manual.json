@@ -1,0 +1,441 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "c21f20136c48032b02fb46427c3fac705c21b59ce80bb2bd3cc9c9089b8c633a"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "c498f694f43f0de03e4f283ede0ed4fd357b1fc9e160ed73efdd4aab72343ee0"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "ac9571df260f9c37050994f2e4da2c205ae934679cdf50a455cc4b44ce5f1dc0"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-a-100.pdf",
+      "sha256": "63f138a6f8ccafe50b730e72f4ffda58038a23b6099c7a46d61f844d1d2fc79c"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-a-200.pdf",
+      "sha256": "2af2c6fab7d6fe68f05eb8dc4be70f49497f2e6060d1fa366c5972896678226d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-b-0000.pdf",
+      "sha256": "5a940f9ba7d3ac1ee8902e170d3c034c7eb4a8b82ee903ca41bcbd6307f4fd74"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-c-0000.pdf",
+      "sha256": "e0f29acbf31af07ad3175bccd403e4b63843cc621ba1b65c50145543291dd5c8"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-e-0000.pdf",
+      "sha256": "b38fde2d648389227689b887fda88f51b414edc9c2b47e2b9f741768060e876f"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-f-0000.pdf",
+      "sha256": "feed75cae6063e26428820210fa7feb9ed5b0e16c084f346426321dfe0a97b45"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-g-0000.pdf",
+      "sha256": "d64bea9ffb72cdc4aec67ac5c4a31df89c78bdb75a5c065b07ce576313aef3fe"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-100.pdf",
+      "sha256": "dedb26cf9c47aff5f5bc10da910c2337b7e39f28533e3f3baca8abdc01635aab"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1000.pdf",
+      "sha256": "4f573542016d0ebd9fe5837376b8c63419ad1d7b8cc174381b64cc56f587b5d9"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1020.pdf",
+      "sha256": "9e32f5338795044ee1f72eb1f4a03fea2759890e4d53084770294eb48a3a77f3"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1030.pdf",
+      "sha256": "d05bde7a7195b4fc443d3a5cf7c4a7184c72be1c1c805c8ea975a5c5664931dc"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1040.pdf",
+      "sha256": "1d26082fa09d5b6fc4a3594cd9111d9681b900a5375558c92b6aa700fe2a6edc"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1050.pdf",
+      "sha256": "6779443ab6bb95b4b7a303161c189d938fad7feb13c48f5e31605a544448a5e0"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1100.pdf",
+      "sha256": "08e9e318797ceca49548f5017ed58bf9edf1ae6867623253bf2fd346ab0a88a7"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1200.pdf",
+      "sha256": "73fef79e6613b1bf39ae64693c21bcc44af7d21f8ebe630c3160832aa182147d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1300.pdf",
+      "sha256": "c95a6de1eb78279161df9eb6e62dc08f554d15713881c41febbc8fddacf3de96"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1400.pdf",
+      "sha256": "8366ed2ec3e2f5ffbb189bf89ae3549df8177159fa2f0671eb9c1dcf0b55811d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1500.pdf",
+      "sha256": "04ad60e134ad3891123cd99489d2f8872996f8dc0aabe0daadf06d2a76824391"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1600.pdf",
+      "sha256": "6afd13bf5543bbd484c366d1e989b93a26d0e56ec549aa0d1714c7344f047d3c"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1800.pdf",
+      "sha256": "fb63055b45a426fe08f22de3e0b9fea65fa2caef7bf89d944c084cbf95a4b243"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-1900.pdf",
+      "sha256": "3f0670f8a12fb546a8392cfe9d6e82a494289d4eda283534d230268461965702"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2000.pdf",
+      "sha256": "1d8f8d8ef3d74fdc269201757802baceb20ae2976debf8067fbb61f26d8cc885"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2100.pdf",
+      "sha256": "3a1e7f16c49525d65e3a12a3b8aa04dbe441cdfbc40c1e4f3cfa3c52015de57e"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2300.pdf",
+      "sha256": "2b67162a81c1a70d0171dc8aa78587c5d381edd13527eea9c9626f814e2f642c"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2400.pdf",
+      "sha256": "a153b1a663893a7a020849c33bc33e20e786b997e030c94e676d32a938d20f0a"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2500.pdf",
+      "sha256": "aec0c3a49f28ea9bf390a4d49123631647ce878bf8790ebfc97c720161e394df"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2800.pdf",
+      "sha256": "6441c8d1bc73b4537f03de2b61c7419bab7900eff51467cc384010d534806600"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-2900.pdf",
+      "sha256": "6a02286b25ca55a01a8cb20b5b4365c0a14d1d2801855696ba0cea31985ab75b"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3010.pdf",
+      "sha256": "3065de8ce33f6878c07f1f3773feefd7e0b0909d50839d43e2b53bc4efdc9229"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3020.pdf",
+      "sha256": "610abdf0e4b7bcc199e16cc0cf56909479895158cf8954941160d9fb317cf8a9"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3030.pdf",
+      "sha256": "b5bec56d888e4872f47d08b94b522d22a57668d0437def104c53d5a333fd06ee"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3040.pdf",
+      "sha256": "445c39e5f30bc405779bf554dffe6380c3d9e78286e51bd72d9fb0953636451b"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3050.pdf",
+      "sha256": "8e3ba23ec723ec5e0a69d73ec3c8cc242c7d73a6aa6e0db157118ed760b376cc"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3100.pdf",
+      "sha256": "6ac6fc7f826492f2326be8c33842f4539bb02efa33c149679b585c01f938dae6"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3200.pdf",
+      "sha256": "5a2d225c820b88885f84187d0c1ce61ec24bb5da891345da66240f3453b4f7b5"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3300.pdf",
+      "sha256": "c9217b760a0277ddd31e949f07dbe098cdf675a9685a66e73ad42b13ddbc6e78"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3400.pdf",
+      "sha256": "afbb83563d1b23a440d35fa1e150ee8df6ce621b193b5ec3a69d4edd1a48255e"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3500.pdf",
+      "sha256": "6e058b6a69385ae4ceacee7bc15b54fe4441ecd7f245ed75c3c8492365bf5f51"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3600.pdf",
+      "sha256": "355f6a9d074c41830d0d665cbf099babbc1d9200c0234b2d8e832e8de4cbc58b"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3800.pdf",
+      "sha256": "cfd95ea803e775969d4b35783a0923d9a9997cbf79be448826f53d31c1dcc5e8"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-3900.pdf",
+      "sha256": "762aca962bdd707f9d41e34800d3fd2674b20a406adba4e35d93daa12245e8ef"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-600.pdf",
+      "sha256": "d3b8fb685cf3a5724f05438e5da62c8fa278085dc590691199d0bb2e81d5810f"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-700.pdf",
+      "sha256": "ea5e6ac2d18de0ae76c27c97bd1b8d9856cd07d6919275d9c86afa464e2d51ef"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-800.pdf",
+      "sha256": "edc9724edd11301438010288c40e4538b7f71aec6efcadc0d770aa1f6e1385ae"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-h-900.pdf",
+      "sha256": "d7d941eea4753bebe11f8e6bb2d9d1fc2f753e2f1c59735449f6c09981f1d1a4"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-100.pdf",
+      "sha256": "930ced57dde4e0dc1b0709b2b76f6e98efd4e923e0b6ffe9ffe58e159d0de9e2"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1000.pdf",
+      "sha256": "3e3348c3741e368bcbd3c166164d4b2c4f966aa3418cc0a75eb764dcf35ee647"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1100.pdf",
+      "sha256": "2268fe5417740a044632fce027c231260c0190b3a7827b5b358a2d8706c3cde3"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1200.pdf",
+      "sha256": "68de96b4d63ee6620744b1cab38a854c2308c7b6c53ec81f1133e0ed921226af"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1400.pdf",
+      "sha256": "14515a0e213109acfb49be3a1edce6b6c8e0b56c42c70a779b3d06bc4fca70ae"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1500.pdf",
+      "sha256": "cc13235b64159467f171559f690ff982e19132d04f3ed96cf34532cad4c95688"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1530.pdf",
+      "sha256": "fd182271c583af65a979a1343c075880fe5069fddac884a1bda8408bea398fda"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1550.pdf",
+      "sha256": "ca0bbbcc70fb53737a5796825190813cf1a8cc5fd8153a757157f65245450f6e"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1600.pdf",
+      "sha256": "b1b30b7830f3e4c4fe98ad3d77009509205c884b1e309f9332006dbd35b7d061"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1620.pdf",
+      "sha256": "bb5c3a1b09623ec617d2c8652ede0f05745bd76a3df2ed117236d74f42347e0c"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1630.pdf",
+      "sha256": "dfe091f8528c77f424375ab54c93cf691877c92caf90104acea4d1ff8e5f7343"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1660.pdf",
+      "sha256": "f667e4fb08d0e382316ae072876bd65ecf6329395101bae40720563f6aafea6b"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1670.pdf",
+      "sha256": "cc18eda74e15bd2a4d0d43492d1c989f1bdb13446381b8b8df62abf21a3575cb"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1700.pdf",
+      "sha256": "a5fd1db5d6b761475be5e867092a8b6a2c5f07978254b7bbf2f09fc8c48f9813"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-1900.pdf",
+      "sha256": "ee140980ff387d589a840f5549bbbd37dfbc6a1faca7fbc33e8ca0ddde0b38f3"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-200.pdf",
+      "sha256": "7657311f6f51e9b0e8dd2c0c15ca77f381636c3248c278745be5ec4010a052fb"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-2000.pdf",
+      "sha256": "7867c1f0f6bedf4d9cff3e612d146564273f55b8524790967883ad104ff19d91"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-2100.pdf",
+      "sha256": "74b2a0583cc1d1b0bd08f40891aad5d0f2b2fb6ae6e8e604bfc801ecd9fb7bf9"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-2200.pdf",
+      "sha256": "e37ce2affcfbd37a33032908997242902224af0cc0ce472d2227e9d4245f42c0"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-300.pdf",
+      "sha256": "96f01ce2d8fadb71b96c183a7ff20e1078a06ef28cc7b596a3ea2c3054c934ac"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-400.pdf",
+      "sha256": "da3eedb0b7a8ba3f5cc1c97bc874029bda52a17d74d9c1b3213413062b220499"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-500.pdf",
+      "sha256": "f326109a7fd23cf1689d1f187de7cf8f74c35dda18b8d9f6a3b97290f96a21cb"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-600.pdf",
+      "sha256": "52655101a4d14250d4045a5268092a687a16ad5615aa90935ff3664a1482e67a"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-800.pdf",
+      "sha256": "2745861b2946f88bc2b7e7af94ee3f3c6d9a629ee5d39c955692dd36aede5618"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-i-900.pdf",
+      "sha256": "1f7f6449db03784cad38d200eda1a87023ef329b776c41a73259682e125bf17b"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-j-0000.pdf",
+      "sha256": "e2dadb267780c8deb4a4bc0e01ce0f0777433d9948cd74365cb26296ddc80acf"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-k-0000.pdf",
+      "sha256": "2a1242118fb74c39bbc4b101a51602cecb366b12cd45e97ebc2ea1dc52122599"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-l-0000.pdf",
+      "sha256": "285c272e9556f2b8cb3e7737708c3204b82cb085c96ee2d886a13cb9139f3eb0"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-n-0000.pdf",
+      "sha256": "09fda8bfc175b3d744c5e9a6b869cb26348841d05d117539a88d799b23c60694"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-p-0000.pdf",
+      "sha256": "f35fc669f204e03b1c546a2266400fd5a6659be07ee8a3267f6387b46a319b93"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-preface-explanatory-notes.pdf",
+      "sha256": "fd68152128064604a4fe06eeb52ebe9f97b397ba9c0663e4d613773c86e24d91"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-q-0000.pdf",
+      "sha256": "c7410da5754bd0d0c23a3ce4150677ea6dc8f31647c6e1db98de0936c722e8ae"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-r-0000.pdf",
+      "sha256": "ca6961819b9c74e919189a48de044dbbcb6febf66bd0a99d1a242ec2b58e3edd"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-s-0000.pdf",
+      "sha256": "a012cbe2709d3c1dea7323233bb5cdc33880e9bcd2ba58f1e33537b18d073ed4"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-t-0000.pdf",
+      "sha256": "5fee2763a1e7e094752473d15060e924ef0c50dad22d6c972c626e1f61a55a35"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-u-0000.pdf",
+      "sha256": "05a934d8cbee0eab195b9bbe3c77e2c1d924d08a9b683c69eec4210cff106e95"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-x-0000.pdf",
+      "sha256": "73fde3ec46cdc920cdd5100ad10f7225b1d7af25b1849146326bf03b9b96adf9"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-100.pdf",
+      "sha256": "1864bfa7a46400e9aaeddcaf41cb9ead3b6ec088ca140e900ac8e064c6e6a166"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-1200.pdf",
+      "sha256": "bdb6a4e5b4bb5290fed45e113b931e9c3385094fee69ed0f56a7b10953a67d26"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-1300.pdf",
+      "sha256": "8fcc1ef542980858dda83012740f86fa2c40966c6ad132979e6b27075ef81b8d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-1400.pdf",
+      "sha256": "9fd5affbf9280e1c2fbcacd379f01ea7c00fcce9760e3c1a630056f329dc4c6c"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-1500.pdf",
+      "sha256": "ab4824168a95c5022643bf0b50a5ad86faa005a20c9b7d5aa7ae25aa820a754a"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-1800.pdf",
+      "sha256": "adf1bf2ebecefe31d77a08c67a5c92a922a1b21b3c41406b3334990cf799e68c"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-200.pdf",
+      "sha256": "6140698d8fe56041af78f59034bf14e69d53dc942899d9ce0ee760fced8d7baf"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-2200.pdf",
+      "sha256": "ba5a5b6bd075029c6e476f914357d10e781bb39fcdf7cea328c3e38069061f02"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-2300.pdf",
+      "sha256": "a5a590363dc1f9985952a50bf4ae9b0192f0ba07a51839f098be0ae1ece4d7a0"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-2400.pdf",
+      "sha256": "e9813b48d4a6b9db289e555826c5c80bc407a1ac32eedae480fd6931a1c0dd5e"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-2500.pdf",
+      "sha256": "1b9801c4e7dbf62b80c1fa7c2bd065e444c94593be1cd473e93e53a8ad24d8e3"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-300.pdf",
+      "sha256": "31bad2136da499ca1227091143c416fb693cc078c7c9d59a64937473f3430447"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-400.pdf",
+      "sha256": "23bbd2d8ab33dfd96672e32a282136c5829aeb2d09c68ffc3da41b2b33361508"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-500.pdf",
+      "sha256": "1d6ba6d49b06dc50dc7df50aad753552e6e0ba4313ffd815c00e558d603c5414"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-700.pdf",
+      "sha256": "9a27dab0d32daf6f2bf23c27103247e621ee33b35202f6dd44b824cbbe217e78"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-800.pdf",
+      "sha256": "c33607caee8d1cd2256878f4c735d72a89c3ede26a03964ddfbb26340cc54e8a"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-la-medicaid-z-900.pdf",
+      "sha256": "3960b5902a422346e858b351c5091c07a4e1d4768b852b2758218a030cb175e3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-la-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 891,
+    "missing_count": 0,
+    "provision_count": 891,
+    "source_count": 891
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:53:24.081754+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gCG1j8Oq9GIwYoAfTu7ImfLjKdhPu5OvLcYOHMX+14X1iW36Tsy01Kodvqo1ihkjRNTaZ1Dj/Me6Rh4On22hAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

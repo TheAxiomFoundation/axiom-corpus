@@ -38,7 +38,11 @@ jobs:
   preview:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Activation recounts and re-hashes every scope of the release inside one
+    # transaction (761 scopes took over five minutes before run 34866210267 was
+    # cancelled by a statement timeout); the statement now runs unbounded, so the
+    # job must allow the work rather than the old 20 minutes.
+    timeout-minutes: 60
     environment: release-preview
     env:
       RELEASE_NAME: ${{ inputs.release }}
@@ -77,6 +81,9 @@ jobs:
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          # Direct connection string (session pooler, port 5432). When present, the
+          # preview and activation bypass the Management API's 120 s HTTP proxy.
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ALLOW_REGRESSION: ${{ inputs.allow_regression }}
         run: |
           set -o pipefail
@@ -122,7 +129,11 @@ jobs:
     if: inputs.request_activation && github.ref == 'refs/heads/main'
     needs: preview
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Activation recounts and re-hashes every scope of the release inside one
+    # transaction (761 scopes took over five minutes before run 34866210267 was
+    # cancelled by a statement timeout); the statement now runs unbounded, so the
+    # job must allow the work rather than the old 20 minutes.
+    timeout-minutes: 60
     environment: release-activation
     env:
       RELEASE_NAME: ${{ inputs.release }}
@@ -161,6 +172,9 @@ jobs:
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          # Direct connection string (session pooler, port 5432). When present, the
+          # preview and activation bypass the Management API's 120 s HTTP proxy.
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ALLOW_REGRESSION: ${{ inputs.allow_regression }}
         run: |
           args=()
@@ -182,6 +196,9 @@ jobs:
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          # Direct connection string (session pooler, port 5432). When present, the
+          # preview and activation bypass the Management API's 120 s HTTP proxy.
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: |
           python scripts/activate_release.py \
             --release-object "$RELEASE_OBJECT" \

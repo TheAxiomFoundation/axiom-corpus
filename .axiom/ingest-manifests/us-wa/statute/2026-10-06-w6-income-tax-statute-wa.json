@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/statute/2026-10-06-w6-income-tax-statute-wa.json",
+      "sha256": "54b8cee72b3f1080d601211f22e6ab803934e4c4d49e4a509b4c0220acfaea9e"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/statute/2026-10-06-w6-income-tax-statute-wa.json",
+      "sha256": "80fc5db7874d74c3304978888db0a0a476de472245905f41bc4b7c02058c5e22"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/statute/2026-10-06-w6-income-tax-statute-wa.jsonl",
+      "sha256": "fa0fb36a3ab4c156cc4bfa08f0bb1115825bb3023bdd490d707dbd75617844d7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-income-tax-statute-wa/official-documents/us-wa-statute-82-82-08-82-08-0206.html",
+      "sha256": "a197b0d504c3508edcf3f2359fcb84020d98275d4b359f648f983e3d8c67c1f2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-income-tax-statute-wa/official-documents/us-wa-statute-bills-2026-sb6346-passed-legislature.pdf",
+      "sha256": "5ac6759b4a1d531d5ad53a1d1ae8580e9295edc708da2092823f8bb41fbedb7d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-income-tax-statute-wa/official-documents/us-wa-statute-session-laws-2021-chapter-196.pdf",
+      "sha256": "7f2d85d8e0b28588eca316174b4697cd6c5e97b1eb766b126d60f63eec3f2aa2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-income-tax-statute-wa/official-documents/us-wa-statute-session-laws-2025-chapter-421.html",
+      "sha256": "ec77cff83666b758cebf19775af30e86275a431803f701563fd2893cd43832a4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:00:37.187420+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "y/gvzKLQO7NuHOPdv5Mrg+qsX9aUgCrgR6ZYWi9cb7M8MIw2S6rgw4pEO7MLrucWfU37MK+0FMPRsqDMOUsJBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-wa"
+}

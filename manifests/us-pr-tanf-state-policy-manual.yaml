@@ -1,0 +1,32 @@
+version: '2026-09-11'
+documents:
+- source_id: us-pr-adsef-reglamento-7653-tanf
+  jurisdiction: us-pr
+  document_class: regulation
+  title: 'Reglamento Num. 7653: Normas de Certificacion para la Determinacion de Elegibilidad a Solicitantes y Participantes
+    del Programa de Ayuda Temporal para Familias Necesitadas (TANF)'
+  source_url: https://serviciosenlinea.adsef.pr.gov/documents/2.ReglamentoTANF.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2026-09-11'
+  citation_path: us-pr/regulation/adsef/reglamento-7653
+  extraction:
+    ocr: true
+    ocr_psm: 1
+  metadata:
+    primary_source: true
+    source_authority: Puerto Rico Department of the Family, Administracion de Desarrollo Socioeconomico de la Familia (ADSEF)
+    document_subtype: adopted_regulation_pdf
+    program: TANF
+    state_program: Puerto Rico TANF (Programa de Ayuda Temporal para Familias Necesitadas)
+    federal_program: TANF
+    manual_landing_page: https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+    source_discovery_group: us-pr/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+    regulation_number: '7653'
+    source_last_modified: '2026-07-15'
+    extraction_granularity: pdf_page
+    expression_date_note: current regulation as posted on the fetch date; the promulgation date is on a scanned cover the
+      OCR did not read reliably (PDF creation date 2010-04-07)
+    ocr_note: scanned image-only PDF stored rotated (/Rotate 270); Tesseract automatic page segmentation with orientation
+      detection (ocr_psm 1); only the eng traineddata is installed, so Spanish diacritics are approximate

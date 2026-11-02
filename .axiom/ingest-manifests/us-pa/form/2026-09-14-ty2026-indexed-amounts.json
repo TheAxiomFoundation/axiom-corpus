@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "b7876f97cd9a343982dec154717cbc1833409bbc0e434fea74f9a8fcaa2f893f"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "fb1f750cc9107668a0d00fa7c62a93a723b5122cae86785a783ba9b46c154c39"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "41e402700bf6e6e8fdd7029c8e61d82a6c8e3c039f800ab70643ee4e4180cab7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-pa-department-of-revenue-rev-413i-ty2026.pdf",
+      "sha256": "910d2bb8e039455c6b63c3d176a1fba951f2c16ad735a2e2c604f939cc6b492d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-pa-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T17:54:04.326022+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dmw0C22cJ8LBRs5R29pYE4/XUvJ8pGpADWvybBSD4ieh2+ct/9up8AEKa9jgpI/rTMVYe4EH9/FYTgneJuBpBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

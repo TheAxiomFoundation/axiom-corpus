@@ -1,0 +1,907 @@
+version: 2026-09-13-medicare-cms-iom-100-16
+documents:
+- source_id: us-cms-iom-100-16-chapter-1
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 1 - General Provisions
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-02-10'
+  citation_path: us/manual/cms/iom/100-16/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^40\.2\ –\ HCPP\ Plans$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 1
+    chapter_title: General Provisions
+    latest_transmittal: Rev. 125, issued 2017-02-10
+    expression_date_source: TOC header '(Rev. 125, 02-10-17)'
+    pdf_page_count: 9
+    body_start_page: 2
+    toc_section_count: 15
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:19 GMT
+- source_id: us-cms-iom-100-16-chapter-4
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 4 - Benefits and Beneficiary Protections
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c04.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-04-22'
+  citation_path: us/manual/cms/iom/100-16/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^and\ Medicare\ Savings\ Programs\.$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 4
+    chapter_title: Benefits and Beneficiary Protections
+    latest_transmittal: Rev. 121, issued 2016-04-22
+    expression_date_source: 'TOC header ''(Rev. 121, Issued: 04-22-16)'''
+    pdf_page_count: 111
+    body_start_page: 6
+    toc_section_count: 151
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:25 GMT
+- source_id: us-cms-iom-100-16-chapter-5
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 5 - Quality Assessment
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c05.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-08-08'
+  citation_path: us/manual/cms/iom/100-16/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^50\ \-\ Definitions$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 5
+    chapter_title: Quality Assessment
+    latest_transmittal: Rev. 117, issued 2014-08-08
+    expression_date_source: TOC header '(Rev. 117, 08-08-14)'
+    pdf_page_count: 64
+    body_start_page: 3
+    toc_section_count: 37
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+- source_id: us-cms-iom-100-16-chapter-6
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 6 - Relationships With Providers
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c06.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-04-27'
+  citation_path: us/manual/cms/iom/100-16/chapter-6
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^100\ \-\ Special\ Rules\ for\ Services\ Furnished\ by\ Non\-Contract\ Providers$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 6
+    chapter_title: Relationships With Providers
+    latest_transmittal: Rev. 82, issued 2007-04-27
+    expression_date_source: TOC header '(Rev. 82, 04-27-07)'
+    pdf_page_count: 23
+    body_start_page: 2
+    toc_section_count: 18
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:27 GMT
+- source_id: us-cms-iom-100-16-chapter-7
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 7 - Risk Adjustment
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c07.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-09-19'
+  citation_path: us/manual/cms/iom/100-16/chapter-7
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^130\ \-\ Glossary\ of\ Terms$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 7
+    chapter_title: Risk Adjustment
+    latest_transmittal: Rev. 118, issued 2014-09-19
+    expression_date_source: TOC header '(Rev. 118, 09-19-14)'
+    pdf_page_count: 75
+    body_start_page: 3
+    toc_section_count: 49
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:31 GMT
+- source_id: us-cms-iom-100-16-chapter-8
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 8 - Payments to Medicare Advantage Organizations
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c08.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-09-19'
+  citation_path: us/manual/cms/iom/100-16/chapter-8
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^\(MMA\)\ of\ 2003\.$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 8
+    chapter_title: Payments to Medicare Advantage Organizations
+    latest_transmittal: Rev. 118, issued 2014-09-19
+    expression_date_source: TOC header '(Rev. 118, 09-19-14)'
+    pdf_page_count: 35
+    body_start_page: 4
+    toc_section_count: 49
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:31 GMT
+- source_id: us-cms-iom-100-16-chapter-9
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 9 - Employer/Union Sponsored Group Health Plans
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c09.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-05-03'
+  citation_path: us/manual/cms/iom/100-16/chapter-9
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^APPENDIX\ 2\ \-\ Approved\ EGHP\ Waivers$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 9
+    chapter_title: Employer/Union Sponsored Group Health Plans
+    latest_transmittal: Rev. 111, issued 2013-05-03
+    expression_date_source: TOC header '(Rev. 111, 05-03-13)'
+    pdf_page_count: 36
+    body_start_page: 3
+    toc_section_count: 48
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:32 GMT
+- source_id: us-cms-iom-100-16-chapter-10
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 10 - MA Organization Compliance with State Law and Preemption
+    by Federal Law
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c10.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-11-04'
+  citation_path: us/manual/cms/iom/100-16/chapter-10
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^60\ \-\ Examples\ of\ Federal\ Preemption\ Scenarios$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 10
+    chapter_title: MA Organization Compliance with State Law and Preemption by Federal Law
+    latest_transmittal: Rev. 103, issued 2011-11-04
+    expression_date_source: TOC header '(Rev. 103, 11-04-11)'
+    pdf_page_count: 6
+    body_start_page: 2
+    toc_section_count: 10
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:32 GMT
+- source_id: us-cms-iom-100-16-chapter-11
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 11 - Medicare Advantage Application Procedures and Contract
+    Requirements
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c11.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-04-25'
+  citation_path: us/manual/cms/iom/100-16/chapter-11
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Payment\ to\ a\ Medicare\ Advantage\ Organization$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 11
+    chapter_title: Medicare Advantage Application Procedures and Contract Requirements
+    latest_transmittal: Rev. 83, issued 2007-04-25
+    expression_date_source: TOC header '(Rev. 83, 04-25-2007)'
+    pdf_page_count: 47
+    body_start_page: 2
+    toc_section_count: 45
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+- source_id: us-cms-iom-100-16-chapter-12
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 12 - Effect of Change of Ownership
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c12.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-05-17'
+  citation_path: us/manual/cms/iom/100-16/chapter-12
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Exhibit\ 1\ \-\ Model\ Novation\ Agreement$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 12
+    chapter_title: Effect of Change of Ownership
+    latest_transmittal: Rev. 113, issued 2013-05-17
+    expression_date_source: TOC header '(Rev. 113, 05-17-13)'
+    pdf_page_count: 13
+    body_start_page: 2
+    toc_section_count: 15
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+- source_id: us-cms-iom-100-16-chapter-14
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 14 - Contract Determinations and Appeals
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c14.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-05-27'
+  citation_path: us/manual/cms/iom/100-16/chapter-14
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^or\ CMS\ Administrator\ decision\.$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 14
+    chapter_title: Contract Determinations and Appeals
+    latest_transmittal: Rev. 122, issued 2016-05-27
+    expression_date_source: TOC header '(Rev. 122, 05-27-16)'
+    pdf_page_count: 10
+    body_start_page: 2
+    toc_section_count: 20
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+- source_id: us-cms-iom-100-16-chapter-15
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 15 - Intermediate Sanctions
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c15.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-09-30'
+  citation_path: us/manual/cms/iom/100-16/chapter-15
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^60\ \-\ Contract\ Termination\ by\ CMS$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 15
+    chapter_title: Intermediate Sanctions
+    latest_transmittal: Rev. 73, issued 2005-09-30
+    expression_date_source: TOC header '(Rev. 73, 09 30 05)'
+    pdf_page_count: 6
+    body_start_page: 1
+    toc_section_count: 6
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:36 GMT
+- source_id: us-cms-iom-100-16-chapter-16a
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 16a - Subchapter A - Private Fee-for-Service (PFFS) Plans
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c16a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-05-27'
+  citation_path: us/manual/cms/iom/100-16/chapter-16a
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^160\.6\ \-\ Some\ Counties\ of\ a\ Partial\ Network\ PFFS\ Plan\ Transitioning\ to\ a\ Full$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 16a
+    chapter_title: Subchapter A - Private Fee-for-Service (PFFS) Plans
+    latest_transmittal: Rev. 99, issued 2011-05-27
+    expression_date_source: 'TOC header ''(Rev. 99, Issued: 05-27-11)'''
+    pdf_page_count: 36
+    body_start_page: 4
+    toc_section_count: 70
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:37 GMT
+    toc_anchor_note: last TOC line 'Network PFFS Plan' also appears earlier in the TOC; the anchor is the unique TOC line
+      1 line(s) before it, so 1 wrapped TOC fragment(s) precede the first bold heading
+- source_id: us-cms-iom-100-16-chapter-16b
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 16b - Subchapter B - Special Needs Plans
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c16b.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-11-22'
+  citation_path: us/manual/cms/iom/100-16/chapter-16b
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^90\.3\ –\ List\ of\ Social\ Needs\ Screening\ Instruments$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 16b
+    chapter_title: Subchapter B - Special Needs Plans
+    latest_transmittal: Rev. 131, issued 2024-11-22
+    expression_date_source: 'TOC header ''(Rev. 131; Issued: 11-22-24)'''
+    pdf_page_count: 65
+    body_start_page: 5
+    toc_section_count: 87
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Wed, 27 Nov 2024 13:04:09 GMT
+- source_id: us-cms-iom-100-16-chapter-17a
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 17a - Subchapter A - TEFRA Cost Based Payment Processes and
+    Principles
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c17a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2004-05-07'
+  citation_path: us/manual/cms/iom/100-16/chapter-17a
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{1,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^110\ \-\ Adequate\ and\ Sufficient\ Records$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 17a
+    chapter_title: Subchapter A - TEFRA Cost Based Payment Processes and Principles
+    latest_transmittal: Rev. 52, issued 2004-05-07
+    expression_date_source: TOC header 'Last Updated - Rev. 52, 05-07-04'
+    pdf_page_count: 20
+    body_start_page: 2
+    toc_section_count: 46
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: true
+    heading_label_form: one to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:38 GMT
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-16-chapter-17b
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 17b - Subchapter B - Payment Principles for Cost-Based HMOs
+    and CMPs
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c17b.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-04-27'
+  citation_path: us/manual/cms/iom/100-16/chapter-17b
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^410\.1\ \-\ Premium\ Taxes\ Assessed\ Against\ the\ Medicare\ Cost\-Based\ HMO/CMP$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 17b
+    chapter_title: Subchapter B - Payment Principles for Cost-Based HMOs and CMPs
+    latest_transmittal: Rev. 86, issued 2007-04-27
+    expression_date_source: TOC header '(Rev. 86, 04-27-07)'
+    pdf_page_count: 42
+    body_start_page: 3
+    toc_section_count: 80
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+- source_id: us-cms-iom-100-16-chapter-17c
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 17c - Subchapter C - Cost Apportionment for Cost-Based HMOs
+    and CMPs
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c17c.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-01-01'
+  citation_path: us/manual/cms/iom/100-16/chapter-17c
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^120\ \-\ Alternate\ Allocation\ and\ Apportionment\ Methods$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 17c
+    chapter_title: Subchapter C - Cost Apportionment for Cost-Based HMOs and CMPs
+    latest_transmittal: Rev. 17, issued 2003-01-01
+    expression_date_source: TOC header 'Last Updated - Rev. 17, 01-01-03'
+    pdf_page_count: 7
+    body_start_page: 1
+    toc_section_count: 15
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:39 GMT
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-16-chapter-17d
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 17d - Subchapter D - Medicare Cost Plan Enrollment and Disenrollment
+    Instructions
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c17d.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-10-31'
+  citation_path: us/manual/cms/iom/100-16/chapter-17d
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Exhibit\ 12:\ Model\ for\ Closing\ Enrollment$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 17d
+    chapter_title: Subchapter D - Medicare Cost Plan Enrollment and Disenrollment Instructions
+    latest_transmittal: Rev. 38, issued 2003-10-31
+    expression_date_source: TOC header '(Rev. 38, 10-31-03)'
+    pdf_page_count: 49
+    body_start_page: 3
+    toc_section_count: 53
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-16-chapter-17f
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 17f - Subchapter F - Benefits and Beneficiary Protections
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c17f.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-10-28'
+  citation_path: us/manual/cms/iom/100-16/chapter-17f
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^130\.8\ \-\ Appeal\ and\ Anti\-Discrimination\ Rights$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 17f
+    chapter_title: Subchapter F - Benefits and Beneficiary Protections
+    latest_transmittal: Rev. 77, issued 2005-10-28
+    expression_date_source: TOC header '(Rev. 77, 10-28-05)'
+    pdf_page_count: 32
+    body_start_page: 2
+    toc_section_count: 61
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-16-chapter-18a
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 18a - Subchapter A - Cost-Based Payment Process and Principles
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c18a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2005-08-12'
+  citation_path: us/manual/cms/iom/100-16/chapter-18a
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^100\ \-\ Adequate\ and\ Sufficient\ Records$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 18a
+    chapter_title: Subchapter A - Cost-Based Payment Process and Principles
+    latest_transmittal: Rev. 67, issued 2005-08-12
+    expression_date_source: 'latest section transmittal line (no transmittal in the TOC header) ''(Rev. 67, Issued: 08-12-05;
+      Effective: 10-01-04)'''
+    pdf_page_count: 16
+    body_start_page: 2
+    toc_section_count: 37
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:42 GMT
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-16-chapter-18b
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 18b - Subchapter B - Payment Principles for Cost-Based HMOs
+    and CMPs
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c18b.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2007-04-27'
+  citation_path: us/manual/cms/iom/100-16/chapter-18b
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^240\.1\ \-\ Premium\ Taxes\ Assessed\ Against\ the\ Medicare\ HCPP$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 18b
+    chapter_title: Subchapter B - Payment Principles for Cost-Based HMOs and CMPs
+    latest_transmittal: Rev. 85, issued 2007-04-27
+    expression_date_source: TOC header '(Rev. 85, 04-27-07)'
+    pdf_page_count: 36
+    body_start_page: 3
+    toc_section_count: 66
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+- source_id: us-cms-iom-100-16-chapter-18c
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 18c - Subchapter C - Cost Apportionment for Cost-Based HMO/CMPs
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c18c.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-09-05'
+  citation_path: us/manual/cms/iom/100-16/chapter-18c
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^80\ \-\ Alternate\ Allocation\ and\ Apportionment\ Methods$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 18c
+    chapter_title: Subchapter C - Cost Apportionment for Cost-Based HMO/CMPs
+    latest_transmittal: Rev. 30, issued 2003-09-05
+    expression_date_source: latest section transmittal line (no transmittal in the TOC header) '(Rev. 30, 09-05-03)'
+    pdf_page_count: 5
+    body_start_page: 1
+    toc_section_count: 11
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    http_last_modified: Fri, 13 Sep 2019 14:20:43 GMT
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-16-chapter-21
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-16 Medicare Managed Care Manual, Chapter 21 - Compliance Program Guidelines and Prescription Drug Benefit
+    Manual Chapter 9 - Compliance Program Guidelines
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c21.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-11'
+  citation_path: us/manual/cms/iom/100-16/chapter-21
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ B:\ Laws\ and\ Regulations\ to\ Consider\ in\ Standards\ of\ Conduct\ and/or\ Training$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-16
+    publication_title: Medicare Managed Care Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326
+    chapter: 21
+    chapter_title: Compliance Program Guidelines and Prescription Drug Benefit Manual Chapter 9 - Compliance Program Guidelines
+    latest_transmittal: Rev. 110, issued 2013-01-11
+    expression_date_source: TOC header '(Chapter 21 - Rev. 110, 01-11-13)'
+    pdf_page_count: 54
+    body_start_page: 3
+    toc_section_count: 45
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-16
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms019326

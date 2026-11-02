@@ -1,0 +1,15 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-me",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-me/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "5a83e8cde14256e552c7e9304de349ae267f902b1b68b7cdfc4c6fbeb663ca5f", "size": 330},
+    {"path": "data/corpus/inventory/us-me/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "882ccdaeac6837e534ea1471043eee8e850900b2c8f3ca9b8499d4461e5162f9", "size": 11637},
+    {"path": "data/corpus/provisions/us-me/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "c7fc2ba12a3fba747d531eafd78bd11780a04c378c4f2e9f89cced270e0c5f39", "size": 152586},
+    {"path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-form-1040me-general-instructions-ty2025.pdf", "sha256": "00f731e053a19cc464595fbf38d61e11daa1e3e5a7bed525708a12d9b426051d", "size": 473431},
+    {"path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-form-1040me-ty2025.pdf", "sha256": "6692450e683dc565a1f6605ce76eebb9244cbee7f02151943f603391593be197", "size": 2124806},
+    {"path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-tax-rate-schedules-ty2025.pdf", "sha256": "af76db2b2f358f8c19baa35d61d8a0b383613a2503982cd60e519ce393e1ec5e", "size": 145012},
+    {"path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-tax-tables-ty2025.pdf", "sha256": "c65c00399a99d92149ad6f558f6493660af2f5c97ea863970e699d1a74128b24", "size": 228309}
+  ]
+}

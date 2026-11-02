@@ -1,0 +1,2719 @@
+{
+  "schema": "de_kindergeld_capture_audit.v1",
+  "release_selector": "de-rulespec-2026-09-08-kindergeld-parentage",
+  "preserved_release": "de-rulespec-2026-09-08-kindergeld-civil",
+  "provision_files": [
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-history.jsonl",
+      "sha256": "9e67248ae3d7a44cb7307e1a1a4c247796610faeb233a0238026e5ab27e5d6cf",
+      "row_count": 2,
+      "rows": [
+        {
+          "citation_path": "de/statute/bgbl-1997-i-2942/kindschaftsrechtsreformgesetz",
+          "row_sha256": "cf6234629838a97da087903a4d8b741c5b747d64ed5334d31e52077127321c45",
+          "body_sha256": null
+        },
+        {
+          "citation_path": "de/statute/bgbl-1997-i-2942/kindschaftsrechtsreformgesetz/document-1",
+          "row_sha256": "434bfd6e09bfb671dd5464acd217173906f432960720e912c39331e96c45399b",
+          "body_sha256": "11f508af806644d8e6924b312ef45828f8f2b9793a4e886b862ff8b400648554"
+        }
+      ]
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-transition.jsonl",
+      "sha256": "c8bafa5f3805c99097ecea6c1f89ecf3f036ff560562776b35f3ab4229f06059",
+      "row_count": 535,
+      "rows": [
+        {
+          "citation_path": "de/statute/bgbeg",
+          "row_sha256": "c16ea9e328c488d91278cf09a837717c6a4458f6bfbcb94768486e62b07be62f",
+          "body_sha256": "8ee478f3d0e9d4eff860e0a6a475ea611d3ab2c4c86cb3dd63387ba116fd73bd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne023802377",
+          "row_sha256": "1689dc8dbf905522d5432fb81a61f5d605a56659d039936eef3ee7fc9297e05f",
+          "body_sha256": "322d561e693159cbe9977650376dda6b1b2c1aa51c14441caae8dc7a20c913a6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne024902377",
+          "row_sha256": "8e123fa04d4ed54eed8d5c7641b94ee8ac05d044a019ce96102de4eb400544bf",
+          "body_sha256": "59fcf3f1aade274cc38780696dd75d3b206317b356330d3ad68832d2360b36ef"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne025802377",
+          "row_sha256": "cec4f29b85d49b2b882667fa046c70bb8d646ec9636b4b9265595556fe243ee6",
+          "body_sha256": "87a56f1fd2febaeb86685b5dc315e734e5f355eaa83680d5d92ec49d305dd002"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne027404140",
+          "row_sha256": "9639c5006f176ec1d3ce31182d262c82ff4459b6209f221fd052110572c32ea9",
+          "body_sha256": "63734f66ff2aa720cc59762089e89336b975316ae2c43bdfad960ca5523886e6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne027702377",
+          "row_sha256": "a965e38bf6d968272da3e24e5914e1ab36407564a60da0ee9126d3420e7ea836",
+          "body_sha256": "5fd8f3b6c823b10f82b4a774604de00b9904f474da88d176eff3c4898a433f82"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne030701377",
+          "row_sha256": "e2534985304fb69250fc3886573bfa69e63d4ae75876106c621ddb7c7f226f49",
+          "body_sha256": "36c4bb37de008c8baba5a2a43164a84086f88f8dc1bda2b606196abb0d6c4a98"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne030901377",
+          "row_sha256": "325d2e970c8cc07fd5724dc60494123e5113359b876fa7eca257942c2e4963a0",
+          "body_sha256": "370c9344430c1bc40416cfa5a598e0f20ee32a9f231c2cecc6876a44d0cb71cf"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne031301377",
+          "row_sha256": "39dd3099c3513234deb865a2dae59a0ac0768b539fe5e8f7464bccd61e349c31",
+          "body_sha256": "434b82b04d68500fba482e9f4f4b5c46dc778276a0d6f8f8875f164600ea89a3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne231800377",
+          "row_sha256": "8e5487307f69390e3f36cabe0c3432a80d0c020fad006e6f91303242c45f4e2f",
+          "body_sha256": "3973e022e93220f9212c18d0d0c543ae7c309e46640da93a4a0314de999f5112"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne232602129",
+          "row_sha256": "f671916fefdc9cd447b84818023072e4831f79b3a132c3730350e49849fe522c",
+          "body_sha256": "7d86d9750a570c7a07f24836748b8283d793a1203ca68fc46ecaebb6680ff215"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne234304129",
+          "row_sha256": "8e7cb45050e97bd7058b82526f8b694a1db35abd049eb5a7bd0035a1e076648a",
+          "body_sha256": "2ad1347e7283b379e30bc44dc019429d27e2455a0536855e68c5893eade60e62"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne237600140",
+          "row_sha256": "dd67816f0403dafd6f65a929900f6d2b21d3f6b75e74ff90ab65e5eb54718c4c",
+          "body_sha256": "f9670e9d9a8c94e31323e97f1b147a3eb1dea37cc38749f235460d7fd1abaae9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne238403129",
+          "row_sha256": "e9b30c1ca5e028dc50408f989376bdf53fed5710a7eb8a51c26a01f43b3aea6c",
+          "body_sha256": "3cd1b482407291e2ee4803720ad0268c56db5bdea2c8c01e233ddd79668c94e6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne238803129",
+          "row_sha256": "fb4bda4cfa00115ec97f18c2cdeba298cfbcffa332df926ab2721d96175b2092",
+          "body_sha256": "d3dd7988fd167c794ba1800b643de1f93a4c17c0772a8a1a0a585828c0de9e18"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne239902125",
+          "row_sha256": "95935ae565c7e6b3fcd3bea5e4e7f5f7420a30d07316d6df7f96ea5b9304bf14",
+          "body_sha256": "20aaacc0d1da4a5c27bb4bed73afaffe552da1d1e65deb39ce10d7a302dd2fa4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne240500123",
+          "row_sha256": "54353402706652ea6b608444324f78a35effecf91d3f27fe247e4d8ba6d51029",
+          "body_sha256": "33b65934dca1be7d950a1913866a01703139c2a076952354a8404314cb80e8f1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne242500123",
+          "row_sha256": "c32950fb1c04b9f3c24f3aa4ab90b7f4c7a8f03fb907171266bc35766bf8ed59",
+          "body_sha256": "7fe4cf9ca1c39dfae59ac3b04f5376130f30876b9d865cb2277beb88ae554365"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne243500123",
+          "row_sha256": "1edd73cb9ec1cbc226b6141a26ef076a81fcfc7ac68dbc4f967c5e0d3f7b473c",
+          "body_sha256": "c6e876550938189d27a6a0173335a1647bc27bb569590694436513c5222f0fb9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne243700123",
+          "row_sha256": "a00c9bfa01c57e51c44394529688d1ebed3f2ee1bce38ee08610b22979acdb59",
+          "body_sha256": "0a8d7f66e16a5a09b95bdd4760b973db978eaf1d2a7540ae1c875b8424d5a048"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne245301360",
+          "row_sha256": "d61180d1e90211aac853912c0ee760355c3e4cc976c7deff7219ffa1ca4d9bda",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne247100360",
+          "row_sha256": "33e33a6682e1b598ee503cf73746e65c96ba94cd1aa3890d3b4b9c1ba79f22bd",
+          "body_sha256": "ec8ef3ce306b2016c2b2964dec805c6e395bfb7857a4c597cb80629fd0bb15a4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne247302129",
+          "row_sha256": "68654bf9540a656ec78aa2553fb53b66f87ffd1d5402224b2261ab93ba21b2ea",
+          "body_sha256": "e93a81117e855f7100564e2bc2b5e0a8fb12da5eca7a0bffb65b4c30db458e68"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne247800360",
+          "row_sha256": "9e4b9b4227be02a807ddfda08bf594e9ddff6c1b02330601ea68360bbcf723d6",
+          "body_sha256": "37b9ef1f3ed5676867646ce716c92e2978181a85685025ff9859fd1d205a72c4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1-bjne249800360",
+          "row_sha256": "037429118d8068a30a449c9cb7ffcf9b0ac84e8dd2ff80e27063586c95f9ca6b",
+          "body_sha256": "c2ae5befd2af9e96ba0f6a97be258bf342ae900f24429693129fa3a730b08ef2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne023102377",
+          "row_sha256": "3293ae0eeaf66a35ff911aaf6ee55bea915d11513c98634695b32f1887c377f9",
+          "body_sha256": "3c77febcb4a72aad59382c046050a08e7afd5891798249bb536a409f4e0aedf0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne024702377",
+          "row_sha256": "2dbbd29ee1eeed1764ba4620c276ba7bbc464fbc5962b6143e381ff97c21e87d",
+          "body_sha256": "6742a6e315113845588bda1b3add2223dfc6de66c9e308212383954ec9fe7100"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne026702377",
+          "row_sha256": "266ccabc39ef7153289c1a926e54fbac7ab35333876f3d781adb45d264088bec",
+          "body_sha256": "6084e08adbe5a34ee9c9ab4271e2592590450d557f39d4f4b200a0b8cbbc10b3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne028302377",
+          "row_sha256": "a2422b4f3f172a0a9636a1732cd8c564c7668f1441a4d67ab46c62140e91b212",
+          "body_sha256": "2c2a580fe9cfd7cc2d115ff95eb4951a4a14cdd529cf375010584913ef62312b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne031402140",
+          "row_sha256": "0842fc720ec62c12860821940217c6c91cb5242fecf20af21ec427355663f9b6",
+          "body_sha256": "364de765637490a60d85b8df7fcb1267ef8e3dde9853d5519382a86843df5e65"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne233504129",
+          "row_sha256": "dbad210680084b199a0d8a6de09083d8bcb485785aa2d90ee2b071653c82be1f",
+          "body_sha256": "46bc228f18d321c9188940c224e01eeb876ef459bc2a0bd302310fcdb16842e6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne235200140",
+          "row_sha256": "58a3f4c982ae0c598c9907057348f7010b5fdf6f597079a84bfd86d8f36900e4",
+          "body_sha256": "8d9f42d6287e8c6d69ab0838607b45fc8c13a5ac4b295921ff9d4b38cf733d70"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/10-bjne243400123",
+          "row_sha256": "d2e67b4757df6c428654f82ebd4ece39be4d4a0612c809f2683c398bbf8b49cc",
+          "body_sha256": "ec11658c9ddc8c60ba9d9c687c450feb00f16b5f01a15d26b8a296fa68616b9e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/11-bjne026803377",
+          "row_sha256": "f50bdb488e39e6bab74c0c7adaa384048ed2eff504d66ef7e3ec2fb703108964",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/11-bjne028504377",
+          "row_sha256": "ae82529e7296de04d3416604354d1b90b1b3a5e1cb075e3a5ec3192b1447f18a",
+          "body_sha256": "4ac13fe46bca77cd9247730fb3695048ea27c1af311696829e0b21d90da33e2a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/11-bjne231001377",
+          "row_sha256": "5d4a5152ffcb16259c8829f30549f0afb21bb2b8f4b0f64d9f2fab8723d1dcd0",
+          "body_sha256": "bac5dbb4edba064b35d2719e26de3ef74df87567f82c5ebdccf9f51266e3fa20"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/11-bjne233604129",
+          "row_sha256": "7476a2c2cc54af80fcc809d8f484de47a7e6e90703531ada74790c83180d0ccf",
+          "body_sha256": "40d3ad7b671f70f4672b08124b4683904b8edaebf5f9cd4532ebd7e010ace9c7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/11-bjne235302123",
+          "row_sha256": "2b8de1ed9f5f7a8a71e8fc8d71536fb05f8ade242b92af19ed38cf78adcbae79",
+          "body_sha256": "a8663acc80fcc573d0d0b5a3f8a460714ebbd400eb81fe603eece45a6a37c801"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/12-bjne026902377",
+          "row_sha256": "537d784d21a78860562009e9108adc35146d5181cbc4f46a4090a20ff8483ef5",
+          "body_sha256": "907ca7794a48e346185e3d2ded86cfdef09cab15010002ffe60f7fc783434dab"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/12-bjne028603377",
+          "row_sha256": "1800eca243c9d69c25c2dc602ed0d4e3889101fbcef2453c33a031b89ef0fca6",
+          "body_sha256": "103502a1fba065a2226e945ddca0b42d3a7c20b8e942a6285cdb7136f34c9be6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/12-bjne231101377",
+          "row_sha256": "620a588fbf051c0f8924dd1c969a9962b07dfdfd560e03fdf0e312758ae3847f",
+          "body_sha256": "4d9f98294808dbc3dceaa25f60fcf4dfbe21f2616662af7076561fdb032d7dd9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/12-bjne233704123",
+          "row_sha256": "c3a1d615bfc37bf75796e649ec3e2a37aea4f5af047e411c325134343cccd2e3",
+          "body_sha256": "1d28670b58901fcd5e0b188068a772399a0afcb1351625e19147d1a43106bbd4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/12-bjne235402123",
+          "row_sha256": "290c40d76ee3ce668a4f1427879652542f7509e7cf27aa33afb7838bc926def4",
+          "body_sha256": "fa2ce774fa49fa9bfd3646240ae00b42ad2f3204b4105c3dcf64e1653e1980ed"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13-bjne027003377",
+          "row_sha256": "9884ebb9a3f32c05dd3eed8a89ecd01a409dbe9817fa31bf54b9de149f83efab",
+          "body_sha256": "abca3f763b0132c6acf0b5170d0e23918cc8d38eec346b807f9b9a12a367b49f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13-bjne028704377",
+          "row_sha256": "7a2d4eab2e686723319f2a3431309ee2d9977ed7fd09498660345f7781c68cb0",
+          "body_sha256": "e06bac7bbd4ab39f72f9b02f8299d4f5d233ea2cbc63fe96c31f7b66aba7c468"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13-bjne231201377",
+          "row_sha256": "89d4edd8a5e9854cca01d81ec568427a4f21c475968b7785ec61594c5d5156f7",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13-bjne233803123",
+          "row_sha256": "82b9f25b3f67cee8151dd243f5b11674f556951e9713bc677b0a3c1b0382c887",
+          "body_sha256": "02877273814e9094c2fd28ca9999f9b93f2ba019ad3fee084bf5f9006938cc30"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13-bjne235501123",
+          "row_sha256": "6226c6666fbb8b36895f92c391a31de00c5b5781bd64211382419059ff22dfba",
+          "body_sha256": "719614846c24f8f243e7db1262417ca1111768d2cf17154e6e15b41d13c574a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13a-bjne030302377",
+          "row_sha256": "14353b36331ed1d698bd711789769bb3e1fb50b04340a5cdf3040f1adb617ad1",
+          "body_sha256": "cba47bfb050f30ee7b18ab86d0ab86664c93d06bce1b31cfc4435ca6446ad08b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13a-bjne239600123",
+          "row_sha256": "1b1bd3931782aa1afaadc647bd55c6ff84f2918b57e015e234eb2ddaabfd4cd0",
+          "body_sha256": "791cc97fe30a34b349f3930ada10ed2354018ff1fd50f0f494f6f81fdf076494"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13a-bjne242200123",
+          "row_sha256": "379dc5197842b103f12328156e2b5fde080603adcc55b6035189db0d3a1bb623",
+          "body_sha256": "3cb809e565a06bd2742b36d540016e3f8a7ffedef7610823f160ab030b463a34"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/13b",
+          "row_sha256": "11b1501f5f89789f41a79fbc0c150106f8ac6288d6deaef9517f069c202f0c4c",
+          "body_sha256": "d34866ed2ef70e08465eaead88804d719ffe6322abbe1418b41ce2c94a096210"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/14-bjne027102377",
+          "row_sha256": "02843a46251e035b4126f8f57b7f28bfeb1e7be7703c2aed909cc69fc6ade168",
+          "body_sha256": "170d43164214ed3295e1a5b0fb8437ab56580d4e002a28cc0532b1731a098b68"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/14-bjne028803377",
+          "row_sha256": "6125ddbd50a16a9bf7b117cad3de96173f0637d6401075a045970dda5971d6c7",
+          "body_sha256": "e758bea30c76adf07a545d8e68f4061ebec1545516cce35e68b403f1c01ee6e6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/14-bjne231301377",
+          "row_sha256": "5a8b61830333786db38c63d8528d9a38c15f42d3336aae999dde14260d0732a9",
+          "body_sha256": "65c327afe906ffff2dba279b7c5b4c22261999282af5abb45a991ad85155cfad"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/14-bjne233901360",
+          "row_sha256": "b9a716ca047f5b57b2453d28b0005302c8d6ce5c9bb7ed480d07f0141351e3e5",
+          "body_sha256": "14d3d1ca7d9f22611763328b3ae6fa22629221d20f5a3661d4e58de3ce18e76b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/14-bjne235601123",
+          "row_sha256": "8b6fb2a98aa5603b54fcb0ca645f4a738a57863d303eff1b3ed3fca9a856a720",
+          "body_sha256": "ecbea620e63cd1733e8010c8a606db1438b3e685aee5a93b7d216cfde1a9607c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/15-bjne027202377",
+          "row_sha256": "dc403c54ef26153c34a23dba63d48e9bd6c3b170a95df582d39f3d142dbb2b38",
+          "body_sha256": "111b153f6020bf998a79cba6288b9c0995cda128f37ac09076b95e8748c459bb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/15-bjne028903140",
+          "row_sha256": "4c7789ca9a82bd4fb2a254db159e7ea27e3a42aa49b797ce77a2cf2695d9d11a",
+          "body_sha256": "b6f477bff760f140b936540a5132d3a070c9a0d18e2456656f3401ed1710ac19"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/15-bjne232000377",
+          "row_sha256": "4edb37a451ed30d67a073479e6faac18e33f2dbecb1940a20b63edef281076c3",
+          "body_sha256": "5bae35a767353405e1c864cbdc04d5b537d32110be450062213f67dfe257c838"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/15-bjne234001123",
+          "row_sha256": "44cf86f10c1620aec0a2d56d47b71760ed979f07b0570db0233684ceb605d2be",
+          "body_sha256": "1038a01f41f88281d5007fc6f0c90cb98eb9c7b5f0a501d28b816ae7db2a64ee"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/15-bjne235701123",
+          "row_sha256": "66017b91aa44bdf5c71c9d2c2450f780a1ba72cc89c1f331fef8f75063391070",
+          "body_sha256": "f0b6baced0f6e3c6e617c775a59ae60996aa6a78060002b16ddafb3dccdd8983"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/16-bjne029003377",
+          "row_sha256": "999634c23a3edf5a7d545029ed58a68d9c9ce775dbf48fb426f7973eb13ba77c",
+          "body_sha256": "1d7e389054ded79495462c294e3fe70ac86078e420727591a646bbc7eafd275d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/16-bjne234100140",
+          "row_sha256": "5aca51b31b48f14a4af5f2a8429c3a1a5dd3373af43c80c967bfb77e171ce7b3",
+          "body_sha256": "a2a14e754bc92147ff2d55cc273f66d24c2ddb519ce43ec2b385ad67be8b5100"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/16-bjne235801123",
+          "row_sha256": "d3e85e737a5938b8769aab6a446922e7e77b8cb0edcf60cd267bb6f02c372d9a",
+          "body_sha256": "bec9760e0f2501c19cc12cb6738fd00b4965eeb3e2ca5643d30216ad952f3625"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/16-bjne237001123",
+          "row_sha256": "faa34cfc365e72228e7bcd3bdf6f27e7aa2a5adb6e15e74f47a9192a5a8e1a80",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/17-bjne234200140",
+          "row_sha256": "f94fb5505c4d32907e491ee78df5b74d0660afb62d6456a6524d93c7978b6ac5",
+          "body_sha256": "063cd031d9c637a41ac27fef33d872a1c349e0035d92b9dadb863bcea8a970b6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/17-bjne235901123",
+          "row_sha256": "ebfbe9a19fc00b402ececed015a017398794877b2e6f52b40df0b180c5331506",
+          "body_sha256": "cff7b65ddd38b44a83166c316f9c43b7647b0b21c3b4096bdaeb8044235b0ce2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/17-bjne237100140",
+          "row_sha256": "106b107c2692361f41320f31ced7a6dcdeb2e85ae80dc5d54bf4626241e6f87a",
+          "body_sha256": "78405e1382e044031f26ea8aa3510224001b2667ccb6f463f6eca8b647ce2bd4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/17a",
+          "row_sha256": "0b06e28274d23c66b06e25ba9ea6e2a829586c81e3bb6b03cb41d176c06f349f",
+          "body_sha256": "e83d43f0c861fa984739a66c16eecd8ce319489f8d7545ec430cd16fbdaa778f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/18-bjne236001123",
+          "row_sha256": "2783209bfb2694e97ed4b48945dcb50ab790d463a78ffe14786affdfd350c22d",
+          "body_sha256": "2a043f82c1b7d855208c0957cdf23c608dcab501ad9c1f7dc58677eec73586f5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/18-bjne237200140",
+          "row_sha256": "e1a998ea799c4cea221c47caacf3a187deda3d8c960c1c8dad7ffe632bd32438",
+          "body_sha256": "1a43dc4e59714f7bd8263ee5c9039c2904c67ed705f25cf6287ddd96aeed641f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/18-bjne239800123",
+          "row_sha256": "2d46ba25fc0650e410bca96bc218a0cf85f41d967675a892dd725f0210aabc7f",
+          "body_sha256": "2a3f5307e47d7fe7c09610c15402ee30d545af6d927cf06d1c1b7e390bc71246"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/19-bjne236100140",
+          "row_sha256": "92c40805afd424c968e7711e75b6ed9ede3a4d566cb5ba7be65518a07194d591",
+          "body_sha256": "aca4be825e6ddd87dd42ee38b0c31c4d66c5e24ae094a9c14f73b4e157af8b36"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/19-bjne237300140",
+          "row_sha256": "124ab1e4f7bcc0ea0b50d1c0b18b345842f7a80d188b21b1853d508a76edb48e",
+          "body_sha256": "ea0ca98c81d149b0297baf3e211f0659bc812f224ebaaf10e7f265c31cdeaf84"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/1a",
+          "row_sha256": "77d4e18d0bf7a2f5fbfa9362e44f261270fe076a7096c5b0382ee6b28b169177",
+          "body_sha256": "9e0227eb4a7add7c36ea01a863540eabf905e9e5cd0c6562200f017f8aec8950"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne023203377",
+          "row_sha256": "4132ea6929474adb63a79bf55259b95256d8c2352b24f371bb2e6ec22da4d7eb",
+          "body_sha256": "4d0358010a9bcbe318d49a5ff1bc498c0e0bc073cb2e808582e962dcd2b4aab3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne023907377",
+          "row_sha256": "bb2986261469305c50e7d073eba2b3f70d25369a1ac6789696b234638d962eeb",
+          "body_sha256": "b804a046287229358fb69c31e6877bb6984c17b8aad10a566c924559a54f82a9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne025004377",
+          "row_sha256": "e5785b0996f37961ef0efa7599184869bce8d290e22b2d991f35c8e410d864f7",
+          "body_sha256": "504b310d87c476c9975589d52454868920b4c781024857c216c2797a18a894aa"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne025902377",
+          "row_sha256": "97e1ebe06eef8e6fedc63f5bfef0b97f9fb0b34ddafe8647879044fb4168a654",
+          "body_sha256": "07722099656c261e6e0e75cf87bb2dc5f5f6c3a48d349a107ae63c0e6b544873"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne027502377",
+          "row_sha256": "aaaa165c4fac40f1218e04ed20c91095d274f4ec59c54c6ad9ed2dfcb7ee219d",
+          "body_sha256": "ada0ef1c15504674b1e49be10d5c5728a20a953a2a9979691d48dbdfeaca2213"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne027802377",
+          "row_sha256": "ad4be20cb72280c9a9f59ef3587c9da5efb92b45f99de2a3f77b9d92f3695443",
+          "body_sha256": "02936b7472c5215cb63af40776ca2fee4657528418fd634d509f764acb7585c2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne030802140",
+          "row_sha256": "67c8deb272d8918e4bd2c75fe0279bd098fc8f31d8171e9a04fe8e5f5c76f665",
+          "body_sha256": "192981ce15e195039028551561dcc82518f39969b6cd658f3a474a491c36389e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne031003377",
+          "row_sha256": "b4240c4ea21a34a2acc4512e69d65b63c838fda5447842f39d9b987a69220c26",
+          "body_sha256": "8312a46bde5be9fc7fe3bc818a4d048e387e373fe68d5993430d4a0f97ba0ae9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne031203377",
+          "row_sha256": "9f99628856bfa945a1347771be5c2e2deb0e0e5f4cb4f36725399dce2e000f46",
+          "body_sha256": "8bf583097492f89068f509be0ff5ddf737474f898d58e2b9ea183b726a097edd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne232704129",
+          "row_sha256": "c4a78b6a249a187d7e02098c298f0930b1b5fd589c8404e6a4e072320dc42a36",
+          "body_sha256": "f0542919570e0f85efc5a6683ab7e69cb11d99178c6bef05f25853ad4ecfe2ce"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne234401123",
+          "row_sha256": "63830e3628162a59923e1621815e754673109c6ed63d35961f83250e9ebff530",
+          "body_sha256": "c9d60a6852ce289019092056b55bce6e3fb68419e85dd0be3e3b994d5e9d411a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne237700140",
+          "row_sha256": "fab5f5bdda3321e033973792cde8e32ebb5373c6d704ae8f2244c25fc0856456",
+          "body_sha256": "a2d00e7ce44a4397100779108716ec7b3ac22d0c1467c2ed340e9ee0dac10aff"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne238501360",
+          "row_sha256": "839abf65a8baebd020749520f255ffb083ab49d5d55a25c76987a7f87a3ccc66",
+          "body_sha256": "c33be220f04eb639087d76b7cc5e6ff59e20ffddcf791ba6f9c4bbb39639c898"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne238902129",
+          "row_sha256": "1b85df4c6475128f66b126fd1d7d6b60fc004aaae89bdc007e38d2175c6ce783",
+          "body_sha256": "098b4e73cc1ecb13a13dba6e1be255dcfa2eeb991780616358718798ec4b29dc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne240001125",
+          "row_sha256": "a5f5bf4cd5364db9a47d49d2fad3eb92fd74e9f296125368cbab90896d43a0ec",
+          "body_sha256": "114d9f9554ab32afa79c476eecbdc7bec9dc56db571e4750e4494a503a2ff504"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne240600123",
+          "row_sha256": "05450781d1af5e056738714528b69b8f1feaf035ad6dd3fbc23ecd8602934c5b",
+          "body_sha256": "b6d8cd851459b57c640bb60fb915788b55c13edcebd558b33e0e16e377776151"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne242600123",
+          "row_sha256": "acd0955d82fe8ba2c2ce7714eab6e20dedd765086492ad07879b5955bb6c554c",
+          "body_sha256": "25aee560f18501dad166e4880885906a8d47baa5a8fc31ccc3701a5cbed919e4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne243600123",
+          "row_sha256": "05e43d2896c008766d9aa71d15ae1b161f93676381cfc1cbecfedcc818557d18",
+          "body_sha256": "2dddad5e8c4e27d0354d79e358f9d851fe35ba82b2cb95433491431571578e4d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne243800123",
+          "row_sha256": "1774dc321982a72bfc48df549951a64fae02fb98d0f207fa6b5f55eb015c66ed",
+          "body_sha256": "249b44aa51db75d0078e9458d9e1b9ff195b614e7fd99171449ff426222b43b6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne245401360",
+          "row_sha256": "6579c456a9799fa6b3808676edb9a072b90bf66b6599db1d50ab8310858036d0",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne247200360",
+          "row_sha256": "591fa13e21efdbd682f83a052bb6dbe9594126b8817a1b1bb52e3124b04ff04c",
+          "body_sha256": "d0f6367fd09ae258f9f5fabfb615cede62075effc8c3573101786d21f321ab54"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne247403129",
+          "row_sha256": "fd3055b91ee01bf8b7d91256a2a961e30ddb432a47445590b0e4a7090b376987",
+          "body_sha256": "4481955f54ac138e0e51b6b81d724405c17c0db3161cf1f79df7a799d65f4275"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne247900360",
+          "row_sha256": "7371a57572be371c0059673c8b20e37bb94124e6c9ddad4b26ec97bc5a4190eb",
+          "body_sha256": "9dd8c955a7b2cbeb3626aec3ef50a10590bf54f0bac74aa3b13e2a41c787b78d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2-bjne249900360",
+          "row_sha256": "2d85d9c83eac054aa98343a078fc2510444132aa7f6e24d8ecf26839f439c343",
+          "body_sha256": "6506d99ff90fb0df8ba642f8bee816dee32869aa4cf3e8a4fba5b0aaf71e9bf6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/20",
+          "row_sha256": "4ca166a18189749cc6a45c00fbd5b779185103f9e154bb76ceba00ed7fb06a6a",
+          "body_sha256": "fdde3cd6ac5fcbf4aa63330b733e08cf1fd23ca34ded1516b1a98b02e6b2bfe0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/21",
+          "row_sha256": "f82887705605d0eaa942c3b633a8b771d2eeb4541f6dbcd01fc4d75f7ee2dcc9",
+          "body_sha256": "d80e5d383c14f9f148ec0a3726dc3e28bd6185d205c360c0ce610bcce632bbe6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/22",
+          "row_sha256": "280d4f50c61619149d43b8b2daa9e2a4718b052de9175177b6b64c7167cb2216",
+          "body_sha256": "3e4bc79d153d27541915837cc7427f239a3ae75439f678ca0b9cfe21f3ec93e2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/23",
+          "row_sha256": "d4e64f6f62f445a34bd7a7711e05cc331b3576d321a8afb6ca92d7a01213c122",
+          "body_sha256": "fd0d668e5fc7cceb3b4c0891e1fe7dde04e14f36b4aa72cb22c8ef2d3c5e7375"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/24",
+          "row_sha256": "745116cc2f5ccfdc7c816b9ceabbdef6d4b0b4096316a988fe706e9bc8a443dc",
+          "body_sha256": "32b9794a52170a4057b50e5802dbfaf15f29b1403fda9592f407f49385b9748a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/25",
+          "row_sha256": "91c09eb45e76f895158207f6fe8175e01b166fa0bdcdd953955cdec8587b9bde",
+          "body_sha256": "1429deb91a5b814858f60c7569093ef7fd25ae97f334d8a26883e5c51dd79ff5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/26",
+          "row_sha256": "74c25a001b75cbe6faf7937e08f205608c0c332a72affef1bfee25daf6508a2b",
+          "body_sha256": "8b02b91e8c7f71506a50af8afb2ca149a86be7be83873920d1965c53f0f2f0e8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/27",
+          "row_sha256": "c878acb918736278c99feea921d57574ee07db6d861c493af7bb906f8339c623",
+          "body_sha256": "1d68f24f6636986a8361f0a483a679afeab2dc49d3868000bf02963934caa6a3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/28",
+          "row_sha256": "2e92ccd4e277bc2aa71e0575e38d697956bed9c85270e749949c3be309fe7363",
+          "body_sha256": "f05a17105519450a7fac99dee4e5442f0bdd0db54f912ed06e968640c384ce4a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/29",
+          "row_sha256": "5ef1ee52a3489b5b3a6085ac433d77c970f83880fba3867d091dc8fcf5819f42",
+          "body_sha256": "f2611d15c38312c10922b13922600a9e343149f80a28e884a6d7ff1235ec66a3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2a",
+          "row_sha256": "9a0c49a30593aee9258d8745fc88754744ed934faaca4a88bd203810ea2890ce",
+          "body_sha256": "969ae2e6a93a7a89af7c245234bae822b043fcecff0f7a3fff9d472efe060815"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2b",
+          "row_sha256": "ff9a4ae9928630c6ba14e7332ec2750cf4f93780d896472c5c8653dfa6c4784b",
+          "body_sha256": "30dbfa60d135479fbe803d6f1813596ed20ddd48d24136afa6edfd30fe2cfe36"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/2c",
+          "row_sha256": "008c406189ac1f65ed3458a5483cd14e0fda56585143a9cfd12d2e8ed2247959",
+          "body_sha256": "33d0c5981408ee2ac4967093d467ef0785dfd42b16df80dfaa1a2e2504785d8e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne023302377",
+          "row_sha256": "5ad52f2cdc134ad339e841eef8edd2e073014583c3552aded5167bc606e1afa4",
+          "body_sha256": "8de3b6dca0888008281ffefc5c9c90a367de0ff8bf7b0c4d697e1c8277c22db1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne024003377",
+          "row_sha256": "62e533217678d80486eb0a07a5fe11121d07f68008de76ce98c34dc883fa6889",
+          "body_sha256": "8fdc2bc6f5e2401bf66f73bcadc2c894347848eed2e0e72844168ab59c512b08"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne025104377",
+          "row_sha256": "166522dcf7ca59864d7d0e9c1dc047b8418c1217bb21adba9aeffdc9a07ac6ce",
+          "body_sha256": "730e177cfaabbbe2f84700200034e0a11a3f2c1444d9f5c4e09063f8a6fdb3bd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne026003123",
+          "row_sha256": "764297434b19cc895a0346a0ac45cb4ae6e72f028d502cb708c50edd0c7165d1",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne027903360",
+          "row_sha256": "2a30d3c1376cd0048f9de3da727c44271589e705fdfed4ce8946f71a00571091",
+          "body_sha256": "7c0bfb68a8c8200c7d99dfc62a3bfafb8ff0c2fa6ca3615fac368325037db37e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne031101377",
+          "row_sha256": "bad35cd2006b5687cb338cb412ea31c083bfd8e5687e0b9c445b3fba8f905b7f",
+          "body_sha256": "1a8691916d99920df25e5cfa9053e9d03a36a5af4de67a48a029f0555acb1715"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne031503377",
+          "row_sha256": "c180c6baf00221f32880a4f0bf724b45ac106d5b361cde585ef8c7c862b6de41",
+          "body_sha256": "7a737cb23f54d898076ee5925acc4f56cca46c0910750b433207bc95f2c14331"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne232803360",
+          "row_sha256": "dad4959672e71daf330d7429efeef315c2b64251275670d2bd1c7aea06509d78",
+          "body_sha256": "4c80e5d04a0bd00c2858d9b44972efc7b81ac07822b8da89a4223ddaf9d5fbbd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne234501360",
+          "row_sha256": "2fb1ccb1020414f21f6bea8d0fa29d2146cfb2d1b57cd4050e213b9223c4467f",
+          "body_sha256": "c10f1de25991dcd3fcd38959df4708eab94ecfa37e36bf9989025e21f40192d4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne238601360",
+          "row_sha256": "4c026f4d70897801ef7ed49bacbf82f84c5b13fb7dff73ffe261c03c5df92441",
+          "body_sha256": "436f9f34607cdf3e6c81e7fb713cfaba3e13f4b2980fa4318f94fa74d3ed4c8a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne238903129",
+          "row_sha256": "8d056f53362de714dff670c31f7b79770c65a24dc1ea23e07504a670d32b3a68",
+          "body_sha256": "a2ba3ec6b49d7976549354b646a9e3b2250a089761d86fd8c0682642175dd38c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne240701360",
+          "row_sha256": "b5b6c8ec8fced92a86e6c8d2e3738df539a0e84539c48169ada2ccf2eb4c5000",
+          "body_sha256": "160315c6f6cd72d92f1781c8d2d78de0b1636921ff0c0e28462ce52020f2caf7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne242700123",
+          "row_sha256": "8ea9d7f69b4d0ddb0fb8b1ae4f8da28eb31121a536863f1a154d618b03fb0294",
+          "body_sha256": "faf083d46f1d867699cff89cac119cd8162ae1caa942d98eb6f2f88aaf73e163"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne243900123",
+          "row_sha256": "134f5ab4b318f97f3b30e5d0562058c72dbddbde1be6aae440446dea18bf67a9",
+          "body_sha256": "790b3662373e07acd412c147cd8f280c9f8f8b6a1fe66f1894d34a26179491ba"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne245501360",
+          "row_sha256": "916f984895f1017a8fabce199812d50312e597cde665b630d5c9db754e21300f",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne248000360",
+          "row_sha256": "ce998ea289a03c34c7fe4f5304227d140d45e3261279314165e6eed8c153649c",
+          "body_sha256": "5f1a33a4d974f5d607d1a24cf5e5d87fafe12971324daf8c47b585451b972b30"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/3-bjne250000360",
+          "row_sha256": "e31ed4f26ff1009cf75f49c784b3179992f3c80705d15fe9e80953fec8365d4d",
+          "body_sha256": "038b9436ee3d201fea871c75ee4704e7edae5bbb6ecc6ee7dcd10f07e797fbb8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/30",
+          "row_sha256": "4de48df6e4ebc864e051eab62fe8c83e42bb8f315fec0ba6dfd470c5b2adcaa8",
+          "body_sha256": "8d56f67826b7731e3746cfc29a8a96b88ed5330289bc704fc3b8bad4a705db64"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/31",
+          "row_sha256": "cdf55002955fcd7abdd4df0cf435c15b8f4da44a293a10027357ab23fc915aad",
+          "body_sha256": "699f552a64f29e0bcd2096835955f04992a6d2321ac46a0b62de8fda93892555"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/32",
+          "row_sha256": "1b5963b67eb7add731bf75eeeac2e982d81a0bbf0d004e70ec95b44426258e08",
+          "body_sha256": "bbde21352107d57905afc98599a442316516d2ae147746b68b509e28477061f9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/33",
+          "row_sha256": "de60dcb599a1dfd7d5006ec643c64d894a5e05051fd1c2d252e85b0ad8204fa7",
+          "body_sha256": "762b077f6ecc714883e56ea9116302ba0203b6d74d9852d13a4e63e7d251b0c5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/34",
+          "row_sha256": "c3a8ae3da3f4bab3fdf771001171b6a783b726630f0887c1e6247f0746deba91",
+          "body_sha256": "33392695f0c19f584932fcf487f83c258a96bf4f6c7dd0f16eddde6ac91d57cb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/35",
+          "row_sha256": "9010dbd8f3c1cfa24aa4c28c999562bba02412bac5551a0556783b4b9d9df453",
+          "body_sha256": "fe3bb1284f97b0609dba0543178cc87c7698526ffb93f1c475a9b174befcb167"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/36",
+          "row_sha256": "920eb59d3156aca5759a8cd00d015d24b74a3b0e875fca52f65dcabfeb84c16e",
+          "body_sha256": "81398c43188e7c9a7f8c3b8b657b84ebcb4d6175aaf25b16b1a4c0202c7444d6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/37",
+          "row_sha256": "e850dd8aed59e5ad325eadd32958a6d8c9e4ed432f6247b74566b8b4acdc8f3f",
+          "body_sha256": "42dd5742b19021c92755e5027bbb80bb571e12a20cd7e8591a37a251f80ae15d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/38",
+          "row_sha256": "d05e68baccab860289510237ab187bfc4469d702fd0b7f61356df4696a7af24c",
+          "body_sha256": "1fcaabca147fe0c0df0db0d78a59b8b376a2925657640540c2f7e94d669c5eec"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/39",
+          "row_sha256": "635d4c838c2abee469fa8389e2f8105b9258ea022f0d2976d3ad805c38114500",
+          "body_sha256": "fdbad725a44850f11ffdc907edb1011cef2b1f9c5634d8f5a3829699c2748d16"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne023402377",
+          "row_sha256": "63ee519afd20e1c6544df7038678355586b212cf1bb461eb9a633a5efea4accd",
+          "body_sha256": "5185c09abf659539526e81ba9ac1dcff964696a21cec7afb87abeef136fbab03"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne024104377",
+          "row_sha256": "86a24f726a89e413d9afc9f6425ee98fbfc7a2cf11be2333a4932f9bdaab988f",
+          "body_sha256": "7fb6263eb2b22f862e6372d4237744423c39a2c7317b33732a186ec34ac3bd94"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne025207377",
+          "row_sha256": "77aa6d2eaba871378dc14adb5491ab69c4554c78663eb825f99da5bad9b8b4bf",
+          "body_sha256": "8b8b01c5547dc7e0ed1f1fe52f46bd7ea18021c9615d4815207333a270b73f62"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne026105125",
+          "row_sha256": "67e8bb4db55e8cadf2a20165bdb6dc01440ff2ba45fe5d37bc97ed952a393c1c",
+          "body_sha256": "ccac23ea5615e83e64f226c258c80504bc9ee670ba34a2b1a699e0891e6488c0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne031601377",
+          "row_sha256": "cb0267bc6c32caf102e64046dda04fe6ee98c1d2b543e019be751f2065a20bdf",
+          "body_sha256": "a920e2f0b4f8320abbd8c646d1aa30a48375d0559e21660f999553f26f4192bc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne232902123",
+          "row_sha256": "97021dac74f0c6348e44788a5c920ab1622652f7897e3eac4d0ca5bcbe52339a",
+          "body_sha256": "dfe7892b6888fb1fc69b50ddff03c6dbb196c42a2138d6c6fdec3dc2376007ba"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne234603123",
+          "row_sha256": "9aa21a6f9e3e3fc4219b67cfa9f19817b2a11d0f779e4af9712343e6f4592a43",
+          "body_sha256": "1b24b0aa2b6f461be9217939ad94497d884d6212095ab22278cd1bdcb6cb7a32"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne238700360",
+          "row_sha256": "42761b040604fda9e14e8a86a4ee8bb7f9022ab760902fdd468e1c155f1a5aaf",
+          "body_sha256": "3625016c86fcde720fe73de034c2b5ae52e4686355980618191b72aa6c23fee3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne238904129",
+          "row_sha256": "357c5b85324d59071b4e9d677cba59ce9bb3c03f89b0f12f1a1f6af572a4de50",
+          "body_sha256": "18959c5956bec6ce0c069df85cf72a199cfe38859dfa1900f23cc1eb0a69dbd6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne242800123",
+          "row_sha256": "82ef91cca97af41d737cb055ec70e3aa8da00564eeb8b8f56efa1f82177257f1",
+          "body_sha256": "a6f9f24cf1b41b43a6e9fd22aed19079b55531eef6ae0163988a28b44cc61648"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne245601360",
+          "row_sha256": "9d84d5ce2cc8933f87a8705ba75640a9a395181fe3cbaf72d0b660cedcf692aa",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne248100360",
+          "row_sha256": "991c79991314059ec7aab5c8c6596b225620ef17ba49ff056b7c442a2863efd2",
+          "body_sha256": "5dbb13c3b34a18e7cbdabbe10249095f4780f462fc62b4d192cfed465eb9ed47"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4-bjne250100360",
+          "row_sha256": "18548d1cb2163b3c4928b0e598c5f934ba3393667fc8e79d1f36bd7f8898a682",
+          "body_sha256": "2f5049bdba600b97f14c92a993592fbb281675291f871612e72f95c3123bb29d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/40",
+          "row_sha256": "5c46b8905ef7986a3491dbc88a27914cb2a72eaf909056a70ce093821bc3781f",
+          "body_sha256": "4e6c77c32ca78b45a6b7dca1396fcc1f862c4641c2257b7d52cc9d8b02b0166e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/41",
+          "row_sha256": "d3324932444071ebf3d6233ac794f0f6442c99b756778f9cb865295e41cb8a1e",
+          "body_sha256": "edb5fd286357975f7ff4d678964d394584e849866c3ff3584ccbf55ab902ef6d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/42",
+          "row_sha256": "64f47834c934d3e0be35d41831f4cf43cfd7a21e416f0f6074e84c0f7d9320ec",
+          "body_sha256": "2dbd4ec37200c4de7a2213ea979d1f1fa9cbf2595fc365fd2a96762f6886b5b9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/43",
+          "row_sha256": "eac2c48c478505c1b81dc59fa96cf0c923d24eb571831a74bd34cc08e5521645",
+          "body_sha256": "cb50feae5f8e136c66c1bb4a0072916adb8a295ab5643f03e682537635d3ab8f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/44",
+          "row_sha256": "429596ab18d1793aad8725841e478f13114a0d6ab8868431718b6d6663eb96d1",
+          "body_sha256": "6223decab7389e24055a2845a9fa7fe615fb8f27204df57dc557776493cd1f41"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/45",
+          "row_sha256": "4d1f8a82504ebc402ab9e58c078d99e2e08913e60b7c3bd2af7579514433ab95",
+          "body_sha256": "caf150681145887819c6047c77e5f43782954b0f2b5f0301a89c844bc5e42d13"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/46",
+          "row_sha256": "67bf68a6dec099a1538e06dac77f92c7d974546bc86bf5579c947b51eb2435a0",
+          "body_sha256": "f98e5d0d6245b6383bf35fc52c56c03bc86f23e35308c3f6c646f2ba5a969b65"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/47",
+          "row_sha256": "6ebd6962635dca3e6e6c2a6eb54de3a62631e4efd6697ba18c3acbaaf5f99ea8",
+          "body_sha256": "7dd1a7046c4f85bc210631abc5f5d82572fccc4e99b67f1461cec89e2bb9aa21"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/48",
+          "row_sha256": "0d95f3ba91d9ba08d17c2daa45854f96ab7d2ecf970ee17763dfe54e3ec4c999",
+          "body_sha256": "9f084eee13c4764319bcb041243b8007221030d8ff95c6deb9e49f7f4a75e6fb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/49",
+          "row_sha256": "241f246a2087ab105dc5e12dc6a545bae4527572d32a99b69ba4c28458b40b29",
+          "body_sha256": "2df1075beb3e79e621efa43d7e0e4a85d921c4523c82b886e8f647e0bdfefc72"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4a-bjne030102377",
+          "row_sha256": "692084aada9d6e3be91b2ad23782161d2559f0f6bc160bb46098180bb352b789",
+          "body_sha256": "5eb97a8978f84b6a40ddeae0759899905daea9e2100b0e3340798e4227bca639"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/4a-bjne030404125",
+          "row_sha256": "ab03df19859fb15a5fbd11a96fa6e8856ba47e0ee11ba64b03f6d91cda0c88e8",
+          "body_sha256": "a484de6830e54a237ded0df1be3186347be78f1ff5c7fd598b35f30684c7d509"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne023506377",
+          "row_sha256": "bce10cca2acdd5de721373a9b7c2e36ef19329e9400636c1804d86d4ab732734",
+          "body_sha256": "d7a3f2b1c92ea9fa938cfd0f91e0ec2219dd5deceff129fa220c3fdc9a1407f6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne024205377",
+          "row_sha256": "28a1b58cd62a3c71c1d11f2ebe43327380ea53b8e456bd3144ed3a996445a292",
+          "body_sha256": "f39bffdb665cd5203692be47aa227f34ef38c27719ba7355cd2df8a75a1f6231"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne025306377",
+          "row_sha256": "5592004e743ea8721589c91b3dc66320ab55e1bca8fe2d2e439f32ccb57f1c27",
+          "body_sha256": "3fe964c820aa46fdef8926c6964b56b5834064e9024c45d57e13faf25667fa2e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne026202377",
+          "row_sha256": "c65519fed52f6e1bedb077c5e0ef822c82d9163e81de31dc9f799c8ee677e997",
+          "body_sha256": "ddb745738a58edd3ea18a65635702aebefac86320ecaa45d187f0f88c52429a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne230201377",
+          "row_sha256": "6c706f7cf0af0678737a896ec7453b1697e6ee917fd232db006e4a3c7e3c5cde",
+          "body_sha256": "89de894cf16206b915dc396258dc487ba52f8cf636efc7e16a2f428cb5fda4aa"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne233003129",
+          "row_sha256": "b16f7929fc539f1cd301885d8054ad5003133854f8e35458c2b60144718c04ed",
+          "body_sha256": "7aa4fa5c761771c2221a50edcaffe43babea445ec8fa0d9bcf1254d43ba9a239"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne234701360",
+          "row_sha256": "82bdce73f4a05dc4d6b95a3a5bf6bf43c31f82b3b83e4648c8990e574b2b7794",
+          "body_sha256": "1b808d3ef8bb345df19dcdabb988fd4507bb0b85b55176e036f9d2212f279c1e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne242900123",
+          "row_sha256": "6d638a4258723c5aca536c68fadd3ee6862f6215a3a54e1708142ce8a078621e",
+          "body_sha256": "fe5fe316f64e176d8ac2e53f07a4bdd587f0d6ca6fa1456b269536773ad382de"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne245901360",
+          "row_sha256": "c9f294d77a1b7f76df58d2c3818bb83a657986c2a11a54b7af2541d1791504e8",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/5-bjne250200360",
+          "row_sha256": "9b969700fac3112b130effbe0a42aed5b652e39c50f85282af04f57b1cc362d8",
+          "body_sha256": "41f334d5eb76024c1c2c517a7e8d46f5f13b2d8d99edfbef0f3b398f91c177c5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/50",
+          "row_sha256": "5bcac3ffe6a7f88d4d6d9e428910bb23d6c832253f48fb759094ee4622e195f3",
+          "body_sha256": "98efa269d9e695f9c55d5c1bc2f9513e1e949bff6f9e6f689413b7871a0b2956"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/51",
+          "row_sha256": "af0f10005d91db6fc87801d7a252f9d62fe262a5a1c36681a20de55e66d5977f",
+          "body_sha256": "67744f40522dc7c39020c8c4ce97af1c096d52b34358ad49c9b4dde538731d72"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/52",
+          "row_sha256": "57403117f818970ac771d62ba3ddecf4c15bb9755d1dfa08e90615cd7a1d316c",
+          "body_sha256": "48e52d201077184a8fbfad544393d2ffa93936f6f9665e246ac7d16d9143944d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/53",
+          "row_sha256": "c2f88aa3eea85877d753fc53adb74d271184b16d7a1a9597d1ff88670f214b9c",
+          "body_sha256": "7c74e3056f23441da34cc3bc3aa073ffc564e548788050692cbf9715f639ae20"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/54",
+          "row_sha256": "ed50fd07ad1b2d5ef6a8d755aae91bd86d9cb5f0e5d8d6ecb5aac779b60e1561",
+          "body_sha256": "7a0f7a85762e30ecd0f9fdfa993227a2be0fbb26e186d2cff9f241f016b6f2f7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/55",
+          "row_sha256": "7dd068df6eefd571f15d8c9c1870e70aea65f258826600cbb00fdac3337e3f22",
+          "body_sha256": "5903ede42f751c2ed1492064fdde19192d692b97937ffa21f7be3865811369da"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/56",
+          "row_sha256": "8c78366222f490b4725e7e1820538f64179f2a41f910439801ee4d0b53f37975",
+          "body_sha256": "77f34c06e9b08eab5be4fd33f115792b14e2d599e10d79ee8d7e6213d4662746"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/57",
+          "row_sha256": "ce6db6356aa11b39d7ef6557224b8656fc3638e2fa19bedda9db88b18b3271a0",
+          "body_sha256": "35d2c7377f07b3a495ad3582ef8122dcfd0d8c03305d6f3cd4ac9236d622bcf8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/58",
+          "row_sha256": "437c11bc490e54bb09cca183705787f834c572acc5d27f53b409c20d63a1e482",
+          "body_sha256": "41623f7890b684e4779b40515350093d4cceedb5d715a96ec1e113ff8c2173f0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/59",
+          "row_sha256": "f8bf00dcb99eefd56c526b5a0551dc4ab0ffb9ec4a62b85dd69ce506c417315d",
+          "body_sha256": "94e36fa5f53c9e71652665e8570be2c5819c04a748eea14f79f93a4d756c4b6c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne023602377",
+          "row_sha256": "11d41e90a51f6bfcf4717f66d04dc821a1299d2dd1f05b8e6342d1fc5cf3e985",
+          "body_sha256": "3d5e125e553e6006c8bf4a7adabda19c1de077a7421b1f8720e059edb91a4663"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne024302377",
+          "row_sha256": "18a653a2da11dd3bf0f245d3d9f1051e8f983e16f19f0c6949d5dbe66cdb0234",
+          "body_sha256": "bc26ffa737934531fd708eef4f6d8af2888ec47f91d5f2c95c36f2fc0fb8bfd6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne025402377",
+          "row_sha256": "10d49b327aba6afdc3510c86922f3d56c8664a46da1d2e30c36373261611387d",
+          "body_sha256": "37de750726922dd87e57afc3a0b55167850000fa53bd6c46e5ea71b9a1cf1975"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne230301377",
+          "row_sha256": "36d37da24ecba8e7c3017307e622c4f10f9365f46f2015e93e38120e40777754",
+          "body_sha256": "981f44ed8964fdd537f363050e3349013d18b2d05c30f4defb1bc956e8c3bd61"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne231900377",
+          "row_sha256": "0d5af987878878c0fb53ed5ea7d4784a740d8ff19ff5ec9dc183542be0527d7f",
+          "body_sha256": "824817f3d47be4f4ad8035a0c0982725271f5c8d56f3092deca76744661ddf8c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne233104123",
+          "row_sha256": "d79d1d2926647deea1762e01b53527c567cd1395b35c71af7efcf1f438b08d5e",
+          "body_sha256": "ca3fd3c5622e56fc7cb7a65a5e0dcd32beabc1367a6dfebcd4f8677356389674"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne234801123",
+          "row_sha256": "92f97d908be9f3f15a7467b19509d732f9c123c5fa426a04c633021c330652c5",
+          "body_sha256": "c626dff445455f42fa4c6124006a7ede62a150da816a3b7fbd9b0d5ffc0c29aa"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne243001360",
+          "row_sha256": "f7abe8bf89aab42a4a3300acee7758148d2ff31afc9c0735920dd76b524881d3",
+          "body_sha256": "f4dc44aa757875f0269637c8cf24b1952cde46e1afb5cee39ca07f624be49997"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/6-bjne246101125",
+          "row_sha256": "5e2ba5c63a6fdc3f267490bf4d604df629c7578c61d74f5702b3d66b5dbbe60a",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/60",
+          "row_sha256": "875d4805cd346a1910bba38069d9106fee2351f16496e61b41fe90057edddb4f",
+          "body_sha256": "2ee6a534333f7e6fa6b3ac9804e3a88252f78713abe57e7803be23307a0357b2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/61",
+          "row_sha256": "d6d8024fa9d6ef6d6764f69f6e900863281bf2477dae81f87381ec7238a9e599",
+          "body_sha256": "2bdb41fbc25c6b03c2ca4cbff1b311ef667d745cb1cf31ac462e68f3b51ef4e1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/62",
+          "row_sha256": "8e510c5988e37b956c44ae7af639f960eb3a0aadc9e72b3f360bfe3ba1a313d1",
+          "body_sha256": "a32de34aff73248143481a3d87307339a45365ead46820ff5d996d2a009945f0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/63",
+          "row_sha256": "81badabd8e4d4ac6b53642cc4a9eb92c176867b84e0b63cf31c6e97bc8603f02",
+          "body_sha256": "e771b2baed72102096d98af0a24ac3fb597aca803be0f8fd782f37d53a002c62"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/64",
+          "row_sha256": "de61c2261fb7beb9a4fd52a2278761b3f82c86d963f962fe2c959b274d7816aa",
+          "body_sha256": "1549878f62ad84a170e9892d4682bf52c0b36da07a33797f98a2701fefb1b874"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/65",
+          "row_sha256": "d23e0d8cc31c8ce66552e0301ad240dcc6ee1ceac8c56328d9f253ab82ffcce6",
+          "body_sha256": "fcbb7740fb40dfe533912b1b7746f41126958a92bdf3abe019ca8ff3f6b58037"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/66",
+          "row_sha256": "d6a0d7d40fafa003dec8ad1b6278ad5de9d684bc0c2667246826a6547ef2e87a",
+          "body_sha256": "1062929ca9cc1806c612850e47725c096dad6ca5f97807de3a007b733e8b042f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/67",
+          "row_sha256": "27bfe745334a559279fa7bba90de06f8ab717626b2eec8915a50003d2e49d617",
+          "body_sha256": "45057dba18edaa1c4255f542f1815aae5838f3be3efb7f827dbb5ddfa9d3884c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/68",
+          "row_sha256": "23d2c8dcc96f6027e628c206de52c310a2f23ecfc4c16327ab127e944fb82851",
+          "body_sha256": "8fc0b498e08a45d184a679a40182743e772f624f52806ac66658f03caf0c9be1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/69",
+          "row_sha256": "49b25920e526825fec1d45b3911b39e54ed40f668c245bd4d99297749674e00c",
+          "body_sha256": "992e8cb0da0c3e900ce38ed9c8546b940edb1295e18d24e4537095d61831b2a5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne024402377",
+          "row_sha256": "db863470c50c49cfa6d6f2cb387782ceee1817412955bea71bab4298973b2ce9",
+          "body_sha256": "7da9dd7fcd7a2825a6b0ea7cd5e0333e9e2c223068abd14930bf9c5433587f51"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne025503377",
+          "row_sha256": "e391aec737d78458190032b5776601f181ec7c39da42c1c317d44bd1b823806f",
+          "body_sha256": "33700e379c01696d863d82ac7dd75cd761b3676c7a0f93dc97f053df7cf25e77"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne026402377",
+          "row_sha256": "959bf9b589c307fa595e0252c75f431a1169af11f9df23816ed5b56e52fcf8eb",
+          "body_sha256": "82e862914bc4efc0aa72ef5548cdb9ec98773cc20147a220bb3713500f4b992f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne028003377",
+          "row_sha256": "16459baa55ce1fef058c3e677f16d56f344d2db361e359a0fdd15a891dfcdd25",
+          "body_sha256": "cbcac89741b8657cb468fefeb8871fee2a79cfa7748aefa6807693b3767629c8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne230401377",
+          "row_sha256": "21ff47d732a75b42a0c975bce5b2bbe03fc6264a0429d7e577e7aa0447224f68",
+          "body_sha256": "b370df39d9b962a8725e23ede8d4b3de926a0b1ef245332abaaa09a658b85869"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne233201123",
+          "row_sha256": "fffeca6fdf0668305f81cc2612107ec64ab085775d1ad0baad63e71d124ce188",
+          "body_sha256": "9fe1fe9c448056f2de15de2d902c0faa898892a2e7be450c87a4c857a11362f1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne234901123",
+          "row_sha256": "1bb7af2b2cba2da2dfc4c09dabddf2116c2947db50b9d57f4df0a86337e5e3d9",
+          "body_sha256": "de4e25bb8ff20fd94b6786d228c396d60ce9026bdc21f4ac933caa7a0d8ed53c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne243100123",
+          "row_sha256": "1ab6bb13771b6f5b9e28317aa6253a0e8ff509ed9570c057a75faf3c34b8d54b",
+          "body_sha256": "b5435d0d46664ebccb6882dffa23cae9cda63853aecc745404474418bcef946a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/7-bjne246201360",
+          "row_sha256": "3e262d5b7f228339a2fd57f24624f8807eb884b24affd194b70872437ccfaa21",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/70",
+          "row_sha256": "f335f51b07854749ae81634ef2839b6b90f9ed9ce7c4fc5c7e2f8ed4d7e5bff7",
+          "body_sha256": "21f33cce4375b3992a9c50cc80f24faf4512ee89980844bc9d9eee3f448d8cca"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/72",
+          "row_sha256": "af56e06f2c9720c90e60806a0027ee91aabe59eacefbdc54e3109a724dc6d5bc",
+          "body_sha256": "60665e995f97f56f6e5be7b1988d10ba1122b0fa8aa10c2de85ddba5e499499b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne024502377",
+          "row_sha256": "749176c7fd5d038c56beecb70d63401820a76dfa5b260ddc53fcefc4026ad5eb",
+          "body_sha256": "63c346a1df4ab6b8e4695334a9f09fb7cef669f788a262af130276f9f79fe42f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne025604377",
+          "row_sha256": "44622ff6514ad5d2cb1a00cafa027382c45f0c3e0a8ec936883e94aceeac1925",
+          "body_sha256": "c65546a072412dc4c4474972ffe1c9a173b39e82ea7b048efb9867b1d5744e72"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne030503377",
+          "row_sha256": "97a8a6d9a12babf8b950363c0ea007559fe9dbf84fb09172d2da18b7f22f98ef",
+          "body_sha256": "69f88fb493764602e3e11b271f78650e954da73f7088952e6b4eda4530273204"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne230801377",
+          "row_sha256": "38a884f676dacd74a27add74d5e55dc9d27175328250e31d1ffd39e5f59ae7b1",
+          "body_sha256": "3257bbf74393e2d744b2fc9bafc0e656e438553bb404fb7fba96c6313a19f273"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne233301123",
+          "row_sha256": "899c9b31e1d6fa64950c94baf099eacb828e8aa4f0e08d1d5dd903d16bbe5c8f",
+          "body_sha256": "2669158d18a49117256c7499c1402460d984cf6156855ee8676599f48cd473cc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne235001123",
+          "row_sha256": "fadd93b236d109944bf78ca7083e202c39d0602684037dddc78e935515a9eddf",
+          "body_sha256": "eac0ce95072aff3b331fac1315cbd842e781e5a314461eff7619976eef385053"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/8-bjne243200123",
+          "row_sha256": "9337f5ce6738f3f034a053cc61629abb5d77f26537a9877e560462fbbeead3e2",
+          "body_sha256": "99e5b128f0c3cc2878a98f53f58cee595275280bb2d2fc30f0bd61f2b0e0e8cc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne024602377",
+          "row_sha256": "c15d64e7e95c2b73368bd5bfd58aa40c580259e8e43eb311aee1eda5776d39a2",
+          "body_sha256": "615604664731dab1d6d45de5296b97f8a1eec2290d4bfee0d4b09b7e47b40740"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne028402377",
+          "row_sha256": "1d6b967792d94038dcb0396c76fd3b9c9ad9648a076602a2461a87ce75274adb",
+          "body_sha256": "e832b57c6cf1025edb35e995e014bdfd79e8d30ea109479e70e97193ce4ce894"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne030601377",
+          "row_sha256": "b45c052e582555a8ed87ecd914cdfa8eca342778841c0d4425b87a863753e2de",
+          "body_sha256": "63608377b62a1014b3f9229685bb4ddd9c8efa93f8782ac5aaaa16e3a8cd8b3c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne230901377",
+          "row_sha256": "d8f60b1d9b2cce7e8c422d439ef9d21d017ab1bb83c697ca8f74ccc6653be912",
+          "body_sha256": "65d40d11be9d93e9376a88be0bf0d51601b24f82dfadbd64eb58cbfc5d270203"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne233401123",
+          "row_sha256": "155d032856b8f60f0f299bd1d55cd9a95d7e3060b927287fde5a9feea4a3f160",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne235100140",
+          "row_sha256": "64b8b25d5b3429467fabf7047d71cf2660728de4835b214cbbc3f86381fdae97",
+          "body_sha256": "adb5c16aa6490ca85da8c8868bf5bf9c7e767e6c9cba15945959addb3ef6fec8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/9-bjne243300123",
+          "row_sha256": "d6b354b516b5b8c55033099ae7b69c744b44f151b885ab1b5067c7288a2917da",
+          "body_sha256": "d25362d71b5fb1f42107b2241dcdc49729a37db077c5b5faa29d7d115b56c197"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-1",
+          "row_sha256": "438077b677698450b1ff1c92bfda4042a69ddad6258e53fa0d24f29efc2ca8e5",
+          "body_sha256": "5c60b9d09a7d75690aec1a6607929de3329ab91de8fa8ea79557b8f32d8ad637"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-10",
+          "row_sha256": "c29281dccfca99a3d820ac66a1a2b6b00867946a61126a2df083f129c2461985",
+          "body_sha256": "8b65c36a6084ce9086683512ff2d8029041b131cf34f79e591206358d9a4a93c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-11",
+          "row_sha256": "151ccfe3bd29fc3d734884f9f4e8b009cb284d342bdb5d2212b434b759c303a4",
+          "body_sha256": "f1750df78334352f1b932c0d87870d66eca028371dc9a5a6c73ffa546a5aaffb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-12",
+          "row_sha256": "85a776ea3a4101ff789dcb27eba3751db46be25444bf59e07e59229770c566a5",
+          "body_sha256": "e414d64739e4502363455e2dafa3d2683b1075fc935bf17678a72c4bc837660a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-13",
+          "row_sha256": "bcdd2b1fb68cd708887657f82697e1bb163fbc7a78d590acc361dfd204b10cb5",
+          "body_sha256": "19b556b3cad166e17bc5d360663cd0eb8c9969aace1248bbff9b1879aa9e4225"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-14",
+          "row_sha256": "4be6b26a8b2bc47e696eb87e0edf20194563fbe121f2c53a7a260a41960f1750",
+          "body_sha256": "1d4e391664737053c519200f5f4979f4b2fa1a8530174ce4508ef9afac018189"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-15",
+          "row_sha256": "d339937d4fe5b7e32bb93d3d3a2713a5d73dd8ce9641ff9a7870595341cf5af6",
+          "body_sha256": "f72923c83e66f07127fa1e6b178dca0692ea431baa427c67992fef2fee8e5d0d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-16",
+          "row_sha256": "c66372910649a1ebe3695877d1dcea190ce775adf096ff5c02494637a9610728",
+          "body_sha256": "dfc30099952aab14583785d693f467cd704e0b91a4b7ad6470cbe3769ec0c0cb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-17",
+          "row_sha256": "e35eb5ea2c7776884c9dd6b376a8f085c4d9f2d496f135c79ac09d1bf3c12734",
+          "body_sha256": "265dd10ba788b53435664915d42cec38f79c23efd6bd63f016cf7a861910e8a1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-18",
+          "row_sha256": "54cc003d5d3b1e12f8cb6f014d51b73c266be699c32e82165b31304e9bfc132d",
+          "body_sha256": "b638897af067c3a1c4fa5de7daebcf7510684a92e0dd66bc9a7d87d402119222"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-19",
+          "row_sha256": "ea656cff4f175d3f7deb69398b3eec24f61d3703cfa9dc4f89e93543f3a4f077",
+          "body_sha256": "c43abc35a93bdf88c0689350e4b140027045d61ca86dda5000c4c96b9fcbdfdb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-2",
+          "row_sha256": "d61610ec4c1152be03e6250c9e97b8b555fab1aed33250ab81952c85221b3f87",
+          "body_sha256": "b9d023fbb63ccb1b5c499be986577474cdb3baab40966c3ed86321b9cb19a4a9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-3",
+          "row_sha256": "e559e1f6074f3965a1103bbc4490cfde99e8b60f357c487e4da92ff60268bf61",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-3a",
+          "row_sha256": "f5af582191033a7fd68ac824c425783a27021568d01a8d88e260b733b905be26",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-3b",
+          "row_sha256": "bbbdf7c4036dccd1185ac412a054f20eba76ae6ef022cfaec8e26b9c714bf7fa",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-4",
+          "row_sha256": "5b87dfc27b762a862e6acb56b790874692d8acad0566ffdaa9b59ab512bc8e4a",
+          "body_sha256": "453895147eed4b33b2e8a20a46a76eab8ef91b2c9d1d9f85bc016bfbd4ccbc19"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-5",
+          "row_sha256": "69105238b568fe4cfd0c70a964bc751c2adaf3c57fc36f7f17b834c3a59b22aa",
+          "body_sha256": "fdd286758b6012d38d40d335ef648357712f6c919c611336d5569670a2fa71b6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-6",
+          "row_sha256": "9d76b6187b0d97d5cf58220c3eba3c534d48a7f0bc94212afdd2cad771e8b926",
+          "body_sha256": "8367671b4370c606c4ca90a15ecdf61cbc36d876ab4ed069f60fec16cb284ea3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-7",
+          "row_sha256": "a9353826f8cc67bff20382ad0cf82a5819fb4a930070011704714d0cb2973d94",
+          "body_sha256": "fb0ff4e41bba462a71ef864fd2588c45bf573efb1355d841e62fdeae9471e09a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-8",
+          "row_sha256": "f5d59fc611f9b511ed9ac449e11eabee569074ad98d2f83a53527e5667544d2b",
+          "body_sha256": "c45c40c19f6c566008c1a4a109482417118cb21a67ff61be53ef369db17c5c18"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/anlage-9",
+          "row_sha256": "008aaddf59844442ed7e84b1fab534dad641970d511b5cdcbc3c3aa1f3da81d4",
+          "body_sha256": "fcb7ec1d1b2350d8c0f935c5da5748eab7fad9acffc8809a96352498e3aa7ea4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010",
+          "row_sha256": "b65271b2faeab6a08c1cb23c403ad24e7b64a0128456e935e78ba55439cd7529",
+          "body_sha256": "ef5861a5d8f95905729d73ab733b92d59f22499d0be2d3ac43d1616b42bd68a1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010010",
+          "row_sha256": "61a1f5172df3cb69789c46a6f0b0a0645f7bcb362ed0845fe31e219e51f69ff6",
+          "body_sha256": "b93e5b144ef8909c651d7df1bae5d081b72b8b6ca8dbcf0ddd0c3fcb934ba6f1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010010000010",
+          "row_sha256": "b3ac896efca8b1da1f7987fc35e87c3847ac27a3838b3e6b9d80182161649d95",
+          "body_sha256": "1bf91f1d85b2341ffe71b9cb7f585ea9a0abd927d9b470540fb9977369bab49b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010010000020",
+          "row_sha256": "91c3a182fbc0957a22680d91323c9ffdba7ae4c6c971d5f848c558eb91a9f5d0",
+          "body_sha256": "a5cde8db4acc478f66263bf9c8eb7e39840a5643fb69dd2f7d6b5d09d2b5eba8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020",
+          "row_sha256": "0d593cc03313b25795e0272b4fb6fd602176510fb414176b67cf76cc77359db9",
+          "body_sha256": "c0a10ea324e56f25083585807982508dc21b792e20eb9b1b380975f00dc5b052"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020010",
+          "row_sha256": "d2a78c39601c32e253cf4ebf8f32f90a4439a4f542bbc9f625c10cc53d45ad76",
+          "body_sha256": "ef5861a5d8f95905729d73ab733b92d59f22499d0be2d3ac43d1616b42bd68a1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020010000030",
+          "row_sha256": "864b1cce8b30784926e0ff68945b9e412412fd5ff909ad57176490990a14feae",
+          "body_sha256": "375885b83a71cde22c3ca30a36eb1d92338be938489aa66ba380bef280ecfcee"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020010000040",
+          "row_sha256": "d9a6a4fd537e51db816b9d7b54eb38205cbdb909176dfd15cc3c5147bf50cb22",
+          "body_sha256": "769477fcd4733fe2c4b6ba184cb6c816a272e1c09301d820fb76007f68da6440"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020010000050",
+          "row_sha256": "cf5abbf90cae208b52a1031ce3e61615df3b2fdfd61d4831bf40822af7c7c506",
+          "body_sha256": "c55975d5b718a8839999bece46a9b5c9e888b942a34c7ce3b2f00dcacb986872"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020010000060",
+          "row_sha256": "51bf7b6506ca79e3d6f839cbc0409c9c886d92deb6bacdbac19182cc97c50383",
+          "body_sha256": "a4d1a92420a35fbd3a8ed770aebc2314a74309e337ff0971fa0f72368d38192c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020",
+          "row_sha256": "7f4f7523962272b22a7f57f0d287069a761c836fd83412f8de7c8e1b747ba826",
+          "body_sha256": "07ede8f5782a7a2da1f8ffc0457c1a01d8b6656abe331b9a48c20de1ea68f725"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000070",
+          "row_sha256": "33a20f31116859386fb6354f49b4ccd8e207be864e8ef71c1a7252775d22d3ca",
+          "body_sha256": "221fc77c011cfaa4caa3dd5907b7e85c544c49eea9ae5bacc47e5289202c8c88"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000071",
+          "row_sha256": "e1bdc4890d768096e0ee3a387f49d624d7119cf933fdf1a88b39647e239475db",
+          "body_sha256": "6aa533adaed128875e31005f209022cc814efef72c89e4fa1436e71b535479d8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000080",
+          "row_sha256": "84920a388b1376c700fe14e5ebee9118ec9e3fb14e17d532b31799c665914a35",
+          "body_sha256": "42aef83acac153ec6ff5dc4768b9ceddfab3be569bb8378c745a2bd134440c3e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000090",
+          "row_sha256": "8af6088cc3eb46e86c58574b24a9016fbe8015e18ea5a381a917d741dbef8e87",
+          "body_sha256": "4818325e8aee9254da7f78b9cca647f7a6c550416fc2a189b0107235ed7c43a5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000100",
+          "row_sha256": "421d359af24513987bcdbb8a86cee1b8dc89602bccce25af2b9f24d30f00e43b",
+          "body_sha256": "acf1f3dfc325f89f34cad5ec99d8e6cfe61adc8f6a6a6ef57dd9773347481914"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000110",
+          "row_sha256": "a2c38a44cc963122e11aa68c58b41a2f1f1fac67e62a375e8ca6cf9962fe1751",
+          "body_sha256": "08895479d42e8a0d917057f7fec306fef102598d7788b288a5f7995956f08d51"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020020000120",
+          "row_sha256": "7d50379df20232dbdcface9ec2fc92b2e00edb58ed737f97a756187beb02b14b",
+          "body_sha256": "2599ec412d807160369a8d42848969228f2ddaadfcd038ad02bb2de434ddb5b0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030",
+          "row_sha256": "03bab4ed9994470b4ab6edf787efe5b69c02e699735445b205a778403de1f06f",
+          "body_sha256": "399dd938deaeae017b6320ddd9b2e045bdf65f85b6e4708c8bb4bdcb008397ef"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000130",
+          "row_sha256": "48a838ab890a65a4df1e34ef350c5049ae92605b156b9946ce4a64dd8f7d31be",
+          "body_sha256": "e8fb3ffbae4d6c2d54ae93091ca7fa5dbaf6cdae31843fbb76ec4e6464c43d6a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000140",
+          "row_sha256": "ce201b94178464c4b5188d79d3b8b1db71937185e0e6898dc2c50de12ec9840f",
+          "body_sha256": "fd6a825dcd2f8fd16ad085c77c202f9d6dac5bbf4790f8e39955bbef8393ebfd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000150",
+          "row_sha256": "1946c88b4f4339d4ab139309785758bca338c18f41f054e89663ba2304334fe6",
+          "body_sha256": "0dff5d4e4939e8b9f47c6e6780aa91777b0fd061c96bd99893373ed2f48f043e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000160",
+          "row_sha256": "9d0365dde3131ee85baa31f699ca4083ba1fbb49909c95cb308fa4b0e6ab4b53",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000170",
+          "row_sha256": "22c5553a12e4c4163f5967b79d479566d78143e59b3e67ff0e2f1fc3e7becd39",
+          "body_sha256": "61ec23bf6404d98932758006142ae14a2b459e0da70d76ed2f8dfb4a35d93b97"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000171",
+          "row_sha256": "f03a7d45f5bd1e255264072608b4ff1e7f2bbc1529a6914def98da5a520ca89d",
+          "body_sha256": "069c550c53222836849b0ae9fcb06dabbf874d06e235c24deea4553b3dac7790"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000172",
+          "row_sha256": "6f3c66c1be0f12c86350987e8eafec352abafd9976c1a6d91989747fe22c22b7",
+          "body_sha256": "14907f4247a2b89d5f5ab697f115415576411dd6c8346854861d8f47406c0bd4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000180",
+          "row_sha256": "e3445250a498e705e4c8467d51dca9bdec51de255a60a782738d46d0e36594fa",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000190",
+          "row_sha256": "a55b8a53e681dfa6d46e91a2fe4e8d98314f5dd331f30caf356b09f90eab0684",
+          "body_sha256": "bfd93aacf5608b4ec46e3f14f498be2d83fac14c52cbd08b9f6bc78aec1a9f31"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000200",
+          "row_sha256": "a4e2cef9705eec7b71e59206308c9993340d92e12517357fe89a584974a94ab3",
+          "body_sha256": "442a53309f8dafa65c26f03ad351d8e9aa0e22897b6e8d51f4c6940d509214cb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000210",
+          "row_sha256": "6c74d21d3e12608e5858ca5b312e2b120003eb0a387c793c44b9a2f1d5f1dd69",
+          "body_sha256": "6792004f65339b0122ddc69c176c41b4bf12508fa0bfd5978cb42c7c984175a5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000220",
+          "row_sha256": "35ee6bfbbc53ddc60c49f3762eb9b5f0475933ea11c975732abfa12c011a9cb2",
+          "body_sha256": "0a3d612ae23fe4f062ba85db8839c7607af8e5794dfc2d449a35cb1210f81fb5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000230",
+          "row_sha256": "56b1d7965fed28205694aafa312279e6b97b704b2d3553880a879bdaf8df2e8f",
+          "body_sha256": "b9c3b5fc39b37ab294236209bdc9e33e72edbed303af843e59edf440fd7087af"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020030000240",
+          "row_sha256": "e15484e19663e39cb2880d2df33810a8f2040cd8629af1879923cdaf180404ab",
+          "body_sha256": "4ea5b672839f667bcf411c074fce232d9337f935fb278c366f022e989ebd5501"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020040",
+          "row_sha256": "293177aaa2ee48a1c310ce3f56fdf18f252f4ff172786897ff319f2b1a6416f4",
+          "body_sha256": "2a207b6d27ea152b4b628c2f2154be8ec05f88495952896f50c5d941694d19ca"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020040000250",
+          "row_sha256": "334bdd8ff39a5806238410f187947006fb661ea510f4887b2b3939830c0c311a",
+          "body_sha256": "41da3f46bb2a19551a278a23ce23e2f28e08c7c32af0e39dcbccd0f5ce655af8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020040000260",
+          "row_sha256": "96cb0ab8e7eed26835e0ddca060148f511d254b13253b07c08189862cd7970c1",
+          "body_sha256": "266fc3c9497d54e34837e61bd0389806aa11431f5d79d79920e59f39bacbf048"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050",
+          "row_sha256": "183d5fcb4d25f91863324498f15867c11121ffe324a59d22c235e371cbadf80e",
+          "body_sha256": "8e09d5ceb6dded19c921eea330ef5d42838b18bc374904cbaaabbbf757c4a15c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050010000270",
+          "row_sha256": "4d1069952481ad82a11590c271c9c9f581154cec04f3aebb8702fdc2dc1b90fe",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050020000380",
+          "row_sha256": "ef00ecb8ba835860e7b775244e6c0c56ec73c1ca144a2e318e092300a6946cfb",
+          "body_sha256": "118f72444815a822d479dbcc8597ea2d0cee0c275a83474381e65ac73a94daf4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050020000390",
+          "row_sha256": "14ec72152a5587b5a2c0572007c64c8e25024329baee199a11a80f713b2939a6",
+          "body_sha256": "c8a98847bddc183802396f10b99bbcd858836a1d39c8c5180848141c4ae80f12"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050020000400",
+          "row_sha256": "2b44c33e575097dc27aa76376695ba98acd4f5401a8c9ea702c49d4e0062d81f",
+          "body_sha256": "4764d755d4e976cad20ab15a0b57ab28bdd36f61597f619c258a7d2d2d9f3f76"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050020000410",
+          "row_sha256": "5d63c0d1b9902473bb56e619d919e7c2488acddfcd2890450bd4c3aa66d1118e",
+          "body_sha256": "65e27d75f73909c9f41e2562a4d1dffc9a1da06c9bc61b24d7b3ddbd3a60dfb3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020050020000420",
+          "row_sha256": "612bca58d8b88e3184c03413b0734bf86efe890efb70d8f7d6816ea10926e87e",
+          "body_sha256": "0afb9ae976200f928bb104a1e17386e5924f7166c3383786cbe47ea87950e556"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020060",
+          "row_sha256": "5b7234a3788def848eabdf369ec34320dc66a190f0169c35c4719fd879cbf356",
+          "body_sha256": "ebeb56dd636297b58af5dc13a7ad8f010492cdfb8ffb0289ef661d58d71f6f98"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020060000430",
+          "row_sha256": "5296f1ac3d4d643f9055b6d4c93c29f904358ced83497e9f8d87e73f3578ade8",
+          "body_sha256": "ae20d5ef69da164472c33f6d7cc7e681fd535bb714e255fe521800117906910a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020060000440",
+          "row_sha256": "5865bc6963ab38f2f6d3edd6a912bff95fb115fae7e86bc3aef3304dc5939dce",
+          "body_sha256": "67af69ae95a8175a6441b9774213aa0051625552014372fe3cba7cf0af74b3b8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020060000450",
+          "row_sha256": "da11bff91649833f3ec2d87079e0c69635ea748e7136a03b2a0218cbe98a6895",
+          "body_sha256": "897a0bc51fce5c3f3556f4d491bbca4ad3f430206a1f1a0e211563ffda1f657a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020060000460",
+          "row_sha256": "15e41124f2de8b6c8a817c8707a5f2464d84d84ca8b240a559432f4a96da0926",
+          "body_sha256": "d56f8f660c7c4716003a2bbfb8672ef3429e63d921b6c1b0ccefb5e56ca08d2e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070",
+          "row_sha256": "70e6a04d356597a063b7bb047e8426caef2b4cde5a7a3dd33ecc5d408202cf99",
+          "body_sha256": "0af6a6a82f330bc298cc1e6f522c81cb7512797b00315a24cc29cf610da5f0e7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070010",
+          "row_sha256": "f6bfddfa5d82ac2e38260b1b4437bbfbda6483e491abdaa6c02461b34c06de95",
+          "body_sha256": "4f90ec0e6888c74984ede62a388f87af22b745fcf5f6e73be7339d0b441d3109"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070010000461",
+          "row_sha256": "78c4447894a386f07654cc3abd3f7bf7cb09fb5630b71184d6f0667ec02e473d",
+          "body_sha256": "24d504fb0a4674a12b982aeeacc30e23753119def6d34ead84e6143f4edee408"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070020",
+          "row_sha256": "4749388addd304e3658fd2e2390fc63bd01ca8d63d9626c6b7e03afdbf21605b",
+          "body_sha256": "68a464aa8d9882f6952287b52a7a92dc5f6ed0ef1f3ac84d22e4d045e4fd688c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070020000462",
+          "row_sha256": "206d01335b49367b21de131e6cc1169a1eb971cc488fbeb977c5b27bccceff34",
+          "body_sha256": "69cc15666c2d2a98ee2be95ccb81d0ab20ebc8e084d6ec7d79122fd5d7b85fad"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070020000463",
+          "row_sha256": "53da33bb384ae49e9009693932bad958d97b370a9f3bdeb6a3a6dcfbd39b5359",
+          "body_sha256": "70eddcb85a737cb37f2f56b83c0227d7cbec28119f080a1814defb8a017e5851"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070030",
+          "row_sha256": "f9fc097655a48e24286577d3cc6e1a08574bb3bc1fb20cfa8224b8dfef526309",
+          "body_sha256": "ea8663bd7777c2c73507a4ec6b0d95c3f692e6c6b461331fc39d6a1fa152f1f0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070030000464",
+          "row_sha256": "4a77b0f7c1c224da5fa477bba43cffacfb694e81f956766c8481f4c12c7a0a78",
+          "body_sha256": "ea2ef804b89a559a33310e0bc9fa39cc56da335e08344f76b2921928e893cba8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070040",
+          "row_sha256": "f0c4ad1bb528974e002ad8d9a4753e14523cbe970257ff83d2d1a57d445e5a0f",
+          "body_sha256": "44134ff4c287517033abee5285fadedf9acadba3d16ecf8fcfdfcbfe187b8b65"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010020070040000465",
+          "row_sha256": "194b1e6d38eada83c7fd2a56eef97d7ca91e2f15034f9c7d5527f49ba42b3fb5",
+          "body_sha256": "cf29496cefcabe30c1846097a7cc94d342afb59bee2065cff8764a13862360be"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010030",
+          "row_sha256": "14efa996df3c17235ee2a8890271e25f158f7ffd8c8b4fe77688cc21296abbbe",
+          "body_sha256": "7312bac4c9d84f8379dcfd62cedc4f38533bb6f71c82795367fc396cac741889"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010030000470",
+          "row_sha256": "fdf8e96863204864dd7c65dd07fa415eb20e501f8318826d94a6226b6e02b1f7",
+          "body_sha256": "f3c056aa8e9455db9c04012963c12dc845ca1ffecf4a9c8568d9bcbf178cf12c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010030000480",
+          "row_sha256": "1ea4f9f33c2974add08955299a3af071ee91bca87452147fd8ad00fed1d3343e",
+          "body_sha256": "38ec9a8252cbf7c771ca7090c6d39c2337a2313e8a1f96d88ef5ab5b9bd34a9c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-010030000490",
+          "row_sha256": "1a1c31670b73d46fcaf5eb4014325b10a465cda240b93ea6ac373ec98dd9e338",
+          "body_sha256": "038fd1dfabeed54cc91d2ac1d838dbd749445bc071aba86897fd21d22efe4ef2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020",
+          "row_sha256": "f4057825a5ccbf6a5f9a0626c3cb1f5bb4ad12ef56aa3316855ac411c14ceb23",
+          "body_sha256": "78ab47653c43e875fa7961ebb3ee22e47cf3b109f2407eee9affa3639b5d90eb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020000500",
+          "row_sha256": "d28590755842c0e5fcdef6ee5065834ae991afbd8afea38a24168236abdc88bd",
+          "body_sha256": "fb41846c837986d19f689e9fa66095f8664f0fe51f5615421f078ccc0a3bce33"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020000510",
+          "row_sha256": "330f6c258bebfaada611593e655886510a95f2ea0a1f36fec1bddaafd88b85b5",
+          "body_sha256": "a414131d170aaff9cfdf9967d61e698047cf724fcb25a435db9d48361d457c1b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020000520",
+          "row_sha256": "f8c2540aad94431042161640aa2e707bc077eadb31c384051b6abba34d31fb44",
+          "body_sha256": "364d75082ba73f542baeef5bf104c87f362629bd9b7d2c5cd106cc8d3aed60f3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020000530",
+          "row_sha256": "f1fd65df85c85117c82150690336b0a78e46d2a13cd1a0888e304a61d7400a52",
+          "body_sha256": "fe535b8cc5c9d99fb7424a88e512aa4e90e5ebfb9e68c5733a943c36df4d4197"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020000531",
+          "row_sha256": "21f5bce96a464013bd9add4620f39d8a89033ba27bddfccc174fff5928b081b0",
+          "body_sha256": "669d406c886e34e555a61049b55ad6165b87428b755dbc9cb9cd24766a70b174"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-020000540",
+          "row_sha256": "ee1d0f6f993dfe8477671642aff67b3a23d08e5957f6765e2ea0c36dd55bed56",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030",
+          "row_sha256": "bb54c393ba4eda2d6b982245713a25f82831e8bfb7bfb4f7f5f4b39404b102f8",
+          "body_sha256": "641f93ee66e7c7aed4179447b6e7f56b985351cd5a04496693f1aacf423b0fe8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000550",
+          "row_sha256": "5af1585902f42f8b390aacaaf7ccda4611bf7fd32fda58ca2ea9ad6919951f50",
+          "body_sha256": "1efd900559d0161f1744c443331f0b53a756b3dfaf3b2c6208d8ca94c9a67622"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000560",
+          "row_sha256": "a5fb898a47b11c77cbe8433a59a55dc1900530da938034cfc0fdb8560dfbe8cf",
+          "body_sha256": "5db4510f9f7f2bc2754b323614b52c57dc676da975c532103ece905d89395fb0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000570",
+          "row_sha256": "29793e5ce4a5f3f94e18445d7e5c56d67077d196c3b0c699e5d9045a32930a41",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000590",
+          "row_sha256": "be5803b0fa8bb483c8a3ad48587ca3fdb8e5d8c2dae51c25ecb4df18f3e589ef",
+          "body_sha256": "d2257c7c47968516a0f4d24dd6fbb1fdc3964825cc36b2c2f4d1b1e192ec8aa1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000600",
+          "row_sha256": "910bc246d3f9fa6d58e879de27d85a532029c5d9e5d249ae7015764f7c07070a",
+          "body_sha256": "887fc90aede88af48626a8f2f9e32b4ac92725137c18287043c169645c6a6e2d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000610",
+          "row_sha256": "a9251b1b9b9eb92b092fdebaa4d7f4e3e3740328575cb5ea06835c98fd7520bb",
+          "body_sha256": "4da055ec5fb1aceecd2632c87488d5eb2066b897e8ee0f7ef97d65a1ddcc7347"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000620",
+          "row_sha256": "6ed19a1f56fbd095bdf7a2a16f0ce207053defee6069cf44fafc04f1a71fc11a",
+          "body_sha256": "d6be0afa6988f932e456e488c3a116ce6d1dd3c002e223a373a56c077fa9e228"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000630",
+          "row_sha256": "9b15de99c21c403c94811a450512ec20d84e6dbced21d459493ed028aff1867d",
+          "body_sha256": "e169cc10802bfa6959095ace344c87ae9f27a68d0f208f7474e7cd007240ba00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000640",
+          "row_sha256": "2b8f0484b1386a8171f8261384490800f138b53ff50521e3bd9bada379631cf4",
+          "body_sha256": "507ce8889b627ed61be31ec7719a1bd5b98b48069f89996c22ac70b0cad45992"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000650",
+          "row_sha256": "dc337f09d46ef0bfdd4150a84ba853934a4a93e66e7f86b71c7cc02f06760813",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000660",
+          "row_sha256": "24e3471525133517b7f9575e79130d036730845af53712b20a675ea978efd96a",
+          "body_sha256": "0ad5ee95c959e364fcad3be57a2672f03b361d9475f30c2bc8100077196b591a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000670",
+          "row_sha256": "695dd2a8d4c65afd9c846c603adb3dbfdb915fd48f7084e1471de4c02275d7eb",
+          "body_sha256": "38dc75a1ddf735d131631e9582f5a0645b2f6fcd24a849e27e42eb7d650c006c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000680",
+          "row_sha256": "b4d4b6bab851126729d47cc3972b1a1ad7a876cef395541e58701412a3fd559f",
+          "body_sha256": "cad6b86b4ab86ea76a88e7de73f6d63c111d80f625c8377e5b73d169985951a7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000690",
+          "row_sha256": "e1f247818bb2622d81689b27f5e884c5a314c90cfa31bfaf2cf261621f7d0be2",
+          "body_sha256": "acdd8d7f0a716a1f86c69e8cc963fd2e543001866f2b5291c6f1e6471f5d8733"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000700",
+          "row_sha256": "0d0b5ab3e6033d6f6157ac328e62b90da6e08043ebcd87d66d7c2c1ff9208342",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000730",
+          "row_sha256": "b3b1952c9dc3150cd21d23ecf7b549bdd1877da954fb2647561e73ced7447a88",
+          "body_sha256": "15815ec2a85e7b481991d5c503a4cc915bd2e2e520801a73c8eab1155f36a39e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000740",
+          "row_sha256": "95b72cc8d8a073653442d1f311812cc34991edfb962f6465613c7e737fca66ee",
+          "body_sha256": "48fea8afa9aea1fb2ef597024b6ebe8a09965aeb39bac9c8cba1a3f5bdea3390"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000750",
+          "row_sha256": "ee9acf8ccc0092ac9e28c99f8919acd7ceac2183f395fadc5c762fc4e5c6cdde",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000760",
+          "row_sha256": "24096f41c668915be32989a8111a99e87ac3bb0c639c947c3154be6813a78ce4",
+          "body_sha256": "6835d103670c7ce5fa768455075939573e26c9ee08f670f5b4787284a92696c5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000770",
+          "row_sha256": "b88f2a6a51af023b16d9d4ab244d89b48a4c8c363c091e3f54ea325b84d911ad",
+          "body_sha256": "0f2178e222a4b7090022ccd861db028337bb1e4b4ccdfd438c663f6fbdfca9af"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000780",
+          "row_sha256": "c631518c2b03e8f6cf0d8063d3a38589bee0ac177979435dace70158a0e51527",
+          "body_sha256": "e207760ee65c6cd5b59c2936e1c456f8d332f81ef2a7bc21460560b1a1e39199"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000790",
+          "row_sha256": "594903e14118d2a929fb3848deb58a1bc45075ee203d8ae1bb67b639330247ec",
+          "body_sha256": "4210c320ce2074c314cbe79fe8834d327d05563677404ac75991eae30b8dd9b2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000800",
+          "row_sha256": "4ffb1fbbc6f16bd0364f97583af6bf6da4aced65a9d004ee650ffafa2e3b3a94",
+          "body_sha256": "043b471b46b9430b77b253a323a1f64a3497fd78e35ff90cf2a8570d367bddf6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000810",
+          "row_sha256": "5a4b6c056f0f85dbfd861ec3b581661ec5377b911cd30b4d3411abd6a05b0e38",
+          "body_sha256": "526fc3b202e3fbfbfaa9a6a339ba2502c9624de72c9e7d0fedcf83307ccee367"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000820",
+          "row_sha256": "ae8591642a4f240d523a71fa39b64585268eec3aa1ff85663fd04bb760d1ffb2",
+          "body_sha256": "dd27539830fe6d4df3be3cec66227eba8b63a6fd3d546edbd142938abb01164a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000830",
+          "row_sha256": "cb9f1cf6df6fea0cd20bec7f05c8e90bb78ac5a155f36e93b98626bbcd335230",
+          "body_sha256": "658940bb0806b91ab95d8652de0d83e2558c199e27ab228afcdbc791ffd4a62e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000840",
+          "row_sha256": "0e4ff52c29d74c50047d230fa695b071f378f1b35c787bc2b29a74659b149f0d",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000850",
+          "row_sha256": "56e372db91e5bf05a10f9166f9eb579412ea725d3643065132d0e25a9da2ec3e",
+          "body_sha256": "fcfa074e95f3f0e416a6a67e06830cdd2fa5a68d6b570b09886de80110ad6ed7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000860",
+          "row_sha256": "e803dff861fb44d33612ff52a22349affc8d7c8233f1ddf2a29d3eb1c32e1c0b",
+          "body_sha256": "d793629dfe5bd970d688a082e3866a512411986d6f6e048e7fbe31fcb24c977a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000870",
+          "row_sha256": "b141f217ef9017a2adc3b7483c5330cde0d271d33c58a19c276a7b4f9a0e8996",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000880",
+          "row_sha256": "022f4d3040e924a301c52995b753dfa5dfef1e0237179fe8fd47f224b6c3a1e2",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000890",
+          "row_sha256": "25a336d0c5d03bf714622a4661ce7e61087b934c827874c908e4c4c12b1a8256",
+          "body_sha256": "6cb761d47d6feffb85acfb94814ef15d7804d72760ba16bda7df149a9601344d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000900",
+          "row_sha256": "47f6499be57ab7a2eceab1236fc9c7e0f6911b37ef2b2f252ccfcfb9328d336f",
+          "body_sha256": "c34716e709b128670650313ffca9d4901a91d78ac71856c882c96ece5a5d1f25"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000910",
+          "row_sha256": "df0b4c4a1e2cb18c3e606b90ff13f0599001813c940c0953b512bd12cb978bb7",
+          "body_sha256": "255d1300472ef5bae3c3de131503fdd0e4aa356187b8d5620e64ceaed44db1d7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000920",
+          "row_sha256": "2790d095c92346a4da13281bf76d367e825e92afc7580d2f9ff5858fd7ed4792",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000930",
+          "row_sha256": "25d90f8eb2c895b32f7f220160f348bf3ffaae178fa24d17300fb86160aba90b",
+          "body_sha256": "f8b6f4c5c3eafe34694a2666acecbab20d617d9256a867ef8683efde87449695"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000940",
+          "row_sha256": "8707edacfdf77be5353bbeae3ae1c89d9b663187bda732b46d369e8519d41dc3",
+          "body_sha256": "e69367597c821aa34b50d45071aeb4c82e0b778f482d55adbb511ece0f69cef8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000950",
+          "row_sha256": "a4fc57d112f0bd3c718dad3caa33b92d685ac840a7c199afdd21d5ee1025e90c",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000960",
+          "row_sha256": "0589ca1f09a5a1764ccf8c5b95a53a1c1a17aac3444cd62182b760405388c3e6",
+          "body_sha256": "22f2231538e10a2b31355e0285ec2840d0403a4abfd069f61d4e98c5aceb9326"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000970",
+          "row_sha256": "5d248b790e32545a705379be072e5a98d3f57f958aa01aa7d799123bf5648c5e",
+          "body_sha256": "d5a78d51996e16b7707a0f2842576e48838c8941c8358a3256710bc4548ca747"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000980",
+          "row_sha256": "2da4617b07973f9e6d62efec9910e1a99fa81051122c9a4389b55b4f7a5f76f7",
+          "body_sha256": "78f726903f2d4715a787007cdd683dfd34c5fff7de838ffce1fe64219546dbe8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030000990",
+          "row_sha256": "3b6e383982fd44c126400b9e3b40c209e4c3fdd9c9a811e5395f17b22fcfcf33",
+          "body_sha256": "56538d87ddf5f61b48de87a704bb9e24cd050138b228bd1528b0563b3903645d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001000",
+          "row_sha256": "e8474ef10af9de713a77d92af47ebb6023d13981bb553b1ec93e5ac0ca377205",
+          "body_sha256": "81f6cbc0a80ec5b607b6c3ac3835a3eb6b9236155223d7fc0c7ee84a8b523592"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001010",
+          "row_sha256": "25e415a92822ec4ff7fa61be2876530a43e65b9bfd988c8999701e8db2fee398",
+          "body_sha256": "f7b3c6cb8947fc679c6f1ae2fd18e6fc72c7d7bbf2d1d4e24a14390809cc372a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001020",
+          "row_sha256": "1a8bee37e319937119fe21f39983b412cbd99224ae1d0b20090a4d7fbb1dfe21",
+          "body_sha256": "fbb26de3ae22b24feac057ff5393599e4d5b818aa05ce401f37bcf9cd4f360e0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001030",
+          "row_sha256": "dd19a1f457a403588d2afc90f02ed2a643dadbb4b6209aeacd6223f7a9fa7548",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001040",
+          "row_sha256": "1e721cf89b5f5c2f3566215848cbcebe5516492d1bfddebed0793ad1362afffc",
+          "body_sha256": "3678b42f9967e88cdb36cc508c5e3379470f33d23879f1036bd981d2a9b2a117"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001050",
+          "row_sha256": "2055e78281c35ba0efdb6a608a80adf252b3d296e2ebc94d9c29c66dc1cdd4a0",
+          "body_sha256": "050accfb31d654aca226b88080a5601024fb9d974cff5d597e03e770c8891300"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001060",
+          "row_sha256": "d47b36776e3e8615f3ba5491e959325d35347a3df3f15bfebd635c0c63f55672",
+          "body_sha256": "1d2c5c9ce5dbd4c19cb975256e8ba0c6b57e8a99f058f17932eec48f00e9d105"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001070",
+          "row_sha256": "4fe34d105bbed8dd78da68e5af830944f4995e4e6ac370ef2abd59b644e47dc5",
+          "body_sha256": "78c9b8e86d8c44d9149bea629bedf80e2ace664282651d2e9797bc48abca1243"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001080",
+          "row_sha256": "0cc6987eb5ceb3478c361445cd684d574f41a3d922f15906c9d35bea1d8e3dfc",
+          "body_sha256": "284a15834ff2379e93ea77e44554f214daee566584dc3beda99a9f368e83324e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001090",
+          "row_sha256": "a8acf2694619fe0ce79cfad6fb03be2eea8e42ad56567221054df9be687d850a",
+          "body_sha256": "75ab5ab9606fd5c750e76ad4a2683d5b121918b4b4b3cbe978d2ff2bcc681785"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001100",
+          "row_sha256": "982568ec2c45f5e123f30fcdfcef53c557580ecdb1952444c0762fab1f2cc29f",
+          "body_sha256": "3e21e83a7e0ab2d38f25d620a2326ecfa9069f3c3570e7ffa399f3eb38fb3679"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001110",
+          "row_sha256": "ceb08b80b581626d49052e82a999d6f5766ef28cddb1423db7cfa8e80064c8a9",
+          "body_sha256": "ef403314191f4497be8bd9dd594e7fe7f84330dc36b070929abf2aa095360879"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001120",
+          "row_sha256": "52d454b9ba7cfa8e3eeca6f0d577b81c01eea7cc4e290f0722a3538ec28c97b0",
+          "body_sha256": "5ac75b61c16e92ce30d760776c042fa55c3c8cf1c53d74521f231a487cb9f213"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001130",
+          "row_sha256": "35ccefff746a4747725927d09d75e418e9404f2909c72f4b74492abf579e9987",
+          "body_sha256": "946654c39d471cc6bbd0ad37c743ce07b0b22c4aa72cb54d5d3e1c1d4942c862"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001140",
+          "row_sha256": "c3bd979c6dcfdd628dcdfbeedcf0a950e70c731a0785b9fadcae43a93898d0ac",
+          "body_sha256": "200fe9d34c2b4b35e88dc483e6ecaf14b56bc52c509ee1ba244e438d3ee80f24"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001150",
+          "row_sha256": "fcab3498b0e3e7640f15249e195e415a1a34f7516c26e9bfec1137c4d8798b94",
+          "body_sha256": "b5a9eb60e0f27835a52bd1c7212b7ab79714bdf6679f0265b7360ead0a66a21d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001160",
+          "row_sha256": "7bb2a279a263a1b1745b7c37984f15937ba280a3a08ad76374bfd21922ca1be9",
+          "body_sha256": "a421fbc198242f14c3d883ab03c0ca35a6544515d180f6b22be58d4d9af3c19a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001170",
+          "row_sha256": "47e0b9e37d7019d0969ae450482959680b764b44a8e6a5761f379dc315c26189",
+          "body_sha256": "8587246a53df52a5fa8fd58b4fbbad5e418e849b3659a078683def802bdc4a6f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001180",
+          "row_sha256": "d88c56f7d3a6709988226934afcee025715dabb9b514f51f6afb84178064e04d",
+          "body_sha256": "f9f3ea2ffe2fbbb62a41b80f4db80635dd0364e2d8248b891c2622c9f3ab761e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001190",
+          "row_sha256": "159365dd80a6ebc3c7655ce77e927c6a1d133640688cab630fc1ec9427b583a3",
+          "body_sha256": "6ccef78a9ceeb09f5f38e1fd13fb7c577683fb0638003ebadd61d6183b647ee7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001200",
+          "row_sha256": "2a43e9b2dea92c384454f9177d90ebe134e2c8cde1d3efb1208b0f5157dc8b5c",
+          "body_sha256": "a25c1a850e18caf3ae09d6934b71821be86531f4484543243c8c29a96bc9a50f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001210",
+          "row_sha256": "6f4161e41641db1f898ece2cd66130071dd8ba3a67d58ab13af9591c62f3d15a",
+          "body_sha256": "5e25ce8fcb24c2b61f3dee453d05e271d5013c1cdfddb39232de4900e6b6f636"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001220",
+          "row_sha256": "10e17f4ee0472b07fe2a2e3933710f7003d94737374a730549e928893de9e81f",
+          "body_sha256": "cba2533920beee6c4bfa8fe5ef30db49b3cd50239661c921157b997c7dc104b2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001230",
+          "row_sha256": "32fc8242aca230377f6c567d91a4f1e11bd53e2534f48f461e9a59fb130bd883",
+          "body_sha256": "f93f60bbc92707bf88a86511721ee85c02e224e788e796008aa1b4e8ecdf40d7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001240",
+          "row_sha256": "06e85d705c8fac2a40032b3fd70e6100f2595077ee6c16eb0c8c40703aa56feb",
+          "body_sha256": "cdc6ba082e8a2ba1ef3ddba5646aec284d0060576181e4822e3f576ee057b065"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001250",
+          "row_sha256": "b6bff99d9fe1218615f0a31f5bef2ffa6d07a6a0a21e43926edd218f52537aa8",
+          "body_sha256": "b89ac7f154c8b78ba32108a395facc79eeca169db21e8c1f32d0e75a87f262ed"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001260",
+          "row_sha256": "dc1586c345ab319a3914bc1da95672ecd77cb146958771bf04c7a2e0d57d3d52",
+          "body_sha256": "f860ac0d449db70d39440584540f80f1ff734a0ac495db02dd4d4312e48cc652"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001270",
+          "row_sha256": "46caa71ce75262a3335f753aea32cb0c42bcb3ef41aba1d492353a910ea79e3b",
+          "body_sha256": "6a1654cda0e6572bd00da83e43c0482697891842b5d2e7ab978198deee7f3c56"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001280",
+          "row_sha256": "d99928efc74d1bd19ef4d545c00700db77772ccde6dea0ac5b2c5eed9a2efdcf",
+          "body_sha256": "57149e793f7cf127d0a2bdb035aa0cf0e98a74beb5394c3809bc4779c2f495f5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001290",
+          "row_sha256": "083fba8d2c11a5eb3169c00a778d5d1aa8192b8f89d3d180d9ae17f8626d0086",
+          "body_sha256": "ebd54d2ab62549689018a62cbcf125b23ef350c0b7f4a9efcd178614ed82b628"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001300",
+          "row_sha256": "a6b6f0b9ae3a11e599af7ee1c98672995802530d9cce8c3a3a1b9ba1f4fa1db8",
+          "body_sha256": "f5bc7bac3c38c3bf17884fdc5e89bc6151dbd73c3b646ca0d6acd584d873cc05"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001310",
+          "row_sha256": "3e220308176fba6bb70802410a83b07180069dda4f9e7d355fbbd0bedf4f137d",
+          "body_sha256": "3c62bc471d342064787b0690d3b0b9fe1b9b0ab126d369bdb4c72fd72a7b26ae"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001320",
+          "row_sha256": "871fb5adf3225459cdc9c80a69d26c9aa6be4e34a0d1c65c1099da8cb458e835",
+          "body_sha256": "3cccca82c202993c1ae21b5fa18400b76192b123dd433cc6d6ff82c88e15f834"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001330",
+          "row_sha256": "0d80fc2a18497aaf54dd09d4bae803178bfa4c841befb0355355977b31e476d2",
+          "body_sha256": "a84bf0e3df039f77b4fdac1c4eea65da8a6cc8015cc983d9f776fcc527f3cea9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001340",
+          "row_sha256": "19c5a9a88e45a0ef6ba831d04d35ead7863b165c4b98a519641fc8881ceb7185",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001370",
+          "row_sha256": "808b74837c96b40b4a0cb1ce08caf950e7c558fabe156d7f3cdaae91e6afaf87",
+          "body_sha256": "1738f24c17a54f96e8a2aff2063f8d4875177fb3e966b56a1862dc6d2013e7e7"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001380",
+          "row_sha256": "8fe57681db8a7747149e9022abf860b4fb5a73951c09a074fb1b329ddf566be6",
+          "body_sha256": "a255c88bf7db1ad63e3bedcda984df68f431bb238de6c755ebf4d24f1e85cee9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001390",
+          "row_sha256": "e1022549a9acf024fd651bb65822e34e08c4a1f42d2295b58aab8d335a4d04a9",
+          "body_sha256": "179d27173d004848a6ea77e69ffe376dd82eea8c5fd60513b1333db794e4475b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001400",
+          "row_sha256": "4110b54fa74f10152dc3c30369fabd246f774df296daea5dacf5b86833ebbfeb",
+          "body_sha256": "f8322b802a82ad7fe4825eb6e60678fd41c31be5de3d777b29810a77bcb2cf9d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001410",
+          "row_sha256": "993e816227691c4ddca7d11f3006ed465757358eb6d06e71ca26f8581239efeb",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001430",
+          "row_sha256": "02fb131084e563379ffd415b2e80036e7c943bd8b637fb51bd920f3fee3a5a8b",
+          "body_sha256": "be0dcba5f0eb001560ca104ce9c53eaa92fcb6bdc0b1eb67b6704753df96fcc2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001440",
+          "row_sha256": "a83153e4ab65664283597090aa924bf808334896cb7178a2345af18e9bafa9da",
+          "body_sha256": "a7396b5bf16955213a44ecd00b4659b5d5be76084bbd37b66d888c29ef849d8e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001450",
+          "row_sha256": "beff604e5f5d97b74c91c5e67ac379b850828e49c0a19347ba7afe0bc48842f1",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001470",
+          "row_sha256": "47c8faea9e0f5314be66457cff4a76d21ffc6529a7c2a761ca9ea4878baa137e",
+          "body_sha256": "b1fb1812ddf38a105815e138d3e846f6fd27a37272bd820e9dc057a3b667ed48"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001480",
+          "row_sha256": "1be48d365a84960bf4ce15467ffb04222040bdd1fd7aadcbb732337e3c43acbb",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001490",
+          "row_sha256": "ad8e77733c6732077db6efe717eba472dc77583edf2cf3253cdb31fb0650ca3e",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-030001520",
+          "row_sha256": "daed97dd1bff655f8c913935cd079bc501520fdd184cf1767e456daca30abd87",
+          "body_sha256": "b3a6219b20a7ca3e6a657e645ab90a4bc041eba1b479bbc33b8df89e3202a26e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040",
+          "row_sha256": "803903530dcd8e43746042b35d7119a8de3bf7673635d54dade4a646b8b23586",
+          "body_sha256": "55ae65f1bf24f7d5e802080e914c1761acef0592860855ad022cfc9d57a295e3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001530",
+          "row_sha256": "b662ddf6fd359a7123577ceaf1e19d29698d358eebe472d99d46cf46cc608a95",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001570",
+          "row_sha256": "35aba32c1761fd92e66ab52b1e0e99c138b7bd0e574785955e4f032825f12a90",
+          "body_sha256": "f45eb16d7065970ae10d5e55aaa591709913348377d750818fa7354098d64ef2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001580",
+          "row_sha256": "b9187598711f8cf381ea4553a7e65b697e6bd8760150eb72e8b984046410de4e",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001630",
+          "row_sha256": "e5aca589c1e60174392df8d9048ac10134c4d464abfb107b0abfa109dd8ef81a",
+          "body_sha256": "70d9e4bbad31e08a398fc7ca3f79fe2ab0724e1016a4cd070dc2fc5d185b340b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001640",
+          "row_sha256": "cdccd1e4ebd51163f07662aa4221eb19cd55b0e47e904060bc770f99ba29792a",
+          "body_sha256": "63af3f2b8a3fd583052037326250adb72b86447526c269ef56a50606f5ce57b8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001650",
+          "row_sha256": "8baa8ee846f2fb8cb44cb67e6b8dae05c3b731e9fc8943edb8fac83be377f2db",
+          "body_sha256": "c7838bdb9800f39cd43e781045a2ece590c98d47b0c8fbac051eec70e2604935"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001660",
+          "row_sha256": "f119a82301f5410c786bbbc4acd18db77f5f8c17e75866aa395ff6f1f5d4832c",
+          "body_sha256": "186591b24a433299a38f371d5fd7b22e0efff487df309da5c2234d6adccb2789"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001670",
+          "row_sha256": "dde71c7c9fd98adfc81c6575d0bfd85c8aa0d082c253c653f33943e148754089",
+          "body_sha256": "65d4374b067d87f554aa5492a239d99dfdfd0ca7e0c3453c76ed4f74c578916d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001680",
+          "row_sha256": "c4cbded4614c901c0cde5fccedf52129082c51218d07fad91888f04fa9e977b9",
+          "body_sha256": "bcee34bf32f16aeb14821e02f9b31c144b78733c677239f8e0f712f6b5a5b1c5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001690",
+          "row_sha256": "d8032a656a553fc85e7367faf1c0eb6ae958c7cd20080179d88c491e3680e844",
+          "body_sha256": "bf139e725003465e30c0fc80531d10288b58e8228cc8ed16ed61aa12f5d00778"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001700",
+          "row_sha256": "da0b7ad164edb6c72a1897dbd38b5e6f92205925d2a0314149e4786f3dbec1c8",
+          "body_sha256": "f3738152c8d489d84a87460693295665883d6bdd51fdf627c1e443f46aee00d2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001710",
+          "row_sha256": "b6fa88bd38f8c24d9592bed10ab8cc5075177a50ee574fd8390cad8c50eec1e7",
+          "body_sha256": "4e817b128feba1361d855bce0b092a3ea12c447ffdd1cd2f0cb3fdf5016460ce"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001720",
+          "row_sha256": "58d64689a16b2a90f12622222fc7207d080c40abf4caec1475c3ce5e7da1d02b",
+          "body_sha256": "5308154aed6aac932c3e18d014aafea2644662df2f6668ce4aab58631ac7bf40"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001730",
+          "row_sha256": "0b66a1a0b9c858cb43c990757de99dbef6ec00ad2f39078de547a711b15fbeb0",
+          "body_sha256": "77143492e980384361e45b41f15f106e92abeaa64df793b4ed57eb8b25598576"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001740",
+          "row_sha256": "ac7fc79f4bcdca9e2b91bb96f90fbe70b4bef3fe4df2a4e0aa26aa3d19b88ce0",
+          "body_sha256": "d582e390d46c8bcfc731d3d9b76879beced5b2c4d2b17b6cd1084966381775ec"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001750",
+          "row_sha256": "b3197d2a927952341d0c2018931cf1fa071a63a2d3073545e9c53fc8a9aebb74",
+          "body_sha256": "30c7f59182581958f5fb5a05bf7b469a9640f5fca8c9f6f844f0e008039da90c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001760",
+          "row_sha256": "9529243651ed94e9ecf146011cac0bb85c09410c28ea6c18d690b8a71d595bfe",
+          "body_sha256": "e2f31db3674ef5d850f5956f976bf3195fc80a5a79ad4836d35cdefabd17ad9f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001770",
+          "row_sha256": "fd4f663b411766ae750141510e541dda8de4e6fbc1e9e1427e5a1d912bfa0573",
+          "body_sha256": "a1f1e81158a0c792effab81ce5c6d4a466014450b55478d2e918816324fe374a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001780",
+          "row_sha256": "c95352e23abf8c585e383fe4d2b62608ccbce09bf88c597455ec01bd6fe98e67",
+          "body_sha256": "47c09d7a751dd77e438e79db1e5940d58ac0ab4d6fe3b8c60ac8caacc9cae08a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001790",
+          "row_sha256": "1a7b97e10fd36749ed499a9922727b5aa67c718d32e52cc088a0bc10f8c07769",
+          "body_sha256": "7734bdeb3bcc7830f66417b3a4490be30733ec6cdfbe05b9873cded38c3f5115"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001800",
+          "row_sha256": "71d98e6a447f666d16028efe02d868b919902930624a5a13dac95634336cb3b0",
+          "body_sha256": "0113f0ba848f6513ee95d98ca4243e2bd29028cdfaa3db386d000714fdcd0435"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001810",
+          "row_sha256": "9abe62683999bfa989ba1ab6d8203f025e655654ecb7ec360a4d84e2c10bafab",
+          "body_sha256": "7c6444f264054ab0c945c877f719750dbd720d92aaf354f3c2e564205f53fc62"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001820",
+          "row_sha256": "1afd9bf3ceffeab42d569ffc1357105016d92d54f3030dd78b149620e10868ec",
+          "body_sha256": "123e4b2cadfcbc80063891fd370b3900d1bc16a8ba399fbd569431244f5dd992"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001830",
+          "row_sha256": "fae9cd7e1b9c00528f88841e986b227f79b756e406ad32e31a3ce50ad87a46fc",
+          "body_sha256": "a816eda874a2966c11cc9bf0eb74d4a3e07e5e0cb8a99ef2a74a5929c820815a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001840",
+          "row_sha256": "2e9c0ad8a97fcc6e961c529ba355a4dca544db0353c675403fd99f4491650492",
+          "body_sha256": "1c93e3dccaa4cc7bad973d6dd224480d635e828172ccf86596a1029e6001af9c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001850",
+          "row_sha256": "7e45b45dadf80f080f653a2142dd665781eae8d7705fcde7dd99ec21c358e88d",
+          "body_sha256": "92b5605396bc8cb8e129e714d44c853bfebd8672794c035540ea5db78e86c835"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001860",
+          "row_sha256": "a178c174884c9bebf408deb76df1e5e857541a02412b0dd667e2d73b00dc6bd3",
+          "body_sha256": "d58535947cd296cdf35641dbffebd4dfd2b6837b43e2c98af76715cb428d2324"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001870",
+          "row_sha256": "a75f499826546fac2bbb1a22a875d751e5fd30454bdac4fee6e5662feb7da37a",
+          "body_sha256": "f63a33b5b39a91827695bd722474e1ce39cbf8331cdb582f249c90ebc9a15ecd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001880",
+          "row_sha256": "c471b4755300b2a4f6b8cca1ea3fa1a3c19b91be94b750ea82a5f51af3a6d35b",
+          "body_sha256": "a9d9f2f919feb3292c43cecf3b5fbdded4916e41d03612d567489e9a9a4a3391"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001890",
+          "row_sha256": "da842124fa9010f0d8addd8cf8617a65021c98f9fa234dc8b41e7a8339dc3ee7",
+          "body_sha256": "561d9613ddf5dedb0614b60ce9024ce3c4b80dde32c51a6d169882f0fca319cc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001900",
+          "row_sha256": "daab8cf1f595ce570eacf56c35f0cbb075a1358b550893379ea186b8574949d0",
+          "body_sha256": "4f18f899d2ac0b37c0badee89407e788355911940f66e4adafb23583f8f697c8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001910",
+          "row_sha256": "fcd2aa7fba0e49cc84dab1ecd441ea66d2916762f0320fce171c103c684354f1",
+          "body_sha256": "62ee67a82fe51b0ef38206a8affdcc0d490258b03d54f0b08602d83d80c31df8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001920",
+          "row_sha256": "537719e84e7ba7d9d368736957d1b0fbce07ebda8a969dcc19e454d9921d8d73",
+          "body_sha256": "517f545bf51e35245ca9f0f5a70b7a2ae638782c420a6dac8a9d61da57430188"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001930",
+          "row_sha256": "1b52c6eeefdfc57ffdda3a38d30cf26b8be4d1ad809be4c26a6febb318d869dd",
+          "body_sha256": "4552f77015b51869e8e12aaf0e8e1383545bfb794e7a82564a008ae096c61a4e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001940",
+          "row_sha256": "8f27cec3bfca69642795f4edec94c5ab4692ecdb7337c754ecb8fbe1d1bb1b18",
+          "body_sha256": "f02fe9699e6c5d827f893331a1fb7be2849f2b3bc3ca41cee0b6b21bd30400ba"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001950",
+          "row_sha256": "e143f2b9d5364602e7b719c75f8131f1d3fced44a195f4e2682c4bc76c804c7f",
+          "body_sha256": "eb547a03873c93985a57bcbfa8bc1a29f77d7e54534a80856749d37a6cae75bd"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001960",
+          "row_sha256": "4a024500aedc534c6ba48c9ba095c3bbd85e86dde6c4ec6dd919d19b159a0c8f",
+          "body_sha256": "976ffee1d15e7b09139aa73bd8a50a51d52f1885f5502506c9a825ed73c8644a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001970",
+          "row_sha256": "667af70f45f5891fff3acb14a91ad61b9893dd0edd723c2b4f9e73d84d3af293",
+          "body_sha256": "1e35985744a0032f501109f1e5a8ecf7274d3e956c8f50884337bae5a93ce0d9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001980",
+          "row_sha256": "909459fbaf5948d635d6b69adbf215820b8b664401573253bb4dfbc664deb03e",
+          "body_sha256": "86a008902cba48407fb2f4acf2466a48cb7fe5dc0043625563036deeb1b339fc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040001990",
+          "row_sha256": "afa8ff7bab57e892f5594ad8db0dc25422f4fec9dd1719e52a6d641c846d3fe2",
+          "body_sha256": "289452f46f791bbe131f278cfc7a4e6a125d8b550cc93fd1f1b84eacb8304a65"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002000",
+          "row_sha256": "b9a8a439e943faf7e3df9c4655e0af15d61e77e09e999920586375b87bacd90c",
+          "body_sha256": "ea7591394876e6eeae955aa68b8e5decae836baeca52f53e185b40da8a0597e1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002010",
+          "row_sha256": "d5b1a8d8b4fed40dddeada7dcacc45e408ba3b35b3cccb549b93caf82cbaf8cd",
+          "body_sha256": "5c68aed36bafd7efd116bc4da444544acf7872eb8557505ab8a1bf2a8f1aae42"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002020",
+          "row_sha256": "2f59bff3a28d0ac95139646c59fccd0be59db81f220a01f86e090fff71e6afc1",
+          "body_sha256": "e24360ed805857ebec4e1ea18ed7d7e9bfe001ddb0c1d55e307ea461db994a5f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002030",
+          "row_sha256": "1d4a1ad66d38d14d298707286178e45f5756f7c69396a0c24856b020e89605db",
+          "body_sha256": "552b8e45ab6674665c418acad7731c26b41db0a11d3bf0966897af0f43fa622e"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002040",
+          "row_sha256": "9d847834721151653575f4213e6052efbe80e302ddee7bf381491c1b6f147fd2",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002070",
+          "row_sha256": "16de0f232b906ee93d9e0c602a3034c4a2e5a7afe104503016634f08a1459c75",
+          "body_sha256": "25711f2bd9ae6014f57279aa2a0b6fdea2e2279ca1724437e03aa68e4845b264"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002080",
+          "row_sha256": "a49444d2c2cf05f1ac229229d99739da25bd6ea1cdd53c108df866a1481198c9",
+          "body_sha256": "9301c6db1e05f4df86ce7b0fedf41f774f12484532ea23bcda088eb84229623d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002090",
+          "row_sha256": "4e45be2114d7a7781e7fbca978e84c9d714297b9894f4f5be46849aee62411f8",
+          "body_sha256": "665f1a00a1a24a8daa84ae2c716c7240e98a959f61a5ef703a132f4ea90ab682"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002100",
+          "row_sha256": "ef5c2a69ef5cdd039851580eed782890651134da03f7dfc972fd69a282a9c9dd",
+          "body_sha256": "44e187f16352aaa07a4cc8871bd4594bf9b1b26d9950840a9513c69f78d47885"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002110",
+          "row_sha256": "080968d3fbe74ce15909997c4b71efddec144a414aeff18c5a3c9bef7b67f44a",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002120",
+          "row_sha256": "c0ab9da45b37ce550fe07d12afb2b30a70517ffdfd82c3f7964796ffcf576856",
+          "body_sha256": "52cba4022269c5688da84e8bda339a46db0542f05f76ac9db508700fd4ac7b8b"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002130",
+          "row_sha256": "7d27e9d08e5100d2429eb33f7348409d724dc3ed12f8c0d502af61d02320bd78",
+          "body_sha256": "6ef0fc8b9793c022da75a40c64d414e3ffbe0fc30c4a76ec44f91166564147d6"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002140",
+          "row_sha256": "a401616ef2cadb99ab969f01c053e128d14a661a4bd8db3bce0c2839d7c53295",
+          "body_sha256": "eba4cdf12a40452bb2a1a17c0bb1024b07ab4528b293c989e915359748d782ef"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002150",
+          "row_sha256": "07ee31f209ec6bdeb0f08c00f923730cda04262f20282c8f980bceeba6364fc9",
+          "body_sha256": "2b54aadf622ba810d39a74e31f4e60b4d711ed7168df16cd0024d306808de988"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002160",
+          "row_sha256": "ce2cc76be86ea1aba963ca08c362d7a56d6e0d392f370018bff7b3ca898aae61",
+          "body_sha256": "0c40bfd8776034633f8b523138400692b7e3238a52d49a87f34f8bdf4aa3fc00"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002170",
+          "row_sha256": "88de666f7199914dca519b8129cd17c0631819f9ddb0114288acd97b13c3ac08",
+          "body_sha256": "54e6c06eaabc78a0d49d32c38275ed476f0513ab025a7cd887139ba82480c137"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-040002180",
+          "row_sha256": "512af89a58eac1c5b175b4019f7e00d708e00dd0b9cddc63bc4f9cb0b4a4a1f7",
+          "body_sha256": "651528200e48fa9326e38acc46b72d89c3b18209650a3d7d8a4297326f015b86"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050",
+          "row_sha256": "20a305666cca7177eaad056cbec263c3923d491e4d8bc60f2e51cfbd1f22d68d",
+          "body_sha256": "48e389accedf2607b5dcf88f30c923d98d7878b8a2b34655a37c7432cafd64f0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002190",
+          "row_sha256": "53196733d4e624d10e292a76b7c02b9ecd899efdb502002033b841b6b5ec3b42",
+          "body_sha256": "ed82fff11ceacc55b815b64b889e9bf2b37868622bada4dd6f3c1cc3d55f7101"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002200",
+          "row_sha256": "5f428076fa173e50f46d62412f8f485a0cde99250a09314cce02c265a0a695db",
+          "body_sha256": "f2641cba81fc2a176f514c4a7699fcc212962b7043bbedb5001b62a3d412703f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002210",
+          "row_sha256": "ba20249fa6d199fad7ea3bc9969bd2819d982a0cddffdb2469e189da97fa435c",
+          "body_sha256": "12adf5f72d0b87ca75e022399bced9a712fc0ee2e9f33af3c58e87020b583c5a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002220",
+          "row_sha256": "c71bcb25da8fe7cb60be0b4979b3d8c27a0c00d65e8fdcc6d07e5aa7dc8cab2b",
+          "body_sha256": "fe27d337a6e75fd87b0ae0a0ccf042f26ac649fc31acc9b2345f3bf56308b8ac"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002230",
+          "row_sha256": "5a45991181459233e8e5fd235743dd8521b9f259d10f79dfe2de6e3bdd3373a5",
+          "body_sha256": "e4dba672fb17d96e1acd8c2d0953a48789a1d261e97075d934c095a914aa5963"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002231",
+          "row_sha256": "ad467ba92b59af00e2afcc95a1dc4548626bfed6f474eb8ea324c62990b18f31",
+          "body_sha256": "d9965564583be3367db9ff2cc5e25b96dd9d3cdf5dc370c9dc06c16b9527457f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002240",
+          "row_sha256": "7df9583debea99317b1455b6d15811ed0235ce809e13145d6536c1c258016de0",
+          "body_sha256": "0a97dc7b08de77649993af8d508ba230ebf4729335f163e4daf47822a4527943"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002250",
+          "row_sha256": "d526a030855c95ca260a792ed6fbd4c3b86fd7c40af3309734a6f735a2bb041b",
+          "body_sha256": "4b6e62846d42136d87d08fd42a0fdd72ef001a9baa8e8d3ea5df7101d0b5c879"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002260",
+          "row_sha256": "e7b1ea74aac10aa34d64de3821ba0a66972efdc44cbd82cf50676a47cbf4651a",
+          "body_sha256": "77f79bfab6ad8cbb127ecc8578e38d3c6a6437942957ca89b6906bb037dfc823"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002270",
+          "row_sha256": "f6a7c43f48b901b5cafe414bd053d55dee23b7f781549db19a80bdc8ebc552c3",
+          "body_sha256": "c4b1466352d0e67ecc8880f197eef30cfd59ccf8028c5c847550f37a40aa7d70"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002280",
+          "row_sha256": "4648c42cbfb7735e400541a6f749426d07d0b882c7c943d80360cd71e98846aa",
+          "body_sha256": "77b2f28be86fb74b4a04fd43db5deea1fc43a32afe64876399aa1f1d65f6b691"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-050002290",
+          "row_sha256": "bbb3cdcddf911311ff08977241f9e4e8d0bce9036ebc757184dc178a4bd04b08",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060",
+          "row_sha256": "eb485c66a76d525b34c87d8244251886bf757a7b7ba7c2d1a6a319878a8ff87f",
+          "body_sha256": "4545934847c634a7145770e29dde89343dbf0aa85536c20f861d385db89c0ef5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002300",
+          "row_sha256": "a7fbff57c3836a442fd66dec1648277829b6f4f1fbe4554fbe9c07132d902c7f",
+          "body_sha256": "c2b4ae0f12e07ed5cbfefe68f0cc78af2aea44d8dd87965691f08d864c7dd06c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002310",
+          "row_sha256": "63b8e58e846c0ff9cbe88d8721c442a53a4d936e5055af6e3cab145e274b7c7e",
+          "body_sha256": "fc824f09b358b152c9b0b2a908294f2c41be1c8feb0983840f31dc509dc27e3d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002320",
+          "row_sha256": "77cf9aa1e667a9c7604bf9e4881f4b5310a37fb73e84673951d4098b3359b3a5",
+          "body_sha256": "ad7e3c56f4c766ec39448800f90256ccc1fad6378eb8733440cae888b91763a4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002330",
+          "row_sha256": "bc734ba2b40ff5edba978f45e0752051200b5030c86c28fb09c99201a756ab98",
+          "body_sha256": "3649ef18144aca86b7646a54dd5ffeb1885a5151b1217c00935f77f8361555d5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002330010",
+          "row_sha256": "b46951984f9ac7484927e61084dc3a90038919b2dffefabd788d35a63cf5412a",
+          "body_sha256": "ef5861a5d8f95905729d73ab733b92d59f22499d0be2d3ac43d1616b42bd68a1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002330020",
+          "row_sha256": "73c117365fea24b35bce4c7c761c566498f45bbfebcb5ab3bf5dd5f4d39b5128",
+          "body_sha256": "70d4682b902d56e257c9562ccdbb0758435de13e044f630c6b520bdc839c2656"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002340",
+          "row_sha256": "cb23e994b717de7c31b7e61625ad114710ee8b26d558e5494f6dd4206bb9b51b",
+          "body_sha256": "8f9c541e129ea3de93ded10a5d89ed713ab0d5f491d9d4a681d1d0a5725329f4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002350",
+          "row_sha256": "e39d96cdff0037853f516a33bc9b3a9b48c985a127b5292c7791aa77f8320c10",
+          "body_sha256": "a3ce570f518dc883f7fe101a7990c8e74d8531aabf92e36a61797c31b04032cc"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002360",
+          "row_sha256": "1e07c98c8290a66d43f2e84c4fbaf6034a2aef37607135ff1441b7b3f27e8742",
+          "body_sha256": "8e087eb5518450dfec2ce6ccc8855cee58f31a61acb84ad6839900e005442555"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-060002370",
+          "row_sha256": "3f68360118878dfb8c161cad9ad5bff62c79bbd56509588982f5d74ed64232bf",
+          "body_sha256": "18ae39102e8a30e0d7318f90dd18a6ab788b5574793fa889464f872b8bc66ba5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070",
+          "row_sha256": "6a3fea8a4d193e89979b934cf47a3d3e3dd81718fdded743d83ad58a811869a2",
+          "body_sha256": "5e70233729361e158401530436bbb0345e1f6cc7438f4877d831d146d722ac57"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002380",
+          "row_sha256": "6b125564d5c4a9bfb857f96b74312a48e29bf07ba1dfd28f137be0fa3f6c862f",
+          "body_sha256": "0b32350cd2f7f2d6af1615622835179a8ae50fede637abaa11612aa9e7d13155"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002390",
+          "row_sha256": "fe8723174ddfa697f8f5522a135d2e928fade1303a4f8a9c3fcfc6b4a7f73f75",
+          "body_sha256": "b19950e8858abf9b4a77e80bfedea4473f2e9e3f748922ff096787f43bbc0914"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002400",
+          "row_sha256": "46132cc3e81610e7912f332fee4dface1168be58ae2308c925c2419a58b54dc5",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002410",
+          "row_sha256": "a92459240b18908caafad968305840567e496ea6bca60e31c50155652ca1162e",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002420",
+          "row_sha256": "cb6600fc100e6a69b8863d1006d2275f7e49dc239cc717bfc118824ebbb731df",
+          "body_sha256": "6c51411c52c3945a22a553e490dd9483ca4b1c9b722450944715aa527fe039d9"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002430",
+          "row_sha256": "9735f4eab5fa3aadd56a693451d97b7d0c86d288eec1e8287fe6599cf74416ac",
+          "body_sha256": "fca560526a75e0b2f5f0f24a9056fcd99d627c0d3af4e82b4bbb860fc11cdb48"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002440",
+          "row_sha256": "c908f55ca6149d049d1ea99736d554d236f4315b43e19c106e88f5e020b6f03d",
+          "body_sha256": "d0de1b71a18eb554c817bf1ae3a26cf74be58dfc2857be6536fcc22cc96cf0fb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002450",
+          "row_sha256": "81adcca19799502509a22f58fcd0dd9276fc01beb3fe4e34b4b977bb2fef20a5",
+          "body_sha256": "39f3e4c21011b290b6ac6855de96dc1779fbde6cb10f741d5c86c5e95d085c6c"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002460",
+          "row_sha256": "9ebda3a4a16429686fe918f4c6d76f896db281b73a3e86d2b46581798977597e",
+          "body_sha256": "e112115e972d9398244cba61e5501b3fc38c7e47ab72c1f99792b137ea23967d"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002461",
+          "row_sha256": "c0353855db7f09c17c0ba1739ceb8c0872b1f4a9c181de6a50a1b961ea286aa6",
+          "body_sha256": "d4ba2609cc1e230d5db06917cd43c946503e95f860aec63302b8baca2ae4ff5f"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002462",
+          "row_sha256": "1a0a6cc75bd5b3d2a78ad0b82fba121da232bdb9334eac32cd6342fb0a600ec0",
+          "body_sha256": "a679f022ee1ba3c4745510b091da84ea9381cc1c69910d1a76920979c2430886"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002463",
+          "row_sha256": "c05b58e16bf77bff5fd035adf4137baee1ed905be0e38d591ae91c4afa5aab4d",
+          "body_sha256": "d313fe73a00e2fdcf0d42889ac45c27779ec5509f8ef5332648aa20547268145"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002464",
+          "row_sha256": "aa32f6b86abfdd07196ae989b45d20ad39302f9adc496834304ea2aa50960349",
+          "body_sha256": "a238001470f7858d8e219bef3628df6f3f718a3b6914c0fedd3b0ec4a08465be"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002465",
+          "row_sha256": "4d3dd79e1386e18c25d3bfc423379bbafa0c17e7fef18b132c1215a7c48cd8a6",
+          "body_sha256": "838bbfc3961e0e3fa6d9f1cb9cefa31600fa74ae21699044d74d861807e06377"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002470",
+          "row_sha256": "7652b0d879c20821d7f49b69d8731a6fc2595509ac4735a0eb90ac72a6883886",
+          "body_sha256": "48cd61428d7fa1b6729eaf13774e74e4451067cc534de62dc7b2bd77902a9a35"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002471",
+          "row_sha256": "ae4dadf721196b2e666656ae1354329632ec860506de2c97f865d84940c98a71",
+          "body_sha256": "479f149a3e7b970502f72e62fe4df0799692e610c100cd1b393dfd19920ce541"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002480",
+          "row_sha256": "5bdb20d11d407eafa13c9c6cf272944f1e1f7f31345d7f29bc8fade68d8b9de9",
+          "body_sha256": "4988236273e5b2c6db045a0285607839479bd0b101d951fefa2ddfe86a484eb5"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002480010",
+          "row_sha256": "e584b659c8610e06da7fb9088d7031f4618dffd03556e3c491495acf19686660",
+          "body_sha256": "ef5861a5d8f95905729d73ab733b92d59f22499d0be2d3ac43d1616b42bd68a1"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002480020",
+          "row_sha256": "f2a7454d0274ca3e6a40e3aa71160a80239fac2148f741b5c1558eadf428feeb",
+          "body_sha256": "c612772dfe896831a73a9f60efa9b7a18686fe70dd6e07f9cf11e8b087e8e56a"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002480030",
+          "row_sha256": "bfaeb7bbfaf6dbd8329855b60336643b7bbda27065ac239899d3ad6d5d53a3d4",
+          "body_sha256": "5a362367ebce846187783e1f1c0872892e7d11f876ee1d086a8e1b07b995f0ee"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002480040",
+          "row_sha256": "a4d9a2cba872bc2afd9238b13ed114d3db3e5939fad18ed08bde14f4286f5d93",
+          "body_sha256": "2d4ba11e44fa0bd9b79d1b4df63901c9e91ce4ef3a41ae8a3d8f09be207e2dc2"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002490",
+          "row_sha256": "7cf760820c05d660183bfb814d28a68ab697198c520e5d99763cf3b38f4066e2",
+          "body_sha256": "6b388260261b67c5bbe2a6e4c485e75e2b627c619180350327f69a05d7da58f3"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002500",
+          "row_sha256": "eb35998989260e0f3d832b1b84ca006e768a2a32df9d3478f9059dd91f1cb73a",
+          "body_sha256": "94e2c883ebc5f6da5d2d3765be2edea58e39b2133cbb0720da0aa36cf666aceb"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002510",
+          "row_sha256": "1ed7dce2226ad173d0d65c874b04998faf952f8e4fa610c12ec800409915704a",
+          "body_sha256": "68ee639d2e8f800e716e341ef409efc4b1c35c9d70ea114a72931faaba591ed4"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002520",
+          "row_sha256": "d17a09559374b78d54ad74b7b4086646853c20c5a3ea6b09b3e235145af3eb53",
+          "body_sha256": "cc2aaf0f0c917776d1b4ecb0d0f918181cef39cb6605533823abe7604b9c13da"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/gl-070002530",
+          "row_sha256": "2c09149ee643b79b02446fd0c7317199ff43d2aec61204b126108b084c7c5df9",
+          "body_sha256": "3f1f5d1fd989580b60e6d78238838a3e374deaa9559fc1812c349d4743e41ab8"
+        },
+        {
+          "citation_path": "de/statute/bgbeg/xxxx-8-und-9",
+          "row_sha256": "0fa43f79c6a206f5b6e412134b92f19540ddad1509a90147569ce1538e2e52ac",
+          "body_sha256": "766cab28eb7582f35619b67a1f50e763c5303a04d6c557b60a0a52cd7ae416a0"
+        },
+        {
+          "citation_path": "de/statute/sbgg",
+          "row_sha256": "2ed0bdead216d799deec6e567e2f37947fc89a540b3c1152de152c5e3dbbcee2",
+          "body_sha256": "d4730b6289fc6d52b153f2c51b1a60ca3eb9e2e97875f409ba74dc07c4ee7741"
+        },
+        {
+          "citation_path": "de/statute/sbgg/1",
+          "row_sha256": "e72a174cea1beb2b756359481afadf3e7341add651573ae2fc1c1c172822ac85",
+          "body_sha256": "38a2d5e6a0240c419298c8703d0c45fbdc2dc42442178451d4b125c75da7780e"
+        },
+        {
+          "citation_path": "de/statute/sbgg/10",
+          "row_sha256": "87259b24d1f387bd26e10eba51f4c2abc6b8519140f449fb726567709ec9a6bb",
+          "body_sha256": "9495636ab84a01a264199cae9d3003620f9f6a505a3f691053f5cc27f42eeb1f"
+        },
+        {
+          "citation_path": "de/statute/sbgg/11",
+          "row_sha256": "d0054725db8d2bc090ed863abd36fb36718b65389946603c95f1052cd41e0e67",
+          "body_sha256": "5e20623ab50c0fa8b385dc7d63fcbc851aca66d39490e86a298ced4e7668677c"
+        },
+        {
+          "citation_path": "de/statute/sbgg/12",
+          "row_sha256": "0262b7e270c49414d74e7b878b4f70ce17f9e1e1d75b8a2e38af033c63ca0e59",
+          "body_sha256": "e8fa898441f3d1b0d042663e33448f5f7239ae96b8ef14ed29d828d3c299ea36"
+        },
+        {
+          "citation_path": "de/statute/sbgg/13",
+          "row_sha256": "0520bd3949544cee2fac46c0455ae603d1b71f66c77eaeb0091c4eef080595a4",
+          "body_sha256": "c1c74dafba5e833e8db08d9079f7eed118d9abee0ac607e4a38e7e0c5e068f02"
+        },
+        {
+          "citation_path": "de/statute/sbgg/14",
+          "row_sha256": "a1c6275e27b27f505c0b5769ec99d38d4593de61d39c04312432bb5a473ab9a6",
+          "body_sha256": "424111393ea75ad3dd826da758321516fd708daf0670713aab6604305affa521"
+        },
+        {
+          "citation_path": "de/statute/sbgg/15",
+          "row_sha256": "5d9d5a25885db8358992bd3c3a487492fcc517845f097b64cb47381d20765166",
+          "body_sha256": "a2ef674ba6914e384a406849b34f3145d1747f1068756a302fc9383675a20a7c"
+        },
+        {
+          "citation_path": "de/statute/sbgg/2",
+          "row_sha256": "a1bb782a98fce3f37d69ddb2029fcb93e57a863c7e9965845680084f1e1bcc1f",
+          "body_sha256": "62769b7176c0eed68c0d3e6a77581c427d778e9a12ea9d1df6c6da5de3b7363f"
+        },
+        {
+          "citation_path": "de/statute/sbgg/3",
+          "row_sha256": "fdcfe54a5b377017f564ecf74fbd2b80e25416ac825c8d216b33c453a51500d8",
+          "body_sha256": "4784ff8ebfd9d02f44f1c655340c2a72a322cbed1e82360cc18a02fe6c5d9f33"
+        },
+        {
+          "citation_path": "de/statute/sbgg/4",
+          "row_sha256": "e75f34b5468331e42e5bc1a0bbd1ab9b1dcd52a10b44edfbdb0692cd8d2290c2",
+          "body_sha256": "c5152509114eb3dae05d3994470a7129f9899e1b97ad0704a71c21d556708881"
+        },
+        {
+          "citation_path": "de/statute/sbgg/5",
+          "row_sha256": "b9b558ad23059eb4544bdaa02c5b7bf13e76a8713cfd86b0aaf0558ae952b774",
+          "body_sha256": "13d8f8e27761da2430ea0017bab9284066cddd6e6c483f371b3916aaec5cdac4"
+        },
+        {
+          "citation_path": "de/statute/sbgg/6",
+          "row_sha256": "c40ab673d6a8f1f060c17bbacd5a1bf467f976b00f85935b0bde176bf0a14983",
+          "body_sha256": "4dce4d031fdf0ec48b84a3a3714cb1239e76cf4103cb281ebbc005440e43a88b"
+        },
+        {
+          "citation_path": "de/statute/sbgg/7",
+          "row_sha256": "578b0a2782843556f8598ed9f7ff0c9093ef8fca77c4d10c58d070f39cd04c29",
+          "body_sha256": "4ba2991191f8fd27e5c4b5def17b4ac76f5fac1f9e8871c266cd62b4c91843c1"
+        },
+        {
+          "citation_path": "de/statute/sbgg/8",
+          "row_sha256": "de9a77eb1e96e8ebe098b0cb6badfa7ced485b7d3549b5423359068a32cc9b65",
+          "body_sha256": "d7ddccf9ad9e106813f2884fe3ec2b3cdae52c217b1edaa24f53fcce2677eec2"
+        },
+        {
+          "citation_path": "de/statute/sbgg/9",
+          "row_sha256": "f2e29be9a1fc5a2eeb0ccf14abea01da81cf2ce74bf511b225760e0160dde416",
+          "body_sha256": "33cffba859095518f8d3e3609ab470a5f2ec793be2ecfe0cce009b7bd89eb075"
+        }
+      ]
+    }
+  ],
+  "visually_verified_kindrg_spans": [
+    {
+      "pdf_page": 1,
+      "printed_page": 2942,
+      "text": "Mutter eines Kindes ist die Frau, die es geboren hat."
+    },
+    {
+      "pdf_page": 26,
+      "printed_page": 2967,
+      "text": "Dieses Gesetz tritt am 1. Juli 1998 in Kraft."
+    }
+  ],
+  "ocr_limitations": "German OCR retains character recognition errors, including section signs read as 8. The two quoted operative spans were visually matched; no whole-document exact-transcription claim. Use the preserved PDF to adjudicate any other span before encoding."
+}

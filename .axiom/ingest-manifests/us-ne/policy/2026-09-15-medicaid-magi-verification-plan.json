@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "f2e8f83cfccc8730320de58dbd230bed421eff3681d61b61b8a0e3763daf3124"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "13c681b35f8949aa9433a7373235b16a795c60ba31a1b0c957c3e5c12dd3c281"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "52de013e31c2b8e5e921984cdea62278b4610a46d90262c279b9619b4a069ea4"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-ne-cms-magi-verification-plan-nebraska-verification-plan-template-final.pdf",
+      "sha256": "44142cf556a045c58b2a8e6f4b2ca2b159514344f95e6f9bb8464e3d6c2ea99c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:38.277698+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dbKzzoXP27gFKDqL+r9/ydWzJ6LwuSkgFsxoxKav9MkCyYF+LgSnrK+jN7nLPR2//mBDwUctBu9IUFQ5MAvODg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

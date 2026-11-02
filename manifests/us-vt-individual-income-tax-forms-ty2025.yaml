@@ -1,0 +1,63 @@
+version: '2026-09-10'
+documents:
+- source_id: us-vt-vdt-in-111-ty2025
+  jurisdiction: us-vt
+  document_class: form
+  title: Form IN-111, Vermont Income Tax Return (2025)
+  source_url: https://tax.vermont.gov/sites/tax/files/documents/IN-111-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-vt/form/vdt/ty2025/in-111
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department of Taxes
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-vt/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.vermont.gov/personal-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://tax.vermont.gov/personal-income-tax
+- source_id: us-vt-vdt-in-111-instructions-ty2025
+  jurisdiction: us-vt
+  document_class: form
+  title: Form IN-111 Instructions, Vermont Income Tax Return (2025)
+  source_url: https://tax.vermont.gov/sites/tax/files/documents/IN-111-Instr-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-vt/form/vdt/ty2025/in-111-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department of Taxes
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-vt/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.vermont.gov/personal-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://tax.vermont.gov/personal-income-tax
+- source_id: us-vt-vdt-tax-rate-schedules-ty2025
+  jurisdiction: us-vt
+  document_class: form
+  title: Tax Year 2025 Vermont Tax Rate Schedules
+  source_url: https://tax.vermont.gov/sites/tax/files/documents/TaxRateSched-2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-vt/form/vdt/ty2025/tax-rate-schedules
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department of Taxes
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-vt/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.vermont.gov/personal-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://tax.vermont.gov/personal-income-tax

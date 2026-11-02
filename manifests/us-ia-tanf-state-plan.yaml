@@ -1,0 +1,52 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ia-tanf-state-plan-fy2026-2028
+  jurisdiction: us-ia
+  document_class: policy
+  title: Iowa TANF State Plan FFY 2026-2028
+  source_url: https://hhs.iowa.gov/media/17445/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ia/policy/acf/tanf-plan/fy2026-2028
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services (Family Investment Program)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Iowa's TANF State Plan, effective October 1, 2025 - September 30, 2028, with its attachments volume
+    publisher_index_url: https://hhs.iowa.gov/assistance-programs/cash-assistance/tanf
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ia/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://hhs.iowa.gov/assistance-programs/cash-assistance/tanf
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page
+- source_id: us-ia-tanf-state-plan-fy2026-2028-attachments
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa TANF State Plan FFY 2026-2028: Attachments'
+  source_url: https://hhs.iowa.gov/media/17446/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ia/policy/acf/tanf-plan/fy2026-2028-attachments
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services (Family Investment Program)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Iowa's TANF State Plan, effective October 1, 2025 - September 30, 2028, with its attachments volume
+    publisher_index_url: https://hhs.iowa.gov/assistance-programs/cash-assistance/tanf
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ia/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://hhs.iowa.gov/assistance-programs/cash-assistance/tanf
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

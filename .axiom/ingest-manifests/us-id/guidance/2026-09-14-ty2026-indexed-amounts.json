@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "526df30f300aebf194a21c12ca10806e3307375a73c9fc1228f5defbdc70e72c"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "4ae84c00980f0f8201b185875aba4021de41afbde2c8a5c9fccb639fd118a7a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "c09060b3537a34c85b05ee888b3ae608b1401ca01b4d93e5d665bca8a80e0c86"
+    },
+    {
+      "path": "data/corpus/sources/us-id/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-id-istc-epb00744-withholding-percentage-table-ty2026.pdf",
+      "sha256": "c52b383684af433b12eb3b712fbb0de6b61326b5061562440b43464b332cb3d8"
+    },
+    {
+      "path": "data/corpus/sources/us-id/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-id-istc-individual-income-tax-rate-schedule-ty2025.html",
+      "sha256": "553f081598aa8d389715193bb641d0348df86ff5d25d910483c550735da0e9b6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-id-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:29:51.000845+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "12LewGga6neFF5QoJYVuCtm+SfA5bWIA+sMWZLkOVBcdh8NaNp/i8xoh6njdCEbB16UCI71g06vBEbhot7wBCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

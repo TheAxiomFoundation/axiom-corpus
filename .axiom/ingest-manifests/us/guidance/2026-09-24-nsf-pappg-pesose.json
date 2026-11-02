@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-24-nsf-pappg-pesose.json",
+      "sha256": "6f0710054d12776c338b9069dce950bedb1b6aed1b1c7f704e5e6abaa4e406d0"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-24-nsf-pappg-pesose.json",
+      "sha256": "5b0792f374ea5804b637eea53d36c9d44a1277d5234ea799470454265ff82f6e"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-24-nsf-pappg-pesose.jsonl",
+      "sha256": "a9e5ea999eac7470d4b68519c50615fb26cf3ebfe8343f46a10dd695fcdfd6d1"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-24-nsf-pappg-pesose/official-documents/nsf-pappg-24-1-chapter-ii.html",
+      "sha256": "9d24fc31024d6b1112940e06fe8acd3c3a3bbc54d4ca37b300d21add90e22a24"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-24-nsf-pappg-pesose/official-documents/nsf-pappg-24-1-chapter-iii.html",
+      "sha256": "8d08e033c1bb99cdb35584f0c4a209f1c893da84cef8eed6565234310ea0a33d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-24-nsf-pappg-pesose/official-documents/nsf-pesose-26-506.html",
+      "sha256": "f5019cb7507a63f06e2b6b752f374f92f90fd993b9c53c86562f82f81cf1e26f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3956d183e8b73bbeeab59d79985692bdc5b6869f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-24-nsf-pappg-pesose --manifest manifests/us-nsf-pappg-pesose-2026.yaml (run note: docs/ingest-runs/2026-09-24-nsf-pappg-pesose.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 126,
+    "missing_count": 0,
+    "provision_count": 126,
+    "source_count": 126
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-24T16:29:44.519896+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5pYIVAtUsr9s1817QPGBEo61gHpeTxurNECtnrERhaKd8FSdMfQ2qWM5t1Cgb0RP0c4De+Lq56BxxaaF29IJAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-24-nsf-pappg-pesose"
+}

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import hashlib
+import re
+import threading
+import time
 from base64 import b64encode
-from io import BytesIO
+from io import BytesIO, StringIO
 from pathlib import Path
 
 import pytest
@@ -35,6 +38,9 @@ class FakeR2:
     def __init__(self, objects: dict[str, bytes] | None = None):
         self.objects = dict(objects or {})
         self.uploads: list[str] = []
+        # R2's conditional write is atomic; the fake must be too when the
+        # staging pool drives it from several threads.
+        self._lock = threading.Lock()
 
     def get_object(self, **kwargs):
         assert kwargs["Bucket"] == "axiom-corpus"
@@ -44,17 +50,19 @@ class FakeR2:
         assert kwargs["Bucket"] == "axiom-corpus"
         assert kwargs["IfNoneMatch"] == "*"
         key = kwargs["Key"]
-        if key in self.objects:
-            raise ClientError(
-                {
-                    "Error": {"Code": "PreconditionFailed"},
-                    "ResponseMetadata": {"HTTPStatusCode": 412},
-                },
-                "PutObject",
-            )
         body = kwargs["Body"]
-        self.objects[key] = body.read() if hasattr(body, "read") else bytes(body)
-        self.uploads.append(key)
+        payload = body.read() if hasattr(body, "read") else bytes(body)
+        with self._lock:
+            if key in self.objects:
+                raise ClientError(
+                    {
+                        "Error": {"Code": "PreconditionFailed"},
+                        "ResponseMetadata": {"HTTPStatusCode": 412},
+                    },
+                    "PutObject",
+                )
+            self.objects[key] = payload
+            self.uploads.append(key)
 
 
 def _config() -> R2Config:
@@ -589,3 +597,205 @@ def test_r2_read_helpers_fail_closed() -> None:
 
     with pytest.raises(ReleaseManifestError, match="sha256 mismatch"):
         _verify_bytes(b"abc", sha256="0" * 64, size=3, label="same-size")
+
+
+_TIMESTAMP_PREFIX = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z ")
+
+
+def _many_artifact_content(tmp_path: Path, extra_sources: int = 12) -> dict:
+    """The single-scope fixture plus enough source files to exercise a pool."""
+    content = _content(tmp_path)
+    source_dir = tmp_path / "data" / "corpus" / "sources" / "nz" / "statute" / "v1"
+    for index in range(extra_sources):
+        path = source_dir / f"part-{index:03d}.html"
+        body = f"<p>Official part {index}.</p>".encode()
+        path.write_bytes(body)
+        digest = hashlib.sha256(body).hexdigest()
+        content["artifacts"].append(
+            {
+                "artifact_class": "sources",
+                "path": path.relative_to(tmp_path).as_posix(),
+                "sha256": digest,
+                "bytes": len(body),
+                "r2_bucket": "axiom-corpus",
+                "r2_key": content_addressed_r2_key(digest),
+            }
+        )
+    content["artifacts"].sort(key=lambda entry: entry["path"])
+    return content
+
+
+def test_stage_artifacts_parallel_workers_produce_identical_signed_evidence(
+    tmp_path: Path,
+) -> None:
+    content = _many_artifact_content(tmp_path)
+    expected_keys = tuple(entry["r2_key"] for entry in content["artifacts"])
+    # Half the objects already exist so both the upload and the reuse branch
+    # run under the pool. The fixture's inventory and coverage files share
+    # bytes, so one content-addressed key is legitimately uploaded once and
+    # reused once.
+    preexisting = {
+        entry["r2_key"]: (tmp_path / entry["path"]).read_bytes()
+        for entry in content["artifacts"][::2]
+    }
+    expected_uploads = len(set(expected_keys) - set(preexisting))
+
+    serial_client = FakeR2(preexisting)
+    serial = stage_release_artifacts(
+        tmp_path, release_content=content, config=_config(), client=serial_client, workers=1
+    )
+    parallel_client = FakeR2(preexisting)
+    parallel = stage_release_artifacts(
+        tmp_path, release_content=content, config=_config(), client=parallel_client, workers=4
+    )
+
+    # The report is signed content: order and counts must not depend on the
+    # worker count or on completion order.
+    assert serial == parallel
+    assert parallel.verified_keys == expected_keys
+    assert parallel.artifact_count == len(content["artifacts"])
+    assert parallel.uploaded_count == expected_uploads
+    assert parallel.reused_count == len(content["artifacts"]) - expected_uploads
+    assert parallel_client.objects == serial_client.objects
+    assert sorted(parallel_client.uploads) == sorted(serial_client.uploads)
+
+
+def test_stage_artifacts_parallel_actually_runs_concurrently(tmp_path: Path) -> None:
+    content = _many_artifact_content(tmp_path)
+    seen = {"max_in_flight": 0, "in_flight": 0}
+    lock = threading.Lock()
+
+    class SlowR2(FakeR2):
+        def get_object(self, **kwargs):
+            with lock:
+                seen["in_flight"] += 1
+                seen["max_in_flight"] = max(seen["max_in_flight"], seen["in_flight"])
+            try:
+                # Long enough that a serial loop can never overlap two reads.
+                time.sleep(0.02)
+                return super().get_object(**kwargs)
+            finally:
+                with lock:
+                    seen["in_flight"] -= 1
+
+    stage_release_artifacts(
+        tmp_path, release_content=content, config=_config(), client=SlowR2(), workers=4
+    )
+    assert seen["max_in_flight"] >= 2
+
+    seen.update(max_in_flight=0, in_flight=0)
+    stage_release_artifacts(
+        tmp_path, release_content=content, config=_config(), client=SlowR2(), workers=1
+    )
+    assert seen["max_in_flight"] == 1
+
+
+def test_stage_artifacts_parallel_fails_closed_on_corrupt_object(tmp_path: Path) -> None:
+    content = _many_artifact_content(tmp_path)
+    corrupt = content["artifacts"][7]
+    # Same length as the signed artifact so only the hash check can catch it.
+    corrupt_bytes = b"x" * corrupt["bytes"]
+    client = FakeR2({corrupt["r2_key"]: corrupt_bytes})
+
+    with pytest.raises(ReleaseManifestError, match="sha256 mismatch"):
+        stage_release_artifacts(
+            tmp_path, release_content=content, config=_config(), client=client, workers=4
+        )
+
+    # Conditional writes never replace the corrupt object, and every object the
+    # pool did upload is byte-exact.
+    assert client.objects[corrupt["r2_key"]] == corrupt_bytes
+    assert corrupt["r2_key"] not in client.uploads
+    by_key = {entry["r2_key"]: entry for entry in content["artifacts"]}
+    for key in client.uploads:
+        assert hashlib.sha256(client.objects[key]).hexdigest() == by_key[key]["sha256"]
+
+
+def test_stage_artifacts_parallel_requires_readback_for_every_object(tmp_path: Path) -> None:
+    content = _many_artifact_content(tmp_path)
+    dropped = content["artifacts"][3]["r2_key"]
+
+    class DroppingR2(FakeR2):
+        def put_object(self, **kwargs):
+            if kwargs["Key"] == dropped:
+                self.uploads.append(dropped)
+                return
+            super().put_object(**kwargs)
+
+    with pytest.raises(ReleaseManifestError, match="readback is missing after staging"):
+        stage_release_artifacts(
+            tmp_path, release_content=content, config=_config(), client=DroppingR2(), workers=4
+        )
+
+
+def test_stage_artifacts_validates_every_entry_before_any_request(tmp_path: Path) -> None:
+    content = _many_artifact_content(tmp_path)
+    content["artifacts"][-1]["r2_bucket"] = "other-bucket"
+
+    class CountingR2(FakeR2):
+        calls = 0
+
+        def get_object(self, **kwargs):
+            CountingR2.calls += 1
+            return super().get_object(**kwargs)
+
+    for workers in (1, 4):
+        with pytest.raises(ReleaseManifestError, match="wrong R2 bucket"):
+            stage_release_artifacts(
+                tmp_path,
+                release_content=content,
+                config=_config(),
+                client=CountingR2(),
+                workers=workers,
+            )
+    assert CountingR2.calls == 0
+
+
+def test_stage_artifacts_rejects_nonpositive_workers(tmp_path: Path) -> None:
+    content = _content(tmp_path)
+    with pytest.raises(ValueError, match="workers must be positive"):
+        stage_release_artifacts(
+            tmp_path, release_content=content, config=_config(), client=FakeR2(), workers=0
+        )
+
+
+def test_stage_artifacts_emits_timestamped_flushed_progress(tmp_path: Path) -> None:
+    content = _many_artifact_content(tmp_path)
+    total_bytes = sum(entry["bytes"] for entry in content["artifacts"])
+    unique_keys = len({entry["r2_key"] for entry in content["artifacts"]})
+    duplicates = len(content["artifacts"]) - unique_keys
+
+    class FlushCountingStream(StringIO):
+        flushes = 0
+
+        def flush(self) -> None:
+            FlushCountingStream.flushes += 1
+            super().flush()
+
+    stream = FlushCountingStream()
+    stage_release_artifacts(
+        tmp_path,
+        release_content=content,
+        config=_config(),
+        client=FakeR2(),
+        workers=3,
+        progress_stream=stream,
+    )
+
+    lines = stream.getvalue().splitlines()
+    assert all(_TIMESTAMP_PREFIX.match(line) for line in lines), lines
+    assert lines[0].endswith(
+        f"r2 staging start: artifacts={len(content['artifacts'])} bytes={total_bytes} workers=3"
+    )
+    assert f"r2 staging end: verified={len(content['artifacts'])} bytes={total_bytes}" in lines[-1]
+    assert f"uploaded={unique_keys} reused={duplicates} elapsed=" in lines[-1]
+    assert FlushCountingStream.flushes >= len(lines)
+
+
+def test_stage_artifacts_is_silent_without_progress_stream(tmp_path: Path, capsys) -> None:
+    stage_release_artifacts(
+        tmp_path, release_content=_content(tmp_path), config=_config(), client=FakeR2(), workers=2
+    )
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert captured.err == ""

@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-regulation-me
+documents:
+- source_id: us-me-regulation-dhhs-ofi-chapter-332-appendices-charts
+  jurisdiction: us-me
+  document_class: regulation
+  title: 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, appendices and charts
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/144c332-appendices-charts.docx
+  source_format: docx
+  source_as_of: '2026-10-06'
+  expression_date: '2025-02-28'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/appendices-charts
+  metadata:
+    primary_source: true
+    source_authority: Maine Secretary of State (agency rules, 10-144 Chapter 332)
+    document_subtype: administrative_rule_appendix
+    program: SSI state supplement; Medicaid
+    expression_date_note: publisher Last-Modified of the served file (2025-02-28)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 136)
+    wave6_rows:
+    - 136
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

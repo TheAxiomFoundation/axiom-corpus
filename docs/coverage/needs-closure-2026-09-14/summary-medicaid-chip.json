@@ -1,0 +1,1014 @@
+{
+ "tanf": {
+  "rows": 1781,
+  "elements": 181,
+  "state_elements": 32,
+  "federal_elements": 149,
+  "status_counts": {
+   "EXTRACTABLE": 300,
+   "REVIEW": 329,
+   "PRESENT": 1140,
+   "OUTREACH": 12
+  },
+  "cfr_sections": 128,
+  "seconds": 98.9,
+  "per_jurisdiction": {
+   "us-ak": {
+    "PRESENT": 25,
+    "REVIEW": 7
+   },
+   "us-al": {
+    "PRESENT": 22,
+    "REVIEW": 10
+   },
+   "us-ar": {
+    "PRESENT": 21,
+    "REVIEW": 11
+   },
+   "us-az": {
+    "PRESENT": 18,
+    "EXTRACTABLE": 13,
+    "REVIEW": 1
+   },
+   "us-ca": {
+    "PRESENT": 27,
+    "REVIEW": 5
+   },
+   "us-co": {
+    "PRESENT": 25,
+    "REVIEW": 7
+   },
+   "us-ct": {
+    "EXTRACTABLE": 28,
+    "PRESENT": 3,
+    "REVIEW": 1
+   },
+   "us-dc": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-de": {
+    "PRESENT": 14,
+    "EXTRACTABLE": 17,
+    "REVIEW": 1
+   },
+   "us-fl": {
+    "PRESENT": 24,
+    "REVIEW": 8
+   },
+   "us-ga": {
+    "PRESENT": 11,
+    "EXTRACTABLE": 20,
+    "REVIEW": 1
+   },
+   "us-hi": {
+    "EXTRACTABLE": 19,
+    "REVIEW": 13
+   },
+   "us-ia": {
+    "PRESENT": 29,
+    "REVIEW": 3
+   },
+   "us-id": {
+    "PRESENT": 7,
+    "REVIEW": 25
+   },
+   "us-il": {
+    "PRESENT": 27,
+    "REVIEW": 5
+   },
+   "us-in": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-ks": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-ky": {
+    "PRESENT": 25,
+    "REVIEW": 7
+   },
+   "us-la": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-ma": {
+    "PRESENT": 25,
+    "REVIEW": 7
+   },
+   "us-md": {
+    "EXTRACTABLE": 16,
+    "REVIEW": 14,
+    "PRESENT": 2
+   },
+   "us-me": {
+    "EXTRACTABLE": 25,
+    "PRESENT": 3,
+    "REVIEW": 4
+   },
+   "us-mi": {
+    "REVIEW": 8,
+    "PRESENT": 24
+   },
+   "us-mn": {
+    "PRESENT": 29,
+    "REVIEW": 3
+   },
+   "us-mo": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-ms": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-mt": {
+    "PRESENT": 28,
+    "REVIEW": 3,
+    "EXTRACTABLE": 1
+   },
+   "us-nc": {
+    "EXTRACTABLE": 13,
+    "REVIEW": 19
+   },
+   "us-nd": {
+    "PRESENT": 29,
+    "REVIEW": 3
+   },
+   "us-ne": {
+    "PRESENT": 25,
+    "REVIEW": 7
+   },
+   "us-nh": {
+    "PRESENT": 27,
+    "REVIEW": 5
+   },
+   "us-nj": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-nm": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-nv": {
+    "PRESENT": 31,
+    "REVIEW": 1
+   },
+   "us-ny": {
+    "PRESENT": 20,
+    "OUTREACH": 12
+   },
+   "us-oh": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-ok": {
+    "PRESENT": 27,
+    "REVIEW": 5
+   },
+   "us-or": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-pa": {
+    "PRESENT": 30,
+    "REVIEW": 2
+   },
+   "us-ri": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-sc": {
+    "PRESENT": 29,
+    "REVIEW": 3
+   },
+   "us-sd": {
+    "PRESENT": 17,
+    "REVIEW": 15
+   },
+   "us-tn": {
+    "PRESENT": 27,
+    "REVIEW": 5
+   },
+   "us-tx": {
+    "PRESENT": 20,
+    "REVIEW": 12
+   },
+   "us-ut": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-va": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-vt": {
+    "PRESENT": 23,
+    "REVIEW": 9
+   },
+   "us-wa": {
+    "PRESENT": 28,
+    "REVIEW": 4
+   },
+   "us-wi": {
+    "PRESENT": 23,
+    "REVIEW": 9
+   },
+   "us-wv": {
+    "PRESENT": 26,
+    "REVIEW": 6
+   },
+   "us-wy": {
+    "PRESENT": 19,
+    "REVIEW": 13
+   }
+  },
+  "element_present": {
+   "tanf-s01": 45,
+   "tanf-s03": 41,
+   "tanf-s04": 43,
+   "tanf-s05": 31,
+   "tanf-s06": 45,
+   "tanf-s07": 37,
+   "tanf-s08": 44,
+   "tanf-s09": 43,
+   "tanf-s10": 34,
+   "tanf-s11": 40,
+   "tanf-s12": 25,
+   "tanf-s13": 41,
+   "tanf-s14": 37,
+   "tanf-s15": 45,
+   "tanf-s17": 45,
+   "tanf-s19": 36,
+   "tanf-s20": 42,
+   "tanf-s21": 25,
+   "tanf-s23": 40,
+   "tanf-s24": 25,
+   "tanf-s25": 42,
+   "tanf-s26": 42,
+   "tanf-s27": 46,
+   "tanf-s30": 39,
+   "tanf-s31": 45,
+   "tanf-s16": 37,
+   "tanf-s28": 37,
+   "tanf-s29": 24,
+   "tanf-s32": 2,
+   "tanf-s22": 35,
+   "tanf-s18": 8,
+   "tanf-s02": 19
+  },
+  "element_gaps": {
+   "tanf-s32": {
+    "REVIEW": 48,
+    "EXTRACTABLE": 1
+   },
+   "tanf-s18": {
+    "REVIEW": 38,
+    "EXTRACTABLE": 4,
+    "OUTREACH": 1
+   },
+   "tanf-s02": {
+    "REVIEW": 25,
+    "EXTRACTABLE": 6,
+    "OUTREACH": 1
+   },
+   "tanf-s29": {
+    "REVIEW": 21,
+    "EXTRACTABLE": 6
+   },
+   "tanf-s12": {
+    "REVIEW": 20,
+    "EXTRACTABLE": 5,
+    "OUTREACH": 1
+   },
+   "tanf-s24": {
+    "REVIEW": 20,
+    "EXTRACTABLE": 6
+   },
+   "tanf-s21": {
+    "EXTRACTABLE": 3,
+    "REVIEW": 22,
+    "OUTREACH": 1
+   },
+   "tanf-s05": {
+    "REVIEW": 16,
+    "EXTRACTABLE": 4
+   },
+   "tanf-s10": {
+    "REVIEW": 14,
+    "EXTRACTABLE": 3
+   },
+   "tanf-s22": {
+    "REVIEW": 15,
+    "EXTRACTABLE": 1
+   },
+   "tanf-s19": {
+    "REVIEW": 8,
+    "EXTRACTABLE": 6,
+    "OUTREACH": 1
+   },
+   "tanf-s16": {
+    "REVIEW": 9,
+    "EXTRACTABLE": 5
+   },
+   "tanf-s28": {
+    "REVIEW": 7,
+    "EXTRACTABLE": 6,
+    "OUTREACH": 1
+   },
+   "tanf-s07": {
+    "REVIEW": 12,
+    "EXTRACTABLE": 1,
+    "OUTREACH": 1
+   },
+   "tanf-s14": {
+    "REVIEW": 6,
+    "EXTRACTABLE": 8
+   },
+   "tanf-s30": {
+    "EXTRACTABLE": 6,
+    "REVIEW": 5,
+    "OUTREACH": 1
+   },
+   "tanf-s11": {
+    "REVIEW": 8,
+    "EXTRACTABLE": 3
+   },
+   "tanf-s23": {
+    "EXTRACTABLE": 5,
+    "REVIEW": 5,
+    "OUTREACH": 1
+   },
+   "tanf-s13": {
+    "REVIEW": 4,
+    "EXTRACTABLE": 5,
+    "OUTREACH": 1
+   },
+   "tanf-s03": {
+    "EXTRACTABLE": 6,
+    "REVIEW": 4
+   },
+   "tanf-s20": {
+    "EXTRACTABLE": 6,
+    "REVIEW": 2,
+    "OUTREACH": 1
+   },
+   "tanf-s25": {
+    "EXTRACTABLE": 8,
+    "REVIEW": 1
+   },
+   "tanf-s26": {
+    "EXTRACTABLE": 7,
+    "REVIEW": 2
+   },
+   "tanf-s04": {
+    "EXTRACTABLE": 5,
+    "REVIEW": 3
+   },
+   "tanf-s09": {
+    "EXTRACTABLE": 5,
+    "REVIEW": 3
+   },
+   "tanf-s08": {
+    "EXTRACTABLE": 3,
+    "REVIEW": 4
+   },
+   "tanf-s01": {
+    "EXTRACTABLE": 5,
+    "REVIEW": 1
+   },
+   "tanf-s15": {
+    "EXTRACTABLE": 5,
+    "REVIEW": 1
+   },
+   "tanf-s17": {
+    "EXTRACTABLE": 6
+   },
+   "tanf-s31": {
+    "EXTRACTABLE": 4,
+    "REVIEW": 1,
+    "OUTREACH": 1
+   },
+   "tanf-s06": {
+    "EXTRACTABLE": 3,
+    "REVIEW": 3
+   },
+   "tanf-s27": {
+    "EXTRACTABLE": 5
+   }
+  },
+  "family_gaps": {
+   "state regulation/manual": {
+    "REVIEW": 279,
+    "EXTRACTABLE": 146,
+    "OUTREACH": 12
+   },
+   "state TANF plan (state-published": {
+    "REVIEW": 48,
+    "EXTRACTABLE": 1
+   },
+   "state regulation/manual (assistance unit chapter)": {
+    "EXTRACTABLE": 5,
+    "REVIEW": 1
+   }
+  },
+  "qa_pool_size": 1138
+ },
+ "ccdf": {
+  "rows": 1599,
+  "elements": 99,
+  "state_elements": 30,
+  "federal_elements": 69,
+  "status_counts": {
+   "EXTRACTABLE": 127,
+   "PRESENT": 1197,
+   "REVIEW": 131,
+   "OUTREACH": 144
+  },
+  "cfr_sections": 61,
+  "seconds": 0.4,
+  "per_jurisdiction": {
+   "us-ak": {
+    "REVIEW": 29,
+    "EXTRACTABLE": 1
+   },
+   "us-al": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-ar": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-az": {
+    "OUTREACH": 27,
+    "EXTRACTABLE": 1,
+    "PRESENT": 1,
+    "REVIEW": 1
+   },
+   "us-ca": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-co": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 2,
+    "REVIEW": 1
+   },
+   "us-ct": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-dc": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-de": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-fl": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-ga": {
+    "PRESENT": 6,
+    "REVIEW": 22,
+    "EXTRACTABLE": 1,
+    "OUTREACH": 1
+   },
+   "us-hi": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-ia": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-id": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-il": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-in": {
+    "EXTRACTABLE": 28,
+    "REVIEW": 2
+   },
+   "us-ks": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-ky": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-la": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 2,
+    "REVIEW": 1
+   },
+   "us-ma": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-md": {
+    "OUTREACH": 29,
+    "EXTRACTABLE": 1
+   },
+   "us-me": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 4
+   },
+   "us-mi": {
+    "PRESENT": 28,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-mn": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 2,
+    "REVIEW": 1
+   },
+   "us-mo": {
+    "OUTREACH": 29,
+    "EXTRACTABLE": 1
+   },
+   "us-ms": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-mt": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-nc": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-nd": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-ne": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-nh": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-nj": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-nm": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-nv": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-ny": {
+    "OUTREACH": 29,
+    "EXTRACTABLE": 1
+   },
+   "us-oh": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-ok": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-or": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 4
+   },
+   "us-pa": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-ri": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-sc": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-sd": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-tn": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "REVIEW": 1
+   },
+   "us-tx": {
+    "OUTREACH": 29,
+    "EXTRACTABLE": 1
+   },
+   "us-ut": {
+    "PRESENT": 27,
+    "EXTRACTABLE": 2,
+    "REVIEW": 1
+   },
+   "us-va": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-vt": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 4
+   },
+   "us-wa": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-wi": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-wv": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   },
+   "us-wy": {
+    "PRESENT": 26,
+    "EXTRACTABLE": 1,
+    "REVIEW": 3
+   }
+  },
+  "element_present": {
+   "ccdf-s01": 44,
+   "ccdf-s02": 43,
+   "ccdf-s03": 43,
+   "ccdf-s04": 43,
+   "ccdf-s05": 43,
+   "ccdf-s06": 43,
+   "ccdf-s07": 43,
+   "ccdf-s08": 43,
+   "ccdf-s09": 44,
+   "ccdf-s10": 44,
+   "ccdf-s11": 43,
+   "ccdf-s12": 43,
+   "ccdf-s13": 43,
+   "ccdf-s14": 43,
+   "ccdf-s15": 43,
+   "ccdf-s16": 43,
+   "ccdf-s17": 43,
+   "ccdf-s18": 43,
+   "ccdf-s19": 43,
+   "ccdf-s20": 43,
+   "ccdf-s21": 43,
+   "ccdf-s22": 43,
+   "ccdf-s23": 44,
+   "ccdf-s24": 43,
+   "ccdf-s25": 43,
+   "ccdf-s26": 44,
+   "ccdf-s28": 5,
+   "ccdf-s29": 8
+  },
+  "element_gaps": {
+   "ccdf-s27": {
+    "EXTRACTABLE": 51
+   },
+   "ccdf-s30": {
+    "REVIEW": 30,
+    "EXTRACTABLE": 17,
+    "OUTREACH": 4
+   },
+   "ccdf-s28": {
+    "REVIEW": 29,
+    "OUTREACH": 6,
+    "EXTRACTABLE": 11
+   },
+   "ccdf-s29": {
+    "REVIEW": 24,
+    "EXTRACTABLE": 15,
+    "OUTREACH": 4
+   },
+   "ccdf-s02": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s03": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s04": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s05": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s06": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s07": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s08": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s11": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s12": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s13": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s14": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s15": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s16": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s17": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s18": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s19": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s20": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s21": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s22": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s24": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s25": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s01": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s09": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s10": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s23": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "ccdf-s26": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   }
+  },
+  "family_gaps": {
+   "ACF-hosted Appendix PDF on the FY 2025-2027 index (51 listed, 0 taken)": {
+    "EXTRACTABLE": 51
+   },
+   "state rate schedules / MRS sheets / transmittals (state-published)": {
+    "REVIEW": 30,
+    "EXTRACTABLE": 17,
+    "OUTREACH": 4
+   },
+   "amended plans posted on Lead Agency pages (inventoried, not taken except where the only posted version)": {
+    "REVIEW": 29,
+    "OUTREACH": 6,
+    "EXTRACTABLE": 11
+   },
+   "state regulation/manual for the subsidy program (CCAP/CCS/ERDC/Wisconsin Shares etc.)": {
+    "REVIEW": 24,
+    "EXTRACTABLE": 15,
+    "OUTREACH": 4
+   },
+   "CCDF state plan 2.2.1": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2.2": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2.3-2.2.4": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.5.5": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2.6": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2.5": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2.7": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.5.2": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.5.3": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.5.4": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.1 / 2.5": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 3.1.1-3.1.2 (fee table)": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 3.2.1": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 3.3.1": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 4.1.1": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 4.2": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 4.3.1-4.3.2 (rate tables as of plan date)": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 4.3.3": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 4.4.1-4.4.3": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2.9": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 10.1-10.2": {
+    "REVIEW": 2,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 1.1-1.2": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.2 / 2.3": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan 2.3.1-2.3.3": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan section 5": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   },
+   "CCDF state plan (Lead Agency publication reached via the ACF index)": {
+    "REVIEW": 1,
+    "OUTREACH": 5,
+    "EXTRACTABLE": 1
+   }
+  },
+  "qa_pool_size": 0
+ }
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/statute/2026-10-06-w6-income-tax-statute-pa.json",
+      "sha256": "648e105a9f9a3d6c5ae609f5b166cce0cdf32606c11d523949b3461156268b91"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/statute/2026-10-06-w6-income-tax-statute-pa.json",
+      "sha256": "f41f892579e8dfa1662557148108c4690beee78c07befc40a2fc2c662f9c2196"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/statute/2026-10-06-w6-income-tax-statute-pa.jsonl",
+      "sha256": "0e0e79b79cb5bb894a3478ab7ec315f24b5d1074b40a9450be7c7a5d8720669b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/statute/2026-10-06-w6-income-tax-statute-pa/official-documents/us-pa-statute-bills-2003-2004-hb200-pn3160.pdf",
+      "sha256": "cbbf631d70979e00973e556474996b8945802c5b4426841798055220b7b3df06"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/statute/2026-10-06-w6-income-tax-statute-pa/official-documents/us-pa-statute-bills-2025-2026-hb416-pn2576.pdf",
+      "sha256": "cf26c74593132026be659ad0bde8a723791f4300aab4f06c75f0e1515b5610c2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:58:03.817308+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dXc17YiqFd+sqWP8emRqMSp22p/gycafJrhh1GPm8+/Ivytd+TtPvizQxt2lbIa037MpnC5FUFscdRnICfQ6Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-pa"
+}

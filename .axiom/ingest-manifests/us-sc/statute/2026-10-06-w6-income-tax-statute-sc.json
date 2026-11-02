@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/statute/2026-10-06-w6-income-tax-statute-sc.json",
+      "sha256": "ed6faed8d3c696d6b07fcfbe453fabbc6ec416b364a382f7bd9dd27061da8867"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/statute/2026-10-06-w6-income-tax-statute-sc.json",
+      "sha256": "6167ac9a37fd46ffa24341c35665ae7dcc2e554dc6c1f5e2fd129d5d3fce0bf5"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/statute/2026-10-06-w6-income-tax-statute-sc.jsonl",
+      "sha256": "13ac4b896f4ae837aa7134dedd9abe69e7da3608c735093d29bda8262e3cf3fa"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-10-06-w6-income-tax-statute-sc/official-documents/us-sc-statute-bills-2021-2022-1087.html",
+      "sha256": "a48ccd1b6d93014d80b85a73230d7c43f9020421b7e41b278914660fc6d0237b"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-10-06-w6-income-tax-statute-sc/official-documents/us-sc-statute-bills-2025-2026-4216.html",
+      "sha256": "8de8fc805fbdd21380c3143cda6a4b145f38685fa7bae3d4663a5dae05404e7f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:58:44.064834+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "I4npXq/XUfHtCd0qnd01zfZRKqNIY0eaSKhvnvkpmlu7ntqkMgdCA7Z01aV4aN+jXZtjhnCJZm79T1Ho23vpAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-sc"
+}

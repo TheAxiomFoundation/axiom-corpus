@@ -1,0 +1,15 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us",
+  "document_class": "form",
+  "version": "2026-09-24-irs-optional-sales-tax-tables-ty2021",
+  "files": [
+    {"path": "data/corpus/coverage/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021.json", "sha256": "17a980c1c8b9e27949b73d3e73eda86a570afbdb4c63553758db68f5547addea", "size": 340, "git_blob": "11235d34af945bd64cc73e1f5f79e814e895b9b0"},
+    {"path": "data/corpus/inventory/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021.json", "sha256": "da279d3f1492c993292bd7a7b4e5216e27adec0d5780e16d1fdf226c54b6cfbe", "size": 21818, "git_blob": "6238f65ae84599da70d304e105282c27a11ac89f"},
+    {"path": "data/corpus/provisions/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021.jsonl", "sha256": "3ebc44693e06c3e6bfc485cd866ff9313bc0b1b605c210b4a27b269c322c0fd4", "size": 79980, "git_blob": "df0f1290f8bd3db4adcc416ba8ad2b8d2618f5cb"},
+    {"path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-line-5a-general-sales-taxes.pdf", "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d", "size": 702617, "git_blob": "a3459050ac0e61f4818a8ecbc9144a6be62bd2df"},
+    {"path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-optional-local-sales-tax-table-selector.pdf", "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d", "size": 702617, "git_blob": "a3459050ac0e61f4818a8ecbc9144a6be62bd2df"},
+    {"path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-optional-local-sales-tax-tables.pdf", "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d", "size": 702617, "git_blob": "a3459050ac0e61f4818a8ecbc9144a6be62bd2df"},
+    {"path": "data/corpus/sources/us/form/2026-09-24-irs-optional-sales-tax-tables-ty2021/official-documents/irs-i1040sca-ty2021-optional-state-sales-tax-tables.pdf", "sha256": "dabdcc727779b89caa2969cc5274b716ce7588855e1d8605bd81e195a6ef333d", "size": 702617, "git_blob": "a3459050ac0e61f4818a8ecbc9144a6be62bd2df"}
+  ]
+}

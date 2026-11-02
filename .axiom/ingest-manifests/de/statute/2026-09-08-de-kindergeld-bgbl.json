@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-bgbl.json",
+      "sha256": "5340ea2b0dea06604569013c1e07546cbeab6cd0e7ae4cd8160cecac75de5978"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-bgbl.json",
+      "sha256": "deb452cf32367d1558b3248c84c0136bddbb425a070e693a6dd1099ce2a17604"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-bgbl.jsonl",
+      "sha256": "80e30533507e1479acebc62038163f87052cab82d208ffe3314ab65e82ada6de"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-bgbl/official-documents/de-altersvorsorgereformgesetz-2026-bgbl-i-156.pdf",
+      "sha256": "88e8bedbc87566c0943433e767a1f2b42d3089adade3235e38f2acf153dc04ce"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-08T14:21:52.671669+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TpyQKcrSKu3l6i7AV0tkhGjQHm9e17yG/Ml2SRxMMqDDkBcAKLvCnNLLgWLKyD3WS8TUlozL1J0ZBtfCAkhmAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-bgbl"
+}

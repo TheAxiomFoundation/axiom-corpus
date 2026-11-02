@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "636f9d532c0b0e73c31c89dfd69b1985fe1b5a514c3a07168278528b5ebd9918"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "35b29deea5a53bd27b3eaf6a6234d6877d5ac49d8e9116f752febb6cfdf23a54"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/manual/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "64a6002ae852f4c33ee1001d58ded741802984e3f1afe4a4a798ffb1ee63d76e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-nh-liheap-energy-fuel-assistance-program-procedures-manual.pdf",
+      "sha256": "48d77fdaed2b6b33a9efd7dea9246d262727239e0a840bb0a424463c757493d9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-nh-liheap-benefit-matrix-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 102,
+    "missing_count": 0,
+    "provision_count": 102,
+    "source_count": 102
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T17:23:18.031279+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zanfu6rJyjazrbrrnNWGK4ct66k+zjo/7kuVhAqd5L3gDI3HamIliA6TXtWIiHqNccYCGW8lzom4vCi31/ayCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

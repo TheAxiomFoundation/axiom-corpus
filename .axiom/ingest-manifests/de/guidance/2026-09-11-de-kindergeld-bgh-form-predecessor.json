@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor.json",
+      "sha256": "9fbe317c0c32882eb5f4aa0dc09b1f5c6d9249fc60f948dbc5d36be6163a60db"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor.json",
+      "sha256": "352cd7e15b4e9fc43cfdcb386a1b9c33b49c7c94be831735c88147537928b28f"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor.jsonl",
+      "sha256": "807957bd21a143bd71c38feebaa517c13861193fd0d242fc6b0604e60536699a"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor/official-documents/bgh-xii-zr-98-13-2015-06-17.pdf",
+      "sha256": "5ef56d5e4a7229f2067ff414a65f6d1399611d861cb352e08677d708f3174432"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b307c1306b43bcb152227a704eb88ffab9db3277",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native extract-official-documents complete PDF local_path replay; see docs/ingest-runs/2026-09-11-de-kindergeld-bgh-form-predecessor.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-11T20:42:16.592260+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-11-de-kindergeld-bgh-form-predecessor-audit.json",
+      "sha256": "3faeaa8f41b424e5a45824664643b73fb9d280b602c2ae56b9276af006acee16"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "D0uKT9ealnz0BMyOznQ/vYSWXej2vRqJca899npPF7oPBdsEJXPRA2Ky3PHicy8T4N0nZf+2Hjng9iCZNVgSAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-bgh-form-predecessor"
+}

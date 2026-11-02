@@ -1,0 +1,721 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "1d92bbd8170e927eb0a402fa041774cf8972fa331bbb4d160ed3dcf690ffed0f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "4800a5adaf341e81d59798e22ae1326def789c7f69207f959d075eb449f19d14"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "03c64acb19dbe77cfe2b036e703ce4b4631ad87409c905d41f9ba97ee419d9ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-225.80-participant-violations-and-sanctions.pdf",
+      "sha256": "3ab95ab94a043acb6746ea9d50293790da5dc8abf39d674473301317cbeb6756"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-300.15-disruptive-participants.pdf",
+      "sha256": "dad1cab9122bfca8062c5cad2d7c1a79d3a7d1884bf5e3b62cd30429542eec28"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-315.41-breast-pump-purchasing-guidelines.pdf",
+      "sha256": "1c7f980955a1fad9292f28805e08522263a4f50cd83c6a5381d3e7dd40509c4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-360.60-infectious-disease-control.pdf",
+      "sha256": "40df9967071821738cf2db07910c0f2fdd21d0353b2ba02b13644f0f5aea071b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-360.65-infection-control-guidelines.pdf",
+      "sha256": "193fed42711ea0961d35a40ed24886901bc92d24d54a5c9dbbf9e69674799e7c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-410.08-bid-solicitation-and-billing.pdf",
+      "sha256": "46769779d3885ae669c9a8b725ae3a502a73cc3b2eca93cd83861c3bb50b9ac7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-430.80-data-system-equipment-support.pdf",
+      "sha256": "7598319386eef962a881f587e71261f5ce454d1eba5cf9b8acc48ec9d9f85a3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-430.85-data-system-continuity-of-service.pdf",
+      "sha256": "f3f09309f95164f0c8f8c56cd24d71610536b6c83531ad323a3781f0a541f396"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.05-food-selection-criteria.pdf",
+      "sha256": "0613c4e96d607caca91869871021d5a80634e0a993ac947556b931d4ca82766d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.07-upc-plu-collection.pdf",
+      "sha256": "2493ee4fece1d13d52497263ede9533bac60e3e7a9b4d4c729f38d51bd25569d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.10-vendor-selection-and-management.pdf",
+      "sha256": "f05f1cd9878e222cc98c42c70166b10c57f41b32af710b6ab41e3adf197b31f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.11-price-assessment-reports.pdf",
+      "sha256": "7ad2e52eff68a53966d5f158ad003dee0f5e0eedbe7ad2d6491978a69fc978c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.12-vendor-training.pdf",
+      "sha256": "8a58b17969ef0d28285ee962af89837f211e28bbf7016befa747917567143fd3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.15-vendor-management.pdf",
+      "sha256": "ab9bc36c147ac817e65df9aa9336722b0ab5052fd364c890a7953270a35ae121"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.20-vendor-monitoring.pdf",
+      "sha256": "1d4bbad3d6bb7b83dc7e4ee013d3b987cb34c09d73a9a4d03668ae6aa31cf4d4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.30-compliance-investigations.pdf",
+      "sha256": "7ef4e808fbc677a5fcfd22d4f9e20f7a063132c6620ed34daf75b0f3d75b7a64"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.30a-compliance-investigation-form.pdf",
+      "sha256": "c1b25f41f4c232c8c31c962bafa97b3a672f8bb9dad28cd38cbadc837c3f2d7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.40-sanctions-2.pdf",
+      "sha256": "962747d81e401a6c6ada028800951de523750005ef02d567d80271b42d7009b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.40-sanctions.pdf",
+      "sha256": "5069449a65c0784dd494b8cb48fa808cb95dc65509c6be6c8ce5f1e3a10e2b2d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.50-reconciliation.pdf",
+      "sha256": "179dff78dcec7cfe9c129f381a04f7ab6524b82f4007082b7e8ec01404a18955"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.60-dual-participation-2.pdf",
+      "sha256": "652b93382504af781db05448a73f60921f2896c53c3ff110345da8b68739f48d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.60-dual-participation.pdf",
+      "sha256": "0b4fc680dccfb2f9d1afb2d8b37eb332fd72150a30984ca47665902fc708d4fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.60a-dual-participation-sample-data-sharing-agreement.pdf",
+      "sha256": "dd7d2c72bd029973ef880a424373442648a3718a2aadc736568a498e6af96e51"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.70-snap-wic-mou.pdf",
+      "sha256": "94622226f520579c7370c0d728ea59d9f8a20a3b32b4a389fbaaf0d44e6c20da"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-450.70-usda-food-and-nutrition-service-supplemental-nutrition-assistance-program.pdf",
+      "sha256": "15020804e3b50080a88feed129b29912f48c78074d77392690dc908466e4b4c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-adjunctive-eligibility.pdf",
+      "sha256": "3d1e3a1ba8b4d68903eb61cb9dff4783923d89c0b869714495dcedabdc8f2e63"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-advances.pdf",
+      "sha256": "71febe79dda4a7c341f4b8d81f918301a28154b7d51f44dd92b46db5571cd227"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-anthropometric-measurements.pdf",
+      "sha256": "fb2733768d2305fe63049dc2cd6a41532b60d53df361729ff8c6a1190d21410f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-appointment-contacts.pdf",
+      "sha256": "56ce349f65002783831f6965ca421efc43f3aa9a90d9ac9216bae828d0ebd5dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-blood-lead-screening.pdf",
+      "sha256": "5636dff84d4c3c9b898788ad2098e8ce7e441f2cd8fdbbfdce1ed03b45880848"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-blood-tests.pdf",
+      "sha256": "e518f24bb1524e8b6de937ddfc14af00791d692a874159cc0941ad4a40a0abbd"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breast-pump-inventory-control.pdf",
+      "sha256": "ea58e43962504c9d603583a6d914a49a23bc2761f6ab8fa5b8de18b81c20125c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-data-collection.pdf",
+      "sha256": "d2d6a9c4e23063997e1c8cc81ad2e8a3f05731bae4fc023ae57314131a43ed68"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-peer-counseling-contact-observation-procedure.pdf",
+      "sha256": "43a4f4f0b9ff61297072802850c6ef814a56febc56d503d562d3a0d0b9ad9104"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-peer-counseling-coordinator.pdf",
+      "sha256": "0af2c5230e1d980e4fac07139c9b04f8dadddcb5daa8da4e2c609f0f77b3ff6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-peer-counseling-time-study-procedure.pdf",
+      "sha256": "64084efc7315089981ec2e722364d284b2a34a84a8d017cd76ae3a444c03678d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-peer-counselor-contact-observation-tool.pdf",
+      "sha256": "3442bad4993a01513592f75ecfc71d7a484588cd40b097ebde69244b12dd3fd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-peer-counselor.pdf",
+      "sha256": "da21aa32817615091b8adc98a2ea3e20c06a33d49b9cc2b7ae94b5edbee284e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-peer-counselors-scope-of-practice-and-when-to-yield.pdf",
+      "sha256": "5565afc12f4cb0dd1fd8df534725bb70399c81f281a6d7577734f76d3d5443ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-breastfeeding-promotion-and-support.pdf",
+      "sha256": "9590d491593f6e4d686aa090c45be6440e46255d1b7cbc6d1b6794d0379f4127"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-budget-revisions.pdf",
+      "sha256": "ecfc9ab576562205bf079628f31787c21a1549feabf70a22a62c10fe8520c5c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-caseload-management.pdf",
+      "sha256": "035d85d1026f7cf8f1ab5de865c5ff0ab948cef68a263cad9eaf8dc5868a1ac4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-certification-forms-and-program-explanation.pdf",
+      "sha256": "5ca2d75dd7b3699baea955324448ff315a5026f7a0778c1c0929f18594b83e7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-certifications-outside-of-clinic.pdf",
+      "sha256": "de439d34b653ea030a2185acea4c95581da5010e966cef76600a13b05200c1b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-children-1-4-years-food-package.pdf",
+      "sha256": "ef0ebc52b1000ba5858e02f35cec1f9d16f87dfb4800f549c71bba23b62f0742"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-civil-rights-training.pdf",
+      "sha256": "7f7a2019110601f31d2e10b96aa1a8064c21602f029e90133a2d426b10ae6017"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-clinic-environment.pdf",
+      "sha256": "728912c0220dcc024b42ceea7a339840da2239dd8c0f87b1be91c32a45be74e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-collecting-and-reporting-fraud-and-abuse.pdf",
+      "sha256": "58f6aeb7acee6166829b84c10b031eb947c3b32e8f3dfac384cc75a6c9f0b093"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-collecting-race-and-ethnicity-data.pdf",
+      "sha256": "82d5634d12104909b98da3ff473894b9e75b4c125ed6b36e74b3eb0767af5344"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-community-health-needs-assessment-and-health-improvement-plan-chna-hip.pdf",
+      "sha256": "45f20a2a5f6fb735d6b99bd53ac55ab177bd0e5225ab957391247f87b63e71ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-competent-professional-authority-cpa.pdf",
+      "sha256": "0105f4a1bf65b5a77e0d3ce17797b4e3905e09033ab6924db00a2815d1c9dee5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-complaints.pdf",
+      "sha256": "1f01910480fd969d7449caed1c178c0a9d84f4ea7f7d0094fd347f1e62fbfbce"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-confidentiality-of-participant-information.pdf",
+      "sha256": "6dbb6acc018c990bf4b888955f662c27e996ea4a1c5df48913287d338ff4c5db"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-contract-agency-policies-and-procedures.pdf",
+      "sha256": "6cdf9cc78566c16d9f9eab562dfbdc6e4fa829726c1f5772fb76014e62ec035b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-data-request-guidelines.pdf",
+      "sha256": "23c385ba481ce97dc7c09c9db85b948a8841eaff4d3e01a944c133439c3f9993"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-deceased-parent-guardian-head-of-household.pdf",
+      "sha256": "27298d21298add238ea6e5becd401ac2f34d9c99908ffabed3b0108d2d6fca6c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-document-retention.pdf",
+      "sha256": "5aadf16a719664fd22d6b840b2094ea39349254c27d59f3b62778cfd58b3c27d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-eligible-population.pdf",
+      "sha256": "e469896f58bf2e62e1665d3739e831e459287cff7105cb191bf95de7263ece51"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-equal-opportunity-affirmative-action-officer.pdf",
+      "sha256": "2f370844f66cccdf567379f4fe1649f290b41c6002c4fd145d989b90694d5617"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-equipment-purchasing-guidelines.pdf",
+      "sha256": "efde88a8c3ea58643e52efe5311a94fd10653785c2c8cc442a479cc318cfb996"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-evaluation-and-maintenance-of-scales.pdf",
+      "sha256": "63ba5d18244b4dcffcc7a3a33a27df293d7028105c94c7cb39221bf07d5d5446"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-financial-management.pdf",
+      "sha256": "18c29c27b26c2dcc1fe315e26df61fa69ce0190948c059a7c08e87c6f61d1f3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-financial-requirements.pdf",
+      "sha256": "df75f36a413274846ad0725e9b5e43b4e0fc3cb05938f2314b06e20a9dc86bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-food-instrument-inventory-and-security.pdf",
+      "sha256": "953a9f27ea21d4f6772e3a15642cf84d8c331fb3a95bf4b2cc69ae5021547af8"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-food-package-administrative-adjustments.pdf",
+      "sha256": "9bbd9f1d1dc0a55c7bb0bdf2ae50da3c15e65e216dcd6767111ec694725d43ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-food-package-nutrition-tailoring.pdf",
+      "sha256": "f874d49af46fe6815e1dff074bbb7591caf3829a2d9f76b01b2c793fdda494de"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-foster-care.pdf",
+      "sha256": "c3051a5eca7da0f356f88c819588a9c89cd683d98613213741cbcec7a8fe1cad"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-fully-breastfeeding-women-food-package.pdf",
+      "sha256": "0215a7f473778e7f981d00e646c0ff575f1a90a49224788f858aabdd2acb0ac6"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-funding-shortage-and-participant-waitlists.pdf",
+      "sha256": "17f21ffcff31e710ddb778b82adac0352313905b96fc064e663277c8e7354801"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-health-updates.pdf",
+      "sha256": "af8e076ed54f2ecb26ad50182dbc2ebb784f6373d49dcb682b45863fb22df3f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-hiring-breastfeeding-peer-counselors.pdf",
+      "sha256": "1f4aa7a7cf2425eee3888667f88d093e04171870668ffc76eb2e8c03386410ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-hiring-personnel.pdf",
+      "sha256": "ad85ff4bcd5647758489630c45c5e2e64001104020a8d40c5b013cb36c3ab54c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-homeless-participants.pdf",
+      "sha256": "eacda7f77de4ffc75e8d2b768ab180a18ce6ef64d7217f816b0ae30a02bb072d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-household-size.pdf",
+      "sha256": "7306f825e2cf79b94395b991f8bd54dce900944200d4ed4ec8575c5d849e82de"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-identification-requirements.pdf",
+      "sha256": "9814a5269c512872203da74d29a6041ce7d65ae6c64a0a1c5cf86ad2a84892ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-immunizations.pdf",
+      "sha256": "d2dc05496287684eb30bfc05d6f75deca8892a578624bac70142a9ac83ef5c96"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-income-determination.pdf",
+      "sha256": "9f7f3a47863e0f49946c0c83a119b6b5475b7999dc751c1d36762ab925b591d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-income-guidelines.pdf",
+      "sha256": "3a7878c19ab5fdf965758711156326f19ef1b80aeddf0fe93f36dc266bc5d0d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-infant-food-package.pdf",
+      "sha256": "cfc9e1e936eb3f0750b2301c721f418265009962026a6d4c450ee2bcc3b846e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-infant-formula-returns.pdf",
+      "sha256": "be47255b81ede0e43c5cbdd2513aa4c18beb4ec7f24a003190f66d4756fd0e0d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-iowa-wic-agencies.pdf",
+      "sha256": "9935e6696a7c9378bde8473948bb207735b638e3f4bb51326ee22cf99c89bb15"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-iowa-wic-approved-foods-list.pdf",
+      "sha256": "33c1690ffa7405be133e07240933fccb36a6071395cce9de0228683a003149b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-issuing-breastfeeding-equipment.pdf",
+      "sha256": "c1dac31b1850c940a4de73fd569b87b0dcc0209b5c58eebc8ca5a2fa91f610b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-issuing-food-instruments.pdf",
+      "sha256": "24c4cb9ccd838cdd24f47ba844b70e5549194494589965c7db95dfc4d659601c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-licensed-dietitian.pdf",
+      "sha256": "ca575d7351d678c2c5a6f59634c437a7a4cb81d42e4b50644a2ecd3239c58733"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-licensed-practical-nurse.pdf",
+      "sha256": "a5e173759a19c1c0fcd1e71b10975925331425d070c11c17ac81289717392e4a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-limited-english-proficiency-participants.pdf",
+      "sha256": "f05b9699dea07c482364d5a54190fedb09d4e6517ac4669d9e60f01275c81a74"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-agency-audits.pdf",
+      "sha256": "ffb3fe2904b6f0341eb0357bc6625d0af4293a2e4a8aeba32c614b774ac6331a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-agency-breastfeeding-coordinator.pdf",
+      "sha256": "d0609093ee6ce7329b31f5a4f289fcdf3684df91eeb5fcb22839d53b32fc20d2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-agency-formula-warehouse-process.pdf",
+      "sha256": "ef230fbc2287df0d8a41b04828ca715ca469661f2a930d236c2b6ceb7e1929c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-agency-funding-and-caseload-allocation-method.pdf",
+      "sha256": "91c5c50cf63ef00c4bbac1758885c2fe93c35304c63a55f774c4b2f6afa2cdca"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-agency-nutrition-coordinator.pdf",
+      "sha256": "baf4ee694a890203be759f56b881b4d8277476df23d948a3948a75f51f6fe4a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-agency-personnel-training.pdf",
+      "sha256": "7d82a845c366496e7a7fcaf46d325364ab88f0c94a53758db51ac13bb7062b5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-local-wic-agency-data-processing.pdf",
+      "sha256": "a2898570684ff21402c0d34d747fddef7cf02465c4bf6aeff1e1b56b0d9380d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-lost-or-stolen-food-instruments.pdf",
+      "sha256": "077871a5e8900d70c504fe486edc970a63192033ce0269f962c05b1aeaae9e74"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-mandatory-and-optional-mid-certification-actions.pdf",
+      "sha256": "74a822fd1c323d2f9bcf249e05a9aaa02874a7fa15dfeb8c6e3ceaa0b3c67934"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-measuring-hemoglobin-with-hemocue.pdf",
+      "sha256": "ed98c8f5df98502c810d1deaf87025edd7bd8967c27415a819407fe7db3ed905"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-measuring-hemoglobin-with-pronto.pdf",
+      "sha256": "750b16fc9be36ab2fedbf6f7236d579e7d40da37560433dd3c9efe600ade439c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-medicaid-reimbursement-for-enteral-nutrition.pdf",
+      "sha256": "465c6c38110c5f338361a933350db9c8551010c961158b30f81ee65b9eba8633"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-medical-documentation.pdf",
+      "sha256": "c622b1ab37e97df24604570c07465f2b656759180928bd3d9cd5634339cd00f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-migrant-participants.pdf",
+      "sha256": "915cd12b8da8a658d0e22892328a7270772412de5dd64b86748581fea9ee7453"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-minimum-client-contact-schedule-for-breastfeeding-peer-counselors.pdf",
+      "sha256": "a95186575e45defa1051a912e6ea46c1bd7aafbe17ed011c3d6cd6dc163258ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-missed-appointment-follow-up.pdf",
+      "sha256": "4b9569c8005f21cf7f03d396023195dadff9a091775c4be82931b2187347e5fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-missed-appointments-and-food-instruments.pdf",
+      "sha256": "670592570b4ab540f3d12bf3b920399438587a920229f44b0d32a1770792279a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-new-participant-education.pdf",
+      "sha256": "87fbe45b37d2ddcd6c200bc43f8a8a14a320cf40072653eb65a92a8c72b99947"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-notification-of-program-changes.pdf",
+      "sha256": "1c46cbb3b7ae681cf6f530681a145e2b92eedeed6e0be416f32996dc3d9dec52"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-and-health-assessment.pdf",
+      "sha256": "59b28cde49a578f573574f6974495ae684db6e4909837a81b75f0f56432fee65"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-care-plans.pdf",
+      "sha256": "1f72bbe45e865458a1c885b03d824a6d9e959286144fb77d49deb256e17f99f4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-education-contacts.pdf",
+      "sha256": "6071563e298aa641827382b493d93851b037d8e302deb52afa427fe988d2e4c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-education-materials.pdf",
+      "sha256": "97d967d7b77fa3f17a50ac168065d5de878032569e4a73f06959db31f95e632a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-education.pdf",
+      "sha256": "b401fbab05137d7b5458b9498e3b2b85c79bb36e5906f67d3caa5bd7c490955e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-educator.pdf",
+      "sha256": "e65dcabf97bcaf0810f0406cf1ef4a888a497248b1325945e4831a8e257b7753"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-risk-definitions.pdf",
+      "sha256": "36e820609da434a5b4be815b96213ee6b63d72276bd6bb0fe3a4e1ebab5780c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-risk-priorities.pdf",
+      "sha256": "7c2d629f7f2cabd9eeb645968a565c95560f0bd679e3fa98104eced23607a8d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-risk-requirements.pdf",
+      "sha256": "8a55d84335350f156fb356ba9087a6828eb914613c1f24bcb7a95ad306511d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-services-and-administration-nsa-costs.pdf",
+      "sha256": "3b9c6cefa53901241f1ce77154f8d6f6fd20115639ddad561aef3da137ff7c53"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-nutrition-services-documentation.pdf",
+      "sha256": "059e2d0e5078146987b95cffc45960d93cfbde46011ecff3d4f0b13773177e1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-on-site-agency-reviews.pdf",
+      "sha256": "af79ab6c574437529071d1471e0844b0fc50d4ad0e49283c2f18c82b9548d4ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-outreach.pdf",
+      "sha256": "f648cbaed3ca1599a3b277c867b391f52cd91afef22d536a40adcc50d8923de3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-participant-categories-and-certification-periods.pdf",
+      "sha256": "3c95fb67b5029deab5cfab66ca9cf7b8ee4b0637034bc7560bef5bf2f1cb03e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-participant-vendor-and-local-agency-appeals-and-fair-hearings.pdf",
+      "sha256": "2897904f0db0b5d69a1a2b0b0fc2904026801ff9f2449dbe0c358e1b46e307a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-participants-with-disabilities.pdf",
+      "sha256": "a3398757a015f44cebcc0997f52a32b9786155b710b06e3ef0a82ddffc4893a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-participation-data.pdf",
+      "sha256": "5436ba45630a912e1556ebf8a413b4b311b102c180dcb8d02e54dff9a271b71b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-peer-counselor-documentation-review-procedure.pdf",
+      "sha256": "60aa619ac7f0d2fd179b2232a46a39dce2d74b32bcafefa24535259e3b3bfb2a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-peer-counselor-training.pdf",
+      "sha256": "13ab6120060083f8286cbd0d39dd00a72267725b8235a9d7df4fe14f64130b27"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-physical-presence-requirements.pdf",
+      "sha256": "1c2dcabaf09b6d448666dbd8f22d8889210446127495a3696894f516ce8e1d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-postpartum-or-mostly-formula-feeding-women-food-package.pdf",
+      "sha256": "27d7ae2f658325fa04360ab066311705e98ec7ad7846a81d6b40ebac167a3cfb"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-pregnant-or-partially-mostly-breastfeeding-food-package.pdf",
+      "sha256": "d3aaaabebcc45e0c279b835fe3fd5c1607dee02cb7072d7644bc80d50c300c83"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-processing-standards-and-notice-of-eligibility.pdf",
+      "sha256": "efc74c48fe6af2326b93fd2dada0028cca542dee185263bcf6f39187a0868118"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-program-incentive-items.pdf",
+      "sha256": "7ed24e885db6f0246fd7ea07d1dff2a2dc80c0d82ed7a2454543b2424cc23510"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-providing-access-to-health-services.pdf",
+      "sha256": "983b9ebfd83205fb39d0205169a925e1972e3bd2cd016296e163f84cfe244df4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-proxies.pdf",
+      "sha256": "7f74b1b4a6b5bf4385dc54762f113bde912081d65e7d0985971759d7161a0bd5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-referrals-to-medicaid-and-hawk-i.pdf",
+      "sha256": "a9c88f72793056fe25cbbcd5f568c5d010839031a395657f95e034c45b70ca91"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-referrals-to-programs-and-agencies.pdf",
+      "sha256": "266f21e368ba1176647c4f13f09703e26ede6a30f8f328c2b0b80f769e2de0bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-referrals.pdf",
+      "sha256": "08dd8962025c325935cdcc08a46332ea1f51dc668171d11575a5f97b0d5f11c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-registered-nurse.pdf",
+      "sha256": "11f5633b187c79df549577f498d024d3c8f43bfce3a450224418e7fe657cfa25"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-release-and-requests-of-information.pdf",
+      "sha256": "153988ec99c27afbe1d64f5ca4171869e603a3bbb28b358d5f62cf45f190efd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-reporting-wic-personnel-costs.pdf",
+      "sha256": "73a4184027ec210e22948676fbd5c63915192f643da43d7e6d8fb3a543beebb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-required-reports.pdf",
+      "sha256": "e0717884f30ceefacc938e1f35fb63f01582fc78946608ea89e8641f0d17ce7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-residency-requirements.pdf",
+      "sha256": "5d2bc4ec87e347cab139e76e83ab2fbafa76a91d8c30e640c4ff214c7f40db99"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-rights-and-responsibilities.pdf",
+      "sha256": "e6118df31a40cd912f73e2b438b9f7966b8ced3173db5fc9c79f5f5266623ff9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-section-504-americans-with-disabilities-coordinator.pdf",
+      "sha256": "dd9d857be40df074680699f8afb3a80dfa8ac6d6cdc59dac258924d352985157"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-selecting-medical-supplies-and-equipment.pdf",
+      "sha256": "98ba4973f6d45b143f7ccc4696ed6581d7c701ba1f1bbb2475e31e738c9519c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-separation-of-duties-in-extreme-circumstances.pdf",
+      "sha256": "58aa2513d1b5b631de9b8a2c930326d2195dc5d54f9210ab0de6a93785ce59b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-separation-of-duties.pdf",
+      "sha256": "3c74be414f3574b11fc1707f6c9481c5e7bfdc3d41c75cc9a36ce1ebbbebf225"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-serving-families-with-two-wic-eligible-adults-in-the-household.pdf",
+      "sha256": "9d3ac3cbfced41fc285d803761c22074085a1d20bb37ac2c6f9edd491411ceb5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-special-children-and-women-food-package.pdf",
+      "sha256": "9d6fb40437d45360215a9db5898d0be51c310b634a9d2ac8da0f5ae25220a84c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-split-custody.pdf",
+      "sha256": "a1bc5745189db0054edf301f9d9a44ef17db076892d368dd0b3889e2466a033e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-staff-conflict-of-interest.pdf",
+      "sha256": "1db71bf32bb19cc2025c87a0b9f33d07b494bb12f4f3e95e855bf81c12eed188"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-staff-referrals-to-peer-counseling.pdf",
+      "sha256": "f20ed046feba7573b9e024ae1ac3626f09b5539d568c55da656f17ae177e3451"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-state-goals-and-objectives-action-plans.pdf",
+      "sha256": "75a17e4a09e8a2fd1841f98b729ea6d97d05a3ba508c75fd5a81c333a96a648b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-state-of-iowa-equal-opportunity-affirmative-action-anti-discrimination-and-substance-abuse.pdf",
+      "sha256": "8bf728c4fd9073d4069fcbf479766daba7f97063b593997688983aa1ab80cb2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-state-wic-office-staff.pdf",
+      "sha256": "d72934930a9c45b2ae2b5dbbbcdf5f41a56b65b6077934e83da50a5691c65e22"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-subcontracts.pdf",
+      "sha256": "2e74d7f1381d3f91aea3f9b5c55b25cb50821a6a7c3fb1ff1896c4e63c82d259"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-substance-use-and-screening-and-referral.pdf",
+      "sha256": "08570f6627b457d11a2593eee0de7f6b963906f224e7c342582bd5fb767d2202"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-support-staff.pdf",
+      "sha256": "7aa265b36ce99ede60a34ff8f59894f941d2cc1d98b39279d479b434d96b2b81"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-terminations.pdf",
+      "sha256": "e18181b8e06d45888508a633b316b48596e89cb8870adcf87ff11c1feea85f29"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-usda-nondiscrimination-statement.pdf",
+      "sha256": "abf7500a7f1b6be3dfa01b535a29700ebfcfe00ab8bc56a8063b62a3d55db857"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-vehicle-costs.pdf",
+      "sha256": "5466d2bcec8e19dc6bfb5af4f7e8413353a8e2865e798b8287ceb8469bf66c6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-verification-of-certification.pdf",
+      "sha256": "df44909270f6c61c995304514cafb19b36d57916b442bffac41ef7e5f39a7a9d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-voter-registration.pdf",
+      "sha256": "2481e1bf871528bd45635ddb0fde97d54076051d7a6f3354c97fa29cc6af122e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-breastfeeding-peer-counseling-programs-in-iowa.pdf",
+      "sha256": "dfb2add6173b55b5c966fc71f31cc9d38e70f0a20584463025923f71dd97d9b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-coordinator.pdf",
+      "sha256": "f844c77043dff73ed7b5f9ce85010ac3d12cc5ef8e184c66b15d57b5c15a27d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-definitions.pdf",
+      "sha256": "3cc2bd40b247f58862e1df84098eeb3250e9d758143d1d19ffb725eabf066d0e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-designated-breastfeeding-expert-dbe.pdf",
+      "sha256": "faa75e957f31f4794f0088ce6f388be2c001cdd734cc2c100c307ed9979665af"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-disaster-plan-local-agencies.pdf",
+      "sha256": "c21f8676d3a5594cfbae8563bde9c0787f6e61a34f736e03013522ddc42a4602"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-nutrition-assistant.pdf",
+      "sha256": "228180f8d9378329c7b804d4259b2a56a086fec1b59ba742f3d7121b4ad53b73"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-wic-service-delivery.pdf",
+      "sha256": "b87756164ec97a2a213917374f20ae7ed9f46abd77c32768261b95474a7e1a06"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ia-wic-manual-women-with-breastfeeding-category-changes.pdf",
+      "sha256": "550c93514e3520c1dfa96f856c8d2ab9eaf062d98b871c157e72951dfaac9521"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-ia-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 338,
+    "missing_count": 0,
+    "provision_count": 338,
+    "source_count": 338
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:45:51.883190+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8/AlQ3HDntZ924JhVGm9DAmnPOGtkj99UvDSjnUYegXKjjtlc/f49bQAY9ls6p2aWwPc+k0ZZy4Oeqi2dntVBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

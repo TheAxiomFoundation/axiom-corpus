@@ -1,0 +1,45 @@
+version: '2026-09-10'
+documents:
+- source_id: us-dc-otr-d-40-booklet-ty2025
+  jurisdiction: us-dc
+  document_class: form
+  title: 2025 D-40 Booklet, District of Columbia Individual Income Tax Forms and Instructions
+  source_url: https://otr.cfo.dc.gov/node/1817386
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-dc/form/otr/ty2025/d-40-booklet
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-dc/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
+    discovered_via: manual-review:tax-agent-queue; index https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
+  download_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf
+- source_id: us-dc-otr-d-40-ty2025
+  jurisdiction: us-dc
+  document_class: form
+  title: 2025 D-40, District of Columbia Individual Income Tax Return
+  source_url: https://otr.cfo.dc.gov/node/1817391
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-dc/form/otr/ty2025/d-40
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Office of Tax and Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-dc/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
+    discovered_via: manual-review:tax-agent-queue; index https://otr.cfo.dc.gov/page/individual-income-tax-forms-0
+  download_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Form_030526.pdf

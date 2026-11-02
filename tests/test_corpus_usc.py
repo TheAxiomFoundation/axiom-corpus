@@ -1,19 +1,16 @@
-import struct
 from collections import Counter
-from dataclasses import replace
 from datetime import date
 from hashlib import sha256
 from pathlib import Path
 from xml.etree import ElementTree as ET
-from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.release_quality import validate_release
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.usc import (
+    _build_usc_inventory,
+    _iter_usc_provisions,
     _source_artifact_bytes,
     build_usc_inventory_from_xml,
     decode_uslm_bytes,
@@ -21,7 +18,6 @@ from axiom_corpus.corpus.usc import (
     extract_usc_directory,
     infer_uslm_title,
     iter_usc_title_provisions,
-    load_usc_source,
     parse_uslm_title,
     usc_run_id,
 )
@@ -151,73 +147,6 @@ OFFICIAL_TITLE_26_USLM = (
 OFFICIAL_TITLE_26_USLM_SHA256 = (
     "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
 )
-
-
-def _write_uslm_archive(path: Path, members: dict[str, str]) -> Path:
-    with ZipFile(path, "w") as archive:
-        for name, content in members.items():
-            archive.writestr(name, content)
-    return path
-
-
-def _corrupt_deflated_member(path: Path) -> None:
-    with ZipFile(path) as archive:
-        member = archive.getinfo("usc26.xml")
-    content = bytearray(path.read_bytes())
-    name_length, extra_length = struct.unpack_from("<HH", content, member.header_offset + 26)
-    payload_offset = member.header_offset + 30 + name_length + extra_length
-    # A final DEFLATE block with reserved BTYPE=3 triggers a real zlib error.
-    content[payload_offset] = 0b111
-    path.write_bytes(content)
-
-
-def test_load_usc_source_rejects_corrupt_deflate_stream(tmp_path):
-    archive_path = tmp_path / "corrupt.zip"
-    with ZipFile(archive_path, "w", compression=ZIP_DEFLATED) as archive:
-        archive.writestr("usc26.xml", SAMPLE_USLM)
-    _corrupt_deflated_member(archive_path)
-
-    with pytest.raises(ValueError, match="cannot read USLM archive member"):
-        load_usc_source(source_archive=archive_path)
-
-
-def test_release_quality_reports_corrupt_deflate_stream(tmp_path):
-    archive_path = tmp_path / "corrupt.zip"
-    with ZipFile(archive_path, "w", compression=ZIP_DEFLATED) as archive:
-        archive.writestr("usc26.xml", SAMPLE_USLM)
-    store = CorpusArtifactStore(tmp_path / "corpus")
-    report = extract_usc(store, version="2026-04-29", source_archive=archive_path)
-    retained_archive = report.source_paths[0]
-    _corrupt_deflated_member(retained_archive)
-    archive_sha = sha256(retained_archive.read_bytes()).hexdigest()
-    # Keep the retained-file digest valid so validation reaches decompression.
-    store.write_inventory(
-        report.inventory_path,
-        [
-            replace(
-                item,
-                sha256=archive_sha,
-                metadata={**(item.metadata or {}), "archive_sha256": archive_sha},
-            )
-            for item in load_source_inventory(report.inventory_path)
-        ],
-    )
-    store.write_provisions(
-        report.provisions_path,
-        [
-            replace(record, metadata={**(record.metadata or {}), "archive_sha256": archive_sha})
-            for record in load_provisions(report.provisions_path)
-        ],
-    )
-    release = ReleaseManifest(
-        name="test-usc-corrupt-deflate",
-        scopes=(ReleaseScope("us", "statute", "2026-04-29-title-26"),),
-    )
-
-    validation = validate_release(store.root, release)
-
-    assert not validation.ok
-    assert {issue.code for issue in validation.issues} == {"unreadable_archive_member"}
 
 
 def test_usc_run_id_scopes_title_and_limit():
@@ -406,7 +335,9 @@ def test_official_title_26_node_count_and_semantic_label_fidelity():
             source_kind_by_identifier.setdefault(identifier, kind)
     source_kind_counts = Counter(source_kind_by_identifier.values())
 
-    inventory = build_usc_inventory_from_xml(decode_uslm_bytes(source_bytes))
+    # Parse the 56 MB title once and reuse it, as extract_usc does.
+    document = parse_uslm_title(decode_uslm_bytes(source_bytes))
+    inventory = _build_usc_inventory(document)
     kind_counts = Counter(item.metadata["kind"] for item in inventory.items)
 
     assert len(inventory.items) == len(
@@ -500,8 +431,8 @@ def test_official_title_26_node_count_and_semantic_label_fidelity():
 
     records_by_path = {
         record.citation_path: record
-        for record in iter_usc_title_provisions(
-            decode_uslm_bytes(source_bytes),
+        for record in _iter_usc_provisions(
+            document,
             version="2026-07-24-official-fixture",
             source_path="official-title-26/usc26.xml",
             allowed_citation_paths=set(expected),
@@ -614,13 +545,13 @@ def test_official_title_26_duplicate_number_siblings_survive_traversal():
         )
     )
     allowed_citation_paths = set(expected_paths)
-    inventory = build_usc_inventory_from_xml(
-        source_text,
+    inventory = _build_usc_inventory(
+        document,
         allowed_citation_paths=allowed_citation_paths,
     )
     records = tuple(
-        iter_usc_title_provisions(
-            source_text,
+        _iter_usc_provisions(
+            document,
             version="2026-07-24-duplicate-number-fixture",
             source_path="official-title-26/usc26.xml",
             allowed_citation_paths=allowed_citation_paths,
@@ -850,328 +781,6 @@ def test_extract_usc_writes_source_inventory_provisions_and_coverage(tmp_path):
     assert records[1].expression_date == "2026-04-01"
 
 
-def test_extract_usc_archive_retains_zip_and_member_provenance(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "xml_usc26@119-102.zip",
-        {"usc26.xml": SAMPLE_USLM},
-    )
-    archive_bytes = archive.read_bytes()
-    member_bytes = SAMPLE_USLM.encode()
-    store = CorpusArtifactStore(tmp_path / "corpus")
-
-    report = extract_usc(
-        store,
-        version="2026-04-29",
-        source_archive=archive,
-        source_as_of="2026-04-01",
-    )
-
-    expected_source_path = "sources/us/statute/2026-04-29-title-26/olrc/xml_usc26@119-102.zip"
-    retained_archive = store.root / expected_source_path
-    inventory = load_source_inventory(report.inventory_path)
-    records = load_provisions(report.provisions_path)
-
-    assert report.coverage.complete
-    assert report.source_paths == (retained_archive,)
-    assert retained_archive.read_bytes() == archive_bytes
-    assert not (store.root / "sources/us/statute/2026-04-29-title-26/uslm/usc26.xml").exists()
-    assert {item.source_path for item in inventory} == {expected_source_path}
-    assert {item.source_format for item in inventory} == {"uslm-xml+zip"}
-    assert {item.sha256 for item in inventory} == {sha256(archive_bytes).hexdigest()}
-    assert {record.source_path for record in records} == {expected_source_path}
-    assert {record.source_format for record in records} == {"uslm-xml+zip"}
-    expected_metadata = {
-        "archive_sha256": sha256(archive_bytes).hexdigest(),
-        "archive_member": "usc26.xml",
-        "archive_member_sha256": sha256(member_bytes).hexdigest(),
-    }
-    for item in inventory:
-        assert item.metadata is not None
-        assert expected_metadata.items() <= item.metadata.items()
-    for record in records:
-        assert record.metadata is not None
-        assert expected_metadata.items() <= record.metadata.items()
-
-
-def test_extract_usc_archive_passes_release_quality(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "xml_usc26@119-102.zip",
-        {"usc26.xml": SAMPLE_USLM},
-    )
-    store = CorpusArtifactStore(tmp_path / "corpus")
-    report = extract_usc(
-        store,
-        version="2026-04-29",
-        source_archive=archive,
-    )
-
-    release_report = validate_release(
-        store.root,
-        ReleaseManifest(
-            name="test-usc-archive",
-            scopes=(ReleaseScope("us", "statute", "2026-04-29-title-26"),),
-        ),
-    )
-
-    assert report.coverage.complete
-    assert release_report.ok, [issue.to_mapping() for issue in release_report.issues]
-
-
-def test_release_quality_rejects_corrupt_archive_member_provenance(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "xml_usc26@119-102.zip",
-        {"usc26.xml": SAMPLE_USLM},
-    )
-    store = CorpusArtifactStore(tmp_path / "corpus")
-    report = extract_usc(
-        store,
-        version="2026-04-29",
-        source_archive=archive,
-    )
-    release = ReleaseManifest(
-        name="test-usc-archive",
-        scopes=(ReleaseScope("us", "statute", "2026-04-29-title-26"),),
-    )
-    inventory = load_source_inventory(report.inventory_path)
-    provisions = load_provisions(report.provisions_path)
-
-    store.write_inventory(
-        report.inventory_path,
-        [
-            replace(
-                item,
-                metadata={**(item.metadata or {}), "archive_member_sha256": "0" * 64},
-            )
-            for item in inventory
-        ],
-    )
-    corrupt_inventory_report = validate_release(store.root, release)
-
-    assert corrupt_inventory_report.ok is False
-    assert "archive_member_sha256_mismatch" in {
-        issue.code for issue in corrupt_inventory_report.issues
-    }
-
-    store.write_inventory(report.inventory_path, inventory)
-    store.write_provisions(
-        report.provisions_path,
-        [
-            replace(
-                record,
-                metadata={**(record.metadata or {}), "archive_member_sha256": "0" * 64},
-            )
-            for record in provisions
-        ],
-    )
-    corrupt_provision_report = validate_release(store.root, release)
-
-    assert corrupt_provision_report.ok is False
-    assert "provision_source_provenance_mismatch" in {
-        issue.code for issue in corrupt_provision_report.issues
-    }
-
-
-def test_release_quality_skips_member_read_after_archive_hash_mismatch(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "xml_usc26@119-102.zip",
-        {"usc26.xml": SAMPLE_USLM},
-    )
-    store = CorpusArtifactStore(tmp_path / "corpus")
-    report = extract_usc(
-        store,
-        version="2026-04-29",
-        source_archive=archive,
-    )
-    release = ReleaseManifest(
-        name="test-usc-archive",
-        scopes=(ReleaseScope("us", "statute", "2026-04-29-title-26"),),
-    )
-    inventory = load_source_inventory(report.inventory_path)
-    invalid_archive_sha256 = "0" * 64
-    store.write_inventory(
-        report.inventory_path,
-        [
-            replace(
-                item,
-                sha256=invalid_archive_sha256,
-                metadata={
-                    **(item.metadata or {}),
-                    "archive_sha256": invalid_archive_sha256,
-                    "archive_member_sha256": invalid_archive_sha256,
-                },
-            )
-            for item in inventory
-        ],
-    )
-
-    release_report = validate_release(store.root, release)
-    issue_codes = {issue.code for issue in release_report.issues}
-
-    assert release_report.ok is False
-    assert "source_sha256_mismatch" in issue_codes
-    assert "archive_member_sha256_mismatch" not in issue_codes
-
-
-def test_extract_usc_rejects_loaded_source_with_raw_source_arguments(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "xml_usc26@119-102.zip",
-        {"usc26.xml": SAMPLE_USLM},
-    )
-    source = load_usc_source(source_archive=archive)
-
-    with pytest.raises(ValueError, match="source_payload cannot be combined"):
-        extract_usc(
-            CorpusArtifactStore(tmp_path / "corpus"),
-            version="2026-04-29",
-            source_payload=source,
-            source_archive=archive,
-        )
-
-    with pytest.raises(ValueError, match="declares title 26, not requested title 42"):
-        extract_usc(
-            CorpusArtifactStore(tmp_path / "other-corpus"),
-            version="2026-04-29",
-            source_payload=source,
-            title="42",
-        )
-
-
-def test_load_usc_source_selects_unique_requested_title_member(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "title.zip",
-        {
-            "metadata.xml": "<metadata />",
-            "nested/usc26.xml": SAMPLE_USLM,
-        },
-    )
-
-    source = load_usc_source(source_archive=archive, title="26")
-
-    assert source.archive_member == "nested/usc26.xml"
-    assert source.xml_content == SAMPLE_USLM
-
-
-def test_load_usc_source_uses_exact_explicit_member(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "title.zip",
-        {
-            "first.xml": "<metadata />",
-            "nested/official.xml": SAMPLE_USLM,
-        },
-    )
-
-    source = load_usc_source(
-        source_archive=archive,
-        archive_member="nested/official.xml",
-    )
-
-    assert source.archive_member == "nested/official.xml"
-
-
-def test_load_usc_source_rejects_missing_or_conflicting_input(tmp_path):
-    xml_path = tmp_path / "usc26.xml"
-    xml_path.write_text(SAMPLE_USLM)
-    archive = _write_uslm_archive(
-        tmp_path / "title.zip",
-        {"usc26.xml": SAMPLE_USLM},
-    )
-
-    with pytest.raises(ValueError, match="exactly one"):
-        load_usc_source()
-    with pytest.raises(ValueError, match="exactly one"):
-        load_usc_source(source_xml=xml_path, source_archive=archive)
-    with pytest.raises(ValueError, match="requires source_archive"):
-        load_usc_source(source_xml=xml_path, archive_member="usc26.xml")
-
-
-def test_load_usc_source_rejects_ambiguous_or_missing_member(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "title.zip",
-        {"one.xml": SAMPLE_USLM, "two.xml": SAMPLE_USLM},
-    )
-
-    with pytest.raises(ValueError, match="ambiguous XML members"):
-        load_usc_source(source_archive=archive)
-    with pytest.raises(ValueError, match="member not found"):
-        load_usc_source(source_archive=archive, archive_member="missing.xml")
-    with pytest.raises(ValueError, match="unsafe USLM archive member request"):
-        load_usc_source(source_archive=archive, archive_member="../one.xml")
-
-
-def test_load_usc_source_rejects_duplicate_archive_member(tmp_path):
-    archive_path = tmp_path / "duplicate.zip"
-    with ZipFile(archive_path, "w") as archive:
-        archive.writestr("usc26.xml", SAMPLE_USLM)
-        with pytest.warns(UserWarning, match="Duplicate name"):
-            archive.writestr("usc26.xml", SAMPLE_USLM)
-
-    with pytest.raises(ValueError, match="duplicate member"):
-        load_usc_source(source_archive=archive_path)
-
-
-def test_load_usc_source_rejects_unsafe_archive_member(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "unsafe.zip",
-        {"../usc26.xml": SAMPLE_USLM},
-    )
-
-    with pytest.raises(ValueError, match="unsafe member"):
-        load_usc_source(source_archive=archive)
-
-
-def test_load_usc_source_rejects_nul_in_original_archive_member_name(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "nul-name.zip",
-        {"usc26.xmlX": SAMPLE_USLM},
-    )
-    # ZipInfo truncates filename at a NUL byte while preserving orig_filename.
-    # Mutate both raw ZIP headers because ZipFile.writestr also truncates names.
-    archive.write_bytes(archive.read_bytes().replace(b"usc26.xmlX", b"usc26.xml\x00"))
-    with ZipFile(archive) as source:
-        member = source.infolist()[0]
-        assert member.filename == "usc26.xml"
-        assert member.orig_filename == "usc26.xml\x00"
-
-    with pytest.raises(ValueError, match="unsafe member"):
-        load_usc_source(source_archive=archive)
-
-
-def test_load_usc_source_rejects_symlink_archive_member(tmp_path):
-    archive_path = tmp_path / "symlink.zip"
-    link = ZipInfo("usc26.xml")
-    link.create_system = 3
-    link.external_attr = 0o120777 << 16
-    with ZipFile(archive_path, "w") as archive:
-        archive.writestr(link, "target.xml")
-
-    with pytest.raises(ValueError, match="symlink member"):
-        load_usc_source(source_archive=archive_path)
-
-
-def test_load_usc_source_rejects_bad_zip_and_non_uslm_xml(tmp_path):
-    bad_zip = tmp_path / "bad.zip"
-    bad_zip.write_bytes(b"not a zip")
-    non_uslm = _write_uslm_archive(
-        tmp_path / "non-uslm.zip",
-        {"usc26.xml": '<uscDoc identifier="/us/usc/t26" />'},
-    )
-
-    with pytest.raises(ValueError, match="invalid USLM ZIP archive"):
-        load_usc_source(source_archive=bad_zip)
-    with pytest.raises(ValueError, match="not official OLRC USLM"):
-        load_usc_source(source_archive=non_uslm)
-
-
-def test_load_usc_source_rejects_archive_title_mismatch(tmp_path):
-    archive = _write_uslm_archive(
-        tmp_path / "title.zip",
-        {"only.xml": SAMPLE_USLM},
-    )
-
-    with pytest.raises(ValueError, match="declares title 26, not requested title 42"):
-        load_usc_source(source_archive=archive, title="42")
-
-
 def test_extract_usc_limit_certifies_scoped_inventory(tmp_path):
     source_xml = tmp_path / "usc26.xml"
     source_xml.write_text(SAMPLE_USLM)
@@ -1361,3 +970,133 @@ def test_extract_usc_directory_only_title_scopes_run_id(tmp_path):
     assert report.provisions_path == store.provisions_path("us", "statute", "2026-04-29-title-42")
     records = load_provisions(report.provisions_path)
     assert [record.citation_path for record in records] == ["us/statute/42", "us/statute/42/1983"]
+
+
+def test_extract_usc_source_zip_retains_the_zip_as_the_inventoried_source(tmp_path):
+    import hashlib
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@119-103.zip"
+    with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-09-13",
+        source_zip=source_zip,
+        source_as_of="2026-09-02",
+        expression_date=date(2026, 9, 2),
+    )
+
+    assert report.coverage.complete
+    assert report.provisions_written == 3
+    retained = store.root / "sources/us/statute/2026-09-13-title-26/olrc/xml_usc26@119-103.zip"
+    assert report.source_paths == (retained,)
+    assert retained.read_bytes() == source_zip.read_bytes()
+    assert not (store.root / "sources/us/statute/2026-09-13-title-26/uslm").exists()
+    zip_sha256 = hashlib.sha256(source_zip.read_bytes()).hexdigest()
+    inventory = load_source_inventory(report.inventory_path)
+    records = load_provisions(report.provisions_path)
+    expected_source_path = "sources/us/statute/2026-09-13-title-26/olrc/xml_usc26@119-103.zip"
+    assert {item.source_path for item in inventory} == {expected_source_path}
+    assert {item.sha256 for item in inventory} == {zip_sha256}
+    assert {item.metadata["source_archive_member"] for item in inventory} == {"usc26.xml"}
+    assert {record.source_path for record in records} == {expected_source_path}
+    assert {record.metadata["source_archive_member"] for record in records} == {"usc26.xml"}
+    assert [record.citation_path for record in records] == [
+        "us/statute/26",
+        "us/statute/26/32",
+        "us/statute/26/151",
+    ]
+    assert records[1].source_as_of == "2026-09-02"
+
+
+def test_extract_usc_source_zip_refuses_ambiguous_archives(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "two.zip"
+    with zipfile.ZipFile(source_zip, "w") as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+        archive.writestr("README.txt", "x")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="exactly one USLM XML member"):
+        extract_usc(store, version="2026-09-13", source_zip=source_zip)
+
+
+def test_extract_usc_requires_exactly_one_source(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="exactly one of source_xml or source_zip"):
+        extract_usc(store, version="2026-09-13")
+
+
+def test_extract_usc_prior_release_point_links_rows_to_the_release_point_download(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@118-209not159.zip"
+    with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    download_url = (
+        "https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/"
+        "xml_usc26@118-209not159.zip"
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-09-23-vintage",
+        source_zip=source_zip,
+        source_as_of="2024-12-23",
+        expression_date=date(2024, 12, 23),
+        source_download_url=download_url,
+        prior_release_point=True,
+    )
+
+    assert report.coverage.complete
+    inventory = load_source_inventory(report.inventory_path)
+    records = load_provisions(report.provisions_path)
+    assert {item.source_url for item in inventory} == {download_url}
+    assert {record.source_url for record in records} == {download_url}
+    assert {record.metadata["source_download_url"] for record in records} == {download_url}
+    assert {record.expression_date for record in records} == {"2024-12-23"}
+    assert not any("edition=prelim" in (record.source_url or "") for record in records)
+
+
+def test_extract_usc_default_rows_keep_the_prelim_reader_url(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@119-103.zip"
+    with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-09-13",
+        source_zip=source_zip,
+        source_download_url="https://uscode.house.gov/download/xml_usc26@119-103.zip",
+    )
+
+    records = load_provisions(report.provisions_path)
+    section = next(record for record in records if record.citation_path == "us/statute/26/32")
+    assert section.source_url == (
+        "https://uscode.house.gov/view.xhtml?"
+        "req=granuleid:USC-prelim-title26-section32&num=0&edition=prelim"
+    )
+
+
+def test_extract_usc_prior_release_point_requires_the_download_url(tmp_path):
+    import zipfile
+
+    source_zip = tmp_path / "xml_usc26@118-209not159.zip"
+    with zipfile.ZipFile(source_zip, "w") as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="prior_release_point requires source_download_url"):
+        extract_usc(
+            store,
+            version="2026-09-23",
+            source_zip=source_zip,
+            prior_release_point=True,
+        )
+    assert not (store.root / "sources").exists()

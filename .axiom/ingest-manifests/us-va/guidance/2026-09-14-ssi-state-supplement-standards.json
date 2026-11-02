@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "6df193f015804a558f6cdd9d4c4cd8dab2554943911f62dd7b80fb38037cb7cc"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "fedc9cab3490e8a31118db4d092c615d2356990bc2d90e119afc480415504f3c"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/guidance/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "9211e5a3f4c26c145a2078f0b0c3cd5e649bb82a2b480c61d4c7e3f888b12be9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-guidance-dars-auxiliary-grant-rate-letter-2026.pdf",
+      "sha256": "ab4a6b6e2a12c1d375be2ed4dcfdecc410f6aace9f79873261af1d2793e96c67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-va-ssi-state-supplement-standards-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:17:35.903171+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Lu/E07XfZk86lAj0d/XmKwg0oOjgxHJ9Sr+BngocfWNfU1mtR/G5Eu3Wmp3FT06wilOQKrwW4oF9idM6P4mkAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

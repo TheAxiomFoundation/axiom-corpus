@@ -1,0 +1,89 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ms-dom-epm-chapter-101
+  jurisdiction: us-ms
+  document_class: manual
+  title: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual Chapter 101 Coverage Groups and Processing
+    Applications and Reviews
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/09/Chapter-101-Coverage-Groups-and-Processing-Applications-and-Reviews-revised-September2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-09-01'
+  citation_path: us-ms/manual/dom/chip/epm-chapter-101
+  extraction:
+    segmentation: labeled_sections
+    start_page: 6
+    section_heading_pattern: ^\s*(?P<num>101\.\d{2}(?:\.\d{2}[A-Z]?)?)\s+(?P<heading>[A-Z][A-Z0-9 ,\-–’'()/&:.]+?)\s*$
+    section_label_pattern: ^\s*(?P<num>101\.\d{2}(?:\.\d{2}[A-Z]?)?)\s*$
+    label_only_heading_pattern: ^\s*[A-Z][A-Z0-9 ,\-–’'()/&:.]+\s*$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    heading_continuation_pattern: (?!)
+    drop_line_patterns: &id001
+    - ^\s*MISSISSIPPI DIVISION OF MEDICAID\s*$
+    - ^\s*Eligibility Policy and Procedures Manual\s*$
+    - ^\s*CHAPTER \d{3} – .*$
+    - ^\s*P\s?a\s?g\s?e\s*\|\s*\d+\s*$
+    - ^\s*Effective Month:.*$
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: eligibility_manual_chapter_pdf
+    program: CHIP
+    source_discovery_group: us-ms/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    state_program: Mississippi CHIP (COE-099)
+    manual_chapter: '101'
+    revised: September 2025
+- source_id: ms-dom-epm-chapter-400
+  jurisdiction: us-ms
+  document_class: manual
+  title: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual Chapter 400 ABD and MAGI Eligibility Criteria
+    and Budgeting
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-400-ABD-and-MAGI-Eligibility-Criteria-and-Budgeting.-Revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-07-01'
+  citation_path: us-ms/manual/dom/chip/epm-chapter-400
+  extraction:
+    segmentation: labeled_sections
+    start_page: 4
+    section_heading_pattern: ^\s*(?P<num>400\.\d{2}(?:\.\d{2}[A-Z]?)?)\s+(?P<heading>[A-Z][A-Z0-9 ,\-–’'()/&:.]+?)\s*$
+    section_label_pattern: ^\s*(?P<num>400\.\d{2}(?:\.\d{2}[A-Z]?)?)\s*$
+    label_only_heading_pattern: ^\s*[A-Z][A-Z0-9 ,\-–’'()/&:.]+\s*$
+    label_only_requires_heading: true
+    section_label_template: '{num}'
+    heading_continuation_pattern: (?!)
+    drop_line_patterns: *id001
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: eligibility_manual_chapter_pdf
+    program: CHIP
+    source_discovery_group: us-ms/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    state_program: Mississippi CHIP (COE-099)
+    manual_chapter: '400'
+    revised: July 2025
+- source_id: ms-dom-epm-appendix-a-3
+  jurisdiction: us-ms
+  document_class: manual
+  title: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual Appendix A-3 Modified Adjusted Gross Income
+    (MAGI) Limits Chart
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Appendix-A-3-MAGI-Income-Limits.-2014-to-present.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-03-01'
+  citation_path: us-ms/manual/dom/chip/epm-appendix-a-3
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: income_standards_chart_pdf
+    program: CHIP
+    source_discovery_group: us-ms/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    state_program: Mississippi CHIP (COE-099)
+    manual_appendix: A-3
+    expression_date_note: publisher upload month (2026/03); the chart carries no cover date

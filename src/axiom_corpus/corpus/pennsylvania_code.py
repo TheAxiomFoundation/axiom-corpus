@@ -282,7 +282,9 @@ def extract_pennsylvania_code(
         chapters = _parse_chapters(snapshot.content, title=title)
         if only_chapter is not None:
             chapters = tuple(
-                chapter for chapter in chapters if _same_token(chapter.number, only_chapter)
+                chapter
+                for chapter in chapters
+                if _matches_selector(chapter.number, only_chapter)
             )
         if limit_chapters is not None:
             chapters = chapters[:limit_chapters]
@@ -1016,6 +1018,15 @@ def _path_token(value: str) -> str:
 
 def _same_token(left: str, right: str) -> bool:
     return _path_token(left) == _path_token(right)
+
+
+def _matches_selector(value: str, selector: str) -> bool:
+    """Return whether ``value`` matches any comma-separated token of ``selector``."""
+
+    tokens = [token for token in selector.split(",") if token.strip()]
+    if not tokens:
+        return False
+    return any(_same_token(value, token) for token in tokens)
 
 
 def _effective_through(content: bytes) -> str | None:

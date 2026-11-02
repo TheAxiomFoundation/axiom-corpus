@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/guidance/2026-09-10-tax-state-guidance-ty2025.json",
+      "sha256": "f8010d3f56df85ff32e38053a4eed3acb503258cc276231dc10d075e4ba8efeb"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/guidance/2026-09-10-tax-state-guidance-ty2025.json",
+      "sha256": "3201546ba2e9521acaef3d820b214f93449ab7884e6eff40672a375c97acef71"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/guidance/2026-09-10-tax-state-guidance-ty2025.jsonl",
+      "sha256": "47b13f9d6cc06ce7d80f24e30ac18b8d9536b3915fdd436f4f6534e382b802c7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-09-10-tax-state-guidance-ty2025/official-documents/us-wa-dor-capital-gains-tax-ty2025.html",
+      "sha256": "499eefe6d1704270278d571ac6057333784174158fa730643e9c2970b8118261"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-09-10-tax-state-guidance-ty2025/official-documents/us-wa-dor-income-tax-ty2025.html",
+      "sha256": "2e9d44a4410ef8033e58118414d8586d6d4e1d3cba72976dbe2583aa2dbb8981"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-09-10-tax-state-guidance-ty2025/official-documents/us-wa-dor-special-notice-capital-gains-tiered-rates-ty2025.html",
+      "sha256": "60a211c3e8acde41978f98f816707720698973d21aeae94fd054131f92e3dee0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-guidance-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-12T13:05:09.207557+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AhBGvJC6NIihoPeDgFoLbZ3rJPj85tL3I4QefpLrtSLpeNIUvU7LKOTXMv7EBcmI5QiktztKTpT56ZbqlViJDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-guidance-ty2025"
+}

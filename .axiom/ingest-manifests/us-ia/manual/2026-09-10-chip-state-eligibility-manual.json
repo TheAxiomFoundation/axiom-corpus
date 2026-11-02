@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "bb3e9a0066b962328bda9573460e60ba6856dcddb6a8aa0b84a7283ce6e1df3a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "039762d6dd8f99c91b4347e05d090e41d698a87f642f2136218fcdd5811c5f9e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "f9e9d0b06c71480a0210e730234182498a480076d64dac053fa06aeb7ee86295"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ia-hhs-employees-manual-5-e-hawki.pdf",
+      "sha256": "1f76262e0637dc64635f6df2baa4f534e1b4f39cb766f1592e4219bea895239d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ia-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 94,
+    "missing_count": 0,
+    "provision_count": 94,
+    "source_count": 94
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:45:30.430417+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fZyVix5gAATCdkUzob6MLL9G4dZhnxw/jj7uusv0pDHfdxfRzlzgoVo89/kn2GbNmzK6zGdacCzDAqkxdc0wAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

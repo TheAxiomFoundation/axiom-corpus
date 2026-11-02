@@ -1,0 +1,26 @@
+documents:
+  - source_id: ch-zh-cantonal-tax-factor-resolution-2022-2023
+    jurisdiction: ch-zh
+    document_class: statute
+    citation_path: ch-zh/statute/kantonsratsbeschluss/631-21/steuerfuss-2022-2023
+    title: Beschluss des Kantonsrates über die Festsetzung des Steuerfusses für die Jahre 2022 und 2023
+    source_url: 'https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-631_21-2021_12_14-2022_01_26-116.html'
+    download_url: 'https://www2.zhlex.zh.ch/appl/zhlex_r.nsf/WebView/1DEEEB86D7E8F4F5C12587D10028E429/%24File/631.21_14.12.21_116.pdf'
+    source_format: pdf
+    source_as_of: '2026-08-28'
+    expression_date: '2022-01-26'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Kantonsrat Zürich / Zürcher Gesetzessammlung
+      legal_identifier: LS 631.21, Nachtrag 116
+      source_family: wealth-tax/tax-factor
+      source_note: >-
+        Formal cantonal resolution adopted 14 December 2021 and published and
+        effective 26 January 2022, setting the cantonal tax factor at 99
+        percent of the simple state tax for tax years 2022 and 2023. The
+        retained direct official WebView PDF reproduces the resolution.

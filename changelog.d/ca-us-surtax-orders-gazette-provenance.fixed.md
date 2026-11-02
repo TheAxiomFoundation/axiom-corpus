@@ -1,0 +1,1 @@
+Record the Canada Gazette Part II publication (Vol. 160, No. 19, 2026-09-23) of SOR/2026-186 and SOR/2026-187 in the `ca/rulemaking/2026-09-04-us-surtax-orders` provenance, replacing the stale "not yet carried in the Gazette" note, and correct the coming-into-force note on the steel and aluminum amending Order to match its section 4.

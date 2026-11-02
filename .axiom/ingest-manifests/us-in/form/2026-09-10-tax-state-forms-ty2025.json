@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "d3e78668c4f3b68e4658500a61965d5381cf4cf014ce890b44adeb416fe00777"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "bac61cf44fd0cb111c91bc8455994a017e3781415b47ea2bf1b3b6b00d784f5d"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "f4dfe3f7d71e520c9cf976c17ad9ed1ed153fa3f579b72fdce641b918b18ae34"
+    },
+    {
+      "path": "data/corpus/sources/us-in/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-in-dor-it-40-booklet-ty2025.pdf",
+      "sha256": "b571f21423925108109187c58d0c9ec106bc4d1051d517e563a940228ed0c79c"
+    },
+    {
+      "path": "data/corpus/sources/us-in/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-in-dor-it-40-ty2025.pdf",
+      "sha256": "0b5d74cffea1dc758eff500a8d74bf020b53b977b57e04b12ce344316234b785"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T21:48:47.641272+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jiuBAGnM/7jiplbK+QTwaR2juUeIy6f+07Qyg62codtu8Xb5Xi5QgX6suXz8yMQMQqRAnJHA7qCfezOnQsGsCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

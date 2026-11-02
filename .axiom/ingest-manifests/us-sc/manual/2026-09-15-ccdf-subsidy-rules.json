@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/manual/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "fbd3e1efc9b1f97c0706540d91b6437faa9fb8cc19da91afb90947eade391cd8"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/manual/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "9a2c9f24424deec4b6cfbc7071a906e80d5de90575a413dcfe6dc736b103b894"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/manual/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "04129b9cce98612d29d3d35a9fa4ab15e6a88e3fd878eab3bd561b885a180656"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/manual/2026-09-15-ccdf-subsidy-rules/official-documents/us-sc-dss-child-care-scholarship-policy-manual-vol-39.pdf",
+      "sha256": "26923d9fa01f81cc99ccd98c07598be6cd2953dda2f40d4e3d67f3b774ecbd44"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 291,
+    "missing_count": 0,
+    "provision_count": 291,
+    "source_count": 291
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:58:32.818709+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "E9OEf8LhfSzz5gTW+rL7Th4BOCQNeGzRZKD5CuXbR/kxf5y0jhuN9QRH3hyXENAHVuwe8ofjXGy37KR/KV+fBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}

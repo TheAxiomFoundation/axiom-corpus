@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "9d28cad755c287a3c9cf8838dcc71e09404f36f4f22e1cc3bc0ff83e9c4e706f"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "0ec8a6a7d0800fc35392c6aeb6ea372edc6e4fe839310e7597c30ccd4d12b3c1"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "b75126404a00d9d198d93a1dd9e3fd5a65f0bb8fa2532f5bef8b213b49ea5f31"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-sc-dor-sc1040es-ty2026.pdf",
+      "sha256": "2972c01622a340867e98a7c83dd215f72f330eaae33c22e55f531bb782f37bd9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-sc-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T18:01:13.303707+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "d7uwx6h5YwiR6VpOT8D7eGy/cQ/xnM27VeH8lSGVwWsqSC04GAjBx+kBJnUFSE1W7jcfwNpFrZNvTsrO0cWOCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

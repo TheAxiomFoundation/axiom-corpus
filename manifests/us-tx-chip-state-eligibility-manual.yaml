@@ -1,0 +1,27 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: tx-hhsc-texas-works-handbook-part-d
+  jurisdiction: us-tx
+  document_class: manual
+  title: 'Texas Works Handbook Part D: Children''s Health Insurance Program'
+  source_url: https://fhb.hhs.texas.gov/book/export/html/75506
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-tx/manual/hhs/chip/texas-works-handbook-part-d
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: body
+    segmentation: labeled_sections
+    section_heading_pattern: ^D-(?P<num>\d{3,4}),\s+(?P<heading>\S.*)$
+    section_label_template: d-{num}
+  metadata:
+    primary_source: true
+    source_authority: Texas Health and Human Services Commission
+    document_subtype: policy_handbook_part
+    program: CHIP
+    source_discovery_group: us-tx/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: Texas CHIP and CHIP Perinatal
+    part_landing_page: https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/part-d-childrens-health-insurance-program

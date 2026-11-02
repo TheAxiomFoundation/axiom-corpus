@@ -1,0 +1,51 @@
+version: 2026-09-15-ssi-state-supplement-rules
+documents:
+- source_id: ut-admin-rules-r414-306-6-current
+  jurisdiction: us-ut
+  document_class: regulation
+  title: 'Utah Administrative Code R414-306-6: State Supplemental Payments for Institutionalized SSI Recipients'
+  source_url: https://adminrules.utah.gov/Rule/980/51/7248/undefined
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-06-19'
+  citation_path: us-ut/regulation/admin-rules/r414/306
+  extraction:
+    segmentation: anchor_range
+    html_content_selector: div[class$='_ruleHtml']
+    html_start_selector: div.awdiv:has(> span.awtext1:-soup-contains("R414-306-6."))
+    html_stop_selector: div.awdiv:has(> span.awtext1:-soup-contains("KEY:"))
+    section_label: '6'
+    section_heading: R414-306-6. State Supplemental Payments for Institutionalized SSI Recipients.
+  metadata:
+    primary_source: true
+    source_authority: Utah Office of Administrative Rules
+    document_subtype: administrative_code_rule_section
+    program: SSI
+    state: UT
+    rule_id: 980
+    rule_version_id: 7248
+    rule_type_id: 51
+    reference_number: R414-306
+    rule_title: Program Benefits and Date of Eligibility
+    effective_date: '2025-06-19'
+    rule_filing_type: Nonsubstantive
+    agency: Health and Human Services
+    program_name: Integrated Healthcare
+    official_rule_route: https://adminrules.utah.gov/Rule/980/51/7248/undefined
+    api_note: Repaired 2026-10-20. The Office of Administrative Rules relaunched eRules v1.0.0 on 2026-10-16, and the addresses
+      this row used before (/public/rule/R414-306/Current%20Rules and the /api/public/getfile/uac-html/... download) both
+      answer HTTP 404. The replacement is one address, the new rule page, whose trailing /undefined segment is required, because
+      /Rule/980/51/7248 alone answers 404. The page server-renders the publisher's own converted rule HTML (Aspose div.awdiv
+      / span.awtext1) and holds both awpage divs, so html_content_selector div[class$='_ruleHtml'] replaces the earlier body
+      selector; the CSS-module hash prefix changes per build, so the selector matches the stable _ruleHtml suffix. The plain
+      corpus client reads the full body, so the curl range backend is no longer needed and the separate download_url is gone.
+      The rule record now comes from POST /api/search and POST /api/ruleVersion, which still name htmlName 1f7c0fac-db65-46f9-bceb-37aaf2db016d.html
+      and effectiveDate 06/19/2025, so this is the same rule version the 2026-09-15 run took. The new /api/storage/<file>
+      route answers HTTP 500 for every file name, so no direct file route is used. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.
+    parent_rule_source: us-ut/regulation/admin-rules/r414/306
+    closure_elements:
+    - SSI-ST-2
+    source_discovery_group: us-ut/regulation/ssi
+    discovered_via: manual-review:ssi-agent-queue batch 6 (needs-closure-2026-09-14 SSI-ST-2, state authority); publisher
+      index
+    run_note: docs/ingest-runs/2026-10-20-ut-erules-url-repair.md

@@ -1,0 +1,428 @@
+version: 2026-09-13-snap-fns-guidance
+documents:
+- source_id: snap-fy2026-cola-memo
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP - Fiscal Year 2026 Cost-of-Living Adjustments (memorandum)
+  source_url: https://www.fna.usda.gov/snap/allotment/cola/fy26
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-cola-fy26memo.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us/guidance/usda/fns/snap-fy2026-cola-memo
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: cola_guidance
+    memo_date: '2025-10-01'
+    closure_elements:
+    - snap_g09
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    fiscal_year: '2026'
+    effective_start: '2025-10-01'
+    effective_end: '2026-09-30'
+    expression_date_note: the memorandum prints no date line; its COLAs are effective October 1, 2025, the same convention
+      as the released FY 2026 tables scope
+    related_released_scope: us/guidance/2026-05-01-snap-fy2026-cola-r2026-07-15-self-contained (the two-page allotment and
+      deduction tables; this document is the full memorandum with the minimum benefit)
+- source_id: snap-obbb-implementation-memo
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Provisions of the One Big Beautiful Bill Act of 2025 - Information Memorandum
+  source_url: https://www.fna.usda.gov/snap/obbb-implementation
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbb-implementation.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-09-04'
+  citation_path: us/guidance/usda/fns/snap-obbb-implementation-memo
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: information_memorandum
+    memo_date: '2025-09-04'
+    closure_elements:
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+- source_id: snap-obbb-abawd-waivers-implementation-memo
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP Provisions of the One Big Beautiful Bill Act of 2025: ABAWD Waivers - Implementation Memorandum'
+  source_url: https://www.fna.usda.gov/snap/obbb-abawd-waivers-implementation
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbb-abawd-waivers-implementation.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-03'
+  citation_path: us/guidance/usda/fns/snap-obbb-abawd-waivers-implementation-memo
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: implementation_memorandum
+    memo_date: '2025-10-03'
+    closure_elements:
+    - snap_g11
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    statute_reference: 7 USC 2015(o)(4)
+- source_id: snap-obbb-qc-variance-exclusion-qas
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Questions and Answers on Quality Control Variance Exclusion (OBBB sections 10102 and 10103)
+  source_url: https://www.fna.usda.gov/snap/obbb-qas-variance-exclusion
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbb-qas-variance-exclusion.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-11-14'
+  citation_path: us/guidance/usda/fns/snap-obbb-qc-variance-exclusion-qas
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: questions_and_answers
+    memo_date: '2025-11-14'
+    closure_elements:
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+- source_id: snap-obbb-time-limit-changes-qas-1
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP Provisions of the One Big Beautiful Bill Act of 2025: Time Limit Changes - Questions and Answers #1'
+  source_url: https://www.fna.usda.gov/obbb/snap/time-limit-changes-qas1
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbbTimeLimitQAs1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-06-11'
+  citation_path: us/guidance/usda/fns/snap-obbb-time-limit-changes-qas-1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: questions_and_answers
+    memo_date: '2026-06-11'
+    closure_elements:
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    statute_reference: 7 USC 2015(o)
+- source_id: snap-fy2026-sua-simplified-process-memo
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP - Simplified Process for Fiscal Year 2026 Standard Utility Allowance (SUA) Values
+  source_url: https://www.fna.usda.gov/snap/admin/sua-fy26
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-simplifiedProcess-fy26sua-values.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-08-15'
+  citation_path: us/guidance/usda/fns/snap-fy2026-sua-simplified-process-memo
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: implementation_memorandum
+    memo_date: '2025-08-15'
+    closure_elements:
+    - snap_g10
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    fiscal_year: '2026'
+- source_id: snap-obbb-energy-assistance-payments-memo
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Implementation of the One Big Beautiful Bill Act of 2025 - Treatment of Energy Assistance Payments
+  source_url: https://www.fna.usda.gov/snap/admin/energy-assistance-payments
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.SNAP-admin-energy-assistance-payments.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-08-29'
+  citation_path: us/guidance/usda/fns/snap-obbb-energy-assistance-payments-memo
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: implementation_memorandum
+    memo_date: '2025-08-29'
+    closure_elements:
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    statute_reference: 7 USC 2014(e)(6)(C)
+- source_id: snap-obbb-internet-energy-assistance-qas-1
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP Provisions of the One Big Beautiful Bill Act of 2025 - Restrictions on Internet Expenses and Treatment of Energy
+    Assistance Payments - Questions and Answers #1'
+  source_url: https://www.fna.usda.gov/obbb/snap/restrictions-internet-expenses-energy-assist-payments-qas1
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbb-restrictionsInternetExpEnergyAssistPayments-QAs1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-05-08'
+  citation_path: us/guidance/usda/fns/snap-obbb-internet-energy-assistance-qas-1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: questions_and_answers
+    memo_date: '2026-05-08'
+    closure_elements:
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    statute_reference: 7 USC 2014(e)(6)
+- source_id: snap-obbb-admin-cost-sharing-qas
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP Provisions of the One Big Beautiful Bill Act of 2025, Section 10106 Administrative Cost Sharing: Questions
+    and Answers'
+  source_url: https://www.fna.usda.gov/obbb/snap/admin-cost-sharing-qas
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbb-section10106-adminCostSharing-qas.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-05-21'
+  citation_path: us/guidance/usda/fns/snap-obbb-admin-cost-sharing-qas
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: questions_and_answers
+    memo_date: '2026-05-21'
+    closure_elements:
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    statute_reference: 7 USC 2025(a)
+- source_id: snap-obbb-alien-eligibility-qas-1
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP Provisions of the One Big Beautiful Bill Act of 2025 - Alien SNAP Eligibility - Questions and Answers #1'
+  source_url: https://www.fna.usda.gov/snap/obbb-alien-eligibility-qas1
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.snap-obbb-alien-eligibility-qas1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-12-09'
+  citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-qas-1
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: questions_and_answers
+    memo_date: '2025-12-09'
+    closure_elements:
+    - snap_g14
+    - snap_g15
+    index_url: https://www.fna.usda.gov/obbb
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    public_law: 119-21
+    statute_reference: 7 USC 2015(f)
+- source_id: snap-fy2026-standard-utility-allowances
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP FY 2026 Standard Utility Allowances (SUA) by State (table updated August 2026)
+  source_url: https://www.fna.usda.gov/snap/eligibility/deduction/standard-utility-allowances
+  download_url: https://www.fna.usda.gov/sites/default/files/resource-files/2026-05-21-SUA-Table-FY26.xlsx
+  source_format: xlsx
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us/guidance/usda/fns/snap-fy2026-standard-utility-allowances
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: sua_state_table
+    closure_elements:
+    - snap_g10
+    index_url: https://www.fna.usda.gov/snap/eligibility/deduction/standard-utility-allowances
+    fiscal_year: '2026'
+    effective_start: '2025-10-01'
+    effective_end: '2026-09-30'
+    table_updated: 2026-08 (page label 'FY 2026 SUAs - Updated August 2026'; page updated 2026-08-18)
+    expression_date_note: the table's own header prints the effective period October 1, 2025 to September 30, 2026; the FNA
+      page prints no release date for the update
+- source_id: snap-abawd-waiver-status-fy2026-q1
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP: Status of State ABAWD Time Limit Waivers, Fiscal Year 2026 - 1st Quarter'
+  source_url: https://www.fna.usda.gov/snap/waivers/timelimit
+  download_url: https://www.fna.usda.gov/sites/default/files/resource-files/FY26-Quarter-1-ABAWD-Waiver-Status.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us/guidance/usda/fns/snap-abawd-waiver-status-fy2026-q1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: abawd_waiver_status
+    closure_elements:
+    - snap_g11
+    index_url: https://www.fna.usda.gov/snap/waivers/timelimit
+    fiscal_year: '2026'
+    quarter: '1'
+    effective_start: '2025-10-01'
+- source_id: snap-abawd-waiver-status-fy2026-q2
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP: Status of State ABAWD Time Limit Waivers, Fiscal Year 2026 - 2nd Quarter'
+  source_url: https://www.fna.usda.gov/snap/waivers/timelimit
+  download_url: https://www.fna.usda.gov/sites/default/files/resource-files/FY26-Quarter-2-ABAWD-Waiver-Status.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us/guidance/usda/fns/snap-abawd-waiver-status-fy2026-q2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: abawd_waiver_status
+    closure_elements:
+    - snap_g11
+    index_url: https://www.fna.usda.gov/snap/waivers/timelimit
+    fiscal_year: '2026'
+    quarter: '2'
+    effective_start: '2026-01-01'
+- source_id: snap-abawd-waiver-status-fy2026-q3
+  jurisdiction: us
+  document_class: guidance
+  title: 'SNAP: Status of State ABAWD Time Limit Waivers, Fiscal Year 2026 - 3rd Quarter'
+  source_url: https://www.fna.usda.gov/snap/waivers/timelimit
+  download_url: https://www.fna.usda.gov/sites/default/files/resource-files/FY26-Quarter-3-ABAWD-Waiver-Status.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-03-01'
+  citation_path: us/guidance/usda/fns/snap-abawd-waiver-status-fy2026-q3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: abawd_waiver_status
+    closure_elements:
+    - snap_g11
+    index_url: https://www.fna.usda.gov/snap/waivers/timelimit
+    fiscal_year: '2026'
+    quarter: '3'
+    effective_start: '2026-04-01'
+    expression_date_note: the list prints March 1, 2026 as its date
+- source_id: snap-bbce-state-chart-2026-06
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP Broad-Based Categorical Eligibility (BBCE) States Chart, June 2026
+  source_url: https://www.fna.usda.gov/snap/broad-based-categorical-eligibility
+  download_url: https://www.fna.usda.gov/sites/default/files/resource-files/BBCE-States-Chart-June2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-06-01'
+  citation_path: us/guidance/usda/fns/snap-bbce-state-chart-2026-06
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review:snap-completion-agent-queue; needs-closure-2026-09-11 snap_g09-snap_g15
+    document_subtype: bbce_state_chart
+    closure_elements:
+    - snap_g12
+    index_url: https://www.fna.usda.gov/snap/broad-based-categorical-eligibility
+    chart_edition: June 2026
+    expression_date_note: the chart carries its month only

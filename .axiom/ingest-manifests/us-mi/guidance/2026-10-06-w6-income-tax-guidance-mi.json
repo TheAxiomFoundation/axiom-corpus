@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi.json",
+      "sha256": "a997c033bfe93b84826eebf761c2d6db46713d7d7ed26fd1ccdb6c11794c740b"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi.json",
+      "sha256": "8e42c35fb939eeb16186abb89e6bec07f4bf6f91d9a4cb5654f0d503882ae3e9"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi.jsonl",
+      "sha256": "1c5f249f5b8aab3c4f70c443e6095fea5cc58644df1324595292e18774468532"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-legislature-taxpayers-guide-2025.pdf",
+      "sha256": "53dcad11a5276c0c16bbe4dc02e3435f3e4ee3c3043b2ae224ebd76b49c4e3d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-income-tax-rate-change-overview.html",
+      "sha256": "0a7277eed3765405a28f1908689b776aa79e1891e5efb2ff417fd90f2751939a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-rab-2026-1.html",
+      "sha256": "666e1ca301cb074a207494833205b9fa53af6511c86a6de7115f4f498ced787c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-reports-home-heating-expenses-2021-data.pdf",
+      "sha256": "f4be18a3dca25cfaa7f5f195a20c910b1d0a03b130d391f17c6e8f14ab2cf73b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-retirement-and-pension-benefits.html",
+      "sha256": "8c62bdeefb73688fe49f74b0fcaf36122c5ef235d1f365257d635a5f332bca09"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-taxpayer-notices-2025-05-01-2025-income-tax-rate.html",
+      "sha256": "25bd997eb018f7e9d480640dbc53770c11509a79bf37d3947874e9225df0b0de"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-taxpayer-notices-2025-11-17-social-security-taxation-pub-5803a294.html",
+      "sha256": "a5f08a69bfb1cd5d70910e8ab5bd12da3f04101b3a754e357da0e9c25f5b0c3c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-taxpayer-notices-2026-01-06-qualified-overtime-and-tips-deductions.html",
+      "sha256": "09d746048fecc07aee393e6e8b001ca34361eb7494d786aae5e7dff233071cd5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-income-tax-guidance-mi/official-documents/us-mi-guidance-treasury-withholding-faqs-personal-exemption-amount.html",
+      "sha256": "bc199c221acecc9881f95552b01c6d18c1024a66ca256f2eb7807367e3ff7853"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 49,
+    "missing_count": 0,
+    "provision_count": 49,
+    "source_count": 49
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:43.572390+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "aCTIncShGNkc27oFGnKalT1M+eo4lMaCyAWIob9rVwXbmKFtEi9kInZrsxvZ5FGqRQUb/uN5qS87SvCJF82HCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-mi"
+}

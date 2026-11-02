@@ -1,0 +1,35 @@
+version: 2026-10-06-w6-health-regulation-la
+documents:
+- source_id: us-la-w6-health-lac-50-iii
+  jurisdiction: us-la
+  document_class: regulation
+  title: 'Louisiana Administrative Code Title 50 (Public Health - Medical Assistance), Part III: Eligibility'
+  source_url: https://www.doa.la.gov/media/ogee2gb4/50.docx
+  source_format: docx
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-la/regulation/lac/50/iii
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: LR 42:63 \(January 2016\), amended by the Department of Health, Bureau of Health Services Financing,
+      LR 43:529 \(March 2017\), LR 47:476 \(April 2021\), LR 51:1613 \(October 2025\)\.$
+    stop_text_pattern: ^Part V\.\s+Hospital Services\s*$
+    section_heading_pattern: ^§(?P<label>\d{3,5})\.\s*(?P<heading>\S.*)$
+    drop_line_patterns:
+    - ^Title\s+50$
+    - ^PUBLIC HEALTH.{0,3}MEDICAL ASSISTANCE$
+    - ^Subpart \d+\.\s
+    - ^Chapter \d+\.\s*[A-Z]
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Health rules, published by the Louisiana Division of Administration, Office
+      of the State Register
+    program: MEDICAID
+    document_subtype: administrative_code_part
+    source_discovery_group: us-la/regulation/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 77
+    bundle_url: https://www.law.cornell.edu/regulations/louisiana/La-Admin-Code-tit-50-SS-III-2305
+    note: Official Office of the State Register title DOCX (Title 50 file last modified 2026-09-25) in place of the Cornell
+      LII mirror of LAC 50:III.2305 the bundle names; Part III only (45 sections, 2305 = Provisional Medicaid Program)

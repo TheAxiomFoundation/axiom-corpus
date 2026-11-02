@@ -1,0 +1,36 @@
+version: 2026-10-06-w6-income-tax-statute-ks
+documents:
+- source_id: us-ks-statute-session-laws-2025-hb2231
+  jurisdiction: us-ks
+  document_class: statute
+  title: House Bill 2231 (2025), as amended by House Committee
+  source_url: https://kslegislature.gov/li/b2025_26/measures/documents/hb2231_01_0000.pdf?
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/statute/session-laws/2025/hb2231
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: bill_text
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ks-statute-session-laws-2021-hb2106
+  jurisdiction: us-ks
+  document_class: statute
+  title: 'House Bill 2106 (2021-2022 Legislative Sessions): measure page'
+  source_url: https://kslegislature.gov/li_2022/b2021_22/measures/hb2106/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ks/statute/session-laws/2021/hb2106
+  extraction:
+    html_content_selector: '#main_content'
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: bill_page
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

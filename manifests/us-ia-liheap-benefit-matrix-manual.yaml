@@ -1,0 +1,33 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-ia-liheap-hhs-liheap-policy-and-procedures-manual
+  jurisdiction: us-ia
+  document_class: manual
+  title: Iowa LIHEAP FY24 Policy and Procedures Manual
+  source_url: https://hhs.iowa.gov/media/2702/download?inline=
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2023-10-01'
+  citation_path: us-ia/manual/hhs/liheap-policy-and-procedures-manual
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services, Community Action Agencies Unit
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: IA
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://hhs.iowa.gov/programs/programs-and-services/liheap
+    on_clearinghouse_index: true
+    source_discovery_group: us-ia/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://hhs.iowa.gov/programs/programs-and-services/liheap
+    extraction_granularity: pdf_page
+    expression_date_note: FY 2024 manual (2023-10-01 to 2024-09-30); PDF dated 2023-09-11
+    access_note: hhs.iowa.gov HTTP 200 to the plain client (1,612,960 bytes)
+    page_count: 114
+    benefit_matrix_pdf_pages: 22-23
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

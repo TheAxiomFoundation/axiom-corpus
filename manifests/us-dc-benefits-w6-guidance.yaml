@@ -1,0 +1,40 @@
+version: 2026-10-06-w6-benefits-guidance-dc
+documents:
+- source_id: us-dc-guidance-dhs-give-snap-a-raise
+  jurisdiction: us-dc
+  document_class: guidance
+  title: 'Give SNAP A Raise: Here''s What to Expect (DC DHS)'
+  source_url: https://dhs.dc.gov/page/give-snap-raise-heres-what-expect
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-dc/guidance/dhs/give-snap-a-raise
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Human Services
+    document_subtype: agency_web_page
+    program: SNAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 69)
+    wave6_rows:
+    - 69
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-dc-guidance-doee-liheap
+  jurisdiction: us-dc
+  document_class: guidance
+  title: Receive Assistance With Your Utility Bills (LIHEAP), DC DOEE
+  source_url: https://doee.dc.gov/liheap
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-dc/guidance/doee/liheap
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Energy and Environment
+    document_subtype: agency_web_page
+    program: LIHEAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 70)
+    wave6_rows:
+    - 70
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

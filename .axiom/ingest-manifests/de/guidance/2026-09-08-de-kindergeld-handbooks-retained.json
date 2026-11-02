@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-08-de-kindergeld-handbooks-retained.json",
+      "sha256": "620a91a73f6664d2fd291addc19a115a79e617a352c9540728ef696f65c3097d"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-08-de-kindergeld-handbooks-retained.json",
+      "sha256": "4ee7704f4529a59b80d4c4087338d3ebaeecfc1f350ed6f4c2f9a0a967cbb178"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-08-de-kindergeld-handbooks-retained.jsonl",
+      "sha256": "b1a49775e67be84de2b12bd2b355597f0c92086697f794a39b2c9c93c58d9d85"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-handbooks-retained/official-documents/de-aeao-2025-8.html",
+      "sha256": "002dc32d90b9c06c05dd8f0eca45819ccea0016ed22257207118d788acc82389"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-handbooks-retained/official-documents/de-esth-2024-3.html",
+      "sha256": "b95da6147270270312816d7b192cb79c27e1189b35962d62041c31e0303374b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T14:21:45.174442+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UhbUQLcDXNd9AbSMoaE8wxzsewKewhZlPlsXIn13gNxrnozncU277JXD8J7OllS489R9u8a3tAFAicuOGbbKCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-handbooks-retained"
+}

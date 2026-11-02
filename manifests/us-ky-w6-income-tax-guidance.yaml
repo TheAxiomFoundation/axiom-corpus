@@ -1,0 +1,36 @@
+version: 2026-10-06-w6-income-tax-guidance-ky
+documents:
+- source_id: us-ky-guidance-dor-news-2022-09-21-individual-income-tax-updates-2023
+  jurisdiction: us-ky
+  document_class: guidance
+  title: DOR Announces Updates to Individual Income Tax for 2023 Tax Year (news release)
+  source_url: https://revenue.ky.gov/News/Pages/DOR-Announces-Updates-to-Individual-Income-Tax-for-2023-Tax-Year.aspx
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ky/guidance/dor/news/2022-09-21-individual-income-tax-updates-2023
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-ky-guidance-dor-news-2025-standard-deduction
+  jurisdiction: us-ky
+  document_class: guidance
+  title: Kentucky DOR Announces 2025 Standard Deduction (news release)
+  source_url: https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2025-Standard-Deduction.aspx
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-ky/guidance/dor/news/2025-standard-deduction
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department of Revenue
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

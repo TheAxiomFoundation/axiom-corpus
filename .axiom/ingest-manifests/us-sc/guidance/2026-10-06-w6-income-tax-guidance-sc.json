@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/guidance/2026-10-06-w6-income-tax-guidance-sc.json",
+      "sha256": "174cfa9c6e43d922f59f23da5236dc5a622118af5e1d6a6ac617a7d1b6312603"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/guidance/2026-10-06-w6-income-tax-guidance-sc.json",
+      "sha256": "8ba023bcef7d17f72eac754c68bf2f699cbb494ed748c49c327c493fbee5d881"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/guidance/2026-10-06-w6-income-tax-guidance-sc.jsonl",
+      "sha256": "0dabe781e8aadb453970452a02a66e9c8d5d00f46f1583453963be897ceeb769"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-income-tax-guidance-sc/official-documents/us-sc-guidance-dor-income-tax-irc-conformity-update.pdf",
+      "sha256": "de7ddc52e0fb00851726f289cad08eab12ff46d433ba8955f4ec23d54427f9c3"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-income-tax-guidance-sc/official-documents/us-sc-guidance-treasurer-529-updates-one-big-beautiful-bill.html",
+      "sha256": "f68ca05245ce9e980236543c6057924bb378ef0880d5f2fc320571b8f4ebde6c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:58:30.571768+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jYBzTbKD/z71MUrCESfV32H45ywTBbPZyjjqiS0DYSciULUR3yYpWlTdU9BEQ5PtDJilQw4zSHPH12iBnH7MAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-sc"
+}

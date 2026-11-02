@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "3da2a2c2c75f8f85b83d339c557858bff957c9a56e952934d51575d658c81e9d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "4dc19173c92b9ac921093428baa51d7d7ea3a5514db387af99fe55e1c7b832eb"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "99a8eb0306ca476202bdf09a1e0f2a5b964c4f45608035401db5e1df64c92088"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-nj-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "b517e7ec4edae889d90534fe11635b008238afcf57d5886855a09f68d5383cbe"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:59:01.343644+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JkY6uBEPPdV7ZLYg6p6IIpHeT8bh/vlMEuwDhYRBQ/lSh9lOLmUAzhix3zdFOAHbSV0c1QMxHPHt0dxUhjMtCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

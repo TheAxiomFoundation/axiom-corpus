@@ -1,0 +1,22 @@
+version: '2026-09-14'
+extractor: extract-virginia-vac --only-title 23 --only-agency 10 --only-chapter 110,140
+documents:
+- source_id: va-vac-23-10-110-individual-income-tax
+  jurisdiction: us-va
+  document_class: regulation
+  citation_path: us-va/regulation/title-23/agency-10
+  title: 23VAC10-110 Individual Income Tax and 23VAC10-140 Income Tax Withholding (Department of Taxation)
+  source_url: https://law.lis.virginia.gov/admincode/title23/agency10/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Taxation
+    official_publisher: Virginia Law Portal (law.lis.virginia.gov), Virginia Administrative Code
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-va/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://law.lis.virginia.gov/admincode/title23/agency10/
+    extractor: uv run axiom-corpus-ingest extract-virginia-vac --only-title 23 --only-agency 10 --only-chapter 110,140
+    pointer_manifest: true

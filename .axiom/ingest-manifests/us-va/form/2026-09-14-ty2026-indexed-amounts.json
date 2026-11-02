@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "c5c0b76c3c622254fb7bd9b72fc7bde29af22ca8efdde61cc9a3970b27591119"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "8af8d63245c8ff3f9eabc8e1635bc6505e12ec0e86bb2aa0a296587bfb28a760"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "fa67b218d70024265b1bce81e76f26d9deefe1914f5d76fb2868a9319601418c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-va-tax-760es-ty2026.pdf",
+      "sha256": "d2f9a56c429ffcabea81d985f980835223cf403867fe3613a2aa9377f990efa1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-va-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T18:16:30.904061+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "f3wcolF05dMoNAtB7ixHVybwx7srKnqo+Ey9r5VrJbYk1Xguc0HDfGPXaPIp+sv02x/iiW1e4B1aHgkzj3fFAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

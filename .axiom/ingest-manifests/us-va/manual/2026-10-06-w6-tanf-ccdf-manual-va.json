@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/manual/2026-10-06-w6-tanf-ccdf-manual-va.json",
+      "sha256": "41e4a038fa3aa359b9ba42f84502eb5417183cdbe940c173e6242b428c201ead"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/manual/2026-10-06-w6-tanf-ccdf-manual-va.json",
+      "sha256": "f4beb198806f0d144e97eac8a8ea932cb9b68e1a1a630899c951c508c0386731"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/manual/2026-10-06-w6-tanf-ccdf-manual-va.jsonl",
+      "sha256": "d144e30cb6bd5fe133fc93fdb593b492bee74ac4a37db68f3970713cebe21ac0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-10-06-w6-tanf-ccdf-manual-va/official-documents/us-va-w6-doe-child-care-subsidy-program-guidance-manual-2025-10-09.pdf",
+      "sha256": "0b049393b873fc40d5a648b07b8aeb57a40f398fae17b7ba930fdde3ac8ac8b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 207,
+    "missing_count": 0,
+    "provision_count": 207,
+    "source_count": 207
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:59:43.757620+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CRAtOApoez1MMDLp5qTPRJYDuwFd7HnpH6ba17jkZaY2Vbd+3zwTTmUcszR4XSTQEYqz90tXMUG0aW6whA9NDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-va"
+}

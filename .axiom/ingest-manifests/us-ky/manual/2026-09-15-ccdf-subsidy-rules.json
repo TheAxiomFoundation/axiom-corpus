@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "ed1138790580c7164f48acff52f906628fc9a8b9642fe0f060ae9296312f7357"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "19742d4de3da58151aa3c132265a1b929d1821d9268f5e346e04277b9a9e679d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "cbb4dda75bab059dbb7c19d44c4576ce4f71740d0ca9f96ee7ce1f178259a5c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-15-ccdf-subsidy-rules/official-documents/us-ky-dcbs-dfs-operation-manual-volume-viii-ccap.pdf",
+      "sha256": "a68e5ee7409672e839857058d05b3e619991ad9e67f25380c4b1d7127ef8e9ab"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 145,
+    "missing_count": 0,
+    "provision_count": 145,
+    "source_count": 145
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-11T18:27:59.451821+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oa5UNJXls7cH76l+Qz9Qnb7aTiOabl7rxNPWjht67ReyWKWiDRF7tS/edhZFxjesFhuBCPBOPP87FJikJlMzDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}

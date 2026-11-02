@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-08-de-kindergeld-dependencies.json",
+      "sha256": "b16080de755d169ac126fdd401a022b63e8eeaae9cf6fae37062b1ae93a417f8"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-08-de-kindergeld-dependencies.json",
+      "sha256": "16d6428a20439fd1ab7885572a06f2bed83cf529c54e33703b2341ab1eb791e1"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-08-de-kindergeld-dependencies.jsonl",
+      "sha256": "d1b07e68f9d1590374f8c458e1515b3c5060fb63b29b816de6460197375a8b97"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-dependencies/kizdav/BJNR1780A0023.xml",
+      "sha256": "f933e7091a70eed236c4aa9402f15adedfad4d77f8ab5312a1cdd1302fe8e651"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-08T14:21:49.133560+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CT9RIIG8VVoAG5uElxReROvKAleTfOW66VGi+uglZQRy46lyQsWNr8eVz9CwPl5l3NMNtQqkUsm24GKgDuPxCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-dependencies"
+}

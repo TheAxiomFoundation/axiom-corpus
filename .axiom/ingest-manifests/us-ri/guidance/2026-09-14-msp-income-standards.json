@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "4811309254fe8a2dd845a7861f38f6fa9f8505e9e309b6c8e13b7bd03e2f418f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "f3e6727787859c644cf928c08745dbafc24eb31bb97d9f0c70ea10b1aa97d62c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "3c0ab866692dafd35e41029fd0b03121c1dc758e69ddd4e510c043e3a7d9ce1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/guidance/2026-09-14-msp-income-standards/official-documents/us-ri-eohhs-medicare-premium-payment-program-2026.html",
+      "sha256": "18b4b93d27d4879a8d9a994d6c3fee7c1bfc9400836079f154ae9dc39d961f58"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ri-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:58:13.069781+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DMUmt/SK+eV1PNE/KRl2QLZcEcW25WsLPi9rbojeW+130/fUJ2RNrylwQAvL8QK0CtqmT76BCYwOlAPduoegAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

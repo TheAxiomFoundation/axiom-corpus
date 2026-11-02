@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "57e7cd27679378eaf5bf373f1689c454ded1d9c12619b91605d47ae26955aa27"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "b93b10937e3298a13895472552d288e13e74f872916400f45d5751a2077ed58e"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/guidance/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "01b2cdd17f04308de784f123410f3ca64c69c1d341b8dfc9886d7cd05fae3d5d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-bds-2026-standard-of-need-and-income-changes.pdf",
+      "sha256": "1ebdde8884e0296da035df00b4ea59755bda4c7c2c3a47a65cf035404641bbd7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-nh-guidance-dhhs-sr-26-01.html",
+      "sha256": "0077a20516673f4cc37f0f356f868dd5994233ab86c9c29bbdc565b7e90303d1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-nh-ssi-state-supplement-standards-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:22:32.175868+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ESNTqjut+irFnWn8wRxgv+tr1j9cfBE+3/++Hq27KTzf37HgDYFZSAC99B1AyT8LJ6zFH5zFrRghz/e6wS+aCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

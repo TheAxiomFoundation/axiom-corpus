@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-10-06-w6-benefits-regulation-me.json",
+      "sha256": "fe82b78a0b129260422bdfdab2824fe3ff43eea82e2137fcd9a7109fb18baa5e"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-10-06-w6-benefits-regulation-me.json",
+      "sha256": "18a1f2b1f9626b16658a5e65878e05d2f7d9bc0c30677530b1dd27f767be3305"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-10-06-w6-benefits-regulation-me.jsonl",
+      "sha256": "27395f2758c09107f78415e49b0450739783d02eba4ad3bdb71d7d50a70d7aae"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-10-06-w6-benefits-regulation-me/official-documents/us-me-regulation-dhhs-ofi-chapter-332-appendices-charts.docx",
+      "sha256": "58d0c64738593dbcdc16643edef20c03a05f12da05b42d9b7818ca3a7d8b8aa8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:53:25.572965+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Pm5pAXnwY1s1+AB5f4DXJuWd2xi4eIy4KMcmyc8BGOK2jqmcuknr/RZafXnQ3tVTj7EFnoaEiyq3yCvC2xjHCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-regulation-me"
+}

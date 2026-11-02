@@ -120,16 +120,21 @@ class CanadaStatuteParser:
             source_path=str(self.xml_path),
         )
 
+    def _iter_standalone_section_elements(self) -> Iterator[etree._Element]:
+        """Keep embedded amendment/read-as text within its owning section."""
+        for element in self.tree.getroot().iter("Section"):
+            if not any(parent.tag == "Section" for parent in element.iterancestors()):
+                yield element
+
     def iter_sections(self) -> Iterator[CanadaSection]:
         """Iterate over all sections in the statute.
 
         Yields:
             CanadaSection objects for each section
         """
-        root = self.tree.getroot()
         cons_num = self.get_consolidated_number()
 
-        for section_elem in root.iter("Section"):
+        for section_elem in self._iter_standalone_section_elements():
             try:
                 section = self._parse_section(section_elem, cons_num)
                 if section:
@@ -152,10 +157,9 @@ class CanadaStatuteParser:
         Returns:
             CanadaSection object or None if not found
         """
-        root = self.tree.getroot()
         cons_num = self.get_consolidated_number()
 
-        for section_elem in root.iter("Section"):
+        for section_elem in self._iter_standalone_section_elements():
             label = section_elem.find("Label")
             if label is not None and label.text and label.text.strip() == section_num:
                 return self._parse_section(section_elem, cons_num)
@@ -252,8 +256,9 @@ class CanadaStatuteParser:
                 if marginal_note_elem is not None:
                     marginal_note = self._get_text_content(marginal_note_elem)
 
-                # Get direct text content
-                text = self._get_direct_text(sub_elem)
+                # Each emitted provision must retain its complete source text,
+                # including formula groups, definitions and nested conditions.
+                text = self._get_text_content(sub_elem)
 
                 # Recursively parse children
                 children = self._parse_subsections(sub_elem)

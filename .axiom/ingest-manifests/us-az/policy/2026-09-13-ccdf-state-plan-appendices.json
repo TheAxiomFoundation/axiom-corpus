@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "49aef04452f5402d057630c98a35192f8c38e868f5b7f976f31c1be942c71b2f"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "7168f88233fd0e2cc8ad098b4a1edd330f3b32ec7ccadc7a2f22fe1da369a6fc"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "84a5dc57bf7a0bebf7582dd7fbe446afb365460bd40d9be49f6c69f451fd8229"
+    },
+    {
+      "path": "data/corpus/sources/us-az/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-az-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "961d411b4bd6a2a462632d8cfa8ce1094a3d93eb47c80c53f425a536de9706d3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:04:11.971139+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dYw4F4h76jldxgA4QW/bZlPhdNIvIOmSNz26LeBfX9+UuHc/tztN4uKNIHNgETdzy3m7HjIi7WOGChjOBoKvCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

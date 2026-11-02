@@ -1,0 +1,28 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-ia-idr-ia-1040es-instructions-ty2026
+  jurisdiction: us-ia
+  document_class: form
+  title: 2026 IA 1040ES Estimated Tax Payment Voucher Instructions (45-009)
+  source_url: https://revenue.iowa.gov/media/2725/download?inline
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ia/form/idr/ty2026/ia-1040es-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Revenue
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-08-29'
+    amounts_carried:
+    - flat rate (3.8%)
+    - low-income exemption thresholds
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.iowa.gov/forms/common-forms/individual-income-tax
+      (read 2026-09-13)

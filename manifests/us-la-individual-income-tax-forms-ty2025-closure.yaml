@@ -1,0 +1,49 @@
+version: '2026-09-15'
+documents:
+- source_id: us-la-ldr-form-it-540-ty2025
+  jurisdiction: us-la
+  document_class: form
+  title: 2025 Louisiana Resident Income Tax Return, Form IT-540 (web, 2D barcode)
+  source_url: https://dam.ldr.la.gov/taxforms/IT540WEB-BC-2025-F.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-la/form/ldr/ty2025/form-it-540
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://revenue.louisiana.gov/tax-forms/individuals/?tax_type=individual
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://revenue.louisiana.gov/tax-forms/individuals/?tax_type=individual
+      (read 2026-09-14)
+    page_count_at_research: 17
+    first_page_first_line: FILE ONLINE ON LaTAP (cover page)
+- source_id: us-la-ldr-form-it-540-instructions-ty2025
+  jurisdiction: us-la
+  document_class: form
+  title: 2025 Louisiana Resident Income Tax Return Instructions, Form IT-540 (revised 7/26)
+  source_url: https://dam.ldr.la.gov/taxforms/IT540i-WEB-2025-Revised-7-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-la/form/ldr/ty2025/form-it-540-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://revenue.louisiana.gov/tax-forms/individuals/?tax_type=individual
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://revenue.louisiana.gov/tax-forms/individuals/?tax_type=individual
+      (read 2026-09-14)
+    page_count_at_research: 16
+    first_page_first_line: WHAT'S NEW FOR LOUISIANA 2025 INDIVIDUAL INCOME TAX?
+    source_note: No TY2025 IT-540 tax table is listed (the latest listed is 2024); Louisiana's flat rate for 2025 is printed
+      in the instructions.

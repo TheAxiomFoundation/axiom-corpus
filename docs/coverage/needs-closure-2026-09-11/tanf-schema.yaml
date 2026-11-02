@@ -1,0 +1,1941 @@
+program: tanf
+title: TANF (Temporary Assistance for Needy Families) needs schema, law-derived
+date: '2026-09-11'
+method: 'Elements are enumerated from the program''s own legal structure: (1) 42 U.S.C. 601-619 section by section; (2) every live section of
+  45 CFR 260-265 (from the eCFR title-45 structure snapshot of 2026-09-09 retained with the part 98 scope; 128 sections); (3) the state rulebook
+  structure observed in the selected state scopes (chapter tables of contents of MT, ND, VA, TN, PA, WI, MS, CA, CO, DE, IA, NE, NM, OK, SD, VT,
+  ID and the combined manuals) plus the state plan requirements of 42 U.S.C. 602(a). State-level elements are the rule elements a state must set
+  (state option or state-set value); each carries a ''facts'' list naming what an encoder reads. PolicyEngine''s gov/hhs/tanf and gov/states/*/…/tanf
+  trees and the rulespec-us programs/us-*/tanf wrappers are a cross-check only (pe_modeled field).'
+levels:
+  federal: set by statute/regulation, inherited by every state; checked once at jurisdiction us
+  federal_with_state_option: federal rule that a state elects or parameterizes; checked per state
+  state: set entirely by the state; checked per state
+federal_statute_elements:
+- id: tanf-f-usc-601
+  citation: 42 U.S.C. 601
+  name: Purpose of Title IV-A; no individual entitlement
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-602
+  citation: 42 U.S.C. 602
+  name: Eligible States; State plan contents (602(a)(1)-(7)), certifications, public comment, 3-year renewal
+  level: federal (state option)
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-603
+  citation: 42 U.S.C. 603
+  name: Grants to States (family assistance grant, contingency fund, healthy marriage/fatherhood, emergency funds)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-604
+  citation: 42 U.S.C. 604
+  name: Use of grants (purposes, carry-over, transfers to CCDF/SSBG, administrative cap, IDAs, EBT restrictions 604(h))
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-605
+  citation: 42 U.S.C. 605
+  name: Administrative provisions (quarterly payments, computable amounts)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-606
+  citation: 42 U.S.C. 606
+  name: Federal loans for State welfare programs
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-607
+  citation: 42 U.S.C. 607
+  name: 'Mandatory work requirements: participation rates, hours, work activities (607(d)), penalties against individuals (607(e)), child-care
+    exception'
+  level: federal (state option)
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: partial (PE cites 607/608 for work requirement and immigrant variables)
+- id: tanf-f-usc-608
+  citation: 42 U.S.C. 608
+  name: 'Prohibitions and requirements: minor child, IV-D cooperation, 60-month limit, teen parents, fugitive felons, fraud bar, aliens (608(f)),
+    EBT (608(a)(12))'
+  level: federal (state option)
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: partial (PE cites 607/608 for work requirement and immigrant variables)
+- id: tanf-f-usc-609
+  citation: 42 U.S.C. 609
+  name: Penalties against States
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-610
+  citation: 42 U.S.C. 610
+  name: Appeal of adverse decision
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-611
+  citation: 42 U.S.C. 611
+  name: Data collection and reporting
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-611a
+  citation: 42 U.S.C. 611a
+  name: State required to provide certain information
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-612
+  citation: 42 U.S.C. 612
+  name: Direct funding and administration by Indian tribes
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-613
+  citation: 42 U.S.C. 613
+  name: Research, evaluations, and national studies
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-614
+  citation: 42 U.S.C. 614
+  name: Study by the Census Bureau
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-615
+  citation: 42 U.S.C. 615
+  name: Waivers
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-616
+  citation: 42 U.S.C. 616
+  name: Administration (Office of Family Assistance)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-617
+  citation: 42 U.S.C. 617
+  name: Limitation on Federal authority
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-618
+  citation: 42 U.S.C. 618
+  name: Funding for child care (CCDF mandatory and matching funds)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+- id: tanf-f-usc-619
+  citation: 42 U.S.C. 619
+  name: Definitions (adult, minor child, fiscal year, Indian, State)
+  level: federal
+  family: federal statute (uscode.house.gov, title 42 chapter 7 subchapter IV part A)
+  corpus_family_status: 'absent from every us/statute scope (citation_path scan of data/corpus/provisions/us/statute for us/statute/42/601-619,
+    2026-09-12: 0 rows)'
+  pe_modeled: 'no'
+federal_regulation_elements:
+- id: tanf-f-cfr-260.10
+  citation: 45 CFR 260.10
+  part: '260'
+  name: What does this part cover?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.20
+  citation: 45 CFR 260.20
+  part: '260'
+  name: What is the purpose of the TANF program?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.30
+  citation: 45 CFR 260.30
+  part: '260'
+  name: What definitions apply under the TANF regulations?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s01
+  - tanf-s02
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.31
+  citation: 45 CFR 260.31
+  part: '260'
+  name: What does the term “assistance” mean?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s21
+  - tanf-s30
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.32
+  citation: 45 CFR 260.32
+  part: '260'
+  name: What does the term “WtW cash assistance” mean?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.33
+  citation: 45 CFR 260.33
+  part: '260'
+  name: When are expenditures on State or local tax credits allowable expenditures for TANF-related purposes?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.34
+  citation: 45 CFR 260.34
+  part: '260'
+  name: When do the Charitable Choice provisions of TANF apply?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.35
+  citation: 45 CFR 260.35
+  part: '260'
+  name: What other Federal laws apply to TANF?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.40
+  citation: 45 CFR 260.40
+  part: '260'
+  name: When are these provisions in effect?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.50
+  citation: 45 CFR 260.50
+  part: '260'
+  name: What is the purpose of this subpart?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s24
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.51
+  citation: 45 CFR 260.51
+  part: '260'
+  name: What definitions apply to this subpart?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s24
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.52
+  citation: 45 CFR 260.52
+  part: '260'
+  name: What are the basic provisions of the Family Violence Option (FVO)?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s24
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.54
+  citation: 45 CFR 260.54
+  part: '260'
+  name: Do States have flexibility to grant good cause domestic violence waivers?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s24
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.55
+  citation: 45 CFR 260.55
+  part: '260'
+  name: What are the additional requirements for Federal recognition of good cause domestic violence waivers?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s24
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.58
+  citation: 45 CFR 260.58
+  part: '260'
+  name: What penalty relief is available to a State whose failure to meet the work participation rates is attributable to providing federally
+    recognized good cause domestic violence waivers?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.59
+  citation: 45 CFR 260.59
+  part: '260'
+  name: What penalty relief is available to a State that failed to comply with the five-year limit on Federal assistance because it provided federally
+    recognized good cause domestic violence waivers?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.70
+  citation: 45 CFR 260.70
+  part: '260'
+  name: What is the purpose of this subpart?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.71
+  citation: 45 CFR 260.71
+  part: '260'
+  name: What definitions apply to this subpart?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.72
+  citation: 45 CFR 260.72
+  part: '260'
+  name: What basic requirements must State demonstration components meet for the purpose of determining if inconsistencies exist with respect
+    to work requirements or time limits?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.73
+  citation: 45 CFR 260.73
+  part: '260'
+  name: How do existing welfare reform waivers affect the participation rates and work rules?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.74
+  citation: 45 CFR 260.74
+  part: '260'
+  name: How do existing welfare reform waivers affect the application of the Federal time-limit provisions?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.75
+  citation: 45 CFR 260.75
+  part: '260'
+  name: If a State is claiming a waiver inconsistency for work requirements or time limits, what must the Governor certify?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-260.76
+  citation: 45 CFR 260.76
+  part: '260'
+  name: What special rules apply to States that are continuing evaluations of their waiver demonstrations?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.1
+  citation: 45 CFR 261.1
+  part: '261'
+  name: What does this part cover?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.2
+  citation: 45 CFR 261.2
+  part: '261'
+  name: What definitions apply to this part?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.10
+  citation: 45 CFR 261.10
+  part: '261'
+  name: What work requirements must an individual meet?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s15
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.11
+  citation: 45 CFR 261.11
+  part: '261'
+  name: Which recipients must have an assessment under TANF?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s19
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.12
+  citation: 45 CFR 261.12
+  part: '261'
+  name: What is an individual responsibility plan?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s19
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.13
+  citation: 45 CFR 261.13
+  part: '261'
+  name: May an individual be penalized for not following an individual responsibility plan?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s19
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.14
+  citation: 45 CFR 261.14
+  part: '261'
+  name: What is the penalty if an individual refuses to engage in work?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s17
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.15
+  citation: 45 CFR 261.15
+  part: '261'
+  name: Can a family be penalized if a parent refuses to work because he or she cannot find child care?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s18
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.16
+  citation: 45 CFR 261.16
+  part: '261'
+  name: Does the imposition of a penalty affect an individual's work requirement?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s17
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.20
+  citation: 45 CFR 261.20
+  part: '261'
+  name: How will we hold a State accountable for achieving the work objectives of TANF?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.21
+  citation: 45 CFR 261.21
+  part: '261'
+  name: What overall work rate must a State meet?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.22
+  citation: 45 CFR 261.22
+  part: '261'
+  name: How will we determine a State's overall work rate?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.23
+  citation: 45 CFR 261.23
+  part: '261'
+  name: What two-parent work rate must a State meet?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.24
+  citation: 45 CFR 261.24
+  part: '261'
+  name: How will we determine a State's two-parent work rate?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.25
+  citation: 45 CFR 261.25
+  part: '261'
+  name: Do we count Tribal families in calculating the work participation rate?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.30
+  citation: 45 CFR 261.30
+  part: '261'
+  name: What are the work activities?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s16
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.31
+  citation: 45 CFR 261.31
+  part: '261'
+  name: How many hours must a work-eligible individual participate for the family to count in the numerator of the overall rate?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s15
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.32
+  citation: 45 CFR 261.32
+  part: '261'
+  name: How many hours must work-eligible individuals participate for the family to count in the numerator of the two-parent rate?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s15
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.33
+  citation: 45 CFR 261.33
+  part: '261'
+  name: What are the special requirements concerning educational activities in determining monthly participation rates?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s16
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.34
+  citation: 45 CFR 261.34
+  part: '261'
+  name: Are there any limitations in counting job search and job readiness assistance toward the participation rates?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s16
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.35
+  citation: 45 CFR 261.35
+  part: '261'
+  name: Are there any special work provisions for single custodial parents?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s15
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.36
+  citation: 45 CFR 261.36
+  part: '261'
+  name: Do welfare reform waivers affect the calculation of a State's participation rates?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.40
+  citation: 45 CFR 261.40
+  part: '261'
+  name: Is there a way for a State to reduce the work participation rates?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.41
+  citation: 45 CFR 261.41
+  part: '261'
+  name: How will we determine the caseload reduction credit?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.42
+  citation: 45 CFR 261.42
+  part: '261'
+  name: Which reductions count in determining the caseload reduction credit?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.43
+  citation: 45 CFR 261.43
+  part: '261'
+  name: What is the definition of a “case receiving assistance” in calculating the caseload reduction credit?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.44
+  citation: 45 CFR 261.44
+  part: '261'
+  name: When must a State report the required data on the caseload reduction credit?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.50
+  citation: 45 CFR 261.50
+  part: '261'
+  name: What happens if a State fails to meet the participation rates?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.51
+  citation: 45 CFR 261.51
+  part: '261'
+  name: Under what circumstances will we reduce the amount of the penalty below the maximum?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.52
+  citation: 45 CFR 261.52
+  part: '261'
+  name: Is there a way to waive the State's penalty for failing to achieve either of the participation rates?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.53
+  citation: 45 CFR 261.53
+  part: '261'
+  name: May a State correct the problem before incurring a penalty?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.54
+  citation: 45 CFR 261.54
+  part: '261'
+  name: Is a State subject to any other penalty relating to its work program?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.55
+  citation: 45 CFR 261.55
+  part: '261'
+  name: Under what circumstances will we reduce the amount of the penalty for not properly imposing penalties on individuals?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.56
+  citation: 45 CFR 261.56
+  part: '261'
+  name: What happens if a parent cannot obtain needed child care?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s18
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.57
+  citation: 45 CFR 261.57
+  part: '261'
+  name: What happens if a State sanctions a single parent of a child under six who cannot get needed child care?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s18
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.60
+  citation: 45 CFR 261.60
+  part: '261'
+  name: What hours of participation may a State report for a work-eligible individual?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.61
+  citation: 45 CFR 261.61
+  part: '261'
+  name: How must a State document a work-eligible individual's hours of participation?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.62
+  citation: 45 CFR 261.62
+  part: '261'
+  name: What must a State do to verify the accuracy of its work participation information?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.63
+  citation: 45 CFR 261.63
+  part: '261'
+  name: When is a State's Work Verification Plan due?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.64
+  citation: 45 CFR 261.64
+  part: '261'
+  name: How will we determine whether a State's work verification procedures ensure an accurate work participation measurement?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.65
+  citation: 45 CFR 261.65
+  part: '261'
+  name: Under what circumstances will we impose a work verification penalty?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.70
+  citation: 45 CFR 261.70
+  part: '261'
+  name: What safeguards are there to ensure that participants in work activities do not displace other workers?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-261.80
+  citation: 45 CFR 261.80
+  part: '261'
+  name: How do existing welfare reform waivers affect a State's penalty liability under this part?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.0
+  citation: 45 CFR 262.0
+  part: '262'
+  name: What definitions apply to this part?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.1
+  citation: 45 CFR 262.1
+  part: '262'
+  name: What penalties apply to States?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.2
+  citation: 45 CFR 262.2
+  part: '262'
+  name: When do the TANF penalty provisions apply?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.3
+  citation: 45 CFR 262.3
+  part: '262'
+  name: How will we determine if a State is subject to a penalty?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.4
+  citation: 45 CFR 262.4
+  part: '262'
+  name: What happens if we determine that a State is subject to a penalty?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.5
+  citation: 45 CFR 262.5
+  part: '262'
+  name: Under what general circumstances will we determine that a State has reasonable cause?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.6
+  citation: 45 CFR 262.6
+  part: '262'
+  name: What happens if a State does not demonstrate reasonable cause?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-262.7
+  citation: 45 CFR 262.7
+  part: '262'
+  name: How can a State appeal our decision to take a penalty?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.0
+  citation: 45 CFR 263.0
+  part: '263'
+  name: What definitions apply to this part?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.1
+  citation: 45 CFR 263.1
+  part: '263'
+  name: How much State money must a State expend annually to meet the basic MOE requirement?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.2
+  citation: 45 CFR 263.2
+  part: '263'
+  name: What kinds of State expenditures count toward meeting a State's basic MOE expenditure requirement?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.3
+  citation: 45 CFR 263.3
+  part: '263'
+  name: When do child care expenditures count?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.4
+  citation: 45 CFR 263.4
+  part: '263'
+  name: When do educational expenditures count?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.5
+  citation: 45 CFR 263.5
+  part: '263'
+  name: When do expenditures in State-funded programs count?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.6
+  citation: 45 CFR 263.6
+  part: '263'
+  name: What kinds of expenditures do not count?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.8
+  citation: 45 CFR 263.8
+  part: '263'
+  name: What happens if a State fails to meet the basic MOE requirement?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.9
+  citation: 45 CFR 263.9
+  part: '263'
+  name: May a State avoid a penalty for failing to meet the basic MOE requirement through reasonable cause or corrective compliance?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.10
+  citation: 45 CFR 263.10
+  part: '263'
+  name: What actions would we take against a State if it uses Federal TANF funds in violation of the Act?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.11
+  citation: 45 CFR 263.11
+  part: '263'
+  name: What uses of Federal TANF funds are improper?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.12
+  citation: 45 CFR 263.12
+  part: '263'
+  name: How will we determine if a State intentionally misused Federal TANF funds?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.13
+  citation: 45 CFR 263.13
+  part: '263'
+  name: Is there a limit on the amount of Federal TANF funds that a State may spend on administrative costs?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.14
+  citation: 45 CFR 263.14
+  part: '263'
+  name: What methodology shall States use to allocate TANF costs?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.20
+  citation: 45 CFR 263.20
+  part: '263'
+  name: What definitions apply to Individual Development Accounts (IDAs)?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s11
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.21
+  citation: 45 CFR 263.21
+  part: '263'
+  name: May a State use the TANF grant to fund IDAs?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s11
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.22
+  citation: 45 CFR 263.22
+  part: '263'
+  name: Are there any restrictions on IDA funds?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s11
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-263.23
+  citation: 45 CFR 263.23
+  part: '263'
+  name: How does a State prevent a recipient from using the IDA account for unqualified purposes?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s11
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.0
+  citation: 45 CFR 264.0
+  part: '264'
+  name: What definitions apply to this part?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.1
+  citation: 45 CFR 264.1
+  part: '264'
+  name: What restrictions apply to the length of time Federal TANF assistance may be provided?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s14
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.2
+  citation: 45 CFR 264.2
+  part: '264'
+  name: What happens if a State does not comply with the five-year limit?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s14
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.3
+  citation: 45 CFR 264.3
+  part: '264'
+  name: How can a State avoid a penalty for failure to comply with the five-year limit?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s14
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.10
+  citation: 45 CFR 264.10
+  part: '264'
+  name: Must States do computer matching of data records under IEVS to verify recipient information?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s25
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.11
+  citation: 45 CFR 264.11
+  part: '264'
+  name: How much is the penalty for not participating in IEVS?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.30
+  citation: 45 CFR 264.30
+  part: '264'
+  name: What procedures exist to ensure cooperation with the child support enforcement requirements?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s09
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.31
+  citation: 45 CFR 264.31
+  part: '264'
+  name: What happens if a State does not comply with the IV-D sanction requirement?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s09
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.40
+  citation: 45 CFR 264.40
+  part: '264'
+  name: What happens if a State does not repay a Federal loan?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.50
+  citation: 45 CFR 264.50
+  part: '264'
+  name: What happens if, in a fiscal year, a State does not expend, with its own funds, an amount equal to the reduction to the adjusted SFAG
+    resulting from a penalty?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.60
+  citation: 45 CFR 264.60
+  part: '264'
+  name: What policies and practices must a state implement to prevent assistance use in electronic benefit transfer transactions in locations
+    prohibited by the Social Security Act?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s29
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.61
+  citation: 45 CFR 264.61
+  part: '264'
+  name: What happens if a state fails to report or demonstrate it has implemented and maintained the policies and practices required in § 264.60?
+  level: federal (state option)
+  sets_state_elements:
+  - tanf-s29
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.70
+  citation: 45 CFR 264.70
+  part: '264'
+  name: What makes a State eligible to receive a provisional payment of contingency funds?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.71
+  citation: 45 CFR 264.71
+  part: '264'
+  name: What determines the amount of the provisional payment of contingency funds that will be made to a State?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.72
+  citation: 45 CFR 264.72
+  part: '264'
+  name: What requirements are imposed on a State if it receives contingency funds?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.73
+  citation: 45 CFR 264.73
+  part: '264'
+  name: What is an annual reconciliation?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.74
+  citation: 45 CFR 264.74
+  part: '264'
+  name: How will we determine the Contingency Fund MOE level for the annual reconciliation?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.75
+  citation: 45 CFR 264.75
+  part: '264'
+  name: For the annual reconciliation, what are qualifying State expenditures?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.76
+  citation: 45 CFR 264.76
+  part: '264'
+  name: What action will we take if a State fails to remit funds after failing to meet its required Contingency Fund MOE level?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.77
+  citation: 45 CFR 264.77
+  part: '264'
+  name: How will we determine if a State met its Contingency Fund expenditure requirements?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.80
+  citation: 45 CFR 264.80
+  part: '264'
+  name: If a Territory receives Matching Grant funds, what funds must it expend?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.81
+  citation: 45 CFR 264.81
+  part: '264'
+  name: What expenditures qualify for Territories to meet the Matching Grant MOE requirement?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.82
+  citation: 45 CFR 264.82
+  part: '264'
+  name: What expenditures qualify for meeting the Matching Grant FAG amount requirement?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.83
+  citation: 45 CFR 264.83
+  part: '264'
+  name: How will we know if a Territory failed to meet the Matching Grant funding requirements at § 264.80?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.84
+  citation: 45 CFR 264.84
+  part: '264'
+  name: What will we do if a Territory fails to meet the Matching Grant funding requirements at § 264.80?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-264.85
+  citation: 45 CFR 264.85
+  part: '264'
+  name: What rights of appeal are available to the Territories?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.1
+  citation: 45 CFR 265.1
+  part: '265'
+  name: What does this part cover?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.2
+  citation: 45 CFR 265.2
+  part: '265'
+  name: What definitions apply to this part?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.3
+  citation: 45 CFR 265.3
+  part: '265'
+  name: What reports must the State file on a quarterly basis?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.4
+  citation: 45 CFR 265.4
+  part: '265'
+  name: When are quarterly reports due?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.5
+  citation: 45 CFR 265.5
+  part: '265'
+  name: May States use sampling?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.6
+  citation: 45 CFR 265.6
+  part: '265'
+  name: Must States file reports electronically?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.7
+  citation: 45 CFR 265.7
+  part: '265'
+  name: How will we determine if the State is meeting the quarterly reporting requirements?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.8
+  citation: 45 CFR 265.8
+  part: '265'
+  name: Under what circumstances will we take action to impose a reporting penalty for failure to submit quarterly and annual reports?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.9
+  citation: 45 CFR 265.9
+  part: '265'
+  name: What information must the State file annually?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+- id: tanf-f-cfr-265.10
+  citation: 45 CFR 265.10
+  part: '265'
+  name: When are the annual reports due?
+  level: federal
+  sets_state_elements: []
+  family: federal regulation (eCFR Versioner API; extract-ecfr --only-title 45 --only-part 260..265)
+  corpus_family_status: not in the corpus (queue federal row 2026-09-10; data/corpus/provisions/us/regulation has title-45 parts 98 and 1302 only)
+  pe_modeled: 'no'
+federal_guidance_elements:
+- id: tanf-f-acf-guidance
+  citation: ACF OFA TANF Program Instructions and Policy Announcements (TANF-ACF-PI/PA series)
+  name: ACF program guidance (e.g. work verification plan instructions, FVO, data reporting)
+  level: federal
+  family: ACF guidance (acf.gov/ofa resource library)
+  corpus_family_status: not in the corpus; the acf.gov resource library answered a non-browser client with an HTTP 202 challenge on 2026-09-10
+    (queue federal row)
+  pe_modeled: 'no'
+state_elements:
+- id: tanf-s01
+  name: Assistance unit composition (who must be included; mandatory and optional members)
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(1) (minor child requirement), 602(a)(1)(A)(i); 45 CFR 260.30 (family); state rulebook
+  carrying_families: state regulation/manual (assistance unit chapter); state TANF plan
+  facts:
+  - mandatory members (parents, minor siblings and half-siblings living together)
+  - optional members (e.g. stepparents, other relatives)
+  - members excluded from the unit (SSI recipients, ineligible immigrants, sanctioned adults) and whether their income counts
+  - 'pregnant woman with no other child: eligibility and month of eligibility'
+  - one unit per household / multiple units in a home
+  evidence_patterns:
+    strong: assistance unit|filing unit|assistance group|need group|standard filing unit|budget(?:ary)? (?:unit|group)|mandatory (?:\w+ )?(?:household|assistance
+      unit|filing unit) members|who must be included|family composition|household (?:unit|composition)|must include
+    weak: household members|family members
+  pe_modeled: 'partial (PE: household/spm_unit roles, max_unit_size caps; no unit-composition rules)'
+  document_element: false
+- id: tanf-s02
+  name: Dependent child age limit and student extension
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(1), 619(2) (minor child); state rulebook
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - age limit for a dependent child (under 18)
+  - extension to age 18 (or 19) for a full-time secondary/vocational student
+  - expected-to-graduate rule and month the child ages out
+  evidence_patterns:
+    strong: (?:minor|dependent|eligible) child(?:ren)?[^.]{0,80}under (?:the )?age (?:of )?(?:18|19|eighteen|nineteen)|(?:minor|dependent|eligible)
+      child(?:ren)?[^.]{0,80}(?:has|have|had) not (?:attained|reached) (?:age |the age of )?(?:18|19|eighteen)|(?:age|aged) (?:18|19|eighteen)[^.]{0,80}(?:full[-
+      ]time student|secondary school|high school|expected to (?:graduate|complete))|under (?:the )?age (?:of )?(?:18|eighteen)[^.]{0,120}(?:full[-
+      ]time student|secondary school|high school|graduat)
+    weak: full[- ]time student|secondary school
+  pe_modeled: yes (age_limit / minor_child / student_dependent parameters in gov/hhs/tanf and many states)
+  document_element: false
+- id: tanf-s03
+  name: Relationship to caretaker relative and living-with requirement
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 602(a)(1)(A) (needy families), 608(a)(1); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - degrees of relationship that qualify a caretaker relative (blood, marriage, adoption; fifth degree etc.)
+  - child must live in the home of the relative
+  - legal guardians / non-relative caretakers accepted or not
+  evidence_patterns:
+    strong: specified relative|caretaker relative|degree of relationship|relative caretaker|within the (?:fifth|5th) degree|blood,? marriage,?
+      or adoption|relationship (?:requirement|to the child)
+    weak: living with|relative
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s04
+  name: Citizenship and immigrant eligibility (qualified alien, five-year bar, state option)
+  level: federal_with_state_option
+  law_basis: 8 U.S.C. 1612-1613 (PRWORA title IV), 42 U.S.C. 608(f); state option
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - qualified-immigrant categories eligible
+  - five-year bar applied or waived (state option) and exempt classes (refugees, asylees, veterans)
+  - state-funded assistance for barred immigrants
+  - sponsor deeming rules
+  evidence_patterns:
+    strong: qualified (?:alien|non-?citizen|immigrant)|five[- ]year bar|5[- ]year bar|lawful(?:ly admitted)? permanent resident|refugee|asylee|sponsor(?:ed|'s)
+      (?:alien|non-?citizen|income)|PRWORA
+    weak: citizenship|immigration status|non-?citizen
+  pe_modeled: partial (gov/hhs/tanf/bar_exempt_immigration_statuses, five_year_bar_years; CA, IL, MT status lists)
+  document_element: false
+- id: tanf-s05
+  name: Need standard (standard of need) by family size and region
+  level: state
+  law_basis: 42 U.S.C. 602(a)(1)(B)(i) (objective criteria for need); state rulebook
+  carrying_families: state regulation/manual; payment/need standard tables
+  facts:
+  - need standard amount by assistance-unit size
+  - regional / shelter / county-group variants
+  - increment for each additional member beyond the table
+  evidence_patterns:
+    strong: standard of need|need standards?|standards? of assistance|basic standard of adequate care|budgetary needs?|monthly income standards|need
+      level
+    weak: needs? standard
+  pe_modeled: yes (need_standard / standard_of_need in most state trees)
+  document_element: false
+- id: tanf-s06
+  name: Payment standard / maximum grant by family size and region
+  level: state
+  law_basis: 42 U.S.C. 602(a)(1)(B)(i); state rulebook
+  carrying_families: state regulation/manual; payment standard tables and transmittals
+  facts:
+  - maximum grant / payment standard by unit size
+  - regional or county-group tables
+  - adult-included vs child-only tables
+  - ratable reduction or percentage-of-need factor
+  - effective date of the current table
+  evidence_patterns:
+    strong: payment standards?|maximum (?:aid )?payment|payment levels?|maximum (?:monthly )?benefit|grant standard|maximum grant|family maximum|payment
+      amounts?|maximum (?:monthly )?(?:grant|allowance|assistance)|amount of assistance|transitional standard|family wage level
+    weak: benefit amount
+  pe_modeled: yes (payment_standard / maximum_benefit / grant_standard in most state trees)
+  document_element: false
+- id: tanf-s07
+  name: Income eligibility tests for applicants and recipients (gross/net limits)
+  level: state
+  law_basis: 42 U.S.C. 602(a)(1)(B)(i); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - applicant gross income test threshold (e.g. 185% of need, 100% of standard)
+  - recipient / ongoing income test
+  - net income test against the payment standard
+  - prospective vs retrospective budgeting period
+  evidence_patterns:
+    strong: gross income (?:test|limit|ceiling|eligibility|standard)|185\s?(?:%|percent)|net income (?:test|eligibility)|income (?:eligibility
+      )?(?:test|limit|ceiling|standard)s?|(?:applicant|recipient) (?:income )?test|financial eligibility (?:determination|test)|100 percent (?:of
+      the )?(?:income )?standard
+    weak: income limit
+  pe_modeled: yes (gross_income_limit / fpg_limit / income_limit parameters)
+  document_element: false
+- id: tanf-s08
+  name: Earned income disregards (applicant and recipient; flat and percentage)
+  level: state
+  law_basis: 42 U.S.C. 602(a)(1)(B)(i); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - applicant disregard (flat and/or percentage)
+  - recipient disregard and any time limit on it
+  - work expense / standard employment deduction
+  - order of application
+  evidence_patterns:
+    strong: earned income disregards?|work incentive (?:disregard|deduction|payment)|\$30 (?:and|plus) (?:one[- ]third|1/3)|standard work (?:expense|deduction)|earned
+      income deductions?|earned income (?:exclusion|exemption)|(?:disregard|deduct)(?:ed|ing)? .{0,40}(?:percent|%) of (?:the )?(?:gross )?earned
+      income|work expense (?:deduction|disregard|allowance)
+    weak: disregard
+  pe_modeled: yes (earned_income_disregard / work_expense parameters in most state trees)
+  document_element: false
+- id: tanf-s09
+  name: Child support assignment, cooperation, pass-through and disregard
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(2), 608(a)(3), 657(a); 45 CFR 264.30-264.31; state option on pass-through
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - assignment of support rights as a condition of aid
+  - cooperation with IV-D and good-cause exceptions
+  - sanction for non-cooperation (at least 25% or case closure)
+  - pass-through amount and disregard amount
+  evidence_patterns:
+    strong: child support (?:cooperation|enforcement|pass[- ]?through|disregard|assignment|referral|services)|assignment of (?:support )?rights|IV-?D|good
+      cause (?:for )?(?:not )?cooperat|paternity
+    weak: child support
+  pe_modeled: partial (child_support deduction/disregard/passthrough in AK, CT, DC, DE, ME, MN, NJ, NM, OR, RI, TX, WV; no cooperation sanction)
+  document_element: false
+- id: tanf-s10
+  name: Dependent care and work-related expense deductions
+  level: state
+  law_basis: state rulebook (42 U.S.C. 602(a)(1)(B)(i))
+  carrying_families: state regulation/manual
+  facts:
+  - dependent care deduction caps by child age and hours worked
+  - work-related expense allowance
+  - whether the deduction applies to applicants, recipients or both
+  evidence_patterns:
+    strong: dependent care (?:deduction|disregard|expense|allowance)|child care (?:deduction|disregard|expense|allowance|costs? (?:deduction|disregard))|work[-
+      ]related expenses?|day care (?:deduction|expense)
+    weak: dependent care|child care
+  pe_modeled: yes (dependent_care / child_care / work_expense deductions in many state trees)
+  document_element: false
+- id: tanf-s11
+  name: Resource (asset) limit and countable/excluded resources
+  level: federal_with_state_option
+  law_basis: state rulebook (42 U.S.C. 602(a)(1)(B)(i)); 45 CFR 263.20-263.23 (IDAs excluded)
+  carrying_families: state regulation/manual
+  facts:
+  - resource limit amount (applicant / recipient; with or without an elderly member)
+  - countable resources
+  - excluded resources (home, IDAs, retirement, burial)
+  - restricted accounts and savings exclusions
+  evidence_patterns:
+    strong: resource limit|asset limit|resources? (?:may|shall|must|can ?not|cannot|do(?:es)? not) (?:not )?exceed|assets? (?:may|shall|must|cannot)
+      (?:not )?exceed|countable resources|resource (?:eligibility|test|standard)|\$\d[\d,]* (?:in |of )?(?:countable |liquid )?(?:resources|assets)
+    weak: resources|assets
+  pe_modeled: yes (resource_limit / asset_limit / resources parameters in most state trees)
+  document_element: false
+- id: tanf-s12
+  name: Vehicle exclusion / equity limit
+  level: state
+  law_basis: state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - number of vehicles excluded (one / one per adult / all)
+  - equity or fair-market-value limit for counted vehicles
+  - vehicles excluded for work, disability or income production
+  evidence_patterns:
+    strong: (?:one|1|first) (?:motor )?vehicle|vehicles? (?:is|are|shall be) (?:excluded|exempt|disregarded)|equity value of (?:the |a |each |one
+      )?(?:motor )?vehicle|fair market value of (?:the |a |each |one )?(?:motor )?vehicle|vehicle (?:exclusion|exemption|equity)|motor vehicles?
+    weak: vehicle|automobile
+  pe_modeled: partial (vehicle limits in CA, IN, TX, WI, gov/hhs/tanf/non_cash tx_vehicle_exemption)
+  document_element: false
+- id: tanf-s13
+  name: Benefit computation (deficit, proration, rounding, minimum grant)
+  level: state
+  law_basis: state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - grant = payment standard minus countable income (or ratable reduction of the deficit)
+  - proration of the first month
+  - rounding rule
+  - minimum grant / no payment under $10
+  - budgeting method (prospective, retrospective, semi-annual)
+  evidence_patterns:
+    strong: deficit|prorat(?:e|ed|ion)|minimum (?:grant|payment|benefit)|benefit (?:calculation|computation)|grant (?:computation|calculation|amount
+      is)|computing the (?:grant|benefit|payment)|budgeting (?:method|procedure)|payments? in whole dollars|rounded (?:down|up|to the nearest)
+    weak: benefit amount|calculat
+  pe_modeled: yes (benefit formulas in state variables; minimum_payment / minimum_benefit parameters)
+  document_element: false
+- id: tanf-s14
+  name: Lifetime time limit (60 months or shorter) and hardship extensions/exemptions
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(7) (60-month limit, 20% hardship); 45 CFR 264.1-264.3; state option for shorter limits
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - lifetime limit in months (60 or a shorter state limit)
+  - months that do not count (child-only, minor parent, months on tribal TANF, months in Indian country)
+  - hardship extension criteria and caseload cap
+  - clock-stopping while working / in a waiver
+  - intermediate limits (e.g. 24 in 60)
+  evidence_patterns:
+    strong: (?:60|sixty)[- ]month (?:limit|lifetime|time|maximum|clock|period)|five[- ]year (?:limit|lifetime|time)|lifetime (?:limit|maximum)|time[-
+      ]limits? (?:for|on|of) (?:assistance|TANF|cash|benefits|adults|the receipt)|hardship (?:exemption|extension|exception)|(?:24|36|48)[- ]month
+      (?:limit|time|maximum|clock)|months? (?:of assistance )?count(?:ed|s|ing)? toward|countable months|time[- ]limited (?:assistance|benefits|cash)
+    weak: time limit
+  pe_modeled: no (PolicyEngine has no TANF time-limit parameters)
+  document_element: false
+- id: tanf-s15
+  name: 'Work requirements: participation hours, exemptions, work-eligible individuals'
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 607(c)-(d), 602(a)(1)(A)(ii); 45 CFR 261.10-261.16, 261.30-261.35; state rulebook
+  carrying_families: state regulation/manual; state TANF plan; Work Verification Plan
+  facts:
+  - required hours per week by household type (20/30/35/55)
+  - exemptions (caring for a child under age X, disability, caretaker of a disabled member, age)
+  - work-eligible individual definition
+  - deadline to engage in work (e.g. within 24 months)
+  evidence_patterns:
+    strong: 'work (?:requirements?|participation|activit(?:y|ies))|(?:20|30|35|55) hours (?:per|a|each) week|work[- ]eligible (?:individual|adult)|exempt(?:ion|ed)?
+      from (?:the )?(?:work|participation|employment)(?: requirement)?|welfare[- ]to[- ]work|employment (?:and training )?(?:program|services)
+      (?:requirement|participation)|hours of participation|mandatory (?:work )?participant|participation (?:requirement|hours)'
+    weak: work program|employment program
+  pe_modeled: partial (work hours in DC, MT, TX CCDF trees; federal variable meets_tanf_work_requirements; no exemptions)
+  document_element: false
+- id: tanf-s16
+  name: Countable work activities (core and non-core) and limits on education/job search
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 607(d); 45 CFR 261.30-261.34; state rulebook
+  carrying_families: state regulation/manual; Work Verification Plan
+  facts:
+  - core and non-core activity lists as the state defines them
+  - vocational education 12-month cap
+  - job search / job readiness 6-week (4 consecutive) cap
+  - hours caps on education for teen parents
+  evidence_patterns:
+    strong: unsubsidized employment|subsidized (?:private|public)[- ]sector employment|community service program|vocational educational training|core
+      (?:activities|hours)|non-?core (?:activities|hours)|job search (?:and|or) job readiness|on[- ]the[- ]job training|work experience (?:program|activity|placement)
+    weak: work activit
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s17
+  name: Sanctions for work non-compliance (pro-rata or full-family, duration, cure) and good cause
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 607(e), 608(a)(2); 45 CFR 261.14-261.16; state rulebook
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - first / second / third sanction amount (adult portion, percentage, full family)
+  - sanction duration and cure (compliance) period
+  - good cause reasons
+  - conciliation before sanction
+  evidence_patterns:
+    strong: sanction|full[- ]family (?:sanction|penalty|closure)|refus(?:al|es|ed|ing) to (?:participate|comply|work|engage|cooperate)|penalt(?:y|ies)
+      for (?:non-?compliance|failure to)|non-?compliance with (?:work|participation|employment)
+    weak: good cause|non-?compliance
+  pe_modeled: partial (DC work_requirement/sanction/rate only)
+  document_element: false
+- id: tanf-s18
+  name: Child-care exception to work sanctions for single parents of children under six
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 607(e)(2); 45 CFR 261.15, 261.56-261.57; definitions set in the CCDF plan (45 CFR 98.16(v))
+  carrying_families: state regulation/manual; CCDF state plan 2.2.9
+  facts:
+  - no sanction of a single parent of a child under six who cannot obtain child care
+  - definitions of appropriate, affordable and reasonable-distance child care
+  - how the parent documents unavailability
+  evidence_patterns:
+    strong: (?:child|children) under (?:the age of )?(?:six|6)[^.]{0,120}(?:child ?care|childcare)|(?:child ?care|childcare)[^.]{0,120}(?:child|children)
+      under (?:the age of )?(?:six|6)|(?:appropriate|affordable|suitable) child care (?:is|was) (?:not|un)available|inability to obtain (?:needed
+      |appropriate )?child care
+    weak: unavailab(?:le|ility) of child care|lack of child care
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s19
+  name: Individual responsibility plan / assessment (state design)
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(b); 45 CFR 261.11-261.13; state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - assessment of skills and employability (timing)
+  - individual responsibility / personal responsibility plan as a condition of aid
+  - plan contents and modification
+  - penalty for refusing to sign
+  evidence_patterns:
+    strong: individual responsibility plan|personal responsibility (?:plan|agreement|contract)|self[- ]sufficiency (?:plan|agreement|contract)|employability
+      (?:development )?plan|family (?:investment|success|employment|self[- ]sufficiency) (?:plan|agreement|contract)|employment (?:development
+      )?plan|mutual (?:responsibility )?agreement|responsibility agreement|family (?:development )?plan|job plan|case plan|work plan|assessment
+      (?:of|and) (?:skills|employability|work)|employability assessment
+    weak: \bIRP\b|\bPRP\b|\bFIA\b
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s20
+  name: 'Minor (teen) parent rules: school attendance and adult-supervised living arrangement'
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(4)-(5); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - minor parent must live with a parent or in an adult-supervised setting (exceptions)
+  - school attendance / diploma requirement for a minor parent
+  - who is the payee for a minor parent's grant
+  evidence_patterns:
+    strong: minor parent|teen(?:age)? parent|adult[- ]supervised (?:setting|living|arrangement)|unmarried (?:minor|teen)|under (?:age )?18[^.]{0,60}(?:parent|pregnant)[^.]{0,80}(?:school|live|reside)
+    weak: school attendance|living arrangement
+  pe_modeled: partial (MA teen_parent age/fpg_limit; AZ teen_parent_age_limit CCAP)
+  document_element: false
+- id: tanf-s21
+  name: Diversion / one-time non-recurrent short-term benefits (state design)
+  level: federal_with_state_option
+  law_basis: 45 CFR 260.31(b)(1) (non-assistance); state option
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - diversion payment amount (e.g. N months of the grant)
+  - eligibility conditions
+  - period of ineligibility for ongoing aid after diversion
+  - repayment / frequency limits
+  evidence_patterns:
+    strong: diversion (?:assistance|payment|program|cash|benefit|grant|option)|diversionary|grant diversion|(?:one[- ]time|lump[- ]sum) (?:diversion|cash
+      assistance|TANF|payment in lieu of)|prevention, retention,? and contingency|non-?recurr(?:ent|ing) short[- ]term|applicant job search|reach
+      first|short[- ]term (?:cash )?assistance program|work diversion
+    weak: emergency assistance
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s22
+  name: Child-only cases and non-needy / ineligible caretaker relatives (incl. kinship payments)
+  level: federal_with_state_option
+  law_basis: state rulebook (42 U.S.C. 608(a)(7)(A) exempts child-only from the time limit)
+  carrying_families: state regulation/manual
+  facts:
+  - child-only case definition (non-needy caretaker, SSI parent, ineligible immigrant parent, sanctioned parent)
+  - payment standard for child-only units
+  - whether the caretaker's income is counted
+  - kinship / relative caregiver payment variants
+  evidence_patterns:
+    strong: child[- ]only|non-?needy (?:caretaker|relative|payee)|ineligible (?:parent|caretaker|adult)|kinship (?:care|caregiver|payment|subsidy|guardian)|payee[-
+      ]only|excluded (?:parent|adult|caretaker)|SSI (?:parent|recipient)[^.]{0,60}(?:excluded|not included|removed)
+    weak: caretaker
+  pe_modeled: partial (IL child_only payment level; TX non_caretaker standards)
+  document_element: false
+- id: tanf-s23
+  name: State residency and temporary absence
+  level: state
+  law_basis: state rulebook (42 U.S.C. 602(a)(1)(A)(i))
+  carrying_families: state regulation/manual
+  facts:
+  - residency and intent-to-remain requirement
+  - temporary absence of a child or caretaker (days allowed)
+  - out-of-state absence rules
+  evidence_patterns:
+    strong: resid(?:ent|ency|e|es|ing) (?:of|in) (?:the )?(?:state|commonwealth|district)|state resident|residen(?:cy|t) requirement|temporar(?:y|ily)
+      absen(?:t|ce)|out[- ]of[- ]state
+    weak: residen
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s24
+  name: 'Family Violence Option: screening, good-cause waivers of requirements'
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 602(a)(7); 45 CFR 260.50-260.59; state option
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - FVO elected
+  - screening and referral
+  - waivers of time limit, work, child-support cooperation and residency for victims
+  - waiver duration and re-evaluation
+  evidence_patterns:
+    strong: family violence option|family violence (?:waiver|indicator|exemption)|domestic violence (?:waiver|exemption|option|screening|victim)|good
+      cause (?:domestic|family) violence|victims? of (?:domestic|family) violence|(?:domestic|family) violence[^.]{0,80}(?:waiv|exempt|good cause)
+    weak: domestic violence|family violence
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s25
+  name: Application, verification, redetermination and change reporting (procedural rules, effective dates)
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 602(a)(1)(B)(iii) (fair and equitable treatment); 45 CFR 264.10 (IEVS); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - application date and processing deadline (30/45 days)
+  - interview and verification requirements
+  - redetermination frequency
+  - change-reporting threshold and deadline
+  - effective date of a change in benefits
+  evidence_patterns:
+    strong: redetermination|eligibility (?:review|period)|application (?:process|processing|date|form|interview)|change reporting|report(?:ing)?
+      (?:of )?changes|verification (?:requirements?|of (?:income|eligibility|information))|effective date (?:of|for) (?:eligibility|benefits|assistance|the
+      grant)|recertification|periodic review|IEVS|income and eligibility verification
+    weak: application|verification
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s26
+  name: Notices and fair hearings / appeals
+  level: state
+  law_basis: 42 U.S.C. 602(a)(1)(B)(iii); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - adequate / timely notice period (10 days)
+  - hearing request deadline
+  - continuation of benefits pending hearing
+  - hearing decision timeline
+  evidence_patterns:
+    strong: fair hearing|administrative hearing|adequate (?:and timely )?notice|advance notice|notice of (?:adverse )?action|10[- ]day (?:advance
+      )?notice|right to (?:a |an )?(?:fair |administrative )?hearing|appeal rights|hearing (?:rights|request)|timely notice
+    weak: hearing|appeal
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s27
+  name: Overpayments, underpayments, recovery and intentional program violations
+  level: federal_with_state_option
+  law_basis: 45 CFR 263.11 (misuse); state rulebook
+  carrying_families: state regulation/manual
+  facts:
+  - overpayment recovery method and monthly recoupment percentage
+  - underpayment correction
+  - IPV disqualification periods (12 / 24 months / permanent)
+  - administrative disqualification hearing
+  evidence_patterns:
+    strong: overpayments?|recoupment|underpayments?|restitution|recover(?:y|ed|ing) (?:of |from )?(?:the )?(?:benefit|grant|assistance|overpaid)|intentional
+      program violation|\bIPV\b|benefit recovery|claims? (?:establishment|collection)
+    weak: fraud|recovery
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s28
+  name: 'Disqualifications: fugitive felons, drug-felony option, fraud/misrepresentation of residence'
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(9) (fugitive felons), 608(a)(8) (10-year fraud bar); 21 U.S.C. 862a (drug felony, state opt-out/modify)
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - fugitive felon and probation/parole violator bar
+  - drug-felony disqualification as adopted, opted out of or modified (treatment, testing)
+  - ten-year bar for fraudulent misrepresentation of residence
+  evidence_patterns:
+    strong: fleeing felon|fugitive felon|fleeing (?:to avoid|prosecution)|drug[- ]related felony|felony (?:drug|controlled substance)|controlled
+      substance[^.]{0,60}(?:felony|conviction)|convicted[^.]{0,80}(?:felony|drug)|probation or parole violat|parole or probation violat|misrepresent(?:ed|ing|ation
+      of) (?:their |his or her )?(?:place of )?residence|fraudulent(?:ly)? (?:misrepresent|receiv)
+    weak: felon|conviction
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s29
+  name: EBT access restrictions (liquor stores, casinos, adult entertainment)
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 608(a)(12); 45 CFR 264.60-264.61; state implementation
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - prohibited locations and transaction types
+  - state penalties for misuse
+  - replacement card fees where charged
+  evidence_patterns:
+    strong: liquor stores?|casinos?|gambling (?:establishment|casino|facilit)|gaming (?:establishment|casino|facilit)|strip clubs?|adult[- ]oriented|adult
+      entertainment|prohibited (?:location|establishment)|electronic benefit transfer[^.]{0,150}(?:liquor|casino|gaming|adult)|EBT[^.]{0,150}(?:liquor|casino|gaming|adult)
+    weak: EBT|electronic benefit transfer
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s30
+  name: Transitional and supportive services (transitional child care, transportation, work supports, work incentive payments)
+  level: federal_with_state_option
+  law_basis: state design (45 CFR 260.31(b) non-assistance); state TANF plan
+  carrying_families: state regulation/manual; state TANF plan
+  facts:
+  - transitional child care / benefits duration after case closure
+  - transportation and work-related allowances (amounts)
+  - work incentive / retention payments
+  - post-employment services
+  evidence_patterns:
+    strong: transitional (?:child ?care|benefits?|assistance|support|services|medicaid|medical)|supportive services|post[- ]employment (?:services|support)|job
+      retention|work incentive payment|transportation (?:assistance|allowance|reimbursement|expenses?)|work[- ]related (?:supportive )?services|reach
+      ahead|extended (?:child ?care|benefits)
+    weak: transportation|child care assistance
+  pe_modeled: 'no'
+  document_element: false
+- id: tanf-s31
+  name: Unearned income treatment, exclusions, deeming (stepparent, sponsor), lump sums
+  level: state
+  law_basis: state rulebook (42 U.S.C. 602(a)(1)(B)(i))
+  carrying_families: state regulation/manual
+  facts:
+  - counted unearned income
+  - excluded income list
+  - stepparent / grandparent deeming formula
+  - sponsor deeming
+  - lump-sum treatment (period of ineligibility or resource)
+  evidence_patterns:
+    strong: unearned income|excluded income|income exclusions?|income (?:is|shall be|that is|which is) (?:excluded|disregarded|not counted|exempt)|deem(?:ed|ing)
+      (?:income|of)|stepparent(?:'s)? income|lump[- ]sum (?:income|payment)|countable (?:unearned )?income|sponsor(?:'s)? income
+    weak: income
+  pe_modeled: 'yes (income sources: earned/unearned lists in gov/hhs/tanf/cash/income and many state trees)'
+  document_element: false
+- id: tanf-s32
+  name: State TANF plan (42 U.S.C. 602(a)) as a certified document
+  level: federal_with_state_option
+  law_basis: 42 U.S.C. 602(a) (state plan contents, certification, public comment, 3-year renewal); 45 CFR 260.40
+  carrying_families: state TANF plan (state-published; ACF OFA posts no consolidated index)
+  facts:
+  - outline of the program and its eligibility criteria (602(a)(1)(A)-(B))
+  - the state's stated time-limit, work, sanction, FVO and diversion policies
+  - certifications and the plan period
+  evidence_patterns:
+    strong: ^(?:.*\b)?(?:TANF|Temporary Assistance (?:for|to) Needy Families)\b.{0,60}\bState Plan\b|\bState Plan\b.{0,40}\b(?:TANF|Temporary
+      Assistance)|title IV-?A state plan
+    weak: state plan
+  pe_modeled: no (PE cites some plans as references only)
+  document_element: true
+policyengine_cross_check:
+  source: 'policyengine-us parameters gov/hhs/tanf (20 files: age_limit student/non_student, income sources, non_cash gross/net income limits
+    and asset limit, five_year_bar_years, bar_exempt_immigration_statuses) and gov/states/<st>/<agency>/<program> for 46 state TANF trees (walked
+    2026-09-12)'
+  elements_the_law_has_that_pe_lacks:
+  - tanf-s03
+  - tanf-s14
+  - tanf-s16
+  - tanf-s18
+  - tanf-s19
+  - tanf-s21
+  - tanf-s23
+  - tanf-s24
+  - tanf-s25
+  - tanf-s26
+  - tanf-s27
+  - tanf-s28
+  - tanf-s29
+  - tanf-s30
+  - tanf-s32
+  elements_pe_models_partially:
+  - tanf-s01
+  - tanf-s04
+  - tanf-s09
+  - tanf-s12
+  - tanf-s15
+  - tanf-s17
+  - tanf-s20
+  - tanf-s22
+  rulespec_us_note: 'programs/us-*/tanf/fy-2026.yaml wrappers (15 states: AK, AL, AR, AZ, CA, CO, CT, DE, GA, IN, KS, ME, NY, TX, UT) all carry
+    acknowledged_incomplete for the eligibility/benefit judgments; the encoded slices are payment/need standards, disregards, income tests and
+    resource limits (tanf-s05..s08, s11, s13), i.e. the same subset PolicyEngine models.'
+schema_uncertainties:
+- Section-level elements for 42 U.S.C. 601-619 are enumerated from the compiler's knowledge of the title (the text is not in the corpus); headings
+  should be re-checked against the ingested text once extracted.
+- State-level elements are a normalized cross-state list; individual states split or merge them (e.g. WI W-2 placements replace need/payment standards;
+  MN MFIP has a food portion). One state element can map to several rulebook chapters, and the 'facts' lists are indicative, not exhaustive.
+- Procedural elements (tanf-s25, s26, s27) are broad; a PRESENT there says the rulebook has the chapter, not that every fact is carried.
+- The evidence search is pattern-based on provision bodies; PRESENT means a heading match or at least two body matches were found and cited, not
+  that a human read every state's chapter. A random sample of PRESENT cells was read by hand (see tanf.md).
+- Whether a state 'sets' an optional element (diversion, drug-felony modification, EBT penalties) cannot be told from absence; REVIEW is used,
+  not ABSENT, unless the queue records the publisher posts nothing.

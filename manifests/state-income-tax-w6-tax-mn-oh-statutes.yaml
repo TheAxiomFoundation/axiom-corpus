@@ -1,0 +1,22 @@
+version: "2026-10-06-w6-income-tax-statute-nj"
+# Wave 6 tax-mn-oh (program-bundle gaps 2026-10-06): statute rows outside the held chapters
+# that a source-first adapter can take whole. New Jersey: N.J.S.A. 54:8A-36 (bundle row via a
+# Justia mirror) sits in Title 54, outside the held Title 54A scope; taken from the
+# Legislature's own bulk text release, Title 54 only. See docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md.
+sources:
+  - source_id: us-nj-statutes-title-54
+    jurisdiction: us-nj
+    document_class: statute
+    adapter: new-jersey-statutes
+    source_url: https://pub.njleg.state.nj.us/Statutes/STATUTES-TEXT.zip
+    version: "2026-10-06-w6-income-tax-statute-nj"
+    options:
+      source_as_of: "2026-10-06"
+      expression_date: "2026-10-06"
+      download_dir: ../data/corpus/downloads/us-nj-statutes/2026-10-06-w6-income-tax-statute-nj
+      only_title: "54"
+      timeout_seconds: 180
+      request_attempts: 3
+    metadata:
+      source_authority: New Jersey Legislature
+      source_scope_note: Current New Jersey Statutes title 54 (Taxation) from the official Legislature bulk text release.

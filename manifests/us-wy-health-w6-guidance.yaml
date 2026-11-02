@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-health-guidance-wy
+documents:
+- source_id: us-wy-w6-health-wdh-medicaid-income-requirements
+  jurisdiction: us-wy
+  document_class: guidance
+  title: 'Wyoming Department of Health: Medicaid Income Requirements'
+  source_url: https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health
+    program: MEDICAID
+    document_subtype: income_standards_page
+    source_discovery_group: us-wy/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 127
+    bundle_url: https://health.wyo.gov/healthcarefin/medicaid/programs-and-eligibility/medicaid-income-requirements/

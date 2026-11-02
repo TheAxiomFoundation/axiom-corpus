@@ -1,0 +1,280 @@
+version: 2026-10-06-w6-income-tax-legislation-ar
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Arkansas
+documents:
+- source_id: us-ar-w6-session-laws-1987r-act-382
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 382 of the 1987 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F1987R%2FPublic%2F&file=382.pdf&ddBienniumSession=1987%2F1987R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/1987r/act-382
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 382 of the 1987 Regular Session HB2003 "INCOME TAX ACT OF 1987"
+    wave6_work_order_rows:
+    - 23
+- source_id: us-ar-w6-session-laws-2009r-act-372
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 372 of the 2009 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2009R%2FPublic%2F&file=372.pdf&ddBienniumSession=2009%2F2009R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2009r/act-372
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 372 of the 2009 Regular Session
+    wave6_work_order_rows:
+    - 24
+- source_id: us-ar-w6-session-laws-2011r-act-787
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 787 of the 2011 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2011R%2FPublic%2F&file=787.pdf&ddBienniumSession=2011%2F2011R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2011r/act-787
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 787 of the Regular Session
+    wave6_work_order_rows:
+    - 25
+- source_id: us-ar-w6-session-laws-2013r-act-1459
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 1459 of the 2013 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2013R%2FPublic%2F&file=1459.pdf&ddBienniumSession=2013%2F2013R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2013r/act-1459
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 1459 of the Regular Session
+    wave6_work_order_rows:
+    - 26
+- source_id: us-ar-w6-session-laws-2015r-act-22
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 22 of the 2015 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2015R%2FPublic%2F&file=22.pdf&ddBienniumSession=2015%2F2015R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2015r/act-22
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 22 of the Regular Session
+    wave6_work_order_rows:
+    - 27
+- source_id: us-ar-w6-session-laws-2017r-act-141
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 141 of the 2017 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2017R%2FPublic%2F&file=141.pdf&ddBienniumSession=2017%2F2017R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2017r/act-141
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 141 of the Regular Session
+    wave6_work_order_rows:
+    - 28
+- source_id: us-ar-w6-session-laws-2017r-act-78
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 78 of the 2017 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2017R%2FPublic%2F&file=78.pdf&ddBienniumSession=2017%2F2017R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2017r/act-78
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 78 of the Regular Session
+    wave6_work_order_rows:
+    - 29
+- source_id: us-ar-w6-session-laws-2019r-act-182
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 182 of the 2019 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2019R%2FPublic%2F&file=182.pdf&ddBienniumSession=2019%2F2019R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2019r/act-182
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 182 of the Regular Session
+    wave6_work_order_rows:
+    - 30
+- source_id: us-ar-w6-session-laws-2021r-act-154
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 154 of the 2021 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2021R%2FPublic%2F&file=154.pdf&ddBienniumSession=2021%2F2021R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2021r/act-154
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 154 of the Regular Session
+    wave6_work_order_rows:
+    - 31
+- source_id: us-ar-w6-session-laws-2025r-act-614
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 614 of the 2025 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2025R%2FPublic%2F&file=614.pdf&ddBienniumSession=2025%2F2025R
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2025r/act-614
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 614 of the Regular Session
+    wave6_work_order_rows:
+    - 32
+- source_id: us-ar-w6-session-laws-2023r-act-532
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 532 of the 2023 Regular Session
+  source_url: https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2023R%2FPublic%2FACT532.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2023r/act-532
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 532 of the Regular Session
+    wave6_work_order_rows:
+    - 33
+- source_id: us-ar-w6-session-laws-2026s1-act-1
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas Act 1 of the 2026 First Extraordinary Session (HB1001)
+  source_url: https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2026S1%2FPublic%2FACT1.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/session-laws/2026s1/act-1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Act 1 of the First Extraordinary Session
+    wave6_work_order_rows:
+    - 34
+- source_id: us-ar-w6-bills-2026s1-hb1001
+  jurisdiction: us-ar
+  document_class: statute
+  title: Arkansas HB1001, 2026 First Extraordinary Session (bill text)
+  source_url: https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FBills%2F2026S1%2FPublic%2FHB1001.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ar/statute/bills/2026s1/hb1001
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas General Assembly
+    document_subtype: bill
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: '*JLL443* 05/01/2026 8:05:20 AM'
+    wave6_work_order_rows:
+    - 36

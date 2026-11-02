@@ -1,0 +1,137 @@
+version: 2026-09-13-liheap-annual-figures-2026
+documents:
+- source_id: us-hhs-2026-poverty-guidelines-notice
+  jurisdiction: us
+  document_class: guidance
+  title: Annual Update of the HHS Poverty Guidelines (91 FR 1797, January 15, 2026)
+  source_url: https://www.govinfo.gov/content/pkg/FR-2026-01-15/html/2026-00755.htm
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-15'
+  citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026/federal-register
+  metadata:
+    primary_source: true
+    source_authority: U.S. Department of Health and Human Services via U.S. Government Publishing Office
+    document_subtype: federal_register_notice
+    federal_register_citation: 91 FR 1797
+    federal_register_document_number: 2026-00755
+    federal_register_publication_date: '2026-01-15'
+    federal_register_pdf_url: https://www.govinfo.gov/content/pkg/FR-2026-01-15/pdf/2026-00755.pdf
+    program: federal_poverty_guidelines
+    calendar_year: '2026'
+    source_discovery_group: us/guidance/hhs/aspe
+    closure_elements:
+    - LIHEAP-F-ANN-POVERTY
+    - MED-F-ANN-POVERTY
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/LIHEAP-F-ANN-SMI
+- source_id: us-hhs-aspe-poverty-guidelines-2026
+  jurisdiction: us
+  document_class: guidance
+  title: HHS Poverty Guidelines for 2026 (ASPE poverty guidelines page)
+  source_url: https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-15'
+  citation_path: us/guidance/hhs/aspe/poverty-guidelines/2026
+  metadata:
+    primary_source: true
+    source_authority: HHS Office of the Assistant Secretary for Planning and Evaluation
+    document_subtype: poverty_guidelines
+    program: federal_poverty_guidelines
+    calendar_year: '2026'
+    source_discovery_group: us/guidance/hhs/aspe
+    closure_elements:
+    - LIHEAP-F-ANN-POVERTY
+    - MED-F-ANN-POVERTY
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/LIHEAP-F-ANN-SMI
+    expression_date_note: the page carries the 2026 guidelines published in the Federal Register on 2026-01-15; the undated
+      path us/guidance/hhs/aspe/poverty-guidelines in manifests/us-hhs-poverty-guidelines.yaml was never extracted
+- source_id: us-acf-ocs-liheap-im-2026-01
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP IM 2026-01: Federal Poverty Guidelines (FPG) and State Median Income (SMI) Estimates for LIHEAP Income Eligibility,
+    Optional Use in FY 2026 and Mandatory Use in FY 2027 (page)'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-im2026-01-federal-poverty-guidelines-fpg-and-state-median-income-smi
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-24'
+  citation_path: us/guidance/acf/ocs/liheap-im/2026-01
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    document_subtype: information_memorandum_page
+    program: LIHEAP
+    fiscal_year: '2026'
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/LIHEAP-F-ANN-SMI
+    source_discovery_group: us/guidance/acf/ocs
+    index_url: https://acf.gov/ocs/policy-guidance/liheap-information-memoranda
+    closure_elements:
+    - LIHEAP-F-ANN-SMI
+    - LIHEAP-F-ANN-POVERTY
+- source_id: us-acf-ocs-liheap-im-2026-01-memorandum
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP IM 2026-01 (ACF-OCS-LIHEAP-IM-2026-01): Federal Poverty Guidelines and State Median Income Estimates for
+    LIHEAP Income Eligibility (memorandum)'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-im2026-01-federal-poverty-guidelines-fpg-and-state-median-income-smi
+  download_url: https://acf.gov/sites/default/files/documents/ocs/ACF-OCS-LIHEAP-IM-2026-01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-24'
+  citation_path: us/guidance/acf/ocs/liheap-im/2026-01/memorandum
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    document_subtype: information_memorandum
+    program: LIHEAP
+    fiscal_year: '2026'
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/LIHEAP-F-ANN-SMI
+    source_discovery_group: us/guidance/acf/ocs
+    index_url: https://acf.gov/ocs/policy-guidance/liheap-information-memoranda
+    closure_elements:
+    - LIHEAP-F-ANN-SMI
+    - LIHEAP-F-ANN-POVERTY
+- source_id: us-acf-ocs-liheap-im-2026-01-att4-smi-table
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP IM 2026-01 Attachment 4: State Median Income (SMI) by Household Size for Mandatory Use in FY 2027 (optional
+    use in FY 2026)'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-im2026-01-federal-poverty-guidelines-fpg-and-state-median-income-smi
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att4SMITable_States_FY2027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-24'
+  citation_path: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    document_subtype: state_median_income_table
+    program: LIHEAP
+    fiscal_year: '2026'
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/LIHEAP-F-ANN-SMI
+    source_discovery_group: us/guidance/acf/ocs
+    index_url: https://acf.gov/ocs/policy-guidance/liheap-information-memoranda
+    closure_elements:
+    - LIHEAP-F-ANN-SMI
+- source_id: us-acf-ocs-liheap-im-2026-01-att2-fpg-tables
+  jurisdiction: us
+  document_class: guidance
+  title: 'LIHEAP IM 2026-01 Attachment 2: 100, 110 and 150 percent of the 2026 Federal Poverty Guidelines for the 50 States
+    and the District of Columbia'
+  source_url: https://acf.gov/ocs/policy-guidance/liheap-im2026-01-federal-poverty-guidelines-fpg-and-state-median-income-smi
+  download_url: https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att2FPGTables_States_FY2027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-24'
+  citation_path: us/guidance/acf/ocs/liheap-im/2026-01/attachment-2-fpg-tables
+  metadata:
+    primary_source: true
+    source_authority: HHS Administration for Children and Families, Office of Community Services
+    document_subtype: poverty_guideline_tables
+    program: LIHEAP
+    fiscal_year: '2026'
+    discovered_via: manual-review:liheap-agent-queue; needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/LIHEAP-F-ANN-SMI
+    source_discovery_group: us/guidance/acf/ocs
+    index_url: https://acf.gov/ocs/policy-guidance/liheap-information-memoranda
+    closure_elements:
+    - LIHEAP-F-ANN-POVERTY

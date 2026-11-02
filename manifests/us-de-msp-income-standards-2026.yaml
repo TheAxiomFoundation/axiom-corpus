@@ -1,0 +1,47 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-de-dmma-administrative-notice-a-03-2026
+  jurisdiction: us-de
+  document_class: guidance
+  title: 'DMMA Administrative Notice A-03-2026: 2026 Federal Poverty and Medicaid Assistance Levels'
+  source_url: https://dhss.delaware.gov/wp-content/uploads/sites/11/2026/06/2026-Federal-Poverty-and-Medicaid-Assistance-Levels.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-de/guidance/dmma/administrative-notice/a-03-2026
+  metadata:
+    primary_source: true
+    source_authority: Delaware Health and Social Services, Division of Medicaid and Medical Assistance (DMMA)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-de/guidance
+    index_url: https://dhss.delaware.gov/dmma/home/income-limits/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: administrative_notice
+    document_number: A-03-2026
+    signed_date: '2026-02-04'
+    effective_date: '2026-04-01'
+    closure_elements_extra:
+    - MED-ST-2
+- source_id: us-de-dmma-medicaid-income-limits-2026
+  jurisdiction: us-de
+  document_class: guidance
+  title: 'Medicaid Income Limits: 2026 Monthly Countable Income for Medicare Savings Programs (DMMA page)'
+  source_url: https://dhss.delaware.gov/dmma/home/income-limits/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-de/guidance/dmma/medicaid-income-limits/2026
+  metadata:
+    primary_source: true
+    source_authority: Delaware Health and Social Services, Division of Medicaid and Medical Assistance (DMMA)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-de/guidance
+    index_url: https://dhss.delaware.gov/dmma/home/income-limits/
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    closure_elements_extra:
+    - MED-ST-2

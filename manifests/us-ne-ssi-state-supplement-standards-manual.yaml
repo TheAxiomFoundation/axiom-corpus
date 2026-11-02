@@ -1,0 +1,52 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-ne-manual-dhhs-469-000-211
+  jurisdiction: us-ne
+  document_class: manual
+  title: 'Nebraska DHHS 469-000-211: AABD or SDP Standard of Need (rev. January 1, 2021)'
+  source_url: https://dhhs.ne.gov/Documents/469-000-211.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2021-01-01'
+  citation_path: us-ne/manual/dhhs/469-000-211
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: manual_appendix_table_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: NE
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://dhhs.ne.gov/Pages/Title-469-Appendix.aspx
+    source_discovery_group: us-ne/manual/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://dhhs.ne.gov/Pages/Title-469-Appendix.aspx
+    extraction_granularity: pdf_page
+    expression_date_note: printed 'REV. JANUARY 1, 2021' / 'Effective 01-01-2021'
+    access_note: dhhs.ne.gov HTTP 200 to the plain client
+    page_count: 1
+- source_id: us-ne-manual-dhhs-477-000-044
+  jurisdiction: us-ne
+  document_class: manual
+  title: 'Nebraska DHHS 477-000-044: ABD Standard of Need (rev. December 17, 2025; 2026 standards)'
+  source_url: https://dhhs.ne.gov/Documents/477-000-044.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ne/manual/dhhs/477-000-044
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: manual_appendix_table_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: NE
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://dhhs.ne.gov/Pages/Title-477-Appendix.aspx
+    source_discovery_group: us-ne/manual/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://dhhs.ne.gov/Pages/Title-469-Appendix.aspx
+    extraction_granularity: pdf_page
+    expression_date_note: printed 'REV. DECEMBER 17, 2025'; 2026 standards effective 01/01/2026
+    access_note: dhhs.ne.gov HTTP 200 to the plain client
+    page_count: 2

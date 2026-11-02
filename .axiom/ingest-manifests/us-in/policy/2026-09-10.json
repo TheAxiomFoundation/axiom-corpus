@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/policy/2026-09-10.json",
+      "sha256": "19539172bbd715dd5f3135244813b75387a8b49fb988c1191364eb71fc589166"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/policy/2026-09-10.json",
+      "sha256": "14ead432d45e97768f37d60397f33cc64764b40604673b9b920a7fe38db2bc0b"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/policy/2026-09-10.jsonl",
+      "sha256": "96ee76937471bc133e54908d34bd7f1020160806d5424444c2377d87f3a8423b"
+    },
+    {
+      "path": "data/corpus/sources/us-in/policy/2026-09-10/official-documents/us-in-acf-liheap-plan-fy2026.pdf",
+      "sha256": "38205966ce1a911860a9b0c40901cdeaddeadb18964a7735724825efd90caf2c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-in-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T21:49:38.684315+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6lAjoGhkl99Lwupr/BfMtKgq/vgbR9M3rTUl1DqNqukovcJ14Hv+cneX5yN2i7X21kr2Q6Ytficrf7JjBLWcAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

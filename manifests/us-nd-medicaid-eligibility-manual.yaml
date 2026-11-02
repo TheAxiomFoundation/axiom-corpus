@@ -1,0 +1,4350 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: nd-hhs-510-05-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions 510-05-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-07-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Statement 510-05-07-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_07_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-07-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-07-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Purpose and Objective 510-05-07-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_07_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-07-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 560, "Assignment of Benefits" 510-05-100-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 817, "Health Insurance Cost-Effectiveness Review" 510-05-100-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-100
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Workbook 510-05-100-100
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_100.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-100
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: DN 555, "Medicaid Program Brochure" 510-05-100-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 143, "Your Civil Rights Brochure" 510-05-100-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Family Planning Program 510-05-100-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: DN 538, "ND Health Tracks" 510-05-100-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: WIC Program 510-05-100-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 451, "Eligibility Report on Disability/Incapacity" 510-05-100-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-41
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 228, "Workers with Disability Report Part II" 510-05-100-41
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_41.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-41
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-45
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 443, "Notice of Right to Claim \u0027Good Cause\u0027" 510-05-100-45
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_45.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-45
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-50
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 446, "Request to Claim \u0027Good Cause" 510-05-100-50
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_50.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-50
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-55
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 828 Credit Form 510-05-100-55
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_55.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-55
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-60
+  jurisdiction: us-nd
+  document_class: manual
+  title: $6,000/6 Percent Rule 510-05-100-60
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_60.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-60
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-65
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 200, "Asset Assessment" 510-05-100-65
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_65.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-65
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-70
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 52, Spousal Assets Log 510-05-100-70
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_70.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-70
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-75
+  jurisdiction: us-nd
+  document_class: manual
+  title: Life Expectancy Table 510-05-100-75
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_75.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-75
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-80
+  jurisdiction: us-nd
+  document_class: manual
+  title: Life Estate and Remainder Interest Table 510-05-100-80
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_80.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-80
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-90
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 687, "Medicaid Budget Worksheet" 510-05-100-90
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_90.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-90
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-100-96
+  jurisdiction: us-nd
+  document_class: manual
+  title: SFN 1186, "Notice to Insurer of Annuity" 510-05-100-96
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_100_96.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-100-96
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-105-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medicaid Living Arrangement Reference Hard Card 510-05-105-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_105_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-105-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-10-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Statement 510-05-10-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_10_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-10-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-10-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Nondiscrimination in Federally Assisted Programs 510-05-10-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_10_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-10-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-10-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Confidentiality 510-05-10-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_10_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-10-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-10-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Assignment of Rights to Recover Medical Costs 510-05-10-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_10_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-10-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-10-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Suspected Fraud 510-05-10-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_10_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-10-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-10-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Liens and Recoveries 510-05-10-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_10_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-10-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-110-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Process for the Medicaid Breast and Cervical Cancer Early Detection Program (BCCEDP) 510-05-110-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_110_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-110-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-110-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medicaid Coverage for Inmates Residing in Corrections-related Supervised Community Residential Facilities 510-05-110-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_110_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-110-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-12-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Cooperation - Third Party Liability 510-05-12-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_12_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-12-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-12-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: '"Good Cause" -- Third Party Liability 510-05-12-10'
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_12_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-12-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-15-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Home and Community Based Services (HCBS) 510-05-15-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_15_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-15-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-20-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information 510-05-20-05 (Cost-effective Health Ins.)
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_20_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-20-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-20-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions 510-05-20-10 (Cost-Effective Health Ins.)
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_20_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-20-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-20-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Applicant\u0027s and Recipient\u0027s Responsibility 510-05-20-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_20_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-20-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-20-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Cost-effectiveness Determination  510-05-20-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_20_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-20-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Application and Review 510-05-25-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Eligibility - Current and Retroactive 510-05-25-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Duty to Establish Eligibility  510-05-25-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medicaid Brochures 510-05-25-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Decision and Notice 510-05-25-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-27
+  jurisdiction: us-nd
+  document_class: manual
+  title: Electronic Narratives 510-05-25-27
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_27.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-27
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-25-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Appeals 510-05-25-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_25_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-25-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-30-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Groups Covered Under Medicaid 510-05-30-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_30_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-30-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-30-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Applicant\u0027s Choice of Category 510-05-30-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_30_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-30-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medicaid Unit 510-05-35-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-100
+  jurisdiction: us-nd
+  document_class: manual
+  title: Blindness and Disability 510-05-35-100
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_100.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-100
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Caretaker Relatives   510-05-35-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Relative Responsibility 510-05-35-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Screening for Nursing Care, ICF-ID or HCBS Recipients  510-05-35-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Certification of Need for Children in a Psychiatric Residential Treatment Facility (PRTF) or an Institution for Mental
+    Diseases (IMD) 510-05-35-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Need 510-05-35-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Age and Identity 510-05-35-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-45
+  jurisdiction: us-nd
+  document_class: manual
+  title: Citizenship and Alienage 510-05-35-45
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_45.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-45
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-50
+  jurisdiction: us-nd
+  document_class: manual
+  title: American Indians Born in Canada  510-05-35-50
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_50.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-50
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-55
+  jurisdiction: us-nd
+  document_class: manual
+  title: Non-Qualified Aliens   510-05-35-55
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_55.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-55
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-58
+  jurisdiction: us-nd
+  document_class: manual
+  title: Qualified Aliens 510-05-35-58
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_58.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-58
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-60
+  jurisdiction: us-nd
+  document_class: manual
+  title: Aliens Lawfully Admitted for Permanent Residence Before August 22,1996  510-05-35-60
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_60.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-60
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-65
+  jurisdiction: us-nd
+  document_class: manual
+  title: Aliens Lawfully Admitted for Permanent Residence on or After August 22, 1996  510-05-35-65
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_65.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-65
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-70
+  jurisdiction: us-nd
+  document_class: manual
+  title: Emergency Services for Non-Citizens  510-05-35-70
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_70.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-70
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-80
+  jurisdiction: us-nd
+  document_class: manual
+  title: Social Security Numbers 510-05-35-80
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_80.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-80
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-85
+  jurisdiction: us-nd
+  document_class: manual
+  title: State Residence 510-05-35-85
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_85.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-85
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-90
+  jurisdiction: us-nd
+  document_class: manual
+  title: Application for Other Benefits 510-05-35-90
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_90.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-90
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95
+  jurisdiction: us-nd
+  document_class: manual
+  title: Public Institutions 510-05-35-95
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Statement (Coverage for Inmates Receiving Inpatient Care in Certain Medical Institutions) 510-05-35-95-05-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions for Coverage for Inmates Receiving Inpatient Care in Certain Medical Institutions 510-05-35-95-05-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Individuals Covered (Coverage for Inmates Receiving Inpatient Care in Certain Medical Institutions) 510-05-35-95-05-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Considerations (Coverage for Inmates Receiving Inpatient Care in Certain Medical Institutions) 510-05-35-95-05-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Considerations (Coverage for Inmates who are Inpatients in a Hospital Setting) 510-05-35-95-05-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Levels (Coverage for Inmates who are Inpatients in a Hospital Setting) 510-05-35-95-05-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-05-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting (Coverage for Inmates who are Inpatients in a Hospital Setting) 510-05-35-95-05-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_05_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-05-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Coverage for Inmates Residing in Corrections-related Supervised Community Residential Facilities 510-05-35-95-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-95-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medicaid Eligibility for Incarcerated Individuals 510-05-35-95-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_95_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-95-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-35-97
+  jurisdiction: us-nd
+  document_class: manual
+  title: Institutions for Mental Diseases (IMD) 510-05-35-97
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_35_97.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-35-97
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-40-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Paternity 510-05-40-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_40_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-40-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-40-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medical Support   510-05-40-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_40_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-40-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-40-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Cooperation -- Child Support 510-05-40-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_40_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-40-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-40-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: '"Good Cause"  -- Child Support 510-05-40-20'
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_40_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-40-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-53-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Statement 510-05-53-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_53_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-53-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-53-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Individuals Covered 510-05-53-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_53_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-53-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-53-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Continuous Eligibility Periods 510-05-53-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_53_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-53-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-53-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Continuously Eligible Individuals Moving Out of the Medicaid Unit 510-05-53-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_53_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-53-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-55-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Foster Care    510-05-55-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_55_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-55-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-55-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Foster Care Financial Eligibility Requirements   510-05-55-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_55_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-55-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-55-10-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Former Foster Care Children through Age 26 510-05-55-10-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_55_10_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-55-10-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-55-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Volunteer Placement Program   510-05-55-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_55_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-55-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-55-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Subsidized Guardianship Project   510-05-55-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_55_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-55-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-55-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Subsidized Adoption   510-05-55-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_55_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-55-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information (Workers with Disabilities) 510-05-57-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Individuals Covered (Workers with Disabilities) 510-05-57-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Gainful Employment 510-05-57-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-19
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Limits for Workers with Disabilities 510-05-57-19
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_19.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-19
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Considerations for Workers with Disabilities 510-05-57-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Levels for Workers with Disabilities 510-05-57-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-57-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Premiums for Workers with Disabilities 510-05-57-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_57_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-57-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-58-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information 510-05-58-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_58_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-58-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-58-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Individuals Covered (Children with Disabilities) 510-05-58-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_58_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-58-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-58-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Employer Based Insurance 510-05-58-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_58_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-58-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-58-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income and Asset Considerations for Children with Disabilities 510-05-58-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_58_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-58-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-58-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Levels for Children with Disabilities 510-05-58-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_58_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-58-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-58-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Premium Calculation for Children with Disabilities 510-05-58-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_58_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-58-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information (Medicare Premium Assistance Program) 510-05-60-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Individuals Covered and Benefits 510-05-60-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Considerations for the Medicare Premium Assistance Program 510-05-60-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Limits for the Medicare Premium Assistance Program 510-05-60-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Assets Which are Excluded for the Medicare Premium Assistance Program 510-05-60-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Considerations for the Medicare Premium Assistance Program 510-05-60-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-60-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Levels for the Medicare Premium Assistance Program 510-05-60-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_60_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-60-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information (Spousal Impoverishment) 510-05-65-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions for Spousal Impoverishment 510-05-65-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Institutionalized Spouse or HCBS Spouse Asset Limit  510-05-65-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Community Spouse Asset Allowance 510-05-65-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Assets Which are Excluded for Spousal Impoverishment 510-05-65-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Considerations for Spousal Impoverishment 510-05-65-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Levels for Spousal Impoverishment 510-05-65-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Eligibility for Community Spouse  510-05-65-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-45
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Assessment Requirement 510-05-65-45
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_45.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-45
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-65-50
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Ownership Log  510-05-65-50
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_65_50.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-65-50
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-66-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information 510-05-66-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_66_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-66-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-66-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Protection 510-05-66-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_66_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-66-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-66-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Application of Other Medicaid Provisions 510-05-66-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_66_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-66-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-66-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Partnership Policy 510-05-66-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_66_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-66-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-66-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Reciprocity 510-05-66-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_66_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-66-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-67-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information (Breast and Cervical Cancer Early Detection Program) 510-05-67-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_67_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-67-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information  (Assets)  510-05-70-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Considerations 510-05-70-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Limits  510-05-70-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-17
+  jurisdiction: us-nd
+  document_class: manual
+  title: Asset Compatibility 510-05-70-17
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_17.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-17
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Forms of Asset Ownership 510-05-70-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-27
+  jurisdiction: us-nd
+  document_class: manual
+  title: Home Equity Limit 510-05-70-27
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_27.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-27
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Excluded Assets 510-05-70-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Converting Assets 510-05-70-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Contractual Rights to Receive Money Payments 510-05-70-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-45-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information 510-05-70-45-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_45_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-45-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-45-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions for Annuities 510-05-70-45-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_45_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-45-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-45-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Valuation of Annuities 510-05-70-45-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_45_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-45-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-45-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Annuities Purchased Before February 8, 2006 510-05-70-45-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_45_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-45-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-45-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Annuities Purchased or Changed on or After February 8, 2006 510-05-70-45-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_45_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-45-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-50
+  jurisdiction: us-nd
+  document_class: manual
+  title: Trusts 510-05-70-50
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_50.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-50
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-70-60
+  jurisdiction: us-nd
+  document_class: manual
+  title: Valuation of Assets 510-05-70-60
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_70_60.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-70-60
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-75-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Ownership in a Business Entity  510-05-75-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_75_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-75-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-75-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Treatment of Conservation Reserve Program Property and Payments  510-05-75-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_75_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-75-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-75-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Communal Colonies 510-05-75-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_75_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-75-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions  (Disqualifying Transfers)  510-05-80-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Disqualifying Transfer Provisions  510-05-80-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Penalty Periods 510-05-80-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Hardship Provision  510-05-80-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Exceptions to Disqualifying Transfer Provision  510-05-80-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Transfer of Income  510-05-80-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Transfers to Relatives for Services Received  510-05-80-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-37
+  jurisdiction: us-nd
+  document_class: manual
+  title: Payment for Services to an Attorney-in-Fact 510-05-80-37
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_37.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-37
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-80-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Presumption of Reason for Transfer  510-05-80-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_80_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-80-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Considerations 510-05-85-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-07
+  jurisdiction: us-nd
+  document_class: manual
+  title: Medical Payments 510-05-85-07
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_07.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-07
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: Determining Ownership of Income 510-05-85-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Unearned Income 510-05-85-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Earned Income 510-05-85-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-23
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Compatibility 510-05-85-23
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_23.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-23
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Post Eligibility Treatment of Income 510-05-85-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Disregarded Income 510-05-85-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Income Levels 510-05-85-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-45
+  jurisdiction: us-nd
+  document_class: manual
+  title: Determining the Appropriate Income Level in Special Circumstances  510-05-85-45
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_45.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-45
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-50
+  jurisdiction: us-nd
+  document_class: manual
+  title: Deeming of Income 510-05-85-50
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_50.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-50
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-55
+  jurisdiction: us-nd
+  document_class: manual
+  title: Client Share (Recipient Liability) 510-05-85-55
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_55.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-55
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-85-60
+  jurisdiction: us-nd
+  document_class: manual
+  title: Offset of Client Share (Recipient Liability) 510-05-85-60
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_85_60.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-85-60
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: Definitions (Budgeting) 510-05-90-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-10
+  jurisdiction: us-nd
+  document_class: manual
+  title: 10-10-10 Rule  510-05-90-10
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_10.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Guidelines for Anticipating Income 510-05-90-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Computing Client Share (Recipient Liability) 510-05-90-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-23
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Financially Responsible Absent Parents 510-05-90-23
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_23.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-23
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-25
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Pregnant Women 510-05-90-25
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-30
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures When Adding and Deleting Individuals 510-05-90-30
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_30.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-30
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-35
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Stepparents 510-05-90-35
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_35.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-35
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Unmarried Parents with Children 510-05-90-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-45
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for SSI Recipients  510-05-90-45
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_45.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-45
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-55
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budget Procedures for Medically Needy and Poverty Level 510-05-90-55
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_55.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-55
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-60
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for the Medicare Savings Programs 510-05-90-60
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_60.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-60
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-65
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Workers with Disabilities 510-05-90-65
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_65.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-65
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-70
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Children with Disabilities 510-05-90-70
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_70.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-70
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-90-75
+  jurisdiction: us-nd
+  document_class: manual
+  title: Budgeting Procedures for Continuous Eligibility for Children under Age 19 510-05-90-75
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_90_75.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-90-75
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-95-05
+  jurisdiction: us-nd
+  document_class: manual
+  title: General Information (Related Programs) 510-05-95-05
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_95_05.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-95-05
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-95-15
+  jurisdiction: us-nd
+  document_class: manual
+  title: Basic Care Assistance Program 510-05-95-15
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_95_15.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-95-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-95-20
+  jurisdiction: us-nd
+  document_class: manual
+  title: Refugee Medical Assistance Program 510-05-95-20
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_95_20.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-95-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-95-40
+  jurisdiction: us-nd
+  document_class: manual
+  title: Children\u0027s Special Health Services 510-05-95-40
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_95_40.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-95-40
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-95-45
+  jurisdiction: us-nd
+  document_class: manual
+  title: State LTC Subsidy Program 510-05-95-45
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_95_45.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-95-45
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+- source_id: nd-hhs-510-05-95-50
+  jurisdiction: us-nd
+  document_class: manual
+  title: North Dakota Health Tracks 510-05-95-50
+  source_url: https://www.nd.gov/dhs/policymanuals/51005/Content/510_05_95_50.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nd/manual/hhs/medicaid/510-05-95-50
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Department of Health and Human Services
+    document_subtype: policy_topic_html
+    program: MEDICAID
+    manual: North Dakota HHS Medicaid Eligibility Policy Manual, Service Chapter 510-05 (Eligibility Factors)
+    manual_index_url: https://www.nd.gov/dhs/policymanuals/51005/Default.htm
+    source_discovery_group: us-nd/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.nd.gov/dhs/policymanuals/51005/Default.htm

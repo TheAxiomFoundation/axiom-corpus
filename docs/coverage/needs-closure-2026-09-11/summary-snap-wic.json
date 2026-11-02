@@ -1,0 +1,3032 @@
+{
+ "snap": {
+  "elements": 393,
+  "cells": 20375,
+  "status_counts": {
+   "PRESENT": 2647,
+   "EXTRACTABLE": 210,
+   "REVIEW": 316,
+   "INHERITED": 16932,
+   "ABSENT": 214,
+   "OUTREACH": 56
+  },
+  "by_jurisdiction": {
+   "us": {
+    "PRESENT": 200,
+    "EXTRACTABLE": 131,
+    "REVIEW": 1
+   },
+   "us-al": {
+    "INHERITED": 332,
+    "PRESENT": 44,
+    "ABSENT": 11,
+    "REVIEW": 5,
+    "EXTRACTABLE": 1
+   },
+   "us-ak": {
+    "INHERITED": 332,
+    "PRESENT": 51,
+    "REVIEW": 9,
+    "EXTRACTABLE": 1
+   },
+   "us-az": {
+    "INHERITED": 332,
+    "PRESENT": 35,
+    "OUTREACH": 25,
+    "EXTRACTABLE": 1
+   },
+   "us-ar": {
+    "INHERITED": 332,
+    "PRESENT": 53,
+    "ABSENT": 7,
+    "EXTRACTABLE": 1
+   },
+   "us-ca": {
+    "INHERITED": 332,
+    "PRESENT": 55,
+    "ABSENT": 5,
+    "EXTRACTABLE": 1
+   },
+   "us-co": {
+    "INHERITED": 332,
+    "PRESENT": 52,
+    "REVIEW": 9
+   },
+   "us-ct": {
+    "INHERITED": 332,
+    "PRESENT": 49,
+    "REVIEW": 11,
+    "EXTRACTABLE": 1
+   },
+   "us-de": {
+    "INHERITED": 332,
+    "PRESENT": 44,
+    "REVIEW": 16,
+    "EXTRACTABLE": 1
+   },
+   "us-dc": {
+    "INHERITED": 332,
+    "PRESENT": 52,
+    "REVIEW": 8,
+    "EXTRACTABLE": 1
+   },
+   "us-fl": {
+    "INHERITED": 332,
+    "PRESENT": 48,
+    "ABSENT": 10,
+    "EXTRACTABLE": 3
+   },
+   "us-ga": {
+    "INHERITED": 332,
+    "PRESENT": 51,
+    "ABSENT": 7,
+    "EXTRACTABLE": 3
+   },
+   "us-hi": {
+    "INHERITED": 332,
+    "PRESENT": 44,
+    "ABSENT": 7,
+    "REVIEW": 9,
+    "EXTRACTABLE": 1
+   },
+   "us-id": {
+    "INHERITED": 332,
+    "PRESENT": 39,
+    "ABSENT": 11,
+    "REVIEW": 10,
+    "EXTRACTABLE": 1
+   },
+   "us-il": {
+    "INHERITED": 332,
+    "PRESENT": 54,
+    "REVIEW": 6,
+    "EXTRACTABLE": 1
+   },
+   "us-in": {
+    "INHERITED": 332,
+    "PRESENT": 49,
+    "REVIEW": 11,
+    "EXTRACTABLE": 1
+   },
+   "us-ia": {
+    "INHERITED": 332,
+    "PRESENT": 49,
+    "REVIEW": 3,
+    "ABSENT": 8,
+    "EXTRACTABLE": 1
+   },
+   "us-ks": {
+    "INHERITED": 332,
+    "PRESENT": 45,
+    "REVIEW": 15,
+    "EXTRACTABLE": 1
+   },
+   "us-ky": {
+    "INHERITED": 332,
+    "PRESENT": 53,
+    "ABSENT": 5,
+    "EXTRACTABLE": 3
+   },
+   "us-la": {
+    "INHERITED": 332,
+    "PRESENT": 52,
+    "REVIEW": 8,
+    "EXTRACTABLE": 1
+   },
+   "us-me": {
+    "INHERITED": 332,
+    "PRESENT": 48,
+    "ABSENT": 9,
+    "REVIEW": 3,
+    "EXTRACTABLE": 1
+   },
+   "us-md": {
+    "INHERITED": 332,
+    "PRESENT": 55,
+    "ABSENT": 5,
+    "EXTRACTABLE": 1
+   },
+   "us-ma": {
+    "INHERITED": 332,
+    "PRESENT": 45,
+    "ABSENT": 10,
+    "EXTRACTABLE": 6
+   },
+   "us-mi": {
+    "INHERITED": 332,
+    "PRESENT": 50,
+    "EXTRACTABLE": 4,
+    "ABSENT": 7
+   },
+   "us-mn": {
+    "INHERITED": 332,
+    "PRESENT": 48,
+    "REVIEW": 12,
+    "EXTRACTABLE": 1
+   },
+   "us-ms": {
+    "INHERITED": 332,
+    "REVIEW": 16,
+    "PRESENT": 44,
+    "EXTRACTABLE": 1
+   },
+   "us-mo": {
+    "INHERITED": 332,
+    "REVIEW": 14,
+    "PRESENT": 46,
+    "EXTRACTABLE": 1
+   },
+   "us-mt": {
+    "INHERITED": 332,
+    "PRESENT": 50,
+    "ABSENT": 9,
+    "REVIEW": 1,
+    "EXTRACTABLE": 1
+   },
+   "us-ne": {
+    "INHERITED": 332,
+    "ABSENT": 10,
+    "PRESENT": 42,
+    "REVIEW": 8,
+    "EXTRACTABLE": 1
+   },
+   "us-nv": {
+    "INHERITED": 332,
+    "PRESENT": 52,
+    "ABSENT": 8,
+    "EXTRACTABLE": 1
+   },
+   "us-nh": {
+    "INHERITED": 332,
+    "PRESENT": 44,
+    "ABSENT": 9,
+    "EXTRACTABLE": 8
+   },
+   "us-nj": {
+    "INHERITED": 332,
+    "PRESENT": 45,
+    "REVIEW": 15,
+    "EXTRACTABLE": 1
+   },
+   "us-nm": {
+    "INHERITED": 332,
+    "PRESENT": 46,
+    "ABSENT": 7,
+    "REVIEW": 6,
+    "EXTRACTABLE": 2
+   },
+   "us-ny": {
+    "INHERITED": 332,
+    "PRESENT": 48,
+    "OUTREACH": 12,
+    "EXTRACTABLE": 1
+   },
+   "us-nc": {
+    "INHERITED": 332,
+    "PRESENT": 49,
+    "ABSENT": 9,
+    "EXTRACTABLE": 3
+   },
+   "us-nd": {
+    "INHERITED": 332,
+    "PRESENT": 50,
+    "EXTRACTABLE": 4,
+    "ABSENT": 7
+   },
+   "us-oh": {
+    "INHERITED": 332,
+    "PRESENT": 41,
+    "OUTREACH": 19,
+    "EXTRACTABLE": 1
+   },
+   "us-ok": {
+    "INHERITED": 332,
+    "ABSENT": 12,
+    "PRESENT": 47,
+    "REVIEW": 1,
+    "EXTRACTABLE": 1
+   },
+   "us-or": {
+    "INHERITED": 332,
+    "PRESENT": 51,
+    "REVIEW": 9,
+    "EXTRACTABLE": 1
+   },
+   "us-pa": {
+    "INHERITED": 332,
+    "PRESENT": 50,
+    "REVIEW": 10,
+    "EXTRACTABLE": 1
+   },
+   "us-ri": {
+    "INHERITED": 332,
+    "PRESENT": 46,
+    "REVIEW": 14,
+    "EXTRACTABLE": 1
+   },
+   "us-sc": {
+    "INHERITED": 332,
+    "PRESENT": 52,
+    "REVIEW": 8,
+    "EXTRACTABLE": 1
+   },
+   "us-sd": {
+    "INHERITED": 332,
+    "REVIEW": 11,
+    "PRESENT": 49,
+    "EXTRACTABLE": 1
+   },
+   "us-tn": {
+    "INHERITED": 332,
+    "ABSENT": 12,
+    "PRESENT": 43,
+    "REVIEW": 5,
+    "EXTRACTABLE": 1
+   },
+   "us-tx": {
+    "INHERITED": 332,
+    "PRESENT": 49,
+    "ABSENT": 8,
+    "REVIEW": 3,
+    "EXTRACTABLE": 1
+   },
+   "us-ut": {
+    "INHERITED": 332,
+    "PRESENT": 45,
+    "REVIEW": 15,
+    "EXTRACTABLE": 1
+   },
+   "us-vt": {
+    "INHERITED": 332,
+    "PRESENT": 49,
+    "ABSENT": 9,
+    "REVIEW": 2,
+    "EXTRACTABLE": 1
+   },
+   "us-va": {
+    "INHERITED": 332,
+    "PRESENT": 50,
+    "REVIEW": 10,
+    "EXTRACTABLE": 1
+   },
+   "us-wa": {
+    "INHERITED": 332,
+    "PRESENT": 51,
+    "REVIEW": 9,
+    "EXTRACTABLE": 1
+   },
+   "us-wv": {
+    "INHERITED": 332,
+    "PRESENT": 47,
+    "REVIEW": 13,
+    "EXTRACTABLE": 1
+   },
+   "us-wi": {
+    "INHERITED": 332,
+    "PRESENT": 50,
+    "REVIEW": 10,
+    "EXTRACTABLE": 1
+   },
+   "us-wy": {
+    "INHERITED": 332,
+    "ABSENT": 12,
+    "PRESENT": 46,
+    "EXTRACTABLE": 3
+   }
+  },
+  "by_element": {
+   "snap_usc_2011": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2013": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2016": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2016a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2018": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2019": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2020": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2021": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2022": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2023": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2024": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2025": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2026": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2026a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2027": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2028": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2029": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2031": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2032": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2034": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2035": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2036": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2036a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2036b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2036c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2036d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012_j": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012_k": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012_m": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012_o": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012_r": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2012_u": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_g": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_h": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_i": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_j": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_k": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_l": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_m": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2014_n": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_g": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_h": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_i": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_j": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_k": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_l": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_m": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_n": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_o": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_p": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_q": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_r": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2015_s": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017_a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017_b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017_c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017_d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017_e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2017_f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2020_e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2020_i": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2020_s": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_usc_2025_h": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_271_9": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_9": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_10": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_11": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_12": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_13": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_14": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_15": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_16": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_17": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_272_18": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_1": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_3": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_4": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_5": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_6": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_8": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_11": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_12": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_13": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_14": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_15": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_16": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_17": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_18": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_20": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_21": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_23": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_24": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_25": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_26": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_27": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_28": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_29": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_30": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_31": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_32": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_274_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_1": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_2": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_3": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_4": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_5": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_6": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_7": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_8": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_9": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_10": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_11": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_12": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_13": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_14": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_15": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_16": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_17": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_18": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_19": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_20": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_21": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_22": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_23": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_275_24": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_276_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_9": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_10": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_11": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_12": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_13": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_14": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_16": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_17": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_277_18": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_278_9": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_279_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_280_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_9": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_281_10": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_282_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_282_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_6": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_7": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_8": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_9": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_10": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_11": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_12": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_13": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_14": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_15": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_16": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_17": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_18": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_19": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_20": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_21": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_22": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_23": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_24": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_25": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_26": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_27": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_28": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_29": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_30": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_31": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_283_32": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_284_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_285_1": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_285_2": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_285_3": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_285_4": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_285_5": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_1_1a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_1_1b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2g": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2i": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2j": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2k": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_2_2o": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_4_4a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_4_4c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_5_5b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7_7a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7_7b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7_7c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7_7d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7_7f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_7_7j": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_8_8b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_8_8e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_8_8f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d1": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d2": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d3": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d4": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d5": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d6i": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d6ii": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_9_9d6iii": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10_10a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10_10c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10_10d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10_10e1": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10_10e2": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_10_10f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_11_11a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_11_11b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_11_11c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_11_11k": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_12_12a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_12_12c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_13_13a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_14_14b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_15_15": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_16_16": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_18_18": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_21_21": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_24_24a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_24_24e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_24_24f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_24_24g": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_cfr_273_26_26": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g01": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g02": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g03": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g04": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g05": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g06": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g07": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g08": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g09": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_g10": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_g11": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_g12": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_g13": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g14": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "snap_g15": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "snap_g16": {
+    "REVIEW": 1,
+    "INHERITED": 51
+   },
+   "snap_s01": {
+    "PRESENT": 44,
+    "REVIEW": 3,
+    "ABSENT": 4
+   },
+   "snap_s02": {
+    "ABSENT": 9,
+    "PRESENT": 34,
+    "REVIEW": 7,
+    "OUTREACH": 1
+   },
+   "snap_s03": {
+    "ABSENT": 20,
+    "REVIEW": 18,
+    "OUTREACH": 3,
+    "PRESENT": 10
+   },
+   "snap_s04": {
+    "REVIEW": 9,
+    "PRESENT": 40,
+    "EXTRACTABLE": 1,
+    "OUTREACH": 1
+   },
+   "snap_s05": {
+    "PRESENT": 36,
+    "EXTRACTABLE": 5,
+    "REVIEW": 9,
+    "OUTREACH": 1
+   },
+   "snap_s06": {
+    "PRESENT": 49,
+    "REVIEW": 2
+   },
+   "snap_s07": {
+    "ABSENT": 18,
+    "REVIEW": 12,
+    "OUTREACH": 3,
+    "PRESENT": 18
+   },
+   "snap_s08": {
+    "PRESENT": 50,
+    "ABSENT": 1
+   },
+   "snap_s09": {
+    "PRESENT": 47,
+    "ABSENT": 1,
+    "REVIEW": 3
+   },
+   "snap_s10": {
+    "PRESENT": 23,
+    "REVIEW": 13,
+    "ABSENT": 13,
+    "OUTREACH": 2
+   },
+   "snap_s11": {
+    "PRESENT": 51
+   },
+   "snap_s12": {
+    "PRESENT": 51
+   },
+   "snap_s13": {
+    "PRESENT": 51
+   },
+   "snap_s14": {
+    "PRESENT": 48,
+    "REVIEW": 2,
+    "OUTREACH": 1
+   },
+   "snap_s15": {
+    "REVIEW": 18,
+    "PRESENT": 27,
+    "OUTREACH": 3,
+    "EXTRACTABLE": 3
+   },
+   "snap_s16": {
+    "REVIEW": 16,
+    "OUTREACH": 2,
+    "PRESENT": 30,
+    "EXTRACTABLE": 3
+   },
+   "snap_s17": {
+    "PRESENT": 34,
+    "OUTREACH": 2,
+    "REVIEW": 11,
+    "EXTRACTABLE": 4
+   },
+   "snap_s18": {
+    "PRESENT": 36,
+    "OUTREACH": 1,
+    "REVIEW": 11,
+    "EXTRACTABLE": 3
+   },
+   "snap_s19": {
+    "PRESENT": 51
+   },
+   "snap_s20": {
+    "REVIEW": 20,
+    "PRESENT": 26,
+    "EXTRACTABLE": 3,
+    "OUTREACH": 2
+   },
+   "snap_s21": {
+    "PRESENT": 46,
+    "OUTREACH": 2,
+    "REVIEW": 3
+   },
+   "snap_s22": {
+    "PRESENT": 49,
+    "OUTREACH": 1,
+    "EXTRACTABLE": 1
+   },
+   "snap_s23": {
+    "PRESENT": 47,
+    "OUTREACH": 1,
+    "REVIEW": 3
+   },
+   "snap_s24": {
+    "PRESENT": 47,
+    "OUTREACH": 1,
+    "REVIEW": 2,
+    "EXTRACTABLE": 1
+   },
+   "snap_s25": {
+    "PRESENT": 48,
+    "OUTREACH": 1,
+    "REVIEW": 2
+   },
+   "snap_s26": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s27": {
+    "PRESENT": 37,
+    "OUTREACH": 1,
+    "REVIEW": 10,
+    "EXTRACTABLE": 3
+   },
+   "snap_s28": {
+    "PRESENT": 51
+   },
+   "snap_s29": {
+    "PRESENT": 51
+   },
+   "snap_s30": {
+    "PRESENT": 51
+   },
+   "snap_s31": {
+    "EXTRACTABLE": 50,
+    "PRESENT": 1
+   },
+   "snap_s32": {
+    "ABSENT": 24,
+    "REVIEW": 23,
+    "OUTREACH": 3,
+    "EXTRACTABLE": 1
+   },
+   "snap_s33": {
+    "ABSENT": 13,
+    "REVIEW": 13,
+    "PRESENT": 24,
+    "OUTREACH": 1
+   },
+   "snap_s34": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s35": {
+    "PRESENT": 51
+   },
+   "snap_s36": {
+    "PRESENT": 51
+   },
+   "snap_s37": {
+    "ABSENT": 22,
+    "REVIEW": 19,
+    "OUTREACH": 3,
+    "PRESENT": 7
+   },
+   "snap_s38": {
+    "ABSENT": 11,
+    "PRESENT": 26,
+    "REVIEW": 12,
+    "OUTREACH": 2
+   },
+   "snap_s39": {
+    "ABSENT": 15,
+    "PRESENT": 24,
+    "REVIEW": 11,
+    "OUTREACH": 1
+   },
+   "snap_s40": {
+    "ABSENT": 22,
+    "REVIEW": 21,
+    "PRESENT": 6,
+    "OUTREACH": 2
+   },
+   "snap_s41": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s42": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s43": {
+    "PRESENT": 51
+   },
+   "snap_s44": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s45": {
+    "PRESENT": 51
+   },
+   "snap_s46": {
+    "PRESENT": 51
+   },
+   "snap_s47": {
+    "PRESENT": 51
+   },
+   "snap_s48": {
+    "PRESENT": 51
+   },
+   "snap_s49": {
+    "PRESENT": 51
+   },
+   "snap_s50": {
+    "PRESENT": 50,
+    "REVIEW": 1
+   },
+   "snap_s51": {
+    "REVIEW": 2,
+    "PRESENT": 48,
+    "OUTREACH": 1
+   },
+   "snap_s52": {
+    "PRESENT": 51
+   },
+   "snap_s53": {
+    "ABSENT": 23,
+    "REVIEW": 19,
+    "OUTREACH": 3,
+    "PRESENT": 6
+   },
+   "snap_s54": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s55": {
+    "PRESENT": 50,
+    "OUTREACH": 1
+   },
+   "snap_s56": {
+    "PRESENT": 51
+   },
+   "snap_s57": {
+    "PRESENT": 51
+   },
+   "snap_s58": {
+    "PRESENT": 51
+   },
+   "snap_s59": {
+    "ABSENT": 18,
+    "PRESENT": 10,
+    "OUTREACH": 3,
+    "REVIEW": 20
+   },
+   "snap_s60": {
+    "PRESENT": 51
+   },
+   "snap_s61": {
+    "PRESENT": 49,
+    "OUTREACH": 1,
+    "EXTRACTABLE": 1
+   }
+  },
+  "scopes": {
+   "us": [
+    "guidance/2026-05-01-snap-fy2026-cola-r2026-07-15-self-contained",
+    "guidance/2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained",
+    "guidance/2026-07-08-snap-fy2024-cola",
+    "guidance/2026-07-13-recovery",
+    "guidance/2026-08-03-snap-obbb-abawd-exceptions-implementation-memo",
+    "guidance/2026-08-07-snap-obbb-alien-eligibility-implementation-memo",
+    "regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained",
+    "regulation/2026-06-15-title-7-part-275",
+    "regulation/2026-07-13-recovery-r2026-07-17-dedup",
+    "statute/2026-07-22-rulespec-title-7-consolidated"
+   ],
+   "us-al": [
+    "manual/2026-05-27-al-snap-poe-manual-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery",
+    "regulation/2026-05-29-r2026-07-15-self-contained"
+   ],
+   "us-ak": [
+    "manual/2026-07-16-ak-snap-manual"
+   ],
+   "us-az": [
+    "manual/2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained",
+    "manual/2026-07-12-az-des-faa6-utility-amounts",
+    "manual/2026-07-17-faa5-recovery"
+   ],
+   "us-ar": [
+    "manual/2026-09-11-ar-snap-manual-supersede"
+   ],
+   "us-ca": [
+    "guidance/2025-09-03-ca-cdss-acin",
+    "guidance/2026-07-28-ca-cdss-calfresh-bbce-authority",
+    "regulation/2026-07-13-recovery",
+    "regulation/2026-07-17-ca-cdss-mpp-calfresh"
+   ],
+   "us-co": [
+    "policy/2026-07-21-co-snap-policy",
+    "regulation/2026-07-16-10-ccr-2506-1"
+   ],
+   "us-ct": [
+    "manual/2026-07-17-ct-snap-manual"
+   ],
+   "us-de": [
+    "regulation/2026-07-17-de-snap-rules"
+   ],
+   "us-dc": [
+    "manual/2026-07-17-dc-snap-manual"
+   ],
+   "us-fl": [
+    "manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery",
+    "regulation/2026-05-29-r2026-07-15-self-contained",
+    "regulation/2026-07-13-recovery"
+   ],
+   "us-ga": [
+    "manual/2026-07-13-recovery-r2026-07-17-dedup",
+    "manual/2026-09-11-ga-snap-manual-supersede"
+   ],
+   "us-hi": [
+    "regulation/2026-05-27-hi-snap-rules-r2026-07-15-self-contained",
+    "regulation/2026-07-13-recovery"
+   ],
+   "us-id": [
+    "regulation/2026-05-27-id-food-stamp-rules-r2026-07-15-self-contained",
+    "regulation/2026-07-13-recovery"
+   ],
+   "us-il": [
+    "manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery-r2026-07-17-dedup"
+   ],
+   "us-in": [
+    "manual/2026-05-27-in-snap-manual-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery"
+   ],
+   "us-ia": [
+    "manual/2026-07-17-ia-snap-manual"
+   ],
+   "us-ks": [
+    "manual/2026-05-27-ks-keesm-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery-r2026-07-17-dedup"
+   ],
+   "us-ky": [
+    "manual/2026-09-10-snap-state-manual-completion",
+    "manual/2026-09-11-ky-snap-manual-supersede"
+   ],
+   "us-la": [
+    "manual/2026-07-17-la-snap-manual"
+   ],
+   "us-me": [
+    "regulation/2026-09-11-me-snap-manual-supersede"
+   ],
+   "us-md": [
+    "guidance/2026-07-12-md-fia-snap-fy2026",
+    "manual/2026-07-17-md-snap-manual"
+   ],
+   "us-ma": [
+    "guidance/2026-08-03-ma-dta-snap-cola-official-source-recovery",
+    "regulation/2026-07-24-ma-dta-regulations-snap-current-union"
+   ],
+   "us-mi": [
+    "manual/2026-09-11-mi-snap-manual-supersede"
+   ],
+   "us-mn": [
+    "manual/2026-05-27-mn-combined-manual-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery"
+   ],
+   "us-ms": [
+    "manual/2026-07-17-ms-snap-policy-manual"
+   ],
+   "us-mo": [
+    "manual/2026-05-27-mo-snap-manual-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery"
+   ],
+   "us-mt": [
+    "manual/2026-07-17-mt-snap-policy-manual"
+   ],
+   "us-ne": [
+    "regulation/2026-09-11-ne-snap-manual-supersede"
+   ],
+   "us-nv": [
+    "manual/2026-07-13-recovery",
+    "manual/2026-09-11-nv-snap-manual-supersede"
+   ],
+   "us-nh": [
+    "manual/2026-09-10-snap-state-manual-completion",
+    "regulation/2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained",
+    "regulation/2026-07-13-recovery"
+   ],
+   "us-nj": [
+    "regulation/2026-07-17-nj-snap-rules"
+   ],
+   "us-nm": [
+    "regulation/2026-07-17-nm-snap-regulations"
+   ],
+   "us-ny": [
+    "manual/2026-07-17-ny-snap-manuals",
+    "regulation/2026-07-17-ny-snap-regulations"
+   ],
+   "us-nc": [
+    "manual/2026-07-13-recovery",
+    "manual/2026-09-11-nc-snap-manual-supersede",
+    "regulation/2026-05-29"
+   ],
+   "us-nd": [
+    "manual/2026-09-10-snap-state-manual-completion",
+    "manual/2026-09-11-nd-snap-manual-supersede"
+   ],
+   "us-oh": [
+    "regulation/2026-07-16-agency-5101-4-r2026-09-11-5101-1-5122-36-consolidated"
+   ],
+   "us-ok": [
+    "policy/2026-09-11-ok-snap-manual-supersede",
+    "regulation/2026-07-21-ok-snap-rules"
+   ],
+   "us-or": [
+    "manual/2026-07-16-or-programs-eligibility-notebook"
+   ],
+   "us-pa": [
+    "manual/2026-07-21-pa-snap-handbook"
+   ],
+   "us-ri": [
+    "regulation/2026-07-21-ri-snap-rules"
+   ],
+   "us-sc": [
+    "manual/2026-05-27-sc-snap-manual",
+    "manual/2026-07-13-recovery",
+    "regulation/2026-05-29-r2026-07-15-self-contained",
+    "regulation/2026-07-13-recovery"
+   ],
+   "us-sd": [
+    "manual/2026-07-21-sd-snap-manual"
+   ],
+   "us-tn": [
+    "manual/2026-07-13-recovery",
+    "manual/2026-09-11-tn-snap-manual-supersede",
+    "regulation/2026-05-29-r2026-07-15-self-contained",
+    "regulation/2026-07-13-recovery"
+   ],
+   "us-tx": [
+    "manual/2026-05-27-tx-manuals-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery-r2026-07-17-dedup",
+    "manual/2026-09-10-snap-state-manual-completion"
+   ],
+   "us-ut": [
+    "manual/2026-05-27-ut-manuals-r2026-07-15-self-contained",
+    "manual/2026-07-13-recovery"
+   ],
+   "us-vt": [
+    "manual/2026-07-21-vt-3squaresvt-manual"
+   ],
+   "us-va": [
+    "manual/2026-07-21-va-snap-manual"
+   ],
+   "us-wa": [
+    "manual/2026-07-21-wa-eaz-manual",
+    "regulation/2026-06-25-388-450-r2026-07-15-self-contained",
+    "regulation/2026-06-25-388-478-r2026-07-15-self-contained-r2026-07-17-dedup",
+    "regulation/2026-07-01-388-474-r2026-07-15-self-contained-r2026-07-17-dedup"
+   ],
+   "us-wv": [
+    "manual/2026-07-21-wv-income-maintenance-manual",
+    "manual/2026-07-21-wv-snap-healthy-choices-overlay"
+   ],
+   "us-wi": [
+    "manual/2026-07-21-wi-foodshare-manual"
+   ],
+   "us-wy": [
+    "manual/2026-07-13-recovery",
+    "manual/2026-09-10-snap-state-manual-completion",
+    "manual/2026-09-11-wy-snap-manual-supersede"
+   ]
+  },
+  "pe_not_modeled": 289
+ },
+ "wic": {
+  "elements": 114,
+  "cells": 5897,
+  "status_counts": {
+   "EXTRACTABLE": 41,
+   "PRESENT": 637,
+   "INHERITED": 4233,
+   "ABSENT": 602,
+   "REVIEW": 85,
+   "OUTREACH": 299
+  },
+  "by_jurisdiction": {
+   "us": {
+    "EXTRACTABLE": 24,
+    "PRESENT": 59
+   },
+   "us-al": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-ak": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-az": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-ar": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-ca": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-co": {
+    "INHERITED": 83,
+    "PRESENT": 28,
+    "ABSENT": 1,
+    "REVIEW": 2
+   },
+   "us-ct": {
+    "INHERITED": 83,
+    "PRESENT": 28,
+    "EXTRACTABLE": 2,
+    "REVIEW": 1
+   },
+   "us-de": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-dc": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-fl": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-ga": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-hi": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-id": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-il": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-in": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-ia": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-ks": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-ky": {
+    "INHERITED": 83,
+    "PRESENT": 28,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-la": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-me": {
+    "INHERITED": 83,
+    "PRESENT": 28,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-md": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-ma": {
+    "INHERITED": 83,
+    "OUTREACH": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-mi": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-mn": {
+    "INHERITED": 83,
+    "PRESENT": 26,
+    "EXTRACTABLE": 2,
+    "ABSENT": 1,
+    "REVIEW": 2
+   },
+   "us-ms": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-mo": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-mt": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-ne": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-nv": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-nh": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-nj": {
+    "INHERITED": 83,
+    "ABSENT": 18,
+    "PRESENT": 11,
+    "REVIEW": 2
+   },
+   "us-nm": {
+    "INHERITED": 83,
+    "OUTREACH": 30,
+    "REVIEW": 1
+   },
+   "us-ny": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-nc": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-nd": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-oh": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-ok": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-or": {
+    "INHERITED": 83,
+    "PRESENT": 28,
+    "EXTRACTABLE": 1,
+    "REVIEW": 2
+   },
+   "us-pa": {
+    "INHERITED": 83,
+    "PRESENT": 27,
+    "REVIEW": 3,
+    "ABSENT": 1
+   },
+   "us-ri": {
+    "INHERITED": 83,
+    "PRESENT": 27,
+    "EXTRACTABLE": 2,
+    "REVIEW": 2
+   },
+   "us-sc": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-sd": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   },
+   "us-tn": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 1,
+    "EXTRACTABLE": 1
+   },
+   "us-tx": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-ut": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-vt": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-va": {
+    "INHERITED": 83,
+    "PRESENT": 28,
+    "ABSENT": 1,
+    "REVIEW": 2
+   },
+   "us-wa": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "REVIEW": 2
+   },
+   "us-wv": {
+    "INHERITED": 83,
+    "PRESENT": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-wi": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "EXTRACTABLE": 1,
+    "REVIEW": 1
+   },
+   "us-wy": {
+    "INHERITED": 83,
+    "ABSENT": 29,
+    "REVIEW": 2
+   }
+  },
+  "by_element": {
+   "wic_usc_1786_a": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_b": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_c": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_d": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_e": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_f": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_g": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_h": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_i": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_j": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_k": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_l": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_m": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_n": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_o": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_p": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_q": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_r": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_usc_1786_s": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_1": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_2": {
+    "PRESENT": 2,
+    "INHERITED": 102
+   },
+   "wic_cfr_246_3": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_4": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_5": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_6": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_8": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_9": {
+    "PRESENT": 2,
+    "INHERITED": 102
+   },
+   "wic_cfr_246_10": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_11": {
+    "PRESENT": 2,
+    "INHERITED": 102
+   },
+   "wic_cfr_246_12": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_13": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_14": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_15": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_16": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_16a": {
+    "PRESENT": 2,
+    "INHERITED": 102
+   },
+   "wic_cfr_246_17": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_18": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_19": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_20": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_21": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_22": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_23": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_24": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_25": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_26": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_27": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_28": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_29": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7d1": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7d2": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7f": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7g": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7h": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7i": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7j": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7k": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7l": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7m": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_7n": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_10b": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_10c": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_10d": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_10e": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_12a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_12g": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_12u": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_cfr_246_4a": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_g01": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_g02": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_g03": {
+    "PRESENT": 1,
+    "INHERITED": 51
+   },
+   "wic_g04": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_g05": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_g06": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_g07": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_g08": {
+    "EXTRACTABLE": 1,
+    "INHERITED": 51
+   },
+   "wic_s01": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s02": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s03": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s04": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s05": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s06": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s07": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s08": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s09": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s10": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 15,
+    "EXTRACTABLE": 4,
+    "REVIEW": 1
+   },
+   "wic_s11": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s12": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 19,
+    "EXTRACTABLE": 1
+   },
+   "wic_s13": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s14": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s15": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s16": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s17": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s18": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s19": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s20": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 19,
+    "EXTRACTABLE": 2
+   },
+   "wic_s21": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s22": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s23": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 20,
+    "EXTRACTABLE": 1
+   },
+   "wic_s24": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s25": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s26": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s27": {
+    "ABSENT": 24,
+    "OUTREACH": 10,
+    "PRESENT": 17
+   },
+   "wic_s28": {
+    "ABSENT": 20,
+    "OUTREACH": 10,
+    "PRESENT": 21
+   },
+   "wic_s29": {
+    "ABSENT": 21,
+    "OUTREACH": 10,
+    "PRESENT": 20
+   },
+   "wic_s30": {
+    "EXTRACTABLE": 8,
+    "REVIEW": 34,
+    "OUTREACH": 9
+   },
+   "wic_s31": {
+    "REVIEW": 50,
+    "EXTRACTABLE": 1
+   }
+  },
+  "scopes": {
+   "us": [
+    "guidance/2026-09-10-wic-fns-guidance",
+    "regulation/2026-07-13-recovery-r2026-07-17-dedup"
+   ],
+   "us-al": [],
+   "us-ak": [],
+   "us-az": [],
+   "us-ar": [],
+   "us-ca": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-co": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-ct": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-de": [],
+   "us-dc": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-fl": [],
+   "us-ga": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-hi": [],
+   "us-id": [],
+   "us-il": [],
+   "us-in": [],
+   "us-ia": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-ks": [],
+   "us-ky": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-la": [],
+   "us-me": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-md": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-ma": [],
+   "us-mi": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-mn": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-ms": [],
+   "us-mo": [],
+   "us-mt": [],
+   "us-ne": [],
+   "us-nv": [],
+   "us-nh": [],
+   "us-nj": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-nm": [],
+   "us-ny": [],
+   "us-nc": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-nd": [],
+   "us-oh": [],
+   "us-ok": [],
+   "us-or": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-pa": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-ri": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-sc": [],
+   "us-sd": [],
+   "us-tn": [],
+   "us-tx": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-ut": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-vt": [],
+   "us-va": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-wa": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-wv": [
+    "manual/2026-09-10-wic-state-policy-manual"
+   ],
+   "us-wi": [],
+   "us-wy": []
+  },
+  "pe_not_modeled": 90
+ },
+ "timing": {
+  "started": "2026-09-12T09:19:38-0400",
+  "finished": "2026-09-12T09:22:52-0400",
+  "elapsed_seconds": 193.7,
+  "scopes_loaded": 128,
+  "rows_loaded": 63884
+ }
+}

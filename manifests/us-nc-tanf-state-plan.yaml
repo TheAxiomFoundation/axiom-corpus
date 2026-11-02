@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-nc-tanf-state-plan-fy2026-2028
+  jurisdiction: us-nc
+  document_class: policy
+  title: North Carolina TANF State Plan FFY 2026-2028 (Work First)
+  source_url: https://ncdhhs.gov/2026-2028-tanf-state-plan-162026/download?attachment=
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-nc/policy/acf/tanf-plan/fy2026-2028
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Social Services (Work First)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: North Carolina TANF State Plan FFY 2026-FFY 2028 (effective October 1, 2025 - September 30, 2028), hosted
+      at ncdhhs.gov/2026-2028-tanf-state-plan-162026; the publications page still lists only the 2022-2025 signed plan
+    publisher_index_url: https://www.ncdhhs.gov/divisions/social-services/publications/temporary-assistance-needy-families-state-plan
+    listed_on_publisher_index: false
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-nc/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.ncdhhs.gov/divisions/social-services/publications/temporary-assistance-needy-families-state-plan
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

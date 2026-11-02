@@ -1,0 +1,46 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ky-lrc-907-kar-4-020
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 907 KAR 4:020. Kentucky Children's Health Insurance Program Medicaid Expansion Title XXI of the Social Security Act
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/907/004/020/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2023-01-12'
+  citation_path: us-ky/regulation/kar/907/004/020
+  extraction:
+    html_content_selector: div.regulation-content
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, Department for Medicaid Services (907 KAR), published
+      by the Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: CHIP
+    source_discovery_group: us-ky/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    legal_identifier: 907 KAR 4:020
+    state_program: KCHIP
+    history_effective: '2023-01-12'
+- source_id: ky-lrc-907-kar-4-030
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 907 KAR 4:030. Kentucky Children's Health Insurance Program Phase III Title XXI of the Social Security Act
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/907/004/030/
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2023-01-12'
+  citation_path: us-ky/regulation/kar/907/004/030
+  extraction:
+    html_content_selector: div.regulation-content
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, Department for Medicaid Services (907 KAR), published
+      by the Legislative Research Commission
+    document_subtype: administrative_regulation
+    program: CHIP
+    source_discovery_group: us-ky/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    legal_identifier: 907 KAR 4:030
+    state_program: KCHIP
+    history_effective: '2023-01-12'

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "f698bbf540d172c33790ebceff48a5f97574baf3085814532231116a79055fd9"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "2e6eb0d50f711f8b2992b1b345ed89efa8cb282119e229b9e2e3e77766396159"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "4e54cd0e5b99973c3777876e7d1fec92b04e0372b16c836e94b5cbc3256cb751"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-ny-tax-it-2105-i-ty2026.pdf",
+      "sha256": "c5476fba20126277bb3556def5655293b3dfa42f7d8ee04c92732b51bbf1823f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-ny-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T17:37:38.081283+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "x0AdneUhqfMrT1X44sWq9nskZwdqYq7zXiREMaD3/31i/x8K/mdYSKRHucEC1qXpnmxfaVjHdVhtf3WsM5lqAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

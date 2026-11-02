@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "2a39c0c61b9ebed1d63502aab287579e4af5968a3391be3fa60429d5c752377f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "81882e8a063e997680fc58682b5069d88fcb77b9704803a0fb2f21942d061c66"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "98dcf498e880c6a52b3b7a88e866ddb1f1131923829e5726186076f0ad76e784"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-ks-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "6c360f39f3246654ba210ed48a13975674e4161f594b47bf28f0431857cc6cd5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:32:22.670275+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4WbCvZO7VPHCIoPl9vs6tGmDy5n142I/4e8nYa+zUTzJ9KBwvJSdMj9NGEfI+pokFJqqKhw9AvOLY+tZwf6wDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

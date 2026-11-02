@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "e0180a421736a834a1bccf95929a35a4d798932a8853728eb0c2800ae4fc8c34"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "ff82d362ff679529a1c072e3c003c4e5587d64165456a4f32a2ad6c589159c9d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "d081869392c76566cd5df43972cc883cbb83b71f0f281788251dab834001a054"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-09-14-msp-income-standards/official-documents/us-ma-masshealth-eom-24-03.pdf",
+      "sha256": "a03339c60504f4ed98f92b8fbe290c15fc307edd6dd8c1f2a7adc82f7ffb6a4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-09-14-msp-income-standards/official-documents/us-ma-masshealth-income-standards-fpl-2026-03.pdf",
+      "sha256": "a7e9b09c39e54431316f66802fdec7382dcd6dfc0a977bbb9f1869ead7e39ce8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ma-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:40:05.388668+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "INIBMdYsAwxtMVFDlMCOnr8quIqk1nxldydlpTJB4mz7Bmx3WoFyb1POFIGVTOUoKgMfm3Rpvvqw0EPdrwxYCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

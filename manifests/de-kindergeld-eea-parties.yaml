@@ -1,0 +1,30 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-eea-efta-states",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/efta/eea-contracting-parties",
+      "title": "The EEA EFTA States",
+      "source_url": "https://www.efta.int/eea-relations-eu/eea-institutions-two-pillar-structure/eea-efta-states",
+      "source_format": "html",
+      "source_as_of": "2026-09-08",
+      "expression_date": "2026-09-08",
+      "language": "en",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "html_content_selector": "main",
+        "segmentation": "anchor_range",
+        "html_start_selector": "article",
+        "section_label": "contracting-parties"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "European Free Trade Association",
+        "source_note": "Official current party-list statement: EU Member States plus Iceland, Liechtenstein and Norway; Switzerland is not an EEA party. Capture does not itself establish historical applicability or enumerate the EU membership history."
+      }
+    }
+  ]
+}

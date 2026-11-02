@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "155ab999ea422edee88b5d477483ad98f4f18ddbbe30eacc5afe56deb7cad3dc"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "5d41a40e6ba31bb7cfd07d36df356492ed08b8083ababd84fb94b6ec449fb098"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "2f1732147c5ab9e2aa303babe04b7dcc8f4f9bb1d9ab802517aa85f797b163b9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-chip-state-eligibility-manual/official-documents/tx-hhsc-texas-works-handbook-part-d.html",
+      "sha256": "24e2da572ba76314f23be0d4097d5a6da2f0f02183d3a61fbbf6d7766e20fcf9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-tx-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 82,
+    "missing_count": 0,
+    "provision_count": 82,
+    "source_count": 82
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:53:57.482062+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Fsrx4EwWsHthcuco8JLiGFrrWa9JTRVRICQSdkOPr/c0PAhg7rZKCXIxty2m8AqtIiq+FB8/3Zi0BYxW0NU/Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

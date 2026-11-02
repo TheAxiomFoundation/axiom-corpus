@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/manual/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "e7d7dc4e8775806faf27c2d76bb8fd8e6bdf9cd48a0136b1ef7ad0eef58adced"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/manual/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "292297bcae1b8f05230e10e3d4caa353634b21e27f4afab296697e3786f798bb"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/manual/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "bca674fbbf68f091d6112ab6785912ce7bcec91222a8df6d455c6263763584d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-09-14-ssi-state-supplement-standards/official-documents/us-mn-manual-dhs-combined-manual-0020-21.html",
+      "sha256": "f77461141ad4444f79cf2cb37571de41c1121a5b7d2a190a552d645149fc36ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-mn-ssi-state-supplement-standards-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T16:55:46.383056+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FmGG3JAhRiVaL0+Skcq4StD0NfMqVsoGNBHhpj47xpnheDrVSO08jpyZ3fICUEdpSDsmnRE3iUMo/zyvDCLKBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

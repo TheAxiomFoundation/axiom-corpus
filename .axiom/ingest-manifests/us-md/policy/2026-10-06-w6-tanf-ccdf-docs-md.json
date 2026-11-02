@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md.json",
+      "sha256": "d2a48babb103992140dd53a4c2cca136306ef767cc67c62925a6d3106ee20c90"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md.json",
+      "sha256": "db88210f007e499bbafd3a871902097c630f76bdccb29bc1c5de7cd83908d8e3"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md.jsonl",
+      "sha256": "0bd37932309cbad41abe8cbfb2fe0e53bfd72b6c481222d30ec684d86ca59159"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md/official-documents/us-md-w6-dhs-fia-at-19-04-tca-benefit-increase.pdf",
+      "sha256": "d5a4e775b969e140bc7b4bcee4fa7311fab639e49f633397c3bc1b75fc489060"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md/official-documents/us-md-w6-dhs-fia-at-20-06-tca-benefit-increase.pdf",
+      "sha256": "5de68bef8b66f059dcb8d0255151a724490489bc2605fc1dfd4c8e414a4cd808"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md/official-documents/us-md-w6-mga-ccdf-ways-and-means-2026-child-care-scholarship-briefing.pdf",
+      "sha256": "f0cb05eb466f1bf5144485b2e308c25d15d3795b9b8c59d109021b16dbb84e9d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/policy/2026-10-06-w6-tanf-ccdf-docs-md/official-documents/us-md-w6-msde-ccdf-tuesday-tidbits-changes-to-child-care-scholarship-program.html",
+      "sha256": "d00d84bc6adf2eda0636ee8aa6db57123ca4ef394f38a78ff31a5dfc7b207874"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:53:06.914033+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DbDSAUs24pf9hd9ZwpBR5xPJFIuR+o2CA+6gpZmmpqagCkNHtH7UuHD0QsgonP+JkAj/pI/yt0KEhsSIPE4ICQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-md"
+}

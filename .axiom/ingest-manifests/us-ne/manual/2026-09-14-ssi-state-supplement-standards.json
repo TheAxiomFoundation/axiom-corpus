@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/manual/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "2d3fd49a40da612622b233776b8012d9708900030760e58e4be1ffccfd99e4b0"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/manual/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "d8fb6ab3d53f830eb28a042205d1a9bd231784da49ee351213b5a15efa1f3e8c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/manual/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "c150083128752e9f5d44b6516df60f5ef87bc955da7f786acad236a4c5c4f5f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/manual/2026-09-14-ssi-state-supplement-standards/official-documents/us-ne-manual-dhhs-469-000-211.pdf",
+      "sha256": "ce8caffd6c84a3a14d4290bb35d32e30dd71dcc2b0c5c7f77e4d368bd570b15c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/manual/2026-09-14-ssi-state-supplement-standards/official-documents/us-ne-manual-dhhs-477-000-044.pdf",
+      "sha256": "fe00721cc25ca12df845cae912b0a8d47357ea97d06396820cbfe13d5b23b092"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-ne-ssi-state-supplement-standards-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T17:19:25.464715+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mHQVm2W4WAu2fFedbzAkv3N5HD8TA7bnveEN+twKzq+FTsv7rD/rTrH2T+BMQOPmeTnrxSgqWcCtnC4jRvtODA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

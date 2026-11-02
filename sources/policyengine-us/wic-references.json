@@ -1,0 +1,227 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "wic",
+ "folders": [
+  "gov/usda/wic",
+  "gov/hhs/fpg"
+ ],
+ "state_folders": "wic",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 24,
+ "references": [
+  {
+   "url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/WICPC2018FoodPackage-1.pdf#page=51",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WIC Participant and Program Characteristics 2018 Food Packages and Costs Final Report"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/usda/wic/value.yaml"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/sites/default/files/resource-files/WICPC2018FoodPackage-Summary.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic.py",
+    "variables/gov/usda/wic/wic_if_takes_up.py"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/wic/2024-cash-value-voucher-benefit-amounts",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WIC Cash-Value Voucher/Benefit Amounts for FY 2024"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/usda/wic/cvb/current.yaml",
+    "parameters/gov/usda/wic/cvb/replaces_included_value.yaml"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/wic/agency/cvvb-fy26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WIC Cash-Value Voucher/Benefit Amounts for FY 2026"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/usda/wic/cvb/current.yaml",
+    "parameters/gov/usda/wic/cvb/replaces_included_value.yaml"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/wic/food-packages",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "WIC Food Packages"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/usda/wic/cvb/included_in_value.yaml",
+    "variables/gov/usda/wic/wic.py",
+    "variables/gov/usda/wic/wic_if_takes_up.py"
+   ]
+  },
+  {
+   "url": "https://www.fns.usda.gov/wic/income-eligibility-guidelines-2025-26",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.10",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/10",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic.py",
+    "variables/gov/usda/wic/wic_if_takes_up.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.10#e",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/10/e",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic_food_package.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.10#e_1_ii",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/10/e/1/ii",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic_infant_feeding_category.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.10#e_7_i",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/10/e/7/i",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/is_wic_fully_breastfeeding.py",
+    "variables/gov/usda/wic/wic_breastfeeding_infant_count.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.7",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/7",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic.py",
+    "variables/gov/usda/wic/wic_if_takes_up.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.7#c_1",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/7/c/1",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/is_wic_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.7#d_2_ii",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/7/d/2/ii",
+   "titles": [
+    "7 CFR 246.7(d)(2)(ii) - Definition of income"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/usda/wic/income/sources.yaml",
+    "variables/gov/usda/wic/wic_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/7/246.7#d_2_vii",
+   "kind": "regulation",
+   "citation": "us/regulation/7/246/7/d/2/vii",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic_fpg.py",
+    "variables/gov/usda/wic/wic_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1786#b",
+   "kind": "statute",
+   "citation": "us/statute/42/1786/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic_category.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1786#b_8",
+   "kind": "statute",
+   "citation": "us/statute/42/1786/b/8",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/is_wic_at_nutritional_risk.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1786#d_2_A",
+   "kind": "statute",
+   "citation": "us/statute/42/1786/d/2/A",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/meets_wic_categorical_eligibility.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1786#d_2_A_i",
+   "kind": "statute",
+   "citation": "us/statute/42/1786/d/2/A/i",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/meets_wic_income_test.py",
+    "variables/gov/usda/wic/wic_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1786#d_2_D",
+   "kind": "statute",
+   "citation": "us/statute/42/1786/d/2/D",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/usda/wic/wic_fpg.py"
+   ]
+  }
+ ]
+}

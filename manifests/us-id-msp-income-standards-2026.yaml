@@ -1,0 +1,25 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-id-dhw-medicaid-program-income-limits-2026
+  jurisdiction: us-id
+  document_class: guidance
+  title: 'Medicaid Program Income Limits: Medicare Savings Program (Effective January 2026)'
+  source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-id/guidance/dhw/medicaid-program-income-limits/2026
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare (DHW)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-id/guidance
+    index_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    page_updated: '2026-04-20'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

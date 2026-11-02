@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/policy/2026-09-10.json",
+      "sha256": "4696568106ff9c294688c3fb38536f1ed339b35fe619781da1c096285c4edf65"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/policy/2026-09-10.json",
+      "sha256": "0659045529588ee5e033267e5ccad5fc56df4cd1d5e2e30c416f82e96fe6c919"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/policy/2026-09-10.jsonl",
+      "sha256": "a16a645d092baf41fcba8e4962fe1f61e5bb41d6a8da741403a8c822ecb311a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-10/official-documents/us-nc-acf-liheap-plan-fy2026.pdf",
+      "sha256": "e7e2702495391f84bc27b2fcb822754b146c8480f67222f8805bfb9b6ffc5a13"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-nc-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T22:09:40.114709+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lq8F44y4bdFClMZD2Al5Zx+2SeBmbVZiaN5EO11Fs1+EOXP06q88V6j4p77/QI8ncP/ccfA6dulLF11uzDoYCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

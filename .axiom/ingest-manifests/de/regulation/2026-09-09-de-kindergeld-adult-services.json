@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-09-de-kindergeld-adult-services.json",
+      "sha256": "7ac093056fb613bb870cd30c4fbf0a9d567219ac4919ac37514470bbb537320d"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-09-de-kindergeld-adult-services.json",
+      "sha256": "6be92204b0dc064addeb7ef3e53be6e80e65fa78dd2a3c2bdc78be92db47d765"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-09-de-kindergeld-adult-services.jsonl",
+      "sha256": "58c063a7000c1d22241e18e91aa91a12a5af2237b27d1ece04e917caf25b3914"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-adult-services/official-documents/de-kindergeld-eu-2021-888.pdf",
+      "sha256": "3cde6e12c05af44eadcaec4710f6d1ea959ef55de91cc8534b8a8b083f5a2853"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "718990701633256c831dbb317d8f5548d5288b8c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-adult-services --manifest manifests/de-kindergeld-adult-services-regulation.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-09T07:07:54.207333+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hoLR89bezqKvW7s+Zp4KYT6FzFQrFiD3RVfrks+Q7X0nUmbjluFsR9n0WmtHGKXu+KXe1yLwZGDOfkjiRBFCBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-adult-services"
+}

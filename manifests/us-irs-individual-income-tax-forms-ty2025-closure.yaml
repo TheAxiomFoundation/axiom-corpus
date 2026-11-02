@@ -1,0 +1,620 @@
+version: '2026-09-15'
+documents:
+- source_id: irs-f1040s1a-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule 1-A (Form 1040), Additional Deductions (2025)
+  source_url: https://www.irs.gov/forms-pubs/schedules-for-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040s1a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040s1a
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040s1a
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f1040sc-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule C (Form 1040), Profit or Loss From Business (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-c-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040sc.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sc
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040sc
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i1040sc-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule C (Form 1040), Profit or Loss From Business (2025)
+  source_url: https://www.irs.gov/instructions/i1040sc
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040sc
+  extraction: &id002
+    html_content_selector: .book
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040sc
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040sc.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f1040se-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Schedule E (Form 1040), Supplemental Income and Loss (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-schedule-e-form-1040
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040se.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040se
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: schedule
+    irs_product_id: f1040se
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i1040se-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Schedule E (Form 1040), Supplemental Income and Loss (2025)
+  source_url: https://www.irs.gov/instructions/i1040se
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i1040se
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i1040se
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i1040se.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f2441-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 2441, Child and Dependent Care Expenses (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-2441
+  download_url: https://www.irs.gov/pub/irs-pdf/f2441.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f2441
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f2441
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i2441-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 2441, Child and Dependent Care Expenses (2025)
+  source_url: https://www.irs.gov/instructions/i2441
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i2441
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i2441
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i2441.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f8863-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8863, Education Credits (American Opportunity and Lifetime Learning Credits) (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8863
+  download_url: https://www.irs.gov/pub/irs-pdf/f8863.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8863
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8863
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i8863-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8863, Education Credits (2025)
+  source_url: https://www.irs.gov/instructions/i8863
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8863
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8863
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i8863.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f6251-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 6251, Alternative Minimum Tax - Individuals (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-6251
+  download_url: https://www.irs.gov/pub/irs-pdf/f6251.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f6251
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f6251
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i6251-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 6251, Alternative Minimum Tax - Individuals (2025)
+  source_url: https://www.irs.gov/instructions/i6251
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i6251
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i6251
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i6251.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f8959-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8959, Additional Medicare Tax (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8959
+  download_url: https://www.irs.gov/pub/irs-pdf/f8959.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8959
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8959
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i8959-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8959, Additional Medicare Tax (2025)
+  source_url: https://www.irs.gov/instructions/i8959
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8959
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8959
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i8959.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f8960-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8960, Net Investment Income Tax - Individuals, Estates, and Trusts (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8960
+  download_url: https://www.irs.gov/pub/irs-pdf/f8960.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8960
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8960
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i8960-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8960, Net Investment Income Tax (2025)
+  source_url: https://www.irs.gov/instructions/i8960
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8960
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8960
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i8960.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f8995-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8995, Qualified Business Income Deduction Simplified Computation (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8995
+  download_url: https://www.irs.gov/pub/irs-pdf/f8995.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8995
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8995
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i8995-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8995, Qualified Business Income Deduction Simplified Computation (2025)
+  source_url: https://www.irs.gov/instructions/i8995
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8995
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8995
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/i8995.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f8995a-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8995-A, Qualified Business Income Deduction (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8995-a
+  download_url: https://www.irs.gov/pub/irs-pdf/f8995a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8995a
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8995a
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-i8995a-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Instructions for Form 8995-A, Qualified Business Income Deduction (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8995-a
+  download_url: https://www.irs.gov/pub/irs-pdf/i8995a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/i8995a
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: instructions
+    irs_product_id: i8995a
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f8880-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 8880, Credit for Qualified Retirement Savings Contributions (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-8880
+  download_url: https://www.irs.gov/pub/irs-pdf/f8880.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f8880
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f8880
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f1040es-ty2026
+  jurisdiction: us
+  document_class: form
+  title: Form 1040-ES, Estimated Tax for Individuals (2026)
+  source_url: https://www.irs.gov/forms-pubs/about-form-1040-es
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040es.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-01-01'
+  citation_path: us/form/irs/ty2026/f1040es
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f1040es
+    tax_year: '2026'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-fw4-ty2026
+  jurisdiction: us
+  document_class: form
+  title: Form W-4, Employee's Withholding Certificate (2026)
+  source_url: https://www.irs.gov/forms-pubs/about-form-w-4
+  download_url: https://www.irs.gov/pub/irs-pdf/fw4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-01-01'
+  citation_path: us/form/irs/ty2026/fw4
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: fw4
+    tax_year: '2026'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-p501-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 501 (2025), Dependents, Standard Deduction, and Filing Information
+  source_url: https://www.irs.gov/publications/p501
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p501
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p501
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/p501.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-p596-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 596 (2025), Earned Income Credit (EIC)
+  source_url: https://www.irs.gov/publications/p596
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p596
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p596
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/p596.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-p970-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 970 (2025), Tax Benefits for Education
+  source_url: https://www.irs.gov/publications/p970
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p970
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p970
+    tax_year: '2025'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/p970.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-f1040sr-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Form 1040-SR, U.S. Income Tax Return for Seniors (2025)
+  source_url: https://www.irs.gov/forms-pubs/about-form-1040-sr
+  download_url: https://www.irs.gov/pub/irs-pdf/f1040s.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/f1040sr
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: form
+    irs_product_id: f1040s
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-p15t-ty2026
+  jurisdiction: us
+  document_class: form
+  title: Publication 15-T (2026), Federal Income Tax Withholding Methods
+  source_url: https://www.irs.gov/publications/p15t
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-01-01'
+  citation_path: us/form/irs/ty2026/p15t
+  extraction: *id002
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p15t
+    tax_year: '2026'
+    print_version_pdf: https://www.irs.gov/pub/irs-pdf/p15t.pdf
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)
+- source_id: irs-p15t-ty2025
+  jurisdiction: us
+  document_class: form
+  title: Publication 15-T (2025), Federal Income Tax Withholding Methods
+  source_url: https://www.irs.gov/forms-pubs/about-publication-15-t
+  download_url: https://www.irs.gov/pub/irs-prior/p15t--2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us/form/irs/ty2025/p15t
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: publication
+    irs_product_id: p15t
+    tax_year: '2025'
+    source_discovery_group: us/form/irs-individual-income-tax-forms
+    source_family: irs-individual-income-tax-forms-ty2025-closure
+    index_url: https://www.irs.gov/forms-instructions
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; product about pages under https://www.irs.gov/forms-pubs/
+      and https://www.irs.gov/forms-pubs/schedules-for-form-1040 (read 2026-09-14)

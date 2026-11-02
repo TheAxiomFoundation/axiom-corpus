@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Protocol
 
-from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+
+class _Cited(Protocol):
+    """An inventory item or provision record, or a compact form of one."""
+
+    @property
+    def citation_path(self) -> str: ...
 
 
 def _duplicates(values: list[str]) -> tuple[str, ...]:
@@ -58,8 +64,8 @@ class ProvisionCoverageReport:
 
 
 def compare_provision_coverage(
-    source_inventory: tuple[SourceInventoryItem, ...],
-    provisions: tuple[ProvisionRecord, ...],
+    source_inventory: Sequence[_Cited],
+    provisions: Sequence[_Cited],
     jurisdiction: str,
     document_class: str,
     version: str,

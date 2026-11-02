@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "add97af968f8a93a19dec767abb66b32bea28de23ed024cc721f1fbb5d650351"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "e82a3164b37f86ab7abcedf71dd73a514267cb75fdfd480703e03254649c18d9"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "c8200f4d3078f8b08b2b648c3ff9d55f8b3f98350dd599ac6737da07fb251a8c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-ssi-state-supplement/official-documents/ne-dhhs-title-469-chapter-1.pdf",
+      "sha256": "6919645d07a78d05fa34889d89d966fc7ef46cf67c369be406bcf48c65d0953f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-ssi-state-supplement/official-documents/ne-dhhs-title-469-chapter-2.pdf",
+      "sha256": "81f1a4c6447633c7871e9d6dae62cd56ace10659fb42f03147add2347a21c6a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-ssi-state-supplement/official-documents/ne-dhhs-title-469-chapter-3.pdf",
+      "sha256": "ce335bcb7fde22390ece0a0d327d6d0599e216ed33dfe0810b8801f9ae997ce9"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-ssi-state-supplement/official-documents/ne-dhhs-title-469-chapter-4.pdf",
+      "sha256": "90c5af99310dd5c4a4af3fc3e5ee3fa44bae470a3125ac50c0f7619b89491c78"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-ne-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 371,
+    "missing_count": 0,
+    "provision_count": 371,
+    "source_count": 371
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:13:34.997045+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nBx/vtS8SzDMlup/sWJywCYc1m/EHRBapP5+gxu/JXE1ipEPUvy67tHgeI+ZoSYNrZBwOaqJVZe/E5m7obFGBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

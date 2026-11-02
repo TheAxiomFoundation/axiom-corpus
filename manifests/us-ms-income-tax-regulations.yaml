@@ -1,0 +1,27 @@
+version: '2026-09-14'
+documents:
+- source_id: ms-sos-title-35-part-iii-income-and-franchise-tax
+  jurisdiction: us-ms
+  document_class: regulation
+  citation_path: us-ms/regulation/title-35/part-iii
+  title: 'Mississippi Administrative Code Title 35, Part III: Income and Franchise Tax'
+  source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000158c.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>35\.III\.\d+\.\d+)\s+(?P<heading>Chapter \d+\..*)$
+    section_label_pattern: ^(?P<label>35\.III\.\d+\.\d+)\s*$
+    label_only_heading_pattern: ^Chapter \d+\..*$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Revenue
+    official_publisher: Mississippi Secretary of State, Administrative Code
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-ms/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.dor.ms.gov/forms-resources/mississippi-tax-laws-rules-and-regulations

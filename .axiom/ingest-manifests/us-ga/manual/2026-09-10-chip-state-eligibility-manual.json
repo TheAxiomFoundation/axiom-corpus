@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "8c73103759e7fef664503e28f22bb80b2acfa5368e8e1c653ec340a9f8028768"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "0ecd859f32a2be555ea0ad2c659f4de4302c0f223c174faadef9bc8735887087"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "3ba421c8b59a6745d9eca200f7fc415b44722ee83c6420af296427d5d4ef3135"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ga-dfcs-medicaid-2194-peachcare-for-kids.html",
+      "sha256": "e056152d5fd17bde2842274775028c328151cbc1efab194fa6395bb6f4df7404"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ga-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:43:16.257263+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6fF5xrXJFvqnXIazPdX7oHgW8xuV4gEUwtsXA594rkizbbu+dr4zvBlfdU3CVvy6lctN5gokY3X5o7vGPNVzCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/guidance/2026-10-06-w6-health-guidance-al.json",
+      "sha256": "7ca5a950279ecb5c9e21e24ef488b4de20a1d808c7b990034efdce1f8081586f"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/guidance/2026-10-06-w6-health-guidance-al.json",
+      "sha256": "20b84ccbf2137cd08afc859091d9d84bc6e25206d70cdec3bd6356a94132b551"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/guidance/2026-10-06-w6-health-guidance-al.jsonl",
+      "sha256": "f24dfc632a7334088abba5d3cd8dc93d0b85b6578bc5a400224a78e6fb140a2f"
+    },
+    {
+      "path": "data/corpus/sources/us-al/guidance/2026-10-06-w6-health-guidance-al/official-documents/us-al-w6-health-adph-infant-mortality-reduction-plan-2018.pdf",
+      "sha256": "471d89bb02245537f8d7578a12caf96061a6a0b780ae98cbe48db136d917efd0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:48:12.583204+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yAAEKEMy5cH1/3tEFXaUTGzR/cx7dE9Lo4azGLDUt6r+WNk3PHoeuF3MkhDeOb4MKZZs8SvNyAj9QZzAeJleCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-al"
+}

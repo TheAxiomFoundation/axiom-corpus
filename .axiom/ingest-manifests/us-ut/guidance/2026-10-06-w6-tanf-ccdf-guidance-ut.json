@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/guidance/2026-10-06-w6-tanf-ccdf-guidance-ut.json",
+      "sha256": "4efa364e9d3c74ef02723f5ffdc4a623507c0c35aa53c3ba42e527745c46a700"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/guidance/2026-10-06-w6-tanf-ccdf-guidance-ut.json",
+      "sha256": "e1a3bd33eeaf3ec0aaf05cc11974e4a26adc9922a43ad0e7bb725332a5b4a94c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/guidance/2026-10-06-w6-tanf-ccdf-guidance-ut.jsonl",
+      "sha256": "65fc9e361b68f99c16d0e833bcc89ac3cb444b91385276a3da049c7aad305a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-tanf-ccdf-guidance-ut/official-documents/us-ut-w6-dws-child-care-subsidy-fact-sheet.pdf",
+      "sha256": "58ff4a65f27e4e27bab228ec0ba05f6b4dc1c8f64bf82ebd72bc11f06aeed7c6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:59:19.363275+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oUqqQ4Xxta+R0tN0DKOCEtjJvVcUUT6Xe/4/lidY6NAVuspiteFh4ZS+ufZzzmnBYHesdXAdqVPrxC/YDpRWAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-ut"
+}

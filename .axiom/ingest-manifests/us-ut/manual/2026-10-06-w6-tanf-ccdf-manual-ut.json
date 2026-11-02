@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/manual/2026-10-06-w6-tanf-ccdf-manual-ut.json",
+      "sha256": "c141a5bfc3179252132d3324c4e60b4d995c91399174f1e0f9a60c7ee631d5eb"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/manual/2026-10-06-w6-tanf-ccdf-manual-ut.json",
+      "sha256": "7fa03e8f1590dc0890c94cf54a22f6006976787a0417c6d77639f58855bdc149"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/manual/2026-10-06-w6-tanf-ccdf-manual-ut.jsonl",
+      "sha256": "8ad1ae9cefffc92dff8090b97ffeaa64d05b8cc563e3fbe568a39bf09ab31450"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-10-06-w6-tanf-ccdf-manual-ut/official-documents/us-ut-w6-dws-eligibility-manual-obsolete-table-1-2008-to-2012-04-30.html",
+      "sha256": "22c7fe7a752239b3d89127c69968d34c208ecbf9c7fc9865451785dd96378e68"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-10-06-w6-tanf-ccdf-manual-ut/official-documents/us-ut-w6-dws-eligibility-manual-obsolete-table-1-2012-05-01-to-2022-09-30.html",
+      "sha256": "1bdf58a94da6a3e709d6fdd6286219a97eb0f0dbe12cf5ed304dd0c228bb0dbc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:59:21.428100+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hih1uFkAyPqE2b0texuB1jhvBlgu44N4klV2NSxs9X/O5w3V6WoQJbMQjVH31S+CgZa/AcpOAttC3pP8v+WSAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-ut"
+}

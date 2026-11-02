@@ -1,0 +1,3286 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-nc-medicaid-abd-adult-medicaid-table-of-contents
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: ADULT MEDICAID TABLE OF CONTENTS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/abd-toc-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/abd-adult-medicaid-table-of-contents
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-200
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA- 200 Definitions'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma200-3-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-300
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA- 300 Confidentiality'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma300-confidentiality.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-400
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA- 400 Introduction to Medicaid'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-400-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-500
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA- 500 Classification'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-500-classification-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-1000
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-1000 SSI MEDICAID AUTOMATED PROCESS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-1000-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-1000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-1100
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-1100 SSI Medicaid-County DSS Responsibility'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-1100-ssi-medicaid-county-dss-responsibility-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-1100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2000
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2000 NON-SSI ELIGIBILITY REGULATIONS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2000-non-ssi-eligibility-regulations-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2100
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2100 CATEGORICALLY NEEDY-NO MONEY PAYMENT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2100-categorically-needy-no-money-payment-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2110
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2110 PASS-ALONG'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2110-Pass-Along-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2110
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2120
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2120 MEDICALLY NEEDY REGULATIONS{ XE “MEDICALLY NEEDY
+    REGULATIONS” }'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2120-medically-needy-regulations-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2120
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2130
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2130 QUALIFIED MEDICARE BENEFICIARIES – Q'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2130-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2130
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2140
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2140 QUALIFIED MEDICARE BENEFICIARIES – B'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2140-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2140
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2150
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2150 MEDICAID-WORKING DISABLED'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2150-medicaid-working-disabled-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2150
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2160
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2160 QUALIFIED INDIVIDUAL – MQB-E'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2160-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2160
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2170
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2170 FAMILY PLANNING PROGRAM'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2170.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2170
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2180
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2180 HEALTH COVERAGE FOR WORKERS WITH DISABILITIES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2180-HCWD-ADA-Approval.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2180
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2220
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2220 STATE RESIDENCY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2220-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2220
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2221
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2221 COUNTY RESIDENCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2221-county-residence-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2221
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2230
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2230 FINANCIAL RESOURCES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2230-Resources-ADA-tested.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2230
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2231
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2231 COMMUNITY SPOUSE RESOURCE PROTECTION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2231-CSRP-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2231
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2240
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2240 TRANSFER OF ASSETS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2240-Transfer-of-Assets-ADA-Tested.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2240
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2242
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2242 HOME EQUITY VALUE & ELIGIBILITY FOR INSTITUTIONAL
+    SERVICES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2242-Home-Equity-Value-For-Evaluating-Instititional-Services.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2242
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2245
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2245 UNDUE HARDSHIP WAIVER FOR TRANSFER OF ASSETS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma2245-undue-hardship-waiver-for-transfer-of-assets-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2245
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2250
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2250 INCOME'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2250-Income.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2250
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2251
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2251 REASONABLE COMPATIBILITY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2251-5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2251
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2252
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2252 NON-MAGI MEDICAID INCOME/RESERVE LIMITS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2252-Non-MAGI-Income-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2252
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2260
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2260 FINANCIAL ELIGIBILITY REGULATIONS-PLA'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2260-Financial-Elig-Requirements-PLA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2260
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2261
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2261 1/3 REDUCTION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2261-reduction-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2261
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2262
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2262 SPONSOR DEEMING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2262-sponsor-deeming-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2262
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2270
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2270 LONG TERM CARE NEED AND BUDGETING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2270-LTC-Need-and-Budgeting-ADA-Tested.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2270
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2275
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2275 PROGRAM OF ALL-INCLUSIVE CARE FOR THE ELDERLY (PACE)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2275.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2275
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2280
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2280 COMMUNITY ALTERNATIVES PROGRAM (CAP)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2280-2-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2280
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2282
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2282 INNOVATIONS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2282.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2282
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2283
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2283 TRAUMATIC BRAIN INJURY (TBI)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2283.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2283
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2284
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2284 MONEY FOLLOWS THE PERSON'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2284-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2284
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2285
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2285 ESTATE RECOVERY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2285-3-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2285
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2290
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2290 MANAGED CARE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2290-managed-care-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2290
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2295
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2295 DISCOURAGEMENT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2295-discouragement-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2295
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2296
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2296 INQUIRY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2296-inquiry-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2296
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2300
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2300 APPLICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2301
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2301 POST ELIGIBILITY VERIFICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2301-Post-eligibility-Verification.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2301
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2302
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2302 OUTSTATIONS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2302-outstations-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2302
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2305
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2305 EVALUATING COUNTY/DDS PERFORMANCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2305-evaluating-county-dds-performance.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2305
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2306
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2306 APPLICATION PROCESSING – CORRECTIVE ACTION PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2306-application-processing-corrective-action-procedures-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2306
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2309
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2309 LIS APPLICATION FOR MEDICAID'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2309-lis-application-for-medicaid-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2309
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2310
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2310 TAKING THE LIS APPLICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2310-taking-the-lis-application-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2310
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2311
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2311 LIS PROCESSING AND CASE MAINTENANCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2311-LIS-Processing-and-Case-Maintenance-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2311
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2312
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2312 MEDICARE PRESCRIPTION DRUG BENEFIT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2312-medicare-prescription-drug-benefit-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2312
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2320
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2320 RECERTIFICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2320.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2320
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2321
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2321 MEDICALLY NEEDY RECERTIFICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2321.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2321
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2340
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2340 CHANGE IN SITUATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2340-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2340
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2350
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2350 CERTIFICATION AND AUTHORIZATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma2350-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2350
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2352
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2352 CHANGE IN CIRCUMSTANCE, TERMINATIONS, AND REOPENING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2352.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2352
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2355
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2355 MAABD/MQB PROGRAM TRANSFERS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2355-maabd-mqb-program-transfers-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2355
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2360
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2360 MEDICAID DEDUCTIBLE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2360-Medicaid-Deductible-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2360
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2375
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2375 CHILD SUPPORT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2375-child-support-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2375
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2380
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2380 MEDICAID IDENTIFICATION CARD'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2380-medicaid-identification-card-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2380
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2395
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2395 CORRECTIVE ACTION AND RESPONSIBILITY FOR ERRORS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2395-corrective-action-and-responsibility-for-errors-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2395
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2400
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2400 THIRD PARTY RECOVERY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2400-third-party-recovery.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2410
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2410 MEDICARE ENROLLMENT & BUY-IN'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2410-Medicare-Enrollment-and-Buy-In.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2410
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2420
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2420 NOTICE AND HEARINGS PROCESS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2420.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2420
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2425
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2425 COMMUNITY CARE OF NORTH CAROLINA (CCNC)/CAROLINA
+    ACCESS (CA)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2425-2013-community-care-of-north-carolina-ccnc-carolina-access-ca-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2425
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2430
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2430 AUTOMATED INQUIRY AND MATCH PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2430-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2430
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2440
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2440 AUTOMATED SOLQ PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2440-automated-solq-procedures-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2440
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2450
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2450 ENUMERATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2450-2013-enumeration-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2450
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2500
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2500 AGE/NAME/MARITAL STATUS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2500-Age-Name-Marital-Status.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2504
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2504 ALIEN REQUIREMENTS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2504-3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2504
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2505
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2505 CITIZENSHIP/IDENTITY SSA DATA MATCH'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2505-citizenship-identity-ssa-data-match-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2505
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2506
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2506 US CITIZENSHIP REQUIREMENTS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2506-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2506
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2507
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2507 TRIBAL MEMBERSHIP AND AMERICAN INDIAN HEALTH SERVICE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2507-2-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2507
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2510
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2510 LIVING ARRANGEMENT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2510-2-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2510
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2525
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2525 DISABILITY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2525-Disability.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2525
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2531
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2531 BLINDNESS – MAB'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2531-blindness-mab-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2531
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2900
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2900 BENEFICAIRY FRAUD AND ABUSE POLICY AND PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2900-Recipient-Fraud-and-Abuse-Policy.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2900
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2905
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2905- MEDICAID COVERED SERVICES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2905-medicaid-covered-services-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2905
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2910
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2910 – NON-EMERGENCY MEDICAL TRANSPORTATION (NEMT)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2910-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2910
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2930
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2930 SECURITY OF INTERNAL REVENUE SERVICE AND SOCIAL
+    SECURITY ADMINISTRATION INFORMATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-2930-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2930
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-ma-2940
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Aged, Blind and Disabled Medicaid Manual: MA-2940 SOCIAL SECURITY COST-OF-LIVING ADJUSTMENT (COLA)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-2940-COLA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-2940
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Aged, Blind and Disabled Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/adult-medicaid/abd-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: abd
+- source_id: us-nc-medicaid-fcm-family-and-children-s-medicaid-table-of-contents
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: FAMILY AND CHILDREN’S MEDICAID TABLE OF CONTENTS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/fc-toc-2-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/fcm-family-and-children-s-medicaid-table-of-contents
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3100
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3100 INTRODUCTION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3100-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3110
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3110 DEFINITIONS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3110-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3110
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3120
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3120 SSI MEDICAID'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3120-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3120
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3185
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3185 DISCOURAGEMENT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3185-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3185
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3190
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3190 INQUIRY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3190-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3190
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3200
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3200 APPLICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3200-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3205
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3205 POST ELIGIBILITY VERIFICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3205-Post-eligibility-Verification-Policy.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3205
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3207
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3207 OUTSTATIONS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3207-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3207
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3217
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3217 EVALUATING COUNTY/DDS PERFORMANCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3217-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3217
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3225
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3225 APPLICATION PROCESSING – CORRECTIVE ACTION PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3225-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3225
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3230
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3230 AUTO NEWBORN'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA3230.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3230
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3231
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3231 ADOPTION MEDICAL ASSISTANCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3231-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3231
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3232
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3232 FOSTER CARE MEDICAL ASSISTANCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3232-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3232
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3233-a
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3233-A FORMER FOSTER CARE CHILDREN (MFC) NORTH CAROLINA'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3233-A-Fomer-Foster-Care-North-Carolina-4-28-2025.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3233-a
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3233-b
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3233-B FORMER FOSTER CARE CHILDREN (MFC) ANY STATE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3233-B_Former-Foster-Care-Children-MFC-Any-State-4_28_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3233-b
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3234
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3234 EXPANDED FOSTER CARE PROGRAM (EFCP)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3234-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3234
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3235
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3235 CARETAKER RELATIVES/KINSHIP'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3235-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3235
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3236
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3236 MAGI ADULT MEDICAID EXPANSION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3236-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3236
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3240
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3240 PREGNANT WOMAN COVERAGE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3240-MPW-.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3240
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3245
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3245 PRESUMPTIVE ELIGIBILITY FOR PREGNANT WOMEN'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA3245-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3245
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3246
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3246 HOSPITAL PRESUMPTIVE ELIGIBILITY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3246-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3246
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3250
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3250 BREAST AND CERVICAL CANCER MEDICAID (BCCM)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3250-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3250
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3260
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3260 COMMUNITY ALTERNATIVES PROGRAM (CAP)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3260-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3260
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3262
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3262 MONEY FOLLOWS THE PERSON'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3262-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3262
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3263
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3263 MANAGED CARE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3263-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3263
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3265
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3265 FAMILY PLANNING PROGRAM'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3265-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3265
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3270
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3270 PROGRAM OF ALL-INCLUSIVE CARE FOR THE ELDERLY (PACE)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3270-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3270
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3300
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3300 INCOME'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA3300.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3305
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3305 MAF, MIC, HSF BUDGETING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3305-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3305
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3306
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3306 MODIFIED ADJUSTED GROSS INCOME (MAGI)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3306-7-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3306
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3310
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3310 REASONABLE COMPATIBILITY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3310.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3310
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3313
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3313 SPONSOR DEEMING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3313-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3313
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3315
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3315 MEDICAID DEDUCTIBLE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3315-Medicaid-Deductible.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3315
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3320
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3320 RESOURCES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA3320.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3320
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3322
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3322 COMMUNITY SPOUSE RESOURCE PROTECTION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3322-Comm-Spouse-Resource-Protection.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3322
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3325
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3325 LONG TERM CARE BUDGETING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3325.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3325
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3326
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3326 ESTATE RECOVERY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3326-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3326
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3330
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3330 ALIEN REQUIREMENTS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3330-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3330
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3331
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3331 CITIZENSHIP/IDENTITY SSA DATA MATCH'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3331.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3331
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3332
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3332 US CITIZENSHIP REQUIREMENTS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3332-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3332
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3333
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3333 TRIBAL MEMBERSHIP AND AMERICAN INDIAN HEALTH SERVICE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3333-3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3333
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3335
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3335 STATE RESIDENCY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3335-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3335
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3340
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3340 COUNTY RESIDENCE'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3340.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3340
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3345
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3345 AGE/NAME/MARITAL STATUS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3345-Age-Name-Marital-Status.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3345
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3355
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3355 ENUMERATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3355.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3355
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3360
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3360 LIVING ARRANGEMENT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3360-3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3360
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3365
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3365 CHILD SUPPORT'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3365.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3365
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3400
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3400 FOUR MONTHS TRANSITIONAL MEDICAID'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3400-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3405
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3405 TWELVE MONTHS TRANSITIONAL MEDICAID'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3405-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3405
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3410
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3410 CHANGE IN CIRCUMSTANCE, TERMINATIONS, AND REOPENING'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3410-1-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3410
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3415
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3415 CLASSIFICATION AND EVALUATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3415.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3415
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3420
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3420 MEDICALLY NEEDY RECERTIFICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3420-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3420
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3421
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3421 MAGI RECERTIFICATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3421-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3421
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3425
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3425 CERTIFICATION AND AUTHORIZATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3425.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3425
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3430
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3430 NOTICE AND HEARINGS PROCESS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3430-4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3430
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3435
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3435 COMMUNITY CARE OF NORTH CAROLINA (CCNC)/CAROLINA
+    ACCESS (CA)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3435.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3435
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3500
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3500 CONFIDENTIALITY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3500.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3505
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3505 MEDICAID IDENTIFICATION CARD'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3505.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3505
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3510
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3510 THIRD PARTY RECOVERY'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3510.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3510
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3515
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3515 AUTOMATED INQUIRY AND MATCH PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3515.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3515
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3520
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3520 AUTOMATED SOLQ PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3520.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3520
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3525
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3525 MEDICARE ENROLLMENT & BUY-IN'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3525-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3525
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3530
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3530 CORRECTIVE ACTION AND RESPONSIBILITY FOR ERRORS'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3530.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3530
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3535
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3535 RECIPIENT FRAUD AND ABUSE POLICY AND PROCEDURES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3535-Recipient-Fraud-and-Abuse-Policy.docx.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3535
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3540
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3540 MEDICAID COVERED SERVICES'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma3540.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3540
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3550
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3550 NON-EMERGENCY MEDICAL TRANSPORTATION (NEMT)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3550-.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3550
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3560
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3560 SECURITY OF INTERNAL REVENUE SERVICE AND SOCIAL SECURITY
+    ADMINISTRATION INFORMATION'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/ma-3560-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3560
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-ma-3570
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Family and Children''s Medicaid Manual: MA-3570 SOCIAL SECURITY COST-OF-LIVING ADJUSTMENT (COLA)'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/MA-3570-SSA-COLA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/ma-3570
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Family and Children's Medicaid Manual
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/family-and-childrens-medicaid/fcm-policies-manuals/
+    extraction_granularity: pdf_page
+    manual_part: fcm
+- source_id: us-nc-medicaid-basic-medicaid-eligibility-requirements
+  jurisdiction: us-nc
+  document_class: manual
+  title: 'North Carolina Basic Medicaid Eligibility Requirements: 2026 Basic Medicaid Eligibility Requirements'
+  source_url: https://policies.ncdhhs.gov/wp-content/uploads/Basic-Medicaid-Eligibility-9.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-nc/manual/dhb/medicaid/basic-medicaid-eligibility-requirements
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Department of Health and Human Services, Division of Health Benefits (NC Medicaid)
+    document_subtype: eligibility_manual_section_pdf
+    program: MEDICAID
+    manual: Basic Medicaid Eligibility Requirements
+    manual_index_url: https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/basic-medicaid-eligibility-requirements/
+    source_discovery_group: us-nc/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://policies.ncdhhs.gov/divisional-a-m/health-benefits-nc-medicaid/basic-medicaid-eligibility-requirements/
+    extraction_granularity: pdf_page
+    manual_part: basic

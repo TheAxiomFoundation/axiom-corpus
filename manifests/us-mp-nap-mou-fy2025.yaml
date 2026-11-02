@@ -1,0 +1,28 @@
+version: 2026-09-11-snap-nap-mou
+documents:
+- source_id: us-mp-dcca-nap-mou-ffy2025
+  jurisdiction: us-mp
+  document_class: policy
+  citation_path: us-mp/policy/fns/nap-mou/fy2025
+  title: 'CNMI Nutrition Assistance Program: FFY 2025 NAP Block Grant Memorandum of Understanding between the CNMI and USDA
+    Food and Nutrition Service (version 6, signed 2024-12-03)'
+  source_url: https://cnminap.gov.mp/wp-content/uploads/2025/01/FY2025-MOU-USDA-CNMINAP-Signed-12032024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2024-10-01'
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: CNMI Department of Community and Cultural Affairs, Nutrition Assistance Program (signed with USDA Food
+      and Nutrition Service)
+    document_subtype: block_grant_memorandum_of_understanding_pdf
+    program: NAP
+    federal_program: NAP block grant (USDA FNS memorandum of understanding), in lieu of SNAP
+    plan_period: 2024-10-01 to 2025-09-30 (funds available through 2026-09-30)
+    manual_landing_page: https://cnminap.gov.mp/
+    source_discovery_group: us-mp/policy/nap
+    discovered_via: manual-review:snap-completion-agent-queue territories pass; publisher index https://cnminap.gov.mp/
+    extraction_granularity: pdf_page
+    url_note: the publisher links the file over http; fetched over https on the same host with TLS verification
+    ocr_note: scanned image-only PDF (DCCA transmittal memorandum plus the MOU); Tesseract page OCR

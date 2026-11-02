@@ -21,8 +21,10 @@ publish run) or fetched from the canonical R2 bucket by name + content sha.
     uv run --extra dev python scripts/activate_release.py \
       --release-object out/nz-release-object.json
 
-Environment: ``AXIOM_CORPUS_RELEASE_PUBLIC_KEY`` (Ed25519 verify key) and
-``SUPABASE_ACCESS_TOKEN`` (Management API credential for the activation RPC).
+Environment: ``AXIOM_CORPUS_RELEASE_PUBLIC_KEY`` (Ed25519 verify key) and either
+``SUPABASE_DB_URL`` (direct database connection string; preferred, because the
+Management API sits behind a 120 s HTTP proxy that cannot carry a large
+activation) or ``SUPABASE_ACCESS_TOKEN`` (Management API credential).
 """
 
 from __future__ import annotations
@@ -39,8 +41,11 @@ from axiom_corpus.corpus.r2 import load_r2_config, make_r2_client
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
+    DEFAULT_DATABASE_URL_ENV,
     activate_corpus_release,
+    activate_corpus_release_direct,
     preview_corpus_release_activation,
+    preview_corpus_release_activation_direct,
 )
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
@@ -124,6 +129,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--supabase-url", default=DEFAULT_AXIOM_SUPABASE_URL)
     parser.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
     parser.add_argument(
+        "--database-url-env",
+        default=DEFAULT_DATABASE_URL_ENV,
+        help=(
+            "Environment variable holding a direct database connection string. When "
+            "set, the preview and activation run over psycopg2 instead of the "
+            "Management API, which cannot carry a statement longer than its proxy's "
+            "120 s window."
+        ),
+    )
+    parser.add_argument(
         "--expected-project-ref",
         help=(
             "Required acknowledgement when --supabase-url is not the default "
@@ -167,16 +182,29 @@ def main(argv: Sequence[str] | None = None) -> int:
     expected_ref = _resolve_project_ref(args)
     release_object = _load_release_object(args)
     public_key = _required_env(RELEASE_OBJECT_PUBLIC_KEY_ENV)
-    access_token = _required_env(args.access_token_env)
+    database_url = os.environ.get(args.database_url_env) or None
+    access_token = None if database_url else _required_env(args.access_token_env)
+    print(
+        "activation transport: "
+        + ("direct database connection" if database_url else "Supabase Management API")
+    )
 
     if args.dry_run:
-        rows = preview_corpus_release_activation(
-            release_object,
-            access_token=access_token,
-            public_key=public_key,
-            supabase_url=args.supabase_url,
-            expected_project_ref=expected_ref,
-        )
+        if database_url:
+            rows = preview_corpus_release_activation_direct(
+                release_object,
+                database_url=database_url,
+                public_key=public_key,
+                expected_project_ref=expected_ref,
+            )
+        else:
+            rows = preview_corpus_release_activation(
+                release_object,
+                access_token=access_token,
+                public_key=public_key,
+                supabase_url=args.supabase_url,
+                expected_project_ref=expected_ref,
+            )
         _print_preview(rows)
         payload: dict[str, Any] = {
             "dry_run": True,
@@ -184,6 +212,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             "content_sha256": release_object.get("content_sha256"),
             "scopes": rows,
         }
+    elif database_url:
+        result = activate_corpus_release_direct(
+            release_object,
+            database_url=database_url,
+            public_key=public_key,
+            expected_project_ref=expected_ref,
+        )
+        payload = dict(result)
     else:
         result = activate_corpus_release(
             release_object,

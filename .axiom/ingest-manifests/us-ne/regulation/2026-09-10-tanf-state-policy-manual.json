@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "8667347283077edf6911ec4ca3cafb34b07ab674e981b89f4030ba22127ee66e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "4d47696348b6b593e43d248a8fe1d14d58bada9154d45d30516ddb1725f5822f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/regulation/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "eefd3fd210a5ff521b654ae5cc7d9fd3d48b7037aed38cb4a0d40e4268bcaa25"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ne-dhhs-468-nac-chapter-1.pdf",
+      "sha256": "104b089bf5db1cb10758b4fdcbb43ba0f0539ca5d47937706031f1dca33fc0f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ne-dhhs-468-nac-chapter-2.pdf",
+      "sha256": "2f6ea8c0ac2377bcceb82b52fce44c8a0cb588d8fdc8094b2b24a5bcf49f0e15"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ne-dhhs-468-nac-chapter-3.pdf",
+      "sha256": "b7844d856f10de9d9d75fdab388f6a5ba45e632c4acc8b067e0adb05d6aaf930"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ne-dhhs-468-nac-chapter-4.pdf",
+      "sha256": "bde64fb5a848cebd86fa1c7b467db4af69c2cb44af67cf70271f5fc4d6a85db3"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ne-dhhs-468-nac-chapter-5.pdf",
+      "sha256": "c1f63f56ee9c6bb1e6048d9e104dd172dc6ba57db61005a8be85c88c0e5208ff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 342,
+    "missing_count": 0,
+    "provision_count": 342,
+    "source_count": 342
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:14:07.033654+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GrDv5KmrjGHuzIQrcHadUnnAF6oVr3GFtQVHa+gxtbWgP3pd8NSrV06YcjdvdZZNxv6WkKuPTnVi6YqVdfHVAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

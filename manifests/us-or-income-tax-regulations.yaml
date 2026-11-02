@@ -1,0 +1,24 @@
+version: '2026-09-14'
+extractor: extract-oregon-administrative-rules --only-chapter 150 --only-division 316
+documents:
+- source_id: or-oard-oar-150-316-personal-income-tax
+  jurisdiction: us-or
+  document_class: regulation
+  citation_path: us-or/regulation/chapter-150/division-316
+  title: Oregon Administrative Rules Chapter 150 (Department of Revenue), Division 316 Personal Income Tax General
+    Provisions
+  source_url: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2098
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Oregon Department of Revenue
+    official_publisher: Oregon Secretary of State, Administrative Rules (OARD)
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-or/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=61
+    extractor: uv run axiom-corpus-ingest extract-oregon-administrative-rules --only-chapter 150 --only-division
+      316
+    pointer_manifest: true

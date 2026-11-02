@@ -11,6 +11,10 @@ published release. It must have an explicit immutable name and exact
 reserved and rejected. Names are at most 128 characters and contain only
 lowercase alphanumeric segments separated by single hyphens.
 
+Merging a selector does not authorize publication. After review and green CI,
+an operator must explicitly dispatch `publish.yml` with that selector's
+immutable name or path. The workflow does not run on pushes to `main`.
+
 Publication accepts only the canonical, non-symlink selector path
 `manifests/releases/<name>.json` from a clean Git checkout. The selector and
 every selected artifact must already be tracked and committed. The commit and
@@ -36,9 +40,57 @@ source reference must use that same boundary and occur in the inventory. The
 signed artifact list is the complete allowed inventory for the declared
 scopes; a consumer must not discover additional files by scanning a directory.
 
+Deep validation also applies the repository's release policy
+([release-gate-policy.md](release-gate-policy.md)): a selector may not select a
+scope listed in `manifests/withdrawn-scopes.yaml` unless that entry grandfathers
+it, and a selected scope may carry only the content findings (page navigation,
+chrome-prefixed bodies, hollow document roots, version pickers) that
+`manifests/release-content-baseline.json` records for its exact bytes. Known
+conditions are reported as notices and leave the attested error and warning
+counts unchanged.
+
 The release object's `content_sha256` addresses its signed content. R2 stores
 it at `releases/<name>/<content_sha256>.json`. Reusing a name for different
 content is an error.
+
+## Publication environment setup
+
+The `publish` job runs only for a `workflow_dispatch` on `main` and uses the
+protected `release-publish` environment. The environment's deployment branch
+rule is the strict boundary. The job's `if` is a first filter only: GitHub
+compares strings case-insensitively, so it would also match `refs/heads/MAIN`.
+Configure it in this order:
+
+1. `release-publish` exists in the repository's GitHub Actions environment
+   settings, with a deployment branch rule allowing only `main` and
+   administrator bypass disabled. Required reviewers are optional.
+2. The maintainer adds these three groups of environment secrets, retaining
+   their existing names:
+
+   - Release signing: `AXIOM_CORPUS_RELEASE_SIGNING_KEY`.
+   - R2 access: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`,
+     `R2_ENDPOINT`, and `R2_BUCKET`.
+   - Supabase management: `SUPABASE_ACCESS_TOKEN`.
+
+   Environment secrets take precedence over repository secrets. The workflow
+   continues mapping the signing secret to `AXIOM_CORPUS_RELEASE_PRIVATE_KEY`.
+   The maintainer handles the values; agents do not read or move them.
+3. Only after the publication-gate PR merges, the hub deletes the
+   repository-level copies of those secrets. Before deleting shared copies,
+   verify that `release-mirror` retains its R2 secrets and that
+   `release-preview` and `release-activation` retain their Supabase token.
+   CI must also retain access to `R2_ACCOUNT_ID`, `R2_ENDPOINT`, and `R2_BUCKET`
+   for read-only corpus fetches; it uses separate `R2_CORPUS_READ_*` credentials.
+   CI jobs use no environment, so environment-only copies cannot supply that
+   metadata: keep it as repository or organization secrets (or variables), and
+   delete only the repository copies of the publication credentials.
+
+`publish.yml` is the only workflow that reads the release signing key.
+`activate-release.yml` and `register-release-object.yml` use the existing
+preview/activation environments and verify signatures with public keys.
+`mirror-release.yml` writes R2 objects through `release-mirror` and verifies
+with a public key. CI fetches and verifies corpus objects with read-only R2
+credentials. These workflows retain their existing gates.
 
 ## Publication order
 
@@ -50,6 +102,11 @@ at the first failure:
    to its SHA-256 R2 key with `If-None-Match: *`. A concurrent `409` or `412`
    converges only when readback proves the existing bytes are identical.
 3. Download every selected R2 object and verify its exact bytes and hash.
+   Steps 2 and 3 run per object on a bounded thread pool
+   (`publish_corpus.py --r2-workers`, default 16); the pool changes only how
+   many objects are in flight, never what is verified, and the first failure
+   stops staging. The signed readback evidence lists keys in artifact order
+   regardless of completion order.
 4. Query prior signed objects for the selected scopes. The controller verifies
    each object with the current Ed25519 public key or an explicitly configured
    legacy verification key. An already released scope is reused only when its
@@ -59,7 +116,10 @@ at the first failure:
    never changes public visibility and never synthesizes missing parents.
 6. Query direct base-table evidence before signing. Exact provision/navigation
    counts and canonical digests of every publisher-controlled projection field
-   must match the locally derived evidence.
+   must match the locally derived evidence. The evidence RPC is per scope,
+   so the controller requests it in chunks of 32 scopes and splits a chunk
+   the gateway rejects (a 504 after it ran too long) in half until it fits;
+   every selected scope must still appear exactly once across all chunks.
 7. Rerun deep validation, prove the artifact and scope identity did not change,
    then build and Ed25519-sign the attested release object. The independently
    configured public key must verify it locally.
@@ -105,6 +165,13 @@ artifact, re-verifies its identity and signature, and reruns the takeover
 preview immediately before installing the idempotent private upload schema and
 running the transactional activation RPC.
 
+Publication writes one flushed, timestamped progress line to stderr at the
+start and end of every phase (deep validation, release content, R2 staging,
+released-scope lookup, provision and navigation staging, staged evidence,
+signing, release-object upload) with object, scope, and row counts and
+elapsed seconds, and names the phase on failure. These lines are operational
+logging only and never enter signed content.
+
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
 ambient release selection.
@@ -138,6 +205,28 @@ release object is accepted, and an already matching production pointer is not
 rewritten. A release name with different content, or a successor release that
 tries to change a previously released scope, is rejected. A successor may
 reuse a scope only when the prior signed scope identity is byte-for-byte equal.
+
+Publication memory grows with the release's row count, not its bytes. Every
+phase streams a provisions file one row at a time and keeps compact per-row
+metadata (identity, parent, source path, dates, row digests), not provision
+bodies: deep validation and the signed-source-reference check read rows as
+they parse; release content hashes the provisions artifact into a temporary
+snapshot, then parses and projects that verified copy in one pass; staging
+parks projected rows in a temporary file and reads each back only to compare
+it with a staged row or to insert it; and R2 objects are verified in 1 MB
+reads. Bodies are still held briefly in bounded batches: a page of up to 1,000
+staged rows while it is compared, a chunk of up to 500 rows (the default
+chunk size) while it is inserted, and a whole file only on an error path that
+reproduces the old reader's error. The cross-scope checks (the release's citation-path set and
+staging's key map) keep one compact entry per row across every scope they
+cover. The streaming readers return the same records and raise the same
+errors as the whole-file readers they replace, with one exception: JSON nested
+within a few levels of the parser's recursion limit (about 52,000 levels) can
+get a different outcome. A streaming reader may raise `RecursionError` on a
+file the old reader accepted, or accept a file the old reader rejected with
+`RecursionError`. No artifact nests that deep.
+`tests/test_streaming_*.py` hold the streaming code to the pre-streaming
+implementations, mostly on Hypothesis-generated inputs.
 
 ## Downstream resolution
 

@@ -1,0 +1,53 @@
+version: 2026-10-06-w6-income-tax-statute-md
+documents:
+- source_id: us-md-statute-session-laws-2023-chapter-613
+  jurisdiction: us-md
+  document_class: statute
+  title: 'Chapter 613 of 2023 (House Bill 554): Income Tax - Subtraction Modification for Military Retirement Income'
+  source_url: https://mgaleg.maryland.gov/2023RS/chapters_noln/Ch_613_hb0554T.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/statute/session-laws/2023/chapter-613
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-md-statute-session-laws-2025-chapter-604
+  jurisdiction: us-md
+  document_class: statute
+  title: 'Chapter 604 of 2025 (House Bill 352): Budget Reconciliation and Financing Act of 2025'
+  source_url: https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/statute/session-laws/2025/chapter-604
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-md-statute-session-laws-2022-hb0186
+  jurisdiction: us-md
+  document_class: statute
+  title: 'House Bill 186 (2022 Regular Session): legislation details page'
+  source_url: https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/hb0186?ys=2022RS
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-md/statute/session-laws/2022/hb0186
+  extraction:
+    html_content_selector: '#mainBody'
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: bill_page
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

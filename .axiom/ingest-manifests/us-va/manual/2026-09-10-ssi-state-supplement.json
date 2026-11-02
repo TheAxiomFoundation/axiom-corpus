@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "53d01bd58f6ba8ad0aae2fca64b5c8c0e951a342ffcc1114980e05aedbbd9884"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/manual/2026-09-10-ssi-state-supplement.json",
+      "sha256": "b6e4faf784cb38367b6e9c127cedd0fb73d95557935cc10aa83d54b40566d4d8"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/manual/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "654aef2a8c6e43759841d54598e25daa72ff2f730207d55ceaa5223c14ccb442"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-a.pdf",
+      "sha256": "53ed7b0b8dea4561da2a3a01b8acddf7026ff5de7ed7383143d5c0ad52d6bde3"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-b.pdf",
+      "sha256": "5363443a3cbc9c5d1299bb509f892879f1e896ae3a478ea8d13f6e491206e32b"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-c.pdf",
+      "sha256": "9974ce24b9c4a96b75ddc2c38df6b183084960fbea255f55bad98473d88a9918"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-d.pdf",
+      "sha256": "39f0dbb65057c8175f43bf5ece8f7b2b31102b9403b586815bea1bd15e3c21c9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-e.pdf",
+      "sha256": "a01d89cd575addcbe9fa2ec30dd7ed2ae16973fa5d97ee06869b1fb4f9f923d2"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-f.pdf",
+      "sha256": "c2a6b5559be68e9a433b2ac97e0e6469b3159cdf74e278c692879e7b4809ebb9"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-g.pdf",
+      "sha256": "2f3417a1b2543f29767c871358ea57fcee8abf9412d68a71207eb49c5e245b44"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-h.pdf",
+      "sha256": "48654cf6dedb7aba91610a09ada06dd67424a883a61317bcca104c4a4595e7f0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-i.pdf",
+      "sha256": "c7625a299860e6703b85a3bfbbcf7e5906797f2ccdf4019f2101c7aa11b791f4"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-j.pdf",
+      "sha256": "b5ea7bf8a01ed5ba2d28710c6076843f05272177ecba1d35c8c5c116a9f5e1ce"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-k.pdf",
+      "sha256": "c73e3b191627e5dcbc62445e40ce25ab3cf8fd7920d92e38521ac97c5188d1f6"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-ssi-state-supplement/official-documents/va-dars-auxiliary-grant-manual-chapter-l.pdf",
+      "sha256": "00e9d3eaaf17a5c9ef6e85e1e2c64de37d8f262f22517b7c7809a5c3d2c24b1b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-va-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 574,
+    "missing_count": 0,
+    "provision_count": 574,
+    "source_count": 574
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:59:40.046620+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cfms2vccWl20aUAnDRlyTNl5Ko6bgiSngbDvdqTq8NGZHssR+TW/ldJ6YviIPOSHRFQ2/X0R2ZHOel502dVWAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

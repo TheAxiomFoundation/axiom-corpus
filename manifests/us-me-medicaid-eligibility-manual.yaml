@@ -1,0 +1,387 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: me-ofi-mainecare-eligibility-manual-part-1
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 1: General Information'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-1
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 1$
+    stop_text_pattern: ^PART 2$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-2
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 2: Basic Eligibility Criteria'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-2
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 2$
+    stop_text_pattern: ^PART 3$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-3
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 3: Eligibility Groups Requirements'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-3
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 3$
+    stop_text_pattern: ^PART 4$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-4
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 4: Budgeting for Eligibility Groups for Which
+    MAGI-Based Methodology Applies'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-4
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 4$
+    stop_text_pattern: ^PART 5$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-6
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 6: SSI-Related Medicaid Coverage'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-6
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 6$
+    stop_text_pattern: ^PART 7$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-7
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 7: SSI-Related Medicaid Budgeting'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-7
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 7$
+    stop_text_pattern: ^PART 8$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-8
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 8: Medicare Savings Program'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-8
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 8$
+    stop_text_pattern: ^PART 9$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-9
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 9: Limited Benefit Groups'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-9
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 9$
+    stop_text_pattern: ^PART 10$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-10
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 10: Medically Needy Coverage'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-10
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 10$
+    stop_text_pattern: ^PART 11$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-12
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 12: Residential Care'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-12
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 12$
+    stop_text_pattern: ^PART 13$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-13
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 13: Home and Community-Based Waiver'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-13
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 13$
+    stop_text_pattern: ^PART 14$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-14
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 14: Individuals in Medical Institutions'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-14
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 14$
+    stop_text_pattern: ^PART 15$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-15
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 15: Transfer of Assets'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-15
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 15$
+    stop_text_pattern: ^PART 16$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-16
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 16: Assets'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-16
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 16$
+    stop_text_pattern: ^PART 17$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-17
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 17: Income'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-17
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 17$
+    stop_text_pattern: ^PART 18$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+- source_id: me-ofi-mainecare-eligibility-manual-part-18
+  jurisdiction: us-me
+  document_class: regulation
+  title: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 18: Presumptive Eligibility Determined by Hospitals'
+  source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c332-2025-101%20NSC.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-me/regulation/dhhs/ofi/chapter-332/part-18
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^PART 18$
+    stop_text_pattern: ^PART 19$
+    section_heading_pattern: ^SECTION (?P<num>\d+):\s*(?P<heading>.+)$
+    section_label_template: section-{num}
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    document_subtype: manual_part_docx
+    program: MEDICAID
+    manual: Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual
+    manual_index_url: https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual
+    source_discovery_group: us-me/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://www.maine.gov/sos/rulemaking/agency-rules/mainecare-eligibility-manual

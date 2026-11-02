@@ -34,17 +34,33 @@ EXPECTED_SOURCES = {
         "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c609_0.docx",
     },
 }
+# The manifest now pins the superseding edition (2026-09-11 re-take): Chapter 609 was
+# amended August 30, 2026 (filing 2026-191) and is served as a new file; Chapter 301 is
+# unchanged. The released scope above stays immutable.
+MANIFEST_SOURCES = {
+    "me-ofi-snap-rules-chapter-301": {
+        **EXPECTED_SOURCES["me-ofi-snap-rules-chapter-301"],
+        "source_as_of": "2026-07-17",
+    },
+    "me-ofi-snap-et-rules-chapter-609": {
+        **EXPECTED_SOURCES["me-ofi-snap-et-rules-chapter-609"],
+        "expression_date": "2026-08-30",
+        "filing": "2026-191",
+        "source_as_of": "2026-09-11",
+        "url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/144c609-2026-191-AMD.docx",
+    },
+}
 
 
 def test_maine_snap_manifest_pins_every_current_official_snap_rulebook() -> None:
     documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
 
-    assert {document["source_id"] for document in documents} == set(EXPECTED_SOURCES)
+    assert {document["source_id"] for document in documents} == set(MANIFEST_SOURCES)
     for document in documents:
-        expected = EXPECTED_SOURCES[document["source_id"]]
+        expected = MANIFEST_SOURCES[document["source_id"]]
         assert document["citation_path"] == expected["citation_path"]
         assert document["source_url"] == expected["url"]
-        assert document["source_as_of"] == "2026-07-17"
+        assert document["source_as_of"] == expected["source_as_of"]
         assert document["expression_date"] == expected["expression_date"]
         assert document["metadata"]["rule_filing"] == expected["filing"]
         assert document["metadata"]["primary_source"] is True
@@ -74,10 +90,6 @@ def test_maine_snap_scope_retains_official_docx_files_and_complete_rows() -> Non
     assert coverage["matched_count"] == coverage["source_count"] == 223
     assert coverage["provision_count"] == 223
 
-    documents = {
-        document["source_id"]: document
-        for document in yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
-    }
     for source_id, expected in EXPECTED_SOURCES.items():
         source_file = SOURCE_ROOT / "official-documents" / f"{source_id}.docx"
         relative_source_path = source_file.relative_to(CORPUS_ROOT).as_posix()
@@ -94,8 +106,5 @@ def test_maine_snap_scope_retains_official_docx_files_and_complete_rows() -> Non
         assert all(row["source_as_of"] == "2026-07-17" for row in source_rows)
         assert all(row["expression_date"] == expected["expression_date"] for row in source_rows)
         assert all(row["metadata"]["program"] == "SNAP" for row in source_rows)
-        assert all(
-            row["metadata"]["rule_filing"] == documents[source_id]["metadata"]["rule_filing"]
-            for row in source_rows
-        )
+        assert all(row["metadata"]["rule_filing"] == expected["filing"] for row in source_rows)
         assert all(row["body"] for row in source_rows if row["kind"] == "block")

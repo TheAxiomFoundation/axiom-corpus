@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/manual/2026-10-06-w6-tanf-ccdf-manual-vt.json",
+      "sha256": "f2f9790fdd1eac88de2887c2069333f85a27ccdaf0dc23fcbb4642a5de663093"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/manual/2026-10-06-w6-tanf-ccdf-manual-vt.json",
+      "sha256": "568db7a22fadc9114e72a47c7ef966e7ec560faf2ae8d05572c565226a6a190c"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/manual/2026-10-06-w6-tanf-ccdf-manual-vt.jsonl",
+      "sha256": "78348b5f3944660e8c42d23465d4d75f432f27db553bbd4f6e0292bf79210dac"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-10-06-w6-tanf-ccdf-manual-vt/official-documents/us-vt-w6-dcf-esd-procedures-p-2230a.pdf",
+      "sha256": "30cd435ab524c1f01f68601cae6aa04a798536b694592b20f33499ba649ebcad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:59:59.360886+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oi3l2oPwoLjkNtxpjr177c0PrEpDEfddpxaF88zKLa9hFC9TW6Iibjb8zmKX54IhqEu5Ivp6Ttari89QmhOyBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-vt"
+}

@@ -1,0 +1,52 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-wv-tax-2026-income-tax-rate-cut-ty2026
+  jurisdiction: us-wv
+  document_class: guidance
+  title: 2026 Income Tax Rate Cut (SB 392; W. Va. Code 11-21-4j rate schedules retroactive to January 1, 2026)
+  source_url: https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-wv/guidance/tax/ty2026/2026-income-tax-rate-cut
+  extraction:
+    html_content_selector: '#main'
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-03-31'
+    amounts_carried:
+    - 2026 rate schedule (2.11%-4.58%)
+    - 2026 married-filing-separately schedule
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    discovered_via: manual-review:tax-agent-queue; index https://tax.wv.gov/Individuals/Pages/Individuals.aspx (read 2026-09-13)
+- source_id: us-wv-tax-it-100-2-a-withholding-tables-ty2026
+  jurisdiction: us-wv
+  document_class: guidance
+  title: IT-100.2.A Tables for Percentage Method of Withholding (March 2026)
+  source_url: https://tax.wv.gov/Documents/Withholding/it100.2a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-wv/guidance/tax/ty2026/it-100-2-a-withholding-tables
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    document_subtype: withholding_tables
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-03-01'
+    amounts_carried:
+    - withholding percentage-method rates
+    - per-exemption wage reduction
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.wv.gov/Individuals/Pages/Individuals.aspx
+    discovered_via: manual-review:tax-agent-queue; index https://tax.wv.gov/Individuals/Pages/Individuals.aspx (read 2026-09-13)

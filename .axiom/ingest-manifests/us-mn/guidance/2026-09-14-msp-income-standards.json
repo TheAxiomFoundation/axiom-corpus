@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "02dbf1705591d349b6deb6c8db761ff382544eff83ba82dc2a70c039e71b4b70"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "e30996e01a76aa393f1a6f668c306893af74f8814fffac13913bdfb8dc2b28e8"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "b7e397e492b2378c980ba35487ef83e40e30023906892a7d064e07f3c9196004"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-09-14-msp-income-standards/official-documents/us-mn-dhs-3461a-2026-06.pdf",
+      "sha256": "9221a440f73e5b60d9c8ec532c1adfd63b8168622b44a02fa6fedf0b5abbc198"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-mn-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:53:26.703519+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/Eqaog/bGTJhl8NgHhtQ3A2MQaleDEvDfoc554l1MHCIvktVnuZevo3C4Z6/N3BXA9po+M6eY6DBj3GJAF0SBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

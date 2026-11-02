@@ -1,0 +1,40 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-bgbeg",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "slug": "bgbeg",
+      "citation_path": "de/statute/bgbeg",
+      "title": "Einführungsgesetz zum Bürgerlichen Gesetzbuche",
+      "source_url": "https://www.gesetze-im-internet.de/bgbeg/xml.zip",
+      "source_format": "gesetze-im-internet.de-juris-xml",
+      "request": {
+        "browser_user_agent": true
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz (juris GmbH)",
+        "source_note": "Parentage temporal scope for BGB 1591/1592 and EStG 32/64: full act, including Article 224 transition. Current consolidation; not a claim that current provisions govern all historical births."
+      }
+    },
+    {
+      "source_id": "de-kindergeld-sbgg",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "slug": "sbgg",
+      "citation_path": "de/statute/sbgg",
+      "title": "Gesetz über die Selbstbestimmung in Bezug auf den Geschlechtseintrag",
+      "source_url": "https://www.gesetze-im-internet.de/sbgg/xml.zip",
+      "source_format": "gesetze-im-internet.de-juris-xml",
+      "request": {
+        "browser_user_agent": true
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz (juris GmbH)",
+        "source_note": "SBGG 11 makes the register sex entry irrelevant to BGB 1591 and 1592 no.3 parentage; capture the full current act and its transition provision, rather than treating a current sex marker as a motherhood eligibility Boolean."
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "682c28972a2b006741d8b9e21e2543d9e975b8d6c377e2ace44b69baeccb03c9"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/manual/2026-09-14-liheap-benefit-matrix.json",
+      "sha256": "bf4760ee68ab0fe865ca1947ff806a845ef5a4576cd9b9008ea882500815246c"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/manual/2026-09-14-liheap-benefit-matrix.jsonl",
+      "sha256": "64f90ddefc675fc24bf4021e4c497abe6662f4e11fb5b4c87785c4048ec754b8"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-vt-liheap-dcf-esd-procedures-p2914a.pdf",
+      "sha256": "c6736e0777dee57be5a494a9c9062395a6d4b1dcbc442fc4d7bb7f3115bde558"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-vt-liheap-dcf-esd-procedures-p2914b.pdf",
+      "sha256": "269542f33b5e493916a09f25310f20607f95e4de910b39c344c8eb38bd454fe0"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-vt-liheap-dcf-esd-procedures-p2914c.pdf",
+      "sha256": "b998b1bc0397dc5001bc902d5ca3ffc3583e5dad02af12b34909109e19313f2e"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-vt-liheap-dcf-esd-procedures-p2914d.pdf",
+      "sha256": "5a42eb18950a4ccd4dde2d9a6f2d92f9a4e5da7bd365ea89c9c39232dcf3b0a3"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-vt-liheap-dcf-esd-procedures-p2915.pdf",
+      "sha256": "a370bf627dbe358cfe76ac2315fc8e673b173e010872c65848876bc2cbc01ed7"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/manual/2026-09-14-liheap-benefit-matrix/official-documents/us-vt-liheap-dcf-esd-procedures-p2916.pdf",
+      "sha256": "85c3eca6c2a84e8662a4af8bf448b14ff9333358e5aa5291ab4f884039db411f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-liheap-benefit-matrix --manifest manifests/us-vt-liheap-benefit-matrix-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T18:27:19.289111+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "O6hq6eVX+kEndF42bRecZyVAsAiJKuoPm0IyptB7Ex38JNtSGlYUGtBBs6cECDZPNX+MSnbDO4yCyf5y6O59Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-liheap-benefit-matrix"
+}

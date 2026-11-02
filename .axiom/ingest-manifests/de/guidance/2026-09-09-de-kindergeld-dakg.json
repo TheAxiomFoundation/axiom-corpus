@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-dakg.json",
+      "sha256": "4bce6b0af1f1d0059543160ea8b3523a7958da86af40d080140e51ffa524fa2f"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-dakg.json",
+      "sha256": "981339317da949cb7b3d958fcf29e2a2ff81ef8a4bb1a6a31b16daa0ca124c47"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-dakg.jsonl",
+      "sha256": "4c059ac35a77a5ab34cbf8a87d0f40679febf5307a04b486ca4ca47f10c2a19b"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-dakg/official-documents/de-bzst-dakg-2026.pdf",
+      "sha256": "29cf1e1b24708f0bb1680c031bad97e79d87cab805c9a74b6379caa4d5196e9c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "872e3d8e1f043b4e2a4f09183570d4fcd6dc1e27",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-dakg --manifest manifests/de-kindergeld-dakg-2026.yaml --source-as-of 2026-09-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-09T08:28:56.127251+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XNoScF45O0kd0UBrMM3OmM9v1N4WFqxBb8uqYiv0R31ZpzARbdsUBi6f3iRe6RGNKPp7VnUM3BMByNOHzlExCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-dakg"
+}

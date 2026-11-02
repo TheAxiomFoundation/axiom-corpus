@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/statute/2026-10-06-w6-income-tax-statute-va.json",
+      "sha256": "796b66fc0e2d1bc33d523f3811469adb6e31a6881f06b666a345c4097b69ef6f"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/statute/2026-10-06-w6-income-tax-statute-va.json",
+      "sha256": "d23fd8fa8f630b7665cb5c30e0559874cddeb339f6ad5a140170233be6ac53ab"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/statute/2026-10-06-w6-income-tax-statute-va.jsonl",
+      "sha256": "38aaa33c0fcd875c8bf8ebc4411d5cb5b10ece59e5380b59f543be38f541af45"
+    },
+    {
+      "path": "data/corpus/sources/us-va/statute/2026-10-06-w6-income-tax-statute-va/official-documents/us-va-statute-budget-2023-hb6001-introduced-3-5-28.html",
+      "sha256": "6d0eea13ea1bbff7a44dcb20cfe0dacc0020480211c90cf73f46ef3ce35ddb88"
+    },
+    {
+      "path": "data/corpus/sources/us-va/statute/2026-10-06-w6-income-tax-statute-va/official-documents/us-va-statute-budget-2026-hb30-conference-report-4-14-1c.html",
+      "sha256": "9f9bd837eb26799322dda6d070906db4dab4097d2ed4962b33746582bc2c68ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:59:50.571846+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TBkc3BZ/rkl+/AjrCdSec0EALbsiwFC4Tc3/kc9tIaVZ88msQrKyyC/ISOUVJbz0Z/B/jZ8TffH1nD0lE6CjAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-va"
+}

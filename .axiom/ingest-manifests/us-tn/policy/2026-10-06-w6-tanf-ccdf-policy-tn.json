@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/policy/2026-10-06-w6-tanf-ccdf-policy-tn.json",
+      "sha256": "53cdf8e80b5a2edb8f73b5bd6c07f644fdd82402795b8ec9c2a45187ff78b364"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/policy/2026-10-06-w6-tanf-ccdf-policy-tn.json",
+      "sha256": "b7a78ec2a7f116dc8f6f93d29b4653cdec36ace6f5cc55c49e1a86d881ea3b4b"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/policy/2026-10-06-w6-tanf-ccdf-policy-tn.jsonl",
+      "sha256": "8a3b1916bbba6b74baa7d346199b494bcd11f781a5f78f0f9bff490779f2e512"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-10-06-w6-tanf-ccdf-policy-tn/official-documents/us-tn-w6-ccdf-rate-schedules-income-eligibility-and-copay-chart-2024-06-01.pdf",
+      "sha256": "bb88fd05a98e81ccfcd2761aa60178a26fd3dfbcc48b14c9b6fa84412cc2e062"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:58:59.420500+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zsdZp99RxeCUib12Z7vZ294hwk15NAUFq/KRSopLXlRiRgT+W/P6W/GiVNG8a1LNY5yk0Try2GlRiQe26AkwDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-tn"
+}

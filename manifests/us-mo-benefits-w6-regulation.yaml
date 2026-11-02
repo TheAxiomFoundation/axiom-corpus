@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-regulation-mo
+documents:
+- source_id: us-mo-regulation-csr-13-40-2
+  jurisdiction: us-mo
+  document_class: regulation
+  title: 13 CSR 40-2, Department of Social Services, Family Support Division, Income Maintenance
+  source_url: https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-2.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-03-31'
+  citation_path: us-mo/regulation/csr/13/40-2
+  metadata:
+    primary_source: true
+    source_authority: Missouri Secretary of State, Code of State Regulations
+    document_subtype: administrative_code_chapter_pdf
+    program: SSI state supplement
+    expression_date_note: the chapter's printed currency date (JOHN R. ASHCROFT (3/31/22))
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 154)
+    wave6_rows:
+    - 154
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

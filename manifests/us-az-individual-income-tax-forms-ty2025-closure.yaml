@@ -1,0 +1,70 @@
+version: '2026-09-15'
+documents:
+- source_id: us-az-azdor-form-140-ty2025
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 Resident Personal Income Tax Return (2025)
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140_f.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-az/form/azdor/ty2025/form-140
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-fillable
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-fillable
+      (read 2026-09-14)
+    page_count_at_research: 6
+    first_page_first_line: DO NOT STAPLE ANY ITEMS TO THE RETURN.
+- source_id: us-az-azdor-form-140-instructions-ty2025
+  jurisdiction: us-az
+  document_class: form
+  title: Arizona Form 140 2025 Resident Personal Income Tax Return Instructions
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140i.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-az/form/azdor/ty2025/form-140-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-fillable
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-fillable
+      (read 2026-09-14)
+    page_count_at_research: 33
+    first_page_first_line: Arizona Form 140 2025 Resident Personal Income Tax Return
+- source_id: us-az-azdor-form-140-booklet-ty2025
+  jurisdiction: us-az
+  document_class: form
+  title: 2025 Arizona Form 140 Resident Personal Income Tax Booklet (form, instructions and optional tax tables)
+  source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-az/form/azdor/ty2025/form-140-booklet
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: booklet
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-fillable
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://azdor.gov/forms/individual/form-140-resident-personal-income-tax-form-fillable
+      (read 2026-09-14)
+    page_count_at_research: 62
+    first_page_first_line: 2025 Arizona Form 140 Resident Personal Income Tax Booklet
+    source_note: The Optional Tax Tables product page stops at form year 2022; the 2025 tables are inside this booklet.

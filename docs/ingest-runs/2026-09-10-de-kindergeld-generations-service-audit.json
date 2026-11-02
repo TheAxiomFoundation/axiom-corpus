@@ -1,0 +1,64 @@
+{
+  "schema": "de-kindergeld.generations-service-capture.v1",
+  "scope": "2026-09-10-de-kindergeld-generations-service",
+  "source_manifest": "manifests/de-kindergeld-generations-service.yaml",
+  "reviewed_complete_paragraphs": [
+    {
+      "citation_path": "de/statute/sgb-7/2/absatz-1a/inhalt",
+      "body": "(1a) Versichert sind auch Personen, die nach Erfüllung der Schulpflicht auf der Grundlage einer schriftlichen Vereinbarung im Dienst eines geeigneten Trägers im Umfang von durchschnittlich mindestens acht Wochenstunden und für die Dauer von mindestens sechs Monaten als Freiwillige einen Freiwilligendienst aller Generationen unentgeltlich leisten. Als Träger des Freiwilligendienstes aller Generationen geeignet sind inländische juristische Personen des öffentlichen Rechts oder unter § 5 Abs. 1 Nr. 9 des Körperschaftsteuergesetzes fallende Einrichtungen zur Förderung gemeinnütziger, mildtätiger oder kirchlicher Zwecke (§§ 52 bis 54 der Abgabenordnung), wenn sie die Haftpflichtversicherung und eine kontinuierliche Begleitung der Freiwilligen und deren Fort- und Weiterbildung im Umfang von mindestens durchschnittlich 60 Stunden je Jahr sicherstellen. Die Träger haben fortlaufende Aufzeichnungen zu führen über die bei ihnen nach Satz 1 tätigen Personen, die Art und den Umfang der Tätigkeiten und die Einsatzorte. Die Aufzeichnungen sind mindestens fünf Jahre lang aufzubewahren.",
+      "body_sha256": "52178463fcdbd820411ef357191f9888d8dc9df9dc0410c28a516d7d95559704",
+      "parent_citation_path": "de/statute/sgb-7/2",
+      "parent_body_sha256": "3a9c1675037e593ffe8c781cb0ff0e6a1e79e00dc2c80f1a496444d0b9f7dfa5",
+      "matches_pinned_full_section": true,
+      "source_url": "https://www.gesetze-im-internet.de/sgb_7/__2.html",
+      "source_path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-generations-service/official-documents/de-sgbvii2-absatz-1a.html",
+      "source_sha256": "4ca1251cfefc85b3a7dc71ee6646d394fb60519d215b19f7e2138f4e1c904ea9"
+    },
+    {
+      "citation_path": "de/statute/bgb/126/absatz-1/inhalt",
+      "body": "(1) Ist durch Gesetz schriftliche Form vorgeschrieben, so muss die Urkunde von dem Aussteller eigenhändig durch Namensunterschrift oder mittels notariell beglaubigten Handzeichens unterzeichnet werden.",
+      "body_sha256": "28ff8e921b9384a922dbc2ed654e199ae40fc5b5226306ecb2581a8cef3dffb0",
+      "parent_citation_path": "de/statute/bgb/126",
+      "parent_body_sha256": "643021a4e82954ce61b2ab37c34ae88a80cb7e919fb8c513a85396223fea0ca4",
+      "matches_pinned_full_section": true,
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__126.html",
+      "source_path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-generations-service/official-documents/de-bgb126-absatz-1.html",
+      "source_sha256": "bd09c0b1fd1b847706c8f0a69971cee5ff80c6a8b01d71f408018a0ca1b3bf4f"
+    },
+    {
+      "citation_path": "de/statute/bgb/126/absatz-2/inhalt",
+      "body": "(2) Bei einem Vertrag muss die Unterzeichnung der Parteien auf derselben Urkunde erfolgen. Werden über den Vertrag mehrere gleichlautende Urkunden aufgenommen, so genügt es, wenn jede Partei die für die andere Partei bestimmte Urkunde unterzeichnet.",
+      "body_sha256": "6e433a466fa74c753c9e6f52eed16b46e2b63d5d70a597d70a1450e124e1a9f4",
+      "parent_citation_path": "de/statute/bgb/126",
+      "parent_body_sha256": "643021a4e82954ce61b2ab37c34ae88a80cb7e919fb8c513a85396223fea0ca4",
+      "matches_pinned_full_section": true,
+      "source_url": "https://www.gesetze-im-internet.de/bgb/__126.html",
+      "source_path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-generations-service/official-documents/de-bgb126-absatz-2.html",
+      "source_sha256": "bd09c0b1fd1b847706c8f0a69971cee5ff80c6a8b01d71f408018a0ca1b3bf4f"
+    }
+  ],
+  "coverage": {
+    "complete": true,
+    "document_class": "statute",
+    "duplicate_provision_citations": [],
+    "duplicate_source_citations": [],
+    "extra_provisions": [],
+    "jurisdiction": "de",
+    "matched_count": 6,
+    "missing_from_provisions": [],
+    "provision_count": 6,
+    "source_count": 6,
+    "version": "2026-09-10-de-kindergeld-generations-service"
+  },
+  "referring_decision": {
+    "citation_path": "de/guidance/bfh-iii-r-68-11-2012-05-24/document-1",
+    "body_sha256": "9e34591cc17d1ce39ad335ed63ce912678e9a778144e71493cbe322d9c67ae93",
+    "source_url": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201210281?type=1646225765",
+    "review_scope": "Complete four-page decision, paragraphs1–24, read in the consumer review. Paragraph22 applies BGB126(1)–(2); paragraph23 specifies the service agreement contents. Existing full-decision corpus row is preserved, not recaptured."
+  },
+  "limitations": [
+    "The native selectors retain each complete paragraph including all sentences. The full SGBVII2 and BGB126 rows remain available. No parent-section disposition follows from paragraph capture.",
+    "Capture date is not commencement. Current BGB126 writing-substitution branches and all historical applicability questions remain separate from the selected paper-signature paragraphs.",
+    "No executable module, new law-derived-input classification or certified claim."
+  ]
+}

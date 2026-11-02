@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "7b68b27c92639a6d759e717c371f0aede12914c2e20ec645849a42008ca94aa0"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "1a033a3d6392b89b336cecbe82d26c69619e7ee1558f4e83efe0c281db4c4529"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "a9825df1d2a5eeb28aecb092204ccb6d8db7a71b4ac29aeb637ea3e601b3a245"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-hi-dotax-tax-tables-and-rate-schedules-ty2025.pdf",
+      "sha256": "adb738536f92b42154d984f2f1c1fde1c14201e8b46db61e2c53eb175c346d8a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-hi-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:26:23.523953+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "o36PDPUUBF4OSguN0TJUYRpvuEqjZWIj4IYLYysnoLNRSRk85cI+0fVJPorf47vhFiQAJvSomjiZu0UnOgi0Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

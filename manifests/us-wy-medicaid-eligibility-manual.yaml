@@ -1,0 +1,3156 @@
+version: 2026-09-15-medicaid-eligibility-manual-closure
+documents:
+- source_id: wy-wdh-eom-m100-purpose
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M100 Purpose'
+  source_url: https://ecom.wyo.gov/m100-purpose
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m100-purpose
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m100-purpose-m101-purpose
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M101 Purpose'
+  source_url: https://ecom.wyo.gov/m100-purpose/m101-purpose
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m100-purpose-m101-purpose
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m100-purpose-m102-administration
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M102 Administration'
+  source_url: https://ecom.wyo.gov/m100-purpose/m102-administration
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m100-purpose-m102-administration
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m100-purpose-m103-eligible-persons
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M103 Eligible Persons'
+  source_url: https://ecom.wyo.gov/m100-purpose/m103-eligible-persons
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m100-purpose-m103-eligible-persons
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m200-definition-of-terms
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M200 Definition of Terms'
+  source_url: https://ecom.wyo.gov/m200-definition-of-terms
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m200-definition-of-terms
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m300-verification-factors
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M300 Verification Factors'
+  source_url: https://ecom.wyo.gov/m300-verification-factors
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m300-verification-factors-m301-verification
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M301 Verification'
+  source_url: https://ecom.wyo.gov/m300-verification-factors/m301-verification
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m300-verification-factors-m301-verification-m301a-factors-requiring-verification
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M301A Factors Requiring Verification'
+  source_url: https://ecom.wyo.gov/m300-verification-factors/m301-verification/m301a-factors-requiring-verification
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification-m301a-factors-requiring-verification
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m300-verification-factors-m301-verification-m301b-verifying-eligibility-factors
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M301B Verifying Eligibility Factors'
+  source_url: https://ecom.wyo.gov/m300-verification-factors/m301-verification/m301b-verifying-eligibility-factors
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification-m301b-verifying-eligibility-factors
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m300-verification-factors-m302-documentation
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M302 Documentation'
+  source_url: https://ecom.wyo.gov/m300-verification-factors/m302-documentation
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m302-documentation
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M400 Application Process'
+  source_url: https://ecom.wyo.gov/m400-application-process
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m401-applying-for-benefits
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M401 Applying For Benefits'
+  source_url: https://ecom.wyo.gov/m400-application-process/m401-applying-for-benefits
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m401-applying-for-benefits
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m402-assistance-with-application-process
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M402 Assistance With Application Process'
+  source_url: https://ecom.wyo.gov/m400-application-process/m402-assistance-with-application-process
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m402-assistance-with-application-process
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m403-processing-applications-for-medical-benefits
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M403 Processing Applications For Medical Benefits'
+  source_url: https://ecom.wyo.gov/m400-application-process/m403-processing-applications-for-medical-benefits
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m403-processing-applications-for-medical-benefits
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m404-distributing-medicaid-cards
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M404 Distributing Medicaid Cards'
+  source_url: https://ecom.wyo.gov/m400-application-process/m404-distributing-medicaid-cards
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m404-distributing-medicaid-cards
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m406-defining-client-rights
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M406 Defining Client Rights'
+  source_url: https://ecom.wyo.gov/m400-application-process/m406-defining-client-rights
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m406-defining-client-rights
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m407-defining-client-responsibilities
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M407 Defining Client Responsibilities'
+  source_url: https://ecom.wyo.gov/m400-application-process/m407-defining-client-responsibilities
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m407-defining-client-responsibilities
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m408-case-file-maintenance
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M408 Case File Maintenance'
+  source_url: https://ecom.wyo.gov/m400-application-process/m408-case-file-maintenance
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m408-case-file-maintenance
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m408-case-file-maintenance-m408a-creating-narratives
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M408A Creating Narratives'
+  source_url: https://ecom.wyo.gov/m400-application-process/m408-case-file-maintenance/m408a-creating-narratives
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m408-case-file-maintenance-m408a-creating-narratives
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m409-maintaining-applicant-and-client-information-confidentiality
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M409 Maintaining Applicant and Client Information
+    Confidentiality'
+  source_url: https://ecom.wyo.gov/m400-application-process/m409-maintaining-applicant-and-client-information-confidentiality
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m409-maintaining-applicant-and-client-information-confidentiality
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m400-application-process-m410-safeguarding-and-releasing-information
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M410 Safeguarding and Releasing Information'
+  source_url: https://ecom.wyo.gov/m400-application-process/m410-safeguarding-and-releasing-information
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m410-safeguarding-and-releasing-information
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m600-basic-eligibility-factors
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M600 Basic Eligibility Factors'
+  source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m600-basic-eligibility-factors-m601-determinig-basic-eligibility-residence
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M601 Determinig Basic Eligibility - Residence'
+  source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m601-determinig-basic-eligibility-residence
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m601-determinig-basic-eligibility-residence
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m600-basic-eligibility-factors-m602-determining-basic-eligibility-identity
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M602 Determining Basic Eligibility - Identity'
+  source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m602-determining-basic-eligibility-identity
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m602-determining-basic-eligibility-identity
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m600-basic-eligibility-factors-m603-determining-basic-eligibility-social-security-number
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M603 Determining Basic Eligibility - Social Security
+    Number'
+  source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m603-determining-basic-eligibility-social-security-number
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m603-determining-basic-eligibility-social-security-number
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m600-basic-eligibility-factors-m604-determining-basic-eligibility-citizenshipimmigration-status
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M604 Determining Basic Eligibility - Citizenship/Immigration
+    Status'
+  source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m604-determining-basic-eligibility-citizenshipimmigration-status
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m604-determining-basic-eligibility-citizenshipimmigration-status
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m600-basic-eligibility-factors-m605-determinig-basic-eligibility-temporary-absence
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M605 Determinig Basic Eligibility - Temporary Absence'
+  source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m605-determinig-basic-eligibility-temporary-absence
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m605-determinig-basic-eligibility-temporary-absence
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M800 Resources'
+  source_url: https://ecom.wyo.gov/m800-resources
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m801-counting-resources
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M801 Counting Resources'
+  source_url: https://ecom.wyo.gov/m800-resources/m801-counting-resources
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m801-counting-resources
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m802-determining-resource-ownership-and-availability
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M802 Determining Resource Ownership And Availability'
+  source_url: https://ecom.wyo.gov/m800-resources/m802-determining-resource-ownership-and-availability
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m802-determining-resource-ownership-and-availability
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m803-transferring-resources
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M803 Transferring Resources'
+  source_url: https://ecom.wyo.gov/m800-resources/m803-transferring-resources
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m803-transferring-resources
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m804-determining-resource-transfer-penalties
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M804 Determining Resource Transfer Penalties'
+  source_url: https://ecom.wyo.gov/m800-resources/m804-determining-resource-transfer-penalties
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m804-determining-resource-transfer-penalties
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m805-determining-treatment-of-resources-within-trusts
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M805 Determining Treatment of Resources Within Trusts'
+  source_url: https://ecom.wyo.gov/m800-resources/m805-determining-treatment-of-resources-within-trusts
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m805-determining-treatment-of-resources-within-trusts
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m806-assessing-spousal-resources
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M806 Assessing Spousal Resources'
+  source_url: https://ecom.wyo.gov/m800-resources/m806-assessing-spousal-resources
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m806-assessing-spousal-resources
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m800-resources-m807-determining-treatment-of-resources
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M807 Determining Treatment of Resources'
+  source_url: https://ecom.wyo.gov/m800-resources/m807-determining-treatment-of-resources
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m800-resources-m807-determining-treatment-of-resources
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M900 Income'
+  source_url: https://ecom.wyo.gov/m900-income
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income-m901-counting-income
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M901 Counting Income'
+  source_url: https://ecom.wyo.gov/m900-income/m901-counting-income
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income-m901-counting-income
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income-m902-treatment-of-self-employment-income
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M902 Treatment of Self-Employment Income'
+  source_url: https://ecom.wyo.gov/m900-income/m902-treatment-of-self-employment-income
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income-m902-treatment-of-self-employment-income
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income-m903-determining-best-estimates
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M903 Determining Best Estimates'
+  source_url: https://ecom.wyo.gov/m900-income/m903-determining-best-estimates
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income-m903-determining-best-estimates
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income-m904-benefit-levels
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M904 Benefit Levels'
+  source_url: https://ecom.wyo.gov/m900-income/m904-benefit-levels
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income-m904-benefit-levels
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income-m905-income-disregardsdeductions
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M905 Income Disregards/Deductions'
+  source_url: https://ecom.wyo.gov/m900-income/m905-income-disregardsdeductions
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income-m905-income-disregardsdeductions
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m900-income-m906-completing-medical-assistance-computations
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M906 Completing Medical Assistance Computations'
+  source_url: https://ecom.wyo.gov/m900-income/m906-completing-medical-assistance-computations
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m900-income-m906-completing-medical-assistance-computations
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1000 Aged, Blind or Disabled Program'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1001-institutional-related
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001 Institutional Related'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001a-nursing-homeswing-bed
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001A Nursing Home/Swing Bed'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001a-nursing-homeswing-bed
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001a-nursing-homeswing-bed
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001b-inpat-psych-geriatric-hall-at-the-state-hospital
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001B INPAT-PSYCH (Geriatric Hall at the State Hospital
+    in Evanston)'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001b-inpat-psych-geriatric-hall-at-the-state-hospital-in-evanston
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001b-inpat-psych-geriatric-hall-at-the-state-hospital
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001c-hospice-care
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001C Hospice Care'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001c-hospice-care
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001c-hospice-care
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001d-inpatient-hospital-care
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001D Inpatient Hospital Care'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001d-inpatient-hospital-care
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001d-inpatient-hospital-care
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001e-icf-id-wyoming-life-resource-center
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001E ICF-ID (Wyoming Life Resource Center)'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001e-icf-id-wyoming-life-resource-center
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001e-icf-id-wyoming-life-resource-center
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002 HCBS Waivers'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002a-community-choices-home-community-based-waiver
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002A Community Choices Home & Community Based Waiver'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002a-community-choices-home-community-based-waiver
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002a-community-choices-home-community-based-waiver
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002B Comprehensive and Support Waivers'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002b-comprehensive-and-support-waivers
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b1-comprehensive-a
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002B1 Comprehensive and Support Waivers'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002b-comprehensive-and-support-waivers/m1002b1-comprehensive-and-support-waivers
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b1-comprehensive-a
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b2-acquired-brain
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002B2 Acquired Brain Injury Waiver'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002b-comprehensive-and-support-waivers/m1002b2-acquired-brain-injury-waiver
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b2-acquired-brain
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002c-childrens-mental-health-waiver
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002C Children''s Mental Health Waiver'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002c-childrens-mental-health-waiver
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002c-childrens-mental-health-waiver
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1003-employed-individuals-with-disabilities-eid
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1003 Employed Individuals With Disabilities (EID)'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1003-employed-individuals-with-disabilities-eid
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1003-employed-individuals-with-disabilities-eid
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005 SSI and SSI Related'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005a-disabled-adult-child-dac
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005A Disabled Adult Child (DAC)'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005a-disabled-adult-child-dac
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005a-disabled-adult-child-dac
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005b-e01
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005B E01'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005b-e01
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005b-e01
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005c-goldberg-kelly
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005C Goldberg Kelly'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005c-goldberg-kelly
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005c-goldberg-kelly
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005d-pickle
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005D PICKLE'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005d-pickle
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005d-pickle
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005e-1619
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005E 1619'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005e-1619
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005e-1619
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005f-ssi-eligible
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005F SSI Eligible'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005f-ssi-eligible
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005f-ssi-eligible
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005g-widow-widowers
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005G Widow Widowers'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005g-widow-widowers
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005g-widow-widowers
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005h-widow-widowers-sdx
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005H Widow Widowers SDX'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005h-widow-widowers-sdx
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005h-widow-widowers-sdx
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005j-presumptive-disability
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005J Presumptive Disability'
+  source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005j-presumptive-disability
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005j-presumptive-disability
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1100-medicare-savings-programs
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1100 Medicare Savings Programs'
+  source_url: https://ecom.wyo.gov/m1100-medicare-savings-programs
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1100-medicare-savings-programs-m1101-qmb
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1101 QMB'
+  source_url: https://ecom.wyo.gov/m1100-medicare-savings-programs/m1101-qmb
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs-m1101-qmb
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1100-medicare-savings-programs-m1102-slmb
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1102 SLMB'
+  source_url: https://ecom.wyo.gov/m1100-medicare-savings-programs/m1102-slmb
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs-m1102-slmb
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1200 Family and Children''s Programs'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1201-childrens-groups
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201 Children''s Groups'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1201-childrens-groups-m1201a-newborn
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201A Newborn'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201a-newborn
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201a-newborn
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1201-childrens-groups-m1201b-child-magi
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201B Child MAGI'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201b-child-magi
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201b-child-magi
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1201-childrens-groups-m1201d-foster-care
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201D Foster Care'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201d-foster-care
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201d-foster-care
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1201-childrens-groups-m1201e-subsidized-adoption
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201E Subsidized Adoption'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201e-subsidized-adoption
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201e-subsidized-adoption
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1201-childrens-groups-m1201f-iv-e-guardianship
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201F IV-E Guardianship'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201f-iv-e-guardianship
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201f-iv-e-guardianship
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1202-pregnant-women
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202 Pregnant Women'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1202-pregnant-women-m1202a-pregnant-women
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202A Pregnant Women'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women/m1202a-pregnant-women
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202a-pregnant-women
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1202-pregnant-women-m1202b-qualified-pregnant-women
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202B Qualified Pregnant Women'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women/m1202b-qualified-pregnant-women
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202b-qualified-pregnant-women
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1202-pregnant-women-m1202c-pregnant-by-choice
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202C Pregnant By Choice'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women/m1202c-pregnant-by-choice
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202c-pregnant-by-choice
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1204-family-care
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204 Family Care'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1204-family-care-m1204b-12-month-extended-medicaid
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204B 12 Month Extended Medicaid'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204b-12-month-extended-medicaid
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204b-12-month-extended-medicaid
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1200-family-and-childrens-programs-m1205-emergency-services
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1205 Emergency Services'
+  source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1205-emergency-services
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1205-emergency-services
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1300-special-eligibility-groups
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1300 Special Eligibility Groups'
+  source_url: https://ecom.wyo.gov/m1300-special-eligibility-groups
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1300-special-eligibility-groups-m1301-breast-cervical
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1301 Breast & Cervical'
+  source_url: https://ecom.wyo.gov/m1300-special-eligibility-groups/m1301-breast-cervical
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups-m1301-breast-cervical
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1300-special-eligibility-groups-m1302-tuberculosis-program
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1302 Tuberculosis Program'
+  source_url: https://ecom.wyo.gov/m1300-special-eligibility-groups/m1302-tuberculosis-program
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups-m1302-tuberculosis-program
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1400 Processing/Issuing Benefits'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits-m1401-processing
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1401 Processing'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1401-processing
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1401-processing
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits-m1403-reviews
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1403 Reviews'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1403-reviews
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1403-reviews
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits-m1404-closure
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1404 Closure'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1404-closure
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1404-closure
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits-m1405-reinstatement
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1405 Reinstatement'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1405-reinstatement
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1405-reinstatement
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits-m1406-national-public-health-emergency-related-to-the-covid-19-virus
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1406 National Public Health Emergency Related to
+    the COVID-19 Virus'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1406-national-public-health-emergency-related-to-the-covid-19-virus
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1406-national-public-health-emergency-related-to-the-covid-19-virus
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1400-processingissuing-benefits-m1407-unwinding-of-the-continuous-enrollment-in-medicaid-and-chip
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1407 Unwinding Of The Continuous Enrollment in Medicaid
+    and CHIP'
+  source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1407-unwinding-of-the-continuous-enrollment-in-medicaid-and-chip
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1407-unwinding-of-the-continuous-enrollment-in-medicaid-and-chip
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1500-notices
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1500 Notices'
+  source_url: https://ecom.wyo.gov/m1500-notices
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1500-notices
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1600-reporting
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1600 Reporting'
+  source_url: https://ecom.wyo.gov/m1600-reporting
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1600-reporting
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1600-reporting-m1601-determining-changes-to-be-reported
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1601 Determining Changes to be Reported'
+  source_url: https://ecom.wyo.gov/m1600-reporting/m1601-determining-changes-to-be-reported
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1600-reporting-m1601-determining-changes-to-be-reported
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1800 Other Programs'
+  source_url: https://ecom.wyo.gov/m1800-other-programs
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1803-kid-care-chip
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1803 Kid Care CHIP'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1803-kid-care-chip
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1803-kid-care-chip
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1804-state-supplemental-payments
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1804 State Supplemental Payments'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1804-state-supplemental-payments
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1804-state-supplemental-payments
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1805-give-one-day-eye-care-program
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1805 Give One Day Eye Care Program'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1805-give-one-day-eye-care-program
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1805-give-one-day-eye-care-program
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1806-link-up-america
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1806 Link Up America'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1806-link-up-america
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1806-link-up-america
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1807-telephone-assistance
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1807 Telephone Assistance'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1807-telephone-assistance
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1807-telephone-assistance
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1809-medicare-part-d-presciption-drug-assistance
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1809 Medicare Part D Presciption Drug Assistance'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1809-medicare-part-d-presciption-drug-assistance
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1809-medicare-part-d-presciption-drug-assistance
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1810-medicare-buy-in
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1810 Medicare Buy-In'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1810-medicare-buy-in
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1810-medicare-buy-in
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1800-other-programs-m1811-presumptive-eligibility
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1811 Presumptive Eligibility'
+  source_url: https://ecom.wyo.gov/m1800-other-programs/m1811-presumptive-eligibility
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1811-presumptive-eligibility
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-m1900-informal-conferencesadministrative-hearings
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1900 Informal Conferences/Administrative Hearings'
+  source_url: https://ecom.wyo.gov/m1900-informal-conferencesadministrative-hearings
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/m1900-informal-conferencesadministrative-hearings
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: manual_policy_page_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table1a
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 1A Aged, Blind Or Disabled - Income & Deduction
+    Standards'
+  source_url: https://ecom.wyo.gov/tables/table1a
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table1a
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table2
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 2 Countable/Available Income Non-MAGI'
+  source_url: https://ecom.wyo.gov/tables/table2
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table2
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table2a
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 2A Countable Available Income MAGI'
+  source_url: https://ecom.wyo.gov/tables/table2a
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table2a
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table5
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 5 Evidence of Citizenship & Identity'
+  source_url: https://ecom.wyo.gov/tables/table5
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table5
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table5a
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 5A Evidence of Immigration Status'
+  source_url: https://ecom.wyo.gov/tables/table5a
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table5a
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table5b
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 5B Evidence of Other Eligibility Factors'
+  source_url: https://ecom.wyo.gov/tables/table5b
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table5b
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table6
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 6 Immigration Status'
+  source_url: https://ecom.wyo.gov/tables/table6
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table6
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table8
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 8 Countable/Available Resources'
+  source_url: https://ecom.wyo.gov/tables/table8
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table8
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table11
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 11 Life Estate Interest'
+  source_url: https://ecom.wyo.gov/tables/table11
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table11
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table13
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 13 Facility Codes'
+  source_url: https://ecom.wyo.gov/tables/table13
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table13
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table18
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 18 Resource/Income Exemptions Per Public Law
+    (P.L.)'
+  source_url: https://ecom.wyo.gov/tables/table18
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table18
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table19
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 19 Beneficiary and Earnings Data Exchange'
+  source_url: https://ecom.wyo.gov/tables/table19
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table19
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table23
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 23 Contacts'
+  source_url: https://ecom.wyo.gov/tables/table23
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table23
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/
+- source_id: wy-wdh-eom-tables-table1
+  jurisdiction: us-wy
+  document_class: manual
+  title: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 1 - Federal Poverty Level (FPL) Standards'
+  source_url: https://ecom.wyo.gov/tables/table1
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-wy/manual/wdh/medicaid/tables-table1
+  extraction:
+    html_content_selector: div.UtePc
+    html_drop_selectors:
+    - nav
+    - header
+    - '[role=''banner'']'
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Wyoming Department of Health, Medicaid Eligibility Unit
+    document_subtype: eligibility_table_html
+    program: MEDICAID
+    manual: Wyoming Department of Health Eligibility Online Manual (EOM)
+    manual_index_url: https://ecom.wyo.gov/
+    source_discovery_group: us-wy/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 8 (2026-09-15 wave-5 closure); publisher index https://ecom.wyo.gov/

@@ -1,0 +1,1158 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ak-dpa-magi-magi-medicaid-eligibility-manual
+  jurisdiction: us-ak
+  document_class: manual
+  title: MAGI Medicaid Eligibility Manual
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/magi_medicaid_eligibility_manual/magi_medicaid_eligibility_manual.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/magi-medicaid-eligibility-manual
+  extraction: &id001
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-800-introduction-to-medicaid
+  jurisdiction: us-ak
+  document_class: manual
+  title: 800 Introduction to Medicaid
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/800_introduction_to_medicaid/800_introduction_to_medicaid.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/800-introduction-to-medicaid
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-800-1-purpose
+  jurisdiction: us-ak
+  document_class: manual
+  title: 800-1 Purpose
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/800_introduction_to_medicaid/800-1_purpose.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/800-1-purpose
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-a-freedom-of-choice-provisions
+  jurisdiction: us-ak
+  document_class: manual
+  title: 801 General Medicaid Provisions
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/801_general_medicaid_provisions/a._freedom_of_choice_provisions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/a-freedom-of-choice-provisions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-802-notice-of-decision-required
+  jurisdiction: us-ak
+  document_class: manual
+  title: 802 Notices
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/802_notices/802_notice_of_decision_required.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/802-notice-of-decision-required
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-802-1-adequate-notice
+  jurisdiction: us-ak
+  document_class: manual
+  title: 802-1 Adequate Notice
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/802_notices/802-1_adequate_notice.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/802-1-adequate-notice
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-802-2-timely-notice-requirement
+  jurisdiction: us-ak
+  document_class: manual
+  title: 802-2 Timely Notice Requirement
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/802_notices/802-2_timely_notice_requirement.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/802-2-timely-notice-requirement
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-802-3-other-notice-requirements
+  jurisdiction: us-ak
+  document_class: manual
+  title: 802-3 Other Notice Requirements
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/802_notices/802-3_other_notice_requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/802-3-other-notice-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-a-eligibility-technician-responsibilities
+  jurisdiction: us-ak
+  document_class: manual
+  title: 803 Fraud
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/803_fraud/a._eligibility_technician_responsibilities.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/a-eligibility-technician-responsibilities
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-804-right-to-fair-hearing
+  jurisdiction: us-ak
+  document_class: manual
+  title: 804 Right to Fair Hearing
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/804_right_to_fair_hearing/804_right_to_fair_hearing.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/804-right-to-fair-hearing
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-805-medicaid-recipient-id-card
+  jurisdiction: us-ak
+  document_class: manual
+  title: 805 Medicaid Recipient ID Card
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/805_medicaid_recipient_id_card/805_medicaid_recipient_id_card.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/805-medicaid-recipient-id-card
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-application-and-renewal-process
+  jurisdiction: us-ak
+  document_class: manual
+  title: 806 Application and Renewal Process
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/806_application_and_renewal_process/application_and_renewal_process.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/application-and-renewal-process
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-806-1-the-application
+  jurisdiction: us-ak
+  document_class: manual
+  title: 806-1 The Application
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/806_application_and_renewal_process/806-1_the_application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/806-1-the-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-806-2-actions-taken-on-the-application
+  jurisdiction: us-ak
+  document_class: manual
+  title: 806-2 Actions Taken on the Application
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/806_application_and_renewal_process/806-2_actions_taken_on_the_application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/806-2-actions-taken-on-the-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-renewal-requirements
+  jurisdiction: us-ak
+  document_class: manual
+  title: 806- 3 Renewal Requirements
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/806_application_and_renewal_process/renewal_requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/renewal-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-807-non-financial-factors
+  jurisdiction: us-ak
+  document_class: manual
+  title: 807 Non Financial Factors of Eligibility
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/807_non_financial_factors_of_eligibility/807_non-financial_factors.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/807-non-financial-factors
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-us-citizenship-and-eligibile-alien-status
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808 US Citizenship and Eligible Alien Status
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808_us_citizenship_and_eligibile_alien_status.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-us-citizenship-and-eligibile-alien-status
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-809-alaska-residency
+  jurisdiction: us-ak
+  document_class: manual
+  title: 809 Alaska Residency
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/809_alaska_residency/809_alaska_residency.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/809-alaska-residency
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-810-social-security-enumeration
+  jurisdiction: us-ak
+  document_class: manual
+  title: 810 Social Security Enumeration
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/810_social_security_enumeration/810_social_security_enumeration.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/810-social-security-enumeration
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-811-assignment-of-rights
+  jurisdiction: us-ak
+  document_class: manual
+  title: 811 Assignment of Rights
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/811_assignment_of_rights/811_assignment_of_rights.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/811-assignment-of-rights
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-812-medical-support-assignment
+  jurisdiction: us-ak
+  document_class: manual
+  title: 812 Medical Support Assignment
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/812_medical_support_assignment/812_medical_support_assignment.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/812-medical-support-assignment
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-development-of-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 813 Development of Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/813_development_of_income/development_of_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/development-of-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-814-tpl-and-recovery
+  jurisdiction: us-ak
+  document_class: manual
+  title: 814 TPL and Recovery
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/814_tpl_and_recovery/814_tpl_and_recovery.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/814-tpl-and-recovery
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-815-residents-of-institutions
+  jurisdiction: us-ak
+  document_class: manual
+  title: 815 Residents of Institutions
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/815_residents_of_institutions/815_residents_of_institutions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/815-residents-of-institutions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-806-magi-medicaid-categories
+  jurisdiction: us-ak
+  document_class: manual
+  title: 816 MAGI Medicaid Categories
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/816_magi_medicaid_categories/806_magi_medicaid_categories.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/806-magi-medicaid-categories
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-817-magi-medicaid-household-composition
+  jurisdiction: us-ak
+  document_class: manual
+  title: 817 Determining MAGI Medicaid Household
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/817_determining_magi_medicaid_household/817_magi_medicaid_household_composition.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/817-magi-medicaid-household-composition
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-818-magi-medicaid-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 818 MAGI Medicaid Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/818_magi_medicaid_income/818_magi_medicaid_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/818-magi-medicaid-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-819-types-of-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 819 Types of Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/819_types_of_income/819_types_of_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/819-types-of-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-budgeting-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820 Budgeting Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820_budgeting_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-budgeting-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-821-budgeting-self-employment-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 821 Budgeting Self-Employment Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/821_budgeting_self-employment_income/821_budgeting_self-employment_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/821-budgeting-self-employment-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-822-resources
+  jurisdiction: us-ak
+  document_class: manual
+  title: 822 Resources
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/822_resources/822_resources.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/822-resources
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-823-verification-and-documentation
+  jurisdiction: us-ak
+  document_class: manual
+  title: 823 Verification and Documentation
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/823_verification_and_documentation/823_verification_and_documentation.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/823-verification-and-documentation
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-824-magi-medicaid-change-reporting-requirements
+  jurisdiction: us-ak
+  document_class: manual
+  title: 824 MAGI Medicaid Change Reporting Requirements
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/824_magi_medicaid_change_reporting_requirements/824_magi_medicaid_change_reporting_requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/824-magi-medicaid-change-reporting-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-825-coordination-with-the-federally-facilitated-marketplace
+  jurisdiction: us-ak
+  document_class: manual
+  title: 825 Coordination With the Federally Facilitated Marketplace
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/825_coordination_with_the_federally_facilitated_marketplace/825_coordination_with_the_federally_facilitated_marketplace.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/825-coordination-with-the-federally-facilitated-marketplace
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-826-home-and-community-based-waiver-services
+  jurisdiction: us-ak
+  document_class: manual
+  title: 826 Home and Community Based Waiver Services
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/826_home_and_community_based_waiver_services/826_home_and_community_based_waiver_services.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/826-home-and-community-based-waiver-services
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-825-retroactive-medicaid
+  jurisdiction: us-ak
+  document_class: manual
+  title: 827 Retroactive Medicaid
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/827_retroactive_medicaid/825_retroactive_medicaid.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/825-retroactive-medicaid
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-828-transitional-medicaid
+  jurisdiction: us-ak
+  document_class: manual
+  title: 828 Transitional Medicaid
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/828_transitional_medicaid/828_transitional_medicaid.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/828-transitional-medicaid
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-829-title-iv-e-foster-care-and-adoption-assistance
+  jurisdiction: us-ak
+  document_class: manual
+  title: 829 Title IV-E Foster Care and Adoption Assistance
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/829_title_iv-e_foster_care_and_adoption_assistance/829_title_iv-e_foster_care_and_adoption_assistance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/829-title-iv-e-foster-care-and-adoption-assistance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-830-eligibility-under-adoption-assistance
+  jurisdiction: us-ak
+  document_class: manual
+  title: 830 Eligibility Under Adoption Assistance
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/830_eligibility_under_adoption_assistance/830_eligibility_under_adoption_assistance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/830-eligibility-under-adoption-assistance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-831-emergency-treatment-for-aliens
+  jurisdiction: us-ak
+  document_class: manual
+  title: 831 Emergency Treatment for Aliens
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/831_emergency_treatment_for_aliens/831_emergency_treatment_for_aliens.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/831-emergency-treatment-for-aliens
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-832-post-medicaid-increased-spousal-support
+  jurisdiction: us-ak
+  document_class: manual
+  title: 832 Post Medicaid Increased Spousal Support
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/832_post_medicaid_increased_spousal_support/832_post_medicaid_increased_spousal_support.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/832-post-medicaid-increased-spousal-support
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-833-hosptial-presumptive-eligibility-determination
+  jurisdiction: us-ak
+  document_class: manual
+  title: 833 Hospital Presumptive Eligibility
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/833_hospital_presumptive_eligibility/833_hosptial_presumptive_eligibility_determination.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/833-hosptial-presumptive-eligibility-determination
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-1-united-states-citizens-and-nationals
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-1 United States Citizens and Nationals
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-1_united_states_citizens_and_nationals.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-1-united-states-citizens-and-nationals
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-2-qualified-aliens
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-2 Qualified Aliens
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-2_qualified_aliens.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-2-qualified-aliens
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-3-native-americans-born-outside-the-united-states
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-3 Native Americans Born Outside the United States
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-3_native_americans_born_outside_the_united_states.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-3-native-americans-born-outside-the-united-states
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-4-five-year-waiting-period
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-4 Five Year Waiting Period
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-4_five_year_waiting_period.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-4-five-year-waiting-period
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-5-non-qualified-aliens
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-5 Non Qualified Aliens
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-5_non_qualified_aliens.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-5-non-qualified-aliens
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-6-proof-of-united-states-citizenship-and-qualified-alien-status
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-6 Proof of United States Citizenship and Qualified Alien Status
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-6_proof_of_united_states_citizenship_and_qualified_alien_status.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-6-proof-of-united-states-citizenship-and-qualified-alien-status
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-808-7-reasonable-opportunity-period
+  jurisdiction: us-ak
+  document_class: manual
+  title: 808-7 Reasonable Opportunity Period
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/808_us_citizenship_and_eligible_alien_status/808-7_reasonable_opportunity_period.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/808-7-reasonable-opportunity-period
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-812-1-informing-about-medical-support-orders
+  jurisdiction: us-ak
+  document_class: manual
+  title: 812-1 Informing About Medical Support Orders
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/812_medical_support_assignment/812-1_informing_about_medical_support_orders.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/812-1-informing-about-medical-support-orders
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-812-2-assignment-of-medical-support-rights
+  jurisdiction: us-ak
+  document_class: manual
+  title: 812-2 Assignment of Medical Support Rights
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/812_medical_support_assignment/812-2_assignment_of_medical_support_rights.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/812-2-assignment-of-medical-support-rights
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-812-3-how-a-caretaker-cooperates-with-cssd
+  jurisdiction: us-ak
+  document_class: manual
+  title: 812-3 How a Caretaker Cooperates with CSSD
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/812_medical_support_assignment/812-3_how_a_caretaker_cooperates_with_cssd.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/812-3-how-a-caretaker-cooperates-with-cssd
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-812-4-failure-to-cooperate-with-cssd
+  jurisdiction: us-ak
+  document_class: manual
+  title: 812-4 Failure to Cooperate With CSSD
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/812_medical_support_assignment/812-4_failure_to_cooperate_with_cssd.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/812-4-failure-to-cooperate-with-cssd
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-812-5-procedures-for-exchanging-info
+  jurisdiction: us-ak
+  document_class: manual
+  title: 812-5 Procedures For Exchanging Info
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/812_medical_support_assignment/812-5_procedures_for_exchanging_info.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/812-5-procedures-for-exchanging-info
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-815-1-children-living-in-residential-treatment-centers-over-30-days
+  jurisdiction: us-ak
+  document_class: manual
+  title: 815-1 Hospitalized Children Receiving Treatment Over 30 Days
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/815_residents_of_institutions/815-1_children_living_in_residential_treatment_centers_over_30_days.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/815-1-children-living-in-residential-treatment-centers-over-30-days
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-816-1-magi-category-eligibility-factors
+  jurisdiction: us-ak
+  document_class: manual
+  title: 816-1 MAGI Medicaid Category Eligibility Factors
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/816_magi_medicaid_categories/816-1_magi_category_eligibility_factors.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/816-1-magi-category-eligibility-factors
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-817-1-construct-a-magi-household-for-each-applicant
+  jurisdiction: us-ak
+  document_class: manual
+  title: 817-1 Construct a MAGI Household for Each Applicant
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/817_determining_magi_medicaid_household/817-1_construct_a_magi_household_for_each_applicant.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/817-1-construct-a-magi-household-for-each-applicant
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-817-2-examples-of-income-counting-for-magi-medicaid-household-compositions
+  jurisdiction: us-ak
+  document_class: manual
+  title: 817-2 Examples of Income Counting for MAGI Medicaid Household Compositions
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/817_determining_magi_medicaid_household/817-2_examples_of_income_counting_for_magi_medicaid_household_compositions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/817-2-examples-of-income-counting-for-magi-medicaid-household-compositions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-1-estimation-the-household-s-monthly-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820-1 Estimation The Household's Monthly Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820-1_estimation_the_household_s_monthly_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-1-estimation-the-household-s-monthly-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-2-calculating-a-monthly-income-amount
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820-2 Calculating a Monthly Income Amount
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820-2_calculating_a_monthly_income_amount.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-2-calculating-a-monthly-income-amount
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-3-full-month-s-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820-3 Full Month's Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820-3_full_month_s_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-3-full-month-s-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-4-not-a-full-month-s-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820-4 Not a Full Month's Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820-4_not_a_full_month_s_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-4-not-a-full-month-s-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-5-irregular-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820-5 Irregular Income
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820-5_irregular_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-5-irregular-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare
+- source_id: ak-dpa-magi-820-6-specialized-budgeting
+  jurisdiction: us-ak
+  document_class: manual
+  title: 820-6 Specialized Budgeting
+  source_url: http://dpaweb.hss.state.ak.us/manuals/MAGI2/820_budgeting_income/820-6_specialized_budgeting.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/magi-medicaid/820-6-specialized-budgeting
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance (MAGI Medicaid Eligibility Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ak/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    state_program: Denali KidCare

@@ -1,0 +1,81 @@
+{
+  "documents": [
+    {
+      "source_id": "bgbl296s1455b",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "citation_path": "de/regulation/bgbl-1996-ii-1455/kindergeld-marokko-inkrafttreten",
+      "title": "Bekanntmachung über das Inkrafttreten des deutsch-marokkanischen Kindergeld-Abkommens und Zusatzabkommens, 23. Juli 1996",
+      "source_url": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl296s1455b.pdf%27%5D",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "1996-07-23",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block",
+        "ocr": true,
+        "ocr_language": "deu",
+        "ocr_dpi": 300,
+        "page_windows": [
+          {
+            "start_page": 1,
+            "end_page": 1,
+            "start_at_pattern": "Inkrafttreten"
+          }
+        ],
+        "drop_line_patterns": [
+          "^\\d{4}$"
+        ]
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesgesetzblatt online archive, Bundesanzeiger Verlag",
+        "date_publication": "1996-08-27",
+        "snapshot_sha256": "241a171232aa1f5aa00a6fba36595ade7ebbabfff27d49df34702716cbbfe5a6",
+        "media_name": "bgbl/Bundesgesetzblatt Teil II/1996/Nr. 38 vom 27.08.1996/bgbl296s1455b.pdf",
+        "ocr_engine": "tesseract 5.5.3",
+        "ocr_language_data_sha256": "19d219bbb6672c869d20a9636c6816a81eb9a71796cb93ebe0cb1530e2cdb22d",
+        "source_note": "Official single-page snapshot contains a neighboring unrelated notice. Native page-window anchors select only the Kindergeld commencement notice; all operative paragraphs and the signature remain. The Moroccan window starts at its specific Inkrafttreten headline after the generic heading word. Full PDF remains unchanged. Both notices state1August1996 treaty commencement; publication and notice dates are separate. No manual body edits."
+      }
+    },
+    {
+      "source_id": "bgbl296s2522a",
+      "jurisdiction": "de",
+      "document_class": "regulation",
+      "citation_path": "de/regulation/bgbl-1996-ii-2522/kindergeld-tunesien-inkrafttreten",
+      "title": "Bekanntmachung über das Inkrafttreten des deutsch-tunesischen Kindergeld-Abkommens, 17. September 1996",
+      "source_url": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl296s2522a.pdf%27%5D",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "1996-09-17",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block",
+        "ocr": true,
+        "ocr_language": "deu",
+        "ocr_dpi": 300,
+        "page_windows": [
+          {
+            "start_page": 1,
+            "end_page": 1,
+            "start_at_pattern": "^Bekanntmachung",
+            "stop_at_pattern": "^Bekanntmachung"
+          }
+        ],
+        "drop_line_patterns": [
+          "^\\d{4}$"
+        ]
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesgesetzblatt online archive, Bundesanzeiger Verlag",
+        "date_publication": "1996-10-15",
+        "snapshot_sha256": "c4dc1d5ae797ee072204729caac0346d4362535c4ef8eed95e2dc5211deed021",
+        "media_name": "bgbl/Bundesgesetzblatt Teil II/1996/Nr. 44 vom 15.10.1996/bgbl296s2522a.pdf",
+        "ocr_engine": "tesseract 5.5.3",
+        "ocr_language_data_sha256": "19d219bbb6672c869d20a9636c6816a81eb9a71796cb93ebe0cb1530e2cdb22d",
+        "source_note": "Official single-page snapshot contains a neighboring unrelated notice. Native page-window anchors select only the Kindergeld commencement notice; all operative paragraphs and the signature remain. The Moroccan window starts at its specific Inkrafttreten headline after the generic heading word. Full PDF remains unchanged. Both notices state1August1996 treaty commencement; publication and notice dates are separate. No manual body edits."
+      }
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -25,6 +26,7 @@ ALABAMA_GRAPHQL_URL = f"{ALABAMA_BASE_URL}/graphql"
 ALABAMA_GRAPHQL_SOURCE_FORMAT = "alabama-code-graphql-json"
 ALABAMA_USER_AGENT = "axiom-corpus/0.1 (contact@axiom-foundation.org)"
 ALABAMA_SECTION_PAGE_SIZE = 1000
+ALABAMA_CODE_ROOT = "us-al/statute"
 
 _CODE_REFERENCE_RE = re.compile(
     r"(?:Section|Sections|\u00a7+)\s+(?P<section>\d+[A-Z]?-\d+[A-Z]?-[0-9A-Z.]+)",
@@ -280,10 +282,16 @@ def extract_alabama_code(
         titles_record=titles_record,
     )
     selected_section_ids: set[str] = set()
+    fetched_order: list[str] = []
     total_sections: int | None = None
     fetched_sections = 0
     offset = 0
     effective_page_size = max(1, page_size)
+    # The page that ended the listing, and why it ended early if it did. A
+    # page that could not be fetched has no snapshot, so the titles source,
+    # which names every container, is the evidence for the gaps instead.
+    ending_record: _RecordedSource | None = None
+    listing_failure: str | None = None
     while total_sections is None or offset < total_sections:
         if limit is not None and fetched_sections >= limit:
             break
@@ -292,11 +300,24 @@ def extract_alabama_code(
             if limit is not None
             else effective_page_size
         )
-        page_source = fetcher.fetch_sections_page(offset=offset, limit=current_limit)
+        ending_record = None
+        # Only the fetch and the payload parse end the listing as a gap. A
+        # failure to write the local snapshot is not a coverage gap, so it
+        # aborts the run.
+        try:
+            page_source = fetcher.fetch_sections_page(offset=offset, limit=current_limit)
+        except Exception as exc:  # noqa: BLE001
+            listing_failure = f"sections page at offset {offset} failed: {exc}"
+            break
         page_path, page_record = _record_source(store, jurisdiction, run_id, page_source)
         source_paths.append(page_path)
         source_records[page_source.relative_path] = page_record
-        payload = _graphql_data(page_source.data, "codesOfAlabama")
+        ending_record = page_record
+        try:
+            payload = _graphql_data(page_source.data, "codesOfAlabama")
+        except Exception as exc:  # noqa: BLE001
+            listing_failure = f"sections page at offset {offset} failed: {exc}"
+            break
         total_sections = int(payload.get("count") or 0)
         rows = payload.get("data") or []
         if not rows:
@@ -308,24 +329,51 @@ def extract_alabama_code(
                 node,
             )
             selected_section_ids.add(node.code_id)
+            fetched_order.append(node.code_id)
             fetched_sections += 1
             offset += 1
         if len(rows) < current_limit:
             break
 
-    nodes = _prepare_alabama_nodes(nodes_by_code_id)
-    full_corpus = (
-        limit is None
-        and title_filter is None
+    prepared_nodes = _prepare_alabama_nodes(nodes_by_code_id)
+    # The listing is whole only when it reports a positive count and the run
+    # holds that many distinct sections. A listing that reports no sections
+    # cannot vouch for a scaffold that names titles.
+    listing_complete = (
+        listing_failure is None
         and total_sections is not None
+        and total_sections > 0
         and len(selected_section_ids) >= total_sections
     )
+    full_corpus = limit is None and title_filter is None and listing_complete
     nodes = _select_alabama_nodes(
-        nodes,
+        prepared_nodes,
         selected_section_ids,
         title_filter=title_filter,
         full_corpus=full_corpus,
     )
+    # A run capped by ``limit`` selects only what it fetched, by design.
+    listing_gaps = _AlabamaListingGaps()
+    listing_reason = ""
+    if limit is None and not listing_complete:
+        reported = "an unknown number of" if total_sections is None else str(total_sections)
+        listing_reason = listing_failure or (
+            f"sections listing ended with {len(selected_section_ids)} of {reported} sections"
+        )
+        listing_gaps = _alabama_listing_gaps(
+            prepared_nodes,
+            selected_section_ids,
+            fetched_order,
+            title_filter=title_filter,
+        )
+        keep = {node.code_id for node in nodes} | listing_gaps.gaps | listing_gaps.kept
+        if listing_gaps.marked is not None:
+            keep.add(listing_gaps.marked)
+        nodes = [node for node in prepared_nodes if node.code_id in keep]
+    gap_code_ids = set(listing_gaps.gaps)
+    if listing_gaps.marked is not None:
+        gap_code_ids.add(listing_gaps.marked)
+    gap_source = ending_record or titles_record
 
     items: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
@@ -341,11 +389,31 @@ def extract_alabama_code(
             continue
         citation_path = node.citation_path
         metadata = _alabama_metadata(node)
+        if node.code_id in gap_code_ids:
+            # An inventory item without a provision: coverage lists it in
+            # missing_from_provisions, so the run cannot read complete.
+            if citation_path in seen:
+                continue
+            seen.add(citation_path)
+            if node.code_id == listing_gaps.marked:
+                errors.append(_alabama_marker_error(gap_source, listing_reason, citation_path))
+            else:
+                errors.append(
+                    f"{gap_source.source_path}: {listing_reason}; "
+                    f"no section held under {citation_path}"
+                )
+            items.append(_alabama_gap_item(citation_path, gap_source, metadata))
+            continue
         if citation_path in seen:
             if node.kind != "section":
                 continue
+            # ALISON carries a second node for a section number when a pending
+            # version exists ("Effective upon ratification..."). The publisher
+            # code id disambiguates it as a "--code-<id>" variant segment (the
+            # NM/VT "--" convention; "@" is outside the citation-path grammar).
             metadata["canonical_citation_path"] = citation_path
-            citation_path = f"{citation_path}@code-{node.code_id}"
+            metadata["publisher_section_id"] = node.display_id or node.code_id
+            citation_path = variant_segment(citation_path, f"code-{node.code_id}")
             if citation_path in seen:
                 continue
         seen.add(citation_path)
@@ -382,7 +450,12 @@ def extract_alabama_code(
             metadata=metadata,
         )
 
-    if not records:
+    if listing_gaps.mark_code_root and ALABAMA_CODE_ROOT not in seen:
+        seen.add(ALABAMA_CODE_ROOT)
+        errors.append(_alabama_marker_error(gap_source, listing_reason, ALABAMA_CODE_ROOT))
+        items.append(_alabama_gap_item(ALABAMA_CODE_ROOT, gap_source, {"kind": "code"}))
+
+    if not items:
         raise ValueError("no Alabama provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -580,13 +653,143 @@ def _select_alabama_nodes(
     return [node for node in nodes if node.code_id in selected and (node.title or node.content_html)]
 
 
+@dataclass(frozen=True)
+class _AlabamaListingGaps:
+    """What a sections listing that ended early leaves out of the run."""
+
+    gaps: frozenset[str] = frozenset()
+    """Code ids of nodes the run did not fetch and cannot vouch for."""
+    kept: frozenset[str] = frozenset()
+    """Code ids of containers the scaffold gives no section, kept as records."""
+    marked: str | None = None
+    """Code id that marks a shortfall the run cannot place, when nothing else is a gap."""
+    mark_code_root: bool = False
+    """Whether the code itself marks that shortfall, when no node in the run can."""
+
+
+def _alabama_listing_gaps(
+    nodes: list[AlabamaNode],
+    section_ids: set[str],
+    fetched_order: list[str],
+    *,
+    title_filter: str | None,
+) -> _AlabamaListingGaps:
+    """Name what a sections listing that ended early leaves out.
+
+    Within ``title_filter``, every node the scaffold or titles name that has no
+    fetched section beneath it is a gap, with one exception: a container the
+    scaffold gives no section at all holds nothing to fetch, so it stays a
+    record, whatever its heading says. An unfetched section is always a gap.
+
+    When nothing is a gap, the missing entries fall outside what the titles
+    data names for the selection, and the run cannot place them. The
+    container of the last section held marks the shortfall instead, or the
+    title under ``title_filter``, or the code, so a short listing never reads
+    complete.
+    """
+    by_code_id = {node.code_id: node for node in nodes}
+
+    def in_selection(node: AlabamaNode) -> bool:
+        if not (node.title or node.content_html):
+            return False
+        if title_filter is None:
+            return True
+        return _node_title_display(node) == title_filter or _has_title_ancestor(
+            node, by_code_id, title_filter
+        )
+
+    candidates = {node.code_id for node in nodes if in_selection(node)}
+    covered = _alabama_ancestors_of(section_ids, by_code_id)
+    sections = _alabama_gap_sections(nodes)
+    holders = _alabama_ancestors_of(sections, by_code_id) - sections
+    uncovered = candidates - covered
+    kept = {code_id for code_id in uncovered if code_id not in sections | holders}
+    gaps = uncovered - kept
+    if gaps:
+        return _AlabamaListingGaps(gaps=frozenset(gaps), kept=frozenset(kept))
+    for code_id in reversed(fetched_order):
+        if code_id not in candidates:
+            continue
+        parent_id = by_code_id[code_id].parent_id
+        marked = parent_id if parent_id in candidates else code_id
+        return _AlabamaListingGaps(kept=frozenset(kept), marked=marked)
+    if title_filter is not None:
+        for node in nodes:
+            if node.code_id in candidates and node.kind == "title":
+                return _AlabamaListingGaps(kept=frozenset(kept), marked=node.code_id)
+        return _AlabamaListingGaps(kept=frozenset(kept))
+    return _AlabamaListingGaps(kept=frozenset(kept), mark_code_root=True)
+
+
+def _alabama_ancestors_of(
+    code_ids: set[str],
+    by_code_id: dict[str, AlabamaNode],
+) -> set[str]:
+    """The given nodes and every ancestor of them."""
+    found: set[str] = set()
+    for code_id in code_ids:
+        node = by_code_id.get(code_id)
+        while node is not None and node.code_id not in found:
+            found.add(node.code_id)
+            node = by_code_id.get(node.parent_id) if node.parent_id else None
+    return found
+
+
+_SECTION_NUMBER_RE = re.compile(r"\d+[A-Z]?-\d+[A-Z]?-[0-9A-Z.]+")
+
+
+def _alabama_gap_sections(nodes: list[AlabamaNode]) -> set[str]:
+    """Code ids the gap logic counts as sections.
+
+    A node reads as a section from its titles text. A node with no child in the
+    scaffold whose ``displayId`` has the section-number shape counts too: the
+    live titles data heads a few such nodes "Division ..." or "Article ...".
+    This affects only which nodes a run that ended early names as gaps, not any
+    node's ``kind`` or record.
+    """
+    parents = {node.parent_id for node in nodes if node.parent_id}
+    return {
+        node.code_id
+        for node in nodes
+        if node.kind == "section"
+        or (
+            node.code_id not in parents
+            and node.display_id is not None
+            and _SECTION_NUMBER_RE.fullmatch(node.display_id) is not None
+        )
+    }
+
+
+def _alabama_marker_error(source: _RecordedSource, reason: str, citation_path: str) -> str:
+    return (
+        f"{source.source_path}: {reason}; the run can't place the missing ones; "
+        f"marked at {citation_path}"
+    )
+
+
+def _alabama_gap_item(
+    citation_path: str,
+    source: _RecordedSource,
+    metadata: dict[str, Any],
+) -> SourceInventoryItem:
+    """An inventory item with no provision: coverage lists it as missing."""
+    return SourceInventoryItem(
+        citation_path=citation_path,
+        source_url=source.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+        metadata=metadata,
+    )
+
+
 def _section_node_count(nodes: list[AlabamaNode]) -> int:
     return sum(1 for node in nodes if node.kind == "section" and node.content_html is not None)
 
 
 def _alabama_citation_path(node: AlabamaNode, parent: AlabamaNode | None) -> str:
     if node.kind == "section" and node.display_id:
-        return f"us-al/statute/{node.display_id}"
+        return f"us-al/statute/{citation_segment(node.display_id)}"
     token = _alabama_path_token(node)
     if parent is None or node.kind == "title":
         return f"us-al/statute/{token}"
@@ -609,6 +812,13 @@ def _alabama_metadata(node: AlabamaNode) -> dict[str, Any]:
         "graph_id": node.graph_id,
         "parent_code_id": node.parent_id,
         "display_id": node.display_id,
+        "publisher_section_id": (
+            node.display_id
+            if node.kind == "section"
+            and node.display_id
+            and citation_segment(node.display_id) != node.display_id
+            else None
+        ),
         "section_range": node.section_range,
         "effective_date": node.effective_date,
         "supersession_date": node.supersession_date,

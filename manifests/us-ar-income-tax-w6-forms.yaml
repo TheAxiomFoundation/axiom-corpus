@@ -1,0 +1,1366 @@
+version: 2026-10-06-w6-income-tax-forms-ar
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Arkansas
+documents:
+- source_id: us-ar-w6-dfa-ty2014-long-booklet-with-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2014 Individual Income Tax Forms and Instructions, Long Booklet with Tax Tables
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/LongBookwTaxTables_2014.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2014-01-01'
+  citation_path: us-ar/form/dfa/ty2014/long-booklet-with-tax-tables
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2014 Individual Income Tax Forms and Instructions Full Year Resident Part Year Resident
+      Nonresident
+    tax_year: '2014'
+    wave6_work_order_rows:
+    - 83
+- source_id: us-ar-w6-dfa-ty2015-long-booklet-with-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2015 Individual Income Tax Forms and Instructions, Long Booklet with Tax Tables
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/LongBookwTaxTables_2015.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2015-01-01'
+  citation_path: us-ar/form/dfa/ty2015/long-booklet-with-tax-tables
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2015 Individual Income Tax Forms and Instructions
+    tax_year: '2015'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 84
+- source_id: us-ar-w6-dfa-ty2016-long-booklet-with-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2016 Individual Income Tax Forms and Instructions, Long Booklet with Tax Tables
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/LongBookwTaxTables_2016.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2016-01-01'
+  citation_path: us-ar/form/dfa/ty2016/long-booklet-with-tax-tables
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2016 Individual Income Tax Forms and Instructions Long Booklet
+    tax_year: '2016'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 85
+- source_id: us-ar-w6-dfa-ty2017-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2017 Individual Income Tax Forms and Instructions, Long Booklet (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1000FandAR1000NRInstructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2017-01-01'
+  citation_path: us-ar/form/dfa/ty2017/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2017 Individual Income Tax Forms and Instructions Long Booklet
+    tax_year: '2017'
+    wave6_work_order_rows:
+    - 70
+- source_id: us-ar-w6-dfa-ty2018-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2018 Individual Income Tax Forms and Instructions, Long Booklet (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1000FandAR1000NRInstructions_2018.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us-ar/form/dfa/ty2018/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2018 Individual Income Tax Forms and Instructions Long Booklet
+    tax_year: '2018'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 71
+- source_id: us-ar-w6-dfa-ty2019-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2019 Individual Income Tax Forms and Instructions (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2019_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2019-01-01'
+  citation_path: us-ar/form/dfa/ty2019/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2019 Individual Income Tax Forms and Instructions
+    tax_year: '2019'
+    wave6_work_order_rows:
+    - 41
+- source_id: us-ar-w6-dfa-ty2020-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2020 Individual Income Tax Forms and Instructions (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2020_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-ar/form/dfa/ty2020/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2020 Individual Income Tax Forms and Instructions
+    tax_year: '2020'
+    wave6_work_order_rows:
+    - 42
+- source_id: us-ar-w6-dfa-ty2021-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2021 Individual Income Tax Forms and Instructions (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2021_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ar/form/dfa/ty2021/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arkansas 2021 Individual Income Tax Forms and Instructions
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 45
+- source_id: us-ar-w6-dfa-ty2022-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2022 Individual Income Tax Forms and Instructions (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: The Old Mill ... Arkansas 2022 Individual Income Tax
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 49
+- source_id: us-ar-w6-dfa-ty2023-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2023 Individual Income Tax Forms and Instructions (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Pedestal Rocks Scenic Area ... Arkansas 2023 Individual Income Tax
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 56
+- source_id: us-ar-w6-dfa-ty2024-ar1000f-ar1000nr-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas 2024 Individual Income Tax Forms and Instructions (AR1000F and AR1000NR)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/ar1000f-ar1000nr-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Yancopin Bridge ... Arkansas 2024 Individual Income Tax
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 62
+- source_id: us-ar-w6-dfa-ty2021-ar1000f
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000F Arkansas Individual Income Tax Return, Full Year Resident (2021)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2021_AR1000F_FullYearResidentIndividualIncomeTaxReturn.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ar/form/dfa/ty2021/ar1000f
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1 Page AR1 (R 7/19/2021)
+    tax_year: '2021'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 44
+- source_id: us-ar-w6-dfa-ty2022-ar1000f
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000F Arkansas Individual Income Tax Return, Full Year Resident (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_AR1000F_FullYearResidentIndividualIncomeTaxReturn.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/ar1000f
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000F, Page 1 (R 7/21/2022) 2022 AR1000F ARKANSAS INDIVIDUAL INCOME TAX RETURN Full Year Resident
+    tax_year: '2022'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 48
+- source_id: us-ar-w6-dfa-ty2023-ar1000f
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000F Arkansas Individual Income Tax Return, Full Year Resident (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_AR1000F_FullYearResidentIndividualIncomeTaxReturn.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/ar1000f
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000F, Page 1 (R 7/3/2023) 2023 AR1000F ARKANSAS INDIVIDUAL INCOME TAX RETURN Full Year Resident
+    tax_year: '2023'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 55
+- source_id: us-ar-w6-dfa-ty2021-ar1000d
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000D Arkansas Capital Gains and Losses (2021)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2021_AR1000D_CapitalGains.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ar/form/dfa/ty2021/ar1000d
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000D (R 6/9/2021) 1. Enter federal long-term capital gain or loss
+    tax_year: '2021'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 43
+- source_id: us-ar-w6-dfa-ty2022-ar1000d
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000D Arkansas Capital Gains and Losses (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_AR1000D_CapitalGains.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/ar1000d
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000D (R 6/1/2022)
+    tax_year: '2022'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 47
+- source_id: us-ar-w6-dfa-ty2023-ar1000d
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000D Arkansas Capital Gains and Losses (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_AR1000D_CapitalGains.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/ar1000d
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000D (R 7/5/2023)
+    tax_year: '2023'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 54
+- source_id: us-ar-w6-dfa-ty2024-ar1000d
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000D Arkansas Capital Gains and Losses (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_AR1000D_CapitalGains.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/ar1000d
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000D (R 10/31/2024)
+    tax_year: '2024'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 61
+- source_id: us-ar-w6-dfa-ty2025-ar1000d
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000D Arkansas Capital Gains and Losses (2025)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2025_AR1000D_CapitalGains.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ar/form/dfa/ty2025/ar1000d
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1000D (R 4/25/2025)
+    tax_year: '2025'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 68
+- source_id: us-ar-w6-dfa-ty2021-ar2441
+  jurisdiction: us-ar
+  document_class: form
+  title: AR2441 Arkansas Child and Dependent Care Expenses (2021)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2021_AR2441_Child_andDependentCareExpenses.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ar/form/dfa/ty2021/ar2441
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR2441 CHILD AND DEPENDENT CARE EXPENSES 2021
+    tax_year: '2021'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 46
+- source_id: us-ar-w6-dfa-ty2022-ar2441
+  jurisdiction: us-ar
+  document_class: form
+  title: AR2441 Arkansas Child and Dependent Care Expenses (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_AR2441_Child_andDependentCareExpenses.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/ar2441
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2022 AR2441 CHILD AND DEPENDENT CARE EXPENSES
+    tax_year: '2022'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 50
+- source_id: us-ar-w6-dfa-ty2023-ar2441
+  jurisdiction: us-ar
+  document_class: form
+  title: AR2441 Arkansas Child and Dependent Care Expenses (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_AR2441_Child_andDependentCareExpenses.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/ar2441
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2023 AR2441 CHILD AND DEPENDENT CARE EXPENSES
+    tax_year: '2023'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 58
+- source_id: us-ar-w6-dfa-ty2024-ar2441
+  jurisdiction: us-ar
+  document_class: form
+  title: AR2441 Arkansas Child and Dependent Care Expenses (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_AR2441_Child_andDependentCareExpenses.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/ar2441
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2024 AR2441 CHILD AND DEPENDENT CARE EXPENSES
+    tax_year: '2024'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 65
+- source_id: us-ar-w6-dfa-ty2011-ar3
+  jurisdiction: us-ar
+  document_class: form
+  title: AR3 Arkansas Itemized Deductions (2011)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR3_2011_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2011-01-01'
+  citation_path: us-ar/form/dfa/ty2011/ar3
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR3 (R 8/16/2011) MEDICAL AND DENTAL EXPENSES
+    tax_year: '2011'
+    wave6_work_order_rows:
+    - 80
+- source_id: us-ar-w6-dfa-ty2012-ar3
+  jurisdiction: us-ar
+  document_class: form
+  title: AR3 Arkansas Itemized Deductions (2012)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR3_2012_RE.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2012-01-01'
+  citation_path: us-ar/form/dfa/ty2012/ar3
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR3 (R 11/7/12) MEDICAL AND DENTAL EXPENSES
+    tax_year: '2012'
+    wave6_work_order_rows:
+    - 81
+- source_id: us-ar-w6-dfa-ty2013-ar3
+  jurisdiction: us-ar
+  document_class: form
+  title: AR3 Arkansas Itemized Deductions (2013)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR3_2013_RE.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2013-01-01'
+  citation_path: us-ar/form/dfa/ty2013/ar3
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR3 2013 (R 10/23/13) MEDICAL AND DENTAL EXPENSES
+    tax_year: '2013'
+    wave6_work_order_rows:
+    - 82
+- source_id: us-ar-w6-dfa-ty2022-ar3
+  jurisdiction: us-ar
+  document_class: form
+  title: AR3 Arkansas Itemized Deductions (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_AR3_ItemizedDeduction.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/ar3
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR3 2022 (R 8/25/2022) MEDICAL AND DENTAL EXPENSES
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 51
+- source_id: us-ar-w6-dfa-ty2015-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2015)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2015_RE.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2015-01-01'
+  citation_path: us-ar/form/dfa/ty2015/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2015 (R 7/21/15)
+    tax_year: '2015'
+    wave6_work_order_rows:
+    - 73
+- source_id: us-ar-w6-dfa-ty2016-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2016)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2016_RE.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2016-01-01'
+  citation_path: us-ar/form/dfa/ty2016/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2016 (R 8/1/2016)
+    tax_year: '2016'
+    wave6_work_order_rows:
+    - 74
+- source_id: us-ar-w6-dfa-ty2017-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2017)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075DedforTuitionPaidtoPostSecEduInst.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2017-01-01'
+  citation_path: us-ar/form/dfa/ty2017/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2017 (R 8/3/2017)
+    tax_year: '2017'
+    wave6_work_order_rows:
+    - 72
+- source_id: us-ar-w6-dfa-ty2018-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2018)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2018_Final_AR1075_BC_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us-ar/form/dfa/ty2018/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2018 (R 10/09/2018)
+    tax_year: '2018'
+    wave6_work_order_rows:
+    - 37
+- source_id: us-ar-w6-dfa-ty2019-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2019)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2019.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2019-01-01'
+  citation_path: us-ar/form/dfa/ty2019/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2019 (R 8/12/2019)
+    tax_year: '2019'
+    wave6_work_order_rows:
+    - 75
+- source_id: us-ar-w6-dfa-ty2020-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2020)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-ar/form/dfa/ty2020/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2020
+    tax_year: '2020'
+    wave6_work_order_rows:
+    - 76
+- source_id: us-ar-w6-dfa-ty2021-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2021)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ar/form/dfa/ty2021/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2021
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 77
+- source_id: us-ar-w6-dfa-ty2022-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2022
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 78
+- source_id: us-ar-w6-dfa-ty2023-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/AR1075_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2023
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 79
+- source_id: us-ar-w6-dfa-ty2024-ar1075
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1075 Deduction for Tuition Paid to Post-Secondary Educational Institutions (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_AR1075.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/ar1075
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR1075 2024 (R 7/24/2024)
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 64
+- source_id: us-ar-w6-dfa-ty2018-ar4684
+  jurisdiction: us-ar
+  document_class: form
+  title: AR4684 Arkansas Casualties and Thefts (2018)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2018_Final_AR4684_BC_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us-ar/form/dfa/ty2018/ar4684
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR4684 (R 12/21/2018) AR4684 2018
+    tax_year: '2018'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 38
+- source_id: us-ar-w6-dfa-ty2025-ar4684
+  jurisdiction: us-ar
+  document_class: form
+  title: AR4684 Arkansas Casualties and Thefts (2025)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2025_AR4684_Casualties_and_Thefts.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ar/form/dfa/ty2025/ar4684
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: AR4684 Pg 1 (R 4/28/2025) 2025 AR4684
+    tax_year: '2025'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 69
+- source_id: us-ar-w6-dfa-ty2023-ar1000tc-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000TC Schedule of Tax Credits and Business Incentive Credits Instructions (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_AR1000TC_Schedule_of_TaxCredits_andBusiness_IncentiveCredits_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/ar1000tc-instructions
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: LINE 1. A credit of up to $50.00 per taxpayer ($100.00 for a joint return)
+    tax_year: '2023'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 57
+- source_id: us-ar-w6-dfa-ty2024-ar1000tc-instructions
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000TC Schedule of Tax Credits Instructions (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_AR1000TC_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/ar1000tc-instructions
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: LINE 1. A credit of up to $50.00 per taxpayer ($100.00 for a joint return)
+    tax_year: '2024'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 63
+- source_id: us-ar-w6-dfa-ty2022-additional-tax-credit-for-qualified-individuals
+  jurisdiction: us-ar
+  document_class: form
+  title: Additional Tax Credit for Qualified Individuals Worksheet (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_Final_AdditionalTaxCreditforQualifiedIndividuals_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/additional-tax-credit-for-qualified-individuals
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: (R 8/30/2022) An individual taxpayer having a net income up to $25,400
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 52
+- source_id: us-ar-w6-dfa-ty2023-additional-tax-credit-for-qualified-individuals
+  jurisdiction: us-ar
+  document_class: form
+  title: Additional Tax Credit for Qualified Individuals Worksheet (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_Final_AdditionalTaxCreditforQualifiedIndividuals_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/additional-tax-credit-for-qualified-individuals
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: (R 9/20/2023) An individual taxpayer having a net income up to $26,100
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 59
+- source_id: us-ar-w6-dfa-ty2024-additional-tax-credit-for-qualified-individuals
+  jurisdiction: us-ar
+  document_class: form
+  title: Additional Tax Credit for Qualified Individuals Worksheet (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_Final_AdditionalTaxCreditforQualifiedIndividuals_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/additional-tax-credit-for-qualified-individuals
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: (R 10/7/2024) An individual taxpayer having a net income up to $26,900
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 66
+- source_id: us-ar-w6-dfa-ty2022-inflationary-relief-income-tax-credit
+  jurisdiction: us-ar
+  document_class: form
+  title: Inflationary Relief Income Tax Credit Worksheet (IRITCWS) (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2022_Final_InflationaryReliefIncomeTaxCredit_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/inflationary-relief-income-tax-credit
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: IRITCWS (R 1/10/2023) For the tax year beginning January 1, 2022
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 53
+- source_id: us-ar-w6-dfa-ty2023-inflationary-relief-income-tax-credit
+  jurisdiction: us-ar
+  document_class: form
+  title: Inflationary Relief Income Tax Credit Worksheet (IRITCWS) (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2023_Final_InflationaryReliefIncomeTaxCredit_FI.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/inflationary-relief-income-tax-credit
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: IRITCWS (R 9/20/2023) For the tax year beginning January 1, 2023
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 60
+- source_id: us-ar-w6-dfa-ty2015-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2015)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets_2015.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2015-01-01'
+  citation_path: us-ar/form/dfa/ty2015/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS REVENUE DIVISION Individual Income Tax
+    tax_year: '2015'
+    wave6_work_order_rows:
+    - 88
+- source_id: us-ar-w6-dfa-ty2016-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2016)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/Tax%20Brackets_2016.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2016-01-01'
+  citation_path: us-ar/form/dfa/ty2016/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS REVENUE DIVISION Individual Income Tax
+    tax_year: '2016'
+    wave6_work_order_rows:
+    - 86
+- source_id: us-ar-w6-dfa-ty2017-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2017)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets2017.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2017-01-01'
+  citation_path: us-ar/form/dfa/ty2017/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS REVENUE DIVISION Individual Income Tax
+    tax_year: '2017'
+    wave6_work_order_rows:
+    - 87
+- source_id: us-ar-w6-dfa-ty2018-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2018)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2018_Tax_Brackets.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us-ar/form/dfa/ty2018/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS REVENUE DIVISION Individual Income Tax
+    tax_year: '2018'
+    wave6_work_order_rows:
+    - 40
+- source_id: us-ar-w6-dfa-ty2019-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2019)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets_2019.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2019-01-01'
+  citation_path: us-ar/form/dfa/ty2019/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS REVENUE DIVISION Individual Income Tax
+    tax_year: '2019'
+    wave6_work_order_rows:
+    - 89
+- source_id: us-ar-w6-dfa-ty2020-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2020)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets_2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-01-01'
+  citation_path: us-ar/form/dfa/ty2020/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS Department of Finance and Administration REVENUE DIVISION
+    tax_year: '2020'
+    wave6_work_order_rows:
+    - 90
+- source_id: us-ar-w6-dfa-ty2021-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2021)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ar/form/dfa/ty2021/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS Department of Finance and Administration REVENUE DIVISION
+    tax_year: '2021'
+    wave6_work_order_rows:
+    - 91
+- source_id: us-ar-w6-dfa-ty2022-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2022)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ar/form/dfa/ty2022/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS Department of Finance and Administration REVENUE DIVISION
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 92
+- source_id: us-ar-w6-dfa-ty2023-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2023)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxBrackets_2023.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ar/form/dfa/ty2023/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS Department of Finance and Administration REVENUE DIVISION
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 93
+- source_id: us-ar-w6-dfa-ty2024-tax-brackets
+  jurisdiction: us-ar
+  document_class: form
+  title: Indexed Tax Brackets (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2024_TaxBrackets.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/tax-brackets
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARKANSAS Department of Finance and Administration REVENUE DIVISION
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 67
+- source_id: us-ar-w6-dfa-ty2015-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Tax Tables (2015)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxTables_2015.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2015-01-01'
+  citation_path: us-ar/form/dfa/ty2015/tax-tables
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2015 TAX TABLES The two tax tables used for Individual Income Tax
+    tax_year: '2015'
+    wave6_work_order_rows:
+    - 94
+- source_id: us-ar-w6-dfa-ty2018-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Tax Tables with Cover Sheet (2018)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2018_Final_TaxTable_with_Cover_Sheet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-01-01'
+  citation_path: us-ar/form/dfa/ty2018/tax-tables
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2018 TAX TABLES The two tax tables used for Individual Income Tax
+    tax_year: '2018'
+    wave6_work_order_rows:
+    - 39
+- source_id: us-ar-w6-dfa-ty2024-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Tax Tables (2024)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxTables_FI_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ar/form/dfa/ty2024/tax-tables
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2024 TAX TABLES The two tax tables used for Individual Income Tax
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 95
+- source_id: us-ar-w6-dfa-ty2025-tax-tables
+  jurisdiction: us-ar
+  document_class: form
+  title: Tax Tables (2025)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/TaxTables_FI_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ar/form/dfa/ty2025/tax-tables
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2025 TAX TABLES The two tax tables used for Individual Income Tax
+    tax_year: '2025'
+    wave6_work_order_rows:
+    - 96

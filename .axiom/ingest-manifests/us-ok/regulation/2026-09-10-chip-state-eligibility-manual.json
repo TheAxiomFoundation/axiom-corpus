@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "9905193a1400d4bc29525c221340db4ca29bbf79271a8643e301267b58844fae"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "4310d78b77e0ebb529e93277582a1ff702b74589b1cc867730a3fe00e2643c33"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "c301e7ad7d175d331c1c4d50cad1487f11d42af6c7b63affd689d5265112df3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/ok-oac-317-35-6-soonercare-children-families.json",
+      "sha256": "af6471c7c0e88449ede97d394f3cf4bf374856a1f7ae1c44e1897d2b01dc9201"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ok-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 28,
+    "missing_count": 0,
+    "provision_count": 28,
+    "source_count": 28
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:40:16.025891+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hex6I1Ed5Jo8INNsyg7QsJB7/C8PYVS4W4yOqHToVPDHNYKB1W7GTaxcT+03qggIIKkfnpb4Jqv9UxaWOBM7Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

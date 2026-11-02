@@ -1,0 +1,628 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-ms-medicaid-chapter-100
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 100 – General Provisions'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-100-General-Provisions-revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-100
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-chapter-101
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 101 – Coverage Groups and Processing
+    Applications and Reviews'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/09/Chapter-101-Coverage-Groups-and-Processing-Applications-and-Reviews-revised-September2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-101
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-chapter-102
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 102 – Non-Financial Requirements'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-102-Non-Financial-Entire-Chapter-revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-102
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-chapter-200
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 200 – Income: Aged, Blind and
+    Disabled (ABD) Categories'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-200-Income-ABD-and-MAGI-Categories.-Revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-chapter-300
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 300 – Resources'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-300-Resources.-Entire-Section.-Revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-chapter-400
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 400 – ABD and MAGI Eligibility
+    Criteria and Budgeting'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-400-ABD-and-MAGI-Eligibility-Criteria-and-Budgeting.-Revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-chapter-500
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Chapter 500 – Institutional Eligibility
+    and Budgeting'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Chapter-500-Institutional-Eligibility-and-Budgeting.-Revised-July-2025v2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/chapter-500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_chapter_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-1
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-1 Chart of ABD At-Home Need
+    Standards and Resource Limits'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Appendix-A-1-Chart-of-ABD-At-Home-Need-Standards-012010-to-present.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-2
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-2 Chart of Institutional Limits
+    and Transfer Assets Divisors'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/06/Appendix-A-2-Chart-of-Institutional-Limits-and-Transfer-of-Assets-Divisors-rev-7.26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-3
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-3 Modified Adjusted Gross
+    Income (MAGI) Limits Chart'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Appendix-A-3-MAGI-Income-Limits.-2014-to-present.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-3
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-4
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-4 Categories of Eligibility
+    (COE) Chart'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/07/Appendix-A-4revised.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-4
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-5
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-5 Sliding Scale for Working
+    Disabled Premiums'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Appendix-A-5-WD-Premiums-for-March-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-5
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-6
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-6 Special Needs Trust and
+    Pooled Trust Guidelines and Restrictions'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/01/Appendix-A-6-Special-Needs-Trust-Guidelines.-Revised-10012025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-6
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-7
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-7 Life Expectancy Tables'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2017/05/Appendix-A-7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-7
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-8-1
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-8-1 Long Term Care Income
+    Trust Document'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2020/07/Appendix-A-8-1-Long-Term-Care-Income-Trust-Document.-Revised-07012017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-8-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-8-2
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-8-2 Long Term Care Income
+    Trust Document and Help Sheet'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2020/07/Appendix-A-8-2-Long-Term-Care-Income-Trust-Help-Sheet.-Revised-06012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-8-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-9-1
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-9-1 Home and Community Based
+    Services Income Trust Document'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2020/07/Appendix-A-9-1-HCBS-Income-Trust-Document.-Revised-07012017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-9-1
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-9-2
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-9-2 Home and Community Based
+    Services Income Trust Document and Help Sheet'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2020/07/Appendix-A-9-2-HCBS-Income-Trust-Help-Sheet.-Revised-06012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-9-2
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-10
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-10 COL Computation History'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/12/Appendix-A-10-COL-Computation-History.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-10
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-11
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-11 Student Earned Income Exclusion'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/12/Appendix-A-11-Student-Earned-Income-Exclusion.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-11
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-12
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-12 Request for Unofficial
+    Medicaid Denial Letter'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2016/12/Appendix-A-12.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-12
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-13
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-13 Non-MAGI Letter – DOM-304'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2016/12/Appendix-A-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-13
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-14
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-14 Administrative Review Contact
+    Documentation Form'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2016/12/Appendix-A-14.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-14
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-15
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-15 Resource Assessment Notice'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2017/05/Appendix-A-15.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-15
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-16
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-16 SSI Notices'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2017/05/Appendix-A-16.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-16
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-17-3
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-17-3 ABD Handouts'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2025/12/Appendix-A-17-3-Spousal-Income-and-Resource-Handout.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-17-3
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-18
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-18 Life Estate and Remainder
+    Interest Tables'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2017/10/Appendix-A-18.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-18
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-19
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-19 Required to File Worksheet'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2026/03/Appendix-A-19-Required-to-File-Worksheet-Revised-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-19
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page
+- source_id: us-ms-medicaid-appendix-a-20
+  jurisdiction: us-ms
+  document_class: manual
+  title: 'Mississippi Division of Medicaid Eligibility Policy and Procedures Manual: Appendix A-20 Lottery and Gambling Winnings'
+  source_url: https://medicaid.ms.gov/wp-content/uploads/2019/11/Appendix-A-20.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ms/manual/dom/medicaid/appendix-a-20
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Division of Medicaid
+    document_subtype: manual_appendix_pdf
+    program: MEDICAID
+    manual: Mississippi Division of Medicaid Eligibility Policy and Procedures Manual
+    manual_index_url: https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    source_discovery_group: us-ms/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 3; publisher index https://medicaid.ms.gov/eligibility-policy-and-procedures-manual/
+    extraction_granularity: pdf_page

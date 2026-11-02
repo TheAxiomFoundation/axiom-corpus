@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn.json",
+      "sha256": "003145cbae251a84bb4b509f53630e5f12ed1dc3e27ad680531a40cf539577f0"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn.json",
+      "sha256": "d3b2c5f4367f5afb598bf570f7271846b4081ed00158ca178d854914035b1327"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn.jsonl",
+      "sha256": "97accf7f884e077914557b6e4cf09232e4f43e1b715fa4af06f0ece86e087fe5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn/official-documents/us-mn-w6-142b-01.html",
+      "sha256": "43b1fbaa676bd3131e81e776ced965aa856dd51efe83cab59c8f4fbf372ecacb"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn/official-documents/us-mn-w6-142e-01.html",
+      "sha256": "ac27b73aa05aa6281d899acd71b398d3fb4268827b73a168929737a809e8037c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn/official-documents/us-mn-w6-142e-10.html",
+      "sha256": "49e521d3176e8c1b75c2747e59d1dcb95ec5ccaa6543936d0709c703698c255f"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn/official-documents/us-mn-w6-142e-12.html",
+      "sha256": "57ff5f465f00c4acccb85979875a01ee40105f947d9ae1ed6fc11df804166032"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn/official-documents/us-mn-w6-142e-17.html",
+      "sha256": "72d47e216e379a1305d785e54521ac4eb7c74f5a48ec4c8b65b84e68b2cb4d3c"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-10-06-w6-tanf-ccdf-statutes-mn/official-documents/us-mn-w6-session-laws-2019-1st-special-session-chapter-9.html",
+      "sha256": "b8a6d10d2efe854afb0c85d5f5b870c00f0f321d4aa33492f11647ac877b586f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1265,
+    "missing_count": 0,
+    "provision_count": 1265,
+    "source_count": 1265
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:02.177330+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OeI+BhMRLV0+g4CGfXMzWqsdkdaEMMeX8n2AsLg89WWg6IgnwJGGBbxmdndozl0l741TaUsMGfeteU5Rh0pwBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-mn"
+}

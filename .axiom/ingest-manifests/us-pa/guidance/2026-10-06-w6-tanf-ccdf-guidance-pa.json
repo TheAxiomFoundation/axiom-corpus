@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/guidance/2026-10-06-w6-tanf-ccdf-guidance-pa.json",
+      "sha256": "1a3a6db43780b1dff4214fe92a52d4e8d3d929df0b7ce7b480f0771503260a74"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/guidance/2026-10-06-w6-tanf-ccdf-guidance-pa.json",
+      "sha256": "1599156a4d66ad981ec3c30783cdd50ee78c3d1180e11a8b1a8d67efe842fefa"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/guidance/2026-10-06-w6-tanf-ccdf-guidance-pa.jsonl",
+      "sha256": "825f0cee0370d7e8c229643af742d03ac6032450f6046f2a832a120cb5c60585"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-tanf-ccdf-guidance-pa/official-documents/us-pa-w6-dhs-cash-assistance-tanf.html",
+      "sha256": "daa6c2beba1f29801e346b0ce71214dcc42d32f9d3f411f0b77a0c48b6ab4e5d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/guidance/2026-10-06-w6-tanf-ccdf-guidance-pa/official-documents/us-pa-w6-dhs-early-learning-resource-centers.html",
+      "sha256": "72ebbf11f48b7f71c5b24f8cb040d6026203baaceca6825330da70437df7fc14"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:55.432625+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EO7Tdx1qXzFiytjz7nMryXPntx/rXVby7HeZoygOfi333ffkzfC/xqtImqbxBHLhFEoCWupVIlTov7GLc0mqCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-pa"
+}

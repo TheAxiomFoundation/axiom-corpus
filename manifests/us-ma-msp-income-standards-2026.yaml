@@ -1,0 +1,56 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ma-masshealth-eom-24-03
+  jurisdiction: us-ma
+  document_class: guidance
+  title: 'MassHealth Eligibility Operations Memo 24-03: Medicare Savings Programs (formerly MassHealth Senior Buy-In and MassHealth
+    Buy-In)'
+  source_url: https://www.mass.gov/doc/eom-24-03-medicare-savings-programs-formerly-known-as-masshealth-senior-buy-in-and-masshealth-buy-in-programs-0/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2024-03-01'
+  citation_path: us-ma/guidance/masshealth/eom/24-03
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Executive Office of Health and Human Services, MassHealth
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/info-details/program-financial-guidelines-for-certain-masshealth-applicants-and-members
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_operations_memo
+    document_number: EOM 24-03
+    closure_elements_extra:
+    - MED-ST-1
+    - MED-ST-2
+    - MED-ST-3
+    - MED-ST-4
+- source_id: us-ma-masshealth-income-standards-fpl-2026-03
+  jurisdiction: us-ma
+  document_class: guidance
+  title: 2026 MassHealth Income Standards and Federal Poverty Guidelines, Effective March 1, 2026 (DG-FPL_2026-03)
+  source_url: https://www.mass.gov/doc/2026-masshealth-income-standards-and-federal-poverty-guidelines-0/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ma/guidance/masshealth/income-standards-and-fpl/2026-03
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Executive Office of Health and Human Services, MassHealth
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ma/guidance
+    index_url: https://www.mass.gov/info-details/program-financial-guidelines-for-certain-masshealth-applicants-and-members
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: income_standards_chart
+    document_number: DG-FPL_2026-03
+    closure_elements_extra:
+    - MED-ST-2

@@ -1,0 +1,27 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-wa-hca-income-and-resource-standards-2026-07-01
+  jurisdiction: us-wa
+  document_class: guidance
+  title: Washington Apple Health Income and Resource Standards, July 1, 2026 (HCA 19-0096 (07/26))
+  source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-help-others-apply-and-access-apple-health/program-standard-income-and-resources
+  download_url: https://www.hca.wa.gov/assets/free-or-low-cost/income-standards.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  citation_path: us-wa/guidance/hca/income-and-resource-standards/2026-07-01
+  metadata:
+    primary_source: true
+    source_authority: Washington State Health Care Authority (HCA)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-wa/guidance
+    index_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-help-others-apply-and-access-apple-health/program-standard-income-and-resources
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: income_and_resource_standards_chart
+    document_number: HCA 19-0096 (07/26)
+    msp_block_effective_date: '2026-04-01'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

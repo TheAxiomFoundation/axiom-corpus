@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "93ec11dcc5b32aebe58bae3428fa2f544f473377a1c885e2475aa19223450b08"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "ca65216afbee4610f86bf836ab6a99e0441e1dc26f8848d7e6c50adec4e6dbe8"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "cc88960acc2668006ed463e80c572b8ffbf1a36838c913a4b55bd37daa4994a7"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-09-14-income-tax-regulations/official-documents/co-sos-1-ccr-201-2-income-tax.pdf",
+      "sha256": "bd7009138051b1109a2345e659390ebf16eddf53eda05a8c9b14aa66091ccddd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 106,
+    "missing_count": 0,
+    "provision_count": 106,
+    "source_count": 106
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:16:41.285343+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FFwf1c5k5/5BijO+C9BSWFmf68FN3MI5tUcXHu80j8h5CpFi0/ME5O0NzV1oDU7CN8BCqa1bIJy7gumGDvIHDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

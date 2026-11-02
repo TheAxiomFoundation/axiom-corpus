@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -139,3 +141,35 @@ def test_extract_pennsylvania_code_cli_local_sources(tmp_path, capsys):
     assert '"reserved_chapter_count": 1' in out
     assert '"section_count": 2' in out
     assert '"coverage_complete": true' in out
+
+
+def test_extract_pennsylvania_code_only_chapter_accepts_comma_separated_list(tmp_path):
+    source_dir = tmp_path / "pa-source"
+    _write_pennsylvania_code_sources(source_dir)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_pennsylvania_code(
+        store,
+        version="2026-09-14",
+        source_dir=source_dir,
+        only_title="1",
+        only_chapter="1,7",
+        workers=1,
+    )
+
+    assert report.coverage.complete
+    assert report.version == "2026-09-14-title-1-chapter-1-7"
+    assert report.chapter_count == 1
+    assert report.section_count == 2
+    records = load_provisions(report.provisions_path)
+    assert "us-pa/regulation/title-1/chapter-1" in [record.citation_path for record in records]
+
+    with pytest.raises(ValueError, match="no Pennsylvania Code chapter selected"):
+        extract_pennsylvania_code(
+            store,
+            version="2026-09-14-none",
+            source_dir=source_dir,
+            only_title="1",
+            only_chapter="7,9",
+            workers=1,
+        )

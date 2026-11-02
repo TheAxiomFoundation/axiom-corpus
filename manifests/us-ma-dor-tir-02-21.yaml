@@ -1,0 +1,53 @@
+version: "2026-09-23-ma-dor-tir-02-21"
+# Massachusetts Department of Revenue Technical Information Release TIR 02-21,
+# retained as its own guidance scope next to the M.G.L. c. 62, s. 2 statute scope
+# (manifests/us-ma-mgl-chapter-62-section-2.yaml). Same class and agency segment as
+# the released us-ma/guidance/2026-07-22-ma-2026-surtax-guidance scope; TIR path
+# naming follows the released us-nh/guidance/dra/tir-2025-001 precedent.
+documents:
+  - source_id: us-ma-dor-tir-02-21
+    jurisdiction: us-ma
+    document_class: guidance
+    title: "TIR 02-21: Capital Gains and Losses: Massachusetts Tax Law Changes"
+    source_url: https://www.mass.gov/technical-information-release/tir-02-21-capital-gains-and-losses-massachusetts-tax-law-changes
+    source_format: html
+    source_as_of: "2026-09-23"
+    expression_date: "2003-01-02"
+    citation_path: us-ma/guidance/department-of-revenue/tir-02-21
+    request:
+      browser_user_agent: true
+      browser_impersonation: true
+      browser_impersonation_direct: true
+    extraction:
+      # The release body and its endnotes sit in separate .page-content blocks
+      # under #main-content; reading only those nodes keeps the whole release
+      # (date table, sections I-IV, signature, endnotes) and drops the page chrome
+      # and feedback form.
+      html_content_selector: "#main-content"
+      html_text_selector: ".page-content p, .page-content li, .page-content table"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Revenue
+      document_subtype: technical_information_release
+      program: individual_income_tax
+      tax_year: "2002"
+      release_number: TIR 02-21
+      release_date: "2003-01-02"
+      index_url: https://www.mass.gov/lists/dor-technical-information-releases
+      statutory_corpus_citation: us-ma/statute/62/2
+      statutory_corpus_version: 2026-09-23-ma-mgl-chapter-62-us-ma-part-i-title-ix-chapter-62-sections-2
+      source_discovery_group: us-ma/guidance/income-tax
+      discovered_via: >-
+        manual-review 2026-09-23: PolicyBench root cause r22 (Part A dividends
+        taxed without the short-term capital loss offset); DOR's release on the
+        St. 2002, c. 186 and c. 364 capital gain and loss changes
+      source_note: >-
+        DOR release dated January 2, 2003, explaining the capital gain and loss
+        changes of St. 2002, c. 186 and St. 2002, c. 364 for tax years beginning
+        on or after January 1, 2002. It lists the order in which Part A
+        short-term capital losses and Part C long-term capital losses apply
+        against Part A capital gains and Part A interest and dividends, citing
+        G.L. c. 62, s. 2(c)(2)(a), 2(c)(2)(b) and 2(c)(4), including the $2,000
+        aggregate limit against Part A interest and dividends. The release
+        describes the law as of 2002; the retained statute scope is the current
+        text.

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/guidance/2026-10-06-w6-benefits-guidance-la.json",
+      "sha256": "451e8647d8abeca768f25a4fbcb4380cb1099503078a69d7f7bac85d70f2a2bf"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/guidance/2026-10-06-w6-benefits-guidance-la.json",
+      "sha256": "60addcc24f3d310ff1537d35c100e34cc83f7034a8263269df9d871dc84f779b"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/guidance/2026-10-06-w6-benefits-guidance-la.jsonl",
+      "sha256": "3bf5f19e28c7b5a5ffe9ab796d841ebc1dcfdd50e56a7003bf3d86a22910e54d"
+    },
+    {
+      "path": "data/corpus/sources/us-la/guidance/2026-10-06-w6-benefits-guidance-la/official-documents/us-la-guidance-dcfs-news-as-extra-snap-benefits-end.html",
+      "sha256": "58e86053453ac2af86cbbc567bac401f67a7bdc8dc309479daabb5220ab596af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:52:35.209244+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "foEQhYUH7l25BaqgtV/GNLtNX5PSvc7i0AliPmXjEv8UBZyACMdiKQTtlrYXTKZ1PWxd7MOj2X+FPLVKVtVHDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-la"
+}

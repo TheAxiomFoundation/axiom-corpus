@@ -1,0 +1,88 @@
+version: 2026-09-13-ccdf-rate-schedules
+documents:
+- source_id: us-nc-ccdf-rate-schedule-subsidized-market-rates-centers-2023-10-01
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina: Subsidized Child Care Market Rates for Child Care Centers, effective October 1, 2023 (current)'
+  source_url: https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/M/Market_Rates_Centers_Eff_10-1.pdf?ver=9w52alSPhmrmo0N9gGVMEw%3d%3d
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-nc/policy/ccdf/rate-schedules/subsidized-market-rates-centers-2023-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: North Carolina DHHS Division of Child Development and Early Education, Subsidized Child Care Assistance
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    source_discovery_group: us-nc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    closure_elements:
+    - ccdf-s30
+- source_id: us-nc-ccdf-rate-schedule-subsidized-market-rates-homes-2023-10-01
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina: Subsidized Child Care Market Rates for Family Child Care Homes, effective October 1, 2023 (current)'
+  source_url: https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/M/Mkt_Rates_Homes_eff_10-1.pdf?ver=baC5Yg7ZMrQ5fck2y9CcvA%3d%3d
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-nc/policy/ccdf/rate-schedules/subsidized-market-rates-homes-2023-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: North Carolina DHHS Division of Child Development and Early Education, Subsidized Child Care Assistance
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    source_discovery_group: us-nc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    closure_elements:
+    - ccdf-s30
+- source_id: us-nc-ccdf-rate-schedule-subsidized-market-rates-centers-2026-10-01
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina: Subsidized Child Care Market Rates for Child Care Centers, effective October 1, 2026 (revised August
+    18, 2026)'
+  source_url: https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/S/SCCA_Centers_Market_Rates_Eff__10-01-26_Revised_8-18-26.pdf?ver=4UnzSmTrx2JM-mBPjTDgtQ%3d%3d
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-10-01'
+  citation_path: us-nc/policy/ccdf/rate-schedules/subsidized-market-rates-centers-2026-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: North Carolina DHHS Division of Child Development and Early Education, Subsidized Child Care Assistance
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    source_discovery_group: us-nc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    closure_elements:
+    - ccdf-s30
+- source_id: us-nc-ccdf-rate-schedule-subsidized-market-rates-homes-2026-10-01
+  jurisdiction: us-nc
+  document_class: policy
+  title: 'North Carolina: Subsidized Child Care Market Rates for Family Child Care Homes, effective October 1, 2026 (revised
+    August 18, 2026)'
+  source_url: https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/S/SCCA_Homes_Market_Rates_Eff__10-01-26_Revised_8-18-26.pdf?ver=XOzbwZaQgjWdrte2IHJd3w%3d%3d
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-10-01'
+  citation_path: us-nc/policy/ccdf/rate-schedules/subsidized-market-rates-homes-2026-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: North Carolina DHHS Division of Child Development and Early Education, Subsidized Child Care Assistance
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    source_discovery_group: us-nc/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://ncchildcare.ncdhhs.gov/Home/DCDEE-Sections/Subsidy-Services/Market-Rates
+    closure_elements:
+    - ccdf-s30

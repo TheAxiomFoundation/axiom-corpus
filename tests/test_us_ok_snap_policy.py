@@ -147,7 +147,11 @@ def test_oklahoma_policy_manifest_uses_current_official_sources() -> None:
     assert len(documents) == 10
     assert all(document["jurisdiction"] == "us-ok" for document in documents)
     assert all(document["document_class"] == "policy" for document in documents)
-    assert all(document["source_as_of"] == "2026-07-21" for document in documents)
+    # Superseding edition (2026-09-11): Appendix D-4-C was re-served on 2026-08-28.
+    assert {document["source_as_of"] for document in documents} == {"2026-07-21", "2026-08-28"}
+    assert [
+        document["source_id"] for document in documents if document["source_as_of"] == "2026-08-28"
+    ] == ["okdhs-appendix-d-4-c-indian-food-distribution-programs"]
     assert all(document["metadata"]["primary_source"] is True for document in documents)
     assert all(
         document["source_url"].startswith(("https://oklahoma.gov/", "https://rules.ok.gov/"))

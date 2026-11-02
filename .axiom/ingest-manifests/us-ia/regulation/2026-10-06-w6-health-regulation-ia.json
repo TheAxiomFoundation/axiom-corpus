@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/regulation/2026-10-06-w6-health-regulation-ia.json",
+      "sha256": "f44478592a6d59675b0f3e1cf95eb1539c7f308b14b989ff7bf41fe5116a4f51"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/regulation/2026-10-06-w6-health-regulation-ia.json",
+      "sha256": "185b9ec948fb5c14e058b7163bbdbd82333165224263ebb486d84a447e87e622"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/regulation/2026-10-06-w6-health-regulation-ia.jsonl",
+      "sha256": "17d594ddf3e4feadba3f62bf6da99257a9ee193753d3cbe5ddedefb2edef7259"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/regulation/2026-10-06-w6-health-regulation-ia/official-documents/us-ia-w6-health-iac-441-75-75-1.pdf",
+      "sha256": "3a46f780ca4a94035cc8e9979d145cdcb45bbe89f7cab3e6d3bfebef2d6a48d9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:51:16.664815+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gyJPC9tsaJKq7JmmSqhNWaIIk9yA7Q2DNaUpaFCXrPN3jK+xSBz4ZpxlIjzxP8Jc1lW/7g4JIDipR+XcJU6jCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-regulation-ia"
+}

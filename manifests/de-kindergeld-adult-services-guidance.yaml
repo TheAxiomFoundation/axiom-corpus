@@ -1,0 +1,60 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-weltwaerts-2016",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bmz-weltwaerts-2016",
+      "title": "Förderleitlinie weltwärts vom 1. Januar 2016",
+      "source_url": "https://www.weltwaerts.de/files/media/dokumente_dc/de/Organisationen/Nord-Sued-Komponente/Foerderleitlinie-weltwaerts-Freiwilligendienst-2016.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2016-01-01",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "segmentation": "single_block"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium für wirtschaftliche Zusammenarbeit und Entwicklung, official weltwärts programme",
+        "date_document": "2016-01-01",
+        "snapshot_sha256": "28b0e86682aef921afc52f6a569633435c1b3e309dc72add0db5b4747bf6d058",
+        "source_note": "Complete source cited by EStG § 32(4), sentence 1, number 2(d). Expression date identifies the instrument, without asserting blanket applicability in 2025. Captures the entire 23-page EU act including annex, entire 15-page 2016 weltwärts guideline, or complete GMBl pages 77–80 within the retained 16-page official PDF. Temporary IJFD Covid provisions expressly expire on 31 May 2021. The 2016 weltwärts edition is the statutory reference; later programme revisions require separate temporal analysis. No manually edited legal body."
+      }
+    },
+    {
+      "source_id": "de-kindergeld-ijfd-2021",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bmfsfj-ijfd-2021",
+      "title": "Internationaler Jugendfreiwilligendienst — Richtlinie zuletzt geändert am 4. Januar 2021, GMBl 2021 S. 77",
+      "source_url": "https://www.bmbfsfj.bund.de/resource/blob/96666/5ffc360fed7c4a1185e16b8a622ecf59/richtlinie-internationaler-jugendfreiwilligendienst-data.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2021-01-04",
+      "language": "de",
+      "request": {
+        "browser_user_agent": true
+      },
+      "extraction": {
+        "segmentation": "single_block",
+        "page_windows": [
+          {
+            "start_page": 13,
+            "end_page": 16
+          }
+        ]
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+        "date_document": "2021-01-04",
+        "snapshot_sha256": "167f7f0fe4edf6125a41575e12be752a87f615aad60eb84116c17b03e0f58664",
+        "source_note": "Complete source cited by EStG § 32(4), sentence 1, number 2(d). Expression date identifies the instrument, without asserting blanket applicability in 2025. Captures the entire 23-page EU act including annex, entire 15-page 2016 weltwärts guideline, or complete GMBl pages 77–80 within the retained 16-page official PDF. Temporary IJFD Covid provisions expressly expire on 31 May 2021. The 2016 weltwärts edition is the statutory reference; later programme revisions require separate temporal analysis. No manually edited legal body."
+      }
+    }
+  ]
+}

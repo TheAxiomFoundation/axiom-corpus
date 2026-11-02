@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.json",
+      "sha256": "06b6180b400859bc902558c2cb234df98ec6bf538c354fbcb21d0aed6e141f71"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.json",
+      "sha256": "b8f24ba04bb7fa15c69a71380067e75e60549b03190dd477bff0760446faf947"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.jsonl",
+      "sha256": "ca76f8b521729ee111594f1ff8cabe5089481af008c98eb83b452d8e06514496"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-nm-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "51be9589c9df609f788872d946d48027e7299c3e3c2fd73e59f83f32550a8d76"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-nm-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "22aa6312afdb8ce982a66e504f4cb0956725ebcc39f7f240d533c9357be18943"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-nm-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "2e7f24a6b11ca33ec69b1570446f6e5c2bd602c6f70a45bfc0efb66bbbc645b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-nm-cms-chip-state-plan-spa-nm-14-0010-approval-package.pdf",
+      "sha256": "6236705ec2182aeec65faae2077f9499fbe67cb7cd0f3328c92728ed144ec8b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-nm-cms-chip-state-plan-spa-nm-14-0011-approval-package.pdf",
+      "sha256": "8e78182ba71818e85c247e167119342a7a4b8f926ab1a07ba05e250fbd4c3355"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-nm-cms-chip-state-plan-spa-nm-21-0009-approval-package.pdf",
+      "sha256": "e0944b6904b2a1c16405aca901cbf265cec7801698fc308a993120650f741269"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bf6bbe17f40cc60875edc496862b338a9aa80cde",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/hollow_root_successors.py build --base data/corpus --scope us-nm/policy/2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-10-13-hollow-root-successors.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 182,
+    "missing_count": 0,
+    "provision_count": 182,
+    "source_count": 182
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-13T20:11:44.201030+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KwCPV0PcoZr2CL+d6DrFluJKb3T5SMw67+oN0qmkLExF0s9+LFCF5A6/QRYUF9jsUx9cEbOCdQTfXRwieY94Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan-r2026-10-13-hollow-roots"
+}

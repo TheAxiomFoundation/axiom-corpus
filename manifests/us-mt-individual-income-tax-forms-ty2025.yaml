@@ -1,0 +1,45 @@
+version: '2026-09-10'
+documents:
+- source_id: us-mt-mtdor-form-2-ty2025
+  jurisdiction: us-mt
+  document_class: form
+  title: Montana Individual Income Tax Return, Form 2 (2025)
+  source_url: https://revenue.mt.gov/publications/montana-individual-income-tax-return-form-2
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-mt/form/mtdor/ty2025/form-2
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mt/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.mt.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.mt.gov/forms/
+  download_url: https://revenue.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2025_Montana_Individual_Income_Tax_Return_Form_2.pdf
+- source_id: us-mt-mtdor-form-2-instructions-ty2025
+  jurisdiction: us-mt
+  document_class: form
+  title: Montana Individual Income Tax Return, Form 2 Instructions (2025)
+  source_url: https://revenue.mt.gov/publications/montana-form-2-individual-income-tax-return-forms-and-instructions-includes-form-2ec
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-mt/form/mtdor/ty2025/form-2-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-mt/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.mt.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.mt.gov/forms/
+  download_url: https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2-Instructions/2025_Montana_Individual_Income_Tax_Return_Form_2_Instructions.pdf

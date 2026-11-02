@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "fc891ad6961b04cbe20f97a2c228f01653b78a21b76ae47049e089a5831d7e2d"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "ab473ea3fb8e0f4a296270d55f1d14d6eae7e84d9fbacc446c216299107ab8cd"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "5274c03b846072dc86514151d9db2432db6da0faf06ab23352702230f40e9380"
+    },
+    {
+      "path": "data/corpus/sources/us-id/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/id-dhw-idapa-16-03-01.pdf",
+      "sha256": "a181d136caebf6b1b81a6799e1f6ec159b6fb8c7bb709796f9090b29ce0a4a04"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-id-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 75,
+    "missing_count": 0,
+    "provision_count": 75,
+    "source_count": 75
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:47:18.145468+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6I3LU8QvVjXHRtdYQFxhSL4p6ceSNVlaPuWeypDVKKFBqCwnFJM8TSy5pElTweAByRLtdqAkeS7CU2YF1t2rBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

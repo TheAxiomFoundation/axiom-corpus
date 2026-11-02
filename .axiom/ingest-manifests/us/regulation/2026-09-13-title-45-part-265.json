@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-45-part-265.json",
+      "sha256": "af8b57bfbe9249410dd5f1a640bf2d253612d1504e17a708153d96e4cfea88df"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-45-part-265.json",
+      "sha256": "46b3a983fb15edde578f9160df187ceded89f1019b5578040489d68d59ab3dfb"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-45-part-265.jsonl",
+      "sha256": "5778727b4f7fefeb2f16ebe06633b414843f386d3acfa62c2dbe836e89223b75"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-45-part-265/ecfr/title-45-part-265.xml",
+      "sha256": "88de9096089799483c8ead9d7ac61baeca3457e9259c6771952d5c150632a290"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-45-part-265/ecfr/title-45.structure.json",
+      "sha256": "9ee8b602c32b892fcd5a2780ed1cd9e14e8ec7f4d96bbc6477cc11a776905a81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-45-part-265 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:46:59.466181+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FZYENs2iBhRXMcuGWq/+WI0IFSmOoWy4xCGlKHYE2FRC1k5r+02awWr2X3cuLZkuSigBoIHkttNI7ZXz1FxsAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-45-part-265"
+}

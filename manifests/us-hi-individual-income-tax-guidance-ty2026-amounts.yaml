@@ -1,0 +1,29 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-hi-dotax-tax-tables-and-rate-schedules-ty2025
+  jurisdiction: us-hi
+  document_class: guidance
+  title: 2025 Tax Tables and Tax Rate Schedules (individual tax tables for taxable years beginning after December 31, 2024)
+  source_url: https://files.hawaii.gov/tax/forms/2025/25table-on.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-01-01'
+  citation_path: us-hi/guidance/dotax/ty2025/tax-tables-and-rate-schedules
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Taxation
+    document_subtype: tax_rate_schedules
+    program: individual_income_tax
+    tax_year: '2025'
+    publication_or_revision_date: '2025-12-10'
+    amounts_carried:
+    - rate schedules I-III (1.4%-11%)
+    - tax tables
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.hawaii.gov/forms/d_25table-on/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.hawaii.gov/forms/d_25table-on/ (read 2026-09-13)
+    source_note: 'Latest published year: no 2026-labelled rate or estimated-tax document exists on the publisher as of 2026-09-13;
+      Act 46, SLH 2024 sets the 2026 standard deduction step by statute.'

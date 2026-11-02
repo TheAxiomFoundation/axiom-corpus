@@ -1,0 +1,397 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "12510c5a34f95ee8dd2cff5bd5960439cd8e8cdcb304414094457242ffa4b008"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "fea8541e3e780287ece5244e4bd39a33cefa424682c7cc109318a5992fb255b9"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "d4fc9cd13e4118fbdc4db99d6320e3689c9c69d94bb82891d10f2dc558a4c7fe"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-100.pdf",
+      "sha256": "553ccea6ba5e17861495066458cb84a726b10eb2812a3e1287f77a6158941738"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-1000.pdf",
+      "sha256": "46f303f966a602f6cedaeffd84aa3503726b846f64861c9f1754764ebd1ddd4e"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-1100.pdf",
+      "sha256": "32c9d1e351a00051c84daad4be7f1e25c885ad7d2b858ec0514affdd7499a557"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-140.pdf",
+      "sha256": "304c68faa2f6258efb29e6547d6dca8b1dfd16691c76ff8d582318b2f2e06755"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-210.pdf",
+      "sha256": "e5c88388ee906bc1a7e0a3d3074490c9e486f4606083699c49e71be7f4fdd1f3"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-215.pdf",
+      "sha256": "b6191c0b8f831ca27f3dfccb31120d8341eb546c1843da333e7c2a5560b912bd"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-225.pdf",
+      "sha256": "813e00e3611663fb93a53c7d5fe6db1322dd51f82346367e8e1a42d29d99a9f0"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-300.pdf",
+      "sha256": "dc7ec9ca0ec678dd887c603547366530669304b4c0ec91bef0c1684af4d46c3c"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-305.pdf",
+      "sha256": "4246e1b5b85008f424962487a037f164358de5e09ee5727cc2384863048be407"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-310.pdf",
+      "sha256": "3583346834bffa73affda10701ca4fab4361e837f9881d6f64d29afc0a3a4bb9"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-315.pdf",
+      "sha256": "c3875e267ad150707649887838d1f65a1965e8ae09604894b93dcf4c03b79298"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-316.pdf",
+      "sha256": "b7f48be350554d9be5fa6a6227b5f2b919016f8b8cf64c1128780447e6669e5e"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-320.pdf",
+      "sha256": "99ff2ab277f2fab7906bbd0aa2cf0eff0a430b05bbb6e946a2d678cebb2c476d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-325.pdf",
+      "sha256": "3021bbb09f0c1f0e72aa45afef56c2ba5e8d07ea65f4045591553750d1bf9fa8"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-330.pdf",
+      "sha256": "54ae2959287c556a1f9cd2cf3bb796010492c6d7cfac39302200969bf960fd64"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-340.pdf",
+      "sha256": "e17f994deeb9858e7696d1d348953684def228c1ef0c2e274198d4667093f6be"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-400.pdf",
+      "sha256": "f01daead5d70bfdbe6af07ad8c93709924b9d586b8893af279aa887ca143af0d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-410.pdf",
+      "sha256": "00a771edc60f6c8a83b4bb6b4cfd442007ae3096e7d33a2d12b660d01a9ccc1b"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-420.pdf",
+      "sha256": "78216625c2022bd2baaa19ac49d2f646787a1e8d4518ea5288e31d273f415f78"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-426.pdf",
+      "sha256": "40c876035e8004160dba663d0799a0a1d75b16f0557718055afb753312d8fa81"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-435.pdf",
+      "sha256": "ed99a8c37be86533153f5351cce7629c3dc74b5a24772668086c97c4a0d9b0f5"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-440.pdf",
+      "sha256": "47917477e27fcc50374f660023788c7d84f4fe861b8732a837498071b0602d96"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-450.pdf",
+      "sha256": "e7da72d158418e9e0332a7c1ba941d4289ea2fc9aeec160aae9296535aaf7deb"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-451.pdf",
+      "sha256": "5399c20d66b5645ff1027787bf2da675f593514595e3fc3002591608fbb88339"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-452.pdf",
+      "sha256": "70731fefa7838bd7ba3e2816cc5a6baefd14a7d53e47eec81260b90a1b989a0d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-458.pdf",
+      "sha256": "bd785d2cf2bd3f6a9c9fc643ffd345a5b19c4c92387e8a59a9725ee1619b0a0f"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-460.pdf",
+      "sha256": "6d0d5d86e0dea5e64dd912dfa2a5de014b19e8e357dd833fce4e7051c495e440"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-470.pdf",
+      "sha256": "2bb75ea8025304130288714bb9918579bd9b4f49c14e92336a8ee824fcb4e98a"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-475.pdf",
+      "sha256": "3fa8df9e558e57e40017c2ba88a983802207df79d7b38610af58557fea996b06"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-480.pdf",
+      "sha256": "55cdb65690c993a6c275bd140356e33234eac49a29d9d425996e3ef7c6884784"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-481.pdf",
+      "sha256": "591963db56eb8769d8e1972d96becde490f4430d8bc3cca797b70ac8b9fd80e5"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-490.pdf",
+      "sha256": "73fd6109c5949568d6fa833eaaeaa0bc2d7549d97c4f22c1a599b982baa64018"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-501.pdf",
+      "sha256": "5a2692b0d039ce0a7c57881d193c6aa5571236bcdd4fa4a1ce9a31eb971ac34c"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-510.pdf",
+      "sha256": "161b40f91f1f69bc56f475a2811f54f4121902080c764d431917a9ab800f7a9f"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-511.pdf",
+      "sha256": "1459958d0ea09f13db02c5078c38a4404bd59586759efe35b9224e1f2be2d84a"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-561.pdf",
+      "sha256": "a2e37f53c7194674ddf357274e120fd708c00a51dc1d6f3de396a74b4638f7dd"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-587.pdf",
+      "sha256": "44eecfb648739ac4fea8cdde3ab1c2d23b929d131134139d576308cadcf1c8a4"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-588.pdf",
+      "sha256": "ef61bdd29e4fa98c0bf5a8bba92ad3b26b9db1510948a07a6402a612b687dc86"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-590.pdf",
+      "sha256": "6b05fcf99d2d0d28a5d2038f180ecb597639d04701d84978dde9ace2ba059a57"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-595.pdf",
+      "sha256": "2fe333b4b9e4d5cae9123e92de98bc2e65df72c5d00da4b1a4d0b537881aa56c"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-596.pdf",
+      "sha256": "d7ca3ab7da8eaf7f60b66f92c502a08af0b031957f9daa0e75a95f70d7bf687b"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-600.pdf",
+      "sha256": "3a2a3647cd2d97ce65ac641d805bb5a77770c6096790a766c567f8549f5286c5"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-601.pdf",
+      "sha256": "7772044a5e4273587a4c4208d1e8ae74776560d57c789674e16a7ab9f9aa028d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-605.pdf",
+      "sha256": "adad8809f11c4d8340afecf27d30c5981125af235b8e98ea4c409d61974cc842"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-610.pdf",
+      "sha256": "1a7ee37ffbb87489f7886d4871235b44b6b42fb69c61fdb0555342864cca08d1"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-611.pdf",
+      "sha256": "e7a083473b5a9c5254cfe234513ddce14b4c7c5c5dcd2b80f5d8aa24fee96207"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-612.pdf",
+      "sha256": "ce09d48fbe6f1ab891fe7e92fb664b9274d9c447ae2ff129d446dfd70ad17e8b"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-613.pdf",
+      "sha256": "7e285a32147216e5715f7fe84bdbb050557b2cc00a7a2e331d70b23eafdd0eed"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-614.pdf",
+      "sha256": "3bba6433e742fd7599196f6130d619645ab05c6a707b37f0fdecacfea89c8fcb"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-615.pdf",
+      "sha256": "b349db39886935a51cf128178b2b7e33c1931e07c841f5e882f186fc17749451"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-616.pdf",
+      "sha256": "c0c09f0fdd010e8e8c9b92e2894be4b15159f5bab90abe5487156d1337471294"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-620.pdf",
+      "sha256": "7f067acfc18f860d0646b30b2a2e357ddbc4cdf1fcf97bc8c9cfc865afa0b980"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-621.pdf",
+      "sha256": "46e6d29d08abbdadd5b151b258436f7ba6406c5ed3aa686f2ab247c03ad8f87d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-625.pdf",
+      "sha256": "44ef1d4847c173b32fd5e8d5cf99eccbed2a578b87ee2728f9555072f866fddb"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-626.pdf",
+      "sha256": "235b061c798c893c7172231d1df06b3dd6389c4066d545626be02713d4110388"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-627.pdf",
+      "sha256": "93110d561f55c2a8be1e43830c9227321351fd93f9cc20bda899785f4301d7f0"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-628.pdf",
+      "sha256": "f3ea61416d03025b6c204d1c7f0e0629878a1028d19dbdb08450affa41762167"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-635.pdf",
+      "sha256": "3585b7dbf1da818e10276ee3767c7c962a6e4148dfabf00a98abf2d7a80e34d1"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-636.pdf",
+      "sha256": "45946cffbcc6c27951e09187ea239a4eadc26814081cdf8aa59c67d89c46f910"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-640.pdf",
+      "sha256": "536d69509a924cfce2d8961a7500a495dbfa86b0cb8c99e8c64b8d5e7793f185"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-641.pdf",
+      "sha256": "d704dcd1bbe274d328ca9d26aa2ae5b6ce8d37acb690085d050b01f3b9d5aa30"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-646.pdf",
+      "sha256": "2887d41ce8711920ab0ff46c9d226d1aebed69d0621a8ab70775c9d710f1c8f1"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-650.pdf",
+      "sha256": "88992b8b765958f8a96fc4afdfb092af39d9d2b00be314e901486af9b239a8ac"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-655.pdf",
+      "sha256": "4402c014ec99f8a98fc4a1487daaabab00ee3bbdf0ae592b2c82dc1abf819f92"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-657.pdf",
+      "sha256": "77b87b9c9b2375fae4cc9ba3ccd0509d82363b141ceb493077145058fc8c9622"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-660.pdf",
+      "sha256": "f0ca03c93ae0f79753962f52d9737768b918f7a031eb15239c26b0263571bf2c"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-661.pdf",
+      "sha256": "02ca2c7121164cf95cb09c945a58102b50940f11fa00c7f690a7744420ab4e0e"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-670.pdf",
+      "sha256": "754ae963eb22029e8cb91e5ec94bde90835c483159601ea05f9c31536abbf3a7"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-675.pdf",
+      "sha256": "bfe28e4cd5200689da8402746468256f5839895b880dafdc5b91bcb82877b140"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-710.pdf",
+      "sha256": "98d909ed1e7d9579cf62a9843bc3420d99fcebf32d1ac7708b68668749b9d504"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-712.pdf",
+      "sha256": "9dfdc988c6e6899d30402ecb09576430d24cf054a481c97316c73bc8f945971b"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-713.pdf",
+      "sha256": "d6a704c12e545844f0f32161acfe336b538a3809e2e11e4fa8a889fd3a65c87c"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-716.pdf",
+      "sha256": "099a2f0c54ee8d7079253cd741b24b14b824af9dc6990d6a996c7b5fac027cf5"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-720.pdf",
+      "sha256": "407a8276895571053bf526a2163909f8a014d81fa989f92e14a11ebba9fa1039"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-730.pdf",
+      "sha256": "9ec9dd7361a5b1eabf5c6f2c71a2a37e4cac1573c387a969c63a34d4138ffa46"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-733.pdf",
+      "sha256": "7982481317706776593e23c87786a4102ee94b9da776b47fcd93951ef138d93d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-735.pdf",
+      "sha256": "7976d7a8872e97dc32eab247f156498c0828dbb5da48887413f5ba6195185e02"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-760.pdf",
+      "sha256": "92f48c49e77aefb543fa2655637b17e9d388742261e228a33af18ee8d5a527d4"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-765.pdf",
+      "sha256": "6b44a1b01a94c2348a8370c45d69138b423bb5ca3b3b3e7aca53139f977f5381"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-769.pdf",
+      "sha256": "7892af8693dd75c7b0b5e53e034276ec93a9846e093573c3991cf9c56663b5e5"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-770.pdf",
+      "sha256": "fa259d355cfea3f1f570b0be0838bcc0fa12ec98c8fd4faf8891134b8497b5c4"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-810.pdf",
+      "sha256": "9d03e6a9263ff76ef9d1baee460ab005b7d702eea03604bfaedbc7a76f09378d"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-820.pdf",
+      "sha256": "e87dc8e8d5f4ff6349f5dc7b87e791aafee45e09c983a05a8cb8daf0d95ca565"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-840.pdf",
+      "sha256": "ab8608bb5d227398e99b8f1cb17bf24df35177925ce246d1c3cde2dde258294a"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-850.pdf",
+      "sha256": "c51c344d643725535261b1515191e5a5742a12098c896cf18585b7afb79dd040"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-880.pdf",
+      "sha256": "ae3713c0c14a43ed2f281f9443451ab08495d220934d95740fcf24acfa0aff31"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-901.pdf",
+      "sha256": "38a8411039220ee20cd41ed5ee3c77db509d5e01b08e7a60bfb5777622e0f499"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-09-10-wic-state-policy-manual/official-documents/us-or-wic-manual-902.pdf",
+      "sha256": "a9d64a82e0d9df702cc16f979b38659240fe7aa2faa3f1c8cb76d117d1da5c27"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-or-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 176,
+    "missing_count": 0,
+    "provision_count": 176,
+    "source_count": 176
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T00:21:50.890840+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8MXAPNlQQT+tjJYrVwb0CK7256HR2Kzdg815yWi5iT7XR94TgBg0lPhaELo7364qbZWq1wWY0yaecUhHeknEDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

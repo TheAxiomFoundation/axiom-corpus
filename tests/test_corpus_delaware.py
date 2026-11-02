@@ -213,9 +213,48 @@ def test_parse_delaware_chapter_html_disambiguates_repeated_effective_sections()
 
     assert [section.source_id for section in parsed.sections] == [
         "801",
-        "801@effective-january-1-2027",
+        "801--effective-january-1-2027",
     ]
+    assert parsed.sections[1].citation_path == "us-de/statute/1/801--effective-january-1-2027"
     assert parsed.sections[1].canonical_citation_path == "us-de/statute/1/801"
+
+
+def test_parse_delaware_chapter_html_slugifies_combined_repealed_section_ids():
+    html = """<!doctype html><html><body>
+    <div class="Section"><div class="SectionHead" id="1159, 1160">§§ 1159, 1160. Breast Cancer Fund; Diabetes Fund [Repealed].</div><p>Repealed by 80 Del. Laws, c. 1, § 1.</p></div>
+    <div class="Section"><div class="SectionHead" id="1161">§ 1161. Next section.</div><p>Body.</p></div>
+    </body></html>"""
+
+    parsed = parse_delaware_chapter_html(
+        html,
+        title="30",
+        chapter="11",
+        current_relative_path="title30/c011/index.html",
+    )
+
+    combined, plain = parsed.sections
+    assert combined.citation_path == "us-de/statute/30/1159-1160"
+    assert combined.display_number == "1159, 1160"
+    assert combined.publisher_section_id == "1159, 1160"
+    assert combined.canonical_citation_path is None
+    assert combined.legal_identifier == "30 Del. C. § 1159, 1160"
+    assert plain.citation_path == "us-de/statute/30/1161"
+    assert plain.publisher_section_id is None
+
+    items = []
+    records = []
+    delaware_adapter._append_provision(
+        items,
+        records,
+        combined,
+        version="test",
+        source_as_of="2026-09-14",
+        expression_date="2026-09-14",
+        seen=set(),
+    )
+    assert records[0].citation_path == "us-de/statute/30/1159-1160"
+    assert records[0].metadata["publisher_section_id"] == "1159, 1160"
+    assert "@" not in records[0].citation_path and "," not in records[0].citation_path
 
 
 def test_extract_delaware_code_from_source_dir_writes_complete_artifacts(tmp_path):
@@ -339,7 +378,7 @@ def test_delaware_helpers_cover_edge_metadata_and_filters():
     provision = delaware_adapter.DelawareCodeProvision(
         kind="section",
         title="30",
-        source_id="101@variant-2",
+        source_id="101--variant-2",
         display_number="101",
         heading="Rule [Effective later]",
         body="Transferred and reserved text.",

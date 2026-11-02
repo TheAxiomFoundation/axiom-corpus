@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-benefits-regulation-ak
+documents:
+- source_id: us-ak-regulation-aac-title-7-pdf
+  jurisdiction: us-ak
+  document_class: regulation
+  title: Alaska Administrative Code Title 7. Health and Social Services (Legislature PDF)
+  source_url: https://www.akleg.gov/statutesPDF/aac%20Title%207.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ak/regulation/aac/title-7-pdf
+  metadata:
+    primary_source: true
+    source_authority: Alaska State Legislature (Alaska Administrative Code)
+    document_subtype: administrative_code_title_pdf
+    program: SSI state supplement (APA); CCDF
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 7)
+    pages: 3054
+    path_note: whole-title PDF at page granularity; the ATAP scope's chapter rows sit under us-ak/regulation/aac/title-7/chapter-45
+    wave6_rows:
+    - 7
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

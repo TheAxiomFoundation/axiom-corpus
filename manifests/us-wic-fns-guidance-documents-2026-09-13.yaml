@@ -1,0 +1,180 @@
+version: 2026-09-13-wic-fns-guidance-documents
+documents:
+- source_id: us-fns-wic-guidance-nutrition-risk-criteria
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2011-5: WIC Nutrition Risk Criteria'
+  source_url: https://www.fna.usda.gov/wic/nutrition-risk-criteria
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-pm2011-5-nutritionriskCriteria.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-05-20'
+  citation_path: us/guidance/fns/wic/guidance/nutrition-risk-criteria
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: WIC
+    source_discovery_group: us/guidance/fns/wic
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:401
+    discovered_via: manual-review:wic-agent-queue; needs-closure-2026-09-11 wic_g04/wic_g07/wic_g08; FNA resource browser
+      WIC/Guidance Documents
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    document_subtype: policy_memorandum
+    memo_date: '2011-05-20'
+    closure_elements:
+    - wic_g04
+    memo_number: 2011-5
+- source_id: us-fns-wic-guidance-infant-formula-rebate-solicitations-bidding
+  jurisdiction: us
+  document_class: guidance
+  title: WIC Infant Formula Rebate Solicitations - Bidding on Single Milk- and Soy-Based Infant Formula (informational memorandum)
+  source_url: https://www.fna.usda.gov/wic/infant-formula-rebate-solicitations-bidding
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-infantFormRebSolic-Bidding.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-07'
+  citation_path: us/guidance/fns/wic/guidance/infant-formula-rebate-solicitations-bidding
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: WIC
+    source_discovery_group: us/guidance/fns/wic
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:401
+    discovered_via: manual-review:wic-agent-queue; needs-closure-2026-09-11 wic_g04/wic_g07/wic_g08; FNA resource browser
+      WIC/Guidance Documents
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    document_subtype: informational_memorandum
+    memo_date: '2019-10-07'
+    closure_elements:
+    - wic_g07
+- source_id: us-fns-wic-guidance-evaluation-criteria-infant-formula-rebate-contracts
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #1999-3: Evaluation Criteria for Infant Formula Rebate Contracts'
+  source_url: https://www.fna.usda.gov/wic/evaluation-criteria-infant-formula-rebate-contracts
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-pm99-3-EvaluationCriteria-InfantFormulaRebateContracts.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '1998-10-14'
+  citation_path: us/guidance/fns/wic/guidance/evaluation-criteria-infant-formula-rebate-contracts
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    ocr: true
+    force_ocr: true
+    ocr_dpi: 300
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: WIC
+    source_discovery_group: us/guidance/fns/wic
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:401
+    discovered_via: manual-review:wic-agent-queue; needs-closure-2026-09-11 wic_g04/wic_g07/wic_g08; FNA resource browser
+      WIC/Guidance Documents
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    document_subtype: policy_memorandum
+    memo_date: '1998-10-14'
+    closure_elements:
+    - wic_g07
+    memo_number: 1999-3
+    ocr_note: scanned memorandum whose embedded text layer is garbled (the 1998 header reads 'GCl \4 1918'); every page is
+      re-read with OCR
+- source_id: us-fns-wic-guidance-interim-guidance-vendor-cost-containment
+  jurisdiction: us
+  document_class: guidance
+  title: Interim Guidance on WIC Vendor Cost Containment (June 2006)
+  source_url: https://www.fna.usda.gov/wic/interim-guidance-vendor-cost-containment
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-interimGuidanceVendorCostContainment.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2006-06-08'
+  citation_path: us/guidance/fns/wic/guidance/interim-guidance-vendor-cost-containment
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: WIC
+    source_discovery_group: us/guidance/fns/wic
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:401
+    discovered_via: manual-review:wic-agent-queue; needs-closure-2026-09-11 wic_g04/wic_g07/wic_g08; FNA resource browser
+      WIC/Guidance Documents
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    document_subtype: guidance_document
+    memo_date: '2006-06-08'
+    closure_elements:
+    - wic_g07
+- source_id: us-fns-wic-guidance-vendor-cost-containment-interim-rule-clarification
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2006-6: Vendor Cost Containment Interim Rule Clarification'
+  source_url: https://www.fna.usda.gov/wic/vendor-cost-containment-interim-rule-clarification
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.wic-pm2006-6-vendorCostContInterimRuleClarif.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2006-03-15'
+  citation_path: us/guidance/fns/wic/guidance/vendor-cost-containment-interim-rule-clarification
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: WIC
+    source_discovery_group: us/guidance/fns/wic
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:401
+    discovered_via: manual-review:wic-agent-queue; needs-closure-2026-09-11 wic_g04/wic_g07/wic_g08; FNA resource browser
+      WIC/Guidance Documents
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    document_subtype: policy_memorandum
+    memo_date: '2006-03-15'
+    closure_elements:
+    - wic_g07
+    memo_number: 2006-6
+- source_id: us-fns-wic-guidance-wpm-2024-3-implementing-abfa-requirements-state-plans
+  jurisdiction: us
+  document_class: guidance
+  title: 'WIC Policy Memorandum #2024-3: Implementing ABFA Requirements in WIC State Plans'
+  source_url: https://www.fna.usda.gov/wic/wpm-2024-3-implementing-abfa-requirements
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fns.WPM2024-3-ImplementingABFAStatePlans.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-02-16'
+  citation_path: us/guidance/fns/wic/guidance/wpm-2024-3-implementing-abfa-requirements-state-plans
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: WIC
+    source_discovery_group: us/guidance/fns/wic
+    index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:401
+    discovered_via: manual-review:wic-agent-queue; needs-closure-2026-09-11 wic_g04/wic_g07/wic_g08; FNA resource browser
+      WIC/Guidance Documents
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    document_subtype: policy_memorandum
+    memo_date: '2024-02-16'
+    closure_elements:
+    - wic_g08
+    memo_number: 2024-3

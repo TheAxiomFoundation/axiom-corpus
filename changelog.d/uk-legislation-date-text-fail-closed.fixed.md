@@ -1,0 +1,1 @@
+Make UK legislation date resolution fail closed: `source_as_of` and `expression_date` now take the validated `YYYY-MM-DD` prefix of a dated version slug, and extraction raises when neither an explicit date nor a date-prefixed version is given instead of writing the raw version text into a date field.

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/statute/2026-10-06-w6-income-tax-statute-ia.json",
+      "sha256": "091bcbc3a2f310cff3125521857ec2d112f8a059e3c021aaa92bdf150dcbf707"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/statute/2026-10-06-w6-income-tax-statute-ia.json",
+      "sha256": "ccbaa83255adbd270b3efd37ddacfeee6bca9ac36d48c8b54ec7b0f19d637436"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/statute/2026-10-06-w6-income-tax-statute-ia.jsonl",
+      "sha256": "e99b5fe2ce93d5b4c4fa23f646b2df54dc93d992a0b9396e8b6732b50ed4f85e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-10-06-w6-income-tax-statute-ia/official-documents/us-ia-statute-session-laws-2024-sf2442.pdf",
+      "sha256": "77f104426f3f5b5e2fab6f85de102896133024ace6fc490dcc54fb48588d0de9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:51:20.358457+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XEX79o8+J8Mzg4p8nivFrHxWMDyugvD62eyss+sBb4zGYKCqmAie/B433z3sBuAMhIpEw/eTy5hfH//JXiS9Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ia"
+}

@@ -1,0 +1,153 @@
+{
+ "documents": 766,
+ "by_status": {
+  "WAVE7": 134,
+  "DECIDED-OUTREACH": 154,
+  "DECIDED-ABSENT": 73,
+  "UNRELEASED-SCOPE": 203,
+  "PENDING-ACTIVATION": 184,
+  "DECIDED-SKIPPED": 12,
+  "DECIDED-PRESENT": 1,
+  "DECIDED-ALREADY-HELD": 5
+ },
+ "groups": {
+  "federal": {
+   "documents": 13,
+   "tier1": 13,
+   "by_action": {
+    "FETCH": 2,
+    "DEAD-LINK": 1,
+    "PATH-ONLY": 10
+   },
+   "jurisdictions": 1,
+   "top_hosts": [
+    [
+     "www.irs.gov",
+     2
+    ],
+    [
+     "www.acf.hhs.gov",
+     1
+    ]
+   ]
+  },
+  "state-benefits": {
+   "documents": 79,
+   "tier1": 75,
+   "by_action": {
+    "FETCH": 61,
+    "MEASURE-CHECK": 4,
+    "CHECK-PUBLISHER": 8,
+    "OFFICIAL-SOURCE": 1,
+    "DEAD-LINK": 5
+   },
+   "jurisdictions": 23,
+   "top_hosts": [
+    [
+     "www.dhs.state.il.us",
+     16
+    ],
+    [
+     "www.dhs.state.mn.us",
+     16
+    ],
+    [
+     "www.pacodeandbulletin.gov",
+     6
+    ],
+    [
+     "www.sos.state.co.us",
+     4
+    ],
+    [
+     "www.flrules.org",
+     4
+    ],
+    [
+     "www.fns.usda.gov",
+     3
+    ],
+    [
+     "www.coloradosos.gov",
+     2
+    ],
+    [
+     "apps.legislature.ky.gov",
+     2
+    ]
+   ]
+  },
+  "rejoin": {
+   "documents": 44,
+   "tier1": 44,
+   "by_action": {
+    "REJOIN": 44
+   },
+   "jurisdictions": 4,
+   "top_hosts": [
+    [
+     "content.dcf.ks.gov",
+     14
+    ],
+    [
+     "mgaleg.maryland.gov",
+     11
+    ],
+    [
+     "www.legislature.mi.gov",
+     7
+    ],
+    [
+     "www.sos.state.co.us",
+     6
+    ],
+    [
+     "law.justia.com",
+     5
+    ],
+    [
+     "www.coloradosos.gov",
+     1
+    ]
+   ]
+  },
+  "state-tax": {
+   "documents": 16,
+   "tier1": 16,
+   "by_action": {
+    "MEASURE-CHECK": 2,
+    "FETCH": 12,
+    "DEAD-LINK": 1,
+    "OFFICIAL-SOURCE": 1
+   },
+   "jurisdictions": 6,
+   "top_hosts": [
+    [
+     "forms.in.gov",
+     5
+    ],
+    [
+     "apps.legislature.ky.gov",
+     3
+    ],
+    [
+     "otr.cfo.dc.gov",
+     2
+    ],
+    [
+     "www.maine.gov",
+     2
+    ],
+    [
+     "www.pacodeandbulletin.gov",
+     1
+    ],
+    [
+     "legiscan.com",
+     1
+    ]
+   ]
+  }
+ },
+ "release_scopes": 71
+}

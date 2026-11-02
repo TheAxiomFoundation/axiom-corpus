@@ -1,0 +1,409 @@
+version: 2026-10-06-w6-income-tax-forms-mi
+documents:
+- source_id: us-mi-form-treasury-ty2020-mi-1040-instructions
+  jurisdiction: us-mi
+  document_class: form
+  title: 2020 Michigan Individual Income Tax Instructions (MI-1040 book, instructions only)
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2020/Book_MI-1040_instructions_only.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2020/mi-1040-instructions
+  expression_date: '2020-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2020'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2022-mi-1040-book
+  jurisdiction: us-mi
+  document_class: form
+  title: 2022 Michigan MI-1040 Individual Income Tax Forms and Instructions
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/BOOK_MI-1040.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2022/mi-1040-book
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2022-form-mi-1040
+  jurisdiction: us-mi
+  document_class: form
+  title: 2022 MI-1040 Michigan Individual Income Tax Return
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/MI-1040.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2022/form-mi-1040
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2022-form-mi-1040cr
+  jurisdiction: us-mi
+  document_class: form
+  title: 2022 MI-1040CR Michigan Homestead Property Tax Credit Claim
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/MI-1040CR.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2022/form-mi-1040cr
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2023-mi-1040-book
+  jurisdiction: us-mi
+  document_class: form
+  title: 2023 Michigan MI-1040 Individual Income Tax Forms and Instructions
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2023/BOOK_MI-1040.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2023/mi-1040-book
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2023-form-mi-1040
+  jurisdiction: us-mi
+  document_class: form
+  title: 2023 MI-1040 Michigan Individual Income Tax Return
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2023/MI-1040.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2023/form-mi-1040
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2023-form-mi-1040cr
+  jurisdiction: us-mi
+  document_class: form
+  title: 2023 MI-1040CR Michigan Homestead Property Tax Credit Claim
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2023/MI-1040CR.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2023/form-mi-1040cr
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2024-mi-1040-instructions
+  jurisdiction: us-mi
+  document_class: form
+  title: 2024 Michigan MI-1040 Individual Income Tax Forms and Instructions
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/MI-1040-Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2024/mi-1040-instructions
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2024-form-mi-1040cr
+  jurisdiction: us-mi
+  document_class: form
+  title: 2024 MI-1040CR Michigan Homestead Property Tax Credit Claim
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/MI-1040CR.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2024/form-mi-1040cr
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2025-form-mi-1040cr
+  jurisdiction: us-mi
+  document_class: form
+  title: 2025 MI-1040CR Michigan Homestead Property Tax Credit Claim
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2025/MI-1040CR.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2025/form-mi-1040cr
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2025'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2021-mi-1040-instructions
+  jurisdiction: us-mi
+  document_class: form
+  title: 2021 Michigan MI-1040 Individual Income Tax Instructions (instructions only)
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2021/Book-1040-Instructions-Only.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2021/mi-1040-instructions
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2022-form-4884
+  jurisdiction: us-mi
+  document_class: form
+  title: 2022 Form 4884 Michigan Pension Schedule
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/4884.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2022/form-4884
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2022-form-4884-section-c-worksheet
+  jurisdiction: us-mi
+  document_class: form
+  title: 2022 Form 4884 Section C Worksheet (railroad retirement and qualifying pension benefits; no printed year, linked
+    from the 2022 forms index)
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/Form-4884-Section-C-worksheet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2022/form-4884-section-c-worksheet
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2022-schedule-1
+  jurisdiction: us-mi
+  document_class: form
+  title: 2022 Michigan Schedule 1 Additions and Subtractions
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2022/Schedule-1.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2022/schedule-1
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2024-form-4884-instructions
+  jurisdiction: us-mi
+  document_class: form
+  title: 2024 Form 4884 Pension Schedule Instructions
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/4884-Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2024/form-4884-instructions
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-treasury-ty2025-446-withholding-guide
+  jurisdiction: us-mi
+  document_class: form
+  title: 2025 Michigan Income Tax Withholding Guide (Form 446, Rev. 01-25)
+  source_url: https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/SUW/TY2025/446_Withholding-Guide_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/treasury/ty2025/446-withholding-guide
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: withholding_guide
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2025'
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-form-ors-r0012x-income-tax-withholding-authorization
+  jurisdiction: us-mi
+  document_class: form
+  title: R0012X Income Tax Withholding Authorization (Office of Retirement Services)
+  source_url: https://www.michigan.gov/-/media/Project/Websites/ors/ORS-Forms/R0012X_Income_Tax_Withholding_Authorization.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/form/ors/r0012x-income-tax-withholding-authorization
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: withholding_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120

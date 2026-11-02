@@ -1,0 +1,31 @@
+version: '2026-09-10'
+documents:
+- source_id: us-or-odhs-oar-chapter-461
+  jurisdiction: us-or
+  document_class: regulation
+  title: 'Oregon Administrative Rules Chapter 461: Department of Human Services, Self-Sufficiency Programs'
+  source_url: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=90
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-or/regulation/chapter-461
+  metadata:
+    primary_source: true
+    source_authority: Oregon Department of Human Services, Self-Sufficiency Programs
+    document_subtype: administrative_rules_chapter
+    program: TANF
+    state_program: 'Oregon TANF (chapter 461 is the combined self-sufficiency rulebook: TANF, SNAP, ERDC, REF, TA-DVS and
+      related programs)'
+    federal_program: TANF
+    manual_landing_page: https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=90
+    source_discovery_group: us-or/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://secure.sos.state.or.us/oard/displayChapterRules.action?selectedChapter=90
+    official_publisher: Oregon Secretary of State, Oregon Administrative Rules Database (OARD)
+    extraction_adapter: extract-oregon-administrative-rules --only-chapter 461
+    extraction_run_id: 2026-09-10-tanf-state-policy-manual-chapter-461
+    division_count: 28
+    rule_count: 541
+    agency_rule_site: 'https://ch461rules.odhs.oregon.gov/ (ODHS: displays unofficial rules and refers to the Secretary of
+      State for the official text)'
+    extraction_note: 'descriptor manifest, like manifests/us-oh-snap-rules.yaml for the OAC adapter: division and rule rows
+      come from the OAR adapter, not from extract-official-documents'

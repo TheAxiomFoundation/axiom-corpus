@@ -1,0 +1,47 @@
+documents:
+  - source_id: ca-cdss-acl-2006-06-31
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/cdss/acl-2006-06-31
+    title: CDSS All County Letter No. 06-31, Implementation of Food Stamp Simplification Options Effective October 1, 2006
+    source_url: https://www.cdss.ca.gov/lettersnotices/entres/getinfo/acl06/pdf/06-31.pdf
+    source_format: pdf
+    source_as_of: "2026-09-23"
+    expression_date: "2006-08-16"
+    extraction:
+      # The PDF's tag tree gives the page-1 "Changes include:" paragraph and a
+      # struck clause on page 15 an empty /ActualText, which MuPDF otherwise
+      # substitutes for the visible text.
+      ignore_actual_text: true
+      # Attachment A (pages 7-23) prints the proposed MPP amendments: deleted
+      # text struck through, inserted text underlined.
+      amendment_markup:
+        start_page: 7
+        end_page: 23
+        # Case names in the MPP 63-502 and 63-503 Reference notes (pages 13
+        # and 16): only the party names are underlined, not "v.", and both
+        # orders (1988, 1990) predate this 2006 amendment. Citation
+        # typography, not insertions.
+        typographic_underlines:
+          - Jones v. Yeutter
+          - Hamilton v. Lyng;
+    metadata:
+      primary_source: true
+      source_authority: California Department of Social Services
+      document_subtype: all_county_letter
+      document_number: ACL 06-31
+      letter_date: "2006-08-16"
+      effective_date: "2006-10-01"
+      program: CalFresh
+      topic: legally_obligated_child_support_payment_exclusion
+      authority_role: >-
+        Implements the 7 CFR 273.9(c)(17) option: legally obligated child support paid to a
+        nonhousehold member becomes an income exclusion under MPP 63-502.2(p), taken before the
+        gross income test, instead of a deduction; also carries the regulation text amending MPP
+        63-501, 63-502, 63-503, 63-504, 63-505, 63-508 and 63-509.
+      index_url: https://www.cdss.ca.gov/inforesources/letters-regulations/letters-and-notices/all-county-letters/2006-all-county-letters
+      alternate_source_url: https://www.cdss.ca.gov/getinfo/acl06/pdf/06-31.pdf
+      alternate_source_url_note: >-
+        The legacy path cited by policyengine-us PR #9586 served the same 412,441 bytes (same
+        SHA-256) as the index-linked source_url on 2026-09-23.
+      discovered_via: 'policyengine-us PR #9586 (gov.usda.snap.income.deductions.child_support references)'

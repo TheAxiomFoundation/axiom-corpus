@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "dd031437716e4fe006f6083b51101bd50928186781b1903c63df24a7f7d2d5ea"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "764f2cce09ef2237f9ee90efa802bc27f3ba8f9859d1ecf0fa17d647344e9865"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "f3f34549e87466d78ad650010a89ec91b9812ab97021cde23ab939202ddae913"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-ma-dta-snap-issuance-tables-1-10-fy2026.pdf",
+      "sha256": "bccfefcf7f601f7e08cfb66554ac5756d9fb91928d3d33274d3aca5c02744f23"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-ma-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 52,
+    "missing_count": 0,
+    "provision_count": 52,
+    "source_count": 52
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:40:36.971231+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JkR98V8sulwjFUyJplxqNB5q9jZAmxYdMbH/3uGH8YiNnzSPXjQlXslxQ5mqtIb48xGK1BbzGdtEGY1N9ZDXCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

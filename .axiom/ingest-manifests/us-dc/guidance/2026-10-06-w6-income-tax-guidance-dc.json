@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/guidance/2026-10-06-w6-income-tax-guidance-dc.json",
+      "sha256": "1ad804e1622e632187a79bec082323953e1563d31bef29974823cf3a4784f78c"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/guidance/2026-10-06-w6-income-tax-guidance-dc.json",
+      "sha256": "19bdb422cbde8b07943b1b12cdc94cd73278ea0daf35759f72441046b851a11b"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/guidance/2026-10-06-w6-income-tax-guidance-dc.jsonl",
+      "sha256": "128bc2a4ac901ef048ae4a3d57440b101ce98b250f7ad0ec51e75c6cc82d5287"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/guidance/2026-10-06-w6-income-tax-guidance-dc/official-documents/us-dc-w6-otr-releases-tax-changes-take-effect-october-1-2024.html",
+      "sha256": "9b6552023d6ada5ea35dbbfc0edfbb06071c1702ff68c98db671d688c75e58f5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:18.588372+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4FL1tThNGI4z/3Yy6535QyZN72sFQc+R6oiKU+jsRYrY6GlbWjCw24o2YpRKnQfp0X+zXPCeuRm9rI8MRSiMDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-dc"
+}

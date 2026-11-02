@@ -1,0 +1,1 @@
+Capture the current official text of California Revenue and Taxation Code sections 17024.5 and 17052 from leginfo as amended by SB 1435 (Stats. 2026, Ch. 236, effective September 14, 2026, applicable to taxable years beginning on or after January 1, 2025). The 2026-09-14 income-tax chapter scope holds the text from before that amendment.

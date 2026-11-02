@@ -1,0 +1,506 @@
+program: liheap
+title: LIHEAP (federal block grant and state FY2026 plans)
+date: '2026-09-11'
+method: 'Law-derived: one element per statute section, CFR subpart/section, POMS/IOM subchapter or chapter, annual notice family, and state plan
+  section / state rule family. PolicyEngine-US (policyengine_us/parameters and variables, walked 2026-09-11) and rulespec-us are cross-checks
+  only: pe_modeled = yes/partial/no per element.'
+sources:
+- 42 U.S.C. 8621-8630
+- 45 CFR 96 subpart H (96.80-96.89)
+- LIHEAP Detailed Model Plan sections 1-20 (structure read from the extracted plans)
+- ACF LIHEAP Clearinghouse index https://liheapch.acf.gov/stateplans.htm read 2026-09-11 (plans, policy manuals, delegation letters)
+- manifests/liheap-agent-queue.yaml and run note 2026-09-10-liheap-state-plans-fy2026
+- 'cross-check: policyengine_us gov/hhs/liheap (1 leaf: smi_limit) and gov/states/{dc,il,ma}/.../liheap, gov/states/tx/tdhca/ceap; rulespec-us
+  has no LIHEAP encoding'
+uncertainties:
+- The plan's yes/no check boxes (categorical eligibility, asset test, priority groups, gross/net income, income types) are not captured by the
+  PDF text extraction; those elements are REVIEW unless the narrative fields carry the answer.
+- Benefit matrices and the policy manual are plan attachments that the clearinghouse PDF does not include; the matrix element is EXTRACTABLE only
+  via the state manual link.
+- Sections 18-20 (certifications) are not elements; Section 20 also absorbs the assurances page.
+- Tribal and territory plans (AS, GU, MP, PR extracted) are outside the 50+DC matrix.
+element_count: 41
+policyengine_cross_check:
+  note: Elements the law has that PolicyEngine-US does not model (pe_modeled = no) and models only in part (partial). PolicyEngine is a cross-check,
+    not the bar.
+  not_modeled_count: 28
+  partial_count: 11
+  modeled_count: 2
+  not_modeled:
+  - 'LIHEAP-F-USC-8621: 42 U.S.C. 8621: Findings and purpose'
+  - 'LIHEAP-F-USC-8622: 42 U.S.C. 8622: Definitions (home energy, household, State, poverty level, SMI)'
+  - 'LIHEAP-F-USC-8623: 42 U.S.C. 8623: Authorization of appropriations; leveraging and REACH set-asides'
+  - 'LIHEAP-F-USC-8625: 42 U.S.C. 8625: Administration (Secretary''s duties)'
+  - 'LIHEAP-F-USC-8626: 42 U.S.C. 8626: Payments to States; carryover limits'
+  - 'LIHEAP-F-USC-8627: 42 U.S.C. 8627: Withholding of funds'
+  - 'LIHEAP-F-USC-8628: 42 U.S.C. 8628: Technical assistance and training'
+  - 'LIHEAP-F-USC-8629: 42 U.S.C. 8629: Reports, data collection and evaluation'
+  - 'LIHEAP-F-USC-8630: 42 U.S.C. 8630: Incentive program for leveraging non-federal resources'
+  - 'LIHEAP-F-CFR96-96-80: 45 CFR 96.80: Scope of subpart H'
+  - 'LIHEAP-F-CFR96-96-81: 45 CFR 96.81: Carryover and reallotment'
+  - 'LIHEAP-F-CFR96-96-82: 45 CFR 96.82: Required report on households assisted'
+  - 'LIHEAP-F-CFR96-96-83: 45 CFR 96.83: Increase in maximum amount that may be used for weatherization'
+  - 'LIHEAP-F-CFR96-96-84: 45 CFR 96.84: Miscellaneous (income eligibility definitions, nominal payments, categorical eligibility)'
+  - 'LIHEAP-F-CFR96-96-86: 45 CFR 96.86: Exemption from requirement for additional outreach and intake services'
+  - 'LIHEAP-F-CFR96-96-87: 45 CFR 96.87: Leveraging incentive program'
+  - 'LIHEAP-F-CFR96-96-88: 45 CFR 96.88: Administrative costs'
+  - 'LIHEAP-F-CFR96-96-89: 45 CFR 96.89: Exemptions from requirements in the Human Services Reauthorization Act of 1994'
+  - 'LIHEAP-F-GUID-MODELPLAN: LIHEAP Model Plan (OMB form) and ACF instructions; LIHEAP Action Transmittals / Information Memoranda'
+  - 'LIHEAP-ST-02: Funding allocation by component, carryover, admin and Assurance 16 shares (1.2-1.3)'
+  - 'LIHEAP-ST-04: SNAP nominal payment policy and amount (1.7)'
+  - 'LIHEAP-ST-07: Heating: additional eligibility rules and priority for vulnerable households (2.2-2.4)'
+  - 'LIHEAP-ST-10: Cooling: threshold, eligibility, benefit levels (section 3)'
+  - 'LIHEAP-ST-13: Weatherization component rules (section 5)'
+  - 'LIHEAP-ST-14: Outreach, coordination, agency designation, energy-supplier agreements (6-9)'
+  - 'LIHEAP-ST-15: Fair hearings (12)'
+  - 'LIHEAP-ST-16: Assurance 16 services, leveraging, training, performance measures (13-16)'
+  - 'LIHEAP-ST-17: Monitoring, audit and program integrity (10, 17)'
+  partial:
+  - 'LIHEAP-F-USC-8624: 42 U.S.C. 8624: Applications and requirements: allotment uses, the 16 assurances incl. income eligibility ceiling (150%
+    poverty / 60% SMI, floor 110% poverty), outreach, priority to highest need, hearings, plan contents (2605(c))'
+  - 'LIHEAP-F-CFR96-96-85: 45 CFR 96.85: Income eligibility (poverty guidelines and SMI; household definition)'
+  - 'LIHEAP-ST-01: Program components operated and dates of operation (plan section 1.1)'
+  - 'LIHEAP-ST-03: Categorical eligibility policy and automatic enrollment (1.4-1.6)'
+  - 'LIHEAP-ST-05: Countable income (gross/net, income types) and household definition (1.8-1.12)'
+  - 'LIHEAP-ST-06: Heating: income eligibility threshold by household size (2.1)'
+  - 'LIHEAP-ST-08: Heating: benefit determination variables, minimum and maximum benefit (2.5-2.6)'
+  - 'LIHEAP-ST-09: Heating/cooling benefit matrix (plan attachment)'
+  - 'LIHEAP-ST-11: Crisis: threshold, crisis definition, life-threatening definition, response times (4.1-4.5)'
+  - 'LIHEAP-ST-12: Crisis: additional eligibility and benefit levels / maximum crisis benefit (4.6-4.x)'
+  - 'LIHEAP-ST-18: State LIHEAP policy/operations manual (application procedures, matrices, vendor rules)'
+rulespec_cross_check:
+  note: Elements with a RuleSpec encoding in rulespec-us (or rulespec-us-ca/co/ny); every other element has none.
+  encoded: []
+elements:
+- id: LIHEAP-F-USC-8621
+  name: '42 U.S.C. 8621: Findings and purpose'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8622
+  name: '42 U.S.C. 8622: Definitions (home energy, household, State, poverty level, SMI)'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8623
+  name: '42 U.S.C. 8623: Authorization of appropriations; leveraging and REACH set-asides'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8624
+  name: '42 U.S.C. 8624: Applications and requirements: allotment uses, the 16 assurances incl. income eligibility ceiling (150% poverty / 60%
+    SMI, floor 110% poverty), outreach, priority to highest need, hearings, plan contents (2605(c))'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8625
+  name: '42 U.S.C. 8625: Administration (Secretary''s duties)'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8626
+  name: '42 U.S.C. 8626: Payments to States; carryover limits'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8627
+  name: '42 U.S.C. 8627: Withholding of funds'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8628
+  name: '42 U.S.C. 8628: Technical assistance and training'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8629
+  name: '42 U.S.C. 8629: Reports, data collection and evaluation'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-USC-8630
+  name: '42 U.S.C. 8630: Incentive program for leveraging non-federal resources'
+  level: federal
+  family: statute (US Code Title 42 ch. 94 subch. II)
+  set_by: Congress
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8621-8630
+  note: ''
+- id: LIHEAP-F-CFR96-96-80
+  name: '45 CFR 96.80: Scope of subpart H'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-81
+  name: '45 CFR 96.81: Carryover and reallotment'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-82
+  name: '45 CFR 96.82: Required report on households assisted'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-83
+  name: '45 CFR 96.83: Increase in maximum amount that may be used for weatherization'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-84
+  name: '45 CFR 96.84: Miscellaneous (income eligibility definitions, nominal payments, categorical eligibility)'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-85
+  name: '45 CFR 96.85: Income eligibility (poverty guidelines and SMI; household definition)'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-86
+  name: '45 CFR 96.86: Exemption from requirement for additional outreach and intake services'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-87
+  name: '45 CFR 96.87: Leveraging incentive program'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-88
+  name: '45 CFR 96.88: Administrative costs'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-CFR96-96-89
+  name: '45 CFR 96.89: Exemptions from requirements in the Human Services Reauthorization Act of 1994'
+  level: federal
+  family: regulation (eCFR, 45 CFR 96 subpart H)
+  set_by: HHS/ACF
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 45 CFR 96 subpart H
+  note: ''
+- id: LIHEAP-F-ANN-POVERTY
+  name: HHS poverty guidelines for the program year (income ceiling basis)
+  level: federal
+  family: annual notice (Federal Register, HHS/ASPE)
+  set_by: HHS
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)(2)
+  - 45 CFR 96.85
+  note: ''
+- id: LIHEAP-F-ANN-SMI
+  name: State median income estimates for LIHEAP (ACF LIHEAP-IM annual SMI table)
+  level: federal
+  family: annual guidance (ACF OCS LIHEAP Information Memorandum)
+  set_by: HHS
+  pe_modeled: 'yes'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)(2)
+  - 45 CFR 96.85
+  note: ''
+- id: LIHEAP-F-GUID-MODELPLAN
+  name: LIHEAP Model Plan (OMB form) and ACF instructions; LIHEAP Action Transmittals / Information Memoranda
+  level: federal
+  family: agency guidance (ACF OCS)
+  set_by: HHS
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)(2)
+  - 45 CFR 96.85
+  note: ''
+- id: LIHEAP-ST-01
+  name: Program components operated and dates of operation (plan section 1.1)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-02
+  name: Funding allocation by component, carryover, admin and Assurance 16 shares (1.2-1.3)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-03
+  name: Categorical eligibility policy and automatic enrollment (1.4-1.6)
+  level: state
+  family: state plan (yes/no boxes) + policy manual
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-04
+  name: SNAP nominal payment policy and amount (1.7)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-05
+  name: Countable income (gross/net, income types) and household definition (1.8-1.12)
+  level: state
+  family: state plan (check boxes) + policy manual
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-06
+  name: 'Heating: income eligibility threshold by household size (2.1)'
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-07
+  name: 'Heating: additional eligibility rules and priority for vulnerable households (2.2-2.4)'
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-08
+  name: 'Heating: benefit determination variables, minimum and maximum benefit (2.5-2.6)'
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-09
+  name: Heating/cooling benefit matrix (plan attachment)
+  level: state
+  family: plan attachment / state policy manual
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-10
+  name: 'Cooling: threshold, eligibility, benefit levels (section 3)'
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-11
+  name: 'Crisis: threshold, crisis definition, life-threatening definition, response times (4.1-4.5)'
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-12
+  name: 'Crisis: additional eligibility and benefit levels / maximum crisis benefit (4.6-4.x)'
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-13
+  name: Weatherization component rules (section 5)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-14
+  name: Outreach, coordination, agency designation, energy-supplier agreements (6-9)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-15
+  name: Fair hearings (12)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-16
+  name: Assurance 16 services, leveraging, training, performance measures (13-16)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-17
+  name: Monitoring, audit and program integrity (10, 17)
+  level: state
+  family: state plan
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: 'no'
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''
+- id: LIHEAP-ST-18
+  name: State LIHEAP policy/operations manual (application procedures, matrices, vendor rules)
+  level: state
+  family: state policy manual or adopted rule
+  set_by: state grantee (plan approved by HHS)
+  pe_modeled: partial
+  rulespec_encoded: 'no'
+  derived_from:
+  - 42 U.S.C. 8624(b)-(c)
+  - LIHEAP Detailed Model Plan sections 1-20
+  note: ''

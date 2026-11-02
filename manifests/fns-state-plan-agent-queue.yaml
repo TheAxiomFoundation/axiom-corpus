@@ -1,0 +1,2738 @@
+version: '2026-09-13'
+document_family: fns_state_plans
+programs:
+- SNAP
+- WIC
+queue_status: in_progress
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+  - sources
+  - inventory
+  - provisions
+  - coverage
+  forbidden_sources:
+  - secondary summaries
+  - State Options Reports
+  - benefitswiki
+  - policy manuals reposted by non-government sites
+  - mirrors, proxies and archived copies of blocked publishers
+  notes:
+  - 'Work order: docs/coverage/needs-closure-2026-09-11/snap.md elements snap_s31 (SNAP E&T State Plan) and snap_s32 (State
+    Plan of Operation, 7 CFR 272.2) and wic.md element wic_s30 (WIC State Plan, 7 CFR 246.4).'
+  - 'Scopes: us-xx/policy/2026-09-13-snap-et-state-plan (manifests/us-xx-snap-et-state-plan.yaml) and us-xx/policy/2026-09-13-wic-state-plan
+    (manifests/us-xx-wic-state-plan.yaml), one document per posted plan file, page granularity like the Colorado E&T precedent
+    us-co/policy/co-cdhs-snap-et-state-plan-ffy2026. Citation paths us-xx/policy/snap-et-state-plan/ffy2026 and us-xx/policy/wic-state-plan/<fy>/...
+    collide with nothing in the corpus (checked against every provisions JSONL).'
+  - 'FNA (fns.usda.gov / fna.usda.gov) posts SNAP E&T state plans at https://www.fna.usda.gov/snap-et/stateplan; it posts
+    no WIC state plans and no 272.2 plans of operation. Generator: scripts/build_fns_state_plan_manifests.py. Run note: docs/ingest-runs/2026-09-13-fns-state-plans.md.'
+states:
+- jurisdiction: us-ak
+  name: Alaska
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/alaska
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ak-snapet-stateplanFY26.pdf
+    pdf_bytes: 473906
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/alaska
+      status: 200
+      bytes: 42419
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ak-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 473906
+      seconds: 0.3
+      client: requests
+    notes: FNA state page 'Alaska SNAP E&T State Plan' (Print Version (462.80 KB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ak-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ak
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: http://dpaweb.hss.state.ak.us/manuals/fs/fsp.htm#t=title_page_alaska_fsp_manual.htm
+      status: 200
+      bytes: 33481
+      seconds: 1.4
+      client: requests
+      links: 7
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-al
+  name: Alabama
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/alabama
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/al-snapet-stateplanFY26.pdf
+    pdf_bytes: 2830956
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/alabama
+      status: 200
+      bytes: 42419
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/al-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2830956
+      seconds: 0.3
+      client: requests
+    notes: FNA state page 'Alabama SNAP E&T State Plan' (Print Version (2.70 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-al-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-al
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://www.alabamapublichealth.gov/wic/index.html
+    index_document_count: 1
+    notes: 'The Alabama WIC home page carries ''Public Notice - WIC State Plan of Operations'' linking the full ''2027 State
+      Plan of Program Operations'' PDF (489 pages: administrative documents, goals and objectives, functional area chapters
+      I-XI). 22 pages are image-only (signatures, forms), so the scope extracts with ocr: true.'
+    status: taken
+    target_manifest: manifests/us-al-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-al
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 1
+    checks:
+    - url: https://www.alabamapublichealth.gov/wic/index.html
+      status: 200
+      bytes: 59815
+      seconds: 0.2
+      client: requests
+    skipped: []
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://apps.dhr.alabama.gov/POE/POEhome
+      status: 200
+      bytes: 7591
+      seconds: 0.2
+      client: requests
+      links: 20
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-ar
+  name: Arkansas
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: false
+    status: taken
+    publisher_page_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/snap-employment-and-training/
+    media_library_url: https://humanservices.arkansas.gov/wp-json/wp/v2/media?search=State%20Plan&per_page=50
+    pdf_url: https://humanservices.arkansas.gov/wp-content/uploads/StatePlan_AR_2026_Original-Submission_126.pdf
+    pdf_bytes: 249923
+    checks:
+    - url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/snap-employment-and-training/
+      status: 200
+      bytes: 435308
+      seconds: 0.2
+      client: curl_cffi:safari17_0
+    - url: https://humanservices.arkansas.gov/wp-json/wp/v2/media?search=State%20Plan&per_page=50
+      status: 200
+      bytes: 94431
+      seconds: 0.1
+      client: curl_cffi:safari17_0
+    - url: https://humanservices.arkansas.gov/wp-content/uploads/StatePlan_AR_2026_Original-Submission_126.pdf
+      status: 200
+      bytes: 249923
+      seconds: 0.1
+      client: curl_cffi:safari17_0
+    notes: Arkansas is not on the FNA index. The DHS SNAP Employment and Training page links only the E&T provider contact
+      list (SNAP-Employment-and-Training-7.24.26.pdf); the DHS media library lists 'StatePlan_AR_2026_Original Submission_126'
+      (uploaded 2026-01-20, 112 pages, the FNS template 'USDA FNS SNAP E&T STATE PLAN ... Arkansas AR 2026') and the FFY25
+      plan v1.3 (2024-11-26, superseded). The FY26 original submission is taken.
+    target_manifest: manifests/us-ar-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ar
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/
+      status: 200
+      bytes: 437405
+      seconds: 0.3
+      client: curl_cffi:safari17_0
+      links: 851
+    - url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-04.02.2026.pdf
+      status: 200
+      bytes: 5056427
+      seconds: 0.7
+      client: curl_cffi:safari17_0
+      pdf_pages: 589
+      plan_text_hits: 2
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted. The SNAP Certification Manual says the
+      plan of operation and its planning documents are available for public review at the Central Office on request; not posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-az
+  name: Arizona
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/arizona
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/az-snapet-stateplanFY26.pdf
+    pdf_bytes: 1439067
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/arizona
+      status: 200
+      bytes: 42422
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/az-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1439067
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Arizona SNAP E&T State Plan' (Print Version (1.37 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-az-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-az
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: publisher_blocked
+    fna_posts: false
+    checks:
+    - url: https://dbmefaapolicy.azdes.gov/FAA5.html
+      status: 403
+      bytes: 5824
+      seconds: 0.1
+      client: curl_cffi:safari17_0
+      links: 0
+    - url: https://dbmefaapolicy.azdes.gov/#page/How_To_Use_This_Manual/Customer_Info.html
+      status: 403
+      bytes: 5776
+      seconds: 0.1
+      client: curl_cffi:safari17_0
+      links: 0
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ca
+  name: California
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/california
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ca-snapet-stateplanFY26.pdf
+    pdf_bytes: 3438474
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/california
+      status: 200
+      bytes: 42437
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ca-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 3438474
+      seconds: 0.7
+      client: requests
+    notes: FNA state page 'California SNAP E&T State Plan' (Print Version (3.28 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ca-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ca
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.cdss.ca.gov/inforesources/letters-regulations/legislation-and-regulations/calworks-calfresh-regulations/calfresh-regulations
+      status: 200
+      bytes: 28761
+      seconds: 1.2
+      client: requests
+      links: 44
+    - url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/CalFresh-Regulations
+      status: 200
+      bytes: 28761
+      seconds: 1.8
+      client: requests
+      links: 44
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-co
+  name: Colorado
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: false
+    status: already_in_corpus
+    existing_scope:
+      jurisdiction: us-co
+      document_class: policy
+      version: 2026-07-21-co-snap-policy
+    existing_citation_path: us-co/policy/co-cdhs-snap-et-state-plan-ffy2026
+    notes: Colorado is not on the FNA index; its FFY 2026 plan (Google Drive link on cdhs.colorado.gov) is already in the
+      released Colorado SNAP policy scope (425 page rows). Nothing to take.
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2818
+      status: 200
+      bytes: 88282
+      seconds: 0.6
+      client: requests
+      links: 285
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ct
+  name: Connecticut
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/connecticut
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ct-snapet-stateplanFY26.pdf
+    pdf_bytes: 1122519
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/connecticut
+      status: 200
+      bytes: 42442
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ct-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1122519
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Connecticut SNAP E&T State Plan' (Print Version (1.07 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ct-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ct
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://portal.ct.gov/dph/wic/ct-wic-state-plan
+    index_document_count: 2
+    notes: 'The CT DPH ''WIC State Plan'' page links Section 1 ''CT State Plan for Program Operations FY 2025'' (92 pages)
+      and the FY 2026 breastfeeding peer counseling update, then the State Plan Policies series 100-400 (the manual, released
+      scope us-ct/manual/2026-09-10-wic-state-policy-manual). The two Section 1 PDFs are taken; one page is image-only so
+      the scope extracts with ocr: true.'
+    status: taken
+    target_manifest: manifests/us-ct-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ct
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 2
+    checks:
+    - url: https://portal.ct.gov/dph/wic/ct-wic-state-plan
+      status: 200
+      bytes: 59993
+      seconds: 0.7
+      client: requests
+    skipped: []
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://portal.ct.gov/dss/snap/snap-policy-manual
+      status: 200
+      bytes: 59918
+      seconds: 0.5
+      client: requests
+      links: 69
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-dc
+  name: District of Columbia
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/dc
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/dc-snapet-stateplanFY26.pdf
+    pdf_bytes: 1927562
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/dc
+      status: 200
+      bytes: 42433
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/dc-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1927562
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'District of Columbia SNAP E&T State Plan' (Print Version (1.84 MB)); the PDF is the FNS template
+      ('USDA FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-dc-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-dc
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dhs.dc.gov/publication/esa-policy-manuals
+      status: 200
+      bytes: 168806
+      seconds: 0.4
+      client: requests
+      links: 59
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-de
+  name: Delaware
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/delaware
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/de-snapet-stateplanFY26.pdf
+    pdf_bytes: 1060679
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/delaware
+      status: 200
+      bytes: 42427
+      seconds: 1.0
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/de-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1060679
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Delaware SNAP E&T State Plan' (Print Version (1.01 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-de-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-de
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://regulations.delaware.gov/AdminCode/title16/9000
+      status: 200
+      bytes: 65540
+      seconds: 0.2
+      client: requests
+      links: 0
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-fl
+  name: Florida
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/florida
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/fl-snapet-stateplanFY26.pdf
+    pdf_bytes: 1109897
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/florida
+      status: 200
+      bytes: 42422
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/fl-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1109897
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Florida SNAP E&T State Plan' (Print Version (1.06 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-fl-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-fl
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.myflfamilies.com/services/public-assistance/additional-resources-and-services/ess-program-manual
+      status: 200
+      bytes: 31823
+      seconds: 0.3
+      client: requests
+      links: 91
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ga
+  name: Georgia
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/georgia
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ga-snapet-stateplanFY26.pdf
+    pdf_bytes: 1761639
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/georgia
+      status: 200
+      bytes: 42426
+      seconds: 0.3
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ga-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1761639
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Georgia SNAP E&T State Plan' (Print Version (1.68 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ga-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ga
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://pamms.dhs.ga.gov/dfcs/snap/
+      status: 200
+      bytes: 171111
+      seconds: 0.6
+      client: requests
+      links: 1076
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-hi
+  name: Hawaii
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/hawaii
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/hi-snapet-stateplanFY26.pdf
+    pdf_bytes: 989386
+    fna_page_updated: January 28, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/hawaii
+      status: 200
+      bytes: 42419
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/hi-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 989386
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Hawaii SNAP E&T State Plan' (Print Version (966.20 KB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-hi-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-hi
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+      status: 200
+      bytes: 97620
+      seconds: 0.4
+      client: requests
+      links: 192
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ia
+  name: Iowa
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/iowa
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ia-snapet-stateplanFY26.pdf
+    pdf_bytes: 1405487
+    fna_page_updated: January 29, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/iowa
+      status: 200
+      bytes: 42407
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ia-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1405487
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Iowa SNAP E&T State Plan' (Print Version (1.34 MB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ia-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ia
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://hhs.iowa.gov/media/4035/download?inline
+      status: 200
+      bytes: 101577
+      seconds: 0.6
+      client: requests
+      pdf_pages: 7
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-id
+  name: Idaho
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/idaho
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/id-snapet-stateplanFY26.pdf
+    pdf_bytes: 1243003
+    fna_page_updated: January 29, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/idaho
+      status: 200
+      bytes: 42412
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/id-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1243003
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Idaho SNAP E&T State Plan' (Print Version (1.19 MB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-id-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-id
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://adminrules.idaho.gov/current-rules/
+      status: 200
+      bytes: 196769
+      seconds: 1.4
+      client: requests
+      links: 44
+    - url: https://adminrules.idaho.gov/rules/current/16/160304.pdf
+      status: 200
+      bytes: 1246593
+      seconds: 1.4
+      client: requests
+      pdf_pages: 70
+      plan_text_hits: 2
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted. IDAPA 16.03.04 rule 866 says state plans
+      of operation are available for public examination; not posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-il
+  name: Illinois
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/illinois
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/il-snapet-stateplanFY26.pdf
+    pdf_bytes: 4770795
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/illinois
+      status: 200
+      bytes: 42431
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/il-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 4770795
+      seconds: 0.7
+      client: requests
+    notes: FNA state page 'Illinois SNAP E&T State Plan' (Print Version (4.55 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-il-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-il
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.dhs.state.il.us/page.aspx?item=13473
+      status: 200
+      bytes: 10727
+      seconds: 0.2
+      client: requests
+      links: 58
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-in
+  name: Indiana
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/indiana
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/in-snapet-stateplanFY26.pdf
+    pdf_bytes: 2025387
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/indiana
+      status: 200
+      bytes: 42426
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/in-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2025387
+      seconds: 0.7
+      client: requests
+    notes: FNA state page 'Indiana SNAP E&T State Plan' (Print Version (1.93 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-in-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-in
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.in.gov/fssa/dfr/forms-documents-and-tools/policy-manual/
+      status: 200
+      bytes: 85550
+      seconds: 0.4
+      client: requests
+      links: 162
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ks
+  name: Kansas
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/kansas
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ks-snapet-stateplanFY26.pdf
+    pdf_bytes: 1049301
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/kansas
+      status: 200
+      bytes: 42421
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ks-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1049301
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Kansas SNAP E&T State Plan' (Print Version (1.00 MB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ks-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ks
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://content.dcf.ks.gov/EES/KEESM/Current/Home.htm
+      status: 200
+      bytes: 4446
+      seconds: 0.4
+      client: requests
+      links: 0
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ky
+  name: Kentucky
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/kentucky
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ky-snapet-stateplanFY26.pdf
+    pdf_bytes: 2601573
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/kentucky
+      status: 200
+      bytes: 42431
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ky-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2601573
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Kentucky SNAP E&T State Plan' (Print Version (2.48 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ky-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ky
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+      status: 200
+      bytes: 58132
+      seconds: 1.6
+      client: requests
+      links: 79
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-la
+  name: Louisiana
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/louisiana
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/la-snapet-stateplanFY26.pdf
+    pdf_bytes: 1324922
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/louisiana
+      status: 200
+      bytes: 42436
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/la-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1324922
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Louisiana SNAP E&T State Plan' (Print Version (1.26 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-la-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-la
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://public.powerdms.com/LADCFS/tree/documents/398463
+      status: 200
+      bytes: 2404
+      seconds: 0.3
+      client: requests
+      links: 0
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ma
+  name: Massachusetts
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/massachusetts
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ma-snapet-stateplanFY26.pdf
+    pdf_bytes: 2712599
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/massachusetts
+      status: 200
+      bytes: 42456
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ma-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2712599
+      seconds: 0.4
+      client: requests
+    notes: FNA state page 'Massachusetts SNAP E&T State Plan' (Print Version (2.59 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ma-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ma
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://www.mass.gov/info-details/massachusetts-wic-state-plan
+    index_document_count: 1
+    notes: The mass.gov 'Massachusetts WIC State Plan' page links the 'Massachusetts WIC State Plan 2027' PDF (41 pages).
+      The WIC Program Manual it names is not published (wic-agent-queue). Taken with the Safari fingerprint.
+    status: taken
+    target_manifest: manifests/us-ma-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ma
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 1
+    checks:
+    - url: https://www.mass.gov/info-details/massachusetts-wic-state-plan
+      status: 200
+      bytes: 180480
+      seconds: 0.5
+      client: curl_cffi:safari17_0
+    skipped: []
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      status: 200
+      bytes: 209572
+      seconds: 0.5
+      client: curl_cffi:safari17_0
+      links: 94
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-md
+  name: Maryland
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/maryland
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/md-snapet-stateplanFY26.pdf
+    pdf_bytes: 4322435
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/maryland
+      status: 200
+      bytes: 42431
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/md-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 4322435
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Maryland SNAP E&T State Plan' (Print Version (4.12 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-md-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-md
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dhs.maryland.gov/supplemental-nutrition-assistance-program/food-supplement-program-manual/
+      status: 200
+      bytes: 105282
+      seconds: 0.8
+      client: requests
+      links: 219
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-me
+  name: Maine
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/maine
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/me-snapet-stateplanFY26.pdf
+    pdf_bytes: 1019764
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/maine
+      status: 200
+      bytes: 42418
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/me-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1019764
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Maine SNAP E&T State Plan' (Print Version (995.86 KB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-me-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
+      status: 200
+      bytes: 136019
+      seconds: 0.1
+      client: requests
+      links: 538
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-mi
+  name: Michigan
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/michigan
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/mi-snapet-stateplanFY26.pdf
+    pdf_bytes: 2745448
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/michigan
+      status: 200
+      bytes: 42431
+      seconds: 0.3
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/mi-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2745448
+      seconds: 0.8
+      client: requests
+    notes: FNA state page 'Michigan SNAP E&T State Plan' (Print Version (2.62 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-mi-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mi
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://mdhhs-pres-prod.michigan.gov/OLMWeb/ex/BP/Public/BEM/000.pdf
+      status: 200
+      bytes: 167226
+      seconds: 0.3
+      client: requests
+      pdf_pages: 6
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-mn
+  name: Minnesota
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/minnesota
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/mn-snapet-stateplanFY26.pdf
+    pdf_bytes: 3804123
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/minnesota
+      status: 200
+      bytes: 42436
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/mn-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 3804123
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Minnesota SNAP E&T State Plan' (Print Version (3.63 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-mn-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mn
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.dhs.state.mn.us/main/groups/county_access/documents/pub/dhs-327301.pdf
+      status: 200
+      bytes: 6389130
+      seconds: 7.1
+      client: requests
+      pdf_pages: 1354
+      plan_text_hits: 1
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-mo
+  name: Missouri
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/missouri
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/mo-snapet-stateplanFY26.pdf
+    pdf_bytes: 4172441
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/missouri
+      status: 200
+      bytes: 42431
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/mo-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 4172441
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Missouri SNAP E&T State Plan' (Print Version (3.98 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-mo-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mo
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dssmanuals.mo.gov/food-stamps/
+      status: 200
+      bytes: 46509
+      seconds: 0.6
+      client: requests
+      links: 34
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ms
+  name: Mississippi
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/mississippi
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ms-snapet-stateplanFY26.pdf
+    pdf_bytes: 1350689
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/mississippi
+      status: 200
+      bytes: 42446
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ms-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1350689
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Mississippi SNAP E&T State Plan' (Print Version (1.29 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ms-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ms
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
+      status: 200
+      bytes: 1635091
+      seconds: 0.8
+      client: curl_cffi:safari17_0
+      pdf_pages: 168
+      plan_text_hits: 10
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted. MDHS SNAP manual Rule 1.6 describes the
+      annual state plan of operation (7 CFR 272.2); the plan itself is not posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-mt
+  name: Montana
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/montana
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/mt-snapet-stateplanFY26.pdf
+    pdf_bytes: 1321986
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/montana
+      status: 200
+      bytes: 42426
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/mt-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1321986
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Montana SNAP E&T State Plan' (Print Version (1.26 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-mt-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mt
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://dphhs.mt.gov/ecfsd/wic/wicstateplan
+    index_document_count: 113
+    notes: 'Montana publishes its WIC policies only as the 2026 Montana WIC State Plan page: Goals and Objectives (the FFY
+      2023-2027 State Nutrition and Breastfeeding Services Plan), Section II attachments by functional area (vendor, nutrition,
+      MIS, organization and management, NSA, caseload, certification/eligibility/coordination, food delivery, monitoring,
+      civil rights), Section III attachments and plan Attachments (forms, food list, risk codes). Every PDF is text-extractable;
+      the clinic location map is an image and is not taken.'
+    status: taken
+    target_manifest: manifests/us-mt-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-mt
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 112
+    checks:
+    - url: https://dphhs.mt.gov/ecfsd/wic/wicstateplan
+      status: 200
+      bytes: 49490
+      seconds: 0.5
+      client: requests
+    skipped:
+    - url: https://dphhs.mt.gov/assets/ecfsd/WIC/StatePlan/Attachments/MontanaWICMap.pdf
+      reason: clinic location map, image only (no policy text)
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dphhs.mt.gov/hcsd/Manuals/snapmanual
+      status: 200
+      bytes: 72828
+      seconds: 0.4
+      client: requests
+      links: 322
+      plan_text_hits: 1
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-nc
+  name: North Carolina
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/northcarolina
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/nc-snapet-stateplanFY26.pdf
+    pdf_bytes: 3626380
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/northcarolina
+      status: 200
+      bytes: 42459
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/nc-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 3626380
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'North Carolina SNAP E&T State Plan' (Print Version (3.46 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-nc-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nc
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://policies.ncdhhs.gov/divisional-n-z/social-services/food-and-nutrition-services/fns-policies-manuals/
+      status: 200
+      bytes: 333424
+      seconds: 1.1
+      client: requests
+      links: 583
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-nd
+  name: North Dakota
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/northdakota
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/nd-snapet-stateplanFY26.pdf
+    pdf_bytes: 844167
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/northdakota
+      status: 200
+      bytes: 42460
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/nd-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 844167
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'North Dakota SNAP E&T State Plan' (Print Version (824.38 KB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-nd-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nd
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+      status: 200
+      bytes: 29054
+      seconds: 0.3
+      client: requests
+      links: 18
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ne
+  name: Nebraska
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/nebraska
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ne-snapet-stateplanFY26.pdf
+    pdf_bytes: 2533514
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/nebraska
+      status: 200
+      bytes: 42431
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ne-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2533514
+      seconds: 0.4
+      client: requests
+    notes: FNA state page 'Nebraska SNAP E&T State Plan' (Print Version (2.42 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ne-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ne
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: publisher_unreachable_tls
+    fna_posts: false
+    checks:
+    - url: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+      status: null
+      bytes: 0
+      seconds: 0.2
+      client: curl_cffi:safari17_0
+      links: 0
+      error: 'SSLError: certificate chain not verifiable with certifi'
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-nh
+  name: New Hampshire
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/newhampshire
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/nh-snapet-stateplanFY26.pdf
+    pdf_bytes: 730574
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/newhampshire
+      status: 200
+      bytes: 42456
+      seconds: 0.3
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/nh-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 730574
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'New Hampshire SNAP E&T State Plan' (Print Version (713.45 KB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-nh-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nh
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.dhhs.nh.gov/fsm_htm/newfsm.htm
+      status: 200
+      bytes: 5781
+      seconds: 0.3
+      client: curl_cffi:safari17_0
+      links: 1
+    - url: https://gc.nh.gov/rules/state_agencies/he-w700.html
+      status: 200
+      bytes: 569579
+      seconds: 0.4
+      client: requests
+      links: 70
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-nj
+  name: New Jersey
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/newjersey
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/nj-snapet-stateplanFY26.pdf
+    pdf_bytes: 1433546
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/newjersey
+      status: 200
+      bytes: 42314
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/nj-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1433546
+      seconds: 0.7
+      client: requests
+    notes: FNA state page 'New Jersey SNAP E&T State Plan' (New Jersey (1.37 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-nj-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nj
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
+      status: 200
+      bytes: 74542
+      seconds: 0.1
+      client: requests
+      links: 231
+      plan_text_hits: 1
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-nm
+  name: New Mexico
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    fna_linked_url: https://www.hca.nm.gov/wp-content/uploads/FFY-2025-SNAP-ET-NM-State-Plan.pdf
+    publisher_page_url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+    pdf_urls:
+    - https://www.hca.nm.gov/wp-content/uploads/StatePlan_NM_2026_Original-Submission_Approved.pdf
+    - https://www.hca.nm.gov/wp-content/uploads/StatePlan_NM_2026_Amendment.pdf
+    checks:
+    - url: https://www.hca.nm.gov/income-support-division-plans-and-reports/
+      status: 200
+      bytes: 241891
+      seconds: 2.0
+      client: curl_cffi:chrome120
+    notes: The FNA index entry for New Mexico is a link to the state's own FFY 2025 plan (hca.nm.gov, 107 pages). The HCA
+      Income Support Division 'Plans and Reports' page lists the FFY 2026 E&T Final State Plan (77 pages, FNS approved) and
+      the FFY 2026 Amendment 1 (99 pages), plus a FFY 2027 draft; the two FFY 2026 documents are taken as the current plan
+      and the FFY 2025 file is not.
+    target_manifest: manifests/us-nm-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nm
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 2
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+      status: 200
+      bytes: 246816
+      seconds: 1.8
+      client: requests
+      links: 251
+      plan_text_hits: 4
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted. The HCA Income Support Division page's
+      'State Verification Plan' (new-mexico-verification-plan-template-final-nov-2018-pw.pdf, 14 pages) is the MAGI-based
+      Medicaid eligibility verification plan, not a SNAP 272.2 attachment; the closure report's EXTRACTABLE note is corrected
+      here. The ISD Plans and Reports page lists E&T, Outreach, SNAP-Ed and D-SNAP plans, no plan of operation.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-nv
+  name: Nevada
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/nevada
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/nv-snapet-stateplanFY26.pdf
+    pdf_bytes: 1052299
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/nevada
+      status: 200
+      bytes: 42421
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/nv-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1052299
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Nevada SNAP E&T State Plan' (Print Version (1.00 MB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-nv-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-nv
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dwss.nv.gov/Home/Features/eligibility/eligibility-n-payment-info-manual/
+      status: 200
+      bytes: 90997
+      seconds: 1.3
+      client: requests
+      links: 185
+      plan_text_hits: 1
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ny
+  name: New York
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/newyork
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ny-snapet-stateplanFY26.pdf
+    pdf_bytes: 4748978
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/newyork
+      status: 200
+      bytes: 42430
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ny-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 4748978
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'New York SNAP E&T State Plan' (Print Version (4.53 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ny-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ny
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://otda.ny.gov/programs/snap/
+      status: 200
+      bytes: 6620
+      seconds: 0.2
+      client: curl_cffi:safari17_0
+      links: 0
+    - url: https://otda.ny.gov/programs/snap/SNAPSB.pdf
+      status: 200
+      bytes: 6620
+      seconds: 0.1
+      client: requests
+      links: 0
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-oh
+  name: Ohio
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/ohio
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/oh-snapet-stateplanFY26.pdf
+    pdf_bytes: 1656498
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/ohio
+      status: 200
+      bytes: 42411
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/oh-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1656498
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Ohio SNAP E&T State Plan' (Print Version (1.58 MB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-oh-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-oh
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://codes.ohio.gov/ohio-administrative-code/5101%3A4
+      status: 200
+      bytes: 14653
+      seconds: 0.7
+      client: requests
+      links: 29
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ok
+  name: Oklahoma
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/oklahoma
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ok-snapet-stateplanFY26.pdf
+    pdf_bytes: 2166623
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/oklahoma
+      status: 200
+      bytes: 42431
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ok-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 2166623
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Oklahoma SNAP E&T State Plan' (Print Version (2.07 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ok-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=50
+      status: 200
+      bytes: 730010
+      seconds: 2.0
+      client: requests
+      links: 0
+      plan_text_hits: 3
+    - url: https://rules.ok.gov/home
+      status: 200
+      bytes: 1551
+      seconds: 0.5
+      client: curl_cffi:safari17_0
+      links: 0
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted. OAC 340:50 says State Plans of Operation
+      are available upon request for inspection; not posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-or
+  name: Oregon
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/oregon
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/or-snapet-stateplanFY26.pdf
+    pdf_bytes: 4543385
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/oregon
+      status: 200
+      bytes: 42421
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/or-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 4543385
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Oregon SNAP E&T State Plan' (Print Version (4.33 MB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-or-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-or
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: publisher_unreachable_tls
+    fna_posts: false
+    checks:
+    - url: https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de2818.pdf
+      status: null
+      bytes: 0
+      seconds: 0.5
+      client: curl_cffi:safari17_0
+      links: 0
+      error: 'SSLError: certificate chain not verifiable with certifi'
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-pa
+  name: Pennsylvania
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/pennsylvania
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/pa-snapet-stateplanFY26.pdf
+    pdf_bytes: 7013686
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/pennsylvania
+      status: 200
+      bytes: 42451
+      seconds: 0.3
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/pa-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 7013686
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Pennsylvania SNAP E&T State Plan' (Print Version (6.69 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-pa-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-pa
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/index.htm#t=SNAP_Handbook_Title_Page.htm
+      status: 200
+      bytes: 33577
+      seconds: 0.3
+      client: requests
+      links: 7
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ri
+  name: Rhode Island
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/rhodeisland
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ri-snapet-stateplanFY26.pdf
+    pdf_bytes: 1102810
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/rhodeisland
+      status: 200
+      bytes: 42448
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ri-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1102810
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Rhode Island SNAP E&T State Plan' (Rhode Island (1.05 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ri-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ri
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
+      status: 200
+      bytes: 1124513
+      seconds: 0.4
+      client: requests
+      links: 62
+      plan_text_hits: 2
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-sc
+  name: South Carolina
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/southcarolina
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/sc-snapet-stateplanFY26.pdf
+    pdf_bytes: 1853925
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/southcarolina
+      status: 200
+      bytes: 42459
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/sc-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1853925
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'South Carolina SNAP E&T State Plan' (Print Version (1.77 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-sc-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-sc
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dss.sc.gov/about/data-and-resources/manuals/
+      status: 200
+      bytes: 76706
+      seconds: 0.2
+      client: requests
+      links: 469
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-sd
+  name: South Dakota
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/southdakota
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/sd-snapet-stateplanFY26.pdf
+    pdf_bytes: 1047694
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/southdakota
+      status: 200
+      bytes: 42453
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/sd-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1047694
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'South Dakota SNAP E&T State Plan' (Print Version (1,023.14 KB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-sd-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-sd
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dss.sd.gov/docs/economicassistance/snap/snapmanual.pdf
+      status: 200
+      bytes: 2773728
+      seconds: 13.7
+      client: requests
+      pdf_pages: 339
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-tn
+  name: Tennessee
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/tennessee
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/tn-snapet-stateplanFY26.pdf
+    pdf_bytes: 1325554
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/tennessee
+      status: 200
+      bytes: 42436
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/tn-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1325554
+      seconds: 0.4
+      client: requests
+    notes: FNA state page 'Tennessee SNAP E&T State Plan' (Print Version (1.26 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-tn-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-tn
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+      status: 200
+      bytes: 94260
+      seconds: 0.3
+      client: requests
+      links: 255
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-tx
+  name: Texas
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: false
+    status: not_published
+    checks:
+    - url: https://www.twc.texas.gov/programs/snap
+      status: 200
+      bytes: 113433
+      seconds: 0.4
+      client: curl_cffi:safari17_0
+    - url: https://www.hhs.texas.gov/reports/2024/02/snap-et-state-plan-ffy-2024
+      status: 404
+      bytes: 51382
+      seconds: 0.1
+      client: curl_cffi:chrome120
+    - url: https://www.hhs.texas.gov/search?keys=SNAP+E%26T+State+Plan
+      status: 200
+      bytes: 99735
+      seconds: 1.2
+      client: curl_cffi:chrome120
+    notes: Texas is not on the FNA index. The Texas Workforce Commission SNAP program page (twc.texas.gov/programs/snap; the
+      host answers an AWS WAF JavaScript challenge, HTTP 202 / 2,007 bytes, to the Chrome fingerprint and serves the page
+      to the Safari fingerprint) links the SNAP E&T Guide, the TPP guide, TAC Title 40 Chapter 813 and an HHSC report page
+      'SNAP E&T State Plan FFY 2024' that answers HTTP 404; it links no FFY 2025 or 2026 plan. The HHSC site search for 'SNAP
+      E&T State Plan' returns no plan, the Reports and Presentations listing ignores its keyword filter, and the HHSC sitemap
+      (2,012 URLs) carries no E&T plan. Not taken; the plan exists (every state files one) but neither FNA nor the state posts
+      it.
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://fhb.hhs.texas.gov/handbooks/texas-works-handbook
+      status: 200
+      bytes: 30202
+      seconds: 0.9
+      client: requests
+      links: 55
+    - url: https://www.hhs.texas.gov/handbooks/texas-works-handbook
+      status: 200
+      bytes: 30202
+      seconds: 0.3
+      client: curl_cffi:safari17_0
+      links: 55
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-ut
+  name: Utah
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/utah
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/ut-snapet-stateplanFY26.pdf
+    pdf_bytes: 728065
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/utah
+      status: 200
+      bytes: 42413
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/ut-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 728065
+      seconds: 0.7
+      client: requests
+    notes: FNA state page 'Utah SNAP E&T State Plan' (Print Version (711.00 KB)); the PDF is the FNS template ('USDA FNS SNAP
+      E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-ut-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ut
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://wic.utah.gov/about/wic-policies/proposed-state-plan/
+    index_document_count: 168
+    section_pages:
+    - https://wic.utah.gov/about/wic-policies/proposed-state-plan/section-i-goals-and-objectives-draft/
+    - https://wic.utah.gov/about/wic-policies/proposed-state-plan/section-ii-local-agency-policy-and-procedure-manual-draft/
+    - https://wic.utah.gov/about/wic-policies/proposed-state-plan/section-iii-state-operations-draft/
+    notes: 'The Utah WIC ''State Plan'' page (wic.utah.gov/about/wic-policies/proposed-state-plan) posts the FY 2027 Utah
+      WIC State Plan as three section pages: Section I Goals and Objectives (1 PDF), Section II Local Agency Policy and Procedure
+      Manual (110 draft policies) and Section III State Operations (57 PDFs). Ten Section II files are the same URLs the released
+      Utah WIC manual scope already carries and are not re-taken; the ''No policies'' placeholder is skipped. Every PDF is
+      text-extractable.'
+    status: taken
+    target_manifest: manifests/us-ut-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-ut
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 157
+    checks:
+    - url: https://wic.utah.gov/about/wic-policies/proposed-state-plan/
+      status: 200
+      bytes: 85157
+      seconds: 0.7
+      client: requests
+    - url: https://wic.utah.gov/about/wic-policies/proposed-state-plan/section-i-goals-and-objectives-draft/
+      status: 200
+      bytes: 85077
+      seconds: 0.3
+      client: requests
+    - url: https://wic.utah.gov/about/wic-policies/proposed-state-plan/section-ii-local-agency-policy-and-procedure-manual-draft/
+      status: 200
+      bytes: 99946
+      seconds: 0.3
+      client: requests
+    - url: https://wic.utah.gov/about/wic-policies/proposed-state-plan/section-iii-state-operations-draft/
+      status: 200
+      bytes: 92251
+      seconds: 0.3
+      client: requests
+    skipped:
+    - url: https://wic.utah.gov/wp-content/uploads/Definitions-12.pdf
+      label: Definitions
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Card-Issuance-4.pdf
+      label: Card Issuance
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Positive-Breastfeeding-Clinic-Environment-3.pdf
+      label: Positive Breastfeeding Clinic Environment
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Monitoring-and-Evaluation-NEP-10.pdf
+      label: Monitoring and Evaluation (NEP)
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Forms-and-Training-Modules-6.pdf
+      label: Forms and Training Modules
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/No-policies-1.pdf
+      label: No policies
+      reason: placeholder ('No policies')
+    - url: https://wic.utah.gov/wp-content/uploads/Steps-for-Certification-16.pdf
+      label: Steps for Certification
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Dual-Participation-7.pdf
+      label: Dual Participation
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Participant-Violations-14.pdf
+      label: Participant Violations
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Self-Evaluation-Tool-17.pdf
+      label: Self Evaluation Tool
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+    - url: https://wic.utah.gov/wp-content/uploads/Limited-English-Proficiency-10.pdf
+      label: Limited English Proficiency
+      reason: same file already in us-ut/manual/2026-09-10-wic-state-policy-manual
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://jobs.utah.gov/infosource/eligibilitymanual/eligibility_manual.htm
+      status: 200
+      bytes: 33544
+      seconds: 1.0
+      client: requests
+      links: 7
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-va
+  name: Virginia
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/virginia
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/va-snapet-stateplanFY26.pdf
+    pdf_bytes: 1725175
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/virginia
+      status: 200
+      bytes: 42431
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/va-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1725175
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Virginia SNAP E&T State Plan' (Print Version (1.65 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-va-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-va
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
+      status: 200
+      bytes: 46411
+      seconds: 0.2
+      client: requests
+      links: 134
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-vt
+  name: Vermont
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/vermont
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/vt-snapet-stateplanFY26.pdf
+    pdf_bytes: 1814000
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/vermont
+      status: 200
+      bytes: 42426
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/vt-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1814000
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Vermont SNAP E&T State Plan' (Print Version (1.73 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-vt-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://www.healthvermont.gov/family/wic/wic-plans-reports
+    index_document_count: 1
+    notes: Vermont posts no WIC policy manual; the WIC 'Plans & Reports' page links '2025 State Plan Goals and Objectives'
+      (5 pages) beside data reports. That document is the only state plan text posted and is taken.
+    status: taken
+    target_manifest: manifests/us-vt-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 1
+    checks:
+    - url: https://www.healthvermont.gov/family/wic/wic-plans-reports
+      status: 200
+      bytes: 197904
+      seconds: 0.1
+      client: requests
+    skipped: []
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/whxdata/toc.new.js
+      status: 200
+      bytes: 2863
+      seconds: 0.3
+      client: requests
+      links: 0
+    - url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/100GenInfo.htm
+      status: 200
+      bytes: 23918
+      seconds: 0.2
+      client: requests
+      links: 26
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-wa
+  name: Washington
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/washington
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/wa-snapet-stateplanFY26.pdf
+    pdf_bytes: 4959278
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/washington
+      status: 200
+      bytes: 42441
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/wa-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 4959278
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Washington SNAP E&T State Plan' (Print Version (4.73 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-wa-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wa
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.dshs.wa.gov/esa/manuals/eaz
+      status: 200
+      bytes: 88777
+      seconds: 0.9
+      client: requests
+      links: 292
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+- jurisdiction: us-wi
+  name: Wisconsin
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/wisconsin
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/wi-snapet-stateplanFY26.pdf
+    pdf_bytes: 3343694
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/wisconsin
+      status: 200
+      bytes: 42436
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/wi-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 3343694
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'Wisconsin SNAP E&T State Plan' (Print Version (3.19 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-wi-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wi
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://www.dhs.wisconsin.gov/wic/state-plan.htm
+    index_document_count: 2
+    notes: dhs.wisconsin.gov serves the FY 2025 state plan sections wic/certification-eligibility-coordination.pdf and wic/caseload-management.pdf
+      (the WIC queue found them; the WIC home, Providers and Professionals pages link no manual), while the index page wic/state-plan.htm
+      answers the publisher's own HTTP 403 page (152 KB) to every client and the site search returns nothing. The two served
+      sections are taken; no other section is reachable.
+    status: taken
+    target_manifest: manifests/us-wi-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wi
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 2
+    checks:
+    - url: https://www.dhs.wisconsin.gov/wic/state-plan.htm
+      status: 403
+      bytes: 152083
+      seconds: 0.5
+      client: curl_cffi:safari17_0
+    - url: https://www.dhs.wisconsin.gov/wic/certification-eligibility-coordination.pdf
+      status: 200
+      bytes: 440003
+      seconds: 0.3
+      client: curl_cffi:safari17_0
+    - url: https://www.dhs.wisconsin.gov/wic/caseload-management.pdf
+      status: 200
+      bytes: 416159
+      seconds: 0.3
+      client: curl_cffi:safari17_0
+    skipped: []
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://www.emhandbooks.wisconsin.gov/fsh/fsh.htm#t=home.htm
+      status: 200
+      bytes: 31704
+      seconds: 0.3
+      client: requests
+      links: 6
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+- jurisdiction: us-wv
+  name: West Virginia
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/westvirginia
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/wv-snapet-stateplanFY26.pdf
+    pdf_bytes: 1770908
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/westvirginia
+      status: 200
+      bytes: 42454
+      seconds: 0.2
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/wv-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1770908
+      seconds: 0.6
+      client: requests
+    notes: FNA state page 'West Virginia SNAP E&T State Plan' (Print Version (1.69 MB)); the PDF is the FNS template ('USDA
+      FNS SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-wv-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wv
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  wic_state_plan:
+    index_url: https://dhhr.wv.gov/WIC/policyprocedure/Pages/Default.aspx
+    plan_page_url: https://dhhr.wv.gov/WIC/policyprocedure/Pages/West-Virginia-WIC-State-Plan-FY-2025.aspx
+    index_document_count: 86
+    dead_links:
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20A%20-%20FY2024%20WIC%20BFPC%20Grants.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20B%20-%20WIC%20BFPC%20Line-Item%20Budget%20Worksheet.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20C%20-%20WV%20WIC%20Shopping%20Guide.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20D%20-%20Regulatory%20Requirement%20Medicaid.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20E%20-%20Food%20Package%20Guide%20.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20F%20-%20Participant%20Survey%20on%20Nutrition%20Education%20%28Responses%29.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20G%20-%20Pacify%20Participant%20Survey%20Responses%2010.2023.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20H%20-%20Pacify%20Participant%20Survey%20Results%20Powerpoint%2010.2023.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20I%20-%20WV%20WIC%20Survey%202023%20%28Responses%29.pdf
+    - https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/II_Nutrition_Services_FY2025.docx.pdf
+    notes: 'The WV WIC Policy/Procedure index links ''West Virginia WIC State Plan FY 2025'' and ''FY 2024'' pages beside
+      the eleven policy chapters (the manual, released scope). The FY 2025 page lists the plan chapters I-XI (Food Delivery,
+      Nutrition Services, MIS, Organization and Management, NSA, Food Funds, Caseload, Certification, Monitoring, Civil Rights),
+      the FY 2024 policy status lists and the appendices; ten ''State Plan 2025/Appendix II'' files answer HTTP 404 on the
+      publisher and are recorded, not taken. Four appendices are image-only (contact sheet, indirect cost rate agreement,
+      data sharing agreement, authorized user report), so the scope extracts with ocr: true.'
+    status: taken
+    target_manifest: manifests/us-wv-wic-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wv
+      document_class: policy
+      version: 2026-09-13-wic-state-plan
+    document_count: 76
+    checks:
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Pages/West-Virginia-WIC-State-Plan-FY-2025.aspx
+      status: 200
+      bytes: 71929
+      seconds: 0.4
+      client: requests
+    skipped:
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20A%20-%20FY2024%20WIC%20BFPC%20Grants.pdf
+      label: Appendix II A - FY 2024 WV BFPC Grants
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20B%20-%20WIC%20BFPC%20Line-Item%20Budget%20Worksheet.pdf
+      label: Appendix II B - WIC BFPC Line - Item Budget Worksheet
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20C%20-%20WV%20WIC%20Shopping%20Guide.pdf
+      label: Appendix II C - WV WIC Shopping Guide
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20D%20-%20Regulatory%20Requirement%20Medicaid.pdf
+      label: Appendix II D - Regulatory Requirement Medicaid
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20E%20-%20Food%20Package%20Guide%20.pdf
+      label: Appendix II E - Food Package Guide
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20F%20-%20Participant%20Survey%20on%20Nutrition%20Education%20%28Responses%29.pdf
+      label: Appendix II F - Participant Survey on Nutrition Education (Responses)
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20G%20-%20Pacify%20Participant%20Survey%20Responses%2010.2023.pdf
+      label: Appendix II G - Pacifiy Participant Survey Responses 10.2023
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20H%20-%20Pacify%20Participant%20Survey%20Results%20Powerpoint%2010.2023.pdf
+      label: Appendix II H - Pacify Participant Survey Results Power Point 10.2023
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/Appendix%20II%20I%20-%20WV%20WIC%20Survey%202023%20%28Responses%29.pdf
+      label: Appendix II I - WV WIC Survey 2023 (Responses)
+      reason: publisher answers HTTP 404
+    - url: https://dhhr.wv.gov/WIC/policyprocedure/Documents/State%20Plan%202025/II_Nutrition_Services_FY2025.docx.pdf
+      label: II_Nutrition_Services_FY2025
+      reason: publisher answers HTTP 404
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://bfa.wv.gov/income-maintenance-manual
+      status: 200
+      bytes: 42526
+      seconds: 0.1
+      client: requests
+      links: 63
+      plan_text_hits: 1
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted. bfa.wv.gov/bfa-policy-and-plans/state-plans
+      lists SNAP E&T, SNAP Outreach, SNAP-Ed, D-SNAP, Summer EBT, TANF, LIHEAP, Refugee and CCDF plans; no 7 CFR 272.2 plan
+      of operation.
+- jurisdiction: us-wy
+  name: Wyoming
+  snap_et_state_plan:
+    index_url: https://www.fna.usda.gov/snap-et/stateplan
+    listed_on_fna_index: true
+    status: taken
+    publisher_page_url: https://www.fna.usda.gov/snap-et/stateplan/wyoming
+    pdf_url: https://www.fna.usda.gov/sites/default/files/resource-files/wy-snapet-stateplanFY26.pdf
+    pdf_bytes: 1460487
+    fna_page_updated: August 07, 2026
+    checks:
+    - url: https://www.fna.usda.gov/snap-et/stateplan/wyoming
+      status: 200
+      bytes: 42426
+      seconds: 0.1
+      client: requests
+    - url: https://www.fna.usda.gov/sites/default/files/resource-files/wy-snapet-stateplanFY26.pdf
+      status: 200
+      bytes: 1460487
+      seconds: 0.5
+      client: requests
+    notes: FNA state page 'Wyoming SNAP E&T State Plan' (Print Version (1.39 MB)); the PDF is the FNS template ('USDA FNS
+      SNAP E&T STATE PLAN'), text-extractable on every page, taken at page granularity like the Colorado precedent.
+    target_manifest: manifests/us-wy-snap-et-state-plan.yaml
+    target_scope:
+      jurisdiction: us-wy
+      document_class: policy
+      version: 2026-09-13-snap-et-state-plan
+    document_count: 1
+  snap_plan_of_operation:
+    status: not_published
+    fna_posts: false
+    checks:
+    - url: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+      status: 200
+      bytes: 946427
+      seconds: 1.6
+      client: requests
+      links: 136
+      plan_text_hits: 2
+    notes: FNA does not post 7 CFR 272.2 plans of operation. The publisher's SNAP index (state-snap-manual-agent-queue and
+      snap-completion-agent-queue index URLs) was fetched 2026-09-13 and its links and text searched for 'plan of operation',
+      '272.2' and 'state plan'; no plan of operation or option attachment is posted.
+  wic_state_plan:
+    status: not_published_or_not_inventoried
+    notes: FNA posts no WIC state plans (resource browser filtered to WIC returns none; /wic/state-plan paths answer 404).
+      The closure report records this publisher's state plan family as REVIEW (WIC queue inventoried the manual family only)
+      or OUTREACH (publisher blocked); not attempted in this pass.
+status_counts:
+  snap_et_state_plan:
+    taken: 49
+    already_in_corpus: 1
+    not_published: 1
+  wic_state_plan:
+    not_published_or_not_inventoried: 43
+    taken: 8
+  snap_plan_of_operation:
+    not_published: 48
+    publisher_blocked: 1
+    publisher_unreachable_tls: 2

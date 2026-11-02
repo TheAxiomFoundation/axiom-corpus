@@ -1,0 +1,43 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ms-dor-form-80-105-ty2025
+  jurisdiction: us-ms
+  document_class: form
+  title: Form 80-105, Mississippi Resident Individual Income Tax Return (2025)
+  source_url: https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80105258%201.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ms/form/dor/ty2025/form-80-105
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ms/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.dor.ms.gov/forms-resources/form-search?division=individual_forms
+    discovered_via: manual-review:tax-agent-queue; index https://www.dor.ms.gov/forms-resources/form-search?division=individual_forms
+- source_id: us-ms-dor-form-80-100-instructions-ty2025
+  jurisdiction: us-ms
+  document_class: form
+  title: Form 80-100, Mississippi Individual Income Tax Instructions (2025)
+  source_url: https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ms/form/dor/ty2025/form-80-100-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ms/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.dor.ms.gov/forms-resources/form-search?division=individual_forms
+    discovered_via: manual-review:tax-agent-queue; index https://www.dor.ms.gov/forms-resources/form-search?division=individual_forms

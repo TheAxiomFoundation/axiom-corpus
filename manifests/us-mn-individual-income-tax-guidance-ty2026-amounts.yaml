@@ -1,0 +1,61 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-mn-department-of-revenue-inflation-adjusted-amounts-ty2026
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Inflation Adjusted Amounts for 2026 (tax year 2026 inflation-adjusted amounts)
+  source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/inflation-adjusted-amounts-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-mn/guidance/department-of-revenue/ty2026/inflation-adjusted-amounts
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: inflation_adjustment_notice
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-12-15'
+    amounts_carried:
+    - bracket thresholds
+    - standard deduction
+    - dependent exemption
+    - aged/blind additional deduction
+    - child credit
+    - working family credit
+    - dependent care credit
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.revenue.state.mn.us/minnesota-income-tax-rates-and-brackets
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.state.mn.us/minnesota-income-tax-rates-and-brackets
+      (read 2026-09-13)
+    source_note: Same document as the released us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026 scope,
+      whose per-bracket rows captured the 'Statutory Year' column (2019/2023) instead of the 'Tax Year 2026' column; taken
+      here as one body so both columns read in order.
+- source_id: us-mn-department-of-revenue-income-tax-rates-and-brackets-ty2026
+  jurisdiction: us-mn
+  document_class: guidance
+  title: Income Tax Rates and Brackets (tax year 2026)
+  source_url: https://www.revenue.state.mn.us/minnesota-income-tax-rates-and-brackets
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-mn/guidance/department-of-revenue/ty2026/income-tax-rates-and-brackets
+  extraction:
+    html_content_selector: .uswds-main-content-wrapper
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-01-09'
+    amounts_carried:
+    - rate schedule 2026 (5.35%/6.8%/7.85%/9.85% by filing status)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.revenue.state.mn.us/minnesota-income-tax-rates-and-brackets
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.state.mn.us/minnesota-income-tax-rates-and-brackets
+      (read 2026-09-13)

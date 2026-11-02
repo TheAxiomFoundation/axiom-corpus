@@ -1,0 +1,493 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "a45618e25c421f2b187a76af307131ee0c912a218bb7e6efcf509c1f41d3b382"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "be3dfbc11c17367e719acaa3548eae8034e597ce6b00932328aefe97cf3c72ee"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/policy/2026-09-13-wic-state-plan.jsonl",
+      "sha256": "8f594ab6227c5b363db79c50a5903d84a6f3a3ef30a4c87e08055fd247476856"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-affirmativeactionplanmethodology-pdf.pdf",
+      "sha256": "f35c96066bbbda548522ace48b5a18424614b66c419ad5a35d9ed4d8ecf736de"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-affirmativeactiontable-pdf.pdf",
+      "sha256": "a14e0c99d37913eddef6e9d5e456a9c85e8d15553b6c41f20501e5475268989c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-alternatemeansforsignatureofewiccard-pdf.pdf",
+      "sha256": "6d9e1b5f5fed4f560b8f55a722a45046d35ed30288ca04bfa8ee144357284f0a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-anemiacutoffvalues-pdf.pdf",
+      "sha256": "f74ff8b0d58c03ef6420983616dbdbe641f8534703527028a0aa8d5193a53c2b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-applicationforlocalprogram-pdf.pdf",
+      "sha256": "f15da5a8f5fc0f8a687fd7ca9c66d59cc0ec432821d65f7ac5b5d225491bde22"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-approvedfoodlist-pdf.pdf",
+      "sha256": "7c337d96e966e64e19475ec6af79b13d1ba08ee126868a9206e5cd0457e6607c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-bloodscreeningprocedures-pdf.pdf",
+      "sha256": "e5be71529c346e9af99795002a8d7caade6cedd2a4651d75bcfceea083dc88ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-breastfeedingbreastpumplog-pdf.pdf",
+      "sha256": "00bc9d28fe1b8d2d2e1e7fbef94cab758d67a4baeb4cfe219ccf28f35ef50f32"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-breastpumploanreleaseformmultiuserelectric-pdf.pdf",
+      "sha256": "594ad0d71e95acb234a30ef12888f44328b6624ed0b1d2ff159fbb768caf7c49"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-breastpumpreleaseformsingleuser-pdf.pdf",
+      "sha256": "1f9705e8c18c7374c25520fb2289bcef947b8d3cfe1c848f640cbc9d67a3d157"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-civilrightsimpactanalysis-pdf.pdf",
+      "sha256": "eaf782d597e747b99d5668f2be6f5625eeccbfa02c48aac46899bb20b66f054e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-continuingeducationcreditapprovalform-pdf.pdf",
+      "sha256": "794d9db6763e94e7cf46b2e9b1e9487c02efdde5fd184ee8661eed33528b54f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-endcertificationnoticeineligibility-pdf.pdf",
+      "sha256": "1114b042cca297222c4db581d71ed50c2b6c9995eb7095bb9e0aee9cc44b159b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-ewiccardinventorylog-pdf.pdf",
+      "sha256": "2f9167a944deb0811e464474e69cd9636a96e64d39bd62b51588aa62c7b187b3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-formulaorderform-pdf.pdf",
+      "sha256": "0ad923d7b6607b8ebc95bdcbb95c25c1cfce00691a1c1a4b7f40a923c4478c0d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-formulaprescriptionform-pdf.pdf",
+      "sha256": "de53612c5266dbc2f31bdbc9f05b051fa8e4a77cad5c87b0fdfbc30f4cabb143"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-formulatrackinglog-pdf.pdf",
+      "sha256": "2a3d9a622c4fc00a80dc9d131772273ddd8fdfc884af8caa9557c5a14c7858ff"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-highriskreferrals-pdf.pdf",
+      "sha256": "05addad16738c631311ed2f1839e1442881c480d247460c4534ceb8f80251f88"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-homelessfacilitystatement-pdf.pdf",
+      "sha256": "b5d737cfb2014885050916e5821fe4a7b11a41ce69ed82f1d7498c0eb11a168c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-languagelinkpoint2yourlanguageposter-pdf.pdf",
+      "sha256": "038d741179c2a1349ceff8b61e46a0d9b972ae2662c16748b0959290c2f89879"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-languagelinkwicguide-pdf.pdf",
+      "sha256": "e8517d06f06f6bed0661c8c8c15642cba58970f6bae4aed810c224c32a433c6f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-localagencyphonelist-pdf.pdf",
+      "sha256": "a73c45731079bdacd524301c6630d8ea7c814992f8e157595617265313640bc4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-minimumwicfoodstockingrequirements-pdf.pdf",
+      "sha256": "0a84ce596859c8c29bacb8c6cc89d305b0792af9f3ae4fc8deb8483637d3957b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringbreastfeedingpeercounselingprogram-pdf.pdf",
+      "sha256": "dbc09957664a808cca78b449ddd564667b668d03e1d5d74d37ef632e899131a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringchartreviewareasexplained-pdf.pdf",
+      "sha256": "8b63a21c537d9ebfab10040667950abd5c12655a4b7470d1cc6b7a09a78aa474"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringchartreviewform-pdf.pdf",
+      "sha256": "8324ecca0efad25d77f541d8c2057ad45d9b5461b48d64c8b06bd96f1c17491a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringfinancialquestionnaire-pdf.pdf",
+      "sha256": "bec2c6eca900550db7b3ea7b6f0ec1b1e8ff219ddabd1a69ea83821a62423da3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringonsiteobservationclinic-pdf.pdf",
+      "sha256": "e6de8756d9a8bd569972008549d7ad3b7d9804080878fd15fd632234b3e1b452"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringonsiteobservationsappointments-pdf.pdf",
+      "sha256": "89774e091c3f97e6a386b7bc5fed55d49b09697de3ec3fc55b51d96a9c88c625"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringprevisitworksheet-pdf.pdf",
+      "sha256": "fa508a9d337ad9d6bab61f7985838cd8b64750cd36d41eb1545101abd3cfc4ee"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-monitoringprocess-pdf.pdf",
+      "sha256": "037d0a3de54cdbd2325281e7e1b1b59a3aab4c72903b14e1dd651618ff2cf3d6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-negativeincomestatement-pdf.pdf",
+      "sha256": "a38ff38e3b08c9ce145395711a0092ec087aa9fccd4c145fe88a545483a01a8b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-nutritionriskcodetable-pdf.pdf",
+      "sha256": "bed4a8da1fe7ec2cc0c99c571eba111ba017a7b993fa1f6cc681400eab2c5e28"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-participantrightsandresponsibilitiesstatement-pdf.pdf",
+      "sha256": "8318709d636b2a59a0e8013e8d44b3e3297a28584ca4a95459d6b28ef1fc50a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-programcomplaintform-pdf.pdf",
+      "sha256": "e1bc35dd05a47cdde50d99ace17518b5bc69ca2c7ea2a6a18793527572dc1f05"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-programcomplianceformupdated-pdf.pdf",
+      "sha256": "09eb5a0847717a9996d5be0d2af21dce0a2e0c32f86b322b6c8330997f7f0bfb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-reconstitutedamountscommonlyissuedformulas-pdf.pdf",
+      "sha256": "60ede38f57dd01a1b265bf97a1ef875c36070b3e154a4e30673a4ccbd49c8bee"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-releaseinformation-pdf.pdf",
+      "sha256": "0937d05786dfa560259bd77cba372b0f7fddf88e4cd49b4dcb4710a5cd29e411"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-requestforhire-pdf.pdf",
+      "sha256": "26cc40b0ee7740bbf5b0e85a57ad48c77f47f291d86322787160d921755e21ab"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-statediastersecurityplan-pdf.pdf",
+      "sha256": "2fceb4bb341397428aab081c20c22beaad0e386a73baa2ce47cefe61173a6cfa"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-tribaleligibilitystatement-pdf.pdf",
+      "sha256": "f7303a1632e74fcc1c2de5b1ab2b032b2fc21ae589e4cb1e5540438adbdb9a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-voterregistrationdisclaimer-pdf.pdf",
+      "sha256": "ccae0cd32a79a9f36baa4d5d868edc831b6fbcd9b877e76c4f0fe14304c05b09"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicaffidavit-pdf.pdf",
+      "sha256": "e2f87ed279a459add088e538e0fd71e42b619edfd03ee7d216311020fa73f133"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicaffidavitspanish-pdf.pdf",
+      "sha256": "d3a2724167d6c309ac06a0625faa18667d61befea5f0ace9a0ccb7e0ac6ee36f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicmemorandumofunderstandingdisclaimer-pdf.pdf",
+      "sha256": "2240d2486b32a8c069e63f6b3d26d6746fcea2f8d1cec8120fa477d068a48826"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicorgchart-pdf.pdf",
+      "sha256": "d01361d5f6d857032c598ba3f5efe75f7904172b7bbfadcb3eb13782423fe2bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicremoteregistereddietitianscopeofservice-pdf.pdf",
+      "sha256": "ff8f239540c23ee35f7261d99b924bb8c0ee0be6c6b8b0701b7fa8f87a5d56ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicsystemaccessamendment-pdf.pdf",
+      "sha256": "a3faefbc3c1911f9f56dd91dec9b1229b85c9f19659b08a315a2a06384a31760"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-wicsystemaccessform-pdf.pdf",
+      "sha256": "09d120976fce9122bcfecfe64a9ed9c0fea845d37d6f23bdf3664e18587ec993"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-attachments-zeroincomestatement-pdf.pdf",
+      "sha256": "dcbf0ed227854496f380aa871e023d870f5cb07680240caffdaff62dc309a1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-goalsobjectives-montanastatenutritionandbreastfeedingservicesplanffy20232027-pdf.pdf",
+      "sha256": "225dcc416f6c34c2350438792aa56c44030373032c81abbe335cbab4a35dc088"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2caseloadmanagement-appointments-pdf.pdf",
+      "sha256": "1b2ea509668326ea52875126a22bb5717593fd31ef3a5c65d12478fdd9f8f638"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2caseloadmanagement-outreach-pdf.pdf",
+      "sha256": "19c1593d783a65e58c34ac8b4a9221afabfb64e07611eccf6da811d4a02136fe"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2caseloadmanagement-waitinglists-pdf.pdf",
+      "sha256": "e9e12ab25061734aac489fc68602ed1b33d17c90a4e53a8ab90eb4be166a09ff"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-certificationprocedures-pdf.pdf",
+      "sha256": "224c38d133f6c40b4845d571082535dfa41e05e340254cb7af4bc33a4eb7cc72"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-confidentialityservicecoorindation-pdf.pdf",
+      "sha256": "644bbc3503c657ae28971185de0cdad28188625284296967d33e7607d8116862"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-eligibilityguidelines-pdf.pdf",
+      "sha256": "9ac840e51a1160e1f192b90905ef4fd2946fb2237124c21e983d1164e82c9849"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-fairhearings-pdf.pdf",
+      "sha256": "bcb50ba43a1f0e0241e6faa429d08ee1308a8c6a01d13c3615254564a0c48ca6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-fraudabusesanctions-pdf.pdf",
+      "sha256": "4f8910327ee9fbb5179ec0f270aab36227e6d2a3b9ad3fab3830654a683c33cd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-noticeineligibityendofcert-pdf.pdf",
+      "sha256": "bd4ee4a9da6625d9332dfaa232ee58ea91a85f5a48d58f625c7a1a84f89dd083"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2certeligibilitycoordination-voc-pdf.pdf",
+      "sha256": "ad7aff8294161dbc29d890a06610fa5b370683e0e1f11a938b1b2068cd89cba6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2civilrights-barriersprovidingservices-pdf.pdf",
+      "sha256": "edb681904a4f15d815ca591338498ed7eac34e431091eb81ec3841e02d97f562"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2civilrights-civilrightnondiscriminationcomplaints-pdf.pdf",
+      "sha256": "e42cb4fef83a33f0e68fd2a14067972d8ecd46e1720eee12d8007d5c5798c15b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2civilrights-collectingraceethnicitydata-pdf.pdf",
+      "sha256": "a586517a6894f3ed281db33607a1099de47c00e816e514ed27cd2e5b045178cd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2fooddelivery-benefitredemption-pdf.pdf",
+      "sha256": "46637563130e15190f0333baabaa2f4db3e19e0874cbabe8de25d58b603c74bd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2fooddelivery-issuingbenefits-pdf.pdf",
+      "sha256": "27472a9f6bf87d860b2199fdd96dc2b41898c2f755bcbbaf759df04dacba5787"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2mis-accessrequest-pdf.pdf",
+      "sha256": "b75c460620dc992a28503ad1477fd491a5724baa0c76ad4a7f0db5ef1877ed0d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2monitoringaudits-localagencymonitoring-pdf.pdf",
+      "sha256": "0531693c5d41527eb403df0820c8e5b9549584fe7977927f084d8b1d329febd2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2monitoringaudits-recordsmgmt-pdf.pdf",
+      "sha256": "fb4d4c9e46555d43913d271b60f1495a5d9c983f317850c0192e99dadee3e181"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nsa-localagencyexpenditures-pdf.pdf",
+      "sha256": "a8df2f76c6ffd48d2dc76be3be917c2f70f530908c5a08f98af9d8e556146070"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nsa-timestudies-pdf.pdf",
+      "sha256": "42ea637390efd6290d995588fe6e57d339a68b657364a48cbf5773529c60307a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-adjustmentstailoringfoodpackages-pdf.pdf",
+      "sha256": "e63ab66ae4912df78feae53dc0eb5095465f0ad3f87351fe4a0fd48a339fb86a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-breastfeedingpeercounselorprogram-pdf.pdf",
+      "sha256": "d77a93422b1f19d559d8c3f64b5f279b259b2c4d2503bb9b4b3523e360d6ca82"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-breastfeedingpromotion-pdf.pdf",
+      "sha256": "de30377a06d22b082f8a8c503000202652d2812ad0a769a6108c6baa6ec881eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-breastpumpissuance-pdf.pdf",
+      "sha256": "800585133f381e259dfd2ef57f8a963ad9b1968096ace111770ba57843ff8f1a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-medicalformulasnutritionals-pdf.pdf",
+      "sha256": "1309b8b91b701c11bcd4233e5f641cfd7cf6ca89b5e9d812215fb6b0ee91794a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-nutritionbreastfeedingeducationplans-pdf.pdf",
+      "sha256": "d8ba1017aeda5cda87522a95b4f3fdbbce68929034982b455515a60f1e81b43c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-nutritioneducationcontacts-pdf.pdf",
+      "sha256": "a12cfb5572a27d93f6861c2214643058bbfb0cab3c3cf153ad7aa3411d7308db"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2nutrition-standardfoodpackages-pdf.pdf",
+      "sha256": "2beae211ac8503e88fcc367b56a94bac06af3206d6ee8ef46e9252f5a0366066"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2orgmanagement-inventorymanagement-pdf.pdf",
+      "sha256": "6e5802441b6a1a9bfc2a45d986465619fdded60ccdcff3490091cefae1bd2efd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2orgmanagement-localagencypolicies-pdf.pdf",
+      "sha256": "bb681740696083d8aef31487336de6fab3c48308743d121e55d8419e035eea1b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2orgmanagement-localagencyselection-pdf.pdf",
+      "sha256": "481b33783dbc8555358f76a5f898bd21d8d328b905897c63e2a38fbe1a889d51"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2orgmanagement-localagencystaffing-pdf.pdf",
+      "sha256": "55fb77f659229670df8d3e3b201cf8e846628e678075faf58816ff74d792d8f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2orgmanagement-securitydisasterrecovery-pdf.pdf",
+      "sha256": "a4618da8017f28b857cf46bc8d98f1673703052ccebe1a157c477570e8980a5a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2orgmanagement-wicemployeeintegrity-pdf.pdf",
+      "sha256": "474ce9a2018f5f848f9d84379a3a49dc7a78663dec890e948e99213c513adc7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2vendor-retailereducationtraining-pdf.pdf",
+      "sha256": "676bb2e9d5613716c6b89f5f11105044ff446aed698ede277bcd01bb8987b0e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section2-section2vendor-retailermonitoringvisit-pdf.pdf",
+      "sha256": "3dee24735095212ea90f62d1dbcc349145997f5faa72321858961974196da672"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3caseloadmanagement-stateoutreach-pdf.pdf",
+      "sha256": "80a07e475a8b48649ca9f903d52bb7a21a538c6741e652f2bbf88fd0b2f26a99"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3civilrights-programcomplaints-pdf.pdf",
+      "sha256": "b32132f5dfcba271075de05893b35f08f05bc05ef132b623633557d609daf186"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3fooddelivery-fooddeliverysystem-pdf.pdf",
+      "sha256": "194d5df9533668627150f96eff5accb647f5d03aa58e5a7b46476a756169e794"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3fooddelivery-formularecallprocess-pdf.pdf",
+      "sha256": "b7bb54b7e1127a5ced92c77bcd3953df1926100bfed404111d3265e99e241595"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3fooddelivery-montanawicapprovedfoods-pdf.pdf",
+      "sha256": "625b974717728a5876a51cf5d437414d4aeb70b42578c67e4b0b7fe99eb6a84d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3foodfunds-benefitmanagementreconciliation-pdf.pdf",
+      "sha256": "cd3319ad1e896f5a138331f465beae8032935f1c85d3bf119a77c6b94e40b50d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3foodfunds-costcontainment-pdf.pdf",
+      "sha256": "103127c0ddeedc9136caa208147fbc786d0cf389b33e89534464bd32e54651e7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3foodfunds-participantpriorityrankingsystem-pdf.pdf",
+      "sha256": "6d52803ae070c9ebeb9ad0b1970d625ef47d070e34b45931174025e8e924d7f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3informationservices-informationservices-pdf.pdf",
+      "sha256": "19e2ccc1f2ae4c1c9dc921ed9b6c6f7c26e614b4c41f5463a2537574282d053d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3monitoringaudits-monitoring-pdf.pdf",
+      "sha256": "11a54a701e12e457cf799ab4c1d431b5aafe626b70925cebebba1c93b24be172"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3monitoringaudits-recordsmanagement-pdf.pdf",
+      "sha256": "890e0f75b0aab1c87ef1e1a296490dbd9e12cf37eb50ba2c9a7722d4f8aa1f13"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3nsa-financialmanagement-pdf.pdf",
+      "sha256": "66cefb03e74459cea5a1ad54ef25731c444ef242da4552b6579f18d22aa2641a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3nutrition-nutritionservices-pdf.pdf",
+      "sha256": "e1f73122a675d535cf7793c476c777a5bc61aa5ec0720db9e334c3be89ed2e74"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3orgmanagement-appealslocalprogramsfairhearings-pdf.pdf",
+      "sha256": "80e3eca7bd575b370710c2280166a01109c9dfbdb2a376defcb4e6b5671c72f6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3orgmanagement-disastersecurity-pdf.pdf",
+      "sha256": "a6d0422aca39991dec6e7a7a3af2516a7fda90f81639a17f32747f17ed75f8d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3orgmanagement-wictrainingsmeetingconferencess-pdf.pdf",
+      "sha256": "bfa3028d8c82f73e42a5d549a0ba94641c88e2e8361b081c5211f5e1c1eb4efd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-administrativereview-pdf.pdf",
+      "sha256": "69e67c9b4f17dbd6a40b93ad2e0ee8cc96dd35de966c3d37d68fd5f6cd081953"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-complianceinvestigation-pdf.pdf",
+      "sha256": "d15021b88831f856b4246340e31f4248ac3b7824c6b9d9b318b1a5c8660db86c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-confidentialityretailerinformation-pdf.pdf",
+      "sha256": "1c40c59f2c0abe1106847d70396b11f5c6fb399db7f4e9f44e0de71a9b1b8440"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-retailerauthorization-pdf.pdf",
+      "sha256": "2d775a57506b28e3e8ac7cedaf919b2eb38a76a24b3aaf3a86c9de0354385915"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-retailerstocking-pdf.pdf",
+      "sha256": "0aba69ad06d679882eaa44f56a8f7fa1dd6bcc8e72763d29332a498ae97526c7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-sectioniii-vendorandfarmermanagement-i-stateviolations-pdf.pdf",
+      "sha256": "3ba80df87197985d285b2cd89df1e388978cc431b40ed802903cd0b128289470"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-usewicacronymlogo-pdf.pdf",
+      "sha256": "e0ed897135d6ebcdeb0a5f4a62aeb9f97f84de553111a13bfbd4a3744ce3afe4"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-vendorservices-pdf.pdf",
+      "sha256": "fd89a3ebd77e1efe5102d0dd0818674652c8b8aaac40c34c3f5d4213218c6d07"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-wic-state-plan/official-documents/mt-wic-state-plan-2026-section3-section3vendor-violationsandsanctions-pdf.pdf",
+      "sha256": "57305b887e9f638d3a5d8b4568bfc2831bc2f232f3cd394cc70f3a32d0c471c8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 450,
+    "missing_count": 0,
+    "provision_count": 450,
+    "source_count": 450
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:50:32.924605+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SIr3DZEKSt+sPjbd4ZgiGEVdMghjp6ziJQgS1l35Hk43OBOXiVg/ycOThvrXkFH1Hl7ZEVYU/ZT2OJkSk+6TCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-state-plan"
+}

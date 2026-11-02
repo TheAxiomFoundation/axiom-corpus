@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "1b7500d40437b522b75f7d60d69d7fcf53e5e82afe1e74285b74072ba1fbbf3b"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "7c0ca262960050dc778026dbe5fe4fad517799224c2205e2db2071f948c811ee"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "09e7ea6a657a299a54fe640e8ff6bd52ee0677c6a8c4e421b951b362521008a1"
+    },
+    {
+      "path": "data/corpus/sources/us-al/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-al-ador-individual-income-tax-filing-information-ty2026.html",
+      "sha256": "0af71e4061e376a657cba4dde4672cb1d3c9ddf77ab63596c78e12be2840df75"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-al-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:10:15.965012+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lHgMVNIY1QB0pxHTRIe8KM0XPgWXGNlQu2ybWTho8usyb0oZ0bqZ0ABl7YHAZlK/hR2lfQW+aoYXpjgeFyW9Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

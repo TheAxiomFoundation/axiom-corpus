@@ -1,0 +1,116 @@
+version: 2026-09-23-njdol-contribution-rates
+# New Jersey Department of Labor and Workforce Development, Division of Employer
+# Accounts: "Rate information, contributions, and due dates". The page publishes, per
+# calendar year, the new-employer and worker contribution rates (UI, DI, WF/SWF, FLI)
+# and the taxable wage bases, as the Department's notice of the amounts computed under
+# N.J.S.A. 43:21-7 and the workforce fund provisions N.J.S.A. 34:15D-13 and 34:15D-22
+# (companion statute scopes: manifests/us-nj-titles-34-43-payroll-contributions.yaml).
+# The page is a rolling multi-year page (calendar 2015 through 2027 on the retrieval
+# date) and each year's block states its own effective periods, so the expression date
+# is the retrieval date rather than one rate year.
+# Segmentation: every accordion card is one anchor range. The year labels sit inside
+# the cards' <button> toggles, which the HTML extractor always drops, so each range
+# carries its label and heading explicitly (the pattern of
+# manifests/be-onss-employer-social-security-contributions-2025-documents.yaml).
+documents:
+- source_id: us-nj-njdol-employer-rate-info
+  jurisdiction: us-nj
+  document_class: guidance
+  title: 'NJDOL Employer Accounts: Rate information, contributions, and due dates'
+  source_url: https://www.nj.gov/labor/ea/employer-services/rate-info/
+  source_format: html
+  source_as_of: '2026-09-23'
+  expression_date: '2026-09-23'
+  citation_path: us-nj/guidance/njdol/employer-services/rate-info
+  extraction:
+    html_content_selector: main div.col-md-8
+    segmentation: anchor_range
+    anchor_ranges:
+    - html_start_selector: div.content-intro
+      html_stop_selector: div.content
+      section_label: overview
+      section_heading: Rate information, contributions, and due dates
+    - html_start_selector: '#calculate'
+      html_stop_selector: '#baseweeks'
+      section_label: how-rates-are-calculated
+      section_heading: How we calculate rates
+    - html_start_selector: '#baseweeks'
+      html_stop_selector: '#duedates'
+      section_label: base-weeks
+      section_heading: Base weeks
+    - html_start_selector: '#duedates'
+      html_stop_selector: '#ratenotice'
+      section_label: quarterly-due-dates
+      section_heading: NJ-927 and WR-30 quarterly due dates
+    - html_start_selector: '#ratenotice'
+      html_stop_selector: '#voluntary'
+      section_label: employer-rate-notice
+      section_heading: Employer Contribution Rate Notice for fiscal year 2026-27
+    - html_start_selector: '#voluntary'
+      section_label: voluntary-contributions
+      section_heading: Voluntary contributions
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(1)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(2)'
+      section_label: '2027'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2027'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(2)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(3)'
+      section_label: '2026'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2026'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(3)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(4)'
+      section_label: '2025'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2025'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(4)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(5)'
+      section_label: '2024'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2024'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(5)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(6)'
+      section_label: '2023'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2023'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(6)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(7)'
+      section_label: '2022'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2022'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(7)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(8)'
+      section_label: '2021'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2021'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(8)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(9)'
+      section_label: '2020'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2020'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(9)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(10)'
+      section_label: '2019'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2019'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(10)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(11)'
+      section_label: '2018'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2018'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(11)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(12)'
+      section_label: '2017'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2017'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(12)'
+      html_stop_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(13)'
+      section_label: '2016'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2016'
+    - html_start_selector: '[id="DISABLED-genericContentTabbedAccordion0"] > div:nth-of-type(13)'
+      section_label: '2015'
+      section_heading: 'Annual rate, wage, base week, and benefit information: 2015'
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Labor and Workforce Development, Division of Employer Accounts
+    program: UNEMPLOYMENT_INSURANCE
+    source_discovery_group: us-nj/guidance
+    index_url: https://www.nj.gov/labor/ea/employer-services/
+    discovered_via: manual-review; PolicyBench root cause r05 (NJ worker UI and workforce fund contributions)
+    document_subtype: agency_rate_notice_page
+    governing_statutes:
+    - us-nj/statute/43:21-7
+    - us-nj/statute/34:15d-13
+    - us-nj/statute/34:15d-22
+    rate_years_on_page: 2015-2027
+    caveat: agency notice of computed rates and wage bases; the statute scopes carry the governing law

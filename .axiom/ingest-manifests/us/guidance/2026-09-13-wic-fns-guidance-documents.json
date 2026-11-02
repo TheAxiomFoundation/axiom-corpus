@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-13-wic-fns-guidance-documents.json",
+      "sha256": "1cdd6f4bd3747a2efb6fdd313827eb83b2fbf286d135afe3eaf73cc33c989b1d"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-13-wic-fns-guidance-documents.json",
+      "sha256": "fe01714d37d7acfae16a8c355505efa5a78b8ed49e98706ed56cdd6c001693bb"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-13-wic-fns-guidance-documents.jsonl",
+      "sha256": "47e2abd33629e59bb3e9cf36b0adb703f69ffb2373c30ba67d67326c283363ec"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-wic-fns-guidance-documents/official-documents/us-fns-wic-guidance-evaluation-criteria-infant-formula-rebate-contracts.pdf",
+      "sha256": "6d91c7f6bac76c061f6fe2d92553c98a76acd21c06202e4115fa4ca00df9d437"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-wic-fns-guidance-documents/official-documents/us-fns-wic-guidance-infant-formula-rebate-solicitations-bidding.pdf",
+      "sha256": "c33a0357200d72abc257d50629e57d2d504deed627d970d316aea90ea75b7634"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-wic-fns-guidance-documents/official-documents/us-fns-wic-guidance-interim-guidance-vendor-cost-containment.pdf",
+      "sha256": "51658d83f518013001142939061494990a24616d5cda500c6744242d09af5945"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-wic-fns-guidance-documents/official-documents/us-fns-wic-guidance-nutrition-risk-criteria.pdf",
+      "sha256": "cd9e83c3d29662a664d234df077fcd0de4fae2dc1abb22d359834a3be70c781f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-wic-fns-guidance-documents/official-documents/us-fns-wic-guidance-vendor-cost-containment-interim-rule-clarification.pdf",
+      "sha256": "48697f35b8b2b2dfe507fd7a954c8832acb8717a851c2db1dceadb682751bb62"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-wic-fns-guidance-documents/official-documents/us-fns-wic-guidance-wpm-2024-3-implementing-abfa-requirements-state-plans.pdf",
+      "sha256": "250bf25a088243dd533eb3cb8173055d87028fcdf8ba29e4c13b11eb70dbdf94"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-fns-guidance-documents (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 75,
+    "missing_count": 0,
+    "provision_count": 75,
+    "source_count": 75
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-13T20:37:42.479899+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "d3K1y8kQOPX0mSnE6a+r3n6BwpL5EA2xtDL9+CsaHQu4/7BS0tcrRGkAbQbRH8Ty3Ezgb6o/ubQ5k7UPEZBfAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-fns-guidance-documents"
+}

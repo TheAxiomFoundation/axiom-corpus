@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from bs4.element import NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -72,6 +73,7 @@ class DelawareCodeProvision:
     status: str | None = None
     canonical_citation_path: str | None = None
     variant: str | None = None
+    publisher_section_id: str | None = None
 
     @property
     def citation_path(self) -> str:
@@ -284,10 +286,34 @@ def extract_delaware_code(
     if not title_links:
         raise ValueError(f"no Delaware Code titles selected for filter: {only_title!r}")
 
+    root_source_path, root_sha256, _root_source_url = source_pages[root_page.relative_path]
+    # A container is written as a provision only once its own table of
+    # contents lists children. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing everything under
+    # it. A page that could not be fetched is sourced from the parent listing
+    # that names it; a page that was read but lists nothing is sourced from
+    # that page.
     for title_link in title_links:
         if remaining_sections is not None and remaining_sections <= 0:
             break
-        title_page = fetcher.fetch(title_link.relative_path)
+        try:
+            title_page = fetcher.fetch(title_link.relative_path)
+        except OSError as exc:
+            skipped_source_count += 1
+            errors.append(f"{title_link.relative_path}: {exc}")
+            _append_inventory_gap(
+                items,
+                _title_provision(
+                    title_link,
+                    heading=title_link.heading,
+                    source_url=title_link.source_url,
+                    source_relative_path=root_page.relative_path,
+                    source_path=root_source_path,
+                    sha256=root_sha256,
+                ),
+                seen=seen,
+            )
+            continue
         _record_source_page(
             store,
             jurisdiction=jurisdiction,
@@ -303,6 +329,20 @@ def extract_delaware_code(
             current_relative_path=title_page.relative_path,
             base_url=fetcher.base_url,
         )
+        title_provision = _title_provision(
+            title_link,
+            heading=_title_heading(title_page.data) or title_link.heading,
+            source_url=title_source_url,
+            source_relative_path=title_page.relative_path,
+            source_path=title_source_path,
+            sha256=title_sha256,
+        )
+        if not parsed_title.chapters:
+            errors.append(
+                f"{title_link.relative_path}: no chapters listed in title table of contents"
+            )
+            _append_inventory_gap(items, title_provision, seen=seen)
+            continue
         selected_chapters = [
             chapter
             for chapter in parsed_title.chapters
@@ -314,22 +354,6 @@ def extract_delaware_code(
             )
             continue
 
-        title_heading = _title_heading(title_page.data) or title_link.heading
-        title_provision = DelawareCodeProvision(
-            kind="title",
-            title=title_link.title,
-            source_id=title_link.title,
-            display_number=title_link.title,
-            heading=title_heading,
-            body=None,
-            parent_citation_path=None,
-            level=0,
-            ordinal=title_link.ordinal,
-            source_url=title_source_url,
-            source_relative_path=title_page.relative_path,
-            source_path=title_source_path,
-            sha256=title_sha256,
-        )
         if _append_provision(
             items,
             records,
@@ -372,6 +396,18 @@ def extract_delaware_code(
             except OSError as exc:
                 skipped_source_count += 1
                 errors.append(f"{chapter.relative_path}: {exc}")
+                _append_inventory_gap(
+                    items,
+                    _chapter_provision(
+                        chapter,
+                        heading=chapter.heading,
+                        source_url=chapter.source_url,
+                        source_relative_path=title_page.relative_path,
+                        source_path=title_source_path,
+                        sha256=title_sha256,
+                    ),
+                    seen=seen,
+                )
                 continue
             _record_source_page(
                 store,
@@ -403,6 +439,12 @@ def extract_delaware_code(
                 source_path=chapter_source_path,
                 sha256=chapter_sha256,
             )
+            if not parsed_chapter.subchapters and not parsed_chapter.sections:
+                errors.append(
+                    f"{chapter.relative_path}: no subchapters or sections listed in chapter page"
+                )
+                _append_inventory_gap(items, chapter_provision, seen=seen)
+                continue
             if _append_provision(
                 items,
                 records,
@@ -423,6 +465,17 @@ def extract_delaware_code(
                     except OSError as exc:
                         skipped_source_count += 1
                         errors.append(f"{subchapter.relative_path}: {exc}")
+                        _append_inventory_gap(
+                            items,
+                            _subchapter_provision(
+                                subchapter,
+                                source_url=subchapter.source_url,
+                                source_relative_path=chapter_page.relative_path,
+                                source_path=chapter_source_path,
+                                sha256=chapter_sha256,
+                            ),
+                            seen=seen,
+                        )
                         continue
                     _record_source_page(
                         store,
@@ -442,16 +495,6 @@ def extract_delaware_code(
                         source_path=sub_source_path,
                         sha256=sub_sha256,
                     )
-                    if _append_provision(
-                        items,
-                        records,
-                        subchapter_provision,
-                        version=run_id,
-                        source_as_of=source_as_of_text,
-                        expression_date=expression_date_text,
-                        seen=seen,
-                    ):
-                        container_count += 1
                     parsed_subchapter = parse_delaware_chapter_html(
                         subchapter_page.data,
                         title=subchapter.title,
@@ -465,6 +508,22 @@ def extract_delaware_code(
                         subchapter=subchapter.source_id,
                         occurrence_by_section=occurrence_by_section,
                     )
+                    if not parsed_subchapter.sections:
+                        errors.append(
+                            f"{subchapter.relative_path}: no sections listed in subchapter page"
+                        )
+                        _append_inventory_gap(items, subchapter_provision, seen=seen)
+                        continue
+                    if _append_provision(
+                        items,
+                        records,
+                        subchapter_provision,
+                        version=run_id,
+                        source_as_of=source_as_of_text,
+                        expression_date=expression_date_text,
+                        seen=seen,
+                    ):
+                        container_count += 1
                     for section in parsed_subchapter.sections:
                         if remaining_sections is not None and remaining_sections <= 0:
                             break
@@ -709,9 +768,13 @@ def _section_from_tag(
     occurrence_by_section[occurrence_key] = occurrence_by_section.get(occurrence_key, 0) + 1
     occurrence = occurrence_by_section[occurrence_key]
     variant = _variant_for_section(heading, occurrence)
-    source_id = section_id if variant is None else f"{section_id}@{variant}"
+    # Combined repealed headings ("§§ 1159, 1160") and same-number variants must
+    # stay inside the citation-path grammar: the comma folds to a hyphen and a
+    # variant joins with "--" (the NM/VT convention), never "@".
+    section_segment = citation_segment(section_id)
+    source_id = variant_segment(section_segment, variant)
     citation_path = f"us-de/statute/{title}/{source_id}"
-    canonical = f"us-de/statute/{title}/{section_id}" if variant is not None else None
+    canonical = f"us-de/statute/{title}/{section_segment}" if variant is not None else None
     references_to = tuple(dict.fromkeys(ref for ref in references if ref != citation_path))
     return DelawareCodeProvision(
         kind="section",
@@ -736,6 +799,7 @@ def _section_from_tag(
         status=status,
         canonical_citation_path=canonical,
         variant=variant,
+        publisher_section_id=section_id if section_segment != section_id else None,
     )
 
 
@@ -819,6 +883,59 @@ def _append_provision(
         )
     )
     return True
+
+
+def _append_inventory_gap(
+    items: list[SourceInventoryItem],
+    provision: DelawareCodeProvision,
+    *,
+    seen: set[str],
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. The provision's source is the page that shows
+    the container is expected: its parent listing, or its own unusable page.
+    """
+    if provision.citation_path in seen:
+        return
+    seen.add(provision.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=provision.citation_path,
+            source_url=provision.source_url,
+            source_path=provision.source_path,
+            source_format=DELAWARE_CODE_SOURCE_FORMAT,
+            sha256=provision.sha256,
+            metadata=_metadata(provision),
+        )
+    )
+
+
+def _title_provision(
+    title_link: DelawareTitleLink,
+    *,
+    heading: str | None,
+    source_url: str,
+    source_relative_path: str,
+    source_path: str,
+    sha256: str,
+) -> DelawareCodeProvision:
+    return DelawareCodeProvision(
+        kind="title",
+        title=title_link.title,
+        source_id=title_link.title,
+        display_number=title_link.title,
+        heading=heading,
+        body=None,
+        parent_citation_path=None,
+        level=0,
+        ordinal=title_link.ordinal,
+        source_url=source_url,
+        source_relative_path=source_relative_path,
+        source_path=source_path,
+        sha256=sha256,
+    )
 
 
 def _part_provision(
@@ -931,6 +1048,8 @@ def _metadata(provision: DelawareCodeProvision) -> dict[str, Any]:
         metadata["variant"] = provision.variant
     if provision.canonical_citation_path:
         metadata["canonical_citation_path"] = provision.canonical_citation_path
+    if provision.publisher_section_id:
+        metadata["publisher_section_id"] = provision.publisher_section_id
     return metadata
 
 

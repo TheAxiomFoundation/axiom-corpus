@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/guidance/2026-10-06-w6-income-tax-guidance-ok.json",
+      "sha256": "d60d70a934a18b48915d04438f8413b17ff12e9f5bec23d3b5b93fdc9075d5cf"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/guidance/2026-10-06-w6-income-tax-guidance-ok.json",
+      "sha256": "898a9075764a80324ac9218d2b1a579d475cec0f69b7b47bdf0e074d9321360a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/guidance/2026-10-06-w6-income-tax-guidance-ok.jsonl",
+      "sha256": "b141a5322a482e0a76633aafb6b5fda93919d71fad5a51bb41d785d80ccaad69"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/guidance/2026-10-06-w6-income-tax-guidance-ok/official-documents/us-ok-guidance-oklahoma-529-faq.html",
+      "sha256": "1a701be07c6bb8e3b71745fdb50118dafe4a033843e42ba312c74b09965d2115"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 26,
+    "missing_count": 0,
+    "provision_count": 26,
+    "source_count": 26
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:14.584989+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BFGtvJ9TZDlwFwaYOCl8Q6OvLdWxPw0y/wBFq3ODw7i6apLXhI/1hboD9dp2SJiUzkxaxu5IlAArZ2ZJ00hkCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ok"
+}

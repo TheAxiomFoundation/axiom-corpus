@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "3cd4dd287ce2f5eb59df77a5231b07d630a44461728913c90c40a9315b0db355"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "cc88b7319cf231f173e50201fbf34fb2c26d38e26ed3de391995b0bcde528773"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/manual/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "8ad2c919f57a4ee94de9752e36ed96fca8cf57e168aa3c4fe3aff37533761636"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-100.pdf",
+      "sha256": "7fda73accabece69ad49e29bfcb58dda66599ed2b458c8c27d31e0781d17e908"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-1000.pdf",
+      "sha256": "2c52bfbfddb682bc07f8d565605fc3f8578c354886901aed5392890e9998dc7f"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-200.pdf",
+      "sha256": "1296c9eee16849b8d7f51ca9b8e869429dd404c0d972bf4440f777408f180a8d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-300.pdf",
+      "sha256": "f3f46259226c6b0d9f506549e70ef276cc624b0a003946f9d92c2b35291c0a33"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-400.pdf",
+      "sha256": "0691cd2af59b3d7304f5f6af49ceb3f317d35c94a20ac39cc2f9b1a9d704f3fa"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-500.pdf",
+      "sha256": "74dbae90cd64257aab11d4b7868df43260855fd938196ef66530644069ea1fcb"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-600.pdf",
+      "sha256": "1ffb989df321c6258e5ff5e42dd9bcec727e4239e1eda2e743f13c5daa0dd925"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-700.pdf",
+      "sha256": "a02405fcaedd45da755ba4359e161134988fe6a33394fec5c48b1a10543ca55c"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-800.pdf",
+      "sha256": "2572a3b7f698594b57d96ab9539db2cf5e7435fd2662f014b73a9a502b319ad1"
+    },
+    {
+      "path": "data/corpus/sources/us-va/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-va-dss-tanf-manual-chapter-900.pdf",
+      "sha256": "1ab66769c153c03494fae45e8f4dc633e72ebd7ac25dddde101bdf7c5797a0fa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 554,
+    "missing_count": 0,
+    "provision_count": 554,
+    "source_count": 554
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:00:11.198923+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tZ0fZ9dujk8yJ0PTMZXsRyOU0ra8LRFOJ5g21NdxrrwnK3aue3oXDYMWz0btfU47yfL/xr55w78sMS+nhQeXCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

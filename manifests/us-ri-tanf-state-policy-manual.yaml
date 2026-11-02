@@ -1,0 +1,32 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ri-dhs-riw-218-20-00-2
+  jurisdiction: us-ri
+  document_class: regulation
+  title: Rhode Island Works Program Rules and Regulations (218-RICR-20-00-2)
+  source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-2
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-02-16'
+  citation_path: us-ri/regulation/218-ricr/20/00/2
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Human Services
+    document_subtype: administrative_regulation
+    program: TANF
+    state_program: Rhode Island Works (RIW)
+    federal_program: TANF
+    manual_landing_page: https://rules.sos.ri.gov/organizations/chapter/218-20
+    source_discovery_group: us-ri/regulation/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://rules.sos.ri.gov/organizations/chapter/218-20
+    official_publisher: Rhode Island Department of State
+    legal_identifier: 218-RICR-20-00-2
+    filing_type: Technical Revision
+    regulation_status: Active
+    regulation_effective_date: '2025-02-16'
+    latest_amendment_effective_date: '2025-02-16'
+    filing_history_count: 50
+    pdf_last_modified: '2025-02-26'
+    extraction_granularity: pdf_page
+    extraction_note: the Download Regulation PDF of the active filing, page-level like the 218-RICR-20-00-1 SNAP scope
+  download_url: https://risos-apa-production-public.s3.amazonaws.com/DHS/REG_13277_20250226153243922.pdf

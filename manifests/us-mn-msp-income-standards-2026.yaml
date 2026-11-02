@@ -1,0 +1,31 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-mn-dhs-3461a-2026-06
+  jurisdiction: us-mn
+  document_class: guidance
+  title: 'DHS-3461A-ENG: Insurance Affordability Programs (IAPs) Income and Asset Guidelines (6-26), Effective 7/1/26 to 6/30/27'
+  source_url: https://edocs.dhs.state.mn.us/lfserver/Public/DHS-3461A-ENG
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  citation_path: us-mn/guidance/dhs/dhs-3461a/2026-06
+  extraction:
+    segmentation: single_block
+    start_page: 1
+    end_page: 2
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services (eDocs)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-mn/guidance
+    index_url: https://edocs.dhs.state.mn.us/lfserver/Public/DHS-3461A-ENG
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: income_and_asset_guidelines_chart
+    document_number: DHS-3461A-ENG (6-26)
+    page_note: pages 3-4 of the file are the superseded 10-25 edition and are not extracted
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+    - MED-ST-4

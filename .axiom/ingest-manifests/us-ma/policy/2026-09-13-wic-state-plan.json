@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "edcb507666611dae08291eb92874d20d5c069d9965bb83df2fdc6a0bf6b0c5d5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "f63296b0a11f0b9566afcaaf1f07a50aa9a8efe71ab73dd61477124caaf9475f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/policy/2026-09-13-wic-state-plan.jsonl",
+      "sha256": "2ff27e062253cd65ceaa6674d75abb59cd1863fbae9b213270a04a749bcdea98"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-09-13-wic-state-plan/official-documents/ma-wic-state-plan-ffy2027.pdf",
+      "sha256": "8004598df9e79e6449e84b61caf52a289617baa4ee4a00221d6a0690614f721a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:38:48.248853+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zo3syJQATO1egIFiPRsJChuHzeuTXbg/zeC3kjfr6lnKn3CuFoTZFQKjVpaATk+tlcTTURCzdaMJ6rTl5GCZAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-state-plan"
+}

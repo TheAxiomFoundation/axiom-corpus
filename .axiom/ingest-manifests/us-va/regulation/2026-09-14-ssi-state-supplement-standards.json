@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/regulation/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "9492262b88c5e5c9244ace116928c9a74f50e9d8fc425ae4817987a8842a5994"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/regulation/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "b6f752f9fedbfe3c380782b23a79327b399010aa373a062a4cee6ad585a6500f"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/regulation/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "e8587c79d43bda62296189abbad92585a8fb49c97cb829e18bef6af12fa78603"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-10.html",
+      "sha256": "46bf1f110ad18e0e0b66f2589b473bafd17085d1256f8813a815654afd5df628"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-15.html",
+      "sha256": "edc4bf86aec489c7f295a105bd843204b046fdd8e3bd378c10871ee4c524135a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-20.html",
+      "sha256": "76969e54cdb3542682080969280370209c03a7d750831f10a6585e8c6847d283"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-30.html",
+      "sha256": "da08fe66c4baf3e49440a906b2c5bd714c7ccb3b8d57a31a5bfea412aee3bb9e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-35.html",
+      "sha256": "147440b9f94c7cf5377d88d760faee4d36c075585f87c9690326674443cd1f91"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-40.html",
+      "sha256": "866a8670ceda2c03746323e949815f350f1c49952a543eef3bec1731516c2859"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-45.html",
+      "sha256": "34bd1f4619a9d233375f14b130b7b2197de8a6e059dc81507df0f2195abf992a"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-50.html",
+      "sha256": "cff22303c8e8d960d8a8c982fbbf25c7acb7758b291c6d3f7df04608a70ee9c5"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-60.html",
+      "sha256": "df610a857bff010d4369759608a3c35a9fed746ed9fcac150de078772aabe65d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-70.html",
+      "sha256": "b419d3c6163798c39a7e89bba7c9c9bedb8e2dfe9a3479214883bdf7a75276d7"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-80.html",
+      "sha256": "87d7f65dabaa91486731e379ebc02483b4e321e618942a920f27bc2f3c7f90f8"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-09-14-ssi-state-supplement-standards/official-documents/us-va-regulation-22vac30-80-9998.html",
+      "sha256": "c132af154fca8d36dffd49e82e3d622e11346421dc227cc3530c6a36da94746f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-va-ssi-state-supplement-standards-regulation.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T18:23:01.756082+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Lxd1s7jVSIL+Ob513UbEuL+603UIE8V0RdCDGq9wR7D7uReLLjC9IU9rl21F7ZE27U1SMzByz9W5ilWBUcTHBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

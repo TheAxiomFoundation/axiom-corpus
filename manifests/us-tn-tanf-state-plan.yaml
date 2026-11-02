@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-tn-tanf-state-plan-2024
+  jurisdiction: us-tn
+  document_class: policy
+  title: Tennessee TANF State Plan 2024 (signed July 2, 2024)
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/TANF%20State%20Plan%202024%20Signed%207.2.2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-tn/policy/acf/tanf-plan/2024
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services (Families First)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: TANF State Plan 2024, signed 7/2/2024 (WIOA combined state plan TANF program-specific requirements, effective
+      July 1, 2024)
+    publisher_index_url: https://www.tn.gov/humanservices/for-families/families-first-tanf.html
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-tn/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.tn.gov/humanservices/for-families/families-first-tanf.html
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

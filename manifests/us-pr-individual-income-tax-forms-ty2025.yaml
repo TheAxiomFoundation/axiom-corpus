@@ -1,0 +1,83 @@
+version: '2026-09-11'
+documents:
+- source_id: us-pr-hacienda-formulario-482-ty2025
+  jurisdiction: us-pr
+  document_class: form
+  title: Formulario 482, Planilla de Contribucion sobre Ingresos de Individuos 2025 (para propositos informativos)
+  source_url: https://hacienda.pr.gov/sites/default/files/individuos_2025_rev._20_jun_25_informativo.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-pr/form/hacienda/ty2025/formulario-482
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Puerto Rico Department of the Treasury (Departamento de Hacienda)
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-pr/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+    discovered_via: manual-review:tax-agent-queue; index https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+- source_id: us-pr-hacienda-formulario-482-instrucciones-ty2025
+  jurisdiction: us-pr
+  document_class: form
+  title: Folleto de Instrucciones, Planilla de Contribucion sobre Ingresos de Individuos 2025 (rev. 1 abr 26)
+  source_url: https://hacienda.pr.gov/sites/default/files/inst_individuos_2025_1_abr_26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-pr/form/hacienda/ty2025/formulario-482-instrucciones
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Puerto Rico Department of the Treasury (Departamento de Hacienda)
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-pr/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+    discovered_via: manual-review:tax-agent-queue; index https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+- source_id: us-pr-hacienda-form-482-0-ty2025
+  jurisdiction: us-pr
+  document_class: form
+  title: Form 482.0, Individual Income Tax Return 2025 (for information purposes)
+  source_url: https://hacienda.pr.gov/sites/default/files/individuals_2025_rev._jul_18_25_informative.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-pr/form/hacienda/ty2025/form-482-0
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Puerto Rico Department of the Treasury (Departamento de Hacienda)
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-pr/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+    discovered_via: manual-review:tax-agent-queue; index https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+- source_id: us-pr-hacienda-form-482-0-instructions-ty2025
+  jurisdiction: us-pr
+  document_class: form
+  title: Instructions Booklet, Individual Income Tax Return 2025
+  source_url: https://hacienda.pr.gov/sites/default/files/inst_individuals_2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-pr/form/hacienda/ty2025/form-482-0-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Puerto Rico Department of the Treasury (Departamento de Hacienda)
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-pr/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes
+    discovered_via: manual-review:tax-agent-queue; index https://hacienda.pr.gov/documentos/2025-planilla-de-contribucion-sobre-ingresos-de-individuos-para-propositos-informativos-no-utilice-para-rendir-individual-income-tax-return-information-purposes

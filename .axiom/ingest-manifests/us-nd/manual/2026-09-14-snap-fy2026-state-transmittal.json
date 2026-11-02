@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "0a11aba96b1eae13975edb131b14679538a44d58c35b51e0c404c65e22fb0261"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/manual/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "67a131e176d6997bfe3114ecc28177639a167808104b29573ca29ee9f3a882fc"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/manual/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "3a6835f503085122a125e7f16f0317d13414aaaaf22ea88ab05029aab68ac1ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-nd-hhs-snap-release-25-6.pdf",
+      "sha256": "2c8165ff35e1f85ecf243364cec75d023597c542b511e772ba55af0fbdb694b4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-nd-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-14T17:15:54.289454+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CqUXD6NBKXWcWZDp4N7EbAXEHm5+l3GWSFSlLJumkog0MafZgWfDEzmRX4OZyE9rWtab09XsOKG0xmG99inlCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

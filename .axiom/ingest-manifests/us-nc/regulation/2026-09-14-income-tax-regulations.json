@@ -1,0 +1,917 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "686b8cd8768c2642f9370e0b4ea3191eb5108501d41bdec423b26b0289670357"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "e6e5aeeb08445261389dd1e3d350b35120f8c9fa4652b16e33b6db24de3e51a5"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "d13ec057a2766a7e401db2a0bc33a92258abeafef731bcc2e8f04fdfb1c65691"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06a-0101-0105.pdf",
+      "sha256": "9d01a2509e45100adc39d1d479bec32ab068264ad1b1371f89ffac3bc0a579be"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0101.pdf",
+      "sha256": "4ab54cf1d77c884f23893393874147b008d9969ecb1cbc400b0ebfb893cbe10b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0102.pdf",
+      "sha256": "ca78721768383bf2758ccd3c53571fb164abf6209ce5670312cd6d45b3411b5d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0103.pdf",
+      "sha256": "b2d61d1d9065437374b962fd1ba44feb1df5df207122503444145d2536b2ffcd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0104.pdf",
+      "sha256": "141b6b67d1b1ad49fbe0c21c5037546d51a1911ccab7c05178f7078be22bf013"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0105.pdf",
+      "sha256": "c0c09eb33bedb757e94dfc16cf99e504d604422e24b4b20d9acf1870ca40bdba"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0106.pdf",
+      "sha256": "6eaa373daa86642ee8787a29ace72a60a00094fa063b8bb56b0e7dfc1474f9d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0107.pdf",
+      "sha256": "59fa9c3eca090e6faa2b9ee454e4e5e7374abad618c533f3440f388a62650d84"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0108.pdf",
+      "sha256": "8396bc2d31b04285cb4e1f18f9db2a04e56585a5a485d9086d8aa06e2d056863"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0109.pdf",
+      "sha256": "91de33d2f8bb5a15e2f14986fa3e6f2d7a889d50b10158e37e020ad80d17b222"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0110-0111.pdf",
+      "sha256": "8c434048110189b41dde013bd36a0ccdbb50f1660cdd8984cf0db42eaa073de7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0112.pdf",
+      "sha256": "1c5233786fd1a50ed684d8b8b266773017c344d7528eead1c5a990e44921cf19"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0113.pdf",
+      "sha256": "9eaaa2faef9b6a218f0ac5045917049114ba15a4bf91c90333f9725692d1a4f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0114.pdf",
+      "sha256": "2877e0ff58a5f9312df030de8fc54da93b1341513803401fe680cc87f488fd66"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0115.pdf",
+      "sha256": "8d0cc8e033cdc46ccbc3e29065493e69b22ea6be838bb1287c8a6f658e8030b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0116.pdf",
+      "sha256": "451d927d484812aa84b77c065faa284015221819a3ad258979713bb85f9ae253"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0117.pdf",
+      "sha256": "d8f9697eb317a196e6d8b5a15778648ad84cdeade5772a1bd55e47d701b1a2b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0118.pdf",
+      "sha256": "61547568c556efad8d23a671e99267e1578ec78455035df59e2e89e7c629b97f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0119.pdf",
+      "sha256": "a3e147fc16c61c1616388b08cffa27b253ebc61eb89181e5587938cbf1766b03"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0201-0202.pdf",
+      "sha256": "b65dda5b92acfef8c76ce570da4f7a1d1eb62a1636d87ceb678ed3f038077037"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0301-0312.pdf",
+      "sha256": "636d793d9f8bf2e7bc9b24c0f23e78cf3404d3c51647749ff368cfdace4681c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0313-0314.pdf",
+      "sha256": "6af036c7a792a921cd8d6f9541cda07b1a900cb2ebffe58751ccc8155679d09b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0315.pdf",
+      "sha256": "6fa2c95451bcfc18464a54a0ebce1ae9f9c96eaec9808521e36cb55195bfadbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0316-0319.pdf",
+      "sha256": "ca042a3835a73780eb31b452bc8a76e7ac19ce53e87bcc3faf6d0f6193af4f62"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0320-0321.pdf",
+      "sha256": "722dc8187e189f7568e19088cefce901e347e5c4c6caab1183d2b3c462ba9ff1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0401-0408.pdf",
+      "sha256": "0667d2062d24374a89c970a795cf92ab8bcf6ec8db861142e944daa16c5ac163"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0501.pdf",
+      "sha256": "2d31d10291843f602978f58968be14a322b40b68523b845541b8df3883cef7a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0502-0520.pdf",
+      "sha256": "367654e4f911228a676a5e05b717a8ccad4f0ef8be634918e3ac758e08dfac8e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0601-0603.pdf",
+      "sha256": "70da82806559934285da260b9fd2d4ab473df4cf3a9800bc8bbe0e7424b8247c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0604.pdf",
+      "sha256": "af9358db1bea632acab6f76e17aec86e636d01a56413bcbcf63aaec5173bcd2b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0605.pdf",
+      "sha256": "5ff364fa135015255c2b177a5af4dc4424d3cf059d5b5dcae532dda2a19c9817"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0606.pdf",
+      "sha256": "eb71412a5dbf844cca779ef6d2e7d6d9da97fc2c76306d580858d1c92b0e9123"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0607.pdf",
+      "sha256": "000177a9f32e6863685a2c67a63a20288fa274e8e6b8242b776ac7607242981e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0608.pdf",
+      "sha256": "34cfa7980448c87587985f36309273b23b70254e7839cadcc8153f59d0ba0377"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0609.pdf",
+      "sha256": "e3e1389541626295138a83e8a8c41aa241119b7a452d72bf058a123ae4ac9428"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0610.pdf",
+      "sha256": "d9c4c2761ad472c76aa08739b7fce468eabf7da3a0d2fb4bdc0e470d51e52ca6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0611.pdf",
+      "sha256": "bdd12fbef15546363aac255e6c0c93a4c7390678385b1cc8352a3225e3ef3539"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0612.pdf",
+      "sha256": "53f81d31bf0ef857ea7e5ed302b9de58f54d917346b89341d7086c8867e8b86f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0613.pdf",
+      "sha256": "fa443ced6ba1d999131624af93e7dbf787fa68e8e3c926f3e31184d79a0df4d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0701-0706.pdf",
+      "sha256": "d29742375ebc71de97d17d83f60ae8736bff8899d2272e557e88a5820e1d19bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0707-0708.pdf",
+      "sha256": "014f24d7561e529df411453538d50ae982ad277badc8a5ff048bfe96e475b4fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0801.pdf",
+      "sha256": "0ba864ee77a423e4ff9034ffb9d66a13ea70576fad0b0ae9d35ac4a71bc7c0d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0802-0806.pdf",
+      "sha256": "ebaed6d9117cdbf2a72657c3869a37bb2efa17acd1d0d64f39e45d83bca649ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0901-0908.pdf",
+      "sha256": "e6140f381db8da70c8677f7537c6e4818645e59ced28f11b0515259cbcc3e647"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0909.pdf",
+      "sha256": "1aafaa33c948ce073d0575ae914c20b1065b53a2e1160bcaac84dc0d7ca6c395"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0910.pdf",
+      "sha256": "ba0899e6d1f13b4df0134a8c8fe97a0829c933bf219cf376d2edbad2b6de60d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-0911.pdf",
+      "sha256": "ecce2993be595f0e77934940937858a9500c9a194b4125acf59f31a1bf08bd31"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1001.pdf",
+      "sha256": "c515cc9f1a5ea5f06421b0646fc29fc276c963c3ae082f970c5959529a92431e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1002-1004.pdf",
+      "sha256": "2b5901be6e6b1bb6d9dff33df4aa1250d6eeab2f3a014c505fe1024792191d48"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1101.pdf",
+      "sha256": "17b9a3f4f1e39b2459e661b6ebce798405563b757f0879be2ba9788853e4b5da"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1102-1112.pdf",
+      "sha256": "443a969a3fe7c4a3c5ee487edebae72427d2993e4d53db54bd93c8e56e549299"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1201-1203.pdf",
+      "sha256": "7e9cc3c493c57ffa7a88fa9c59d861a259ad2956957e190a1d052ca3d9388d31"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1301-1305.pdf",
+      "sha256": "7e8ee8c532a6e16ea1671ba564e015f85bbcc0a79936137b2f88529509841522"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1306.pdf",
+      "sha256": "20bca75cb6242b9b1410013180eca2aee9dedb7efb0562dab493e3907ad11fbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1401-1404.pdf",
+      "sha256": "842235da74d23bfdf741f5a0ce2ee4f97329b7aec963391c4ceb0231e3ec054f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1501.pdf",
+      "sha256": "8df75002a900e8a5bb2d51ff445e59c67582c119b1232716b66d299fd820367a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1502-1505.pdf",
+      "sha256": "bd2c0711551f0b4b68494c4b93a27bc35d018918422cf34726c208857530c67d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1601-1602.pdf",
+      "sha256": "9d74ea9cc590ffda87cf277a1ddfaae2bdc9cc9f316163cefd917360cbcf2513"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1701-1706.pdf",
+      "sha256": "22cff2c41f83155dd59bef85d48c00b5399a89a0d90b87c78294cf927d3d7a93"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1707.pdf",
+      "sha256": "b993a172ace491d21140fdf0f602cc56e4dd4fe5c0878ca2557f736b29bff363"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1708-1709.pdf",
+      "sha256": "af374a76fb2094a7c249f03e73046075877b8b7c42718d7d9ebd0be7eb5e7818"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1710-1714.pdf",
+      "sha256": "7c706caa858c8e303cf51104ba4175a227fb200e9b4f13d6b14e3959fe302cf8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1715-1716.pdf",
+      "sha256": "617d8fd9cc87193d9fc7795625441bbb3a1c3f2ab03371c54e5a823cd288a36c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1717-1726.pdf",
+      "sha256": "e5fb083481ca8bd3a675c1efc02aab775505d37e53ddd19938903cd7ad078a6b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1727.pdf",
+      "sha256": "4f427423f754b49f49152f9f8f8270e0029404c1db23150cf21320a09f0d73d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1728.pdf",
+      "sha256": "e59041b996a2a64052f8c26d4d929bf5262e3b69cf6215f83b17d210de0d18bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1729.pdf",
+      "sha256": "104dfd62a4b6a3cd745cefe416ea11e54133916db1e5f912d951d21a3e000a1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1730-1731.pdf",
+      "sha256": "bd2e6a25d9a647b25995849e6cc75b73aaac93195ca325476c60cdbe65643fa1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1732.pdf",
+      "sha256": "a6ca970832e2575ae221cbe3cc3c9073bd8ed27dd943a7f5a0357cdde4c2684c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1733-1734.pdf",
+      "sha256": "b79ba8753796d096c6af76850be21244fcdd250ced139d6169793f9abeb557de"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1735.pdf",
+      "sha256": "b2e5fac10a892bcc35df7a98099bb5473a16c1ff446ed58f6d105b53aa1ca96a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1736.pdf",
+      "sha256": "eaf65ef439bf2b84c70b4f736f8789b84151a054efc2b109cad736ff71ed398e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1737-1738.pdf",
+      "sha256": "5cba77095cb201f20a01517e839e00287d8b857145d13bb5b025251e21cc86db"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1739.pdf",
+      "sha256": "ea29cfce605a3001c9d22b1ad335e4c48a40a9f206c77c3f59998bc632a78bc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1740.pdf",
+      "sha256": "39fd3985263ed972d21f1c9f71abc17650c13b5a56aeddae2b51f0bd156cb263"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1741.pdf",
+      "sha256": "b2a038b6a10f472900821698d950ad7837b3e3b24e70e7d3663fe69923ad9cff"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1742-1744.pdf",
+      "sha256": "d23b70b5fc84304b20e674163f844bd4f794c1602f34909556f0423ee0518f45"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1745-1746.pdf",
+      "sha256": "98d0c73135518ed76756162e775c8017d239f75aa8f57c8301875970ef570dda"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1747.pdf",
+      "sha256": "5dbe1952bc1d972f5938cb0cd44d1b0de78f096d043de94ba763591117b0dd93"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1748.pdf",
+      "sha256": "76e97b8304c3191729430b3962199878da31f3f196ff90a261e63130d8ad041d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1749-1752.pdf",
+      "sha256": "4ba0788399e9b6c89aac38c8b5f17c790fdf27bc97a4658a5942ead71c0027bc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1801.pdf",
+      "sha256": "cb95f3f7f053ead6ba2ee19e967cd6a4a3beb6db53dc40dee2bff334c5474edf"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1802.pdf",
+      "sha256": "caa712e2044f2daf63836461b714d84374fd86495b1533a2c45176bfa5d0174e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-1901-1903.pdf",
+      "sha256": "07f6a63e763c4e55d137050c68f33d02b5d05f55fdfd5f135df8e071cdfd5527"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2001-2002.pdf",
+      "sha256": "ccbd08253e2c5be64d426947df6652e84bbc3f4c7f75fd13d2793549341a91a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2003-2004.pdf",
+      "sha256": "dd795cf71d54edb5dd3d46c1463f97f1d73224141d1da14ef6127fddb81e2354"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2101.pdf",
+      "sha256": "4d94ba764a7e5532359d898de89c0e9cb10f365798fd4952daa808e6b926299f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2102.pdf",
+      "sha256": "74605dd62634acf0a613c9c64610e682c4d196c62566b92f0d351bb76d15eafb"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2201.pdf",
+      "sha256": "3a33ed5610dcc6dede7580808921975b773fcec843abd57f5dd3bb4551f01c6e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2202.pdf",
+      "sha256": "6c218f511ab7dae110f8fa2cc3a194e0cc04a3444ad12c1f30af19dbfa21934d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2203.pdf",
+      "sha256": "7dd234e32963fa28262a2b7dc26a247b9c2ecff87af45d6d06405bac7f7ffcbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2204.pdf",
+      "sha256": "35bc66003d44fb52a6732ad523b036da97aecee27c22cd0990e6697a92dbc058"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2301-2302.pdf",
+      "sha256": "19a6a18b47018ff7c7c71e099dab855f959cbc6e53e4f76ff8b14b2a45a0572b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2303.pdf",
+      "sha256": "7f2c3381d263a35e25998b49febb271026cb09817d49b834db2d3b25dcab9f45"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2401-2402.pdf",
+      "sha256": "9152816cd40b5e295554362108f8ee1eadd707da3d5c78c4ddf9b2986643603e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2403.pdf",
+      "sha256": "c58bb6b9115fa2a839659e098d00b4fc3481c6f2adb03f4a26d02c1247d9a79f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2404.pdf",
+      "sha256": "00d5c9fd038100db374350637b87f76c261fc4c159dd2079676e3ba8361e2441"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2501.pdf",
+      "sha256": "edfb27dd60b0cfc1a06799c775b097ffe617813c2c6db9c9ab175c491a99f66d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2502.pdf",
+      "sha256": "a835e5462d0a3ae4ac9bade976fb9c3916a28d36d4b270c645e5d4bfc8d79f7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2503.pdf",
+      "sha256": "82c94618e6bf700cedb7494336103cce0b711a51fba436eace76026ff7c28143"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2504.pdf",
+      "sha256": "2fff75e8584935742fc78d0cfe1caffe1554eb768de0fe7dae817f2a8961e482"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2601.pdf",
+      "sha256": "feeaa3d91dafedde701c5bd8b3975808b5e79a6176d263e17f6a4bca499780d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2602.pdf",
+      "sha256": "2f847059f1a9cecb08f453e3cbc3b60dc4a83d57e20a1302fcef67f2b37cf5dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2603-2604.pdf",
+      "sha256": "8ae3591d1473eabb28e982fd2f63e312853c1c2e7878a6d14e471b07d7ebb485"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2701-2708.pdf",
+      "sha256": "b21131d5dded4afe4d1d68d49ebbd66a7aa78b6d17ac1b1b05c4169634790272"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2709-2710.pdf",
+      "sha256": "2245d86914fd8f64826c0b06ce685bd19ec5ed81efababcf2072c3df8600a2e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2711-2713.pdf",
+      "sha256": "354721a1eee0831aba273fd001855cca82b0b11e8452f79aa29ace08be9363b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2801-2806.pdf",
+      "sha256": "1d5128b0e6e607b3a12f092e43f6330f75d28545f017d22f55c3832ceefd78d6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2901.pdf",
+      "sha256": "bc69d0cac7a8a485dafedaa33fab6345aed0020836502bf1a4758c3eb6d51a9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-2902-2915.pdf",
+      "sha256": "f823f0c84e9996826919dd8cd0931d01a1917f18b73182d2b17f511deb2d670c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3001-3008.pdf",
+      "sha256": "4203bf230bb28f966394f349436a313450e2a668bbd61fcce7ee4f19c6856801"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3009.pdf",
+      "sha256": "0853b0f5744dbc649142e52662a3df0507665dbd821cacd32c99966c026751e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3101-3111.pdf",
+      "sha256": "ca94a9dceaa5b9cafcf5f998f82bbc3cec1bf0ccc8099356e148bdba3c587cc4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3201-3202.pdf",
+      "sha256": "ecaa340c644a5c4bf592ca2459d6d4ba7b5b9c152f05b080d9497f6cbb752c83"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3203.pdf",
+      "sha256": "7c02b50451de1692ede64d1eb2e72915003504461d18c11e0a7ec368955fb56e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3204.pdf",
+      "sha256": "5943c1cb4610da7d25c84186474ddebe015e703c011c0087b92c14b824bc7893"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3205.pdf",
+      "sha256": "9cee5174bd100dc111fd654bc7eab9edf8c241db81614326d1b29edffc345576"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3206.pdf",
+      "sha256": "f9ca96b59576d8affecdf84a66e047da24a0cd93f87ff5745878260756fbc52d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3207.pdf",
+      "sha256": "e1c56b7d50be59e9265157f73258330e52349b8f2e112997bc87aa55aa74a188"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3208-3209.pdf",
+      "sha256": "8587d5bcc68694738d58a3f61b42a56f14d776bc449570b932f37f72c49e82a7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3301-3305.pdf",
+      "sha256": "fd85a9b60897ea0bb5123de5e48cffccab4fabb9b249d6dc6068bbea038dfe7d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3401.pdf",
+      "sha256": "36c8f773de10675d718d32ba6099203f44b69964835a96b87e837b60421a6b24"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3402.pdf",
+      "sha256": "d4c01bcf2ba25ae3bbf4c0bf791c40b9faa7b29b9c089216629c6379c10fadca"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3403.pdf",
+      "sha256": "13cd1e151e1466541f05515ae697ec37e88da7c0f42b3644596796950bbfb083"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3404.pdf",
+      "sha256": "daeb72c566888ac86eaccc9755addaf0fe0ca9d23449c9179982eef4e1fe1be2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3405.pdf",
+      "sha256": "369bf8a7a436118bd50bde953d946ded69e8a1ff27156f2ded7e5c117d297409"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3406.pdf",
+      "sha256": "855cd1ff64f012a25a7340d17e2f934d0b2321213309022229d743a563777d60"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3407.pdf",
+      "sha256": "d45c1965d0461445627f564a84cd7f89ee9ee54d17b3b027e109402c94f04469"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3408.pdf",
+      "sha256": "0a401914b16c09f30a353743b71312786e1f856392c9149b70bb94787da477d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3501.pdf",
+      "sha256": "84e6a780dfbb5a08d98ef904a3b5899122d1b69ed2094b8284fc80bcc1eb69f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3502.pdf",
+      "sha256": "e0a88c919b71107e485f3ef919d79f36331029e2d73163ae855a779a37951d25"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3503.pdf",
+      "sha256": "2946e6888df6aaae89cc59b8267480675c698b29d1865e4c248394f62a7d7eba"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3504-3509.pdf",
+      "sha256": "4ef12c0abc02c54bf224b361cc0df032bff0cf58bd7806481b0c2d91c1503cd9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3510.pdf",
+      "sha256": "c52c64bb6ee8e4c81315db9e5e6ee280989e7be15d925005538c7cdd35bbe329"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3511-3512.pdf",
+      "sha256": "e35c8b23c0e6cbed7ab8fcdd792e21a5f7cc9931d958f70c26f902bb774fe47b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3513.pdf",
+      "sha256": "cb15dcc907fea2676fb19dc6fe0b04e9f8008d4d8092056bb25ff6a84a02eed4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3514-3520.pdf",
+      "sha256": "06d536e0e13a6bbc2a940c70788ed9d1ca05d0504319b5374afec935e65311e8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3521.pdf",
+      "sha256": "2d6d26906ba07788d12ba7fce857369daa04e4313c20d8a705929f2b66fd5611"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3522.pdf",
+      "sha256": "17c1b8fdb5095e70f5f1821d46f158984bb94edc619e5b039970ce16a1934dba"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3523-3525.pdf",
+      "sha256": "7478454a1dcb39b17d8103598494014400b3c62d818292a895c60fc797a7407b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3526.pdf",
+      "sha256": "997ad159e5c0a7a60057c28b2ad0163b605360e6ec3ec8716e64f4562ce616eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3527.pdf",
+      "sha256": "ed043656d339b4653a1060f6b78e255546fdce3d0630a9ddb4ee015078b7215f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3528.pdf",
+      "sha256": "d712e42b3f787439ad46d326ff4b9d5fef7a942e2539ee204e7a4d242b28d0bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3529.pdf",
+      "sha256": "7e3570a319404913fe17db5498321cdfed1a37f2cadba74504ec074b1cd714fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3601-3611.pdf",
+      "sha256": "cb3bb4734750070b48ca2c1a8e3c52ea91be57f10c13cea450d634da10cc168d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3701.pdf",
+      "sha256": "143a50946ecd3b6dbbd54e90388b7a44e96d35605128a0087f4daf3f53412759"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3702.pdf",
+      "sha256": "df5553ba74ead1fb6206ffca8e043bad97f0450b6937722ee0d0e3be33ea90e3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3703-3706.pdf",
+      "sha256": "5b36e0fd62fc2704bd746e506da9b4521423401d24f2f1ba4a50b45396be2eb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3707.pdf",
+      "sha256": "9b4ca4a6c04f43fa41b9e46e35a4c0cbcdcecdeb1bda27c2bd34b7240ccf46af"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3708-3713.pdf",
+      "sha256": "052ee8ac719c067f0706ffec476ef36d4bdda1d326a192d54240989cfb4d4996"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3714.pdf",
+      "sha256": "f808fffb8f811d99f217adce551e6eb0123305c5af3382f95664297203cc43ac"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3715.pdf",
+      "sha256": "49ee7bf9b649e75ad659c6973959dfb2e1e016ea7100f16cdf70ee907c9d5d93"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3716.pdf",
+      "sha256": "3f10b38d33e553801a3462144b712f64caddf9bea80f36873ebbd2ace5264774"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3717.pdf",
+      "sha256": "9527007430e54f95eb04c43cf008c42fd5e352131531f00a3f03f3e5ab89daa4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3718.pdf",
+      "sha256": "de406d9c43476265649540ddc89daf3c665f7d8e1071afac8bc0afdbfb792e41"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3719.pdf",
+      "sha256": "2fba74c3a3a40da80c7651a8fbfbc1fd414f18e8c1b7d8f9a2cb25339404bd4c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3720.pdf",
+      "sha256": "2045413a3d1356392adb37aeb60d5ff8b4c572c9ceff7a077c11c65531cef4fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3721-3722.pdf",
+      "sha256": "a4b214c88a3313a4cb20e679a624a5c692ddb68b71de4fda9e8c8e99c48438e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3723.pdf",
+      "sha256": "31d2ef66f95cc6a475ee5585dc168180b9d5734a8ecfaf2c3109ad7f75649a6c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3724.pdf",
+      "sha256": "a8268521a69d4db1e1e0725e5740d38b0195b93d6c18e8b5d6877d1f9baf0d54"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3725.pdf",
+      "sha256": "327bdd1eb9a20d474e621eef8fc9434f141c8a7a1deb0d95ba03ae17e4e159b5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3801-3803.pdf",
+      "sha256": "22cb01472cd8465e202512ef71808bb1922aafdd343b65d90f30dab7334e590d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3804.pdf",
+      "sha256": "3e8dec6f74922a54b561c9d53f04602b5195452c6b637ac6c6f668d54966effe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3901.pdf",
+      "sha256": "3957c2f4890007357f7803f4310b47805f1d6d3ef8f8ab456d7287ff6e46725f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3902.pdf",
+      "sha256": "86378347f111c6ee1415a1a2ec626b6dbd63fb54ab761ab3e469aa9beaf7aae0"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3903.pdf",
+      "sha256": "4d2ccadcd19d3d85490f330fe7d2b494b468664a237dbbaf0ad6e04e2625ee24"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3904.pdf",
+      "sha256": "5e9a3f177e47e29a074660bfe7803117cd660dae798a4258c6c76a02dd297f8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3905.pdf",
+      "sha256": "48065404f3fa142756a1e62613699e19a1b0edb34103e73d37cc715118a79864"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-3906.pdf",
+      "sha256": "8a30006892d50dd73e62eb31eaf0be313054fd2b3918b1acfe4f45e77d86460d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4001-4002.pdf",
+      "sha256": "2daf5bd72f1206c277c78b35e0d6783e42f55d2a09c9b25fe1367091a2cf0c42"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4003.pdf",
+      "sha256": "9cab709cb5967d3b0c16543ad6c2d02d4248fa12b7d771bc0c3df36354a836f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4004.pdf",
+      "sha256": "5e610dab72c0859d21349477545d255dc67845c1ec2e5b63511b695facd15b2b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4005.pdf",
+      "sha256": "e4a1c0ce6a9946d24230bb63a96db87e0e5e2efe6d162ba1e013300e679a7b77"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4006.pdf",
+      "sha256": "fa60977e76aebccec558b6e4aab2c501144a24624a266a9b0416c624c2418333"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4007.pdf",
+      "sha256": "4135903d2cb24c4bc4808d47c883f732e799879f918c22bac4085960101401a7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4008.pdf",
+      "sha256": "6602447fdc62b6faf1b562a301899c8568f5f09443e040e623b1673ce91d30fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4101.pdf",
+      "sha256": "0b2bd48eeebbeaec4eb7cc5f6499d3380d83668a256359fe12849fe6073ea62d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4102.pdf",
+      "sha256": "c212cb2d581c4b7ef18aab52bab6a1dedbc2b1f9d50d3bfb381b96c16bca4e2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4103.pdf",
+      "sha256": "31647e97695da48bff908bc70382a80be98a6997bf1ca3593b0c27cc30ea2d8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06b-4104-4105.pdf",
+      "sha256": "bf8b510e5a5e1f002bb0fc9569e83d373e2c4f73e2e9693fb459de998fce9219"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0101.pdf",
+      "sha256": "6dcb9edc2d40b520fe8c3a3760d841fd640a3621e95a7f308c1ffa5291ad570e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0102.pdf",
+      "sha256": "8ed2c0945da7c00edbfbb08c67c5b5f6b01fbbbb0b516187ccfb4494feec4f41"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0103.pdf",
+      "sha256": "b40856ebb0f7450762dbaa17ca405cd1a61959809518bfc791d2363795a63208"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0104.pdf",
+      "sha256": "8903e970ec1e1033680150f83d43ca799fe077b8f09cd38490d7e37a316013f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0105-0106.pdf",
+      "sha256": "df8581c803cce139f106da6a435141fac053546741baff53b4c9d100701b06ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0107.pdf",
+      "sha256": "7aeac25a43a29f50c261856233fd325d1ab5f19c3c896f0737af61703c6b3cd5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0108.pdf",
+      "sha256": "cd037ee8f6d920f98cbb4105c23250783f303185931ef1965a7464f13bcc6c87"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0109.pdf",
+      "sha256": "33b3170476448e826db8a5d38e64fbcb2bbfba18c2c2c56982c18b6058d89a2e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0110.pdf",
+      "sha256": "a7271cb0e67f9b79020c2df420b53438604baf65a20e8b05d3007cace511155c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0111.pdf",
+      "sha256": "1fe0dae4bd1dea1816e32576240ab618022351c14d3105746b003eb3ad3c5e4c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0112.pdf",
+      "sha256": "af9e49c5948434cb7667bcb4dc996de3b852f50070c543f7d02368a03917eb64"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0113-0116.pdf",
+      "sha256": "e2194e085942dd759b36bb3cd8f2e97185d8a52bd787bf3bec8ab583b4ef21c1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0117.pdf",
+      "sha256": "923026ffd1c49475c9624f0e701877942ef130bb8562fcdd4ddc7ddfc745c677"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0118.pdf",
+      "sha256": "caa8cb758ad20c30bfc2d6d9b36b2313f3ad6c5edad05027710a63c005ce9f3d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0119.pdf",
+      "sha256": "3272a82e1cd81b362ea763df0be6adc31a81b2405e3c38ebac1228d0833dd195"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0120.pdf",
+      "sha256": "4450f8fe4fa0626bd2230a168283f73bb701bcccb469f072a326d499accb4d1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0121.pdf",
+      "sha256": "3808decc8fd4495f0eeef2eda2410c2422a5dd7a2f0677bdce4d021a8c90625d"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0122.pdf",
+      "sha256": "fd9b2835d6af98508ece51d1b65a6e2e180bf71f2685b5436ee7b6582a0858f5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0123.pdf",
+      "sha256": "3faef913cf0222c40117883327a0c6e66da82cc7a8505e6e20760b04b5edeb7c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0124.pdf",
+      "sha256": "afc275d842e959d8c69e85a7f3089bb0c8ad78b40e99e48ac5b2d293ce798ff6"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0125.pdf",
+      "sha256": "262165d4b0176a776d32f01934ec8460bfb3c9d44bc8c1961beaae8caa6072b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0126.pdf",
+      "sha256": "6948b035856a1061ccf0dce1d7d003512036af271a293cd0b0b7cab9184bfdde"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0201.pdf",
+      "sha256": "ab7d57df1d7e6aaa755e28595a19557956cab4db3431d0c37f4317c6e55729b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0202.pdf",
+      "sha256": "6a486e7227de93f770327c6e3a3a7e98cfe4b99ad9c12587f26b11bd13c803b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0203.pdf",
+      "sha256": "9dcfd6e5aa53e5bd5e5c7fadd6e9210eb1877a4a29e967f1204115e6d346fd7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0204.pdf",
+      "sha256": "f9b59606a21fffa95aa0857da36844868761e2072b30d6004aa221e9b4b00f06"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06c-0301-0304.pdf",
+      "sha256": "663ed10d4e730d90408901e9430958f8620388f01d61bf4c0eecdf01d34d990a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0101.pdf",
+      "sha256": "5b0ec850657a094b4825872370454277e5d14c680f94e7bcab7f94c01de98279"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0102.pdf",
+      "sha256": "e494b9c0f531284224b71a64e06ecd0291a75efe6e3db03493ef3d95a2df7ca4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0201.pdf",
+      "sha256": "e21081f19bca83649ca619311206162b650766b3fafdd1e0fcd2a3ad60c92491"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0202-0204.pdf",
+      "sha256": "beb7681019e2ac815156a669b0004b5e32efdceac3f8c550a9b8728ab9007dd5"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0205.pdf",
+      "sha256": "db00398f8064e34a3463eefae83ee890813128233726875cc6f70846efa7fc90"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0206.pdf",
+      "sha256": "969320106fc8747346865589fbb37ab4f0a9aa844f2e3d1807290e1f63e8c9b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0207.pdf",
+      "sha256": "69caad59134d6ac17acea31683d8eb222c1f06918e159791fce5aad8daf1ab53"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0208.pdf",
+      "sha256": "64085150e293ccb0dd2844d0bd522ca35aecbe71dca04cd63760d66494d77d17"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0209.pdf",
+      "sha256": "78fa42811dfbe1ea9c530686ec798cf35158846e7bd57712ee51e1af77e511af"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0210.pdf",
+      "sha256": "309aa6df8c0cfbacb41bd303597d0cf95da88ed0caf8f7d69499bf003541b5bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-09-14-income-tax-regulations/official-documents/nc-oah-17-ncac-06d-0211.pdf",
+      "sha256": "e2f027e5430d3c7d7262b1c9f978266a04eefbe14dd0881f21c97a632d07f49a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 437,
+    "missing_count": 0,
+    "provision_count": 437,
+    "source_count": 437
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T17:13:33.029268+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2HHxsUEotp4tMN7qlyDVJ7X6Fi+PVoay5EOZYLHRp/lnsj01tBQJf7shdOS93x7v2pI/OaS/8ag01K1QAiZoCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

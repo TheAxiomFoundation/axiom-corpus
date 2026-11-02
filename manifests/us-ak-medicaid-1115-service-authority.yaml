@@ -1,0 +1,42 @@
+version: 2026-10-20-w8-medicaid-1115-service-authority
+documents:
+- source_id: us-ak-cms-1115-service-authority-behavioral-health-reform
+  jurisdiction: us-ak
+  document_class: policy
+  title: 'Alaska section 1115 demonstration "Alaska Behavioral Health Reform": CMS technical correction approval, waiver and
+    expenditure authorities and special terms and conditions, approval period 2024-03-26 to 2028-12-31 (2026-03-27)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/ak-bhr-tech-correct-appvl-03272026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2026-03-27'
+  citation_path: us-ak/policy/cms/1115-service-authority/behavioral-health-reform
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Alaska
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: Alaska Behavioral Health Reform
+    demonstration_number: 11-W-00411/7
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/80966
+    demonstration_authority_kind: service_authority
+    index_link_text: Technical Correction Approval
+    index_section: Approved Application(s) and Related Documents
+    printed_status: Approved
+    printed_waiver_dates: approval 2018-11-21, effective 2019-01-01, expiration 2028-12-31
+    approval_date: '2026-03-27'
+    carries: 'the current approved terms of the behavioural-health service-authority demonstration: the CMS approval letter,
+      the waiver authority list, the expenditure authority list and the full special terms and conditions for the 2024-03-26
+      to 2028-12-31 approval period, re-issued with corrected per member per month expenditure limits for the Medicaid Expenditure
+      Groups that the original extension STCs mislabelled. SUD and SMI service authority; it sets no state-specific eligibility
+      group'
+    source_discovery_group: us-ak/policy/cms-1115-service-authority
+    discovered_via: manual-review:medicaid-agent-queue wave-8 (2026-10-20); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-10-20
+      at 9 to 12 second pacing; bodies carry the publisher's own page furniture and no bot-challenge marker; TLS verified,
+      no mirror
+    supersedes_note: the 2024-03-26 Behavioral Health Reform Approval and the 2023-11-03 SUD-BHP Demonstration Approval sit
+      in the page's Administrative Record; the 2026-03-27 technical correction restates the same approval period in full and
+      is the only posting under Approved Application(s), so the earlier two are superseded and not taken
+    carries_elements: 'M-ST-1315 adjacent (service authority, not an eligibility demonstration): CMS-approved 1115 demonstration
+      special terms and conditions'

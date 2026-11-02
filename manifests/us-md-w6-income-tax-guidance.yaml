@@ -1,0 +1,19 @@
+version: 2026-10-06-w6-income-tax-guidance-md
+documents:
+- source_id: us-md-guidance-dls-fiscal-notes-2023-hb0547
+  jurisdiction: us-md
+  document_class: guidance
+  title: Fiscal and Policy Note, House Bill 547 (2023 Session), Department of Legislative Services
+  source_url: https://mgaleg.maryland.gov/2023RS/fnotes/bil_0007/hb0547.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/guidance/dls/fiscal-notes/2023/hb0547
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: fiscal_note
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

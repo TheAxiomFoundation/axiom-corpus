@@ -1,0 +1,43 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: hi-dhs-har-17-1715
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 1715 Children Group
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1715-CHILDREN-GROUP-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2016-11-10'
+  citation_path: us-hi/regulation/har/17/1715
+  extraction: &id001
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division (HAR Title 17 Subtitle 12)
+    document_subtype: administrative_rule_chapter
+    program: CHIP
+    source_discovery_group: us-hi/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    legal_identifier: HAR 17-1715
+    compiled: '2016-11-10'
+    pages: 8
+- source_id: hi-dhs-har-17-1724-2
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 1724.2 Modified Adjusted Gross Income (MAGI) Based Income Methodology
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1724.2-MAGI-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2016-11-10'
+  citation_path: us-hi/regulation/har/17/1724-2
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division (HAR Title 17 Subtitle 12)
+    document_subtype: administrative_rule_chapter
+    program: CHIP
+    source_discovery_group: us-hi/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    legal_identifier: HAR 17-1724.2
+    compiled: '2016-11-10'
+    pages: 15

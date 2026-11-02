@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "3b9a305f654ef531339d48e63a2d8d125febf345c8defed110ce3914702df3f6"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "342152c3d0e467f6fad8c28ee2dd62782ff235ab1a3fb877b7b7e7c481c16d04"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "dd01fb2c31cbc8922a4d7de3ab8a63e11e559f6db09f69404e4675650a691ebd"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-me-ocfs-ccap-rules-10-148-cmr-chapter-6.pdf",
+      "sha256": "c1af366a4f8d6ff8fd54e6ff2f47b25537414d7e90b73eda8bbb27d5291a485d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 58,
+    "missing_count": 0,
+    "provision_count": 58,
+    "source_count": 58
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:53:23.749116+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ci+0tXEKxJSwvk55sVq5LhSYE1Z8Thpgk1bV7BGQig+FhChEBTLT5rw/SgqRKjF+5V3jWeuFRY7dfAEMWfTyCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}

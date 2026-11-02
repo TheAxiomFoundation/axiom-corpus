@@ -1,0 +1,365 @@
+version: 2026-10-12-oasdi-poms-gn
+documents:
+- source_id: ssa-poms-gn-02603-000
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.000: Readjustment Procedures - Table of Contents'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603000
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2025-09-15'
+  citation_path: us/manual/ssa/poms/gn/02603.000
+  request:
+    browser_impersonation: true
+  extraction: &id001
+    html_content_selector: div.poms
+    html_drop_selectors:
+    - p.tninfo
+    - div.poms-citation
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.000
+    effective_date_printed: '2025-09-15'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-010
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.010: Readjustment Procedures General Information'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603010
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2019-03-05'
+  citation_path: us/manual/ssa/poms/gn/02603.010
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.010
+    transmittal: TN 8 (03-19)
+    effective_date_printed: '2019-03-05'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-020
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.020: Deduction before Reduction and Facility of Payment'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603020
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-09-27'
+  citation_path: us/manual/ssa/poms/gn/02603.020
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.020
+    transmittal: TN 6 (09-11)
+    effective_date_printed: '2011-09-27'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-040
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.040: Events Subject to Deduction before Reduction'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603040
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-09-27'
+  citation_path: us/manual/ssa/poms/gn/02603.040
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.040
+    transmittal: TN 15 (09-25)
+    effective_date_printed: '2011-09-27'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-045
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.045: Deductions Because of Dual Entitlement'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603045
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2024-03-05'
+  citation_path: us/manual/ssa/poms/gn/02603.045
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.045
+    transmittal: TN 15 (09-25)
+    effective_date_printed: '2024-03-05'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-050
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.050: Computing Deductions Before Reduction'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603050
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2023-07-11'
+  citation_path: us/manual/ssa/poms/gn/02603.050
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.050
+    transmittal: TN 15 (09-25)
+    effective_date_printed: '2023-07-11'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-055
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.055: Deductions When Workers'' Compensation (WC) or Public Disability Benefit (PDB) Offset Applies'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603055
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-12-16'
+  citation_path: us/manual/ssa/poms/gn/02603.055
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.055
+    transmittal: TN 7 (12-11)
+    effective_date_printed: '2011-12-16'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-060
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.060: Deduction Before Reduction Examples'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603060
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-12-16'
+  citation_path: us/manual/ssa/poms/gn/02603.060
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.060
+    transmittal: TN 11 (07-23)
+    effective_date_printed: '2011-12-16'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-075
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.075: Facility of Payment Provision'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603075
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-12-16'
+  citation_path: us/manual/ssa/poms/gn/02603.075
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.075
+    transmittal: TN 7 (12-11)
+    effective_date_printed: '2011-12-16'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-080
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.080: Suspension Under Drug Addiction and Alcoholism Provisions'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603080
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-12-16'
+  citation_path: us/manual/ssa/poms/gn/02603.080
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.080
+    transmittal: TN 7 (12-11)
+    effective_date_printed: '2011-12-16'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-090
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.090: Same or Separate Household'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603090
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2011-12-16'
+  citation_path: us/manual/ssa/poms/gn/02603.090
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.090
+    transmittal: TN 10 (07-23)
+    effective_date_printed: '2011-12-16'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'
+- source_id: ssa-poms-gn-02603-100
+  jurisdiction: us
+  document_class: manual
+  title: 'POMS GN 02603.100: Facility of Payment Examples'
+  source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0202603100
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2023-06-30'
+  citation_path: us/manual/ssa/poms/gn/02603.100
+  request:
+    browser_impersonation: true
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Social Security Administration
+    document_subtype: poms_section
+    program: OASDI
+    poms_part: GN
+    poms_chapter: GN 026
+    poms_chapter_title: Posteligibility
+    poms_subchapter: GN 02603
+    poms_subchapter_title: Readjustment Procedures
+    poms_section: GN 02603.100
+    transmittal: TN 9 (06-23)
+    effective_date_printed: '2023-06-30'
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=02
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=02026
+    source_discovery_group: us/manual/ssa/poms/gn
+    discovered_via: 'source-conflict register: TheAxiomFoundation/rulespec-us known-source-conflicts.yaml pending_texts (rulespec-us#1710)
+      and the Social Security source snapshots its entries pin; SSA POMS GN table of contents'

@@ -1,0 +1,46 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-ky-medicaid-volume-iva
+  jurisdiction: us-ky
+  document_class: manual
+  title: 'Kentucky DCBS Division of Family Support Operation Manual: Volume IVA Non-MAGI Medicaid (MA)'
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLIVA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ky/manual/dcbs/medicaid/volume-iva
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, Department for Community Based Services
+    document_subtype: manual_volume_pdf
+    program: MEDICAID
+    manual: Kentucky DCBS Division of Family Support Operation Manual
+    manual_index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    extraction_granularity: pdf_page
+    volume: IVA
+- source_id: us-ky-medicaid-volume-ivb
+  jurisdiction: us-ky
+  document_class: manual
+  title: 'Kentucky DCBS Division of Family Support Operation Manual: Volume IVB MAGI Medicaid, APTC/CSR and QHP'
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLIVB.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ky/manual/dcbs/medicaid/volume-ivb
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, Department for Community Based Services
+    document_subtype: manual_volume_pdf
+    program: MEDICAID
+    manual: Kentucky DCBS Division of Family Support Operation Manual
+    manual_index_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 4 (US-network retry); publisher index https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    extraction_granularity: pdf_page
+    volume: IVB

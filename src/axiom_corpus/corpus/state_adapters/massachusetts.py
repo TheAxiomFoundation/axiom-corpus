@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import hashlib
 import html
 import re
 import time
+from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import date
@@ -16,7 +18,7 @@ from urllib.parse import quote, unquote, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import Comment, NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -50,6 +52,43 @@ _THIS_CHAPTER_REF_RE = re.compile(
     r"(?:\u00a7|section)\s*(?P<section>\d+[A-Z]?)\s+of\s+(?:this|said)\s+chapter",
     re.I,
 )
+# Section-text elements that a browser renders on their own line. A table row is
+# one line; its cells (_SECTION_CELL_TAGS) are joined with a space.
+_SECTION_BLOCK_TAGS = frozenset(
+    {
+        "address",
+        "article",
+        "blockquote",
+        "caption",
+        "center",
+        "dd",
+        "div",
+        "dl",
+        "dt",
+        "figcaption",
+        "figure",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "hr",
+        "li",
+        "ol",
+        "p",
+        "pre",
+        "section",
+        "table",
+        "tbody",
+        "tfoot",
+        "thead",
+        "tr",
+        "ul",
+    }
+)
+_SECTION_CELL_TAGS = frozenset({"td", "th"})
+_SECTION_LAYOUT_TAGS = _SECTION_BLOCK_TAGS | _SECTION_CELL_TAGS | {"br"}
 
 
 @dataclass(frozen=True)
@@ -338,6 +377,7 @@ def extract_massachusetts_general_laws(
     only_part: str | None = None,
     only_title: str | None = None,
     only_chapter: str | None = None,
+    only_sections: Iterable[str] | None = None,
     limit: int | None = None,
     workers: int = 8,
     download_dir: str | Path | None = None,
@@ -346,16 +386,25 @@ def extract_massachusetts_general_laws(
     timeout_seconds: float = 60.0,
     request_attempts: int = 3,
 ) -> StateStatuteExtractReport:
-    """Snapshot official Massachusetts General Laws sources and extract provisions."""
+    """Snapshot official Massachusetts General Laws sources and extract provisions.
+
+    ``only_sections`` restricts the section pages to the listed section numbers
+    (matched against the chapter page's own section labels, case-insensitively).
+    The part, title and chapter container rows are still written so the scope
+    carries every parent of its section rows, and every requested section must
+    be listed on a selected chapter page or the run fails.
+    """
     jurisdiction = "us-ma"
     part_filter = _optional_filter(only_part)
     title_filter = _optional_filter(only_title)
     chapter_filter = _optional_filter(only_chapter)
+    section_filters = _section_filters(only_sections)
     run_id = _massachusetts_run_id(
         version,
         only_part=part_filter,
         only_title=title_filter,
         only_chapter=chapter_filter,
+        only_sections=section_filters,
         limit=limit,
     )
     source_as_of_text = source_as_of or version
@@ -400,8 +449,36 @@ def extract_massachusetts_general_laws(
 
     chapter_targets: list[MassachusettsChapter] = []
     section_targets: list[MassachusettsSectionTarget] = []
+    # The title chapter list that names each chapter: the source of a chapter
+    # gap when the chapter page itself could not be fetched.
+    chapter_listing_sources: dict[str, _RecordedSource] = {}
 
+    # A part, title or chapter is written as a provision only once its own
+    # listing names children. Otherwise it stays an inventory gap, so coverage
+    # reads incomplete instead of silently losing everything under it. A
+    # listing that could not be fetched is sourced from the parent listing that
+    # names the container; a listing that was fetched but is unusable from
+    # itself.
     for part in parts:
+        try:
+            part_source = fetcher.fetch_part(part)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"part {part.code} ({part.href}): {exc}")
+            _append_inventory_gap(_part_provision(part), index_recorded, items=items, seen=seen)
+            continue
+        part_recorded = _record_source(
+            store,
+            jurisdiction=jurisdiction,
+            run_id=run_id,
+            source=part_source,
+            source_by_relative=source_by_relative,
+            source_paths=source_paths,
+        )
+        listed_titles = parse_massachusetts_titles(part_source.data, part=part)
+        if not listed_titles:
+            errors.append(f"part {part.code} ({part.href}): no titles listed on part page")
+            _append_inventory_gap(_part_provision(part), part_recorded, items=items, seen=seen)
+            continue
         added = _append_provision(
             _part_provision(part),
             index_recorded,
@@ -414,24 +491,39 @@ def extract_massachusetts_general_laws(
         )
         if added:
             title_count += 1
-
-        part_source = fetcher.fetch_part(part)
-        part_recorded = _record_source(
-            store,
-            jurisdiction=jurisdiction,
-            run_id=run_id,
-            source=part_source,
-            source_by_relative=source_by_relative,
-            source_paths=source_paths,
-        )
         titles = tuple(
             title
-            for title in parse_massachusetts_titles(part_source.data, part=part)
+            for title in listed_titles
             if title_filter is None
             or _same_filter(title.roman, title_filter)
             or _same_filter(title.heading, title_filter)
         )
         for title in titles:
+            try:
+                chapters_source = fetcher.fetch_title_chapters(title)
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"title {title.roman} ({title.relative_path}): {exc}")
+                _append_inventory_gap(
+                    _title_provision(title), part_recorded, items=items, seen=seen
+                )
+                continue
+            chapters_recorded = _record_source(
+                store,
+                jurisdiction=jurisdiction,
+                run_id=run_id,
+                source=chapters_source,
+                source_by_relative=source_by_relative,
+                source_paths=source_paths,
+            )
+            listed_chapters = parse_massachusetts_chapters(chapters_source.data, title=title)
+            if not listed_chapters:
+                errors.append(
+                    f"title {title.roman} ({title.relative_path}): no chapters listed for title"
+                )
+                _append_inventory_gap(
+                    _title_provision(title), chapters_recorded, items=items, seen=seen
+                )
+                continue
             added = _append_provision(
                 _title_provision(title),
                 part_recorded,
@@ -444,23 +536,15 @@ def extract_massachusetts_general_laws(
             )
             if added:
                 container_count += 1
-
-            chapters_source = fetcher.fetch_title_chapters(title)
-            _record_source(
-                store,
-                jurisdiction=jurisdiction,
-                run_id=run_id,
-                source=chapters_source,
-                source_by_relative=source_by_relative,
-                source_paths=source_paths,
-            )
             chapters = tuple(
                 chapter
-                for chapter in parse_massachusetts_chapters(chapters_source.data, title=title)
+                for chapter in listed_chapters
                 if chapter_filter is None
                 or _same_filter(chapter.number, chapter_filter)
                 or _same_filter(chapter.heading, chapter_filter)
             )
+            for chapter in chapters:
+                chapter_listing_sources.setdefault(chapter.citation_path, chapters_recorded)
             chapter_targets.extend(chapters)
 
     if not chapter_targets:
@@ -475,11 +559,16 @@ def extract_massachusetts_general_laws(
         chapter_targets,
         workers=max(1, workers),
     )
+    matched_section_filters: set[str] = set()
     for chapter, source, targets, error in chapter_pages:
-        if error is not None:
-            errors.append(f"chapter {chapter.number}: {error}")
-            continue
-        if source is None or targets is None:
+        if error is not None or source is None or targets is None:
+            errors.append(f"chapter {chapter.number}: {error or 'chapter page not read'}")
+            _append_inventory_gap(
+                _chapter_provision(chapter),
+                chapter_listing_sources[chapter.citation_path],
+                items=items,
+                seen=seen,
+            )
             continue
         chapter_recorded = _record_source(
             store,
@@ -489,6 +578,12 @@ def extract_massachusetts_general_laws(
             source_by_relative=source_by_relative,
             source_paths=source_paths,
         )
+        if not targets:
+            errors.append(f"chapter {chapter.number}: no sections listed on chapter page")
+            _append_inventory_gap(
+                _chapter_provision(chapter), chapter_recorded, items=items, seen=seen
+            )
+            continue
         added = _append_provision(
             _chapter_provision(chapter),
             chapter_recorded,
@@ -503,11 +598,25 @@ def extract_massachusetts_general_laws(
             container_count += 1
 
         for target in targets:
+            if section_filters:
+                matched = _matching_section_filter(target.section, section_filters)
+                if matched is None:
+                    continue
+                matched_section_filters.add(matched)
             if section_budget is not None and len(section_targets) >= section_budget:
                 break
             section_targets.append(target)
         if section_budget is not None and len(section_targets) >= section_budget:
             break
+
+    missing_sections = [
+        section for section in section_filters if section not in matched_section_filters
+    ]
+    if missing_sections and section_budget is None:
+        raise ValueError(
+            "requested Massachusetts sections are not listed on the selected chapter "
+            f"pages: {missing_sections}; chapter errors: {errors[:5]}"
+        )
 
     fetched_sections = _fetch_section_pages(
         fetcher,
@@ -746,14 +855,11 @@ def parse_massachusetts_section(
         if not isinstance(sibling, Tag):
             continue
         if sibling.name == "p":
-            text = _clean_text(sibling.get_text(" ", strip=True))
-            if text:
-                paragraphs.append(text)
+            paragraphs.extend(_section_paragraphs(sibling))
         elif sibling.name in {"script", "style"}:
             continue
+    paragraphs = _strip_leading_section_marker(paragraphs, target.section)
     body = "\n".join(paragraphs).strip() or None
-    if body is not None:
-        body = _strip_section_marker(body, target.section)
     return MassachusettsParsedSection(
         heading=heading,
         body=body,
@@ -880,6 +986,34 @@ def _record_source(
     )
     source_by_relative[source.relative_path] = recorded
     return recorded
+
+
+def _append_inventory_gap(
+    provision: MassachusettsProvision,
+    source: _RecordedSource,
+    *,
+    items: list[SourceInventoryItem],
+    seen: set[str],
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if provision.citation_path in seen:
+        return
+    seen.add(provision.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=provision.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=MASSACHUSETTS_GENERAL_LAWS_SOURCE_FORMAT,
+            sha256=source.sha256,
+            metadata=_metadata(provision),
+        )
+    )
 
 
 def _append_provision(
@@ -1090,12 +1224,102 @@ def _status_from_body(body: str | None, heading: str | None) -> str | None:
     return None
 
 
-def _strip_section_marker(body: str, section: str) -> str:
+def _section_paragraphs(node: Tag) -> list[str]:
+    """Return the rendered paragraphs of one official section-text node.
+
+    The official pages print a section as one outer ``<p>`` that nests one
+    ``<p>`` per subsection, paragraph, subparagraph and editorial note
+    (``[ Paragraph (4) of subsection (d) effective until ...]``). Each nested
+    ``<p>`` (and each ``<br>``-separated line) becomes its own paragraph so the
+    publisher's subsection boundaries and dated amendment alternatives survive
+    as line boundaries instead of being flattened into one run-on line. Other
+    block elements (``<div>``, ``<blockquote>``, list items, table rows; see
+    ``_SECTION_BLOCK_TAGS``) break lines the same way, and the cells of a table
+    row are joined with a space, so neighbouring blocks and cells never run
+    together. Inline markup is concatenated as a browser renders it, so the
+    italic label in ``(<i>I</i>)`` reads ``(I)``.
+    """
+    paragraphs: list[str] = []
+    buffer: list[str] = []
+
+    def flush() -> None:
+        text = _paragraph_text("".join(buffer))
+        buffer.clear()
+        if text:
+            paragraphs.append(text)
+
+    def walk(current: Tag) -> None:
+        for child in current.children:
+            if isinstance(child, Comment):
+                continue
+            if isinstance(child, NavigableString):
+                buffer.append(str(child))
+                continue
+            if not isinstance(child, Tag) or child.name in {"script", "style"}:
+                continue
+            if child.name == "br":
+                flush()
+            elif child.name in _SECTION_BLOCK_TAGS:
+                flush()
+                walk(child)
+                flush()
+            elif child.name in _SECTION_CELL_TAGS:
+                buffer.append(" ")
+                walk(child)
+                buffer.append(" ")
+            elif child.find(_SECTION_LAYOUT_TAGS) is not None:
+                walk(child)
+            else:
+                buffer.append(child.get_text())
+
+    walk(node)
+    flush()
+    return paragraphs
+
+
+def _paragraph_text(value: str) -> str:
+    return re.sub(r"\s+", " ", _clean_text(value)).strip()
+
+
+def _strip_leading_section_marker(paragraphs: list[str], section: str) -> list[str]:
+    """Drop the ``Section N.`` marker that opens the section text.
+
+    Editorial notes printed in brackets ahead of the text (``[ Text of section
+    applicable as provided by ...]``) are kept and skipped over, so the marker
+    is stripped from the first paragraph of statutory text.
+    """
     section_pattern = re.compile(
         rf"^Section\s+{re.escape(section)}\.\s*",
         re.I,
     )
-    return section_pattern.sub("", body).strip()
+    stripped = list(paragraphs)
+    for index, paragraph in enumerate(stripped):
+        if paragraph.startswith("["):
+            continue
+        stripped[index] = section_pattern.sub("", paragraph).strip()
+        break
+    return [paragraph for paragraph in stripped if paragraph]
+
+
+def _section_filters(values: Iterable[str] | str | None) -> tuple[str, ...]:
+    if values is None:
+        return ()
+    raw_values = (values,) if isinstance(values, str) else tuple(values)
+    filters: list[str] = []
+    for value in raw_values:
+        cleaned = _clean_section(str(value))
+        if not cleaned:
+            raise ValueError(f"empty Massachusetts section filter: {value!r}")
+        if not any(_same_filter(cleaned, existing) for existing in filters):
+            filters.append(cleaned)
+    return tuple(filters)
+
+
+def _matching_section_filter(section: str, filters: tuple[str, ...]) -> str | None:
+    for candidate in filters:
+        if _same_filter(section, candidate):
+            return candidate
+    return None
 
 
 def _selector_text(node: Tag, selector: str) -> str:
@@ -1174,9 +1398,16 @@ def _massachusetts_run_id(
     only_part: str | None,
     only_title: str | None,
     only_chapter: str | None,
+    only_sections: tuple[str, ...] = (),
     limit: int | None,
 ) -> str:
-    if only_part is None and only_title is None and only_chapter is None and limit is None:
+    if (
+        only_part is None
+        and only_title is None
+        and only_chapter is None
+        and not only_sections
+        and limit is None
+    ):
         return version
     parts = [version, "us-ma"]
     if only_part is not None:
@@ -1185,6 +1416,11 @@ def _massachusetts_run_id(
         parts.append(f"title-{_slug(only_title)}")
     if only_chapter is not None:
         parts.append(f"chapter-{_slug(only_chapter)}")
+    if only_sections:
+        scope = "-".join(_slug(section) for section in only_sections)
+        if len(scope) > 120:
+            scope = hashlib.sha256(scope.encode("utf-8")).hexdigest()[:16]
+        parts.append(f"sections-{scope}")
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)

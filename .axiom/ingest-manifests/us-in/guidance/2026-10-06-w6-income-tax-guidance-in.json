@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/guidance/2026-10-06-w6-income-tax-guidance-in.json",
+      "sha256": "a0b338a10667c46d71f825f0f6bae4301cc256a73a3faf477fae186adece90ce"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/guidance/2026-10-06-w6-income-tax-guidance-in.json",
+      "sha256": "8ae03689b20b5275274629c1554925220bd5868759a232401c3fd70feaace6b4"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/guidance/2026-10-06-w6-income-tax-guidance-in.jsonl",
+      "sha256": "e88ccb92b55ff497043e225f17d47e1b5193e4ba8b9a270617711d57ba25760a"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-income-tax-guidance-in/official-documents/us-in-guidance-dor-2023-individual-tax-forms.html",
+      "sha256": "f07f80ae01717f8d93cf99499485c1f070627fe3b4ed2e3aa528f450c49bd39e"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-income-tax-guidance-in/official-documents/us-in-guidance-dor-income-tax-information-bulletin-117.pdf",
+      "sha256": "cfc7c2b7669a60b47c7f4aa93f8ce0b418ea87f9ad3921f9c58b67f5eef63043"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-income-tax-guidance-in/official-documents/us-in-guidance-dor-income-tax-information-bulletin-98.pdf",
+      "sha256": "3933434eda145e9a2894639e9db6210bebfa635cc6de855ed822c516a9adaf3e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:51:50.680169+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BzNiW7nOrNlWFId2Vl6ygZ2P6kRt5TBGwD9lI3BtIwlw0dtaVs/82ClMfHR/2sTM0o9oERQQSDjf9gCpwF9wCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-in"
+}

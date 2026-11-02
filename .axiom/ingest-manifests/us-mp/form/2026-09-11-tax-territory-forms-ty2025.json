@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mp/form/2026-09-11-tax-territory-forms-ty2025.json",
+      "sha256": "6a767e3d9ff71f3061f669e8a351c1498bccaa859d11bdb81582e7c2f349274e"
+    },
+    {
+      "path": "data/corpus/inventory/us-mp/form/2026-09-11-tax-territory-forms-ty2025.json",
+      "sha256": "9c86f04dd959b1a6c9a3b33cda6dd12e3e401a05cd10aea7090358d716b93a53"
+    },
+    {
+      "path": "data/corpus/provisions/us-mp/form/2026-09-11-tax-territory-forms-ty2025.jsonl",
+      "sha256": "a2f9ef63c235748a824d60cad02b9c96f4f4129d0554ffc4b0bf5ab2972a7fa6"
+    },
+    {
+      "path": "data/corpus/sources/us-mp/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-mp-drt-form-1040cm-ty2025.pdf",
+      "sha256": "17643aeb9bfd907cb934c937cdcf97aaed5b6deb9ae7e447181b9098b9abb56b"
+    },
+    {
+      "path": "data/corpus/sources/us-mp/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-mp-drt-form-1040nmi-ty2025.pdf",
+      "sha256": "7bc2e90b8cff2434a1ecbd175ce956dccb98d05388d12aefdd0eb80236d29f2c"
+    },
+    {
+      "path": "data/corpus/sources/us-mp/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-mp-drt-schedule-1cm-ty2025.pdf",
+      "sha256": "c2fb498861488e3625d57ffee9319ebf041ab143c3c07f85b84af5b0eebb8d5e"
+    },
+    {
+      "path": "data/corpus/sources/us-mp/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-mp-drt-schedule-etc-ty2025.pdf",
+      "sha256": "ecfdab9697fa693255cf574728024411df986e139c29112c9b8899c33be40f94"
+    },
+    {
+      "path": "data/corpus/sources/us-mp/form/2026-09-11-tax-territory-forms-ty2025/official-documents/us-mp-drt-schedule-wsd-ty2025.pdf",
+      "sha256": "f2170edb7947d6202dfab5bdc83293f8ce95656594dbb2db964d29eb00c9f6f3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-tax-territory-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-13T19:39:20.973951+00:00",
+  "jurisdiction": "us-mp",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+RCTepCSsDk2j/7i0dT/Vx/RrQRsRWRTOUTwQCf5dhr0NqdIFTwP5l6g4HJeQl9Lmtws+LfyI9b5wSmHreezCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-tax-territory-forms-ty2025"
+}

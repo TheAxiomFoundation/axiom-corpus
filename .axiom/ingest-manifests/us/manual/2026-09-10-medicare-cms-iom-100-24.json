@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/manual/2026-09-10-medicare-cms-iom-100-24.json",
+      "sha256": "f85cb0ce966917ba3b5bb9944f1e92606ac688dd1107b11b229950e16e93286c"
+    },
+    {
+      "path": "data/corpus/inventory/us/manual/2026-09-10-medicare-cms-iom-100-24.json",
+      "sha256": "c49732cb2d419bd6524af317c9fe6e0ba659f090ade8b6b55b96fbd29115e957"
+    },
+    {
+      "path": "data/corpus/provisions/us/manual/2026-09-10-medicare-cms-iom-100-24.jsonl",
+      "sha256": "8d7da98fb26778854a0fba148f7269f1bf6841a4139d0f1fc4f292918e6e3885"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-10-medicare-cms-iom-100-24/official-documents/us-cms-iom-100-24-chapter-1.pdf",
+      "sha256": "53f9c1462c9eb454dd80ecf3728715a9200a7a2a3332f6c95a2cccf7fe66bbdc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-10-medicare-cms-iom-100-24/official-documents/us-cms-iom-100-24-chapter-2.pdf",
+      "sha256": "12a998fe9ee6413f852004d25366c9786b753cd19b2bdce6969bff25a0a68586"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-10-medicare-cms-iom-100-24/official-documents/us-cms-iom-100-24-chapter-3.pdf",
+      "sha256": "41d33d60e329c71a39a54ec0be863b20bc568d8da6311f1c43651ce8e72e42dc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-10-medicare-cms-iom-100-24/official-documents/us-cms-iom-100-24-chapter-4.pdf",
+      "sha256": "5ac3f35875e33221ab1ec007ede1f01b1e61b11395543457bda7bf6b001ae8f4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-10-medicare-cms-iom-100-24/official-documents/us-cms-iom-100-24-chapter-5.pdf",
+      "sha256": "9c464c2f5e172ac1c5e052e2ee0c87f84a89b63c13907f87ca8e69a6bb5add73"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-10-medicare-cms-iom-100-24/official-documents/us-cms-iom-100-24-chapter-6.pdf",
+      "sha256": "cd5783801c4f2be636681669512bee451672eaaa3ef65588675a82702de6fae8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicare-cms-iom-100-24 --manifest manifests/us-cms-iom-100-24.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 200,
+    "missing_count": 0,
+    "provision_count": 200,
+    "source_count": 200
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:32:42.938046+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9jUMKcGUdpnObqfulgBPbSRQZ6HwkBnQhtt4aZrYj7sydRlYRJGbSzF2DIcwwng8ZVJglEt8TovAmZBktLweBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicare-cms-iom-100-24"
+}

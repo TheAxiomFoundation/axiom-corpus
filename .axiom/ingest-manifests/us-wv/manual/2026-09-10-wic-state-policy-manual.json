@@ -1,0 +1,605 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "0d94b2056b3a050ca6fe07bf2789577425ea30b97842517b742ab18e0e1f4161"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "50f12ea028d0095ff14ee0d6989410c074ee4b0240c92c0836c76574b94148c4"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "a2c9ac2f41df13d3f7b4ba250a544950cda0b3acc687ae3a9ea9294dc612d8a1"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.01.pdf",
+      "sha256": "12f8d05578835e83753d53a0287175ad26b82b88470dfb7ddb38dc92f5308eb2"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.02.pdf",
+      "sha256": "d41114a3b3c3de0be556eef77cdec9c6fd4cc85fc6c4f9af366fbb10876de7d3"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.03.pdf",
+      "sha256": "e3af6a1a0dd7cda08c7b581f9e3eb1a171b4f2f4cdaa1e9ce83a0488c2032467"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.04.pdf",
+      "sha256": "f156fe56c94231f296e6410def5032ca1eb621d55651cb135be67b0eda41cbc6"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.06.pdf",
+      "sha256": "a7081aafe878f2ddde8faac1be9afaeda6f9ac390fea42a86b1278b1b722330b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.07.pdf",
+      "sha256": "351ddb270400bf8669bb510957c8e32a4e264e824d2211f31ba9b70f4e069a2d"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.08.pdf",
+      "sha256": "1e03ecff3d22b65dde8e12d5c26f2c52a4563723a47bc8e712075d05a77ff972"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.09.pdf",
+      "sha256": "668d15134b04e120d3a9a62af0ade8badb2a1e9603d418d0b9fd0afc92344890"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.10.pdf",
+      "sha256": "faa396e7d625359d325fc0cd2a27b7e5bce56f702a910ce388fb856d8009f0df"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.11.pdf",
+      "sha256": "a64627f5b559533250f251873fa2d3040bf0a6463d4699348a9a200103f950ca"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.12.pdf",
+      "sha256": "419b5a4ed4513d1fb731201baee64eadda6326079a39785a0bff894cbc3fd317"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.13.pdf",
+      "sha256": "f8f26bb1a26120075fd0138fdfa08186ad15b76cc4a31f2bdf11d7d729856a2a"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.14.pdf",
+      "sha256": "b60ec128d2843fdb14bf3ba734129fd1524c243ee690bc821aa775a98bcbbfcb"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.15.pdf",
+      "sha256": "090c034aa117e19d3eac39883a572a9598eeef0a7e5ad5204b8af971cd1da8a3"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.16.pdf",
+      "sha256": "0d71a658e072c01514151946c0c413c6e91945d2c5cd4999677c74a71540ad4f"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.17.pdf",
+      "sha256": "472cff19e1707aab845d4a98a3586feeb4647c7bcce7bbd95a76d914532b369f"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.18.pdf",
+      "sha256": "9937f0e54d3baacdae1a4dc99bb4d5654706403563bf73ffa523d99b3d8636ad"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.20.pdf",
+      "sha256": "7dc7a7b37b6366ad6cb8051ec8d959b7ceb5556c48bb96a20d5bfdd31fd81fb1"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.21.pdf",
+      "sha256": "0558ca85ddc34fb3e80d325efcf33981c46f99f012ec41fb7c404137d486c694"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.22.pdf",
+      "sha256": "d5a10bfa5148f21b7d639fab4d860e50e5716ec25b819075bd879b471e315645"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.23.pdf",
+      "sha256": "4df6d2356513c3eadcfb520ed143806d20dbb10a66975da5381667e91a40359a"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.24.pdf",
+      "sha256": "935bfb856728feef9eec43196acf908ad611ecee5bc8b64f3b9da9171adb26a3"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.25.pdf",
+      "sha256": "333b73fd12cb4c7e9aaf536458b532d818a06a0c1fb126cdcf9f87623c5de7ea"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.26.pdf",
+      "sha256": "f02764f50a8f5ae709f10cae0fcdaa9bfae7a588d1d3bcfda4093377bdc2c9d3"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.27.pdf",
+      "sha256": "34e11a87aa4717ddae57afd99ed095922264e7a62f4f5053a51d6b4b3cc89c6e"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.28.pdf",
+      "sha256": "f03dcb3e94f87bdef74282c07a065d6fd3374d088347f99f4ce53b76a3aa619b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-1.29.pdf",
+      "sha256": "fd331c30d7856ebe1c75d4f0f8274852c45dbeb2cc648ef9e31b0ea49bb84af5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-10.01.pdf",
+      "sha256": "c88c70977b9f4125f95e33c30b39eed53c051052ea84ffc835b483b8ae7229e1"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-10.02.pdf",
+      "sha256": "61ad3ab8976fb1b062a69a82df47529f445ceb5ffd1847ff9a33118031394e61"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-10.03.pdf",
+      "sha256": "ab9349d53efd8a784d0e3d6f10d882686692ece8fefae23398e23d845f64c958"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-10.04.pdf",
+      "sha256": "c5beee4eede278a33c53b32ffc00bb8e5f4ffec2f454622dbc3c034738416882"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-11.01.pdf",
+      "sha256": "72b7d4186e0672a3cafbe0f794ede03bb8713456cf15d494a0799fea9e39f68a"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-11.02.pdf",
+      "sha256": "691a73af8204b72703b0d6c6459c928e00200adbbf712bdc75e7a3e117315123"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-11.03.pdf",
+      "sha256": "15c98d7e6a8c994c70908c07ea5fae4b758073792fbe806417c1396b271dde73"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-11.04.pdf",
+      "sha256": "35b416d63b9f7cc06eda4954acfccddfce6dcd48f66c1c2ceef057d5984cf9cd"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.01.pdf",
+      "sha256": "b59ee69a00ceebdb28897ce24edf2840d464cddfb193765db80e0c01c62643b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.02.pdf",
+      "sha256": "219f750f2f7e0bcccc2b2dcd889770f7850fd403cb967351e15abe866d8b23d1"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.04.pdf",
+      "sha256": "d8cb848f47b736835395e32e54c7cd0596e5632df6f68dc1ecfe42af9e76969b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.05.pdf",
+      "sha256": "8eee927ebd3eaf8e1c5b3278b2a6470e2a71c391b1f84ad23fa23ae0e0dbf8a8"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.06.pdf",
+      "sha256": "ec5c4204b6843bb7ccf8e3ac56cc3673d59c19eb5853a08eca91fddf496acf33"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.07.pdf",
+      "sha256": "1336594e272299ee7a09b43d66a99363c68fa54fa4caa2952a4577851d03ad82"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.08.pdf",
+      "sha256": "09944583a56b0f6a3aa9681367e181c5df565b1db737b8d929b9bf32f660d1fb"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.09.pdf",
+      "sha256": "baece27f72c25606e11a8599eba8359cada674c0038d929955c75231fae0e6de"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.10.pdf",
+      "sha256": "fe9127420d2ccc16c3b4182adb4b54b9c47d3b3a734ce25a8c39b9da19ba81c6"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.11.pdf",
+      "sha256": "2aa32149e0863719966660b8f8fa5b48db70e232a357ffc00cedc2f4cf23d6c4"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.12.pdf",
+      "sha256": "96a1781c6d43e7103675e0b0da3cee1572c04bbc5a85aca71775e3d71294bab5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.13.pdf",
+      "sha256": "29758fa8d1361c4ebbbc65d57e0ff0579d27eb5bd551bfce05f5df91caee1890"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.14.pdf",
+      "sha256": "9caaa98402c549dcd1952442dd379945dc81ea6206fd7321858f42e5dc8f0ffe"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.15.pdf",
+      "sha256": "7612da5b1de842f1cc48c872ecf36a1c36a27a3836c3ac9fc1001461c5428346"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.16.pdf",
+      "sha256": "68242d0d3a2a3f87ca546a4ca60a5ce09b039b5574004cfacd0ce232eb512549"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.17.pdf",
+      "sha256": "d1f9f9e1bb2f7482f21c0373fa85d1ffddfd61cdcab651e714abcc1d302cafec"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.18.pdf",
+      "sha256": "afe06129fb340910e05119634004b0c292533d693fc3321e9c707b851f7a62b4"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.19.pdf",
+      "sha256": "b899c6bb3fa5df04de0a28a5e6c9f34568a0895c8fe9d4c225d3f95ce80ca918"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.20.pdf",
+      "sha256": "4d3f2c748b479b41152a8f7337a9f6e918a08062231e1358e1b8b16d54f69b17"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.21.pdf",
+      "sha256": "e466c54f3d396a71eef2b50d7b2071b0faf84c7beca1bf43ef6932b4cc3d4a69"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.22.pdf",
+      "sha256": "369de4c09fef0b70306b30ac9994ae65e2b7e24ec36a8180719c2326d9f881b1"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-2.23.pdf",
+      "sha256": "cebe10a6fcccad2a631fdfea0b6dbf1c3543f348ae6a67a8a5df689894dae535"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.0.pdf",
+      "sha256": "f68677ab064ad7f2936da31b941581c27f6a6ce9aae9a98dbf2cfb25ad1636cb"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.01.pdf",
+      "sha256": "ba138a5291e8aab272d3897555664e3d2f2e40e79fa35413c4ea91aceec65819"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.02.pdf",
+      "sha256": "2f88a2c468d1db000caa0b5133e73da6fbe4a9f1d63fa15bd45fbb67cca680f5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.03.pdf",
+      "sha256": "39c23fb1a27559fa04bf875f9db3d99f56eeebfd4b1cb9b5614781bc91640ebe"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.05.pdf",
+      "sha256": "9d6384a2cd9e5b9751ab4d0674da608da9f37d962f3e67d91fdae47e5a69a350"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.06.pdf",
+      "sha256": "577de37e72b64b9104a6c20705d091d3f5f135796a08a03f6db3e65297b78dc5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.07.pdf",
+      "sha256": "870691cab5d504829378f4b2dce05c29ca7a57d80bb22b1df8cd362c7ab4e47e"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.09.pdf",
+      "sha256": "b9a3b0fe1f75f64681e94a4927ea7c309980da7f8f5d5d3f954d82e0d5c636ce"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.11.pdf",
+      "sha256": "ac8e58acd1467d20bc1ec13887257a58cb88f0c7d85698d8018616ddcd3626fc"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.12.pdf",
+      "sha256": "ac9c6b12094a521b06c05861e4e4b58b87224b5fe05d37aa30629d0eb4955553"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.14.pdf",
+      "sha256": "567d76751c4c2fdcc83f02ea048633c0a08fe02ef17b6a61b082940bbfd825b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.15.pdf",
+      "sha256": "9c6fb97d52578da113fa9e64501b5035fc5a970bfffce9b56cc317774390fbec"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-3.16.pdf",
+      "sha256": "a7852d9d2a99534afa542b518f5f4a8e4cd3dcc6da127a709d6160bebfc1a6b0"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.01.pdf",
+      "sha256": "b0701767517f1e42fdd4b34271fb6a2ee0ffbab8d3cfaf297ff542c0435cfc4b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.02.pdf",
+      "sha256": "fbbda003a251ea8f2a1941c209bf8bac4dc9442d5dd4d4f21b53acc063573dbe"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.03.pdf",
+      "sha256": "ca315499ed8a2a1e71cf06dfaf7414133f69d15f1efa204879a253efadac2d5b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.04.pdf",
+      "sha256": "9e96416f641711d584a6c0f43f7fc8e4eaf0fe800b05fbfab2e8d58a18075534"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.05.pdf",
+      "sha256": "afd88765ae7f162ecda27824ccda6bff90a128e0621c14c54331db8d6413080b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.06.pdf",
+      "sha256": "8f2502ebc755f7e3f0241ddcfc28185693fdceb6eeea7db42a9d6fded574847c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.07.pdf",
+      "sha256": "d1fce27fe5258725df5ad7f216645c36521e59e345fa603383fe200c134aeacd"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.08.pdf",
+      "sha256": "bc28388362d7a79e1c8e84a2f8601e55fe439b03360222b0d803c41e04b94b1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-4.09.pdf",
+      "sha256": "c771aff57e56a76cb2a06eec2950b622b5c8aedea5a22240c5f61852c13b2d7d"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.04.pdf",
+      "sha256": "ba0c13f142eae40e982cb6f6baf0d11562468ff74576af0a9d54758d3249cbcb"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.05.pdf",
+      "sha256": "ca81f00f37aa040fc5230a7e047ff8085920d82de7ba72e7d33b69d90f923c89"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.06.pdf",
+      "sha256": "d2beb442330fe6a0c4e797372179477a19dc90cd9409c67f0ce62dbf41477a1c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.07.pdf",
+      "sha256": "08672d6646477f7be288d5c1cb9369a7d3eb69d7ca94a6aff8e3b7f2d5a4d82b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.08.pdf",
+      "sha256": "1890c84e67f3af77100378370c1c2f96052390643ef33b2d7ebfb03f891b3696"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.09.pdf",
+      "sha256": "f1d031f5b649e329d41817117986422190ef0c8635f3c64bbea5982fc78dd947"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.11.pdf",
+      "sha256": "98de7e01422061c6fab808fffbdc245784a54ae47088a55bfb739bd26f5513d7"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.12.pdf",
+      "sha256": "9bb25e2b147f2589d9e3246e702e0bbf1f15d27763c23d6d65fec8fa4f1ff375"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.14.pdf",
+      "sha256": "e3d1e7aa5dd78868c83887548cfc04bde451ff88cc32ba9a7fa644111351fd74"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.15.pdf",
+      "sha256": "cf3ca93023b9ad6071d8430c2b8310eceaf9b4042dffa05f2d0fe9d74f9f086a"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.16.pdf",
+      "sha256": "21ab8a35a770929b1d7acd669084a2a8db2bf7e092a698be0756d6ae6a63c8e9"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.20.pdf",
+      "sha256": "1b4efb5601376c33a5a4ce759986983ff5397d4c93fee080b32a5cb335a400c8"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.21.pdf",
+      "sha256": "ac51ddc669c042272a89c6182a4ff7ceabc7fa91fa20e09b9f1e5357b526b71c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.22.pdf",
+      "sha256": "5554382fda54115558f3be56d8819b3c7908ff2bf72adb107d516a38deccee25"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.23.pdf",
+      "sha256": "b920426bfa2c79c279dac9988bf07def073b4dd51f095bfd841f76421594c866"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-5.24.pdf",
+      "sha256": "aed5037019107399a2100f7e1d0879e8a4767d0b20bd83f9b7caae4f200a6761"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.01.pdf",
+      "sha256": "6235339ff5f3dc8a53e59e4cc11af7dd2395815aa2e605e3db56f19fe130acdb"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.02.pdf",
+      "sha256": "f5b548fbe283260d8a3962b70745d8c44fe98e5c68414a72fecba4c82de66f96"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.03.pdf",
+      "sha256": "ae9524d1da03413f20a5b010da03fec43096564ffda9f18df5b76422f7c66ee7"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.04.pdf",
+      "sha256": "da77a3c4e43742dc8332e0816a9875e7de9856f266132c18025b74944f105154"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.05.pdf",
+      "sha256": "93c684b3f2a7b952d40965c5737aeda04e1730afec1b6d1925815c9badb97835"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.06.pdf",
+      "sha256": "e5bed0c3a2889598b5a9247fde2c29e0b519ce17fac0a33e193152faf4ae9946"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.07.pdf",
+      "sha256": "c23f3feb51a4255e6279bcd4ce185afbf487980bd4bc99563e28164012532107"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.08.pdf",
+      "sha256": "adf620aeaa87946186fed4c30b6cf7be8f4698303b4a848f0f6f2aa9e82e73ec"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.09.pdf",
+      "sha256": "b2d9494523ffa74d10f2c9c6a358cb4d96210a74ce73b6d8daae277760bb3fc4"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.10.pdf",
+      "sha256": "8731119d386a804954499fd826db5f3d29ba5dae70c3438b7a2fb549ebc7f8a7"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.11.pdf",
+      "sha256": "c0db740edbf00441a383af677ad07ac00f367b4aef417902257c259f49de5825"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.12.pdf",
+      "sha256": "f54bf24af75c7fac7e4d81b22974fff4f1792ce6f9ab7db0b859f89743201311"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.14.pdf",
+      "sha256": "c7bcfce20210f15c0a6ce9fff7fac36e514664ef77a23d6897408844537a764c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.15.pdf",
+      "sha256": "ebab0f5f9e57b6c12705418e27daa6f739754e6bdc099ef6e4caad286685d630"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.16.pdf",
+      "sha256": "45c371d0e5462c07b07076f6adac14c369a501810cc0e8dc2906a1eb6a10479d"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.17.pdf",
+      "sha256": "689f25098873d676d9c234b374e4742925ef64a92ca1ef925efdb7d975172447"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.18.pdf",
+      "sha256": "ccf62e2da4388fc47c7ab81e2845d470599d1308b2729dc9539200f059be83b4"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.19.pdf",
+      "sha256": "2800d3e4b435277b0d69b702ebe61e83ed4d6c6b5fa675d01a48edde58b17c6a"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-6.20.pdf",
+      "sha256": "299e84c774be0e2b281722d9be72274bef220ca4ca71d1d97570abc6164c3fc9"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.01.pdf",
+      "sha256": "6ea9181b69d21f5f4ae4ae9f21f03caefda81a6c646430f3cc9f68eb4acdb3d2"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.02.pdf",
+      "sha256": "5928a5537f2ea5aa97e1d30b1807c49207dfb5fece0e9236ee37f6c6a1c57aad"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.03.pdf",
+      "sha256": "78aaa14306d3ba195ecbba6ff3265ccc324015f3c9bd04c4b6bafd3910cbfe5f"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.04.pdf",
+      "sha256": "9abe09939a417de0dbad9b49c54defb449f9c397b141c8a81831b128fbf00b79"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.05.pdf",
+      "sha256": "9ac5829a86976861fd4a2529e04c5b189448f70cf6554926c17913dd68e598d4"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.06.pdf",
+      "sha256": "f9bc39e390ac2f83b5ee071b89e788379f93a32c404f1f2a63b8d67fc339891c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.07.pdf",
+      "sha256": "44d3e20e47f0456537c39b88a4bc5d3131192f87e10e1c0c7cc56cf7b8edc562"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.08.pdf",
+      "sha256": "698a27a7faabd79d59aedefb3f6a21005f95548a2475904484bcda2bdf840386"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.09.pdf",
+      "sha256": "5e63ecf33f71ccc5a504f947f0e599a514160609efd50357c75e43f9f00f3f3b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.10.pdf",
+      "sha256": "543139da6d03678b4e823fd07efadd4444507bffdd034b25ba59a9ba04d3fbd7"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-7.11.pdf",
+      "sha256": "1fd5056f90d2183f9a24a6531d01a133bcf4a1ecdc8a1b82c745055fa6d0a195"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.01.pdf",
+      "sha256": "60fb160d126e52d31ec4236d1df51421f03d5ebc0b0a366e159a5cb634ed9b6c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.02.pdf",
+      "sha256": "8420c5ceaf0291fcc9ed3958480c81d3af000335ece4a5442e7e40716db93179"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.03.pdf",
+      "sha256": "2be5333a7eb85a32d555e811b6f59b0c006107ce332a889335ddefb59f788af0"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.04.pdf",
+      "sha256": "15285f72446a8f0678b09837307813d1809539e8ccac3689ea23092facdb72ca"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.05.pdf",
+      "sha256": "d2c6f8a2347e37f5a517158175a3461a5a0274bc4a4448dcd5cbd35e45a0e857"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.06.pdf",
+      "sha256": "7200d203180fd6bc691474b1866b44f9289a1520fcda580535f1a6b7095aa3e0"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.07.pdf",
+      "sha256": "2359566c905b659bd51e6f8fb1185126bdac08244ef634d1592719f1307456b5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.08.pdf",
+      "sha256": "3c46d07f7af3ae4d0b63e2f7d94a6a4ab2edb11ed884cddfef989ed06654b2e0"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.09.pdf",
+      "sha256": "da67c5c33f1dc1b97ddb378cb51a3b19e4755a4454ba2c9a98d86a4b21809665"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.10.pdf",
+      "sha256": "c05abef4ab220de099d5a6076caffed2c1bc1f75822edf4fdbaa0a06a084158b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.11.pdf",
+      "sha256": "b1d623c1e39561941075e97c0f6b45458c4ea068b1602f1cffa972ab4c3391a3"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.12.pdf",
+      "sha256": "9356cc54f0c0d58947c9f456113de72008e426bec1c407a664b951a8d06ca181"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-8.13.pdf",
+      "sha256": "e00462a8d3f4d3f0e4f4bcde9fd120cecfcbfcc51d6155122d8855e314e80ae3"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-9.01.pdf",
+      "sha256": "3ee71fb8b529eb7276d31715222ec63096a7848f81ff35471a68962d8397d989"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-09-10-wic-state-policy-manual/official-documents/us-wv-wic-manual-9.02.pdf",
+      "sha256": "a4afb64ac0a6e42536c58e5ab5017986d1bad96af880fcb434f948b801c6f32c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-wv-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 280,
+    "missing_count": 0,
+    "provision_count": 280,
+    "source_count": 280
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:10:42.420503+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3f4xNSibWFndUA42SLrxv4/KL9ZsHOL55M3mlKF1MeChSEZKGetzofiNn+ABXYT2Wl37IL/jXQloRgBygdL/AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

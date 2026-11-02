@@ -1,0 +1,47 @@
+documents:
+- source_id: il-dhs-csmm-149614
+  jurisdiction: us-il
+  document_class: manual
+  title: 'MR #23.22: SNAP Policy Clarification on Child Support Income Exclusion and Self-Employment Business Expenses'
+  source_url: https://www.dhs.state.il.us/page.aspx?item=149614
+  source_format: html
+  source_as_of: '2026-09-23'
+  expression_date: '2023-06-30'
+  citation_path: us-il/manual/dhs/csmm/149614
+  extraction:
+    html_content_selector: '#Main2'
+    html_drop_selectors:
+    - '#BreadcrumbDiv'
+    - '#LinksSideBarDiv'
+    - '#PrinterFriendlyLink'
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Human Services
+    document_subtype: manual_release
+    document_number: 'MR #23.22'
+    release_date: '2023-06-30'
+    manual: Illinois DHS Cash, SNAP, and Medical Manual
+    programs:
+    - SNAP
+    includes_snap_policy: true
+    topic: child_support_income_exclusion
+    authority_role: >-
+      Corrects the policy reference to the Child Support Deduction in PM 13-01-07
+      (us-il/manual/dhs/csmm/16161); states that Illinois implemented the gross income
+      exclusion (the 7 CFR 273.9(c)(17) option) in June 2004 and that court-ordered child
+      support is not allowed as an income deduction in the net benefit calculation.
+    manual_revisions:
+    - PM 02-08-01
+    - PM 07-04-17
+    - PM 08-04-01-b
+    - PM 13-01-07
+    - PM 18-04-00
+    - WAG 02-08-01
+    - WAG 08-04-01-b
+    - WAG 13-01-07
+    - WAG 13-02-00
+    source_discovery_group: us-il/manual/csmm
+    manual_releases_index_url: https://www.dhs.state.il.us/page.aspx?item=12448
+    policy_manual_toc_url: https://www.dhs.state.il.us/page.aspx?item=13473
+    illinois_dhs_item_id: '149614'
+    discovered_via: 'policyengine-us PR #9586 (gov.usda.snap.income.deductions.child_support references); listed on the IDHS Manual Releases index (item 12448)'
