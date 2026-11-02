@@ -23,6 +23,14 @@ from axiom_corpus.corpus.state_adapters.arizona import (
     ARIZONA_TITLE_INDEX_SOURCE_FORMAT,
     extract_arizona_revised_statutes,
 )
+from axiom_corpus.corpus.state_adapters.hawaii import (
+    HAWAII_CHAPTER_DIRECTORY_SOURCE_FORMAT,
+    HAWAII_CHAPTER_INDEX_SOURCE_FORMAT,
+    HAWAII_ROOT_INDEX_SOURCE_FORMAT,
+    HAWAII_SECTION_SOURCE_FORMAT,
+    HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT,
+    extract_hawaii_revised_statutes,
+)
 from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
@@ -30,6 +38,11 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
 from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
+from tests.test_corpus_hawaii import SAMPLE_CHAPTER_DIRECTORY_HTML as HI_CHAPTER_DIRECTORY_HTML
+from tests.test_corpus_hawaii import SAMPLE_CHAPTER_INDEX_HTML as HI_CHAPTER_INDEX_HTML
+from tests.test_corpus_hawaii import SAMPLE_ROOT_HTML as HI_ROOT_HTML
+from tests.test_corpus_hawaii import SAMPLE_SECTION_HTML as HI_SECTION_HTML
+from tests.test_corpus_hawaii import SAMPLE_VOLUME_HTML as HI_VOLUME_HTML
 from tests.test_corpus_maryland import SAMPLE_EMPTY_SECTION_HTML as MD_EMPTY_SECTION_HTML
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
@@ -273,3 +286,69 @@ def test_arizona_failed_section_page_remains_inventory_gap(tmp_path, monkeypatch
         missing={"us-az/statute/1-202"},
         gap_source=AZ_DETAIL if failure == "missing-file" else AZ_SECTION_202,
     )
+
+
+# --- Hawaii: root -> volume -> chapter directory (+ chapter index) -> section files ---
+
+HI_DIRECTORY = f"{HAWAII_CHAPTER_DIRECTORY_SOURCE_FORMAT}/volume-04/HRS0235.html"
+HI_SECTION_DIR = f"{HAWAII_SECTION_SOURCE_FORMAT}/volume-04/HRS0235"
+HI_SECTION_5575 = f"{HI_SECTION_DIR}/HRS_0235-0055_0007_0005.htm"
+HI_SECTION_5576 = f"{HI_SECTION_DIR}/HRS_0235-0055_0007_0006.htm"
+HI_SECTION_5576_LINK = """  <a href="/hrscurrent/Vol04_Ch0201-0257/HRS0235/HRS_0235-0055_0007_0006.htm">
+    HRS_0235-0055_0007_0006.htm
+  </a>
+</pre>"""
+HI_GOOD_PAGES = {
+    f"{HAWAII_ROOT_INDEX_SOURCE_FORMAT}/index.html": HI_ROOT_HTML,
+    f"{HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT}/volume-04.html": HI_VOLUME_HTML,
+    HI_DIRECTORY: HI_CHAPTER_DIRECTORY_HTML.replace("</pre>", HI_SECTION_5576_LINK, 1),
+    f"{HAWAII_CHAPTER_INDEX_SOURCE_FORMAT}/volume-04/HRS0235.html": HI_CHAPTER_INDEX_HTML,
+    HI_SECTION_5575: HI_SECTION_HTML,
+    HI_SECTION_5576: HI_SECTION_HTML.replace("235-55.75", "235-55.76"),
+}
+HI_EXTRACTED = {
+    "us-hi/statute/volume-04",
+    "us-hi/statute/chapter-235",
+    "us-hi/statute/235-55.75",
+    "us-hi/statute/235-55.76",
+}
+
+
+def _extract_hawaii(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_hawaii_revised_statutes(
+        store, version="2026-05-09", source_dir=tmp_path / "source", only_title="04", workers=1
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", SECTION_FAILURES)
+def test_hawaii_failed_section_page_remains_inventory_gap(tmp_path, failure):
+    # On main a section page that could not be fetched or read was logged as an
+    # error with no inventory item, so coverage still read complete.
+    pages = dict(HI_GOOD_PAGES)
+    _fail_page(pages, HI_SECTION_5576, failure)
+    store, report = _extract_hawaii(tmp_path, pages)
+    assert report.section_count == 1
+    assert "section 235-55.76" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=HI_EXTRACTED,
+        missing={"us-hi/statute/235-55.76"},
+        gap_source=HI_DIRECTORY if failure == "missing-file" else HI_SECTION_5576,
+    )
+
+
+def test_hawaii_repealed_section_page_stays_complete(tmp_path):
+    pages = dict(HI_GOOD_PAGES)
+    pages[HI_SECTION_5576] = (
+        "<html><body><div class='WordSection1'><p class='RegularParagraphs'>"
+        "<b>&sect;235-55.76 REPEALED.</b> L 2020, c 1, &sect;2.</p></div></body></html>"
+    )
+    _, report = _extract_hawaii(tmp_path, pages)
+    assert report.section_count == 2
+    _assert_complete(report, expected=HI_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-hi/statute/235-55.76"].metadata["status"] == "repealed"
