@@ -2063,7 +2063,8 @@ def extract_washington_rcw(
         url=WASHINGTON_RCW_BASE_URL,
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     titles = _parse_washington_titles(index_bytes)
@@ -2082,7 +2083,17 @@ def extract_washington_rcw(
     section_count = 0
     skipped_source_count = 0
     seen_citation_paths: set[str] = set()
+    # Title page (source key, sha256, URL) by title number: the evidence for a
+    # chapter whose own page cannot be fetched.
+    title_sources: dict[str, tuple[str, str, str]] = {}
 
+    # A title, or a chapter, is written as a provision only once its own page
+    # lists children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A page that
+    # could not be fetched is sourced from the listing that names it; a page
+    # that was fetched but is unusable from itself. A chapter page that names
+    # its chapter and carries no section anchors (a recodified or wholly
+    # repealed chapter) stays a complete, skipped source.
     for title in titles:
         if remaining is not None and remaining <= 0:
             break
@@ -2095,8 +2106,18 @@ def extract_washington_rcw(
                 relative_name=title_relative,
                 url=title.source_url,
             )
-        except (OSError, requests.RequestException) as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"title {title.num}: {exc}")
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _washington_title_container(
+                        title, source_path=index_source_key, sha256=index_sha
+                    ),
+                    source_url=WASHINGTON_RCW_BASE_URL,
+                ),
+            )
             continue
         title_path = store.source_path(
             jurisdiction,
@@ -2118,6 +2139,12 @@ def extract_washington_rcw(
             source_path=title_source_key,
             sha256=title_sha,
         )
+        listed_chapters = _parse_washington_chapters(title_bytes, title=title_with_heading)
+        if not listed_chapters:
+            errors.append(f"title {title.num}: no chapters parsed")
+            _append_container_gap(seen_citation_paths, items, title_container)
+            continue
+        title_sources[title.num] = (title_source_key, title_sha, title.source_url)
         if title_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(title_container.citation_path)
             items.append(_container_inventory_item(title_container))
@@ -2134,7 +2161,7 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-        title_chapters = _parse_washington_chapters(title_bytes, title=title_with_heading)
+        title_chapters = listed_chapters
         if only_chapter_num is not None:
             title_chapters = tuple(
                 chapter for chapter in title_chapters if chapter.num == only_chapter_num
@@ -2159,6 +2186,17 @@ def extract_washington_rcw(
             break
         if error is not None or chapter_bytes is None:
             errors.append(f"chapter {chapter.num}: {error or 'unknown source error'}")
+            title_source_key, title_sha, title_url = title_sources[chapter.title.num]
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _washington_chapter_container(
+                        chapter, source_path=title_source_key, sha256=title_sha
+                    ),
+                    source_url=title_url,
+                ),
+            )
             continue
         chapter_relative = _washington_chapter_relative(chapter)
         chapter_path = store.source_path(
@@ -2182,6 +2220,19 @@ def extract_washington_rcw(
             source_path=chapter_source_key,
             sha256=chapter_sha,
         )
+        sections = _parse_washington_chapter_sections(
+            chapter_bytes,
+            chapter=chapter_with_heading,
+        )
+        if not sections:
+            if _washington_chapter_without_sections(
+                chapter_bytes
+            ) and _washington_page_names_chapter(chapter_bytes, chapter.num):
+                skipped_source_count += 1
+            else:
+                errors.append(f"chapter {chapter.num}: no sections parsed")
+                _append_container_gap(seen_citation_paths, items, chapter_container)
+                continue
         if chapter_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(chapter_container.citation_path)
             items.append(_container_inventory_item(chapter_container))
@@ -2197,15 +2248,6 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-        sections = _parse_washington_chapter_sections(
-            chapter_bytes,
-            chapter=chapter_with_heading,
-        )
-        if not sections:
-            if _washington_chapter_without_sections(chapter_bytes):
-                skipped_source_count += 1
-            else:
-                errors.append(f"chapter {chapter.num}: no sections parsed")
         for section in sections:
             if remaining is not None and remaining <= 0:
                 break
@@ -2247,7 +2289,7 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Revised Code of Washington provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -4673,7 +4715,7 @@ def _load_washington_chapter_source(
             url=chapter.full_source_url,
         )
         return chapter, data, None
-    except (OSError, requests.RequestException) as exc:
+    except Exception as exc:  # noqa: BLE001
         return chapter, None, str(exc)
 
 
@@ -4753,6 +4795,17 @@ def _washington_chapter_without_sections(data: bytes) -> bool:
     soup = BeautifulSoup(data.decode("utf-8", errors="replace"), "html.parser")
     expanded = soup.select_one("#ContentPlaceHolder1_pnlExpanded")
     return not (isinstance(expanded, Tag) and expanded.select("a[name]"))
+
+
+def _washington_page_names_chapter(data: bytes, chapter: str) -> bool:
+    """Whether ``data`` is the RCW page for ``chapter``: it carries "Chapter N RCW".
+
+    A maintenance, empty or unrelated page has no section anchors either, so
+    the sectionless-chapter exemption also needs the page to be the chapter's.
+    """
+    soup = BeautifulSoup(data.decode("utf-8", errors="replace"), "html.parser")
+    text = _clean_text(soup.get_text(" ", strip=True))
+    return re.search(rf"\bChapter\s+{re.escape(chapter)}\s+RCW\b", text, re.I) is not None
 
 
 def _washington_listing_heading(link: Tag) -> str | None:

@@ -25,6 +25,7 @@ from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.states import (
     extract_minnesota_statutes,
     extract_nebraska_revised_statutes,
+    extract_washington_rcw,
 )
 from tests.test_corpus_states import (
     SAMPLE_MINNESOTA_CHAPTER,
@@ -32,6 +33,9 @@ from tests.test_corpus_states import (
     SAMPLE_MINNESOTA_PART,
     SAMPLE_NEBRASKA_CHAPTER,
     SAMPLE_NEBRASKA_INDEX,
+    SAMPLE_WASHINGTON_CHAPTER,
+    SAMPLE_WASHINGTON_INDEX,
+    SAMPLE_WASHINGTON_TITLE,
 )
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
@@ -261,3 +265,151 @@ def test_nebraska_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
     pages = {"nebraska-revised-statutes-html/index.html": SAMPLE_NEBRASKA_INDEX}
     with pytest.raises(ValueError, match="no Nebraska Revised Statutes provisions extracted"):
         _extract_nebraska(tmp_path, monkeypatch, pages)
+
+
+# --- Washington: index -> title pages -> full chapter pages ---
+
+WA_TITLE_43 = "washington-rcw-html/titles/title-43.html"
+WA_CHAPTER_42_17 = "washington-rcw-html/chapters/chapter-42.17-full.html"
+WA_GOOD_PAGES = {
+    "washington-rcw-html/index.html": SAMPLE_WASHINGTON_INDEX.replace(
+        "    </table>",
+        '      <tr><td><a href="default.aspx?Cite=43">Title 43</a></td>'
+        "<td>STATE GOVERNMENT--EXECUTIVE</td></tr>\n    </table>",
+    ),
+    "washington-rcw-html/titles/title-42.html": SAMPLE_WASHINGTON_TITLE.replace(
+        "    </table>",
+        '      <tr><td><a href="http://app.leg.wa.gov/RCW/default.aspx?cite=42.17">42.17</a></td>'
+        "<td>Campaign disclosure.</td></tr>\n    </table>",
+    ),
+    "washington-rcw-html/chapters/chapter-42.56-full.html": SAMPLE_WASHINGTON_CHAPTER,
+    WA_CHAPTER_42_17: SAMPLE_WASHINGTON_CHAPTER.replace("42.56", "42.17").replace(
+        "PUBLIC RECORDS ACT", "CAMPAIGN DISCLOSURE"
+    ),
+    WA_TITLE_43: SAMPLE_WASHINGTON_TITLE.replace("42.56", "43.01")
+    .replace("Title 42", "Title 43")
+    .replace("Public records act.", "General provisions."),
+    "washington-rcw-html/chapters/chapter-43.01-full.html": SAMPLE_WASHINGTON_CHAPTER.replace(
+        "42.56", "43.01"
+    ),
+}
+WA_42_56 = {
+    "us-wa/statute/42",
+    "us-wa/statute/42/42.56",
+    "us-wa/statute/42/42.56/42.56.010",
+    "us-wa/statute/42/42.56/42.56.020",
+}
+WA_42_17 = {
+    "us-wa/statute/42/42.17",
+    "us-wa/statute/42/42.17/42.17.010",
+    "us-wa/statute/42/42.17/42.17.020",
+}
+WA_43 = {
+    "us-wa/statute/43",
+    "us-wa/statute/43/43.01",
+    "us-wa/statute/43/43.01/43.01.010",
+    "us-wa/statute/43/43.01/43.01.020",
+}
+WA_EMPTY_TITLE = (
+    '<html><body><h1>Title 43 RCW</h1><div id="contentWrapper" class="title-page">'
+    '<h3 class="list-heading">Chapters</h3><table></table></div></body></html>'
+)
+# A chapter page that names its chapter and carries no section anchors: the
+# shape the existing ``_washington_chapter_without_sections`` exemption keeps.
+WA_SECTIONLESS_CHAPTER = (
+    "<html><body><h1>Chapter 42.17 RCW</h1><h2>CAMPAIGN DISCLOSURE</h2>"
+    '<div id="ContentPlaceHolder1_pnlExpanded"><p>Recodified as chapter 42.17A RCW.</p></div>'
+    "</body></html>"
+)
+# Section anchors that do not belong to the chapter parse to no sections.
+WA_FOREIGN_ANCHORS = SAMPLE_WASHINGTON_CHAPTER.replace("42.56", "42.99")
+
+
+def _extract_washington(tmp_path, monkeypatch, pages, *, failed=None, failure=None, raise_=None):
+    if failure != "request-error" and raise_ is None:
+        _write_sources(tmp_path / "source", pages)
+        source_dir = tmp_path / "source"
+    else:
+        source_dir = None
+
+        def load(session, source_root, download_root, *, relative_name, url):
+            if relative_name == failed:
+                if raise_ is not None:
+                    raise raise_
+                raise requests.ConnectionError("source unavailable")
+            return pages[relative_name].encode()
+
+        monkeypatch.setattr(states, "_load_washington_html", load)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_washington_rcw(store, version="2026-05-04", source_dir=source_dir, workers=1)
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_washington_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    pages = dict(WA_GOOD_PAGES)
+    _fail_page(pages, WA_TITLE_43, failure, {"no-children": WA_EMPTY_TITLE})
+    store, report = _extract_washington(
+        tmp_path, monkeypatch, pages, failed=WA_TITLE_43, failure=failure
+    )
+    assert report.section_count == 4
+    assert report.errors[0].startswith("title 43:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=WA_42_56 | WA_42_17 | {"us-wa/statute/43"},
+        missing={"us-wa/statute/43"},
+        gap_source="washington-rcw-html/index.html" if failure in FETCH_FAILURES else WA_TITLE_43,
+    )
+
+
+@pytest.mark.parametrize(
+    "failure", [*FETCH_FAILURES, "maintenance", "empty", "wrong-shape", "foreign-anchors"]
+)
+def test_washington_failed_chapter_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    pages = dict(WA_GOOD_PAGES)
+    _fail_page(pages, WA_CHAPTER_42_17, failure, {"foreign-anchors": WA_FOREIGN_ANCHORS})
+    store, report = _extract_washington(
+        tmp_path, monkeypatch, pages, failed=WA_CHAPTER_42_17, failure=failure
+    )
+    assert report.section_count == 4
+    assert report.errors[0].startswith("chapter 42.17:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=WA_42_56 | WA_43 | {"us-wa/statute/42/42.17"},
+        missing={"us-wa/statute/42/42.17"},
+        gap_source=(
+            "washington-rcw-html/titles/title-42.html"
+            if failure in FETCH_FAILURES
+            else WA_CHAPTER_42_17
+        ),
+    )
+
+
+def test_washington_chapter_page_without_sections_stays_complete(tmp_path, monkeypatch):
+    # Pins the existing exemption: a chapter page that names its chapter and
+    # carries no section anchors (a recodified or wholly repealed chapter) is
+    # written as a complete container and counted as a skipped source.
+    pages = dict(WA_GOOD_PAGES)
+    pages[WA_CHAPTER_42_17] = WA_SECTIONLESS_CHAPTER
+    store, report = _extract_washington(tmp_path, monkeypatch, pages)
+    assert report.errors == ()
+    assert report.skipped_source_count == 1
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == WA_42_56 | WA_43 | {"us-wa/statute/42/42.17"}
+
+
+@pytest.mark.parametrize("failed", [WA_TITLE_43, WA_CHAPTER_42_17], ids=["title", "chapter"])
+def test_washington_interrupt_during_fetch_stops_the_run(tmp_path, monkeypatch, failed):
+    with pytest.raises(KeyboardInterrupt):
+        _extract_washington(
+            tmp_path, monkeypatch, dict(WA_GOOD_PAGES), failed=failed, raise_=KeyboardInterrupt()
+        )
+
+
+def test_washington_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
+    pages = {"washington-rcw-html/index.html": SAMPLE_WASHINGTON_INDEX}
+    with pytest.raises(ValueError, match="no Revised Code of Washington"):
+        _extract_washington(tmp_path, monkeypatch, pages)
