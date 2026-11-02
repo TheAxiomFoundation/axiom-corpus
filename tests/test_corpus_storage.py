@@ -2797,6 +2797,37 @@ def _nested_witness_checkout(tmp_path: Path, monkeypatch, unrelated_lock: bool) 
     return outer, nested, outer_rel
 
 
+@pytest.mark.parametrize("action", ["require-fetch", "ensure"])
+def test_an_enclosing_lock_spelling_a_nested_file_otherwise_is_covered_by_the_nested_lock(
+    tmp_path: Path, monkeypatch, action: str
+) -> None:
+    """Review N2 on #882: the enclosing lock names the nested checkout's file as
+    ``.../NZ/...`` and the nested lock as ``.../nz/...``, one file where the
+    filesystem folds case (an alias directory stands in where it does not). A
+    broad selection reads the enclosing entry by its own spelling, so the nested
+    owner's name for it must be put in the nested lock's spelling, or that
+    owner's fetch would not cover the witness and the file would be refused."""
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_NESTED_SOURCE_DIR}/vendored")
+    respelled = _NESTED_PROV.replace("/nz/", "/NZ/", 1)
+    outer_rel = f"{_NESTED_SOURCE_DIR}/vendored/{respelled}"
+    _lock_files(outer, {outer_rel: SHARED_FILES[PROV]})
+    _lock_files(nested, {_NESTED_PROV: SHARED_FILES[PROV]})
+    if not _folds_case_on_disk(tmp_path):
+        _alias_directory(nested, _NESTED_PROV, respelled)
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(outer)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "")
+    selection = outer / _NESTED_SOURCE_DIR
+    if action == "ensure":
+        ensure_corpus_paths([selection])
+    else:
+        require_materialized([selection], fetch=True)
+    placed = nested / _NESTED_PROV
+    assert placed.is_file() and not placed.is_symlink()
+    assert placed.read_bytes() == SHARED_FILES[PROV]
+
+
 @pytest.mark.parametrize("unrelated_lock", [False, True], ids=["no-nested-lock", "unrelated-nested-lock"])
 @pytest.mark.parametrize("repo_hint", [None, "outer", "nested"], ids=["no-repo", "outer-repo", "nested-repo"])
 @pytest.mark.parametrize("selection", ["exact", "broad"])
@@ -3497,7 +3528,12 @@ def _assert_round2_witness_refusal(
     holder_name: str,
     kwargs: dict[str, Path] | None = None,
     owner_name: str = _NESTED_PROV,
+    *,
+    owner_folds: bool = False,
 ) -> None:
+    """``owner_folds``: the filesystem folds case, so the refusal may spell the
+    owner checkout as the path reached it (a respelled directory below a sharing
+    link), and its name is compared without case. Elsewhere it must match exactly."""
     from axiom_corpus.corpus.io import iter_provisions
 
     for no_fetch in ("", "1"):
@@ -3518,10 +3554,14 @@ def _assert_round2_witness_refusal(
             else:
                 raise AssertionError(action)
         message = str(refused.value)
+
+        spelled_owner = f"(?i:{re.escape(str(owner))})" if owner_folds else re.escape(str(owner))
         assert f"{holder_name}, which the lock of {holder} names" in message
-        assert f"{owner} names that path" in message
+        assert re.search(spelled_owner + re.escape(" names that path"), message), message
         assert f"does not list {owner_name}" in message
-        assert f"Lock that scope in {owner} and fetch it there" in message
+        assert re.search(
+            re.escape("Lock that scope in ") + spelled_owner + re.escape(" and fetch it there"), message
+        ), message
         assert f"axiom-corpus-ingest corpus fetch --path {holder_name}` in {holder}" in message
         # Even though the remote holds the witness's bytes, only the owner may
         # fetch here, and its lock does not name this file.
@@ -3638,7 +3678,7 @@ def test_a_sharing_lock_applies_when_dotdot_returns_to_the_normalized_spelling(
     _assert_round2_witness_refusal(monkeypatch, action, path, middle, worktree, _NESTED_PROV)
 
 
-# #884 round-3 review (Axiom eng hub, 2026-10-17): on APFS the sharing layout
+# #884 round-3 review (2026-10-17): on APFS the sharing layout
 # above, reached through another case of one directory, lost the worktree's
 # lock, so the absent file inside the nested checkout read as empty. Each
 # respelling reaches the same places; on a case-sensitive filesystem it names
@@ -3710,7 +3750,15 @@ def test_every_sharing_lock_refuses_an_absent_file_spelled_in_another_case(
     checkouts, holder, owner, rel, spelled = _respelled_in_sharing(tmp_path, monkeypatch, 1, "worktree", variant)
     kwargs = {} if repo_hint is None else {"repo": checkouts[repo_hint]}
     _assert_round2_witness_refusal(
-        monkeypatch, action, checkouts["worktree"] / spelled, holder, owner, rel, kwargs, _owner_spelling(tmp_path, spelled)
+        monkeypatch,
+        action,
+        checkouts["worktree"] / spelled,
+        holder,
+        owner,
+        rel,
+        kwargs,
+        _owner_spelling(tmp_path, spelled),
+        owner_folds=_folds_case_on_disk(tmp_path),
     )
 
 
@@ -3723,7 +3771,16 @@ def test_every_sharing_lock_in_a_chain_refuses_an_absent_file_spelled_in_another
         tmp_path, monkeypatch, links, lock_holder, "the shared link"
     )
     kwargs = {} if repo_hint is None else {"repo": checkouts[repo_hint]}
-    _assert_round2_witness_refusal(monkeypatch, action, checkouts["worktree"] / spelled, holder, owner, rel, kwargs)
+    _assert_round2_witness_refusal(
+        monkeypatch,
+        action,
+        checkouts["worktree"] / spelled,
+        holder,
+        owner,
+        rel,
+        kwargs,
+        owner_folds=_folds_case_on_disk(tmp_path),
+    )
 
 
 @pytest.mark.parametrize("variant", ["the shared link", "the worktree's data", "a directory below the link"])
@@ -3734,7 +3791,9 @@ def test_a_directory_spelled_in_another_case_keeps_every_sharing_lock(
     checkouts, holder, owner, rel, _spelled = _respelled_in_sharing(tmp_path, monkeypatch, 1, "worktree", variant)
     old, new = _SHARING_CASE_VARIANTS[variant]
     directory = checkouts["worktree"] / _NESTED_SOURCE_DIR.replace(old, new, 1)
-    _assert_round2_witness_refusal(monkeypatch, action, directory, holder, owner, rel)
+    _assert_round2_witness_refusal(
+        monkeypatch, action, directory, holder, owner, rel, owner_folds=_folds_case_on_disk(tmp_path)
+    )
 
 
 @pytest.mark.parametrize("action", ["require", "require-fetch", "ensure", "resolve"])
@@ -3742,7 +3801,16 @@ def test_a_bare_path_spelled_in_another_case_keeps_every_sharing_lock(tmp_path: 
     checkouts, holder, owner, rel, spelled = _respelled_in_sharing(
         tmp_path, monkeypatch, 1, "worktree", "the shared link"
     )
-    _assert_round2_witness_refusal(monkeypatch, action, Path(spelled), holder, owner, rel, {"repo": checkouts["worktree"]})
+    _assert_round2_witness_refusal(
+        monkeypatch,
+        action,
+        Path(spelled),
+        holder,
+        owner,
+        rel,
+        {"repo": checkouts["worktree"]},
+        owner_folds=_folds_case_on_disk(tmp_path),
+    )
 
 
 # Review r2 findings ------------------------------------------------------------
