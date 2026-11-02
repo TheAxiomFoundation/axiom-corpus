@@ -210,13 +210,37 @@ def extract_pennsylvania_statutes(
         sha256 = store.write_bytes(artifact_path, source.data)
         source_paths.append(artifact_path)
         source_key = _state_source_key(jurisdiction, run_id, source.relative_path)
+        # A title is written as a provision only once its page holds sections.
+        # Otherwise it stays an inventory gap, sourced from its own page, so
+        # coverage reads incomplete instead of silently losing every section
+        # under it.
         try:
             provisions = parse_pennsylvania_title_html(source.data, title=source.title)
+            if not any(provision.kind == "section" for provision in provisions):
+                raise ValueError("no sections found on title page")
         except ValueError as exc:
             errors.append(f"title {source.title}: {exc}")
-            continue
-        if not provisions:
-            errors.append(f"title {source.title}: no provisions parsed")
+            gap = PennsylvaniaProvision(
+                kind="title",
+                title=source.title,
+                source_id=f"title-{source.title}",
+                display_number=str(source.title),
+                heading=PENNSYLVANIA_TITLES.get(source.title),
+                body=None,
+                parent_citation_path=None,
+                level=0,
+                ordinal=0,
+            )
+            if gap.citation_path not in seen:
+                seen.add(gap.citation_path)
+                items.append(
+                    _inventory_item(
+                        gap,
+                        source_url=source.source_url,
+                        source_path=source_key,
+                        sha256=sha256,
+                    )
+                )
             continue
 
         for provision in provisions:
@@ -252,7 +276,7 @@ def extract_pennsylvania_statutes(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Pennsylvania provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
