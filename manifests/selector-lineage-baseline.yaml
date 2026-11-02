@@ -1,0 +1,103 @@
+schema_version: axiom-corpus/selector-lineage-baseline/v1
+# Drops and forks of selector lines that a release decision allows
+# (axiom_corpus.corpus.selector_lineage, docs/release-gate-policy.md#selector-lineage).
+# A selector's predecessor is the first tracked selector its description names.
+# Every selector an entry names is pinned here to its selector digest
+# (axiom_corpus.release.manifest.selector_sha256): the entry holds only for that
+# exact selector. The entries listed on 2026-11-02 are what main held when the
+# check began (980e39792); a later entry is a release decision and says why.
+selector_digests:
+  uk-rulespec-2026-07-26: 3bc41f2c1c215f851de0a70fb97c8b0d47126cf0c62ae00baa7c782dd6be4e9f
+  uk-rulespec-2026-08-02: 85d0f967654d0b0f80c1e11a2eebd23fafd4a184b8af57b10fecfc37f7f2c3e3
+  us-rulespec-2026-07-21-az-140es-current: b8f41849f54c056c7072f2ac929b76e41b93889a7efda1e45d542d8e2322fb0c
+  us-rulespec-2026-07-21-oh-hb96-current: ada56e6bc50d5c96714a80b7f4bdab0bc68c5cfda2505709490f8a1271c195c5
+  us-rulespec-2026-07-22-current: 2edc30670f498a7f56b74024023c032f0e834643d6483bbd48fb11830f946d67
+  us-rulespec-2026-07-22-current-la-status-fix: 18211b6f6b23fb698994abfa2726d7e483ba97c9315814bb87788996b891441e
+  us-rulespec-2026-07-22-hi-capital-gain-current: 0f7cf5d64b70e31717b4314fc2eaf337f8a75191a32e7e1df90206f3f722b57e
+  us-rulespec-2026-07-24-cms-435-correction: 4303778fbe9434951e5943336728eba5dd5aa09250a76ebdea4f54963eab6e05
+  us-rulespec-2026-08-08-obbb-alien-snap: 1b88863f0e6f09c3383e0572666da892d49125f34bda5088bd90a6706d8b37fd
+  us-rulespec-2026-08-09-cutover-surface-union: e8a66545095eff763e7e1dab473c9848e62a0407b83421bb0e879009e78a7fd9
+  us-rulespec-2026-08-23-canada-338-suspension-union: 56ec2f9b1996c2eae16a96e9b5254bb93ab5fa6329bc78be12d6ea24c8bdf9ed
+  us-rulespec-2026-09-11-program-ingestion-union: aea3024644ff8c10cd1f7fabf757ece448ad2913d4120ea52c89e9f0ca1432a3
+  us-rulespec-2026-09-24-irs-sales-tax-tables-union: 24af198531138cf3d8f0828a3fea221b7ed6e3afdc2f57a4b35a7e6ded30d639
+  us-rulespec-2026-09-24-snap-fy2027-cola: 89ea3de4e2312473bbf992195b3d995e375d6014e03f78c02b8b66e28c20c5f0
+  us-rulespec-2026-10-09-az-des-ece-dated: aaa43893d846a829d897db199e4e34b372c9919e52d4c765640c1ded27a28db5
+  us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected: acdd6106f82490f6a9827b97943600321003125254c5ebfa42b635295e7208ed
+  us-rulespec-2026-10-16-snap-abawd-memo-source-corrected: 8395fecaf863bc7e839a10808160bc3ac93048193cee55b14d2426446ed81519
+  us-rulespec-2026-10-20-fs-pilot-reg-e-f: 002113b75208226f3d57a2e52cdfd0836f5f311f0db3cab3014452a5ea1a3e7a
+  us-rulespec-2026-10-22-ca-concurrent-versions: af8622c3960b7d9d693020fe6393cf9de5fa21608f49117d5417c55b8e1b24e7
+  us-rulespec-2026-10-23-ks-liheap: 0a7bbd78608da08d9a1b3572719d2190f843bd3780d1b59c29b5989d82740793
+  us-rulespec-2026-10-25-ssi-poms-public-laws: 4fce914c090b565ccc5eae0780050a04c299bb9dead043bc0f6edf0550ba9c92
+# A selector that selects no version of a (jurisdiction, document_class) pair its
+# predecessor carries. replaced_by names the scopes the selector selects that carry
+# the pair's text in its place; without it, reason says why nothing does.
+dropped_pairs:
+  - selector: uk-rulespec-2026-08-02
+    predecessor: uk-rulespec-2026-07-26
+    pair: uk-shropshire/manual
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. Its description retires the
+      mislabeled uk-shropshire manual by omission: the manual's operative text is
+      the 2024/2025 default scheme under a 2026/27 cover.
+# A predecessor that more than one tracked selector names. successors lists every
+# selector that names it; one more is a new fork.
+forks:
+  - predecessor: us-rulespec-2026-07-21-az-140es-current
+    successors:
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-22-current
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-07-22-current; us-rulespec-2026-07-21-oh-hb96-current has
+      no successor.
+  - predecessor: us-rulespec-2026-07-22-current-la-status-fix
+    successors:
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-07-24-cms-435-correction;
+      us-rulespec-2026-07-22-hi-capital-gain-current has no successor.
+  - predecessor: us-rulespec-2026-08-08-obbb-alien-snap
+    successors:
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The union lineage continued from
+      us-rulespec-2026-08-09-cutover-surface-union and the dated cuts from
+      us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected;
+      us-rulespec-2026-09-24-snap-fy2027-cola has no successor.
+  - predecessor: us-rulespec-2026-08-23-canada-338-suspension-union
+    successors:
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-24-irs-sales-tax-tables-union
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The union lineage continued from
+      us-rulespec-2026-09-11-program-ingestion-union;
+      us-rulespec-2026-09-24-irs-sales-tax-tables-union has no successor.
+  - predecessor: us-rulespec-2026-10-09-az-des-ece-dated
+    successors:
+      - us-rulespec-2026-10-16-snap-abawd-memo-source-corrected
+      - us-rulespec-2026-10-20-fs-pilot-reg-e-f
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-10-20-fs-pilot-reg-e-f;
+      us-rulespec-2026-10-16-snap-abawd-memo-source-corrected has no successor.
+  - predecessor: us-rulespec-2026-10-22-ca-concurrent-versions
+    successors:
+      - us-rulespec-2026-10-23-ks-liheap
+      - us-rulespec-2026-10-25-ssi-poms-public-laws
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-10-25-ssi-poms-public-laws;
+      us-rulespec-2026-10-23-ks-liheap has no successor, and its us-ks/policy
+      scopes are not in the line's newest cut,
+      us-rulespec-2026-10-29-ecfr-section-text (axiom-corpus#935).
