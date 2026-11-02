@@ -46,6 +46,12 @@ from axiom_corpus.corpus.state_adapters.iowa import (
     IOWA_TITLE_INDEX_SOURCE_FORMAT,
     extract_iowa_code,
 )
+from axiom_corpus.corpus.state_adapters.kansas import (
+    KANSAS_CHAPTER_SOURCE_FORMAT,
+    KANSAS_ROOT_SOURCE_FORMAT,
+    KANSAS_SECTION_SOURCE_FORMAT,
+    extract_kansas_statutes,
+)
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
 )
@@ -88,6 +94,10 @@ from tests.test_corpus_iowa import SAMPLE_CHAPTER_INDEX_HTML as IA_CHAPTER_INDEX
 from tests.test_corpus_iowa import SAMPLE_SECTION_INDEX_HTML as IA_SECTION_INDEX
 from tests.test_corpus_iowa import SAMPLE_TITLE_INDEX_HTML as IA_TITLE_INDEX
 from tests.test_corpus_iowa import _sample_pdf as ia_sample_pdf
+from tests.test_corpus_kansas import SAMPLE_CHAPTER_HTML as KS_CHAPTER_1
+from tests.test_corpus_kansas import SAMPLE_REPEALED_RANGE_HTML as KS_REPEALED_RANGE
+from tests.test_corpus_kansas import SAMPLE_ROOT_HTML as KS_ROOT
+from tests.test_corpus_kansas import SAMPLE_SECTION_HTML as KS_SECTION_1_201
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 VERSION = "2026-05-09"
@@ -805,3 +815,110 @@ def test_iowa_title_listing_only_reserved_chapters_stays_complete(tmp_path):
     assert report.coverage.complete is True
     inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
     assert inventory == IA_GOOD | {"us-ia/statute/title-xi"}
+
+
+# --- Kansas -----------------------------------------------------------------
+# The fixture's repealed article 1 still lists its repealed section range, so
+# nothing shows a Kansas container that lists nothing by law. Kansas also
+# logged fetch errors without a gap, so each level has a fetch-error case,
+# section pages included.
+
+KS_ROOT_PATH = f"{KANSAS_ROOT_SOURCE_FORMAT}/ksa.html"
+KS_CHAPTER_1_PATH = f"{KANSAS_CHAPTER_SOURCE_FORMAT}/ksa_ch1.html"
+KS_CHAPTER_2_PATH = f"{KANSAS_CHAPTER_SOURCE_FORMAT}/ksa_ch2.html"
+KS_SECTION_1_202_PATH = f"{KANSAS_SECTION_SOURCE_FORMAT}/ch01/001_002_0002.html"
+KS_GOOD = {
+    "us-ks/statute/chapter-1",
+    "us-ks/statute/chapter-1/article-1",
+    "us-ks/statute/chapter-1/article-2",
+    "us-ks/statute/1-101-through-1-109",
+    "us-ks/statute/1-201",
+}
+KS_CHAPTER_2_LINK = (
+    '<li><a href="/statutes/ksa_ch2.html">Chapter 2.&mdash;AGRICULTURE</a></li>\n</ul>'
+)
+KS_EMPTY_ARTICLE = """  <li>
+    <a class="collapsed">Article 3.&mdash;PERMITS TO PRACTICE</a>
+    <ul></ul>
+  </li>
+</ul>"""
+KS_SECTION_1_202_ITEM = """      <li>
+        1-202
+        <a href="/statutes/chapters/ch01/001_002_0002.html">Compensation of members.</a>
+      </li>
+    </ul>
+  </li>
+</ul>"""
+
+
+def _kansas_pages() -> dict[str, str]:
+    return {
+        KS_ROOT_PATH: KS_ROOT,
+        KS_CHAPTER_1_PATH: KS_CHAPTER_1,
+        f"{KANSAS_SECTION_SOURCE_FORMAT}/ch01/001_001_0001.html": KS_REPEALED_RANGE,
+        f"{KANSAS_SECTION_SOURCE_FORMAT}/ch01/001_002_0001.html": KS_SECTION_1_201,
+    }
+
+
+def _extract_kansas(tmp_path: Path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_kansas_statutes(
+        store, version=VERSION, source_dir=tmp_path / "source", workers=1
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_kansas_failed_chapter_page_remains_inventory_gap(tmp_path, failure):
+    pages = _kansas_pages()
+    pages[KS_ROOT_PATH] = KS_ROOT.replace("</ul>", KS_CHAPTER_2_LINK, 1)
+    _fail_page(
+        pages,
+        KS_CHAPTER_2_PATH,
+        failure,
+        '<html><body><div class="ksa"><h2>Chapter 2.&mdash;AGRICULTURE</h2>'
+        '<ul class="handle" id="tree"></ul></div></body></html>',
+    )
+    store, report = _extract_kansas(tmp_path, pages)
+    assert report.section_count == 2
+    assert "chapter 2" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=KS_GOOD | {"us-ks/statute/chapter-2"},
+        missing={"us-ks/statute/chapter-2"},
+        gap_source=KS_ROOT_PATH if failure == "missing-file" else KS_CHAPTER_2_PATH,
+    )
+
+
+def test_kansas_article_listing_no_sections_remains_inventory_gap(tmp_path):
+    pages = _kansas_pages()
+    pages[KS_CHAPTER_1_PATH] = KS_CHAPTER_1.replace("</ul>\n</div>", KS_EMPTY_ARTICLE + "\n</div>")
+    assert "Article 3" in pages[KS_CHAPTER_1_PATH]
+    store, report = _extract_kansas(tmp_path, pages)
+    article = "us-ks/statute/chapter-1/article-3"
+    assert "article 3" in report.errors[0]
+    _assert_visible_gaps(
+        store, report, expected=KS_GOOD | {article}, missing={article}, gap_source=KS_CHAPTER_1_PATH
+    )
+
+
+@pytest.mark.parametrize("failure", ["missing-file", "maintenance", "empty", "wrong-shape"])
+def test_kansas_failed_section_page_remains_inventory_gap(tmp_path, failure):
+    pages = _kansas_pages()
+    pages[KS_CHAPTER_1_PATH] = KS_CHAPTER_1.replace(
+        "    </ul>\n  </li>\n</ul>", KS_SECTION_1_202_ITEM, 1
+    )
+    assert "001_002_0002" in pages[KS_CHAPTER_1_PATH]
+    _fail_page(pages, KS_SECTION_1_202_PATH, failure, "")
+    store, report = _extract_kansas(tmp_path, pages)
+    assert report.section_count == 2
+    assert "1-202" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=KS_GOOD | {"us-ks/statute/1-202"},
+        missing={"us-ks/statute/1-202"},
+        gap_source=KS_CHAPTER_1_PATH if failure == "missing-file" else KS_SECTION_1_202_PATH,
+    )
