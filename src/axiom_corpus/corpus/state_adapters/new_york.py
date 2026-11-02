@@ -596,7 +596,7 @@ def extract_new_york_openleg_api(
         run_id,
         law_index.relative_path,
     )
-    store.write_bytes(law_index_path, law_index.data)
+    law_index_sha256 = store.write_bytes(law_index_path, law_index.data)
     source_paths: list[Path] = [law_index_path]
 
     laws = parse_new_york_openleg_laws(law_index.data)
@@ -732,6 +732,32 @@ def extract_new_york_openleg_api(
             if remaining_sections is not None and remaining_sections <= 0:
                 break
 
+    def append_law_gap(
+        law: NewYorkOpenLegLawInfo,
+        fetched: _NewYorkOpenLegFetchResult,
+        sha256: str,
+    ) -> None:
+        # The inventory item has no matching provision, so coverage lists it in
+        # ``missing_from_provisions``.
+        if law.citation_path in seen:
+            return
+        seen.add(law.citation_path)
+        items.append(
+            SourceInventoryItem(
+                citation_path=law.citation_path,
+                source_url=fetched.source_url,
+                source_path=_state_source_key(jurisdiction, run_id, fetched.relative_path),
+                source_format=NEW_YORK_OPENLEG_SOURCE_FORMAT,
+                sha256=sha256,
+                metadata={"kind": "law", "law_id": law.law_id, "law_type": law.law_type},
+            )
+        )
+
+    # A law is written as a provision only once its tree lists documents.
+    # Otherwise it stays an inventory gap, so coverage reads incomplete instead
+    # of silently losing everything under it. A tree that could not be fetched
+    # is sourced from the law list that names the law; one that was fetched but
+    # is unusable from the tree itself.
     for law in laws:
         if remaining_sections is not None and remaining_sections <= 0:
             break
@@ -740,6 +766,7 @@ def extract_new_york_openleg_api(
         except (OSError, requests.RequestException, ValueError) as exc:
             skipped_source_count += 1
             errors.append(f"{law.law_id}: {exc}")
+            append_law_gap(law, law_index, law_index_sha256)
             continue
         artifact_path = store.source_path(
             jurisdiction,
@@ -757,9 +784,13 @@ def extract_new_york_openleg_api(
             root_doc = law_result.get("documents")
             if not isinstance(root_doc, dict):
                 raise ValueError("missing OpenLegislation documents")
+            root_children = _api_child_documents(root_doc)
+            if not root_children:
+                raise ValueError("no OpenLegislation documents listed under the law")
         except ValueError as exc:
             skipped_source_count += 1
             errors.append(f"{law.law_id}: {exc}")
+            append_law_gap(law, fetched, sha256)
             continue
         if law.citation_path not in seen:
             seen.add(law.citation_path)
@@ -784,7 +815,6 @@ def extract_new_york_openleg_api(
                     "chapter": law.chapter,
                 },
             )
-        root_children = _api_child_documents(root_doc)
         for child_ordinal, child in enumerate(root_children):
             append_api_document(
                 law,
@@ -798,7 +828,7 @@ def extract_new_york_openleg_api(
             if remaining_sections is not None and remaining_sections <= 0:
                 break
 
-    if not items:
+    if not records:
         if errors:
             raise ValueError(
                 "no New York OpenLegislation provisions extracted; "

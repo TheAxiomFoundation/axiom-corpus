@@ -203,6 +203,52 @@ def extract_nevada_nrs(
     errors: list[str] = []
     remaining_sections = limit
 
+    def append_gap(
+        citation_path: str,
+        *,
+        source_url: str,
+        source_path: str,
+        sha256: str,
+        metadata: dict[str, Any],
+    ) -> None:
+        # The inventory item has no matching provision, so coverage lists it in
+        # ``missing_from_provisions``.
+        if citation_path in seen:
+            return
+        seen.add(citation_path)
+        items.append(
+            SourceInventoryItem(
+                citation_path=citation_path,
+                source_url=source_url,
+                source_path=source_path,
+                source_format=NEVADA_NRS_SOURCE_FORMAT,
+                sha256=sha256,
+                metadata=metadata,
+            )
+        )
+
+    # A title or chapter is written as a provision only once its listing names
+    # children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A title has no
+    # page of its own: the index lists its chapters. A chapter page that could
+    # not be fetched is sourced from the index; one that was fetched but lists
+    # no sections from itself.
+    if chapter_filter is None:
+        titles_with_chapters = {chapter.title_number for chapter in parsed_index.chapters}
+        for title in parsed_index.titles:
+            if title_filter is not None and title.number != title_filter:
+                continue
+            if title.number in titles_with_chapters:
+                continue
+            errors.append(f"title {title.number}: no chapters listed in index")
+            append_gap(
+                title.citation_path,
+                source_url=base_url,
+                source_path=index_source_key,
+                sha256=index_sha256,
+                metadata={"kind": "title", "title": title.number, "source_year": source_year},
+            )
+
     for chapter, source_url, data, error in _iter_nevada_chapter_sources(
         chapters,
         source_dir=source_root,
@@ -216,6 +262,35 @@ def extract_nevada_nrs(
         if error is not None:
             skipped_source_count += 1
             errors.append(error)
+            append_gap(
+                chapter.citation_path,
+                source_url=base_url,
+                source_path=index_source_key,
+                sha256=index_sha256,
+                metadata=_chapter_gap_metadata(chapter, source_year=source_year),
+            )
+            continue
+
+        artifact_relative = f"{NEVADA_NRS_SOURCE_FORMAT}/{chapter.href}"
+        artifact_path = store.source_path(
+            jurisdiction,
+            DocumentClass.STATUTE,
+            run_id,
+            artifact_relative,
+        )
+        sha256 = store.write_bytes(artifact_path, data)
+        source_paths.append(artifact_path)
+        source_key = _state_source_key(jurisdiction, run_id, artifact_relative)
+        parsed_chapter = parse_nevada_chapter_html(data, chapter=chapter.chapter)
+        if not parsed_chapter.sections:
+            errors.append(f"{chapter.href}: no sections found on chapter page")
+            append_gap(
+                chapter.citation_path,
+                source_url=source_url,
+                source_path=source_key,
+                sha256=sha256,
+                metadata=_chapter_gap_metadata(chapter, source_year=source_year),
+            )
             continue
 
         if chapter.title_number is not None and chapter.title_number not in title_by_number:
@@ -249,17 +324,6 @@ def extract_nevada_nrs(
                 },
             )
 
-        artifact_relative = f"{NEVADA_NRS_SOURCE_FORMAT}/{chapter.href}"
-        artifact_path = store.source_path(
-            jurisdiction,
-            DocumentClass.STATUTE,
-            run_id,
-            artifact_relative,
-        )
-        sha256 = store.write_bytes(artifact_path, data)
-        source_paths.append(artifact_path)
-        source_key = _state_source_key(jurisdiction, run_id, artifact_relative)
-        parsed_chapter = parse_nevada_chapter_html(data, chapter=chapter.chapter)
         chapter_heading = parsed_chapter.heading or chapter.heading
         chapter_source_year = parsed_chapter.source_year or source_year
 
@@ -330,7 +394,7 @@ def extract_nevada_nrs(
             if remaining_sections is not None:
                 remaining_sections -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Nevada NRS provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -804,6 +868,16 @@ def _append_inventory_and_record(
             metadata=clean_metadata,
         )
     )
+
+
+def _chapter_gap_metadata(chapter: NevadaNrsChapter, *, source_year: int) -> dict[str, Any]:
+    return {
+        "kind": "chapter",
+        "chapter": chapter.chapter,
+        "title": chapter.title_number,
+        "source_year": source_year,
+        "parent_citation_path": chapter.parent_citation_path,
+    }
 
 
 def _chapter_identifiers(chapter: NevadaNrsChapter) -> dict[str, str]:
