@@ -274,6 +274,14 @@ def _scan_heads(body: str) -> list[_Head]:
     first child of the node they follow, which filters out the remaining
     cross-references and parentheticals.
     """
+    # eCFR marks section and appendix table captions as evidence blocks. Mask
+    # the whole line so initial and inline strong/weak labels cannot become heads.
+    # Equal-length spaces keep every offset relative to the original body.
+    body = re.sub(
+        r"(?m)^\[Table caption: [^\n]*\]$",
+        lambda match: " " * len(match.group()),
+        body,
+    )
     claimed: set[int] = set()
     heads: list[_Head] = []
 

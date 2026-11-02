@@ -6,7 +6,7 @@ jurisdictions) with `wave6/00-common-preamble.md` and `wave6/tanf-ccdf-nh-wy-bri
 `analysis/program-bundle-gaps-2026-10-06`, worktree `~/axiom-corpus-worktrees/bundle-gaps`).
 Worktree `~/axiom-corpus-worktrees/w6-tanf-ccdf-nh-wy` (sparse, `data/corpus/` excluded, never symlinked), branch
 `discovery/ingest-w6-tanf-ccdf-nh-wy` cut from main e16ccb799. Every extraction wrote to the main checkout's corpus root
-(`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`); nothing under `data/corpus/` is committed, nothing is signed,
+(`--base <axiom-corpus checkout>/data/corpus`); nothing under `data/corpus/` is committed, nothing is signed,
 nothing was pushed to R2 or loaded into Supabase.
 Disk: `df -h /` 3.2 TiB free at the start and at the end (the 50 GB stop line was never near).
 Impact analysis: not run (the GitNexus MCP tools are not available in this session). No library function under `src/`
@@ -362,7 +362,7 @@ another agent also uses, before moving to `scratchpad/w6-tanf-ccdf-nh-wy/`. If a
 
 ```bash
 cd ~/axiom-corpus-worktrees/w6-tanf-ccdf-nh-wy
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 cat $(uv run python -c "import certifi;print(certifi.where())") data/certs/*.pem > /tmp/w6-ca.pem
 export REQUESTS_CA_BUNDLE=/tmp/w6-ca.pem
 uv run python scripts/build_w6_tanf_ccdf_nh_wy_manifests.py           # 62 manifests

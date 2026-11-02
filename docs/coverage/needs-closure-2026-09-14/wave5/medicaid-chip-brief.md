@@ -1,6 +1,6 @@
 # Wave 5 brief — Medicaid and CHIP (group `medicaid-chip`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w5-medicaid-chip`, branch
+Read `00-common-preamble.md` first. Worktree `<axiom-corpus worktrees>/w5-medicaid-chip`, branch
 `discovery/ingest-w5-medicaid-chip` (at main 9b0641afc). Inputs: `wave5/medicaid-chip-extractable.csv` (181 rows, all
 state-level) and `wave5/medicaid-chip-review.csv` (2,731 rows). Schemas `medicaid-schema.yaml`, `chip-schema.yaml`;
 reports `medicaid.md`, `chip.md` (pass-2 method); the builder `tools/build_matrix.py` and its `tools/search-universe.json`

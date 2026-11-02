@@ -697,7 +697,7 @@ states:
   target_scope:
     jurisdiction: us
     document_class: regulation
-    version: 2026-09-11-title-20-part-416
+    version: 2026-10-12-with-appendices-title-20-part-416
   lead_counts: {}
   candidate_sources: []
   notes: '2026-09-11 follow-on run (docs/ingest-runs/2026-09-11-federal-cfr-followon-parts.md): the full 20 CFR part 416 extracted
@@ -712,10 +712,16 @@ states:
     (types of income excluded under other federal laws), the one part-416 node the 2026-09-11 eCFR scope skipped (extract-ecfr
     --include-appendices rejects subpart-scoped appendix identifiers), taken as an official document from the eCFR renderer
     API under us/regulation/20/416/subpart-K/appendix; the canonical eCFR page is walled to the corpus client (unblock.federalregister.gov)
-    and is the citation.'
+    and is the citation. 2026-10-12 successor (docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md, needs-closure-2026-09-14
+    SSI-F-CFR416-APPK): the whole part re-extracted with extract-ecfr --include-appendices at the same eCFR point in time
+    (2026-09-09) as scope us/regulation/2026-10-12-with-appendices-title-20-part-416, 623 rows: the 622 rows of 2026-09-11-title-20-part-416
+    retained with table captions restored in 416.974 and 416.1112 and the word break restored in "earnings averaged", plus
+    the Appendix to Subpart K at us/regulation/20/416/subpart-K/appendix. It replaces 2026-09-11-title-20-part-416
+    in a selector; never select both. The wave-5 official-document manifest for the appendix (us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml)
+    was never locked and is retired with its scope record.'
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
-  index_document_count: 622
-  taken_count: 622
+  index_document_count: 623
+  taken_count: 623
   remainder_scope:
     jurisdiction: us
     document_class: manual
@@ -782,22 +788,6 @@ states:
     - SI 04060
     - SI 04070
     run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
-  appendix_subpart_k_scope:
-    jurisdiction: us
-    document_class: regulation
-    version: 2026-09-15-title-20-part-416-appendix-k
-    target_manifest: manifests/us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml
-    document_count: 1
-    citation_paths:
-    - us/regulation/20/416/subpart-K/appendix
-    closure_elements:
-    - SSI-F-CFR416-APPK
-    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
-    notes: '2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-CFR416-APPK): the Appendix to Subpart K of 20 CFR
-      part 416 (types of income excluded under other federal laws), the one part-416 node the 2026-09-11 eCFR scope skipped
-      (extract-ecfr --include-appendices rejects subpart-scoped appendix identifiers), taken as an official document from
-      the eCFR renderer API under us/regulation/20/416/subpart-K/appendix; the canonical eCFR page is walled to the corpus
-      client (unblock.federalregister.gov) and is the citation.'
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready

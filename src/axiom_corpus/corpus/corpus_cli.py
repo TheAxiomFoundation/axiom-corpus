@@ -273,7 +273,7 @@ def _selected_entries(
             chosen[entry.path] = entry
     for path in paths:
         rel = Path(path).as_posix().rstrip("/")
-        matches = locks.entries_under(rel)
+        matches = locks.entries_under(locks.locked_spelling(repo, rel))
         if not matches and rel != CORPUS_BASE:
             _usage_exit(f"no locked files at or under {rel}")
         for entry in matches:
@@ -441,7 +441,9 @@ def _unlocked_files(repo: Path, locks: LockSet, selectors: list[tuple[str, ...]]
             if not path.is_file():
                 continue
             rel = path.relative_to(repo).as_posix()
-            if rel in locks.by_path:
+            # A file stored under another spelling of a locked path (``ACT.html``
+            # for ``act.html`` on APFS) is that locked file, not an unlocked one.
+            if locks.locked_spelling(repo, rel) in locks.by_path:
                 continue
             scope = scope_for_path(rel)
             if selectors and (scope is None or not any(scope[: len(s)] == s for s in selectors)):

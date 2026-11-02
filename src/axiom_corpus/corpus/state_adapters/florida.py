@@ -375,6 +375,7 @@ def extract_florida_statutes(
     items: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
     seen: set[str] = set()
+    errors: list[str] = []
     title_count = 0
     container_count = 0
     section_count = 0
@@ -393,7 +394,15 @@ def extract_florida_statutes(
     if not selected_titles:
         raise ValueError(f"no Florida Statutes titles selected for filter: {only_title!r}")
 
+    # A container is written as a provision only once its own table of
+    # contents lists children. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing everything under
+    # it. A page that could not be fetched is sourced from the parent listing
+    # that names it; a page that was read but lists nothing is sourced from
+    # that page. Titles come from FLORIDA_TITLE_ROMANS, not a fetched listing,
+    # so a title index page that cannot be fetched still stops the run.
     chapter_targets: list[FloridaChapterTarget] = []
+    title_sources: dict[str, _RecordedSource] = {}
     for title_ordinal, title_roman in enumerate(selected_titles, start=1):
         title_source = fetcher.fetch_title_index(title_roman)
         recorded_title = _record_source(
@@ -411,6 +420,12 @@ def extract_florida_statutes(
             title_ordinal=title_ordinal,
             source=recorded_title,
         )
+        title_targets = _parse_florida_chapter_targets(title_source.data, title_roman=title_roman)
+        if not title_targets:
+            errors.append(f"title {title_roman}: no chapters listed in title index page")
+            _append_inventory_gap(seen, items, _title_inventory_item(title))
+            continue
+        title_sources[title_roman] = recorded_title
         _append_unique(
             seen,
             items,
@@ -425,12 +440,28 @@ def extract_florida_statutes(
         )
         title_count += 1
         container_count += 1
-        chapter_targets.extend(_parse_florida_chapter_targets(title_source.data, title_roman=title_roman))
+        chapter_targets.extend(title_targets)
 
     for chapter_ordinal, target in enumerate(chapter_targets, start=1):
         if remaining_sections is not None and remaining_sections <= 0:
             break
-        chapter_source = fetcher.fetch_chapter(target.chapter_path)
+        try:
+            chapter_source = fetcher.fetch_chapter(target.chapter_path)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"chapter {target.chapter}: {exc}")
+            _append_inventory_gap(
+                seen,
+                items,
+                _chapter_inventory_item(
+                    _target_chapter(
+                        target,
+                        ordinal=chapter_ordinal,
+                        source=title_sources[target.title_roman],
+                        source_url=target.source_url,
+                    )
+                ),
+            )
+            continue
         recorded_chapter = _record_source(
             store,
             jurisdiction=jurisdiction,
@@ -445,12 +476,25 @@ def extract_florida_statutes(
                 chapter_source.relative_path,
             )
         )
-        document = _parse_florida_chapter_page(
-            chapter_source.data,
-            target=target,
-            ordinal=chapter_ordinal,
-            source=recorded_chapter,
-        )
+        try:
+            document = _parse_florida_chapter_page(
+                chapter_source.data,
+                target=target,
+                ordinal=chapter_ordinal,
+                source=recorded_chapter,
+            )
+            if not document.sections:
+                raise ValueError("no sections listed in chapter page")
+        except ValueError as exc:
+            errors.append(f"chapter {target.chapter}: {exc}")
+            _append_inventory_gap(
+                seen,
+                items,
+                _chapter_inventory_item(
+                    _target_chapter(target, ordinal=chapter_ordinal, source=recorded_chapter)
+                ),
+            )
+            continue
 
         _append_unique(
             seen,
@@ -466,7 +510,12 @@ def extract_florida_statutes(
         )
         container_count += 1
 
+        listed_parents = {section.parent_citation_path for section in document.sections}
         for part in document.parts:
+            if part.citation_path not in listed_parents:
+                errors.append(f"chapter {part.chapter} part {part.part}: no sections listed")
+                _append_inventory_gap(seen, items, _part_inventory_item(part))
+                continue
             _append_unique(
                 seen,
                 items,
@@ -528,7 +577,46 @@ def extract_florida_statutes(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
+
+
+def _target_chapter(
+    target: FloridaChapterTarget,
+    *,
+    ordinal: int,
+    source: _RecordedSource,
+    source_url: str | None = None,
+) -> FloridaChapter:
+    """A chapter known only from its title index row."""
+    return FloridaChapter(
+        title_roman=target.title_roman,
+        title_heading=None,
+        chapter=target.chapter,
+        heading=None,
+        source_url=source_url or source.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+        ordinal=ordinal,
+    )
+
+
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
 
 
 def _parse_florida_title_index(
