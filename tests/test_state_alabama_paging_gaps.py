@@ -2,9 +2,15 @@
 
 ``extract_alabama_code`` pages through every section with the ALISON
 ``codesOfAlabama`` query and compares the distinct sections it holds with the
-``count`` the listing reports. When the listing ends early, every container
-the scaffold names that has no fetched section beneath it is an inventory gap,
-so coverage reads incomplete and strict release validation refuses the run.
+``count`` the listing reports. When the listing ends early, every section and
+container the run did not fetch is an inventory gap, so coverage reads
+incomplete and strict release validation refuses the run. The one exception is
+a container the scaffold gives no section beneath it: it holds nothing to
+fetch and stays a record, whatever its heading says.
+
+The fixtures follow the live ALISON shapes: the scaffold gives every section a
+parent, and some headings carry a status word whether or not the container
+holds sections.
 """
 
 import json
@@ -24,56 +30,74 @@ from tests.test_state_extraction_gaps import _assert_visible_gaps
 VERSION = "2026-11-02"
 TITLES_SOURCE = f"{ALABAMA_GRAPHQL_SOURCE_FORMAT}/titles.json"
 
-# Two titles. Title 2 carries chapters the titles data marks as repealed,
-# reserved and transferred; they have no sections by law. Article 1 sits
-# under the repealed chapter.
-SCAFFOLD_ROWS = [
-    ("T1", None, "1"),
-    ("C1", "T1", "1"),
-    ("C2", "T1", "2"),
-    ("T2", None, "2"),
-    ("C3", "T2", "1"),
-    ("R1", "T2", "2"),
-    ("A1", "R1", "1"),
-    ("R2", "T2", "3"),
-    ("R3", "T2", "4"),
+# (code id, parent code id, display id, title)
+CONTAINERS = [
+    ("T1", None, "1", "Title 1 General Provisions."),
+    ("C1", "T1", "1", "Chapter 1 Construction of Code and Statutes."),
+    ("C2", "T1", "2", "Chapter 2 Seals."),
+    ("T2", None, "2", "Title 2 Agriculture."),
+    ("C3", "T2", "1", "Chapter 1 General Provisions."),
+    # A status word in the heading, but the container holds sections.
+    (
+        "R1",
+        "T2",
+        "2",
+        "Chapter 2 Repealed. Regulation of Aeronautics, Aircraft and Airports Generally.",
+    ),
+    ("C4", "T2", "3", "Chapter 3 Dairy Products."),
+    ("A1", "C4", "1", "Article 1 General Provisions."),
+    # No section beneath it, under a parent that holds one.
+    ("D2", "A1", "2", "Division 2 Hog Cholera."),
+    # No section beneath it, with a status word.
+    ("A2", "C4", "2", "Article 2 Alabama Dairy Commission. (Repealed)"),
+    # Reserved section stubs beneath it.
+    ("P2", "C4", "2", "Part 2 Reserved."),
 ]
-TITLE_ROWS = [
-    ("T1", "Title 1 General Provisions."),
-    ("C1", "Chapter 1 Construction of Code and Statutes."),
-    ("C2", "Chapter 2 Seals."),
-    ("T2", "Title 2 Agriculture."),
-    ("C3", "Chapter 1 General Provisions."),
-    ("R1", "Chapter 2 Repealed."),
-    ("A1", "Article 1 Former Provisions."),
-    ("R2", "Chapter 3 Reserved."),
-    ("R3", "Chapter 4 Transferred."),
-]
+# (code id, parent code id, display id)
 SECTIONS = [
     ("S1", "C1", "1-1-1"),
     ("S2", "C1", "1-1-2"),
     ("S3", "C2", "1-2-1"),
     ("S4", "C3", "2-1-1"),
+    ("S5", "R1", "2-2-1"),
+    ("S6", "A1", "2-3-1"),
+    ("S7", "P2", "2-3-221"),
 ]
+COUNT = len(SECTIONS)
 
 TITLE_1 = "us-al/statute/title-1"
 CHAPTER_1_1 = "us-al/statute/title-1/chapter-1"
 CHAPTER_1_2 = "us-al/statute/title-1/chapter-2"
 TITLE_2 = "us-al/statute/title-2"
 CHAPTER_2_1 = "us-al/statute/title-2/chapter-1"
-REPEALED = "us-al/statute/title-2/chapter-2"
-REPEALED_ARTICLE = "us-al/statute/title-2/chapter-2/article-1"
-RESERVED = "us-al/statute/title-2/chapter-3"
-TRANSFERRED = "us-al/statute/title-2/chapter-4"
-EMPTY_BY_LAW = {REPEALED, REPEALED_ARTICLE, RESERVED, TRANSFERRED}
-SECTION_PATHS = {f"us-al/statute/{display}" for _, _, display in SECTIONS}
-TITLE_1_PATHS = {TITLE_1, CHAPTER_1_1, CHAPTER_1_2} | {
-    "us-al/statute/1-1-1",
-    "us-al/statute/1-1-2",
-    "us-al/statute/1-2-1",
-}
-TITLE_2_PATHS = {TITLE_2, CHAPTER_2_1, "us-al/statute/2-1-1"} | EMPTY_BY_LAW
+REPEALED_WITH_SECTIONS = "us-al/statute/title-2/chapter-2"
+CHAPTER_2_3 = "us-al/statute/title-2/chapter-3"
+ARTICLE_2_3_1 = "us-al/statute/title-2/chapter-3/article-1"
+EMPTY_DIVISION = "us-al/statute/title-2/chapter-3/article-1/division-2"
+EMPTY_REPEALED_ARTICLE = "us-al/statute/title-2/chapter-3/article-2"
+RESERVED_PART = "us-al/statute/title-2/chapter-3/part-2"
+EMPTY_CONTAINERS = {EMPTY_DIVISION, EMPTY_REPEALED_ARTICLE}
+CODE_ROOT = "us-al/statute"
+
+
+def _section_path(code_id: str) -> str:
+    return f"us-al/statute/{next(row[2] for row in SECTIONS if row[0] == code_id)}"
+
+
+TITLE_1_HELD = {TITLE_1, CHAPTER_1_1, _section_path("S1"), _section_path("S2")}
+TITLE_1_PATHS = TITLE_1_HELD | {CHAPTER_1_2, _section_path("S3")}
+TITLE_2_MISSING = {
+    TITLE_2,
+    CHAPTER_2_1,
+    REPEALED_WITH_SECTIONS,
+    CHAPTER_2_3,
+    ARTICLE_2_3_1,
+    RESERVED_PART,
+} | {_section_path(code_id) for code_id in ("S4", "S5", "S6", "S7")}
+TITLE_2_PATHS = TITLE_2_MISSING | EMPTY_CONTAINERS
 ALL_PATHS = TITLE_1_PATHS | TITLE_2_PATHS
+# After S1 and S2: everything else except the two empty containers.
+MISSING_AFTER_S2 = {CHAPTER_1_2, _section_path("S3")} | TITLE_2_MISSING
 
 
 def _deflated(headers: list[str], rows: list[tuple[str | None, ...]]) -> str:
@@ -82,13 +106,17 @@ def _deflated(headers: list[str], rows: list[tuple[str | None, ...]]) -> str:
     return "†∫" + "∫".join(lines)
 
 
+def _section_title(display: str) -> str:
+    return f"Section {display} Heading {display}."
+
+
 def _section_row(code_id: str) -> dict:
     _, parent, display = next(row for row in SECTIONS if row[0] == code_id)
     return {
         "id": f"g-{code_id}",
         "codeId": code_id,
         "displayId": display,
-        "title": f"Section {display} Heading {display}.",
+        "title": _section_title(display),
         "content": f"<p>Text of section {display}.</p>",
         "history": "(Acts 2026, No. 1.)",
         "parentId": parent,
@@ -100,7 +128,7 @@ def _section_row(code_id: str) -> dict:
     }
 
 
-def _page(code_ids: list[str], *, count: int | None = len(SECTIONS)) -> dict:
+def _page(code_ids: list[str], *, count: int | None = COUNT) -> dict:
     return {
         "data": {
             "codesOfAlabama": {
@@ -119,17 +147,15 @@ def _write_source(
     root: Path,
     pages: dict[str, dict | bytes],
     *,
-    scaffold_sections: bool = False,
+    scaffold_sections: bool = True,
 ) -> Path:
     source = root / "source"
     (source / ALABAMA_GRAPHQL_SOURCE_FORMAT).mkdir(parents=True)
-    scaffold_rows = list(SCAFFOLD_ROWS)
-    title_rows = list(TITLE_ROWS)
+    scaffold_rows = [(code_id, parent, display) for code_id, parent, display, _ in CONTAINERS]
+    title_rows = [(code_id, title) for code_id, _, _, title in CONTAINERS]
     if scaffold_sections:
         scaffold_rows.extend(SECTIONS)
-        title_rows.extend(
-            (code_id, f"Section {display} Heading {display}.") for code_id, _, display in SECTIONS
-        )
+        title_rows.extend((code_id, _section_title(display)) for code_id, _, display in SECTIONS)
     scaffold = _deflated(["codeId", "parentId", "displayId"], scaffold_rows)
     titles = _deflated(
         ["codeId", "title", "sectionRange", "effectiveDate"],
@@ -164,15 +190,25 @@ def _paths(report) -> tuple[list[str], list[str]]:
     return inventory, records
 
 
+EMPTY_PAGE_AFTER_S2 = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page([])}
+
+
 # Controls: a complete listing reads complete, as on main.
 
 
 @pytest.mark.parametrize(
     ("page_size", "pages"),
     [
-        (2, {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page(["S3", "S4"])}),
+        (7, {_page_name(0, 7): _page([row[0] for row in SECTIONS])}),
         # The last page is short because it is the last one.
-        (3, {_page_name(0, 3): _page(["S1", "S2", "S3"]), _page_name(3, 3): _page(["S4"])}),
+        (
+            3,
+            {
+                _page_name(0, 3): _page(["S1", "S2", "S3"]),
+                _page_name(3, 3): _page(["S4", "S5", "S6"]),
+                _page_name(6, 3): _page(["S7"]),
+            },
+        ),
     ],
     ids=["full-pages", "short-last-page"],
 )
@@ -185,14 +221,14 @@ def test_complete_listing_reads_complete(tmp_path, page_size, pages):
     assert report.coverage.complete is True
     assert set(inventory) == set(records) == ALL_PATHS
     assert len(inventory) == len(records) == len(ALL_PATHS)
-    assert report.section_count == len(SECTIONS)
+    assert report.section_count == COUNT
     assert report.title_count == 2
 
 
 def test_complete_listing_for_one_title_reads_complete(tmp_path):
-    pages = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page(["S3", "S4"])}
+    pages = {_page_name(0, 7): _page([row[0] for row in SECTIONS])}
     source = _write_source(tmp_path, pages)
-    _, report = _extract(tmp_path, source, page_size=2, only_title="1")
+    _, report = _extract(tmp_path, source, page_size=7, only_title="1")
 
     inventory, records = _paths(report)
     assert report.errors == ()
@@ -200,85 +236,155 @@ def test_complete_listing_for_one_title_reads_complete(tmp_path):
     assert set(inventory) == set(records) == TITLE_1_PATHS
 
 
+def test_run_capped_by_limit_reads_complete_without_gaps(tmp_path):
+    # A --limit run keeps only what it fetched, by design, even though the
+    # listing reports more sections than the run holds.
+    pages = {_page_name(0, 2): _page(["S1", "S2"])}
+    source = _write_source(tmp_path, pages)
+    _, report = _extract(tmp_path, source, page_size=7, limit=2)
+
+    inventory, records = _paths(report)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    assert set(inventory) == set(records) == TITLE_1_HELD
+
+
 # Lead 1 and lead 2: the listing stops early on an empty or short page, and
-# the containers whose sections were never fetched must stay in the inventory.
+# the containers and sections it never fetched must stay in the inventory.
 
 
-@pytest.mark.parametrize("scaffold_sections", [False, True], ids=["containers", "with-sections"])
-def test_empty_page_before_count_keeps_unfetched_containers_as_gaps(tmp_path, scaffold_sections):
-    pages = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page([])}
-    source = _write_source(tmp_path, pages, scaffold_sections=scaffold_sections)
+def test_empty_page_before_count_keeps_unfetched_nodes_as_gaps(tmp_path):
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2)
     store, report = _extract(tmp_path, source, page_size=2)
 
-    missing = {CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
-    if scaffold_sections:
-        # A scaffold that names the sections names the unfetched ones too.
-        missing |= {"us-al/statute/1-2-1", "us-al/statute/2-1-1"}
-    assert all("2 of 4 sections" in error for error in report.errors)
-    _assert_visible_gaps(
-        store,
-        report,
-        expected={TITLE_1, CHAPTER_1_1, "us-al/statute/1-1-1", "us-al/statute/1-1-2"}
-        | missing
-        | EMPTY_BY_LAW,
-        missing=missing,
-        gap_source=_page_name(2, 2),
-    )
-
-
-def test_short_page_before_count_keeps_unfetched_containers_as_gaps(tmp_path):
-    pages = {_page_name(0, 3): _page(["S1", "S2"])}
-    source = _write_source(tmp_path, pages)
-    store, report = _extract(tmp_path, source, page_size=3)
-
-    missing = {CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
-    _assert_visible_gaps(
-        store,
-        report,
-        expected={TITLE_1, CHAPTER_1_1, "us-al/statute/1-1-1", "us-al/statute/1-1-2"}
-        | missing
-        | EMPTY_BY_LAW,
-        missing=missing,
-        gap_source=_page_name(0, 3),
-    )
-
-
-def test_early_end_for_one_title_keeps_that_title_as_a_gap(tmp_path):
-    # Main raised "no Alabama provisions extracted" here: nothing of title 2
-    # was fetched, so the run held no record and wrote nothing.
-    pages = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page([])}
-    source = _write_source(tmp_path, pages)
-    store, report = _extract(tmp_path, source, page_size=2, only_title="2")
-
-    missing = {TITLE_2, CHAPTER_2_1}
-    _assert_visible_gaps(
-        store,
-        report,
-        expected=missing | EMPTY_BY_LAW,
-        missing=missing,
-        gap_source=_page_name(2, 2),
-    )
-
-
-def test_early_end_with_every_container_fetched_keeps_last_container_as_gap(tmp_path):
-    # The listing reports five sections and every container holds a fetched
-    # one, so no container is empty. The listing ended inside the container of
-    # the last section it held, which stays a gap.
-    pages = {
-        _page_name(0, 2): _page(["S1", "S2"], count=5),
-        _page_name(2, 2): _page(["S3", "S4"], count=5),
-        _page_name(4, 2): _page([], count=5),
-    }
-    source = _write_source(tmp_path, pages)
-    store, report = _extract(tmp_path, source, page_size=2)
-
-    assert "4 of 5 sections" in report.errors[0]
+    assert all("2 of 7 sections" in error for error in report.errors)
     _assert_visible_gaps(
         store,
         report,
         expected=ALL_PATHS,
-        missing={CHAPTER_2_1},
-        gap_source=_page_name(4, 2),
+        missing=MISSING_AFTER_S2,
+        gap_source=_page_name(2, 2),
+    )
+
+
+def test_short_page_before_count_keeps_unfetched_nodes_as_gaps(tmp_path):
+    pages = {_page_name(0, 3): _page(["S1", "S2"])}
+    source = _write_source(tmp_path, pages)
+    store, report = _extract(tmp_path, source, page_size=3)
+
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=ALL_PATHS,
+        missing=MISSING_AFTER_S2,
+        gap_source=_page_name(0, 3),
+    )
+
+
+def test_early_end_for_one_title_keeps_that_title_as_gaps(tmp_path):
+    # Main raised "no Alabama provisions extracted" here: nothing of title 2
+    # was fetched, so the run held no record and wrote nothing.
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2)
+    store, report = _extract(tmp_path, source, page_size=2, only_title="2")
+
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=TITLE_2_PATHS,
+        missing=TITLE_2_MISSING,
+        gap_source=_page_name(2, 2),
+    )
+
+
+# The scaffold's tree, not the heading, decides what holds nothing to fetch.
+
+
+def test_container_with_no_section_beneath_it_stays_a_record(tmp_path):
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2)
+    _, report = _extract(tmp_path, source, page_size=2)
+
+    records = {record.citation_path: record for record in load_provisions(report.provisions_path)}
+    missing = set(report.coverage.missing_from_provisions)
+    # With and without a status word in the heading.
+    assert set(records) >= EMPTY_CONTAINERS
+    assert not EMPTY_CONTAINERS & missing
+    # The division's parent holds a section past the end of the listing, so
+    # the parent is a gap while the empty division under it stays a record.
+    assert ARTICLE_2_3_1 in missing
+    assert records[EMPTY_DIVISION].parent_citation_path == ARTICLE_2_3_1
+    assert not any(path in error for path in EMPTY_CONTAINERS for error in report.errors)
+
+
+def test_status_heading_over_unfetched_sections_is_a_gap(tmp_path):
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2)
+    _, report = _extract(tmp_path, source, page_size=2)
+
+    missing = set(report.coverage.missing_from_provisions)
+    # "Chapter 2 Repealed. Regulation of ..." and "Part 2 Reserved." hold
+    # sections past the end of the listing: they and their sections are gaps.
+    assert {REPEALED_WITH_SECTIONS, _section_path("S5")} <= missing
+    assert {RESERVED_PART, _section_path("S7")} <= missing
+
+
+# The run can't place the shortfall: something still marks it.
+
+
+def test_early_end_with_every_node_held_marks_last_container(tmp_path):
+    # The listing reports eight sections; the run holds all seven the titles
+    # data names. The container of the last section held marks the shortfall.
+    pages = {
+        _page_name(0, 7): _page([row[0] for row in SECTIONS], count=8),
+        _page_name(7, 7): _page([], count=8),
+    }
+    source = _write_source(tmp_path, pages)
+    store, report = _extract(tmp_path, source, page_size=7)
+
+    assert len(report.errors) == 1
+    assert report.errors[0].endswith(
+        ": sections listing ended with 7 of 8 sections; "
+        f"the run can't place the missing ones; marked at {RESERVED_PART}"
+    )
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=ALL_PATHS,
+        missing={RESERVED_PART},
+        gap_source=_page_name(7, 7),
+    )
+
+
+def test_early_end_with_nothing_held_in_title_marks_the_title(tmp_path):
+    # A scaffold that names no sections gives every container no section, so
+    # nothing in title 2 is a gap and no section of it was fetched.
+    pages = {_page_name(0, 2): _page([], count=0)}
+    source = _write_source(tmp_path, pages, scaffold_sections=False)
+    store, report = _extract(tmp_path, source, page_size=2, only_title="2")
+
+    containers = {TITLE_2, CHAPTER_2_1, REPEALED_WITH_SECTIONS, CHAPTER_2_3, ARTICLE_2_3_1}
+    containers |= {RESERVED_PART} | EMPTY_CONTAINERS
+    assert "marked at us-al/statute/title-2" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=containers,
+        missing={TITLE_2},
+        gap_source=_page_name(0, 2),
+    )
+
+
+def test_early_end_with_nothing_held_marks_the_code(tmp_path):
+    pages = {_page_name(0, 2): _page([], count=0)}
+    source = _write_source(tmp_path, pages, scaffold_sections=False)
+    store, report = _extract(tmp_path, source, page_size=2)
+
+    containers = {path for path in ALL_PATHS if "/title-" in path}
+    assert f"marked at {CODE_ROOT}" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=containers | {CODE_ROOT},
+        missing={CODE_ROOT},
+        gap_source=_page_name(0, 2),
     )
 
 
@@ -286,125 +392,73 @@ def test_early_end_with_every_container_fetched_keeps_last_container_as_gap(tmp_
 
 
 @pytest.mark.parametrize("count", [0, None], ids=["count-zero", "count-missing"])
-def test_listing_with_no_sections_keeps_scaffold_containers_as_gaps(tmp_path, count):
+def test_listing_with_no_sections_keeps_scaffold_nodes_as_gaps(tmp_path, count):
     pages = {_page_name(0, 2): _page([], count=count)}
     source = _write_source(tmp_path, pages)
     store, report = _extract(tmp_path, source, page_size=2)
 
-    missing = {TITLE_1, CHAPTER_1_1, CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
     _assert_visible_gaps(
         store,
         report,
-        expected=missing | EMPTY_BY_LAW,
-        missing=missing,
+        expected=ALL_PATHS,
+        missing=ALL_PATHS - EMPTY_CONTAINERS,
         gap_source=_page_name(0, 2),
-    )
-
-
-def test_containers_empty_by_law_stay_complete_records(tmp_path):
-    pages = {_page_name(0, 2): _page([], count=0)}
-    source = _write_source(tmp_path, pages)
-    _, report = _extract(tmp_path, source, page_size=2)
-
-    records = {record.citation_path: record for record in load_provisions(report.provisions_path)}
-    assert set(records) == EMPTY_BY_LAW
-    assert records[REPEALED].metadata["status"] == "repealed"
-    assert not any(path in error for path in EMPTY_BY_LAW for error in report.errors)
-
-
-@pytest.mark.parametrize(
-    ("title", "empty"),
-    [
-        ("Chapter 2 Repealed.", True),
-        ("Chapter 2 Reserved.", True),
-        ("Chapter 2 Transferred.", True),
-        ("Chapter 2 (Repealed)", True),
-        ("Chapter 2 Repealed by Act 2019-1.", True),
-        ("Chapter 2 Transferred to Title 40.", True),
-        ("Chapter 2 Repealed, Acts 2019, No. 1.", True),
-        ("Chapter 2 Transferred Property.", False),
-        ("Chapter 2 Reserved Powers of Counties.", False),
-        ("Chapter 2 Seals.", False),
-    ],
-)
-def test_empty_by_law_reads_only_a_marker_heading(title, empty):
-    node = alabama.AlabamaNode(code_id="X", title=title)
-    assert alabama._alabama_empty_by_law(node, {"X": node}) is empty
-
-
-def test_early_end_with_no_record_still_writes_its_gaps(tmp_path):
-    # Every node in title 1 is a gap, so the run holds no record at all. Main
-    # raised before writing anything; the gaps must still be written.
-    source = _write_source(tmp_path, {})
-    store, report = _extract(tmp_path, source, page_size=2, only_title="1")
-
-    missing = {TITLE_1, CHAPTER_1_1, CHAPTER_1_2}
-    assert report.provisions_written == 0
-    _assert_visible_gaps(
-        store,
-        report,
-        expected=missing,
-        missing=missing,
-        gap_source=TITLES_SOURCE,
     )
 
 
 # Lead 4: a server that ignores ``offset`` returns the same rows every page.
 
 
-def test_listing_that_repeats_rows_keeps_unfetched_containers_as_gaps(tmp_path):
-    pages = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page(["S1", "S2"])}
+def test_listing_that_repeats_rows_keeps_unfetched_nodes_as_gaps(tmp_path):
+    pages = {
+        _page_name(0, 3): _page(["S1", "S2"] + ["S1"]),
+        _page_name(3, 3): _page(["S1", "S2", "S1"]),
+        _page_name(6, 3): _page(["S1"]),
+    }
     source = _write_source(tmp_path, pages)
-    store, report = _extract(tmp_path, source, page_size=2)
+    store, report = _extract(tmp_path, source, page_size=3)
 
-    missing = {CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
     _assert_visible_gaps(
         store,
         report,
-        expected={TITLE_1, CHAPTER_1_1, "us-al/statute/1-1-1", "us-al/statute/1-1-2"}
-        | missing
-        | EMPTY_BY_LAW,
-        missing=missing,
-        gap_source=_page_name(2, 2),
+        expected=ALL_PATHS,
+        missing=MISSING_AFTER_S2,
+        gap_source=_page_name(6, 3),
     )
 
 
 # A page that cannot be fetched or read ends the listing the same way.
 
 
-def test_unfetchable_page_keeps_unfetched_containers_as_gaps_from_titles(tmp_path):
+def test_unfetchable_page_keeps_unfetched_nodes_as_gaps_from_titles(tmp_path):
     pages = {_page_name(0, 2): _page(["S1", "S2"])}
     source = _write_source(tmp_path, pages)
     store, report = _extract(tmp_path, source, page_size=2)
 
     assert all("sections page at offset 2" in error for error in report.errors)
-    missing = {CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
     _assert_visible_gaps(
         store,
         report,
-        expected={TITLE_1, CHAPTER_1_1, "us-al/statute/1-1-1", "us-al/statute/1-1-2"}
-        | missing
-        | EMPTY_BY_LAW,
-        missing=missing,
+        expected=ALL_PATHS,
+        missing=MISSING_AFTER_S2,
         gap_source=TITLES_SOURCE,
     )
 
 
-def test_unfetchable_first_page_keeps_every_container_as_gap_from_titles(tmp_path):
+def test_unfetchable_first_page_keeps_every_node_as_gap_from_titles(tmp_path):
     source = _write_source(tmp_path, {})
     store, report = _extract(tmp_path, source, page_size=2)
 
-    missing = {TITLE_1, CHAPTER_1_1, CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
     _assert_visible_gaps(
         store,
         report,
-        expected=missing | EMPTY_BY_LAW,
-        missing=missing,
+        expected=ALL_PATHS,
+        missing=ALL_PATHS - EMPTY_CONTAINERS,
         gap_source=TITLES_SOURCE,
     )
 
 
-def test_unreadable_page_keeps_unfetched_containers_as_gaps_from_that_page(tmp_path):
+def test_unreadable_page_keeps_unfetched_nodes_as_gaps_from_that_page(tmp_path):
     pages = {
         _page_name(0, 2): _page(["S1", "S2"]),
         _page_name(2, 2): {"data": {"somethingElse": None}},
@@ -413,21 +467,36 @@ def test_unreadable_page_keeps_unfetched_containers_as_gaps_from_that_page(tmp_p
     store, report = _extract(tmp_path, source, page_size=2)
 
     assert all("missing data.codesOfAlabama" in error for error in report.errors)
-    missing = {CHAPTER_1_2, TITLE_2, CHAPTER_2_1}
     _assert_visible_gaps(
         store,
         report,
-        expected={TITLE_1, CHAPTER_1_1, "us-al/statute/1-1-1", "us-al/statute/1-1-2"}
-        | missing
-        | EMPTY_BY_LAW,
-        missing=missing,
+        expected=ALL_PATHS,
+        missing=MISSING_AFTER_S2,
         gap_source=_page_name(2, 2),
     )
 
 
+def test_early_end_with_no_record_still_writes_its_gaps(tmp_path):
+    # Every node in title 1 is a gap, so the run holds no record at all. Main
+    # raised before writing anything; the gaps must still be written.
+    source = _write_source(tmp_path, {})
+    store, report = _extract(tmp_path, source, page_size=2, only_title="1")
+
+    assert report.provisions_written == 0
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=TITLE_1_PATHS,
+        missing=TITLE_1_PATHS,
+        gap_source=TITLES_SOURCE,
+    )
+
+
+# What stops the run.
+
+
 def test_interrupt_during_page_fetch_propagates(tmp_path, monkeypatch):
-    pages = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page(["S3", "S4"])}
-    source = _write_source(tmp_path, pages)
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2)
     original = alabama._AlabamaFetcher.fetch_sections_page
 
     def interrupted(self, *, offset, limit):
@@ -440,8 +509,27 @@ def test_interrupt_during_page_fetch_propagates(tmp_path, monkeypatch):
         _extract(tmp_path, source, page_size=2)
 
 
+def test_store_write_failure_for_a_page_propagates(tmp_path, monkeypatch):
+    # A full disk is not a coverage gap.
+    source = _write_source(tmp_path, EMPTY_PAGE_AFTER_S2)
+    original = CorpusArtifactStore.write_bytes
+
+    def failing(self, path, data):
+        if "sections-current-offset-2" in str(path):
+            raise OSError("No space left on device")
+        return original(self, path, data)
+
+    monkeypatch.setattr(CorpusArtifactStore, "write_bytes", failing)
+    with pytest.raises(OSError, match="No space left"):
+        _extract(tmp_path, source, page_size=2)
+
+
 def test_listing_does_not_page_past_count(tmp_path, monkeypatch):
-    pages = {_page_name(0, 2): _page(["S1", "S2"]), _page_name(2, 2): _page(["S1", "S2"])}
+    pages = {
+        _page_name(0, 3): _page(["S1", "S2", "S1"]),
+        _page_name(3, 3): _page(["S1", "S2", "S1"]),
+        _page_name(6, 3): _page(["S1"]),
+    }
     source = _write_source(tmp_path, pages)
     offsets: list[int] = []
     original = alabama._AlabamaFetcher.fetch_sections_page
@@ -451,5 +539,5 @@ def test_listing_does_not_page_past_count(tmp_path, monkeypatch):
         return original(self, offset=offset, limit=limit)
 
     monkeypatch.setattr(alabama._AlabamaFetcher, "fetch_sections_page", recording)
-    _extract(tmp_path, source, page_size=2)
-    assert offsets == [0, 2]
+    _extract(tmp_path, source, page_size=3)
+    assert offsets == [0, 3, 6]
