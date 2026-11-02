@@ -190,14 +190,14 @@ class _SouthCarolinaFetcher:
     def fetch_title(self, title: int) -> _SouthCarolinaSourcePage:
         return self.fetch(
             f"{SOUTH_CAROLINA_SOURCE_FORMAT}/title-{title}.html",
-            urljoin(self.base_url, f"/code/title{title}.php"),
+            _title_url(self.base_url, title),
         )
 
     def fetch_chapter(self, title: int, chapter: str | int) -> _SouthCarolinaSourcePage:
         chapter_number = int(str(chapter))
         return self.fetch(
             f"{SOUTH_CAROLINA_SOURCE_FORMAT}/title-{title}/chapter-{chapter_number}.html",
-            urljoin(self.base_url, f"/code/t{title:02d}c{chapter_number:03d}.php"),
+            _chapter_url(self.base_url, title, chapter),
         )
 
     def fetch(self, relative_path: str, source_url: str) -> _SouthCarolinaSourcePage:
@@ -370,14 +370,38 @@ def extract_south_carolina_code(
     if not titles:
         raise ValueError(f"no South Carolina titles selected for filter: {only_title!r}")
 
+    title_metadata = {
+        "index_source_path": master_source_key,
+        "index_sha256": master_sha,
+    }
+    # A title or chapter is written as a provision only once its own page
+    # lists children. A page that cannot be fetched stays an inventory gap
+    # sourced from the listing that names it (the master index for a title,
+    # the title page for a chapter); a page that was fetched but lists nothing
+    # stays a gap sourced from that page. Either way coverage reads incomplete
+    # instead of silently losing everything under it. A chapter that lists no
+    # section but carries a note (a repealed chapter) is written as before,
+    # and a title whose chapters the chapter filter leaves out is skipped, not
+    # lost.
     for title in titles:
         if remaining_sections is not None and remaining_sections <= 0:
             break
         try:
             title_page = fetcher.fetch_title(title.number)
-        except ValueError as exc:
+        except (requests.RequestException, ValueError) as exc:
             skipped_source_count += 1
             errors.append(f"title {title.number}: {exc}")
+            _append_inventory_gap(
+                seen,
+                items,
+                _title_gap_item(
+                    title,
+                    source_url=_title_url(fetcher.base_url, title.number),
+                    source_path=master_source_key,
+                    sha256=master_sha,
+                    metadata=title_metadata,
+                ),
+            )
             continue
 
         title_path = store.source_path(
@@ -389,11 +413,27 @@ def extract_south_carolina_code(
         title_sha = store.write_bytes(title_path, title_page.data)
         source_paths.append(title_path)
         title_source_key = _state_source_key(jurisdiction, run_id, title_page.relative_path)
+        listed_chapters = parse_south_carolina_title_html(title_page.data, title=title.number)
         chapters = tuple(
             chapter
-            for chapter in parse_south_carolina_title_html(title_page.data, title=title.number)
+            for chapter in listed_chapters
             if chapter_filter is None or chapter.number == chapter_filter
         )
+        if not listed_chapters:
+            skipped_source_count += 1
+            errors.append(f"title {title.number}: no chapters listed in title page")
+            _append_inventory_gap(
+                seen,
+                items,
+                _title_gap_item(
+                    title,
+                    source_url=title_page.source_url,
+                    source_path=title_source_key,
+                    sha256=title_sha,
+                    metadata=title_metadata,
+                ),
+            )
+            continue
         if not chapters:
             skipped_source_count += 1
             errors.append(f"title {title.number}: no chapters selected")
@@ -424,8 +464,7 @@ def extract_south_carolina_code(
                 metadata={
                     "kind": "title",
                     "title": str(title.number),
-                    "index_source_path": master_source_key,
-                    "index_sha256": master_sha,
+                    **title_metadata,
                 },
             )
 
@@ -437,6 +476,16 @@ def extract_south_carolina_code(
             except (requests.RequestException, ValueError) as exc:
                 skipped_source_count += 1
                 errors.append(f"title {title.number} chapter {chapter.number}: {exc}")
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _chapter_gap_item(
+                        chapter,
+                        source_url=_chapter_url(fetcher.base_url, title.number, chapter.number),
+                        source_path=title_source_key,
+                        sha256=title_sha,
+                    ),
+                )
                 continue
 
             chapter_path = store.source_path(
@@ -460,6 +509,19 @@ def extract_south_carolina_code(
             chapter_body_lines = _chapter_note_lines(chapter_page.data) if not sections else []
             chapter_body = "\n".join(chapter_body_lines).strip() or None
             chapter_status = _status(chapter.heading, chapter_body_lines)
+            if not sections and not chapter_body:
+                errors.append(f"title {title.number} chapter {chapter.number}: no sections parsed")
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _chapter_gap_item(
+                        chapter,
+                        source_url=chapter_page.source_url,
+                        source_path=chapter_source_key,
+                        sha256=chapter_sha,
+                    ),
+                )
+                continue
 
             if chapter.citation_path not in seen:
                 seen.add(chapter.citation_path)
@@ -495,8 +557,6 @@ def extract_south_carolina_code(
                 )
 
             if not sections:
-                if not chapter_body:
-                    errors.append(f"title {title.number} chapter {chapter.number}: no sections parsed")
                 continue
             for section in sections:
                 if remaining_sections is not None and remaining_sections <= 0:
@@ -1109,6 +1169,60 @@ def apply_south_carolina_session_law_overlay(
     )
 
 
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected provision whose page yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the
+    provision is expected: its parent listing, or its own unusable page.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
+
+
+def _title_gap_item(
+    title: SouthCarolinaTitle,
+    *,
+    source_url: str,
+    source_path: str,
+    sha256: str,
+    metadata: dict[str, Any],
+) -> SourceInventoryItem:
+    """A title the run selected but could not read from its page."""
+    return SourceInventoryItem(
+        citation_path=title.citation_path,
+        source_url=source_url,
+        source_path=source_path,
+        source_format=SOUTH_CAROLINA_SOURCE_FORMAT,
+        sha256=sha256,
+        metadata={"kind": "title", "title": str(title.number), **metadata},
+    )
+
+
+def _chapter_gap_item(
+    chapter: SouthCarolinaChapter,
+    *,
+    source_url: str,
+    source_path: str,
+    sha256: str,
+) -> SourceInventoryItem:
+    """A chapter the run selected but could not read from its page."""
+    return SourceInventoryItem(
+        citation_path=chapter.citation_path,
+        source_url=source_url,
+        source_path=source_path,
+        source_format=SOUTH_CAROLINA_SOURCE_FORMAT,
+        sha256=sha256,
+        metadata={"kind": "chapter", "title": str(chapter.title), "chapter": chapter.number},
+    )
+
+
 def _append_section_record(
     items: list[SourceInventoryItem],
     records: list[ProvisionRecord],
@@ -1389,6 +1503,14 @@ def _date_text(value: date | str | None, fallback: str) -> str:
 
 def _state_source_key(jurisdiction: str, run_id: str, relative_name: str) -> str:
     return f"sources/{jurisdiction}/{DocumentClass.STATUTE.value}/{run_id}/{relative_name}"
+
+
+def _title_url(base_url: str, title: int) -> str:
+    return urljoin(base_url, f"/code/title{title}.php")
+
+
+def _chapter_url(base_url: str, title: int, chapter: str | int) -> str:
+    return urljoin(base_url, f"/code/t{title:02d}c{int(str(chapter)):03d}.php")
 
 
 def _base_url(value: str) -> str:

@@ -114,6 +114,12 @@ def extract_indiana_code(
     errors: list[str] = []
     remaining = limit
 
+    # A title is written as a provision only once its page lists an article,
+    # chapter or section under it. A title page that cannot be parsed, parses
+    # to nothing or lists nothing under the title stays an inventory gap,
+    # sourced from that page, so coverage reads incomplete instead of silently
+    # losing the title. A repealed title (IC 17, 18 and 19) lists nothing and
+    # is written as before.
     for source in title_sources:
         if remaining is not None and remaining <= 0:
             break
@@ -128,20 +134,44 @@ def extract_indiana_code(
         source_paths.append(artifact_path)
         source_key = _state_source_key(jurisdiction, run_id, title_relative)
         source_url = _indiana_title_url(source.title, source_year, base_url)
+        title_gap = _title_gap_item(
+            source.title,
+            source_url=source_url,
+            source_path=source_key,
+            sha256=sha256,
+            source_year=source_year,
+        )
 
         try:
             provisions = parse_indiana_title_html(source.data)
         except ValueError as exc:
             errors.append(f"title {source.title}: {exc}")
+            _append_inventory_gap(seen, items, title_gap)
             continue
         if not provisions:
             errors.append(f"title {source.title}: no provisions parsed")
+            _append_inventory_gap(seen, items, title_gap)
             continue
+        lists_children = any(provision.kind != "title" for provision in provisions)
 
         for provision in provisions:
             if remaining is not None and remaining <= 0:
                 break
             if provision.citation_path in seen:
+                continue
+            if not lists_children and _status(provision) != "repealed":
+                errors.append(f"title {source.title}: no articles, chapters or sections listed")
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _inventory_item(
+                        provision,
+                        source_url=source_url,
+                        source_path=source_key,
+                        sha256=sha256,
+                        source_year=source_year,
+                    ),
+                )
                 continue
             seen.add(provision.citation_path)
             items.append(
@@ -173,7 +203,7 @@ def extract_indiana_code(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Indiana Code provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -392,6 +422,41 @@ def _indiana_zip_title_members(
             if re.fullmatch(r"\d+\.html", Path(name).name)
         ]
     return tuple(sorted(members, key=lambda name: int(Path(name).stem)))
+
+
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected provision whose page yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the title page the run read.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
+
+
+def _title_gap_item(
+    title: str,
+    *,
+    source_url: str,
+    source_path: str,
+    sha256: str,
+    source_year: int,
+) -> SourceInventoryItem:
+    """A title known only from the name of its unusable title page."""
+    return SourceInventoryItem(
+        citation_path=f"us-in/statute/{title}",
+        source_url=source_url,
+        source_path=source_path,
+        source_format=INDIANA_CODE_SOURCE_FORMAT,
+        sha256=sha256,
+        metadata={"kind": "title", "title": title, "source_year": source_year},
+    )
 
 
 def _inventory_item(
