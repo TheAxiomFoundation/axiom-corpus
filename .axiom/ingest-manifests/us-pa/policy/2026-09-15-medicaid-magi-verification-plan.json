@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "707fb0d71425f74915b2299b238eb0d744b84e5ad0390bb9c108d2d764caa556"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "b12a6230a58a65b1de8c6e6e5652111e95de245fc8a373d3927b89c122160776"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "ab563f40d58881109aa5e7aa7fbbdcee6edb96ef8863e36ebe0580ced3dbc651"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-pa-cms-magi-verification-plan-pennsylvania-verification-plan-template-final.pdf",
+      "sha256": "55474a764765d00cf140cbb0e72f6f5b6f5d42eaf81b1a09aa25fe8f33035151"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:12.055301+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "idgesjpdFL+dpBxqcB6g16Km/eQn+sgSFZfojIlImR0HbaPrkrLek9uNxiG/S6EHMzv6McvCFtCNVD3So4qSDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

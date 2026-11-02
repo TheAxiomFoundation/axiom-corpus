@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/regulation/2026-10-12-w7-state-benefits-regulation-dc.json",
+      "sha256": "c38cdd7b62c389119fe64bedec5293e82a1f192127f6d1dec43702c6de6c623a"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/regulation/2026-10-12-w7-state-benefits-regulation-dc.json",
+      "sha256": "7e916469ffc0f323610aa1a8cdde0d6cdf8ddf5d13f860060cec878f28fcbcd9"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/regulation/2026-10-12-w7-state-benefits-regulation-dc.jsonl",
+      "sha256": "e67901697fcdc75097f1f9cba4a3fd38a51b2c52ff5b519cb2502dd11c0ebea0"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/regulation/2026-10-12-w7-state-benefits-regulation-dc/official-documents/us-dc-regulation-dcmr-29-7200.doc",
+      "sha256": "b8433b8f01319f45bcba900cf65fba6601e04d5a2c23cb6f085cb64aafb2596c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-13T12:05:57.493846+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "StNdCogAI9S2c0uFQ67TwuBxmcyoIEto7yQcWlNnobVB2wgPXcKeSGJqncG9H7GO17czLmuX8VDpvsGKvstpBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-regulation-dc"
+}

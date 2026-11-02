@@ -23,7 +23,7 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, assume, given, settings
 from hypothesis import strategies as st
 
 import axiom_corpus.corpus.ecfr as ecfr
@@ -590,6 +590,35 @@ def test_stray_space_after_the_dot(structure, xml, path, label, heading, parent)
     assert record.heading == heading
     assert record.parent_citation_path == parent
     assert record.parent_citation_path == records[sibling.citation_path].parent_citation_path
+
+
+def test_a_stray_space_reading_for_another_part_belongs_to_the_part_that_holds_it():
+    """"3141. 5" names part 3141 but sits in part 3140, so #841's rules hold for it as
+    for its sibling 3141.3: a run scoped to part 3140 includes it, the selector
+    3141.5 picks it, its metadata names the enclosing part, and the XML element is
+    selectable on the evidence the inventory read."""
+    path = "us/regulation/43/3141/5"
+    scoped = build_ecfr_inventory_from_structures((TITLE_43_STRUCTURE,), only_part="3140")
+    item = {entry.citation_path: entry for entry in scoped.items}[path]
+    assert item.metadata["part"] == "3141"
+    assert item.metadata["enclosing_part"] == "3140"
+    selected = build_ecfr_inventory_from_structures(
+        (TITLE_43_STRUCTURE,), only_part="3140", only_sections=("3141.5",)
+    )
+    assert _paths(selected.items)[-1] == path
+
+    part_elem = next(
+        elem for elem in ET.fromstring(TITLE_43_XML).iter("DIV5") if elem.get("N") == "3140"
+    )
+    elem = next(elem for elem in part_elem.iter("DIV8") if elem.get("N") == "3141. 5")
+    evidence = ecfr._element_section_evidence(part_elem)
+    assert ecfr._selectable_section_from_element(43, elem, "3140", evidence=evidence) == (
+        path,
+        "3141",
+        "5",
+    )
+    # Without evidence, no grammar reads it, as on #841.
+    assert ecfr._selectable_section_from_element(43, elem, "3140") is None
 
 
 def test_stray_space_needs_a_part_another_section_names():
@@ -1193,10 +1222,18 @@ def _clashing_titles(draw):
 @settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(structure=_clashing_titles())
 def test_property_confirmed_readings_add_only_fresh_unique_paths(structure):
-    new = Counter(_paths(build_ecfr_inventory_from_structures((structure,)).items))
     # Without evidence the walk reads exactly as #840 did.
     with mock.patch.object(ecfr, "_structure_section_evidence", lambda node: None):
-        old = Counter(_paths(build_ecfr_inventory_from_structures((structure,)).items))
+        try:
+            old = Counter(_paths(build_ecfr_inventory_from_structures((structure,)).items))
+        except ValueError as exc:
+            # #841 refuses an inventory whose items claim one path twice. Where #840's
+            # readings already collide there is no inventory to compare against.
+            if "is claimed twice" not in str(exc):
+                raise
+            assume(False)
+    # A confirmed reading that collided with any other would raise here.
+    new = Counter(_paths(build_ecfr_inventory_from_structures((structure,)).items))
 
     added = new - old
     removed = old - new

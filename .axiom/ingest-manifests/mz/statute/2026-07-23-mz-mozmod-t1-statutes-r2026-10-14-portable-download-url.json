@@ -1,0 +1,70 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url.json",
+      "sha256": "107026ace697bb3964801c05f75091a53fb286ee92fc50f8488642c415b0ad92"
+    },
+    {
+      "path": "data/corpus/inventory/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url.json",
+      "sha256": "e3063553d9c20518e03d96d28b00c26efb4805b483ddad5f9cdcc4dd873caa21"
+    },
+    {
+      "path": "data/corpus/provisions/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "76abd99b633c2cce0197823a2b98b38438f93447cf8243171adf2f42317bb8b0"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url/official-documents/mz-lei-20-2013-irps-revisao.pdf",
+      "sha256": "e9971b37fe1c1c7355bea7d80101c6f891a74f898bacee214994feea88175b13"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url/official-documents/mz-lei-3-2012-iva-revisao.pdf",
+      "sha256": "1189fa3d8c4aa74ad48e15ac6dbd28e94066e063ed872cc1aa90974756d23e5a"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url/official-documents/mz-lei-4-2007-proteccao-social.pdf",
+      "sha256": "68f1d60568179e1adee8b24353bb98bdd5db68b0b16353024bc0dd01c1d0ef4e"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url/official-documents/mz-lei-5-2009-ispc.pdf",
+      "sha256": "fda4c1a0056842dc882013fa422fa77fba5f8fe2d70e205ffa1e00cce30bbacf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope mz/statute/2026-07-23-mz-mozmod-t1-statutes --manifest manifests/mz-mozmod-t1-statutes-official-documents.yaml --tag r2026-10-14-portable-download-url (successor of mz/statute/2026-07-23-mz-mozmod-t1-statutes without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-bomz.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-23T15:06:31.360228+00:00",
+  "jurisdiction": "mz",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-bomz-audit.json",
+      "sha256": "89eb3c6fe737344a829f7ee1b3807e1bd94a8679c72b10469295d4cb3dca3cfa"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-bomz.md",
+      "sha256": "382603628a90bb794b65faf0c015791c96cf4c5682e7dd8b75557e4f970b86ce"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wszYUrSxl+4Jyqg9oTjT0Mxz0FA/ML0nstFZSjF/8Aq1izQdWWymiKaeQYxW2uAO4jujk/lOH4x/Ehj7Lni/DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url"
+}

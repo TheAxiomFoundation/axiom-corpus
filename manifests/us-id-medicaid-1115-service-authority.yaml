@@ -1,0 +1,124 @@
+version: 2026-10-20-w8-medicaid-1115-service-authority
+documents:
+- source_id: us-id-cms-1115-service-authority-behavioral-health-transformation
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho section 1115 demonstration "Idaho Behavioral Health Transformation": CMS amended and restated approval, waiver
+    and expenditure authorities and special terms and conditions (2024-03-29)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/id-behavioral-health-transformation-dmntsn-aprvl-ca-03292024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2024-03-29'
+  citation_path: us-id/policy/cms/1115-service-authority/behavioral-health-transformation
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    document_subtype: cms_1115_approval_and_stc_pdf
+    demonstration_title: Idaho Behavioral Health Transformation
+    demonstration_number: 11-W-00339/10
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81511
+    demonstration_authority_kind: service_authority
+    index_link_text: Demonstration Approval
+    index_section: Administrative Record
+    printed_status: Pending
+    printed_waiver_dates: approval 2020-04-17, effective 2020-04-17, expiration 2027-03-31
+    approval_date: '2024-03-29'
+    carries: the special terms and conditions, waiver authority list and expenditure authority list of the demonstration as
+      approved 2020-04-17 and amended and restated 2024-03-29; the 2026-08-28 temporary extension approval states that these
+      STCs and expenditure authorities continue to apply. SUD and SMI service authority; it sets no state-specific eligibility
+      group
+    source_discovery_group: us-id/policy/cms-1115-service-authority
+    discovered_via: manual-review:medicaid-agent-queue wave-8 (2026-10-20); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-10-20
+      at 9 to 12 second pacing; bodies carry the publisher's own page furniture and no bot-challenge marker; TLS verified,
+      no mirror
+    supersedes_note: the earlier CMS Temporary Extension Approvals (2025-09-25 under Approved Application(s), 2025-03-31 in
+      the Administrative Record) cover expired extension periods, the 2025-03-12 Pending Application - Extension is pending,
+      and the pre-2024 Demonstration Approvals are superseded by the 2024-03-29 amended and restated approval; none of them
+      is taken
+    carries_elements: 'M-ST-1315 adjacent (service authority, not an eligibility demonstration): CMS-approved 1115 demonstration
+      special terms and conditions'
+- source_id: us-id-cms-1115-service-authority-behavioral-health-transformation-2025-amendment
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho section 1115 demonstration "Idaho Behavioral Health Transformation": CMS amendment approval and Attachment
+    G amendments to the expenditure authorities and special terms and conditions (2025-05-15)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/id-behavioral-health-transformation-dmntsn-aprvl-amndmnt-ca-05152025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2025-05-15'
+  citation_path: us-id/policy/cms/1115-service-authority/behavioral-health-transformation-2025-amendment
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    document_subtype: cms_1115_amendment_approval_pdf
+    demonstration_title: Idaho Behavioral Health Transformation
+    demonstration_number: 11-W-00339/10
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81511
+    demonstration_authority_kind: service_authority
+    index_link_text: Demonstration Approval – Amendment
+    index_section: Administrative Record
+    printed_status: Pending
+    printed_waiver_dates: approval 2020-04-17, effective 2020-04-17, expiration 2027-03-31
+    approval_date: '2025-05-15'
+    carries: 'Attachment G, appended to the STCs effective 2025-05-15: it removes the expenditure authority that let legally
+      responsible individuals provide 1905(a) personal care services, 60 calendar days after the effective date. Read with
+      the 2024-03-29 amended and restated STCs; the letter records that the amendment does not affect Medicaid eligibility'
+    source_discovery_group: us-id/policy/cms-1115-service-authority
+    discovered_via: manual-review:medicaid-agent-queue wave-8 (2026-10-20); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-10-20
+      at 9 to 12 second pacing; bodies carry the publisher's own page furniture and no bot-challenge marker; TLS verified,
+      no mirror
+    supersedes_note: the earlier CMS Temporary Extension Approvals (2025-09-25 under Approved Application(s), 2025-03-31 in
+      the Administrative Record) cover expired extension periods, the 2025-03-12 Pending Application - Extension is pending,
+      and the pre-2024 Demonstration Approvals are superseded by the 2024-03-29 amended and restated approval; none of them
+      is taken
+    carries_elements: 'M-ST-1315 adjacent (service authority, not an eligibility demonstration): CMS-approved 1115 demonstration
+      special terms and conditions'
+- source_id: us-id-cms-1115-service-authority-behavioral-health-transformation-temporary-extension
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho section 1115 demonstration "Idaho Behavioral Health Transformation": CMS temporary extension approval through
+    2027-03-31 (2026-08-28)'
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/ID-BHT-ext-apprvl-letter-08282026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2026-08-28'
+  citation_path: us-id/policy/cms/1115-service-authority/behavioral-health-transformation-temporary-extension
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    document_subtype: cms_1115_temporary_extension_approval_pdf
+    demonstration_title: Idaho Behavioral Health Transformation
+    demonstration_number: 11-W-00339/10
+    demonstration_page: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81511
+    demonstration_authority_kind: service_authority
+    index_link_text: CMS Temporary Extension Approval
+    index_section: Approved Application(s) and Related Documents
+    printed_status: Pending
+    printed_waiver_dates: approval 2020-04-17, effective 2020-04-17, expiration 2027-03-31
+    approval_date: '2026-08-28'
+    carries: 'the approval in force: it extends the demonstration to 2027-03-31 while CMS and the state negotiate the 2025-03-12
+      extension application, and states that the current STCs, expenditure authority and budget neutrality agreement continue
+      to apply during the temporary extension'
+    source_discovery_group: us-id/policy/cms-1115-service-authority
+    discovered_via: manual-review:medicaid-agent-queue wave-8 (2026-10-20); CMS 1115 demonstration list https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+    publisher_note: medicaid.gov answered the plain extractor client HTTP 200 (list, demonstration page and PDF) on 2026-10-20
+      at 9 to 12 second pacing; bodies carry the publisher's own page furniture and no bot-challenge marker; TLS verified,
+      no mirror
+    supersedes_note: the earlier CMS Temporary Extension Approvals (2025-09-25 under Approved Application(s), 2025-03-31 in
+      the Administrative Record) cover expired extension periods, the 2025-03-12 Pending Application - Extension is pending,
+      and the pre-2024 Demonstration Approvals are superseded by the 2024-03-29 amended and restated approval; none of them
+      is taken
+    carries_elements: 'M-ST-1315 adjacent (service authority, not an eligibility demonstration): CMS-approved 1115 demonstration
+      special terms and conditions'

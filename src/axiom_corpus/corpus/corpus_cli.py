@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import contextlib
 import json
+import random
 import subprocess
 import sys
 from collections.abc import Iterable
@@ -24,7 +25,7 @@ from axiom_corpus.corpus.content_store import (
     R2ObjectStore,
     destination_state,
     ensure_cached,
-    materialize,
+    materialize_resilient,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -212,6 +213,21 @@ def _remote(workers: int) -> R2ObjectStore:
         raise SystemExit(f"corpus: {exc}") from exc
 
 
+def _spread(entries: Iterable[LockEntry]) -> list[LockEntry]:
+    """``entries`` in a random order, for the commands that read R2 for each one.
+
+    Every CI job, and every pull request's run, walks the same sorted lock
+    entries; in that order they ask R2 for the same object at the same moment,
+    as do a successor scope and the predecessor whose files it repeats, and R2
+    has refused such reads ("Reduce your rate of simultaneous reads on the same
+    object"). Nothing else depends on the order: each entry is fetched,
+    verified and reported on its own.
+    """
+    spread = list(entries)
+    random.shuffle(spread)
+    return spread
+
+
 def _emit(args: argparse.Namespace, payload: dict[str, Any], lines: Iterable[str]) -> None:
     if args.json:
         print(json.dumps(payload, indent=2, sort_keys=True))
@@ -308,9 +324,13 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         releases=args.release,
         paths=paths,
     )
-    report = materialize(
+    # A bulk fetch asks for tens of thousands of objects, so a small random subset
+    # can fail on throttling; re-ask for those rather than report the whole fetch
+    # failed (exit 1 below). This is the same resilience `CorpusResolver.ensure`
+    # relies on, which is why both callers share one implementation.
+    report = materialize_resilient(
         repo,
-        entries,
+        _spread(entries),
         None if args.no_cache else _cache(args),
         _sources(repo, r2=not args.no_r2, workers=args.workers),
         force=args.force,
@@ -622,7 +642,7 @@ def _push_entries(
         return entry, remote.has(entry.sha256, entry.size)
 
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
-        for future in as_completed([pool.submit(probe, e) for e in unique.values()]):
+        for future in as_completed([pool.submit(probe, e) for e in _spread(unique.values())]):
             entry, present = future.result()
             if present:
                 result["present"] += 1
@@ -718,7 +738,7 @@ def _cmd_verify(args: argparse.Namespace) -> int:
 
         absent: set[str] = set()
         with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
-            for future in as_completed([pool.submit(probe, e) for e in unique.values()]):
+            for future in as_completed([pool.submit(probe, e) for e in _spread(unique.values())]):
                 entry, present = future.result()
                 if not present:
                     absent.add(entry.sha256)

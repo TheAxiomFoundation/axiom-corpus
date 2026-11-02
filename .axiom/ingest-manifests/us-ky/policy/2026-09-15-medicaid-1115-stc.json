@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "d0351238da239f361acd42e3c18039303602041dc024bab8741b2a6166fdb094"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "469afb1d000f61779ad442bcfc91b1f5dd1daf8fd500b7e16fff25f5f2d6d317"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "5ce31fa9142f791c7d2bae337de452d8180316c695c9aeb08f062c8f5e0c827b"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-09-15-medicaid-1115-stc/official-documents/us-ky-cms-1115-stc-teamky.pdf",
+      "sha256": "76195b5d6b6fbea8b2081bc6e6f344146292983b1e0e3f8893c92c16a1e8932c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 157,
+    "missing_count": 0,
+    "provision_count": 157,
+    "source_count": 157
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:47.925205+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "maJM7iN8xx0WryFv+19PQP47B2JhAvZsSonbN7ojz7cDqH33Clyho2YAgMybHGMCnpBYCM1XhVeRkKQtXCbKDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}

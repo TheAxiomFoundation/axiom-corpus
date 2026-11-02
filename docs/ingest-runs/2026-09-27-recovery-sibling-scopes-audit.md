@@ -309,6 +309,13 @@ audited scope alone with strict warnings and no issue
 This run adds no selector-freeze guard like the CA audit's: which lines take
 these swaps, and when, is queued for Max.
 
+Since #847, after the 2026-10-03 swap decision, `manifests/withdrawn-scopes.yaml`
+withdraws every scope the decision takes out (and `us-id/statute`, which no key
+line selects). `validate_release` refuses each in a new cut and grandfathers the
+selectors that already carry it; the three scopes this audit keeps pass with
+their recorded content findings as notices
+(`test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones`).
+
 ## Follow-ups
 
 1. **SC successor.** A signed scope carrying `us-sc/statute/12-6-520` extracted by
@@ -335,6 +342,13 @@ these swaps, and when, is queued for Max.
 6. **Release gate.** The CA audit's follow-up 3 (a content check for chrome,
    empty roots at section paths and landing pages, and a withdrawn-scope list)
    would catch every defect here.
+
+   Done in #847 (2026-10-13). The withdrawal registry covers every scope the
+   swap decision takes out; MT waits for its successor (#761), and this audit
+   keeps us/guidance and the CO consolidated scope. The content check flags
+   none of the rows this audit found to carry text, and finds 64 of the others;
+   `test_the_content_check_agrees_with_the_audit` pins the table. See
+   `docs/release-gate-policy.md`.
 
 ## Checks
 

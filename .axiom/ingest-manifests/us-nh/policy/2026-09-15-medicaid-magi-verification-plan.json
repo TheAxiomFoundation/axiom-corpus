@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "4dc72f67b00a8724acb638089707c23614a02a80c62f1d4e743f06bdff53f0cf"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "e781eda737c3022808e5cae63f924239974b8fbb6c368de27c96d8039a540463"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "330ff984e564f77e3855b024cf7d4aa5c036534f0eaa88e07ca834864ced9b45"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-nh-cms-magi-verification-plan-new-hampshire-verification-plan-template-final.pdf",
+      "sha256": "70df6153a53468f6f0e9d4e7652aaace792b10f083abfe5e6f93ddf662c33f86"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:41.498453+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ggsln54ARcRwi+JWnGEQvyeBJJSKM7VxdrUjan/BlIXfxUNz/y6fxvwAJs7WK/NQweyiW0HDRzY/XmRnGSuoCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

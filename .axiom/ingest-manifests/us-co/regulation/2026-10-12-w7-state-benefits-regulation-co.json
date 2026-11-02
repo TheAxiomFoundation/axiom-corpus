@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-10-12-w7-state-benefits-regulation-co.json",
+      "sha256": "301e2ee9d8a744fa46eee98210337a6bf2d2d7dadbb541782cb8f08dc16bbfc8"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-10-12-w7-state-benefits-regulation-co.json",
+      "sha256": "da4e69c013c6c55ab9b5ab0368bca4bb139f1496fb9e4a2a579a0305dbd88950"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-10-12-w7-state-benefits-regulation-co.jsonl",
+      "sha256": "4ae2c1b9b140db7f7ba8ec4fffd182e133278106df49e082e357b7016fcba64a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-10-12-w7-state-benefits-regulation-co/official-documents/us-co-regulation-8-ccr-1403-1-eff-2026-08-14.pdf",
+      "sha256": "2303c242bd0373d2391e19ad6b390856e15e411880da339d8463aa2e0f226960"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 140,
+    "missing_count": 0,
+    "provision_count": 140,
+    "source_count": 140
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-13T12:05:54.522467+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7e3zaOR3WnRB0kZWP6H60ocazNB9P+em+33pOPEsbCb3NYO4O3CyBrXWVBXWWs3CuzIg5avpAZNcQIaXMdmDBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-regulation-co"
+}

@@ -1,0 +1,1877 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/manual/2026-10-12-oasdi-poms-rs.json",
+      "sha256": "e9739660c8a87fe751db005db666196e8116752ff73cfc168967c05671f6af9b"
+    },
+    {
+      "path": "data/corpus/inventory/us/manual/2026-10-12-oasdi-poms-rs.json",
+      "sha256": "1cc4d04aff41f44078038509389196a718815039bc0e27bdab3b11857840cf21"
+    },
+    {
+      "path": "data/corpus/provisions/us/manual/2026-10-12-oasdi-poms-rs.jsonl",
+      "sha256": "479ff60ee5f8647639e52bffdd678e798fc59f4e7aa902af047896b16b205974"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00200-000.html",
+      "sha256": "978b3dac253b8c8562482c0cfb87b5a1d3b4ef78ff25ed284ea8042b4194fe20"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00201-000.html",
+      "sha256": "dd0b195731ccf665da813ab50b6c261094086df9777816bcb146a14e405741c1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00201-001.html",
+      "sha256": "3ce7662560fad6946628c3b9a8df61957b2c4933124ae791014ecd8ad9f4c1ff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00201-002.html",
+      "sha256": "ee373e2d8d85df3ebd4722c64bff6e420c6a02efd9211557cd95ef11eb2c8972"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00201-003.html",
+      "sha256": "c5ed0d99a72a3fa6caec543f98731ff96258e2d4dbb02328cab67c0442c27d3e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-000.html",
+      "sha256": "4f7ca44b8057b1eed66d25274446954ab976d7e762154a97ae11c52904efd66d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-001.html",
+      "sha256": "9f4cdaeb0bda9517f420afaa48d44df0660b9451697f05a59dfb7ad72454d1c6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-005.html",
+      "sha256": "3dd37652e8382deb896f4598bdc393f2878d14df8bdaf8eb8e508fc45635dbf5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-010.html",
+      "sha256": "b68e0bb4549e01e67b4d32826e4231543e6841c8bc4482cf7c9434f550c0386f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-020.html",
+      "sha256": "ad894b5d9ddcd66e9168c989aafa2a6a3f7936aa9b440d8f21f3ed850b34981f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-025.html",
+      "sha256": "4ad05f115bae591c0f8846270f05773a8929181696009ef7e663cf12e9ffdc78"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-030.html",
+      "sha256": "e4672ab5d05a71b2acbbd843a1221a3459efbcb3eeb479f93f91f99ee9e16602"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-035.html",
+      "sha256": "f7bd92ceaf5e6639cff27a4e31593b69459a6cb9aae7cb6d9e2f4b323b67d708"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-040.html",
+      "sha256": "0b2d1e1761e520eeee71274754a88738ab3c718f08b4232e92f74f2f768cdf75"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-045.html",
+      "sha256": "20124ddc340465869a89dec18fec700ac68de59d4c3a37da6d41468151c013da"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-046.html",
+      "sha256": "d2280cdf797e3974dcb4363aaa423651e01737acd43e5f60a7a9767e90182537"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-050.html",
+      "sha256": "d059ca4f6ef45423c3faa2ec341118c062521e574896bfbfd58445ba84862510"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-055.html",
+      "sha256": "531000c20d670cfccd95d68dd5b87c009357b32c09e0f8c2a018f7276f979fa6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-060.html",
+      "sha256": "0092b25aa712416f0001185a4267d2c44c3f0ea516a8f8d721cdad5766f165d5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-065.html",
+      "sha256": "68c9c740d47400316abbfac48ee63a9e86658df0d657778aa2276b8289772cda"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-070.html",
+      "sha256": "5b772648b1a5b0f515da103f4f2db31a33b9c2c920d05e1a414adba48f5be614"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-075.html",
+      "sha256": "ed84f6a6492b584a5e453a88aa6b7f9fa2f73ab96e3c6159ca57ecbf4d15fad1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-080.html",
+      "sha256": "ff77a8a4c60ddd0cc75ce50c029f1ec424f7969210435b4bf7caf88352d02121"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-085.html",
+      "sha256": "1c7b312eb47370ec4df7bbee96ae64c073bc03dac227d2ef5991d54ad63396dc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-090.html",
+      "sha256": "f2117ca9d5541b8db920b67111cbd3e15e9b3fab5d47dcbe597ffe4bf277013d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-095.html",
+      "sha256": "c91b8e44b2747c1aeb77aa715be97c02f4ab5e957717a1c23b6cc92f3c2fcddd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00202-100.html",
+      "sha256": "10a741b98b0b975b245ed68daf4e10dd774803294495f1505d606433889f82a9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-000.html",
+      "sha256": "d6d4f65513c1d2b79423e1d54e781c81bfdfed173c64856790ed3ad6e3b90efd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-001.html",
+      "sha256": "76c024d6f11406e34576fbb3446e228634fa2a41285467d6ef8bc20c5703570b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-005.html",
+      "sha256": "202eb29eebeb212f37483c2fde693aa869b7057267c5e46dcaa592b8b4744416"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-010.html",
+      "sha256": "0ecf1da44abb8a05b283c294a0c0e8579a131a6b3167613d61b2cc0dd99483ad"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-015.html",
+      "sha256": "1984087db3cdbf4fc4d677dca37e6c3c4a05d7ed2985480c2559c99ac472e3ed"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-020.html",
+      "sha256": "7d35e95af3ed6e777737a9b3e08116cc90bcb74bdcab582aa993c4383cf3257b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-025.html",
+      "sha256": "dbcc9ae45b8ad47c246fcdd37f89fb6500a24a6e4ba0172a95e3fa71b68e9afa"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-030.html",
+      "sha256": "1c664ba63f548213bd77d541deb977a0dbb2757f6d830ba98cc8ae096f969696"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-035.html",
+      "sha256": "cb243b159055af9f59ff8cc2a7fab98fe9d93248ae96693c221f862b69d4bf84"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-040.html",
+      "sha256": "bb0d98ff84ad5880ffee418a14fec3f64bfc1b86448ff7b30d4b5118e57fed8b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-060.html",
+      "sha256": "5279862297b2e55528f39e7f491af065e1ec36c95163b9ada7f1d4ed52b1ee30"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-065.html",
+      "sha256": "d72fa8ab6920fca1056682e10d02e23263879efdac60db6fcc8ba92ae964773e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-070.html",
+      "sha256": "f113b80766dde39b0c8460d4fdb0bd43cbb80a388dcf6422d94e116a07a9c24b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-080.html",
+      "sha256": "cee71dc92c4de01c97f481555a025962df32df35cc547760b7235537601ddb59"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-085.html",
+      "sha256": "fee22f5931aa61efb9d2dbe1b0d729cc3b9b1d456853b44d52fc450d9bead837"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00203-090.html",
+      "sha256": "f32f6568cfeed93a9d57c7487fda71b81cb9fbb4a4d024b7d4bd5a82c7d077cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-000.html",
+      "sha256": "62a1a4b26ba0ed9e3b2308e0dccb80cd365aee74fd7753709b495a21a8f66a1e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-010.html",
+      "sha256": "25287c439563868ee337b70c38eec6949a0907eebda4ce7c7af4609b04798a26"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-015.html",
+      "sha256": "d1cdaf02a4e5dfacb1b7046f40914be563b6c9a99381dbbf8a8325210c2814b0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-020.html",
+      "sha256": "99c89e65735fb8a061c05daf7baa85c3635ff766d159c3db0f954c2e4718f68b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-025.html",
+      "sha256": "265a5cb43eec6b3cc59d73148096452fce7a5b4411dbb627dd25912baf8bd855"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-030.html",
+      "sha256": "b04107c00ee426b332754d14b671ac6962f750505e711ecf2ca27dd0ddc7277d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-035.html",
+      "sha256": "c83518bb41e18932f42d73abe06a011fa6aae737e9fcf75ec9b082c9f2a5017c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-040.html",
+      "sha256": "4afd8dc27f750cf56c0d7a94dbc41285d7837d6e1cefd0b1f24070f9c6ab44ab"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-045.html",
+      "sha256": "57f11aa38e62d5aff762baa6214754131d853e1c68e3c57f65434b02f94d6ada"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-050.html",
+      "sha256": "916294e62844de0cc6acfd1ed6a39cae1328fdbfb55e0ec5fb244d500ad34827"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-055.html",
+      "sha256": "d7e98cf97b24cc7ca97412b5756bb8f81feb1c6687eb9caf4da9bfdbf1eaa6b0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-065.html",
+      "sha256": "f65865b83b6670f90a60d0bd63f18aa5af7f52204feef31c5f9d30e313af5d47"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-070.html",
+      "sha256": "5d7ead226bb32c31643c47a43cc19c44ed15bf2f585edb23c6e9f486212dad21"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-075.html",
+      "sha256": "a8fcae2a8762e2d8593c9946d1c97424fabbe8852058e187a106f1dd9c774d05"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-080.html",
+      "sha256": "96f734f5191e8b9613fc7af8d3336ead2ae35b2062ad2a6079ae70e660306412"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-085.html",
+      "sha256": "47ec824afcf73c3f7509c75936c0d65b7315d680479d46f0755cfc6c91cf41df"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-090.html",
+      "sha256": "6c08d66cc4eca8ce8a933a058f74b9443c8adc4d91885f9fe637a1c3028dec8a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00204-095.html",
+      "sha256": "a7f006fd608b4108c318648f4cbc9e009eb47426b618f8c0e9eba28c79b3b091"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-000.html",
+      "sha256": "87edff123fec70e86bd55045521143a7df073bff1a8065da3eca26a40b828305"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-001.html",
+      "sha256": "3fc531a0f3cca89eb0a8dd501ec0cd252ba84d09b34eee7557a8193f63cd346b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-125.html",
+      "sha256": "70255f032d8cb7acdbce45362745b64fbdb77f40b79e749691231af900919a54"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-130.html",
+      "sha256": "8a63e117a6d4cf732ea21d996e0737fbfad7c529fcbe0293f3bbd60d730edbcc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-200.html",
+      "sha256": "1f236a2616143bf10802b39060a06c148ef1067ac0561329297b661c6578f6f4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-250.html",
+      "sha256": "4a410f992db12c924a3076f30c73a01426410b2f3bd603d1cc0cff413b1c54e3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-275.html",
+      "sha256": "9acabaefd75b9c6bb02be726775997f1bebe9476e10dc768b966c2c8551380e8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-285.html",
+      "sha256": "020bc9a4be9405a448c14dd963e2ee637f129772bd783ac3d4c3061b71549c01"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-295.html",
+      "sha256": "320aa59ae8a5627f291281678988be45fdcf442de69cb826cc7c20433b40f4d8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-300.html",
+      "sha256": "1edaa96dfa32bd79bc0ddf094a3280b6f17c7e6c250ebb9ba244d4f392f3c68a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-310.html",
+      "sha256": "48ebe52dc6bca3aa1bd56c5e5db9793015c35736736bd0988cf2c9743ffc7fb4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-315.html",
+      "sha256": "8221552f598ced59574dca5e24ea97276708b065bb16e7c60ffcce3b6fbe7005"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-320.html",
+      "sha256": "9b1f312acee88c04df453244e1ee856ac4dbd372cac541dbf94ed77b40995c36"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-325.html",
+      "sha256": "b97c10b578ba877c4a68b5843cb07995ae43d817f2133ddc95ed89ddb1174031"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-330.html",
+      "sha256": "243ddeaafb788da9881c4cac77643b050a0915f7098a32f565ad19a0fb293154"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-335.html",
+      "sha256": "86da29b87ac04d98000c33d495de9016b4c59e967d19fe5ec214cc8ce84ff92d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-340.html",
+      "sha256": "091fb3eac396550e329dea8124b5d02fbace714eb4c892ede94ed7237fda242d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-350.html",
+      "sha256": "ae11e7769506caaa5ce1529cda6b4c4e1f8905d2c6f0ff884b9fc2114e00bb49"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-400.html",
+      "sha256": "d58d761150011b37d70b8de7a10a1ad5090ccb6e264550b90781d8b791ab5db3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-500.html",
+      "sha256": "8bf7e7d7a4c7b6eb7192e18e7809e2ccebfc08061419bda53dcb3b67ca449649"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-700.html",
+      "sha256": "8a0af48cb2ca0cf481afd2a6a0599425286a6bfdbcf6bef7b276b0dfc75721fc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-715.html",
+      "sha256": "dbcbaa4f3fc015aa66c3d86ea6e5466157cc988fc3f9fb7d6987a3e064a03499"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-725.html",
+      "sha256": "8e300fbdc78588b34e33b7e683bb62f753e9d7f4aef7ca3e3800256e804e7307"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-730.html",
+      "sha256": "65c5e84e0413f5a1cac36f8ce7a267f1805130f4bd94467be8dcb007d0bae9be"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-735.html",
+      "sha256": "2f47bfd79a5e873a0c2f8ede37493bcd7f083e8c9404e1c325568bd59fe3fe28"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-743.html",
+      "sha256": "4d86ea987770715b3b919548e83c73e35380fee20c3d247dd8eec65d270d730c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-745.html",
+      "sha256": "92a9ba3c586b40d9c372da47b7df88b37015de7276cd2c6443f4f930b138e854"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-755.html",
+      "sha256": "88af50ae9af63d7493c3d53d186624cde9dac3ae4ed1b7438a4aa96c208961a9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-760.html",
+      "sha256": "87d16e41c7681c41e8db1206d6d504edafdbcf0c6b4e862ef75fc2fd9550c1d6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-775.html",
+      "sha256": "134dafc606e2322f5ee8cc24b6a5d515ddccaa35f4aa5d2b1d649362690b3148"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-780.html",
+      "sha256": "50dcbfa95f1fdf7082263ca4c1c09e2ad949cb601acb233605c4e6ec2aa03cd0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-785.html",
+      "sha256": "02f1d1375534c9e3c10fba005d37b57cd22390ea53fd888a8d911f58e88a396b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-875.html",
+      "sha256": "eaf9629f99405675b57d2b394ddeb5779e5e487f4937966205f3e171a97514ab"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00205-895.html",
+      "sha256": "ca3da5f39f0c8937d1171784aaca3053475bbaf0a4a462a1e19860beb48796e0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-000.html",
+      "sha256": "4b000083babef65af3a9edddce43d770f62d7b3e238118b301702732d56943c8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-001.html",
+      "sha256": "0305165ec7e6bfc2d314e6e769e8e1b8beb661477847a340af7e8d15328c9432"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-002.html",
+      "sha256": "de6ccb0655997816661f1fbc0f66ac0d12f593acafa3db5b34436fb5cd80073f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-003.html",
+      "sha256": "d0fd9cb8474fa5f2fcf963bcd8a6acade5bc128a8b6ee2f5039c7ddb73d82ded"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-004.html",
+      "sha256": "7e6d711d78fdf2d0627c3b9ced30497ab084f4137e99e065c1e15ec8095c1a3c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-005.html",
+      "sha256": "8d8b93170e6f4240c43cede912a6d22fe56a171f2051704835b4f5ca92074548"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-006.html",
+      "sha256": "8265dc5c33142b92c2065a97cda941834e435160a62d51d7a4ea4046b5cab431"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-007.html",
+      "sha256": "3d1d9434784cb2306d7d658a60f849ac05c1b02f8d29d30939c9ef5efd28b144"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-008.html",
+      "sha256": "2f01d73f9f8c9023aabf0bd3a53b94831ab286e768f0ff4a8a9481e2245764a6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-009.html",
+      "sha256": "213cb595eecfb22fff8bdd63256a29520bed010487075845185ce1a4f16eeca6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-010.html",
+      "sha256": "bdd36d38fd86dbed0935486fc0700e905b2a95655f6847ea8de0a3c3a530ca00"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-015.html",
+      "sha256": "7a9c94abd734e71fd1de85405d5103a2a22e995dfed96eca39c90d7ea84f96fc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-020.html",
+      "sha256": "cdf4ff19e0e20805b342007ef0e82b94102eb092d1843a91bb9c2943796b831e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-025.html",
+      "sha256": "6fba2470925d7bc036c7b3995fdf4fbc09b3d3156cd38fb2bbefc4ffbe6e17ea"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-030.html",
+      "sha256": "cf34eeea1944082171979b8f1947c380a0c44c4ed362b3d44b4fac15d6056077"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-035.html",
+      "sha256": "6425754065ab9e885d6b6bd910c159d16a18ef6aac8dad8c36aedf235dac397f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00207-040.html",
+      "sha256": "590426b8778342272856fd8612725da80c7dee508e2778bf58892ee12b09981b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-000.html",
+      "sha256": "afa4482d96fc7e4b88e7c862c6ec387ac420fc38e0caea7555026c3aa6d80b43"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-001.html",
+      "sha256": "8d0aa3cb73782d7a6404eab2538b2f5c7b9632e80e1c32202bf10d2658a83e7d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-005.html",
+      "sha256": "e7f677fb2548502279377eabf8a368612ef26b58988e10e9eb0de70de35a2673"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-010.html",
+      "sha256": "71727e6e1cfdbbf2d60fdf19892914db65889bc1e0753dd86e9e582c07eaeecf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-015.html",
+      "sha256": "f51967707571c7c418c4c42823491420c56e29605d58ff2c4f14a0e102023a00"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-020.html",
+      "sha256": "8435499dfd04ccb936e2b1117eb11d0b5b35af0f2af5e02fab900c80157c8e3c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-025.html",
+      "sha256": "7cae2097165b1a8f21f88beb8ae852fd03986e2553a343313a857091e12ae921"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-030.html",
+      "sha256": "f70a98ec8bcdd23c807a73fd485472abe42c60ec0004fee58beba5b41339ea5b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-035.html",
+      "sha256": "54ca3dac6c148ff1adb3d3274116a790c6cc84135d9c17cac2937b2f9797bf64"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-040.html",
+      "sha256": "0e6dbe6c73e0a630f0beb8459eda891f074bf4725cb0530f8577cf06b33c6751"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-045.html",
+      "sha256": "575618fa6239c3cfa130650c758a41e334ba2bac94abd2c3ce325ecafa16a46d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-050.html",
+      "sha256": "72b7b892acb270b8923245d3c276f501b5f910121d328ef2e7724986b0a1644c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-055.html",
+      "sha256": "7e1163d341536cf0172e3d460a953f02dd8059c87fc69b00622e314accca5b14"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-060.html",
+      "sha256": "3d454819cf616c2d7cf6d9dac33406551817d20f26d21a4861d75d26453e208a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-070.html",
+      "sha256": "9de6017daf67a77dd6b9589344168c273e7ea5e9491c1c91aef50592e24c8ae2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-075.html",
+      "sha256": "ef277678bd59a64d2df10e464bad936dff47993423923b32e5bf2be571a33b79"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-080.html",
+      "sha256": "58d8d3f99b98d0dded8aa9e0b2a2e82f4f6f3148f89e8858c47dc68c1aacc2cf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-085.html",
+      "sha256": "12cc4186e8355a03160237f3e08aa073045183bc525aa3fe1a4d96fb88088620"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-090.html",
+      "sha256": "ffdbb9a5f00664bf0c4d2b9d330c1e1e75a0d4ee0c000ee2a56bdca3121677fc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-095.html",
+      "sha256": "42f3ede771e48d77f2ec22e0b69d53f925d760e0640a05b6adf529ad7d436248"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-100.html",
+      "sha256": "b01e2ee4ce93b48a06206f429057ed638f1998b7d97a7a6641d62caaaefecbf9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-105.html",
+      "sha256": "6b5d7c40f528ea9d9abd20da336aed673819ca20ef7ebdf9cb42369cc827a33a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-110.html",
+      "sha256": "04d03076b672967b5ba86c2b3657ad36ca26f9bce5daad7c66ce2e961ae1780d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-115.html",
+      "sha256": "f041e6547334ce2f466441213c84abbb512b9b215308ee0e3acb7d55f21d8750"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-120.html",
+      "sha256": "795e44b0bd9d89ffd95b016f88db2e8e22b5af731f41abb3347ca6920ac0850f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00208-125.html",
+      "sha256": "a639a60327ebd4aa8be4ad95d1f1db1dcad756228de86ab7bb83d862166d2040"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-000.html",
+      "sha256": "6897f29a24455eea2bd563fe399dc4b33b790a9cf128b0531f361f8a6c75ff0e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-001.html",
+      "sha256": "1655746c729459a578d09e2653ce2b5b58069119fa5efd9fdbf2e6437d024bb7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-005.html",
+      "sha256": "e63d14389bff97889be28dca808d8dd7edbe3c06792b291ff40fd24a9b6eb0b5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-010.html",
+      "sha256": "0c7f96fcf6f55dd0c656654481d890236dd4cf8096412a9a2965fac93c536dc2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-015.html",
+      "sha256": "f2892dcc142f79e773d701b5c10b0583cf05990cbd391e12a0e57c1c06855c07"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-020.html",
+      "sha256": "858a98c6e4e4faaf27a7a59563e74ee85c83b8c5f4ceb329a8d3e7eef8f717ce"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00209-030.html",
+      "sha256": "385e532f48c5912e57251ffc90772b31411889f4843b30f5fa7f13ba28afce8e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-000.html",
+      "sha256": "6e9dd40da33ee50c8822a6293c75e920d121643f4c5791ff4e919416fe144045"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-001.html",
+      "sha256": "79a4fb9ce3cc72dde1dbac1b3eaf057ea1369b6c8493902d880f677b60845489"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-005.html",
+      "sha256": "597e3a409b405ee5cd8dcf05f3d28add715a64486b3f7b3e3bc7e7c2742eb86a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-010.html",
+      "sha256": "14462ba684ce7760354f7ba8a85bc1c43c17984e932c25dd1390750a46ff8d7b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-015.html",
+      "sha256": "d8cf0fd07ef1039eb016d9a9aa46425d61d8c8257f013922768be8e08ba87c79"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-020.html",
+      "sha256": "4088189d7ed8a1ef117c23c4a85a209e0165d86ac53eab3835f57378d8e682b6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-025.html",
+      "sha256": "5abb03bc2bf3cd7a9a88cedf7509299f19a0db63127d47acae0e9ec702d60b88"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-030.html",
+      "sha256": "b9a2dbe7a583541c2002b3e49725a271d2c30439c0dcd8e4f18a19111b09da5f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-035.html",
+      "sha256": "7a66390d6904edb1406b2f5f5f4986039fbd2823ccf125a45e6b91dac3c5258e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-040.html",
+      "sha256": "ad26ef966dfb983937fb3c6e401ed00a8e5ccfd62cb8e23d5d991e7759dd8c19"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00210-050.html",
+      "sha256": "be70353fe63adcb954f9df2ff9b9ff3aef72963775b68a00a7cbebe76b84b0af"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00600-000.html",
+      "sha256": "deffd4f5ebaf99f701094504eda2bed8981b785193d90560a0653abd73e73447"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-000.html",
+      "sha256": "b9f4f0ba66e42060b14869981e84d90013c7d7b8eb5b788bbdc17a12b4384b66"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-001.html",
+      "sha256": "044910e326b2bd2aad6ac3cf06862868970f2c8e496de78a642044b5786b0fdd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-002.html",
+      "sha256": "db23e9878c132c1b090a32a97c84256cdb2c8383535887b7ace4ef30012835f0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-005.html",
+      "sha256": "98a92adb2818db168d92ced24f1bf5754b72d1a7139f8648b9b02b739b92e415"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-010.html",
+      "sha256": "2ea6a14578d611728c49a8e96b2dcd229fbe41f47bcb5c6a9c40da7401e25359"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-020.html",
+      "sha256": "d707436ec0756a592abf5f23053bfae40d47c7e7a562878fe23bbf865e977fa5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-120.html",
+      "sha256": "36340ccd7e1f521ed0e49417b5540390c439fc931b1c45af20d755f63a2e0061"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-122.html",
+      "sha256": "feb21c6d033827c4ae48bc8d4b1541782f7c6fc8d1c4aafe2e1cbd29ad0aa321"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-123.html",
+      "sha256": "b79eea172e5a08bd5653210f42a17f949647683b4bd126331b70821e30192c64"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00601-125.html",
+      "sha256": "2c64d400133c1d9fbfe49b52cda2e07002693d97f3a1e328dc5d42dfcb74ad80"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-000.html",
+      "sha256": "612c6e65454936c880141eb732e36ecb8f14f5b93cd371808fcc9a51b38eed18"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-001.html",
+      "sha256": "50a04649db6e6efb347ab18e26e453e872cc08f1aac802b9e28cb30f80bb37ca"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-005.html",
+      "sha256": "1f018b0996fc946c46603293d756332ec0847103a7cdfb795861e02a63a83815"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-010.html",
+      "sha256": "fa761649fe5cc66d86912f15e1d0de2e2224d86a6b9bc60fb5a709831bf221d3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-015.html",
+      "sha256": "a355b769c62d3319644a1a7b120c5c80cd13fd761439ede106658b88dcea0376"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-016.html",
+      "sha256": "bbf2f7c621c4435947139aa632c1d864a84581f3ec39698f72d8732b8eb12fd6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-017.html",
+      "sha256": "e31b142a2687b211091372cfa2894510f14a40220818a3cec37e6ebd5bd5984f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-018.html",
+      "sha256": "062ab9d88370f607cc4d9662fe8a084d66cf4fb3ed785c2ee2d84fe6f2b41e25"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-021.html",
+      "sha256": "eb0eacb8d2cf102e63749f66e93394ed01d9c369a51546da3bd9e683d68922b1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-022.html",
+      "sha256": "66bfbced236056c4342faa35d7e802a959f08d44941270914f68629e5380cc2c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-023.html",
+      "sha256": "23ca53c5eb3f9f59c5fe86494efaa66bbadbf724d9e2a20e8156d3c45b1f592b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-024.html",
+      "sha256": "f0d123c1982fe9bc0f56556f1745314cf193d891b77417827099671e6a694e9d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-025.html",
+      "sha256": "5912a24c8ad3a490acc222e3349bddbc028d1183cfb4a43c99c651e1e38d1fd5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-030.html",
+      "sha256": "e753516ba21b85e451df7f13d592822fa175c86e430d300b7b1ef1a4d568ad8b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-033.html",
+      "sha256": "2a3048a2347b044f85e658fd58c2648c0bd300a3eb27f994cf46b4059fc9fe97"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-035.html",
+      "sha256": "9e087122150f87cbf0864d04eead94503c73f26952c069e0c3cc32af3113f114"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-040.html",
+      "sha256": "ed514aaf276c454a136048f6e2cb425dcba43d4b83b3ea7026022e3db507210e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-045.html",
+      "sha256": "6b5a290911e10ce16519deda97b5bcd28aad82d62acdf481061577c232bd533e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-050.html",
+      "sha256": "50467a14e7a32de179bb0568fc6e0b13e8884bdf387468aa3a9a5373a6114047"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-060.html",
+      "sha256": "19f2b8901a672f541258e30b608d3bf10bf9d4bd4f8ac307890a1a3ebb510cf7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-070.html",
+      "sha256": "66042bbd976a969f10e3c25e76a1f4d91909c7535e96a278971d66b49bbcc04e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-075.html",
+      "sha256": "e3de82b0df06407e476ee3471436c244b6369e660e309e3d7efa5548c7e5453a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-100.html",
+      "sha256": "c570a49d13abd3cd7affa4895547090ef2cefc8cb364009f1c385d3141a2fa68"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-201.html",
+      "sha256": "6d7fcc60236a249ba35c46b8e44a7dc4fc6512c0c43260718974ceb2765b16f5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-210.html",
+      "sha256": "b97f40e9954850fc071f5f3d4c7ddf5a9cd5125235a09cfc6ffbff2f7ac374df"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-215.html",
+      "sha256": "f1d08916de19baebd4434e640dae68073d3fc7b13af810c06ea8e6d082eba68a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-220.html",
+      "sha256": "e9f42bc039dace3dee63464130e78a6e26f4603676e0a0b43a48e5dd4608a290"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-225.html",
+      "sha256": "1cfaf542b9ca5af9057a2f09f5dbb5acd3f147ef68db17ba924b7568e992c07c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-230.html",
+      "sha256": "66ad6b332b28c4d4162c59f5c97ce1f64a1d7fb568f2c474ee1ebffa72d5010f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-235.html",
+      "sha256": "133f852badafe3b9308485b24848dce800162b53d9c862eec7dfcfe20b5320dc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-238.html",
+      "sha256": "e74d71572193d46ad5c1145f9254e90f50b632fbe73e1d9d1894a08c84a7c90d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-300.html",
+      "sha256": "89f8416ca0c2bc135a613db306be72c06a229dda2e6994a1a78c3592671b3bdd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-320.html",
+      "sha256": "d77eb653aa621ff0779b9d5d449690b436981cfe10c75606e3c0ee762efc5427"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-360.html",
+      "sha256": "99ce6e28bc9cb044bfcf6cd1c24f6471d6635efcc8f130c449d078a1bab9c54b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-362.html",
+      "sha256": "1bd08a1c226406b55db808fbb82c9a5c33e6fffb610e41829c002fa0f89ad37f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-364.html",
+      "sha256": "9c7553954e289890db0779d6b624ebd7c936f051f831884df52a3fdb3bcddd3a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-366.html",
+      "sha256": "9f3a182f7b33813906a4d9a361427709f83f71ae7633eca3df743a230b3d00b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-367.html",
+      "sha256": "9f899c0cb3f8ce9f71af59d5bacd633194798f884c622ee929c82183d8dacaa0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-369.html",
+      "sha256": "20827293021eedfbf42e2c50b13189d37956011057bec567721e1e3ed49cd9fe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-370.html",
+      "sha256": "541fa5905fc32c3a289a85f38cc960f1710d904bf332e043231a96241a0cbc21"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-372.html",
+      "sha256": "b5ade77d4b1a74253049b51697a5f2a1048e9fe1365113e604c8bcc9ea1c5695"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-374.html",
+      "sha256": "1608574d78f18606a1ca22dc87e50157d0940ec5074631d5c55e608babe8fc5b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-377.html",
+      "sha256": "771fca71e152381cd2ee3660f52b6aa4b33b47d670ccef77192da7f833d482e1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-380.html",
+      "sha256": "510e80425694914f78482531e1965976afe4571a287f01ff68bf471a508faaca"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-383.html",
+      "sha256": "49b2aeedf96597d09e1f8900d3f10d8ede84df86fd9874eac3edebd272fc693e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-386.html",
+      "sha256": "8140a3da24be84f8d4edfce20671e55aa181bdac64a92cd5354a6212401aeca8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-390.html",
+      "sha256": "1120c858ba7236999545344a1f1f7bb1b7ab675dc6c6ebdc22c11b5836160604"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-391.html",
+      "sha256": "0e5f4c815056a85aca4911d511da2e02653e28c60a5a1ec3c877388cf3cbcef3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-392.html",
+      "sha256": "e37bfb0a01119fca549ce60cf68c7551a7248d06ef806bdcd5f5ee7db2ae320f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-401.html",
+      "sha256": "2234e0909fb874b32c501892aec8db1b6d8bf94a98011b38cc1ac9c5b3720e01"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-405.html",
+      "sha256": "75c6d37811591f3d44f723e67512abcaae73526b9cb4b6d26e8c1a9dd99e6cc8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-407.html",
+      "sha256": "0e9813c138269ad303f3dc26c796cc45ed5913d8cb652e8ab92104043e3f6878"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-501.html",
+      "sha256": "82d050e85f960956fb69e62ce5e10690a6088fa549711285ac194f0b37742096"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-530.html",
+      "sha256": "0409cc755e4a8b902a1015d4429e2ef5efe45b4401b722d20b1f9e2f796b6c22"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-532.html",
+      "sha256": "5bfa45a649db29d1125c64ed8451534736cf2c69e46265d727865ce3dfed9fcb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-535.html",
+      "sha256": "b69b6c21dc4e6ce8599631c210c7e36327e9a71fcba76bc272c21ecd049ff740"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-540.html",
+      "sha256": "7d4dbd27d2e63059e563003286640d78828040229de25777e18fa069a04fb893"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-560.html",
+      "sha256": "a8b9162210f7a783ea5e2ce09cc2b012c7899b75b603e703f2f3aca4f2b3e365"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-570.html",
+      "sha256": "8cf357c54a8f316ea3afba2d2a171996768894d7c4fa9eee5b417e5546d25c79"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-580.html",
+      "sha256": "cd64e8e63d773dd94c50b0fa4a6cdf750816b38fecf921ec34236de923a0f5ec"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-590.html",
+      "sha256": "9d85c6ef40c18631fc66bc3abe18f62fb6484deb00455f05c7b226c81eeb61bc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-800.html",
+      "sha256": "70c4ed6845a5ec63167c0666c91b4bafa7a707cecc7c98034b646585ce3127ee"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-900.html",
+      "sha256": "6c6e22435bc4fbb18addd78dcaa602c3042ea7456fd996317ea62cf2181531b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-905.html",
+      "sha256": "456cf4d1f8347f0b8e3fac755da850e0037b6f21e01411cd3b3bb27fb543ae67"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-910.html",
+      "sha256": "d93cf03ad949dc2de601846dc74b8951c5ec8e39e44bc65e54c7c952a3113e84"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-925.html",
+      "sha256": "00cecd2606cf3708ce29645e58d0422f2aa4f0ec3617d6a66ab3b6701b7f5f2a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-926.html",
+      "sha256": "9ee2961582913b9ea2c328c018514819c000d84263d2ca202dec360152d20bf7"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-927.html",
+      "sha256": "26f1b388960ce611c716ead2da7e3fecd0315084fc5cc98f1c4668c015cb9c03"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-928.html",
+      "sha256": "39798439f39a2fb8dabf72bc497eedf177e7827a94485fc89cd580b4028817ad"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-929.html",
+      "sha256": "c9929b318e29c2977f1db7a993681f03d794cc205fac30150817c10031c49b29"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-930.html",
+      "sha256": "1534d0a90c8978293992026ea79e071f1ec91281f6bcbf4c63104b0c178edacb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-931.html",
+      "sha256": "e2dae9c080da094fd65fa601f324bbee19c71ebbf6cb99f6dc71f8fe8fecd348"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-932.html",
+      "sha256": "1fae2a9ef261f47a53f854b49d8016f98ab89bdcf7bd92e5274623d0f7577f8c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-933.html",
+      "sha256": "0c7a0e7db8fcd07eecc69cad201a5fa3be1f02584595c8e0ed099f4561491766"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-934.html",
+      "sha256": "e988a716277f75f6b9411261e8db71432899e81eaf56be154fe1845636cb2b7d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-935.html",
+      "sha256": "7a17fd23f3909455a541f4763f5a29782d110215b1a8ee6a194c2dccb7a622e3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-936.html",
+      "sha256": "a3cff5d8094d896465d94f5947ea2cd5707590de9227c9118471a63c9d12669a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-937.html",
+      "sha256": "3c0e33b7bf1ac0c2ad0caca8fc1e81459e447cbfe91cd4afc91287ab5c3b8b7b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-938.html",
+      "sha256": "049e790e5157c093be90c92052f378fdf17065a0e228d8a4cf440f34c181c6e6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-939.html",
+      "sha256": "448ffc42519f9fb4f8c5b9ed9cfb5abf43d591b76905f0e1a6e01ed99291c4b4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-940.html",
+      "sha256": "6fe8a9c6cd886db7fb03e91fbdcc0d56fa748243e84dc87a60f5b259c18b7cdb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-941.html",
+      "sha256": "500f323c99e0f0416512c44e00400f3e25ef16aa0dcd6403b69137b576a5c89e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-942.html",
+      "sha256": "74a9c6f92c0aa5ba5f57263227d0f8fbffee4d70dff7b320ee7b4a59cf17c9ad"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-943.html",
+      "sha256": "c53912df2731424d07b5e0936541b19b036080ed1933f0cbe570dd68d8570f6d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-944.html",
+      "sha256": "9b99a75da3739ac76c253fbea2addd66ca05a60c4b3d16071672db933e0d7ae1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-945.html",
+      "sha256": "733a5a829bdf5ebfda0d854b974ff1c627a6cfc15cedf71d06ea18a65dee5a54"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-946.html",
+      "sha256": "63d8c9d2cfa3d915cda0ccfab513ff197a59c671f5670b42c90b22062e4629b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-947.html",
+      "sha256": "33241b5339d7e5be210364627c0f3ac4d2ea8aa435522aa63ee6098ed89bbb44"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-948.html",
+      "sha256": "34d5c0c0b23b217029b9804df11bf9eb1d4d9cbf8470da2eeb041736a28b5623"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-949.html",
+      "sha256": "e13f9e79c5a073335c585fb058f4717b245478ff849fa67f87912a462fb49a53"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-950.html",
+      "sha256": "63a2928a82dab91d364f515d9a4516446a964cd342a3b9b6681211bda7440f96"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00605-955.html",
+      "sha256": "fd128be160c9dc69eca7cbfb38449acfff2fab51597ad3e3547557ab7bd927a4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-000.html",
+      "sha256": "bf904100b64f1f80cc1db6e48335bc786290e9cfbdec68feaf2b47c88b88fb82"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-001.html",
+      "sha256": "fcad3df69b8bd3617815175788879d0cfb1ea0cd28889a6a12f7993d4ffcce73"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-003.html",
+      "sha256": "935b391658a9f94117fde850fa4eb88293eb9ac5f19e05a5b9f946c4e15e6c2d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-004.html",
+      "sha256": "207a83b86365a276e97a882220b3413b1ae60677d5661415a88db4faf913b398"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-005.html",
+      "sha256": "c6a3aed427c9bd6bbd4a24daf7ed28a9fcf2f90566feeb9125ef3b12a77ac023"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-010.html",
+      "sha256": "cf6bf2ca186a3186735986d945508afbdb5bf55f32252782111e52be7212abd6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-015.html",
+      "sha256": "04fccc30851e1ecea2aaf3417b23305fc5af7754a22134cedc2f8cdca8dc29e5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-020.html",
+      "sha256": "90b200b670b49b5e7ea7f0ddc186c78cc289186ec87017cf3e1f88839cf11b19"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-101.html",
+      "sha256": "36099e73939d13a2115dba175a177d832a58f2d49644500a6185eae328b98655"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-105.html",
+      "sha256": "1e8c90e5dec49e04e8bcf469511fab5b572fc64a52e2d85bf8a9cdd1893ebdf2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-110.html",
+      "sha256": "4cd864d3e22b04f3a3e48a60b870f4749503d32787eecd349cf7f19bf18b83bc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-140.html",
+      "sha256": "6cc6bd1af46d57a128b5473110a56204fc1511f3453276e9dcd3cb08f627d5d2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-150.html",
+      "sha256": "0000f36b44378c3406798d101b5a1ba1bdc0b1dc98cf97a9ceb865ce5f8f16e4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-160.html",
+      "sha256": "e275c9e12d1959913b3f1a5182abe5df49cf9e7c49c2be106ee22965de4217c2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-170.html",
+      "sha256": "78013a0a955d5b360070c56b99e78c85d63dbf5bd546825092769fe7faacc914"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-201.html",
+      "sha256": "d2a38cb3b36bc3f1637106805a6c39037b7e421f2b434364dbcf207eeaa5bc92"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-205.html",
+      "sha256": "633f52596075af7dd07860b4ade053c8d2ca10b731cebbd1ecb9760e152f0245"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-210.html",
+      "sha256": "f5e8b4c2d69f3bb452726d6228e69db985a5bacd86ba10bf0d7b24cf2bda3ce2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-240.html",
+      "sha256": "d9c7b5fe938d66afd6cfd98a469112fb38c041f0b361dcd9c0bb25b7d6a5ee4b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-250.html",
+      "sha256": "0dcde241013f26e1172b9a0f359ff5b4a57c9fdcdec65d7ca7244a5a4d5c5891"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-252.html",
+      "sha256": "b22a8d9bccccf3301d59993800e3df465eab126f811a888ff154ad9d36759047"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-260.html",
+      "sha256": "d938b1f5f4a13903fd7004326a3c8cf305d9a72af958551d900e5a132951f72c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-301.html",
+      "sha256": "60dada526931a9d714619c6496f9b1e6ed6a45ac37221f4594e9be6249c7cf4f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-302.html",
+      "sha256": "5563f222a195a47a8f44bb5065d82cb78d1976cadd8832339ffde855e4f35419"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-305.html",
+      "sha256": "b125487b75d84926af99f2182426311128e8d56e612d49bcbcd9ad60e5122e03"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-310.html",
+      "sha256": "cc33e051279b2781404a0d0cd26cd57b777243bdf1bf97a476c4badb006b386f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-315.html",
+      "sha256": "7e388d45a2a786809ea3dfd342d4538f3865abf4f39175848bb543946cf46b08"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-320.html",
+      "sha256": "864fec1510445a230bc310314d7c9445e7fa500bd3b0a2a795a11f8a66ce22cd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-322.html",
+      "sha256": "19d10f0ba0cd5b4a7931a8e7a015e74761c661955c1eb7b3e777b2e4bc408fa2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-340.html",
+      "sha256": "2015c4840633e813391f43cb82324e5c46855a78c9459d78ad8003ed6340ffcd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-350.html",
+      "sha256": "c652d3e0d5ef9e29b940368e9583f1824cb452de236b4d1bd939649341ac277f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-352.html",
+      "sha256": "278bcafe5f1cdd80ccd8bf70928db2133529c49675963688ae9aa33691875731"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-401.html",
+      "sha256": "cc419e547307322d46c2a6c30320f7e7a046539c075b0b8d19aa26ec68e0e62a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-410.html",
+      "sha256": "886a623d9a0f698b771f566d5ea331004f1ac4417844d950980fb28daf789ecf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-420.html",
+      "sha256": "43756714d2111d9e954cee5e04b3a961c30582593614fde28285244e6c59c9f1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-430.html",
+      "sha256": "ddb7ae7bffa8b95ef72ccb2230e6e9b9f5df4b6a6e52225f8ce4ba0628dc4b88"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-470.html",
+      "sha256": "dab49f1decfa9c80262c1df6dfecf57286ec7cb081584a91f352266297c574e6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-472.html",
+      "sha256": "51dfaac86ded11adc2f2fcf59151426273458f1cab5186553d5b98dab9526535"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-474.html",
+      "sha256": "b7cb242383e6019185e5119a84fa80c0dbd4013fae2c7bf7b1f003b7be2f02ff"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-476.html",
+      "sha256": "d18cd0a6d7fed6bec8fca06b27c3fe4e8c1e52b256f8336841a57fdc862f7f23"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-478.html",
+      "sha256": "1a45ad42e60a22b551c04ee76340249b95f7805990d1da7ab2a7be4245c63b88"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-480.html",
+      "sha256": "c75dba7710902e1833371d8ef47c3272766260de05684bef5155a4399ac44c78"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-482.html",
+      "sha256": "8b579019f4e8d0111175b9756ddaa688317026c7db68faefbdf7b322571cdad0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-490.html",
+      "sha256": "62acdbcc3790601074414fd23fdee15081f56c8d75543216752f96fc64b40f1e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-491.html",
+      "sha256": "6bccc5680188c727cf68914ecc907b6c41d58b97aab62e2f26d1798ea735de5b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-500.html",
+      "sha256": "14b0717fad5f6d392e8945f1f90525fbd08b67f042e39d16ecd3131aed0a272f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-580.html",
+      "sha256": "403981fe78797059314fb255173efadd0f49ac06f658e4f30c549ba037147319"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-582.html",
+      "sha256": "61f0dc95c7318af53cbf9f5a26d3f21f97936802fc1f477a87be45be7c4b3fc1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-585.html",
+      "sha256": "2e574c13ee21827cade7e35cbe3f39242a8d52174ab2b96c87c054106954da87"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-590.html",
+      "sha256": "2d0e05e38849fc9da5b58de7f2c5af594d84aefbc99cd7bbe088ee9441fb7004"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-592.html",
+      "sha256": "8b50170d68eb00502188ed842fa2ec2264421405b61494c242d942a11f1ebe01"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-595.html",
+      "sha256": "7c8725bb840e2b2707069947a000c5195a83b9dcec6f241675484bb2f54a89cf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-598.html",
+      "sha256": "159726c85182842c5c376b1a51335ae4f8dbe44c3cc9a8b23f04b793719f3595"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-650.html",
+      "sha256": "748845174184a6222f4162a6e6efd31b874f5ddb599976073082b8e4a2c9b680"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-654.html",
+      "sha256": "6bcf58deaa6e2c4dbe667077612f4331d262dbf111ba868caad2a32e5c05a1f3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-680.html",
+      "sha256": "786de87bbd02fb63e254ddf10cd6c02e93f485f368f297acee2beb8218db8587"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-682.html",
+      "sha256": "949fee38b82eaacac31ccb0da85d8c7b92d83cee86b90217dd081d49d1c238eb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-684.html",
+      "sha256": "43425e2eca3908b0a72986bced5ad21e7feb1aa2c7d245c7f116d13483b3a969"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-690.html",
+      "sha256": "dd766e21f80cea45b085307f6536d0a00db9f0997e6343574a772327a5383ab4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-692.html",
+      "sha256": "80121425f03c001a0036dc772a740721fbcbe72e56bcd80d1b22295d62628864"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-693.html",
+      "sha256": "b8d2726990dd405381127ea2ce66ed644150e5072c531d2a5a4113309256c961"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-694.html",
+      "sha256": "0aecbf70eda3d5688ae381608a869c4de5843b9df601a2e2066f12b6ea0eaa66"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-695.html",
+      "sha256": "fd9ae5fb8b7ba2f9607628c9d93a7c22ca8489cfe06a0f7db5c1444e396d2fcb"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-696.html",
+      "sha256": "9614de3c712d724c7589ffe8ed44282814ba20e5649f40e08c7225fafdac900f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-700.html",
+      "sha256": "227c0bb1772237284801ac891a7f9e754ae6bf6e315da8292e1488733289f2d4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-702.html",
+      "sha256": "2f4d6c38148fc717f323dada5a3a98e28c90bf5765a7031b532b03ba4cd7d3d4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-704.html",
+      "sha256": "4ff85c70f3d70010c24e379339cbaf8aff0a5971441babc4db44371eea872ba2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-706.html",
+      "sha256": "9e536450ed94e31041da8b6ca3d90c6436ced07628a6df8770fefd521795326a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-708.html",
+      "sha256": "3848d23f20462f3b8aa62ce4fb2dbf74ed8038d28a2fc99c04848e045a7c6578"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-710.html",
+      "sha256": "65cdeb99016861a252d4985e5b888aa7572736714705f2d2b32e661486da864b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-712.html",
+      "sha256": "cdf9d579f9260d358ee774ec14f00534d6632d4892361e880cfe8b3c7dd49508"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-714.html",
+      "sha256": "abab2e5489178837a308e41b1ccab48c9f2b5c8ecd1796e4910320deedf25259"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-715.html",
+      "sha256": "0e954a70a9dbd4571fc09b852c880527fb6e5496686a255128b50248556f3838"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-730.html",
+      "sha256": "6eab8bb9478162a7fe33f262a5db7da96c5b47c3ff4b500ef698622a82cff253"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-732.html",
+      "sha256": "44514b37253f25bd87a28afe3ad6fe8480fb086610b227d1da41bcc3741d8651"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-736.html",
+      "sha256": "918f805a196bc7791a6d2c79ecc83c58293dee33a3816a46a30c353ff5f38dd8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-738.html",
+      "sha256": "fb9e997bba041d8ebded065539405618fa4f0d044cae2ab0f93f6abebe411524"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-740.html",
+      "sha256": "f213beed725ad6b927b74371db2fd213fcb36951f7d124aab54fb4c378da3960"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-742.html",
+      "sha256": "08912c9cce862b4a11ca05c702e8883f7c08904ab06fe3f4f10f95cd01595583"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-744.html",
+      "sha256": "cd4fd789cb793af29326b2dca53e691e264a4433fcfafefe2c8f7379f9db21a9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-752.html",
+      "sha256": "4b357c2dcc32fb999296dee922bc2fd57464eba812d527e307aea76a851c3fbe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-754.html",
+      "sha256": "b216b17c378aa2856b6d59f2307d10d25b02c2ecf920d4d256ca5ca0b2e03f50"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-756.html",
+      "sha256": "709e99201b0635cf96e6f9b76232830b0d35110a0a68b06c51d40c6fbc8ee8b2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-758.html",
+      "sha256": "06b6620dd4fd85fb24800abc5ba6c053c9c5c702b9c4357bcda971cc086bc75e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-760.html",
+      "sha256": "2c203654c4651a277af6a590d333676d4647d0758830f45b7c966ebf8dfed3ed"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-761.html",
+      "sha256": "34450cbab3b8789cae589135af298090e31f91e1904a86993ea3843e152ec12b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-762.html",
+      "sha256": "783565243efd495d80cd785e8b95d05d967b88270982f6146d068525c239b813"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-766.html",
+      "sha256": "93623a81ddb85f8c06ff04dbb9ad8074a96afd1852eb9d1081cfcabf76cfed44"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-768.html",
+      "sha256": "be173b85838dba4680195b7636305a42870a761ae580a1380ee435972db276ce"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-770.html",
+      "sha256": "93f737d9c1ba7368278762a505672abbea2539de323e284c974c81674abd864e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-772.html",
+      "sha256": "5b08d4948ef9f5e2ee1ed0e810ec03a387137e61d1c1e251e5e35c5411f1cf22"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-774.html",
+      "sha256": "93f7279db58e5447e519ff5eb29c5edcd491948f9b783f476fde0b65984d6b32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-776.html",
+      "sha256": "61b7d24d09849a3ea66e26a61c2559510515da1ea67f2c315a7c89aa99e79a2a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-778.html",
+      "sha256": "c19a9fd500c8f45db9003bce3d672d7a2d914e9a9c05827e3facf1526de82e92"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00615-801.html",
+      "sha256": "e85df2eebd68b97337e2d720dba6279191089d1fc20e9b9b7603465e73f89a41"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-000.html",
+      "sha256": "57f48a60e95a5b491795b16393cb28f9a086eae78cbf5501621059de78da752e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-050.html",
+      "sha256": "bcdec1f4a231716b41c786910b6c814ffc284b9766ff5959391173da4685bca3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-055.html",
+      "sha256": "82a7aa76d56a67e39525707d7aef9c8141fce187158c4eb94b431f19a4b8d32a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-060.html",
+      "sha256": "42f3cdd2fabe2f2039472b345e078a42371f4940de0f4a1d3b750f34e73a2442"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-070.html",
+      "sha256": "36c72bf2b145ec4307c5be2e44b86b20d9469d55aff5b9101b087e2af159d60b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-071.html",
+      "sha256": "1ee9b6a97883b956342cef1b23cf7c3260bb45132829c4e1a3352e1d4f079e7d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-072.html",
+      "sha256": "60cedcc6f074625931aa7bd615e434f3c38b98659b1def40087f54256911824d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-073.html",
+      "sha256": "3c4b99eb19832d4bd6d967d4a6508385e38dc707b9ce0eae088a91f9c0a46964"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-080.html",
+      "sha256": "f6dd0cc92b3e6f5d0ab70fbb2e3e03aac36287d0dfe33e22334e4d7caa18d686"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-090.html",
+      "sha256": "98da6ab310fa0efd4855cd1cb30358a1d54ac034429992145dcbfaf9478f84ac"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00620-200.html",
+      "sha256": "9283b828dabcd6adef5e8277ab721280b1acb1dcf41eebf3c38692ed94ccba6c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00630-000.html",
+      "sha256": "5796799c302ad7ca1a813daab31d8190b53bc49e6ec867b6fb3bfbf889123bb4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00630-100.html",
+      "sha256": "a36698114d75b6d8c7eab989b6c114081fbd1127801d2e49286e9c54696f4d5c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00630-110.html",
+      "sha256": "0e3d39ea1d1041ee1fd044a11b453eda36ca79586472eb7c4990f22d758d1a6e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00630-300.html",
+      "sha256": "524a27d2a807a9a9235d866d47952a19b207ea81914b9e9fcb80c1def2b3af1d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00630-310.html",
+      "sha256": "f3c30f508068577b15c4aae1008a1a848deecde4e2fcc6ebab83255c2757843c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00630-400.html",
+      "sha256": "e6242ec12c64aafba782e5c37a8cfea09f65820ef05b30b8a3bf2a50ecc03d61"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00640-000.html",
+      "sha256": "536c727388071077a87ba6244b0aa4f882ec71c6f7925bed557a18a1252335d1"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00640-050.html",
+      "sha256": "7d0e11ecd494a103e0c1d175de9277b9cd401453eea500b9ef73d1cb7ff69ba2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-00640-075.html",
+      "sha256": "4e50041c4e36e8fcb595cba6972e4bd821fd37c493b34264b3788745e4040c54"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02500-000.html",
+      "sha256": "6e7fc9558ec607994800ad1bee666257909459dd2c45857db9d436f480d5aff9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-000.html",
+      "sha256": "e0d5655ff468dddf4872d6005cb941762ccc869937a00d3b6cbc85514b00d169"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-001.html",
+      "sha256": "8abd959ce646be7fb071db7a8008c14a81ed1ad4dd6712650fea61e67447c7bc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-021.html",
+      "sha256": "cbec517461f09c253336433d6c6d11d0025071fcfc40ca1e645b00ca8877cb9f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-025.html",
+      "sha256": "c4619e3479ef8aba6f1b4fb937aa25a923ad60ffc23ec4f4da225d5711595ff2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-030.html",
+      "sha256": "92fe687bc11c8ff8d66f5779a5f0c88298f1f1d6684baf85d10b0c8c1c5760ec"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-070.html",
+      "sha256": "a0367022b3384a46a9464b65d224ba2f11caaca7db51d7e91c230da524314da5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-075.html",
+      "sha256": "1631e2703263dc250ef80ba973cb7f20b312c4b2df2f105c81cad45731365dc3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-080.html",
+      "sha256": "cedc11dfbf44d23bea4f4f0974ee35caef4fef602d38dfcb3e2c479ec87ab962"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-095.html",
+      "sha256": "befdc6d32c1f8206b962dacb66cf91a73b644f49d42a38f68570641a81816fc9"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-100.html",
+      "sha256": "aea7455b10f7f95550808dc1d3c89c849ed3724b149afa951130319d45982789"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-105.html",
+      "sha256": "c44b3cfe1b76d0205469113bde71d7052d45e1b11a64155f05c632f7655c53d5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-110.html",
+      "sha256": "e2ad22e7fe90686ad40709ba28a748733921bdacd72689b624707fccecefc4e0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-120.html",
+      "sha256": "98668567f6d3fc50b3748ceb9beae6b87ff91ed37c81b4e585b0013dfae4885b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-125.html",
+      "sha256": "4ea8fbbabf256f4ced3671935d3f9e971cc69363b2786eac17cdb617480f6819"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-130.html",
+      "sha256": "084beacc236c33fc88217486dccfeff7c23e564bf66717ebf8ab8d91818fbf82"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-140.html",
+      "sha256": "57435f8afe81ca71757bc8d29e2885c73d83ed554dbcd095579f1e2e1c3c7e80"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-145.html",
+      "sha256": "76978e0237d421aa23b75b029ec1a1d33c78cf7e57e78c9d3ee3bf25ab6cef13"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-150.html",
+      "sha256": "ae5bfaa364a181510490e3fbf6ff2ef944a0a2bf82f17690ae34b4a19e84593d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-155.html",
+      "sha256": "4bd6fc3e1485d5d9c8e89c50c08071abb23af8031893671339f4e0e44b6fb554"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02501-160.html",
+      "sha256": "cd65f137741b83ba729b693f0c6f3fda118847b455c1c4d8ba33bbb1e404bca2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-000.html",
+      "sha256": "b4333a1549783266066902e28cf5fd4fbb14a0cc0a7a9bebb87994def0e4962c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-001.html",
+      "sha256": "f37226b3fb6a4d2893c477b6348965bd832f1c73878bfdfaa2b36fdd687a8eda"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-005.html",
+      "sha256": "5b089b579e549c2bc2217949078b507a9c32a788e2c8fd1317a98842a2e1464d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-010.html",
+      "sha256": "a164c4458bd756dd6d7a34307738202275c122c59a7f6e0ff62e326729b7f223"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-015.html",
+      "sha256": "abb2b43301bc6784614b824f3e940a798d28bb7017d2540caf69c84627f868cf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-020.html",
+      "sha256": "51d1ab5e44fc7bb046557277ae102902cfd024d01003444ba33fea3cf131f3b8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-025.html",
+      "sha256": "0248a7e75610e526fa236e4f9782020fb25a9313241c44cb28ffa0f5d624948b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-030.html",
+      "sha256": "254fdd9604c1f9e1fa6c1e8983f0d3c706f0e99667e3b148ef8f0be3942d4bdd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-040.html",
+      "sha256": "3477ff8d19d43b67aa351aa57dd2edc015a06cc76b69fc6aaeea536891e71110"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-045.html",
+      "sha256": "b7c1b0d7a22032ef3a8e1ac90812842c41319af89d9953b95e828ef2f4d21a04"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-050.html",
+      "sha256": "b477ac774d5cb136de9ebbc769f75034fb37013eba3cf60688a94334ce057759"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-055.html",
+      "sha256": "46ca096b43003f1ec3c6c999276e8018feac633dd6b9caba16644cbe3523fb89"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-060.html",
+      "sha256": "2b8fe04369671ac6cf4d2740becbf658c97674cf501e5d7e91543a7415236831"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-065.html",
+      "sha256": "f94b28b8a7ab75663a9ee0f2b17027bbb99c60b12880a4ba24493ec255dbda14"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-070.html",
+      "sha256": "d74c65eed7e947e5c65683a9774504437b0ffdf1a12f97dbfc782f03fdbce9b5"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-075.html",
+      "sha256": "8f7d2352ae6a937d151bf28bcab7a1cf8d3f8f409c9596488a99bb65c53a9006"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-080.html",
+      "sha256": "12d964e47f75c7190a6959e86344c41201d03c4a0715cb8541c65dfa0ea0062e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-085.html",
+      "sha256": "6ff328ba0a7f8cdfd977ccb0e1884f8ae7f986b57c91a909b8ea4b67cf937462"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-090.html",
+      "sha256": "e0437ae15e888aabe4ecb660ee5df2597c5063c835c18505f29d6a6cfe2dd3cf"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-095.html",
+      "sha256": "663601133573af45cad0093224b76f4b73e7c6b3875605d5225f8c40ec7ac333"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-100.html",
+      "sha256": "acd99e76be5c2e1f235b65e4c0d52cfd6a35b71fbba6c2f9eddce4377785c52d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-105.html",
+      "sha256": "2efa69f3dff7908fec4ff591cb1a1ff1a895699794ac3a11b85104e86900dd2c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-110.html",
+      "sha256": "49359104b230d1f15185b860808865b030b9b4bdde88afd33b803adfed758dfe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-115.html",
+      "sha256": "9dddcba5a082e4df8c26440070a06fee1d535ba01e7df2b206ecb4aa60d0c521"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-120.html",
+      "sha256": "efbd3424058ffe83d1f0f7132222baa0ec6732db2958d9b71da21ba804f2d65e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-125.html",
+      "sha256": "4e34f8846472ef6330d5f21c2e5d1f6064d593d7ac2ce4ecbb79571b896acb1a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-130.html",
+      "sha256": "d8009358dff32aaa1788836f29c8938a6f302e70e0c7080b13b7d509dcf5437a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-135.html",
+      "sha256": "3bf35412f104b816b4d2f5ffd32143448a301ec0991a8bb9cbaba49bfb1c5b1b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-140.html",
+      "sha256": "b6c8170c07c90caf1aefd5bd5317ad9f5bf3a01dcf0665acd4b8682a78b2e513"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-145.html",
+      "sha256": "a5dce252357f05655a73f6eebedc3378e31e447cda145f5cf52cae6351f564c2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-150.html",
+      "sha256": "81882ec98355f05f6d8b94fa1216c64712fa34352df490c36da610f5ae442738"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-155.html",
+      "sha256": "cb804f32317d75cad434fd7468db70bfcf13d6abbaabd5f764bc566719386662"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-160.html",
+      "sha256": "18478a9c6607dfbc3ef8ac0eebcb5d547c9fcf7b05158659377eced3bba442ab"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-165.html",
+      "sha256": "7f142945ad30ff5dd40c578ca11dcc1fe6f05a8702dc79392a2408ccc8c83c32"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-170.html",
+      "sha256": "0ce9fa767bb0b79f73390bc267bb78b391a27b85430834bdba192fd6ee0c8d84"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-175.html",
+      "sha256": "2c474fe0b2ac267d782acb2b90afec83ea8b44d7d5001ebef8e1272cfd42969f"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-180.html",
+      "sha256": "e5110188735c7fce30b3daa76e13a595531cbe50156fad55c673c1b8028bf15b"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-185.html",
+      "sha256": "2f01f691c87fa4cefcfdc09d0d7dc6e0986cc7c5083422b321406ac684a0c2b4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-196.html",
+      "sha256": "f5e0d34522c0f509cca81bac4c83e1664c8d848abb18e6760f16c5811af05f98"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02505-240.html",
+      "sha256": "7b4b5b2f85ebc51c804893908bdfaf656e214f91bd433a24a0ee7b58292a6939"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-000.html",
+      "sha256": "7dfc0dc89221eeca71c19cd8a321ec0e7ff5615dec5f43b9ebb8a9ee03cff304"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-001.html",
+      "sha256": "d0490fd55091654444f5b3dd3f7d8fef3f22819ab23655fbc93a0026f6385b87"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-005.html",
+      "sha256": "d6e82fb7b07f863c2d91609818d225fd13624c3e4937c7e866342c25fffd8ef2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-010.html",
+      "sha256": "57bfffaed23635a85727df8162c2d3a81bf3387dd4a9005c46a9c398957aa9f3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-015.html",
+      "sha256": "b0293c1e967b280eb37e0fea238b65e260822f496e817fc0349a303d955ef489"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-016.html",
+      "sha256": "0f0856647a86dd81c32cd3adb77ef30ede93c6c680b21e2103a8abe7d5cfbbc4"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-017.html",
+      "sha256": "c2460932f498863102c665e4ac411f955bafb2fed40d6458f4c0d938df225ebc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-018.html",
+      "sha256": "b8b6df0d95b3e1f206200460c79df64cd584ca933fec7718656a7a67845fe000"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-019.html",
+      "sha256": "96f8d7f3078bd8a36bb144362e3062d00d4aa9d597fd64ddf44615a3e60855f8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-020.html",
+      "sha256": "9830eb70082012c29fa454efe35d3518549a68bc5b35951010419651f2c15623"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-021.html",
+      "sha256": "a3c55ed25cc870f36bc5416d4b8d90cff2f2e2b600f8855f7054e8818236c32d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-022.html",
+      "sha256": "e4aea0217423990da87793028fa04177be3986d9520396ad33be0390974792c6"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-024.html",
+      "sha256": "4d403d73452dd069fc4284dc4a73d3454f216de0d635db2723f7ed6bea4ccaac"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-026.html",
+      "sha256": "44ecb84985ae4111b723b06dc6b1f65aa4c791c0dfab0a03a39ec05a94be3d29"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-02510-030.html",
+      "sha256": "a1ba6deeecd1ffe0fecde816e3d6e1aae05ee7652e04d4a34f2d24c865b53046"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-dal00605-360.html",
+      "sha256": "08917ee1cb7f78657627edf0441694f5a388f964006c0baa4e5e9baf7bbde011"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-dal00605-361.html",
+      "sha256": "73a4f2cecfaaa074eec34c97ff7f567b03b6a9c2c351250166bcfac700b7dec8"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-dal00605-364.html",
+      "sha256": "cc74de5bc472c2bd303349092628eba409200837b1e2b059bb19c29a1dd70267"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-dal02505-005.html",
+      "sha256": "8c8bcc90db9883971bff77df159230663bcfda1b3866008fe14a0f4f5c534ffe"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-den00205-250.html",
+      "sha256": "a1d52b963001aa79edafd65aa187694746be5779e44d1ebd026867a7da34075a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-den00205-275.html",
+      "sha256": "020248e01734d7ce8127a33db85355a16795f97d8d5d615cc75f941f5560a18c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-phi02505-030.html",
+      "sha256": "d144023e4295b44b431d5537d96641a8cadf1d669f31ede7f5f2d27542adfc20"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-rs/official-documents/ssa-poms-rs-sea00605-015.html",
+      "sha256": "39f91aea60db3e8a3de13b0c9cfbf5aed82abf9009595341c6d29b2594d02657"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0c1d57c8faa1319b166aa76cf7d7da0231b0910e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/build_oasdi_poms_manifests.py --family oasdi-rs --print-index && axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-12-oasdi-poms-rs --manifest manifests/us-ssa-poms-rs-2026-10-12.yaml --source-as-of 2026-10-12 --expression-date 2026-10-12 (run note: docs/ingest-runs/2026-10-12-oasdi-ssa-sources.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2981,
+    "missing_count": 0,
+    "provision_count": 2981,
+    "source_count": 2981
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-12T15:49:52.047300+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Y2XRPa/8IitY19NtD+V3K5YCcjeO/nAmQS2ERVsMXsTG1af/Jm5tr9WqXOV/85M+reXnfBUeMzo02ibUW2DvDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-oasdi-poms-rs"
+}

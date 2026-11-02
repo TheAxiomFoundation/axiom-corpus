@@ -1,7 +1,7 @@
 """Build one corpus manifest per jurisdiction for the FFY 2025-2027 CCDF State/Territory
 Plans (ACF-118) and update the CCDF agent queue.
 
-Central index: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027 (HHS Administration
+Central index: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027 (HHS Administration
 for Children and Families, Office of Child Care; acf.hhs.gov 301-redirects there). Unlike the
 LIHEAP Clearinghouse, ACF does not host the plans: each row links to the state or territory
 Lead Agency's own website for the plan and, for the 50 states and DC, to an ACF-hosted
@@ -27,7 +27,32 @@ blocked hosts answered. 16 plans were located on the Lead Agency pages and added
 RI, SC, TN, UT, VA, VT); Alaska posts only the public-comment draft (needs_review); AS, AZ, GA, MD, MO, MP, NY and TX
 failed the same way (plain request plus curl_cffi impersonation, 20 s). Vermont needs VT_EXTRACTION (heading whitelist).
 
-    uv run python scripts/build_ccdf_state_plan_manifests.py
+Index relocation 2026-10-20 (docs/ingest-runs/2026-10-20-w8-ccdf-index-repair.md): the /occ/form/ address above now
+answers HTTP 404 on acf.gov and on acf.hhs.gov alike. ACF moved the page from its "form" content type to "data":
+the OCC landing page https://acf.gov/occ (HTTP 200) links
+https://acf.gov/occ/programs-services/child-care-and-development-fund/resources/plans (HTTP 200), whose
+"FY 2025-2027" entry is https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027 (HTTP 200, title "FY 2025-2027
+State/Territory CCDF Plans | The Administration for Children and Families"). The relocated page carries the same
+<table class="table"> with 56 jurisdiction rows and the same three columns, so fetch_index() parses it unchanged, and
+every one of the 56 queue rows' index_plan_link and index_appendix_url matches it exactly. The FFY 2022-2024 index
+moved the same way, to /archive/occ/data/approved-ccdf-plans-fy-2022-2024. repair_dead_index_refs() rewrites the dead
+address in the queue and in the committed manifests; ``--repair-index`` runs it alone.
+
+Re-probe 2026-10-20 (same note): Missouri and Indiana now answer and are extracted into W8_SCOPE; AS, AZ, MD, MP and NY
+fail as before; AK, PR and VI still post no approved or certified FFY 2025-2027 plan.
+
+Row identity on manifests/ccdf-agent-queue.yaml is a row's target_manifest, not its jurisdiction:
+three rows carry jurisdiction us (the ACF plan directory, 45 CFR part 98, the CCDBG statute) and two
+carry us-in (the ACF-118 plan and the FSSA CCDF Policy Manual). Every pass here selects rows through
+plan_row_manifest/one_row, which refuse on anything but one match. There is no default pass: each
+mode is named, and the full rebuild is behind --rebuild because it is the only one that rewrites the
+whole queue and every agent_ready manifest. It carries each row's additional_families and committed
+target_scope.version through, and refuses to write if a row or a family block would be lost.
+
+    uv run python scripts/build_ccdf_state_plan_manifests.py --rebuild              # full index rebuild
+    uv run python scripts/build_ccdf_state_plan_manifests.py --only-plan-rows in,mo # narrow row refresh
+    uv run python scripts/build_ccdf_state_plan_manifests.py --family appendices
+    uv run python scripts/build_ccdf_state_plan_manifests.py --repair-index
 """
 from __future__ import annotations
 
@@ -43,8 +68,13 @@ import requests
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = "https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027"
-INDEX_LEAD = "https://acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027"
+INDEX = "https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027"
+INDEX_LEAD = "https://acf.hhs.gov/occ/data/approved-ccdf-plans-fy-2025-2027"
+# The /occ/form/ path the first three runs used; dead since some date before 2026-10-20 (HTTP 404
+# on acf.gov and on acf.hhs.gov). Kept so repair_dead_index_refs() can find and rewrite it.
+DEAD_INDEX = "https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027"
+DEAD_INDEX_LEAD = "https://acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027"
+INDEX_LANDING = "https://acf.gov/occ/programs-services/child-care-and-development-fund/resources/plans"
 BASE = "https://acf.gov"
 INTERMEDIATE = ROOT / "data" / "certs" / "sectigo-public-server-authentication-ca-ov-r36.pem"
 SOURCE_AS_OF = dt.date.today().isoformat()
@@ -151,6 +181,26 @@ VT_EXTRACTION = {
     + "|".join(re.escape(heading) for label, heading in PREPRINT_SECTIONS if label != "2.4")
     + r"|Lead Agency Outreach to Families Experiencing Homelessness, Families with Limited(?: English)?)\s*$",
 }
+# The 41 preprint headings as a regex alternation, with the wrapped first line of 2.4 (the
+# existing CARS heading_continuation_pattern takes its second line). Same alternation
+# VT_EXTRACTION above builds inline; VT is left untouched so its manifest stays byte-identical.
+PREPRINT_HEADING_ALT = (
+    "|".join(re.escape(heading) for label, heading in PREPRINT_SECTIONS if label != "2.4")
+    + r"|Lead Agency Outreach to Families Experiencing Homelessness, Families with Limited(?: English)?"
+)
+# Indiana's Amendment 3 is a "Microsoft: Print To PDF" render of the CARS template: 39 of the 41
+# labels sit alone on a line with the heading on the next one (the California form), while 10.1
+# and 10.2 keep the label and heading on one line. The plan also appends Indiana's child care
+# statutes, whose "8.5 Child abuse or neglect reporting", "3.5 IN-HOME CARE", "12.5 Safe sleeping
+# practices" and "17.2 Sec. 37" lines reuse the preprint label form, so - as for Vermont - the
+# heading must be one of the 41 preprint headings. Both heading positions take the whitelist.
+IN_EXTRACTION = {
+    **CA_EXTRACTION,
+    "section_heading_pattern": r"^(?P<label>\d{1,2}\.[1-9])(?:\s+(?P<heading>"
+    + PREPRINT_HEADING_ALT
+    + r"))?\s*$",
+    "label_only_heading_pattern": r"^(?:" + PREPRINT_HEADING_ALT + r")\s*$",
+}
 
 # Indiana CCDF Policy Manual (FSSA agency manual; a different family from the ACF-118 plans).
 IN_MANUAL_INDEX = "https://www.in.gov/fssa/carefinder/information-and-resources2/"
@@ -176,6 +226,29 @@ REPROBE_SCOPE = {"source_as_of": "2026-09-13", "scope_version": "2026-09-13-ccdf
 DURABLE = ("durable block: the same failure from two networks (the 2026-09-10 non-US and US exits) on two dates "
            "(2026-09-10 and 2026-09-13), so the dashboard should treat the cell as not available rather than pending")
 
+# Index-repair pass 2026-10-20 (docs/ingest-runs/2026-10-20-w8-ccdf-index-repair.md). The ACF index moved from
+# /occ/form/ to /occ/data/; every blocked and needs_review row was re-probed against the relocated index and the
+# Lead Agency's own site, plain client first and curl_cffi chrome120 second, 25 s each, TLS verified throughout.
+# MO and IN now answer with a conforming plan and are extracted into W8_SCOPE; the rest fail or post no plan.
+W8_STAMP = "2026-10-20T19:00Z"
+W8_SCOPE = {"source_as_of": "2026-10-20", "scope_version": "2026-10-20-w8-ccdf-plan-fy2025-2027"}
+W8_DURABLE = ("durable block: the same failure on three dates (2026-09-10, 2026-09-13 and 2026-10-20) from US "
+              "networks, and the relocated ACF index links the same address, so the dashboard should treat the "
+              "cell as not available rather than pending")
+
+# Wave 7 (docs/ingest-runs/2026-10-12-w7-state-benefits.md) already extracted Maryland and Missouri plan text to the
+# canonical us-xx/policy/acf/ccdf-plan/fy2025-2027 paths - "the first Maryland and Missouri plan text in the corpus
+# (both were blocked in the 2026-09-10 plan run)". The 2026-10-20 pass found both while re-probing, confirmed the
+# collision on all 42 citation paths of each, and records the held scope on the row instead of extracting again.
+W7_HELD = {
+    "md": {"scope": "us-md/policy/2026-10-12-w7-state-benefits-policy-md", "plan_version": "Amendment 1",
+           "plan_status": "Approved as of 2025-06-24",
+           "source_url": "https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_plan_approved_updated_6.25.25_amendment_request_1.pdf"},
+    "mo": {"scope": "us-mo/policy/2026-10-12-w7-state-benefits-policy-mo", "plan_version": "Amendment 2",
+           "plan_status": "Approved as of 2026-03-26",
+           "source_url": "https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-2027%20For%20Missouri%20-%20Approved%203.26.2026.pdf"},
+}
+
 # Reviewed 2026-09-10 by following each ACF index "plan" link to the Lead Agency page.
 # taken: (plan_url, publisher_index_url, source_format, plan_version, plan_status, extra)
 # blocked/needs_review: (publisher_index_url, reason)
@@ -183,13 +256,16 @@ RESOLUTIONS: dict[str, dict] = {
     "al": {"status": "agent_ready", "url": "https://dhr.alabama.gov/wp-content/uploads/2023/04/2025-2027-CCDF-State-Plan-with-Approval-Letter.pdf",
                "index": "https://dhr.alabama.gov/child-care/", "version": "Initial Plan", "plan_status": "Approved (state PDF prefixed with the ACF approval letter; 301 pages)"},
     "ak": {"status": "needs_review", "index": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=215530",
-               "reason": "retry 2 2026-09-10T21:35Z from a US network: aws.state.ak.us now answers (first two passes: TCP connect timeout); the Online Public Notice the ACF index links carries one attachment, '2025-2027 CCDF State Plan 052424.pdf' (Attachment.aspx?id=148401, 213 pages, Microsoft Word export dated 2024-05-24, no CARS Plan Status line, text refers to 'this draft CCDF Plan' posted for public comment); the Department of Health Child Care Program Office page lists no CCDF plan; no approved or certified FFY 2025-2027 plan is posted, so not extracted"},
+               "reason": "retry 2 2026-09-10T21:35Z from a US network: aws.state.ak.us now answers (first two passes: TCP connect timeout); the Online Public Notice the ACF index links carries one attachment, '2025-2027 CCDF State Plan 052424.pdf' (Attachment.aspx?id=148401, 213 pages, Microsoft Word export dated 2024-05-24, no CARS Plan Status line, text refers to 'this draft CCDF Plan' posted for public comment); the Department of Health Child Care Program Office page lists no CCDF plan; no approved or certified FFY 2025-2027 plan is posted, so not extracted; "
+               f"re-read {W8_STAMP} against the relocated ACF index, which links the same Online Public Notice: unchanged (HTTP 200, 39,797 bytes; the one attachment '2025-2027 CCDF State Plan 052424.pdf' at Attachment.aspx?id=148401 and no other document link), so the row stays needs_review"},
     "as": {"status": "blocked_primary_source", "index": "https://www.dhss.as/index.html",
                "reason": "TLS: www.dhss.as presents a self-signed, expired certificate (CN=cmaster70); verification impossible, not disabled; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (SSLCertVerificationError / curl 60 self-signed, expired certificate); retried 2026-09-11T21:15Z from a US network (territories pass), same failure: openssl reports the self-signed CN=cmaster70 certificate with verify return code 10 (certificate has expired), curl 60 for the plain client and for curl_cffi chrome120 alike; the plain-HTTP site http://dhss.as/index.html answers 200 but its Child Care, ASNAP and ASWIC menu entries all point at the 'coming.html' placeholder, so no plan is posted there either; "
-                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (SSLCertVerificationError: self-signed certificate, 0.6 s; the plain-HTTP index still answers HTTP 200, 12,095 bytes, 1.0 s with the placeholder menu); {DURABLE}"},
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (SSLCertVerificationError: self-signed certificate, 0.6 s; the plain-HTTP index still answers HTTP 200, 12,095 bytes, 1.0 s with the placeholder menu); "
+                         f"re-probed {W8_STAMP} against the relocated ACF index, which links the same https://www.dhss.as/index.html: same failure (plain client SSLCertVerificationError self-signed certificate, curl_cffi chrome120 curl 60 unable to get local issuer certificate); the plain-HTTP site http://dhss.as/index.html answers HTTP 200, 13,265 bytes, and its page body links no document at all, so no FFY 2025-2027 plan is posted there either; {W8_DURABLE}"},
     "az": {"status": "blocked_primary_source", "index": "https://des.az.gov/services/child-and-family/child-care/child-care-and-development-fund-state-plan",
                "reason": "HTTP 403 (cloudflare) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare for plain requests and chrome impersonation); "
-                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (HTTP 403, 5,958 bytes, 0.1 s, Cloudflare 'Just a moment...' challenge page); {DURABLE}"},
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (HTTP 403, 5,958 bytes, 0.1 s, Cloudflare 'Just a moment...' challenge page); "
+                         f"re-probed {W8_STAMP} against the relocated ACF index, which links the same des.az.gov page: same failure (plain client HTTP 403, 5,946 bytes, 0.1 s; curl_cffi chrome120 HTTP 403, 6,224 bytes, 0.4 s; both the Cloudflare 'Just a moment...' challenge); {W8_DURABLE}"},
     "ar": {"status": "agent_ready", "url": "https://dese.ade.arkansas.gov/Files/ACF-118_CCDF_FFY_2025-2027_For_Arkansas_OEC.pdf",
                "index": "https://dese.ade.arkansas.gov/Offices/office-of-early-childhood/forms--documents", "version": "Amendment 2", "plan_status": "Approved as of 2026-05-13 (only FFY 2025-2027 version posted)",
                "tls": True},
@@ -223,8 +299,11 @@ RESOLUTIONS: dict[str, dict] = {
     "il": {"status": "agent_ready", "url": "https://www.dhs.state.il.us/page.aspx?item=163746",
                "index": "https://www.dhs.state.il.us/page.aspx?item=59282", "version": "Initial Plan", "plan_status": "Published as an HTML page (no PDF on the publisher's index)",
                "source_format": "html", "extraction": IL_EXTRACTION},
-    "in": {"status": "needs_review", "index": "https://www.in.gov/fssa/carefinder/information-and-resources2/",
-               "reason": "publisher posts https://www.in.gov/dA/ce627c931e/ACF-118-CCDF-FY2025-2027-IN.pdf?language_id=1: the certified 2024-06-30 submission (399 pages, 7.7 MB, non-CARS layout with attached state rules); the CARS section pattern finds 5 unique labels, so it was not extracted; approved version not posted; retried 2026-09-10: same file (7,742,708 bytes, Last-Modified 2026-06-19), 1 of 41 labels after the Overview start, the carefinder index lists the same 11 documents; retried 2026-09-10T21:35Z from US network: same page (the plan plus 9 CAP and letter documents), same file (HTTP 200, 7,742,708 bytes, Last-Modified 2026-06-19); approved print still not posted"},
+    "in": {"status": "agent_ready", "url": "https://www.in.gov/fssa/uploads/ACF-118-CCDF-FY2025-2027-IN-Amend3.pdf",
+               "index": "https://www.in.gov/fssa/carefinder/information-and-resources2/", "version": "Amendment 3",
+               "plan_status": f"Approved as of 2026-07-01 (located on the {W8_STAMP} index-repair re-probe: the carefinder page the relocated ACF index links now posts 'CCDF state plan 2025-2027' as ACF-118-CCDF-FY2025-2027-IN-Amend3.pdf and no longer links the certified 2024-06-30 submission the first three runs found non-conforming; HTTP 200 application/pdf, 119,271,642 bytes, Last-Modified 2026-09-29, a 'Microsoft: Print To PDF' render of the CARS template, 243 pages, Plan Status line 'Approved as of 2026-07-01'; the only FFY 2025-2027 version posted, so taken under the MN and LA precedent; the public-comment summary, waiver request and the CAP documents and letters are posted separately, not taken)",
+               "extraction": IN_EXTRACTION,
+               "source_as_of": W8_SCOPE["source_as_of"], "scope_version": W8_SCOPE["scope_version"]},
     "ia": {"status": "agent_ready", "url": "https://hhs.iowa.gov/media/13429/download?inline",
                "index": "https://hhs.iowa.gov/programs/programs-and-services/child-care", "version": "Amendment 1", "plan_status": "Approved as of 2026-03-26 (only FFY 2025-2027 version posted)"},
     "ks": {"status": "agent_ready", "url": "https://www.dcf.ks.gov/services/ees/Documents/Child_Care/FFY%202025-2027%20CCDF%20Initial%20CCDF%20Plan.pdf",
@@ -236,9 +315,9 @@ RESOLUTIONS: dict[str, dict] = {
     "me": {"status": "agent_ready", "url": "https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/Maine%20State%20Plan%20CCDF%20FFY%202025-2027%20For%20Maine_1.pdf",
                "index": "https://www.maine.gov/dhhs/ocfs/provider-resources/child-care-subsidy-information-for-providers", "version": "Initial Plan",
                "plan_status": "Certified as of 2024-09-12 (located on retry 2026-09-10: the ACF index link goes to the 'paying for child care' page; the plan is 'Maine State Plan CCDF FFY 2025-2027 for Maine' on the OCFS 'Child Care Affordability Information & Resources' page; Amendments #1-#4, the Appendix, public comments and the Notice of Compliance are posted separately, not taken; approved print not posted)"},
-    "md": {"status": "blocked_primary_source", "index": "https://earlychildhood.marylandpublicschools.org/about/ccdf-state-plan",
-               "reason": "landing page 200; the linked plan page https://earlychildhood.marylandpublicschools.org/2025-2027-ccdf-plan returns HTTP 403 'Access denied'; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 cloudflare on the 2025-2027-ccdf-plan page for plain and impersonated requests; the about/ccdf-state-plan landing page answers 200 and links only that page); "
-                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (landing page HTTP 200, 117,379 bytes, 0.5 s; the 2025-2027-ccdf-plan page HTTP 403, 107,539 bytes, 'Access denied' page served by cloudflare); {DURABLE}"},
+    "md": {"status": "needs_review", "index": "https://earlychildhood.marylandpublicschools.org/about/ccdf-state-plan",
+               "held": W7_HELD["md"],
+               "reason": f"re-classified on the {W8_STAMP} index-repair re-probe: the row was blocked_primary_source on the strength of the HTML plan page alone, and the plan FILE is in fact retrievable from the publisher's own host. The about/ccdf-state-plan landing page the relocated ACF index links answers HTTP 200 (117,402 bytes plain, 117,401 bytes chrome120) and its only FFY 2025-2027 entry, https://earlychildhood.marylandpublicschools.org/2025-2027-ccdf-plan, still answers HTTP 403 'Access denied' (cloudflare; 107,562 bytes plain, 107,560 bytes chrome120) - but the plan PDF the wave-7 run located on the same host, /system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_plan_approved_updated_6.25.25_amendment_request_1.pdf, answers HTTP 200 application/pdf, 3,053,686 bytes, to the plain client. Not taken here, because the plan text is already held: the wave-7 state-benefits run of 2026-10-12 extracted Maryland Amendment 1 (approved 2025-06-24) from that file to the same 42 citation paths under us-md/policy/acf/ccdf-plan/fy2025-2027 (scope us-md/policy/2026-10-12-w7-state-benefits-policy-md, docs/ingest-runs/2026-10-12-w7-state-benefits.md). The HTML page block is real and recorded, but it no longer makes the jurisdiction unavailable; a reviewer should decide whether this row retires into the wave-7 scope"},
     "ma": {"status": "agent_ready", "url": "https://www.mass.gov/doc/20241108-approved-2025-2027-ccdf-state-plan/download",
                "index": "https://www.mass.gov/lists/child-care-and-development-fund-ccdf-state-plans", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (amendment 1 and 2 consolidated plans posted separately, not taken)", "impersonation": True},
     "mi": {"status": "agent_ready", "url": "https://www.michigan.gov/mileap/-/media/Project/Websites/mileap/Documents/Early-Childhood-Education/Child-Development-and-Care/data-and-reporting/CARS-118-FFY2025-2027-CCDF-Plan-Print-Template.pdf?rev=7d0ee04737634947b4883ee964af46a7&hash=C3B5F436B5ECD5F2D57742378BDE464C",
@@ -248,9 +327,9 @@ RESOLUTIONS: dict[str, dict] = {
     "ms": {"status": "agent_ready", "url": "https://www.mdhs.ms.gov/wp-content/uploads/2025/01/ACF-118-CCDF-FFY-2025-2027-For-Mississippi.pdf",
                "index": "https://www.mdhs.ms.gov/eccd/reports-archives/", "version": "Initial Plan",
                "plan_status": "Approved as of 2024-11-09 (located on retry 2026-09-10: the State Plans page still lists only 2022-2024; the plan is '2025 - 2027 CCDF Triennial State Plan' on the ECCD 'Child Care Reports & Archives' page, whose /document/2025-2027-ccdf-triennial-state-plan/ landing URL 302s to this PDF; the Appendix is posted separately, not taken)"},
-    "mo": {"status": "blocked_primary_source", "index": "https://dese.mo.gov/childhood/child-care-subsidy/child-care-dev-fund",
-               "reason": "plan link https://dese.mo.gov/media/pdf/acf-118-ccdf-ffy-2025-2027-missouri returns an HTML Drupal antibot form (HTTP 200) instead of the PDF for requests and curl_cffi chrome120; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 200 text/html Drupal antibot form with an Incapsula script instead of the PDF, plain and impersonated; the landing page also lists Amendment #1 and 'Current' Amendment #2 behind the same media path); "
-                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (landing page HTTP 200, 81,955 bytes, 0.1 s, with the Incapsula script; the plan media path HTTP 200 text/html 52,900 bytes and the Amendment #2 media path HTTP 200 text/html 60,052 bytes, both the Drupal antibot form instead of a PDF); {DURABLE}"},
+    "mo": {"status": "needs_review", "index": "https://dese.mo.gov/childhood/child-care-subsidy/child-care-dev-fund",
+               "held": W7_HELD["mo"],
+               "reason": f"the 2026-09-10 block is lifted: on the {W8_STAMP} index-repair re-probe the DESE CCDF page the relocated ACF index links answers HTTP 200 (81,536 bytes) to the plain client and to curl_cffi chrome120, and the Initial Plan is retrievable - its /media/pdf/acf-118-ccdf-ffy-2025-2027-missouri page is the publisher's own PDF-viewer page (still text/html, 52,893 bytes) and its viewer's file endpoint on the same host answers application/pdf, 2,756,462 bytes, Last-Modified 2024-11-12 (Aspose.Words CARS print, 191 pages, Plan Status 'Approved as of 2024-11-09', 41 of 41 preprint labels, no repeats). It is NOT taken, because the plan text is already held: the wave-7 state-benefits run of 2026-10-12 extracted Missouri Amendment 2 (approved 2026-03-26) to the same 42 citation paths under us-mo/policy/acf/ccdf-plan/fy2025-2027 (scope us-mo/policy/2026-10-12-w7-state-benefits-policy-mo, docs/ingest-runs/2026-10-12-w7-state-benefits.md). A 2026-10-20 scope was extracted, found to collide on all 42 paths, and removed; the held Amendment 2 is the later approved version, so taking the Initial Plan would duplicate the paths with older text. A reviewer should decide whether this row retires into the wave-7 scope or whether the Initial Plan belongs at a dated sibling path"},
     "mt": {"status": "agent_ready", "url": "https://dphhs.mt.gov/assets/ecfsd/childcare/documentsandresources/MontanaCCDFStatePlan.pdf",
                "index": "https://dphhs.mt.gov/ecfsd/childcare/documentsandresources", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09"},
     "ne": {"status": "agent_ready", "url": "https://dhhs.ne.gov/Child%20Care%20Documents/ACF-118%20CCDF%20FFY%202025-2027%20For%20Nebraska%20-%20APPROVED.pdf",
@@ -265,14 +344,16 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://www.nmececd.org/ccdfsessions/", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09"},
     "ny": {"status": "blocked_primary_source", "index": "https://ocfs.ny.gov/main/childcare/stateplan/",
                "reason": "ocfs.ny.gov returns an F5/Shape JavaScript bot-challenge page (TSPD) instead of the index; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (F5/Shape TSPD JavaScript challenge page, 7.5 KB, plain and impersonated); "
-                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure class (connection reset by peer after 0.1 s, no response); {DURABLE}"},
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure class (connection reset by peer after 0.1 s, no response); "
+                         f"re-probed {W8_STAMP} against the relocated ACF index, which links the same ocfs.ny.gov page: same failure (HTTP 200 but a 6,653-byte F5/Shape TSPD JavaScript challenge to the plain client and 6,650 bytes to curl_cffi chrome120, the body empty apart from the noscript line 'Please enable JavaScript to view the page content. Your support ID is ...', so the page links no document); {W8_DURABLE}"},
     "nc": {"status": "agent_ready", "url": "https://ncchildcare.ncdhhs.gov/Portals/0/documents/pdf/A/ACF-118_CCDF_FFY_2025-2027_For_North_Carolina_November_2024.pdf?ver=5Qk3uXFjaCh3xyBqG3faZg%3d%3d",
                "index": "https://ncchildcare.ncdhhs.gov/Services/Child-Care-Development-Fund-CCDF", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (Amendment 2 consolidated plan and the Appendix posted separately, not taken)"},
     "nd": {"status": "agent_ready", "url": "https://www.hhs.nd.gov/sites/default/files/documents/website-archive/human-services/2025-2027-ccdfstateplan-initial-archived.pdf",
                "index": "https://www.hhs.nd.gov/cfs/early-childhood-services/child-care-development-fund", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (Amendment 1, Amendment 2 and Appendix posted separately, not taken)"},
     "mp": {"status": "blocked_primary_source", "index": "https://www.childcare.gov.mp/",
                "reason": "HTTP 403 (nginx) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx); retried 2026-09-11T21:15Z from a US network (territories pass), same failure (HTTP 403, server nginx/1.29.8, 358-byte body, for the plain browser UA and curl_cffi chrome120; the parent Department of Community and Cultural Affairs site www.dcca.gov.mp answers the same 403); "
-                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (HTTP 403, 358 bytes, 2.5 s, nginx/1.29.8 '403 Forbidden'); {DURABLE}"},
+                         f"re-probed {REPROBE_STAMP} from a US network with the plain extractor client, same failure (HTTP 403, 358 bytes, 2.5 s, nginx/1.29.8 '403 Forbidden'); "
+                         f"re-probed {W8_STAMP} against the relocated ACF index, which links the same childcare.gov.MP address: same failure (HTTP 403, 358 bytes, '403 Forbidden' from nginx, for the plain client and for curl_cffi chrome120 alike); {W8_DURABLE}"},
     "oh": {"status": "agent_ready", "url": "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Providers/CCDF/Approved_State_Plan_2025-2027.pdf",
                "index": "https://childrenandyouth.ohio.gov/for-providers/resources/child-care-and-development-fund-state-plan", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 (amendments 1 and 2 posted separately, not taken)"},
     "ok": {"status": "agent_ready", "url": "https://oklahoma.gov/content/dam/ok/en/okdhs/documents/okdhs-pdf-library/child-care-services/ACF-118%20CCDF%20FFY%202025-2027%20For%20Oklahoma.pdf",
@@ -283,7 +364,8 @@ RESOLUTIONS: dict[str, dict] = {
                "index": "https://www.pa.gov/agencies/dhs/resources/early-learning-child-care", "version": "Initial Plan",
                "plan_status": "Approved as of 2024-11-09 (located on retry 2026-09-10: the ACF index link redirects to the generic pa.gov DHS agency page; the plan is linked as '2025-2027 Pennsylvania State Plan for Child Care Development Block Grant Report (CCDBG)' on the DHS 'Early Learning & Child Care' resources page; no amendments or Appendix posted there)"},
     "pr": {"status": "needs_review", "index": "https://www.acuden.pr.gov/documentos",
-               "reason": "publisher's documents page lists only 'Borrador Plan Estatal Child Care 2025-2027' (draft) plus hearing notices and supporting studies; no approved plan; retried 2026-09-10: unchanged (draft, hearing notice, 'Fee Scale State Plan 2025-2027' supporting document, emergency plan); no approved or certified plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the documents page (84 file links) still lists only the 'Borrador Plan Estatal Child Care 2025-2027' draft with its hearing notice, fee-scale study and emergency-plan attachments, plus the Child Care 2026-27 proposal guide and forms and the adopted Reglamento del Programa Child Care (Num. 8687 de 2016), which is a separate regulation family"},
+               "reason": "publisher's documents page lists only 'Borrador Plan Estatal Child Care 2025-2027' (draft) plus hearing notices and supporting studies; no approved plan; retried 2026-09-10: unchanged (draft, hearing notice, 'Fee Scale State Plan 2025-2027' supporting document, emergency plan); no approved or certified plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the documents page (84 file links) still lists only the 'Borrador Plan Estatal Child Care 2025-2027' draft with its hearing notice, fee-scale study and emergency-plan attachments, plus the Child Care 2026-27 proposal guide and forms and the adopted Reglamento del Programa Child Care (Num. 8687 de 2016), which is a separate regulation family; "
+               f"re-read {W8_STAMP} against the relocated ACF index, which links the same acuden.pr.gov/documentos page: unchanged (HTTP 200, 88,674 bytes, 'Last Published' 2026-05-01); the only FFY 2025-2027 plan document is still 'Borrador Plan Estatal Child Care 2025-2027.pdf' in the publisher's own 'Borrador Plan Estatal Child Care 2025-2027' (draft) folder on docs.pr.gov, with its hearing notice, fee-scale study, planning guide, risk analysis, emergency-plan templates and QPR; no approved or certified plan, so the row stays needs_review"},
     "ri": {"status": "agent_ready", "url": "https://dhs.ri.gov/media/8381/download?language=en",
                "index": "https://dhs.ri.gov/regulations/state-plans", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 ('Child Care Development Fund State Plan FFY25-27'; located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 cloudflare on the first two passes)"},
     "sc": {"status": "agent_ready", "url": "https://scchildcare.org/media/bxkiasbl/acf-118-ccdf-ffy-2025-2027-for-south-carolina-approved-state-plan.pdf",
@@ -305,7 +387,8 @@ RESOLUTIONS: dict[str, dict] = {
     "vt": {"status": "agent_ready", "url": "https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/Reports/CCDF-Plans/CCDF-Plan-2025-2027-Approved.pdf",
                "index": "https://dcf.vermont.gov/CDD/CCDF", "version": "Initial Plan", "plan_status": "Approved as of 2024-11-09 ('CCDF-Plan-2025-2027-Approved'; the PDF answered HTTP 200 on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 on the first two passes; the plan embeds Vermont's child care licensing rules inside section 5.3, whose numbered rule headings (5.3, 5.6, 9.1-9.4, 13.1) collide with the preprint labels, so the section pattern is restricted to the 41 preprint headings)", "extraction": VT_EXTRACTION},
     "vi": {"status": "needs_review", "index": "https://dhs.vi.gov/child-care-regulatory/",
-               "reason": "publisher's site lists only a CCDF preprint draft for FFY 2019-2021; no FFY 2025-2027 plan found; retried 2026-09-10: the home page still lists the 2019-2021 preprint draft and the Office of Child Care & Regulatory Services page lists the FFY 2022-2024 plan (submitted 2021-09-17), policy memoranda and the 2022 market rate survey; site search for 'CCDF 2025' returns nothing; no FFY 2025-2027 plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the Office of Child Care & Regulatory Services page (36 PDFs) lists the FFY 2022-2024 plan (submitted 9-17-2021), the 2019 policy memoranda 101-106, the subsidy rules, the 2022 market rate survey and the ACF-218 QPR for FFY 2022; no FFY 2025-2027 plan"},
+               "reason": "publisher's site lists only a CCDF preprint draft for FFY 2019-2021; no FFY 2025-2027 plan found; retried 2026-09-10: the home page still lists the 2019-2021 preprint draft and the Office of Child Care & Regulatory Services page lists the FFY 2022-2024 plan (submitted 2021-09-17), policy memoranda and the 2022 market rate survey; site search for 'CCDF 2025' returns nothing; no FFY 2025-2027 plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the Office of Child Care & Regulatory Services page (36 PDFs) lists the FFY 2022-2024 plan (submitted 9-17-2021), the 2019 policy memoranda 101-106, the subsidy rules, the 2022 market rate survey and the ACF-218 QPR for FFY 2022; no FFY 2025-2027 plan; "
+               f"re-read {W8_STAMP} against the relocated ACF index, whose Virgin Islands row links only dhs.vi.gov: unchanged (HTTP 200, 153,741 bytes); the only CCDF plan document the home page links is 'CCDF State Plan Preprint FFY - 2019-2021 Draft' (wp-content/uploads/2023/02/OCCRS_CCDF-PREPRINT-FFY-2019-2021.pdf); no FFY 2025-2027 plan, so the row stays needs_review"},
     "va": {"status": "agent_ready", "url": "https://www.childcare.virginia.gov/home/showpublisheddocument/55566/638647472799800000",
                "index": "https://www.childcare.virginia.gov/reports-resources/administrative-program-manuals-reports-and-data/virginia-child-care-plan", "version": "Initial Plan", "plan_status": "Certified as of 2024-10-01 (the publisher labels it \"Virginia's Approved 2025-2027 CCDF State Plan\"; the CARS print carries Plan Status Certified and no approval print is posted; retry 2 2026-09-10T21:35Z from a US network: plain requests still get HTTP 403 AkamaiGHost, curl_cffi chrome impersonation receives the page and the PDF)", "impersonation": True},
     "wa": {"status": "agent_ready", "url": "https://www.dcyf.wa.gov/sites/default/files/pdf/2025-2027-CCDF-Current-Plan.pdf",
@@ -346,14 +429,47 @@ def fetch_index() -> list[dict]:
 
 
 
-def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) -> dict:
+# The queue does not hold one row per jurisdiction: three rows carry jurisdiction ``us`` (the ACF plan
+# directory, 45 CFR part 98 and the CCDBG statute) and two carry ``us-in`` (the ACF-118 plan and the FSSA
+# CCDF Policy Manual). A row's identity is therefore its ``target_manifest``, never its jurisdiction.
+FEDERAL_ROW_MANIFEST = "manifests/us-ccdf-sources.yaml"
+IN_MANUAL_ROW_MANIFEST = "manifests/us-in-ccdf-sources.yaml"
+
+
+def plan_row_manifest(code: str) -> str:
+    """The target manifest of a jurisdiction's ACF-118 plan row, which is that row's identity."""
+    return f"manifests/us-{code}-ccdf-state-plan-fy{FY}.yaml"
+
+
+def one_row(states: list[dict], target_manifest: str) -> dict:
+    """Return the single queue row that carries ``target_manifest``; refuse anything else.
+
+    Keying rows by ``jurisdiction`` instead silently keeps whichever row the file lists last, so an edit
+    meant for Indiana's plan row lands on the FSSA policy-manual row and an edit meant for the federal
+    directory row lands on the CCDBG statute row. Selecting by target manifest cannot be ambiguous, and
+    refusing on 0 or 2 matches turns a layout change into a stop instead of a silent wrong write.
+    """
+    matches = [s for s in states if s.get("target_manifest") == target_manifest]
+    if len(matches) != 1:
+        raise SystemExit(f"{len(matches)} queue rows carry {target_manifest}; expected exactly 1")
+    return matches[0]
+
+
+def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None, *,
+                     version: str | None = None, source_as_of: str | None = None) -> dict:
     """Write the one-document manifest of an agent_ready jurisdiction and return its queue-row fields.
 
     A resolution may pin its own ``scope_version`` and ``source_as_of`` (the 2026-09-13 re-probe scope for GA
-    and TX); every other jurisdiction stays on the run-wide VERSION / SOURCE_AS_OF."""
+    and TX); every other jurisdiction stays on the run-wide VERSION / SOURCE_AS_OF. ``version`` is the scope
+    version the row already carries: the full rebuild passes it so a row it does not re-probe keeps its
+    committed scope instead of moving to the run date, and so the manifest written here and the queue row
+    returned never disagree. ``source_as_of`` is the date the row's committed manifest records, passed the same
+    way and for the same reason: a rebuild that did not re-read the publisher must not restamp when it was read.
+    A pinned ``scope_version`` / ``source_as_of`` on the resolution still wins over both."""
     jur = f"us-{code}"
     fmt = res.get("source_format", "pdf")
-    version = res.get("scope_version", VERSION)
+    version = res.get("scope_version") or version or VERSION
+    as_of = res.get("source_as_of") or source_as_of or SOURCE_AS_OF
     stem = f"{jur}-ccdf-state-plan-fy{FY}"
     doc = {
         "source_id": f"{jur}-acf-ccdf-plan-fy{FY}",
@@ -362,7 +478,7 @@ def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) 
         "title": f"{name} CCDF Plan, FFY {FY}",
         "source_url": res["url"],
         "source_format": fmt,
-        "source_as_of": res.get("source_as_of", SOURCE_AS_OF),
+        "source_as_of": as_of,
         "expression_date": EXPRESSION_DATE,
         "citation_path": f"{jur}/policy/acf/ccdf-plan/fy{FY}",
     }
@@ -383,7 +499,7 @@ def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) 
         "publisher_index_url": res["index"],
         "acf_appendix_url": appendix_url,
         "source_discovery_group": f"{jur}/policy/ccdf",
-        "discovered_via": "manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027",
+        "discovered_via": f"manual-review:ccdf-agent-queue; index {INDEX}",
     }
     if res.get("tls"):
         doc["metadata"]["tls_note"] = "server omits its intermediate certificate; extraction uses REQUESTS_CA_BUNDLE = certifi + data/certs/sectigo-public-server-authentication-ca-ov-r36.pem"
@@ -399,34 +515,6 @@ def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) 
         "taken_count": 1,
         "notes": f"FFY {FY} ACF-118 CCDF Plan ({res['version']}; {res['plan_status']}) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.",
     }
-
-
-def refresh_rows_only(codes: list[str]) -> dict[str, int]:
-    """Refresh the queue rows of the listed jurisdictions from RESOLUTIONS without fetching the ACF index
-    (territories pass, 2026-09-11: AS, MP, PR, VI re-probed; re-probe 2026-09-13: GA and TX extracted, the
-    other blocked rows re-recorded). A newly agent_ready row gets its manifest written from the ACF index
-    facts the row already carries (index_plan_link, index_appendix_url); no other manifest is touched."""
-    queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
-    queue = yaml.safe_load(queue_path.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
-    for code in codes:
-        res = RESOLUTIONS[code]
-        row = rows[f"us-{code}"]
-        if res["status"] == "agent_ready":
-            row.update(ready_row_fields(code, row["name"], res, row.get("index_appendix_url")))
-            continue
-        row["queue_status"] = res["status"]
-        row["publisher_index_url"] = res["index"]
-        row["notes"] = (
-            ("Publisher blocked: " if res["status"] == "blocked_primary_source" else "Not extracted: ")
-            + res["reason"] + ". Nothing was worked around."
-        )
-    queue["status_counts"] = {}
-    for s in queue["states"]:
-        queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
-    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
-    return queue["status_counts"]
-
 
 
 # --------------------------------------------------------------------------------------
@@ -820,22 +908,190 @@ def run_family(family: str, *, as_of: str = FOLLOWUP_AS_OF) -> int:
     return 0
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--only", help="comma-separated jurisdiction codes (as,mp,...) whose rows are refreshed from "
-                        "RESOLUTIONS without fetching the ACF index (a newly agent_ready row also gets its manifest); "
-                        "every other row and manifest is left untouched")
-    parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
-                        help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
-                             "queue rows (additional_families) instead of rebuilding the plan rows")
-    parser.add_argument("--as-of", default=FOLLOWUP_AS_OF, choices=[FOLLOWUP_AS_OF, WAVE5_AS_OF],
-                        help="rate-schedules only: which pass to build (2026-09-13 follow-up or 2026-09-15 wave 5)")
-    args = parser.parse_args()
-    if args.family:
-        return run_family(args.family, as_of=args.as_of)
-    if args.only:
-        print(f"queue {refresh_rows_only(args.only.split(','))}")
-        return 0
+def refresh_plan_rows(codes: list[str]) -> dict[str, int]:
+    """Refresh the listed jurisdictions' ACF-118 *plan* rows from RESOLUTIONS, selected by target_manifest.
+
+    The one narrow row-refresh pass, reached by ``--only-plan-rows`` and by ``--only``, which is the same
+    option under the name the 2026-09-11 and 2026-09-13 passes used. It replaces the earlier
+    ``refresh_rows_only``, which keyed rows by ``jurisdiction`` in a dict comprehension: because the queue
+    holds two rows whose jurisdiction is ``us-in``, that dict kept the FSSA policy-manual row, and
+    ``--only in`` would have written the plan row's status, scope, source and target manifest onto the
+    manual row while leaving the plan row untouched. ``one_row`` selects each row by its plan
+    ``target_manifest`` and refuses unless exactly one row matches, so no other row - including both
+    Indiana rows' ``additional_families`` and the manual row itself - is reachable from this pass.
+
+    No ACF index fetch: a newly agent_ready row gets its manifest written from the index facts the row
+    already carries (index_plan_link, index_appendix_url); no other manifest is touched.
+    """
+    queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
+    queue = yaml.safe_load(queue_path.read_text())
+    for code in codes:
+        res = RESOLUTIONS[code]
+        row = one_row(queue["states"], plan_row_manifest(code))
+        if res["status"] == "agent_ready":
+            row.update(ready_row_fields(code, row["name"], res, row.get("index_appendix_url")))
+            continue
+        row["queue_status"] = res["status"]
+        row["publisher_index_url"] = res["index"]
+        row["taken_count"] = 0
+        row["notes"] = (
+            ("Publisher blocked: " if res["status"] == "blocked_primary_source" else "Not extracted: ")
+            + res["reason"] + ". Nothing was worked around."
+        )
+        held = res.get("held")
+        if held is not None:
+            # The plan text already sits at this row's own citation paths under another scope: record that
+            # family on the row instead of extracting a colliding second copy.
+            attach_family(queue, row["jurisdiction"], {
+                "family": "ccdf_plan_text_held_elsewhere",
+                "queue_status": "done",
+                "index_url": INDEX,
+                "primary_source_url": held["source_url"],
+                "target_scopes": [f"us-{code}/policy/acf/ccdf-plan/fy{FY}"],
+                "held_in_scope": held["scope"],
+                "taken_count": 1,
+                "notes": (f"FFY {FY} ACF-118 plan text ({held['plan_version']}; {held['plan_status']}) is already held "
+                          f"at us-{code}/policy/acf/ccdf-plan/fy{FY}, all 42 citation paths, under {held['scope']} "
+                          f"(wave 7, 2026-10-12, docs/ingest-runs/2026-10-12-w7-state-benefits.md). Verified on "
+                          f"{W8_SCOPE['source_as_of']} by reading that provisions JSONL directly; this row's own target "
+                          f"scope is not extracted, because it would duplicate those paths."),
+            })
+    queue["status_counts"] = {}
+    for state in queue["states"]:
+        queue["status_counts"][state["queue_status"]] = queue["status_counts"].get(state["queue_status"], 0) + 1
+    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
+def repair_dead_index_refs() -> dict[str, int]:
+    """Rewrite the dead /occ/form/ index address to the live /occ/data/ one, and re-inventory the index.
+
+    ACF moved the FY 2025-2027 plan directory from its "form" content type to "data" (the module docstring
+    records the chain of ACF's own pages that leads to it). The address is the only thing that moved: the
+    relocated page carries the same table, the same 56 jurisdiction rows and the same plan and Appendix
+    links, which is checked here before anything is written. The rewrite is an exact-string substitution in
+    ``manifests/*.yaml``, so no other byte of a committed manifest changes; the queue's per-row
+    ``index_document_count`` and its ``index_inventory`` block are then re-derived from the live page. Rows
+    are otherwise left alone: this pass repairs references, it does not re-triage.
+    """
+    rows = fetch_index()
+    if len(rows) != 56 or {r["code"] for r in rows} != set(RESOLUTIONS):
+        print(f"relocated index has {len(rows)} rows; layout changed?", file=sys.stderr)
+        raise SystemExit(1)
+    queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
+    by_code = {r["code"]: r for r in rows}
+    queue = yaml.safe_load(queue_path.read_text())
+    drifted = [
+        state["jurisdiction"].removeprefix("us-")
+        for state in queue["states"]
+        if state.get("index_plan_link") is not None
+        and (code := state["jurisdiction"].removeprefix("us-")) in by_code
+        and (state["index_plan_link"] != by_code[code]["plan_link"]
+             or state.get("index_appendix_url") != by_code[code]["appendix_url"])
+    ]
+    if drifted:
+        print(f"relocated index links differ for {','.join(sorted(drifted))}; re-triage before repairing",
+              file=sys.stderr)
+        raise SystemExit(1)
+
+    counts = {"files": 0, "occurrences": 0}
+    for path in sorted((ROOT / "manifests").rglob("*.yaml")):
+        text = path.read_text()
+        hits = text.count(DEAD_INDEX) + text.count(DEAD_INDEX_LEAD)
+        if not hits:
+            continue
+        path.write_text(text.replace(DEAD_INDEX_LEAD, INDEX_LEAD).replace(DEAD_INDEX, INDEX))
+        counts["files"] += 1
+        counts["occurrences"] += hits
+
+    queue = yaml.safe_load(queue_path.read_text())
+    appendix = [r for r in rows if r["appendix_url"]]
+    direct_pdf = [r for r in rows if r["plan_link"] and re.search(r"\.pdf(\?|$)", r["plan_link"], re.I)]
+    for state in queue["states"]:
+        code = state["jurisdiction"].removeprefix("us-")
+        if code in by_code and state.get("index_url") == INDEX:
+            row = by_code[code]
+            state["index_document_count"] = int(bool(row["plan_link"])) + int(bool(row["appendix_url"]))
+    taken = sum(1 for s in queue["states"] if s.get("index_url") == INDEX and s.get("taken_count"))
+    queue["index_inventory"] = {
+        "index_url": INDEX,
+        "lead_list_url": INDEX_LEAD,
+        "landing_page_url": INDEX_LANDING,
+        "reviewed": W8_SCOPE["source_as_of"],
+        "relocated_from": DEAD_INDEX,
+        "jurisdictions": len(rows),
+        "families": {
+            "state_plan_links": {"count": len(rows), "direct_pdf": len(direct_pdf),
+                                 "lead_agency_pages": len(rows) - len(direct_pdf),
+                                 "hosted_by": "state/territory Lead Agency", "taken": taken},
+            "acf118_appendix_pdfs": {"count": len(appendix), "hosted_by": "acf.gov", "taken": 0,
+                                     "note": "Lead Agency implementation plans for federal non-compliances; separate family, not taken"},
+            "preprint_instructions": {"count": 0},
+            "amendments": {"count": 0, "note": "amendments are posted on Lead Agency pages, not on the ACF index"},
+        },
+    }
+    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    counts["index_rows"] = len(rows)
+    counts["appendix_pdfs"] = len(appendix)
+    return counts
+
+
+def refuse_if_rows_lost(before: list[dict], states: list[dict]) -> None:
+    """Refuse a rebuild that would lose a queue row, or a row's ``additional_families``.
+
+    The rebuild is written to replace plan rows and carry everything else through, so this should never
+    fire. It is here because the loss it checks for is exactly what the earlier rebuild did silently, and
+    because the check is cheap: every row read must come back, either as the same object or as a row with
+    the same ``target_manifest``, and every ``additional_families`` block read must come back with it.
+    """
+    carried = {id(s) for s in states}
+    after_by_target = {s["target_manifest"]: s for s in states if s.get("target_manifest")}
+    lost = [f"{s['jurisdiction']} ({s.get('target_manifest')})" for s in before
+            if id(s) not in carried and s.get("target_manifest") not in after_by_target]
+    if lost:
+        raise SystemExit(f"rebuild would drop {len(lost)} queue rows: {', '.join(lost)}; refusing to write")
+    dropped = []
+    for s in before:
+        if "additional_families" not in s:
+            continue
+        now = after_by_target.get(s.get("target_manifest"))
+        if now is None:
+            if id(s) in carried:
+                continue
+        elif now.get("additional_families") == s["additional_families"]:
+            continue
+        dropped.append(f"{s['jurisdiction']} ({s.get('target_manifest')})")
+    if dropped:
+        raise SystemExit(f"rebuild would drop additional_families from {len(dropped)} rows: "
+                         f"{', '.join(dropped)}; refusing to write")
+
+
+def rebuild_all_rows() -> int:
+    """Rebuild every ACF-118 plan row from the live ACF index and RESOLUTIONS (``--rebuild``).
+
+    The only pass that rewrites the whole queue, and the only one that rewrites every agent_ready
+    manifest, so it is gated behind its own flag rather than being what a bare invocation does. It is
+    also non-destructive by construction, which the earlier version of this code was not:
+
+    * Rows are matched by ``target_manifest`` (``plan_row_manifest``, ``one_row``), not by jurisdiction.
+      The rebuilt plan rows replace the committed plan rows in place, and every row the index does not
+      supply - the ACF directory row, the 45 CFR part 98 row, the CCDBG statute row and the FSSA CCDF
+      Policy Manual row - is carried through untouched, in its original position. The earlier version
+      rebuilt ``queue["states"]`` as a fresh list and recovered only ``existing["us"]`` and
+      ``existing["us-in"]``, so it dropped the two ``us`` rows the file lists first and overwrote the
+      third with the directory row's own fields.
+    * ``additional_families`` is carried over onto the rebuilt row, so the appendix, amendment,
+      rate-schedule, held-elsewhere and wave-6 bundle entries that ``attach_family`` recorded survive a
+      rebuild. The earlier version dropped all 51 of them.
+    * ``target_scope.version`` is carried over unless the row's resolution pins a new one, so a rebuild
+      does not drag a committed scope onto the run date, and the manifest written for a row carries the
+      same version as the row. The earlier version reset every row to the run-wide VERSION.
+    * Nothing is written until the rebuilt queue has been checked against the queue that was read: a
+      lost row or a lost ``additional_families`` block refuses the whole write.
+
+    A resolution's ``held`` family is not attached here (``refresh_plan_rows`` does that for the narrow
+    pass); a rebuild preserves whatever that pass already recorded instead of re-deriving it.
+    """
     bundle = ca_bundle()
     rows = fetch_index()
     if len(rows) != 56 or {r["code"] for r in rows} != set(RESOLUTIONS):
@@ -845,13 +1101,30 @@ def main() -> int:
     appendix = [r for r in rows if r["appendix_url"]]
     queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
-    existing = {s["jurisdiction"]: s for s in queue["states"]}
-    states = []
+    before = list(queue["states"])
+    # What the committed rows own and the index pass does not: the scope version a row already sits on,
+    # and the follow-up families recorded against it. Keyed by row identity, so the two us-in rows and
+    # the three us rows keep their own.
+    committed_version = {s["target_manifest"]: (s.get("target_scope") or {}).get("version")
+                         for s in before if s.get("target_manifest")}
+    committed_families = {s["target_manifest"]: s["additional_families"]
+                          for s in before if s.get("target_manifest") and "additional_families" in s}
+    committed_as_of = {}
+    for target in {s.get("target_manifest") for s in before}:
+        path = ROOT / target if target else None
+        if path is not None and path.is_file():
+            docs = (yaml.safe_load(path.read_text()) or {}).get("documents") or []
+            if docs and docs[0].get("source_as_of"):
+                committed_as_of[target] = str(docs[0]["source_as_of"])
+
+    rebuilt: dict[str, dict] = {}
     written = 0
     for r in rows:
         code, name = r["code"], r["name"]
         jur = f"us-{code}"
         res = RESOLUTIONS[code]
+        target = plan_row_manifest(code)
+        version = res.get("scope_version") or committed_version.get(target) or VERSION
         row = {"jurisdiction": jur, "name": name}
         row["queue_status"] = res["status"]
         row["index_url"] = INDEX
@@ -859,50 +1132,71 @@ def main() -> int:
         row["index_plan_link"] = r["plan_link"]
         row["index_appendix_url"] = r["appendix_url"]
         row["publisher_index_url"] = res["index"]
-        row["target_scope"] = {"jurisdiction": jur, "document_class": "policy", "version": VERSION}
+        row["target_scope"] = {"jurisdiction": jur, "document_class": "policy", "version": version}
         if res["status"] == "agent_ready":
-            row.update(ready_row_fields(code, name, res, r["appendix_url"]))
+            row.update(ready_row_fields(code, name, res, r["appendix_url"], version=version,
+                                        source_as_of=committed_as_of.get(target)))
             written += 1
         else:
             row.update({
                 "source_kind": "official_state_plan_page",
                 "primary_source_url": None,
-                "target_manifest": f"manifests/us-{code}-ccdf-state-plan-fy{FY}.yaml",
+                "target_manifest": target,
                 "taken_count": 0,
                 "notes": ("Publisher blocked: " if res["status"] == "blocked_primary_source" else "Not extracted: ") + res["reason"] + ". Nothing was worked around.",
             })
-        states.append(row)
-    # Keep the pre-existing federal row first and the Indiana agency-manual row (a different
-    # document family from the plans) last; both stay needs_review with the findings recorded.
-    us_row = existing["us"]
-    in_manual = existing["us-in"]
-    states = [us_row, *states, in_manual]
+        if target in committed_families:
+            row["additional_families"] = committed_families[target]
+        rebuilt[target] = row
+
+    # Replace each committed plan row with its rebuilt row in place; carry every other row through.
+    states = []
+    for old in before:
+        target = old.get("target_manifest")
+        states.append(rebuilt.pop(target) if target in rebuilt else old)
+    states.extend(rebuilt[target] for target in sorted(rebuilt))  # a plan row the queue did not hold yet
+
+    # The pre-existing federal directory row and Indiana policy-manual row, by identity. Both stay
+    # needs_review with the findings recorded; both keep the scope version they already carry.
+    us_row = one_row(states, FEDERAL_ROW_MANIFEST)
     us_row["queue_status"] = "needs_review"
     us_row["index_url"] = INDEX
     us_row["index_document_count"] = len(rows) + len(appendix)
     us_row["taken_count"] = 0
-    us_row["notes"] = (
+    # Index-derived facts above are re-derived from the fetched page; the triage findings below are not.
+    # A rebuild does not re-triage this row, so notes a later pass appended to it are kept.
+    us_row.setdefault("notes", (
         "Reviewed 2026-09-10: the lead-list URL (acf.hhs.gov) 301-redirects to acf.gov; that page is the FY 2025-2027 "
         "plan directory, not a federal source document. Federal CCDF rules are 45 CFR part 98: not in the corpus "
         "(no us/regulation title-45-part-98 coverage; no us/regulation/45/98 provisions); the CCDBG Act (42 U.S.C. 9857 et seq.) "
         "appears only as scattered cross-reference rows in other us/statute scopes. Ingest 45 CFR 98 through extract-ecfr "
         "(--only-title 45 --only-part 98) in a separate run; not re-ingested here."
-    )
+    ))
+    in_manual = one_row(states, IN_MANUAL_ROW_MANIFEST)
     in_manual["name"] = "Indiana (CCDF Policy Manual, FSSA Office of Early Childhood and Out-of-School Learning)"
     in_manual["queue_status"] = "needs_review"
     in_manual["source_kind"] = "official_pdf_agency_manual"
     in_manual["primary_source_url"] = "https://www.in.gov/fssa/carefinder/files/CCDF-Policy-Manual.pdf"
-    in_manual["target_scope"] = {"jurisdiction": "us-in", "document_class": "manual", "version": f"{SOURCE_AS_OF}-ccdf-in-policy-manual"}
+    in_manual["target_scope"] = {
+        "jurisdiction": "us-in", "document_class": "manual",
+        "version": committed_version.get(IN_MANUAL_ROW_MANIFEST) or f"{SOURCE_AS_OF}-ccdf-in-policy-manual",
+    }
     in_manual["index_url"] = IN_MANUAL_INDEX
     in_manual["index_document_count"] = IN_MANUAL_INDEX_COUNT
     in_manual["taken_count"] = 0
-    in_manual["notes"] = IN_MANUAL_NOTE
+    in_manual.setdefault("notes", IN_MANUAL_NOTE)
+
+    refuse_if_rows_lost(before, states)
+
     queue["status_counts"] = {}
     for s in states:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
     queue["states"] = states
     queue["queue_status"] = "in_progress"
+    # Overwrite what this pass derives from the fetched index; keep what another pass recorded
+    # (repair_dead_index_refs adds landing_page_url and relocated_from).
     queue["index_inventory"] = {
+        **(queue.get("index_inventory") or {}),
         "index_url": INDEX,
         "lead_list_url": INDEX_LEAD,
         "reviewed": SOURCE_AS_OF,
@@ -916,6 +1210,42 @@ def main() -> int:
     queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
     print(f"wrote {written} manifests; queue {queue['status_counts']}; ca bundle {bundle}")
     return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--repair-index", action="store_true",
+                        help="rewrite the dead /occ/form/ ACF index address to the live /occ/data/ one across "
+                             "manifests/*.yaml and re-inventory the relocated index on the queue; no row is re-triaged")
+    parser.add_argument("--only-plan-rows", "--only", dest="only_plan_rows",
+                        help="comma-separated jurisdiction codes (as,mp,...) whose ACF-118 plan rows are refreshed "
+                             "from RESOLUTIONS without fetching the ACF index (a newly agent_ready row also gets its "
+                             "manifest), selected by target_manifest so the two us-in rows stay distinct; every other "
+                             "row and manifest is left untouched. --only is the same option under its older name")
+    parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
+                        help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
+                             "queue rows (additional_families) instead of rebuilding the plan rows")
+    parser.add_argument("--as-of", default=FOLLOWUP_AS_OF, choices=[FOLLOWUP_AS_OF, WAVE5_AS_OF],
+                        help="rate-schedules only: which pass to build (2026-09-13 follow-up or 2026-09-15 wave 5)")
+    parser.add_argument("--rebuild", action="store_true",
+                        help="rebuild every ACF-118 plan row from the live ACF index and RESOLUTIONS, and rewrite "
+                             "every agent_ready manifest. Required for that pass: it is the only mode that rewrites "
+                             "the whole queue, so it is never what a bare invocation does")
+    args = parser.parse_args()
+    if args.repair_index:
+        print(f"index repair {repair_dead_index_refs()}")
+        return 0
+    if args.only_plan_rows:
+        print(f"queue {refresh_plan_rows(args.only_plan_rows.split(','))}")
+        return 0
+    if args.family:
+        return run_family(args.family, as_of=args.as_of)
+    if args.rebuild:
+        return rebuild_all_rows()
+    parser.error("no pass selected. Use --only-plan-rows (narrow row refresh), --family, --repair-index, or "
+                 "--rebuild for the full index rebuild, which rewrites every plan row and every agent_ready "
+                 "manifest")
+    return 2  # unreachable: parser.error exits 2
 
 
 if __name__ == "__main__":

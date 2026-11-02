@@ -22,6 +22,43 @@ policyengine_us:
 # from the roadmap so the bundles rebuild without the planning repo.
 plan: sources/plans/m1-plan-documents.json
 
+# Plan rows that name whole parts of a code rather than a section: each stands
+# for the current sections of the parts its addresses name (OLRC release points
+# 119-102 for title 26, 119-103 for title 42; repealed, transferred and
+# renumbered sections left out), so a bundle counts those sections and not the
+# whole title the row's identifier would otherwise resolve to.
+plan_sections:
+  # 26 U.S.C. chapter 1: subchapter A part IV subparts A (nonrefundable personal
+  # credits) and C (refundable credits), subchapter B part III (items
+  # specifically excluded from gross income).
+  "USC 26 subtitle-A":
+    [
+      us/statute/26/21, us/statute/26/22, us/statute/26/23, us/statute/26/24, us/statute/26/25, us/statute/26/25A,
+      us/statute/26/25B, us/statute/26/25C, us/statute/26/25D, us/statute/26/25E, us/statute/26/25F, us/statute/26/26,
+      us/statute/26/31, us/statute/26/32, us/statute/26/33, us/statute/26/34, us/statute/26/35, us/statute/26/36,
+      us/statute/26/36B, us/statute/26/37, us/statute/26/101, us/statute/26/102, us/statute/26/103, us/statute/26/104,
+      us/statute/26/105, us/statute/26/106, us/statute/26/107, us/statute/26/108, us/statute/26/109, us/statute/26/110,
+      us/statute/26/111, us/statute/26/112, us/statute/26/115, us/statute/26/117, us/statute/26/118, us/statute/26/119,
+      us/statute/26/121, us/statute/26/122, us/statute/26/123, us/statute/26/125, us/statute/26/126, us/statute/26/127,
+      us/statute/26/128, us/statute/26/129, us/statute/26/130, us/statute/26/131, us/statute/26/132, us/statute/26/134,
+      us/statute/26/135, us/statute/26/136, us/statute/26/137, us/statute/26/138, us/statute/26/139,
+      us/statute/26/139A, us/statute/26/139B, us/statute/26/139C, us/statute/26/139D, us/statute/26/139E,
+      us/statute/26/139F, us/statute/26/139G, us/statute/26/139H, us/statute/26/139I, us/statute/26/139J,
+      us/statute/26/139K, us/statute/26/139L, us/statute/26/140
+    ]
+  # 42 U.S.C. chapter 7: subchapter IV part A (TANF block grants) and
+  # subchapter XXI (CHIP).
+  "USC 42 chapter-7":
+    [
+      us/statute/42/601, us/statute/42/602, us/statute/42/603, us/statute/42/604, us/statute/42/604a,
+      us/statute/42/605, us/statute/42/606, us/statute/42/607, us/statute/42/608, us/statute/42/608a,
+      us/statute/42/609, us/statute/42/610, us/statute/42/611, us/statute/42/611a, us/statute/42/612,
+      us/statute/42/613, us/statute/42/615, us/statute/42/616, us/statute/42/617, us/statute/42/618, us/statute/42/619,
+      us/statute/42/1397aa, us/statute/42/1397bb, us/statute/42/1397cc, us/statute/42/1397dd, us/statute/42/1397ee,
+      us/statute/42/1397ff, us/statute/42/1397gg, us/statute/42/1397hh, us/statute/42/1397ii, us/statute/42/1397jj,
+      us/statute/42/1397kk, us/statute/42/1397ll, us/statute/42/1397mm
+    ]
+
 # The 50 states and DC.
 jurisdictions: [al, ak, az, ar, ca, co, ct, de, dc, fl, ga, hi, id, il, in, ia, ks, ky, la, me, md, ma, mi, mn, ms, mo,
   mt, ne, nv, nh, nj, nm, ny, nc, nd, oh, ok, or, pa, ri, sc, sd, tn, tx, ut, vt, va, wa, wv, wi, wy]
@@ -30,15 +67,14 @@ tiers:
   screener:
     title: Screener-level parity
     definition: >-
-      Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is excluded
-      with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-      errors. Federal law PolicyEngine cites is shared by every state.
+      Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a recorded
+      reason, and the screener-level parity run against the newest reference release has no unfixed Axiom errors.
+      Federal law in Tier 1 is shared by every state.
   full:
     title: Full document bundle
     definition: >-
-      Every relevant document for the program in the state: every document of the screener tier, the federal law
-      of the program (statute, regulations and federal guidance), and every primary source of the state's own
-      rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.
+      Every relevant document for the program in the state: every document of Tier 1, the federal law of the
+      program (statute, regulations and federal guidance), and every primary source of the state's own rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.
 
 # References that are not current law, or not law at all.
 exclusions:

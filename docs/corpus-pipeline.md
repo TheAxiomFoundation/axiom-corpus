@@ -175,7 +175,7 @@ the enclosing part confirms it:
 | --- | --- | --- |
 | `105.60.001` in part 105-60 | `us/regulation/41/105-60/001` | the dotted spelling of the enclosing hyphenated part |
 | `52. 36`, `1222. 27` | `us/regulation/36/52/36`, `us/regulation/12/1222/27` | another section of the part names part 52, 1222 |
-| `3141. 5` in 43 CFR part 3140 | `us/regulation/43/3141/5`, as its sibling `3141.3` | another section of part 3140 names 3141 |
+| `3141. 5` in 43 CFR part 3140 | `us/regulation/43/3141/5`, as its sibling `3141.3`; it belongs to part 3140, as below | another section of part 3140 names 3141 |
 | `956.1 (Rule 1)` | `us/regulation/39/956/1` (heading keeps "(Rule 1)") | another section names part 956; the rule number is the section number |
 | `03`, `1-1`, `19-8.1` in 14 CFR part 241 | `us/regulation/14/241/03`, `.../1-1`, `.../19-8.1` | no section of part 241 names any part; the number is digits joined by `-` or `.` and does not begin with `241` |
 
@@ -188,6 +188,34 @@ the two passes confirm the same sections. Headings drop one designation (`Sec. 1
 form (`241.19-8.1`, `105-60.001`). Before 2026-10-12 the inventory skipped 61 of these 62
 sections and filed `105.60.001` under part 105 (`us/regulation/41/105/60.001`), and the
 XML pass read `19-8.1` as part 8, section 1. No locked eCFR source contains these parts.
+
+A section may be numbered for a part other than the eCFR part that holds it. The title
+43 fixtures in `tests/test_corpus_ecfr_group_part_sections.py` model BLM group part
+3800: its subpart 3809 holds 43 CFR 3809.1, and the structure fixture has no part 3809.
+Such a section keeps the path of its citation, `us/regulation/43/3809/1`.
+It belongs to the part that holds it:
+
+- its parent is `us/regulation/43/3800/subpart-3809`;
+- `--only-part 3800` includes it, and `--section 3809.1` selects it;
+- its source URL is on part 3800's eCFR page;
+- `metadata.enclosing_part` is `3800`.
+
+An inventory that would put two items under one citation path fails, and so does a
+retained XML (`--source-xml`) whose selector names two sections. When XML is parsed,
+fresh or reparsed, two elements under one selected path are a fatal validation error,
+even with `--allow-incomplete`. Complete cached provisions whose pinned source hashes
+match are reused as before; their XML is not re-checked for duplicate paths.
+A retained-XML rebuild that fails identity validation, or cannot parse the previous
+run's inventory or provisions, preserves the previous run's artifacts, including its
+source snapshot. Cached graphics are read only after the snapshot is replaced, so a
+cached graphic that is unreadable or invalid can leave the new snapshot beside the old
+provisions (#934). In the XML, a section numbered for another part is read only from an
+identifier the structure grammar reads whole, so an identifier that merely contains
+one (`19-3809.1`) cannot take its path.
+
+Source XML and graphic writes wait until every pending title has passed fatal
+validation. An ordinary resume reuses cached provisions only when their source
+bytes match the inventory's pinned hashes; missing or changed snapshots are reparsed.
 
 Targeted rebuilds are scoped and do not certify the whole source:
 
@@ -421,31 +449,114 @@ axiom-corpus-ingest extract-official-documents \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
 
+### PDF page filters
+
+The page filters `page_windows`, `start_page`, `end_page`,
+`start_after_pattern`, `drop_lines`, `drop_line_patterns` and
+`page_header_patterns` work only with the `single_block`, `numbered_sections`
+and `labeled_sections` PDF segmentations. The default per-page segmentation
+writes a row for every page that has text and reads none of them, so
+extraction stops with an error that names any page filter set without one of
+those segmentations.
+
+### Retained copies (`local_path`)
+
+A manifest entry with `local_path` reads the document's bytes from that file
+instead of fetching them, for a publisher that blocks or breaks automated
+fetches. A relative `local_path` is relative to the manifest file. The rows
+record the official URL, never the file: `metadata.download_url` is the entry's
+`download_url`, else the Google Drive direct link, else `source_url` (the URL a
+fetch would have requested), and `metadata.content_type` is the media type of
+the declared or detected `source_format`. The source snapshot keeps the
+retained bytes and their sha256.
+
+`guard-ingested` rejects a new or changed inventory or provisions artifact whose
+`source_url` or metadata `url`/`*_url` field holds a `file:` URL, which would
+publish a path on the extracting machine. Body text is not checked: a scanned
+document can print a `file:` link itself.
+
+Scopes extracted before this rule record such paths.
+`scripts/audit_local_file_urls.py [--release <selector>]` lists the locked ones,
+and `scripts/repair_local_file_download_urls.py` writes a successor scope from a
+locked scope's own bytes, by re-extraction with the committed manifest or, for
+recovery-batch scopes, by rewriting only the leaked URL. It then checks that the
+successor differs only in those URLs, their media types and the version.
+
 ### Amended rule text in PDFs
 
 Register orders and agency letters often print amended rule text with deleted
 words struck through and inserted words underlined. The strike and underline
 are drawn rules, not text, so default PDF text extraction reads both as ordinary
 text. Three opt-in `extraction` keys in an official-document manifest handle
-such PDFs (default per-page segmentation only; without them extraction is
-unchanged):
+such PDFs. Without them extraction is unchanged.
 
-- `amendment_markup: true`, or a mapping with `start_page`/`end_page` (inclusive)
-  and optional `typographic_underlines`, writes the text with GNU wdiff
-  delimiters: `[-deleted text-]` for struck-through text and `{+inserted text+}`
-  for underlined text. Each marked page row carries
-  `metadata.amendment_markup` (the notation and its counts of deleted and
-  inserted runs). Removing the four delimiters gives back exactly the page text
-  extracted without the option. Limit the page range to the amended text so
-  that ordinary emphasis underlines elsewhere are not marked, and list in
-  `typographic_underlines` any exact phrase whose underline is citation
-  typography (an underlined case name, say) rather than an insertion. Extraction
-  fails if a page's own text already contains one of the delimiters, or if a
-  character is both struck through and underlined.
+- `amendment_markup` writes the text with GNU wdiff delimiters:
+  `[-deleted text-]` for struck-through text and `{+inserted text+}` for
+  underlined text. Its value is `true` (every page) or a non-empty mapping with
+  `start_page` and `end_page` (inclusive, positive integers) and an optional
+  `typographic_underlines` list. Each marked page row carries
+  `metadata.amendment_markup`: the notation and its counts of deleted and
+  inserted runs.
+  - Removing the four delimiters gives back exactly the page text extracted
+    without the option. Every marked page is checked against that text.
+  - Limit the page range to the amended text, so that ordinary emphasis
+    underlines elsewhere are not marked.
+  - List in `typographic_underlines` any exact phrase whose underline is
+    citation typography (an underlined case name, say) rather than an
+    insertion. A phrase occurs only as whole words ("Jones" does not occur in
+    "Jonesboro"). An occurrence counts, and loses its insertion delimiters, only
+    where it is exactly an underlined stretch: its first and last characters
+    are underlined and the text next to it is not. Words inside it may be plain,
+    like the "v." of a case name. An occurrence inside a longer underlined
+    stretch reads as part of that insertion, keeps its delimiters and draws a
+    warning. Extraction fails if a listed phrase never occurs as an underlined
+    stretch in the marked pages.
 - `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
-  drawn last in the content stream is read where it is printed.
-- `ignore_actual_text: true` extracts the visible glyphs even where the PDF's tag
-  tree supplies a replacement `/ActualText` (an empty one hides the text).
+  drawn last in the content stream is read where it is printed. This is
+  PyMuPDF's block sort, not the order `sort_text: true` gives. Each page is
+  checked to hold the same characters as the default text.
+- `ignore_actual_text: true` extracts the glyphs drawn inside marked content
+  that carries an `/ActualText` replacement (an empty one hides the text)
+  instead of the replacement. Those glyphs are not necessarily visible on the page. Check
+  the result against a rendering. This key works with every PDF segmentation.
+
+`amendment_markup` and `sort_blocks` work only with the default per-page
+segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
+`sort_text`. They read the page's character layer, PyMuPDF's `rawdict`: the
+characters with their positions. `rawdict` leaves out some glyphs that
+PyMuPDF's plain-text printer prints: a line whose box has no area, and the last
+span of a line (a run in its own font, size or colour) when that span's box has
+no area. Glyphs drawn with no width, such as a combining mark or a zero-advance
+period, make such lines and spans. Where the `rawdict` reading differs from the
+page's default text, the page is read again: its text page is walked with the
+printer's test for each glyph, and the glyphs `rawdict` left out are added
+where the printer prints them; every character of a re-read page is given as
+the printer prints it, so a lone surrogate code point, which `rawdict` passes
+through, reads as U+FFFD. They never move a block whose text `rawdict` read or
+change how its other glyphs are classified. A page whose `rawdict` reading
+already matches the default text reads exactly as before. Extraction stops with
+an error naming the page if the walk and `rawdict` do not line up, or if the
+result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
+`amendment_markup` also fails if a page's own text already contains one of the
+delimiters, if a character is both struck through and underlined, or if
+`start_page` is past the last page.
+
+The strike and underline classifier is geometric. A visible horizontal rule at
+most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
+line's stroke width) marks a character when its offset from the text baseline,
+in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
+0.22 (underline). White rules and rules with zero opacity are ignored. So a thin
+table rule drawn 1-2 pt under 10 pt text reads as an underline. Extraction
+warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font
+sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
+underline position, which is not classified. Check every new use against a
+rendering of the pages or the publisher's HTML before ingesting it.
+`scripts/compare_pdf_amendment_markup_with_html.py` compares the marked text
+with HTML whose inline styles carry the markup. It labels every character,
+normalizes typographic spelling (hyphen, dash and quote variants), and compares
+the labels character by character in both directions, so labels swapped between
+words or inside a word (a struck and an inserted digit) fail, and so does a word
+that moves and changes label.
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.
