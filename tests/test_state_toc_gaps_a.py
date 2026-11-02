@@ -52,6 +52,12 @@ from axiom_corpus.corpus.state_adapters.kansas import (
     KANSAS_SECTION_SOURCE_FORMAT,
     extract_kansas_statutes,
 )
+from axiom_corpus.corpus.state_adapters.louisiana import (
+    LOUISIANA_LAWPRINT_SOURCE_FORMAT,
+    LOUISIANA_ROOT_TOC_SOURCE_FORMAT,
+    LOUISIANA_TITLE_TOC_SOURCE_FORMAT,
+    extract_louisiana_revised_statutes,
+)
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
 )
@@ -98,6 +104,11 @@ from tests.test_corpus_kansas import SAMPLE_CHAPTER_HTML as KS_CHAPTER_1
 from tests.test_corpus_kansas import SAMPLE_REPEALED_RANGE_HTML as KS_REPEALED_RANGE
 from tests.test_corpus_kansas import SAMPLE_ROOT_HTML as KS_ROOT
 from tests.test_corpus_kansas import SAMPLE_SECTION_HTML as KS_SECTION_1_201
+from tests.test_corpus_louisiana import SAMPLE_EMPTY_RESERVED_HTML as LA_EMPTY_RESERVED
+from tests.test_corpus_louisiana import SAMPLE_ROOT_HTML as LA_ROOT
+from tests.test_corpus_louisiana import SAMPLE_SECTION_1_HTML as LA_SECTION_14_1
+from tests.test_corpus_louisiana import SAMPLE_SECTION_HTML as LA_SECTION_14_2
+from tests.test_corpus_louisiana import SAMPLE_TITLE_HTML as LA_TITLE_14
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 VERSION = "2026-05-09"
@@ -922,3 +933,98 @@ def test_kansas_failed_section_page_remains_inventory_gap(tmp_path, failure):
         missing={"us-ks/statute/1-202"},
         gap_source=KS_CHAPTER_1_PATH if failure == "missing-file" else KS_SECTION_1_202_PATH,
     )
+
+
+# --- Louisiana --------------------------------------------------------------
+# Louisiana logged title and section fetch errors without a gap, so both
+# levels have a fetch-error case. A section page whose printable document is
+# empty is still written with a reserved or empty-page status.
+
+LA_ROOT_PATH = f"{LOUISIANA_ROOT_TOC_SOURCE_FORMAT}/folder-75.html"
+LA_TITLE_14_PATH = f"{LOUISIANA_TITLE_TOC_SOURCE_FORMAT}/title-14.html"
+LA_TITLE_15_PATH = f"{LOUISIANA_TITLE_TOC_SOURCE_FORMAT}/title-15.html"
+LA_SECTION_14_3_PATH = f"{LOUISIANA_LAWPRINT_SOURCE_FORMAT}/title-14/78400.html"
+LA_GOOD = {"us-la/statute/title-14", "us-la/statute/14:1", "us-la/statute/14:2"}
+LA_TITLE_15_ROW = """  <tr>
+    <td><a href="Laws_Toc.aspx?folder=89&amp;level=Parent">TITLE 15</a></td>
+    <td><a href="Laws_Toc.aspx?folder=89&amp;level=Parent">Criminal Procedure</a></td>
+  </tr>
+</table>"""
+LA_SECTION_14_3_ROW = """  <tr>
+    <td><a href="Law.aspx?d=78400">RS 14:3</a></td>
+    <td><a href="Law.aspx?d=78400">Interpretation</a></td>
+  </tr>
+</table>"""
+
+
+def _louisiana_pages() -> dict[str, str]:
+    return {
+        LA_ROOT_PATH: LA_ROOT,
+        LA_TITLE_14_PATH: LA_TITLE_14,
+        f"{LOUISIANA_LAWPRINT_SOURCE_FORMAT}/title-14/78224.html": LA_SECTION_14_1,
+        f"{LOUISIANA_LAWPRINT_SOURCE_FORMAT}/title-14/78337.html": LA_SECTION_14_2,
+    }
+
+
+def _extract_louisiana(tmp_path: Path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_louisiana_revised_statutes(
+        store, version=VERSION, source_dir=tmp_path / "source", workers=1
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_louisiana_failed_title_page_remains_inventory_gap(tmp_path, failure):
+    pages = _louisiana_pages()
+    pages[LA_ROOT_PATH] = LA_ROOT.replace("</table>", LA_TITLE_15_ROW, 1)
+    _fail_page(
+        pages,
+        LA_TITLE_15_PATH,
+        failure,
+        "<html><body><table><tr>"
+        '<td><a href="Law.aspx?d=79000">RS 15</a></td>'
+        '<td><a href="Law.aspx?d=79000">TITLE 15. CRIMINAL PROCEDURE</a></td>'
+        "</tr></table></body></html>",
+    )
+    store, report = _extract_louisiana(tmp_path, pages)
+    assert report.section_count == 2
+    assert "title 15" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=LA_GOOD | {"us-la/statute/title-15"},
+        missing={"us-la/statute/title-15"},
+        gap_source=LA_ROOT_PATH if failure == "missing-file" else LA_TITLE_15_PATH,
+    )
+
+
+@pytest.mark.parametrize("failure", ["missing-file", "maintenance", "empty", "wrong-shape"])
+def test_louisiana_failed_section_page_remains_inventory_gap(tmp_path, failure):
+    pages = _louisiana_pages()
+    pages[LA_TITLE_14_PATH] = LA_TITLE_14.replace("</table>", LA_SECTION_14_3_ROW, 1)
+    _fail_page(pages, LA_SECTION_14_3_PATH, failure, "")
+    store, report = _extract_louisiana(tmp_path, pages)
+    assert report.section_count == 2
+    assert "14:3" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=LA_GOOD | {"us-la/statute/14:3"},
+        missing={"us-la/statute/14:3"},
+        gap_source=LA_TITLE_14_PATH if failure == "missing-file" else LA_SECTION_14_3_PATH,
+    )
+
+
+def test_louisiana_empty_official_section_page_stays_complete(tmp_path):
+    # Pins existing behaviour: a printable page with an empty law document is
+    # written as a status-only section, not a gap.
+    pages = _louisiana_pages()
+    pages[LA_TITLE_14_PATH] = LA_TITLE_14.replace("</table>", LA_SECTION_14_3_ROW, 1)
+    pages[LA_SECTION_14_3_PATH] = LA_EMPTY_RESERVED.replace("46:2598", "14:3")
+    store, report = _extract_louisiana(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
+    assert inventory == LA_GOOD | {"us-la/statute/14:3"}
