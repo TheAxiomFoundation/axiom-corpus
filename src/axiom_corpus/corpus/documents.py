@@ -5188,10 +5188,11 @@ def _extract_html_blocks(
         parts = []
         nodes = []
 
-    # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
-    # lines with a space). The Maryland StatuteText page separates its subsections with
-    # <br><br> and has no paragraph tags. The source's own line breaks are collapsed first,
-    # so only <br> elements break the text, inside a ``pre`` too.
+    # ``html_br_breaks`` makes two <br> in a row a paragraph break. Outside a ``pre`` one
+    # <br> still joins its lines with a space; inside a ``pre`` it is a line break. The
+    # Maryland StatuteText page separates its subsections with <br><br> and has no
+    # paragraph tags. The source's own line breaks are collapsed first, so only <br>
+    # elements break the text, inside a ``pre`` too.
     br_breaks = bool((extraction or {}).get("html_br_breaks"))
     if br_breaks:
         for string in list(root.find_all(string=True)):
