@@ -28,6 +28,10 @@ from axiom_corpus.corpus.state_adapters.arizona import (
     ARIZONA_TITLE_INDEX_SOURCE_FORMAT,
     extract_arizona_revised_statutes,
 )
+from axiom_corpus.corpus.state_adapters.connecticut import (
+    CONNECTICUT_CURRENT_SOURCE_FORMAT,
+    extract_connecticut_statutes,
+)
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
 )
@@ -46,6 +50,9 @@ from tests.test_corpus_arizona import (
 from tests.test_corpus_arizona import (
     SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX,
 )
+from tests.test_corpus_connecticut import SAMPLE_CHAPTER as CT_CHAPTER
+from tests.test_corpus_connecticut import SAMPLE_TITLE as CT_TITLE
+from tests.test_corpus_connecticut import SAMPLE_TITLES as CT_TITLES
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 VERSION = "2026-05-09"
@@ -280,3 +287,120 @@ def test_arizona_repealed_title_without_link_stays_complete(tmp_path):
     assert report.errors == ()
     assert report.coverage.complete is True
     assert {item.citation_path for item in load_source_inventory(report.inventory_path)} == AZ_GOOD
+
+
+# --- Connecticut ------------------------------------------------------------
+# Only the current source set: a supplement page may legitimately list only
+# what changed, so the supplement keeps its behaviour.
+
+CT_INDEX = f"{CONNECTICUT_CURRENT_SOURCE_FORMAT}/titles.html"
+CT_TITLE_12 = f"{CONNECTICUT_CURRENT_SOURCE_FORMAT}/title-12.html"
+CT_TITLE_13 = f"{CONNECTICUT_CURRENT_SOURCE_FORMAT}/title-13.html"
+CT_CHAPTER_203 = f"{CONNECTICUT_CURRENT_SOURCE_FORMAT}/chapter-203.html"
+CT_CHAPTER_204 = f"{CONNECTICUT_CURRENT_SOURCE_FORMAT}/chapter-204.html"
+CT_GOOD = {"us-ct/statute/title-12", "us-ct/statute/chapter-203", "us-ct/statute/12-41"}
+
+
+def _ct_title_row(number: str, heading: str, *, linked: bool = True) -> str:
+    designator = f'<span class="toc_ttl_desig">Title {number}</span>'
+    name = f'<span class="toc_ttl_name">{heading}</span>'
+    if linked:
+        designator = f'<a href="title_{number}.htm">{designator}</a>'
+        name = f'<a href="title_{number}.htm">{name}</a>'
+    return f"<tr><td>{designator}</td><td>{name}</td></tr>\n  </table>"
+
+
+def _ct_chapter_row(chapter: str, heading: str) -> str:
+    return (
+        f'<tr><td class="left_40pct"><a class="toc_ch_link" href="chap_{chapter}.htm">'
+        f'Chapter {chapter}</a></td><td><a class="toc_ch_link" href="chap_{chapter}.htm">'
+        f"{heading}</a></td></tr>\n  </table>"
+    )
+
+
+CT_EMPTY_CHAPTER = """<html><body><div id="chap_204.htm">
+  <h2 class="chap-no">CHAPTER 204</h2>
+  <h2 class="chap-name">LOCAL LEVY</h2>
+</div></body></html>"""
+
+
+def _connecticut_pages() -> dict[str, str]:
+    return {CT_INDEX: CT_TITLES, CT_TITLE_12: CT_TITLE, CT_CHAPTER_203: CT_CHAPTER}
+
+
+def _extract_connecticut(tmp_path: Path, pages: dict[str, str], **kwargs):
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_connecticut_statutes(
+        store, version=VERSION, source_dir=tmp_path / "source", include_supplement=False, **kwargs
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_connecticut_failed_title_page_remains_inventory_gap(tmp_path, failure):
+    pages = _connecticut_pages()
+    pages[CT_INDEX] = CT_TITLES.replace("</table>", _ct_title_row("13", "Highways"), 1)
+    _fail_page(
+        pages,
+        CT_TITLE_13,
+        failure,
+        '<html><body><h1 class="title-name">HIGHWAYS</h1><table></table></body></html>',
+    )
+    store, report = _extract_connecticut(tmp_path, pages)
+    assert report.section_count == 1
+    assert "title 13" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=CT_GOOD | {"us-ct/statute/title-13"},
+        missing={"us-ct/statute/title-13"},
+        gap_source=CT_INDEX if failure == "missing-file" else CT_TITLE_13,
+    )
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_connecticut_failed_chapter_page_remains_inventory_gap(tmp_path, failure):
+    pages = _connecticut_pages()
+    pages[CT_TITLE_12] = CT_TITLE.replace("</table>", _ct_chapter_row("204", "Local Levy"), 1)
+    _fail_page(pages, CT_CHAPTER_204, failure, CT_EMPTY_CHAPTER)
+    store, report = _extract_connecticut(tmp_path, pages, only_title="12")
+    assert report.section_count == 1
+    assert "chapter 204" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=CT_GOOD | {"us-ct/statute/chapter-204"},
+        missing={"us-ct/statute/chapter-204"},
+        gap_source=CT_TITLE_12 if failure == "missing-file" else CT_CHAPTER_204,
+    )
+
+
+def test_connecticut_unlinked_title_stays_complete(tmp_path):
+    # Pins existing behaviour: a title the index lists without a link is
+    # written as an inactive container without fetching anything.
+    pages = _connecticut_pages()
+    pages[CT_INDEX] = CT_TITLES.replace(
+        "</table>", _ct_title_row("11", "Libraries [Repealed]", linked=False), 1
+    )
+    store, report = _extract_connecticut(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
+    assert inventory == CT_GOOD | {"us-ct/statute/title-11"}
+
+
+@pytest.mark.parametrize("status", ["Repealed", "Reserved", "Transferred"])
+def test_connecticut_chapter_marked_empty_by_law_stays_complete(tmp_path, status):
+    # Pins existing behaviour: a chapter the title page marks repealed,
+    # reserved or transferred may list no sections and still reads complete.
+    pages = _connecticut_pages()
+    pages[CT_TITLE_12] = CT_TITLE.replace(
+        "</table>", _ct_chapter_row("204", f"Local Levy [{status}]"), 1
+    )
+    pages[CT_CHAPTER_204] = CT_EMPTY_CHAPTER
+    store, report = _extract_connecticut(tmp_path, pages, only_title="12")
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
+    assert inventory == CT_GOOD | {"us-ct/statute/chapter-204"}
