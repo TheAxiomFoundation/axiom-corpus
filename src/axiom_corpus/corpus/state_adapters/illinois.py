@@ -479,7 +479,7 @@ def extract_illinois_ilcs(
             )
         )
 
-    if not items:
+    if not records:
         raise ValueError("no Illinois ILCS provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)

@@ -1007,3 +1007,10 @@ def test_illinois_unfetched_remote_section_remains_inventory_gap(
         missing={"us-il/statute/5/70/2"},
         gap_source=gap_source,
     )
+
+
+def test_illinois_remote_run_that_fetches_no_section_still_fails(tmp_path, monkeypatch):
+    # A run whose only inventory items would be gaps writes no provision, so it
+    # still fails outright, as on main.
+    with pytest.raises(ValueError, match="no Illinois ILCS provisions extracted"):
+        _extract_illinois_remote(tmp_path, monkeypatch, dict(IL_LISTINGS["index"][0]), workers=1)
