@@ -383,6 +383,10 @@ def extract_south_dakota_codified_laws(
     )
     chapter_by_label = {result.label: result for result in fetched_chapters}
     for title_label, chapter_label, chapter_ordinal, title_citation_path, title_source in chapter_targets:
+        # A spent limit stops before the next chapter, so a chapter whose
+        # sections the limit leaves out is not taken for an empty chapter.
+        if limit_remaining is not None and limit_remaining <= 0:
+            break
         chapter_result = chapter_by_label[chapter_label]
         if chapter_result.source is None:
             errors.append(f"chapter {chapter_label}: {chapter_result.error}")

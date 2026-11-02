@@ -965,6 +965,20 @@ def test_south_dakota_interrupt_during_fetch_stops_the_run(
         _extract_south_dakota(tmp_path, dict(SD_GOOD_PAGES), workers=workers)
 
 
+@pytest.mark.parametrize("limit", [0, 1, 3])
+def test_south_dakota_limit_stops_before_chapters_without_gaps(
+    tmp_path, no_south_dakota_network, limit
+):
+    # A spent limit is not an empty chapter: the run stops and reads complete.
+    store, report = _extract_south_dakota(tmp_path, dict(SD_GOOD_PAGES), limit=limit)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    assert report.section_count == limit
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions
+    assert {"us-sd/statute/title-1", "us-sd/statute/title-2"} <= provisions
+
+
 def test_south_dakota_run_of_only_gaps_still_fails(tmp_path, no_south_dakota_network):
     pages = dict(SD_GOOD_PAGES)
     pages.pop(f"{SD_FORMAT}/statute-1.json")
