@@ -33,8 +33,8 @@ withdrawn-scope exception.
 ## Checks
 
 - The reproducer matches the committed selector byte for byte.
-- The selector equals the pin plus the two scopes, sorted. Each added scope is locked and not
-  withdrawn.
+- The selector equals the pin plus the two scopes, sorted. Each added scope has a lock file, and
+  the withdrawn list omits both.
 - A Hypothesis property checks the build rule over arbitrary bases, including bases that already
   hold either addition.
 - `axiom-corpus-ingest validate-release` with corpus data on this selector: `ok`, 0 errors and
