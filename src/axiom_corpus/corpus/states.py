@@ -1411,7 +1411,8 @@ def extract_ohio_revised_code(
                     relative_name=chapter_relative,
                     url=chapter.source_url,
                 )
-            except requests.RequestException as exc:
+            except (requests.RequestException, OSError) as exc:
+                # A failed download, or a --source-dir chapter file that cannot be read.
                 errors.append(f"chapter {chapter.num}: {exc}")
                 if chapter.citation_path not in seen_citation_paths:
                     seen_citation_paths.add(chapter.citation_path)

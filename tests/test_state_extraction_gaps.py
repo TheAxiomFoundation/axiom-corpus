@@ -2,8 +2,10 @@
 
 import hashlib
 import json
+from collections.abc import Mapping
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest import mock
 
 import pytest
 import requests
@@ -18,6 +20,7 @@ from axiom_corpus.corpus.r2 import build_artifact_report
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.state_adapters.maine import (
+    MAINE_REVISED_STATUTES_BASE_URL,
     MAINE_REVISED_STATUTES_INDEX,
     extract_maine_revised_statutes,
 )
@@ -25,7 +28,11 @@ from axiom_corpus.corpus.state_statute_completion import (
     _best_complete_unpromoted_row,
     _source_first_complete,
 )
-from axiom_corpus.corpus.states import StateStatuteExtractReport, extract_ohio_revised_code
+from axiom_corpus.corpus.states import (
+    OHIO_REVISED_CODE_BASE_URL,
+    StateStatuteExtractReport,
+    extract_ohio_revised_code,
+)
 from tests.test_corpus_maine import (
     SAMPLE_CHAPTER_HTML,
     SAMPLE_SECTION_HTML,
@@ -60,8 +67,16 @@ def _assert_visible_gaps(
     *,
     expected: set[str],
     missing: set[str],
-    gap_source: str,
+    gap_source: str | Mapping[str, str],
+    gap_url: str | Mapping[str, str] | None = None,
 ) -> None:
+    """Check that each missing target is a gap that coverage, strict release
+    validation and the completion selector all see.
+
+    ``gap_source`` is the stored page each gap's path must end with, and
+    ``gap_url`` the URL each gap must keep. Either is one value for every gap or
+    a mapping from citation path to that gap's value.
+    """
     inventory = load_source_inventory(report.inventory_path)
     provisions = load_provisions(report.provisions_path)
     inventory_paths = {item.citation_path for item in inventory}
@@ -80,11 +95,15 @@ def _assert_visible_gaps(
     assert persisted["provision_count"] == len(expected - missing)
     for item in inventory:
         if item.citation_path in missing:
+            source = gap_source if isinstance(gap_source, str) else gap_source[item.citation_path]
             assert item.source_path is not None
-            assert item.source_path.endswith(gap_source)
+            assert item.source_path.endswith(source)
             source_path = store.root / item.source_path
             assert source_path.is_file()
             assert item.sha256 == hashlib.sha256(source_path.read_bytes()).hexdigest()
+            if gap_url is not None:
+                url = gap_url if isinstance(gap_url, str) else gap_url[item.citation_path]
+                assert item.source_url == url
 
     release = ReleaseManifest(
         name="test-release",
@@ -360,10 +379,12 @@ def test_maine_failed_chapter_toc_remains_inventory_gap(tmp_path, failure):
         expected=MAINE_CONTAINERS | MAINE_SECTIONS | {chapter},
         missing={chapter},
         # An unreadable page is evidenced by the title page that lists it; a
-        # page that was read but lists nothing is its own evidence.
+        # page that was read but lists nothing is its own evidence. Either way
+        # the gap keeps the chapter's own URL.
         gap_source=(
             "36/title36ch0sec0.html" if failure == "missing-file" else "36/title36ch823sec0.html"
         ),
+        gap_url=f"{MAINE_REVISED_STATUTES_BASE_URL}36/title36ch823sec0.html",
     )
 
 
@@ -388,6 +409,7 @@ def test_maine_failed_title_toc_remains_inventory_gap(tmp_path, failure):
         gap_source=(
             MAINE_REVISED_STATUTES_INDEX if failure == "missing-file" else "1/title1ch0sec0.html"
         ),
+        gap_url=f"{MAINE_REVISED_STATUTES_BASE_URL}1/title1ch0sec0.html",
     )
 
 
@@ -430,30 +452,44 @@ def test_ohio_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, fail
             if failure in {"request-error", "missing-file"}
             else failed
         ),
+        gap_url=f"{OHIO_REVISED_CODE_BASE_URL}/ohio-revised-code/general-provisions",
     )
 
 
-@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
-def test_ohio_empty_chapter_toc_remains_inventory_gap(tmp_path, failure):
-    # Chapters were already covered on main; this pins the empty and
-    # wrong-shape pages beside the maintenance page.
+@pytest.mark.parametrize(
+    "failure", ["request-error", "missing-file", "maintenance", "empty", "wrong-shape"]
+)
+def test_ohio_failed_chapter_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    # A missing --source-dir chapter file once aborted the run while a failed
+    # download was a gap; both are gaps now, as they are for titles.
     source = tmp_path / "source"
     extra_chapter = '<a href="/ohio-revised-code/chapter-5161">Chapter 5161 | Other law</a>'
-    _write_sources(
-        source,
-        {
-            "ohio-revised-code/index.html": SAMPLE_OHIO_INDEX,
-            "ohio-revised-code/titles/title-51.html": SAMPLE_OHIO_TITLE.replace(
-                "</main>", extra_chapter + "</main>"
-            ),
-            "ohio-revised-code/chapters/chapter-5160.html": SAMPLE_OHIO_CHAPTER,
-            "ohio-revised-code/chapters/chapter-5161.html": _FAILED_TOC_BODY[failure],
-        },
-    )
+    pages = {
+        "ohio-revised-code/index.html": SAMPLE_OHIO_INDEX,
+        "ohio-revised-code/titles/title-51.html": SAMPLE_OHIO_TITLE.replace(
+            "</main>", extra_chapter + "</main>"
+        ),
+        "ohio-revised-code/chapters/chapter-5160.html": SAMPLE_OHIO_CHAPTER,
+    }
+    failed = "ohio-revised-code/chapters/chapter-5161.html"
+    if failure == "request-error":
+        load_html = states._load_ohio_html
+
+        def reject_chapter(*args, **kwargs):
+            if kwargs["relative_name"] == failed:
+                raise requests.RequestException("source unavailable")
+            return load_html(*args, **kwargs)
+
+        monkeypatch.setattr(states, "_load_ohio_html", reject_chapter)
+    elif failure != "missing-file":
+        # A missing --source-dir chapter file is left out of the pages entirely.
+        pages[failed] = _FAILED_TOC_BODY[failure]
+    _write_sources(source, pages)
     store = CorpusArtifactStore(tmp_path / "corpus")
     report = extract_ohio_revised_code(
         store, version="2026-05-09", source_dir=source, only_title="51"
     )
+    assert report.section_count == 2
     assert "5161" in report.errors[0]
     _assert_visible_gaps(
         store,
@@ -461,5 +497,163 @@ def test_ohio_empty_chapter_toc_remains_inventory_gap(tmp_path, failure):
         expected=OHIO_CONTAINERS
         | {"us-oh/statute/chapter-5161", "us-oh/statute/5160.01", "us-oh/statute/5160.011"},
         missing={"us-oh/statute/chapter-5161"},
-        gap_source="ohio-revised-code/chapters/chapter-5161.html",
+        gap_source=(
+            "ohio-revised-code/titles/title-51.html"
+            if failure in {"request-error", "missing-file"}
+            else failed
+        ),
+        gap_url=f"{OHIO_REVISED_CODE_BASE_URL}/ohio-revised-code/chapter-5161",
     )
+
+
+# The gap-source invariant, over any mix of title and chapter failures: every
+# container gap keeps the container's own URL, and its path and digest pin a
+# stored page, which is the container's own page when it was read and the parent
+# listing that names it when it was not.
+_UNREAD = {"request-error", "missing-file"}
+OHIO_TOC_FAILURES = ["request-error", *TOC_FAILURES]
+
+
+@st.composite
+def _container_failures(draw, modes):
+    title_mode = draw(st.sampled_from(modes))
+    chapter_modes = draw(st.lists(st.sampled_from(modes), min_size=1, max_size=3))
+    order = draw(st.permutations(tuple(range(len(chapter_modes)))))
+    return title_mode, chapter_modes, order
+
+
+@settings(
+    max_examples=25,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(case=_container_failures(TOC_FAILURES))
+def test_maine_container_gaps_keep_their_url_and_pin_their_evidence(tmp_path, case):
+    title_mode, chapter_modes, order = case
+    title_relative = "1/title1ch0sec0.html"
+    chapters = {
+        f"us-me/statute/title-36/chapter-{823 + index}": (
+            f"36/title36ch{823 + index}sec0.html",
+            mode,
+        )
+        for index, mode in enumerate(chapter_modes)
+    }
+    links = "".join(
+        '<div class="MRSChapter_toclist">'
+        f'<a href="./title36ch{823 + index}sec0.html">Chapter {823 + index}: OTHER</a></div>'
+        for index in order
+    )
+    with TemporaryDirectory(dir=tmp_path) as directory:
+        root = Path(directory)
+        pages = dict(MAINE_GOOD_PAGES)
+        pages["36/title36ch0sec0.html"] = SAMPLE_TITLE_HTML.replace(
+            "  </div>\n</div>", f"  {links}\n  </div>\n</div>", 1
+        )
+        _fail_page(pages, title_relative, title_mode)
+        for relative, mode in chapters.values():
+            _fail_page(pages, relative, mode)
+        _write_sources(root / "source", pages)
+        store = CorpusArtifactStore(root / "corpus")
+        report = extract_maine_revised_statutes(
+            store, version="2026-05-09", source_dir=root / "source", workers=1
+        )
+        title = "us-me/statute/title-1"
+        gap_source = {
+            title: MAINE_REVISED_STATUTES_INDEX if title_mode in _UNREAD else title_relative,
+            **{
+                path: "36/title36ch0sec0.html" if mode in _UNREAD else relative
+                for path, (relative, mode) in chapters.items()
+            },
+        }
+        gap_url = {
+            title: f"{MAINE_REVISED_STATUTES_BASE_URL}{title_relative}",
+            **{
+                path: f"{MAINE_REVISED_STATUTES_BASE_URL}{relative}"
+                for path, (relative, _mode) in chapters.items()
+            },
+        }
+        assert report.section_count == 2
+        _assert_visible_gaps(
+            store,
+            report,
+            expected=MAINE_CONTAINERS | MAINE_SECTIONS | set(gap_source),
+            missing=set(gap_source),
+            gap_source=gap_source,
+            gap_url=gap_url,
+        )
+
+
+@settings(
+    max_examples=25,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(case=_container_failures(OHIO_TOC_FAILURES))
+def test_ohio_container_gaps_keep_their_url_and_pin_their_evidence(tmp_path, case):
+    title_mode, chapter_modes, order = case
+    title_relative = "ohio-revised-code/titles/general-provisions.html"
+    chapters = {
+        f"us-oh/statute/chapter-{5161 + index}": (
+            f"ohio-revised-code/chapters/chapter-{5161 + index}.html",
+            mode,
+        )
+        for index, mode in enumerate(chapter_modes)
+    }
+    links = "".join(
+        f'<a href="/ohio-revised-code/chapter-{5161 + index}">Chapter {5161 + index} | Other</a>'
+        for index in order
+    )
+    pages = {
+        "ohio-revised-code/index.html": SAMPLE_OHIO_INDEX,
+        "ohio-revised-code/titles/title-51.html": SAMPLE_OHIO_TITLE.replace(
+            "</main>", links + "</main>"
+        ),
+        "ohio-revised-code/chapters/chapter-5160.html": SAMPLE_OHIO_CHAPTER,
+    }
+    rejected = set()
+    for relative, mode in [(title_relative, title_mode), *chapters.values()]:
+        if mode == "request-error":
+            rejected.add(relative)
+        elif mode != "missing-file":
+            pages[relative] = _FAILED_TOC_BODY[mode]
+    load_html = states._load_ohio_html
+
+    def reject(*args, **kwargs):
+        if kwargs["relative_name"] in rejected:
+            raise requests.RequestException("source unavailable")
+        return load_html(*args, **kwargs)
+
+    with (
+        TemporaryDirectory(dir=tmp_path) as directory,
+        mock.patch.object(states, "_load_ohio_html", reject),
+    ):
+        root = Path(directory)
+        _write_sources(root / "source", pages)
+        store = CorpusArtifactStore(root / "corpus")
+        report = extract_ohio_revised_code(store, version="2026-05-09", source_dir=root / "source")
+        title = "us-oh/statute/general-provisions"
+        gap_source = {
+            title: "ohio-revised-code/index.html" if title_mode in _UNREAD else title_relative,
+            **{
+                path: "ohio-revised-code/titles/title-51.html" if mode in _UNREAD else relative
+                for path, (relative, mode) in chapters.items()
+            },
+        }
+        gap_url = {
+            title: f"{OHIO_REVISED_CODE_BASE_URL}/ohio-revised-code/general-provisions",
+            **{
+                path: f"{OHIO_REVISED_CODE_BASE_URL}/ohio-revised-code/{path.rsplit('/', 1)[1]}"
+                for path in chapters
+            },
+        }
+        assert report.section_count == 2
+        _assert_visible_gaps(
+            store,
+            report,
+            expected=OHIO_CONTAINERS
+            | {"us-oh/statute/5160.01", "us-oh/statute/5160.011"}
+            | set(gap_source),
+            missing=set(gap_source),
+            gap_source=gap_source,
+            gap_url=gap_url,
+        )

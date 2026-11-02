@@ -227,12 +227,16 @@ class _MaineFetcher:
         self._request_lock = Lock()
         self._last_request_at = 0.0
 
+    def source_url(self, relative_path: str) -> str:
+        """The official URL that ``fetch`` reads ``relative_path`` from."""
+        normalized = _normalize_relative_path(relative_path)
+        if normalized == MAINE_REVISED_STATUTES_INDEX:
+            return self.base_url
+        return urljoin(self.base_url, normalized)
+
     def fetch(self, relative_path: str) -> _MaineSourcePage:
         normalized = _normalize_relative_path(relative_path)
-        source_url = self.base_url if normalized == MAINE_REVISED_STATUTES_INDEX else urljoin(
-            self.base_url,
-            normalized,
-        )
+        source_url = self.source_url(normalized)
         if self.source_dir is not None:
             return _MaineSourcePage(
                 relative_path=normalized,
@@ -349,15 +353,20 @@ def extract_maine_revised_statutes(
         # A container is written as a provision only once its own table of
         # contents lists children. Otherwise it stays an inventory gap, so
         # coverage reads incomplete instead of silently losing everything
-        # under it. A page that could not be read is sourced from the parent
-        # listing that names it; a page that was read but lists nothing is
-        # sourced from that page, as it would have been on success.
+        # under it. A gap keeps the container's own URL. A page that could not
+        # be read takes its path and digest from the parent listing that names
+        # it; a page that was read but lists nothing takes them from that page,
+        # as it would have on success.
         try:
             title_page = fetcher.fetch(title.relative_path)
         except Exception as exc:  # noqa: BLE001
             errors.append(f"{title.relative_path}: {exc}")
             _append_inventory_gap(
-                _title_provision(title, heading=title.heading), index_source, items=items, seen=seen
+                _title_provision(title, heading=title.heading),
+                index_source,
+                source_url=fetcher.source_url(title.relative_path),
+                items=items,
+                seen=seen,
             )
             continue
         title_source = _record_source_page(
@@ -372,7 +381,13 @@ def extract_maine_revised_statutes(
         title_provision = _title_provision(title, heading=document.title_heading)
         if not document.chapters:
             errors.append(f"{title.relative_path}: no chapters listed in title table of contents")
-            _append_inventory_gap(title_provision, title_source, items=items, seen=seen)
+            _append_inventory_gap(
+                title_provision,
+                title_source,
+                source_url=title_source.source_url,
+                items=items,
+                seen=seen,
+            )
             continue
         added = _append_provision(
             title_provision,
@@ -423,10 +438,12 @@ def extract_maine_revised_statutes(
                 errors.append(f"{chapter.relative_path}: {exc}")
                 # An unreadable page has no snapshot, so the title page that
                 # lists the chapter is the evidence; a page that was read but
-                # lists nothing is its own evidence.
+                # lists nothing is its own evidence. Either way the gap keeps
+                # the chapter's own URL.
                 _append_inventory_gap(
                     _chapter_provision(chapter),
                     chapter_source if chapter_source is not None else title_source,
+                    source_url=fetcher.source_url(chapter.relative_path),
                     items=items,
                     seen=seen,
                 )
@@ -891,6 +908,7 @@ def _append_inventory_gap(
     provision: MaineProvision,
     source: _RecordedSource,
     *,
+    source_url: str,
     items: list[SourceInventoryItem],
     seen: set[str],
 ) -> None:
@@ -898,7 +916,9 @@ def _append_inventory_gap(
 
     The inventory item has no matching provision, so coverage lists it in
     ``missing_from_provisions``. ``source`` is the page that shows the
-    container is expected: its parent listing, or its own unusable page.
+    container is expected: its parent listing, or its own unusable page. Its
+    path and digest pin that page. ``source_url`` is always the container's
+    own page, whichever page ``source`` is.
     """
     if provision.citation_path in seen:
         return
@@ -906,7 +926,7 @@ def _append_inventory_gap(
     items.append(
         SourceInventoryItem(
             citation_path=provision.citation_path,
-            source_url=source.source_url,
+            source_url=source_url,
             source_path=source.source_path,
             source_format=MAINE_REVISED_STATUTES_SOURCE_FORMAT,
             sha256=source.sha256,
