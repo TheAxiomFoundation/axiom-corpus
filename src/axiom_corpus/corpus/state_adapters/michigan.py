@@ -279,11 +279,19 @@ def extract_michigan_compiled_laws(
         if limit is not None
         else _fetch_michigan_chapter_sources(fetcher, list(listings), workers=workers)
     )
+    # A chapter is written as a provision only once its XML lists sections, or
+    # marks the whole chapter repealed. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing every section under
+    # it. A chapter that could not be fetched is sourced from the directory
+    # index that lists it; one that was fetched but is unusable from its XML.
     for fetch_result in chapter_results:
         if remaining_sections is not None and remaining_sections <= 0:
             break
         if fetch_result.error is not None:
             errors.append(f"chapter {fetch_result.listing.chapter}: {fetch_result.error}")
+            _append_chapter_gap(
+                fetch_result.listing.chapter, index_recorded, items=items, seen=seen
+            )
             continue
         assert fetch_result.source is not None
         chapter_recorded = _record_source(
@@ -306,8 +314,17 @@ def extract_michigan_compiled_laws(
                 listing=fetch_result.listing,
                 source=chapter_recorded,
             )
-        except ValueError as exc:
+        except (ValueError, ET.ParseError) as exc:
             errors.append(f"chapter {fetch_result.listing.chapter}: {exc}")
+            _append_chapter_gap(
+                fetch_result.listing.chapter, chapter_recorded, items=items, seen=seen
+            )
+            continue
+        if not sections and not chapter.repealed:
+            errors.append(
+                f"chapter {fetch_result.listing.chapter}: no sections listed in chapter XML"
+            )
+            _append_chapter_gap(chapter.chapter, chapter_recorded, items=items, seen=seen)
             continue
         if _append_unique(
             seen,
@@ -573,6 +590,35 @@ def _chapter_inventory_item(chapter: MichiganChapter) -> SourceInventoryItem:
         source_format=chapter.source_format,
         sha256=chapter.sha256,
         metadata={"kind": "chapter", "chapter": chapter.chapter},
+    )
+
+
+def _append_chapter_gap(
+    chapter: str,
+    source: _RecordedSource,
+    *,
+    items: list[SourceInventoryItem],
+    seen: set[str],
+) -> None:
+    """Record a listed chapter whose XML yielded no sections.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the chapter
+    is expected: the directory index, or the chapter's own unusable XML.
+    """
+    citation_path = f"us-mi/statute/chapter-{chapter}"
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=source.source_format,
+            sha256=source.sha256,
+            metadata={"kind": "chapter", "chapter": chapter},
+        )
     )
 
 
