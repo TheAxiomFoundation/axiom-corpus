@@ -67,6 +67,7 @@ from axiom_corpus.corpus.state_adapters.west_virginia import (
     WEST_VIRGINIA_SECTION_SOURCE_FORMAT,
     extract_west_virginia_code,
 )
+from tests.test_corpus_arizona import SAMPLE_EMPTY_SECTION_HTML as AZ_EMPTY_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
@@ -79,6 +80,7 @@ from tests.test_corpus_idaho import SAMPLE_CHAPTER_HTML as ID_CHAPTER_HTML
 from tests.test_corpus_idaho import SAMPLE_SECTION_HTML as ID_SECTION_HTML
 from tests.test_corpus_idaho import SAMPLE_TITLE_HTML as ID_TITLE_HTML
 from tests.test_corpus_idaho import SAMPLE_TITLE_INDEX_HTML as ID_TITLE_INDEX_HTML
+from tests.test_corpus_illinois import SAMPLE_REPEALED_SECTION_2 as IL_REPEALED_SECTION_2
 from tests.test_corpus_illinois import SAMPLE_SECTION_1 as IL_SECTION_1
 from tests.test_corpus_illinois import SAMPLE_SECTION_2 as IL_SECTION_2
 from tests.test_corpus_illinois import _FakeIllinoisResponse as IlFakeResponse
@@ -111,6 +113,8 @@ from tests.test_corpus_massachusetts import (
     SAMPLE_SECTION_ONE_HTML as MA_SECTION_ONE_HTML,
 )
 from tests.test_corpus_montana import _write_montana_fixture_tree as mt_write_fixture_tree
+from tests.test_corpus_new_york import SAMPLE_ARTICLE as NY_ARTICLE_HTML
+from tests.test_corpus_new_york import SAMPLE_EMPTY_SECTION_602 as NY_EMPTY_SECTION_602
 from tests.test_corpus_new_york import _write_new_york_fixture_tree as ny_write_fixture_tree
 from tests.test_corpus_new_york import (
     _write_new_york_openleg_section_fixture as ny_write_openleg_section_fixture,
@@ -309,9 +313,6 @@ def test_arizona_fixture_lists_both_sections(tmp_path):
     _assert_complete(report, expected=AZ_EXTRACTED)
 
 
-# Arizona's section parser reads any page, so a maintenance, empty or
-# wrong-shape page is written as a section with no text rather than an error;
-# only a page that cannot be fetched or that raises while parsing reaches here.
 @pytest.mark.parametrize("failure", ["missing-file", "parse-error"])
 def test_arizona_failed_section_page_remains_inventory_gap(tmp_path, monkeypatch, failure):
     # On main a section page that could not be fetched was logged as an error
@@ -338,6 +339,37 @@ def test_arizona_failed_section_page_remains_inventory_gap(tmp_path, monkeypatch
         missing={"us-az/statute/1-202"},
         gap_source=AZ_DETAIL if failure == "missing-file" else AZ_SECTION_202,
     )
+
+
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+def test_arizona_section_page_naming_no_section_remains_inventory_gap(tmp_path, failure):
+    # On main the section parser read any page, so a maintenance, empty or
+    # wrong-shape page was written as the section with no text and coverage
+    # still read complete.
+    pages = dict(AZ_GOOD_PAGES)
+    _fail_page(pages, AZ_SECTION_202, failure)
+    store, report = _extract_arizona(tmp_path, pages)
+    assert report.section_count == 1
+    assert report.errors == (
+        "section 1-202: no section number in the page title or first paragraph",
+    )
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=AZ_EXTRACTED,
+        missing={"us-az/statute/1-202"},
+        gap_source=AZ_SECTION_202,
+    )
+
+
+def test_arizona_section_page_without_text_stays_complete(tmp_path):
+    pages = dict(AZ_GOOD_PAGES)
+    pages[AZ_SECTION_202] = AZ_EMPTY_SECTION_HTML.replace("1-201", "1-202")
+    _, report = _extract_arizona(tmp_path, pages)
+    assert report.section_count == 2
+    _assert_complete(report, expected=AZ_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-az/statute/1-202"].body is None
 
 
 # --- Hawaii: root -> volume -> chapter directory (+ chapter index) -> section files ---
@@ -645,9 +677,18 @@ NY_LAW_TREE = {
 }
 
 
-def _extract_new_york(tmp_path, *, missing: str, only_title: str | None = "TAX", workers=1):
+def _extract_new_york(
+    tmp_path,
+    *,
+    missing: str | None = None,
+    pages: dict[str, str] | None = None,
+    only_title: str | None = "TAX",
+    workers=1,
+):
     source = ny_write_fixture_tree(tmp_path)
-    (source / "new-york-senate-html" / missing).unlink(missing_ok=True)
+    if missing is not None:
+        (source / "new-york-senate-html" / missing).unlink(missing_ok=True)
+    _write_sources(source / "new-york-senate-html", pages or {})
     store = CorpusArtifactStore(tmp_path / "corpus")
     report = extract_new_york_consolidated_laws(
         store,
@@ -661,9 +702,6 @@ def _extract_new_york(tmp_path, *, missing: str, only_title: str | None = "TAX",
     return store, report
 
 
-# The Senate page parser reads any page, so a maintenance, empty or wrong-shape
-# page is written as a provision with no text rather than an error; only a page
-# that cannot be fetched reaches the error path.
 @pytest.mark.parametrize("workers", [1, 4])
 def test_new_york_unfetched_section_page_remains_inventory_gap(tmp_path, workers):
     # On main a page the crawl could not fetch was logged as an error with no
@@ -679,6 +717,55 @@ def test_new_york_unfetched_section_page_remains_inventory_gap(tmp_path, workers
         missing={"us-ny/statute/TAX/602"},
         gap_source="new-york-senate-html/TAX/A22P1.html",
     )
+
+
+@pytest.mark.parametrize("workers", [1, 4])
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+def test_new_york_section_page_without_section_remains_inventory_gap(tmp_path, failure, workers):
+    # On main a page with no section headline parsed as a container, so a
+    # maintenance, empty or wrong-shape page behind a "SECTION 602" link was
+    # written as a container with no text and coverage still read complete.
+    pages: dict[str, str] = {}
+    _fail_page(pages, "TAX/602.html", failure)
+    store, report = _extract_new_york(tmp_path, pages=pages, workers=workers)
+    assert report.section_count == 1
+    assert report.errors == (
+        "https://www.nysenate.gov/legislation/laws/TAX/602: "
+        "expected a section, page has no headline",
+    )
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NY_LAW_TREE,
+        missing={"us-ny/statute/TAX/602"},
+        gap_source="new-york-senate-html/TAX/602.html",
+    )
+
+
+def test_new_york_section_link_to_another_node_remains_inventory_gap(tmp_path):
+    # The article page links on to its part; the crawl does not follow links
+    # from a page that stands in for a section.
+    store, report = _extract_new_york(tmp_path, pages={"TAX/602.html": NY_ARTICLE_HTML})
+    assert report.errors == (
+        "https://www.nysenate.gov/legislation/laws/TAX/602: "
+        "expected a section, page has headline ARTICLE 22",
+    )
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NY_LAW_TREE,
+        missing={"us-ny/statute/TAX/602"},
+        gap_source="new-york-senate-html/TAX/602.html",
+    )
+
+
+def test_new_york_section_page_without_text_stays_complete(tmp_path):
+    _, report = _extract_new_york(tmp_path, pages={"TAX/602.html": NY_EMPTY_SECTION_602})
+    assert report.section_count == 2
+    _assert_complete(report, expected=NY_LAW_TREE)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-ny/statute/TAX/602"].kind == "section"
+    assert records["us-ny/statute/TAX/602"].body is None
 
 
 def test_new_york_unfetched_container_page_remains_inventory_gap(tmp_path):

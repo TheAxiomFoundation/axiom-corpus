@@ -187,7 +187,13 @@ def parse_illinois_ilcs_section(
     *,
     document: IllinoisIlcsDocumentName,
 ) -> IllinoisIlcsSection:
-    """Extract the canonical citation, heading, body, and references from an ILCS section page."""
+    """Extract the canonical citation, heading, body, and references from an ILCS section page.
+
+    A page without an ILCS citation is read under the document's own citation
+    only when a line opens with that section's heading (``Sec. 3.``). A page
+    with neither holds no section (a maintenance, empty or wrong-shape page),
+    so it raises ``ValueError`` instead of becoming the section's text.
+    """
     text = _html_text(html)
     citation_match = _ILCS_CITATION_RE.search(text)
     if citation_match:
@@ -195,11 +201,13 @@ def parse_illinois_ilcs_section(
         act = citation_match.group("act")
         section = citation_match.group("section").strip()
         citation = f"{chapter} ILCS {act}/{section}"
-    elif document.citation:
+    elif not document.citation:
+        raise ValueError(f"ILCS section page has no citation: {document.stem}")
+    elif _names_section(text, document.section or ""):
         section = document.section or ""
         citation = document.citation
     else:
-        raise ValueError(f"ILCS section page has no citation: {document.stem}")
+        raise ValueError(f"ILCS section page names no section: {document.stem}")
 
     heading = _section_heading(text, section)
     references = tuple(
@@ -281,6 +289,7 @@ def extract_illinois_ilcs(
     skipped_source_count = 0
     errors: list[str] = []
     remaining = limit
+    unread_sections: list[SourceInventoryItem] = []
 
     for document, relative_name, source_url, data in source_entries:
         if remaining is not None and remaining <= 0:
@@ -382,6 +391,23 @@ def extract_illinois_ilcs(
         except ValueError as exc:
             skipped_source_count += 1
             errors.append(f"{relative_name}: {exc}")
+            if document.section is not None:
+                unread_sections.append(
+                    _inventory_item(
+                        citation_path=document.citation_path,
+                        source_url=source_url,
+                        source_path=source_key,
+                        sha256=sha256,
+                        metadata={
+                            "kind": "section",
+                            "chapter": str(document.chapter_int),
+                            "act": str(document.act_int),
+                            "section": document.section,
+                            "parent_citation_path": act_path,
+                            "source_id": document.stem,
+                        },
+                    )
+                )
             continue
         if section.citation_path in seen:
             continue
@@ -433,6 +459,16 @@ def extract_illinois_ilcs(
         )
         if remaining is not None:
             remaining -= 1
+
+    # A section document that was fetched but holds no section (a maintenance,
+    # empty or wrong-shape page) stays in the inventory, sourced from that
+    # page, so coverage reports it as missing, unless another document
+    # supplied the section.
+    for gap in unread_sections:
+        if gap.citation_path in seen:
+            continue
+        seen.add(gap.citation_path)
+        items.append(gap)
 
     # A section document the remote run could not fetch stays in the
     # inventory, sourced from the listing that named it, so coverage reports
@@ -924,6 +960,15 @@ def _section_heading(text: str, section: str) -> str | None:
             heading = match.group("heading").strip()
             return heading.rstrip(".") or None
     return None
+
+
+def _names_section(text: str, section: str) -> bool:
+    """Whether a line opens with this section's heading, not another's (``Sec. 1.`` vs ``Sec. 10.``)."""
+    heading = re.compile(
+        rf"^(?:Sec\.|Section)\s+{re.escape(section)}\.?(?:\s|$)",
+        re.IGNORECASE,
+    )
+    return any(heading.match(line) for line in text.splitlines())
 
 
 def _act_title(data: bytes) -> str | None:

@@ -522,7 +522,8 @@ def extract_arizona_revised_statutes(
         # page cannot be fetched or read, so coverage reads incomplete instead
         # of silently losing it. A page that could not be fetched is sourced
         # from the title detail page; a page that was fetched but could not be
-        # read from itself.
+        # read, or that names no section (a maintenance, empty or wrong-shape
+        # page), from itself.
         for result in _fetch_arizona_section_results(
             fetcher,
             selected_sections,
@@ -761,12 +762,20 @@ def parse_arizona_title_detail(
 
 
 def parse_arizona_section(html: str | bytes, *, fallback_heading: str | None = None) -> ArizonaParsedSection:
-    """Parse one official printable Arizona section HTML document."""
+    """Parse one official printable Arizona section HTML document.
+
+    An official section page titles itself ``<section> - <heading>`` and opens
+    its first paragraph with the section number. A page that names a section in
+    neither place holds no section (a maintenance, empty or wrong-shape page),
+    so it raises ``ValueError`` instead of becoming the section's text. A page
+    that names its section but holds no text, or marks it repealed, still parses.
+    """
     soup = BeautifulSoup(_decode(html), "lxml")
     title_text = _clean_text(soup.find("title") or "")
     title_heading = ""
     if " - " in title_text:
         title_heading = title_text.split(" - ", 1)[1]
+    names_section = _SECTION_RE.match(title_text.split(" - ", 1)[0].strip()) is not None
     body = soup.find("body")
     paragraphs = body.find_all("p", recursive=False) if isinstance(body, Tag) else soup.find_all("p")
     heading = fallback_heading or title_heading
@@ -776,11 +785,14 @@ def parse_arizona_section(html: str | bytes, *, fallback_heading: str | None = N
         if not text:
             continue
         if index == 0 and _SECTION_RE.match(text.split(".", 1)[0].strip()):
+            names_section = True
             heading_node = paragraph.find("u")
             if isinstance(heading_node, Tag):
                 heading = _clean_text(heading_node)
             continue
         body_parts.append(text)
+    if not names_section:
+        raise ValueError("no section number in the page title or first paragraph")
     body_text = _normalize_body("\n\n".join(body_parts))
     status = "repealed" if _is_repealed(heading, body_text) else None
     return ArizonaParsedSection(

@@ -1,3 +1,5 @@
+import pytest
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.arizona import (
@@ -60,6 +62,16 @@ SAMPLE_SECTION_HTML = """
 </HTML>
 """
 
+# A page that names its section but holds no text.
+SAMPLE_EMPTY_SECTION_HTML = """
+<HTML>
+<HEAD><TITLE>1-201 - Adoption of common law; exceptions</TITLE></HEAD>
+<BODY>
+<p><font color=GREEN>1-201</font>. <font color=PURPLE><u>Adoption of common law; exceptions</u></font></p>
+</BODY>
+</HTML>
+"""
+
 SAMPLE_TITLE = ArizonaTitle(
     number="1",
     heading="General Provision",
@@ -92,6 +104,40 @@ def test_parse_arizona_title_detail_and_section():
     assert parsed.heading == "Adoption of common law; exceptions"
     assert parsed.body == "The common law is adopted. See section 1-202."
     assert parsed.references_to == ("us-az/statute/1-202",)
+
+
+def test_parse_arizona_section_keeps_a_section_page_without_text():
+    parsed = parse_arizona_section(SAMPLE_EMPTY_SECTION_HTML)
+
+    assert parsed.heading == "Adoption of common law; exceptions"
+    assert parsed.body is None
+
+
+@pytest.mark.parametrize(
+    "html",
+    [
+        # Named only in the title, or only in the first paragraph.
+        "<HTML><HEAD><TITLE>1-201 - Adoption</TITLE></HEAD><BODY></BODY></HTML>",
+        "<HTML><BODY><p>1-201. <u>Adoption</u></p><p>Text.</p></BODY></HTML>",
+    ],
+)
+def test_parse_arizona_section_reads_a_page_that_names_its_section_once(html):
+    assert parse_arizona_section(html).heading == "Adoption"
+
+
+@pytest.mark.parametrize(
+    "html",
+    [
+        "",
+        "<html><body><h1>Scheduled maintenance</h1></body></html>",
+        "<html><head><title>Page not found</title></head><body><p>Sorry.</p></body></html>",
+        # A section number nested below the body's own paragraphs does not count.
+        "<html><body><main><p>1-201. <u>Adoption</u></p></main></body></html>",
+    ],
+)
+def test_parse_arizona_section_rejects_a_page_that_names_no_section(html):
+    with pytest.raises(ValueError, match="no section number"):
+        parse_arizona_section(html, fallback_heading="Adoption of common law; exceptions")
 
 
 def test_extract_arizona_revised_statutes_from_source_dir_writes_artifacts(tmp_path):

@@ -141,6 +141,14 @@ SAMPLE_SECTION_602 = """<!doctype html>
 </html>
 """
 
+# A page whose headline names the section but whose text block is empty.
+SAMPLE_EMPTY_SECTION_602 = SAMPLE_SECTION_602.replace(
+    """      § 602. Income tax rates.
+      <p>The tax shall be computed using the rates in this section.</p>
+""",
+    "",
+)
+
 SAMPLE_OPENLEG_LAWS = {
     "success": True,
     "result": {
@@ -260,6 +268,26 @@ def test_parse_new_york_law_page_extracts_children_and_section_body():
     assert section.body is not None
     assert "Resident married individuals" in section.body
     assert section.breadcrumb_labels == ("CHAPTER 60", "ARTICLE 22", "PART 1")
+
+
+def test_parse_new_york_law_page_reads_a_section_without_text_and_a_page_without_headline():
+    empty = parse_new_york_law_page(
+        SAMPLE_EMPTY_SECTION_602,
+        source_url="https://www.nysenate.gov/legislation/laws/TAX/602",
+    )
+    assert (empty.kind, empty.display_number, empty.body) == ("section", "602", None)
+
+    # A page with no headline (a maintenance page) reads as a bare container;
+    # the crawl, which knows the link named a section, rejects it.
+    maintenance = parse_new_york_law_page(
+        "<html><body><h1>Scheduled maintenance</h1></body></html>",
+        source_url="https://www.nysenate.gov/legislation/laws/TAX/602",
+    )
+    assert (maintenance.kind, maintenance.heading, maintenance.child_links) == (
+        "container",
+        None,
+        (),
+    )
 
 
 def test_parse_new_york_openleg_laws_keeps_consolidated_laws():

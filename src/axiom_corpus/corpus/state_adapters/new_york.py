@@ -141,6 +141,8 @@ class _NewYorkQueueItem:
     parent_citation_path: str | None
     level: int
     ordinal: int
+    # The parent page labels the link "SECTION ...", so the page must hold a section.
+    expects_section: bool = False
 
 
 @dataclass(frozen=True)
@@ -364,7 +366,7 @@ def extract_new_york_consolidated_laws(
     def handle_fetched_page(
         current: _NewYorkQueueItem,
         fetched: _NewYorkFetchResult,
-    ) -> NewYorkParsedPage:
+    ) -> NewYorkParsedPage | None:
         nonlocal title_count, container_count, section_count, remaining_sections
         artifact_path = store.source_path(
             jurisdiction,
@@ -375,19 +377,25 @@ def extract_new_york_consolidated_laws(
         sha256 = store.write_bytes(artifact_path, fetched.data)
         source_paths.append(artifact_path)
         source_key = _state_source_key(jurisdiction, run_id, fetched.relative_path)
+        page = _NewYorkRecordedPage(
+            source_url=fetched.source_url,
+            source_path=source_key,
+            sha256=sha256,
+        )
         parsed = parse_new_york_law_page(
             fetched.data,
             source_url=current.source_url,
             base_url=base_url,
         )
-        recorded_pages.setdefault(
-            parsed.citation_path,
-            _NewYorkRecordedPage(
-                source_url=fetched.source_url,
-                source_path=source_key,
-                sha256=sha256,
-            ),
-        )
+        if current.expects_section and parsed.kind != "section":
+            # The parent lists a section here, but a maintenance, empty or
+            # wrong-shape page has no section headline and parses as some
+            # other node (as a container when it has no headline at all).
+            # The section stays a gap sourced from this page, and the crawl
+            # goes no further down it.
+            record_unreadable_section(current, parsed, page)
+            return None
+        recorded_pages.setdefault(parsed.citation_path, page)
         if parsed.citation_path not in seen:
             seen.add(parsed.citation_path)
             if parsed.kind == "law":
@@ -452,6 +460,7 @@ def extract_new_york_consolidated_laws(
                     parent_citation_path=page.citation_path,
                     level=current.level + 1,
                     ordinal=child.ordinal,
+                    expects_section=is_section,
                 )
             )
         return next_items
@@ -467,6 +476,23 @@ def extract_new_york_consolidated_laws(
             else recorded_pages[current.parent_citation_path]
         )
         _append_new_york_page_gap(items, seen, current, listing)
+
+    def record_unreadable_section(
+        current: _NewYorkQueueItem,
+        parsed: NewYorkParsedPage,
+        page: _NewYorkRecordedPage,
+    ) -> None:
+        nonlocal skipped_source_count
+        skipped_source_count += 1
+        found = (
+            "no headline"
+            if parsed.kind == "container"
+            else f"headline {parsed.kind.upper()} {parsed.display_number}"
+        )
+        error = f"expected a section, page has {found}"
+        errors.append(f"{current.source_url}: {error}")
+        log_progress(f"new-york skipped {current.source_url}: {error}")
+        _append_new_york_page_gap(items, seen, current, page)
 
     def safe_fetch_page(
         current: _NewYorkQueueItem,
@@ -503,7 +529,7 @@ def extract_new_york_consolidated_laws(
                 continue
 
             parsed = handle_fetched_page(current, fetched)
-            if remaining_sections is not None and remaining_sections <= 0:
+            if parsed is None or (remaining_sections is not None and remaining_sections <= 0):
                 continue
 
             next_items = child_queue_items(parsed, current)
@@ -522,7 +548,8 @@ def extract_new_york_consolidated_laws(
                         record_unfetched_page(child_item, child_error)
                         continue
                     child_page = handle_fetched_page(child_item, child_fetched)
-                    unexpected_children.extend(child_queue_items(child_page, child_item))
+                    if child_page is not None:
+                        unexpected_children.extend(child_queue_items(child_page, child_item))
                 stack.extend(reversed(unexpected_children))
                 continue
 
@@ -1521,12 +1548,14 @@ def _append_new_york_page_gap(
     items: list[SourceInventoryItem],
     seen: set[str],
     current: _NewYorkQueueItem,
-    listing: _NewYorkRecordedPage,
+    source: _NewYorkRecordedPage,
 ) -> None:
-    """Keep a page the crawl could not fetch in the inventory, without a provision.
+    """Keep a page the crawl could not fetch or read in the inventory, without a provision.
 
-    The parent page that linked to it (the consolidated-laws index for a law)
-    is the recorded source, so coverage reports the page as missing.
+    ``source`` is the recorded page, so coverage reports the node as missing:
+    the parent page that linked to it (the consolidated-laws index for a law)
+    when the page could not be fetched, or the page itself when it was fetched
+    but holds no section.
     """
     citation_path = (
         f"us-ny/statute/{current.law_id}"
@@ -1545,10 +1574,10 @@ def _append_new_york_page_gap(
     items.append(
         SourceInventoryItem(
             citation_path=citation_path,
-            source_url=listing.source_url,
-            source_path=listing.source_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
             source_format=NEW_YORK_SENATE_SOURCE_FORMAT,
-            sha256=listing.sha256,
+            sha256=source.sha256,
             metadata={key: value for key, value in metadata.items() if value is not None},
         )
     )

@@ -50,6 +50,20 @@ SAMPLE_SECTION_2 = """<!doctype html>
 """
 
 
+# Shaped like the official page for a repealed section (305 ILCS 5/10-20): the
+# citation and heading stay, and the text reads "(Repealed)."
+SAMPLE_REPEALED_SECTION_2 = """<!doctype html>
+<html>
+<body>
+<p>(5 ILCS 70/2) (from Ch. 1, par. 1002)</p>
+<p>Sec. 2.</p>
+<p>(Repealed).</p>
+<p>(Source: P.A. 99-1. Repealed by P.A. 99-2.)</p>
+</body>
+</html>
+"""
+
+
 def _write_fixture_tree(root: Path) -> None:
     act_dir = root / "Ch 0005" / "Act 0070"
     act_dir.mkdir(parents=True)
@@ -147,6 +161,34 @@ def test_parse_illinois_ilcs_section_uses_document_citation_fallback():
     assert section.citation == "5 ILCS 70/3"
     assert section.heading is None
     assert section.body == "Sec. 3.\nFallback body."
+
+
+def test_parse_illinois_ilcs_section_keeps_a_repealed_section():
+    document = parse_illinois_ilcs_doc_name("000500700K2.html")
+
+    section = parse_illinois_ilcs_section(SAMPLE_REPEALED_SECTION_2, document=document)
+
+    assert section.citation == "5 ILCS 70/2"
+    assert section.citation_path == "us-il/statute/5/70/2"
+    assert "(Repealed)." in section.body
+
+
+@pytest.mark.parametrize(
+    "html",
+    [
+        "",
+        "<html><body><h1>Scheduled maintenance</h1></body></html>",
+        "<html><body><main><h1>Search results</h1><p>No entries.</p></main></body></html>",
+        # Another section's heading does not name section 1.
+        "<html><body><p>Sec. 10. Short title.</p></body></html>",
+        "<html><body><p>Sec. 1.5. Short title.</p></body></html>",
+    ],
+)
+def test_parse_illinois_ilcs_section_rejects_a_page_that_names_no_section(html):
+    document = parse_illinois_ilcs_doc_name("000500700K1.html")
+
+    with pytest.raises(ValueError, match="names no section: 000500700K1"):
+        parse_illinois_ilcs_section(html, document=document)
 
 
 def test_parse_illinois_ilcs_section_rejects_uncited_container_document():
