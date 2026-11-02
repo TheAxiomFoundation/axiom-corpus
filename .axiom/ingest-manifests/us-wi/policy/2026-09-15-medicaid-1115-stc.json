@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "c39447b230adbecc15a9558456c988d7d94b9c059f3328325cf82e21b74235ed"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "d1b9fa9647a5f1c4709064605d559bc0f57f6abeef8e6f8b9d2cd054d1e56fae"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "e3ccb52a6932935efc3887fe59d85e1d5b29b4099313c2b770aa9de21d05d6cd"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/policy/2026-09-15-medicaid-1115-stc/official-documents/us-wi-cms-1115-stc-badgercare-reform.pdf",
+      "sha256": "68959afa22063f0d583351e48bef830dd85b77b5652bb48921edad0b7485f2eb"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/policy/2026-09-15-medicaid-1115-stc/official-documents/us-wi-cms-1115-stc-seniorcare.pdf",
+      "sha256": "180a6ec4b19cd8a5711d706bc6847d3f9bc7e62af205a72f6a12519280b79ba1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 88,
+    "missing_count": 0,
+    "provision_count": 88,
+    "source_count": 88
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:47:01.955396+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zzg62MwWumkfNuMnLd2+e+vogc7cjG22ExM5SoV8rGf854lVefkjx20lPXEnT5Vss/+1MRom9CHm+PaHZo4SCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}

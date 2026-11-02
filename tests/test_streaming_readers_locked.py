@@ -96,6 +96,27 @@ def test_locked_absent_file_is_refused_when_fetching_is_off(
     assert streamed == whole
 
 
+@pytest.mark.parametrize("unrelated_lock", [False, True], ids=["no-nested-lock", "unrelated-nested-lock"])
+@pytest.mark.parametrize("no_fetch", ["", "1"], ids=["fetch-on", "fetch-off"])
+def test_an_enclosing_lock_refuses_streaming_an_absent_nested_checkout_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, unrelated_lock: bool, no_fetch: str
+) -> None:
+    outer = _init_repo(tmp_path / "outer")
+    source_dir = "data/corpus/sources/nz/statute/v1"
+    nested = _init_repo(outer / source_dir / "vendored")
+    outer_rel = f"{source_dir}/vendored/{PROVISIONS}"
+    data = FILES[PROVISIONS]
+    write_lock(outer, CorpusLock.from_entries(("nz", "statute", "v1"), [LockEntry(outer_rel, _sha(data), len(data))]))
+    if unrelated_lock:
+        inventory = FILES[INVENTORY]
+        write_lock(nested, CorpusLock.from_entries(SCOPE, [LockEntry(INVENTORY, _sha(inventory), len(inventory))]))
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", no_fetch)
+    with pytest.raises(CorpusNotMaterializedError, match="absent and no fetch will place them") as refused:
+        next(iter_provisions(nested / PROVISIONS))
+    assert f"axiom-corpus-ingest corpus fetch --path {outer_rel}` in {outer}" in str(refused.value)
+    assert not (nested / PROVISIONS).exists()
+
+
 @pytest.mark.parametrize("no_fetch", ["1", ""])
 def test_unlocked_absent_file_reads_as_before(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, no_fetch: str

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/policy/2026-10-12-w7-state-benefits-policy-il.json",
+      "sha256": "646c407665c36b7e29ad1c0d0df44413e076df5f661f490e3d895d4c279acbb4"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/policy/2026-10-12-w7-state-benefits-policy-il.json",
+      "sha256": "f78f72e2a8ecadd8efe96b44acb0f809b3ed9ef75f2ed361bd1e4bc3343ef932"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/policy/2026-10-12-w7-state-benefits-policy-il.jsonl",
+      "sha256": "56b57b091f165a150192996e473fd8d5ffec8aa34a48fc0455ce672ffbcfc9fd"
+    },
+    {
+      "path": "data/corpus/sources/us-il/policy/2026-10-12-w7-state-benefits-policy-il/official-documents/us-il-policy-acf-ccdf-plan-fy2025-2027-amendment-2.pdf",
+      "sha256": "4973c30ba3dfc7a3ef1f23e3375fb251a5ab12f34465ed6d30c0e3393e896d31"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-13T12:06:09.465480+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6rjbtSOj49SFVrvfutArwmlxnRpaSIFH/gsnQ0X/8et2d8ps8DtxuA9co768rr2r8DKNhUco4lLp8uMl0bmIAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-policy-il"
+}

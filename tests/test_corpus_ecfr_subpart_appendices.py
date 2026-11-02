@@ -15,21 +15,26 @@ Invariants checked here:
 - Fail closed: an opted-in subpart appendix that sits outside the subpart or part it
   names, or whose designator has no unambiguous order, raises EcfrAppendixError, and
   extract_ecfr writes nothing, whether the structure or only the XML shows it.
+- Global fail closed: for an opted-in run, if any selected appendix in any pending
+  title is invalid, the run writes nothing, whatever else fails earlier in that
+  title. An earlier conversion failure must stop an incomplete preflight.
 - Numbering evidence: only appendices that sit in the subpart they name classify its
   designators; designator case does not matter.
 - Part appendices keep their identity and metadata; their bodies gain captions and
-  word breaks like subpart appendices. Section rendering is unchanged.
+  word breaks like subpart appendices. Sections keep captions and word breaks too.
 """
 
 import json
 import random
+import tempfile
 from pathlib import Path
 
 import pytest
-from hypothesis import given, settings
+from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
 import axiom_corpus.corpus.ecfr as ecfr
+from axiom_corpus.corpus.anchors import generate_anchors_for_provision
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.ecfr import (
     EcfrPartTarget,
@@ -449,18 +454,18 @@ def test_iterator_takes_subpart_appendices_with_identity_and_order():
     ]
 
 
-def test_appendix_rendering_keeps_captions_and_word_breaks_but_sections_do_not_change():
+def test_appendix_and_section_rendering_keep_captions_and_word_breaks():
     by_path = {record.citation_path: record for record in _records(include_appendices=True)}
 
     assert by_path["us/regulation/20/404/subpart-C/appendix-ii"].body.split("\n\n") == [
-        "Benefit Formulas",
+        "[Table caption: Benefit Formulas]",
         "Year you reach age 62 1 | 90 percent of the first—\n1979 | $180\n1 Or become disabled.",
     ]
     # Adjacent caption paragraphs and cell paragraphs stay separate words; inline
     # subscripts stay joined.
     assert by_path["us/regulation/20/404/subpart-C/appendix-v"].body.split("\n\n") == [
         "Special minimum amounts.",
-        "Table IV-A [Applicable at test sites]",
+        "[Table caption: Table IV-A [Applicable at test sites]]",
         "FEV1 less than or equal to\n65 (L, BTPS)",
     ]
     listing = by_path["us/regulation/20/404/subpart-P/appendix-1"].body
@@ -472,8 +477,41 @@ def test_appendix_rendering_keeps_captions_and_word_breaks_but_sections_do_not_c
     # eCFR's editorial "Link to an amendment" cross-reference is not regulation text.
     assert "Link to an amendment" not in listing
     assert "45 FR 25060" not in by_path["us/regulation/20/404/subpart-B/appendix"].body
-    # Section rendering keeps its established output (caption dropped, <br/> joined).
-    assert by_path["us/regulation/20/404/201"].body == "A section paragraph.\n\nmeansless"
+    # Sections keep the caption and break the word at <br/> too.
+    assert by_path["us/regulation/20/404/201"].body.split("\n\n") == [
+        "A section paragraph.",
+        "[Table caption: Section Caption]",
+        "means less",
+    ]
+
+
+def test_appendix_repeated_labeled_captions_do_not_create_paragraph_anchors():
+    caption = "(A) Computation of Net Shortfall Charge"
+    tables = "".join(
+        f"<TABLE><CAPTION><P>{caption}</P></CAPTION>"
+        f"<TR><TD>{value} computation</TD></TR></TABLE>"
+        for value in ("First", "Second")
+    )
+    xml = (
+        '<ECFR><DIV5 N="404" TYPE="PART"><HEAD>PART 404</HEAD>'
+        '<DIV6 N="C" TYPE="SUBPART"><HEAD>Subpart C</HEAD>'
+        + _div9(
+            "Appendix II to Subpart C of Part 404", "Computations",
+            f"<P>(a) Computation of the charge.</P>{tables}<P>(b) Next paragraph.</P>",
+        )
+        + "</DIV6></DIV5></ECFR>"
+    )
+    record = next(
+        row for row in _records(xml, include_appendices=True)
+        if row.kind == "appendix"
+    )
+
+    anchors = generate_anchors_for_provision(record)
+
+    assert record.body.count(f"[Table caption: {caption}]") == 2
+    assert [anchor.citation_path for anchor in anchors] == [
+        f"{record.citation_path}/a", f"{record.citation_path}/b",
+    ]
 
 
 @pytest.mark.parametrize(
@@ -983,7 +1021,7 @@ def test_every_block_break_tag_separates_words_in_appendix_text(tag):
     # Inline markup (<E>) still joins: "right" + "em" + "tail".
     expected = "left middle rightemtail" if tag != "br" else "left rightemtail"
     assert ecfr._element_text_with_breaks(elem) == expected
-    # Section text keeps joining everything.
+    # The plain join, still used for headings, glues them.
     assert ecfr._element_text(elem) == expected.replace(" ", "")
 
 
@@ -1000,7 +1038,7 @@ def test_part_appendix_body_gains_captions_and_word_breaks_identity_unchanged():
         "us/regulation/20/404/appendix-a"
     ]
 
-    assert record.body == "Caption\n\nA B"
+    assert record.body == "[Table caption: Caption]\n\nA B"
     assert (record.parent_citation_path, record.level, record.ordinal, record.legal_identifier) == (
         "us/regulation/20/404", 1, 1_000_065, "20 CFR part 404, appendix A",
     )
@@ -1142,4 +1180,76 @@ def test_default_extraction_needs_no_temporary_directory(tmp_path, monkeypatch, 
         extract_ecfr(
             CorpusArtifactStore(tmp_path / "opt-in"), version="2026-10-12", as_of="2026-10-08",
             only_title=20, only_part="404", include_appendices=True,
+        )
+
+
+def _assert_earlier_conversion_error_cannot_hide_invalid_appendix(
+    root, monkeypatch, *, workers, multi_title, section_digits=4301, host="B", existing_run=False,
+):
+    # The first section cannot convert its ordinal to int. The selected appendix
+    # appears later and contradicts its enclosing subpart, despite valid XML.
+    xml = _move_appendix_in_xml(XML, "Appendix I to Subpart C of Part 404", host)
+    xml = xml.replace("§ 404.101", f"§ 404.{'1' * section_digits}")
+    if multi_title:
+        # Title 20 is valid; the corruption occurs in pending title 21.
+        _two_title_fetchers(monkeypatch, xml)
+        selectors = {}
+        run_id = "2026-10-12"
+    else:
+        monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: STRUCTURE)
+        monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+        monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: PNG)
+        selectors = {"only_title": 20, "only_part": "404"}
+        run_id = "2026-10-12-title-20-part-404"
+    store = CorpusArtifactStore(root / "corpus")
+    if existing_run:
+        previous = store.root / f"sources/us/regulation/{run_id}/ecfr/title-20.structure.json"
+        previous.parent.mkdir(parents=True)
+        previous.write_bytes(b"previous run bytes")
+    before = _files(store.root)
+
+    with pytest.raises(ecfr.EcfrAppendixError, match="appendix preflight"):
+        extract_ecfr(
+            store, version="2026-10-12", as_of="2026-10-08", workers=workers,
+            include_appendices=True, **selectors,
+        )
+
+    assert _files(store.root) == before
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+@pytest.mark.parametrize("multi_title", [False, True], ids=["single-title", "multi-title"])
+@pytest.mark.parametrize("existing_run", [False, True])
+def test_earlier_section_conversion_error_cannot_hide_later_invalid_appendix(
+    tmp_path, monkeypatch, workers, multi_title, existing_run,
+):
+    _assert_earlier_conversion_error_cannot_hide_invalid_appendix(
+        tmp_path, monkeypatch, workers=workers, multi_title=multi_title, existing_run=existing_run,
+    )
+
+
+@settings(
+    max_examples=24,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(
+    workers=st.sampled_from([1, 2]),
+    multi_title=st.booleans(),
+    existing_run=st.booleans(),
+    section_digits=st.integers(min_value=4301, max_value=4315),
+    host=st.sampled_from(["B", "P"]),
+)
+def test_property_any_selected_invalid_appendix_prevents_all_writes_despite_earlier_failure(
+    tmp_path, monkeypatch, workers, multi_title, existing_run, section_digits, host,
+):
+    """Any invalid selected appendix in any pending title makes all writes fail closed.
+
+    Earlier section conversion failures cannot weaken that guarantee, and an
+    otherwise valid pending title cannot write its own artifacts first.
+    """
+    with tempfile.TemporaryDirectory(dir=tmp_path) as tmp, monkeypatch.context() as patch:
+        _assert_earlier_conversion_error_cannot_hide_invalid_appendix(
+            Path(tmp), patch, workers=workers, multi_title=multi_title,
+            existing_run=existing_run, section_digits=section_digits, host=host,
         )

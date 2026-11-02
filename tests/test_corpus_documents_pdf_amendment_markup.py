@@ -226,7 +226,9 @@ def test_amendment_markup_ignores_white_and_thick_rules() -> None:
     page.draw_line((72, 97), (72 + width, 97), width=0.6, color=(1, 1, 1))
     page.draw_rect(fitz.Rect(72, 100.5, 72 + width, 103.5), color=None, fill=(0, 0, 0))
 
-    (block,) = _pages(document.tobytes(), {"amendment_markup": True})
+    # The 3 pt bar is not classified, but at an underline position it is reported.
+    with pytest.warns(documents_module.PdfAmendmentMarkupWarning, match="thicker than 1.5 pt"):
+        (block,) = _pages(document.tobytes(), {"amendment_markup": True})
 
     assert block.body == "plain"
 
@@ -238,7 +240,15 @@ def test_amendment_markup_ignores_white_and_thick_rules() -> None:
         ({"pages": "1-2"}, "unknown amendment_markup keys"),
         ({"typographic_underlines": "Jones v. Yeutter"}, "must be a list"),
         ({"typographic_underlines": [" padded"]}, "must be a list"),
-        ("yes", "must be true or a mapping"),
+        ("yes", "must be true, false or a mapping"),
+        (1, "must be true, false or a mapping"),
+        ({}, "must not be an empty mapping"),
+        ({"start_page": True}, "start_page must be a positive integer page number"),
+        ({"start_page": "2"}, "start_page must be a positive integer page number"),
+        ({"start_page": 2.0}, "start_page must be a positive integer page number"),
+        ({"start_page": 0}, "start_page must be a positive integer page number"),
+        ({"end_page": False}, "end_page must be a positive integer page number"),
+        ({"start_page": 2}, "start_page 2 is past the last page of the PDF"),
     ],
 )
 def test_amendment_markup_config_is_validated(config: Any, message: str) -> None:
@@ -256,13 +266,16 @@ def test_layered_options_require_page_segmentation(key: str) -> None:
         _pages(content, {key: True, "segmentation": "single_block"})
 
 
-@pytest.mark.parametrize("key", ["ocr", "text_replacements"])
-def test_layered_options_reject_ocr_and_text_replacements(key: str) -> None:
+@pytest.mark.parametrize("layered_key", ["amendment_markup", "sort_blocks"])
+@pytest.mark.parametrize("key", ["ocr", "force_ocr", "text_replacements", "sort_text"])
+def test_layered_options_reject_ocr_text_replacements_and_sort_text(
+    layered_key: str, key: str
+) -> None:
     content = _marked_pdf([(100, [("text", None)])])
-    extraction: dict[str, Any] = {"sort_blocks": True}
+    extraction: dict[str, Any] = {layered_key: True}
     extraction[key] = {"a": "b"} if key == "text_replacements" else True
 
-    with pytest.raises(ValueError, match="do not support"):
+    with pytest.raises(ValueError, match=f"do not support {key}"):
         _pages(content, extraction)
 
 

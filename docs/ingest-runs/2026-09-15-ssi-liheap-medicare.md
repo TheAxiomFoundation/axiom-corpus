@@ -7,7 +7,7 @@ Work order: `docs/coverage/needs-closure-2026-09-14/wave5/00-common-preamble.md`
 219 REVIEW cells of `wave5/ssi-liheap-medicare-review.csv`.
 Branch `discovery/ingest-w5-ssi-liheap-medicare` cut from `main` 9b0641afc in the sparse worktree
 `~/axiom-corpus-worktrees/w5-ssi-liheap-medicare` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
-main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`) with `--source-as-of 2026-09-15`; the
+main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`) with `--source-as-of 2026-09-15`; the
 artifacts stay uncommitted for the controller. Agent timing: worktree read and inputs inventoried 2026-09-15T00:00Z to
 00:10Z; publisher research 00:10Z to 00:22Z (the Part B reading pass ran in parallel as one read-only sub-agent, 00:12Z to
 00:21Z); generators and the five federal extractions 00:22Z to 00:25Z; the Arkansas, Wisconsin and Utah scopes 00:27Z to
@@ -100,6 +100,10 @@ reading, one PATTERN row; 136 REVIEW cells not read (below).
   `expression_date` 2026-09-09 (the date the sibling `2026-09-11-title-20-part-416` rows carry; the appendix's own
   citation line ends `75 FR 1273, Jan. 11, 2010`). One block because the renderer emits the whole appendix under one `h4`.
   The parent path `us/regulation/20/416/subpart-K` is a container row of the 2026-09-11 scope; the two scopes share no path.
+  **Retired 2026-10-12:** this scope was never signed or locked, and its manifest and generator family are removed. The
+  appendix ships in the eCFR scope `us/regulation/2026-10-12-with-appendices-title-20-part-416`, which replaces
+  `2026-09-11-title-20-part-416` (`docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md`). Do not extract, lock or
+  select `2026-09-15-title-20-part-416-appendix-k`.
 - **POMS SI 00529.** The SI 005 subchapter list enumerates one section for SI 00529, `SI R00529.020 ... (Redacted)`, whose
   HTML body is `Manual Netting – Redacted Version / View In PDF` (the 46-character `block-1` the 2026-09-13 remainder scope
   holds under `us/manual/ssa/poms/si/r00529.020`; the 2026-09-10 note's judgment 1 had left the subchapter out). The
@@ -239,7 +243,12 @@ Run as one read-only sub-agent over the provision JSONL on disk; its rows are me
 
 ## Controller
 
-Selector additions (artifacts unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`, not
+**2026-10-12:** the first row below (`us/regulation/2026-09-15-title-20-part-416-appendix-k`) is retired and its
+manifest removed; select `us/regulation/2026-10-12-with-appendices-title-20-part-416` in place of
+`2026-09-11-title-20-part-416` instead (`docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md`). The rebuild
+commands below no longer produce that scope.
+
+Selector additions (artifacts unsigned, on the controller's disk under `<axiom-corpus checkout>/data/corpus`, not
 committed), as `jurisdiction / document_class / version`; no swap and no consolidation:
 
 | jurisdiction | document_class | version |
@@ -268,7 +277,7 @@ uv run python scripts/build_cms_iom_100_01_manifests.py --publication 100-03
 uv run python scripts/build_cms_iom_100_01_manifests.py --publication 100-05
 uv run python scripts/build_liheap_benefit_matrix_manifests.py --family policy-manual
 uv run python scripts/build_ssi_state_supplement_manifests.py --batch 6
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-15-title-20-part-416-appendix-k --manifest manifests/us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml --source-as-of 2026-09-15
 uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-15-ssi-poms-si-00529 --manifest manifests/us-ssa-poms-si-00529-2026-09-15.yaml --source-as-of 2026-09-15
 uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-15-liheap-model-plan --manifest manifests/us-liheap-model-plan-2026-09-15.yaml --source-as-of 2026-09-15

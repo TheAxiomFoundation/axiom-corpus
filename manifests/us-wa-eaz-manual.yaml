@@ -10,6 +10,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -30,6 +34,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -50,6 +58,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -70,6 +82,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -90,6 +106,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -110,6 +130,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -130,6 +154,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -150,6 +178,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -170,6 +202,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -190,6 +226,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -210,6 +250,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -230,6 +274,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -250,6 +298,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -270,6 +322,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -290,6 +346,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -310,6 +370,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -330,6 +394,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -350,6 +418,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -370,6 +442,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -390,6 +466,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -410,6 +490,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -430,6 +514,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -450,6 +538,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -470,6 +562,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -490,6 +586,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -510,6 +610,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -530,6 +634,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -550,6 +658,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -570,6 +682,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -590,6 +706,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -610,6 +730,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -630,6 +754,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -650,6 +778,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -670,6 +802,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -690,6 +826,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -710,6 +850,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -730,6 +874,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -750,6 +898,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -770,6 +922,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -790,6 +946,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -810,6 +970,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -830,6 +994,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -850,6 +1018,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -870,6 +1042,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -890,6 +1066,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -910,6 +1090,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -930,6 +1114,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -950,6 +1138,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -970,6 +1162,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -990,6 +1186,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1010,6 +1210,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1030,6 +1234,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1050,6 +1258,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1070,6 +1282,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1090,6 +1306,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1110,6 +1330,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1130,6 +1354,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1150,6 +1378,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1170,6 +1402,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1190,6 +1426,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1210,6 +1450,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1230,6 +1474,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1250,6 +1498,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1270,6 +1522,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1290,6 +1546,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1310,6 +1570,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1330,6 +1594,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1350,6 +1618,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1370,6 +1642,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1390,6 +1666,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1410,6 +1690,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1430,6 +1714,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1450,6 +1738,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1470,6 +1762,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1490,6 +1786,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1510,6 +1810,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1530,6 +1834,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1550,6 +1858,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1570,6 +1882,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1590,6 +1906,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1610,6 +1930,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1630,6 +1954,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1650,6 +1978,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1670,6 +2002,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1690,6 +2026,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1710,6 +2050,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1730,6 +2074,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1750,6 +2098,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1770,6 +2122,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1790,6 +2146,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1810,6 +2170,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1830,6 +2194,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1850,6 +2218,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1870,6 +2242,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1890,6 +2266,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1910,6 +2290,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1930,6 +2314,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1950,6 +2338,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1970,6 +2362,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -1990,6 +2386,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2010,6 +2410,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2030,6 +2434,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2050,6 +2458,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2070,6 +2482,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2090,6 +2506,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2110,6 +2530,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2130,6 +2554,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2150,6 +2578,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2170,6 +2602,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2190,6 +2626,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2210,6 +2650,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2230,6 +2674,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2250,6 +2698,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2270,6 +2722,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2290,6 +2746,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2310,6 +2770,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2330,6 +2794,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2350,6 +2818,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2370,6 +2842,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2390,6 +2866,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2410,6 +2890,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2430,6 +2914,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2450,6 +2938,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2470,6 +2962,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2490,6 +2986,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2510,6 +3010,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2530,6 +3034,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2550,6 +3058,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2570,6 +3082,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2590,6 +3106,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2610,6 +3130,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2630,6 +3154,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2650,6 +3178,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2670,6 +3202,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2690,6 +3226,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2710,6 +3250,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2730,6 +3274,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2750,6 +3298,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2770,6 +3322,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2790,6 +3346,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2810,6 +3370,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2830,6 +3394,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2850,6 +3418,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2870,6 +3442,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2890,6 +3466,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2910,6 +3490,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2930,6 +3514,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2950,6 +3538,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2970,6 +3562,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -2990,6 +3586,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3010,6 +3610,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3030,6 +3634,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3050,6 +3658,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3070,6 +3682,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3090,6 +3706,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3110,6 +3730,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3130,6 +3754,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3150,6 +3778,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3170,6 +3802,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3190,6 +3826,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3210,6 +3850,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3230,6 +3874,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3250,6 +3898,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3270,6 +3922,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3290,6 +3946,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3310,6 +3970,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3330,6 +3994,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3350,6 +4018,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3370,6 +4042,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3390,6 +4066,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3410,6 +4090,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3430,6 +4114,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3450,6 +4138,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3470,6 +4162,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3490,6 +4186,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3510,6 +4210,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3530,6 +4234,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3550,6 +4258,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3570,6 +4282,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3590,6 +4306,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3610,6 +4330,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3630,6 +4354,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3650,6 +4378,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3670,6 +4402,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3690,6 +4426,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3710,6 +4450,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3730,6 +4474,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3750,6 +4498,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3770,6 +4522,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3790,6 +4546,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3810,6 +4570,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3830,6 +4594,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3850,6 +4618,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3870,6 +4642,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3890,6 +4666,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3910,6 +4690,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3930,6 +4714,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3950,6 +4738,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3970,6 +4762,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services
@@ -3990,6 +4786,10 @@ documents:
   expression_date: '2026-07-21'
   extraction:
     html_content_selector: .field-name-body
+    html_navigation_selectors:
+    - 'ul > li a[href*="#"]:-soup-contains("Clarifying Information", "Worker Responsibilities")'
+    - 'ul > li:has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
+    - 'ul > li :has(> a[href*="#"]:-soup-contains("Clarifying Information")):has(> a[href*="#"]:-soup-contains("Worker Responsibilities"))'
   metadata:
     primary_source: true
     source_authority: Washington State Department of Social and Health Services

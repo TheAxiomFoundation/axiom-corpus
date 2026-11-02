@@ -9,7 +9,7 @@ publisher's stated currency date where printed and otherwise 2026-09-14.
 Branch `discovery/ingest-state-tax-regulations` in the sparse worktree
 `~/axiom-corpus-worktrees/tax-regs` (`data/corpus/` excluded, never symlinked; reset to `origin/main`
 5c2505ec6 after the first session died on an API limit, its two extracted scopes kept). Every
-extraction wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`);
+extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`);
 artifacts are unsigned and uncommitted there. Timing: publisher probes 2026-09-13 21:30 to 2026-09-14
 02:30 EDT (two networks: the laptop's Wi-Fi flapped once mid-run, nothing was lost); extractions
 2026-09-14 02:30 to 09:40 EDT, per-scope seconds below. Disk: 32 GB free at start, never near the
@@ -221,7 +221,7 @@ Library changes (callers read directly; GitNexus was unavailable):
 ## Controller
 
 Selector additions (artifacts unsigned, on the controller's disk under
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus`, not committed). The three starred scopes need
+`<axiom-corpus checkout>/data/corpus`, not committed). The three starred scopes need
 their root row consolidated with the released scope before the cut.
 
 | jurisdiction | document_class | version |

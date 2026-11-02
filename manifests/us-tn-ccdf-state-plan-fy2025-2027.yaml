@@ -31,8 +31,8 @@ documents:
       1 and two transitional waiver approvals are posted separately, not taken; located on retry 2 2026-09-10T21:35Z from
       a US network after HTTP 403 awselb on the first two passes; one of three page requests on the retry ended with an SSL
       unexpected EOF, the others answered 200)
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     publisher_index_url: https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
     acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/TN-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
     source_discovery_group: us-tn/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027

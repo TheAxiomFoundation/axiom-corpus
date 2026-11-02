@@ -30,8 +30,8 @@ documents:
     plan_status: Approved as of 2024-11-09 (located on retry 2 2026-09-10T21:35Z from a US network after HTTP 403 CloudFront
       on the first two passes; the CDEC State Plans page labels it '2024-27 Child Care and Development Fund State Plan' and
       links it on Google Drive, fetched through the extractor's existing Google Drive download path)
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     publisher_index_url: https://cdec.colorado.gov/resources/state-plans
     acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/CO-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
     source_discovery_group: us-co/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027

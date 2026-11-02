@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "4b964aa8a12035d735567461f4847d4a9ba2b86c7a7ac025f129312c10f10c7b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "86dff97b21fe25b325a6b62e25adae13e923586222a7fc344f6b74acc101d748"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "faa910dd46e09761ab2c24987e6fc7d64ec310376cbc5675ac8c4d0a1aae0777"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-ma-cms-magi-verification-plan-massachusetts-verification-plan-template-final.pdf",
+      "sha256": "9ff8f52a8e4492c0bdc845113b591c141dd2ff3d2374c1ea63099b84643e0351"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:57.774851+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8wUlNy7nos6B/2TrIvPlOxmfQGDfHoZpoY8BbI2rTEHHypAywFnEoepRVECC2+MmRGmlQ0bBSFhN2/cCNEOECQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

@@ -31,6 +31,7 @@ Nothing is worked around: medicaid.gov is the publisher, no mirror is used.
 from __future__ import annotations
 
 import argparse
+import copy
 import datetime as dt
 import html
 import json
@@ -250,6 +251,21 @@ def is_compiled_plan(record: dict[str, Any]) -> bool:
     return "State Plan Factsheet" in record["topics"] and re.fullmatch(r"[A-Z]{2}", record["transmittal"]) is not None
 
 
+# An index page prints each SPA as an accordion card: the transmittal number is the card's
+# <h4><button>, and the state, summary, approval and effective dates and topics are bare text
+# in the card's grid cells. The default text nodes (headings, paragraphs, list items) skip
+# that text and drop buttons, so 13,456 of 17,493 summaries and every transmittal number and
+# date were lost in the 2026-09-13 scopes (docs/ingest-runs/2026-10-13-hollow-document-root-
+# audit.md). Read each card's heading and grid cells, keeping the heading's button; each card
+# becomes one block headed by its transmittal number.
+INDEX_PAGE_EXTRACTION: dict[str, Any] = {
+    "html_content_selector": ".medicaid-solr-searches-results",
+    "html_drop_selectors": [".mailto", "a.mailto"],
+    "html_keep_default_drop_selectors": ["button"],
+    "html_text_selector": "h4.usa-accordion__heading, .usa-accordion-content-wrapper > .grid-row > div",
+}
+
+
 def build_documents(program: str, jur: str, listing: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     spec = PROGRAMS[program]
     name = STATES[jur]
@@ -279,8 +295,7 @@ def build_documents(program: str, jur: str, listing: dict[str, Any]) -> tuple[li
             "expression_date": SOURCE_AS_OF,
             "citation_path": f"{root}/spa-index/p{number:02d}",
             "request": request,
-            "extraction": {"html_content_selector": ".medicaid-solr-searches-results",
-                           "html_drop_selectors": [".mailto", "a.mailto"]},
+            "extraction": copy.deepcopy(INDEX_PAGE_EXTRACTION),
             "metadata": {**common_meta, "document_subtype": "cms_spa_index_page", "index_page": number,
                          "index_pages": n_pages, "index_records_on_page": page["records"],
                          "index_records_total": listing["total"]},

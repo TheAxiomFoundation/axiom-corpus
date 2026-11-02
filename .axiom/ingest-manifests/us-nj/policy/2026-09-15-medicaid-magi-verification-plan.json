@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "17733d0cabaf0de703ad5351d224b2d256288ca2f1eefbc01ce979f469429879"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "d932136605f5e01c8cf7a33a0d73bbb350645634f519b5037ec3627019c87976"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "764cb11ed5049672fb48c2345ab96d11ac82a1dfd2c11f75eee00cab9c8d7d3c"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-nj-cms-magi-verification-plan-new-jersey-verification-plan-template-final.pdf",
+      "sha256": "0ed03cd9f6d8e60cc019dd3d1d5f964230eab813192b02bb3d06ef60851780f0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:44.855041+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nEwkqB63v8Kfdkzz5dBdjb9fzbM2m5ARfMqB/dCHIsFKgay0yXWiazqXDqDr/7ei8QGRj3sgDHBrMZsbMO18BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

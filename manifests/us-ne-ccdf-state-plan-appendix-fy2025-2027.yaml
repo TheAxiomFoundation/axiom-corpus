@@ -67,10 +67,10 @@ documents:
     form: ACF-118
     fiscal_years: 2025-2027
     plan_period: 2024-10-01 to 2027-09-30
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    publisher_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
+    publisher_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     source_discovery_group: us-ne/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     appendix: 'Appendix 1: Lead Agency Implementation Plan for federal non-compliances (ACF-hosted accepted copy)'
     closure_elements:
     - ccdf-s27

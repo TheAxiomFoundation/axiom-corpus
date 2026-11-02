@@ -1207,7 +1207,15 @@ def _page_metadata(
 
 
 def _document_body(soup: BeautifulSoup) -> str | None:
+    """Return a Westlaw document's text.
+
+    Section pages keep their text in ``.co_body``. A Part's "Notes" and "Refs" pages have
+    no ``.co_body``: their text (the statutory-authority line and any notes on the Part) is
+    the ``.co_refsAnnos`` block, which is read only when the page has no ``.co_body``.
+    """
     body = soup.select_one("#co_document .co_contentBlock.co_body")
+    if body is None:
+        body = soup.select_one("#co_document .co_contentBlock.co_refsAnnos")
     if body is None:
         return None
     text = _clean_multiline_text(body.get_text("\n", strip=True))

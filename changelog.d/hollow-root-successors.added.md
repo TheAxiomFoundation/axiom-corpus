@@ -1,0 +1,1 @@
+Add 108 `-r2026-10-13-hollow-roots` successor scopes, rebuilt offline from their originals' retained sources with the hollow-document-root extraction fixes (NYCRR Notes, CMS SPA index pages and scanned attachments, CHIP FCEP summaries, Maryland TCA statutes, 106 CMR 701/702, the Canadian composite root), and three draft successor selectors; nothing is published or activated.
