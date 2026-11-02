@@ -1,3 +1,4 @@
+import re
 from collections import Counter
 from datetime import date
 from hashlib import sha256
@@ -5,6 +6,8 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -1100,3 +1103,238 @@ def test_extract_usc_prior_release_point_requires_the_download_url(tmp_path):
             prior_release_point=True,
         )
     assert not (store.root / "sources").exists()
+
+
+# --- Retained OLRC zip hardening -------------------------------------------------------
+#
+# ``extract-usc --source-zip`` parses the member in memory and retains only the zip, so the
+# zip must be refused before parsing when it could smuggle a path, a link, or a payload
+# past the size the extractor is meant to hold. Release validation reruns the same checks.
+
+
+def _single_member_zip(path: Path, name: str = "usc26.xml", **kwargs) -> Path:
+    import zipfile
+
+    with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr(name, SAMPLE_USLM, **kwargs)
+    return path
+
+
+def _corrupt_deflated_member(path: Path) -> None:
+    import struct
+    import zipfile
+
+    with zipfile.ZipFile(path) as archive:
+        member = archive.infolist()[0]
+    content = bytearray(path.read_bytes())
+    name_length, extra_length = struct.unpack_from("<HH", content, member.header_offset + 26)
+    payload_offset = member.header_offset + 30 + name_length + extra_length
+    # A final DEFLATE block with the reserved BTYPE=3 is a real zlib error.
+    content[payload_offset] = 0b111
+    path.write_bytes(content)
+
+
+@pytest.mark.parametrize(
+    "member_name",
+    ["../usc26.xml", "/usc26.xml", "a/../usc26.xml", "./usc26.xml", "C:usc26.xml", "a//usc26.xml"],
+)
+def test_read_uslm_zip_refuses_unsafe_member_paths(tmp_path, member_name):
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    source_zip = _single_member_zip(tmp_path / "unsafe.zip", member_name)
+    with pytest.raises(ValueError, match="unsafe member name"):
+        read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_refuses_backslash_and_nul_in_raw_member_names(tmp_path):
+    import zipfile
+
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    # zipfile rewrites "\\" to "/" in ZipInfo.filename and truncates at NUL, so both
+    # are only visible in orig_filename. Patch the raw headers to carry them.
+    for raw, label in ((b"x\\usc26.xml", "backslash"), (b"usc26.xml\x00", "nul")):
+        placeholder = "x" * (len(raw) - 9) + "usc26.xml"
+        source_zip = _single_member_zip(tmp_path / f"{label}.zip", placeholder)
+        placeholder = placeholder.encode()
+        source_zip.write_bytes(source_zip.read_bytes().replace(placeholder, raw))
+        with zipfile.ZipFile(source_zip) as archive:
+            assert archive.infolist()[0].orig_filename == raw.decode()
+        with pytest.raises(ValueError, match="unsafe member name"):
+            read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_refuses_symlink_member(tmp_path):
+    import zipfile
+
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    link = zipfile.ZipInfo("usc26.xml")
+    link.create_system = 3
+    link.external_attr = 0o120777 << 16
+    source_zip = tmp_path / "symlink.zip"
+    with zipfile.ZipFile(source_zip, "w") as archive:
+        archive.writestr(link, "/etc/passwd")
+    with pytest.raises(ValueError, match="symlink member"):
+        read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_refuses_duplicate_and_encrypted_members(tmp_path):
+    import zipfile
+
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    duplicate = tmp_path / "duplicate.zip"
+    with zipfile.ZipFile(duplicate, "w") as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+        with pytest.warns(UserWarning, match="Duplicate name"):
+            archive.writestr("usc26.xml", SAMPLE_USLM)
+    with pytest.raises(ValueError, match="duplicate member"):
+        read_uslm_zip(duplicate)
+
+    encrypted = _single_member_zip(tmp_path / "encrypted.zip")
+    content = bytearray(encrypted.read_bytes())
+    # Set general-purpose bit 0 (encrypted) in the central directory record.
+    central = content.rindex(b"PK\x01\x02")
+    content[central + 8] |= 0x1
+    encrypted.write_bytes(content)
+    with pytest.raises(ValueError, match="encrypted member"):
+        read_uslm_zip(encrypted)
+
+
+def test_read_uslm_zip_refuses_an_oversized_archive_before_reading_it(tmp_path, monkeypatch):
+    from axiom_corpus.corpus import usc
+
+    source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
+    monkeypatch.setattr(usc, "MAX_USLM_ZIP_BYTES", source_zip.stat().st_size - 1)
+    monkeypatch.setattr(
+        Path, "read_bytes", lambda self: pytest.fail("an oversized zip must not be read")
+    )
+    with pytest.raises(ValueError, match="USLM zip cap"):
+        usc.read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_refuses_a_member_declared_past_the_cap(tmp_path, monkeypatch):
+    from axiom_corpus.corpus import usc
+
+    source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
+    monkeypatch.setattr(usc, "MAX_USLM_ARCHIVE_MEMBER_BYTES", len(SAMPLE_USLM.encode()) - 1)
+    with pytest.raises(ValueError, match="member cap"):
+        usc.read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_caps_the_bytes_actually_inflated(tmp_path, monkeypatch):
+    import zipfile
+
+    from axiom_corpus.corpus import usc
+
+    # A header that understates the member's size must not let it inflate past the cap.
+    source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
+    monkeypatch.setattr(usc, "MAX_USLM_ARCHIVE_MEMBER_BYTES", 100)
+    monkeypatch.setattr(usc, "uslm_zip_member_problem", lambda infos: None)
+    with zipfile.ZipFile(source_zip) as archive:
+        assert archive.infolist()[0].file_size > 100
+    with pytest.raises(ValueError, match="inflates past"):
+        usc.read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_turns_corrupt_deflate_data_into_a_value_error(tmp_path):
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    source_zip = _single_member_zip(tmp_path / "corrupt.zip")
+    _corrupt_deflated_member(source_zip)
+    with pytest.raises(ValueError, match="cannot read zip member"):
+        read_uslm_zip(source_zip)
+
+    not_a_zip = tmp_path / "not.zip"
+    not_a_zip.write_bytes(b"not a zip")
+    with pytest.raises(ValueError, match="not a readable zip archive"):
+        read_uslm_zip(not_a_zip)
+
+
+def test_extract_usc_source_zip_refuses_an_unsafe_zip_before_writing(tmp_path):
+    source_zip = _single_member_zip(tmp_path / "unsafe.zip", "../usc26.xml")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="unsafe member name"):
+        extract_usc(store, version="2026-09-13", source_zip=source_zip)
+    assert not (store.root / "sources").exists()
+
+
+def _validate_usc_zip_scope(store: CorpusArtifactStore, run_id: str):
+    from axiom_corpus.corpus.release_quality import validate_release
+    from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+
+    release = ReleaseManifest(
+        name="test-usc-source-zip",
+        scopes=(ReleaseScope("us", "statute", run_id),),
+    )
+    return validate_release(store.root, release)
+
+
+def test_release_validation_accepts_a_clean_retained_zip(tmp_path):
+    source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    extract_usc(store, version="2026-09-13", source_zip=source_zip)
+
+    report = _validate_usc_zip_scope(store, "2026-09-13-title-26")
+
+    assert "unreadable_uslm_source_zip" not in {issue.code for issue in report.issues}
+
+
+def test_release_validation_rejects_a_retained_zip_whose_member_no_longer_inflates(tmp_path):
+    from dataclasses import replace
+
+    source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_usc(store, version="2026-09-13", source_zip=source_zip)
+    retained = report.source_paths[0]
+    _corrupt_deflated_member(retained)
+    # Keep the inventory digest true so only the member check can catch the damage.
+    digest = sha256(retained.read_bytes()).hexdigest()
+    store.write_inventory(
+        report.inventory_path,
+        [replace(item, sha256=digest) for item in load_source_inventory(report.inventory_path)],
+    )
+
+    validation = _validate_usc_zip_scope(store, "2026-09-13-title-26")
+
+    codes = {issue.code for issue in validation.issues}
+    assert "unreadable_uslm_source_zip" in codes
+    assert "source_sha256_mismatch" not in codes
+    assert not validation.ok
+
+
+_SAFE_SEGMENT = st.text(
+    alphabet=st.characters(
+        whitelist_categories=("Lu", "Ll", "Nd"), whitelist_characters="-_@.", max_codepoint=0x7F
+    ),
+    min_size=1,
+    max_size=12,
+).filter(lambda segment: segment not in {".", ".."})
+
+
+@settings(max_examples=300, deadline=None)
+@given(
+    segments=st.lists(_SAFE_SEGMENT, min_size=1, max_size=4),
+    position=st.integers(min_value=0, max_value=4),
+    bad=st.sampled_from(["..", ".", ""]),
+)
+def test_zip_member_name_safety_property(segments, position, bad):
+    """Invariant: a name is safe iff it is relative, slash-separated, and no segment is
+    empty, ``.`` or ``..``. Inserting any such segment anywhere makes it unsafe."""
+    from axiom_corpus.corpus.usc import _safe_zip_member_name
+
+    name = "/".join(segments)
+    if re.match(r"^[A-Za-z]:", name):
+        assert not _safe_zip_member_name(name)
+        return
+    assert _safe_zip_member_name(name)
+    assert _safe_zip_member_name(name + "/")
+    assert not _safe_zip_member_name("/" + name)
+    assert not _safe_zip_member_name(name.replace("/", "\\", 1) + "\\x")
+    assert not _safe_zip_member_name(name + "\x00")
+    poisoned = list(segments)
+    # A trailing empty segment is the directory form ("a/"), which is allowed.
+    limit = len(poisoned) - 1 if bad == "" else len(poisoned)
+    poisoned.insert(min(position, limit), bad)
+    assert not _safe_zip_member_name("/".join(poisoned))

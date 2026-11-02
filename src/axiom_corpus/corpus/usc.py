@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import io
 import re
+import stat
 import zipfile
+import zlib
 from collections.abc import Iterable, Iterator
 from copy import deepcopy
 from dataclasses import dataclass, replace
@@ -20,6 +22,10 @@ from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 USC_READER_BASE = "https://uscode.house.gov/view.xhtml"
 USLM_SOURCE_FORMAT = "uslm-xml"
+# Caps for a retained OLRC release-point zip. The largest title member, Title 42,
+# inflates to about 114 MB; both caps leave several times that headroom.
+MAX_USLM_ZIP_BYTES = 512 * 1024 * 1024
+MAX_USLM_ARCHIVE_MEMBER_BYTES = 512 * 1024 * 1024
 
 US_CODE_TITLE_NAMES: dict[str, str] = {
     "1": "General Provisions",
@@ -1044,17 +1050,89 @@ def read_uslm_zip(source_zip: str | Path) -> tuple[str, bytes, bytes]:
 
     The publisher's per-title release-point download holds exactly one ``usc<title>.xml``
     member; anything else is refused so the retained zip is unambiguous provenance.
+    The zip also fails closed, before any member is parsed, when it is larger than
+    ``MAX_USLM_ZIP_BYTES``, when a member name is unsafe (absolute, drive-letter,
+    backslash, ``.``/``..`` segment, or a NUL byte in the raw header name), when a
+    member is a symlink, encrypted or duplicated, when the XML member inflates past
+    ``MAX_USLM_ARCHIVE_MEMBER_BYTES``, and when its compressed data is corrupt.
     """
     zip_path = Path(source_zip)
+    zip_size = zip_path.stat().st_size
+    if zip_size > MAX_USLM_ZIP_BYTES:
+        raise ValueError(
+            f"{zip_path} is {zip_size} bytes, above the {MAX_USLM_ZIP_BYTES}-byte USLM zip cap"
+        )
     zip_bytes = zip_path.read_bytes()
-    with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
-        members = [name for name in archive.namelist() if not name.endswith("/")]
-        xml_members = [name for name in members if name.lower().endswith(".xml")]
-        if len(members) != 1 or len(xml_members) != 1:
-            raise ValueError(
-                f"{zip_path} must hold exactly one USLM XML member, found {members!r}"
+    try:
+        with zipfile.ZipFile(io.BytesIO(zip_bytes)) as archive:
+            infos = archive.infolist()
+            problem = uslm_zip_member_problem(infos)
+            if problem is not None:
+                raise ValueError(f"{zip_path}: {problem}")
+            members = [info for info in infos if not info.is_dir()]
+            xml_members = [info for info in members if info.filename.lower().endswith(".xml")]
+            if len(members) != 1 or len(xml_members) != 1:
+                raise ValueError(
+                    f"{zip_path} must hold exactly one USLM XML member, "
+                    f"found {[info.filename for info in members]!r}"
+                )
+            member = xml_members[0]
+            return member.filename, read_capped_zip_member(archive, member), zip_bytes
+    except (zipfile.BadZipFile, zipfile.LargeZipFile) as exc:
+        raise ValueError(f"{zip_path} is not a readable zip archive: {exc}") from exc
+
+
+def uslm_zip_member_problem(infos: list[zipfile.ZipInfo]) -> str | None:
+    """Return why a USLM zip's member list is unsafe, or ``None`` when it is acceptable."""
+    seen: set[str] = set()
+    for info in infos:
+        if not _safe_zip_member_name(info.orig_filename):
+            return f"unsafe member name {info.orig_filename!r}"
+        if info.filename in seen:
+            return f"duplicate member {info.filename!r}"
+        seen.add(info.filename)
+        if stat.S_ISLNK(info.external_attr >> 16):
+            return f"symlink member {info.filename!r}"
+        if info.flag_bits & 0x1:
+            return f"encrypted member {info.filename!r}"
+        if not info.is_dir() and info.file_size > MAX_USLM_ARCHIVE_MEMBER_BYTES:
+            return (
+                f"member {info.filename!r} declares {info.file_size} bytes, above the "
+                f"{MAX_USLM_ARCHIVE_MEMBER_BYTES}-byte member cap"
             )
-        return xml_members[0], archive.read(xml_members[0]), zip_bytes
+    return None
+
+
+def read_capped_zip_member(archive: zipfile.ZipFile, info: zipfile.ZipInfo) -> bytes:
+    """Read one member, refusing past ``MAX_USLM_ARCHIVE_MEMBER_BYTES`` or on corrupt data.
+
+    The cap is enforced on the bytes actually inflated, not only on the size the
+    header declares, and the zip module's CRC check runs at end of member.
+    """
+    chunks: list[bytes] = []
+    total = 0
+    try:
+        with archive.open(info) as handle:
+            while chunk := handle.read(1024 * 1024):
+                total += len(chunk)
+                if total > MAX_USLM_ARCHIVE_MEMBER_BYTES:
+                    raise ValueError(
+                        f"member {info.filename!r} inflates past the "
+                        f"{MAX_USLM_ARCHIVE_MEMBER_BYTES}-byte member cap"
+                    )
+                chunks.append(chunk)
+    except (zipfile.BadZipFile, zlib.error, EOFError, RuntimeError, OSError) as exc:
+        raise ValueError(f"cannot read zip member {info.filename!r}: {exc}") from exc
+    return b"".join(chunks)
+
+
+def _safe_zip_member_name(name: str) -> bool:
+    if not name or "\x00" in name or "\\" in name or name.startswith("/"):
+        return False
+    trimmed = name[:-1] if name.endswith("/") else name
+    if not trimmed or re.match(r"^[A-Za-z]:", trimmed):
+        return False
+    return all(part not in {"", ".", ".."} for part in trimmed.split("/"))
 
 
 def _with_archive_member_metadata(metadata: dict[str, Any] | None, member: str) -> dict[str, Any]:
