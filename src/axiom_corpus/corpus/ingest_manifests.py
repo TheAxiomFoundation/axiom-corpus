@@ -1586,17 +1586,21 @@ def is_file_url(value: object) -> bool:
     return parsed[:5].lower() == "file:" or value.strip()[:5].lower() == "file:"
 
 
-# From "file:" followed by a non-space through the end of the quoted or line
-# context, so an unencoded path with spaces or apostrophes goes as a whole.
-# The scheme letters may be split by tabs or newlines, raw or as repr() shows
-# them ("fi\\tle:"), which a URL parser would drop. No word boundary is
-# required, so a URL glued to the text before it still goes; a word such as
-# "profile:" followed by a non-space is over-redacted, the safe direction.
-# Tabs or newlines right after the colon are skipped too ("file:\t///...").
+# From "file:" followed by a non-space through the end of the quoted context
+# (a double quote or a backtick) or of the text, so an unencoded path with
+# spaces or apostrophes goes as a whole. A newline does not end it: a URL
+# parser drops tabs and newlines anywhere, so what follows one is still the
+# path ("file:///Users/a\nb/c" names /Users/ab/c), and so is a suffix that
+# follows one as repr() shows it ("\\n"). The scheme letters may be split the
+# same ways ("fi\\tle:"). No word boundary is required, so a URL glued to the
+# text before it still goes. A word such as "profile:" followed by a
+# non-space, and the text after a URL outside quotes, are over-redacted, the
+# safe direction. Tabs or newlines right after the colon are skipped too
+# ("file:\t///...").
 _SCHEME_SPLIT = r"(?:[\t\r\n]|\\[tnr])*"
 _FILE_URL_IN_TEXT = re.compile(
     rf"(?i)f{_SCHEME_SPLIT}i{_SCHEME_SPLIT}l{_SCHEME_SPLIT}e{_SCHEME_SPLIT}:"
-    r"[\t\r\n]*(?=\S)[^\n\"`]*"
+    r"[\t\r\n]*(?=\S)[^\"`]*"
 )
 
 
