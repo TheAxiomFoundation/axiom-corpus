@@ -17,6 +17,7 @@ import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.state_adapters import pennsylvania
 from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
@@ -27,6 +28,7 @@ from axiom_corpus.corpus.state_adapters.nevada import extract_nevada_nrs
 from axiom_corpus.corpus.state_adapters.new_hampshire import extract_new_hampshire_rsa
 from axiom_corpus.corpus.state_adapters.new_mexico import extract_new_mexico_statutes
 from axiom_corpus.corpus.state_adapters.new_york import extract_new_york_openleg_api
+from axiom_corpus.corpus.state_adapters.pennsylvania import extract_pennsylvania_statutes
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -70,6 +72,9 @@ from tests.test_corpus_new_hampshire import SAMPLE_TITLE_HTML as NH_TITLE_HTML
 from tests.test_corpus_new_mexico import SAMPLE_NAV_HTML as NM_NAV_HTML
 from tests.test_corpus_new_mexico import _sample_epub as nm_sample_epub
 from tests.test_corpus_new_york import SAMPLE_OPENLEG_TAX as NY_OPENLEG_TAX
+from tests.test_corpus_pennsylvania import (
+    SAMPLE_PENNSYLVANIA_TITLE_HTML as PA_TITLE_HTML,
+)
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -729,3 +734,60 @@ def test_new_york_openleg_failed_law_tree_remains_inventory_gap(tmp_path, failur
         missing={"us-ny/statute/TAX"},
         gap_source=NY_LAWS if failure == "missing-file" else NY_TAX,
     )
+
+
+# --- Pennsylvania: one title page per title, from a fixed list of titles ---
+
+PA_EXTRACTED = {
+    "us-pa/statute/title-72",
+    "us-pa/statute/title-72/chapter-31",
+    "us-pa/statute/72/3116",
+    "us-pa/statute/72/3117",
+}
+PA_FAILED_TITLE = {
+    "maintenance": MAINTENANCE,
+    "empty": EMPTY_PAGE,
+    "wrong-shape": WRONG_SHAPE_HTML,
+    "blocked": "<html><body><h1>403 - Forbidden</h1><p>Request blocked.</p></body></html>",
+    "no-children": PA_TITLE_HTML.split('<div class="Comment">72c3101h</div>')[0]
+    .replace("72cc", "01cc")
+    .replace("TITLE 72", "TITLE 1")
+    + "</div></body></html>",
+}
+
+
+@pytest.mark.parametrize("failure", sorted(PA_FAILED_TITLE))
+def test_pennsylvania_title_page_without_sections_remains_inventory_gap(tmp_path, failure):
+    # On main a title page that listed no sections still yielded its title row,
+    # so it read complete; a blocked page was logged with no inventory item.
+    pages = {"title-72.html": PA_TITLE_HTML, "title-1.html": PA_FAILED_TITLE[failure]}
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_pennsylvania_statutes(
+        store, version="2026-05-08", source_dir=tmp_path / "source"
+    )
+    assert report.section_count == 2
+    assert report.errors[0].startswith("title 1: ")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=PA_EXTRACTED | {"us-pa/statute/title-1"},
+        missing={"us-pa/statute/title-1"},
+        gap_source="pennsylvania-consolidated-statutes-html/title-1.html",
+    )
+
+
+def test_pennsylvania_title_download_failure_still_fails_the_run(tmp_path, monkeypatch):
+    # Pins existing behaviour. The titles come from a fixed list in the adapter,
+    # not from a fetched listing, so a title page that cannot be downloaded has
+    # no source page to anchor a gap; the run fails instead of reading complete.
+    def fail_download(source_url, **_kwargs):
+        raise ValueError(f"failed to download Pennsylvania source {source_url}: timed out")
+
+    monkeypatch.setattr(pennsylvania, "_download_title", fail_download)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    with pytest.raises(ValueError, match="failed to download Pennsylvania source"):
+        extract_pennsylvania_statutes(
+            store, version="2026-05-08", request_delay_seconds=0, request_attempts=1
+        )
+    assert not (tmp_path / "corpus" / "coverage").exists()
