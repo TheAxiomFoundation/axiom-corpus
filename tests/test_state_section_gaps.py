@@ -55,6 +55,7 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_consolidated_laws,
     extract_new_york_openleg_sections,
 )
+from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
 from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
@@ -100,6 +101,7 @@ from tests.test_corpus_new_york import _write_new_york_fixture_tree as ny_write_
 from tests.test_corpus_new_york import (
     _write_new_york_openleg_section_fixture as ny_write_openleg_section_fixture,
 )
+from tests.test_corpus_nyc_admin_code import SECTION_HTML as NYC_SECTION_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -754,3 +756,60 @@ def test_new_york_unfetchable_openleg_section_stops_the_run(tmp_path, monkeypatc
     monkeypatch.setattr(new_york._NewYorkOpenLegFetcher, "fetch_law_document", fail_614)
     with pytest.raises(ValueError, match="could not be fetched: TAX 614: connection reset"):
         _extract_new_york_sections(tmp_path, source)
+
+
+# --- NYC Administrative Code: targeted CodeLibrary section pages ---
+
+NYC_SECTION_1706 = NYC_SECTION_HTML.replace("11-1701", "11-1706")
+NYC_URLS = (
+    "11-1701=https://codelibrary.amlegal.com/codes/newyorkcity/latest/NYCadmin/0-0-0-13463",
+    "11-1706=https://codelibrary.amlegal.com/codes/newyorkcity/latest/NYCadmin/0-0-0-13608",
+)
+NYC_1706_PAGE = "nyc-admin-code-amlegal-html/11-1706/0-0-0-13608.html"
+NYC_SECTIONS = {"us-ny/statute/NYC/11-1701", "us-ny/statute/NYC/11-1706"}
+
+
+def _extract_nyc(tmp_path, failure: str | None):
+    pages = {
+        "nyc-admin-code-amlegal-html/11-1701/0-0-0-13463.html": NYC_SECTION_HTML,
+        NYC_1706_PAGE: NYC_SECTION_1706,
+    }
+    if failure is not None:
+        _fail_page(pages, NYC_1706_PAGE, failure)
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_nyc_admin_code(
+        store,
+        version="2026-06-05",
+        sections=(),
+        urls=NYC_URLS,
+        source_dir=tmp_path / "source",
+    )
+    return store, report
+
+
+def test_nyc_fixture_extracts_complete(tmp_path):
+    _, report = _extract_nyc(tmp_path, None)
+    _assert_complete(report, expected=NYC_SECTIONS)
+
+
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+def test_nyc_unreadable_section_page_remains_inventory_gap(tmp_path, failure):
+    # On main a page with no section heading or body was logged as an error with
+    # no inventory item, so coverage still read complete.
+    store, report = _extract_nyc(tmp_path, failure)
+    assert report.errors[0].startswith("11-1706: ")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NYC_SECTIONS,
+        missing={"us-ny/statute/NYC/11-1706"},
+        gap_source=NYC_1706_PAGE,
+    )
+
+
+def test_nyc_unfetchable_section_page_stops_the_run(tmp_path):
+    # A targeted run has no listing to source a gap from, so a section it cannot
+    # fetch fails the run. On main it was logged and coverage read complete.
+    with pytest.raises(ValueError, match="could not be fetched: 11-1706: "):
+        _extract_nyc(tmp_path, "missing-file")
