@@ -110,6 +110,26 @@ class IllinoisIlcsSection:
         return f"us-il/statute/{self.document.chapter_int}/{self.document.act_int}/{self.section}"
 
 
+@dataclass(frozen=True)
+class _IllinoisListing:
+    """A remote page that names ILCS documents: the Section Sequence file,
+    the ILCS index, or an act directory."""
+
+    relative_name: str
+    source_url: str
+    data: bytes
+
+
+@dataclass(frozen=True)
+class _IllinoisRemoteFailure:
+    """A listed ILCS document the remote run could not fetch."""
+
+    document: IllinoisIlcsDocumentName
+    relative_name: str
+    source_url: str
+    listing: _IllinoisListing | None
+
+
 def parse_illinois_ilcs_doc_name(value: str) -> IllinoisIlcsDocumentName:
     """Parse an official ILCS FTP document token or HTML file name."""
     name = Path(unquote(value)).name
@@ -224,12 +244,13 @@ def extract_illinois_ilcs(
     )
 
     source_root = Path(source_dir) if source_dir is not None else None
-    sequence = (
-        _load_local_section_sequence(source_root)
-        if source_root is not None
-        else _load_remote_section_sequence(base_url)
-    )
+    sequence_listing: _IllinoisListing | None = None
+    if source_root is not None:
+        sequence = _load_local_section_sequence(source_root)
+    else:
+        sequence, sequence_listing = _fetch_remote_section_sequence(base_url)
     remote_errors: list[str] = []
+    remote_failures: list[_IllinoisRemoteFailure] = []
     if source_root is not None:
         source_entries: Iterable[tuple[IllinoisIlcsDocumentName, str, str | None, bytes]] = tuple(
             sorted(
@@ -246,6 +267,8 @@ def extract_illinois_ilcs(
             sequence=sequence,
             workers=workers,
             errors=remote_errors,
+            failures=remote_failures,
+            sequence_listing=sequence_listing,
         )
 
     items: list[SourceInventoryItem] = []
@@ -411,6 +434,51 @@ def extract_illinois_ilcs(
         if remaining is not None:
             remaining -= 1
 
+    # A section document the remote run could not fetch stays in the
+    # inventory, sourced from the listing that named it, so coverage reports
+    # it as missing instead of dropping it.
+    recorded_listings: dict[str, tuple[str, str]] = {}
+    for failure in remote_failures:
+        document = failure.document
+        if document.section is None or document.citation_path in seen:
+            continue
+        listing = failure.listing
+        if listing is None:
+            raise ValueError(f"no recorded listing names {failure.relative_name}")
+        recorded = recorded_listings.get(listing.relative_name)
+        if recorded is None:
+            artifact_relative = f"illinois-ilcs/{listing.relative_name}"
+            artifact_path = store.source_path(
+                jurisdiction,
+                DocumentClass.STATUTE,
+                run_id,
+                artifact_relative,
+            )
+            recorded = (
+                _state_source_key(jurisdiction, run_id, artifact_relative),
+                store.write_bytes(artifact_path, listing.data),
+            )
+            recorded_listings[listing.relative_name] = recorded
+            source_paths.append(artifact_path)
+        seen.add(document.citation_path)
+        items.append(
+            _inventory_item(
+                citation_path=document.citation_path,
+                source_url=listing.source_url,
+                source_path=recorded[0],
+                sha256=recorded[1],
+                metadata={
+                    "kind": "section",
+                    "chapter": str(document.chapter_int),
+                    "act": str(document.act_int),
+                    "section": document.section,
+                    "parent_citation_path": document.act_citation_path,
+                    "source_id": document.stem,
+                    "target_source_url": failure.source_url,
+                },
+            )
+        )
+
     if not items:
         raise ValueError("no Illinois ILCS provisions extracted")
 
@@ -505,25 +573,47 @@ def _iter_remote_sources(
     sequence: dict[str, int],
     workers: int,
     errors: list[str] | None = None,
+    failures: list[_IllinoisRemoteFailure] | None = None,
+    sequence_listing: _IllinoisListing | None = None,
 ) -> Iterator[tuple[IllinoisIlcsDocumentName, str, str | None, bytes]]:
     session = requests.Session()
     session.headers.update(ILLINOIS_REQUEST_HEADERS)
-    paths = _remote_document_paths(
+    listed = _remote_document_listings(
         session,
         base_url,
         limit=limit,
         chapter_filter=chapter_filter,
         act_filter=act_filter,
         sequence=sequence,
+        sequence_listing=sequence_listing,
     )
+    listing_by_name = dict(listed)
     source_refs: list[tuple[IllinoisIlcsDocumentName, str, str]] = []
-    for relative_name in paths:
+    for relative_name, _listing in listed:
         try:
             document = parse_illinois_ilcs_doc_name(relative_name)
         except ValueError:
             continue
         url = _remote_source_url(base_url, document, relative_name)
         source_refs.append((document, relative_name, url))
+
+    def record_failure(
+        document: IllinoisIlcsDocumentName,
+        relative_name: str,
+        url: str,
+        error: object,
+    ) -> None:
+        if errors is not None:
+            errors.append(f"{relative_name}: {error}")
+        if failures is not None:
+            failures.append(
+                _IllinoisRemoteFailure(
+                    document=document,
+                    relative_name=relative_name,
+                    source_url=url,
+                    listing=listing_by_name.get(relative_name),
+                )
+            )
     sorted_refs = tuple(
         sorted(
             source_refs,
@@ -537,8 +627,7 @@ def _iter_remote_sources(
                 response = session.get(url, timeout=20)
                 response.raise_for_status()
             except requests.RequestException as exc:
-                if errors is not None:
-                    errors.append(f"{relative_name}: {exc}")
+                record_failure(document, relative_name, url, exc)
                 continue
             yield document, relative_name, url, response.content
         return
@@ -549,8 +638,7 @@ def _iter_remote_sources(
             sorted_refs,
         ):
             if error is not None:
-                if errors is not None:
-                    errors.append(f"{relative_name}: {error}")
+                record_failure(document, relative_name, url, error)
                 continue
             yield document, relative_name, url, data
 
@@ -587,14 +675,47 @@ def _remote_document_paths(
     act_filter: int | None = None,
     sequence: dict[str, int] | None = None,
 ) -> tuple[str, ...]:
-    if sequence:
-        return _remote_document_paths_from_sequence(
-            sequence,
+    return tuple(
+        relative_name
+        for relative_name, _listing in _remote_document_listings(
+            session,
+            base_url,
             limit=limit,
             chapter_filter=chapter_filter,
             act_filter=act_filter,
+            sequence=sequence,
         )
-    index = _remote_text(session, base_url)
+    )
+
+
+def _remote_document_listings(
+    session: requests.Session,
+    base_url: str,
+    *,
+    limit: int | None,
+    chapter_filter: int | None = None,
+    act_filter: int | None = None,
+    sequence: dict[str, int] | None = None,
+    sequence_listing: _IllinoisListing | None = None,
+) -> tuple[tuple[str, _IllinoisListing | None], ...]:
+    """Return each selected document path with the listing page that names it."""
+    if sequence:
+        return tuple(
+            (relative_name, sequence_listing)
+            for relative_name in _remote_document_paths_from_sequence(
+                sequence,
+                limit=limit,
+                chapter_filter=chapter_filter,
+                act_filter=act_filter,
+            )
+        )
+    index_page = _remote_page(session, base_url)
+    index = index_page.text
+    index_listing = _IllinoisListing(
+        relative_name="index.html",
+        source_url=base_url,
+        data=index_page.content,
+    )
     direct_links = [
         normalized_link
         for normalized_link in (
@@ -604,9 +725,13 @@ def _remote_document_paths(
         and _document_path_matches(normalized_link, chapter_filter, act_filter)
     ]
     if direct_links:
-        return _limit_section_paths(direct_links, limit)
+        return tuple(
+            (relative_name, index_listing)
+            for relative_name in _limit_section_paths(direct_links, limit)
+        )
 
     paths: list[str] = []
+    listings: list[tuple[str, _IllinoisListing | None]] = []
     for chapter_href in _directory_hrefs(index, prefix="Ch"):
         if not _directory_matches(chapter_href, "Ch", chapter_filter):
             continue
@@ -617,13 +742,19 @@ def _remote_document_paths(
                 continue
             act_relative = f"{chapter_href.rstrip('/')}/{act_href.rstrip('/')}"
             act_url = urljoin(base_url, quote(f"{act_relative}/", safe="/%"))
-            act_text = _remote_text(session, act_url)
-            for doc_href in parse_illinois_ilcs_links(act_text):
+            act_page = _remote_page(session, act_url)
+            act_listing = _IllinoisListing(
+                relative_name=f"{act_relative}/index.html",
+                source_url=act_url,
+                data=act_page.content,
+            )
+            for doc_href in parse_illinois_ilcs_links(act_page.text):
                 relative_name = f"{act_relative}/{Path(doc_href).name}"
                 paths.append(relative_name)
+                listings.append((relative_name, act_listing))
                 if limit is not None and _section_path_count(paths) >= limit:
-                    return tuple(paths)
-    return tuple(paths)
+                    return tuple(listings)
+    return tuple(listings)
 
 
 def _remote_document_paths_from_sequence(
@@ -707,9 +838,13 @@ def _directory_matches(
 
 
 def _remote_text(session: requests.Session, url: str) -> str:
+    return _remote_page(session, url).text
+
+
+def _remote_page(session: requests.Session, url: str) -> requests.Response:
     response = session.get(url, timeout=20)
     response.raise_for_status()
-    return response.text
+    return response
 
 
 def _directory_hrefs(text: str, *, prefix: str) -> tuple[str, ...]:
@@ -743,16 +878,27 @@ def _load_local_section_sequence(source_root: Path | None) -> dict[str, int]:
 
 
 def _load_remote_section_sequence(base_url: str) -> dict[str, int]:
+    return _fetch_remote_section_sequence(base_url)[0]
+
+
+def _fetch_remote_section_sequence(
+    base_url: str,
+) -> tuple[dict[str, int], _IllinoisListing | None]:
+    """Return the official Section Sequence ordering and the file it came from."""
+    url = urljoin(base_url, "aReadMe/Section%20Sequence.txt")
     try:
-        response = requests.get(
-            urljoin(base_url, "aReadMe/Section%20Sequence.txt"),
-            headers=ILLINOIS_REQUEST_HEADERS,
-            timeout=20,
-        )
+        response = requests.get(url, headers=ILLINOIS_REQUEST_HEADERS, timeout=20)
         response.raise_for_status()
     except requests.RequestException:
-        return {}
-    return parse_illinois_section_sequence(response.text)
+        return {}, None
+    sequence = parse_illinois_section_sequence(response.text)
+    if not sequence:
+        return {}, None
+    return sequence, _IllinoisListing(
+        relative_name="aReadMe/Section Sequence.txt",
+        source_url=url,
+        data=response.content,
+    )
 
 
 def _html_text(html: str | bytes) -> str:

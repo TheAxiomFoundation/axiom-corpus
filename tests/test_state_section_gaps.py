@@ -17,7 +17,7 @@ import requests
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions
-from axiom_corpus.corpus.state_adapters import arizona, new_york
+from axiom_corpus.corpus.state_adapters import arizona, illinois, new_york
 from axiom_corpus.corpus.state_adapters.arizona import (
     ARIZONA_SECTION_SOURCE_FORMAT,
     ARIZONA_TITLE_DETAIL_SOURCE_FORMAT,
@@ -38,6 +38,11 @@ from axiom_corpus.corpus.state_adapters.idaho import (
     IDAHO_TITLE_INDEX_SOURCE_FORMAT,
     IDAHO_TITLE_SOURCE_FORMAT,
     extract_idaho_statutes,
+)
+from axiom_corpus.corpus.state_adapters.illinois import (
+    ILLINOIS_ILCS_BASE_URL,
+    ILLINOIS_ILCS_FULLTEXT_URL,
+    extract_illinois_ilcs,
 )
 from axiom_corpus.corpus.state_adapters.iowa import (
     IOWA_CHAPTER_INDEX_SOURCE_FORMAT,
@@ -74,6 +79,9 @@ from tests.test_corpus_idaho import SAMPLE_CHAPTER_HTML as ID_CHAPTER_HTML
 from tests.test_corpus_idaho import SAMPLE_SECTION_HTML as ID_SECTION_HTML
 from tests.test_corpus_idaho import SAMPLE_TITLE_HTML as ID_TITLE_HTML
 from tests.test_corpus_idaho import SAMPLE_TITLE_INDEX_HTML as ID_TITLE_INDEX_HTML
+from tests.test_corpus_illinois import SAMPLE_SECTION_1 as IL_SECTION_1
+from tests.test_corpus_illinois import SAMPLE_SECTION_2 as IL_SECTION_2
+from tests.test_corpus_illinois import _FakeIllinoisResponse as IlFakeResponse
 from tests.test_corpus_iowa import SAMPLE_CHAPTER_INDEX_HTML as IA_CHAPTER_INDEX_HTML
 from tests.test_corpus_iowa import SAMPLE_SECTION_INDEX_HTML as IA_SECTION_INDEX_HTML
 from tests.test_corpus_iowa import SAMPLE_TITLE_INDEX_HTML as IA_TITLE_INDEX_HTML
@@ -905,3 +913,97 @@ def test_west_virginia_repealed_section_stays_complete(tmp_path):
     _assert_complete(report, expected=WV_EXTRACTED)
     records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
     assert records["us-wv/statute/2-2-1B"].metadata["status"] == "repealed"
+
+
+# --- Illinois (remote): Section Sequence file, ILCS index or act directory -> documents ---
+
+IL_SEQUENCE_URL = f"{ILLINOIS_ILCS_BASE_URL}aReadMe/Section%20Sequence.txt"
+IL_ACT_URL = f"{ILLINOIS_ILCS_BASE_URL}Ch%200005/Act%200070/"
+IL_DOC_LINKS = """
+<a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K1.html">Sec. 1</a>
+<a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K2.html">Sec. 2</a>
+"""
+IL_LISTINGS = {
+    "sequence": (
+        {IL_SEQUENCE_URL: "000500700K1\n000500700K2\n"},
+        "illinois-ilcs/aReadMe/Section Sequence.txt",
+    ),
+    "index": ({ILLINOIS_ILCS_BASE_URL: IL_DOC_LINKS}, "illinois-ilcs/index.html"),
+    "directory": (
+        {
+            ILLINOIS_ILCS_BASE_URL: '<a href="/ftp/ILCS/Ch%200005/">Ch 0005</a>',
+            f"{ILLINOIS_ILCS_BASE_URL}Ch%200005/": (
+                '<a href="/ftp/ILCS/Ch%200005/Act%200070/">Act 0070</a>'
+            ),
+            IL_ACT_URL: IL_DOC_LINKS,
+        },
+        "illinois-ilcs/Ch 0005/Act 0070/index.html",
+    ),
+}
+IL_EXTRACTED = {
+    "us-il/statute/5",
+    "us-il/statute/5/70",
+    "us-il/statute/5/70/1",
+    "us-il/statute/5/70/2",
+}
+
+
+class _IllinoisRemote:
+    """Serves both ``requests.Session().get`` and module-level ``requests.get``."""
+
+    def __init__(self, pages: dict[str, str]) -> None:
+        self.pages = pages
+        self.headers: dict[str, str] = {}
+
+    def get(self, url, timeout=None, headers=None):
+        del timeout, headers
+        if url not in self.pages:
+            raise requests.HTTPError(f"404 Client Error: Not Found for url: {url}")
+        return IlFakeResponse(self.pages[url])
+
+
+def _extract_illinois_remote(tmp_path, monkeypatch, pages: dict[str, str], workers: int):
+    remote = _IllinoisRemote(pages)
+    monkeypatch.setattr(illinois.requests, "Session", lambda: remote)
+    monkeypatch.setattr(illinois.requests, "get", remote.get)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_illinois_ilcs(
+        store, version="2026-05-01", only_chapter=5, only_act=70, workers=workers
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("listing", sorted(IL_LISTINGS))
+def test_illinois_complete_remote_run_records_no_listing(tmp_path, monkeypatch, listing):
+    pages = {
+        **IL_LISTINGS[listing][0],
+        f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K1": IL_SECTION_1,
+        f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K2": IL_SECTION_2,
+    }
+    _, report = _extract_illinois_remote(tmp_path, monkeypatch, pages, workers=1)
+    _assert_complete(report, expected=IL_EXTRACTED)
+    assert [path.name for path in report.source_paths] == ["000500700K1.html", "000500700K2.html"]
+
+
+@pytest.mark.parametrize("workers", [1, 4])
+@pytest.mark.parametrize("listing", sorted(IL_LISTINGS))
+def test_illinois_unfetched_remote_section_remains_inventory_gap(
+    tmp_path, monkeypatch, listing, workers
+):
+    # On main a listed section document the remote run could not fetch was
+    # logged as an error with no inventory item, so coverage still read complete.
+    listing_pages, gap_source = IL_LISTINGS[listing]
+    pages = {
+        **listing_pages,
+        f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K1": IL_SECTION_1,
+    }
+    store, report = _extract_illinois_remote(tmp_path, monkeypatch, pages, workers)
+    assert report.section_count == 1
+    assert "000500700K2.html" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=IL_EXTRACTED,
+        missing={"us-il/statute/5/70/2"},
+        gap_source=gap_source,
+    )
