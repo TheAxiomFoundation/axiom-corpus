@@ -2797,23 +2797,14 @@ def _nested_witness_checkout(tmp_path: Path, monkeypatch, unrelated_lock: bool) 
     return outer, nested, outer_rel
 
 
-@pytest.mark.parametrize("action", ["require-fetch", "ensure"])
-def test_an_enclosing_lock_spelling_a_nested_file_otherwise_is_covered_by_the_nested_lock(
-    tmp_path: Path, monkeypatch, action: str
-) -> None:
-    """Review N2 on #882: the enclosing lock names the nested checkout's file as
-    ``.../NZ/...`` and the nested lock as ``.../nz/...``, one file where the
-    filesystem folds case (an alias directory stands in where it does not). A
-    broad selection reads the enclosing entry by its own spelling, so the nested
-    owner's name for it must be put in the nested lock's spelling, or that
-    owner's fetch would not cover the witness and the file would be refused."""
+def _enclosing_lock_spells_a_nested_file_otherwise(tmp_path: Path, monkeypatch, action: str, *, alias: bool) -> None:
     outer = _init_repo(tmp_path / "outer")
     nested = _init_repo(outer / f"{_NESTED_SOURCE_DIR}/vendored")
     respelled = _NESTED_PROV.replace("/nz/", "/NZ/", 1)
     outer_rel = f"{_NESTED_SOURCE_DIR}/vendored/{respelled}"
     _lock_files(outer, {outer_rel: SHARED_FILES[PROV]})
     _lock_files(nested, {_NESTED_PROV: SHARED_FILES[PROV]})
-    if not _folds_case_on_disk(tmp_path):
+    if alias:
         _alias_directory(nested, _NESTED_PROV, respelled)
     _serve(tmp_path, monkeypatch, SHARED_FILES)
     monkeypatch.chdir(outer)
@@ -2826,6 +2817,54 @@ def test_an_enclosing_lock_spelling_a_nested_file_otherwise_is_covered_by_the_ne
     placed = nested / _NESTED_PROV
     assert placed.is_file() and not placed.is_symlink()
     assert placed.read_bytes() == SHARED_FILES[PROV]
+
+
+@pytest.mark.parametrize("action", ["require-fetch", "ensure"])
+def test_an_enclosing_lock_spelling_a_nested_file_otherwise_is_covered_by_the_nested_lock(
+    tmp_path: Path, monkeypatch, action: str
+) -> None:
+    """Review N2 on #882: the enclosing lock names the nested checkout's file as
+    ``.../NZ/...`` and the nested lock as ``.../nz/...``, one file where the
+    filesystem folds case (an alias directory stands in where it does not). A
+    broad selection reads the enclosing entry by its own spelling, so the nested
+    owner's name for it must be put in the nested lock's spelling, or that
+    owner's fetch would not cover the witness and the file would be refused."""
+    _enclosing_lock_spells_a_nested_file_otherwise(
+        tmp_path, monkeypatch, action, alias=not _folds_case_on_disk(tmp_path)
+    )
+
+
+def test_an_enclosing_lock_spelling_a_nested_file_otherwise_with_emulated_folding(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """The layout above on any filesystem, without an alias link, for the planning
+    step alone (review F2 on #882). ``stored_together`` answers as a case-folding
+    filesystem would for names that differ only in ASCII case, so a case-sensitive
+    CI run also takes the folding branch of ``_plan``: the enclosing lock's witness
+    names the nested owner's file in the nested lock's spelling, and the nested
+    entry covers it. Fetching is not emulated: ext4 still keeps ``NZ`` and ``nz``
+    apart on disk, so only the plan is checked."""
+    real = corpus_locks_module.stored_together
+
+    def folding(root: Path, spelled: str, canonical: str) -> bool:
+        return spelled.lower() == canonical.lower() or real(root, spelled, canonical)
+
+    monkeypatch.setattr(corpus_locks_module, "stored_together", folding)
+    monkeypatch.setattr(resolver_module, "stored_together", folding)
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_NESTED_SOURCE_DIR}/vendored")
+    outer_rel = f"{_NESTED_SOURCE_DIR}/vendored/{_NESTED_PROV.replace('/nz/', '/NZ/', 1)}"
+    _lock_files(outer, {outer_rel: SHARED_FILES[PROV]})
+    _lock_files(nested, {_NESTED_PROV: SHARED_FILES[PROV]})
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(outer)
+
+    plan = resolver_module._plan([outer / _NESTED_SOURCE_DIR], repo=None)
+
+    places = plan.witnessed[(outer, outer_rel)]
+    assert [(item.owner.repo, item.owner_name) for item in places] == [(nested, _NESTED_PROV)]
+    assert _NESTED_PROV in plan.owned[nested][1]
+    assert resolver_module._covered(plan, places) == [(nested, _NESTED_PROV)]
 
 
 @pytest.mark.parametrize("unrelated_lock", [False, True], ids=["no-nested-lock", "unrelated-nested-lock"])
