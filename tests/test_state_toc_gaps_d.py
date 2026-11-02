@@ -17,6 +17,7 @@ the run.
 """
 
 import json
+from pathlib import Path
 
 import pytest
 import requests
@@ -553,7 +554,22 @@ def test_dc_reserved_containers_stay_complete(tmp_path):
     assert inventory == provisions == DC_TITLE_1 | {"us-dc/statute/1/part-d", "us-dc/statute/2"}
 
 
-def test_dc_interrupt_while_reading_a_section_stops_the_run(tmp_path, monkeypatch):
+def test_dc_interrupt_while_reading_a_section_file_stops_the_run(tmp_path, monkeypatch):
+    # The section read catches Exception for a missing or unreadable file; an
+    # interrupt raised by the read itself still stops the run.
+    read_bytes = Path.read_bytes
+
+    def interrupt(self):
+        if self.name == "1-102.xml":
+            raise KeyboardInterrupt
+        return read_bytes(self)
+
+    monkeypatch.setattr(Path, "read_bytes", interrupt)
+    with pytest.raises(KeyboardInterrupt):
+        _extract_dc(tmp_path, dict(DC_GOOD_PAGES))
+
+
+def test_dc_interrupt_while_parsing_a_section_stops_the_run(tmp_path, monkeypatch):
     def interrupt(data):
         raise KeyboardInterrupt
 
@@ -768,12 +784,20 @@ def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(tmp_path, 
 
 
 @pytest.mark.parametrize(
-    "failed", ["TITLE2/INDEX.HTM", "TITLE1/1-2/INDEX.htm"], ids=["title", "chapter"]
+    ("failed", "root"),
+    [
+        ("TITLE2/INDEX.HTM", RI_ROOT),
+        ("TITLE1/1-2/INDEX.htm", RI_ROOT),
+        ("TITLE6A/6A-11/6A-2/INDEX.htm", RI_ROOT_6A_ONLY),
+    ],
+    ids=["title", "chapter", "part"],
 )
-def test_rhode_island_interrupt_during_fetch_stops_the_run(tmp_path, monkeypatch, failed):
+def test_rhode_island_interrupt_during_fetch_stops_the_run(tmp_path, monkeypatch, failed, root):
+    pages = dict(RI_GOOD_PAGES)
+    pages["Statutes.html"] = root
     with pytest.raises(KeyboardInterrupt):
         _extract_rhode_island(
-            tmp_path, monkeypatch, dict(RI_GOOD_PAGES), failed=failed, raise_=KeyboardInterrupt()
+            tmp_path, monkeypatch, pages, failed=failed, raise_=KeyboardInterrupt()
         )
 
 
@@ -999,6 +1023,7 @@ UT_CHAPTER_10 = f"{UT_HTML}/Title59/Chapter10/C59-10_1800010118000101.html"
 UT_CHAPTER_11 = f"{UT_HTML}/Title59/Chapter11/C59-11_1800010118000101.html"
 UT_PART_1 = f"{UT_HTML}/Title59/Chapter10/C59-10-P1_1800010118000101.html"
 UT_PART_2 = f"{UT_HTML}/Title59/Chapter10/C59-10-P2_1800010118000101.html"
+UT_SECTION_204 = f"{UT_XML}/Title59/Chapter10/C59-10-S204_2026050620260506.xml"
 UT_EMPTY_LISTING = '\ntrue\n<html><body><table id="childtbl"></table></body></html>\n'
 
 
@@ -1148,7 +1173,9 @@ def test_utah_container_listing_only_inactive_children_stays_complete(tmp_path, 
 
 @pytest.mark.parametrize("workers", [1, 2])
 @pytest.mark.parametrize(
-    "failed", [UT_TITLE_61, UT_CHAPTER_11, UT_PART_2], ids=["title", "chapter", "part"]
+    "failed",
+    [UT_TITLE_61, UT_CHAPTER_11, UT_PART_2, UT_SECTION_204],
+    ids=["title", "chapter", "part", "section"],
 )
 def test_utah_interrupt_during_fetch_stops_the_run(
     tmp_path, monkeypatch, no_utah_network, workers, failed
