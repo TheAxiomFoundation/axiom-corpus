@@ -267,6 +267,11 @@ byte-for-byte as the inventoried source under `sources/us/statute/{run_id}/olrc/
 (inventory and provision `source_path` and `sha256` point at the zip, and
 `metadata.source_archive_member` names the parsed member), which keeps Title 42
 scopes under GitHub's 100 MB file limit: the extracted `usc42.xml` is 113 MB.
+The zip is refused before parsing if it is over 512 MiB, if any member name is
+unsafe (absolute, drive-letter, backslash, NUL, or an empty, `.` or `..`
+segment), if a member is a symlink, encrypted or duplicated, or if the member
+inflates past 512 MiB or has corrupt compressed data. Release validation reruns
+these checks on each retained `olrc/*.zip`.
 
 ```bash
 axiom-corpus-ingest extract-usc \
