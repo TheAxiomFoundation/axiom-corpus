@@ -1720,7 +1720,8 @@ def test_cli_inputs_take_another_case_of_corpus_paths_and_the_base(tmp_path: Pat
     from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
 
     repo = _locked_checkout(tmp_path / "repo", monkeypatch)
-    if not _folds_case_on_disk(tmp_path):
+    folds = _folds_case_on_disk(tmp_path)
+    if not folds:
         (repo / "data/corpus").mkdir(parents=True)
         (repo / "DATA").symlink_to("data", target_is_directory=True)
     monkeypatch.chdir(repo)
@@ -1733,7 +1734,13 @@ def test_cli_inputs_take_another_case_of_corpus_paths_and_the_base(tmp_path: Pat
         provisions=Path(variant),
     )
     paths, scopes, _selectors = corpus_inputs_from_args(args, repo=repo)
-    assert paths == [variant]  # named as given; the locks decide what it names
+    # Where the filesystem folds case, the spelling is the locked file's own
+    # directory entry: named as given, and the locks decide what it names. Where
+    # it does not, ``DATA`` is a directory link, and a path through a link at or
+    # above a protected path names the protected path it reaches
+    # (``CorpusResolver.relative``). Either way it names the locked file.
+    assert paths == [variant if folds else PROV]
+    assert load_locks(repo).locked_spelling(repo, paths[0]) == PROV
     assert scopes == [SCOPE]
     resolver_module.materialize_cli_inputs(args, repo=repo, include_scope=True)
     assert all(_placed_regular(repo, rel) for rel in READABLE_FILES)
