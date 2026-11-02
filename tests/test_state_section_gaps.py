@@ -13,10 +13,11 @@ written, so a run of those stays complete.
 import json
 
 import pytest
+import requests
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions
-from axiom_corpus.corpus.state_adapters import arizona
+from axiom_corpus.corpus.state_adapters import arizona, new_york
 from axiom_corpus.corpus.state_adapters.arizona import (
     ARIZONA_SECTION_SOURCE_FORMAT,
     ARIZONA_TITLE_DETAIL_SOURCE_FORMAT,
@@ -50,6 +51,10 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
 )
 from axiom_corpus.corpus.state_adapters.montana import extract_montana_code
+from axiom_corpus.corpus.state_adapters.new_york import (
+    extract_new_york_consolidated_laws,
+    extract_new_york_openleg_sections,
+)
 from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
@@ -91,6 +96,10 @@ from tests.test_corpus_massachusetts import (
     SAMPLE_SECTION_ONE_HTML as MA_SECTION_ONE_HTML,
 )
 from tests.test_corpus_montana import _write_montana_fixture_tree as mt_write_fixture_tree
+from tests.test_corpus_new_york import _write_new_york_fixture_tree as ny_write_fixture_tree
+from tests.test_corpus_new_york import (
+    _write_new_york_openleg_section_fixture as ny_write_openleg_section_fixture,
+)
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -605,3 +614,143 @@ def test_montana_unfetchable_section_page_still_stops_the_run(tmp_path):
     # cannot fetch stops the run: a loud failure, not a silent loss.
     with pytest.raises(ValueError, match="does not exist"):
         _extract_montana(tmp_path, "missing-file")
+
+
+# --- New York (Senate pages): law index -> law -> article -> part -> sections ---
+
+NY_LAW_TREE = {
+    "us-ny/statute/TAX",
+    "us-ny/statute/TAX/A22",
+    "us-ny/statute/TAX/A22P1",
+    "us-ny/statute/TAX/601",
+    "us-ny/statute/TAX/602",
+}
+
+
+def _extract_new_york(tmp_path, *, missing: str, only_title: str | None = "TAX", workers=1):
+    source = ny_write_fixture_tree(tmp_path)
+    (source / "new-york-senate-html" / missing).unlink(missing_ok=True)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_new_york_consolidated_laws(
+        store,
+        version="2026-test",
+        source_dir=source,
+        only_title=only_title,
+        workers=workers,
+        source_as_of="2026-01-30",
+        expression_date="2026-01-30",
+    )
+    return store, report
+
+
+# The Senate page parser reads any page, so a maintenance, empty or wrong-shape
+# page is written as a provision with no text rather than an error; only a page
+# that cannot be fetched reaches the error path.
+@pytest.mark.parametrize("workers", [1, 4])
+def test_new_york_unfetched_section_page_remains_inventory_gap(tmp_path, workers):
+    # On main a page the crawl could not fetch was logged as an error with no
+    # inventory item, so coverage still read complete. Four workers fetch the
+    # part's sibling sections in parallel.
+    store, report = _extract_new_york(tmp_path, missing="TAX/602.html", workers=workers)
+    assert report.section_count == 1
+    assert "TAX/602" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NY_LAW_TREE,
+        missing={"us-ny/statute/TAX/602"},
+        gap_source="new-york-senate-html/TAX/A22P1.html",
+    )
+
+
+def test_new_york_unfetched_container_page_remains_inventory_gap(tmp_path):
+    store, report = _extract_new_york(tmp_path, missing="TAX/A22P1.html")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected={"us-ny/statute/TAX", "us-ny/statute/TAX/A22", "us-ny/statute/TAX/A22P1"},
+        missing={"us-ny/statute/TAX/A22P1"},
+        gap_source="new-york-senate-html/TAX/A22.html",
+    )
+
+
+def test_new_york_unfetched_law_page_remains_inventory_gap(tmp_path):
+    # The fixture index lists ABC and TAX but holds no ABC page, so a full run
+    # cannot fetch ABC; its gap is sourced from the consolidated-laws index.
+    store, report = _extract_new_york(tmp_path, missing="ABC/index.html", only_title=None)
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NY_LAW_TREE | {"us-ny/statute/ABC"},
+        missing={"us-ny/statute/ABC"},
+        gap_source="new-york-senate-html/CONSOLIDATED.html",
+    )
+
+
+def test_new_york_run_that_fetches_nothing_still_fails(tmp_path):
+    with pytest.raises(ValueError, match="no New York provisions extracted"):
+        _extract_new_york(tmp_path, missing="TAX/index.html")
+
+
+# --- New York (OpenLegislation): targeted section documents ---
+
+NY_OPENLEG_614 = "new-york-openleg-json/TAX/614.json"
+NY_OPENLEG_SECTIONS = {"us-ny/statute/TAX/601", "us-ny/statute/TAX/614"}
+NY_OPENLEG_UNREADABLE = {
+    "maintenance": MAINTENANCE,
+    "empty": EMPTY_PAGE,
+    "no-result": json.dumps({"success": True}),
+    "wrong-shape": json.dumps(
+        {"success": True, "result": {"lawId": "TAX", "locationId": "614", "docType": "ARTICLE"}}
+    ),
+    "no-text": json.dumps(
+        {"success": True, "result": {"lawId": "TAX", "locationId": "614", "docType": "SECTION"}}
+    ),
+}
+
+
+def _extract_new_york_sections(tmp_path, source):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_new_york_openleg_sections(
+        store,
+        version="2026-test",
+        sections=("TAX:601", "TAX:614"),
+        source_dir=source,
+        source_as_of="2026-01-30",
+        expression_date="2026-01-30",
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", sorted(NY_OPENLEG_UNREADABLE))
+def test_new_york_unreadable_openleg_section_remains_inventory_gap(tmp_path, failure):
+    # On main an HTML or empty response stopped the run on a JSON error, and a
+    # response with no section was logged as an error with no inventory item.
+    source = ny_write_openleg_section_fixture(tmp_path)
+    (source / NY_OPENLEG_614).write_text(NY_OPENLEG_UNREADABLE[failure], encoding="utf-8")
+    store, report = _extract_new_york_sections(tmp_path, source)
+    assert report.section_count == 1
+    assert report.errors[0].startswith("TAX 614: ")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NY_OPENLEG_SECTIONS,
+        missing={"us-ny/statute/TAX/614"},
+        gap_source=NY_OPENLEG_614,
+    )
+
+
+def test_new_york_unfetchable_openleg_section_stops_the_run(tmp_path, monkeypatch):
+    # A targeted run has no listing to source a gap from, so a section it cannot
+    # fetch fails the run. On main it was logged and coverage read complete.
+    source = ny_write_openleg_section_fixture(tmp_path)
+    fetch = new_york._NewYorkOpenLegFetcher.fetch_law_document
+
+    def fail_614(self, law_id, location_id):
+        if location_id == "614":
+            raise requests.ConnectionError("connection reset")
+        return fetch(self, law_id, location_id)
+
+    monkeypatch.setattr(new_york._NewYorkOpenLegFetcher, "fetch_law_document", fail_614)
+    with pytest.raises(ValueError, match="could not be fetched: TAX 614: connection reset"):
+        _extract_new_york_sections(tmp_path, source)

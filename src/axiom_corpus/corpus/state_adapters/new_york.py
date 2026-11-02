@@ -143,6 +143,13 @@ class _NewYorkQueueItem:
     ordinal: int
 
 
+@dataclass(frozen=True)
+class _NewYorkRecordedPage:
+    source_url: str
+    source_path: str
+    sha256: str
+
+
 class _NewYorkFetcher:
     def __init__(
         self,
@@ -325,8 +332,13 @@ def extract_new_york_consolidated_laws(
         run_id,
         index_page.relative_path,
     )
-    store.write_bytes(index_artifact_path, index_page.data)
+    index_sha256 = store.write_bytes(index_artifact_path, index_page.data)
     source_paths: list[Path] = [index_artifact_path]
+    index_source = _NewYorkRecordedPage(
+        source_url=index_page.source_url,
+        source_path=_state_source_key(jurisdiction, run_id, index_page.relative_path),
+        sha256=index_sha256,
+    )
 
     laws = parse_new_york_law_index(index_page.data, base_url=base_url)
     if title_filter is not None:
@@ -343,6 +355,7 @@ def extract_new_york_consolidated_laws(
     skipped_source_count = 0
     errors: list[str] = []
     remaining_sections = limit
+    recorded_pages: dict[str, _NewYorkRecordedPage] = {}
 
     def log_progress(message: str) -> None:
         if progress_stream is not None:
@@ -366,6 +379,14 @@ def extract_new_york_consolidated_laws(
             fetched.data,
             source_url=current.source_url,
             base_url=base_url,
+        )
+        recorded_pages.setdefault(
+            parsed.citation_path,
+            _NewYorkRecordedPage(
+                source_url=fetched.source_url,
+                source_path=source_key,
+                sha256=sha256,
+            ),
         )
         if parsed.citation_path not in seen:
             seen.add(parsed.citation_path)
@@ -435,6 +456,18 @@ def extract_new_york_consolidated_laws(
             )
         return next_items
 
+    def record_unfetched_page(current: _NewYorkQueueItem, error: Exception | None) -> None:
+        nonlocal skipped_source_count
+        skipped_source_count += 1
+        errors.append(f"{current.source_url}: {error}")
+        log_progress(f"new-york skipped {current.source_url}: {error}")
+        listing = (
+            index_source
+            if current.parent_citation_path is None
+            else recorded_pages[current.parent_citation_path]
+        )
+        _append_new_york_page_gap(items, seen, current, listing)
+
     def safe_fetch_page(
         current: _NewYorkQueueItem,
     ) -> tuple[_NewYorkQueueItem, _NewYorkFetchResult | None, Exception | None]:
@@ -466,9 +499,7 @@ def extract_new_york_consolidated_laws(
                 break
             current, fetched, fetch_error = safe_fetch_page(current)
             if fetch_error is not None or fetched is None:
-                skipped_source_count += 1
-                errors.append(f"{current.source_url}: {fetch_error}")
-                log_progress(f"new-york skipped {current.source_url}: {fetch_error}")
+                record_unfetched_page(current, fetch_error)
                 continue
 
             parsed = handle_fetched_page(current, fetched)
@@ -488,9 +519,7 @@ def extract_new_york_consolidated_laws(
                     next_items,
                 ):
                     if child_error is not None or child_fetched is None:
-                        skipped_source_count += 1
-                        errors.append(f"{child_item.source_url}: {child_error}")
-                        log_progress(f"new-york skipped {child_item.source_url}: {child_error}")
+                        record_unfetched_page(child_item, child_error)
                         continue
                     child_page = handle_fetched_page(child_item, child_fetched)
                     unexpected_children.extend(child_queue_items(child_page, child_item))
@@ -502,7 +531,7 @@ def extract_new_york_consolidated_laws(
         if executor is not None:
             executor.shutdown()
 
-    if not items:
+    if not records:
         raise ValueError("no New York provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -847,28 +876,72 @@ def extract_new_york_openleg_sections(
     source_paths: list[Path] = []
     errors: list[str] = []
     seen_citation_paths: set[str] = set()
+    unfetched: list[str] = []
     section_count = 0
+
+    def record_unreadable_section(
+        law_id: str,
+        location_id: str,
+        fetched: _NewYorkOpenLegFetchResult,
+        error: str,
+    ) -> None:
+        errors.append(f"{law_id} {location_id}: {error}")
+        citation_path = f"us-ny/statute/{law_id}/{location_id}"
+        if citation_path in seen_citation_paths:
+            return
+        seen_citation_paths.add(citation_path)
+        artifact_path = store.source_path(
+            jurisdiction,
+            DocumentClass.STATUTE,
+            run_id,
+            fetched.relative_path,
+        )
+        sha256 = store.write_bytes(artifact_path, fetched.data)
+        source_paths.append(artifact_path)
+        # The response is the recorded source, so coverage reports the
+        # section as missing instead of dropping it from the inventory.
+        items.append(
+            SourceInventoryItem(
+                citation_path=citation_path,
+                source_url=fetched.source_url,
+                source_path=_state_source_key(jurisdiction, run_id, fetched.relative_path),
+                source_format=NEW_YORK_OPENLEG_SOURCE_FORMAT,
+                sha256=sha256,
+                metadata={
+                    "law_id": law_id,
+                    "location_id": location_id,
+                    "parent_citation_path": f"us-ny/statute/{law_id}",
+                },
+            )
+        )
 
     for ordinal, (law_id, location_id) in enumerate(selected):
         try:
             fetched = fetcher.fetch_law_document(law_id, location_id)
         except (requests.RequestException, ValueError) as exc:
             errors.append(f"{law_id} {location_id}: {exc}")
+            unfetched.append(f"{law_id} {location_id}: {exc}")
             continue
-        doc = _openleg_document_result(fetched.data)
+        try:
+            doc = _openleg_document_result(fetched.data)
+        except ValueError as exc:
+            record_unreadable_section(
+                law_id, location_id, fetched, f"unreadable document response: {exc}"
+            )
+            continue
         if doc is None:
-            errors.append(f"{law_id} {location_id}: no document result")
+            record_unreadable_section(law_id, location_id, fetched, "no document result")
             continue
         doc_location = str(doc.get("locationId") or location_id).strip()
         doc_type = str(doc.get("docType") or "section").strip().lower()
         if doc_type != "section":
-            errors.append(
-                f"{law_id} {location_id}: expected a section, got {doc_type!r}"
+            record_unreadable_section(
+                law_id, location_id, fetched, f"expected a section, got {doc_type!r}"
             )
             continue
         body = _api_document_text(doc)
         if not body:
-            errors.append(f"{law_id} {location_id}: section has no text")
+            record_unreadable_section(law_id, location_id, fetched, "section has no text")
             continue
         citation_path = f"us-ny/statute/{law_id}/{doc_location}"
         if citation_path in seen_citation_paths:
@@ -920,13 +993,19 @@ def extract_new_york_openleg_sections(
         )
         section_count += 1
 
-    if not items:
+    if not records:
         if errors:
             raise ValueError(
                 "no New York OpenLegislation sections extracted; "
                 + "; ".join(errors[:3])
             )
         raise ValueError("no New York OpenLegislation sections extracted")
+    if unfetched:
+        # A targeted run has no listing page to record as a gap's source, so a
+        # requested section that cannot be fetched fails the run.
+        raise ValueError(
+            "New York OpenLegislation sections could not be fetched: " + "; ".join(unfetched[:3])
+        )
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)
@@ -1434,6 +1513,43 @@ def _append_inventory_and_record(
             legal_identifier=legal_identifier,
             identifiers=identifiers,
             metadata=clean_metadata,
+        )
+    )
+
+
+def _append_new_york_page_gap(
+    items: list[SourceInventoryItem],
+    seen: set[str],
+    current: _NewYorkQueueItem,
+    listing: _NewYorkRecordedPage,
+) -> None:
+    """Keep a page the crawl could not fetch in the inventory, without a provision.
+
+    The parent page that linked to it (the consolidated-laws index for a law)
+    is the recorded source, so coverage reports the page as missing.
+    """
+    citation_path = (
+        f"us-ny/statute/{current.law_id}"
+        if current.location_id is None
+        else f"us-ny/statute/{current.law_id}/{current.location_id}"
+    )
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    metadata: dict[str, Any] = {
+        "law_id": current.law_id,
+        "location_id": current.location_id,
+        "target_source_url": current.source_url,
+        "parent_citation_path": current.parent_citation_path,
+    }
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=listing.source_url,
+            source_path=listing.source_path,
+            source_format=NEW_YORK_SENATE_SOURCE_FORMAT,
+            sha256=listing.sha256,
+            metadata={key: value for key, value in metadata.items() if value is not None},
         )
     )
 
