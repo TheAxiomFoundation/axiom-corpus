@@ -14,10 +14,12 @@ import json
 import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.io import load_provisions
 from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
 )
+from axiom_corpus.corpus.state_adapters.michigan import extract_michigan_compiled_laws
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -37,6 +39,8 @@ from tests.test_corpus_massachusetts import (
 from tests.test_corpus_massachusetts import (
     SAMPLE_SECTION_ONE_HTML as MA_SECTION_ONE_HTML,
 )
+from tests.test_corpus_michigan import SAMPLE_CHAPTER_XML as MI_CHAPTER_XML
+from tests.test_corpus_michigan import SAMPLE_INDEX_HTML as MI_INDEX_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -225,3 +229,72 @@ def test_massachusetts_failed_chapter_page_remains_inventory_gap(tmp_path, failu
         missing={chapter},
         gap_source=MA_TITLE_IX if failure == "missing-file" else failed,
     )
+
+
+# --- Michigan: directory index -> one chapter XML per chapter ---
+
+MI_INDEX = "michigan-mcl-index-html/index.html"
+MI_FAILED = "michigan-mcl-chapter-xml/chapter-750.xml"
+MI_GOOD_PAGES = {
+    MI_INDEX: MI_INDEX_HTML,
+    "michigan-mcl-chapter-xml/chapter-206.xml": MI_CHAPTER_XML,
+    MI_FAILED: MI_CHAPTER_XML.replace("<Name>206</Name>", "<Name>750</Name>"),
+}
+MI_EXTRACTED = {"us-mi/statute/chapter-206", "us-mi/statute/206.1", "us-mi/statute/206.2"}
+
+
+def _michigan_chapter_without_sections(*, repealed: bool) -> str:
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n<MCLChapterInfo>'
+        f"<DocumentID>1</DocumentID><Repealed>{str(repealed).lower()}</Repealed>"
+        "<Name>750</Name><Title>MICHIGAN PENAL CODE</Title>"
+        "<MCLDocumentInfoCollection /></MCLChapterInfo>"
+    )
+
+
+def _extract_michigan(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_michigan_compiled_laws(
+        store, version="2026-05-10", source_dir=tmp_path / "source", workers=1
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_michigan_failed_chapter_xml_remains_inventory_gap(tmp_path, failure):
+    # On main a chapter that could not be fetched or parsed was logged as an
+    # error with no inventory item, and an empty file raised out of the run.
+    pages = dict(MI_GOOD_PAGES)
+    _fail_page(
+        pages,
+        MI_FAILED,
+        failure,
+        {
+            "wrong-shape": '<?xml version="1.0"?><Error><Message>Not found</Message></Error>',
+            "no-children": _michigan_chapter_without_sections(repealed=False),
+        },
+    )
+    store, report = _extract_michigan(tmp_path, pages)
+    assert report.section_count == 2
+    assert "chapter 750" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MI_EXTRACTED | {"us-mi/statute/chapter-750"},
+        missing={"us-mi/statute/chapter-750"},
+        gap_source=MI_INDEX if failure == "missing-file" else MI_FAILED,
+    )
+
+
+def test_michigan_repealed_chapter_without_sections_stays_complete(tmp_path):
+    # The chapter XML marks the whole chapter repealed, so it lists nothing by
+    # law and is written as a complete, repealed container.
+    pages = dict(MI_GOOD_PAGES)
+    pages[MI_FAILED] = _michigan_chapter_without_sections(repealed=True)
+    _store, report = _extract_michigan(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    records = {record.citation_path: record for record in load_provisions(report.provisions_path)}
+    assert set(records) == MI_EXTRACTED | {"us-mi/statute/chapter-750"}
+    assert records["us-mi/statute/chapter-750"].metadata["status"] == "repealed"
