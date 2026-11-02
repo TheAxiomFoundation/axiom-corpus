@@ -58,7 +58,8 @@ jobs:
           python-version: "3.14"
 
       - name: Install package
-        run: python -I -m pip install -e .
+        # uv.lock's versions and hashes, the ones CI tests (docs/dependency-lock.md).
+        run: bash .github/scripts/install-locked.sh --editable
 
       - name: Download signed publication object
         uses: actions/download-artifact@v8
@@ -149,7 +150,8 @@ jobs:
           python-version: "3.14"
 
       - name: Install package
-        run: python -I -m pip install -e .
+        # uv.lock's versions and hashes, the ones CI tests (docs/dependency-lock.md).
+        run: bash .github/scripts/install-locked.sh --editable
 
       - name: Download signed publication object
         uses: actions/download-artifact@v8
