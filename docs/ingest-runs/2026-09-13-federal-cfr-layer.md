@@ -11,7 +11,7 @@ This run takes all of it from the eCFR Versioner API with the repo's `inventory-
 
 Branch `discovery/ingest-federal-cfr-layer`, cut from `origin/main` (8dc613000), worked in a
 sparse worktree (`~/axiom-corpus-worktrees/federal-cfr-2`, `data/corpus` excluded, no symlink)
-with every extraction pointed at `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`.
+with every extraction pointed at `--base <axiom-corpus checkout>/data/corpus`.
 GitNexus MCP tools were not available in this session; the impact analysis CLAUDE.md asks
 for before editing `src/axiom_corpus/corpus/ecfr.py` was done by hand (see "Adapter change").
 
@@ -219,7 +219,7 @@ validated from the worktree after each title:
 
 ```bash
 uv run axiom-corpus-ingest validate-release \
-  --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  --base <axiom-corpus checkout>/data/corpus \
   --release <scratch>/draft-federal-cfr-layer.selector.json --ignore-r2-missing --max-issues 600
 ```
 
@@ -257,7 +257,7 @@ run of the new generator changes nothing.
 ## Commands
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 for tp in "7 271" "7 272" "7 274" "7 276" "7 277" "7 278" "7 279" "7 280" "7 281" "7 282" "7 283" \
           "7 284" "7 285" "45 260" "45 261" "45 262" "45 263" "45 264" "45 265" "45 96" \
           "42 406" "42 407" "42 408" "42 423" "42 447" "26 31"; do set -- $tp

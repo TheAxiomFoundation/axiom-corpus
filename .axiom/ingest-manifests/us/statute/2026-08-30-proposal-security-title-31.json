@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-30-proposal-security-title-31.json",
+      "sha256": "2075807837235f163b880d20a4ee335a2c68c6f6f56ed4e35546ec9a35bb0ecd"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-30-proposal-security-title-31.json",
+      "sha256": "5e4b7623cfcbd6ed341cecf0e36abb93f96192deddba282dbfa9d5d197db5a0b"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-30-proposal-security-title-31.jsonl",
+      "sha256": "5bd623d3ad7445b8cbe2a5b4aa19a9bb38ed8d5cd0a0873cab15a4ae5617975f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-30-proposal-security-title-31/olrc/xml_usc31@119-102.zip",
+      "sha256": "1cccbcc7e0fe4bc548b970e866dced83a728bca2f3d305f477405f0426735b78"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a4b80e77d1105c7d28ac01f64bebb5a2b0ca89d5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-08-30-proposal-security --source-zip xml_usc31@119-102.zip --title 31 --source-as-of 2026-07-12 --expression-date 2026-07-12 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/102/xml_usc31@119-102.zip --section 1352 && python scripts/self_contain_usc_scope.py --base data/corpus --version 2026-08-30-proposal-security-title-31 (run note: docs/ingest-runs/2026-08-30-federal-proposal-security.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 72,
+    "missing_count": 0,
+    "provision_count": 72,
+    "source_count": 72
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-29T02:56:31.001899+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wwhiwlQHQc/7MpCn7hYQMF79rk2aMf0VhJNw5DVltZdKY/zWRHI2xQm0F2frWp9CJSUft0UOwdu9ke4oPG/ABA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-proposal-security-title-31"
+}

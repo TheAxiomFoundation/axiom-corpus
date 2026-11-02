@@ -33,8 +33,8 @@ documents:
       of Children, Youth, and Families, which replaced DHS as Lead Agency; the mn.gov page the ACF index links is a meta-refresh
       to this page; retry 2 2026-09-10T21:35Z from a US network: plain requests are still redirected to the validate.perfdrive.com
       challenge, curl_cffi chrome impersonation now completes TLS verification and receives the page and the PDF)'
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     publisher_index_url: https://dcyf.mn.gov/child-care-and-development-fund
     acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/MN-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
     source_discovery_group: us-mn/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027

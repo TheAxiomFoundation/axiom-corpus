@@ -161,6 +161,34 @@ def test_a_page_of_headings_and_pre_keeps_the_fallback_shape() -> None:
     assert (block.heading, block.body) == ("Exhibit I", "Exhibit I\nName ____\nDate ____")
 
 
+def test_the_root_fallback_numbers_its_block_afresh() -> None:
+    """The walk numbers each ``pre`` block it reads (``_PositionalBlocks``), but a
+    page whose only body text is ``pre`` takes the root fallback, which replaces
+    those blocks: its one block is ``block-1``, as before ``pre`` was a text node."""
+    page = (
+        b"<html><body><main><h2>One</h2><pre>A\nB</pre><h2>Two</h2><pre>C\nD</pre>"
+        b"</main></body></html>"
+    )
+
+    [block] = _blocks(page)
+
+    assert block.ordinal == 1
+    assert block.body == "One\nA\nB\nTwo\nC\nD"
+
+
+def test_br_breaks_read_a_pre_by_its_br_elements_only() -> None:
+    """``html_br_breaks`` collapses the source's own line breaks first, in a ``pre``
+    too, so only ``<br>`` breaks its lines, and two in a row start a paragraph."""
+    page = (
+        b"<html><body><main><p>Intro text.</p>"
+        b"<pre>Line one\nstill one<br>Line two<br><br>Para two</pre></main></body></html>"
+    )
+
+    [block] = _blocks(page, {"html_br_breaks": True})
+
+    assert block.body == "Intro text.\n\nLine one still one\nLine two\n\nPara two"
+
+
 @pytest.mark.parametrize("parser", ["lxml", "html.parser"])
 def test_pre_br_keeps_the_strings_a_parser_nests_inside_it(parser: str) -> None:
     """html.parser reads ``<pre>X<br><br/>A</pre>`` as ``<pre>X<br/><br>A</br></pre>``."""

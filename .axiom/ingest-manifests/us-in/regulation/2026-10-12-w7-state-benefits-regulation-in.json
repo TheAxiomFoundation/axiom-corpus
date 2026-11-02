@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/regulation/2026-10-12-w7-state-benefits-regulation-in.json",
+      "sha256": "7519beed65b4717c446bc5e6d7f9848f3601aa885d24409c18acbea3ddf94b27"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/regulation/2026-10-12-w7-state-benefits-regulation-in.json",
+      "sha256": "954b743e38c2f931c5604feb80a00f1cfa0cec66dfcad3994581800428e13c65"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/regulation/2026-10-12-w7-state-benefits-regulation-in.jsonl",
+      "sha256": "d0a15346e2df5504e45ba6caf293be0e1c92307a45ae862f36a93fad03a2e0b8"
+    },
+    {
+      "path": "data/corpus/sources/us-in/regulation/2026-10-12-w7-state-benefits-regulation-in/official-documents/us-in-regulation-iac-455-1.json",
+      "sha256": "56d5dc9d371d8642e0f2acb274c56a477dec94b8167a896cbcef395306273886"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 116,
+    "missing_count": 0,
+    "provision_count": 116,
+    "source_count": 116
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-13T12:06:15.367419+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DcZbvdaQbz1WrO10WoV1r9IX0YKkWfGJ1Wa6Y+gRNCWGj23c/IZyuUe7Ibzqkwb4TzRMtJjExGOsGTSN2BlqBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-regulation-in"
+}

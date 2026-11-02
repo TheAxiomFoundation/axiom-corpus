@@ -775,27 +775,50 @@ states:
   lead_counts: {}
   candidate_sources: []
   queue_status: blocked_primary_source
-  source_kind: official_state_agency_manual_not_published
-  primary_source_url: null
+  source_kind: official_state_agency_manual_no_static_index
+  primary_source_url: https://www.kdhe.ks.gov/1149/For-Local-WIC-Agencies
   target_manifest: manifests/us-ks-wic-policy-manual.yaml
   target_scope:
     jurisdiction: us-ks
     document_class: manual
     version: null
-  index_url: https://www.kdhe.ks.gov/1149/Information-for-WIC-Local-Agencies
+  index_url: https://www.kdhe.ks.gov/DocumentCenter/Index/903
   index_document_count: 0
   taken_count: 0
-  notes: 'Kansas Department of Health and Environment: www.kdhe.ks.gov answered HTTP 403 (Cloudflare) in batch 3. Retried
-    2026-09-10T21:34Z from a US network: the host now answers 200 and the For Local WIC Agencies page links the Policy & Procedure
-    Manual folder (DocumentCenter/Index/903), but that page is an empty React shell whose document list is fetched from an
-    admin-area endpoint (Admin/DocumentCenter/.../Document_AjaxBinding); the endpoint returned the site HTML to the plain
-    client and, after five requests, a Cloudflare ''Just a moment'' HTTP 429 challenge, which was not worked around. The manual
-    policies demonstrably exist on the host (DocumentCenter/View/<id>/<POLICY>-PDF) but no static index lists them. No mirror
-    was used. Selected in the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing
-    state. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the For Local WIC Agencies page
-    answers HTTP 200 (122,556 bytes, 0.7 s) and still links the Policy & Procedure Manual to DocumentCenter/Index/903, which
-    answers HTTP 200 (101,809 bytes) as the empty CivicEngage Document Center shell; the admin binding endpoint that challenged
-    on 2026-09-10 was not requested again. Same finding on two dates: no static manual index.'
+  notes: 'Kansas Department of Health and Environment: www.kdhe.ks.gov answered HTTP 403 (Cloudflare) in batch 3. Retried 2026-09-10T21:34Z
+    from a US network: the host now answers 200 and the For Local WIC Agencies page links the Policy & Procedure Manual folder
+    (DocumentCenter/Index/903), but that page is an empty React shell whose document list is fetched from an admin-area endpoint
+    (Admin/DocumentCenter/.../Document_AjaxBinding); the endpoint returned the site HTML to the plain client and, after five
+    requests, a Cloudflare ''Just a moment'' HTTP 429 challenge, which was not worked around. The manual policies demonstrably
+    exist on the host (DocumentCenter/View/<id>/<POLICY>-PDF) but no static index lists them. No mirror was used. Selected in
+    the third batch as a replacement (in order IA, NV, AR, MS, KS, NM) for a blocked or non-publishing state. Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: the For Local WIC Agencies page answers HTTP 200 (122,556 bytes, 0.7
+    s) and still links the Policy & Procedure Manual to DocumentCenter/Index/903, which answers HTTP 200 (101,809 bytes) as
+    the empty CivicEngage Document Center shell; the admin binding endpoint that challenged on 2026-09-10 was not requested
+    again. Same finding on two dates: no static manual index. Re-probed 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md)
+    with curl_cffi chrome120 browser impersonation, the route the official-document fetcher offers as request.browser_impersonation:
+    www.kdhe.ks.gov answers HTTP 200 to that client (/1149/Information-for-WIC-Local-Agencies redirects to /1149/For-Local-WIC-Agencies,
+    124,981 bytes of real page). Every response was judged by its body, not its status line. The access gate is narrower than
+    the queue recorded but still needs that profile: the plain extractor client and the extractor''s own browser-user-agent
+    fallback (the 403/404/406 retry) both answer HTTP 403 with a Cloudflare challenge body of 5,490 to 5,893 bytes (titles ''Attention
+    Required! | Cloudflare'' and ''Just a moment...''), because a Chrome user agent on a non-Chrome TLS fingerprint is itself
+    a bot signal; a future assignment on this host must set request.browser_impersonation and must not rely on the built-in
+    fallback. The gate is not why the row stays blocked. The block is the index: DocumentCenter/Index/903 (window.folderName
+    ''Policy & Procedure Manual'', window.parentId 898 ''Information for WIC Local Agencies'') answers HTTP 200 (103,708 bytes)
+    as the CivicEngage React shell with zero DocumentCenter/View links, and folder 898 likewise; the document list comes only
+    from the admin-area AJAX binding endpoint, which www.kdhe.ks.gov/robots.txt disallows (Disallow: /admin), so it was not
+    requested. www.kdhe.ks.gov/sitemap.xml (234,656 bytes) lists page URLs and one /DocumentCenter home entry and no document
+    URLs. Every one of the 31 WIC, nutrition and policy pages in that sitemap was read: 583 distinct DocumentCenter/View documents
+    in total and not one manual-chapter document. Same finding on three dates (2026-09-10, 2026-09-13, 2026-10-20): the Policy
+    & Procedure Manual is on no KDHE static index, and nothing was taken. New pointer for a future assignment: /1206/Policy-Information-Updates
+    is a KDHE-own static index listing 63 WIC documents (Policy Memos P-Memo FFY 2021 to FFY 2025 and the monthly KS WIC Update
+    slides and supplements) as plain DocumentCenter/View links; that is a guidance family, not this row''s manual target, and
+    it was not taken.'
+  index_families: 'Policy & Procedure Manual (DocumentCenter folder 903): 0 found / 0 taken (React shell, no document list;
+    the admin-area binding endpoint is robots-disallowed). Sitemap sweep 2026-10-20 of all 31 WIC, nutrition and policy pages:
+    583 DocumentCenter/View documents found / 0 taken, 0 of them manual chapters. Policy memoranda (/1206/Policy-Information-Updates,
+    KDHE-own static index): 63 found / 0 taken (guidance family, out of this row''s manual scope).'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
