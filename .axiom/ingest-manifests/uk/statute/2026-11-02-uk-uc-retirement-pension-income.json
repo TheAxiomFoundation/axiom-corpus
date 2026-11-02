@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ea80fb0c4a71724dc61959ef3ac6e25750822865",
+    "commit": "eac98904fbc31c6a8c1dabf70bb4d3fca4ac52e1",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 1
   },
   "document_class": "statute",
-  "generated_at": "2026-11-02T17:37:03.242248+00:00",
+  "generated_at": "2026-11-02T17:45:40.137234+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-11-02-uk-uc-retirement-pension-income.md",
-      "sha256": "2422b0bddb4493d17acc449095181b264af5db7c91eeb774a487df83b0f0c844"
+      "sha256": "923766b34ee3217794fd1001f06c55d6432c2c5229af975ed69a86f665ccc230"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "SHwJGrZ1Ck7t5NUZ4ChHcEisuavC3SQ1URUjQTx6EU2HliGoXVWqS2m381D2lmRmC+UEVSt5twCDwj5x+uOSAw=="
+    "value": "ubAC+j7jnQJ4EX1/k4SlVH6RSwG0C4MC0ukEzv08j32PHIHkGTFma5gd3tI6EQHiRuOn5f2bmV/bYspP4yZRBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-11-02-uk-uc-retirement-pension-income"
