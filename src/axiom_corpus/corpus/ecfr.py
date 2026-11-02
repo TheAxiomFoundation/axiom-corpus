@@ -2360,11 +2360,7 @@ def extract_ecfr(
         paths = title_paths.get(title, set())
         if not paths:
             continue
-        if (
-            paths.intersection(existing_records)
-            and not graphic_transcriptions
-            and not only_sections
-        ):
+        if paths.intersection(existing_records):
             source_key = _ecfr_source_key(run_id, title, only_part)
             source_path = store.root / source_key
             source_sha256 = sha256_bytes(source_path.read_bytes()) if source_path.exists() else None
@@ -2373,10 +2369,17 @@ def extract_ecfr(
             ):
                 # Reuse the verified digest; never rehash skipped cached rows
                 # against bytes that were not checked with their inventory.
-                if paths <= set(existing_records):
+                if (
+                    paths <= set(existing_records)
+                    and not graphic_transcriptions
+                    and not only_sections
+                ):
                     source_sha256_by_title[title] = source_sha256
                     continue
             else:
+                # Cached rows whose snapshot is missing or changed are kept only
+                # by a committed reparse. Transcription and section runs reparse
+                # every title, so they need this check too (axiom-corpus#934).
                 revalidating_cached_titles.add(title)
         targets = tuple(
             target
@@ -2445,9 +2448,23 @@ def extract_ecfr(
     # Workers stage XML and graphics, including resumable error downloads.
     # No title may change a source until every pending title has passed fatal
     # validation. A failed cache revalidation must also leave its old pins intact.
+    # A transcription run commits no title's provisions when any title fails, so
+    # a revalidating title fails then too: storing its replacement XML would
+    # leave its cached rows beside bytes they were not parsed from.
+    first_title_error = next(
+        (result.error for result in title_results if result.error is not None), None
+    )
+    commit_title_results = not (graphic_transcriptions and first_title_error is not None)
     for result in title_results:
-        if result.title in revalidating_cached_titles and result.error is not None:
+        if result.title not in revalidating_cached_titles:
+            continue
+        if result.error is not None:
             raise ValueError(f"cannot revalidate cached eCFR provisions: {result.error}")
+        if not commit_title_results:
+            raise ValueError(
+                f"cannot revalidate cached eCFR provisions: {result.title} CFR: "
+                f"not committed because another title failed: {first_title_error}"
+            )
     for result in title_results:
         for path, content in result.pending_source_writes:
             store.write_bytes(path, content)
@@ -2480,7 +2497,6 @@ def extract_ecfr(
                 flush=True,
             )
 
-    commit_title_results = not (graphic_transcriptions and title_errors)
     if commit_title_results:
         for result in title_results:
             if result.error is not None:
