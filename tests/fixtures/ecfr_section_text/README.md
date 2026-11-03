@@ -29,6 +29,8 @@ element's text.
 | `46-cfr-11-505.xml` | 46 CFR 11.505 | `TCAP` |
 | `29-cfr-2530-210-excerpt.xml` | 29 CFR 2530.210 | `TCAP` that starts with a label |
 | `46-cfr-42-13-25.xml` | 46 CFR 42.13-25 | `BCAP` |
+| `49-cfr-178-705.xml` | 49 CFR 178.705 | `TCAP` inside `MATH` |
+| `40-cfr-73-82-excerpt.xml` | 40 CFR 73.82 | `BCAP` inside `MATH` |
 | `27-cfr-19-661.xml` | 27 CFR 19.661 | `SECAUTH` |
 | `38-cfr-21-7614.xml` | 38 CFR 21.7614 | `PARAUTH` |
 | `7-cfr-800-166.xml` | 7 CFR 800.166 | `APPRO` |

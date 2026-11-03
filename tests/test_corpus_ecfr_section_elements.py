@@ -506,6 +506,38 @@ def test_live_unit_body(name, body):
         assert ecfr._section_body(elem, appendix=True) == body
 
 
+@pytest.mark.parametrize(
+    "name,expected",
+    [
+        (
+            "49-cfr-178-705.xml",
+            [
+                "[Image caption: Formula for Metric Units]",
+                "[Official formula image: ecfr/graphics/EP26JN96.000.png]",
+                "[Image caption: Formula for U.S. Standard Units]",
+                "[Official formula image: ecfr/graphics/EP26JN96.001.png]",
+            ],
+        ),
+        (
+            "40-cfr-73-82-excerpt.xml",
+            [
+                "[Official formula image: ecfr/graphics/EC10NO91.005.png]",
+                "[Image caption: (Rounded to the nearest ton)]",
+            ],
+        ),
+    ],
+)
+def test_formula_captions_render_beside_their_formula_markers(name, expected):
+    elem = _fixture(name)
+
+    for appendix in (False, True):
+        blocks = _blocks(ecfr._section_body(elem, appendix=appendix))
+        start = blocks.index(expected[0])
+        assert blocks[start:start + len(expected)] == expected
+        _assert_complete(elem, appendix=appendix)
+        _assert_only_gains(elem, appendix=appendix)
+
+
 def test_note_holding_a_paragraph_keeps_that_paragraph_as_its_own_block():
     # 7 CFR 58.148's approval note holds an editorial footnote paragraph, which the
     # previous renderer already gave a block of its own; the note now renders as a
@@ -641,6 +673,11 @@ def _leaf(images: bool):
         ),
         st.tuples(st.just("run"), st.sampled_from([None, "E", "SU", "I"]), _words),
         st.tuples(st.just("math"), st.none(), st.sampled_from(_IDS)),
+        # A formula with a caption above (TCAP) or below (BCAP) its image.
+        st.tuples(
+            st.just("math-caption"), st.sampled_from(["TCAP", "BCAP"]),
+            st.tuples(st.sampled_from(_IDS), _words),
+        ),
     ]
     if images:
         kinds.append(st.tuples(st.just("img"), st.none(), st.sampled_from(_IDS)))
@@ -713,6 +750,14 @@ def _build(items, parent: ET.Element, last: ET.Element | None = None) -> None:
         elif kind == "math":
             child = ET.SubElement(parent, "MATH")
             ET.SubElement(child, "img", src=f"/graphics/{content.lower()}.gif")
+        elif kind == "math-caption":
+            identifier, words = content
+            child = ET.SubElement(parent, "MATH")
+            if tag == "TCAP":
+                ET.SubElement(child, "TCAP").text = " ".join(words)
+            ET.SubElement(child, "img", src=f"/graphics/{identifier.lower()}.gif")
+            if tag == "BCAP":
+                ET.SubElement(child, "BCAP").text = " ".join(words)
         elif kind == "img":
             child = ET.SubElement(parent, "img", src=f"/graphics/{content.lower()}.gif")
         else:  # container
@@ -775,6 +820,11 @@ def _model_blocks(items, *, appendix: bool) -> list[str]:
                 blocks.append("\n".join(" | ".join(" ".join(w) for w in row) for row in content))
             elif kind == "math":
                 blocks.append(f"[Official formula image: ecfr/graphics/{content}.png]")
+            elif kind == "math-caption":
+                identifier, words = content
+                marker = f"[Official formula image: ecfr/graphics/{identifier}.png]"
+                caption = f"[Image caption: {' '.join(words)}]"
+                blocks.extend([caption, marker] if tag == "TCAP" else [marker, caption])
             elif kind == "img":
                 if appendix:
                     blocks.append(f"[Official source image: ecfr/graphics/{content}.png]")

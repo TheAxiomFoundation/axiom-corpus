@@ -1900,14 +1900,28 @@ def _section_body(
             for identifier in _non_math_graphic_identifiers(child) if appendix else ():
                 blocks.append(f"[Official source image: ecfr/graphics/{identifier}.png]")
         elif tag == "MATH":
-            for identifier in _math_graphic_identifiers(child):
-                transcription = transcriptions.get(identifier)
-                if transcription:
-                    blocks.append(
-                        f"Formula ({identifier}, verified official image): {transcription}"
-                    )
-                else:
-                    blocks.append(f"[Official formula image: ecfr/graphics/{identifier}.png]")
+            # A formula renders as its images' transcriptions or markers; a caption
+            # inside it renders in its place, before or after them.
+            seen: set[str] = set()
+            for part in child:
+                part_tag = _local_name(part.tag)
+                if part_tag in _IMAGE_CAPTION_TAGS and not _holds_block(part):
+                    render(part, part_tag)
+                    continue
+                for image in part.iter():
+                    if _local_name(image.tag) != "IMG":
+                        continue
+                    formula = _graphic_identifier(image.get("src"))
+                    if not formula or formula in seen:
+                        continue
+                    seen.add(formula)
+                    transcription = transcriptions.get(formula)
+                    if transcription:
+                        blocks.append(
+                            f"Formula ({formula}, verified official image): {transcription}"
+                        )
+                    else:
+                        blocks.append(f"[Official formula image: ecfr/graphics/{formula}.png]")
         elif tag == "IMG":
             graphic_identifier = _graphic_identifier(child.get("src")) if appendix else None
             if graphic_identifier:

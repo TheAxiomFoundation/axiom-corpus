@@ -226,9 +226,12 @@ document order:
 
 Any other element is a container. Its children render in order, and text written
 directly in it, with any inline markup, renders as a block between theirs, so an
-unfamiliar element never hides text. A formula nested inside one of these blocks
-adds its marker after the block; none of the 2,566 `MATH` elements in the
-2026-10-29 eCFR is nested that way.
+unfamiliar element never hides text. An element first read this way that holds a
+block element (a paragraph, table, formula or image) renders as a container too,
+so the blocks inside it render as before: 7 CFR 58.148's approval note holds a
+footnote paragraph, which keeps its own block after the note's text. A caption
+inside a formula (`MATH`) renders as an image caption beside the formula's
+transcription or marker, as in 49 CFR 178.705.
 
 The renderer leaves out the provision's heading (`HEAD`), its bracketed source
 note (`CITA`) and an `XREF`'s own text. An `XREF` is the eCFR's notice of a
@@ -267,8 +270,9 @@ recovery scripts do not certify an appendix replay as complete.
 Sections and appendices render the same body for content without images.
 Non-math image capture and its markers stay appendix-only, even in an
 appendix-enabled run, and sections keep formula-only image capture. A `MATH`
-element inside a table cell still renders no marker; standalone `MATH`
-transcription and markers remain supported.
+element inside a paragraph, heading or table cell still renders no marker (none
+of the 2,566 `MATH` elements in the 2026-10-29 eCFR sits there); standalone
+`MATH` transcription and markers remain supported.
 
 The retained 20 CFR 416 source remains a 622-entry inventory by default, and its
 approved 14-record deeming slice reproduces the prior producer's bytes. The
