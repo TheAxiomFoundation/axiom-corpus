@@ -12,10 +12,13 @@ from typing import cast
 from xml.etree import ElementTree as ET
 
 from axiom_corpus.converters.nz_pco import (
+    STRUCTURAL_LABEL_PARENTS,
     NZLegislation,
     NZLegislationSubtype,
     NZPCOConverter,
     NZProvision,
+    bare_structural_labels_active,
+    published_structural_label,
     render_nz_pco_legal_text,
 )
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
@@ -679,6 +682,8 @@ def _direct_child_text(element: ET.Element, tag: str) -> str:
 
 
 def _source_element_text(element: ET.Element) -> str:
+    """One line of an element's text, its paragraph labels printed as published."""
+    published = not bare_structural_labels_active()
     parts: list[str] = []
 
     def collect(node: ET.Element) -> None:
@@ -687,7 +692,12 @@ def _source_element_text(element: ET.Element) -> str:
         if node.text and node.text.strip():
             parts.append(node.text.strip())
         for child in node:
-            collect(child)
+            if published and child.tag == "label" and node.tag in STRUCTURAL_LABEL_PARENTS:
+                label_text = " ".join("".join(child.itertext()).split())
+                if label := published_structural_label(label_text, child):
+                    parts.append(label)
+            else:
+                collect(child)
             if child.tail and child.tail.strip():
                 parts.append(child.tail.strip())
 

@@ -15,6 +15,7 @@ from xml.etree import ElementTree as ET
 import pytest
 import yaml
 
+from axiom_corpus.converters.nz_pco import bare_structural_labels
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.nz_amendment_markers import enrich_amendment_rows, reproduce_scope
@@ -223,14 +224,17 @@ def test_application_clauses_add_no_special_encoding_metadata(
 
 def test_legacy_opt_out_reproduces_all_four_locked_files(official_xml, tmp_path):
     store = CorpusArtifactStore(tmp_path / "data/corpus")
-    report = extract_nz_legislation(
-        store,
-        version=OLD_VERSION,
-        source_dir=SOURCE.parents[4],
-        source_pattern=Path(SOURCE_NAME).name,
-        source_as_of="2026-10-20",
-        expression_date="2026-10-20",
-    )
+    # The locked scope holds structural labels bare, as extractions wrote them
+    # before #822; replaying that layout reproduces it byte for byte.
+    with bare_structural_labels():
+        report = extract_nz_legislation(
+            store,
+            version=OLD_VERSION,
+            source_dir=SOURCE.parents[4],
+            source_pattern=Path(SOURCE_NAME).name,
+            source_as_of="2026-10-20",
+            expression_date="2026-10-20",
+        )
     assert report.provisions_written == 26
     lock = json.loads((ROOT / ".axiom/corpus-locks/nz/statute" / f"{OLD_VERSION}.json").read_text())
     assert len(lock["files"]) == 4

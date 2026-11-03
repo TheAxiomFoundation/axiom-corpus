@@ -37,6 +37,7 @@ import os
 import re
 from collections import Counter
 from collections.abc import Iterator
+from contextvars import ContextVar
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
@@ -84,6 +85,48 @@ def _provision_path_component(value: str) -> str:
     return token or "unnumbered"
 
 
+# Elements whose <label> legislation.govt.nz prints at the head of their text.
+STRUCTURAL_LABEL_PARENTS = frozenset({"subprov", "label-para", "item"})
+
+_BARE_STRUCTURAL_LABELS: ContextVar[bool] = ContextVar("_BARE_STRUCTURAL_LABELS", default=False)
+
+
+@contextlib.contextmanager
+def bare_structural_labels() -> Iterator[None]:
+    """Render structural labels bare, each on a line of its own, as before #822.
+
+    Extractions before 2026-11 wrote ``1\nA person is entitled…``. Use this only
+    to re-extract a scope made that way byte for byte, as
+    ``nz_amendment_markers.reproduce_scope`` does with its predecessor.
+    """
+    token = _BARE_STRUCTURAL_LABELS.set(True)
+    try:
+        yield
+    finally:
+        _BARE_STRUCTURAL_LABELS.reset(token)
+
+
+def bare_structural_labels_active() -> bool:
+    """Whether ``bare_structural_labels`` is in effect."""
+    return _BARE_STRUCTURAL_LABELS.get()
+
+
+def published_structural_label(text: str, label: ET.Element) -> str:
+    """A subsection, paragraph or item label as legislation.govt.nz prints it.
+
+    ``denominator="yes"`` asks for the label in parentheses (``1`` prints
+    ``(1)``, the range ``2)–(14`` prints ``(2)–(14)``). Any other label, and one
+    already in parentheses, prints as written (``A.``, ``(1)–(3)``); an empty
+    label prints nothing. ``text`` is the label's rendered text.
+    """
+    text = text.strip()
+    if not text or label.get("denominator") != "yes":
+        return text
+    if text.startswith("(") and text.endswith(")"):
+        return text
+    return f"({text})"
+
+
 def render_nz_pco_legal_text(
     element: ET.Element,
     *,
@@ -95,8 +138,14 @@ def render_nz_pco_legal_text(
     later text/tail siblings are retained. Tables use stable row/cell
     formatting. Editorial, accessibility, and amendment-history metadata are
     excluded from every caller, including schedule hierarchy bodies.
+
+    A subsection, paragraph or item label prints as the publisher prints it
+    (``published_structural_label``), on the same line as the text that
+    follows it: ``(1) A person is entitled…``. Each block (a subsection, a
+    paragraph, a table row) starts a line of its own.
     """
     excluded_elements = excluded or set()
+    published = not bare_structural_labels_active()
     skipped_tags = {
         "amends-note",
         "editorial-note",
@@ -136,20 +185,28 @@ def render_nz_pco_legal_text(
     def clean(value: str | None) -> str:
         return " ".join((value or "").split())
 
-    def join(parts: list[tuple[str, bool]]) -> str:
+    def join(parts: list[tuple[str, bool, bool]]) -> str:
         output = ""
         prior_block = False
-        for value, is_block in parts:
+        prior_label = False
+        for value, is_block, is_label in parts:
             value = value.strip()
             if not value:
                 continue
             if output:
                 separator = "\n" if prior_block or is_block else " "
-                if output.rsplit("\n", 1)[-1].strip().startswith("(") and is_block:
+                if published:
+                    # A label heads the text that follows it.
+                    if prior_label:
+                        separator = " "
+                elif output.rsplit("\n", 1)[-1].strip().startswith("(") and is_block:
+                    # The bare layout's rule: a line opening with "(" (a label
+                    # the source wrote in parentheses) runs into the next block.
                     separator = " "
                 output += separator
             output += value
             prior_block = is_block
+            prior_label = is_label
         return "\n".join(
             line for line in (" ".join(line.split()) for line in output.splitlines()) if line
         )
@@ -168,15 +225,18 @@ def render_nz_pco_legal_text(
                     rendered_cells.append(rendered_cell)
             return " | ".join(rendered_cells)
 
-        parts: list[tuple[str, bool]] = []
+        parts: list[tuple[str, bool, bool]] = []
         if value := clean(node.text):
-            parts.append((value, False))
+            parts.append((value, False, False))
         for child in node:
             child_text = render(child)
+            is_label = published and child.tag == "label" and node.tag in STRUCTURAL_LABEL_PARENTS
+            if is_label:
+                child_text = published_structural_label(child_text, child)
             if child_text.strip():
-                parts.append((child_text, child.tag in block_tags))
+                parts.append((child_text, child.tag in block_tags, is_label))
             if tail := clean(child.tail):
-                parts.append((tail, False))
+                parts.append((tail, False, False))
         return join(parts)
 
     return render(element).strip()
