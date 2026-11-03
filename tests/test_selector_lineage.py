@@ -357,6 +357,7 @@ def test_cycles_are_found_once_each(targets: list[int]) -> None:
         ("Everything in (line-b) plus line-a.", "line-b"),
         ("Successor to line-a-r2, which is not tracked, then line-b.", "line-b"),
         ("Re-cut of self-cut that keeps line-a.", "line-a"),
+        ("Successor to line-a--it keeps every scope.", "line-a"),
         ("Successor to LINE-A, written in capitals.", None),
         ("No other selector is named here.", None),
         (None, None),
@@ -500,15 +501,18 @@ def _record(**changes: object) -> RecordedDrop:
     return RecordedDrop(**values)  # type: ignore[arg-type]
 
 
-def test_a_record_for_an_edited_selector_no_longer_holds() -> None:
+@pytest.mark.parametrize("edited", ["pin-stale", "pin-mt"])
+def test_a_record_for_an_edited_selector_no_longer_holds(edited: str) -> None:
+    """A drop record pins both the selector and the predecessor it was written for."""
     mt, stale = _drop_case()
     baseline = _baseline(mt, pinned=[stale], drops={("pin-stale", ("us-mt", "form")): _record()})
     digests = dict(baseline.selector_digests)
-    digests["pin-stale"] = "0" * 64
-    edited = LineageBaseline(digests, baseline.drops, first_cuts=baseline.first_cuts)
-    report = _check(mt, stale, baseline=edited)
+    digests[edited] = "0" * 64
+    edited_baseline = LineageBaseline(digests, baseline.drops, first_cuts=baseline.first_cuts)
+    report = _check(mt, stale, baseline=edited_baseline)
     assert [finding.pair for finding in report.dropped] == [("us-mt", "form")]
-    assert any("digest is" in error for error in report.baseline_errors)
+    assert report.recorded_drops == ()
+    assert any(f"pins {edited} at" in error for error in report.baseline_errors)
 
 
 def test_a_record_must_name_replacements_the_selector_selects() -> None:
@@ -815,6 +819,31 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
             "sorted",
         ),
         ("    reason: The first cut of its line.", "    note: x", "must have exactly"),
+        (
+            "  - predecessor: line-a\n    successors:",
+            "  - predecessor: line-b\n    successors:",
+            "cannot succeed itself",
+        ),
+        (
+            "    pair: uk-shropshire/manual\n",
+            "    pair: uk-shropshire/manual\n    replaced_by: [uk/manual/v2, uk/manual/v1]\n",
+            r"replaced_by must be sorted",
+        ),
+        (
+            "    pair: uk-shropshire/manual\n",
+            "    pair: uk-shropshire/manual\n    replaced_by: [uk/leaflet/v1]\n",
+            "invalid document_class",
+        ),
+        (
+            f"  line-d: {_DIGEST_D}\n",
+            f"  line-d: {_DIGEST_D}\n  current: {_DIGEST_D}\n",
+            "reserved",
+        ),
+        (
+            "    continued_by:\n      - line-c",
+            "    continued_by:\n      - Line-C",
+            "lowercase alphanumeric",
+        ),
     ],
 )
 def test_a_malformed_baseline_is_refused(tmp_path: Path, old: str, new: str, message: str) -> None:
@@ -829,6 +858,21 @@ def test_a_duplicate_drop_record_is_refused(tmp_path: Path) -> None:
     with pytest.raises(
         SelectorLineageError, match="dropped_pairs .* sorted and free of duplicates"
     ):
+        load_lineage_baseline(_write(tmp_path, text))
+
+
+def test_forks_must_be_sorted_by_predecessor(tmp_path: Path) -> None:
+    fork = _VALID.split("forks:\n", 1)[1].split("first_cuts:", 1)[0]
+    later = fork.replace("  - predecessor: line-a\n", "  - predecessor: line-d\n", 1)
+    text = _VALID.replace(fork, later + fork, 1)
+    with pytest.raises(SelectorLineageError, match=r"forks \(by predecessor\) must be sorted"):
+        load_lineage_baseline(_write(tmp_path, text))
+
+
+@pytest.mark.parametrize("section", ["dropped_pairs", "forks", "first_cuts"])
+def test_a_section_that_is_not_a_list_is_refused(tmp_path: Path, section: str) -> None:
+    text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n{section}: not-a-list\n"
+    with pytest.raises(SelectorLineageError, match=f"{section} must be a list"):
         load_lineage_baseline(_write(tmp_path, text))
 
 
