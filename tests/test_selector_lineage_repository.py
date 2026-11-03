@@ -491,14 +491,14 @@ class _Case:
     ``selectors`` are the new or edited selectors, in the order they would be
     cut; ``base`` is the selector the first one really succeeds (for a fork, the
     fork's predecessor); ``added`` the scopes the new selectors add to their base;
-    ``original`` an edited selector's file before the edit.
+    ``originals`` each edited selector's name and its file before the edit.
     """
 
     kinds: tuple[type, ...]
     selectors: tuple[str, ...]
     base: str
     added: frozenset[ScopeKey] = frozenset()
-    original: str = ""
+    originals: tuple[tuple[str, str], ...] = ()
 
 
 def _successor_counts(selectors: Mapping[str, ReleaseManifest]) -> dict[str, int]:
@@ -553,6 +553,24 @@ def _open_head(copy: _MainCopy) -> str:
     return heads[0]
 
 
+def _pinned_open_head(copy: _MainCopy) -> str:
+    """An open head the baseline pins, at a digest it still has."""
+    selectors = copy.selectors()
+    baseline = copy.baseline()
+    counts = _successor_counts(selectors)
+    ended = _ended_branches(baseline)
+    heads = sorted(
+        name
+        for name, count in counts.items()
+        if count == 0
+        and name not in ended
+        and len(pair_versions(selectors[name])) > 1
+        and baseline.selector_digests.get(name) == selector_sha256(selectors[name])
+    )
+    assert heads, "main has no pinned open head with two pairs"
+    return heads[0]
+
+
 def _keys(copy: _MainCopy, base: str) -> set[ScopeKey]:
     return {*copy.selectors()[base].scope_keys, _ADDED}
 
@@ -576,6 +594,19 @@ def _edit(copy: _MainCopy, name: str, added: ScopeKey | None = None) -> str:
 
 def _build_dropped_pair(copy: _MainCopy) -> _Case:
     base = _open_head(copy)
+    keys = copy.selectors()[base].scope_keys
+    pair = sorted(pair_versions(copy.selectors()[base]))[0]
+    copy.write(
+        "remedy-test-dropped-pair",
+        [key for key in keys if key[:2] != pair],
+        f"Successor to {base}. {_NOTE}",
+    )
+    return _Case((DroppedPair,), ("remedy-test-dropped-pair",), base)
+
+
+def _build_dropped_pair_from_a_pinned_head(copy: _MainCopy) -> _Case:
+    """A drop from a selector the baseline pins and that has not changed: the usual remedy."""
+    base = _pinned_open_head(copy)
     keys = copy.selectors()[base].scope_keys
     pair = sorted(pair_versions(copy.selectors()[base]))[0]
     copy.write(
@@ -699,19 +730,32 @@ def _build_cycle(copy: _MainCopy) -> _Case:
 
 def _build_edited_first_cut(copy: _MainCopy) -> _Case:
     name = sorted(copy.baseline().first_cuts)[0]
-    return _Case((UnnamedPredecessor,), (name,), name, original=_edit(copy, name))
+    return _Case((UnnamedPredecessor,), (name,), name, originals=((name, _edit(copy, name)),))
 
 
 def _build_edited_selector_of_a_recorded_drop(copy: _MainCopy) -> _Case:
     name = sorted(record.selector for record in copy.baseline().drops.values())[0]
-    return _Case((DroppedPair,), (name,), name, original=_edit(copy, name))
+    return _Case((DroppedPair,), (name,), name, originals=((name, _edit(copy, name)),))
 
 
 def _build_edited_selector_whose_successor_lacks_the_pair_it_gained(copy: _MainCopy) -> _Case:
     """The recorded drop's selector gains a pair its successor lacks: two findings, one edit."""
     name = sorted(record.selector for record in copy.baseline().drops.values())[0]
     original = _edit(copy, name, _ADDED)
-    return _Case((DroppedPair, DroppedPair), (name,), name, original=original)
+    return _Case((DroppedPair, DroppedPair), (name,), name, originals=((name, original),))
+
+
+def _build_drop_whose_selector_and_predecessor_both_changed(copy: _MainCopy) -> _Case:
+    """The recorded drop's predecessor gains a pair, and the drop's selector a version."""
+    record = sorted(copy.baseline().drops.values(), key=lambda item: item.selector)[0]
+    before = _edit(copy, record.predecessor, _ADDED)
+    original = _edit(copy, record.selector)
+    return _Case(
+        (DroppedPair, DroppedPair),
+        (record.selector,),
+        record.selector,
+        originals=((record.predecessor, before), (record.selector, original)),
+    )
 
 
 def _build_edited_fork_successor_that_drops_a_pair(copy: _MainCopy) -> _Case:
@@ -726,7 +770,7 @@ def _build_edited_fork_successor_that_drops_a_pair(copy: _MainCopy) -> _Case:
     pair = sorted(set(pair_versions(selectors[branch])) & set(pair_versions(selectors[fork])))[0]
     kept = [key for key in selectors[branch].scope_keys if key[:2] != pair]
     copy.write(branch, kept, selectors[branch].description or "")
-    return _Case((DroppedPair, Fork), (branch,), fork, original=original)
+    return _Case((DroppedPair, Fork), (branch,), fork, originals=((branch, original),))
 
 
 def _build_edited_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
@@ -735,7 +779,7 @@ def _build_edited_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
         (fork, branch)
         for fork, branch in sorted(available, key=lambda item: item[0] != _REVIEW_RECORDED_FORK)
     )
-    return _Case((Fork,), (branch,), fork, original=_edit(copy, branch))
+    return _Case((Fork,), (branch,), fork, originals=((branch, _edit(copy, branch)),))
 
 
 def _today(baseline: LineageBaseline) -> str:
@@ -866,7 +910,8 @@ def _follow(
         for remedy in remedies:
             assert _MARKER not in remedy, f"the remedy records the change again:\n{remedy}"
             assert "undo the change" in remedy, remedy
-        copy.write_text(case.selectors[0], case.original)
+        for name, text in case.originals:
+            copy.write_text(name, text)
 
 
 def _on_an_ended_branch(
@@ -884,10 +929,48 @@ def _on_an_ended_branch(
 
 
 def _assert_the_advice_is_sound(
-    findings: list[Finding], remedies: list[str], report: LineageReport, baseline: LineageBaseline
+    findings: list[Finding],
+    remedies: list[str],
+    report: LineageReport,
+    selectors: Mapping[str, ReleaseManifest],
+    baseline: LineageBaseline,
 ) -> None:
-    """A remedy names every newest selector, none on an ended branch, and the line it took."""
+    """A remedy says what holds for its finding.
+
+    It names every newest selector, none on an ended branch, and the line it took.
+    A record a changed selector broke says the baseline already records it; a drop
+    by or from a pinned selector that changed says it may follow from the change;
+    any other drop gets the usual keep-or-record remedy. The digests are compared
+    here, apart from _remedy.
+    """
+    stale = {
+        name
+        for name, digest in baseline.selector_digests.items()
+        if name in selectors and selector_sha256(selectors[name]) != digest
+    }
+    broken = "already records this, but the record no longer holds"
     for finding, remedy in zip(findings, remedies, strict=True):
+        if isinstance(finding, DroppedPair):
+            changed = [n for n in (finding.predecessor, finding.selector) if n in stale]
+            if (finding.selector, finding.pair) in baseline.drops:
+                expected = broken
+            elif changed:
+                them = "it" if len(changed) == 1 else "them"
+                expected = (
+                    f"{' and '.join(changed)} changed since the baseline pinned {them}, and this "
+                    "drop may follow from"
+                )
+            else:
+                expected = f"Keep a version of {pair_label(finding.pair)}, or record"
+            assert expected in remedy, (expected, remedy)
+        if isinstance(finding, UnnamedPredecessor) and finding.selector in baseline.first_cuts:
+            assert broken in remedy, remedy
+        if (
+            isinstance(finding, Fork)
+            and finding.recorded
+            and set(finding.successors) <= set(finding.recorded)
+        ):
+            assert broken in remedy, remedy
         if isinstance(finding, Fork | EndedBranch) and "no longer holds" not in remedy:
             for head in finding.heads:
                 assert not _on_an_ended_branch(head, report.predecessors, baseline), head
@@ -903,6 +986,8 @@ def _assert_the_advice_is_sound(
 _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
     ("dropped pair", _build_dropped_pair, _KEEP),
     ("dropped pair", _build_dropped_pair, _RECORD),
+    ("dropped pair from a pinned head", _build_dropped_pair_from_a_pinned_head, _KEEP),
+    ("dropped pair from a pinned head", _build_dropped_pair_from_a_pinned_head, _RECORD),
     ("new fork (#729)", _build_new_fork, _CUT),
     ("new fork (#729)", _build_new_fork, _RECORD),
     ("new successor of a recorded fork", _build_new_successor_of_a_recorded_fork, _CUT),
@@ -971,6 +1056,11 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
         _build_edited_fork_successor_that_drops_a_pair,
         _UNDO,
     ),
+    (
+        "drop whose selector and predecessor both changed",
+        _build_drop_whose_selector_and_predecessor_both_changed,
+        _UNDO,
+    ),
     ("edited successor of a recorded fork", _build_edited_successor_of_a_recorded_fork, _UNDO),
 ]
 
@@ -995,7 +1085,7 @@ def test_every_printed_remedy_can_be_followed(
     findings = _findings(report)
     assert [type(finding) for finding in findings] == list(case.kinds), report.problems()
     remedies = [_remedy(finding, selectors, baseline) for finding in findings]
-    _assert_the_advice_is_sound(findings, remedies, report, baseline)
+    _assert_the_advice_is_sound(findings, remedies, report, selectors, baseline)
     bases = (
         sorted({base for remedy in remedies for base in _bases(remedy, case)})
         if option == _CUT

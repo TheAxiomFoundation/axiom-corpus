@@ -1297,6 +1297,42 @@ forks:
 """
 
 
+def test_a_misplaced_entry_is_named_where_another_forks_entry_follows_it(
+    tmp_path: Path,
+) -> None:
+    """The sort refusal names the entry before it, so a misplaced later entry is named."""
+    text = f"""\
+schema_version: {LINEAGE_BASELINE_SCHEMA}
+selector_digests:
+  line-a: {_DIGEST_A}
+  line-b: {_DIGEST_B}
+  line-c: {_DIGEST_C}
+  line-d: {_DIGEST_D}
+forks:
+  - predecessor: line-b
+    successors: [line-d]
+    listed_on: 2026-11-03
+    reason: A later decision, placed first.
+  - predecessor: line-a
+    successors: [line-b, line-c]
+    continued_by: [line-c]
+    listed_on: 2026-11-02
+    reason: The line splits.
+  - predecessor: line-b
+    successors: [line-c, line-d]
+    continued_by: [line-c]
+    listed_on: 2026-11-02
+    reason: The line splits.
+"""
+    with pytest.raises(
+        SelectorLineageError,
+        match=r"forks\[1\]: forks must be sorted by predecessor, then listed_on, but "
+        r"forks\[0\] \(the fork at line-b, listed on 2026-11-03\) comes before this entry "
+        r"for line-a",
+    ):
+        load_lineage_baseline(_write(tmp_path, text))
+
+
 def test_a_forks_later_entries_are_kept_in_order_and_merged(tmp_path: Path) -> None:
     baseline = load_lineage_baseline(_write(tmp_path, _DATED))
     assert baseline.forks == {
