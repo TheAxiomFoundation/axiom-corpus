@@ -8,7 +8,17 @@ Invariants:
 - along a line of cuts, a pair that leaves is reported at the cut it leaves;
 - a predecessor named by two or more selectors is a fork, unless a pinned
   record lists exactly those successors;
-- a record holds only for the exact selectors it pins.
+- a selector that names a fork's successor the line did not continue through is
+  reported;
+- a selector that names no tracked predecessor is reported unless a pinned
+  record says it is the first cut of a line;
+- selectors that name each other in a cycle are reported;
+- a record holds only for the exact selectors it pins, and a record that no
+  longer matches a finding fails.
+
+The comparison is per pair: a pair the successor still carries is not a drop,
+even when one of its documents leaves (``test_a_document_can_leave_a_kept_pair``
+pins that limit).
 
 The differential test holds the check's grouping of scopes into pairs to the
 activation gate's (``scripts/check_release_gate.py``), so the pairs the check
@@ -31,15 +41,21 @@ from axiom_corpus.corpus.models import DocumentClass
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, ScopeKey
 from axiom_corpus.corpus.selector_lineage import (
     LINEAGE_BASELINE_SCHEMA,
+    Cycle,
     DroppedPair,
+    EndedBranch,
     Fork,
     LineageBaseline,
+    LineageReport,
     RecordedDrop,
+    RecordedFirstCut,
     RecordedFork,
     SelectorLineageError,
+    UnnamedPredecessor,
     check_selector_lineage,
     declared_predecessor,
     dropped_pairs,
+    lineage_cycles,
     load_lineage_baseline,
     pair_versions,
 )
@@ -67,6 +83,7 @@ _VERSIONS = st.sampled_from(
 )
 _SCOPE_KEYS = st.tuples(_JURISDICTIONS, _CLASSES, _VERSIONS)
 _SCOPE_SETS = st.frozensets(_SCOPE_KEYS, min_size=1, max_size=10)
+_ONE_SCOPE = [("us", "statute", "2026-10-25-a")]
 
 
 def _selector(
@@ -91,6 +108,32 @@ def _pin(*releases: ReleaseManifest) -> dict[str, str]:
     return {release.name: selector_sha256(release) for release in releases}
 
 
+def _first_cuts(*releases: ReleaseManifest) -> dict[str, RecordedFirstCut]:
+    return {
+        release.name: RecordedFirstCut(release.name, "2026-11-02", "first cut")
+        for release in releases
+    }
+
+
+def _baseline(
+    *roots: ReleaseManifest,
+    pinned: Iterable[ReleaseManifest] = (),
+    drops: dict[tuple[str, tuple[str, str]], RecordedDrop] | None = None,
+    forks: dict[str, RecordedFork] | None = None,
+) -> LineageBaseline:
+    """A baseline that records ``roots`` as first cuts and pins them and ``pinned``."""
+    return LineageBaseline(
+        selector_digests=_pin(*roots, *pinned),
+        drops=drops or {},
+        forks=forks or {},
+        first_cuts=_first_cuts(*roots),
+    )
+
+
+def _check(*selectors: ReleaseManifest, baseline: LineageBaseline | None = None) -> LineageReport:
+    return check_selector_lineage({s.name: s for s in selectors}, baseline)
+
+
 # --- the brief's property: a pair's last version never disappears unnamed ---
 
 
@@ -101,7 +144,7 @@ def test_a_pairs_last_version_never_leaves_without_a_report(
 ) -> None:
     predecessor = _selector("line-2026-01-01", before)
     successor = _successor("line-2026-02-01", predecessor.name, after)
-    report = check_selector_lineage({s.name: s for s in (predecessor, successor)})
+    report = _check(predecessor, successor, baseline=_baseline(predecessor))
 
     reported = {finding.pair for finding in report.dropped}
     assert reported == _pairs(before) - _pairs(after)
@@ -124,8 +167,9 @@ def test_a_pinned_record_allows_exactly_the_drops_it_names(
     lost = sorted(_pairs(before) - _pairs(after))
     recorded = set(data.draw(st.lists(st.sampled_from(lost), unique=True)) if lost else [])
     replaced_by = tuple(sorted(after))[:1]
-    baseline = LineageBaseline(
-        selector_digests=_pin(predecessor, successor),
+    baseline = _baseline(
+        predecessor,
+        pinned=[successor],
         drops={
             (successor.name, pair): RecordedDrop(
                 successor.name, predecessor.name, pair, "2026-11-02", "decided", replaced_by
@@ -133,7 +177,7 @@ def test_a_pinned_record_allows_exactly_the_drops_it_names(
             for pair in recorded
         },
     )
-    report = check_selector_lineage({s.name: s for s in (predecessor, successor)}, baseline)
+    report = _check(predecessor, successor, baseline=baseline)
 
     assert {finding.pair for finding in report.recorded_drops} == recorded
     assert {finding.pair for finding in report.dropped} == set(lost) - recorded
@@ -149,7 +193,7 @@ def test_along_a_line_a_pair_is_reported_at_the_cut_it_leaves(
     cuts = [_selector("line-cut-0", line[0])]
     for index, keys in enumerate(line[1:], start=1):
         cuts.append(_successor(f"line-cut-{index}", cuts[-1].name, keys))
-    report = check_selector_lineage({cut.name: cut for cut in cuts})
+    report = _check(*cuts, baseline=_baseline(cuts[0]))
     reported = {(finding.selector, finding.pair) for finding in report.dropped}
 
     for index in range(1, len(cuts)):
@@ -162,52 +206,94 @@ def test_along_a_line_a_pair_is_reported_at_the_cut_it_leaves(
     for start in range(len(cuts) - 1):
         for pair in _pairs(line[start]) - _pairs(line[-1]):
             assert any((cuts[step].name, pair) in reported for step in range(start + 1, len(cuts)))
-    assert report.forks == ()
+    assert report.forks == () and report.unnamed == () and report.cycles == ()
 
 
 @_SETTINGS
-@given(parents=st.lists(st.one_of(st.none(), st.integers(min_value=0)), min_size=1, max_size=12))
-def test_a_predecessor_named_by_several_selectors_is_a_fork(
-    parents: list[int | None],
+@given(
+    parents=st.lists(st.one_of(st.none(), st.integers(min_value=0)), min_size=1, max_size=12),
+    data=st.data(),
+)
+def test_forks_and_ended_branches_follow_the_named_predecessors(
+    parents: list[int | None], data: st.DataObject
 ) -> None:
     selectors: list[ReleaseManifest] = []
+    roots: list[ReleaseManifest] = []
     named: dict[str, list[str]] = {}
     for index, parent in enumerate(parents):
         name = f"tree-cut-{index}"
         if parent is None or index == 0:
-            selectors.append(_selector(name, [("us", "statute", "2026-10-25-a")]))
+            roots.append(_selector(name, _ONE_SCOPE))
+            selectors.append(roots[-1])
             continue
         predecessor = selectors[parent % index].name
         named.setdefault(predecessor, []).append(name)
-        selectors.append(_successor(name, predecessor, [("us", "statute", "2026-10-25-a")]))
-    report = check_selector_lineage({s.name: s for s in selectors})
+        selectors.append(_successor(name, predecessor, _ONE_SCOPE))
 
     expected = {
         predecessor: tuple(sorted(successors))
         for predecessor, successors in named.items()
         if len(successors) > 1
     }
-    assert {fork.predecessor: fork.successors for fork in report.forks} == expected
-    assert report.dropped == ()
+    unrecorded = _check(*selectors, baseline=_baseline(*roots))
+    assert {fork.predecessor: fork.successors for fork in unrecorded.forks} == expected
+    assert unrecorded.dropped == () and unrecorded.ended_branches == ()
 
-    pinned = (
-        LineageBaseline(
-            selector_digests=_pin(*selectors),
+    continued = {
+        predecessor: tuple(sorted(data.draw(st.sets(st.sampled_from(successors), min_size=1))))
+        for predecessor, successors in expected.items()
+    }
+    recorded = _check(
+        *selectors,
+        baseline=_baseline(
+            *roots,
+            pinned=selectors,
             forks={
-                predecessor: RecordedFork(predecessor, successors, "2026-11-02", "the line splits")
+                predecessor: RecordedFork(
+                    predecessor, successors, continued[predecessor], "2026-11-02", "split"
+                )
                 for predecessor, successors in expected.items()
             },
-        )
-        if expected
-        else LineageBaseline()
+        ),
     )
-    if pinned.forks:
-        # Unused digests are a loader error, not a check error; the check only
-        # needs every named selector pinned.
-        recorded = check_selector_lineage({s.name: s for s in selectors}, pinned)
-        assert recorded.forks == ()
-        assert {fork.predecessor for fork in recorded.recorded_forks} == set(expected)
-        assert recorded.ok
+    ended = {
+        (extension, branch)
+        for predecessor, successors in expected.items()
+        for branch in set(successors) - set(continued[predecessor])
+        for extension in named.get(branch, [])
+    }
+    assert recorded.forks == ()
+    assert {fork.predecessor for fork in recorded.recorded_forks} == set(expected)
+    assert {(b.selector, b.predecessor) for b in recorded.ended_branches} == ended
+    assert recorded.ok == (not ended)
+
+
+@_SETTINGS
+@given(named=st.lists(st.booleans(), min_size=1, max_size=8), data=st.data())
+def test_a_selector_naming_no_predecessor_needs_a_first_cut_record(
+    named: list[bool], data: st.DataObject
+) -> None:
+    head = _selector("head-cut", _ONE_SCOPE)
+    others = [
+        _successor(f"cut-{index}", "head-cut", _ONE_SCOPE)
+        if names_head
+        else _selector(f"cut-{index}", _ONE_SCOPE, "A cut that names nothing tracked.")
+        for index, names_head in enumerate(named)
+    ]
+    roots = [
+        head,
+        *(other for other, names_head in zip(others, named, strict=True) if not names_head),
+    ]
+    recorded = data.draw(st.sets(st.sampled_from([root.name for root in roots])))
+    baseline = LineageBaseline(
+        selector_digests=_pin(*roots),
+        first_cuts=_first_cuts(*(root for root in roots if root.name in recorded)),
+    )
+    report = _check(head, *others, baseline=baseline)
+    assert {finding.selector for finding in report.unnamed} == {
+        root.name for root in roots
+    } - recorded
+    assert set(report.recorded_first_cuts) == recorded
 
 
 @_SETTINGS
@@ -237,6 +323,28 @@ def test_dropped_pairs_is_the_set_difference_of_pairs(
         assert versions == {key[2] for key in before if key[:2] == pair}
 
 
+@_SETTINGS
+@given(targets=st.lists(st.integers(min_value=0, max_value=7), min_size=1, max_size=8))
+def test_cycles_are_found_once_each(targets: list[int]) -> None:
+    """Each selector names at most one predecessor, so a walk finds every cycle."""
+    names = [f"cyc-{index}" for index in range(len(targets))]
+    predecessors = {
+        name: (names[target] if target < len(names) and target != index else None)
+        for index, (name, target) in enumerate(zip(names, targets, strict=True))
+    }
+    expected = set()
+    for start in names:
+        seen: list[str] = []
+        node: str | None = start
+        while node is not None and node not in seen:
+            seen.append(node)
+            node = predecessors[node]
+        if node is not None:
+            expected.add(tuple(sorted(seen[seen.index(node) :])))
+    assert set(lineage_cycles(predecessors)) == expected
+    assert len(lineage_cycles(predecessors)) == len(expected)
+
+
 # --- the predecessor a description names ---
 
 
@@ -249,6 +357,7 @@ def test_dropped_pairs_is_the_set_difference_of_pairs(
         ("Everything in (line-b) plus line-a.", "line-b"),
         ("Successor to line-a-r2, which is not tracked, then line-b.", "line-b"),
         ("Re-cut of self-cut that keeps line-a.", "line-a"),
+        ("Successor to LINE-A, written in capitals.", None),
         ("No other selector is named here.", None),
         (None, None),
     ],
@@ -256,7 +365,7 @@ def test_dropped_pairs_is_the_set_difference_of_pairs(
 def test_the_predecessor_is_the_first_tracked_selector_named(
     description: str | None, expected: str | None
 ) -> None:
-    release = _selector("self-cut", [("us", "statute", "2026-10-25-a")], description)
+    release = _selector("self-cut", _ONE_SCOPE, description)
     assert declared_predecessor(release, {"line-a", "line-b", "self-cut"}) == expected
 
 
@@ -278,12 +387,12 @@ _MT = _NYC + [
 ]
 
 
-def test_replacing_a_pairs_version_is_not_a_drop_but_leaving_the_pair_is() -> None:
+def test_leaving_a_pair_is_a_drop() -> None:
     ssi = _selector("pin-ssi", _PIN)
     nyc = _successor("pin-nyc", "pin-ssi", _NYC)
     mt = _successor("pin-mt", "pin-nyc", _MT)
     stale = _successor("pin-stale", "pin-mt", _NYC)
-    report = check_selector_lineage({s.name: s for s in (ssi, nyc, mt, stale)})
+    report = _check(ssi, nyc, mt, stale, baseline=_baseline(ssi))
     assert report.dropped == (
         DroppedPair(
             "pin-stale", "pin-mt", ("us-mt", "form"), ("2026-10-06-w6-income-tax-forms-mt",)
@@ -293,14 +402,82 @@ def test_replacing_a_pairs_version_is_not_a_drop_but_leaving_the_pair_is() -> No
     assert report.forks == ()
 
 
+def test_a_document_can_leave_a_kept_pair() -> None:
+    """The limit of a per-pair check: a kept pair hides a document that leaves it.
+
+    pin-stale keeps us-mt/statute through its 2026-07-13 recovery scope, so
+    losing the separate-filing text is not a finding. Swapping one NYC
+    Administrative Code version for another is not one either.
+    """
+    mt = _selector("pin-mt", _MT)
+    stale = _successor("pin-stale", "pin-mt", [*_NYC, ("us-mt", "form", "2026-10-06-w6-forms")])
+    report = _check(mt, stale, baseline=_baseline(mt))
+    assert ("us-mt", "statute", "2026-10-25-mt-separate-filing-dated-authority") not in set(
+        stale.scope_keys
+    )
+    assert report.ok
+
+    nyc = _selector("pin-nyc", _NYC)
+    swapped = [key for key in _NYC if key[0] != "us-ny"] + [("us-ny", "statute", "2027-01-01")]
+    assert _check(nyc, _successor("pin-next", "pin-nyc", swapped), baseline=_baseline(nyc)).ok
+
+
 def test_a_cut_from_a_superseded_base_is_a_fork() -> None:
     ssi = _selector("pin-ssi", _PIN)
     nyc = _successor("pin-nyc", "pin-ssi", _NYC)
     ks = _successor("pin-ks", "pin-ssi", [*_PIN, ("us-ks", "policy", "2026-10-02-plan")])
-    report = check_selector_lineage({s.name: s for s in (ssi, nyc, ks)})
+    report = _check(ssi, nyc, ks, baseline=_baseline(ssi))
     assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-nyc")),)
     assert report.dropped == ()
     assert "2 selectors name pin-ssi as their predecessor" in report.problems()[0]
+
+
+def test_extending_a_branch_the_line_did_not_continue_is_refused() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _successor("pin-ks", "pin-ssi", _PIN)
+    follow = _successor("pin-ks-followup", "pin-ks", _PIN)
+    head = _successor("pin-mt", "pin-nyc", _MT)
+    fork = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
+    baseline = _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": fork})
+    assert _check(ssi, nyc, ks, head, baseline=baseline).ok
+
+    report = _check(ssi, nyc, ks, head, follow, baseline=baseline)
+    assert report.ended_branches == (
+        EndedBranch("pin-ks-followup", "pin-ks", "pin-ssi", ("pin-nyc",)),
+    )
+    assert report.problems() == [
+        "pin-ks-followup names pin-ks, a branch of the fork at pin-ssi that the line did "
+        "not continue: it continued through pin-nyc"
+    ]
+
+
+def test_a_selector_that_names_nothing_tracked_is_compared_with_nothing() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    unnamed = _selector("pin-ks-r2", _PIN, "Kansas LIHEAP pin for rulespec-us; do not activate.")
+    report = _check(ssi, unnamed, baseline=_baseline(ssi))
+    assert report.unnamed == (UnnamedPredecessor("pin-ks-r2"),)
+    assert report.recorded_first_cuts == ("pin-ssi",)
+    assert not report.ok
+
+
+def test_a_first_cut_record_for_a_selector_that_names_a_predecessor_is_stale() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    report = _check(ssi, nyc, baseline=_baseline(ssi, nyc))
+    assert report.baseline_errors == (
+        "the baseline records pin-nyc as the first cut of a line, but its description "
+        "names pin-ssi",
+    )
+
+
+def test_selectors_naming_each_other_are_a_cycle() -> None:
+    a = _selector("cyc-a", _PIN, "Successor to cyc-b.")
+    b = _selector("cyc-b", _PIN, "Successor to cyc-a.")
+    report = _check(a, b)
+    assert report.cycles == (Cycle(("cyc-a", "cyc-b")),)
+    assert report.unnamed == () and report.dropped == ()
+    assert "cyc-a, cyc-b name each other as predecessors" in report.problems()[0]
 
 
 # --- records hold only for the exact selectors they pin ---
@@ -325,10 +502,11 @@ def _record(**changes: object) -> RecordedDrop:
 
 def test_a_record_for_an_edited_selector_no_longer_holds() -> None:
     mt, stale = _drop_case()
-    digests = _pin(mt, stale)
+    baseline = _baseline(mt, pinned=[stale], drops={("pin-stale", ("us-mt", "form")): _record()})
+    digests = dict(baseline.selector_digests)
     digests["pin-stale"] = "0" * 64
-    baseline = LineageBaseline(digests, {("pin-stale", ("us-mt", "form")): _record()})
-    report = check_selector_lineage({s.name: s for s in (mt, stale)}, baseline)
+    edited = LineageBaseline(digests, baseline.drops, first_cuts=baseline.first_cuts)
+    report = _check(mt, stale, baseline=edited)
     assert [finding.pair for finding in report.dropped] == [("us-mt", "form")]
     assert any("digest is" in error for error in report.baseline_errors)
 
@@ -336,8 +514,8 @@ def test_a_record_for_an_edited_selector_no_longer_holds() -> None:
 def test_a_record_must_name_replacements_the_selector_selects() -> None:
     mt, stale = _drop_case()
     replaced = _record(replaced_by=(("us-mt", "guidance", "2026-10-06-w6"),))
-    baseline = LineageBaseline(_pin(mt, stale), {("pin-stale", ("us-mt", "form")): replaced})
-    report = check_selector_lineage({s.name: s for s in (mt, stale)}, baseline)
+    drops = {("pin-stale", ("us-mt", "form")): replaced}
+    report = _check(mt, stale, baseline=_baseline(mt, pinned=[stale], drops=drops))
     assert [finding.pair for finding in report.dropped] == [("us-mt", "form")]
     assert report.baseline_errors == (
         "the baseline names us-mt/guidance/2026-10-06-w6 as replacing us-mt/form in "
@@ -345,19 +523,57 @@ def test_a_record_must_name_replacements_the_selector_selects() -> None:
     )
 
     carried = _successor("pin-stale", "pin-mt", [*_NYC, ("us-mt", "guidance", "2026-10-06-w6")])
-    baseline = LineageBaseline(_pin(mt, carried), {("pin-stale", ("us-mt", "form")): replaced})
-    report = check_selector_lineage({s.name: s for s in (mt, carried)}, baseline)
+    report = _check(mt, carried, baseline=_baseline(mt, pinned=[carried], drops=drops))
     assert report.ok and [f.pair for f in report.recorded_drops] == [("us-mt", "form")]
 
 
 def test_a_record_that_matches_no_drop_is_stale() -> None:
     mt = _selector("pin-mt", _MT)
     keeps = _successor("pin-stale", "pin-mt", _MT)
-    baseline = LineageBaseline(_pin(mt, keeps), {("pin-stale", ("us-mt", "form")): _record()})
-    report = check_selector_lineage({s.name: s for s in (mt, keeps)}, baseline)
+    drops = {("pin-stale", ("us-mt", "form")): _record()}
+    report = _check(mt, keeps, baseline=_baseline(mt, pinned=[keeps], drops=drops))
     assert report.baseline_errors == (
         "the baseline records pin-stale dropping us-mt/form from pin-mt, but it does not "
         "drop that pair",
+    )
+
+
+def test_a_record_holds_only_for_the_predecessor_the_description_names() -> None:
+    """The digest leaves out the description, so the record pins the predecessor too."""
+    mt, _ = _drop_case()
+    other = _selector("pin-other", _MT)
+    lacking = _selector("pin-lacking", _NYC)
+    drops = {("pin-stale", ("us-mt", "form")): _record()}
+    for prior in (other, lacking):
+        moved = _successor("pin-stale", prior.name, _NYC)
+        report = _check(
+            mt, prior, moved, baseline=_baseline(mt, prior, pinned=[moved], drops=drops)
+        )
+        expected = (
+            [
+                DroppedPair(
+                    "pin-stale",
+                    "pin-other",
+                    ("us-mt", "form"),
+                    ("2026-10-06-w6-income-tax-forms-mt",),
+                )
+            ]
+            if prior is other
+            else []
+        )
+        assert list(report.dropped) == expected
+        assert report.baseline_errors == (
+            "the baseline records pin-stale dropping us-mt/form from pin-mt, but pin-stale "
+            f"names {prior.name} as its predecessor",
+        )
+
+
+def test_a_record_for_an_untracked_selector_fails() -> None:
+    mt, stale = _drop_case()
+    baseline = _baseline(mt, pinned=[stale], drops={("pin-stale", ("us-mt", "form")): _record()})
+    report = _check(mt, baseline=baseline)
+    assert report.baseline_errors == (
+        "the baseline pins pin-stale, which is not a tracked selector",
     )
 
 
@@ -366,15 +582,19 @@ def test_a_fork_record_holds_only_for_the_successors_it_lists() -> None:
     nyc = _successor("pin-nyc", "pin-ssi", _NYC)
     ks = _successor("pin-ks", "pin-ssi", _PIN)
     late = _successor("pin-late", "pin-ssi", _PIN)
-    record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), "2026-11-02", "the line splits")
-    selectors = {s.name: s for s in (ssi, nyc, ks)}
-    assert check_selector_lineage(
-        selectors, LineageBaseline(_pin(ssi, nyc, ks), forks={"pin-ssi": record})
+    record = RecordedFork(
+        "pin-ssi", ("pin-ks", "pin-nyc"), ("pin-ks", "pin-nyc"), "2026-11-02", "the line splits"
+    )
+    assert _check(
+        ssi, nyc, ks, baseline=_baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": record})
     ).ok
 
-    selectors[late.name] = late
-    report = check_selector_lineage(
-        selectors, LineageBaseline(_pin(ssi, nyc, ks, late), forks={"pin-ssi": record})
+    report = _check(
+        ssi,
+        nyc,
+        ks,
+        late,
+        baseline=_baseline(ssi, pinned=[nyc, ks, late], forks={"pin-ssi": record}),
     )
     assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-late", "pin-nyc")),)
     assert report.baseline_errors == (
@@ -393,6 +613,7 @@ def test_selectors_must_be_keyed_by_their_names() -> None:
 _DIGEST_A = "a" * 64
 _DIGEST_B = "b" * 64
 _DIGEST_C = "c" * 64
+_DIGEST_D = "d" * 64
 
 _VALID = f"""\
 schema_version: {LINEAGE_BASELINE_SCHEMA}
@@ -400,6 +621,7 @@ selector_digests:
   line-a: {_DIGEST_A}
   line-b: {_DIGEST_B}
   line-c: {_DIGEST_C}
+  line-d: {_DIGEST_D}
 dropped_pairs:
   - selector: line-b
     predecessor: line-a
@@ -412,8 +634,15 @@ forks:
     successors:
       - line-b
       - line-c
+    continued_by:
+      - line-c
     listed_on: 2026-11-02
     reason: The line splits.
+first_cuts:
+  - listed_on: 2026-11-02
+    reason: The first cut of its line.
+    selectors:
+      - line-d
 """
 
 
@@ -429,6 +658,7 @@ def test_the_baseline_file_parses(tmp_path: Path) -> None:
         "line-a": _DIGEST_A,
         "line-b": _DIGEST_B,
         "line-c": _DIGEST_C,
+        "line-d": _DIGEST_D,
     }
     assert baseline.drops == {
         ("line-b", ("uk-shropshire", "manual")): RecordedDrop(
@@ -436,7 +666,12 @@ def test_the_baseline_file_parses(tmp_path: Path) -> None:
         )
     }
     assert baseline.forks == {
-        "line-a": RecordedFork("line-a", ("line-b", "line-c"), "2026-11-02", "The line splits.")
+        "line-a": RecordedFork(
+            "line-a", ("line-b", "line-c"), ("line-c",), "2026-11-02", "The line splits."
+        )
+    }
+    assert baseline.first_cuts == {
+        "line-d": RecordedFirstCut("line-d", "2026-11-02", "The first cut of its line.")
     }
 
 
@@ -450,12 +685,17 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
         (f"schema_version: {LINEAGE_BASELINE_SCHEMA}", "schema_version: v0", "schema_version"),
         ("selector_digests:", "extra: 1\nselector_digests:", "unsupported fields"),
         (
+            "selector_digests:",
+            "extra: 1\n2026: x\nselector_digests:",
+            r"unsupported fields \[2026, 'extra'\]",
+        ),
+        (
             f"  line-a: {_DIGEST_A}\n  line-b",
             f"  line-b: {_DIGEST_B}\n  line-a: {_DIGEST_A}\n  line-x",
             "sorted",
         ),
         (f"  line-c: {_DIGEST_C}\n", "", "line-c has no selector_digests entry"),
-        (f"  line-c: {_DIGEST_C}\n", f"  line-c: {_DIGEST_C}\n  line-d: {_DIGEST_C}\n", "unused"),
+        (f"  line-d: {_DIGEST_D}\n", f"  line-d: {_DIGEST_D}\n  line-e: {_DIGEST_D}\n", "unused"),
         (f"line-a: {_DIGEST_A}", "line-a: not-a-digest", "sha256"),
         ("pair: uk-shropshire/manual", "pair: uk-shropshire", "jurisdiction/document_class"),
         ("pair: uk-shropshire/manual", "pair: uk-shropshire/leaflet", "document_class"),
@@ -464,7 +704,12 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
             "    listed_on: soon\n    reason: >-",
             "ISO date",
         ),
-        ("    reason: >-\n      Retired by omission.\n", "", "missing ['reason']"),
+        ("    reason: >-\n      Retired by omission.\n", "", r"missing \['reason'\]"),
+        (
+            "    pair: uk-shropshire/manual\n",
+            "    pair: uk-shropshire/manual\n    replaced-by: [uk/manual/v1]\n",
+            r"dropped_pairs\[0\]: unsupported fields \['replaced-by'\]",
+        ),
         (
             "    predecessor: line-a\n    pair",
             "    predecessor: line-b\n    pair",
@@ -473,6 +718,12 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
         ("      - line-b\n      - line-c", "      - line-c\n      - line-b", "sorted"),
         ("      - line-b\n      - line-c", "      - line-b", "at least two"),
         ("    reason: The line splits.", "    note: The line splits.", "must have exactly"),
+        ("    continued_by:\n      - line-c", "    continued_by: []", "continued_by must name"),
+        (
+            "    continued_by:\n      - line-c",
+            "    continued_by:\n      - line-d",
+            "only successors",
+        ),
         (
             "    pair: uk-shropshire/manual\n",
             "    pair: uk-shropshire/manual\n    replaced_by: uk/manual/x\n",
@@ -483,11 +734,18 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
             "    pair: uk-shropshire/manual\n    replaced_by: [uk/manual]\n",
             "jurisdiction/document_class/version",
         ),
+        ("    selectors:\n      - line-d", "    selectors: []", "at least one selector"),
+        (
+            "    selectors:\n      - line-d",
+            "    selectors:\n      - line-d\n      - line-d",
+            "sorted",
+        ),
+        ("    reason: The first cut of its line.", "    note: x", "must have exactly"),
     ],
 )
 def test_a_malformed_baseline_is_refused(tmp_path: Path, old: str, new: str, message: str) -> None:
     assert old in _VALID, old
-    with pytest.raises(SelectorLineageError, match=message.replace("[", r"\[").replace("]", r"\]")):
+    with pytest.raises(SelectorLineageError, match=message):
         load_lineage_baseline(_write(tmp_path, _VALID.replace(old, new, 1)))
 
 
@@ -498,3 +756,9 @@ def test_a_duplicate_drop_record_is_refused(tmp_path: Path) -> None:
         SelectorLineageError, match="dropped_pairs .* sorted and free of duplicates"
     ):
         load_lineage_baseline(_write(tmp_path, text))
+
+
+def test_a_first_cut_listed_in_two_groups_is_refused(tmp_path: Path) -> None:
+    group = _VALID.split("first_cuts:\n", 1)[1]
+    with pytest.raises(SelectorLineageError, match="line-d is listed twice"):
+        load_lineage_baseline(_write(tmp_path, _VALID + group))

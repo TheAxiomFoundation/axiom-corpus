@@ -149,22 +149,26 @@ consumers are affected:
   `20260718193000_scope_level_activation.sql`, line 156).
 
 `axiom_corpus.corpus.selector_lineage` checks the selector files alone, with no
-corpus, database or git history. A selector's **predecessor** is the first
-tracked selector its description names ("Successor to <name>", "after <name>",
-"<name>'s scope set"). Every successor on main names its predecessor first. The
-check fails on:
+corpus, database or git history, in the required `test (3.14)` job
+(`tests/test_selector_lineage_repository.py`). A selector's **predecessor** is
+the first tracked selector its description names ("Successor to <name>",
+"after <name>", "<name>'s scope set"). The check fails on:
 
 | Finding | Rule |
 | --- | --- |
 | dropped pair | the selector selects no version of a pair its predecessor carries, so the pair's last version leaves the line |
 | fork | two or more selectors name the same predecessor, so at most one of them is the newest cut of the line |
+| ended branch | the selector names a successor of a recorded fork that the line did not continue through |
+| unnamed predecessor | the description names no tracked selector, and no record says the selector is the first cut of a line |
+| cycle | selectors name each other as predecessors |
 
-A new version of a pair counts as its replacement: swapping
-`us-ny/statute/2026-06-05-nyc-admin-code` for `2026-09-28-nyc-admin-code` is not
-a drop. Which versions a release may move between at activation is the
-`scope_monotonicity` check of `scripts/check_release_gate.py`. A selector whose
-description names no tracked selector is the first of its line and is not
-compared.
+The comparison is per pair. A pair the successor still carries, with any of its
+versions, is not a drop: swapping `us-ny/statute/2026-06-05-nyc-admin-code` for
+`2026-09-28-nyc-admin-code` is not one, and neither is one document leaving a
+pair that keeps others. The activation gate's `scope_monotonicity` check
+(`scripts/check_release_gate.py`) compares only a pair's newest version, so it
+does not report that second case either. The fork and ended-branch rules catch
+the way it happened in #935, a cut from a stale base.
 
 It compares a cut with its own predecessor because that is the claim every cut
 already makes ("It preserves every prior scope"), and the check makes it
@@ -184,37 +188,64 @@ mechanical. Other comparisons fail:
   `us-rulespec-2026-10-25-ssi-poms-public-laws`, `-nyc-ch127-title-52` and
   `-mt-separate-filing` had moved the line on, and still named
   `us-rulespec-2026-10-22-ca-concurrent-versions`, which the SSI POMS cut already
-  succeeded. Neither branch carries the other's additions.
+  succeeded. Neither branch carries the other's additions. Once such a fork is
+  recorded, the ended-branch rule refuses a cut that extends its dead branch.
+- A cut that names no tracked selector would be compared with nothing, so the
+  check fails closed: it has to name its predecessor, or be recorded as the
+  first cut of a line.
 
-At main `980e39792` the check reads 161 selectors. 61 name a predecessor and
-100 name none. It reports one dropped pair (`uk-rulespec-2026-08-02` retires the
-`uk-shropshire` manual by omission, as its description says) and six forks.
-None of the three 2026-10-25 cuts drops a pair. They form a line: SSI POMS,
-then NYC chapter 127 and Title 52, then Montana separate filing.
+At main `980e39792` the check reads 161 selectors. 61 name another tracked
+selector, and in each the first one named is its predecessor. The other 100
+name none: they are first cuts of their lines, or describe their predecessor
+without naming it, as the UK cuts of 2026-08-08 to 2026-09-07 ("2026-08-07 set
+plus ...") and the DE Kindergeld cuts do. It reports one dropped pair
+(`uk-rulespec-2026-08-02` retires the `uk-shropshire` manual by omission, as its
+description says) and six forks. None of the three 2026-10-25 cuts drops a
+pair. They form a line: SSI POMS, then NYC chapter 127 and Title 52, then
+Montana separate filing.
 
-`manifests/selector-lineage-baseline.yaml` records the drops and forks that are
-allowed. Every selector an entry names is pinned to its digest
+`manifests/selector-lineage-baseline.yaml` records what is allowed. Every
+selector an entry names is pinned to its digest
 (`axiom_corpus.release.manifest.selector_sha256`) under `selector_digests`, so
-an entry holds only for those exact selectors. A drop entry names the
-`selector`, its `predecessor` and the `pair`, and may list under `replaced_by`
-the scopes the selector selects that carry the pair's text; its `reason` says
-why nothing does when nothing does. A fork entry lists every selector that names
-the `predecessor`, and a further successor is a new fork. Each entry has
-`listed_on` and a `reason`. The entries listed on 2026-11-02 are the drop and
-forks main held when the check began, and
-`tests/test_selector_lineage_repository.py` fixes that set. An entry that no
-longer matches a finding, or whose pinned selector changed, fails the check.
+an entry holds only for those exact selectors:
+
+- `dropped_pairs`: the `selector`, its `predecessor` and the `pair`, with
+  `replaced_by` listing the scopes the selector selects that carry the pair's
+  text, or a `reason` that says why nothing does;
+- `forks`: every selector that names the `predecessor` (a further successor is a
+  new fork), and under `continued_by` the ones the line went on through;
+- `first_cuts`: selectors that name no tracked predecessor.
+
+Each entry has `listed_on` and a `reason`. The entries listed on 2026-11-02 are
+what main held when the check began: the drop, the six forks and the 100 first
+cuts, and the repository test fixes that set. An entry that no longer matches a
+finding, or whose pinned selector changed, fails the check. The digest leaves
+out the description, so a drop entry also names the predecessor it was written
+for.
+
+What the check does not catch:
+
+- a document leaving a pair the cut still carries (above);
+- a cut that names a selector another cut superseded without naming it: a new
+  UK cut that names `uk-rulespec-2026-08-07` is compared with it, not with
+  `uk-rulespec-2026-11-02-uc-retirement-pension-income`, because the cuts from
+  2026-08-08 to 2026-09-07 describe their predecessors without naming them;
+- a description that names some other selector before its predecessor: the
+  check compares the cut with that selector instead, so it reports what that
+  selector carries and the cut lacks, and misses what the real predecessor
+  carries.
 
 ### Cutting a successor
 
 1. Find the newest selector of the line, the one no tracked selector names
    yet, and derive the cut from it.
-2. Name it first in the description: `Successor to <name>.`
+2. Name it first in the description: `Successor to <name>.` A selector that
+   starts a new line is recorded under `first_cuts` instead.
 3. Run `uv run --extra dev python -m pytest -q tests/test_selector_lineage_repository.py`.
    A failure prints the finding and the baseline entry that would record it.
 
-Dropping a pair, or splitting a line, is a release decision: record it with
-its reason and review it as one.
+Dropping a pair, splitting a line or starting one is a release decision:
+record it with its reason and review it as one.
 
 ## Content check
 
