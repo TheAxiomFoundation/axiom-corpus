@@ -548,6 +548,21 @@ the labels character by character in both directions, so labels swapped between
 words or inside a word (a struck and an inserted digit) fail, and so does a word
 that moves and changes label.
 
+Before changing the classifier or the reader, measure the change on every
+fetched PDF with `scripts/sweep_pdf_amendment_markup.py`. It reads every page
+twice, with the extractor at a base git ref and with the working tree, both with
+and without `amendment_markup: true` on every page, and sorts each page into one
+outcome: identical, fixed (the base refuses the page and the working tree marks
+it), marks removed, added or changed, refused, or a changed default text. It
+exits 0 only when no page changes in a way that `--allow` does not name, and
+lists every page that is not identical in `details.jsonl`:
+
+```bash
+uv run axiom-corpus-ingest corpus fetch --all
+uv run python scripts/sweep_pdf_amendment_markup.py run \
+  --base-ref origin/main --out-dir ~/.axiom/workspace/amendment-markup-sweep --workers 4
+```
+
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.
 
