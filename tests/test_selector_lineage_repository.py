@@ -955,11 +955,17 @@ def _assert_the_advice_is_sound(
             changed = [n for n in (finding.predecessor, finding.selector) if n in stale]
             if (finding.selector, finding.pair) in baseline.drops:
                 expected = broken
-            elif changed:
-                them = "it" if len(changed) == 1 else "them"
+            elif len(changed) == 1:
                 expected = (
-                    f"{' and '.join(changed)} changed since the baseline pinned {them}, and this "
-                    "drop may follow from"
+                    f"{changed[0]} changed since the baseline pinned it, and this drop may follow "
+                    "from that change: undo the change the baseline errors below describe, then "
+                    "run the check again"
+                )
+            elif changed:
+                expected = (
+                    f"{' and '.join(changed)} changed since the baseline pinned them, and this drop "
+                    "may follow from those changes: undo the changes the baseline errors below "
+                    "describe, then run the check again"
                 )
             else:
                 expected = f"Keep a version of {pair_label(finding.pair)}, or record"
