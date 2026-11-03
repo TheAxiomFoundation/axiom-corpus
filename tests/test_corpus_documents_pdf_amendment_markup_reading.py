@@ -339,6 +339,18 @@ def test_a_page_whose_markup_cannot_be_read_back_is_a_runtime_error(
 # 2. The layered path on a page with drawn rules ----------------------------------
 
 
+class _NoObjectsPdf:
+    """The PDF of a fake page: every key reads as null, so it has no annotations."""
+
+    is_pdf = True
+
+    def xref_length(self) -> int:
+        return 1
+
+    def xref_get_key(self, xref: int, key: str) -> tuple[str, str]:
+        return "null", "null"
+
+
 class _RuledPage:
     """One text block whose characters carry the strike and underline rules drawn for them.
 
@@ -349,6 +361,9 @@ class _RuledPage:
     rule at ``UNDERLINE_OFFSET``; whitespace gets none, as the classifier skips
     it. The plain text is PyMuPDF's printer on the same characters.
     """
+
+    xref = 0
+    parent = _NoObjectsPdf()
 
     def __init__(self, lines: list[list[tuple[str, str | None]]]) -> None:
         self.lines = lines

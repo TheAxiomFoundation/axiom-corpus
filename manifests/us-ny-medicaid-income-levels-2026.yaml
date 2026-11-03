@@ -1,0 +1,82 @@
+version: 2026-10-20-w8-ny-medicaid
+documents:
+- source_id: us-ny-nysoh-income-levels-medicaid-chplus-ep-2026
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 2026 Income Levels for Medicaid, Child Health Plus and Essential Plan
+  source_url: https://info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid%2C%20CHPlus%20%26%20EP.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2026-01-01'
+  citation_path: us-ny/guidance/nysoh/income-levels/2026-medicaid-child-health-plus-essential-plan
+  metadata:
+    primary_source: true
+    source_authority: NY State of Health (New York State of Health, the Official Health Plan Marketplace), New York State
+      Department of Health
+    program: MEDICAID
+    source_discovery_group: us-ny/guidance
+    index_url: https://info.nystateofhealth.ny.gov/AssistorToolKit
+    index_label_as_printed: 2026 FPL Medicaid, Child Health Plus, Essential Plan
+    index_family: eligibility_income_chart_pdf
+    document_subtype: standards_chart
+    discovered_via: manual-review:medicaid-agent-queue (us-ny w6_bundle_gap row, primary_source_url); publisher index https://info.nystateofhealth.ny.gov/AssistorToolKit
+    extraction_granularity: pdf_page
+    page_count: 1
+    expression_date_note: chart prints the 2026 coverage-year income levels (2026 federal poverty level percentages); HTTP
+      Last-Modified 2026-02-24
+    access_note: info.nystateofhealth.ny.gov answers HTTP 403 (CloudFront, 919 bytes) to the extractor's own Axiom User-Agent
+      and HTTP 200 to its built-in browser User-Agent fallback; the 2026-10-06 block was a User-Agent block, not a challenge
+- source_id: us-ny-nysoh-child-health-plus-desk-aid-2026
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 2026 Child Health Plus Desk Aid
+  source_url: https://info.nystateofhealth.ny.gov/sites/default/files/Child%20Health%20Plus%20Desk%20Aid_2026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2026-01-01'
+  citation_path: us-ny/guidance/nysoh/income-levels/2026-child-health-plus-desk-aid
+  metadata:
+    primary_source: true
+    source_authority: NY State of Health (New York State of Health, the Official Health Plan Marketplace), New York State
+      Department of Health
+    program: CHIP
+    source_discovery_group: us-ny/guidance
+    index_url: https://info.nystateofhealth.ny.gov/AssistorToolKit
+    index_label_as_printed: 2026 Child Health Plus Desk Aid
+    index_family: eligibility_income_chart_pdf
+    document_subtype: standards_chart
+    discovered_via: publisher index https://info.nystateofhealth.ny.gov/AssistorToolKit (current companion of the 2026 Medicaid,
+      Child Health Plus and Essential Plan income levels chart)
+    extraction_granularity: pdf_page
+    page_count: 1
+    expression_date_note: desk aid prints the 2026 Child Health Plus premium tiers by household size; HTTP Last-Modified
+      2026-02-24
+    access_note: info.nystateofhealth.ny.gov answers HTTP 403 (CloudFront, 919 bytes) to the extractor's own Axiom User-Agent
+      and HTTP 200 to its built-in browser User-Agent fallback
+- source_id: us-ny-nysoh-income-levels-qhp-2026-plan-year
+  jurisdiction: us-ny
+  document_class: guidance
+  title: 2025 Income Levels for Qualified Health Plans, 2026 Plan Year
+  source_url: https://info.nystateofhealth.ny.gov/sites/default/files/2025%20Income%20Levels%20for%20QHP%202026%20Plan%20Year.pdf
+  source_format: pdf
+  source_as_of: '2026-10-20'
+  expression_date: '2026-01-01'
+  citation_path: us-ny/guidance/nysoh/income-levels/2026-plan-year-qualified-health-plans
+  metadata:
+    primary_source: true
+    source_authority: NY State of Health (New York State of Health, the Official Health Plan Marketplace), New York State
+      Department of Health
+    program: ACA_MARKETPLACE
+    source_discovery_group: us-ny/guidance
+    index_url: https://info.nystateofhealth.ny.gov/AssistorToolKit
+    index_label_as_printed: 2025 Income Levels for QHP 2026 Plan Year
+    index_family: eligibility_income_chart_pdf
+    document_subtype: standards_chart
+    discovered_via: publisher index https://info.nystateofhealth.ny.gov/AssistorToolKit (current companion of the 2026 Medicaid,
+      Child Health Plus and Essential Plan income levels chart)
+    extraction_granularity: pdf_page
+    page_count: 1
+    expression_date_note: chart prints the 2025 federal poverty level income levels that apply to the 2026 qualified health
+      plan year; HTTP Last-Modified 2026-02-24
+    access_note: info.nystateofhealth.ny.gov answers HTTP 403 (CloudFront, 919 bytes) to the extractor's own Axiom User-Agent
+      and HTTP 200 to its built-in browser User-Agent fallback

@@ -327,6 +327,9 @@ Extractor PR #854 (branch `fix/hollow-root-extractor-defects`), each change with
   after the OCR text when one of its tokens with a digit is not among OCR's tokens, so
   typed values OCR misreads are never lost; lines with control characters (garbled fonts)
   are dropped. Recovers the 4 attachments.
+  (This merge rule lost typed text: a date whose day and year occur in another date, and
+  every line without a digit. It was replaced the same day; see
+  [`2026-10-13-ocr-overlay-layer-lines.md`](2026-10-13-ocr-overlay-layer-lines.md).)
 - `documents.py`: a `start_after_pattern` (labeled DOCX, styled DOCX, PDF lines) or page
   window `start_at_pattern` that never matches now raises, as the HTML selectors already
   do. Of the 385 manifest documents that set one, 381 have retained sources: 379 extract

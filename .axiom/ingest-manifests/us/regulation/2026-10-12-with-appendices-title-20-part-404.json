@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-10-12-with-appendices-title-20-part-404.json",
+      "sha256": "bd79158d4dd671db5d2cc58b84d2bfa6730e531eb536fbd0b1eae6f0e8032491"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-10-12-with-appendices-title-20-part-404.json",
+      "sha256": "3bc3d2f9427901ff7107e2b54f7678c4865237a22a35a5f2a7abf97dfd994148"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-10-12-with-appendices-title-20-part-404.jsonl",
+      "sha256": "9eb779e7632245e96bbc8d81d34537332780c580e0230c89df17b41f6c5e43ae"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-12-with-appendices-title-20-part-404/ecfr/graphics/ER20NO06.000.png",
+      "sha256": "2a0dbb401698a8ef0c36588f828e5994b63f2a514ccb44f8695cb27f0a95c7dc"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-12-with-appendices-title-20-part-404/ecfr/graphics/ER28MR13.002.png",
+      "sha256": "e3ed17f1b437559f8ea932c2a9162fc77dc3bda0e66587a2bc6adaf60db81252"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-12-with-appendices-title-20-part-404/ecfr/graphics/ER28MR13.003.png",
+      "sha256": "d193409f45932c41133ce782d07694253ffce4a5e60444710adaac01485ca7c3"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-12-with-appendices-title-20-part-404/ecfr/title-20-part-404.xml",
+      "sha256": "bdf2ce217abc258f999d54f6df1e2c7f6fa7d22ff10b8d0a3b3fc5b086b2fc50"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-12-with-appendices-title-20-part-404/ecfr/title-20.structure.json",
+      "sha256": "912fc4243129815b9a1d639fcde6885163a8c43f1d7ae8ce5d186e0e41f5d6cc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c3cad346233cf94b61e910097018922ec89d78fc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest inventory-ecfr --base data/corpus --version 2026-10-12-with-appendices --as-of 2026-10-08 --only-title 20 --only-part 404 --include-appendices && axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-10-12-with-appendices --as-of 2026-10-08 --expression-date 2026-10-08 --only-title 20 --only-part 404 --include-appendices (run note: docs/ingest-runs/2026-10-12-cfr-404-subpart-appendices.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 821,
+    "missing_count": 0,
+    "provision_count": 821,
+    "source_count": 821
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-12T18:42:15.997637+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5yb0bwfNqZWl2WqRIrX8KXzbvBGcoj2v22enFxCHY/YRCAc/Y8P4Trawr6g5FcoTNvMpnNzgx1Uk+McDgVQjAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-with-appendices-title-20-part-404"
+}

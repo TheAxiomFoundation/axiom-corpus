@@ -1,0 +1,393 @@
+version: 2026-10-02-ks-lieap-historical
+documents:
+- source_id: us-ks-keesm-2024-10-01-13000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 13000 Low Income Energy Assistance Program (LIEAP)'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm13000
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-13200
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 13200 Applications Processing'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm13200
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-13300
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 13300 Eligibility Requirements'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm13300
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-13360
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 13360 Income Eligibility'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm13360
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-13400
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 13400 Benefit Levels And Payment Methods'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm13400
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-6300
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 6300 Earned Income'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6300.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm6300
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-6313
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): 6313 Self-Employment'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm6313
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2024-10-01-7122
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2024-10-01 edition): keesm7122'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2024-10-01'
+  citation_path: us-ks/manual/dcf/keesm/2024-10-01/keesm7122
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2024-10-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2025-07-01-13360
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2025-07-01 edition): 13360 Income Eligibility'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2025-07-01'
+  citation_path: us-ks/manual/dcf/keesm/2025-07-01/keesm13360
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2025-07-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-13000
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 13000 Low Income Energy Assistance Program (LIEAP)'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm13000
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-13200
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 13200 Applications Processing'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm13200
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-13300
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 13300 Eligibility Requirements'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm13300
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-13360
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 13360 Income Eligibility'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm13360
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-13400
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 13400 Benefit Levels And Payment Methods'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm13400
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-6300
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 6300 Earned Income'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6300.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm6300
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-6313
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): 6313 Self-Employment'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm6313
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition
+- source_id: us-ks-keesm-2026-01-01-7122
+  jurisdiction: us-ks
+  document_class: manual
+  title: 'Kansas KEESM (2026-01-01 edition): keesm7122'
+  source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+  source_format: html
+  source_as_of: '2026-10-02'
+  expression_date: '2026-01-01'
+  citation_path: us-ks/manual/dcf/keesm/2026-01-01/keesm7122
+  extraction:
+    html_drop_selectors:
+    - h1
+    - h6
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department for Children and Families
+    document_subtype: eligibility_manual_section
+    program: LIEAP
+    manual_edition: '2026-01-01'
+    expression_date_note: Edition date printed by DCF; not an inferred effective date for every provision
+      or the entire fiscal year.
+    source_discovery_group: us-ks/manual/lieap-historical
+    discovered_via: rulespec-us#1469 source leads; independently fetched from the official dated edition

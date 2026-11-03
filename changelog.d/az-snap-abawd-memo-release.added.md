@@ -1,0 +1,1 @@
+Add a draft US RuleSpec release selector that retains Arizona dated-ECE and source-corrected FY2026 SNAP authority, replaces withdrawn predecessor scopes according to release policy, and adds the already-ingested FNS OBBB ABAWD exceptions memorandum.

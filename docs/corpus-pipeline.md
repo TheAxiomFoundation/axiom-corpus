@@ -156,6 +156,45 @@ the official form. `--section` selectors take the official form (`--section '1.4
 Before 2026-09-13 such identifiers were skipped by the inventory and truncated by the XML
 pass, so no earlier scope contains one.
 
+Title 41 numbers each part within its chapter: part 60-20 is part 20 of chapter 60, and
+its sections are 60-20.1, 60-20.2, and so on (`us/regulation/41/60-20/1`). The identifier
+alone cannot say whether a hyphenated prefix is a part, because 14 CFR part 241 numbers
+its own sections 19-8.1 to 19-8.10, so the adapter reads a hyphenated part only inside
+that part; every other identifier parses as before. `--only-part 60-20` and
+`--section 60-20.1` take the official form, and lettered or numbered part appendices take
+the same part grammar (`Appendix A to Part 60-300` is
+`us/regulation/41/60-300/appendix-a`). Before 2026-10-12 the inventory skipped these
+sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
+`manifests/releases/` carried title 41 then.
+
+A section may be numbered for a part other than the eCFR part that holds it. The title
+43 fixtures in `tests/test_corpus_ecfr_group_part_sections.py` model BLM group part
+3800: its subpart 3809 holds 43 CFR 3809.1, and the structure fixture has no part 3809.
+Such a section keeps the path of its citation, `us/regulation/43/3809/1`.
+It belongs to the part that holds it:
+
+- its parent is `us/regulation/43/3800/subpart-3809`;
+- `--only-part 3800` includes it, and `--section 3809.1` selects it;
+- its source URL is on part 3800's eCFR page;
+- `metadata.enclosing_part` is `3800`.
+
+An inventory that would put two items under one citation path fails, and so does a
+retained XML (`--source-xml`) whose selector names two sections. When XML is parsed,
+fresh or reparsed, two elements under one selected path are a fatal validation error,
+even with `--allow-incomplete`. Complete cached provisions whose pinned source hashes
+match are reused as before; their XML is not re-checked for duplicate paths.
+A retained-XML rebuild that fails identity validation, or cannot parse the previous
+run's inventory or provisions, preserves the previous run's artifacts, including its
+source snapshot. Cached graphics are read only after the snapshot is replaced, so a
+cached graphic that is unreadable or invalid can leave the new snapshot beside the old
+provisions (#934). In the XML, a section numbered for another part is read only from an
+identifier the structure grammar reads whole, so an identifier that merely contains
+one (`19-3809.1`) cannot take its path.
+
+Source XML and graphic writes wait until every pending title has passed fatal
+validation. An ordinary resume reuses cached provisions only when their source
+bytes match the inventory's pinned hashes; missing or changed snapshots are reparsed.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
@@ -388,6 +427,39 @@ axiom-corpus-ingest extract-official-documents \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
 
+### PDF page filters
+
+The page filters `page_windows`, `start_page`, `end_page`,
+`start_after_pattern`, `drop_lines`, `drop_line_patterns` and
+`page_header_patterns` work only with the `single_block`, `numbered_sections`
+and `labeled_sections` PDF segmentations. The default per-page segmentation
+writes a row for every page that has text and reads none of them, so
+extraction stops with an error that names any page filter set without one of
+those segmentations.
+
+### Retained copies (`local_path`)
+
+A manifest entry with `local_path` reads the document's bytes from that file
+instead of fetching them, for a publisher that blocks or breaks automated
+fetches. A relative `local_path` is relative to the manifest file. The rows
+record the official URL, never the file: `metadata.download_url` is the entry's
+`download_url`, else the Google Drive direct link, else `source_url` (the URL a
+fetch would have requested), and `metadata.content_type` is the media type of
+the declared or detected `source_format`. The source snapshot keeps the
+retained bytes and their sha256.
+
+`guard-ingested` rejects a new or changed inventory or provisions artifact whose
+`source_url` or metadata `url`/`*_url` field holds a `file:` URL, which would
+publish a path on the extracting machine. Body text is not checked: a scanned
+document can print a `file:` link itself.
+
+Scopes extracted before this rule record such paths.
+`scripts/audit_local_file_urls.py [--release <selector>]` lists the locked ones,
+and `scripts/repair_local_file_download_urls.py` writes a successor scope from a
+locked scope's own bytes, by re-extraction with the committed manifest or, for
+recovery-batch scopes, by rewriting only the leaked URL. It then checks that the
+successor differs only in those URLs, their media types and the version.
+
 ### Amended rule text in PDFs
 
 Register orders and agency letters often print amended rule text with deleted
@@ -437,10 +509,21 @@ such PDFs. Without them extraction is unchanged.
 
 `amendment_markup` and `sort_blocks` work only with the default per-page
 segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
-`sort_text`. They read the page's character layer, and extraction stops with an
-error naming the page where that layer differs from the page's default text.
-PyMuPDF leaves zero-width glyphs (a combining mark, a zero-advance period) out of
-the character layer, so keep such a page out of the `amendment_markup` range.
+`sort_text`. They read the page's character layer, PyMuPDF's `rawdict`: the
+characters with their positions. `rawdict` leaves out some glyphs that
+PyMuPDF's plain-text printer prints: a line whose box has no area, and the last
+span of a line (a run in its own font, size or colour) when that span's box has
+no area. Glyphs drawn with no width, such as a combining mark or a zero-advance
+period, make such lines and spans. Where the `rawdict` reading differs from the
+page's default text, the page is read again: its text page is walked with the
+printer's test for each glyph, and the glyphs `rawdict` left out are added
+where the printer prints them; every character of a re-read page is given as
+the printer prints it, so a lone surrogate code point, which `rawdict` passes
+through, reads as U+FFFD. They never move a block whose text `rawdict` read or
+change how its other glyphs are classified. A page whose `rawdict` reading
+already matches the default text reads exactly as before. Extraction stops with
+an error naming the page if the walk and `rawdict` do not line up, or if the
+result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
 `amendment_markup` also fails if a page's own text already contains one of the
 delimiters, if a character is both struck through and underlined, or if
 `start_page` is past the last page. It fails too if the text spells a delimiter
@@ -471,6 +554,21 @@ normalizes typographic spelling (hyphen, dash and quote variants), and compares
 the labels character by character in both directions, so labels swapped between
 words or inside a word (a struck and an inserted digit) fail, and so does a word
 that moves and changes label.
+
+Before changing the classifier or the reader, measure the change on every
+fetched PDF with `scripts/sweep_pdf_amendment_markup.py`. It reads every page
+twice, with the extractor at a base git ref and with the working tree, both with
+and without `amendment_markup: true` on every page, and sorts each page into one
+outcome: identical, fixed (the base refuses the page and the working tree marks
+it), marks removed, added or changed, refused, or a changed default text. It
+exits 0 only when no page changes in a way that `--allow` does not name, and
+lists every page that is not identical in `details.jsonl`:
+
+```bash
+uv run axiom-corpus-ingest corpus fetch --all
+uv run python scripts/sweep_pdf_amendment_markup.py run \
+  --base-ref origin/main --out-dir ~/.axiom/workspace/amendment-markup-sweep --workers 4
+```
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.

@@ -413,6 +413,27 @@ _FONTS = [
 _TRACE_NAMES = [*(font[3] for font in _FONTS), "Type3 (12 0 R)", "Type3 (14 0 R)", "NotOnThePage"]
 
 
+class _CommandDocument:
+    """The PDF a ``_CommandPage`` belongs to: its objects are the page's fonts.
+
+    ``_pdf_type3_font_names`` reads a font's /Name through ``xref_get_key`` and
+    the page's /Annots through the page's own object; every other key is null.
+    """
+
+    is_pdf = True
+
+    def __init__(self, fonts: list[tuple[int, str, str, str]]) -> None:
+        self.names = {xref: base for xref, base, _kind, _trace_name in fonts}
+
+    def xref_length(self) -> int:
+        return 100
+
+    def xref_get_key(self, xref: int, key: str) -> tuple[str, str]:
+        if key == "Name" and self.names.get(xref):
+            return "name", f"/{self.names[xref]}"
+        return "null", "null"
+
+
 class _CommandPage:
     """A page given as its sequence of commands: rule drawings and text spans.
 
@@ -421,12 +442,15 @@ class _CommandPage:
     ``seqno``. ``fonts`` holds entries of ``_FONTS``.
     """
 
+    xref = 1
+
     def __init__(
         self, commands: list[tuple[Any, ...]], fonts: list[tuple[int, str, str, str]]
     ) -> None:
         self.commands = commands
         self.fonts = fonts
         self.traces = 0
+        self.parent = _CommandDocument(fonts)
 
     def get_fonts(self, full: bool = False) -> list[tuple[Any, ...]]:
         assert full

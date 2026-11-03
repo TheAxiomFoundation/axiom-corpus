@@ -339,6 +339,12 @@ def extract_louisiana_revised_statutes(
     if not title_listings:
         raise ValueError(f"no Louisiana Revised Statutes titles selected: {only_title!r}")
 
+    # A title is written as a provision only once its table of contents lists
+    # sections, and a section page that cannot be fetched or read stays an
+    # inventory gap too, so coverage reads incomplete instead of silently
+    # losing what is under it. A page that could not be fetched is sourced
+    # from the parent listing that names it; a page that was read but is
+    # unusable is sourced from that page.
     for title_page in _fetch_louisiana_title_pages(
         fetcher,
         list(title_listings),
@@ -348,6 +354,19 @@ def extract_louisiana_revised_statutes(
             break
         if title_page.error is not None:
             errors.append(f"title {title_page.listing.title}: {title_page.error}")
+            _append_inventory_gap(
+                seen,
+                items,
+                _title_inventory_item(
+                    LouisianaTitle(
+                        listing=title_page.listing,
+                        source_url=title_page.listing.source_url,
+                        source_path=root_recorded.source_path,
+                        source_format=root_recorded.source_format,
+                        sha256=root_recorded.sha256,
+                    )
+                ),
+            )
             continue
         assert title_page.source is not None
         title_recorded = _record_source(
@@ -370,6 +389,10 @@ def extract_louisiana_revised_statutes(
             source=title_recorded,
             base_url=base_url,
         )
+        if not listings:
+            errors.append(f"title {title.title}: no sections listed in title table of contents")
+            _append_inventory_gap(seen, items, _title_inventory_item(title))
+            continue
         if _append_unique(
             seen,
             items,
@@ -402,6 +425,11 @@ def extract_louisiana_revised_statutes(
                 errors.append(
                     f"section {section_page.listing.section_label}: {section_page.error}"
                 )
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _listing_inventory_item(section_page.listing, title_recorded),
+                )
                 continue
             assert section_page.source is not None
             section_recorded = _record_source(
@@ -426,6 +454,11 @@ def extract_louisiana_revised_statutes(
                 )
             except ValueError as exc:
                 errors.append(f"section {section_page.listing.section_label}: {exc}")
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _listing_inventory_item(section_page.listing, section_recorded),
+                )
                 continue
             if _append_unique(
                 seen,
@@ -711,6 +744,43 @@ def _fetch_louisiana_section_page(
         return _LouisianaSectionPage(listing=listing, source=fetcher.fetch_section(listing))
     except BaseException as exc:  # pragma: no cover
         return _LouisianaSectionPage(listing=listing, error=exc)
+
+
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected provision whose page yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the
+    provision is expected: its parent listing, or its own unusable page.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
+
+
+def _listing_inventory_item(
+    listing: LouisianaSectionListing,
+    source: _RecordedSource,
+) -> SourceInventoryItem:
+    """A section known only from its title table of contents."""
+    return SourceInventoryItem(
+        citation_path=f"us-la/statute/{listing.section_label}",
+        source_url=listing.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+        metadata={
+            "kind": "section",
+            "title": listing.title,
+            "section": listing.section,
+            "heading": listing.heading,
+        },
+    )
 
 
 def _title_inventory_item(title: LouisianaTitle) -> SourceInventoryItem:

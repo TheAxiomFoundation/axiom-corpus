@@ -6,7 +6,7 @@ PR #706, the union of `discovery/ingest-msp-charts-snap-fy2026`, `discovery/inge
 `discovery/ingest-state-tax-statute-ty2026`, `discovery/ingest-tanf-whole-manuals-md-comar` and
 `discovery/ingest-state-tax-regulations`) into the fifth US selector after
 `manifests/releases/us-rulespec-2026-09-13-cms-state-plans-union.json` (863 scopes). Everything here is local and
-unsigned; the artifacts live under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` on the controller's machine only.
+unsigned; the artifacts live under `<axiom-corpus checkout>/data/corpus` on the controller's machine only.
 
 Draft selector: `docs/ingest-runs/2026-09-14-us-rulespec-wave4-union.selector.json`
 (`us-rulespec-2026-09-14-wave4-union`, quality profile `complete-expression-dates-v1`, **1,042 scopes**). It is kept
@@ -41,7 +41,7 @@ cannot carry a path twice. Same mechanism and command shape as `docs/ingest-runs
 and the July `-r2026-07-17-dedup` re-versions: `scripts/consolidate_release_scopes.py` builds one immutable scope from
 ordered sources (released scope first), folds byte-identical body-less container rows into one row, and refuses any
 conflicting text. Released scopes stay untouched; the selector swaps them for their successors. Run from the worktree
-with `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`.
+with `--base <axiom-corpus checkout>/data/corpus`.
 
 Maryland takes three sources at once: the released COMAR 07.03 chapters 06-07 scope, the July TCA chapter-03 scope that
 the TANF note swaps in (its own `...-r2026-09-14-chapter-03-consolidated` successor, 58 rows, already on disk), and the
@@ -49,7 +49,7 @@ new COMAR 03.04 income-tax scope. One successor absorbs both the TANF note's swa
 the TANF note's two-source successor is superseded and not selected.
 
 ```bash
-P=/Users/pavelmakarchuk/axiom-corpus/.venv/bin/python; B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+P=<axiom-corpus checkout>/.venv/bin/python; B=<axiom-corpus checkout>/data/corpus
 $P scripts/consolidate_release_scopes.py --base $B \
   --jurisdiction us-md --document-class regulation \
   --source-version 2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapters-06-07 \
@@ -372,8 +372,8 @@ full.
 ## Validation
 
 ```
-/Users/pavelmakarchuk/axiom-corpus/.venv/bin/axiom-corpus-ingest validate-release \
-  --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+<axiom-corpus checkout>/.venv/bin/axiom-corpus-ingest validate-release \
+  --base <axiom-corpus checkout>/data/corpus \
   --release docs/ingest-runs/2026-09-14-us-rulespec-wave4-union.selector.json --ignore-r2-missing --max-issues 40
 ```
 

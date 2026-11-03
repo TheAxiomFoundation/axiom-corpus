@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.json",
+      "sha256": "92d115d4ed0477974beacceb62999b3b934f6e19744e347186735696383f3a8a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.json",
+      "sha256": "2bea50d2ebf434849eaf7142f08460b03be9baa20fc6c203c708d87ab5bb3e14"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.jsonl",
+      "sha256": "9860cfc23ac00ab729d0aca075a622ce5468a986c2106f51551f1cc8b5a9447b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "a708093daeadc28b441f242c0efbe111af9db332f1b76755e19608ab5d2c6e04"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "ea91352008a18c28c1c2f449086cdd554e6503244832e6337816700f18ffe3cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-spa-ak-13-0001-approval-package.pdf",
+      "sha256": "8b710532b7cb593851149dcacd75f73a53d6a8a8878c3c542d49165fbb83f73a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-spa-ak-13-0002-approval-package.pdf",
+      "sha256": "9254d1aef1cf3174bd9dd281aafca4523c351ce4b83b425eb9a731a639d3b5dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-spa-ak-22-0001-approval-package.pdf",
+      "sha256": "7742ef29ebb7039efab9a47d5953724fbe7943115abcd85f03f2184bc82baaa3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-spa-ak-cspa-4-approval-package.pdf",
+      "sha256": "1dbac1ec7653489cc03095925ed535abf3e3afc7bc5b0f1dd314e4a7b0cddee4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-spa-ak-cspa-4-final-approved-state-plan.pdf",
+      "sha256": "fa7c4357ef689a83cbaa9263ee250e89628a213d48edec90f7154a7755a928c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-ak-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "56fc242bf4caebfc6e68208c6d1280608d9800caef9288732e87744722bc0145"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cb2218d1e24ee43c38703fb31cf65e0d5234caaa",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/hollow_root_successors.py build --base data/corpus --scope us-ak/policy/2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-10-13-hollow-root-successors.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 128,
+    "missing_count": 0,
+    "provision_count": 128,
+    "source_count": 128
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-13T19:31:31.268988+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C71LGDxoQ1vADHfE7uf9d5i5n1GoYqlSoozKUh5WGYmiKW0gbxOUUuYu9C/VbxY15ZA+wF/hKGXFaxYpw7j1CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan-r2026-10-13-hollow-roots"
+}
