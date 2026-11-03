@@ -438,16 +438,20 @@ extraction stops with an error that names any page filter set without one of
 those segmentations.
 
 `drop_lines` and `drop_line_patterns` drop a line they match wherever it sits,
-except a bare number (a line of digits only). A bare number goes only from the
-page's margin: no line the filters keep shares its row, and every kept line on
-the page lies below it, or every one lies above it. So `^\d{1,3}$` removes the
-page number in the running header or footer and keeps a table cell, list
-number or citation title that is the same kind of number. Position decides,
-not the value: a bare number with no kept text beside it and none above (or
-none below) still goes. Where a page can start or end with such a number that
-is content, drop the page number with `page_header_patterns` instead of a
-bare-number `drop_line_patterns` entry. A bare number the page cannot place,
-OCR text or text that does not run left to right, is dropped wherever it sits.
+except a bare number (a line of digits only). A bare number goes only where a
+page number prints: in the page's margin (no line the filters keep shares its
+row, and every kept line on the page lies below it, or every one lies above
+it), or in the place matched bare numbers print page after page (the same
+height, within 3 points, on at least 30% of the pages with text and on two or
+more). So `^\d{1,3}$` removes the page number in the running header or footer,
+even beside header text the filters keep, and keeps a table cell, list number
+or citation title that is the same kind of number. Position decides, not the
+value: a bare number with no kept text beside it and none above (or none
+below) still goes, and so does a cell that sits at a page-number height on
+that many pages. Where that matters, drop the page number with
+`page_header_patterns` instead of a bare-number `drop_line_patterns` entry. A
+bare number the page cannot place, OCR text or text that does not run left to
+right, is dropped wherever it sits.
 
 ### Retained copies (`local_path`)
 

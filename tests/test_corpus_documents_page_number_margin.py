@@ -519,6 +519,9 @@ def test_delaware_snap_authority_line_keeps_its_cfr_title() -> None:
 
 _WORDS = st.text(alphabet="abcdefghij", min_size=1, max_size=8)
 _SENTENCES = st.lists(_WORDS, min_size=1, max_size=6).map(" ".join)
+_LABELS = st.lists(
+    st.text(alphabet="abcdefghij", min_size=1, max_size=6), min_size=1, max_size=3
+).map(" ".join)
 _PAGE_FILTERS: dict[str, Any] = {
     "drop_lines": ["RUNNING HEAD", "RUNNING FOOT"],
     "drop_line_patterns": [r"^\d{1,3}$"],
@@ -560,6 +563,111 @@ def test_page_without_a_table_loses_the_same_lines_as_before(pages: list[list[Li
     content = _pdf(pages)
 
     assert _filtered_lines(content, _PAGE_FILTERS) == _content_only_lines(content, _PAGE_FILTERS)
+
+
+@st.composite
+def _documents_with_a_running_head(draw: st.DrawFn) -> list[list[Line]]:
+    """Two to four pages laid out alike, the page number beside a running head.
+
+    The running head is sometimes text the filters keep, as when a manifest's
+    patterns miss part of a publisher's header. A dropped publisher line
+    prints beyond it, so the page number is not the page's outermost line.
+    Real documents print the page number in the same place on every page.
+    """
+    at_top = draw(st.booleans())
+    slot = 60.0 if at_top else 752.0
+    beyond = 30.0 if at_top else 776.0
+    head = draw(st.sampled_from(("Kept running head", "RUNNING HEAD")))
+    first = draw(st.integers(min_value=1, max_value=900))
+    pages = []
+    for index in range(draw(st.integers(min_value=2, max_value=4))):
+        sentences = draw(st.lists(_SENTENCES, min_size=1, max_size=8))
+        lines: list[Line] = [
+            (sentence, 72.0, 120.0 + 14.0 * row, 10.0, "") for row, sentence in enumerate(sentences)
+        ]
+        lines += [
+            ("PUBLISHER LINE", 72.0, beyond, 7.0, ""),
+            (head, 72.0, slot, 9.0, "b"),
+            (str(first + index), 520.0, slot, 9.0, "b"),
+        ]
+        order = draw(st.permutations(range(len(lines))))
+        pages.append([lines[position] for position in order])
+    return pages
+
+
+@settings(max_examples=60, deadline=None)
+@given(pages=_documents_with_a_running_head())
+def test_page_number_beside_a_kept_running_head_still_goes(pages: list[list[Line]]) -> None:
+    """The page-number slot drops what the margin test alone would keep."""
+    content = _pdf(pages)
+    filters: dict[str, Any] = {
+        "drop_lines": ["RUNNING HEAD", "PUBLISHER LINE"],
+        "drop_line_patterns": [r"^\d{1,3}$"],
+    }
+
+    assert _filtered_lines(content, filters) == _content_only_lines(content, filters)
+
+
+# --- Wisconsin Tax 3, PDF pages 5-8 -----------------------------------------
+# The manifest drops "DEPARTMENT OF REVENUE" (odd pages) but not "WISCONSIN
+# ADMINISTRATIVE CODE" (even pages), and the page number shares that header
+# row. The FTE table of Tax 3.05's example sits on page 6.
+
+_WI_PUBLISHED = "Published under s. 35.93, Wis. Stats., by the Legislative Reference Bureau."
+
+
+def _wi_page(number: int, body: list[Line]) -> list[Line]:
+    if number % 2:
+        header: list[Line] = [
+            (str(number), 69.2, 43.0, 9.0, ""),
+            ("DEPARTMENT OF REVENUE", 247.1, 43.0, 9.0, ""),
+            ("Tax 3.03", 500.8, 43.1, 9.0, ""),
+        ]
+    else:
+        header = [
+            ("Tax 3.03", 69.2, 43.1, 9.0, ""),
+            ("WISCONSIN ADMINISTRATIVE CODE", 228.1, 43.0, 9.0, ""),
+            (str(number), 538.3, 43.0, 9.0, ""),
+        ]
+    return [(_WI_PUBLISHED, 172.1, 14.2, 9.0, ""), *header, *body]
+
+
+_WI_FTE_TABLE: list[Line] = [
+    ("Report Due Date", 316.0, 628.3, 7.0, "b"),
+    ("Total Employees Reported", 389.0, 628.3, 7.0, "b"),
+    ("FTE Employees", 480.0, 628.3, 7.0, "b"),
+    ("October 31, 2011", 316.0, 640.5, 7.0, ""),
+    ("43", 389.0, 640.5, 7.0, ""),
+    ("22", 480.0, 640.5, 7.0, ""),
+    ("January 31, 2012", 316.0, 652.5, 7.0, ""),
+    ("58", 389.0, 652.5, 7.0, ""),
+    ("36", 480.0, 652.5, 7.0, ""),
+    ("TOTAL", 316.0, 688.8, 7.0, ""),
+    ("229", 389.0, 688.8, 7.0, ""),
+    ("160", 480.0, 688.8, 7.0, ""),
+]
+
+
+def test_wisconsin_page_numbers_beside_kept_header_text_still_go() -> None:
+    extraction = _manifest_extraction("us-wi-income-tax-regulations.yaml", "wi-legis-tax-3")
+    body = [("purpose of this section is to clarify certain terms", 67.7, 683.8, 9.0, "")]
+    content = _pdf(
+        [
+            _wi_page(5, body),
+            _wi_page(6, [*body, *_WI_FTE_TABLE]),
+            _wi_page(7, body),
+            _wi_page(8, body),
+        ]
+    )
+    filters = {key: extraction[key] for key in ("drop_line_patterns",)}
+
+    before = _content_only_lines(content, filters)
+    after = _filtered_lines(content, filters)
+    assert not {"5", "6", "7", "8", "43", "229"} & set(before)
+    # The FTE cells come back, in order; no page number does, although the
+    # kept "WISCONSIN ADMINISTRATIVE CODE" shares the even pages' number row.
+    assert [line for line in after if line.isdigit()] == ["43", "22", "58", "36", "229", "160"]
+    assert "WISCONSIN ADMINISTRATIVE CODE" in after
 
 
 # --- Properties on any page -------------------------------------------------
@@ -606,7 +714,9 @@ def _pages_with_tables(draw: st.DrawFn) -> tuple[list[Line], list[str]]:
     for row, (kind, width) in enumerate(zip(kinds, widths, strict=True)):
         baseline = 120.0 + 16.0 * row
         if kind in ("text", "labelled cells"):
-            sentence = draw(_SENTENCES)
+            # A label must end well before the first cell at x=300, or MuPDF
+            # reads the label and the cell as one line.
+            sentence = draw(_SENTENCES if kind == "text" else _LABELS)
             lines.append((sentence, 72.0, baseline, 10.0, ""))
             expected.append(sentence)
         if kind.endswith("cells"):
@@ -660,6 +770,42 @@ def test_a_bare_number_above_all_body_text_is_still_a_page_number() -> None:
         "Body text below the number.",
         "4",
         "More body text.",
+    ]
+
+
+def test_page_windows_apply_the_same_rule() -> None:
+    """The windowed page filter keeps the chart's cells and drops the page number."""
+    extraction = _manifest_extraction(
+        "us-co-tanf-state-policy-manual.yaml", "us-co-ccr-9-2503-6-colorado-works"
+    )
+    filters = {
+        "page_windows": [{"start_page": 2, "end_page": 2}],
+        "drop_line_patterns": extraction["drop_line_patterns"],
+    }
+    lines = _filtered_lines(_pdf([_CO_WORKS_PAGE_50, _CO_WORKS_PAGE_51]), filters)
+
+    assert "51" not in lines
+    start = lines.index("Children") + 1
+    assert lines[start : start + 11] == [str(children) for children in range(11)]
+
+
+def test_a_bare_number_in_drop_lines_follows_the_same_rule() -> None:
+    """``drop_lines: [114]`` drops the footer's 114, not a 114 in the body."""
+    content = _pdf(
+        [
+            [
+                ("Body text above.", 72.0, 120.0, 10.0, ""),
+                ("114", 300.0, 140.0, 10.0, ""),
+                ("Body text below.", 72.0, 160.0, 10.0, ""),
+                ("114", 530.4, 766.0, 9.0, ""),
+            ]
+        ]
+    )
+
+    assert _filtered_lines(content, {"drop_lines": [114]}) == [
+        "Body text above.",
+        "114",
+        "Body text below.",
     ]
 
 
