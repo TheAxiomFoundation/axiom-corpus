@@ -270,6 +270,66 @@ def _local_name(tag: str) -> str:
 
 _WORD_BREAK_TAGS = frozenset({"BR", "P", "FP", "PSPACE", "HED", "HD1", "HD2", "HD3", "LI", "DIV"})
 
+# Block elements whose text the section renderer reads as one block each. eCFR
+# writes paragraphs as P, PSPACE and FP with indent and flush variants (FP-2,
+# FP1-2, FP2-3, P-3, P1, P-DASH, FRP, FRP0) and headings as HED, HED1 and HD1-HD5,
+# plus section, part and docket headings in some appendices and forms.
+_PARAGRAPH_TAG = re.compile(r"PSPACE|(?:P|FP|FRP)\d*(?:-(?:\d+|DASH))?")
+_HEADING_TAG = re.compile(r"HED\d*|HD\d+|SECHD|PARTHD|DOCKETHD")
+# Notes codified with the section text: section and paragraph authority
+# citations, OMB approval statements and the names that sign an extract.
+_SECTION_NOTE_TAGS = frozenset({"SECAUTH", "PARAUTH", "APPRO", "NAME"})
+# Captions printed above (TCAP) or below (BCAP) an image.
+_IMAGE_CAPTION_TAGS = frozenset({"TCAP", "BCAP"})
+# A leader-dot worksheet (LDRWK) pairs each label (FL-2) with the figures
+# (LDRFIG) its leader dots point to; a two-column list (SCOL2) holds items (LI).
+_WORKSHEET_LABEL_TAG = re.compile(r"FL-\d+")
+_LIST_TAG = re.compile(r"SCOL\d*")
+# Not section text: HEAD is the provision's heading and CITA its source note.
+# XREF's own text is the eCFR's link to a pending amendment, correction or delay,
+# so only block elements inside an XREF render.
+_SECTION_SKIPPED_TAGS = frozenset({"HEAD", "CITA"})
+# Inline markup inside running text.
+_INLINE_TAGS = frozenset(
+    {"E", "I", "B", "SU", "SUB", "SUP", "FR", "AC", "BR", "FTREF", "STRONG", "EM"}
+)
+
+
+def _is_text_block_tag(tag: str) -> bool:
+    """A block element the section renderer flattens into one text block."""
+    return (
+        tag.startswith("FP-")
+        or _PARAGRAPH_TAG.fullmatch(tag) is not None
+        or _HEADING_TAG.fullmatch(tag) is not None
+        or _WORKSHEET_LABEL_TAG.fullmatch(tag) is not None
+        or tag in _SECTION_NOTE_TAGS
+        or tag in {"LI", "LDRFIG"}
+    )
+
+
+def _is_block_tag(tag: str) -> bool:
+    """An element the section renderer turns into blocks of its own."""
+    return (
+        _is_text_block_tag(tag)
+        or tag in {"TABLE", "MATH", "IMG", "LDRWK"}
+        or tag in _IMAGE_CAPTION_TAGS
+        or _LIST_TAG.fullmatch(tag) is not None
+    )
+
+
+def _holds_block(elem: ET.Element) -> bool:
+    return any(_is_block_tag(_local_name(node.tag)) for node in elem.iter() if node is not elem)
+
+
+def _is_word_break_tag(tag: str) -> bool:
+    return (
+        tag in _WORD_BREAK_TAGS
+        or _is_text_block_tag(tag)
+        or tag in _IMAGE_CAPTION_TAGS
+        or tag == "LDRWK"
+        or _LIST_TAG.fullmatch(tag) is not None
+    )
+
 
 def _element_text_with_breaks(elem: ET.Element) -> str:
     """Like ``_element_text``, but line breaks and block children separate words.
@@ -279,6 +339,7 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
     joining ``itertext()`` would glue the words on either side. Inline markup
     (``<E>``, ``<sub>``, ``<sup>``) still joins: ``FEV<sub>1</sub>`` is ``FEV1``.
     A ``<br/>`` directly after a hyphen preserves the source join and hyphen.
+    Every block element the section renderer reads also separates words.
     """
     parts: list[str] = []
 
@@ -289,7 +350,7 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
             name = _local_name(child.tag)
             if name == "BR" and parts and parts[-1].endswith("-"):
                 visit(child)
-            elif name.startswith("FP-") or name in _WORD_BREAK_TAGS:
+            elif _is_word_break_tag(name):
                 parts.append(" ")
                 visit(child)
                 parts.append(" ")
@@ -1739,79 +1800,152 @@ def _enclosing_part_by_appendix(root: ET.Element) -> dict[ET.Element, str]:
     }
 
 
+def _worksheet_text(elem: ET.Element) -> str:
+    """One line per worksheet entry: its label, then each figure, as table cells."""
+    lines: list[list[str]] = []
+    for item in elem:
+        text = _element_text_with_breaks(item)
+        if _local_name(item.tag) == "LDRFIG" and lines:
+            lines[-1].append(text)
+        else:
+            lines.append([text])
+    rows = (" | ".join(cell for cell in cells if cell) for cells in lines)
+    return "\n".join(row for row in rows if row)
+
+
+def _list_text(elem: ET.Element) -> str:
+    """One line per list item."""
+    return "\n".join(text for item in elem if (text := _element_text_with_breaks(item)))
+
+
+def _is_plain_group(elem: ET.Element, item_tag: Callable[[str], bool]) -> bool:
+    """A worksheet or list made only of plain items, with no text between them."""
+    return not (elem.text or "").strip() and all(
+        item_tag(_local_name(item.tag))
+        and not _holds_block(item)
+        and not (item.tail or "").strip()
+        for item in elem
+    )
+
+
 def _section_body(
     elem: ET.Element,
     graphic_transcriptions: Mapping[str, str] | None = None,
     *,
     appendix: bool = False,
 ) -> str:
+    """Render a section or appendix as text blocks, in document order.
+
+    Paragraphs, headings and codified notes each become one block; a table
+    becomes its ``[Table caption: …]`` marker and then its rows; a leader-dot
+    worksheet becomes one ``label | figure`` line per entry and a list one line
+    per item; an image caption becomes ``[Image caption: …]``; a formula becomes
+    its transcription or image marker. Any other element is a container: its
+    children render in order, and its own text (with inline markup) becomes a
+    block between theirs, so no text is lost to an unfamiliar element. An
+    element read here for the first time renders as a container too when it
+    holds a block element, so the blocks inside it render as before. HEAD, CITA
+    and the link text of an XREF are not section text. Appendix rendering also
+    marks non-formula images.
+    """
     blocks: list[str] = []
     transcriptions = graphic_transcriptions or {}
-    # Sections and appendices both keep table captions and break words at <br/>
-    # and block boundaries. Appendix rendering also keeps HD1-HD3 headings and
-    # marks non-formula images.
 
-    def visit(node: ET.Element) -> None:
+    def text_block(node: ET.Element, text: str) -> None:
+        if text:
+            blocks.append(text)
+        for identifier in _non_math_graphic_identifiers(node) if appendix else ():
+            blocks.append(f"[Official source image: ecfr/graphics/{identifier}.png]")
+
+    def visit(node: ET.Element, *, keep_runs: bool = True) -> None:
+        # Text directly in a container, with any inline markup around it, forms a
+        # run that renders as one block wherever a block element interrupts it.
+        run: list[ET.Element] = []
+        run_text = node.text
+
+        def flush() -> None:
+            nonlocal run_text
+            if keep_runs and (run or (run_text and run_text.strip())):
+                holder = ET.Element("RUN")
+                holder.text = run_text
+                holder.extend(run)
+                text_block(holder, _element_text_with_breaks(holder))
+            run.clear()
+            run_text = None
+
         for child in node:
             tag = _local_name(child.tag)
-            if tag in {"HEAD", "CITA"}:
+            if tag in _INLINE_TAGS and not _holds_block(child):
+                run.append(child)
                 continue
-            if tag == "HED" or (appendix and tag in {"HD1", "HD2", "HD3"}):
-                text = _element_text_with_breaks(child)
-                if text:
-                    blocks.append(text)
-                for identifier in _non_math_graphic_identifiers(child) if appendix else ():
-                    blocks.append(
-                        f"[Official source image: ecfr/graphics/{identifier}.png]"
-                    )
-                continue
-            if tag in {"P", "PSPACE"} or tag == "FP" or tag.startswith("FP-"):
-                text = _element_text_with_breaks(child)
-                if text:
-                    blocks.append(text)
-                for identifier in _non_math_graphic_identifiers(child) if appendix else ():
-                    blocks.append(
-                        f"[Official source image: ecfr/graphics/{identifier}.png]"
-                    )
-                continue
-            if tag == "TABLE":
-                caption = _table_caption_text(child)
-                if caption:
-                    # Distinguish captions from paragraph labels during anchor inference.
-                    blocks.append(f"[Table caption: {caption}]")
-                text = _table_text(child)
-                if text:
-                    blocks.append(text)
-                for identifier in _non_math_graphic_identifiers(child) if appendix else ():
-                    blocks.append(
-                        f"[Official source image: ecfr/graphics/{identifier}.png]"
-                    )
-                continue
-            if tag == "MATH":
-                for identifier in _math_graphic_identifiers(child):
-                    transcription = transcriptions.get(identifier)
+            flush()
+            render(child, tag)
+            run_text = child.tail
+        flush()
+
+    def render(child: ET.Element, tag: str) -> None:
+        if tag in _SECTION_SKIPPED_TAGS:
+            return
+        if tag in {"P", "PSPACE", "FP", "HED", "HD1", "HD2", "HD3"} or tag.startswith("FP-"):
+            # Read as before; sections now keep HD1-HD3 as appendices did.
+            text_block(child, _element_text_with_breaks(child))
+        elif tag == "TABLE":
+            caption = _table_caption_text(child)
+            if caption:
+                # Distinguish captions from paragraph labels during anchor inference.
+                blocks.append(f"[Table caption: {caption}]")
+            text = _table_text(child)
+            if text:
+                blocks.append(text)
+            for identifier in _non_math_graphic_identifiers(child) if appendix else ():
+                blocks.append(f"[Official source image: ecfr/graphics/{identifier}.png]")
+        elif tag == "MATH":
+            # A formula renders as its images' transcriptions or markers; a caption
+            # inside it renders in its place, before or after them.
+            seen: set[str] = set()
+            for part in child:
+                part_tag = _local_name(part.tag)
+                if part_tag in _IMAGE_CAPTION_TAGS and not _holds_block(part):
+                    render(part, part_tag)
+                    continue
+                for image in part.iter():
+                    if _local_name(image.tag) != "IMG":
+                        continue
+                    formula = _graphic_identifier(image.get("src"))
+                    if not formula or formula in seen:
+                        continue
+                    seen.add(formula)
+                    transcription = transcriptions.get(formula)
                     if transcription:
                         blocks.append(
-                            f"Formula ({identifier}, verified official image): {transcription}"
+                            f"Formula ({formula}, verified official image): {transcription}"
                         )
                     else:
-                        blocks.append(
-                            f"[Official formula image: ecfr/graphics/{identifier}.png]"
-                        )
-                continue
-            if appendix and tag == "IMG":
-                graphic_identifier = _graphic_identifier(child.get("src"))
-                if graphic_identifier:
-                    blocks.append(
-                        "[Official source image: "
-                        f"ecfr/graphics/{graphic_identifier}.png]"
-                    )
-                continue
+                        blocks.append(f"[Official formula image: ecfr/graphics/{formula}.png]")
+        elif tag == "IMG":
+            graphic_identifier = _graphic_identifier(child.get("src")) if appendix else None
+            if graphic_identifier:
+                blocks.append(f"[Official source image: ecfr/graphics/{graphic_identifier}.png]")
+        elif tag == "XREF":
+            # Only block elements inside an XREF are section text.
+            visit(child, keep_runs=False)
+        elif tag in _IMAGE_CAPTION_TAGS and not _holds_block(child):
+            # Marked like table captions, so a caption's label is not a paragraph head.
+            caption = _element_text_with_breaks(child)
+            text_block(child, f"[Image caption: {caption}]" if caption else "")
+        elif tag == "LDRWK" and _is_plain_group(
+            child, lambda item: item == "LDRFIG" or bool(_WORKSHEET_LABEL_TAG.fullmatch(item))
+        ):
+            text_block(child, _worksheet_text(child))
+        elif _LIST_TAG.fullmatch(tag) and _is_plain_group(child, lambda item: item == "LI"):
+            text_block(child, _list_text(child))
+        elif _is_text_block_tag(tag) and not _holds_block(child):
+            text_block(child, _element_text_with_breaks(child))
+        else:
             visit(child)
 
     visit(elem)
     return "\n\n".join(blocks)
-
 
 
 def _ecfr_identifiers(

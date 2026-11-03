@@ -632,11 +632,12 @@ def test_extract_ecfr_preserves_ordinary_section_body_and_formula_only_capture(
     assert report.title_errors == ()
     assert report.coverage.complete
     records = load_provisions(report.provisions_path)
-    # The table keeps its caption and breaks the word at <br/>; HD1 text and
-    # non-formula images stay out of sections.
+    # The table keeps its caption and breaks the word at <br/>. Since #942 sections
+    # keep HD1-HD3 text, read as appendices read it; non-formula images stay out.
     assert records[1].body.split("\n\n") == [
-        "Retained HED", "Nested paragraph", "Paragraph text", "[Table caption: Table 1 [In dollars]]", "Table text",
-        "[Official formula image: ecfr/graphics/ER07OC94.022.png]",
+        "Retained HED", "Legacy omitted HD1 Nested paragraph", "Legacy omitted HD2",
+        "Legacy omitted HD3", "Paragraph text", "[Table caption: Table 1 [In dollars]]",
+        "Table text", "[Official formula image: ecfr/graphics/ER07OC94.022.png]",
     ]
     expected_ids = list(graphics) if include_appendices else ["ER07OC94.022"]
     assert fetched == expected_ids
