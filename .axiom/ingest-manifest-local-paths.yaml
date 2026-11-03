@@ -15,12 +15,22 @@
 #   that hold the paths, so a manifest that changes must lose its paths and
 #   its entry together;
 # - an entry whose manifest no longer records a local path fails as stale;
-# - an entry whose sha256 is not one of the bytes grandfathered on 2026-10-20
-#   (GRANDFATHERED_SHA256 in the test) fails, so no entry can be added.
+# - an entry whose (path, sha256) is not one grandfathered on 2026-10-20
+#   (GRANDFATHERED in the test) fails, so no entry can be added.
 #
-# Scrubbing re-signs the manifest, which needs the corpus ingest key and the
-# repository's signing flow (scripts/sign_release_scopes.sh, merge commits
-# only, never a rebase): the hub's to do. Agents never read the key.
+# Scrubbing re-signs the manifest, which needs the corpus ingest key: the
+# hub's to do; agents never read the key. For each scope: fetch it
+# (`axiom-corpus-ingest corpus fetch <jurisdiction>/<class>/<version>`), sign
+# it with `sign-ingest-manifest --jurisdiction ... --document-class ...
+# --version ... --command '<scrubbed text>' --output data/resign/<name>.json`,
+# passing each of the old manifest's reasoning_logs as --reasoning-log, and
+# check that the new applied_files equal the old ones, so that only
+# command.text, generated_at, the signer commit and the signature change.
+# Sign all of them before moving any into place: the signer refuses a dirty
+# tracked tree, so overwriting one tracked manifest stops the next signing.
+# scripts/sign_release_scopes.sh keeps any manifest that exists and writes its
+# own command text, so it cannot do this. Merge commits only; never rebase
+# signed manifests.
 
 schema_version: axiom-corpus/ingest-manifest-local-paths/v1
 manifests:
