@@ -711,9 +711,12 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
             raise SelectorLineageError(f"{entry_where}: missing {sorted(missing)}")
         predecessor = pinned_name(item["predecessor"], f"{entry_where}.predecessor")
         listed_on = _iso_date(item["listed_on"], f"{entry_where}.listed_on")
-        # Order is checked for every entry before any entry's content, and against
-        # the predecessor's own last entry first: a later entry placed before its
-        # fork's first one is refused for its date, not read as the first entry.
+        # Every entry's fields, predecessor, date and order are checked before any
+        # entry's successors, continued_by and reason, and order against the
+        # predecessor's own last entry first. A later entry placed before its fork's
+        # first one is therefore refused for its order, not read as the fork's first
+        # entry: for its date when the fork's first entry comes next, or by the sort
+        # refusal, which names it, when another predecessor's entry does.
         if predecessor in last:
             last_index, last_listed_on = last[predecessor]
             if listed_on == last_listed_on:
@@ -729,7 +732,9 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
                 )
         if previous is not None and (predecessor, listed_on) < previous:
             raise SelectorLineageError(
-                f"{entry_where}: forks must be sorted by predecessor, then listed_on"
+                f"{entry_where}: forks must be sorted by predecessor, then listed_on, but "
+                f"forks[{index - 1}] (the fork at {previous[0]}, listed on {previous[1]}) "
+                f"comes before this entry for {predecessor}"
             )
         previous = (predecessor, listed_on)
         last[predecessor] = (index, listed_on)

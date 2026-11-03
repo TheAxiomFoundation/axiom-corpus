@@ -206,10 +206,11 @@ def _remedy(
             # The pin's old digest does not say which pairs the selector had, so the
             # drop may or may not come from the change. Either way no entry can pass
             # while the pin is stale: undo the change, then see what is left.
+            them, change = ("it", "change") if len(changed) == 1 else ("them", "changes")
             return (
                 f"{finding.describe()}.\n  {' and '.join(changed)} changed since the baseline "
-                "pinned it, and this drop may follow from that change: undo the change the "
-                "baseline errors below describe, then run the check again"
+                f"pinned {them}, and this drop may follow from that {change}: undo the {change} "
+                "the baseline errors below describe, then run the check again"
             )
         return (
             f"{finding.describe()}.\n  Keep a version of {pair_label(finding.pair)}, or record "
