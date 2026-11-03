@@ -6,6 +6,8 @@ schema_version: axiom-corpus/selector-lineage-baseline/v1
 # (axiom_corpus.release.manifest.selector_sha256): the entry holds only for that
 # exact selector. The entries listed on 2026-11-02 are what main held when the
 # check began (980e39792); a later entry is a release decision and says why.
+# Entries are append-only: a later decision is a new dated entry, never an edit
+# of an earlier one.
 selector_digests:
   am-rulespec-2026-08-30: 69cf5d0eb4c8755d9f883fc40f541fb8c1dc3bc37f15ea5b18af8c855b3bf6fd
   be-rulespec-2026-07-10: 723ab15d6396ec3a1f20bd96a945e9e6d919584e793cc6a9e5f7c104e65915f1
@@ -140,9 +142,14 @@ dropped_pairs:
       On main before the lineage check began. Its description retires the
       mislabeled uk-shropshire manual by omission: the manual's operative text is
       the 2024/2025 default scheme under a 2026/27 cover.
-# A predecessor that more than one tracked selector names. successors lists every
-# selector that names it, so one more is a new fork. continued_by lists the
-# successors the line went on through; naming any other successor is a finding.
+# A predecessor that more than one tracked selector names, in entries sorted by
+# predecessor, then listed_on. The first entry lists every selector that names
+# the predecessor (successors) and the ones the line went on through
+# (continued_by). A later entry for the same predecessor, with its own listed_on
+# and reason, adds successors, continued_by branches or both, and the check reads
+# the entries as their union. A selector that names the predecessor and no entry
+# lists is a new fork; one that names a successor outside continued_by extends a
+# branch the line ended.
 forks:
   - predecessor: us-rulespec-2026-07-21-az-140es-current
     successors:

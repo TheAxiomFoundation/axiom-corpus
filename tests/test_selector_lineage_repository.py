@@ -106,7 +106,7 @@ FORKS_ON_MAIN_WHEN_THE_GUARD_BEGAN = {
     ),
 }
 
-Finding = DroppedPair | Fork | EndedBranch | UnnamedPredecessor | Cycle
+type Finding = DroppedPair | Fork | EndedBranch | UnnamedPredecessor | Cycle
 
 
 @cache
@@ -120,28 +120,57 @@ def _baseline() -> LineageBaseline:
 
 
 def _fork_entries(baseline: LineageBaseline) -> list[RecordedFork]:
-    return list(baseline.forks.values())
+    return [entry for entries in baseline.forks.values() for entry in entries]
 
 
 def _fork_branches(baseline: LineageBaseline, fork: str) -> tuple[set[str], set[str]]:
-    """The successors a fork's record lists, and the ones the line continued through."""
-    record = baseline.forks.get(fork)
-    return (set(record.successors), set(record.continued_by)) if record else (set(), set())
+    """The successors a fork's entries list, and the ones the line continued through."""
+    return set(baseline.fork_successors(fork)), set(baseline.fork_continued_by(fork))
 
 
-def _digests(selectors: Mapping[str, ReleaseManifest], *names: str) -> str:
-    return "".join(f"\n      {name}: {selector_sha256(selectors[name])}" for name in names)
+def _pins(selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline, *names: str) -> str:
+    """The selector_digests lines an entry needs that the baseline does not have yet."""
+    lines = "".join(
+        f"\n      {name}: {selector_sha256(selectors[name])}"
+        for name in dict.fromkeys(names)
+        if name not in baseline.selector_digests
+    )
+    return f"\n    selector_digests:{lines}" if lines else ""
+
+
+def _items(names: Iterable[str], indent: int = 10) -> str:
+    return "".join(f"\n{' ' * indent}- {name}" for name in names)
+
+
+def _cut_from(heads: tuple[str, ...], continued_by: Iterable[str]) -> str:
+    """Where the usual fix cuts from: the line's newest selector, named when there is one."""
+    through = ", ".join(continued_by)
+    if len(heads) == 1:
+        return (
+            f"{heads[0]}, the newest selector of the line that continued through {through}, "
+            f"and name it first in its description (Successor to {heads[0]}.)"
+        )
+    newest = f" ({', '.join(heads)})" if heads else ""
+    return (
+        f"the newest selector of the line that continued through {through}{newest}, and name "
+        "that one first in its description"
+    )
 
 
 def _remedy(
     finding: Finding, selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
 ) -> str:
-    """What to do about a finding, with the baseline entry that records it on purpose."""
+    """What to do about a finding: the usual fix, then the entry that records it on purpose.
+
+    Entries are append-only. A recorded fork that gains a successor, or a branch
+    the line now continues through, gets a new dated entry for its predecessor.
+    """
     if isinstance(finding, DroppedPair):
         return (
             f"{finding.describe()}.\n  Keep a version of {pair_label(finding.pair)}, or record "
-            f"the release decision in {LINEAGE_BASELINE_PATH}:\n    selector_digests:"
-            f"{_digests(selectors, finding.predecessor, finding.selector)}\n    dropped_pairs:\n"
+            f"the release decision in {LINEAGE_BASELINE_PATH}:"
+            f"{_pins(selectors, baseline, finding.predecessor, finding.selector)}\n"
+            "    dropped_pairs:\n"
             f"      - selector: {finding.selector}\n"
             f"        predecessor: {finding.predecessor}\n"
             f"        pair: {pair_label(finding.pair)}\n"
@@ -150,32 +179,59 @@ def _remedy(
             "        reason: <the decision; say why nothing replaces the pair if nothing does>"
         )
     if isinstance(finding, Fork):
-        successors = "".join(f"\n          - {name}" for name in finding.successors)
+        new = [name for name in finding.successors if name not in finding.recorded]
+        if not finding.recorded:
+            return (
+                f"{finding.describe()}.\n  Cut the new selector from the newest selector of "
+                "its line, and name that one first in its description. The newest selectors "
+                f"from {finding.predecessor}, through its successors: {', '.join(finding.heads)}"
+                ". If the line splits here on purpose, record the split in "
+                f"{LINEAGE_BASELINE_PATH}:"
+                f"{_pins(selectors, baseline, finding.predecessor, *finding.successors)}\n"
+                f"    forks:\n      - predecessor: {finding.predecessor}\n"
+                "        listed_on: <today>\n"
+                f"        successors:{_items(finding.successors)}\n"
+                "        continued_by: [<the successors the line goes on through>]\n"
+                "        reason: <why the line splits here>"
+            )
+        if not new:
+            return (
+                f"{finding.describe()}.\n  The baseline records every one of them at "
+                f"{finding.predecessor}, but the record no longer holds: see the baseline "
+                "errors"
+            )
+        continued_by = baseline.fork_continued_by(finding.predecessor)
         return (
-            f"{finding.describe()}.\n  Cut the new selector from the newest selector of its "
-            "line and name that one first in its description, or record the split in "
-            f"{LINEAGE_BASELINE_PATH}:\n    selector_digests:"
-            f"{_digests(selectors, finding.predecessor, *finding.successors)}\n    forks:\n"
-            f"      - predecessor: {finding.predecessor}\n        successors:{successors}\n"
-            "        continued_by: [<the successors the line goes on through>]\n"
-            "        listed_on: <today>\n        reason: <why the line splits here>"
+            f"{finding.describe()}.\n  Cut {', '.join(new)} from "
+            f"{_cut_from(finding.heads, continued_by)}. If the line splits here on purpose, "
+            f"record {', '.join(new)} in a new entry for the fork at {finding.predecessor} in "
+            f"{LINEAGE_BASELINE_PATH}:{_pins(selectors, baseline, *new)}\n"
+            f"    forks:\n      - predecessor: {finding.predecessor}\n"
+            "        listed_on: <today>\n"
+            f"        successors:{_items(new)}\n"
+            "        continued_by: [<those of them the line goes on through; leave this line "
+            "out if none>]\n"
+            "        reason: <why the line splits here>"
         )
     if isinstance(finding, EndedBranch):
         return (
-            f"{finding.describe()}.\n  Cut it from the newest selector of the line that "
-            f"continued through {', '.join(finding.continued_by)}, or, if the line now goes on "
-            f"through {finding.predecessor}, add it to continued_by of the fork at "
-            f"{finding.fork} in {LINEAGE_BASELINE_PATH} with the reason"
+            f"{finding.describe()}.\n  Cut it from {_cut_from(finding.heads, finding.continued_by)}"
+            f". If the line goes on through {finding.predecessor} on purpose, record that in a "
+            f"new entry for the fork at {finding.fork} in {LINEAGE_BASELINE_PATH}:"
+            f"{_pins(selectors, baseline, finding.fork, finding.predecessor)}\n"
+            f"    forks:\n      - predecessor: {finding.fork}\n"
+            "        listed_on: <today>\n"
+            f"        continued_by:{_items([finding.predecessor])}\n"
+            "        reason: <why the line goes on through this branch>"
         )
     if isinstance(finding, UnnamedPredecessor):
         return (
             f"{finding.describe()}.\n  Name the selector it succeeds first in its description "
             f"(Successor to <name>.), or record it as the first cut of a line in "
-            f"{LINEAGE_BASELINE_PATH}:\n    selector_digests:"
-            f"{_digests(selectors, finding.selector)}\n"
+            f"{LINEAGE_BASELINE_PATH}:{_pins(selectors, baseline, finding.selector)}\n"
             "    first_cuts:\n      - listed_on: <today>\n"
             "        reason: <the line it starts>\n"
-            f"        selectors:\n          - {finding.selector}"
+            f"        selectors:{_items([finding.selector])}"
         )
     return (
         f"{finding.describe()}.\n  Name each selector's real predecessor first in its description"

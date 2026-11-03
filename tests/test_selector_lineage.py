@@ -14,26 +14,34 @@ Invariants:
   record says it is the first cut of a line;
 - selectors that name each other in a cycle are reported;
 - a record holds only for the exact selectors it pins, and a record that no
-  longer matches a finding fails.
+  longer matches a finding fails;
+- a fork's dated entries read as their union: the check reports the same for
+  a fork recorded in one entry as for the same fork split across a first entry
+  and later ones, and the loader accepts every such split.
 
 The comparison is per pair: a pair the successor still carries is not a drop,
 even when one of its documents leaves (``test_a_document_can_leave_a_kept_pair``
 pins that limit).
 
-The differential test holds the check's grouping of scopes into pairs to the
-activation gate's (``scripts/check_release_gate.py``), so the pairs the check
-protects are the pairs activation repoints.
+Two differential tests. One holds the check's grouping of scopes into pairs to
+the activation gate's (``scripts/check_release_gate.py``), so the pairs the
+check protects are the pairs activation repoints. The other holds the heads a
+fork or an ended branch names, found by walking down from the branches the
+line continued through, to a walk up from every selector.
 """
 
 from __future__ import annotations
 
 import importlib.util
 import sys
+import tempfile
 import textwrap
-from collections.abc import Iterable
+from collections import defaultdict
+from collections.abc import Collection, Iterable, Mapping
 from pathlib import Path
 
 import pytest
+import yaml
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
@@ -55,6 +63,7 @@ from axiom_corpus.corpus.selector_lineage import (
     check_selector_lineage,
     declared_predecessor,
     dropped_pairs,
+    line_heads,
     lineage_cycles,
     load_lineage_baseline,
     pair_versions,
@@ -119,7 +128,7 @@ def _baseline(
     *roots: ReleaseManifest,
     pinned: Iterable[ReleaseManifest] = (),
     drops: dict[tuple[str, tuple[str, str]], RecordedDrop] | None = None,
-    forks: dict[str, RecordedFork] | None = None,
+    forks: dict[str, tuple[RecordedFork, ...]] | None = None,
 ) -> LineageBaseline:
     """A baseline that records ``roots`` as first cuts and pins them and ``pinned``."""
     return LineageBaseline(
@@ -209,14 +218,13 @@ def test_along_a_line_a_pair_is_reported_at_the_cut_it_leaves(
     assert report.forks == () and report.unnamed == () and report.cycles == ()
 
 
-@_SETTINGS
-@given(
-    parents=st.lists(st.one_of(st.none(), st.integers(min_value=0)), min_size=1, max_size=12),
-    data=st.data(),
-)
-def test_forks_and_ended_branches_follow_the_named_predecessors(
-    parents: list[int | None], data: st.DataObject
-) -> None:
+_PARENTS = st.lists(st.one_of(st.none(), st.integers(min_value=0)), min_size=1, max_size=12)
+
+
+def _tree(
+    parents: list[int | None],
+) -> tuple[list[ReleaseManifest], list[ReleaseManifest], dict[str, list[str]]]:
+    """Selectors that each name an earlier one, or none: the selectors, the roots, who names whom."""
     selectors: list[ReleaseManifest] = []
     roots: list[ReleaseManifest] = []
     named: dict[str, list[str]] = {}
@@ -229,32 +237,93 @@ def test_forks_and_ended_branches_follow_the_named_predecessors(
         predecessor = selectors[parent % index].name
         named.setdefault(predecessor, []).append(name)
         selectors.append(_successor(name, predecessor, _ONE_SCOPE))
+    return selectors, roots, named
 
-    expected = {
+
+def _forks_of(named: Mapping[str, list[str]]) -> dict[str, tuple[str, ...]]:
+    return {
         predecessor: tuple(sorted(successors))
         for predecessor, successors in named.items()
         if len(successors) > 1
     }
+
+
+def _draw_continued(
+    data: st.DataObject, forks: Mapping[str, tuple[str, ...]]
+) -> dict[str, tuple[str, ...]]:
+    return {
+        predecessor: tuple(sorted(data.draw(st.sets(st.sampled_from(successors), min_size=1))))
+        for predecessor, successors in forks.items()
+    }
+
+
+def _whole(
+    forks: Mapping[str, tuple[str, ...]], continued: Mapping[str, tuple[str, ...]]
+) -> dict[str, tuple[RecordedFork, ...]]:
+    return {
+        predecessor: (
+            RecordedFork(predecessor, successors, continued[predecessor], "2026-11-02", "split"),
+        )
+        for predecessor, successors in forks.items()
+    }
+
+
+def _heads_walking_up(
+    predecessors: Mapping[str, str | None],
+    continued: Mapping[str, Collection[str]],
+    branches: Collection[str],
+) -> tuple[str, ...]:
+    """The line's heads found the other way: from every selector, walk up to a branch.
+
+    A selector is on the line if walking up from it reaches a branch, and every
+    step up from a recorded fork leaves through a branch the line continued
+    through. It is a head if no selector it would step down to is on the line.
+    """
+
+    def followed(parent: str, child: str) -> bool:
+        return parent not in continued or child in continued[parent]
+
+    def on_line(name: str) -> bool:
+        seen: set[str] = set()
+        while name not in branches:
+            parent = predecessors.get(name)
+            if parent is None or name in seen or not followed(parent, name):
+                return False
+            seen.add(name)
+            name = parent
+        return True
+
+    children: dict[str, list[str]] = defaultdict(list)
+    for name, parent in predecessors.items():
+        if parent is not None:
+            children[parent].append(name)
+    return tuple(
+        sorted(
+            name
+            for name in predecessors
+            if on_line(name) and not any(followed(name, child) for child in children[name])
+        )
+    )
+
+
+@_SETTINGS
+@given(parents=_PARENTS, data=st.data())
+def test_forks_and_ended_branches_follow_the_named_predecessors(
+    parents: list[int | None], data: st.DataObject
+) -> None:
+    selectors, roots, named = _tree(parents)
+    expected = _forks_of(named)
     unrecorded = _check(*selectors, baseline=_baseline(*roots))
     assert {fork.predecessor: fork.successors for fork in unrecorded.forks} == expected
     assert unrecorded.dropped == () and unrecorded.ended_branches == ()
+    for fork in unrecorded.forks:
+        assert fork.recorded == ()
+        assert fork.heads == _heads_walking_up(unrecorded.predecessors, {}, fork.successors)
 
-    continued = {
-        predecessor: tuple(sorted(data.draw(st.sets(st.sampled_from(successors), min_size=1))))
-        for predecessor, successors in expected.items()
-    }
+    continued = _draw_continued(data, expected)
     recorded = _check(
         *selectors,
-        baseline=_baseline(
-            *roots,
-            pinned=selectors,
-            forks={
-                predecessor: RecordedFork(
-                    predecessor, successors, continued[predecessor], "2026-11-02", "split"
-                )
-                for predecessor, successors in expected.items()
-            },
-        ),
+        baseline=_baseline(*roots, pinned=selectors, forks=_whole(expected, continued)),
     )
     ended = {
         (extension, branch)
@@ -266,6 +335,108 @@ def test_forks_and_ended_branches_follow_the_named_predecessors(
     assert {fork.predecessor for fork in recorded.recorded_forks} == set(expected)
     assert {(b.selector, b.predecessor) for b in recorded.ended_branches} == ended
     assert recorded.ok == (not ended)
+    for branch in recorded.ended_branches:
+        assert branch.continued_by == continued[branch.fork]
+        assert branch.heads == _heads_walking_up(
+            recorded.predecessors, continued, continued[branch.fork]
+        )
+
+
+def _split(
+    data: st.DataObject, predecessor: str, successors: tuple[str, ...], continued: tuple[str, ...]
+) -> tuple[RecordedFork, ...]:
+    """One fork's record split into a first entry and later dated ones, as the loader allows.
+
+    The first entry lists at least two successors and one continued branch. Each
+    later entry adds at least one successor or continued branch, and continues
+    only a successor that it or an earlier entry lists.
+    """
+    first_branch = data.draw(st.sampled_from(continued))
+    others = [name for name in successors if name != first_branch]
+    first = {first_branch, data.draw(st.sampled_from(others))}
+    first |= data.draw(st.sets(st.sampled_from(others)))
+    kept = sorted(set(continued) & first)
+    first_continued = {first_branch} | data.draw(st.sets(st.sampled_from(kept)))
+    later_successors = [name for name in successors if name not in first]
+    later_continued = [name for name in continued if name not in first_continued]
+    count = data.draw(
+        st.integers(min_value=1 if later_successors or later_continued else 0, max_value=3)
+    )
+    successor_at = {
+        name: data.draw(st.integers(min_value=1, max_value=count)) for name in later_successors
+    }
+    continued_at = {
+        name: data.draw(st.integers(min_value=successor_at.get(name, 1), max_value=count))
+        for name in later_continued
+    }
+    entries = [
+        RecordedFork(
+            predecessor, tuple(sorted(first)), tuple(sorted(first_continued)), "2026-11-02", "split"
+        )
+    ]
+    for index in range(1, count + 1):
+        added = tuple(sorted(name for name, at in successor_at.items() if at == index))
+        added_continued = tuple(sorted(name for name, at in continued_at.items() if at == index))
+        if added or added_continued:
+            listed_on = f"2026-11-{2 + index:02d}"
+            entries.append(
+                RecordedFork(predecessor, added, added_continued, listed_on, "a later decision")
+            )
+    return tuple(entries)
+
+
+def _baseline_yaml(forks: Mapping[str, tuple[RecordedFork, ...]]) -> str:
+    entries = []
+    for predecessor in sorted(forks):
+        for entry in forks[predecessor]:
+            item: dict[str, object] = {"predecessor": predecessor}
+            if entry.successors:
+                item["successors"] = list(entry.successors)
+            if entry.continued_by:
+                item["continued_by"] = list(entry.continued_by)
+            item["listed_on"] = entry.listed_on
+            item["reason"] = entry.reason
+            entries.append(item)
+    names = {
+        name
+        for entries_of in forks.values()
+        for entry in entries_of
+        for name in (entry.predecessor, *entry.successors)
+    }
+    data = {
+        "schema_version": LINEAGE_BASELINE_SCHEMA,
+        "selector_digests": dict.fromkeys(sorted(names), "0" * 64),
+        "forks": entries,
+    }
+    return yaml.safe_dump(data, sort_keys=False)
+
+
+@_SETTINGS
+@given(parents=_PARENTS, data=st.data())
+def test_a_forks_dated_entries_read_as_their_union(
+    parents: list[int | None], data: st.DataObject
+) -> None:
+    """Differential: one entry per fork, or the same forks split across dated entries."""
+    selectors, roots, named = _tree(parents)
+    expected = _forks_of(named)
+    continued = _draw_continued(data, expected)
+    whole = _whole(expected, continued)
+    split = {
+        predecessor: _split(data, predecessor, successors, continued[predecessor])
+        for predecessor, successors in expected.items()
+    }
+    assert _check(*selectors, baseline=_baseline(*roots, pinned=selectors, forks=split)) == _check(
+        *selectors, baseline=_baseline(*roots, pinned=selectors, forks=whole)
+    )
+
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "selector-lineage-baseline.yaml"
+        path.write_text(_baseline_yaml(split), encoding="utf-8")
+        loaded = load_lineage_baseline(path)
+    assert loaded.forks == split
+    for predecessor, successors in expected.items():
+        assert loaded.fork_successors(predecessor) == successors
+        assert loaded.fork_continued_by(predecessor) == continued[predecessor]
 
 
 @_SETTINGS
@@ -428,7 +599,7 @@ def test_a_cut_from_a_superseded_base_is_a_fork() -> None:
     nyc = _successor("pin-nyc", "pin-ssi", _NYC)
     ks = _successor("pin-ks", "pin-ssi", [*_PIN, ("us-ks", "policy", "2026-10-02-plan")])
     report = _check(ssi, nyc, ks, baseline=_baseline(ssi))
-    assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-nyc")),)
+    assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-nyc"), heads=("pin-ks", "pin-nyc")),)
     assert report.dropped == ()
     assert "2 selectors name pin-ssi as their predecessor" in report.problems()[0]
 
@@ -440,12 +611,12 @@ def test_extending_a_branch_the_line_did_not_continue_is_refused() -> None:
     follow = _successor("pin-ks-followup", "pin-ks", _PIN)
     head = _successor("pin-mt", "pin-nyc", _MT)
     fork = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
-    baseline = _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": fork})
+    baseline = _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": (fork,)})
     assert _check(ssi, nyc, ks, head, baseline=baseline).ok
 
     report = _check(ssi, nyc, ks, head, follow, baseline=baseline)
     assert report.ended_branches == (
-        EndedBranch("pin-ks-followup", "pin-ks", "pin-ssi", ("pin-nyc",)),
+        EndedBranch("pin-ks-followup", "pin-ks", "pin-ssi", ("pin-nyc",), ("pin-mt",)),
     )
     assert report.problems() == [
         "pin-ks-followup names pin-ks, a branch of the fork at pin-ssi that the line did "
@@ -590,7 +761,7 @@ def test_a_fork_record_holds_only_for_the_successors_it_lists() -> None:
         "pin-ssi", ("pin-ks", "pin-nyc"), ("pin-ks", "pin-nyc"), "2026-11-02", "the line splits"
     )
     assert _check(
-        ssi, nyc, ks, baseline=_baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": record})
+        ssi, nyc, ks, baseline=_baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": (record,)})
     ).ok
 
     report = _check(
@@ -598,9 +769,16 @@ def test_a_fork_record_holds_only_for_the_successors_it_lists() -> None:
         nyc,
         ks,
         late,
-        baseline=_baseline(ssi, pinned=[nyc, ks, late], forks={"pin-ssi": record}),
+        baseline=_baseline(ssi, pinned=[nyc, ks, late], forks={"pin-ssi": (record,)}),
     )
-    assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-late", "pin-nyc")),)
+    assert report.forks == (
+        Fork(
+            "pin-ssi",
+            ("pin-ks", "pin-late", "pin-nyc"),
+            recorded=("pin-ks", "pin-nyc"),
+            heads=("pin-ks", "pin-nyc"),
+        ),
+    )
     assert report.baseline_errors == (
         "the baseline records pin-ks, pin-nyc as the successors of pin-ssi, but "
         "pin-ks, pin-late, pin-nyc name it",
@@ -619,10 +797,12 @@ def test_a_fork_record_for_an_edited_successor_no_longer_holds() -> None:
     ks = _successor("pin-ks", "pin-ssi", _PIN)
     record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
     baseline = _with_digest(
-        _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": record}), "pin-ks", "0" * 64
+        _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": (record,)}), "pin-ks", "0" * 64
     )
     report = _check(ssi, nyc, ks, baseline=baseline)
-    assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-nyc")),)
+    assert report.forks == (
+        Fork("pin-ssi", ("pin-ks", "pin-nyc"), recorded=("pin-ks", "pin-nyc"), heads=("pin-nyc",)),
+    )
     assert report.recorded_forks == ()
     assert any("pin-ks at " + "0" * 64 in error for error in report.baseline_errors)
 
@@ -633,7 +813,7 @@ def test_a_fork_record_whose_predecessor_has_one_successor_is_stale() -> None:
     ks = _selector("pin-ks", _PIN)
     record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
     report = _check(
-        ssi, nyc, ks, baseline=_baseline(ssi, ks, pinned=[nyc], forks={"pin-ssi": record})
+        ssi, nyc, ks, baseline=_baseline(ssi, ks, pinned=[nyc], forks={"pin-ssi": (record,)})
     )
     assert report.forks == ()
     assert report.baseline_errors == (
@@ -654,7 +834,7 @@ def test_an_ended_branch_is_reported_even_when_its_fork_record_no_longer_holds(
     follow = _successor("pin-ks-followup", "pin-ks", _PIN)
     record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
     selectors = [ssi, nyc, ks, follow]
-    baseline = _baseline(ssi, pinned=[nyc, ks, late], forks={"pin-ssi": record})
+    baseline = _baseline(ssi, pinned=[nyc, ks, late], forks={"pin-ssi": (record,)})
     if stale == "digest":
         baseline = _with_digest(baseline, "pin-nyc", "0" * 64)
     else:
@@ -662,8 +842,91 @@ def test_an_ended_branch_is_reported_even_when_its_fork_record_no_longer_holds(
     report = _check(*selectors, baseline=baseline)
     assert report.recorded_forks == ()
     assert report.ended_branches == (
-        EndedBranch("pin-ks-followup", "pin-ks", "pin-ssi", ("pin-nyc",)),
+        EndedBranch("pin-ks-followup", "pin-ks", "pin-ssi", ("pin-nyc",), ("pin-nyc",)),
     )
+
+
+def _recorded_ssi_fork() -> tuple[list[ReleaseManifest], RecordedFork]:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _successor("pin-ks", "pin-ssi", _PIN)
+    head = _successor("pin-mt", "pin-nyc", _MT)
+    record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
+    return [ssi, nyc, ks, head], record
+
+
+def test_a_later_entry_records_a_new_successor_of_a_recorded_fork() -> None:
+    """Records are append-only: a third successor gets its own dated entry."""
+    selectors, record = _recorded_ssi_fork()
+    late = _successor("pin-late", "pin-ssi", _PIN)
+    pinned = [*selectors[1:], late]
+    report = _check(
+        *selectors,
+        late,
+        baseline=_baseline(selectors[0], pinned=pinned, forks={"pin-ssi": (record,)}),
+    )
+    assert report.forks == (
+        Fork("pin-ssi", ("pin-ks", "pin-late", "pin-nyc"), ("pin-ks", "pin-nyc"), ("pin-mt",)),
+    )
+
+    added = RecordedFork("pin-ssi", ("pin-late",), (), "2026-11-03", "a third branch, on purpose")
+    entries = {"pin-ssi": (record, added)}
+    report = _check(
+        *selectors, late, baseline=_baseline(selectors[0], pinned=pinned, forks=entries)
+    )
+    assert report.ok
+    assert report.recorded_forks == (
+        Fork("pin-ssi", ("pin-ks", "pin-late", "pin-nyc"), ("pin-ks", "pin-late", "pin-nyc")),
+    )
+
+    # The line did not go on through pin-late, so extending it is an ended branch.
+    follow = _successor("pin-late-followup", "pin-late", _PIN)
+    report = _check(
+        *selectors, late, follow, baseline=_baseline(selectors[0], pinned=pinned, forks=entries)
+    )
+    assert report.ended_branches == (
+        EndedBranch("pin-late-followup", "pin-late", "pin-ssi", ("pin-nyc",), ("pin-mt",)),
+    )
+
+
+def test_a_later_entry_continues_a_branch_the_line_ended() -> None:
+    selectors, record = _recorded_ssi_fork()
+    follow = _successor("pin-ks-followup", "pin-ks", _PIN)
+    pinned = selectors[1:]
+    report = _check(
+        *selectors,
+        follow,
+        baseline=_baseline(selectors[0], pinned=pinned, forks={"pin-ssi": (record,)}),
+    )
+    assert [branch.selector for branch in report.ended_branches] == ["pin-ks-followup"]
+
+    goes_on = RecordedFork(
+        "pin-ssi", (), ("pin-ks",), "2026-11-03", "the line goes on through pin-ks"
+    )
+    entries = {"pin-ssi": (record, goes_on)}
+    report = _check(
+        *selectors, follow, baseline=_baseline(selectors[0], pinned=pinned, forks=entries)
+    )
+    assert report.ok
+    assert report.ended_branches == ()
+
+
+def test_heads_follow_only_the_branches_a_recorded_fork_continued_through() -> None:
+    predecessors: dict[str, str | None] = {
+        "root": None,
+        "kept": "root",
+        "ended": "root",
+        "kept-next": "kept",
+        "ended-next": "ended",
+        "side": "kept",
+    }
+    continued = {"root": ("kept",), "kept": ("kept-next",)}
+    assert line_heads(predecessors, continued, ["kept"]) == ("kept-next",)
+    assert line_heads(predecessors, {}, ["kept"]) == ("kept-next", "side")
+    assert line_heads(predecessors, continued, ["kept", "ended"]) == ("ended-next", "kept-next")
+    assert line_heads(predecessors, continued, ["untracked"]) == ()
+    # A cycle names no head, and the walk ends.
+    assert line_heads({"a": "b", "b": "a"}, {}, ["a"]) == ()
 
 
 def test_a_first_cut_record_for_an_edited_selector_no_longer_holds() -> None:
@@ -737,8 +1000,10 @@ def test_the_baseline_file_parses(tmp_path: Path) -> None:
         )
     }
     assert baseline.forks == {
-        "line-a": RecordedFork(
-            "line-a", ("line-b", "line-c"), ("line-c",), "2026-11-02", "The line splits."
+        "line-a": (
+            RecordedFork(
+                "line-a", ("line-b", "line-c"), ("line-c",), "2026-11-02", "The line splits."
+            ),
         )
     }
     assert baseline.first_cuts == {
@@ -788,14 +1053,18 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
         ),
         ("      - line-b\n      - line-c", "      - line-c\n      - line-b", "sorted"),
         ("      - line-b\n      - line-c", "      - line-b", "at least two"),
-        ("    reason: The line splits.", "    note: The line splits.", "must have exactly"),
+        (
+            "    reason: The line splits.",
+            "    note: The line splits.",
+            r"forks\[0\]: unsupported fields \['note'\]",
+        ),
         ("    continued_by:\n      - line-c", "    continued_by: []", "continued_by must name"),
         (
             "    continued_by:\n      - line-c",
             "    continued_by:\n      - line-c\n      - line-b",
             r"continued_by must be sorted",
         ),
-        ("    reason: The line splits.\n", "", "must have exactly"),
+        ("    reason: The line splits.\n", "", r"forks\[0\]: missing \['reason'\]"),
         ("    reason: The first cut of its line.\n", "", "must have exactly"),
         (
             "    continued_by:\n      - line-c",
@@ -865,7 +1134,9 @@ def test_forks_must_be_sorted_by_predecessor(tmp_path: Path) -> None:
     fork = _VALID.split("forks:\n", 1)[1].split("first_cuts:", 1)[0]
     later = fork.replace("  - predecessor: line-a\n", "  - predecessor: line-d\n", 1)
     text = _VALID.replace(fork, later + fork, 1)
-    with pytest.raises(SelectorLineageError, match=r"forks \(by predecessor\) must be sorted"):
+    with pytest.raises(
+        SelectorLineageError, match="forks must be sorted by predecessor, then listed_on"
+    ):
         load_lineage_baseline(_write(tmp_path, text))
 
 
@@ -880,3 +1151,118 @@ def test_a_first_cut_listed_in_two_groups_is_refused(tmp_path: Path) -> None:
     group = _VALID.split("first_cuts:\n", 1)[1]
     with pytest.raises(SelectorLineageError, match="line-d is listed twice"):
         load_lineage_baseline(_write(tmp_path, _VALID + group))
+
+
+_DATED = f"""\
+schema_version: {LINEAGE_BASELINE_SCHEMA}
+selector_digests:
+  line-a: {_DIGEST_A}
+  line-b: {_DIGEST_B}
+  line-c: {_DIGEST_C}
+  line-d: {_DIGEST_D}
+forks:
+  - predecessor: line-a
+    successors:
+      - line-b
+      - line-c
+    continued_by:
+      - line-c
+    listed_on: 2026-11-02
+    reason: The line splits.
+  - predecessor: line-a
+    successors:
+      - line-d
+    listed_on: 2026-11-03
+    reason: A third branch, on purpose.
+  - predecessor: line-a
+    continued_by:
+      - line-b
+    listed_on: 2026-11-04
+    reason: The line now goes on through line-b too.
+"""
+
+
+def test_a_forks_later_entries_are_kept_in_order_and_merged(tmp_path: Path) -> None:
+    baseline = load_lineage_baseline(_write(tmp_path, _DATED))
+    assert baseline.forks == {
+        "line-a": (
+            RecordedFork(
+                "line-a", ("line-b", "line-c"), ("line-c",), "2026-11-02", "The line splits."
+            ),
+            RecordedFork("line-a", ("line-d",), (), "2026-11-03", "A third branch, on purpose."),
+            RecordedFork(
+                "line-a", (), ("line-b",), "2026-11-04", "The line now goes on through line-b too."
+            ),
+        )
+    }
+    assert baseline.fork_successors("line-a") == ("line-b", "line-c", "line-d")
+    assert baseline.fork_continued_by("line-a") == ("line-b", "line-c")
+    assert baseline.fork_successors("line-b") == baseline.fork_continued_by("line-b") == ()
+
+
+@pytest.mark.parametrize(
+    ("old", "new", "message"),
+    [
+        (
+            "    listed_on: 2026-11-04",
+            "    listed_on: 2026-11-01",
+            r"forks\[2\]: forks must be sorted by predecessor, then listed_on",
+        ),
+        (
+            "    listed_on: 2026-11-04",
+            "    listed_on: 2026-11-03",
+            r"forks\[2\]: the fork at line-a already has an entry listed on 2026-11-03",
+        ),
+        (
+            "    successors:\n      - line-d\n",
+            "    successors:\n      - line-b\n",
+            r"forks\[1\]: an earlier entry for the fork at line-a already records line-b",
+        ),
+        (
+            "    continued_by:\n      - line-b\n",
+            "    continued_by:\n      - line-c\n",
+            r"forks\[2\]: an earlier entry for the fork at line-a already records line-c",
+        ),
+        (
+            "  - predecessor: line-a\n    continued_by:\n      - line-b\n",
+            "  - predecessor: line-a\n",
+            r"forks\[2\] must add a successor or a continued_by branch to the fork at line-a",
+        ),
+        (
+            "    continued_by:\n      - line-b\n",
+            "    continued_by:\n      - line-x\n",
+            r"forks\[2\]\.continued_by must name only successors of the fork at line-a",
+        ),
+        (
+            "    reason: A third branch, on purpose.\n",
+            "",
+            r"forks\[1\]: missing \['reason'\]",
+        ),
+        (
+            "    listed_on: 2026-11-03\n",
+            "",
+            r"forks\[1\]: missing \['listed_on'\]",
+        ),
+        (
+            "  - predecessor: line-a\n    successors:\n      - line-d\n",
+            "  - predecessor: line-d\n    successors:\n      - line-b\n",
+            r"forks\[1\]\.successors must list at least two selectors",
+        ),
+        (
+            "    successors:\n      - line-d\n",
+            "    successors:\n      - line-d\n      - line-a\n",
+            r"forks\[1\]\.successors must be sorted",
+        ),
+        (
+            "    successors:\n      - line-d\n",
+            "    successors:\n      - line-a\n",
+            r"forks\[1\]: a selector cannot succeed itself",
+        ),
+    ],
+)
+def test_a_malformed_later_fork_entry_is_refused(
+    tmp_path: Path, old: str, new: str, message: str
+) -> None:
+    assert _DATED.count(old) == 1, old
+    with pytest.raises(SelectorLineageError, match=message):
+        load_lineage_baseline(_write(tmp_path, _DATED.replace(old, new, 1)))

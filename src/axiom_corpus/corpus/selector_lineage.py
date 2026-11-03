@@ -31,6 +31,11 @@ This module checks, from the selector files alone:
 ``cycle``
     Selectors name each other as predecessors, so their line has no first cut.
 
+A fork or an ended branch also carries ``heads`` (``line_heads``), the newest
+selectors of the line, to cut from instead: the ones reached from the
+branches a recorded fork's line continued through, or, at a fork with no
+record, from every successor, the new one among them.
+
 The comparison is per pair. A pair the successor still carries, with any of its
 versions, is not a drop, so one document can leave a pair the successor keeps
 without a finding. The activation gate's ``scope_monotonicity`` check
@@ -47,8 +52,12 @@ cuts a release decision allows, each pinned to the digest
 so a record holds only for those exact selectors. A drop record names the
 scopes that carry the pair's text in its place (``replaced_by``), or says in
 its reason why nothing does. A fork record lists every successor and the ones
-the line continued through. The entries listed on 2026-11-02 are what ``main``
-held when the check began.
+the line continued through. Records are append-only and dated: a later
+decision about a recorded fork, a new successor or a branch the line now goes
+on through, is another entry for the same predecessor with its own
+``listed_on`` and reason, and the check reads a predecessor's entries as their
+union. The entries listed on 2026-11-02 are what ``main`` held when the check
+began.
 """
 
 from __future__ import annotations
@@ -92,6 +101,7 @@ _BASELINE_FIELDS = {
 _DROP_FIELDS = {"selector", "predecessor", "pair", "listed_on", "reason", "replaced_by"}
 _DROP_REQUIRED = {"selector", "predecessor", "pair", "listed_on", "reason"}
 _FORK_FIELDS = {"predecessor", "successors", "continued_by", "listed_on", "reason"}
+_FORK_REQUIRED = {"predecessor", "listed_on", "reason"}
 _FIRST_CUT_FIELDS = {"selectors", "listed_on", "reason"}
 
 
@@ -152,6 +162,41 @@ def lineage_cycles(predecessors: Mapping[str, str | None]) -> tuple[tuple[str, .
     return tuple(sorted(cycles))
 
 
+def line_heads(
+    predecessors: Mapping[str, str | None],
+    continued_by: Mapping[str, Collection[str]],
+    branches: Iterable[str],
+) -> tuple[str, ...]:
+    """The newest selectors of the line that goes on through ``branches``.
+
+    From each branch, follow the selectors that name it, then the ones that
+    name those, and so on. At a recorded fork (a key of ``continued_by``),
+    follow only the branches the line continued through. The selectors reached
+    that no followed selector names are the line's heads, sorted. A branch that
+    is not tracked leads nowhere.
+    """
+    successors: dict[str, list[str]] = defaultdict(list)
+    for name, predecessor in predecessors.items():
+        if predecessor is not None:
+            successors[predecessor].append(name)
+    heads: set[str] = set()
+    seen: set[str] = set()
+    pending = [branch for branch in branches if branch in predecessors]
+    while pending:
+        node = pending.pop()
+        if node in seen:
+            continue
+        seen.add(node)
+        followed = successors.get(node, [])
+        if node in continued_by:
+            followed = [name for name in followed if name in continued_by[node]]
+        if followed:
+            pending.extend(followed)
+        else:
+            heads.add(node)
+    return tuple(sorted(heads))
+
+
 @dataclass(frozen=True)
 class DroppedPair:
     """A pair whose last version leaves the line at ``selector``."""
@@ -171,10 +216,18 @@ class DroppedPair:
 
 @dataclass(frozen=True)
 class Fork:
-    """A predecessor that more than one selector names."""
+    """A predecessor that more than one selector names.
+
+    ``recorded`` lists the successors the baseline's entries for the predecessor
+    already record (none when it has no entry). For a finding, ``heads`` are the
+    newest selectors of the line: through the branches the record says the line
+    continued through, or, with no record, through every successor.
+    """
 
     predecessor: str
     successors: tuple[str, ...]
+    recorded: tuple[str, ...] = ()
+    heads: tuple[str, ...] = ()
 
     def describe(self) -> str:
         return (
@@ -186,12 +239,17 @@ class Fork:
 
 @dataclass(frozen=True)
 class EndedBranch:
-    """A selector that extends a fork's branch the line did not continue through."""
+    """A selector that extends a fork's branch the line did not continue through.
+
+    ``heads`` are the newest selectors of the line through ``continued_by``: the
+    selectors to cut from instead.
+    """
 
     selector: str
     predecessor: str
     fork: str
     continued_by: tuple[str, ...]
+    heads: tuple[str, ...] = ()
 
     def describe(self) -> str:
         return (
@@ -239,6 +297,14 @@ class RecordedDrop:
 
 @dataclass(frozen=True)
 class RecordedFork:
+    """One dated fork entry.
+
+    A predecessor's first entry lists at least two successors and at least one
+    branch the line continued through. A later entry adds successors, branches
+    the line now continues through, or both, and repeats none an earlier entry
+    records.
+    """
+
     predecessor: str
     successors: tuple[str, ...]
     continued_by: tuple[str, ...]
@@ -259,7 +325,8 @@ class LineageBaseline:
 
     selector_digests: Mapping[str, str] = field(default_factory=dict)
     drops: Mapping[tuple[str, Pair], RecordedDrop] = field(default_factory=dict)
-    forks: Mapping[str, RecordedFork] = field(default_factory=dict)
+    # Each predecessor's fork entries, oldest first.
+    forks: Mapping[str, tuple[RecordedFork, ...]] = field(default_factory=dict)
     first_cuts: Mapping[str, RecordedFirstCut] = field(default_factory=dict)
 
     @classmethod
@@ -267,6 +334,16 @@ class LineageBaseline:
         """The checkout's baseline; a checkout without the file records nothing."""
         path = Path(repo_root) / LINEAGE_BASELINE_PATH
         return load_lineage_baseline(path) if path.exists() else cls()
+
+    def fork_successors(self, predecessor: str) -> tuple[str, ...]:
+        """Every successor the predecessor's fork entries record, sorted."""
+        entries = self.forks.get(predecessor, ())
+        return tuple(sorted({name for entry in entries for name in entry.successors}))
+
+    def fork_continued_by(self, predecessor: str) -> tuple[str, ...]:
+        """Every branch the predecessor's fork entries say the line continued through."""
+        entries = self.forks.get(predecessor, ())
+        return tuple(sorted({name for entry in entries for name in entry.continued_by}))
 
 
 @dataclass(frozen=True)
@@ -391,40 +468,48 @@ def check_selector_lineage(
     for name, predecessor in predecessors.items():
         if predecessor is not None:
             successors[predecessor].append(name)
+    continued = {
+        predecessor: baseline.fork_continued_by(predecessor) for predecessor in baseline.forks
+    }
     forks: list[Fork] = []
     recorded_forks: list[Fork] = []
     for predecessor, names_of in sorted(successors.items()):
         if len(names_of) < 2:
             continue
-        fork = Fork(predecessor, tuple(sorted(names_of)))
-        fork_record = baseline.forks.get(predecessor)
-        if (
-            fork_record is not None
-            and fork_record.successors == fork.successors
-            and {predecessor, *fork.successors} <= pinned
-        ):
-            recorded_forks.append(fork)
+        actual = tuple(sorted(names_of))
+        listed = baseline.fork_successors(predecessor)
+        if listed == actual and {predecessor, *actual} <= pinned:
+            recorded_forks.append(Fork(predecessor, actual, listed))
         else:
-            forks.append(fork)
+            through = continued[predecessor] if listed else actual
+            heads = line_heads(predecessors, continued, through)
+            forks.append(Fork(predecessor, actual, listed, heads))
     ended_branches: list[EndedBranch] = []
-    for predecessor, fork_record in sorted(baseline.forks.items()):
+    for predecessor in sorted(baseline.forks):
+        listed = baseline.fork_successors(predecessor)
         actual = tuple(sorted(successors.get(predecessor, ())))
         if len(actual) < 2:
             errors.append(
                 f"the baseline records a fork at {predecessor} "
-                f"({', '.join(fork_record.successors)}), but "
+                f"({', '.join(listed)}), but "
                 f"{len(actual)} tracked selector(s) name it as their predecessor"
             )
-        elif actual != fork_record.successors:
+        elif actual != listed:
             errors.append(
-                f"the baseline records {', '.join(fork_record.successors)} as the successors "
+                f"the baseline records {', '.join(listed)} as the successors "
                 f"of {predecessor}, but {', '.join(actual)} name it"
             )
-        for branch in sorted(set(fork_record.successors) - set(fork_record.continued_by)):
-            for extension in sorted(successors.get(branch, ())):
-                ended_branches.append(
-                    EndedBranch(extension, branch, predecessor, fork_record.continued_by)
-                )
+        ended = [
+            (extension, branch)
+            for branch in sorted(set(listed) - set(continued[predecessor]))
+            for extension in sorted(successors.get(branch, ()))
+        ]
+        if ended:
+            heads = line_heads(predecessors, continued, continued[predecessor])
+            ended_branches.extend(
+                EndedBranch(extension, branch, predecessor, continued[predecessor], heads)
+                for extension, branch in ended
+            )
 
     unnamed: list[UnnamedPredecessor] = []
     recorded_first_cuts: list[str] = []
@@ -600,44 +685,82 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
         drops[(record.selector, record.pair)] = record
     _sorted_unique(drop_keys, f"{where}: dropped_pairs (by selector, then pair)")
 
-    forks: dict[str, RecordedFork] = {}
-    fork_keys: list[str] = []
+    forks: dict[str, list[RecordedFork]] = {}
+    previous: tuple[str, str] | None = None
     for index, raw in enumerate(_list(data.get("forks") or [], f"{where}: forks")):
         entry_where = f"{where}: forks[{index}]"
         item = _mapping(raw, entry_where)
-        if set(item) != _FORK_FIELDS:
-            raise SelectorLineageError(f"{entry_where} must have exactly {sorted(_FORK_FIELDS)}")
+        _fields(item, _FORK_FIELDS, entry_where)
+        missing = _FORK_REQUIRED - set(item)
+        if missing:
+            raise SelectorLineageError(f"{entry_where}: missing {sorted(missing)}")
+        predecessor = pinned_name(item["predecessor"], f"{entry_where}.predecessor")
+        listed_on = _iso_date(item["listed_on"], f"{entry_where}.listed_on")
+        if previous == (predecessor, listed_on):
+            raise SelectorLineageError(
+                f"{entry_where}: the fork at {predecessor} already has an entry listed on "
+                f"{listed_on}"
+            )
+        if previous is not None and (predecessor, listed_on) < previous:
+            raise SelectorLineageError(
+                f"{entry_where}: forks must be sorted by predecessor, then listed_on"
+            )
+        previous = (predecessor, listed_on)
         fork_successors = tuple(
             pinned_name(value, f"{entry_where}.successors[{position}]")
-            for position, value in enumerate(_list(item["successors"], f"{entry_where}.successors"))
+            for position, value in enumerate(
+                _list(item.get("successors") or [], f"{entry_where}.successors")
+            )
         )
-        if len(fork_successors) < 2:
-            raise SelectorLineageError(f"{entry_where}.successors must list at least two selectors")
         _sorted_unique(fork_successors, f"{entry_where}.successors")
         continued_by = tuple(
             _name(value, f"{entry_where}.continued_by[{position}]")
             for position, value in enumerate(
-                _list(item["continued_by"], f"{entry_where}.continued_by")
+                _list(item.get("continued_by") or [], f"{entry_where}.continued_by")
             )
         )
         _sorted_unique(continued_by, f"{entry_where}.continued_by")
-        if not continued_by or not set(continued_by) <= set(fork_successors):
-            raise SelectorLineageError(
-                f"{entry_where}.continued_by must name at least one of its successors, "
-                "and only successors"
-            )
-        fork_record = RecordedFork(
-            predecessor=pinned_name(item["predecessor"], f"{entry_where}.predecessor"),
-            successors=fork_successors,
-            continued_by=continued_by,
-            listed_on=_iso_date(item["listed_on"], f"{entry_where}.listed_on"),
-            reason=_text(item["reason"], f"{entry_where}.reason"),
-        )
-        if fork_record.predecessor in fork_record.successors:
+        if predecessor in fork_successors:
             raise SelectorLineageError(f"{entry_where}: a selector cannot succeed itself")
-        fork_keys.append(fork_record.predecessor)
-        forks[fork_record.predecessor] = fork_record
-    _sorted_unique(fork_keys, f"{where}: forks (by predecessor)")
+        earlier = forks.setdefault(predecessor, [])
+        recorded = {name for entry in earlier for name in entry.successors}
+        continued = {name for entry in earlier for name in entry.continued_by}
+        if not earlier:
+            if len(fork_successors) < 2:
+                raise SelectorLineageError(
+                    f"{entry_where}.successors must list at least two selectors"
+                )
+            if not continued_by or not set(continued_by) <= set(fork_successors):
+                raise SelectorLineageError(
+                    f"{entry_where}.continued_by must name at least one of its successors, "
+                    "and only successors"
+                )
+        else:
+            if not fork_successors and not continued_by:
+                raise SelectorLineageError(
+                    f"{entry_where} must add a successor or a continued_by branch to the fork "
+                    f"at {predecessor}"
+                )
+            repeated = sorted((recorded & set(fork_successors)) | (continued & set(continued_by)))
+            if repeated:
+                raise SelectorLineageError(
+                    f"{entry_where}: an earlier entry for the fork at {predecessor} already "
+                    f"records {', '.join(repeated)}"
+                )
+            if not set(continued_by) <= recorded | set(fork_successors):
+                raise SelectorLineageError(
+                    f"{entry_where}.continued_by must name only successors of the fork at "
+                    f"{predecessor}"
+                )
+        earlier.append(
+            RecordedFork(
+                predecessor=predecessor,
+                successors=fork_successors,
+                continued_by=continued_by,
+                listed_on=listed_on,
+                reason=_text(item["reason"], f"{entry_where}.reason"),
+            )
+        )
 
     first_cuts: dict[str, RecordedFirstCut] = {}
     for index, raw in enumerate(_list(data.get("first_cuts") or [], f"{where}: first_cuts")):
@@ -665,5 +788,8 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
     if unused:
         raise SelectorLineageError(f"{where}: selector_digests lists unused selectors {unused}")
     return LineageBaseline(
-        selector_digests=digests, drops=drops, forks=forks, first_cuts=first_cuts
+        selector_digests=digests,
+        drops=drops,
+        forks={predecessor: tuple(entries) for predecessor, entries in forks.items()},
+        first_cuts=first_cuts,
     )
