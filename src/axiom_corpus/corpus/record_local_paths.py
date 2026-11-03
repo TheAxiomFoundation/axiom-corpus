@@ -456,7 +456,11 @@ def _names_no_place(text: str, path: LocalPath) -> bool:
     token = text[path.start : path.end]
     if path.kind == "absolute":
         resolved = posixpath.normpath(re.sub("/+", "/", token))
-        return resolved.lower() == path.root.lower() or resolved.startswith(_WEB_PATH_PREFIXES)
+        # Emphasis closing on a root alone (``**/Users/**``) is not a segment.
+        bare = posixpath.normpath(re.sub("/+", "/", token.rstrip("*_~")))
+        return path.root.lower() in {resolved.lower(), bare.lower()} or resolved.startswith(
+            _WEB_PATH_PREFIXES
+        )
     return _NO_PLACE[path.kind].fullmatch(token) is not None
 
 

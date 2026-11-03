@@ -61,6 +61,7 @@ from axiom_corpus.corpus.record_local_paths import (
     load_record_local_path_allowlist,
     record_files,
 )
+from tests.test_docs_no_local_paths import home_path_hits
 from tests.test_ingest_manifest_provenance import _init_repo
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -743,13 +744,18 @@ _NO_PLACE_TOKEN = re.compile(
 def _names_a_place(text: str, path) -> bool:
     """Whether a path ``find_local_paths`` found names a place: the spec, restated.
 
-    A root alone names none, however spelled (``/Users/``, ``//tmp``), nor does
-    a ``/media/file/`` web path, each read as ``find_local_paths`` resolves it.
+    A root alone names none, however spelled (``/Users/``, ``//tmp``) and with
+    emphasis closing on it (``**/Users/**``), nor does a ``/media/file/`` web
+    path, each read as ``find_local_paths`` resolves it.
     """
     token = text[path.start : path.end]
     if path.kind == "absolute":
         resolved = posixpath.normpath(re.sub("/+", "/", token))
-        return resolved.lower() != path.root.lower() and not resolved.startswith("/media/file/")
+        bare = posixpath.normpath(re.sub("/+", "/", token.rstrip("*_~")))
+        return path.root.lower() not in {
+            resolved.lower(),
+            bare.lower(),
+        } and not resolved.startswith("/media/file/")
     return _NO_PLACE_TOKEN.fullmatch(token) is None
 
 
@@ -988,3 +994,63 @@ def test_record_files_lists_every_tracked_record() -> None:
     ).stdout.split("\n")
 
     assert {name for name in tracked if name and (REPO_ROOT / name).exists()} <= set(files)
+
+
+# Differential: main's Markdown guard (tests/test_docs_no_local_paths.py, for
+# /Users/<name> and /home/<name> in every tracked .md file) and this guard
+# read a home path in Markdown prose the same way wherever both specify it.
+# An absolute home path at the start of a word, in a code span, quotes,
+# parentheses or emphasis is reported by both, at its first slash. A web URL's
+# path, a placeholder (with or without a space), a repository-relative path, a
+# root alone and a root before ``<you>`` are reported by neither. They differ
+# on purpose elsewhere, and this does not cover that: main's guard also
+# reports a home-like segment of a relative path (``data/home/<name>``) and
+# honours ``docs-home-path: allow``; this guard also reports every other
+# machine root (``/tmp/``, ``~/``, ``$HOME/``...).
+_HOME_NAME = st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789", min_size=1, max_size=8)
+_HOME_PATH = st.builds(
+    lambda root, name, rest: f"/{root}/{name}{rest}",
+    st.sampled_from(["Users", "home"]),
+    _HOME_NAME,
+    st.sampled_from(["", "/x", "/axiom-corpus/data/corpus", "/.venv/bin/python"]),
+)
+_NEITHER_REPORTS = st.sampled_from(
+    [
+        "https://www.oregonlegislature.gov/home/ors316.html",
+        "https://www.medicaid.gov/Users/guide.pdf",
+        "data/corpus/sources/us/statute/x.html",
+        "<axiom-corpus checkout>/data/corpus",
+        "<axiom-corpus worktrees>/w6-health",
+        "<scratchpad>/replay.json",
+        "/Users/",
+        "/home/",
+        "/Users/<you>/x",
+        "notes",
+        "2026-10-20",
+    ]
+)
+_WRAPPERS_BOTH_READ = st.sampled_from(
+    [("", ""), ("`", "`"), ("(", ")"), ('"', '"'), ("**", "**"), ("_", "_")]
+)
+
+
+@settings(max_examples=500, deadline=None)
+@given(
+    tokens=st.lists(
+        st.tuples(st.one_of(_HOME_PATH, _NEITHER_REPORTS), _WRAPPERS_BOTH_READ).filter(
+            # Main's guard finds a URL's scheme at a word boundary, and ``_`` is
+            # a word character, so it reads ``_https://host/home/x_`` as a file
+            # path and reports it. That fails safe and is main's to settle.
+            lambda pair: not (pair[0].startswith("http") and pair[1][0] == "_")
+        ),
+        min_size=1,
+        max_size=6,
+    )
+)
+def test_this_guard_and_mains_markdown_guard_agree_on_home_paths_in_prose(tokens) -> None:
+    line = "Note: " + " ".join(f"{before}{token}{after}" for token, (before, after) in tokens)
+
+    mains = [column - 1 for _, column in home_path_hits(line)]
+    ours = [path.start for path in find_record_local_paths(line, markdown=True)]
+
+    assert ours == mains, line
