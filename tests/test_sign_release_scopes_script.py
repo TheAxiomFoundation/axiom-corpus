@@ -7,7 +7,9 @@ fails a signing or a validation, or interrupts the run during validation as Ctrl
 A commit-msg hook can reject one of the script's commits, or hold it while a test sends
 the script a signal. A ``git`` shim can hold the cleanup while a test sends another, or
 fail the cleanup's first unstage. The resumability tests use these to stop a run at each
-step, then check that the same command, re-run, cuts the selector.
+step, then check that the same command, re-run, cuts the selector. A property-based test
+runs the Python of step 2's plan, read out of the script, against manifests the real
+signer wrote.
 """
 
 from __future__ import annotations
@@ -15,18 +17,23 @@ from __future__ import annotations
 import contextlib
 import json
 import os
+import re
 import shutil
 import signal
 import subprocess
 import sys
+import tempfile
 import time
 from base64 import b64encode
+from dataclasses import dataclass
 from pathlib import Path
 from typing import IO
 
 import pytest
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+from hypothesis import HealthCheck, assume, given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
@@ -44,6 +51,13 @@ MANIFEST_DIR = f".axiom/ingest-manifests/{JURISDICTION}/{DOCUMENT_CLASS}"
 ADD = "Add test-rel-2 artifacts (unsigned data commit)"
 SIGN = "Sign test-rel-2 scopes"
 CUT = "Cut test-rel-2"
+# The command the script signs a scope with when no manifests/*.yaml carries its version.
+SCRIPT_COMMAND = (
+    "axiom-corpus-ingest extract-official-documents --base data/corpus --version {version}"
+    " (run note: docs/ingest-runs/2026-09-10-*.md)"
+)
+# Where step 2 puts a manifest it signs again until step 3 moves it into place.
+RESIGN_DIRS = ".sign-release-scopes.*"
 
 PYTHON3_SHIM = """#!/bin/sh
 exec "@PYTHON@" "$@"
@@ -104,6 +118,14 @@ fi
 if [ -n "${FAIL_RESET_ONCE:-}" ] && [ "$*" = "reset -q -- data/corpus .axiom/ingest-manifests @TARGET@" ] \\
   && [ ! -e "$HOLD_DIR/reset-failed" ]; then
   : > "$HOLD_DIR/reset-failed"
+  echo "fatal: simulated index.lock write error" >&2
+  exit 128
+fi
+# While $FAIL_CHECKOUT_ONCE is set, fail on_exit's first put-back of committed manifests
+# the same way.
+if [ -n "${FAIL_CHECKOUT_ONCE:-}" ] && [ "$*" = "checkout -q -- .axiom/ingest-manifests" ] \\
+  && [ ! -e "$HOLD_DIR/checkout-failed" ]; then
+  : > "$HOLD_DIR/checkout-failed"
   echo "fatal: simulated index.lock write error" >&2
   exit 128
 fi
@@ -178,7 +200,13 @@ def _write_scope(repo: Path, version: str) -> None:
     )
 
 
-def _ingest_pr(repo: Path, versions: tuple[str, ...]) -> None:
+def _ingest_pr(
+    repo: Path,
+    versions: tuple[str, ...],
+    *,
+    command: str = "test ingest {version}",
+    extra_args: tuple[str, ...] = (),
+) -> None:
     """Commit scopes, then their manifests signed against that commit, as an ingest PR does."""
     for version in versions:
         _write_scope(repo, version)
@@ -197,7 +225,8 @@ def _ingest_pr(repo: Path, versions: tuple[str, ...]) -> None:
                 "--version",
                 version,
                 "--command",
-                f"test ingest {version}",
+                command.format(version=version),
+                *(arg.format(version=version) for arg in extra_args),
             ]
         )
         assert exit_code == 0
@@ -247,13 +276,21 @@ def _assert_resumable(repo: Path) -> None:
     """What the next run's preflight needs: a clean tracked tree and no selector file."""
     assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
     assert not (repo / TARGET).exists()
+    assert not list(repo.glob(RESIGN_DIRS))
 
 
-def _assert_cut(repo: Path, result: subprocess.CompletedProcess[str], start: str) -> None:
+def _assert_cut(
+    repo: Path,
+    result: subprocess.CompletedProcess[str],
+    start: str,
+    history: tuple[str, ...] = (CUT, SIGN, ADD),
+) -> None:
+    """The run cut the selector, leaving only these commits (newest first) since start."""
     assert result.returncode == 0, result.stdout + result.stderr
-    assert _branch_subjects(repo, start) == [CUT, SIGN, ADD]
+    assert _branch_subjects(repo, start) == list(history)
     assert json.loads((repo / TARGET).read_text()) == json.loads((repo / DRAFT).read_text())
     assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+    assert not list(repo.glob(RESIGN_DIRS))
 
 
 def _install_commit_msg_hook(repo: Path) -> None:
@@ -496,6 +533,9 @@ STEP_1_DEFECTS = {
     "no-provisions": ("provisions/{scope}.jsonl", "missing {path}"),
     "no-sources": ("sources/{scope}", "missing {path}"),
     "empty-sources": ("sources/{scope}", "empty {path}"),  # git cannot commit it
+    # The signer records a link's target, so guard-ingested never finds the link's path.
+    "symlinked-source": ("sources/{scope}/source.html", "symlink {path}"),
+    "symlinked-provisions": ("provisions/{scope}.jsonl", "symlink {path}"),
 }
 
 
@@ -514,6 +554,11 @@ def test_resumes_after_step_1_finds_a_scope_not_ready(repo: Path, defect: str) -
         shutil.rmtree(repo / path)
         if defect == "empty-sources":
             (repo / path).mkdir()
+    elif defect.startswith("symlinked-"):
+        target = repo / "elsewhere" / Path(path).name
+        target.parent.mkdir()
+        (repo / path).rename(target)
+        (repo / path).symlink_to(target)
     else:
         (repo / path).unlink()
 
@@ -530,6 +575,8 @@ def test_resumes_after_step_1_finds_a_scope_not_ready(repo: Path, defect: str) -
     )
     assert "unstaged" not in first.stderr  # there was nothing to unstage
 
+    if (repo / path).is_symlink():  # else _write_scope would write through the link
+        (repo / path).unlink()
     _write_scope(repo, UNRELEASED[1])
     second = _run(repo)
 
@@ -792,11 +839,80 @@ def test_a_signal_to_the_script_alone_waits_for_the_running_commit(
     _assert_cut(repo, _run(repo), start)
 
 
-def test_resumes_after_an_artifact_fix_once_its_stale_manifest_is_deleted(repo: Path) -> None:
-    """The header's exception: the fix changes an artifact this branch committed and signed."""
+def _scope(version: str) -> str:
+    return f"{JURISDICTION}/{DOCUMENT_CLASS}/{version}"
+
+
+def _manifest(repo: Path, version: str) -> Path:
+    return repo / MANIFEST_DIR / f"{version}.json"
+
+
+def _edit_provisions(repo: Path, version: str) -> None:
+    provisions = repo / f"data/corpus/provisions/{_scope(version)}.jsonl"
+    provisions.write_text(provisions.read_text().replace("Text", "Fixed text"))
+
+
+def _stop_at_validation(repo: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """Run once, failing validate-release: both scopes are committed and signed."""
+    monkeypatch.setenv("FAIL_VALIDATE_RELEASE", "fail")
+    result = _run(repo)
+    monkeypatch.delenv("FAIL_VALIDATE_RELEASE")
+    assert result.returncode == 1, result.stdout + result.stderr
+
+
+# Untracked manifests of scopes the draft does not add: one outside it, one released.
+OUTSIDERS = (
+    f"{MANIFEST_DIR}/2026-09-30-outside.json",
+    ".axiom/ingest-manifests/us-ca/statute/2026-09-30.json",
+)
+
+
+@pytest.mark.parametrize("signed", ["on-this-branch", "in-their-ingest-pr"])
+def test_commits_the_unreleased_scopes_manifests_and_no_others(repo: Path, signed: str) -> None:
+    if signed == "in-their-ingest-pr":  # nothing to sign: before, the outsiders made a Sign commit
+        _ingest_pr(repo, UNRELEASED)
+        _set_main_refs(repo, "origin-main")
+        _git(repo, "checkout", "-qb", "release")
+        start = _git(repo, "rev-parse", "HEAD")
+    else:
+        start = _cut_release_branch(repo)
+    for outsider in OUTSIDERS:
+        _write_json(repo / outsider, {"outside": outsider})
+    before = {outsider: (repo / outsider).read_bytes() for outsider in OUTSIDERS}
+
+    result = _run(repo)
+
+    if signed == "in-their-ingest-pr":
+        _assert_cut(repo, result, start, (CUT,))
+        assert "signed manifests already committed; skipping sign commit" in result.stdout
+    else:
+        _assert_cut(repo, result, start)
+        assert _git(repo, "show", "--name-only", "--format=", "HEAD~1").splitlines() == [
+            f"{MANIFEST_DIR}/{version}.json" for version in UNRELEASED
+        ]
+    for outsider in OUTSIDERS:
+        assert (repo / outsider).read_bytes() == before[outsider]
+        assert _git(repo, "ls-files", outsider) == ""
+
+
+# How a fix to an artifact the branch committed and signed lands before the re-run, as the
+# branch's commits between its first Sign commit and its second, newest first.
+ARTIFACT_FIXES = {
+    "committed": ["Restore source.html"],
+    # A fix that only adds files: data/ is gitignored, so the tracked tree stays clean (the
+    # preflight refuses any other uncommitted fix) and step 1 commits it.
+    "uncommitted": [ADD],
+    # The procedure before step 2 signed such a scope again; it still works.
+    "manifest-deleted": ["Delete the stale manifest", "Restore source.html"],
+}
+
+
+@pytest.mark.parametrize("fix", ARTIFACT_FIXES)
+def test_resumes_after_a_fix_to_artifacts_this_branch_signed(repo: Path, fix: str) -> None:
+    """The fix changes an artifact this branch committed and signed; the re-run signs it again."""
     start = _cut_release_branch(repo)
-    scope = f"{JURISDICTION}/{DOCUMENT_CLASS}/{UNRELEASED[1]}"
-    sources = repo / f"data/corpus/sources/{scope}"
+    kept, fixed = UNRELEASED
+    sources = repo / f"data/corpus/sources/{_scope(fixed)}"
     # Step 1 sees a sources directory with a file in it; validate-release sees that the
     # file the provisions name is not there.
     (sources / "source.html").rename(sources / "renamed.html")
@@ -807,32 +923,176 @@ def test_resumes_after_an_artifact_fix_once_its_stale_manifest_is_deleted(repo: 
     assert _branch_subjects(repo, start) == [SIGN, ADD]
     _assert_resumable(repo)
     assert f"validate-release failed; not cutting {TARGET}" in first.stderr
+    kept_manifest = _manifest(repo, kept).read_bytes()
 
-    # The fix alone: the kept manifest describes the old artifacts, so the guard stops it.
-    (sources / "renamed.html").rename(sources / "source.html")
-    _git(repo, "add", "-f", "-A", f"data/corpus/sources/{scope}")
-    _git(repo, "commit", "-qm", "Restore source.html")
+    if fix == "uncommitted":
+        shutil.copy2(sources / "renamed.html", sources / "source.html")
+    else:
+        (sources / "renamed.html").rename(sources / "source.html")
+        _git(repo, "add", "-f", "-A", f"data/corpus/sources/{_scope(fixed)}")
+        _git(repo, "commit", "-qm", "Restore source.html")
+    if fix == "manifest-deleted":
+        _git(repo, "rm", "-q", f"{MANIFEST_DIR}/{fixed}.json")
+        _git(repo, "commit", "-qm", "Delete the stale manifest")
+    second = _run(repo)
+
+    _assert_cut(repo, second, start, (CUT, SIGN, *ARTIFACT_FIXES[fix], SIGN, ADD))
+    out = second.stdout
+    assert f"already signed, keeping existing manifest: {_scope(kept)}" in out
+    resigned = f"signing again: {_scope(fixed)} (its artifacts changed after it was signed)"
+    assert (resigned in out) == (fix != "manifest-deleted")
+    assert "guard-ingested: ok" in out
+    # The second sign commit holds the fixed scope's manifest only, signed against the fix.
+    status = "A" if fix == "manifest-deleted" else "M"
+    assert _git(repo, "show", "--name-status", "--format=", "HEAD~1").splitlines() == [
+        f"{status}\t{MANIFEST_DIR}/{fixed}.json"
+    ]
+    resigned_manifest = json.loads(_manifest(repo, fixed).read_text())
+    assert resigned_manifest["axiom_corpus_git"]["commit"] == _git(repo, "rev-parse", "HEAD~2")
+    assert f"data/corpus/sources/{_scope(fixed)}/source.html" in [
+        entry["path"] for entry in resigned_manifest["applied_files"]
+    ]
+    assert _manifest(repo, kept).read_bytes() == kept_manifest
+    assert _signed_versions() == [*UNRELEASED, fixed]
+
+
+# What stops a run that signs both scopes again, before its sign commit lands.
+RESIGN_FAILURES = {
+    "signing": {"FAIL_SIGN_VERSION": UNRELEASED[1]},  # the first went aside, the second fails
+    "sign-commit": {"FAIL_COMMIT": SIGN},  # both were moved over their committed copies
+    # ... and a signal fails the first put-back, as one can fail the unstage.
+    "sign-commit-put-back-retried": {"FAIL_COMMIT": SIGN, "FAIL_CHECKOUT_ONCE": "1"},
+}
+
+
+@pytest.mark.parametrize("failure", RESIGN_FAILURES)
+def test_a_run_that_stops_after_signing_again_leaves_the_committed_manifests(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, failure: str
+) -> None:
+    # Both committed manifests go stale, so one run signs both again. Written over its
+    # committed copy at once, the first would dirty the tracked tree and the signer would
+    # refuse the second.
+    start = _cut_release_branch(repo)
+    _install_commit_msg_hook(repo)
+    _stop_at_validation(repo, monkeypatch)
+    for version in UNRELEASED:
+        _edit_provisions(repo, version)
+    _git(repo, "commit", "-qam", "Fix provisions")
+    head = _git(repo, "rev-parse", "HEAD")
+    committed = {version: _manifest(repo, version).read_bytes() for version in UNRELEASED}
+
+    failures = RESIGN_FAILURES[failure]
+    if "FAIL_CHECKOUT_ONCE" in failures:
+        _install_git_shim(tmp_path)
+        (tmp_path / "hold").mkdir()
+        monkeypatch.setenv("HOLD_DIR", str(tmp_path / "hold"))
+    for name, value in failures.items():
+        monkeypatch.setenv(name, value)
+    second = _run(repo)
+    for name in failures:
+        monkeypatch.delenv(name)
+
+    assert second.returncode == 1, second.stdout + second.stderr
+    assert _git(repo, "rev-parse", "HEAD") == head
+    _assert_resumable(repo)
+    for version in UNRELEASED:
+        assert _manifest(repo, version).read_bytes() == committed[version]
+    put_back = "put back the committed manifests this run had replaced but not committed"
+    assert (put_back in second.stderr) == ("FAIL_COMMIT" in failures)
+    assert "could not put back" not in second.stderr
+    if "FAIL_CHECKOUT_ONCE" in failures:
+        assert (tmp_path / "hold/checkout-failed").exists()
+        assert "simulated index.lock write error" in second.stderr
+    for version in UNRELEASED:
+        resigned = f"signing again: {_scope(version)} (its artifacts changed after it was signed)"
+        assert resigned in second.stdout
+
+    third = _run(repo)
+
+    _assert_cut(repo, third, start, (CUT, SIGN, "Fix provisions", SIGN, ADD))
+    assert "guard-ingested: ok" in third.stdout
+    assert _git(repo, "show", "--name-status", "--format=", "HEAD~1").splitlines() == [
+        f"M\t{MANIFEST_DIR}/{version}.json" for version in UNRELEASED
+    ]
+    assert _signed_versions() == [*UNRELEASED] * 3
+
+
+def test_signs_again_a_manifest_signed_against_a_rewritten_commit(
+    repo: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # The Sign commit fails, leaving both manifests untracked. Amending the data commit, as
+    # a rebase would, keeps the artifacts but drops the commit they were signed against
+    # from HEAD's history, which guard-ingested rejects.
+    start = _cut_release_branch(repo)
+    _install_commit_msg_hook(repo)
+    monkeypatch.setenv("FAIL_COMMIT", SIGN)
+    first = _run(repo)
+    monkeypatch.delenv("FAIL_COMMIT")
+    assert first.returncode == 1, first.stdout + first.stderr
+    assert _branch_subjects(repo, start) == [ADD]
+    _git(repo, "commit", "--amend", "-qm", ADD)
+
+    second = _run(repo)
+
+    _assert_cut(repo, second, start)
+    for version in UNRELEASED:
+        assert (
+            f"signing again: {_scope(version)} "
+            "(the commit it was signed against is not in HEAD's history)"
+        ) in second.stdout
+    assert "guard-ingested: ok" in second.stdout
+    assert _signed_versions() == [*UNRELEASED] * 2
+
+
+@pytest.mark.parametrize(
+    "content", ["", '{"schema_version": "axiom-corpus/ingest-manifest/v1", "appl', "[]"]
+)
+def test_signs_again_an_untracked_manifest_that_is_not_json(repo: Path, content: str) -> None:
+    # As a signing cut short mid-write leaves behind: it attests nothing.
+    start = _cut_release_branch(repo)
+    manifest = _manifest(repo, UNRELEASED[1])
+    manifest.write_text(content)
+
+    result = _run(repo)
+
+    _assert_cut(repo, result, start)
+    assert (
+        f"signing again: {_scope(UNRELEASED[1])} (its untracked manifest is not readable JSON)"
+        in result.stdout
+    )
+    assert json.loads(manifest.read_text())["version"] == UNRELEASED[1]
+    assert _signed_versions() == list(UNRELEASED)
+
+
+def test_asks_for_the_private_key_to_sign_a_scope_again(
+    repo: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    start = _cut_release_branch(repo)
+    _stop_at_validation(repo, monkeypatch)
+    _edit_provisions(repo, UNRELEASED[1])
+    _git(repo, "commit", "-qam", "Fix provisions")
+    head = _git(repo, "rev-parse", "HEAD")
+    calls = len(_uv_calls())
+    private_key = os.environ["AXIOM_CORPUS_INGEST_PRIVATE_KEY"]
+    monkeypatch.delenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY")
+
     second = _run(repo)
 
     assert second.returncode == 1, second.stdout + second.stderr
-    assert f"guard-ingested failed; not cutting {TARGET}" in second.stderr
+    assert (
+        "1 of 2 unreleased scopes need signing; "
+        "export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell first\n"
+        f"  {MANIFEST_DIR}/{UNRELEASED[1]}.json will be signed again: "
+        "its artifacts changed after it was signed\n"
+    ) in second.stderr
+    assert _git(repo, "rev-parse", "HEAD") == head
     _assert_resumable(repo)
+    assert len(_uv_calls()) == calls
 
-    # With the scope's manifest deleted, step 2 signs it again and the run cuts.
-    _git(repo, "rm", "-q", f"{MANIFEST_DIR}/{UNRELEASED[1]}.json")
-    _git(repo, "commit", "-qm", "Delete the stale manifest")
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private_key)
     third = _run(repo)
 
-    assert third.returncode == 0, third.stdout + third.stderr
-    assert "guard-ingested: ok" in third.stdout
-    assert _branch_subjects(repo, start) == [
-        CUT,
-        SIGN,
-        "Delete the stale manifest",
-        "Restore source.html",
-        SIGN,
-        ADD,
-    ]
+    _assert_cut(repo, third, start, (CUT, SIGN, "Fix provisions", SIGN, ADD))
     assert _signed_versions() == [*UNRELEASED, UNRELEASED[1]]
 
 
@@ -930,3 +1190,388 @@ def test_a_closed_output_pipe_does_not_stop_the_cleanup(
 
     monkeypatch.delenv("FAIL_COMMIT")
     _assert_cut(repo, _run(repo), start)
+
+
+REASONING_LOG = ".axiom/reasoning-logs/test-ingest.md"
+
+
+@dataclass(frozen=True)
+class Foreign:
+    """How a manifest this script must never sign again was signed, and where."""
+
+    on_main: bool
+    command: str = SCRIPT_COMMAND
+    extra_args: tuple[str, ...] = ()
+    origin_main_behind: bool = False  # origin/main is set before main gains the manifest
+
+
+# Each manifest of the first unreleased scope has the one property that rules it out.
+FILES = ("sources/{scope}/source.html", "inventory/{scope}.json", "provisions/{scope}.jsonl")
+FOREIGN_MANIFESTS = {
+    # By the command this script writes, but on main: where it was committed protects it.
+    "committed-on-main": Foreign(on_main=True),
+    # ... even when origin/main is behind the main the branch was cut from.
+    "committed-on-newer-local-main": Foreign(on_main=True, origin_main_behind=True),
+    # The rest are on this branch.
+    "ingest-command": Foreign(on_main=False, command="test ingest {version}"),
+    "custom-manifest-path": Foreign(
+        on_main=False,
+        command=SCRIPT_COMMAND.replace(
+            " (run note:", " --manifest custom/scope.yml (run note:"
+        ),
+    ),
+    "consolidation-for-ordinary-version": Foreign(
+        on_main=False,
+        command=(
+            "scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-co"
+            " --document-class policy --target-version {version}"
+            " (run note: docs/ingest-runs/2026-09-11-release-consolidation.md)"
+        ),
+    ),
+    "reasoning-log": Foreign(on_main=False, extra_args=("--reasoning-log", REASONING_LOG)),
+    "deleted-file": Foreign(
+        on_main=False,
+        extra_args=(
+            *(
+                arg
+                for artifact in (*FILES, "coverage/{scope}.json")
+                for arg in ("--file", f"data/corpus/{artifact}")
+            ),
+            "--deleted-file",
+            "data/corpus/sources/{scope}/retired.html",
+        ),
+    ),
+    "unreadable": Foreign(on_main=False),  # truncated, then committed
+    "entry-without-sha256": Foreign(on_main=False),  # one entry's sha256 dropped, then committed
+    # A hand-picked --file list (no coverage), not the scope as the signer infers it.
+    "file-subset": Foreign(
+        on_main=False,
+        extra_args=tuple(arg for f in FILES for arg in ("--file", f"data/corpus/{f}")),
+    ),
+}
+
+
+@pytest.mark.parametrize("foreign", FOREIGN_MANIFESTS)
+def test_never_signs_again_a_manifest_it_did_not_sign(repo: Path, foreign: str) -> None:
+    """A fix to such a scope's artifacts is guard-ingested's to reject, not this script's to sign."""
+    kept, unsigned = UNRELEASED
+    case = FOREIGN_MANIFESTS[foreign]
+    extra_args = tuple(arg.replace("{scope}", _scope(kept)) for arg in case.extra_args)
+    if foreign == "reasoning-log":
+        (repo / REASONING_LOG).parent.mkdir(parents=True)
+        (repo / REASONING_LOG).write_text("How the scope was ingested.\n")
+        _git(repo, "add", REASONING_LOG)
+        _git(repo, "commit", "-qm", "Add a reasoning log")
+    if not case.on_main or case.origin_main_behind:
+        _set_main_refs(repo, "origin-main")
+    if not case.on_main:
+        _git(repo, "checkout", "-qb", "release")
+    _ingest_pr(repo, (kept,), command=case.command, extra_args=extra_args)
+    if case.on_main:
+        if not case.origin_main_behind:
+            _set_main_refs(repo, "origin-main")
+        _git(repo, "checkout", "-qb", "release")
+    if foreign == "unreadable":
+        _manifest(repo, kept).write_text('{"schema_version": "axiom-corpus/ingest-man')
+        _git(repo, "commit", "-qam", "Truncate the manifest")
+    elif foreign == "entry-without-sha256":
+        payload = json.loads(_manifest(repo, kept).read_text())
+        del payload["applied_files"][0]["sha256"]
+        _write_json(_manifest(repo, kept), payload)
+        _git(repo, "commit", "-qam", "Drop a sha256")
+    _edit_provisions(repo, kept)
+    _git(repo, "commit", "-qam", "Fix provisions")
+    _write_scope(repo, unsigned)
+    head = _git(repo, "rev-parse", "HEAD")
+    manifest = _manifest(repo, kept).read_bytes()
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert f"already signed, keeping existing manifest: {_scope(kept)}" in result.stdout
+    assert f"signing again: {_scope(kept)}" not in result.stdout
+    assert f"guard-ingested failed; not cutting {TARGET}" in result.stderr
+    assert _manifest(repo, kept).read_bytes() == manifest
+    assert _signed_versions() == [unsigned]
+    assert _branch_subjects(repo, head) == [SIGN, ADD]
+    _assert_resumable(repo)
+
+
+def test_stops_when_a_scope_it_would_sign_removes_an_artifact_main_has(repo: Path) -> None:
+    """This script cannot mark an artifact deleted; it says how to sign such a scope by hand."""
+    kept, legacy = UNRELEASED
+    # Main tracks the second scope's artifacts without a manifest (as before signing was
+    # required), with one more source, which the release branch removes.
+    _write_scope(repo, legacy)
+    retired = f"data/corpus/sources/{_scope(legacy)}/retired.html"
+    (repo / retired).write_text("<p>Retired.</p>")
+    _git(repo, "add", "-f", "data/corpus")
+    _git(repo, "commit", "-qm", "Track a scope without a manifest")
+    _set_main_refs(repo, "origin-main")
+    _git(repo, "checkout", "-qb", "release")
+    start = _git(repo, "rev-parse", "HEAD")
+    _git(repo, "rm", "-q", retired)
+    _git(repo, "commit", "-qm", "Remove retired.html")
+    _write_scope(repo, kept)
+
+    first = _run(repo)
+
+    assert first.returncode == 1, first.stdout + first.stderr
+    assert (
+        "nothing staged; these scopes remove artifacts that origin/main has:\n"
+        f"  {_scope(legacy)}: {retired}\n"
+    ) in first.stderr
+    assert "--deleted-file for\neach removed one" in first.stderr
+    assert _branch_subjects(repo, start) == ["Remove retired.html"]
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+    # The procedure it names: sign the scope by hand, marking the removal.
+    exit_code = main(
+        [
+            "sign-ingest-manifest",
+            "--repo",
+            str(repo),
+            "--jurisdiction",
+            JURISDICTION,
+            "--document-class",
+            DOCUMENT_CLASS,
+            "--version",
+            legacy,
+            "--command",
+            "test signed by hand",
+            *(
+                arg
+                for artifact in (*FILES, "coverage/{scope}.json")
+                for arg in ("--file", "data/corpus/" + artifact.format(scope=_scope(legacy)))
+            ),
+            "--deleted-file",
+            retired,
+        ]
+    )
+    assert exit_code == 0
+    _git(repo, "add", f"{MANIFEST_DIR}/{legacy}.json")
+    _git(repo, "commit", "-qm", "Sign the scope by hand")
+    second = _run(repo)
+
+    _assert_cut(
+        repo, second, start, (CUT, SIGN, ADD, "Sign the scope by hand", "Remove retired.html")
+    )
+    assert f"already signed, keeping existing manifest: {_scope(legacy)}" in second.stdout
+    assert "guard-ingested: ok" in second.stdout
+    assert _signed_versions() == [kept]
+
+
+# How the script names a scope's rebuild command, by the shape of its version.
+COMMAND_FORMS = {
+    "consolidated": (
+        "2026-09-24-c-consolidated",
+        "scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-co"
+        " --document-class policy --target-version 2026-09-24-c-consolidated"
+        " (run note: docs/ingest-runs/2026-09-11-release-consolidation.md)",
+    ),
+    "manifest-yaml": (
+        "2026-09-24-c",
+        "axiom-corpus-ingest extract-official-documents --base data/corpus"
+        " --version 2026-09-24-c --manifest manifests/test-scope.yaml"
+        " (run note: docs/ingest-runs/2026-09-10-*.md)",
+    ),
+}
+
+
+@pytest.mark.parametrize("form", COMMAND_FORMS)
+def test_signs_again_a_manifest_signed_with_either_command_form(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, form: str
+) -> None:
+    kept = UNRELEASED[0]
+    version, command = COMMAND_FORMS[form]
+    _write_json(repo / DRAFT, _selector("test-rel-2", [RELEASED, kept, version]))
+    if form == "manifest-yaml":
+        (repo / "manifests/test-scope.yaml").write_text(
+            f'version: "{version}"\n'
+            f"documents:\n  - jurisdiction: {JURISDICTION}\n    document_class: {DOCUMENT_CLASS}\n"
+        )
+    _git(repo, "add", "manifests", DRAFT)
+    _git(repo, "commit", "-qm", "Select a third scope")
+    for scope_version in (kept, version):
+        _write_scope(repo, scope_version)
+    _set_main_refs(repo, "origin-main")
+    _git(repo, "checkout", "-qb", "release")
+    start = _git(repo, "rev-parse", "HEAD")
+    _stop_at_validation(repo, monkeypatch)
+    assert json.loads(_manifest(repo, version).read_text())["command"]["text"] == command
+    _edit_provisions(repo, version)
+    _git(repo, "commit", "-qam", "Fix provisions")
+
+    second = _run(repo)
+
+    _assert_cut(repo, second, start, (CUT, SIGN, "Fix provisions", SIGN, ADD))
+    resigned = f"signing again: {_scope(version)} (its artifacts changed after it was signed)"
+    assert resigned in second.stdout
+    assert json.loads(_manifest(repo, version).read_text())["command"]["text"] == command
+    assert _signed_versions() == [kept, version, version]
+
+
+@pytest.mark.parametrize("manifests", ["untracked", "committed"])
+def test_with_no_main_to_compare_signs_again_only_untracked_manifests(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, manifests: str
+) -> None:
+    # Without a merge base, the script cannot tell main's manifests from this branch's.
+    for version in UNRELEASED:
+        _write_scope(repo, version)
+    _set_main_refs(repo, "no-main")
+    _git(repo, "checkout", "-qb", "release")
+    start = _git(repo, "rev-parse", "HEAD")
+    if manifests == "untracked":
+        _install_commit_msg_hook(repo)
+        monkeypatch.setenv("FAIL_COMMIT", SIGN)
+        assert _run(repo).returncode == 1
+        monkeypatch.delenv("FAIL_COMMIT")
+    else:
+        _stop_at_validation(repo, monkeypatch)
+    fixed = UNRELEASED[1]
+    _edit_provisions(repo, fixed)
+    _git(repo, "add", "-f", f"data/corpus/provisions/{_scope(fixed)}.jsonl")
+    _git(repo, "commit", "-qm", "Fix provisions")
+    stale = _manifest(repo, fixed).read_bytes()
+
+    second = _run(repo)
+
+    assert "neither origin/main nor main shares history with HEAD;" in second.stdout
+    resigned = f"signing again: {_scope(fixed)} (its artifacts changed after it was signed)"
+    if manifests == "untracked":
+        _assert_cut(repo, second, start, (CUT, SIGN, "Fix provisions", ADD))
+        assert resigned in second.stdout
+        assert _signed_versions() == [*UNRELEASED, fixed]
+    else:  # kept, stale: CI's guard-ingested rejects the PR
+        _assert_cut(repo, second, start, (CUT, "Fix provisions", SIGN, ADD))
+        assert resigned not in second.stdout
+        assert _manifest(repo, fixed).read_bytes() == stale
+        assert _signed_versions() == list(UNRELEASED)
+
+
+# Step 2's plan, in the script's own words, run as the script runs it.
+PLAN_SOURCE = re.compile(r"^plan_signing\(\) \{.*?<<'PY'\n(.*?)^PY$", re.S | re.M)
+PLAN_VERSION = "2026-09-24-p"
+PLAN_SCOPE = f"{JURISDICTION}/{DOCUMENT_CLASS}/{PLAN_VERSION}"
+NAME_PART = st.text("abcdefghijklmnopqrstuvwxyz0123456789_-", min_size=1, max_size=6)
+# Sources files by path under the scope's sources directory. "d-" and "f-" keep a
+# directory from sharing a name with a file.
+SOURCE_FILES = st.dictionaries(
+    st.builds(
+        lambda dirs, name: "/".join([*(f"d-{d}" for d in dirs), f"f-{name}.html"]),
+        st.lists(NAME_PART, max_size=2),
+        NAME_PART,
+    ),
+    st.binary(max_size=32),
+    max_size=4,
+)
+OTHER_ARTIFACTS = {
+    "inventory": f"inventory/{PLAN_SCOPE}.json",
+    "provisions": f"provisions/{PLAN_SCOPE}.jsonl",
+    "coverage": f"coverage/{PLAN_SCOPE}.json",
+}
+
+
+def _plan(repo: Path) -> str:
+    """Step 2's plan for a scope whose manifest is untracked, with no main to compare."""
+    match = PLAN_SOURCE.search(SCRIPT.read_text())
+    assert match, "plan_signing's Python is no longer where this test looks for it"
+    scope_list = repo / ".git/scope-list"
+    scope_list.write_text(f"{JURISDICTION} {DOCUMENT_CLASS} {PLAN_VERSION}\n")
+    result = subprocess.run(
+        # No guard ref, merge base or main bases: no main to compare.
+        [
+            sys.executable, "-", "", "", "", str(scope_list),
+            f"{MANIFEST_DIR}/{PLAN_VERSION}.json", SCRIPT_COMMAND.format(version=PLAN_VERSION),
+        ],
+        input=match.group(1),
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    return result.stdout
+
+
+def _commit_and_sign(repo: Path) -> None:
+    _git(repo, "add", "-f", "-A", "data/corpus")
+    _git(repo, "commit", "-qm", "Artifacts")
+    exit_code = main(
+        [
+            "sign-ingest-manifest",
+            "--repo",
+            str(repo),
+            "--jurisdiction",
+            JURISDICTION,
+            "--document-class",
+            DOCUMENT_CLASS,
+            "--version",
+            PLAN_VERSION,
+            "--command",
+            SCRIPT_COMMAND.format(version=PLAN_VERSION),
+        ]
+    )
+    assert exit_code == 0
+
+
+@settings(
+    max_examples=10,
+    deadline=None,
+    # The fixture only sets the environment (git identity, keys); each example makes its
+    # own repository.
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(
+    sources=SOURCE_FILES, others=st.sets(st.sampled_from(sorted(OTHER_ARTIFACTS))), data=st.data()
+)
+def test_the_plan_finds_a_manifest_stale_exactly_when_the_signer_would_sign_other_files(
+    repo: Path, sources: dict[str, bytes], others: set[str], data: st.DataObject
+) -> None:
+    """The plan's own reading of a scope's artifacts against the signer's (a differential check).
+
+    A manifest the signer just wrote is kept; any change to the scope's files, their bytes or
+    their paths makes it stale; and the manifest the signer writes for the changed scope is
+    kept again.
+    """
+    assume(sources or others)
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        _git(root, "init", "-q", "-b", "main")
+        corpus = root / "data/corpus"
+        for path, content in sources.items():
+            target = corpus / "sources" / PLAN_SCOPE / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+        for kind in others:
+            target = corpus / OTHER_ARTIFACTS[kind]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            # sign-ingest-manifest summarises coverage, so it must be JSON.
+            target.write_bytes(
+                b'{"complete": true}' if kind == "coverage" else data.draw(st.binary(max_size=32))
+            )
+        _commit_and_sign(root)
+        assert _plan(root) == "keep\t\n"
+
+        files = sorted(p for p in corpus.rglob("*") if p.is_file())
+        source_files = [p for p in files if "/sources/" in p.as_posix()]
+        changes = ["modify", "add"]
+        changes += ["delete"] * (len(files) > 1) + ["rename"] * bool(source_files)
+        change = data.draw(st.sampled_from(changes))
+        if change == "add":  # generated names start "f-" or "d-", so this one is new
+            added = corpus / "sources" / PLAN_SCOPE / "added.html"
+            added.parent.mkdir(parents=True, exist_ok=True)
+            added.write_bytes(b"added")
+        else:
+            path = data.draw(st.sampled_from(source_files if change == "rename" else files))
+            if change == "modify":
+                path.write_bytes(path.read_bytes() + b"!")
+            elif change == "delete":
+                path.unlink()
+            else:
+                path.rename(path.with_name(f"renamed-{path.name}"))
+        assert _plan(root) == "resign\tits artifacts changed after it was signed\n", change
+
+        _commit_and_sign(root)
+        assert _plan(root) == "keep\t\n", change

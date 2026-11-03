@@ -14,6 +14,8 @@ import unicodedata
 import warnings
 import zipfile
 from collections import Counter
+from collections.abc import Iterator
+from copy import copy
 from dataclasses import dataclass, replace
 from datetime import date
 from io import BytesIO, StringIO
@@ -76,7 +78,8 @@ _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
-_TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
+_PREFORMATTED_TAGS = {"pre"}
+_TEXT_TAGS = _HEADING_TAGS | _PREFORMATTED_TAGS | {"p", "li", "table", "blockquote"}
 _NON_HEADING_UPPERCASE_LINES = {
     "HANDBOOK BEGINS HERE",
     "HANDBOOK CONTINUES",
@@ -1095,6 +1098,19 @@ def _extract_pdf_blocks(
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
+    # The default per-page path emits every page and reads none of the page
+    # filters, so refuse them rather than ignore them.
+    page_filters = [
+        key for key in _SINGLE_BLOCK_PDF_FILTER_KEYS if extraction_config.get(key) is not None
+    ]
+    if page_filters:
+        supported = ", ".join(_PDF_PAGE_FILTER_SEGMENTATIONS[:-1])
+        raise ValueError(
+            f"the default per-page PDF segmentation (used for segmentation={segmentation!r}) "
+            f"does not read page filters, so {', '.join(page_filters)} would be ignored; "
+            f"only the {supported} and {_PDF_PAGE_FILTER_SEGMENTATIONS[-1]} "
+            "segmentations read them"
+        )
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
@@ -1292,77 +1308,88 @@ def _pdf_page_layered_text(
     every page. The characters are the ones ``page.get_text("text")`` prints
     (same text flags), and a line ends in a newline exactly where that printer
     ends it with one: when the line printed a character and that character is
-    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters removed,
-    is the default page text. ``sort_blocks`` orders text blocks top to bottom
-    (PyMuPDF block sort), which places a boxed note drawn last in the content
-    stream where it appears on the page, and keeps the same characters.
+    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters
+    removed, is the default page text. ``sort_blocks`` orders text blocks top to
+    bottom (PyMuPDF block sort), which places a boxed note drawn last in the
+    content stream where it appears on the page, and keeps the same characters.
     ``_pdf_check_layered_page_text`` checks both on every page.
+
+    The page is read from PyMuPDF's ``rawdict``. Where that reading does not
+    match the default text, because ``rawdict`` left out glyphs the printer
+    prints, it is read again with those glyphs (``_pdf_page_character_blocks``).
     """
     sort_blocks = extraction.get("sort_blocks") is True
-    raw = page.get_text(
-        "rawdict",
-        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
-        sort=sort_blocks,
-    )
+    flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
+    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
     rules, thick_rules = _pdf_horizontal_rules(page) if markup is not None else ((), ())
-    chars: list[str] = []
-    states: list[str | None] = []
     near_threshold: list[list[float]] = []
     thick_rule_hits: list[list[float]] = []
-    for block in raw.get("blocks", ()):
-        if block.get("type") != 0:
-            continue
-        for line in block.get("lines", ()):
-            spans = line.get("spans", ())
-            reference = _pdf_line_reference(spans)
-            last_character = ""
-            for span in spans:
-                span_size = float(span.get("size") or 0.0)
-                for char in span.get("chars", ()):
-                    character = str(char.get("c", ""))
-                    state = None
-                    if reference is not None and not character.isspace():
-                        references = [reference]
-                        if span_size > 0:
-                            references.append((float(char["origin"][1]), span_size))
-                        if rules:
-                            offsets = _pdf_rule_offsets(char, references=references, rules=rules)
-                            state = _pdf_char_amendment_state(
-                                char, offsets=offsets, page_number=page_number
-                            )
-                            near = [
-                                offset
-                                for _rule, offset in offsets
-                                if _pdf_offset_near_threshold(offset)
-                            ]
-                            if near:
-                                near_threshold.append(near)
-                        if thick_rules:
-                            thick = [
-                                rule.thickness
-                                for rule, offset in _pdf_rule_offsets(
-                                    char, references=references, rules=thick_rules
+
+    def read(blocks: Any) -> tuple[str, list[str | None]]:
+        chars: list[str] = []
+        states: list[str | None] = []
+        near_threshold.clear()
+        thick_rule_hits.clear()
+        for block in blocks:
+            if block.get("type") != 0:
+                continue
+            for line in block.get("lines", ()):
+                spans = line.get("spans", ())
+                reference = _pdf_layered_line_reference(spans)
+                last_character = ""
+                for span in spans:
+                    span_size = float(span.get("size") or 0.0)
+                    for char in span.get("chars", ()):
+                        character = str(char.get("c", ""))
+                        state = None
+                        if reference is not None and not character.isspace():
+                            references = [reference]
+                            if span_size > 0:
+                                references.append((float(char["origin"][1]), span_size))
+                            if rules:
+                                offsets = _pdf_rule_offsets(
+                                    char, references=references, rules=rules
                                 )
-                                if _pdf_offset_amendment_state(offset) is not None
-                            ]
-                            if thick:
-                                thick_rule_hits.append(thick)
-                    chars.append(character)
-                    states.append(state)
-                    last_character = character
-            # PyMuPDF's plain-text printer ends a line with a newline only when the
-            # line printed a character that is neither a newline nor NUL.
-            if last_character not in ("", "\n", "\x00"):
-                chars.append("\n")
-                states.append(None)
-    raw_text = "".join(chars)
+                                state = _pdf_char_amendment_state(
+                                    char, offsets=offsets, page_number=page_number
+                                )
+                                near = [
+                                    offset
+                                    for _rule, offset in offsets
+                                    if _pdf_offset_near_threshold(offset)
+                                ]
+                                if near:
+                                    near_threshold.append(near)
+                            if thick_rules:
+                                thick = [
+                                    rule.thickness
+                                    for rule, offset in _pdf_rule_offsets(
+                                        char, references=references, rules=thick_rules
+                                    )
+                                    if _pdf_offset_amendment_state(offset) is not None
+                                ]
+                                if thick:
+                                    thick_rule_hits.append(thick)
+                        chars.append(character)
+                        states.append(state)
+                        last_character = character
+                # PyMuPDF's plain-text printer ends a line with a newline only when the
+                # line printed a character that is neither a newline nor NUL.
+                if last_character not in ("", "\n", "\x00"):
+                    chars.append("\n")
+                    states.append(None)
+        return "".join(chars), states
+
+    raw = page.get_text("rawdict", flags=flags, sort=sort_blocks)
+    raw_text, states = read(raw.get("blocks", ()))
     plain_text = _normalize_text(raw_text)
+    if _pdf_layered_text_difference(plain_text, default_text, sort_blocks=sort_blocks):
+        raw_text, states = read(
+            _pdf_page_character_blocks(page, flags=flags, sort=sort_blocks, page_number=page_number)
+        )
+        plain_text = _normalize_text(raw_text)
     _pdf_check_layered_page_text(
-        page,
-        plain_text,
-        extraction=extraction,
-        sort_blocks=sort_blocks,
-        page_number=page_number,
+        plain_text, default_text, sort_blocks=sort_blocks, page_number=page_number
     )
     if markup is None:
         return plain_text, None
@@ -1403,30 +1430,276 @@ def _pdf_page_layered_text(
     return rendered.text, metadata
 
 
-def _pdf_check_layered_page_text(
-    page: Any,
-    layered_text: str,
-    *,
-    extraction: dict[str, Any],
-    sort_blocks: bool,
-    page_number: int,
-) -> None:
-    """Check layered page text against the default page text.
+# MuPDF's rectangle conventions (fitz/geometry.h), on (x0, y0, x1, y1) tuples. A
+# rectangle is empty when it has no area and valid when its corners are ordered,
+# so a zero-width glyph's box is empty but valid. Each comparison is written as
+# MuPDF writes it, so NaN coordinates compare as they do there.
+_PDF_EMPTY_RECT = (
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+)
+_PDF_INFINITE_RECT = (
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+)
+_PdfRect = tuple[float, float, float, float]
+
+
+def _pdf_rect(rect: Any) -> _PdfRect:
+    return (float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1))
+
+
+def _pdf_rect_is_empty(rect: _PdfRect) -> bool:
+    return rect[0] >= rect[2] or rect[1] >= rect[3]
+
+
+def _pdf_rect_is_valid(rect: _PdfRect) -> bool:
+    return rect[0] <= rect[2] and rect[1] <= rect[3]
+
+
+def _pdf_rects_overlap(a: _PdfRect, b: _PdfRect) -> bool:
+    """PyMuPDF's ``JM_rects_overlap``: strict, so a zero-width box inside ``a`` overlaps it."""
+    return not (a[0] >= b[2] or a[1] >= b[3] or a[2] <= b[0] or a[3] <= b[1])
+
+
+def _pdf_intersect_rect(a: _PdfRect, b: _PdfRect) -> _PdfRect:
+    """MuPDF's ``fz_intersect_rect``."""
+    if b == _PDF_INFINITE_RECT:
+        return a
+    if a == _PDF_INFINITE_RECT:
+        return b
+    return (
+        b[0] if a[0] < b[0] else a[0],
+        b[1] if a[1] < b[1] else a[1],
+        b[2] if a[2] > b[2] else a[2],
+        b[3] if a[3] > b[3] else a[3],
+    )
+
+
+def _pdf_union_rect(a: _PdfRect, b: _PdfRect) -> _PdfRect:
+    """MuPDF's ``fz_union_rect``: an invalid box adds nothing, an empty valid one does."""
+    if not _pdf_rect_is_valid(b):
+        return a
+    if not _pdf_rect_is_valid(a):
+        return b
+    if a == _PDF_INFINITE_RECT:
+        return a
+    if b == _PDF_INFINITE_RECT:
+        return b
+    return (
+        b[0] if a[0] > b[0] else a[0],
+        b[1] if a[1] > b[1] else a[1],
+        b[2] if a[2] < b[2] else a[2],
+        b[3] if a[3] < b[3] else a[3],
+    )
+
+
+def _pdf_same_rect(a: Any, b: Any) -> bool:
+    """Compare boxes or points value by value, NaN equal to NaN."""
+    return len(a) == len(b) and all(
+        x == y or (x != x and y != y) for x, y in zip(a, b, strict=True)
+    )
+
+
+def _pdf_page_character_blocks(
+    page: Any, *, flags: int, sort: bool, page_number: int
+) -> list[dict[str, Any]]:
+    """Return the page's rawdict blocks with the glyphs rawdict leaves out added.
+
+    The blocks have rawdict's shape and hold the lines and characters that
+    ``page.get_text("text")`` prints with the same flags, in the same order.
+
+    PyMuPDF's plain-text printer (``JM_print_stext_page_as_text``) prints a
+    character when its box overlaps the page, using a strict test that a
+    zero-width box inside the page passes. rawdict (``JM_make_textpage_dict``)
+    applies the same test to each character, but it also skips a block whose box
+    does not overlap the page, a line whose box clipped to the page has no area,
+    and the last span of a line when that span's box has no area. A zero-advance
+    period, a combining mark or a private-use glyph drawn with no width can make
+    such a line or span, and rawdict then leaves it out.
+
+    So the page's text page is built once and read twice: rawdict for its spans,
+    and a walk over the same text page (PyMuPDF's low-level bindings) that
+    applies the printer's test and rawdict's block and line tests side by side,
+    as PyMuPDF writes them from 1.26.6. Every character rawdict keeps must line
+    up with the walk, and so must the fields the layered path reads (a span's
+    size and origin, a block's box), or extraction stops. The characters rawdict
+    leaves out are added where the printer prints them, marked ``added``: a
+    skipped last span as one span, a skipped line as one span per run of one font
+    size, both with only ``size``, ``origin`` and ``chars``. Each character is
+    given as the printer prints it, so a lone surrogate code point, which
+    rawdict passes through, reads as U+FFFD.
+
+    ``sort`` orders the blocks as ``get_text("rawdict", sort=True)`` does, by the
+    bottom and then the left edge of each block's box, keeping their order on
+    ties. A block keeps rawdict's box, so added characters never move a block
+    whose text rawdict read. Only a block rawdict read no character of takes the
+    box around its added characters that print, so that it sorts where they
+    appear; one whose added characters are all spaces or characters
+    ``_normalize_text`` drops keeps rawdict's empty box and sorts first, as
+    rawdict sorts it, adding no blank line between other blocks. A space-only
+    line added inside a block keeps its place there, where the printer's own
+    text has the same line break.
+    """
+    textpage = page.get_textpage(flags=flags)
+    raw_blocks = iter(textpage.extractRAWDICT()["blocks"])
+    stext_page = textpage.this
+    page_rect = _pdf_rect(stext_page.m_internal.mediabox)
+    unclipped = page_rect == _PDF_INFINITE_RECT
+
+    def mismatch(detail: str) -> RuntimeError:
+        return RuntimeError(
+            f"PDF page {page_number}: PyMuPDF's rawdict does not line up with its text page "
+            f"({detail}); keep the page out of the amendment_markup page range, or extract "
+            "this PDF without amendment_markup and sort_blocks"
+        )
+
+    blocks: list[dict[str, Any]] = []
+    for stext_block in stext_page:
+        block_type = stext_block.m_internal.type
+        if block_type != fitz.mupdf.FZ_STEXT_BLOCK_TEXT:
+            # Text flags without images, vectors, structure or table hunting
+            # give only text blocks.
+            raise mismatch(f"text page block of type {block_type}")
+        raw_block: dict[str, Any] | None = None
+        if unclipped or _pdf_rects_overlap(page_rect, _pdf_rect(stext_block.m_internal.bbox)):
+            raw_block = next(raw_blocks, None)
+            if raw_block is None or raw_block.get("type") != 0:
+                raise mismatch("a text block is missing from rawdict")
+        raw_lines = iter(raw_block["lines"] if raw_block is not None else ())
+        lines: list[dict[str, Any]] = []
+        kept_box: _PdfRect = _PDF_EMPTY_RECT
+        kept_any = False
+        added_box: _PdfRect = _PDF_EMPTY_RECT
+        for stext_line in stext_block:
+            printed: list[dict[str, Any]] = []
+            sizes: list[float] = []
+            for stext_char in stext_line:
+                # PyMuPDF's C++ JM_char_bbox, the box rawdict and the printer test.
+                bbox = _pdf_rect(fitz.extra.JM_char_bbox(stext_line, stext_char))
+                if unclipped or _pdf_rects_overlap(page_rect, bbox):
+                    char = stext_char.m_internal
+                    printed.append(
+                        {"c": chr(char.c), "origin": (char.origin.x, char.origin.y), "bbox": bbox}
+                    )
+                    sizes.append(float(char.size))
+            raw_line: dict[str, Any] | None = None
+            if raw_block is not None and (
+                unclipped
+                or not _pdf_rect_is_empty(
+                    _pdf_intersect_rect(page_rect, _pdf_rect(stext_line.m_internal.bbox))
+                )
+            ):
+                raw_line = next(raw_lines, None)
+                if raw_line is None:
+                    raise mismatch("a line is missing from rawdict")
+            if raw_line is None:
+                if printed:
+                    lines.append({"spans": _pdf_added_spans(printed, sizes), "added": True})
+                    added_box = _pdf_printing_box(added_box, printed)
+                continue
+            spans = list(raw_line.get("spans", ()))
+            position = 0
+            for span in spans:
+                chars = span.get("chars", ())
+                if not chars or position + len(chars) > len(printed):
+                    raise mismatch(
+                        "rawdict holds a character the plain-text printer does not print"
+                    )
+                if not _pdf_same_rect(span["origin"], printed[position]["origin"]):
+                    raise mismatch("a span's origin is not its first character's")
+                for char in chars:
+                    walked = printed[position]
+                    if not (
+                        char["c"] == walked["c"]
+                        and _pdf_same_rect(char["origin"], walked["origin"])
+                        and _pdf_same_rect(char["bbox"], walked["bbox"])
+                    ):
+                        raise mismatch(
+                            "rawdict holds a character the plain-text printer does not print"
+                        )
+                    if not _pdf_same_rect((float(span["size"]),), (sizes[position],)):
+                        raise mismatch("a span's size is not its characters'")
+                    kept_box = _pdf_union_rect(kept_box, walked["bbox"])
+                    kept_any = True
+                    position += 1
+            dropped = printed[position:]
+            if dropped:
+                dropped_box = dropped[0]["bbox"]
+                for char in dropped[1:]:
+                    dropped_box = _pdf_union_rect(dropped_box, char["bbox"])
+                if len(set(sizes[position:])) != 1 or not _pdf_rect_is_empty(dropped_box):
+                    raise mismatch("rawdict leaves out characters that are not a last empty span")
+                raw_line = {
+                    **raw_line,
+                    "spans": [*spans, *_pdf_added_spans(dropped, sizes[position:])],
+                }
+                added_box = _pdf_printing_box(added_box, dropped)
+            lines.append(raw_line)
+        if next(raw_lines, None) is not None:
+            raise mismatch("rawdict holds a line the text page does not")
+        if raw_block is None:
+            if lines:
+                blocks.append({"type": 0, "bbox": added_box, "lines": lines, "added": True})
+            continue
+        if not _pdf_same_rect(raw_block.get("bbox", ()), kept_box):
+            raise mismatch("a block's box is not the box around its characters")
+        block = {**raw_block, "lines": lines}
+        if added_box != _PDF_EMPTY_RECT and not kept_any:
+            block["bbox"] = added_box
+        blocks.append(block)
+    if next(raw_blocks, None) is not None:
+        raise mismatch("rawdict holds a block the text page does not")
+    # The printer (JM_append_rune) prints a lone surrogate code point, which
+    # rawdict passes through, as U+FFFD.
+    for block in blocks:
+        for line in block["lines"]:
+            for span in line.get("spans", ()):
+                for char in span.get("chars", ()):
+                    if "\ud800" <= char["c"] <= "\udfff":
+                        char["c"] = "\ufffd"
+    if sort:
+        blocks.sort(key=lambda block: (block["bbox"][3], block["bbox"][0]))
+    return blocks
+
+
+def _pdf_printing_box(box: _PdfRect, chars: list[dict[str, Any]]) -> _PdfRect:
+    """Add to ``box`` the boxes of the characters that print in normalized text."""
+    for char in chars:
+        if not char["c"].isspace() and char["c"] not in {"\u200b", "\ufeff"}:
+            box = _pdf_union_rect(box, char["bbox"])
+    return box
+
+
+def _pdf_added_spans(chars: list[dict[str, Any]], sizes: list[float]) -> list[dict[str, Any]]:
+    """Group characters rawdict left out into spans, one per run of one font size."""
+    spans: list[dict[str, Any]] = []
+    for char, size in zip(chars, sizes, strict=True):
+        if not spans or spans[-1]["size"] != size:
+            spans.append({"size": size, "origin": char["origin"], "chars": [], "added": True})
+        spans[-1]["chars"].append(char)
+    return spans
+
+
+def _pdf_layered_text_difference(
+    layered_text: str, default_text: str, *, sort_blocks: bool
+) -> str | None:
+    """Say how layered page text differs from the default page text, or return None.
 
     Without ``sort_blocks`` the two must be equal; with it they must hold the
-    same non-space characters. They differ where PyMuPDF's character layer
-    (``rawdict``) leaves out a glyph its plain-text printer keeps: it drops a
-    glyph of zero width, such as a combining mark or a zero-advance period, so
-    no markup of that page could strip back to the default text.
+    same non-space characters.
     """
-    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
     if sort_blocks:
         default_chars = Counter(char for char in default_text if not char.isspace())
         layered_chars = Counter(char for char in layered_text if not char.isspace())
         if default_chars == layered_chars:
-            return
+            return None
     elif layered_text == default_text:
-        return
+        return None
     else:
         default_chars = Counter(default_text)
         layered_chars = Counter(layered_text)
@@ -1437,12 +1710,27 @@ def _pdf_check_layered_page_text(
         for label, chars in (("missing", missing), ("extra", extra))
         if chars
     ]
+    return "; ".join(details) or "same characters, different text"
+
+
+def _pdf_check_layered_page_text(
+    layered_text: str, default_text: str, *, sort_blocks: bool, page_number: int
+) -> None:
+    """Check layered page text against the default page text.
+
+    ``_pdf_page_layered_text`` reads the characters the plain-text printer
+    prints, so a difference means PyMuPDF's printer and its character layer
+    disagree in some new way, and no markup of that page could strip back to the
+    default text.
+    """
+    difference = _pdf_layered_text_difference(layered_text, default_text, sort_blocks=sort_blocks)
+    if difference is None:
+        return
     raise ValueError(
         f"PDF page {page_number}: the character layer that amendment_markup and "
-        "sort_blocks read differs from the page's default text "
-        f"({'; '.join(details) or 'same characters, different text'}). PyMuPDF leaves "
-        "zero-width glyphs out of the character layer; keep the page out of the "
-        "amendment_markup page range, or extract this PDF without these keys"
+        f"sort_blocks read differs from the page's default text ({difference}); keep "
+        "the page out of the amendment_markup page range, or extract this PDF without "
+        "these keys"
     )
 
 
@@ -1568,6 +1856,18 @@ def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
     if best is None:
         return None
     return (best[2], best[0])
+
+
+def _pdf_layered_line_reference(spans: Any) -> tuple[float, float] | None:
+    """Return ``_pdf_line_reference`` of the spans rawdict read, if they have one.
+
+    Spans ``_pdf_page_character_blocks`` added count only on a line whose rawdict
+    spans have no visible characters, so glyphs rawdict left out never change
+    how the rest of the line is classified.
+    """
+    return _pdf_line_reference(
+        [span for span in spans if not span.get("added")]
+    ) or _pdf_line_reference(spans)
 
 
 def _pdf_rule_offsets(
@@ -1798,6 +2098,9 @@ _SINGLE_BLOCK_PDF_FILTER_KEYS = (
     "drop_line_patterns",
     "page_header_patterns",
 )
+# The PDF segmentations that read the page filters above, through
+# ``_filtered_pdf_styled_lines``. The default per-page segmentation rejects them.
+_PDF_PAGE_FILTER_SEGMENTATIONS = ("single_block", "numbered_sections", "labeled_sections")
 
 
 def _extract_single_block_pdf(
@@ -4879,16 +5182,17 @@ def _extract_html_blocks(
         nonlocal parts, nodes
         blocks.add(
             heading,
-            _normalize_text("\n\n".join(parts)),
+            _join_html_text_parts(parts),
             declared=declared.drops(heading_node, nodes),
         )
         parts = []
         nodes = []
 
-    # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
-    # lines with a space). The Maryland StatuteText page separates its subsections with
-    # <br><br> and has no paragraph tags. The source's own line breaks are collapsed first,
-    # so only <br> elements break the text.
+    # ``html_br_breaks`` makes two <br> in a row a paragraph break. Outside a ``pre`` one
+    # <br> still joins its lines with a space; inside a ``pre`` it is a line break. The
+    # Maryland StatuteText page separates its subsections with <br><br> and has no
+    # paragraph tags. The source's own line breaks are collapsed first, so only <br>
+    # elements break the text, inside a ``pre`` too.
     br_breaks = bool((extraction or {}).get("html_br_breaks"))
     if br_breaks:
         for string in list(root.find_all(string=True)):
@@ -4896,10 +5200,15 @@ def _extract_html_blocks(
                 string.replace_with(re.sub(r"[\r\n]+", " ", string))
         for br in root.find_all("br"):
             br.replace_with("\n")
+    # A page whose only body text is in ``pre`` nodes falls back to its whole content
+    # root, as it did before ``pre`` was a text node, so text outside every text tag
+    # stays in the row.
+    read_text_outside_pre = bool((extraction or {}).get("html_text_selector"))
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(
-            node.get_text(" ") if br_breaks else node.get_text(" ", strip=True)
-        )
+        if br_breaks and node.name not in _PREFORMATTED_TAGS:
+            text = _normalize_text(node.get_text(" "))
+        else:
+            text = _html_node_text(node)
         if not text:
             continue
         if node.name in _HEADING_TAGS:
@@ -4907,14 +5216,21 @@ def _extract_html_blocks(
             heading = " ".join(text.split())
             heading_node = node
             continue
+        if node.name not in _PREFORMATTED_TAGS:
+            read_text_outside_pre = True
         parts.append(text)
         nodes.append(node)
     flush()
-    if blocks.position:
+    if blocks.position and read_text_outside_pre:
         return blocks.kept()
+    # The root fallback numbers its one block afresh: the ``pre`` blocks the walk
+    # numbered are replaced, not kept.
+    blocks = _PositionalBlocks(
+        source_url=source_url, navigation=navigation, label_title=fallback_title
+    )
     blocks.add(
         title,
-        _normalize_text(root.get_text(" ", strip=True)),
+        _html_root_text(root),
         declared=declared.drops(None, [root]),
     )
     return blocks.kept()
@@ -5379,7 +5695,7 @@ def _extract_labeled_html_section_blocks(
                 kind="section",
                 ordinal=len(sections) + 1,
                 heading=heading,
-                body=_normalize_text("\n\n".join(current_body)),
+                body=_join_html_text_parts(current_body),
                 metadata={
                     "citation_suffix": current_label,
                     "section_label": current_label,
@@ -5392,9 +5708,14 @@ def _extract_labeled_html_section_blocks(
         current_body = []
 
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
-        if not text:
+        node_text = _html_node_text(node)
+        if not node_text:
             continue
+        # Label and stop patterns match the text with a ``pre`` node's line breaks read
+        # as spaces, as every other node reads; the section body keeps them. The two
+        # strings differ only where a line break became a space, so a span in one is the
+        # same span in the other.
+        text = _normalize_text(node_text)
         if stop_re is not None and stop_re.match(text):
             flush()
             break
@@ -5406,17 +5727,20 @@ def _extract_labeled_html_section_blocks(
             label_replacements=label_replacements,
         )
         if match is not None:
-            label, heading, body = match
+            label, heading, body_span = match
             if normalize_label_internal_whitespace:
                 label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
                 label = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", label)
             flush()
             current_label = label
             current_heading = heading or label
+            body = ""
+            if body_span is not None:
+                body = _normalize_preformatted_text(node_text[body_span[0] : body_span[1]])
             current_body = [body] if body else []
             continue
         if current_label is not None:
-            current_body.append(text)
+            current_body.append(node_text)
     flush()
     return tuple(sections)
 
@@ -5521,7 +5845,8 @@ def _match_labeled_html_section(
     *,
     label_template: str | None = None,
     label_replacements: dict[str, str] | None = None,
-) -> tuple[str, str, str] | None:
+) -> tuple[str, str, tuple[int, int] | None] | None:
+    """Return a section's label, heading and the span of its ``body`` group in ``text``."""
     if section_heading_re is not None:
         match = section_heading_re.match(text)
         if match:
@@ -5534,7 +5859,7 @@ def _match_labeled_html_section(
             return (
                 label,
                 (groups.get("heading") or "").strip(),
-                (groups.get("body") or "").strip(),
+                match.span("body") if groups.get("body") else None,
             )
     if section_label_re is not None:
         match = section_label_re.match(text)
@@ -5546,7 +5871,7 @@ def _match_labeled_html_section(
                     label_replacements=label_replacements,
                 ),
                 "",
-                "",
+                None,
             )
     return None
 
@@ -5823,8 +6148,9 @@ def _document_title(soup: BeautifulSoup) -> str | None:
 def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[Tag, ...]:
     """Return the block-level text nodes of ``root`` in document order.
 
-    By default these are the heading, paragraph, list-item, table and blockquote tags
-    (nested ones are read through their outermost ancestor). ``html_text_selector``
+    By default these are the heading, paragraph, list-item, table, blockquote and
+    ``pre`` tags (nested ones are read through their outermost ancestor; read each
+    one's text with ``_html_node_text``). ``html_text_selector``
     names the nodes explicitly for publishers that print provision text inside ``div``
     or ``span`` containers; a selected node inside another selected node is skipped so
     the text is read once.
@@ -5835,7 +6161,7 @@ def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[T
         return tuple(
             node
             for node in root.find_all(_TEXT_TAGS)
-            if isinstance(node, Tag) and not _inside_text_tag(node)
+            if isinstance(node, Tag) and not _inside_text_tag(node, root)
         )
     selected = [node for node in root.select(str(selector)) if isinstance(node, Tag)]
     selected_ids = {id(node) for node in selected}
@@ -5846,13 +6172,134 @@ def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[T
     )
 
 
-def _inside_text_tag(node: Tag) -> bool:
+def _inside_text_tag(node: Tag, root: Tag) -> bool:
+    """True when a text tag encloses ``node``, so the node is read through it.
+
+    A ``pre`` encloses only within ``root`` (``root`` itself included): a content
+    root that is a ``pre`` is read whole, and one that sits inside a ``pre`` reads
+    its nodes as it did before ``pre`` was a text tag.
+    """
+    within_root = True
     for parent in node.parents:
         if not isinstance(parent, Tag):
             continue
-        if parent.name in _TEXT_TAGS:
+        if parent.name in _TEXT_TAGS and (within_root or parent.name not in _PREFORMATTED_TAGS):
             return True
+        if parent is root:
+            within_root = False
     return False
+
+
+def _html_node_text(node: Tag) -> str:
+    """Return the normalized text of one ``_html_text_nodes`` node.
+
+    A ``pre`` node keeps its line breaks (``_normalize_preformatted_text``): its
+    strings are read as printed, with no separator added between them, and each
+    ``br`` inside it is a line break. Every other node reads as ``_normalize_text``
+    of its strings, each stripped and joined by single spaces.
+    """
+    if node.name in _PREFORMATTED_TAGS:
+        printed = copy(node)
+        for line_break in printed.find_all("br"):
+            # html.parser can nest the strings after a ``<br>`` inside it; unwrapping
+            # keeps them.
+            line_break.insert_before("\n")
+            line_break.unwrap()
+        return _normalize_preformatted_text(printed.get_text())
+    return _normalize_text(node.get_text(" ", strip=True))
+
+
+def _html_root_text(root: Tag) -> str:
+    """Return the text of the whole content root, for a page read by the root fallback.
+
+    Every string under ``root`` is read stripped and joined by spaces
+    (``_normalize_text``), except that each outermost ``pre`` is read by
+    ``_html_node_text`` and set off by a line break on each side. Without a ``pre``
+    this is the fallback's text as it always was. With one, ``_normalize_text`` of the
+    result is the old fallback text, except inside the ``pre``, where the printed
+    spacing at inline tags is kept instead of being stripped and replaced by one space.
+    """
+    if root.name in _PREFORMATTED_TAGS:
+        return _html_node_text(root)
+    preformatted = [
+        node
+        for node in root.find_all(_PREFORMATTED_TAGS)
+        if not any(
+            parent.name in _PREFORMATTED_TAGS
+            for parent in _parents_within(node, root)
+        )
+    ]
+    if not preformatted:
+        return _normalize_text(root.get_text(" ", strip=True))
+    starts = {id(node) for node in preformatted}
+    inside = {id(item) for node in preformatted for item in node.descendants}
+    string_types = root.interesting_string_types or root.MAIN_CONTENT_STRING_TYPES
+    pieces: list[str] = []
+    run: list[str] = []
+
+    def flush_run() -> None:
+        text = _normalize_text(" ".join(run))
+        if text:
+            pieces.append(text)
+        run.clear()
+
+    for item in root.descendants:
+        if id(item) in starts:
+            flush_run()
+            text = _html_node_text(cast(Tag, item))
+            if text:
+                pieces.append(text)
+        elif id(item) in inside or not isinstance(item, NavigableString):
+            continue
+        elif type(item) in string_types:
+            stripped = item.strip()
+            if stripped:
+                run.append(stripped)
+    flush_run()
+    return "\n".join(pieces)
+
+
+def _parents_within(node: Tag, root: Tag) -> Iterator[Tag]:
+    """Yield ``node``'s ancestors strictly inside ``root``."""
+    for parent in node.parents:
+        if parent is root or not isinstance(parent, Tag):
+            return
+        yield parent
+
+
+def _normalize_preformatted_text(text: str) -> str:
+    """Normalize preformatted text the way ``_normalize_text`` does, keeping line breaks.
+
+    Whitespace within a line collapses to one space, blank lines separate
+    paragraphs (a run of them reads as one) and leading and trailing blank lines
+    go. ``_normalize_text`` joins a paragraph's lines with spaces; this joins them
+    with line breaks, so ``_normalize_text`` of the result is ``_normalize_text``
+    of the input.
+    """
+    text = text.replace("\u200b", "").replace("\ufeff", "")
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for raw_line in text.splitlines():
+        line = " ".join(raw_line.split())
+        if not line:
+            if current:
+                paragraphs.append("\n".join(current))
+                current = []
+            continue
+        current.append(line)
+    if current:
+        paragraphs.append("\n".join(current))
+    return "\n\n".join(paragraphs)
+
+
+def _join_html_text_parts(parts: list[str]) -> str:
+    """Join one block's node texts, each already normalized and non-empty, as paragraphs.
+
+    The parts are not normalized again, so a ``pre`` part keeps its line breaks; for
+    parts that ``_normalize_text`` made, the result is ``_normalize_text`` of the
+    same join.
+    """
+    return "\n\n".join(parts)
 
 
 def _inventory_items(

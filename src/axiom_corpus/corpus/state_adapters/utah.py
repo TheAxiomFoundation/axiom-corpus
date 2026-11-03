@@ -231,9 +231,13 @@ def extract_utah_code(
     seen: set[str] = set()
     section_targets: list[_SectionTarget] = []
 
-    root_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, root_doc.relative_path)
-    store.write_bytes(root_path, root_doc.data)
-    source_paths.append(root_path)
+    root_source = _write_source(
+        store,
+        jurisdiction=jurisdiction,
+        run_id=run_id,
+        doc=root_doc,
+        source_paths=source_paths,
+    )
     baseline_source = _write_source(
         store,
         jurisdiction=jurisdiction,
@@ -245,6 +249,7 @@ def extract_utah_code(
         baseline_doc.data,
         expression_date=expression_date_value,
     )
+    errors: list[str] = []
 
     title_links = [
         link
@@ -259,36 +264,52 @@ def extract_utah_code(
     if not title_links:
         raise ValueError(f"no Utah Code titles selected for filter: {only_title!r}")
 
-    title_docs = _fetch_documents(fetcher, title_links, workers=workers)
-    chapter_links: list[tuple[UtahLink, UtahProvision]] = []
-    for title_link, title_doc in zip(title_links, title_docs, strict=True):
-        title_source = _write_source(
-            store,
-            jurisdiction=jurisdiction,
-            run_id=run_id,
-            doc=title_doc,
-            source_paths=source_paths,
+    # A title, chapter or part is written as a provision only once its own
+    # index page lists children. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing everything under
+    # it. A page that could not be fetched is sourced from the index that
+    # lists it; a page that was fetched but is unusable from itself. A page
+    # whose children are all out of force on the expression date (not yet
+    # effective, or superseded) lists nothing by law and stays complete.
+    def read_container(
+        link: UtahLink,
+        result: _FetchResult,
+        *,
+        parent: UtahProvision | None,
+        parent_source: UtahSource,
+        child_kinds: frozenset[str],
+    ) -> tuple[UtahProvision | None, tuple[UtahLink, ...]]:
+        if result.source is None:
+            errors.append(f"{link.kind} {link.label}: {result.error}")
+            _append_gap(_container(link, parent=parent, source=parent_source), seen=seen, items=items)
+            return None, ()
+        doc = result.source
+        container = _container(
+            link,
+            parent=parent,
+            source=_write_source(
+                store,
+                jurisdiction=jurisdiction,
+                run_id=run_id,
+                doc=doc,
+                source_paths=source_paths,
+            ),
         )
-        title = UtahProvision(
-            kind="title",
-            label=title_link.label,
-            heading=title_link.heading,
-            body=None,
-            parent_citation_path=None,
-            level=0,
-            ordinal=title_link.ordinal,
-            title=title_link.label,
-            chapter=None,
-            part=None,
-            effective_date=_status_effective_date(title_link),
-            end_date=_status_end_date(title_link),
-            end_date_type=_status_end_date_type(title_link),
-            source_history=(),
-            references_to=(),
-            source=title_source,
+        children = tuple(
+            child
+            for child in parse_utah_child_links(
+                doc.data,
+                source_url=doc.source_url,
+                expression_date=expression_date_value,
+            )
+            if child.kind in child_kinds
         )
+        if not children and not _lists_children(doc.data, kinds=child_kinds):
+            errors.append(f"{link.kind} {link.label}: no children listed on index page")
+            _append_gap(container, seen=seen, items=items)
+            return None, ()
         _append_provision(
-            title,
+            container,
             seen=seen,
             records=records,
             items=items,
@@ -296,59 +317,39 @@ def extract_utah_code(
             source_as_of=source_as_of_text,
             expression_date=expression_date_text,
         )
-        for chapter_link in parse_utah_child_links(
-            title_doc.data,
-            source_url=title_doc.source_url,
-            expression_date=expression_date_value,
-        ):
-            if chapter_link.kind == "chapter":
-                chapter_links.append((chapter_link, title))
+        return container, children
 
-    chapter_docs = _fetch_documents(fetcher, [link for link, _title in chapter_links], workers=workers)
+    title_results = _fetch_document_results(fetcher, title_links, workers=workers)
+    chapter_links: list[tuple[UtahLink, UtahProvision]] = []
+    for title_link, title_result in zip(title_links, title_results, strict=True):
+        title, title_children = read_container(
+            title_link,
+            title_result,
+            parent=None,
+            parent_source=root_source,
+            child_kinds=frozenset({"chapter"}),
+        )
+        if title is not None:
+            chapter_links.extend((chapter_link, title) for chapter_link in title_children)
+
+    chapter_results = _fetch_document_results(
+        fetcher, [link for link, _title in chapter_links], workers=workers
+    )
     part_links: list[tuple[UtahLink, UtahProvision]] = []
-    for (chapter_link, title), chapter_doc in zip(chapter_links, chapter_docs, strict=True):
-        chapter_source = _write_source(
-            store,
-            jurisdiction=jurisdiction,
-            run_id=run_id,
-            doc=chapter_doc,
-            source_paths=source_paths,
+    for (chapter_link, title), chapter_result in zip(chapter_links, chapter_results, strict=True):
+        chapter, chapter_children = read_container(
+            chapter_link,
+            chapter_result,
+            parent=title,
+            parent_source=title.source,
+            child_kinds=frozenset({"part", "section"}),
         )
-        chapter = UtahProvision(
-            kind="chapter",
-            label=chapter_link.label,
-            heading=chapter_link.heading,
-            body=None,
-            parent_citation_path=title.citation_path,
-            level=1,
-            ordinal=chapter_link.ordinal,
-            title=title.label,
-            chapter=chapter_link.label,
-            part=None,
-            effective_date=_status_effective_date(chapter_link),
-            end_date=_status_end_date(chapter_link),
-            end_date_type=_status_end_date_type(chapter_link),
-            source_history=(),
-            references_to=(),
-            source=chapter_source,
-        )
-        _append_provision(
-            chapter,
-            seen=seen,
-            records=records,
-            items=items,
-            version=run_id,
-            source_as_of=source_as_of_text,
-            expression_date=expression_date_text,
-        )
-        for child_link in parse_utah_child_links(
-            chapter_doc.data,
-            source_url=chapter_doc.source_url,
-            expression_date=expression_date_value,
-        ):
+        if chapter is None:
+            continue
+        for child_link in chapter_children:
             if child_link.kind == "part":
                 part_links.append((child_link, chapter))
-            elif child_link.kind == "section":
+            else:
                 section_targets.append(
                     _SectionTarget(
                         link=child_link,
@@ -360,49 +361,20 @@ def extract_utah_code(
                     )
                 )
 
-    part_docs = _fetch_documents(fetcher, [link for link, _chapter in part_links], workers=workers)
-    for (part_link, chapter), part_doc in zip(part_links, part_docs, strict=True):
-        part_source = _write_source(
-            store,
-            jurisdiction=jurisdiction,
-            run_id=run_id,
-            doc=part_doc,
-            source_paths=source_paths,
+    part_results = _fetch_document_results(
+        fetcher, [link for link, _chapter in part_links], workers=workers
+    )
+    for (part_link, chapter), part_result in zip(part_links, part_results, strict=True):
+        part, part_children = read_container(
+            part_link,
+            part_result,
+            parent=chapter,
+            parent_source=chapter.source,
+            child_kinds=frozenset({"section"}),
         )
-        part = UtahProvision(
-            kind="part",
-            label=part_link.label,
-            heading=part_link.heading,
-            body=None,
-            parent_citation_path=chapter.citation_path,
-            level=2,
-            ordinal=part_link.ordinal,
-            title=chapter.title,
-            chapter=chapter.label,
-            part=part_link.label,
-            effective_date=_status_effective_date(part_link),
-            end_date=_status_end_date(part_link),
-            end_date_type=_status_end_date_type(part_link),
-            source_history=(),
-            references_to=(),
-            source=part_source,
-        )
-        _append_provision(
-            part,
-            seen=seen,
-            records=records,
-            items=items,
-            version=run_id,
-            source_as_of=source_as_of_text,
-            expression_date=expression_date_text,
-        )
-        for section_link in parse_utah_child_links(
-            part_doc.data,
-            source_url=part_doc.source_url,
-            expression_date=expression_date_value,
-        ):
-            if section_link.kind != "section":
-                continue
+        if part is None:
+            continue
+        for section_link in part_children:
             section_targets.append(
                 _SectionTarget(
                     link=section_link,
@@ -465,6 +437,9 @@ def extract_utah_code(
             expression_date=expression_date_text,
         )
 
+    if not records:
+        raise ValueError("no Utah Code provisions extracted")
+
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)
     provisions_path = store.provisions_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -489,6 +464,7 @@ def extract_utah_code(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
 
 
@@ -535,6 +511,22 @@ def parse_utah_child_links(
             )
         )
     return tuple(links)
+
+
+def _lists_children(html_data: str | bytes, *, kinds: frozenset[str]) -> bool:
+    """Whether an index page lists any child of ``kinds``, in force or not."""
+    soup = BeautifulSoup(_html_text(html_data), "lxml")
+    table = soup.find("table", id="childtbl")
+    if not isinstance(table, Tag):
+        return False
+    for row in table.find_all("tr"):
+        anchor = row.find("a", href=True) if isinstance(row, Tag) else None
+        if not isinstance(anchor, Tag):
+            continue
+        parsed = _kind_label_from_href(str(anchor.get("href") or ""))
+        if parsed is not None and parsed[0] in kinds:
+            return True
+    return False
 
 
 def parse_utah_section_xml(
@@ -672,6 +664,42 @@ def _references_to(section_el: ET.Element, *, self_label: str) -> list[str]:
     return refs
 
 
+def _fetch_document_results(
+    fetcher: _UtahFetcher,
+    links: list[UtahLink],
+    *,
+    workers: int,
+) -> tuple[_FetchResult, ...]:
+    """Fetch each link; a failed fetch is a result with its error, in link order.
+
+    Only Exception is caught, so KeyboardInterrupt and SystemExit stop the run,
+    whether the fetch ran in this thread or in the pool.
+    """
+    results: list[_FetchResult] = []
+    if workers <= 1 or len(links) <= 1:
+        for link in links:
+            try:
+                source = fetcher.fetch(link.source_url, link.relative_path)
+            except Exception as exc:  # noqa: BLE001
+                results.append(_FetchResult(link.source_url, error=exc))
+            else:
+                results.append(_FetchResult(link.source_url, source=source))
+    else:
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = {
+                pool.submit(fetcher.fetch, link.source_url, link.relative_path): link
+                for link in links
+            }
+            for future in as_completed(futures):
+                link = futures[future]
+                try:
+                    results.append(_FetchResult(link.source_url, source=future.result()))
+                except Exception as exc:  # noqa: BLE001
+                    results.append(_FetchResult(link.source_url, error=exc))
+    by_url = {result.key: result for result in results}
+    return tuple(by_url[link.source_url] for link in links)
+
+
 def _fetch_documents(
     fetcher: _UtahFetcher,
     links: list[UtahLink],
@@ -694,7 +722,7 @@ def _fetch_documents(
                 link = futures[future]
                 try:
                     results.append(_FetchResult(link.source_url, source=future.result()))
-                except BaseException as exc:
+                except Exception as exc:  # noqa: BLE001
                     results.append(_FetchResult(link.source_url, error=exc))
     errors = [f"{result.key}: {result.error}" for result in results if result.error]
     if errors:
@@ -741,6 +769,67 @@ def _write_source(
         source_format=doc.relative_path.split("/", 1)[0],
         sha256=sha256,
         source_document_id=Path(urlparse(doc.source_url).path).stem,
+    )
+
+
+def _container(
+    link: UtahLink,
+    *,
+    parent: UtahProvision | None,
+    source: UtahSource,
+) -> UtahProvision:
+    """The title, chapter or part a parent index page links to."""
+    if link.kind == "title":
+        title, chapter, part, level = link.label, None, None, 0
+    elif link.kind == "chapter":
+        assert parent is not None
+        title, chapter, part, level = parent.label, link.label, None, 1
+    else:
+        assert parent is not None
+        title, chapter, part, level = parent.title, parent.label, link.label, 2
+    return UtahProvision(
+        kind=link.kind,
+        label=link.label,
+        heading=link.heading,
+        body=None,
+        parent_citation_path=parent.citation_path if parent is not None else None,
+        level=level,
+        ordinal=link.ordinal,
+        title=title,
+        chapter=chapter,
+        part=part,
+        effective_date=_status_effective_date(link),
+        end_date=_status_end_date(link),
+        end_date_type=_status_end_date_type(link),
+        source_history=(),
+        references_to=(),
+        source=source,
+    )
+
+
+def _append_gap(
+    provision: UtahProvision,
+    *,
+    seen: set[str],
+    items: list[SourceInventoryItem],
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``.
+    """
+    if provision.citation_path in seen:
+        return
+    seen.add(provision.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=provision.citation_path,
+            source_url=provision.source.source_url,
+            source_path=provision.source.source_path,
+            source_format=provision.source.source_format,
+            sha256=provision.source.sha256,
+            metadata=_metadata(provision),
+        )
     )
 
 

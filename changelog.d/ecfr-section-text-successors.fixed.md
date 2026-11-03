@@ -1,0 +1,1 @@
+Add seven native eCFR successor scopes at their predecessors' source dates so section and appendix bodies keep marked table captions and word breaks from #832. The 47 CFR 54 and 45 CFR 1302 successors also retain 17 source-backed repairs from earlier extractor changes; the run note lists every body change and source-byte comparison.

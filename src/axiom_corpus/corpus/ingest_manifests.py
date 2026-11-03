@@ -330,8 +330,8 @@ def audit_manifest_local_paths(
         if (allowance.path, allowance.sha256) not in grandfathered:
             issues.append(
                 f"`{allowlist.as_posix()}` lists `{allowance.path}` at a path and bytes that "
-                "were not grandfathered on 2026-10-20. The allowlist only shrinks: sign the manifest "
-                "again without local paths instead of listing it."
+                "were not grandfathered (axiom-corpus#896). The allowlist only shrinks: sign "
+                "the manifest again without local paths instead of listing it."
             )
     manifest_root = repo / INGEST_MANIFEST_ROOT
     for manifest in sorted(manifest_root.rglob("*.json")) if manifest_root.is_dir() else []:
@@ -1565,13 +1565,43 @@ def _inventory_primary_source_issues(path: str, payload: bytes) -> list[str]:
     return issues
 
 
-# Raw JSON that can decode to a string starting "file:" holds those characters
-# literally (any case) or spells some of them as \uXXXX escapes.
-_FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\u")
+# Raw JSON that can decode to a string a URL parser reads as "file:..." holds
+# "file:" literally (any case) or uses a backslash escape: for a letter
+# (\uXXXX), or for a control character the parser skips (a leading C0
+# control, or a tab or newline anywhere), which JSON cannot hold literally.
+_FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\")
 _LOCAL_FILE_URL_EXAMPLES = 3
 
+# What a WHATWG URL parser drops before reading the scheme: ASCII tab and
+# newline anywhere, then leading C0 controls and spaces.
+_URL_IGNORED_ANYWHERE = {0x09: None, 0x0A: None, 0x0D: None}
+_URL_IGNORED_LEADING = "".join(chr(code) for code in range(0x21))
 
-_FILE_URL_IN_TEXT = re.compile(r"(?i)file:[^\s\"'<>`]+")
+
+def is_file_url(value: object) -> bool:
+    """True when a URL parser, or a plain whitespace strip, reads ``value`` as ``file:``."""
+    if not isinstance(value, str):
+        return False
+    parsed = value.translate(_URL_IGNORED_ANYWHERE).lstrip(_URL_IGNORED_LEADING)
+    return parsed[:5].lower() == "file:" or value.strip()[:5].lower() == "file:"
+
+
+# From "file:" followed by a non-space through the end of the quoted context
+# (a double quote or a backtick) or of the text, so an unencoded path with
+# spaces or apostrophes goes as a whole. A newline does not end it: a URL
+# parser drops tabs and newlines anywhere, so what follows one is still the
+# path ("file:///Users/a\nb/c" names /Users/ab/c), and so is a suffix that
+# follows one as repr() shows it ("\\n"). The scheme letters may be split the
+# same ways ("fi\\tle:"). No word boundary is required, so a URL glued to the
+# text before it still goes. A word such as "profile:" followed by a
+# non-space, and the text after a URL outside quotes, are over-redacted, the
+# safe direction. Tabs or newlines right after the colon are skipped too
+# ("file:\t///...").
+_SCHEME_SPLIT = r"(?:[\t\r\n]|\\[tnr])*"
+_FILE_URL_IN_TEXT = re.compile(
+    rf"(?i)f{_SCHEME_SPLIT}i{_SCHEME_SPLIT}l{_SCHEME_SPLIT}e{_SCHEME_SPLIT}:"
+    r"[\t\r\n]*(?=\S)[^\"`]*"
+)
 
 
 def redact_file_urls(text: str) -> str:
@@ -1588,7 +1618,9 @@ def _unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     members: dict[str, Any] = {}
     for key, value in pairs:
         if key in members:
-            raise LocalFileUrlScanError(f"repeats the key {redact_file_urls(repr(key))}")
+            spelled = key.translate(_URL_IGNORED_ANYWHERE).lower()
+            named = "a key" if "file:" in spelled else f"the key {key!r}"
+            raise LocalFileUrlScanError(f"repeats {redact_file_urls(named)}")
         members[key] = value
     return members
 
@@ -1615,10 +1647,7 @@ def _file_url_fields(value: Any, path: str) -> Iterator[str]:
             child_path = f"{path}.{key}" if path else str(key)
             if _is_url_key(key):
                 urls = child if isinstance(child, list) else [child]
-                if any(
-                    isinstance(url, str) and url.strip().lower().startswith("file:")
-                    for url in urls
-                ):
+                if any(is_file_url(url) for url in urls):
                     yield child_path
             if isinstance(child, dict | list):
                 yield from _file_url_fields(child, child_path)
@@ -1651,9 +1680,18 @@ def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
         return []
     rows: list[Any] = []
     if path.endswith(".jsonl"):
+        # Lines as load_provisions reads them (str.splitlines), so a record the
+        # loader would split at U+2028 fails here too rather than passing.
+        # Each candidate line must be one object: a bare CR, which JSON allows
+        # as whitespace, would otherwise split a record into fragments that
+        # parse on their own (a string, an array) while a reader splitting
+        # only at LF sees the whole row.
         for number, line in enumerate(text.splitlines(), start=1):
             if _FILE_URL_CANDIDATE_TEXT.search(line):
-                rows.append(_scan_loads(line, f"`{path}` line {number}"))
+                row = _scan_loads(line, f"`{path}` line {number}")
+                if not isinstance(row, dict):
+                    raise LocalFileUrlScanError(f"`{path}` line {number} is not a JSON object")
+                rows.append(row)
     else:
         parsed = _scan_loads(text, f"`{path}`")
         # As load_source_inventory reads it: a mapping's "items", absent meaning none.

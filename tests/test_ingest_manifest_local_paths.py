@@ -12,7 +12,8 @@ Invariants:
    only while its manifest keeps the bytes it pins (sha256) and records paths in
    exactly the fields it lists; a stale entry fails; and an entry whose
    ``(path, sha256)`` is not in ``GRANDFATHERED`` (the fourteen on ``main`` on
-   2026-10-20) fails, so the allowlist only shrinks. A manifest or allowlist
+   2026-10-20, three of them at the bytes main signed again on 2026-10-27)
+   fails, so the allowlist only shrinks. A manifest or allowlist
    that cannot be read fails closed.
 2. Write time. ``build_ingest_manifest`` records an absolute path inside the
    checkout repository-relative (through ``~``, ``$HOME``, short-option and
@@ -83,10 +84,13 @@ from tests.test_ingest_manifest_provenance import _artifact, _init_repo, _keys
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # The fourteen manifests on main that recorded a local path when this guard
-# landed (2026-10-20; axiom-corpus#896), each at the bytes it had. An allowlist
-# entry must be one of these pairs, so the allowlist can only lose entries.
-# This set only ever loses members: never add to it; sign the manifest again
-# without the path.
+# was written (2026-10-20; axiom-corpus#896), each at the bytes it had. Main
+# signed three of them again on 2026-10-27 (f99e3990c, for their attested run
+# notes only, with the same command text and so the same local path), before
+# sign_ingest_manifest refused to; since 2026-11-02 those three are pinned at
+# the re-signed bytes in place of the old. An allowlist entry must be one of
+# these pairs, so the allowlist can only lose entries. This set only ever
+# loses members: never add to it; sign the manifest again without the path.
 _MANIFESTS = ".axiom/ingest-manifests/"
 GRANDFATHERED = frozenset(
     {
@@ -120,7 +124,7 @@ GRANDFATHERED = frozenset(
         ),
         (
             _MANIFESTS + "us-co/policy/2026-07-21-co-snap-policy.json",
-            "c26cbc4250b352b0af8ef5fd408711337f53e6b7b6c492ef1b8c616233de42bc",
+            "e2ea12dae7cbd386b27a3d85dc117a7e62bc83e89176e453f6e61479a8bb9379",
         ),
         (
             _MANIFESTS + "us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.json",
@@ -132,11 +136,11 @@ GRANDFATHERED = frozenset(
         ),
         (
             _MANIFESTS + "us-wv/manual/2026-07-21-wv-income-maintenance-manual.json",
-            "60e8d243f29ae7bf58a0939cc6f71d7394551aeefce1f5367c23bf0e4a905369",
+            "294679b9cb0c424de1ad0eeba5c77243e6238c8ea86367674429ace72e814fd1",
         ),
         (
             _MANIFESTS + "us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json",
-            "dc417f56481d4de2fd47ab3f483cb97d0efac2fa5cdead3e14daca08a6cd8365",
+            "2e58155928878a69a8fa21d11c874b91a79e83ccb42dff2abd8bccd70036e738",
         ),
         (
             _MANIFESTS + "us/statute/2026-06-26-chip-title-xxi-title-42.json",
@@ -252,7 +256,7 @@ def test_an_entry_outside_the_grandfathered_set_fails_so_the_list_only_shrinks(t
 
     [issue] = _audit(tmp_path, {(path, "0" * 64)})
 
-    assert "not grandfathered on 2026-10-20" in issue
+    assert "were not grandfathered (axiom-corpus#896)" in issue
 
 
 def test_grandfathered_bytes_copied_to_a_new_path_cannot_be_listed(tmp_path) -> None:
@@ -399,6 +403,175 @@ def test_manifest_local_path_fields_refuses_repeated_keys_without_echoing_a_path
         manifest_local_path_fields(b'{"/Users/someone/x": 1, "/Users/someone/x": 2}')
 
     assert "someone" not in str(raised.value)
+
+
+# The guard over whole generated manifests. A string is built from tokens: the
+# forms a signed manifest publishes in place of a local path (web URLs, even
+# with a root in their path, query or fragment; repository-relative paths, even
+# through directories named like a root; placeholders; plain words and
+# options), and, now and then, a local path. Local names are spelled only with
+# Q, W, X and Z, which no published token holds, so a message that repeated
+# one would show it.
+_PUBLISHED_WORD = st.text(alphabet="abcdefghijklmnoprstuvy0123456789._-", min_size=1, max_size=8)
+_ROOT_NAMES = [
+    "home",
+    "Users",
+    "tmp",
+    "private",
+    "var",
+    "folders",
+    "Volumes",
+    "mnt",
+    "media",
+    "root",
+]
+_URL_SEGMENT = st.sampled_from([*_ROOT_NAMES, "~user", "ors316.html", "a%20b"]) | _PUBLISHED_WORD
+_PUBLISHED_URL = st.builds(
+    lambda scheme, host, segments, query, fragment: (
+        f"{scheme}://{host}/" + "/".join(segments) + query + fragment
+    ),
+    st.sampled_from(["http", "https", "HTTPS"]),
+    st.sampled_from(["www.oregonlegislature.gov", "ecfr.gov", "x.example.org", "localhost:8000"]),
+    st.lists(_URL_SEGMENT, max_size=5),
+    st.sampled_from(["", "?file=/home/a.htm", "?next=/Users/v&page=2", "?q=a%20b&r=1"]),
+    st.sampled_from(["", "#/Users/v", "#:~:text=a"]),
+)
+_RELATIVE_SEGMENT = st.sampled_from([*_ROOT_NAMES, "data", "corpus", ".venv", "~cache"]) | (
+    _PUBLISHED_WORD.filter(lambda word: word not in {".", ".."})
+)
+_PUBLISHED_RELATIVE = st.builds(
+    # A first segment that a shell or the guard would read as more than a
+    # name (``~cache/``, ``-o``) is published behind ``./``, as recording does.
+    lambda dot, segments: ("./" if segments[0][:1] in {"~", "-"} else dot) + "/".join(segments),
+    st.sampled_from(["", "./"]),
+    st.lists(_RELATIVE_SEGMENT, min_size=1, max_size=6),
+)
+_PUBLISHED_TOKEN = st.one_of(
+    _PUBLISHED_URL,
+    _PUBLISHED_RELATIVE,
+    st.builds(
+        lambda placeholder, rest: placeholder + rest,
+        st.sampled_from(["<scratchpad>", "<ocr-cache>", "<fetched-dir>"]),
+        st.sampled_from(["", "/replay.json", "/tmp/out", "/Users/v"]),
+    ),
+    st.builds(
+        lambda option, value: option + value,
+        st.sampled_from(["--base=", "--manifest=", "--source-url=", "TMPDIR=", "PATH=", ""]),
+        _PUBLISHED_RELATIVE | _PUBLISHED_URL,
+    ),
+    st.sampled_from(["uv", "run", "axiom-corpus-ingest", "-o", "--allow-incomplete", "&&", "|"]),
+    _PUBLISHED_WORD,
+)
+_LOCAL_NAME = st.text(alphabet="QWXZ", min_size=3, max_size=6)
+# Written out here, not read from LOCAL_PATH_ROOTS, so that a root dropped from
+# the guard fails this test instead of leaving it with the guard.
+_LOCAL_ROOTS = (
+    "/Users",
+    "/home",
+    "/root",
+    "/private",
+    "/tmp",
+    "/var/folders",
+    "/var/tmp",
+    "/Volumes",
+    "/mnt",
+    "/media",
+)
+_LOCAL_ROOT_SPELLING = st.builds(
+    lambda prefix, root, upper: prefix + (root.upper() if upper else root),
+    st.sampled_from(["", "/", "/."]),  # "//Users", "/./Users"
+    st.sampled_from(_LOCAL_ROOTS),
+    st.booleans(),
+)
+_LOCAL_TOKEN = st.one_of(
+    st.builds(lambda root, name: f"{root}/{name}", _LOCAL_ROOT_SPELLING, _LOCAL_NAME),
+    st.builds(
+        lambda lead, root, name: f"{lead}{root}/{name}",
+        st.sampled_from(["--x=", "-o", "@", "PATH=a:", "$X", "<", ">"]),
+        _LOCAL_ROOT_SPELLING,
+        _LOCAL_NAME,
+    ),
+    st.builds(lambda name: f"~/{name}", _LOCAL_NAME),
+    st.builds(lambda name: f"~qz/{name}", _LOCAL_NAME),
+    st.builds(lambda name: f"$HOME/{name}", _LOCAL_NAME),
+    st.builds(lambda name: f"$TMPDIR/{name}", _LOCAL_NAME),
+    st.builds(lambda name: f"file:///{name}", _LOCAL_NAME),
+    st.builds(lambda name: f"C:\\Users\\{name}", _LOCAL_NAME),
+    st.builds(lambda name: f"%USERPROFILE%\\{name}", _LOCAL_NAME),
+)
+
+
+@st.composite
+def _generated_manifests(draw) -> tuple[dict, bool]:
+    """A manifest-shaped record of published strings, with one local path planted or none.
+
+    The local path, if any, goes into one string, value or key, at any token.
+    Returns the record and whether it holds the planted path.
+    """
+    applied = draw(st.integers(min_value=0, max_value=3))
+    extra = draw(st.integers(min_value=0, max_value=3))
+    # command, applied files, a reasoning log, metadata keys and values, key id
+    texts = [
+        draw(st.lists(_PUBLISHED_TOKEN, min_size=1, max_size=4))
+        for _ in range(1 + applied + 1 + 2 * extra + 1)
+    ]
+    planted = draw(st.none() | _LOCAL_TOKEN)
+    if planted is not None:
+        tokens = texts[draw(st.integers(min_value=0, max_value=len(texts) - 1))]
+        tokens.insert(draw(st.integers(min_value=0, max_value=len(tokens))), planted)
+    joined = iter([" ".join(tokens) for tokens in texts])
+    command = next(joined)
+    applied_files = [{"path": next(joined), "sha256": "0" * 64} for _ in range(applied)]
+    reasoning_log = next(joined)
+    pairs = [(next(joined), next(joined)) for _ in range(extra)]
+    # A repeated key would drop the earlier value, and with it a planted path.
+    assume(len({key for key, _ in pairs}) == extra)
+    key_id = next(joined)
+    signature = draw(st.binary(min_size=48, max_size=64)).hex()
+    record = {
+        "schema_version": "axiom-corpus/ingest-manifest/v1",
+        "command": {"text": command},
+        "applied_files": applied_files,
+        "reasoning_logs": [{"path": reasoning_log, "sha256": "1" * 64}],
+        "metadata": dict(pairs),
+        # The real signature value is base64, whose alphabet holds "/"; it is never read.
+        "signature": {
+            "algorithm": "ed25519",
+            "key_id": key_id,
+            "value": draw(st.sampled_from(["", "/Users/QZX/", "x/tmp/QZX+"])) + signature,
+        },
+    }
+    return record, planted is not None
+
+
+@settings(max_examples=400, deadline=None)
+@given(generated=_generated_manifests())
+def test_the_guard_fails_every_generated_manifest_with_a_local_path_and_passes_the_rest(
+    tmp_path_factory, generated
+) -> None:
+    """No generated manifest that records a local path passes the guard, and every other passes.
+
+    The guard reads the manifest as the repository guard does, from a file
+    under ``.axiom/ingest-manifests/`` with nothing grandfathered, and as
+    signing does (``manifest_local_path_issues``). A failure names the
+    manifest, and a local path by its root only.
+    """
+    record, holds_local = generated
+    repo = tmp_path_factory.mktemp("generated")
+    (repo / ".axiom").mkdir()
+    (repo / LOCAL_PATH_ALLOWLIST_PATH).write_text(
+        "schema_version: axiom-corpus/ingest-manifest-local-paths/v1\nmanifests: []\n"
+    )
+    _write_manifest(repo, "us/statute/2026-11-02-generated.json", record)
+
+    issues = audit_manifest_local_paths(repo, grandfathered=frozenset())
+
+    assert bool(issues) == holds_local, issues
+    assert bool(manifest_local_path_issues(record)) == holds_local
+    if holds_local:
+        (issue,) = issues
+        assert issue.startswith("`.axiom/ingest-manifests/us/statute/2026-11-02-generated.json`: ")
+        assert not set("QWXZ") & set(issue), issue
 
 
 # --- 2. Write time ----------------------------------------------------------

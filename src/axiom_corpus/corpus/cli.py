@@ -5938,7 +5938,7 @@ def build_parser() -> argparse.ArgumentParser:
     inventory_ecfr.add_argument(
         "--include-appendices",
         action="store_true",
-        help="Include supported part appendices; reject unsupported selected appendix shapes.",
+        help="Include supported part and subpart appendices; reject unsupported selected appendix shapes.",
     )
     inventory_ecfr.add_argument(
         "--section",
@@ -5999,7 +5999,7 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ecfr_cmd.add_argument(
         "--include-appendices",
         action="store_true",
-        help="Include supported part appendices and their source images; reject unsupported shapes.",
+        help="Include supported part and subpart appendices and their source images; reject unsupported shapes.",
     )
     extract_ecfr_cmd.add_argument(
         "--section",
@@ -6776,7 +6776,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--section",
         action="append",
         required=True,
-        help="California section spec such as WIC:11450.12 or a LegInfo section URL.",
+        help=(
+            "California section spec such as WIC:11450.12 or a LegInfo section URL. Append "
+            "@all to capture every concurrent LegInfo version of a multi-version section, or "
+            "@<variant slug> (e.g. WIC:11450@operative-2024-07-01) for one; each version is "
+            "written at its <section>--<slug> variant path."
+        ),
     )
     extract_california_sections_cmd.add_argument("--download-dir", type=Path)
     extract_california_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")

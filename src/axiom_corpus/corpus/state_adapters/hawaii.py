@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -414,26 +414,23 @@ def extract_hawaii_revised_statutes(
     if not volumes:
         raise ValueError(f"no Hawaii HRS volumes selected for filter: {only_title!r}")
 
+    # A container is written as a provision only once its own table of
+    # contents lists children. Otherwise it stays an inventory gap, so
+    # coverage reads incomplete instead of silently losing everything under
+    # it. A page that could not be fetched is sourced from the parent listing
+    # that names it; a page that was read but lists nothing is sourced from
+    # that page. A chapter whose index heading marks it repealed may list no
+    # section files.
     for volume in volumes:
         if remaining_sections is not None and remaining_sections <= 0:
             break
-        if _append_unique(
-            seen,
-            items,
-            records,
-            _volume_inventory_item(volume),
-            _volume_record(
-                volume,
-                version=run_id,
-                source_as_of=source_as_of_text,
-                expression_date=expression_date_text,
-            ),
-        ):
-            title_count += 1
-            container_count += 1
-
-        volume_source = fetcher.fetch_volume_directory(volume)
-        _record_source(
+        try:
+            volume_source = fetcher.fetch_volume_directory(volume)
+        except (requests.RequestException, OSError) as exc:
+            errors.append(f"volume {volume.number}: {exc}")
+            _append_inventory_gap(seen, items, _volume_inventory_item(volume))
+            continue
+        volume_recorded = _record_source(
             store,
             jurisdiction=jurisdiction,
             run_id=run_id,
@@ -452,6 +449,27 @@ def extract_hawaii_revised_statutes(
             volume=volume,
             base_url=base_url,
         )
+        if not chapter_directories:
+            errors.append(f"volume {volume.number}: no chapters listed in volume directory")
+            _append_inventory_gap(
+                seen, items, _resourced(_volume_inventory_item(volume), volume_recorded)
+            )
+            continue
+        if _append_unique(
+            seen,
+            items,
+            records,
+            _volume_inventory_item(volume),
+            _volume_record(
+                volume,
+                version=run_id,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+            ),
+        ):
+            title_count += 1
+            container_count += 1
+
         if chapter_filter is not None:
             chapter_directories = tuple(
                 directory
@@ -462,7 +480,14 @@ def extract_hawaii_revised_statutes(
         for directory in chapter_directories:
             if remaining_sections is not None and remaining_sections <= 0:
                 break
-            chapter_directory_source = fetcher.fetch_chapter_directory(directory)
+            try:
+                chapter_directory_source = fetcher.fetch_chapter_directory(directory)
+            except (requests.RequestException, OSError) as exc:
+                errors.append(f"chapter {directory.chapter}: {exc}")
+                _append_inventory_gap(
+                    seen, items, _directory_inventory_item(directory, volume_recorded)
+                )
+                continue
             chapter_directory_recorded = _record_source(
                 store,
                 jurisdiction=jurisdiction,
@@ -483,7 +508,16 @@ def extract_hawaii_revised_statutes(
                 base_url=base_url,
             )
 
-            chapter_index_source = fetcher.fetch_chapter_index(directory)
+            try:
+                chapter_index_source = fetcher.fetch_chapter_index(directory)
+            except (requests.RequestException, OSError) as exc:
+                errors.append(f"chapter {directory.chapter}: {exc}")
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _directory_inventory_item(directory, chapter_directory_recorded),
+                )
+                continue
             chapter_index_recorded = _record_source(
                 store,
                 jurisdiction=jurisdiction,
@@ -503,6 +537,16 @@ def extract_hawaii_revised_statutes(
                 directory=directory,
                 source=chapter_index_recorded,
             )
+            if not listings and chapter.status != "repealed":
+                errors.append(
+                    f"chapter {directory.chapter}: no section files listed in chapter directory"
+                )
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _resourced(_chapter_inventory_item(chapter), chapter_directory_recorded),
+                )
+                continue
             if _append_unique(
                 seen,
                 items,
@@ -890,6 +934,53 @@ def _fetch_hawaii_section_result(
         )
     except BaseException as exc:  # pragma: no cover
         return _HawaiiSectionFetchResult(listing=listing, error=exc)
+
+
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
+
+
+def _resourced(item: SourceInventoryItem, source: _RecordedSource) -> SourceInventoryItem:
+    return replace(
+        item,
+        source_url=source.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+    )
+
+
+def _directory_inventory_item(
+    directory: HawaiiChapterDirectory,
+    source: _RecordedSource,
+) -> SourceInventoryItem:
+    """A chapter known only from the listing that names it."""
+    return SourceInventoryItem(
+        citation_path=directory.citation_path,
+        source_url=directory.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+        metadata={
+            "kind": "chapter",
+            "volume": directory.volume_number,
+            "chapter": directory.chapter,
+            "parent_citation_path": directory.parent_citation_path,
+        },
+    )
 
 
 def _volume_inventory_item(volume: HawaiiVolume) -> SourceInventoryItem:

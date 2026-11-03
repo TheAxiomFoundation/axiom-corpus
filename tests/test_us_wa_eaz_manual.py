@@ -2,6 +2,7 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
 import yaml
 
 from axiom_corpus.corpus import documents as documents_module
@@ -78,6 +79,14 @@ def test_washington_retained_sources_match_inventory_and_aggregate() -> None:
     assert hashlib.sha256(ordered_hashes.encode()).hexdigest() == EXPECTED_SOURCE_AGGREGATE
 
 
+# This test extracts all 200 Washington sources three times (first pass, second
+# pass, and once more unfiltered), so it is the longest test in the suite: a
+# scheduled main run measured it at 34 s against the global --timeout=60. That
+# leaves under 2x headroom, and on a loaded shared runner it overran the budget
+# and failed four unrelated pull requests in one day (#900), each of which passed
+# on a re-run. The budget below matches the work rather than the fastest run. The
+# determinism assertions are unchanged: this governs only how long they may take.
+@pytest.mark.timeout(300)
 def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
     manifest = documents_module.OfficialDocumentManifest.load(MANIFEST_PATH)
     inventory_by_citation = {item["citation_path"]: item for item in _inventory()}
