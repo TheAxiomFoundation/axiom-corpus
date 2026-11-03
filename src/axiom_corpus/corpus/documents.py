@@ -1877,7 +1877,14 @@ def _pdf_drawn_glyph_sizes(page: Any) -> dict[int, float]:
     several paths is recognised only by its last one. The span's font is a Type 3
     font when ``_pdf_type3_font_names`` names it (the names MuPDF gives the spans
     of the page's Type 3 fonts, appearance streams included).
+
+    Only a PDF has Type 3 fonts. MuPDF opens some other files given as PDF (a Word
+    file saved under a ``.pdf`` name opens as an Office document), and on such a
+    page reading ``Page.xref``, which ``_pdf_type3_font_names`` does, crashed
+    PyMuPDF 1.26.7 with a segmentation fault; its drawings are never glyphs here.
     """
+    if not page.parent.is_pdf:
+        return {}
     type3_fonts = _pdf_type3_font_names(page)
     if not type3_fonts:
         return {}

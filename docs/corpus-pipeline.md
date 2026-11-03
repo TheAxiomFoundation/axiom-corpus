@@ -540,8 +540,11 @@ drawing that is a glyph: MuPDF draws some Type 3 glyphs as vector paths and
 reports their characters as hidden text, and the bar of such a hyphen would
 strike the text around it, an underscore underline it. A drawing is a glyph when
 the next page command is a hidden text span of one character in a Type 3 font
-and the drawing is at most two of that span's font sizes wide and high. Which
-glyphs MuPDF draws this way depends on its version. Hidden text is still
+(a font `_pdf_type3_font_names` names, the helper the OCR overlay uses) and the
+drawing is at most two of that span's font sizes wide and high. Which glyphs
+MuPDF draws this way depends on its version. A file MuPDF does not open as a PDF
+(a Word file saved under a `.pdf` name) has no Type 3 fonts, and its fonts are
+not read. Hidden text is still
 classified: a rule under the text of an OCR layer reads as an underline. A thin
 table rule drawn 1-2 pt under 10 pt text reads as an underline too. Extraction
 warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font

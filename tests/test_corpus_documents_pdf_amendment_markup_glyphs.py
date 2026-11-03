@@ -23,6 +23,12 @@ Invariants (Hypothesis):
    page has no Type 3 font, in which case the page's text is not traced. A
    glyph drawing is one that directly precedes a one-character hidden span in
    a Type 3 font and is at most two of that span's font sizes wide and high.
+4. Only a PDF has Type 3 fonts. A page of a file MuPDF opens as something else
+   (a Word file saved under a ``.pdf`` name) has no glyph drawings, its fonts
+   are never read, and it extracts with ``amendment_markup`` as before.
+
+The Type 3 fonts are the ones ``_pdf_type3_font_names`` (the OCR overlay's
+helper) names.
 """
 
 from __future__ import annotations
@@ -572,6 +578,66 @@ def test_a_page_without_a_type3_font_is_not_traced() -> None:
     thin, thick = documents_module._pdf_horizontal_rules(page)
 
     assert (len(thin), len(thick), page.traces) == (1, 0, 0)
+
+
+def _refuse_type3_lookup(page: Any) -> frozenset[str]:
+    raise AssertionError("read the Type 3 fonts of a page that is not a PDF page")
+
+
+def test_a_page_of_a_file_that_is_not_a_pdf_has_no_glyph_drawings(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    # The glyph a Type 3 font draws is the only drawing taken for text, and only a
+    # PDF has Type 3 fonts, so the fonts of another document are never read.
+    page = _CommandPage(
+        [("rule", 72.0, 110.0, 101.5, 0.6), ("text", "T1", 3, 1, 40.0)], [_FONTS[0]]
+    )
+    page.parent.is_pdf = False
+    monkeypatch.setattr(documents_module, "_pdf_type3_font_names", _refuse_type3_lookup)
+
+    thin, thick = documents_module._pdf_horizontal_rules(page)
+
+    assert (len(thin), len(thick), page.traces) == (1, 0, 0)
+    with fitz.open(stream=b"<p>Some <u>underlined</u> text</p>", filetype="html") as document:
+        assert not document.is_pdf
+        assert documents_module._pdf_drawn_glyph_sizes(document[0]) == {}
+
+
+# A Word 2007+ file saved under a .pdf name; MuPDF opens it as an Office document.
+# Reading Page.xref of its pages crashed PyMuPDF 1.26.7 with a segmentation fault,
+# so it is extracted in a child process.
+VA_WORD_FILE = (
+    SOURCES
+    / "us-va/manual/2026-09-10-ssi-state-supplement/official-documents"
+    / "va-dars-auxiliary-grant-manual-chapter-a.pdf"
+)
+_EXTRACT_BOTH_WAYS = """
+import sys, warnings
+from axiom_corpus.corpus import documents
+content = open(sys.argv[1], "rb").read()
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+    plain = documents._extract_pdf_blocks(content, extraction={})
+    marked = documents._extract_pdf_blocks(content, extraction={"amendment_markup": True})
+assert [documents._strip_amendment_markup(b.body) for b in marked] == [b.body for b in plain]
+print(len(marked))
+"""
+
+
+def test_a_word_file_given_as_a_pdf_still_extracts_with_amendment_markup() -> None:
+    import subprocess
+    import sys
+
+    result = subprocess.run(
+        [sys.executable, "-c", _EXTRACT_BOTH_WAYS, str(VA_WORD_FILE)],
+        capture_output=True,
+        text=True,
+        timeout=120,
+        check=False,
+    )
+
+    assert result.returncode == 0, (result.returncode, result.stderr[-2000:])
+    assert int(result.stdout.split()[-1]) > 0
 
 
 @pytest.mark.parametrize(
