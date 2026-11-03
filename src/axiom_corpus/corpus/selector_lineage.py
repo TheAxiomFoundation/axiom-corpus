@@ -35,7 +35,7 @@ The comparison is per pair. A pair the successor still carries, with any of its
 versions, is not a drop, so one document can leave a pair the successor keeps
 without a finding. The activation gate's ``scope_monotonicity`` check
 (``scripts/check_release_gate.py``) compares only a pair's newest version, so
-it does not report that case either.
+it reports that case only when the document that leaves is the pair's newest.
 
 A selector's predecessor is the first tracked selector its description names
 ("Successor to <name>", "after <name>", "<name>'s scope set"). On ``main``,

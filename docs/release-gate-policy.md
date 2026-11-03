@@ -167,8 +167,11 @@ versions, is not a drop: swapping `us-ny/statute/2026-06-05-nyc-admin-code` for
 `2026-09-28-nyc-admin-code` is not one, and neither is one document leaving a
 pair that keeps others. The activation gate's `scope_monotonicity` check
 (`scripts/check_release_gate.py`) compares only a pair's newest version, so it
-does not report that second case either. The fork and ended-branch rules catch
-the way it happened in #935, a cut from a stale base.
+reports that second case only when the document that leaves is the pair's
+newest: a cut that drops `us/statute/2026-09-29-election-statute-uocava-nvra-title-52`
+and keeps the newer `us/statute/2026-10-06-w6-federal-public-laws` passes both
+checks. The fork and ended-branch rules catch the way it happened in #935, a cut
+from a stale base.
 
 It compares a cut with its own predecessor because that is the claim every cut
 already makes ("It preserves every prior scope"), and the check makes it

@@ -603,6 +603,73 @@ def test_a_fork_record_holds_only_for_the_successors_it_lists() -> None:
     )
 
 
+def _with_digest(baseline: LineageBaseline, name: str, digest: str) -> LineageBaseline:
+    digests = dict(baseline.selector_digests)
+    digests[name] = digest
+    return LineageBaseline(digests, baseline.drops, baseline.forks, baseline.first_cuts)
+
+
+def test_a_fork_record_for_an_edited_successor_no_longer_holds() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _successor("pin-ks", "pin-ssi", _PIN)
+    record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
+    baseline = _with_digest(
+        _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": record}), "pin-ks", "0" * 64
+    )
+    report = _check(ssi, nyc, ks, baseline=baseline)
+    assert report.forks == (Fork("pin-ssi", ("pin-ks", "pin-nyc")),)
+    assert report.recorded_forks == ()
+    assert any("pin-ks at " + "0" * 64 in error for error in report.baseline_errors)
+
+
+def test_a_fork_record_whose_predecessor_has_one_successor_is_stale() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _selector("pin-ks", _PIN)
+    record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
+    report = _check(
+        ssi, nyc, ks, baseline=_baseline(ssi, ks, pinned=[nyc], forks={"pin-ssi": record})
+    )
+    assert report.forks == ()
+    assert report.baseline_errors == (
+        "the baseline records a fork at pin-ssi (pin-ks, pin-nyc), but 1 tracked "
+        "selector(s) name it as their predecessor",
+    )
+
+
+@pytest.mark.parametrize("stale", ["digest", "successors"])
+def test_an_ended_branch_is_reported_even_when_its_fork_record_no_longer_holds(
+    stale: str,
+) -> None:
+    """A stale fork record still says which branches ended, so the check fails closed."""
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _successor("pin-ks", "pin-ssi", _PIN)
+    late = _successor("pin-late", "pin-ssi", _PIN)
+    follow = _successor("pin-ks-followup", "pin-ks", _PIN)
+    record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
+    selectors = [ssi, nyc, ks, follow]
+    baseline = _baseline(ssi, pinned=[nyc, ks, late], forks={"pin-ssi": record})
+    if stale == "digest":
+        baseline = _with_digest(baseline, "pin-nyc", "0" * 64)
+    else:
+        selectors.append(late)
+    report = _check(*selectors, baseline=baseline)
+    assert report.recorded_forks == ()
+    assert report.ended_branches == (
+        EndedBranch("pin-ks-followup", "pin-ks", "pin-ssi", ("pin-nyc",)),
+    )
+
+
+def test_a_first_cut_record_for_an_edited_selector_no_longer_holds() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    report = _check(ssi, baseline=_with_digest(_baseline(ssi), "pin-ssi", "0" * 64))
+    assert report.unnamed == (UnnamedPredecessor("pin-ssi"),)
+    assert report.recorded_first_cuts == ()
+    assert any("digest is" in error for error in report.baseline_errors)
+
+
 def test_selectors_must_be_keyed_by_their_names() -> None:
     with pytest.raises(ValueError, match="holds a manifest named"):
         check_selector_lineage({"other": _selector("pin-ssi", _PIN)})
@@ -719,6 +786,13 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
         ("      - line-b\n      - line-c", "      - line-b", "at least two"),
         ("    reason: The line splits.", "    note: The line splits.", "must have exactly"),
         ("    continued_by:\n      - line-c", "    continued_by: []", "continued_by must name"),
+        (
+            "    continued_by:\n      - line-c",
+            "    continued_by:\n      - line-c\n      - line-b",
+            r"continued_by must be sorted",
+        ),
+        ("    reason: The line splits.\n", "", "must have exactly"),
+        ("    reason: The first cut of its line.\n", "", "must have exactly"),
         (
             "    continued_by:\n      - line-c",
             "    continued_by:\n      - line-d",
