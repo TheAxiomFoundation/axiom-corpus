@@ -744,14 +744,17 @@ _NO_PLACE_TOKEN = re.compile(
 def _names_a_place(text: str, path) -> bool:
     """Whether a path ``find_local_paths`` found names a place: the spec, restated.
 
-    A root alone names none, however spelled (``/Users/``, ``//tmp``) and with
-    emphasis closing on it (``**/Users/**``), nor does a ``/media/file/`` web
-    path, each read as ``find_local_paths`` resolves it.
+    A root alone names none, however spelled (``/Users/``, ``//tmp``) and
+    whatever prose closes on it (``**/Users/**.``, a closing quote, a dash, an
+    ellipsis), nor does a ``/media/file/`` web path, each read as
+    ``find_local_paths`` resolves it.
     """
     token = text[path.start : path.end]
     if path.kind == "absolute":
         resolved = posixpath.normpath(re.sub("/+", "/", token))
-        bare = posixpath.normpath(re.sub("/+", "/", token.rstrip("*_~")))
+        bare = posixpath.normpath(
+            re.sub("/+", "/", token.rstrip("*_~.!?\u2019\u201d\u00bb\u203a\u2014\u2013\u2026\\"))
+        )
         return path.root.lower() not in {
             resolved.lower(),
             bare.lower(),
@@ -1054,3 +1057,125 @@ def test_this_guard_and_mains_markdown_guard_agree_on_home_paths_in_prose(tokens
     ours = [path.start for path in find_record_local_paths(line, markdown=True)]
 
     assert ours == mains, line
+
+
+# The guard over whole generated records. A record is lines of published
+# forms: what a record names in place of a local path (web URLs, even with a
+# root in their path or query; repository-relative paths, even through
+# directories named like a root; placeholders, main's spaced ones included;
+# words), each in any of the wrappers above, plus, or not, one local path
+# planted in one of them. Local names use only Q, W, X and Z, which no
+# published form holds.
+_RECORD_WORD = st.text(alphabet="abcdefghijklmnoprstuvy0123456789.-", min_size=1, max_size=8)
+_RECORD_ROOT_NAMES = ["home", "Users", "tmp", "private", "var", "Volumes", "mnt", "media", "root"]
+_RECORD_PUBLISHED = st.one_of(
+    st.builds(
+        lambda host, segments, query: f"https://{host}/" + "/".join(segments) + query,
+        st.sampled_from(["www.oregonlegislature.gov", "dese.mo.gov", "www.medicaid.gov"]),
+        st.lists(st.sampled_from(_RECORD_ROOT_NAMES) | _RECORD_WORD, max_size=4),
+        st.sampled_from(["", "?file=/home/a.htm", "?next=/Users/v"]),
+    ),
+    st.builds(
+        lambda segments: "/".join(segments),
+        st.lists(
+            st.sampled_from([*_RECORD_ROOT_NAMES, "data", "corpus"]) | _RECORD_WORD,
+            min_size=2,
+            max_size=5,
+        ),
+    ).filter(lambda path: not path.startswith(("~", "-"))),
+    st.sampled_from(
+        [
+            "<axiom-corpus checkout>/data/corpus",
+            "<axiom-corpus worktrees>/w6-health",
+            "<scratchpad>/replay.json",
+            "<scratchpad>/tmp/out",
+            "<axiom-cache>/ocr",
+            "/Users/",
+            "/tmp/",
+            "data/corpus",
+        ]
+    ),
+    _RECORD_WORD,
+)
+_RECORD_LOCAL_NAME = st.text(alphabet="QWXZ", min_size=3, max_size=6)
+_EMPHASIS = {
+    ("*", "*"),
+    ("**", "**"),
+    ("**", "**."),
+    ("**", "**\u2014"),
+    ("**_", "_**"),
+    ("~~", "~~"),
+    ("|**", "**|"),
+    ("_", "_"),
+}
+_RECORD_LOCAL = st.one_of(
+    st.builds(
+        lambda root, name: f"{root}/{name}/x",
+        st.sampled_from(
+            [
+                "/Users",
+                "/home",
+                "/root",
+                "/private",
+                "/tmp",
+                "/var/folders",
+                "/var/tmp",
+                "/Volumes",
+                "/mnt",
+                "/media",
+            ]
+        ),
+        _RECORD_LOCAL_NAME,
+    ),
+    st.builds(lambda name: f"~/{name}", _RECORD_LOCAL_NAME),
+    st.builds(lambda name: f"$HOME/{name}", _RECORD_LOCAL_NAME),
+    st.builds(lambda name: f"C:\\Users\\{name}", _RECORD_LOCAL_NAME),
+)
+
+
+@st.composite
+def _generated_records(draw) -> tuple[str, bool, bool]:
+    """A record's text, whether it is Markdown, and whether a local path is planted in it."""
+    markdown = draw(st.booleans())
+    lines = []
+    for _ in range(draw(st.integers(min_value=1, max_value=5))):
+        tokens = []
+        for before, after in draw(st.lists(st.sampled_from(_WRAPPERS), min_size=1, max_size=4)):
+            published = draw(_RECORD_PUBLISHED)
+            # find_local_paths reads a backtick as a command substitution, which
+            # ends a URL's exemption, so a root in the query of a URL in a code
+            # span is reported, as in a command. Intended; not a published form.
+            if before == "`" and "?" in published:
+                published = published.split("?")[0]
+            tokens.append(before + published + after)
+        lines.append(tokens)
+    planted = draw(st.none() | _RECORD_LOCAL)
+    if planted is not None:
+        # Emphasis is read only in Markdown; elsewhere ``*`` and ``_`` are literal.
+        wrappers = _WRAPPERS if markdown else [pair for pair in _WRAPPERS if pair not in _EMPHASIS]
+        before, after = draw(st.sampled_from(wrappers))
+        if before.startswith("\\") and "\\" in planted:
+            planted = planted.replace("\\", "\\\\")  # escaped with its string
+        tokens = lines[draw(st.integers(min_value=0, max_value=len(lines) - 1))]
+        tokens.insert(
+            draw(st.integers(min_value=0, max_value=len(tokens))), before + planted + after
+        )
+    # Each line opens with prose, so none opens a code fence (``~~~``, three backticks).
+    text = "\n".join("Note: " + " ".join(tokens) for tokens in lines) + "\n"
+    return text, markdown, planted is not None
+
+
+@settings(max_examples=500, deadline=None)
+@given(generated=_generated_records())
+def test_the_guard_fails_every_generated_record_with_a_local_path_and_passes_the_rest(
+    generated,
+) -> None:
+    """No generated record that holds a local path passes, and every other passes.
+
+    A record passes when ``find_record_local_paths`` reports nothing in it.
+    """
+    text, markdown, planted = generated
+
+    found = find_record_local_paths(text, markdown=markdown)
+
+    assert bool(found) == planted, (text, found)

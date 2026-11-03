@@ -452,12 +452,18 @@ def _code_spans(line: str) -> list[tuple[int, int]]:
     return spans
 
 
+# What can close a root alone in prose or data without being a name below it:
+# emphasis, sentence punctuation, closing typographic quotes, dashes, an
+# ellipsis and the backslash of an escaped closing quote (``**/Users/**.``,
+# ``“/tmp/”``, ``/Users/...``, ``\\"/Users/\\"``).
+_CLOSING_PROSE = "*_~.!?\u2019\u201d\u00bb\u203a\u2014\u2013\u2026\\"
+
+
 def _names_no_place(text: str, path: LocalPath) -> bool:
     token = text[path.start : path.end]
     if path.kind == "absolute":
         resolved = posixpath.normpath(re.sub("/+", "/", token))
-        # Emphasis closing on a root alone (``**/Users/**``) is not a segment.
-        bare = posixpath.normpath(re.sub("/+", "/", token.rstrip("*_~")))
+        bare = posixpath.normpath(re.sub("/+", "/", token.rstrip(_CLOSING_PROSE)))
         return path.root.lower() in {resolved.lower(), bare.lower()} or resolved.startswith(
             _WEB_PATH_PREFIXES
         )
