@@ -112,15 +112,16 @@ child or paragraph (i). `_build_tree` decides by **sequence continuity**:
   chained directly to the first label (`(ii)(1)`, or `(ii) (1)` with one space)
   decides on its own: it confirms a reading if it opens that reading's first
   child, and otherwise the parser reads no further (`(ii)(B) b.`, then `(1)`
-  and `(2)`, gives only `ii`). Failing a chained label, a label run in after
-  `.`, `:` or `?` before the next line-leading label (or label run in after a
-  dash) can confirm a reading. Otherwise that next line-leading or dash run-in
-  label decides, and if it confirms neither reading the parser reads no
-  further. (The chain examples here are one line. In every other example, such
-  as `(ii) (1) (jj)`, each label starts its own paragraph: written on one line,
-  labels at most a space apart would chain.) `(1)` or the next letter means a
-  letter (`(ii) (1) (jj)` gives `ii, ii/1, jj`). In lower case, `(A)` or the
-  next numeral means roman (`(ii) (A) (iii)` gives `ii, ii/A, iii`).
+  and `(2)`, gives only `ii`). If there is no chained label, a label run in
+  after `.`, `:` or `?` before the next line-leading label (or label run in
+  after a dash) can confirm a reading. Otherwise that next line-leading or dash
+  run-in label decides, and if it confirms neither reading the parser reads no
+  further. (The chain examples in this bullet are one line. In every other
+  example in this bullet, such as `(ii) (1) (jj)`, each label starts its own
+  paragraph: written on one line, labels at most a space apart would chain.)
+  `(1)` or the next letter means a letter (`(ii) (1) (jj)` gives
+  `ii, ii/1, jj`). In lower case, `(A)` or the next numeral means roman
+  (`(ii) (A) (iii)` gives `ii, ii/A, iii`).
 
   When neither reading is confirmed, or both are confirmed by the same head,
   the parser chooses roman for a label of more than one character, because as a

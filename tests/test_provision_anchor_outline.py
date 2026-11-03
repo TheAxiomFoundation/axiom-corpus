@@ -474,6 +474,27 @@ def test_a_chained_label_that_opens_neither_reading_ends_the_read(
     assert _paths(_paragraphs(*control)) == control_expected
 
 
+@pytest.mark.parametrize(
+    ("blocks", "expected"),
+    [
+        # The "." run-in "(B)" opens neither reading's first child, so it is
+        # passed over and the line-leading "(1)" confirms the letter.
+        (["(ii) Heading. (B) b.", "(1) one."], ["ii", "ii/1"]),
+        # "(1)" is chained to that passed-over "(B)", not to "(ii)", so it is
+        # not read; the line-leading "(iii)" confirms the numeral.
+        (["(ii) Heading. (B)(1) one.", "(iii) three."], ["ii", "iii"]),
+    ],
+    ids=["weak-run-in-passed-over", "chain-after-weak-not-read"],
+)
+def test_a_weak_run_in_that_confirms_nothing_is_passed_over(
+    blocks: list[str], expected: list[str]
+) -> None:
+    # A label run in after ".", ":" or "?" that opens neither reading's first
+    # child does not end the read, and a label chained to it, rather than
+    # directly to the first label, does not count.
+    assert _paths(_paragraphs(*blocks)) == expected
+
+
 def test_a_first_label_read_one_way_cannot_take_the_other_readings_sibling() -> None:
     # Limit: "(1)" confirms "(II)" as a letter, so the roman-only "(III)" that
     # follows continues nothing and stays text. 1.0.1 gave II, II/1, III.
