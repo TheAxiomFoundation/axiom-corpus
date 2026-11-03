@@ -131,10 +131,10 @@ def _fork_branches(baseline: LineageBaseline, fork: str) -> tuple[set[str], set[
 
 
 def _pins(selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline, *names: str) -> str:
-    """The selector_digests lines an entry needs that the baseline does not have yet."""
+    """The selector_digests lines an entry needs that the baseline lacks, in name order."""
     lines = "".join(
         f"\n      {name}: {selector_sha256(selectors[name])}"
-        for name in dict.fromkeys(names)
+        for name in sorted(set(names))
         if name not in baseline.selector_digests
     )
     return f"\n    selector_digests:{lines}" if lines else ""
@@ -159,6 +159,22 @@ def _cut_from(heads: tuple[str, ...], continued_by: Iterable[str]) -> str:
     )
 
 
+_SEVERAL_CUTS = (
+    "If this change adds more than one cut to the line, cut them one after another, each from "
+    "the one before."
+)
+_ONE_ENTRY_A_DAY = (
+    "after its earlier entries (decisions about one fork made on one day share one entry)"
+)
+
+
+def _no_longer_holds(finding: Finding) -> str:
+    return (
+        f"{finding.describe()}.\n  {LINEAGE_BASELINE_PATH} already records this, but the record "
+        "no longer holds: undo the change the baseline errors below describe"
+    )
+
+
 def _remedy(
     finding: Finding, selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
 ) -> str:
@@ -166,11 +182,16 @@ def _remedy(
 
     Entries are append-only. A recorded fork that gains a successor, or a branch
     the line now continues through, gets a new dated entry for its predecessor.
+    A finding the baseline already records, whose record a changed selector
+    broke, is fixed by undoing the change, not by recording it again.
     """
     if isinstance(finding, DroppedPair):
+        if (finding.selector, finding.pair) in baseline.drops:
+            return _no_longer_holds(finding)
         return (
             f"{finding.describe()}.\n  Keep a version of {pair_label(finding.pair)}, or record "
-            f"the release decision in {LINEAGE_BASELINE_PATH}:"
+            "the release decision, with pins in name order and drops in order of selector, then "
+            f"pair, in {LINEAGE_BASELINE_PATH}:"
             f"{_pins(selectors, baseline, finding.predecessor, finding.selector)}\n"
             "    dropped_pairs:\n"
             f"      - selector: {finding.selector}\n"
@@ -187,7 +208,8 @@ def _remedy(
                 f"{finding.describe()}.\n  Cut the new selector from the newest selector of "
                 "its line, and name that one first in its description. The newest selectors "
                 f"from {finding.predecessor}, through its successors: {', '.join(finding.heads)}"
-                ". If the line splits here on purpose, record the split in "
+                f". {_SEVERAL_CUTS} If the line splits here on purpose, record the split, with "
+                "pins in name order and the entry among the forks in order of predecessor, in "
                 f"{LINEAGE_BASELINE_PATH}:"
                 f"{_pins(selectors, baseline, finding.predecessor, *finding.successors)}\n"
                 f"    forks:\n      - predecessor: {finding.predecessor}\n"
@@ -197,17 +219,18 @@ def _remedy(
                 "        reason: <why the line splits here>"
             )
         if not new:
-            return (
-                f"{finding.describe()}.\n  The baseline records every one of them at "
-                f"{finding.predecessor}, but the record no longer holds: see the baseline "
-                "errors"
-            )
+            return _no_longer_holds(finding)
         continued_by = baseline.fork_continued_by(finding.predecessor)
+        then = "".join(
+            f", then {name} from {before} (Successor to {before}.)"
+            for before, name in zip(new, new[1:], strict=False)
+        )
         return (
-            f"{finding.describe()}.\n  Cut {', '.join(new)} from "
-            f"{_cut_from(finding.heads, continued_by)}. If the line splits here on purpose, "
-            f"record {', '.join(new)} in a new entry for the fork at {finding.predecessor} in "
-            f"{LINEAGE_BASELINE_PATH}:{_pins(selectors, baseline, *new)}\n"
+            f"{finding.describe()}.\n  Cut {new[0]} from "
+            f"{_cut_from(finding.heads, continued_by)}{then}. {_SEVERAL_CUTS} If the line splits "
+            f"here on purpose, record {', '.join(new)} in a new entry for the fork at "
+            f"{finding.predecessor}, {_ONE_ENTRY_A_DAY}, in {LINEAGE_BASELINE_PATH}:"
+            f"{_pins(selectors, baseline, *new)}\n"
             f"    forks:\n      - predecessor: {finding.predecessor}\n"
             "        listed_on: <today>\n"
             f"        successors:{_items(new)}\n"
@@ -218,8 +241,9 @@ def _remedy(
     if isinstance(finding, EndedBranch):
         return (
             f"{finding.describe()}.\n  Cut it from {_cut_from(finding.heads, finding.continued_by)}"
-            f". If the line goes on through {finding.predecessor} on purpose, record that in a "
-            f"new entry for the fork at {finding.fork} in {LINEAGE_BASELINE_PATH}:"
+            f". {_SEVERAL_CUTS} If the line goes on through {finding.predecessor} on purpose, "
+            f"record that in a new entry for the fork at {finding.fork}, {_ONE_ENTRY_A_DAY}, in "
+            f"{LINEAGE_BASELINE_PATH}:"
             f"{_pins(selectors, baseline, finding.fork, finding.predecessor)}\n"
             f"    forks:\n      - predecessor: {finding.fork}\n"
             "        listed_on: <today>\n"
@@ -227,10 +251,12 @@ def _remedy(
             "        reason: <why the line goes on through this branch>"
         )
     if isinstance(finding, UnnamedPredecessor):
+        if finding.selector in baseline.first_cuts:
+            return _no_longer_holds(finding)
         return (
             f"{finding.describe()}.\n  Name the selector it succeeds first in its description "
-            f"(Successor to <name>.), or record it as the first cut of a line in "
-            f"{LINEAGE_BASELINE_PATH}:{_pins(selectors, baseline, finding.selector)}\n"
+            "(Successor to <name>.), or record it as the first cut of a line, with pins in name "
+            f"order, in {LINEAGE_BASELINE_PATH}:{_pins(selectors, baseline, finding.selector)}\n"
             "    first_cuts:\n      - listed_on: <today>\n"
             "        reason: <the line it starts>\n"
             f"        selectors:{_items([finding.selector])}"
@@ -338,6 +364,7 @@ _EDITED_VERSION = "2026-11-03-remedy-test-edit"
 _NOTE = "Built by the remedy test."
 _MARKER = f"{LINEAGE_BASELINE_PATH}:\n"
 _ONE_AFTER_ANOTHER = "cut them one after another, each from the one before"
+_SHARE_ONE_ENTRY = "decisions about one fork made on one day share one entry"
 _SECTION_ORDER: dict[str, Callable[[Mapping[str, object]], tuple[str, ...]]] = {
     "dropped_pairs": lambda entry: (str(entry["selector"]), str(entry["pair"])),
     "forks": lambda entry: (str(entry["predecessor"]), str(entry["listed_on"])),
@@ -753,6 +780,9 @@ def _follow(
             else:
                 choose = lambda listed: []  # noqa: E731
             entries.append(_printed_entry(remedy, _today(copy.baseline()), choose))
+        forks = [remedy for remedy in remedies if "\n    forks:\n" in remedy]
+        if len(forks) > 1:
+            assert all(_SHARE_ONE_ENTRY in remedy for remedy in forks), forks
         copy.record(*entries)
     elif option == _KEEP:
         (finding,) = findings
@@ -803,11 +833,12 @@ def _on_an_ended_branch(
 def _assert_the_advice_is_sound(
     findings: list[Finding], remedies: list[str], report: LineageReport, baseline: LineageBaseline
 ) -> None:
-    """No newest selector a remedy names lies on an ended branch, and each names its line."""
+    """A remedy names every newest selector, none on an ended branch, and the line it took."""
     for finding, remedy in zip(findings, remedies, strict=True):
-        if isinstance(finding, Fork | EndedBranch):
+        if isinstance(finding, Fork | EndedBranch) and "no longer holds" not in remedy:
             for head in finding.heads:
                 assert not _on_an_ended_branch(head, report.predecessors, baseline), head
+                assert head in remedy, f"the remedy leaves out the newest selector {head}"
         fork = finding.fork if isinstance(finding, EndedBranch) else None
         if isinstance(finding, Fork) and finding.recorded and "no longer holds" not in remedy:
             fork = finding.predecessor

@@ -51,13 +51,13 @@ cuts a release decision allows, each pinned to the digest
 (``axiom_corpus.release.manifest.selector_sha256``) of every selector it names,
 so a record holds only for those exact selectors. A drop record names the
 scopes that carry the pair's text in its place (``replaced_by``), or says in
-its reason why nothing does. A fork record lists every successor and the ones
-the line continued through. Records are append-only and dated: a later
-decision about a recorded fork, a new successor or a branch the line now goes
-on through, is another entry for the same predecessor with its own
-``listed_on`` and reason, and the check reads a predecessor's entries as their
-union. The entries listed on 2026-11-02 are what ``main`` held when the check
-began.
+its reason why nothing does. A predecessor's fork entries together list every
+successor and the ones the line continued through. Records are append-only
+and dated: a later decision about a recorded fork, a new successor or a
+branch the line now goes on through, is another entry for the same
+predecessor with its own ``listed_on`` and reason, and the check reads a
+predecessor's entries as their union. The entries listed on 2026-11-02 are
+what ``main`` held when the check began.
 """
 
 from __future__ import annotations
@@ -624,6 +624,11 @@ def _list(value: object, where: str) -> list[Any]:
     return value
 
 
+def _absent_as_empty(value: object) -> object:
+    """An absent or null optional list reads as empty; any other value must be a list."""
+    return [] if value is None else value
+
+
 def _sorted_unique(values: Iterable[Any], where: str) -> None:
     items = list(values)
     if items != sorted(items) or len(set(items)) != len(items):
@@ -709,14 +714,14 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
         fork_successors = tuple(
             pinned_name(value, f"{entry_where}.successors[{position}]")
             for position, value in enumerate(
-                _list(item.get("successors") or [], f"{entry_where}.successors")
+                _list(_absent_as_empty(item.get("successors")), f"{entry_where}.successors")
             )
         )
         _sorted_unique(fork_successors, f"{entry_where}.successors")
         continued_by = tuple(
             _name(value, f"{entry_where}.continued_by[{position}]")
             for position, value in enumerate(
-                _list(item.get("continued_by") or [], f"{entry_where}.continued_by")
+                _list(_absent_as_empty(item.get("continued_by")), f"{entry_where}.continued_by")
             )
         )
         _sorted_unique(continued_by, f"{entry_where}.continued_by")

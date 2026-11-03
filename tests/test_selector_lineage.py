@@ -925,8 +925,101 @@ def test_heads_follow_only_the_branches_a_recorded_fork_continued_through() -> N
     assert line_heads(predecessors, {}, ["kept"]) == ("kept-next", "side")
     assert line_heads(predecessors, continued, ["kept", "ended"]) == ("ended-next", "kept-next")
     assert line_heads(predecessors, continued, ["untracked"]) == ()
+    # Starting above a recorded fork, the walk still follows only its continued branch.
+    assert line_heads(predecessors, continued, ["root"]) == ("kept-next",)
+    # A recorded fork none of whose continued branches is tracked is a head itself.
+    assert line_heads(predecessors, {"root": ("gone",)}, ["root"]) == ("root",)
     # A cycle names no head, and the walk ends.
     assert line_heads({"a": "b", "b": "a"}, {}, ["a"]) == ()
+
+
+def test_a_fork_record_for_an_edited_predecessor_no_longer_holds() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _successor("pin-ks", "pin-ssi", _PIN)
+    record = RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split")
+    baseline = _with_digest(
+        _baseline(ssi, pinned=[nyc, ks], forks={"pin-ssi": (record,)}), "pin-ssi", "0" * 64
+    )
+    report = _check(ssi, nyc, ks, baseline=baseline)
+    assert report.forks == (
+        Fork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-ks", "pin-nyc"), ("pin-nyc",)),
+    )
+    assert report.recorded_forks == ()
+
+
+def test_a_stale_fork_record_names_every_successor_its_entries_record() -> None:
+    ssi = _selector("pin-ssi", _PIN)
+    nyc = _successor("pin-nyc", "pin-ssi", _NYC)
+    ks = _selector("pin-ks", _PIN)
+    late = _selector("pin-late", _PIN)
+    entries = (
+        RecordedFork("pin-ssi", ("pin-ks", "pin-nyc"), ("pin-nyc",), "2026-11-02", "split"),
+        RecordedFork("pin-ssi", ("pin-late",), (), "2026-11-03", "a third branch"),
+    )
+    baseline = _baseline(ssi, ks, late, pinned=[nyc], forks={"pin-ssi": entries})
+    assert _check(ssi, nyc, ks, late, baseline=baseline).baseline_errors == (
+        "the baseline records a fork at pin-ssi (pin-ks, pin-late, pin-nyc), but 1 tracked "
+        "selector(s) name it as their predecessor",
+    )
+
+
+def test_heads_skip_a_branch_a_recorded_fork_further_down_ended() -> None:
+    """A fork or ended branch names no head on a branch a recorded fork below it ended."""
+    p = _selector("nest-p", _ONE_SCOPE)
+    a = _successor("nest-a", "nest-p", _ONE_SCOPE)
+    b = _successor("nest-b", "nest-p", _ONE_SCOPE)
+    a1 = _successor("nest-a1", "nest-a", _ONE_SCOPE)
+    a2 = _successor("nest-a2", "nest-a", _ONE_SCOPE)
+    a1x = _successor("nest-a1x", "nest-a1", _ONE_SCOPE)
+    tree = [p, a, b, a1, a2, a1x]
+    below = RecordedFork("nest-a", ("nest-a1", "nest-a2"), ("nest-a1",), "2026-11-02", "split")
+    top = RecordedFork("nest-p", ("nest-a", "nest-b"), ("nest-a",), "2026-11-02", "split")
+    both = {"nest-a": (below,), "nest-p": (top,)}
+    assert _check(*tree, baseline=_baseline(p, pinned=[a, b, a1, a2], forks=both)).ok
+
+    new = _successor("nest-n", "nest-p", _ONE_SCOPE)
+    extension = _successor("nest-b-next", "nest-b", _ONE_SCOPE)
+    report = _check(*tree, new, extension, baseline=_baseline(p, pinned=[a, b, a1, a2], forks=both))
+    assert report.forks == (
+        Fork("nest-p", ("nest-a", "nest-b", "nest-n"), ("nest-a", "nest-b"), ("nest-a1x",)),
+    )
+    assert report.ended_branches == (
+        EndedBranch("nest-b-next", "nest-b", "nest-p", ("nest-a",), ("nest-a1x",)),
+    )
+
+    # With only the fork below recorded, the one at nest-p lists every successor's
+    # newest selectors, still without the branch nest-a's line ended.
+    only_below = {"nest-a": (below,)}
+    report = _check(*tree, new, baseline=_baseline(p, pinned=[a, a1, a2], forks=only_below))
+    assert report.forks == (
+        Fork("nest-p", ("nest-a", "nest-b", "nest-n"), (), ("nest-a1x", "nest-b", "nest-n")),
+    )
+
+
+@_SETTINGS
+@given(parents=_PARENTS, data=st.data())
+def test_line_heads_finds_what_a_walk_up_finds(
+    parents: list[int | None], data: st.DataObject
+) -> None:
+    """Differential: line_heads walks down from the branches; the reference walks up to them.
+
+    Any selector with successors may be recorded, continuing any of them, or only a
+    name no selector has (a stale record).
+    """
+    selectors, _, named = _tree(parents)
+    predecessors = _check(*selectors).predecessors
+    continued = {
+        predecessor: tuple(
+            sorted(data.draw(st.sets(st.sampled_from([*successors, "gone-cut"]), min_size=1)))
+        )
+        for predecessor, successors in sorted(named.items())
+        if data.draw(st.booleans())
+    }
+    branches = data.draw(st.sets(st.sampled_from([s.name for s in selectors]), min_size=1))
+    assert line_heads(predecessors, continued, branches) == _heads_walking_up(
+        predecessors, continued, branches
+    )
 
 
 def test_a_first_cut_record_for_an_edited_selector_no_longer_holds() -> None:

@@ -143,13 +143,13 @@ dropped_pairs:
       mislabeled uk-shropshire manual by omission: the manual's operative text is
       the 2024/2025 default scheme under a 2026/27 cover.
 # A predecessor that more than one tracked selector names, in entries sorted by
-# predecessor, then listed_on. The first entry lists every selector that names
-# the predecessor (successors) and the ones the line went on through
-# (continued_by). A later entry for the same predecessor, with its own listed_on
-# and reason, adds successors, continued_by branches or both, and the check reads
-# the entries as their union. A selector that names the predecessor and no entry
-# lists is a new fork; one that names a successor outside continued_by extends a
-# branch the line ended.
+# predecessor, then listed_on. The first entry lists the selectors that named
+# the predecessor when the fork was recorded (successors) and the ones the line
+# went on through (continued_by). A later entry for the same predecessor, with
+# its own listed_on and reason, adds successors, continued_by branches or both,
+# and the check reads the entries as their union. A selector that names the
+# predecessor and no entry lists is a new fork; one that names a successor
+# outside continued_by extends a branch the line ended.
 forks:
   - predecessor: us-rulespec-2026-07-21-az-140es-current
     successors:
