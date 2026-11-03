@@ -105,6 +105,8 @@ child or paragraph (i). `_build_tree` decides by **sequence continuity**:
   participate` is a paragraph.
 - The section's first label sets the top-level form, read as the form in which
   it opens a list: a section that is one `(i), (ii), (iii)` list is roman.
+  A first label that opens no list but can be roman, such as `(ii)`, is roman:
+  as a doubled letter it would follow `(z)`, which cannot open a section.
 - A label that skips ahead (`(a)` then `(d)`) is accepted where it does not
   restart a list. A label that continues no open sequence, such as a `(B)` with
   no `(i)` open or a mislabelled `(xxiv)` after `(xxviii)`, is left as text of
@@ -125,8 +127,14 @@ Invariants, for any body (`tests/test_provision_anchor_outline.py`):
    (question-and-answer sections) raises rather than emit two rows for one
    path.
 5. **Determinism.** The same body gives the same anchors.
+6. **No skipped level.** In document order the first paragraph is top level,
+   and each paragraph opens at most one level below the one before it.
+7. **Unchanged where 1.0.1 was right.** Wherever `provision-anchors/1.0.1`
+   read a top-level paragraph as eCFR publishes it, 2.0.0 emits the same
+   anchors (`tests/test_provision_anchor_differential.py`, against the
+   verbatim 1.0.1 module in `tests/_reference_anchors_v1.py`).
 
-These hold for a mis-nested tree too, so they are not what catches one. Two
+Invariants 1-6 hold for a mis-nested tree too, so they are not what catches one. Two
 checks do: the round-trip property, and a differential test against the
 paragraph ids eCFR itself publishes (`<div id="p-435.603(f)(3)(iv)(A)">` in
 `https://www.ecfr.gov/api/renderer/v1/content/enhanced/<date>/title-<n>?part=<p>&section=<s>`).

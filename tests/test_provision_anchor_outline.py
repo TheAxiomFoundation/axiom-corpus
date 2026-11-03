@@ -330,6 +330,30 @@ def test_a_chained_label_that_is_not_a_first_label_is_a_reference() -> None:
     assert _paths(body) == ["a", "b"]
 
 
+def test_a_chained_label_must_directly_follow_the_head_that_opened_its_parent() -> None:
+    # "(B)" fits nowhere, so it stays text of (a)(1); the "(i)" chained after it
+    # does not follow the head that opened (a)(1) and is not (a)(1)'s first child.
+    body = _paragraphs("(a) A.", "(1) one.", "(B)(i) orphan.", "(2) two.")
+    assert _paths(body) == ["a", "a/1", "a/2"]
+    assert _texts(body)["a/1"] == "(1) one.\n\n(B)(i) orphan."
+
+
+def test_a_chained_label_that_opens_no_first_child_confirms_nothing() -> None:
+    # After (h)(2), "(i)" is either paragraph (i) or (h)(2)'s first roman child.
+    # The chained "(B)" opens no first child under either reading, so it confirms
+    # neither, and "(i)" stays the next letter; "(ii)" is then not a paragraph.
+    body = _paragraphs("(h) H.", "(1) one.", "(2) two.", "(i)(B) text.", "(ii) next.")
+    assert _paths(body) == ["h", "h/1", "h/2", "i"]
+
+
+def test_a_section_that_opens_mid_roman_list_stays_roman() -> None:
+    # "(ii)" is also the doubled letter after "(z)", which cannot open a section.
+    # Read as roman, "(A)" is its child and "(iii)" its sibling.
+    body = _paragraphs("(ii) two.", "(A) cap.", "(iii) three.")
+    assert _paths(body) == ["ii", "ii/A", "iii"]
+    assert _paths(_paragraphs("(II) two.", "(III) three.")) == ["II", "III"]
+
+
 @pytest.mark.parametrize(
     "heading",
     [

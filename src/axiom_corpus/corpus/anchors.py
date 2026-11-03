@@ -588,9 +588,15 @@ def _strong_placements(
             for form in _OUTLINE_LADDER
             if form in forms and _label_ordinal(token, form) == 1
         ]
-        top_form = openers[0] if openers else (
-            _resolve_form(token, forms, ladder_form) or min(forms)
-        )
+        # A doubled letter ("(ii)" as the 35th letter) only follows "(z)", so a
+        # section that opens mid-list on "(ii)" or "(iii)" is roman.
+        roman = next((form for form in forms if form.startswith("roman_")), None)
+        if openers:
+            top_form = openers[0]
+        elif roman is not None and len(token) > 1:
+            top_form = roman
+        else:
+            top_form = _resolve_form(token, forms, ladder_form) or min(forms)
     else:
         top_form = _resolve_form(token, forms, ladder_form) or min(forms)
     if not roots or top_form in (ladder_form, roots[0].form):

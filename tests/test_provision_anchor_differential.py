@@ -67,9 +67,11 @@ def _relative(anchor: ProvisionAnchor) -> str:
 
 
 def _comparable(anchor: ProvisionAnchor) -> dict[str, object]:
-    # extractor_version differs by construction. ordinal counts siblings, so it
-    # moves when 2.0.0 recovers a sibling 1.0.1 had filed elsewhere; the paths,
-    # spans and depth are what a citation resolves to.
+    # extractor_version differs by construction. ordinal is the anchor's position
+    # among all anchors the section emits, in document order (generate_anchors_for_
+    # provision), so it shifts whenever an anchor earlier in the section appears or
+    # disappears, even outside this paragraph. A move still shows: it changes
+    # citation_path, and order within a paragraph follows from the compared offsets.
     mapping = anchor.to_mapping()
     mapping.pop("extractor_version")
     mapping.pop("ordinal")
