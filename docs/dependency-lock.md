@@ -268,8 +268,8 @@ decision; until it is made, the lock stays on 1.26.7.
 
 ## What the lock does not pin
 
-- The build requirements in `pyproject.toml`'s `[build-system]`: setuptools
-  (`>=61.0`) and wheel. pip fetches both, unpinned, to build this project in
-  step 3.
+- The build requirements in `pyproject.toml`'s `[build-system]`:
+  `setuptools>=61.0` and `wheel`. pip fetches both, unpinned, to build this
+  project in step 3.
 - Programs outside Python, such as the Tesseract binary that OCR extraction
   calls.
