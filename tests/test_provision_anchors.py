@@ -711,6 +711,31 @@ def test_caption_mask_changes_the_legacy_rebuild_cache_version() -> None:
     })
 
 
+@pytest.mark.parametrize(
+    "caption",
+    ["(1) Comprehensive diagram.", "Figure 1—(1) First part"],
+)
+def test_image_caption_mask_changes_the_rebuild_cache_version(caption: str) -> None:
+    provision = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/29/2530/210",
+        id="image-caption-cache-fixture",
+        body=f"(a) Example.\n\n[Image caption: {caption}]\n\nText.\n\n(b) End.",
+    )
+
+    anchors = generate_anchors_for_provision(provision)
+
+    # 1.0.1 returned /a/1 for this identical body. Masking image captions changes
+    # that output, so its replacement must identify a distinct rebuild cache entry.
+    assert [anchor.citation_path for anchor in anchors] == [
+        f"{provision.citation_path}/a", f"{provision.citation_path}/b",
+    ]
+    assert {anchor.extractor_version for anchor in anchors}.isdisjoint({
+        "provision-anchors/1.0.0", "provision-anchors/1.0.1",
+    })
+
+
 def test_generation_is_deterministic(cfr_section: ProvisionRecord) -> None:
     a1 = generate_anchors_for_provision(cfr_section)
     a2 = generate_anchors_for_provision(cfr_section)

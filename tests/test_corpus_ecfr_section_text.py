@@ -14,7 +14,7 @@ Invariants checked here, for any generated section:
 - Caption isolation: captions never change paragraph paths, labels or spans after
   mapping offsets through removal of their caption blocks.
 - Agreement: sections and appendices render the same body for content that has
-  no appendix-only element (HD1-HD3 headings, non-formula images).
+  no appendix-only element (non-formula images).
 """
 
 import re

@@ -506,6 +506,20 @@ def test_live_unit_body(name, body):
         assert ecfr._section_body(elem, appendix=True) == body
 
 
+def test_note_holding_a_paragraph_keeps_that_paragraph_as_its_own_block():
+    # 7 CFR 58.148's approval note holds an editorial footnote paragraph, which the
+    # previous renderer already gave a block of its own; the note now renders as a
+    # container, so that block stays and the note's own text precedes it.
+    elem = _fixture("7-cfr-58-148.xml")
+
+    assert _blocks(ecfr._section_body(elem))[-2:] == [
+        "(Approved by the Office of Management and Budget under OMB control number 0583-0047) 1",
+        "1 Editorial Note: See table appearing in § 58.100 for correct OMB control number.",
+    ]
+    _assert_complete(elem, appendix=False)
+    _assert_only_gains(elem, appendix=False)
+
+
 def test_xref_amendment_link_stays_out_of_the_body():
     elem = _fixture("12-cfr-4-92.xml")
 
@@ -596,6 +610,11 @@ _PARAGRAPHS = [
 _HEADINGS = ["HED", "HED1", "HD1", "HD2", "HD3", "HD5", "SECHD", "PARTHD", "DOCKETHD"]
 _NOTES = ["SECAUTH", "PARAUTH", "APPRO", "NAME"]
 _CONTAINERS = ["EXTRACT", "EXAMPLE", "NOTE", "DIV", "BOXTXT"]
+# Elements read for the first time here (not P, PSPACE, FP, FP-*, HED or HD1-HD3).
+_NEW_TAGS = [
+    "FP1-2", "FP2-3", "P-2", "P1", "FRP0", "HD5", "HED1", "SECHD", "SECAUTH", "APPRO",
+    "NAME", "TCAP", "BCAP", "LDRWK", "SCOL2", "LI", "FL-2", "LDRFIG",
+]
 
 
 def _leaf(images: bool):
@@ -614,6 +633,12 @@ def _leaf(images: bool):
         st.tuples(st.just("skip"), st.sampled_from(["CITA", "XREF"]), _words),
         # An XREF's own text stays out; a paragraph inside it renders.
         st.tuples(st.just("xref"), st.none(), st.tuples(_words, _words)),
+        # A newly read element that holds a block renders as a container.
+        st.tuples(
+            st.just("holder"),
+            st.sampled_from(_NEW_TAGS),
+            st.tuples(_words, st.sampled_from(["P", "MATH"]), _words, _words),
+        ),
         st.tuples(st.just("run"), st.sampled_from([None, "E", "SU", "I"]), _words),
         st.tuples(st.just("math"), st.none(), st.sampled_from(_IDS)),
     ]
@@ -658,6 +683,17 @@ def _build(items, parent: ET.Element, last: ET.Element | None = None) -> None:
             child = ET.SubElement(parent, "XREF")
             child.text = " ".join(content[0])
             ET.SubElement(child, "P").text = " ".join(content[1])
+        elif kind == "holder":
+            before, inner, inside, after = content
+            child = ET.SubElement(parent, tag)
+            child.text = " ".join(before)
+            if inner == "P":
+                block = ET.SubElement(child, "P")
+                block.text = " ".join(inside)
+            else:
+                block = ET.SubElement(child, "MATH")
+                ET.SubElement(block, "img", src=f"/graphics/{_IDS[0].lower()}.gif")
+            block.tail = " ".join(after)
         elif kind == "worksheet":
             child = ET.SubElement(parent, "LDRWK")
             for item_tag, words in content:
@@ -715,6 +751,14 @@ def _model_blocks(items, *, appendix: bool) -> list[str]:
                 blocks.append(f"[Image caption: {' '.join(content)}]")
             elif kind == "xref":
                 blocks.append(" ".join(content[1]))
+            elif kind == "holder":
+                before, inner, inside, after = content
+                blocks.append(" ".join(before))
+                if inner == "P":
+                    blocks.append(" ".join(inside))
+                else:
+                    blocks.append(f"[Official formula image: ecfr/graphics/{_IDS[0]}.png]")
+                blocks.append(" ".join(after))
             elif kind == "worksheet":
                 lines: list[list[str]] = []
                 for item_tag, words in content:

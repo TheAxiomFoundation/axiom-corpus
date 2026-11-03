@@ -195,24 +195,57 @@ of `[Official formula image: …]`: apart from whitespace and `|` cell separator
 rendering adds only caption blocks and their marker characters to ordinary
 body text and preserves every source character within each caption.
 
+An image caption, `TCAP` above an image or `BCAP` below one, becomes
+`[Image caption: …]`, and the scanner masks it the same way. 29 CFR 2530.210
+captions a diagram `(i) Comprehensive diagram. (No. 6)` right after paragraph
+(h), where an unmarked `(i)` would read as paragraph (i). The image itself gets
+an `[Official source image: …]` marker in appendices only.
+
 Both body renderers read a `<br/>` as a word break, so `means<br/>less` becomes
 `means less`. A break directly after a hyphen preserves the join and the hyphen:
 `Occupa-<br/>tion` becomes `Occupa-tion`, and `1954-<br/>Apr.` becomes `1954-Apr.`.
 Adjacent block children (`P`, `FP`, any `FP-*`, `PSPACE`, `HED`, `HD1`–`HD3`, `LI`,
-`DIV`) separate words, while inline markup still joins (`FEV<sub>1</sub>` becomes
-`FEV1`). The renderer skips an appendix's own bracketed source note (`CITA`) and
-plain text directly inside an element it does not read, such as an editorial
-cross-reference (`XREF`, "Link to an amendment published at 91 FR 40836, July 2,
-2026."). It still keeps paragraphs, headings and tables inside such an element,
-and all text nested inside a caption, paragraph or table cell, whatever its tag.
-These rendering rules also apply to part appendices and preserve their path,
-parent, level, ordinal and metadata.
+`DIV` and every block element listed below) separate words, while inline markup
+still joins (`FEV<sub>1</sub>` becomes `FEV1`).
 
-Sections took captions and word breaks after the appendices did. Locked scopes
-keep the exact text their extraction produced: earlier sections drop captions
-and join words across `<br/>`, while the part 404 appendices from #828 keep plain
-captions. Successor extractions pick up the shared caption marker and word-break
-rules.
+Sections and appendices render each of these block elements as one block, in
+document order:
+
+- paragraphs: `P`, `PSPACE`, `FP` and their indent and flush variants, such as
+  `FP-2`, `FP1-2`, `FP2-3`, `P-3`, `P1`, `P-DASH`, `FRP` and `FRP0`;
+- headings: `HED`, `HED1` and `HD1`–`HD5`, and the `SECHD`, `PARTHD` and
+  `DOCKETHD` headings of some appendices and forms;
+- notes codified with the section: section and paragraph authority citations
+  (`SECAUTH`, `PARAUTH`), OMB approval statements (`APPRO`) and the names that
+  sign an extract (`NAME`);
+- leader-dot worksheets (`LDRWK`): one line per entry, its label (`FL-2`) and
+  each figure (`LDRFIG`) separated by ` | ` as table cells are, so 26 CFR
+  1.661(c)-2 reads `Dividends | $10,000`;
+- two-column lists (`SCOL2`): one item (`LI`) per line;
+- image captions, marked as above.
+
+Any other element is a container. Its children render in order, and text written
+directly in it, with any inline markup, renders as a block between theirs, so an
+unfamiliar element never hides text. A formula nested inside one of these blocks
+adds its marker after the block; none of the 2,566 `MATH` elements in the
+2026-10-29 eCFR is nested that way.
+
+The renderer leaves out the provision's heading (`HEAD`), its bracketed source
+note (`CITA`) and an `XREF`'s own text. An `XREF` is the eCFR's notice of a
+pending amendment, correction or delay ("Link to an amendment published at 91 FR
+15772, Mar. 30, 2026."): it is not codified text and changes whenever an
+amendment is pending. Block elements inside an `XREF` still render. Authority
+citations and approval statements are agency text codified with the section, so
+they stay, as the editorial notes (`EDNOTE`, `EFFDNOT`) already did. These
+rendering rules also apply to part appendices and preserve their path, parent,
+level, ordinal and metadata.
+
+Sections took captions and word breaks after the appendices did, and the block
+elements above after both (#942). Locked scopes keep the exact text their
+extraction produced: earlier sections drop captions and join words across
+`<br/>`, the part 404 appendices from #828 keep plain captions, and every scope
+before #942 lacks the text of those block elements. Successor extractions pick
+up the current rules.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with
@@ -231,12 +264,11 @@ ordinary section-only recovery. Preserve appendix artifacts and use an
 appendix-aware inventory/extraction workflow for a separate run instead; these
 recovery scripts do not certify an appendix replay as complete.
 
-Apart from captions and word breaks, ordinary section rendering and
-formula-only image capture retain their prior behavior, even in an
-appendix-enabled run. Sections do not get HD1–HD3 text or non-math image
-capture. Nor do captions and word breaks repair the inherited
-loss of a nested `MATH` marker inside a consumed paragraph, table, or heading;
-standalone `MATH` transcription and markers remain supported.
+Sections and appendices render the same body for content without images.
+Non-math image capture and its markers stay appendix-only, even in an
+appendix-enabled run, and sections keep formula-only image capture. A `MATH`
+element inside a table cell still renders no marker; standalone `MATH`
+transcription and markers remain supported.
 
 The retained 20 CFR 416 source remains a 622-entry inventory by default, and its
 approved 14-record deeming slice reproduces the prior producer's bytes. The

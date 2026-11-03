@@ -32,6 +32,7 @@ element's text.
 | `27-cfr-19-661.xml` | 27 CFR 19.661 | `SECAUTH` |
 | `38-cfr-21-7614.xml` | 38 CFR 21.7614 | `PARAUTH` |
 | `7-cfr-800-166.xml` | 7 CFR 800.166 | `APPRO` |
+| `7-cfr-58-148.xml` | 7 CFR 58.148 | `APPRO` that holds a footnote paragraph |
 | `12-cfr-4-92.xml` | 12 CFR 4.92 | `XREF`, which stays out of the body |
 | `29-cfr-301-9.xml` | 29 CFR 301.9 | `FRP` |
 | `46-cfr-42-50-10.xml` | 46 CFR 42.50-10 | `FRP0` |
