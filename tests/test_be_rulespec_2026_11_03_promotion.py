@@ -64,11 +64,12 @@ EXPECTED_ARTICLES = [
     "143", "144", "145",
     "171",
 ]  # fmt: skip
-# Every span end the section-label rule decides for an article with text on an added page: the
-# article and its heading's page, the next heading and its page, and the text above that
-# heading when the rule reads it as labels and nothing else, so the article ends on the page
-# before. None marks article text above it; the article then ends on that page, which can only
-# add pages.
+# Every span end the section-label rule decides around the added pages: each pair of
+# consecutive headings on different pages, where the pages from the first heading to the next
+# take in an added page. A row gives the article and its heading's page, the next heading and
+# its page, and the text above that heading when the rule reads it as labels and nothing else,
+# so the article ends on the page before. None marks article text above it; the article then
+# ends on that page, which can only add pages.
 LABEL_DECIDED_ENDS = [
     ("24", 73, "25", 75, None),
     ("25/1", 75, "26", 76, None),
