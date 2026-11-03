@@ -1233,11 +1233,28 @@ def test_forks_must_be_sorted_by_predecessor(tmp_path: Path) -> None:
         load_lineage_baseline(_write(tmp_path, text))
 
 
+@pytest.mark.parametrize("value", ["not-a-list", "''", "{}", "0", "false"])
 @pytest.mark.parametrize("section", ["dropped_pairs", "forks", "first_cuts"])
-def test_a_section_that_is_not_a_list_is_refused(tmp_path: Path, section: str) -> None:
-    text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n{section}: not-a-list\n"
+def test_a_section_that_is_not_a_list_is_refused(tmp_path: Path, section: str, value: str) -> None:
+    """Only an absent or null section reads as empty, as for a fork entry's lists."""
+    text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n{section}: {value}\n"
     with pytest.raises(SelectorLineageError, match=f"{section} must be a list"):
         load_lineage_baseline(_write(tmp_path, text))
+
+
+@pytest.mark.parametrize("value", ["not-a-mapping", "''", "[]", "0"])
+def test_selector_digests_that_is_not_a_mapping_is_refused(tmp_path: Path, value: str) -> None:
+    text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\nselector_digests: {value}\n"
+    with pytest.raises(SelectorLineageError, match="selector_digests must be a mapping"):
+        load_lineage_baseline(_write(tmp_path, text))
+
+
+def test_an_absent_or_null_section_reads_as_empty(tmp_path: Path) -> None:
+    sections = ["selector_digests", "dropped_pairs", "forks", "first_cuts"]
+    text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n" + "".join(f"{s}:\n" for s in sections)
+    assert load_lineage_baseline(_write(tmp_path, text)) == LineageBaseline()
+    only_schema = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n"
+    assert load_lineage_baseline(_write(tmp_path, only_schema)) == LineageBaseline()
 
 
 def test_a_first_cut_listed_in_two_groups_is_refused(tmp_path: Path) -> None:
@@ -1299,7 +1316,14 @@ def test_a_forks_later_entries_are_kept_in_order_and_merged(tmp_path: Path) -> N
         (
             "    listed_on: 2026-11-04",
             "    listed_on: 2026-11-01",
-            r"forks\[2\]: forks must be sorted by predecessor, then listed_on",
+            r"forks\[2\]: the fork at line-a has an entry listed on 2026-11-03 \(forks\[1\]\) "
+            r"before this one, listed on 2026-11-01",
+        ),
+        (
+            "  - predecessor: line-a\n    successors:\n      - line-b\n      - line-c\n    continued_by:\n      - line-c\n    listed_on: 2026-11-02\n    reason: The line splits.\n  - predecessor: line-a\n    successors:\n      - line-d\n    listed_on: 2026-11-03\n    reason: A third branch, on purpose.\n",
+            "  - predecessor: line-a\n    successors:\n      - line-d\n    listed_on: 2026-11-03\n    reason: A third branch, on purpose.\n  - predecessor: line-a\n    successors:\n      - line-b\n      - line-c\n    continued_by:\n      - line-c\n    listed_on: 2026-11-02\n    reason: The line splits.\n",
+            r"forks\[1\]: the fork at line-a has an entry listed on 2026-11-03 \(forks\[0\]\) "
+            r"before this one, listed on 2026-11-02",
         ),
         (
             "    listed_on: 2026-11-04",

@@ -538,12 +538,15 @@ def _write_successor(copy: _MainCopy, name: str, base: str) -> None:
     copy.write(name, _keys(copy, base), f"Successor to {base}. {_NOTE}")
 
 
-def _edit(copy: _MainCopy, name: str) -> str:
-    """Add a version to one of the selector's pairs, so its digest changes; return the old file."""
+def _edit(copy: _MainCopy, name: str, added: ScopeKey | None = None) -> str:
+    """Add a scope, by default a version of one of its pairs, so the digest changes.
+
+    Return the selector's file before the edit.
+    """
     original = copy.text(name)
     selector = copy.selectors()[name]
     jurisdiction, document_class, _ = selector.scope_keys[0]
-    keys = {*selector.scope_keys, (jurisdiction, document_class, _EDITED_VERSION)}
+    keys = {*selector.scope_keys, added or (jurisdiction, document_class, _EDITED_VERSION)}
     copy.write(name, keys, selector.description or "")
     return original
 
@@ -679,6 +682,13 @@ def _build_edited_first_cut(copy: _MainCopy) -> _Case:
 def _build_edited_selector_of_a_recorded_drop(copy: _MainCopy) -> _Case:
     name = sorted(record.selector for record in copy.baseline().drops.values())[0]
     return _Case((DroppedPair,), (name,), name, original=_edit(copy, name))
+
+
+def _build_edited_selector_whose_successor_lacks_the_pair_it_gained(copy: _MainCopy) -> _Case:
+    """The recorded drop's selector gains a pair its successor lacks: two findings, one edit."""
+    name = sorted(record.selector for record in copy.baseline().drops.values())[0]
+    original = _edit(copy, name, _ADDED)
+    return _Case((DroppedPair, DroppedPair), (name,), name, original=original)
 
 
 def _build_edited_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
@@ -913,6 +923,11 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
     ("cycle", _build_cycle, _NAME_EACH),
     ("edited first cut", _build_edited_first_cut, _UNDO),
     ("edited selector of a recorded drop", _build_edited_selector_of_a_recorded_drop, _UNDO),
+    (
+        "edited selector whose successor lacks the pair it gained",
+        _build_edited_selector_whose_successor_lacks_the_pair_it_gained,
+        _UNDO,
+    ),
     ("edited successor of a recorded fork", _build_edited_successor_of_a_recorded_fork, _UNDO),
 ]
 
