@@ -102,7 +102,9 @@ from the newest selector of its line, and keeps a version of every
 `(jurisdiction, document_class)` pair that selector carries, unless
 `manifests/selector-lineage-baseline.yaml` records the drop, the fork, or the
 selector as the first cut of a line; see
-`docs/release-gate-policy.md#selector-lineage`.
+`docs/release-gate-policy.md#selector-lineage`. Its entries are append-only and
+dated: a later decision about a recorded fork is a new entry for its
+predecessor, never an edit of an earlier one.
 
 ## Named-release visibility model
 

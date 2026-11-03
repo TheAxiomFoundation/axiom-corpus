@@ -219,20 +219,28 @@ an entry holds only for those exact selectors:
   new fork), and under `continued_by` the ones the line went on through;
 - `first_cuts`: selectors that name no tracked predecessor.
 
-Each entry has `listed_on` and a `reason`. The entries listed on 2026-11-02 are
-what main held when the check began: the drop, the six forks and the 100 first
-cuts, and the repository test fixes that set. An entry that no longer matches a
-finding, or whose pinned selector changed, fails the check. The digest leaves
-out the description, so a drop entry also names the predecessor it was written
-for.
+Each entry has `listed_on` and a `reason`, and entries are append-only: a later
+decision is a new entry, not an edit of an earlier one. A recorded fork can
+carry later entries for the same predecessor, each adding successors,
+`continued_by` branches or both, and the check reads a predecessor's entries as
+their union. The loader keeps fork entries sorted by predecessor, then
+`listed_on`. It refuses a second entry for one predecessor on the same date, a
+later entry that repeats a branch an earlier one records, and one that adds
+nothing. The entries listed on 2026-11-02 are what main held when the check
+began: the drop, the six forks and the 100 first cuts. The repository test
+fixes those entries and only those, so review keeps later ones from being
+edited. An entry that no longer matches a finding, or whose pinned selector
+changed, fails the check. The digest leaves out the description, so a drop
+entry also names the predecessor it was written for.
 
 What the check does not catch:
 
 - a document leaving a pair the cut still carries (above);
 - a cut that names a selector another cut superseded without naming it: a new
-  UK cut that names `uk-rulespec-2026-08-07` is compared with it, not with
-  `uk-rulespec-2026-11-02-uc-retirement-pension-income`, because the cuts from
-  2026-08-08 to 2026-09-07 describe their predecessors without naming them;
+  UK cut that names `uk-rulespec-2026-08-07` is compared with it, not with the
+  newest UK cut, because the cuts from 2026-08-08 to 2026-09-07 describe their
+  predecessors without naming them, and the DE Kindergeld cuts do the same
+  ([#970](https://github.com/TheAxiomFoundation/axiom-corpus/issues/970));
 - a description that names some other selector before its predecessor: the
   check compares the cut with that selector instead, so it reports what that
   selector carries and the cut lacks, and misses what the real predecessor
@@ -240,15 +248,34 @@ What the check does not catch:
 
 ### Cutting a successor
 
-1. Find the newest selector of the line, the one no tracked selector names
-   yet, and derive the cut from it.
+1. Derive the cut from the newest selector of its line. If you cut from an
+   older one that another cut already succeeds, or from a branch a recorded
+   fork's line ended, the check fails, and the advice under the finding names
+   the selector to build on: `Cut … from <name>, the newest selector of the
+   line …` when it finds exactly one, or `The newest selectors from
+   <predecessor>, through its successors: …` at a fork the baseline does not
+   record. A stale base that no tracked selector names passes (see what the
+   check does not catch, above).
 2. Name it first in the description: `Successor to <name>.` A selector that
    starts a new line is recorded under `first_cuts` instead.
-3. Run `uv run --extra dev python -m pytest -q tests/test_selector_lineage_repository.py`.
-   A failure prints the finding and the baseline entry that would record it.
+3. Run
+   `AXIOM_CORPUS_PARTIAL_TESTS=1 uv run --extra dev python -m pytest -q tests/test_selector_lineage_repository.py`.
+   It reads no corpus bytes, so it runs on a checkout without them. A failure
+   prints each finding, the usual fix and the baseline entry that would
+   record the finding on purpose.
 
 Dropping a pair, splitting a line or starting one is a release decision:
-record it with its reason and review it as one.
+record it with its reason and review it as one. The usual fix comes first.
+For an ended branch, that is a re-cut from the newest selector of the branch
+the line continued through. If the line goes on through the ended branch on
+purpose, add a new entry for that fork's predecessor, dated the day of the
+decision, that lists the branch under `continued_by`, with the reason. A
+new successor of a recorded fork gets the same kind of entry: it lists the
+selector under `successors`, and under `continued_by` too if the line goes on
+through it. Each remedy prints the entry with only the `selector_digests` pins
+the baseline lacks. `tests/test_selector_lineage_repository.py` builds each
+kind of finding on a copy of main, follows each option its remedy prints, and
+requires the check and the 2026-11-02 freeze to pass afterwards.
 
 ## Content check
 
