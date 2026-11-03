@@ -487,10 +487,13 @@ _LOCAL_TOKEN = st.one_of(
     st.builds(lambda root, name: f"{root}/{name}", _LOCAL_ROOT_SPELLING, _LOCAL_NAME),
     st.builds(
         lambda lead, root, name: f"{lead}{root}/{name}",
-        st.sampled_from(["--x=", "-o", "@", "PATH=a:", "$X", "<", ">"]),
+        st.sampled_from(["--x=", "-o", "@", "PATH=a:", "$P", "<", ">"]),
         _LOCAL_ROOT_SPELLING,
         _LOCAL_NAME,
-    ),
+    )
+    # ``a:`` then ``//Users/...`` spells the URL ``a://Users/...``, which the
+    # guard leaves to its source like any other URL argument.
+    .filter(lambda token: "://" not in token),
     st.builds(lambda name: f"~/{name}", _LOCAL_NAME),
     st.builds(lambda name: f"~qz/{name}", _LOCAL_NAME),
     st.builds(lambda name: f"$HOME/{name}", _LOCAL_NAME),
