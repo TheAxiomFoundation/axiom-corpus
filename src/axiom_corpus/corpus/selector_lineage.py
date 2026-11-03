@@ -624,9 +624,15 @@ def _list(value: object, where: str) -> list[Any]:
     return value
 
 
-def _absent_as_empty(value: object) -> object:
-    """An absent or null optional list reads as empty; any other value must be a list."""
-    return [] if value is None else value
+def _absent_as_empty(value: object, empty: object = None) -> object:
+    """An absent or null section or list reads as ``empty`` (a list unless given).
+
+    Any other value is returned for the caller to check, so ``0``, ``''`` or ``{}``
+    where a list belongs is refused rather than read as empty.
+    """
+    if value is not None:
+        return value
+    return [] if empty is None else empty
 
 
 def _sorted_unique(values: Iterable[Any], where: str) -> None:
@@ -647,7 +653,7 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
             digest, f"{where}: selector_digests.{name}"
         )
         for name, digest in _mapping(
-            data.get("selector_digests") or {}, f"{where}: selector_digests"
+            _absent_as_empty(data.get("selector_digests"), {}), f"{where}: selector_digests"
         ).items()
     }
     _sorted_unique(digests, f"{where}: selector_digests")
@@ -662,7 +668,9 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
 
     drops: dict[tuple[str, Pair], RecordedDrop] = {}
     drop_keys: list[tuple[str, Pair]] = []
-    for index, raw in enumerate(_list(data.get("dropped_pairs") or [], f"{where}: dropped_pairs")):
+    for index, raw in enumerate(
+        _list(_absent_as_empty(data.get("dropped_pairs")), f"{where}: dropped_pairs")
+    ):
         entry_where = f"{where}: dropped_pairs[{index}]"
         item = _mapping(raw, entry_where)
         _fields(item, _DROP_FIELDS, entry_where)
@@ -672,7 +680,7 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
         replaced_by = tuple(
             _scope(value, f"{entry_where}.replaced_by[{position}]")
             for position, value in enumerate(
-                _list(item.get("replaced_by") or [], f"{entry_where}.replaced_by")
+                _list(_absent_as_empty(item.get("replaced_by")), f"{entry_where}.replaced_by")
             )
         )
         _sorted_unique(replaced_by, f"{entry_where}.replaced_by")
@@ -691,8 +699,10 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
     _sorted_unique(drop_keys, f"{where}: dropped_pairs (by selector, then pair)")
 
     forks: dict[str, list[RecordedFork]] = {}
+    ordered: list[tuple[str, Mapping[Any, Any], str, str]] = []
+    last: dict[str, tuple[int, str]] = {}
     previous: tuple[str, str] | None = None
-    for index, raw in enumerate(_list(data.get("forks") or [], f"{where}: forks")):
+    for index, raw in enumerate(_list(_absent_as_empty(data.get("forks")), f"{where}: forks")):
         entry_where = f"{where}: forks[{index}]"
         item = _mapping(raw, entry_where)
         _fields(item, _FORK_FIELDS, entry_where)
@@ -701,16 +711,30 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
             raise SelectorLineageError(f"{entry_where}: missing {sorted(missing)}")
         predecessor = pinned_name(item["predecessor"], f"{entry_where}.predecessor")
         listed_on = _iso_date(item["listed_on"], f"{entry_where}.listed_on")
-        if previous == (predecessor, listed_on):
-            raise SelectorLineageError(
-                f"{entry_where}: the fork at {predecessor} already has an entry listed on "
-                f"{listed_on}"
-            )
+        # Order is checked for every entry before any entry's content, and against
+        # the predecessor's own last entry first: a later entry placed before its
+        # fork's first one is refused for its date, not read as the first entry.
+        if predecessor in last:
+            last_index, last_listed_on = last[predecessor]
+            if listed_on == last_listed_on:
+                raise SelectorLineageError(
+                    f"{entry_where}: the fork at {predecessor} already has an entry listed on "
+                    f"{listed_on}"
+                )
+            if listed_on < last_listed_on:
+                raise SelectorLineageError(
+                    f"{entry_where}: the fork at {predecessor} has an entry listed on "
+                    f"{last_listed_on} (forks[{last_index}]) before this one, listed on "
+                    f"{listed_on}: a fork's entries go in order of listed_on"
+                )
         if previous is not None and (predecessor, listed_on) < previous:
             raise SelectorLineageError(
                 f"{entry_where}: forks must be sorted by predecessor, then listed_on"
             )
         previous = (predecessor, listed_on)
+        last[predecessor] = (index, listed_on)
+        ordered.append((entry_where, item, predecessor, listed_on))
+    for entry_where, item, predecessor, listed_on in ordered:
         fork_successors = tuple(
             pinned_name(value, f"{entry_where}.successors[{position}]")
             for position, value in enumerate(
@@ -768,7 +792,9 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
         )
 
     first_cuts: dict[str, RecordedFirstCut] = {}
-    for index, raw in enumerate(_list(data.get("first_cuts") or [], f"{where}: first_cuts")):
+    for index, raw in enumerate(
+        _list(_absent_as_empty(data.get("first_cuts")), f"{where}: first_cuts")
+    ):
         entry_where = f"{where}: first_cuts[{index}]"
         item = _mapping(raw, entry_where)
         if set(item) != _FIRST_CUT_FIELDS:

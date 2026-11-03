@@ -175,6 +175,19 @@ def _no_longer_holds(finding: Finding) -> str:
     )
 
 
+def _changed_since_pinned(
+    selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline, *names: str
+) -> list[str]:
+    """The names the baseline pins at a digest their selector no longer has."""
+    return [
+        name
+        for name in names
+        if name in baseline.selector_digests
+        and name in selectors
+        and selector_sha256(selectors[name]) != baseline.selector_digests[name]
+    ]
+
+
 def _remedy(
     finding: Finding, selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
 ) -> str:
@@ -188,6 +201,16 @@ def _remedy(
     if isinstance(finding, DroppedPair):
         if (finding.selector, finding.pair) in baseline.drops:
             return _no_longer_holds(finding)
+        changed = _changed_since_pinned(selectors, baseline, finding.predecessor, finding.selector)
+        if changed:
+            # The pin's old digest does not say which pairs the selector had, so the
+            # drop may or may not come from the change. Either way no entry can pass
+            # while the pin is stale: undo the change, then see what is left.
+            return (
+                f"{finding.describe()}.\n  {' and '.join(changed)} changed since the baseline "
+                "pinned it, and this drop may follow from that change: undo the change the "
+                "baseline errors below describe, then run the check again"
+            )
         return (
             f"{finding.describe()}.\n  Keep a version of {pair_label(finding.pair)}, or record "
             "the release decision, with pins in name order and drops in order of selector, then "
@@ -691,6 +714,21 @@ def _build_edited_selector_whose_successor_lacks_the_pair_it_gained(copy: _MainC
     return _Case((DroppedPair, DroppedPair), (name,), name, original=original)
 
 
+def _build_edited_fork_successor_that_drops_a_pair(copy: _MainCopy) -> _Case:
+    """A recorded fork's successor loses a pair its fork carries: a drop by the edited selector."""
+    available = _unextended_ended_branches(copy)
+    fork, branch = next(
+        (fork, branch)
+        for fork, branch in sorted(available, key=lambda item: item[0] != _REVIEW_RECORDED_FORK)
+    )
+    selectors = copy.selectors()
+    original = copy.text(branch)
+    pair = sorted(set(pair_versions(selectors[branch])) & set(pair_versions(selectors[fork])))[0]
+    kept = [key for key in selectors[branch].scope_keys if key[:2] != pair]
+    copy.write(branch, kept, selectors[branch].description or "")
+    return _Case((DroppedPair, Fork), (branch,), fork, original=original)
+
+
 def _build_edited_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
     available = _unextended_ended_branches(copy)
     fork, branch = next(
@@ -926,6 +964,11 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
     (
         "edited selector whose successor lacks the pair it gained",
         _build_edited_selector_whose_successor_lacks_the_pair_it_gained,
+        _UNDO,
+    ),
+    (
+        "edited successor of a recorded fork that drops a pair",
+        _build_edited_fork_successor_that_drops_a_pair,
         _UNDO,
     ),
     ("edited successor of a recorded fork", _build_edited_successor_of_a_recorded_fork, _UNDO),

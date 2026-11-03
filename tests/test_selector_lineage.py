@@ -1171,6 +1171,11 @@ def test_a_checkout_without_the_baseline_records_nothing(tmp_path: Path) -> None
         ),
         (
             "    pair: uk-shropshire/manual\n",
+            "    pair: uk-shropshire/manual\n    replaced_by: 0\n",
+            r"dropped_pairs\[0\]\.replaced_by must be a list",
+        ),
+        (
+            "    pair: uk-shropshire/manual\n",
             "    pair: uk-shropshire/manual\n    replaced_by: [uk/manual]\n",
             "jurisdiction/document_class/version",
         ),
@@ -1361,9 +1366,10 @@ def test_a_forks_later_entries_are_kept_in_order_and_merged(tmp_path: Path) -> N
             r"forks\[1\]: missing \['listed_on'\]",
         ),
         (
-            "  - predecessor: line-a\n    successors:\n      - line-d\n",
-            "  - predecessor: line-d\n    successors:\n      - line-b\n",
-            r"forks\[1\]\.successors must list at least two selectors",
+            # A predecessor's first entry, placed in order, with too few successors.
+            "  - predecessor: line-a\n    continued_by:\n      - line-b\n",
+            "  - predecessor: line-d\n    continued_by:\n      - line-b\n",
+            r"forks\[2\]\.successors must list at least two selectors",
         ),
         (
             "    successors:\n      - line-d\n",

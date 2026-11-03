@@ -236,8 +236,11 @@ and the 100 first cuts. The repository test fixes what those entries record
 nothing listed later, so review keeps later entries from being edited. An
 entry that no longer matches a finding, or whose pinned selector changed,
 fails the check. The fix for a changed selector is to undo the change, not to
-record the finding again. The digest leaves out the description, so a drop
-entry also names the predecessor it was written for.
+record the finding again. A drop by or from a selector pinned at a digest it
+no longer has, such as a successor that lacks a pair the changed selector
+gained, says it may follow from that change and gives the same fix: the old
+digest does not say which pairs the selector had. The digest leaves out the
+description, so a drop entry also names the predecessor it was written for.
 
 What the check does not catch:
 
