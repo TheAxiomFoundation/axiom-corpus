@@ -108,12 +108,14 @@ child or paragraph (i). `_build_tree` decides by **sequence continuity**:
   A first label that opens no list in either form, such as `(ii)` (the 35th
   letter or the second numeral) or `(v)` (the 22nd letter or the fifth
   numeral), cannot be read from the label alone. The parser tries both readings
-  against the heads that follow and keeps the one they confirm soonest. A run-in
-  label before the next line-leading head, or a label chained directly to it,
-  can confirm a reading; otherwise the next line-leading head decides, and if
-  that head confirms neither reading the parser reads no further. `(1)` or the next letter means a letter
-  (`(ii) (1) (jj)` gives `ii, ii/1, jj`). In lower case, `(A)` or the next
-  numeral means roman (`(ii) (A) (iii)` gives `ii, ii/A, iii`).
+  against the heads that follow and keeps the one they confirm soonest. A label
+  run in after `.`, `:` or `?` before the next line-leading label (or label run
+  in after a dash), or a label chained directly to the first label, can confirm
+  a reading. Otherwise that next line-leading or dash run-in label decides, and
+  if it confirms neither reading the parser reads no further. `(1)` or the next
+  letter means a letter (`(ii) (1) (jj)` gives `ii, ii/1, jj`). In lower case,
+  `(A)` or the next numeral means roman (`(ii) (A) (iii)` gives
+  `ii, ii/A, iii`).
 
   When neither reading is confirmed, or both are confirmed by the same head,
   the parser chooses roman for a label of more than one character, because as a
@@ -127,9 +129,9 @@ child or paragraph (i). `_build_tree` decides by **sequence continuity**:
     the roman reading. `(II) (A) (III)` gives `II, III` with
     `(A)` left as text (1.0.1 gave `II, A, III`), and `(V) (A) (VI)` gives
     `V, A`, losing `(VI)`.
-  - Only the first line-leading head is read, so `(II) (1) (III)` reads `(II)`
-    as a letter, and the roman `(III)` then stays text of it (1.0.1 gave
-    `II, II/1, III`).
+  - Only the first line-leading or dash run-in label is read, so
+    `(II) (1) (III)` reads `(II)` as a letter, and the roman `(III)` then stays
+    text of it (1.0.1 gave `II, II/1, III`).
 - A label that skips ahead (`(a)` then `(d)`) is accepted where it does not
   restart a list. A label that continues no open sequence, such as a `(B)` with
   no `(i)` open or a mislabelled `(xxiv)` after `(xxviii)`, is left as text of
