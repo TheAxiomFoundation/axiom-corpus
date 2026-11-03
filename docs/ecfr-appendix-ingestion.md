@@ -2,7 +2,7 @@
 
 The eCFR inventory and extraction commands include parts, subparts, and sections
 by default. Add `--include-appendices` to both commands when a new ingestion run
-should also contain supported part and subpart appendices:
+should also contain supported part, subchapter and subpart appendices:
 
 ```bash
 axiom-corpus-ingest inventory-ecfr --base /tmp/ecfr-604 \
@@ -86,23 +86,27 @@ parses.
 
 ## Subchapter appendices
 
-An appendix to a subchapter sits in that subchapter's last part on the eCFR. 41 CFR
-chapter 101's `Appendix to Subchapter D` is in part 101-21, at reader path
-`.../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D`. As of the
-2026-10-12 eCFR differential (the 2026-10-08 eCFR), it was the only live one in all
-49 titles (three more in title 41 were reserved). It is read only inside the
-subchapter it names; one that names another subchapter fails validation. The part
-that holds it is its parent, at level 1, and the path segment names the
-subchapter, so it never takes a part appendix's path:
+The eCFR places 41 CFR chapter 101's `Appendix to Subchapter D` in that
+subchapter's last part, part 101-21, at reader path
+`.../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D`. The
+2026-10-12 eCFR differential, which read the 2026-10-08 eCFR, found no other live
+appendix to a subchapter in all 49 titles, and it found three reserved ones in
+title 41. The adapter reads an appendix to a subchapter only inside the subchapter
+it names, and one that names another subchapter fails validation. The adapter makes
+the part that holds the appendix its parent, at level 1. The path segment names the
+subchapter, so the appendix never takes a part appendix's path:
 
 | eCFR identifier | Citation path | Legal identifier |
 | --- | --- | --- |
 | `Appendix to Subchapter D` (in part 101-21) | `us/regulation/41/101-21/appendix-to-subchapter-d` | `41 CFR chapter 101, subchapter D, appendix` |
 
-It sorts with unnumbered appendices (ordinal 1,000,000). Metadata carries
+It sorts with unnumbered appendices (ordinal 1,000,000). Its metadata carries
 `appendix_subchapter`, `appendix_identifier`, `appendix: null` and
-`appendix_numbering: null`, and identifiers add `ecfr:subchapter`. A designated
-form (`Appendix A to Subchapter D`) has no live instance and stays unsupported.
+`appendix_numbering: null`, and the adapter adds `ecfr:subchapter` to its
+identifiers. The adapter reads only the unnumbered form, so
+`Appendix A to Subchapter D` fails validation. An appendix directly under a
+subchapter, outside any part, fails too. No live appendix took either shape on
+2026-10-08.
 
 ## Subpart appendices
 
@@ -154,8 +158,8 @@ including hyphenated, alphanumeric or lowercase multi-character designators
 (`Appendix D-1 to Part 208`, `Appendix M1 to Part 226`, `Appendix A-1 to Subpart I
 of Part 550`, `Appendix C1 to Subpart B of Part 430`, `Appendix ii to Part 604`), a
 collective note with a designator (`Appendixes A to Part 604`), identifiers that cite the title (`Appendix B to Subpart A of 10 CFR Part
-51`, `Appendix to 19 CFR Part 0`), and nodes other than appendices to a part or
-subpart (`Figure 1 to Part 1213`, `Appendix A to Chapter I`). A parsed part that
+51`, `Appendix to 19 CFR Part 0`), and nodes other than appendices to a part,
+subpart or subchapter (`Figure 1 to Part 1213`, `Appendix A to Chapter I`). A parsed part that
 contradicts the enclosing part also fails validation. These errors do not imply full appendix coverage.
 Exact `--section` selectors exclude appendices before validation. The lower-level
 iterator likewise applies an explicit citation allowlist before converting an
