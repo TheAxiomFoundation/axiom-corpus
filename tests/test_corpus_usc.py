@@ -1,4 +1,4 @@
-import re
+import string
 from collections import Counter
 from datetime import date
 from hashlib import sha256
@@ -6,11 +6,12 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import pytest
-from hypothesis import given, settings
+from hypothesis import event, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.releases import ReleaseScope
 from axiom_corpus.corpus.usc import (
     _build_usc_inventory,
     _iter_usc_provisions,
@@ -1219,7 +1220,8 @@ def test_read_uslm_zip_refuses_a_member_declared_past_the_cap(tmp_path, monkeypa
 
     source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
     monkeypatch.setattr(usc, "MAX_USLM_ARCHIVE_MEMBER_BYTES", len(SAMPLE_USLM.encode()) - 1)
-    with pytest.raises(ValueError, match="member cap"):
+    # "declares" is unique to the header check; the read-time cap says "inflates past".
+    with pytest.raises(ValueError, match="declares"):
         usc.read_uslm_zip(source_zip)
 
 
@@ -1228,7 +1230,9 @@ def test_read_uslm_zip_caps_the_bytes_actually_inflated(tmp_path, monkeypatch):
 
     from axiom_corpus.corpus import usc
 
-    # A header that understates the member's size must not let it inflate past the cap.
+    # The read-time cap is a second guard behind the header check. The header here is
+    # honest; switching off uslm_zip_member_problem leaves the read-time cap as the only
+    # guard, so this test isolates it.
     source_zip = _single_member_zip(tmp_path / "xml_usc26@119-103.zip")
     monkeypatch.setattr(usc, "MAX_USLM_ARCHIVE_MEMBER_BYTES", 100)
     monkeypatch.setattr(usc, "uslm_zip_member_problem", lambda infos: None)
@@ -1236,6 +1240,46 @@ def test_read_uslm_zip_caps_the_bytes_actually_inflated(tmp_path, monkeypatch):
         assert archive.infolist()[0].file_size > 100
     with pytest.raises(ValueError, match="inflates past"):
         usc.read_uslm_zip(source_zip)
+
+
+def _patch_member_headers(path: Path, *, crc: int | None = None, size: int | None = None) -> None:
+    """Rewrite the member's CRC-32 or uncompressed size in both its local and central header."""
+    import struct
+    import zipfile
+
+    with zipfile.ZipFile(path) as archive:
+        member = archive.infolist()[0]
+    content = bytearray(path.read_bytes())
+    central = content.rindex(b"PK\x01\x02")
+    for header, crc_offset, size_offset in (
+        (member.header_offset, 14, 22),
+        (central, 16, 24),
+    ):
+        if crc is not None:
+            struct.pack_into("<I", content, header + crc_offset, crc)
+        if size is not None:
+            struct.pack_into("<I", content, header + size_offset, size)
+    path.write_bytes(content)
+
+
+def test_read_uslm_zip_refuses_a_bad_crc(tmp_path):
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    source_zip = _single_member_zip(tmp_path / "bad-crc.zip")
+    _patch_member_headers(source_zip, crc=0xDEADBEEF)
+    with pytest.raises(ValueError, match="cannot read zip member.*CRC"):
+        read_uslm_zip(source_zip)
+
+
+def test_read_uslm_zip_refuses_a_header_that_understates_the_member(tmp_path):
+    from axiom_corpus.corpus.usc import read_uslm_zip
+
+    # zipfile stops reading at the declared size, so an understated header cannot
+    # inflate more than it declares; the truncated member then fails its CRC-32.
+    source_zip = _single_member_zip(tmp_path / "understated.zip")
+    _patch_member_headers(source_zip, size=100)
+    with pytest.raises(ValueError, match="cannot read zip member.*CRC"):
+        read_uslm_zip(source_zip)
 
 
 def test_read_uslm_zip_turns_corrupt_deflate_data_into_a_value_error(tmp_path):
@@ -1304,13 +1348,97 @@ def test_release_validation_rejects_a_retained_zip_whose_member_no_longer_inflat
     assert not validation.ok
 
 
+# Letters (ASCII and not), digits, space and the punctuation OLRC names use, plus ":".
+# "/", "\\" and NUL never appear inside a segment; the property adds them on purpose.
+def _scope_with_damaged_zip(
+    root: Path, jurisdiction: str, document_class: str, source_name: str
+) -> ReleaseScope:
+    """Write a one-provision scope whose sole source is a zip with a corrupt member.
+
+    The inventory's sha256 is the damaged zip's own, so only the zip gate can object.
+    """
+    import json
+
+    version = "2026-09-13"
+    zip_bytes_path = _single_member_zip(root.parent / f"{jurisdiction}-{document_class}.zip")
+    _corrupt_deflated_member(zip_bytes_path)
+    payload = zip_bytes_path.read_bytes()
+    source_key = f"sources/{jurisdiction}/{document_class}/{version}/{source_name}"
+    (root / source_key).parent.mkdir(parents=True, exist_ok=True)
+    (root / source_key).write_bytes(payload)
+    citation_path = f"{jurisdiction}/{document_class}/1"
+    item = {
+        "citation_path": citation_path,
+        "source_path": source_key,
+        "sha256": sha256(payload).hexdigest(),
+    }
+    record = {
+        "jurisdiction": jurisdiction,
+        "document_class": document_class,
+        "citation_path": citation_path,
+        "version": version,
+        "body": "Text.",
+        "source_path": source_key,
+        "source_as_of": version,
+        "expression_date": version,
+    }
+    coverage = {
+        "complete": True,
+        "source_count": 1,
+        "provision_count": 1,
+        "matched_count": 1,
+        "missing_from_provisions": [],
+        "extra_provisions": [],
+    }
+    for kind, suffix, text in (
+        ("inventory", "json", json.dumps({"items": [item]})),
+        ("provisions", "jsonl", json.dumps(record) + "\n"),
+        ("coverage", "json", json.dumps(coverage)),
+    ):
+        path = root / kind / jurisdiction / document_class / f"{version}.{suffix}"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text)
+    return ReleaseScope(jurisdiction, document_class, version)
+
+
+@pytest.mark.parametrize(
+    ("jurisdiction", "document_class", "source_name", "gated"),
+    [
+        ("us", "statute", "olrc/xml_usc1@119-103.zip", True),
+        ("us", "regulation", "olrc/xml_usc1@119-103.zip", False),
+        ("us-ca", "statute", "olrc/xml_usc1@119-103.zip", False),
+        ("us", "statute", "official-documents/xml_usc1@119-103.zip", False),
+    ],
+    ids=["us-statute-olrc", "us-regulation", "us-ca-statute", "us-statute-not-olrc"],
+)
+def test_the_zip_gate_checks_only_retained_us_statute_olrc_zips(
+    tmp_path, jurisdiction, document_class, source_name, gated
+):
+    from axiom_corpus.corpus.release_quality import validate_release
+    from axiom_corpus.corpus.releases import ReleaseManifest
+
+    root = tmp_path / "corpus"
+    scope = _scope_with_damaged_zip(root, jurisdiction, document_class, source_name)
+    report = validate_release(root, ReleaseManifest(name="test-zip-gate", scopes=(scope,)))
+
+    codes = {issue.code for issue in report.issues}
+    assert ("unreadable_uslm_source_zip" in codes) is gated
+    assert "source_sha256_mismatch" not in codes
+
+
 _SAFE_SEGMENT = st.text(
     alphabet=st.characters(
-        whitelist_categories=("Lu", "Ll", "Nd"), whitelist_characters="-_@.", max_codepoint=0x7F
+        whitelist_categories=("Lu", "Ll", "Nd"),
+        whitelist_characters="-_@.: ",
+        max_codepoint=0x24F,
     ),
     min_size=1,
     max_size=12,
 ).filter(lambda segment: segment not in {".", ".."})
+
+
+def _starts_with_a_drive_letter(name: str) -> bool:
+    return len(name) >= 2 and name[0] in string.ascii_letters and name[1] == ":"
 
 
 @settings(max_examples=300, deadline=None)
@@ -1318,14 +1446,21 @@ _SAFE_SEGMENT = st.text(
     segments=st.lists(_SAFE_SEGMENT, min_size=1, max_size=4),
     position=st.integers(min_value=0, max_value=4),
     bad=st.sampled_from(["..", ".", ""]),
+    drive=st.sampled_from(["", "C:", "z:"]),
 )
-def test_zip_member_name_safety_property(segments, position, bad):
-    """Invariant: a name is safe iff it is relative, slash-separated, and no segment is
-    empty, ``.`` or ``..``. Inserting any such segment anywhere makes it unsafe."""
+def test_zip_member_name_safety_property(segments, position, bad, drive):
+    """Invariant: a name is safe iff it is relative (no leading "/" and no Windows drive
+    letter), uses no backslash or NUL, and no "/"-separated segment is empty, "." or "..".
+    Adding any such defect anywhere makes a safe name unsafe.
+
+    The model covers names built from letters (ASCII and Latin-extended), digits, space,
+    "-", "_", "@", "." and ":". It leaves out other punctuation, control characters other
+    than NUL, and characters past U+024F; the implementation treats those like letters."""
     from axiom_corpus.corpus.usc import _safe_zip_member_name
 
-    name = "/".join(segments)
-    if re.match(r"^[A-Za-z]:", name):
+    name = drive + "/".join(segments)
+    event("drive letter" if _starts_with_a_drive_letter(name) else "no drive letter")
+    if _starts_with_a_drive_letter(name):
         assert not _safe_zip_member_name(name)
         return
     assert _safe_zip_member_name(name)

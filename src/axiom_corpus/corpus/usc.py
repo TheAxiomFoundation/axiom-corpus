@@ -22,8 +22,9 @@ from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 USC_READER_BASE = "https://uscode.house.gov/view.xhtml"
 USLM_SOURCE_FORMAT = "uslm-xml"
-# Caps for a retained OLRC release-point zip. The largest title member, Title 42,
-# inflates to about 114 MB; both caps leave several times that headroom.
+# Caps for a retained OLRC release-point zip. The largest member retained so far,
+# Title 42's, inflates to 113,735,961 bytes (113.7 MB, release point 119-103); both caps leave
+# several times that headroom.
 MAX_USLM_ZIP_BYTES = 512 * 1024 * 1024
 MAX_USLM_ARCHIVE_MEMBER_BYTES = 512 * 1024 * 1024
 

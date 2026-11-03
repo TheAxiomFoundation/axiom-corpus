@@ -266,7 +266,8 @@ and only certifies coverage for that scoped inventory.
 byte-for-byte as the inventoried source under `sources/us/statute/{run_id}/olrc/`
 (inventory and provision `source_path` and `sha256` point at the zip, and
 `metadata.source_archive_member` names the parsed member), which keeps Title 42
-scopes under GitHub's 100 MB file limit: the extracted `usc42.xml` is 113 MB.
+scopes under GitHub's 100 MB file limit: the extracted `usc42.xml`
+is 113,735,961 bytes (113.7 MB) at release point 119-103.
 The zip is refused before parsing if it is over 512 MiB, if any member name is
 unsafe (absolute, drive-letter, backslash, NUL, or an empty, `.` or `..`
 segment), if a member is a symlink, encrypted or duplicated, or if the member
