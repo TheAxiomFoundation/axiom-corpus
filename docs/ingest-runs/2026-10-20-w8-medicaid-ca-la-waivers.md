@@ -5,7 +5,7 @@ Work order: the `family: w6_bundle_gap` us-ca and us-la rows and the six `family
 `manifests/medicaid-agent-queue.yaml` (`docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv`, branch
 `analysis/program-bundle-gaps-2026-10-06`; the 1115 rows come from the wave-5 closure,
 `docs/ingest-runs/2026-09-15-medicaid-chip.md`).
-Branch `discovery/ingest-w8-medicaid` cut from `main` 393127f8b in the sparse worktree `~/axiom-corpus-worktrees/w8-medicaid`
+Branch `discovery/ingest-w8-medicaid` cut from `main` 393127f8b in the sparse worktree `<axiom-corpus worktrees>/w8-medicaid`
 (`data/corpus/` excluded, never symlinked); the extraction wrote to the main checkout's corpus root
 (`--base <main checkout>/data/corpus`), artifacts uncommitted and unsigned.
 Timing: started 2026-10-20T18:51:58Z, finished 2026-10-20T19:32Z, about 40 minutes of agent time. Duplicate-work check and
@@ -287,7 +287,7 @@ absent from this sparse checkout. None of them reads anything this run changed.
 ## Rebuild
 
 ```bash
-cd ~/axiom-corpus-worktrees/w8-medicaid
+cd <axiom-corpus worktrees>/w8-medicaid
 B=<main checkout>/data/corpus
 uv run python scripts/build_medicaid_ca_ccr_section_manifests.py
 uv run axiom-corpus-ingest extract-official-documents --base $B \

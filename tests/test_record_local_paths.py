@@ -65,11 +65,13 @@ from tests.test_ingest_manifest_provenance import _init_repo
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# The five records on main that held a local path when this guard landed
+# The records on main that held a local path when this guard was written
 # (2026-10-20; axiom-corpus#896), at their bytes then. An ingest manifest
-# attests each, so it cannot change without signing that manifest again. An
-# allowlist entry must be one of these pairs, so the allowlist can only lose
-# entries. This set only ever loses members: never add to it; scrub the record.
+# attests each, so it cannot change without signing that manifest again. Of
+# the five, main scrubbed three and signed their manifests again on 2026-10-27
+# (5070063ab, f99e3990c), so they left the set on 2026-11-02. An allowlist
+# entry must be one of these pairs, so the allowlist can only lose entries.
+# This set only ever loses members: never add to it; scrub the record.
 GRANDFATHERED = frozenset(
     {
         (
@@ -79,18 +81,6 @@ GRANDFATHERED = frozenset(
         (
             "docs/ingest-runs/2026-07-03-dc-code-title-4-refresh.md",
             "a77162479d6c753d6836a0c3a60df92b4aed0acf938a3fd8a07955741f6d2b0b",
-        ),
-        (
-            "docs/ingest-runs/2026-07-04-be-wallonia-aviq-family-benefit-plafonds-2025.md",
-            "d12702294775e77329fe01c569c0180c4b92058c7ec6c928938560d6ed62dc4e",
-        ),
-        (
-            "docs/ingest-runs/2026-07-21-co-snap-policy.md",
-            "e2f804fd6b5bdd2ab2c812da9651d0ed146fdb6995dee49eef8cfdc8523149bb",
-        ),
-        (
-            "docs/ingest-runs/2026-07-21-wv-snap-manual.md",
-            "925ebb25d65477fbcedfa3f4d203de0216fe9e7336aac026d0e72aefb70b8746",
         ),
     }
 )
