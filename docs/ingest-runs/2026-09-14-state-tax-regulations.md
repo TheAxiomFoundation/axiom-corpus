@@ -7,7 +7,7 @@ scope per jurisdiction, version `2026-09-14-income-tax-regulations` (dedicated a
 run-id suffix), document class `regulation`, `--source-as-of 2026-09-14`, expression date the
 publisher's stated currency date where printed and otherwise 2026-09-14.
 Branch `discovery/ingest-state-tax-regulations` in the sparse worktree
-`<worktrees>/tax-regs` (`data/corpus/` excluded, never symlinked; reset to `origin/main`
+`<axiom-corpus worktrees>/tax-regs` (`data/corpus/` excluded, never symlinked; reset to `origin/main`
 5c2505ec6 after the first session died on an API limit, its two extracted scopes kept). Every
 extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`);
 artifacts are unsigned and uncommitted there. Timing: publisher probes 2026-09-13 21:30 to 2026-09-14

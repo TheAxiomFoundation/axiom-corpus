@@ -105,7 +105,7 @@ def test_the_allowlist_is_inside_the_grandfathered_set() -> None:
 
 
 LEAKY = "Ran `uv run x --base /Users/someone/secret-dir/data/corpus`.\n"
-CLEAN = "Ran `uv run x --base data/corpus` from `<worktrees>/w7-federal`.\n"
+CLEAN = "Ran `uv run x --base data/corpus` from `<axiom-corpus worktrees>/w7-federal`.\n"
 
 
 def _repo(tmp_path: Path) -> Path:
@@ -527,7 +527,7 @@ def test_an_allowlist_that_is_not_yaml_fails_closed(tmp_path) -> None:
         "https://example.gov/export_/tmp/x",
         # Placeholders, markup around clean text, relative paths and globs.
         CLEAN,
-        "`<scratchpad>/tmp/replay.json`, `<main-checkout>/data/corpus`",
+        "`<scratchpad>/tmp/replay.json`, `<axiom-corpus checkout>/data/corpus`",
         "<code>data/corpus</code> and <td>../tmp/x</td>",
         "download_dir: ../data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter",
         "a_b/tmp/x, data/home/x, ./tmp/y, data/*/tmp/x, data/export_/tmp/x",

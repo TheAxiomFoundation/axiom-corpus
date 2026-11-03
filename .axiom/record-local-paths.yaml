@@ -6,7 +6,7 @@
 # such as /Users/<name>/..., /private/tmp/... or ~/... reaches no reader and
 # publishes the operator's account name and directory layout. Records name
 # repository files by their repository-relative path and directories on the
-# machine by a placeholder such as <main-checkout>, <worktrees>/<name>,
+# machine by a placeholder such as <axiom-corpus checkout>, <axiom-corpus worktrees>/<name>,
 # <rulespec-us>, <axiom-cache> or <scratchpad>.
 #
 # tests/test_record_local_paths.py fails when a record holds a local path and is

@@ -6,7 +6,7 @@ Work order: `docs/coverage/needs-closure-2026-09-14/wave5/00-common-preamble.md`
 (`wave5/medicaid-chip-extractable.csv`), 2,731 REVIEW cells (`wave5/medicaid-chip-review.csv`, 765 of them with no cited
 provision), schemas `medicaid-schema.yaml` (302 elements) and `chip-schema.yaml`.
 Branch `discovery/ingest-w5-medicaid-chip` cut from `main` 9b0641afc in the sparse worktree
-`<worktrees>/w5-medicaid-chip` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
+`<axiom-corpus worktrees>/w5-medicaid-chip` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
 checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`), artifacts uncommitted. Timing: started
 2026-09-14T23:59Z (19:59 EDT), reading pass, probes and generators to 00:20Z, extractions 00:20Z-00:24Z, decisions file
 and this note to about 00:45Z, then the income-table pass to about 01:00Z; about 65 minutes of agent time, well inside the four-hour box. Disk: `df -h /` 26 GB free
@@ -312,7 +312,7 @@ found no shared path). Artifacts are unsigned on the controller's disk.
 Rebuild:
 
 ```bash
-cd <worktrees>/w5-medicaid-chip
+cd <axiom-corpus worktrees>/w5-medicaid-chip
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 uv run python scripts/build_medicaid_magi_verification_plan_manifests.py
 uv run python scripts/build_medicaid_1115_stc_manifests.py

@@ -4,7 +4,7 @@ Date: 2026-09-13
 Programs: Medicaid and CHIP (needs-driven closure check `docs/coverage/needs-closure-2026-09-11/{medicaid,chip}.md`,
 "CMS-posted approved state plan" family, the single largest state-level gap: about 2,560 Medicaid cells and
 1,180 CHIP cells).
-Branch: `discovery/ingest-cms-state-plans` (sparse worktree `<worktrees>/cms-state-plans`, cut from
+Branch: `discovery/ingest-cms-state-plans` (sparse worktree `<axiom-corpus worktrees>/cms-state-plans`, cut from
 `origin/main` 8dc613000; artifacts written to the main checkout's `data/corpus`, uncommitted).
 Generator: `scripts/build_cms_state_plan_manifests.py` (new). One small edit to
 `scripts/build_chip_state_eligibility_manifests.py` so a rerun carries the second per-jurisdiction queue row through.

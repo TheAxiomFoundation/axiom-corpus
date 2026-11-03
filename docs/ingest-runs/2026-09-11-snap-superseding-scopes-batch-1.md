@@ -7,7 +7,7 @@ extended with `superseding_scope` / `supporting_superseding_scope`)
 Issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/680 follow-on; the revised editions
 were recorded by `2026-09-10-snap-state-manual-completion-batch-{2,3}.md` and listed under "Revised
 editions found during the SNAP completion pass" in `2026-09-11-program-ingestion-handoff.md`.
-Agent: one session from a US network in the sparse worktree `<worktrees>/snap`, branch
+Agent: one session from a US network in the sparse worktree `<axiom-corpus worktrees>/snap`, branch
 `discovery/ingest-snap-superseding-1` cut from `origin/discovery/program-ingestion-union`, artifacts
 written to the main checkout's `data/corpus` (`--base <axiom-corpus checkout>/data/corpus`).
 Extractions started_at 2026-09-11T20:58:05Z (all six launched within 8 s of each other), Georgia
@@ -257,7 +257,7 @@ None. Every host answered HTTP 200 to the plain extractor request.
 
 ```bash
 # worktree
-cd <worktrees>/snap
+cd <axiom-corpus worktrees>/snap
 git fetch origin && git checkout -b discovery/ingest-snap-superseding-1 origin/discovery/program-ingestion-union
 
 # per state (df -h / checked before each; date +%s around the run)

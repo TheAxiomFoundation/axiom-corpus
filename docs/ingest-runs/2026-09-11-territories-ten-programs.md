@@ -5,7 +5,7 @@ Programs: LIHEAP, Medicaid, CCDF, CHIP, SSI, TANF, WIC, tax, SNAP (NAP/ASNAP/NAP
 territory runs a block grant instead of SNAP), Medicare
 Jurisdictions: Puerto Rico (us-pr), Guam (us-gu), U.S. Virgin Islands (us-vi), American Samoa
 (us-as), Northern Mariana Islands (us-mp)
-Branch: `discovery/ingest-territories` (sparse worktree `<worktrees>/territories`,
+Branch: `discovery/ingest-territories` (sparse worktree `<axiom-corpus worktrees>/territories`,
 cut from `origin/discovery/program-ingestion-union` because `origin/main` did not yet carry the
 2026-09-11 hand-off; artifacts written to the main checkout's `data/corpus`).
 Agent: started_at 2026-09-11T21:00Z, finished_at 2026-09-11T21:50Z, wall time 50 min.

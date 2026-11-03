@@ -2,7 +2,7 @@
 
 Date: 2026-09-14
 Branch `fix/wave4-citation-path-slugs` cut from `origin/main` in the sparse worktree
-`<worktrees>/slug-fix` (`data/corpus/` excluded, never symlinked); every extraction
+`<axiom-corpus worktrees>/slug-fix` (`data/corpus/` excluded, never symlinked); every extraction
 wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`).
 
 ## Problem

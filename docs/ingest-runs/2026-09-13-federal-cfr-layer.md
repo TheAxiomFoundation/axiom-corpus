@@ -10,7 +10,7 @@ This run takes all of it from the eCFR Versioner API with the repo's `inventory-
 `data/corpus` on the controller's machine only and nothing under `data/corpus` is committed.
 
 Branch `discovery/ingest-federal-cfr-layer`, cut from `origin/main` (8dc613000), worked in a
-sparse worktree (`<worktrees>/federal-cfr-2`, `data/corpus` excluded, no symlink)
+sparse worktree (`<axiom-corpus worktrees>/federal-cfr-2`, `data/corpus` excluded, no symlink)
 with every extraction pointed at `--base <axiom-corpus checkout>/data/corpus`.
 GitNexus MCP tools were not available in this session; the impact analysis CLAUDE.md asks
 for before editing `src/axiom_corpus/corpus/ecfr.py` was done by hand (see "Adapter change").

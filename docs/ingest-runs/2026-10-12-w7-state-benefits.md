@@ -10,7 +10,7 @@ decisions file). Minnesota extraction: `scripts/extract_w7_state_benefits_mn.py`
 
 ## Worktree, branch, timing, disk
 
-- Sparse worktree `<worktrees>/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` cut from
+- Sparse worktree `<axiom-corpus worktrees>/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` cut from
   `main` 89dc519fa. `data/corpus/` excluded, never symlinked. Every extraction wrote to the main checkout's corpus root
   (`--base <axiom-corpus checkout>/data/corpus`), `--source-as-of 2026-10-12`; artifacts are unsigned and
   uncommitted. Nothing was signed, locked, pushed to R2 or loaded to Supabase; `manifests/releases/` and

@@ -4,7 +4,7 @@ Date: 2026-09-13
 Work order: the federal AGENCY RULEBOOK and guidance gaps of the needs-driven closure check
 (`docs/coverage/needs-closure-2026-09-11/{ssi,medicare,snap,wic,liheap}.md`; element ids cited per family).
 Branch `discovery/ingest-federal-guidance-layer` cut from `origin/main` (8dc613000) in the sparse worktree
-`<worktrees>/federal-guidance` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
+`<axiom-corpus worktrees>/federal-guidance` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
 main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`). Agent timing: started
 2026-09-13T15:40-04:00, finished about 16:25-04:00; per-family seconds below.
 Impact analysis: not run; the GitNexus MCP tools were unavailable in this session. No library function was modified.

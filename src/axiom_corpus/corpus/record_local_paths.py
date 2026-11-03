@@ -6,8 +6,8 @@ public, like the signed ingest manifests that ``manifest_local_paths`` guards.
 A path such as ``/Users/<name>/...``, ``/private/tmp/...`` or ``~/...`` reaches
 no reader and publishes the operator's account name and directory layout. The
 convention is the same: repository-relative paths for repository files, and
-placeholders for directories on the machine (``<main-checkout>``,
-``<worktrees>/<name>``, ``<rulespec-us>``, ``<axiom-cache>``, ``<scratchpad>``).
+placeholders for directories on the machine (``<axiom-corpus checkout>``,
+``<axiom-corpus worktrees>/<name>``, ``<rulespec-us>``, ``<axiom-cache>``, ``<scratchpad>``).
 
 ``find_record_local_paths`` finds such paths in a record's prose, markup or
 data; ``audit_record_local_paths`` checks every record in the repository against
@@ -699,7 +699,7 @@ def audit_record_local_paths(
 
 _REMEDY = (
     "Name repository files by their repository-relative path and directories on "
-    "your machine by a placeholder such as `<main-checkout>`, `<worktrees>/<name>`, "
+    "your machine by a placeholder such as `<axiom-corpus checkout>`, `<axiom-corpus worktrees>/<name>`, "
     "`<scratchpad>` or `<axiom-cache>`; a new record is never grandfathered."
 )
 

@@ -4,7 +4,7 @@ Date: 2026-10-06 (evening, US Eastern).
 Work order: `docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv` (372 rows, 371 Tier 1, 30
 jurisdictions, every row `pe_cited_units` 1 except NC 108A-27.01) with `wave6/00-common-preamble.md` and
 `wave6/tanf-ccdf-ak-ne-brief.md` (branch `analysis/program-bundle-gaps-2026-10-06`).
-Worktree `<worktrees>/w6-tanf-ccdf-ak-ne` (sparse, `data/corpus/` excluded, never symlinked), branch
+Worktree `<axiom-corpus worktrees>/w6-tanf-ccdf-ak-ne` (sparse, `data/corpus/` excluded, never symlinked), branch
 `discovery/ingest-w6-tanf-ccdf-ak-ne` cut from main e16ccb799. Every extraction wrote to the main checkout's corpus root
 (`--base <axiom-corpus checkout>/data/corpus`); nothing under `data/corpus/` is committed, nothing was signed,
 locked, pushed to R2 or loaded to Supabase. Working files in the scratchpad folder `w6-tanf-ccdf-ak-ne` (the shared `w6`

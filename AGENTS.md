@@ -57,11 +57,11 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
 - Run notes (`docs/ingest-runs/`), closure work (`docs/coverage/`),
   reasoning logs and source manifests (`manifests/`) are public too, so they
   follow the same rule. Name repository files by their repository-relative
-  path, or `<main-checkout>/data/corpus` when the note's commands run in
-  another worktree. Name directories on your machine by a placeholder such as
-  `<worktrees>/<name>` (another checkout of this repository), `<rulespec-us>`
-  (a sibling repository), `<axiom-cache>` (`~/.axiom`), `<scratchpad>` (a
-  temporary directory) or `<uv-cache>`. A manifest's `local_path` names the
+  path, or `<axiom-corpus checkout>/data/corpus` when the note's commands run
+  in another worktree. Name directories on your machine by a placeholder such
+  as `<axiom-corpus worktrees>/<name>` (another checkout of this repository),
+  `<rulespec-us>` (a sibling repository), `<axiom-cache>` (`~/.axiom`),
+  `<scratchpad>` (a temporary directory) or `<uv-cache>`. A manifest's `local_path` names the
   retained copy where the corpus locks it (`../data/corpus/sources/...`) and
   `download_dir` is `../data/corpus/downloads/...`, both relative to the
   manifest. `tests/test_record_local_paths.py` fails on a record that holds a
