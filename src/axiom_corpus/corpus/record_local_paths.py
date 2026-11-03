@@ -22,6 +22,7 @@ import bisect
 import hashlib
 import json
 import math
+import posixpath
 import re
 import subprocess
 import sys
@@ -51,16 +52,23 @@ RECORD_LOCAL_PATH_ALLOWLIST_SCHEMA_VERSION = "axiom-corpus/record-local-paths/v1
 # Spellings that name no place below a root, so publish neither an account name
 # nor a layout: a lone ``~`` (in records, "approximately", OCR noise, a
 # ``#:~:text=`` URL fragment or a CSS sibling combinator), a bare ``file:``
-# scheme (prose about ``file://`` URLs), ``$HOME`` alone, and a root alone.
+# scheme (prose about ``file://`` URLs), a home or temporary directory variable
+# alone (``$HOME``, ``$TMPDIR/``, ``%TEMP%\\``), and a root alone, however
+# spelled (``/Users/``, ``//tmp``).
 _NO_PLACE = {
     "tilde": re.compile(r"~/?"),
     "file_url": re.compile(r"(?i)file:/*"),
-    "home_variable": re.compile(r"(?i)(?:\$HOME|\$\{HOME\}|%USERPROFILE%)/?"),
+    "home_variable": re.compile(
+        r"(?i)(?:\$HOME|\$\{HOME\}|\$TMPDIR|\$\{TMPDIR\}"
+        r"|%(?:USERPROFILE|HOMEPATH|TEMP|TMP|LOCALAPPDATA|APPDATA)%)[\\/]?"
+    ),
     "windows": re.compile(r"(?i)[A-Za-z]:[\\/](?:Users|Documents and Settings)[\\/]?"),
 }
 # ``/media/file/...`` is the path Drupal sites such as medicaid.gov serve files
 # under; no machine mounts a volume for a user named ``file``. Every other
 # ``/media/<user>/...`` path is a Linux removable-drive mount and is reported.
+# Both tests read the path as ``find_local_paths`` resolves it, so
+# ``/media/file/../../Users/<name>`` is the ``/Users`` path it names.
 _WEB_PATH_PREFIXES = ("/media/file/",)
 
 # ``find_local_paths`` reads command lines: a root starts a path only after
@@ -111,9 +119,13 @@ _ESCAPED = {
     "e": "\x1b",
     "v": "\v",
 }
-# Where a path can begin: a root, a home-relative ``~``, a Windows drive.
+# Where a path can begin: a root (in any case, and spelled with ``//`` or
+# ``/./`` as ``find_local_paths`` reads it), a home-relative ``~``, a Windows
+# drive.
 _PATH_START = re.compile(
-    "|".join(re.escape(root) for root in LOCAL_PATH_ROOTS) + r"|~|[A-Za-z]:[\\/]"
+    r"(?i)/(?:\.?/)*(?:"
+    + "|".join(re.escape(root.lstrip("/")) for root in LOCAL_PATH_ROOTS)
+    + r")(?=/)|~|[A-Za-z]:[\\/]"
 )
 _DELIMITER = re.compile(r"[\s\"'`=:,;|&()<>\[\]{}]")
 _QUOTES = frozenset("@\u2018\u2019\u201a\u201b\u201c\u201d\u201e\u201f\u00ab\u00bb\u2039\u203a")
@@ -136,7 +148,14 @@ _CANDIDATE = re.compile(
             b"~",
             b"$home",
             b"${home}",
+            b"$tmpdir",
+            b"${tmpdir}",
             b"%userprofile%",
+            b"%homepath%",
+            b"%temp%",
+            b"%tmp%",
+            b"%localappdata%",
+            b"%appdata%",
             b"file:/",
             b":\\users",
             b":/users",
@@ -436,7 +455,8 @@ def _code_spans(line: str) -> list[tuple[int, int]]:
 def _names_no_place(text: str, path: LocalPath) -> bool:
     token = text[path.start : path.end]
     if path.kind == "absolute":
-        return token == path.root or token.startswith(_WEB_PATH_PREFIXES)
+        resolved = posixpath.normpath(re.sub("/+", "/", token))
+        return resolved.lower() == path.root.lower() or resolved.startswith(_WEB_PATH_PREFIXES)
     return _NO_PLACE[path.kind].fullmatch(token) is not None
 
 

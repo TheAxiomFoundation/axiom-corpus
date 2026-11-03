@@ -36,6 +36,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import posixpath
 import re
 import subprocess
 from pathlib import Path
@@ -578,33 +579,34 @@ def test_outside_markdown_a_glob_is_literal(text: str) -> None:
     ("text", "root"),
     [
         ("--base /Users/someone/axiom-corpus/data/corpus", "/Users/…"),
-        ("Worktree `~/axiom-corpus-worktrees/w6-health`", "~…"),
+        ("Worktree `~/axiom-corpus-worktrees/w6-health`", "~/…"),
         ("UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run", "/private/…"),
         ("REQUESTS_CA_BUNDLE=/tmp/w6-ca.pem", "/tmp/…"),
         ("local_path: /tmp/ny-tanf-source/plan.pdf", "/tmp/…"),
         ('"download_url": "file:///tmp/ny-tanf-source/plan.pdf"', "file:…"),
-        ("cache at `$HOME/.axiom/poms-si-cache`", "$HOME…"),
+        ("cache at `$HOME/.axiom/poms-si-cache`", "$HOME/…"),
         ("cd /home/runner/work/axiom-corpus", "/home/…"),
         ("/var/folders/xy/T/tmp.abc", "/var/folders/…"),
         ("PATH=/Volumes/Data/bin:$PATH", "/Volumes/…"),
-        ("$HOME*/tmp/x", "$HOME…"),
+        # A glob after a home path is still under it (a glob is read as text).
+        ("$HOME/x*/tmp/y", "$HOME/…"),
         # A Linux removable drive is mounted under the user's name.
         ("restored from `/media/someone/Backup/axiom-corpus`", "/media/…"),
         # Markup: HTML elements, tags the record closes, and inline markup.
         ("<code>/Users/someone/x</code>", "/Users/…"),
-        ("<td>~/notes/x</td>", "~…"),
+        ("<td>~/notes/x</td>", "~/…"),
         ("<path>/Users/alice/work</path>", "/Users/…"),
         ("<output>/Users/alice/work</output>", "/Users/…"),
         ("/tmp/<code>job</code>/out", "/tmp/…"),
         ('<td>/tmp/<em class="path">job</em>/out</td>', "/tmp/…"),
         ("<code>/Users</code>/alice/work/source.pdf", "/Users/…"),
         ('<td title="/Users/alice/x">cell</td>', "/Users/…"),
-        ("x<b>~/a", "~…"),
+        ("x<b>~/a", "~/…"),
         # Prose punctuation that opens a token, which no command line holds.
         ("see @/Users/someone/x", "/Users/…"),
         ("\u201c/Users/someone/x\u201d", "/Users/…"),
         ("\u00ab/private/tmp/x\u00bb", "/private/…"),
-        ("\u201c~alice/work\u201d", "~…"),
+        ("\u201c~alice/work\u201d", "~/…"),
         ("@C:\\Users\\alice\\work", "C:\\Users\\…"),
         ("line one\r\n/tmp/x\tand more", "/tmp/…"),
         # Escaped in JSON or YAML.
@@ -679,6 +681,13 @@ def test_a_root_right_after_a_closing_tag_reads_as_find_local_paths_reads_it() -
 _NAME = st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789._-", min_size=1, max_size=12)
 _TOKENS = [
     *LOCAL_PATH_ROOTS,
+    *(root + "/" for root in LOCAL_PATH_ROOTS),
+    "//Users/x",
+    "/./private/x",
+    "/TMP/x",
+    "$TMPDIR/x",
+    "${TMPDIR}",
+    "%TEMP%\\x",
     "~",
     "~/",
     "~/x",
@@ -735,15 +744,22 @@ _WORDS = st.lists(
     max_size=8,
 )
 _NO_PLACE_TOKEN = re.compile(
-    r"(?i)~/?|file:/*|(?:\$HOME|\$\{HOME\}|%USERPROFILE%)/?"
+    r"(?i)~/?|file:/*"
+    r"|(?:\$HOME|\$\{HOME\}|\$TMPDIR|\$\{TMPDIR\}|%(?:USERPROFILE|HOMEPATH|TEMP|TMP|LOCALAPPDATA|APPDATA)%)[\\/]?"
     r"|[a-z]:[\\/](?:users|documents and settings)[\\/]?"
 )
 
 
 def _names_a_place(text: str, path) -> bool:
+    """Whether a path ``find_local_paths`` found names a place: the spec, restated.
+
+    A root alone names none, however spelled (``/Users/``, ``//tmp``), nor does
+    a ``/media/file/`` web path, each read as ``find_local_paths`` resolves it.
+    """
     token = text[path.start : path.end]
     if path.kind == "absolute":
-        return token != path.root and not token.startswith("/media/file/")
+        resolved = posixpath.normpath(re.sub("/+", "/", token))
+        return resolved.lower() != path.root.lower() and not resolved.startswith("/media/file/")
     return _NO_PLACE_TOKEN.fullmatch(token) is None
 
 
@@ -846,7 +862,17 @@ _WRAPPERS = [
 @settings(max_examples=500, deadline=None)
 @given(
     root=st.sampled_from(
-        [*LOCAL_PATH_ROOTS, "~/", "~alice/", "C:\\Users\\", "C:/Users/", "C:\\\\Users\\\\"]
+        [
+            *(root + "/" for root in LOCAL_PATH_ROOTS),
+            *(root.upper() + "/" for root in LOCAL_PATH_ROOTS),
+            *("/" + root + "/" for root in LOCAL_PATH_ROOTS),
+            "~/",
+            "~alice/",
+            "$TMPDIR/",
+            "C:\\Users\\",
+            "C:/Users/",
+            "C:\\\\Users\\\\",
+        ]
     ),
     name=_NAME,
     wrapper=st.sampled_from(_WRAPPERS),
