@@ -2454,6 +2454,126 @@ def test_memberships_that_exist_when_the_migration_is_applied_become_primary(
         _assert_matches_reference(connection)
 
 
+@pytest.fixture
+def fresh_pre_layer_dsn() -> Iterator[str]:
+    """A database of its own, before the file, for tests that apply it."""
+    yield from _create_database(layered=False)
+
+
+def _section_1_index(name: str) -> str:
+    """The file's own CREATE INDEX statement for one section 1 index."""
+    text = LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8")
+    start = text.index(f"CREATE INDEX IF NOT EXISTS {name}\n")
+    return text[start : text.index(";", start) + 1]
+
+
+def _layer_column_exists(connection: Any) -> bool:
+    return _rows(
+        connection,
+        "SELECT 1 FROM information_schema.columns "
+        "WHERE table_schema = 'corpus' AND table_name = 'release_scopes' "
+        "AND column_name = 'layer'",
+    ) == [(1,)]
+
+
+@pytest.mark.parametrize(
+    ("name", "other_definition"),
+    [
+        (
+            "idx_navigation_nodes_jurisdiction_citation_path",
+            "(citation_path, jurisdiction)",
+        ),
+        (
+            "idx_navigation_nodes_release_scope_version",
+            "(jurisdiction, (COALESCE(NULLIF(doc_type, ''), 'unknown')), version)",
+        ),
+        (
+            "idx_navigation_nodes_release_scope_version",
+            "(jurisdiction, doc_type, version) "
+            "INCLUDE (citation_path, has_children, child_count, has_rulespec)",
+        ),
+    ],
+)
+def test_a_section_1_index_built_with_another_definition_refuses_the_file(
+    fresh_pre_layer_dsn: str, name: str, other_definition: str
+) -> None:
+    """IF NOT EXISTS would keep a same-named index built another way; the file
+    fails closed instead, and rolls back whole."""
+    with closing(psycopg2.connect(fresh_pre_layer_dsn)) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(f"CREATE INDEX {name} ON corpus.navigation_nodes {other_definition}")
+        connection.commit()
+        with connection.cursor() as cursor, pytest.raises(errors.RaiseException) as raised:
+            cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        connection.rollback()
+        assert f"index corpus.{name} has another definition than this file builds" in str(
+            raised.value
+        )
+        assert not _layer_column_exists(connection)
+
+
+def test_section_1_indexes_built_beforehand_as_the_file_defines_them_are_kept(
+    fresh_pre_layer_dsn: str,
+) -> None:
+    """The operator path: both indexes built concurrently from the file's own
+    statements, then the file applied."""
+    with closing(psycopg2.connect(fresh_pre_layer_dsn)) as connection:
+        connection.autocommit = True
+        oids = []
+        with connection.cursor() as cursor:
+            for name in (
+                "idx_navigation_nodes_jurisdiction_citation_path",
+                "idx_navigation_nodes_release_scope_version",
+            ):
+                cursor.execute(
+                    _section_1_index(name).replace(
+                        "CREATE INDEX IF NOT EXISTS", "CREATE INDEX CONCURRENTLY IF NOT EXISTS"
+                    )
+                )
+                cursor.execute("SELECT to_regclass(%s)::oid", (f"corpus.{name}",))
+                oids.append(cursor.fetchone()[0])
+        connection.autocommit = False
+        with connection.cursor() as cursor:
+            cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        connection.commit()
+        assert _layer_column_exists(connection)
+        assert [
+            row[0]
+            for row in _rows(
+                connection,
+                "SELECT to_regclass(name)::oid FROM unnest(%s::text[]) AS name",
+                (
+                    [
+                        "corpus.idx_navigation_nodes_jurisdiction_citation_path",
+                        "corpus.idx_navigation_nodes_release_scope_version",
+                    ],
+                ),
+            )
+        ] == oids
+        assert _rows(
+            connection, "SELECT to_regclass('pg_temp.layered_expected_navigation_indexes')"
+        ) == [(None,)]
+
+
+def test_an_invalid_section_1_index_refuses_the_file(fresh_pre_layer_dsn: str) -> None:
+    """A failed CREATE INDEX CONCURRENTLY leaves an INVALID index under the name."""
+    name = "idx_navigation_nodes_jurisdiction_citation_path"
+    with closing(psycopg2.connect(fresh_pre_layer_dsn)) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(_section_1_index(name))
+            # What a failed concurrent build leaves behind (a superuser write).
+            cursor.execute(
+                "UPDATE pg_index SET indisvalid = false WHERE indexrelid = to_regclass(%s)",
+                (f"corpus.{name}",),
+            )
+        connection.commit()
+        with connection.cursor() as cursor, pytest.raises(errors.RaiseException) as raised:
+            cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
+        connection.rollback()
+        assert "drop and rebuild invalid index before applying" in str(raised.value)
+        assert not _layer_column_exists(connection)
+
+
 class _ServedRest:
     """The query client's PostgREST requests, answered by the serving views as anon.
 

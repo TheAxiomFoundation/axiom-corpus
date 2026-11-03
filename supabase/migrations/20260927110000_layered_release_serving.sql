@@ -110,6 +110,62 @@ CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
   )
   INCLUDE (citation_path, has_children, child_count, has_rulespec);
 
+-- CREATE INDEX IF NOT EXISTS also keeps a valid index of the same name built
+-- with another definition. Build the expected definitions on an empty
+-- temporary copy of the table, in this session and server version, and refuse
+-- unless each index matches its reference once the index and table names are
+-- taken out (pg_get_indexdef renders both the same way).
+CREATE TEMPORARY TABLE layered_expected_navigation_indexes
+  (LIKE corpus.navigation_nodes);
+CREATE INDEX layered_expected_jurisdiction_citation_path
+  ON layered_expected_navigation_indexes (jurisdiction, citation_path);
+CREATE INDEX layered_expected_release_scope_version
+  ON layered_expected_navigation_indexes (
+    jurisdiction,
+    (COALESCE(NULLIF(doc_type, ''), 'unknown')),
+    version
+  )
+  INCLUDE (citation_path, has_children, child_count, has_rulespec);
+DO $$
+DECLARE
+  v_pair record;
+  v_actual text;
+  v_expected text;
+BEGIN
+  FOR v_pair IN
+    SELECT *
+    FROM (
+      VALUES
+        (
+          'corpus.idx_navigation_nodes_jurisdiction_citation_path',
+          'layered_expected_jurisdiction_citation_path'
+        ),
+        (
+          'corpus.idx_navigation_nodes_release_scope_version',
+          'layered_expected_release_scope_version'
+        )
+    ) AS pairs (actual_name, expected_name)
+  LOOP
+    v_actual := regexp_replace(
+      pg_get_indexdef(to_regclass(v_pair.actual_name)),
+      ' INDEX \S+ ON \S+ USING ',
+      ' INDEX ON USING '
+    );
+    v_expected := regexp_replace(
+      pg_get_indexdef(to_regclass('pg_temp.' || v_pair.expected_name)),
+      ' INDEX \S+ ON \S+ USING ',
+      ' INDEX ON USING '
+    );
+    IF v_actual IS DISTINCT FROM v_expected THEN
+      RAISE EXCEPTION
+        'index % has another definition than this file builds; drop it and rebuild it '
+        'from section 1: found %, expected %',
+        v_pair.actual_name, v_actual, v_expected;
+    END IF;
+  END LOOP;
+END $$;
+DROP TABLE pg_temp.layered_expected_navigation_indexes;
+
 -- ---------------------------------------------------------------------------
 -- 2. Signed layer on release membership. Historical rows default to primary.
 -- ---------------------------------------------------------------------------
