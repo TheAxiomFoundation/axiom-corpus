@@ -71,14 +71,21 @@ DESCRIPTION = (
 )
 
 ARTICLE_HEADING = re.compile(r"Articles? (?P<label>[0-9][^,]{0,40}?), CIR 92 \(revenus 2025\)")
-# What a page can carry above its first heading when the article before it ended on the
-# previous page: nothing, "(...)", or a heading such as "C. - Profits",
-# "Sous-section 3. - Pertes deductibles" or "CHAPITRE 4. - Calcul de l'impot".
-SECTION_LABEL = re.compile(
-    r"\s*(?:\(\.\.\.\)\s*)*"
-    r"(?:(?:TITRE|CHAPITRE|Section|Sous-section|[A-Z]|[0-9]+°[a-z]+)\b[^.]{0,30}\.\s*-\s.*)?",
-    re.S,
+# One section label, such as "C. - Profits", "Section 4/1.- Détermination de l'impôt étranger",
+# "Sous-section 2vicies semel. - Réduction pour primes" or "1°bis. - Stage en entreprise": a
+# marker, a period, a dash, then a title that holds no period, colon or semicolon. In the table
+# of contents, dot leaders and a page number follow the title.
+_SECTION_LABEL_ENTRY = (
+    r"(?:(?:TITRE|CHAPITRE|Section|Sous-section) [0-9]+(?:/[0-9]+)?[a-z]*(?: semel)?"
+    r"|[A-Z]|[0-9]+°[a-z]+)"
+    r"\.\s*-\s+[^.;:]*?(?:\s*\.{3,}\s*[0-9]+)?"
 )
+# What a page can carry above its first heading when the article before it ended on the
+# previous page: nothing, or a run of "(...)" and section labels, as in "C. - (...)". The
+# export's bodies hold no line breaks, so labels and the text around them run together. A
+# sentence of article text after a label holds a period, colon or semicolon, which no title
+# holds, so that text does not match.
+SECTION_LABEL = re.compile(rf"(?:\s*(?:\(\.\.\.\)|{_SECTION_LABEL_ENTRY}))*\s*")
 
 
 def page_citation(page: int) -> str:
