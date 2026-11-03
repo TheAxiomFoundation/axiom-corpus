@@ -553,7 +553,8 @@ fetched PDF with `scripts/sweep_pdf_amendment_markup.py`. It reads every page
 twice, with the extractor at a base git ref and with the working tree, both with
 and without `amendment_markup: true` on every page, and sorts each page into one
 outcome: identical, fixed (the base refuses the page and the working tree marks
-it), marks removed, added or changed, refused, or a changed default text. It
+it), marks removed, added or changed, other warnings only, refused, or a changed
+default text. It
 exits 0 only when no page changes in a way that `--allow` does not name, and
 lists every page that is not identical in `details.jsonl`:
 

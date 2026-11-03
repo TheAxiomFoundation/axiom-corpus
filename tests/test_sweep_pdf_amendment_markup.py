@@ -117,8 +117,8 @@ def test_a_state_signature_expands_to_one_state_per_non_space_character(
 # ------------------------------------------------------------- classify_page
 
 
-def _ok(states: str, text: str = "t", default: str = "d") -> list[Any]:
-    return [default, 1, "ok", text, "m", states, "w", 0]
+def _ok(states: str, text: str = "t", default: str = "d", warned: str = "w") -> list[Any]:
+    return [default, 1, "ok", text, "m", states, warned, 0]
 
 
 def _error(message: str, default: str = "d") -> list[Any]:
@@ -131,6 +131,7 @@ PAGES = st.one_of(
         st.sampled_from(["P3", "D1P2", "P1I2", "D3", "I1D1P1", "P2D1"]),
         st.sampled_from(["t", "u"]),
         st.sampled_from(["d", "e"]),
+        st.sampled_from(["w", "x"]),
     ),
     st.builds(_error, st.sampled_from(["RuntimeError: x", "ValueError: y"]), st.sampled_from("de")),
 )
@@ -161,6 +162,7 @@ def test_classify_page_names_each_kind_of_change() -> None:
     assert classify_page(_ok("P3"), _ok("P1D2", text="u")) == "marks_added"
     assert classify_page(_ok("P1D2"), _ok("P1I2", text="u")) == "marks_changed"
     assert classify_page(_ok("P1D2"), _ok("P1D2", text="u")) == "same_marks_other_output"
+    assert classify_page(_ok("P1D2"), _ok("P1D2", warned="x")) == "warnings_differ"
     assert classify_page(_error("RuntimeError: x"), _ok("P3")) == "fixed"
     assert (
         classify_page(_error("RuntimeError: x"), _error("ValueError: y")) == "refused_differently"

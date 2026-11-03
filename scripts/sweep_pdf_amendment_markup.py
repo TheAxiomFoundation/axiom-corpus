@@ -37,8 +37,8 @@ The comparison sorts every page into one outcome:
 ``marks_added``             both mark it; every such character is plain in the base
 ``marks_changed``           both mark it, and states differ in another way
 ``same_marks_other_output`` the same character states, but other marked text
-                            (runs joined across spaces differently), metadata or
-                            warnings
+                            (runs joined across spaces differently) or metadata
+``warnings_differ``         the same marked text and metadata, other warnings
 ``read_back_mismatch``      a side's marked text does not read back to its
                             default text
 ``default_text_changed``    the default page text differs
@@ -50,8 +50,8 @@ different bytes on the two sides, or bytes other than the lock's, is
 
 ``run`` exits 0 when the sweep passes: every PDF was read on both sides with
 the same bytes, and no page is ``newly_refused``, ``marks_*``,
-``same_marks_other_output``, ``read_back_mismatch`` or ``default_text_changed``,
-except the outcomes named with ``--allow``. It exits 1 when a page fails, and 2
+``same_marks_other_output``, ``warnings_differ``, ``read_back_mismatch`` or
+``default_text_changed``, except the outcomes named with ``--allow``. It exits 1 when a page fails, and 2
 when the sweep is incomplete (a PDF is missing, unreadable or timed out). The
 report goes to stdout and to ``report.json`` in the output directory, and every
 page that is not ``identical`` to ``details.jsonl``.
@@ -112,6 +112,7 @@ FAILING = (
     "marks_added",
     "marks_changed",
     "same_marks_other_output",
+    "warnings_differ",
     "read_back_mismatch",
     "default_text_changed",
 )
@@ -344,6 +345,8 @@ def classify_page(base: list[Any], head: list[Any]) -> str:
         return "read_back_mismatch"
     if base[DETAIL : WARNINGS + 1] == head[DETAIL : WARNINGS + 1]:
         return "identical"
+    if base[DETAIL : STATES + 1] == head[DETAIL : STATES + 1]:
+        return "warnings_differ"
     base_states, head_states = expand_signature(base[STATES]), expand_signature(head[STATES])
     if len(base_states) != len(head_states):
         return "read_back_mismatch"
