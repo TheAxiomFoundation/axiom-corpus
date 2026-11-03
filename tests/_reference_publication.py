@@ -68,6 +68,7 @@ from axiom_corpus.corpus.supabase import (
     provision_to_supabase_row,
     update_supabase_provision_parent,
 )
+from axiom_corpus.corpus.usc import read_uslm_zip
 from axiom_corpus.release.manifest import (
     _ARTIFACT_CLASSES,
     ReleaseManifestError,
@@ -1365,6 +1366,7 @@ def _reference_validate_inventory(
 ) -> set[str]:
     source_hashes: dict[str, str] = {}
     inventory_source_paths: set[str] = set()
+    checked_uslm_zips: set[str] = set()
     for item in inventory:
         if not item.citation_path:
             collector.add(
@@ -1418,6 +1420,27 @@ def _reference_validate_inventory(
                     scope=scope,
                     path=source_path,
                 )
+            # Added after cf46a725b, with the retained-zip gate in release_quality: the
+            # oracle must report every issue production reports, so it runs the same
+            # extractor check on each retained us/statute olrc/*.zip once its sha256 matches.
+            elif (
+                scope.jurisdiction == "us"
+                and scope.document_class == DocumentClass.STATUTE.value
+                and "/olrc/" in source_identity
+                and source_identity.lower().endswith(".zip")
+                and source_identity not in checked_uslm_zips
+            ):
+                checked_uslm_zips.add(source_identity)
+                try:
+                    read_uslm_zip(source_path)
+                except (ValueError, OSError) as exc:
+                    collector.add(
+                        "error",
+                        "unreadable_uslm_source_zip",
+                        f"retained USLM zip fails the extractor's checks: {exc}",
+                        scope=scope,
+                        path=source_path,
+                    )
     return inventory_source_paths
 
 
