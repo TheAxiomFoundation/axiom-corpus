@@ -393,7 +393,7 @@ def test_a_first_label_nothing_confirms_keeps_the_default_reading() -> None:
 
 
 def test_a_first_label_both_readings_confirm_equally_soon_keeps_the_default() -> None:
-    # The run-in "(a)" confirms both readings of "(II)" at once, so the default
+    # The dash run-in "(a)" confirms both readings of "(II)" at once, so the default
     # (roman, for a label of more than one character) stands and (a), (b) are
     # its children rather than top-level paragraphs.
     body = _paragraphs("(II) Heading—(a) first.", "(b) second.")
@@ -423,7 +423,7 @@ def test_only_the_sections_first_label_is_read_by_what_follows() -> None:
 
 
 def test_a_single_letter_first_label_both_readings_confirm_keeps_the_letter() -> None:
-    # As with "(II)", the run-in "(a)" confirms both readings of "(V)" at once.
+    # As with "(II)", the dash run-in "(a)" confirms both readings of "(V)" at once.
     # The default for a single letter is the letter, so (a) and (b) are not its
     # children.
     body = _paragraphs("(V) Heading—(a) first.", "(b) second.")
@@ -442,6 +442,36 @@ def test_upper_case_roman_has_no_child_level(blocks: list[str], expected: list[s
     # Limit: the outline ladder has no upper-case roman level, so "(A)" cannot be
     # a child of a roman "(II)" and does not confirm that reading.
     assert _paths(_paragraphs(*blocks)) == expected
+
+
+@pytest.mark.parametrize(
+    ("blocks", "expected", "control", "control_expected"),
+    [
+        (
+            ["(ii)(B) b.", "(1) one.", "(2) two."],
+            ["ii"],
+            ["(ii) II.", "(1) one.", "(2) two."],
+            ["ii", "ii/1", "ii/2"],
+        ),
+        (
+            ["(v)(B) b.", "(A) cap.", "(vi) six."],
+            ["v"],
+            ["(v) V.", "(A) cap.", "(vi) six."],
+            ["v", "v/A", "vi"],
+        ),
+    ],
+    ids=["ii-chained-B", "v-chained-B"],
+)
+def test_a_chained_label_that_opens_neither_reading_ends_the_read(
+    blocks: list[str], expected: list[str], control: list[str], control_expected: list[str]
+) -> None:
+    # "(B)" chained to the first label opens neither reading's first child, so
+    # the look-ahead stops there and never reads the line-leading label after it.
+    # The default reading stands (roman for "(ii)", the letter for "(v)"), and
+    # what follows continues nothing. Without the chained "(B)", the line-leading
+    # label decides.
+    assert _paths(_paragraphs(*blocks)) == expected
+    assert _paths(_paragraphs(*control)) == control_expected
 
 
 def test_a_first_label_read_one_way_cannot_take_the_other_readings_sibling() -> None:
