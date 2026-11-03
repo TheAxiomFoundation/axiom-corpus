@@ -219,18 +219,24 @@ an entry holds only for those exact selectors:
   new fork), and under `continued_by` the ones the line went on through;
 - `first_cuts`: selectors that name no tracked predecessor.
 
-Each entry has `listed_on` and a `reason`, and entries are append-only: a later
-decision is a new entry, not an edit of an earlier one. A recorded fork can
-carry later entries for the same predecessor, each adding successors,
-`continued_by` branches or both, and the check reads a predecessor's entries as
-their union. The loader keeps fork entries sorted by predecessor, then
-`listed_on`. It refuses a second entry for one predecessor on the same date, a
-later entry that repeats a branch an earlier one records, and one that adds
-nothing. The entries listed on 2026-11-02 are what main held when the check
-began: the drop, the six forks and the 100 first cuts. The repository test
-fixes those entries and only those, so review keeps later ones from being
-edited. An entry that no longer matches a finding, or whose pinned selector
-changed, fails the check. The digest leaves out the description, so a drop
+Each entry has `listed_on` and a `reason`, and entries are append-only: a
+decision made on a later day is a new entry, not an edit of an entry from an
+earlier day. A recorded fork can carry later entries for the same
+predecessor, each adding successors, `continued_by` branches or both, and the
+check reads a predecessor's entries as their union. Decisions about one fork
+made on one day share one entry. The loader requires `selector_digests` in name
+order and fork entries in order of predecessor, then `listed_on`, so a later
+entry goes right after its predecessor's earlier ones. It refuses a second
+entry for one predecessor on the same date, a later entry that repeats a branch
+an earlier one records, and one that adds nothing. The entries listed on
+2026-11-02 are what main held when the check began: the drop, the six forks
+and the 100 first cuts. The repository test fixes what those entries record
+(the drop's selector, predecessor and pair, and each fork's successors and
+`continued_by`) and how many first cuts are listed on that date. It checks
+nothing listed later, so review keeps later entries from being edited. An
+entry that no longer matches a finding, or whose pinned selector changed,
+fails the check. The fix for a changed selector is to undo the change, not to
+record the finding again. The digest leaves out the description, so a drop
 entry also names the predecessor it was written for.
 
 What the check does not catch:
@@ -251,11 +257,18 @@ What the check does not catch:
 1. Derive the cut from the newest selector of its line. If you cut from an
    older one that another cut already succeeds, or from a branch a recorded
    fork's line ended, the check fails, and the advice under the finding names
-   the selector to build on: `Cut … from <name>, the newest selector of the
-   line …` when it finds exactly one, or `The newest selectors from
-   <predecessor>, through its successors: …` at a fork the baseline does not
-   record. A stale base that no tracked selector names passes (see what the
-   check does not catch, above).
+   the selector to build on, in one of three forms:
+   - `Cut … from <name>, the newest selector of the line …`, when it finds
+     exactly one;
+   - `… the newest selector of the line that continued through <branches>
+     (<names>) …`, when that line went on through more than one branch: build
+     on the newest selector of the branch the new cut belongs to;
+   - `The newest selectors from <predecessor>, through its successors: …`, at
+     a fork the baseline does not record, where the new cut is one of them.
+
+   A change that adds more than one cut to a line cuts them one after another,
+   each from the one before. A stale base that no tracked selector names
+   passes (see what the check does not catch, above).
 2. Name it first in the description: `Successor to <name>.` A selector that
    starts a new line is recorded under `first_cuts` instead.
 3. Run
@@ -274,8 +287,9 @@ new successor of a recorded fork gets the same kind of entry: it lists the
 selector under `successors`, and under `continued_by` too if the line goes on
 through it. Each remedy prints the entry with only the `selector_digests` pins
 the baseline lacks. `tests/test_selector_lineage_repository.py` builds each
-kind of finding on a copy of main, follows each option its remedy prints, and
-requires the check and the 2026-11-02 freeze to pass afterwards.
+kind of finding on a copy of main, and on copies where main has moved on,
+follows each option its remedy prints, and requires the check and the freeze
+test to pass afterwards.
 
 ## Content check
 

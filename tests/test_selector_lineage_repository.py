@@ -285,7 +285,12 @@ def _guard_problems(
 
 
 def _assert_frozen(baseline: LineageBaseline) -> None:
-    """The entries listed when the guard began are what main held then."""
+    """What the entries listed when the guard began record is what main held then.
+
+    Compared: the drop's selector, predecessor and pair, each fork's successors
+    and continued_by, and how many first cuts are listed on that date. Reasons
+    and the first cuts' names are not compared.
+    """
     drops = {
         (record.selector, record.predecessor, pair_label(record.pair))
         for record in baseline.drops.values()

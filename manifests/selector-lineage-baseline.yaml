@@ -6,8 +6,8 @@ schema_version: axiom-corpus/selector-lineage-baseline/v1
 # (axiom_corpus.release.manifest.selector_sha256): the entry holds only for that
 # exact selector. The entries listed on 2026-11-02 are what main held when the
 # check began (980e39792); a later entry is a release decision and says why.
-# Entries are append-only: a later decision is a new dated entry, never an edit
-# of an earlier one.
+# Entries are append-only: a decision made on a later day is a new dated entry,
+# never an edit of an entry from an earlier day.
 selector_digests:
   am-rulespec-2026-08-30: 69cf5d0eb4c8755d9f883fc40f541fb8c1dc3bc37f15ea5b18af8c855b3bf6fd
   be-rulespec-2026-07-10: 723ab15d6396ec3a1f20bd96a945e9e6d919584e793cc6a9e5f7c104e65915f1
