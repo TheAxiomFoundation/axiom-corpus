@@ -397,8 +397,9 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    `CREATE INDEX CONCURRENTLY IF NOT EXISTS` and their exact definitions, then
    confirm `pg_index.indisvalid` for both. Copy each statement from the file
    and add only `CONCURRENTLY`. The file refuses to run over an invalid one,
-   or over an index of the same name whose `pg_get_indexdef` differs from the
-   one the file builds; it then rolls back whole and names both definitions.
+   or over an index of the same name that is not on `corpus.navigation_nodes`
+   or whose `pg_get_indexdef` differs from the one the file builds; it then
+   rolls back whole and says which.
    Drop that index and build it again from the file's statement.
 2. Apply the file in one transaction, with no publication or activation
    running:

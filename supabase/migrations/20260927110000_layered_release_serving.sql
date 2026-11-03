@@ -113,8 +113,11 @@ CREATE INDEX IF NOT EXISTS idx_navigation_nodes_release_scope_version
 -- CREATE INDEX IF NOT EXISTS also keeps a valid index of the same name built
 -- with another definition. Build the expected definitions on an empty
 -- temporary copy of the table, in this session and server version, and refuse
--- unless each index matches its reference once the index and table names are
--- taken out (pg_get_indexdef renders both the same way).
+-- unless each index is on corpus.navigation_nodes and matches its reference
+-- once the index and table names are taken out (pg_get_indexdef renders both
+-- the same way). The table is checked on its own because stripping its name
+-- would otherwise let a same-named index on another corpus table pass, and
+-- CREATE INDEX IF NOT EXISTS would then build nothing on navigation_nodes.
 CREATE TEMPORARY TABLE layered_expected_navigation_indexes
   (LIKE corpus.navigation_nodes);
 CREATE INDEX layered_expected_jurisdiction_citation_path
@@ -131,6 +134,7 @@ DECLARE
   v_pair record;
   v_actual text;
   v_expected text;
+  v_table regclass;
 BEGIN
   FOR v_pair IN
     SELECT *
@@ -146,6 +150,16 @@ BEGIN
         )
     ) AS pairs (actual_name, expected_name)
   LOOP
+    SELECT indrelid::regclass
+    INTO v_table
+    FROM pg_index
+    WHERE indexrelid = to_regclass(v_pair.actual_name);
+    IF v_table IS DISTINCT FROM 'corpus.navigation_nodes'::regclass THEN
+      RAISE EXCEPTION
+        'index % has another definition than this file builds: it is on table %, not '
+        'corpus.navigation_nodes; drop it and rebuild it from section 1',
+        v_pair.actual_name, v_table;
+    END IF;
     v_actual := regexp_replace(
       pg_get_indexdef(to_regclass(v_pair.actual_name)),
       ' INDEX \S+ ON \S+ USING ',

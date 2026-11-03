@@ -2476,32 +2476,63 @@ def _layer_column_exists(connection: Any) -> bool:
     ) == [(1,)]
 
 
+_NAVIGATION_COPY = "CREATE TABLE corpus.navigation_nodes_copy (LIKE corpus.navigation_nodes)"
+_SCOPE_VERSION_COLUMNS = (
+    "(jurisdiction, (COALESCE(NULLIF(doc_type, ''), 'unknown')), version) "
+    "INCLUDE (citation_path, has_children, child_count, has_rulespec)"
+)
+
+
 @pytest.mark.parametrize(
-    ("name", "other_definition"),
+    ("name", "other_definition", "setup"),
     [
         (
             "idx_navigation_nodes_jurisdiction_citation_path",
-            "(citation_path, jurisdiction)",
+            "ON corpus.navigation_nodes (citation_path, jurisdiction)",
+            None,
         ),
         (
             "idx_navigation_nodes_release_scope_version",
+            "ON corpus.navigation_nodes "
             "(jurisdiction, (COALESCE(NULLIF(doc_type, ''), 'unknown')), version)",
+            None,
         ),
         (
             "idx_navigation_nodes_release_scope_version",
-            "(jurisdiction, doc_type, version) "
+            "ON corpus.navigation_nodes (jurisdiction, doc_type, version) "
             "INCLUDE (citation_path, has_children, child_count, has_rulespec)",
+            None,
+        ),
+        # The right columns on another table of the schema: stripping the table
+        # name from the definition alone would let these pass, and IF NOT
+        # EXISTS would then build nothing on navigation_nodes.
+        (
+            "idx_navigation_nodes_jurisdiction_citation_path",
+            "ON corpus.provisions (jurisdiction, citation_path)",
+            None,
+        ),
+        (
+            "idx_navigation_nodes_jurisdiction_citation_path",
+            "ON corpus.navigation_nodes_copy (jurisdiction, citation_path)",
+            _NAVIGATION_COPY,
+        ),
+        (
+            "idx_navigation_nodes_release_scope_version",
+            f"ON corpus.navigation_nodes_copy {_SCOPE_VERSION_COLUMNS}",
+            _NAVIGATION_COPY,
         ),
     ],
 )
 def test_a_section_1_index_built_with_another_definition_refuses_the_file(
-    fresh_pre_layer_dsn: str, name: str, other_definition: str
+    fresh_pre_layer_dsn: str, name: str, other_definition: str, setup: str | None
 ) -> None:
-    """IF NOT EXISTS would keep a same-named index built another way; the file
-    fails closed instead, and rolls back whole."""
+    """IF NOT EXISTS would keep a same-named index built another way, or on
+    another table; the file fails closed instead, and rolls back whole."""
     with closing(psycopg2.connect(fresh_pre_layer_dsn)) as connection:
         with connection.cursor() as cursor:
-            cursor.execute(f"CREATE INDEX {name} ON corpus.navigation_nodes {other_definition}")
+            if setup is not None:
+                cursor.execute(setup)
+            cursor.execute(f"CREATE INDEX {name} {other_definition}")
         connection.commit()
         with connection.cursor() as cursor, pytest.raises(errors.RaiseException) as raised:
             cursor.execute(LAYERED_SERVING_MIGRATION.read_text(encoding="utf-8"))
