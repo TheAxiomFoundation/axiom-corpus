@@ -44,6 +44,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from axiom_corpus.corpus.usc import read_uslm_zip
 from axiom_corpus.release.manifest import selector_sha256
 
 _PROFILED_CITATION_UNIQUENESS_GRANDFATHER = {
@@ -1107,6 +1108,7 @@ def _validate_inventory(
 ) -> set[str]:
     source_hashes: dict[str, str] = {}
     inventory_source_paths: set[str] = set()
+    checked_uslm_zips: set[str] = set()
     for item in inventory:
         if not item.citation_path:
             collector.add(
@@ -1160,7 +1162,47 @@ def _validate_inventory(
                     scope=scope,
                     path=source_path,
                 )
+            elif (
+                _is_retained_uslm_zip(scope, source_identity)
+                and source_identity not in checked_uslm_zips
+            ):
+                checked_uslm_zips.add(source_identity)
+                _validate_retained_uslm_zip(source_path, scope, collector)
     return inventory_source_paths
+
+
+def _is_retained_uslm_zip(scope: ReleaseScope, source_identity: str) -> bool:
+    """Whether a source is an OLRC zip retained by ``extract-usc --source-zip``."""
+    return (
+        scope.jurisdiction == "us"
+        and scope.document_class == DocumentClass.STATUTE.value
+        and "/olrc/" in source_identity
+        and source_identity.lower().endswith(".zip")
+    )
+
+
+def _validate_retained_uslm_zip(
+    source_path: Path,
+    scope: ReleaseScope,
+    collector: _IssueCollector,
+) -> None:
+    """Recheck a retained USLM zip with the extractor's own refusal rules.
+
+    The extractor parses the member in memory and retains only the zip, so a
+    zip whose member no longer inflates cleanly (corrupt DEFLATE data, CRC
+    mismatch, past the member cap) or that carries an unsafe member list
+    must fail release validation even when its sha256 matches the inventory.
+    """
+    try:
+        read_uslm_zip(source_path)
+    except (ValueError, OSError) as exc:
+        collector.add(
+            "error",
+            "unreadable_uslm_source_zip",
+            f"retained USLM zip fails the extractor's checks: {exc}",
+            scope=scope,
+            path=source_path,
+        )
 
 
 def _validate_source_file(
