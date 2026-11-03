@@ -1,0 +1,1 @@
+Add the Belgian statute scope `2026-11-03-be-rulespec-source-promotion` and the publish-only `be-rulespec-2026-11-03` release selector. The scope adds 36 pages of the CIR 92 export for income 2025 to the 08-23 promotion and gives rulespec-be the whole text of articles 24 to 39 (except 32/1 and 32/2), 75 to 80, 103 to 111, 143 to 145 and 171.

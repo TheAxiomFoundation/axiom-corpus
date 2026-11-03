@@ -1,0 +1,72 @@
+{
+  "name": "be-rulespec-2026-11-03",
+  "description": "Successor to be-rulespec-2026-08-29: it reuses that release's 12 other scopes and moves be/statute to 2026-11-03-be-rulespec-source-promotion. That scope keeps every row of 2026-08-23-be-rulespec-source-promotion and adds 36 pages of the CIR 92 export for income 2025: 16 pages for rulespec-be's joint personal income tax pipeline and the 20 pages that finish every article on them. The release then holds the whole text of every article on the added pages: articles 24 to 39 except 32/1 and 32/2, 75 to 80, 103 to 111, 143 to 145 and 171. It is a publish-only pin release for rulespec-be; do not activate it.",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "guidance",
+      "jurisdiction": "be",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "be",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "be",
+      "version": "2026-11-03-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "be-bru",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "be-bru",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "be-bru",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "be-dg",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "be-vlg",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "be-vlg",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "be-vlg",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "be-wal",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "be-wal",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "be-wal",
+      "version": "2026-07-10-be-rulespec-source-promotion"
+    }
+  ]
+}
