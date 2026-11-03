@@ -346,12 +346,64 @@ def test_a_chained_label_that_opens_no_first_child_confirms_nothing() -> None:
     assert _paths(body) == ["h", "h/1", "h/2", "i"]
 
 
-def test_a_section_that_opens_mid_roman_list_stays_roman() -> None:
-    # "(ii)" is also the doubled letter after "(z)", which cannot open a section.
-    # Read as roman, "(A)" is its child and "(iii)" its sibling.
-    body = _paragraphs("(ii) two.", "(A) cap.", "(iii) three.")
-    assert _paths(body) == ["ii", "ii/A", "iii"]
-    assert _paths(_paragraphs("(II) two.", "(III) three.")) == ["II", "III"]
+@pytest.mark.parametrize(
+    ("blocks", "expected"),
+    [
+        # Roman: an "(A)" or the next numeral follows.
+        (["(ii) two.", "(A) cap.", "(iii) three."], ["ii", "ii/A", "iii"]),
+        (["(ii) two.", "(iii) three.", "(iv) four."], ["ii", "iii", "iv"]),
+        (["(v) five.", "(A) cap.", "(vi) six."], ["v", "v/A", "vi"]),
+        (["(x) ten.", "(xi) eleven."], ["x", "xi"]),
+        (["(II) two.", "(III) three."], ["II", "III"]),
+        # Letter: a "(1)" or the next letter follows.
+        (["(ii) II.", "(1) one.", "(2) two.", "(kk) KK."], ["ii", "ii/1", "ii/2", "kk"]),
+        (["(ii) II.", "(jj) JJ."], ["ii", "jj"]),
+        (["(xx) XX.", "(1) one.", "(yy) YY."], ["xx", "xx/1", "yy"]),
+        (["(v) V.", "(1) one.", "(w) W."], ["v", "v/1", "w"]),
+        (["(V) V.", "(1) one.", "(W) W."], ["V", "V/1", "W"]),
+        (["(II) II.", "(1) one.", "(JJ) JJ."], ["II", "II/1", "JJ"]),
+    ],
+    ids=[
+        "ii-A-roman",
+        "ii-iii-roman",
+        "v-A-roman",
+        "x-xi-roman",
+        "II-III-roman",
+        "ii-1-letter",
+        "ii-jj-letter",
+        "xx-1-letter",
+        "v-1-letter",
+        "V-1-letter",
+        "II-1-JJ-letter",
+    ],
+)
+def test_a_first_label_that_opens_no_list_is_read_by_what_follows(
+    blocks: list[str], expected: list[str]
+) -> None:
+    # "(ii)" is the 35th letter or the second numeral; "(v)" the 22nd letter or
+    # the fifth numeral. Neither reading opens a list, so the next head decides.
+    assert _paths(_paragraphs(*blocks)) == expected
+
+
+def test_a_first_label_nothing_confirms_keeps_the_default_reading() -> None:
+    # "(i)" fits under neither reading of "(X)", so the default stands: a single
+    # letter reads as a letter, and "(i)" stays text of (X). Read as roman, (X)
+    # would take "(i)" as a child.
+    assert _paths(_paragraphs("(X) X.", "(i) i.", "(Y) Y.")) == ["X", "Y"]
+
+
+def test_a_first_label_both_readings_confirm_equally_soon_keeps_the_default() -> None:
+    # The run-in "(a)" confirms both readings of "(II)" at once, so the default
+    # (roman, for a label of more than one character) stands and (a), (b) are
+    # its children rather than top-level paragraphs.
+    body = _paragraphs("(II) Heading—(a) first.", "(b) second.")
+    assert _paths(body) == ["II", "II/a", "II/b"]
+
+
+def test_a_first_label_read_one_way_cannot_take_the_other_readings_sibling() -> None:
+    # Limit: "(1)" confirms "(II)" as a letter, so the roman-only "(III)" that
+    # follows continues nothing and stays text. 1.0.1 gave II, II/1, III.
+    assert _paths(_paragraphs("(II) II.", "(1) one.", "(III) III.")) == ["II", "II/1"]
 
 
 @pytest.mark.parametrize(

@@ -588,8 +588,11 @@ def _strong_placements(
             for form in _OUTLINE_LADDER
             if form in forms and _label_ordinal(token, form) == 1
         ]
-        # A doubled letter ("(ii)" as the 35th letter) only follows "(z)", so a
-        # section that opens mid-list on "(ii)" or "(iii)" is roman.
+        # A first label that opens no list in any form ("(ii)", "(v)", "(X)") is
+        # read by what follows it (_first_label_reading). This is the reading
+        # used when nothing after it decides, or both readings are confirmed at
+        # once: a label of more than one character is read as roman, a single
+        # letter as a letter.
         roman = next((form for form in forms if form.startswith("roman_")), None)
         if openers:
             top_form = openers[0]
@@ -651,6 +654,43 @@ def _agreement_distance(
         (node.parent.children if node.parent is not None else roots).pop()
 
 
+def _first_label_reading(
+    heads: Sequence[_Head],
+    position: int,
+    default: _Placement,
+    forms: frozenset[str],
+    stack: list[_Node],
+    roots: list[_Node],
+) -> _Placement:
+    """Choose letter or roman for a section's first label when it opens no list.
+
+    "(ii)" is the 35th letter or the second roman numeral; "(v)" the 22nd
+    letter or the fifth numeral. Neither reading opens a list, so the label
+    alone cannot decide. Each reading is tried with the heads that follow, and
+    the one they confirm soonest wins: "(1)" or "(jj)" after "(ii)" confirms
+    the letter, "(A)" or "(iii)" the numeral. If neither is confirmed, or both
+    are confirmed equally soon, ``default`` stands.
+    """
+    readings = [
+        _Placement(-1, form, continues=False)
+        for form in sorted(forms)
+        if form.startswith(("alpha_", "roman_"))
+    ]
+    if len(readings) < 2:
+        return default
+    later = range(position + 1, len(heads))
+    distances = [
+        _agreement_distance(heads[position], reading, stack, roots, (heads[i] for i in later))
+        for reading in readings
+    ]
+    confirmed = [(d, r) for d, r in zip(distances, readings, strict=True) if d is not None]
+    if not confirmed:
+        return default
+    soonest = min(d for d, _ in confirmed)
+    winners = [r for d, r in confirmed if d == soonest]
+    return winners[0] if len(winners) == 1 else default
+
+
 def _place_strong_head(
     heads: Sequence[_Head], position: int, stack: list[_Node], roots: list[_Node]
 ) -> _Node | None:
@@ -672,6 +712,8 @@ def _place_strong_head(
     head = heads[position]
     forms = _token_forms(head.token)
     consecutive, fallback = _strong_placements(head.token, forms, stack, roots)
+    if not consecutive and fallback is not None and not roots:
+        fallback = _first_label_reading(heads, position, fallback, forms, stack, roots)
     if not consecutive:
         return _open_child(head, fallback, stack, roots) if fallback else None
     if len(consecutive) > 1:

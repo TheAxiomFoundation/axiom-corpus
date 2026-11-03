@@ -105,8 +105,19 @@ child or paragraph (i). `_build_tree` decides by **sequence continuity**:
   participate` is a paragraph.
 - The section's first label sets the top-level form, read as the form in which
   it opens a list: a section that is one `(i), (ii), (iii)` list is roman.
-  A first label that opens no list but can be roman, such as `(ii)`, is roman:
-  as a doubled letter it would follow `(z)`, which cannot open a section.
+  A first label that opens no list in either form, such as `(ii)` (the 35th
+  letter or the second numeral) or `(v)` (the 22nd letter or the fifth
+  numeral), cannot be read from the label alone. The parser tries both readings
+  against the heads that follow and keeps the one they confirm soonest: `(1)`
+  or the next letter means a letter (`(ii) (1) (jj)` gives `ii, ii/1, jj`),
+  and `(A)` or the next numeral means roman (`(ii) (A) (iii)` gives
+  `ii, ii/A, iii`). When neither reading is confirmed, the parser chooses
+  roman for a label of more than one character, because as a letter it would
+  be a doubled letter, which follows `(z)`. It chooses a letter for a single
+  letter, the form 1.0.1 also gave it: `(X) (i) (Y)` gives `X, Y`, with `(i)`
+  left as text of (X). The look-ahead
+  stops at the first confirming head, so `(II) (1) (III)` reads `(II)` as a
+  letter, and the roman `(III)` then stays text of it.
 - A label that skips ahead (`(a)` then `(d)`) is accepted where it does not
   restart a list. A label that continues no open sequence, such as a `(B)` with
   no `(i)` open or a mislabelled `(xxiv)` after `(xxviii)`, is left as text of
