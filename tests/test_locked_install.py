@@ -40,6 +40,7 @@ import pytest
 import yaml
 from packaging import tags
 from packaging.markers import Marker
+from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name, parse_wheel_filename
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -153,6 +154,22 @@ def test_every_package_the_lock_pins_for_the_dev_extra_is_installed() -> None:
 def test_lock_is_up_to_date_with_pyproject() -> None:
     """A pyproject.toml change without `uv lock` fails here (`uv lock --check`)."""
     _run_uv("lock", "--check", "--offline")
+
+
+def test_the_lock_doc_names_every_build_requirement_the_lock_leaves_unpinned() -> None:
+    """install-locked.sh builds the project with pyproject.toml's [build-system] requirements.
+
+    The lock pins none of them, so docs/dependency-lock.md's "What the lock does
+    not pin" must name each one.
+    """
+    pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    names = {canonicalize_name(Requirement(r).name) for r in pyproject["build-system"]["requires"]}
+    doc = (ROOT / "docs" / "dependency-lock.md").read_text(encoding="utf-8")
+    section = doc.split("## What the lock does not pin", 1)[1].split("\n## ", 1)[0].lower()
+    unnamed = sorted(name for name in names if not re.search(rf"\b{re.escape(name)}\b", section))
+    assert not unnamed, (
+        f"docs/dependency-lock.md does not name these unpinned build requirements: {unnamed}"
+    )
 
 
 def _ci_wheel_tags() -> set[tags.Tag]:
