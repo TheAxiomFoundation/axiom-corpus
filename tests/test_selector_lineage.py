@@ -1258,6 +1258,21 @@ def test_a_forks_later_entries_are_kept_in_order_and_merged(tmp_path: Path) -> N
             "    successors:\n      - line-a\n",
             r"forks\[1\]: a selector cannot succeed itself",
         ),
+        (
+            "  - predecessor: line-a\n    continued_by:\n      - line-b\n",
+            "  - predecessor: line-a\n    successors: 0\n    continued_by:\n      - line-b\n",
+            r"forks\[2\]\.successors must be a list",
+        ),
+        (
+            "    successors:\n      - line-d\n",
+            "    successors:\n      - line-d\n    continued_by: ''\n",
+            r"forks\[1\]\.continued_by must be a list",
+        ),
+        (
+            "  - predecessor: line-a\n    successors:\n      - line-d\n",
+            "  - successors:\n      - line-d\n",
+            r"forks\[1\]: missing \['predecessor'\]",
+        ),
     ],
 )
 def test_a_malformed_later_fork_entry_is_refused(

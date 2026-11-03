@@ -41,9 +41,11 @@ from axiom_corpus.corpus.selector_lineage import (
     EndedBranch,
     Fork,
     LineageBaseline,
+    LineageReport,
     RecordedFork,
     UnnamedPredecessor,
     check_selector_lineage,
+    line_heads,
     load_lineage_baseline,
     load_tracked_selectors,
     pair_label,
@@ -314,23 +316,46 @@ def test_no_entry_is_listed_before_the_guard_or_after_this_commit() -> None:
 
 # The bases the review followed the remedies at: #746 extends the canada-338
 # fork's branch the line did not continue, #729 names a selector another cut
-# already succeeds, and a third successor of ca-concurrent-versions joins a
-# recorded fork. If main moves past one of them, the case takes the next base
-# that still shows the finding.
+# already succeeds, and a new successor of ca-concurrent-versions joins a
+# recorded fork. A case falls back to another base with the same finding once
+# main moves past the review's, and two cases below run on a copy where main
+# has moved: #746, or a new successor of ca-concurrent-versions, has recorded
+# what its remedy prints.
 _REVIEW_ENDED_BRANCH = (
     "us-rulespec-2026-08-23-canada-338-suspension-union",
     "us-rulespec-2026-09-24-irs-sales-tax-tables-union",
 )
 _REVIEW_NEW_FORK = "us-rulespec-2026-09-14-wave4-r2-union"
 _REVIEW_RECORDED_FORK = "us-rulespec-2026-10-22-ca-concurrent-versions"
+# The fork whose line went on through both the union line and the dated cuts,
+# so a cut from its ended branch has two newest selectors to choose from.
+_TWO_LINES_ENDED_BRANCH = (
+    "us-rulespec-2026-08-08-obbb-alien-snap",
+    "us-rulespec-2026-09-24-snap-fy2027-cola",
+)
 _ADDED: ScopeKey = ("us-ks", "policy", "2026-11-03-remedy-test")
+_EDITED_VERSION = "2026-11-03-remedy-test-edit"
 _NOTE = "Built by the remedy test."
 _MARKER = f"{LINEAGE_BASELINE_PATH}:\n"
+_ONE_AFTER_ANOTHER = "cut them one after another, each from the one before"
 _SECTION_ORDER: dict[str, Callable[[Mapping[str, object]], tuple[str, ...]]] = {
     "dropped_pairs": lambda entry: (str(entry["selector"]), str(entry["pair"])),
     "forks": lambda entry: (str(entry["predecessor"]), str(entry["listed_on"])),
     "first_cuts": lambda entry: (str(entry["listed_on"]),),
 }
+
+_CUT = "cut from the selector it names"
+_RECORD = "record"
+_GOES_ON = "record, and the line goes on through it"
+_DOES_NOT_GO_ON = "record, and the line does not go on through it"
+_KEEP = "keep the pair"
+_NAME = "name the predecessor"
+_NAME_EACH = "name each real predecessor"
+_UNDO = "undo the change"
+
+
+def _findings(report: LineageReport) -> list[Finding]:
+    return [*report.dropped, *report.forks, *report.ended_branches, *report.unnamed, *report.cycles]
 
 
 class _MainCopy:
@@ -348,38 +373,77 @@ class _MainCopy:
     def baseline(self) -> LineageBaseline:
         return load_lineage_baseline(self.baseline_path)
 
+    def text(self, name: str) -> str:
+        return (self.releases / f"{name}.json").read_text(encoding="utf-8")
+
+    def write_text(self, name: str, text: str) -> None:
+        (self.releases / f"{name}.json").write_text(text, encoding="utf-8")
+
     def write(self, name: str, keys: Iterable[ScopeKey], description: str) -> None:
         scopes = [
             {"document_class": document_class, "jurisdiction": jurisdiction, "version": version}
             for jurisdiction, document_class, version in sorted(set(keys))
         ]
         payload = {"name": name, "description": description, "scopes": scopes}
-        (self.releases / f"{name}.json").write_text(
-            json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
+        self.write_text(name, json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
-    def record(self, entry: str) -> None:
-        """Add a printed baseline entry where the loader expects it, as a person pastes it."""
+    def record(self, *entries: str) -> None:
+        """Add printed baseline entries where the loader expects them, as a person pastes them.
+
+        A printed pin must be one the baseline lacks. Fork entries for one
+        predecessor on one day are merged, as the remedies say they share one entry.
+        """
         data = yaml.safe_load(self.baseline_path.read_text(encoding="utf-8"))
-        added = yaml.safe_load(entry)
         digests = data["selector_digests"]
-        for name, digest in (added.pop("selector_digests", None) or {}).items():
-            assert digests.setdefault(name, digest) == digest, f"{name} is pinned at another digest"
+        already = set(digests)
+        today: dict[tuple[str, str], dict[str, object]] = {}
+        for entry in entries:
+            added = yaml.safe_load(entry)
+            if "selector_digests" in added:
+                pins = added.pop("selector_digests")
+                assert pins, f"the remedy prints an empty selector_digests block:\n{entry}"
+                for name, digest in pins.items():
+                    assert name not in already, f"the remedy prints {name}'s pin again"
+                    assert digests.setdefault(name, digest) == digest, name
+            for section, items in added.items():
+                for item in items:
+                    if section == "forks":
+                        key = (str(item["predecessor"]), str(item["listed_on"]))
+                        if key in today:
+                            _merge_fork_entry(today[key], item)
+                            continue
+                        today[key] = item
+                    data[section] = [*(data.get(section) or []), item]
         data["selector_digests"] = dict(sorted(digests.items()))
-        for section, entries in added.items():
-            merged = [*(data.get(section) or []), *entries]
-            data[section] = sorted(merged, key=_SECTION_ORDER[section])
+        for section, order in _SECTION_ORDER.items():
+            if data.get(section):
+                data[section] = sorted(data[section], key=order)
         self.baseline_path.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
+
+
+def _merge_fork_entry(entry: dict[str, object], other: Mapping[str, object]) -> None:
+    for field_name in ("successors", "continued_by"):
+        names = {*(entry.get(field_name) or []), *(other.get(field_name) or [])}  # type: ignore[misc]
+        if names:
+            entry[field_name] = sorted(names)
+    entry["reason"] = f"{entry['reason']} {other['reason']}"
 
 
 @dataclass(frozen=True)
 class _Case:
-    """A finding built on the copy: the selector to fix, its real base, the scopes it adds."""
+    """What a case built on the copy: the findings it expects, and how to undo or redo it.
 
-    kind: type
-    selector: str
+    ``selectors`` are the new or edited selectors, in the order they would be
+    cut; ``base`` is the selector the first one really succeeds (for a fork, the
+    fork's predecessor); ``added`` the scopes the new selectors add to their base;
+    ``original`` an edited selector's file before the edit.
+    """
+
+    kinds: tuple[type, ...]
+    selectors: tuple[str, ...]
     base: str
-    added: frozenset[ScopeKey]
+    added: frozenset[ScopeKey] = frozenset()
+    original: str = ""
 
 
 def _successor_counts(selectors: Mapping[str, ReleaseManifest]) -> dict[str, int]:
@@ -399,6 +463,27 @@ def _ended_branches(baseline: LineageBaseline) -> set[str]:
     return ended
 
 
+def _unextended_ended_branches(copy: _MainCopy) -> list[tuple[str, str]]:
+    """Each recorded fork's branch the line did not continue through, that nothing extends."""
+    counts = _successor_counts(copy.selectors())
+    baseline = copy.baseline()
+    return [
+        (fork, branch)
+        for fork in sorted(baseline.forks)
+        for branch in sorted(_fork_branches(baseline, fork)[0] - _fork_branches(baseline, fork)[1])
+        if counts.get(branch) == 0
+    ]
+
+
+def _newest_through_continued(copy: _MainCopy, fork: str) -> tuple[str, ...]:
+    baseline = copy.baseline()
+    continued = {
+        predecessor: baseline.fork_continued_by(predecessor) for predecessor in baseline.forks
+    }
+    report = check_selector_lineage(copy.selectors())
+    return line_heads(report.predecessors, continued, continued[fork])
+
+
 def _open_head(copy: _MainCopy) -> str:
     """A selector no tracked selector names, on a branch its line did not end."""
     selectors = copy.selectors()
@@ -413,9 +498,22 @@ def _open_head(copy: _MainCopy) -> str:
     return heads[0]
 
 
-def _write_successor(copy: _MainCopy, name: str, base: str, kind: type) -> _Case:
-    copy.write(name, {*copy.selectors()[base].scope_keys, _ADDED}, f"Successor to {base}. {_NOTE}")
-    return _Case(kind, name, base, frozenset({_ADDED}))
+def _keys(copy: _MainCopy, base: str) -> set[ScopeKey]:
+    return {*copy.selectors()[base].scope_keys, _ADDED}
+
+
+def _write_successor(copy: _MainCopy, name: str, base: str) -> None:
+    copy.write(name, _keys(copy, base), f"Successor to {base}. {_NOTE}")
+
+
+def _edit(copy: _MainCopy, name: str) -> str:
+    """Add a version to one of the selector's pairs, so its digest changes; return the old file."""
+    original = copy.text(name)
+    selector = copy.selectors()[name]
+    jurisdiction, document_class, _ = selector.scope_keys[0]
+    keys = {*selector.scope_keys, (jurisdiction, document_class, _EDITED_VERSION)}
+    copy.write(name, keys, selector.description or "")
+    return original
 
 
 def _build_dropped_pair(copy: _MainCopy) -> _Case:
@@ -427,7 +525,7 @@ def _build_dropped_pair(copy: _MainCopy) -> _Case:
         [key for key in keys if key[:2] != pair],
         f"Successor to {base}. {_NOTE}",
     )
-    return _Case(DroppedPair, "remedy-test-dropped-pair", base, frozenset())
+    return _Case((DroppedPair,), ("remedy-test-dropped-pair",), base)
 
 
 def _build_new_fork(copy: _MainCopy) -> _Case:
@@ -435,50 +533,129 @@ def _build_new_fork(copy: _MainCopy) -> _Case:
     recorded = set(copy.baseline().forks)
     candidates = [_REVIEW_NEW_FORK, *sorted(counts)]
     base = next(name for name in candidates if counts.get(name) == 1 and name not in recorded)
-    return _write_successor(copy, "remedy-test-new-fork", base, Fork)
+    _write_successor(copy, "remedy-test-new-fork", base)
+    return _Case((Fork,), ("remedy-test-new-fork",), base, frozenset({_ADDED}))
 
 
 def _build_new_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
     assert _REVIEW_RECORDED_FORK in copy.baseline().forks
-    return _write_successor(copy, "remedy-test-new-successor", _REVIEW_RECORDED_FORK, Fork)
+    _write_successor(copy, "remedy-test-new-successor", _REVIEW_RECORDED_FORK)
+    return _Case(
+        (Fork,), ("remedy-test-new-successor",), _REVIEW_RECORDED_FORK, frozenset({_ADDED})
+    )
+
+
+def _build_two_new_successors_of_a_recorded_fork(copy: _MainCopy) -> _Case:
+    names = ("remedy-test-new-successor-a", "remedy-test-new-successor-b")
+    for name in names:
+        _write_successor(copy, name, _REVIEW_RECORDED_FORK)
+    return _Case((Fork,), names, _REVIEW_RECORDED_FORK, frozenset({_ADDED}))
+
+
+def _ended_branch_case(copy: _MainCopy, branch: str) -> _Case:
+    _write_successor(copy, "remedy-test-ended-branch", branch)
+    return _Case((EndedBranch,), ("remedy-test-ended-branch",), branch, frozenset({_ADDED}))
 
 
 def _build_ended_branch(copy: _MainCopy) -> _Case:
-    counts = _successor_counts(copy.selectors())
-    baseline = copy.baseline()
-    candidates = [
-        _REVIEW_ENDED_BRANCH,
-        *sorted(
-            (fork, branch)
-            for fork in baseline.forks
-            for branch in sorted(_fork_branches(baseline, fork)[0])
-        ),
-    ]
-    _, branch = next(
+    available = _unextended_ended_branches(copy)
+    fork, branch = _REVIEW_ENDED_BRANCH if _REVIEW_ENDED_BRANCH in available else available[0]
+    return _ended_branch_case(copy, branch)
+
+
+def _build_ended_branch_of_a_line_that_went_on_twice(copy: _MainCopy) -> _Case:
+    available = [_TWO_LINES_ENDED_BRANCH, *_unextended_ended_branches(copy)]
+    fork, branch = next(
         (fork, branch)
-        for fork, branch in candidates
-        if branch in _fork_branches(baseline, fork)[0] - _fork_branches(baseline, fork)[1]
-        and counts.get(branch) == 0
+        for fork, branch in available
+        if (fork, branch) in _unextended_ended_branches(copy)
+        and len(_newest_through_continued(copy, fork)) > 1
     )
-    return _write_successor(copy, "remedy-test-ended-branch", branch, EndedBranch)
+    return _ended_branch_case(copy, branch)
+
+
+def _record_on_main(copy: _MainCopy, entry: str) -> None:
+    copy.record(entry.replace("<today>", _today(copy.baseline())))
+
+
+def _build_ended_branch_once_746_records_its_continuation(copy: _MainCopy) -> _Case:
+    fork, branch = _REVIEW_ENDED_BRANCH
+    _write_successor(copy, "remedy-test-merged-746", branch)
+    _record_on_main(
+        copy,
+        f"forks:\n  - predecessor: {fork}\n    listed_on: <today>\n"
+        f"    continued_by: [{branch}]\n    reason: The line goes on through this branch.\n",
+    )
+    return _build_ended_branch(copy)
+
+
+def _build_new_successor_once_the_fork_goes_on_twice(copy: _MainCopy) -> _Case:
+    _write_successor(copy, "remedy-test-merged-successor", _REVIEW_RECORDED_FORK)
+    digest = selector_sha256(copy.selectors()["remedy-test-merged-successor"])
+    _record_on_main(
+        copy,
+        f"selector_digests:\n  remedy-test-merged-successor: {digest}\n"
+        f"forks:\n  - predecessor: {_REVIEW_RECORDED_FORK}\n    listed_on: <today>\n"
+        "    successors: [remedy-test-merged-successor]\n"
+        "    continued_by: [remedy-test-merged-successor]\n    reason: A second line.\n",
+    )
+    return _build_new_successor_of_a_recorded_fork(copy)
+
+
+def _build_new_successor_and_ended_branch_at_one_fork(copy: _MainCopy) -> _Case:
+    available = _unextended_ended_branches(copy)
+    fork, branch = next(
+        (fork, branch)
+        for fork, branch in sorted(available, key=lambda item: item[0] != _REVIEW_RECORDED_FORK)
+    )
+    _write_successor(copy, "remedy-test-new-successor", fork)
+    _write_successor(copy, "remedy-test-ended-branch", branch)
+    return _Case(
+        (Fork, EndedBranch),
+        ("remedy-test-new-successor", "remedy-test-ended-branch"),
+        fork,
+        frozenset({_ADDED}),
+    )
 
 
 def _build_unnamed_predecessor(copy: _MainCopy) -> _Case:
     base = _open_head(copy)
     copy.write(
         "remedy-test-unnamed",
-        {*copy.selectors()[base].scope_keys, _ADDED},
+        _keys(copy, base),
         "A successor whose description leaves its base unnamed, as 819 does.",
     )
-    return _Case(UnnamedPredecessor, "remedy-test-unnamed", base, frozenset({_ADDED}))
+    return _Case((UnnamedPredecessor,), ("remedy-test-unnamed",), base, frozenset({_ADDED}))
 
 
 def _build_cycle(copy: _MainCopy) -> _Case:
     base = _open_head(copy)
-    keys = {*copy.selectors()[base].scope_keys, _ADDED}
-    copy.write("remedy-test-cycle-a", keys, f"Successor to remedy-test-cycle-b. {_NOTE}")
-    copy.write("remedy-test-cycle-b", keys, f"Successor to remedy-test-cycle-a. {_NOTE}")
-    return _Case(Cycle, "remedy-test-cycle-b", base, frozenset({_ADDED}))
+    copy.write(
+        "remedy-test-cycle-a", _keys(copy, base), f"Successor to remedy-test-cycle-b. {_NOTE}"
+    )
+    copy.write(
+        "remedy-test-cycle-b", _keys(copy, base), f"Successor to remedy-test-cycle-a. {_NOTE}"
+    )
+    return _Case((Cycle,), ("remedy-test-cycle-b",), base, frozenset({_ADDED}))
+
+
+def _build_edited_first_cut(copy: _MainCopy) -> _Case:
+    name = sorted(copy.baseline().first_cuts)[0]
+    return _Case((UnnamedPredecessor,), (name,), name, original=_edit(copy, name))
+
+
+def _build_edited_selector_of_a_recorded_drop(copy: _MainCopy) -> _Case:
+    name = sorted(record.selector for record in copy.baseline().drops.values())[0]
+    return _Case((DroppedPair,), (name,), name, original=_edit(copy, name))
+
+
+def _build_edited_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
+    available = _unextended_ended_branches(copy)
+    fork, branch = next(
+        (fork, branch)
+        for fork, branch in sorted(available, key=lambda item: item[0] != _REVIEW_RECORDED_FORK)
+    )
+    return _Case((Fork,), (branch,), fork, original=_edit(copy, branch))
 
 
 def _today(baseline: LineageBaseline) -> str:
@@ -491,102 +668,216 @@ def _today(baseline: LineageBaseline) -> str:
     return (date.fromisoformat(max(listed)) + timedelta(days=1)).isoformat()
 
 
-def _printed_entry(remedy: str, today: str, continued_by: str | None) -> str:
-    """The entry a remedy prints, with its placeholders filled as a person would fill them."""
+_PLACEHOLDER = re.compile(r"(?m)^( *)continued_by: \[<[^>]*>\]\n?")
+
+
+def _printed_entry(
+    remedy: str, today: str, choose: Callable[[list[str]], list[str]] = lambda listed: []
+) -> str:
+    """The entry a remedy prints, with its placeholders filled as a person would fill them.
+
+    ``choose`` picks, from the successors the entry lists, the ones the line goes
+    on through when the entry leaves that to the person.
+    """
     assert _MARKER in remedy, f"the remedy prints no baseline entry to add:\n{remedy}"
     entry = textwrap.dedent(remedy.split(_MARKER, 1)[1])
     entry = entry.replace("listed_on: <today>", f"listed_on: {today}")
     entry = re.sub(r"reason: <[^>]*>", "reason: Recorded by the remedy test.", entry)
     entry = re.sub(r"replaced_by: \[<[^>]*>\]", "replaced_by: []", entry)
-    entry = re.sub(
-        r"(?m)^( *)continued_by: \[<[^>]*>\]\n?",
-        lambda match: "" if continued_by is None else f"{match[1]}continued_by: [{continued_by}]\n",
-        entry,
-    )
+    if _PLACEHOLDER.search(entry):
+        listed = yaml.safe_load(_PLACEHOLDER.sub("", entry))["forks"][0]["successors"]
+        chosen = choose(listed)
+        entry = _PLACEHOLDER.sub(
+            lambda match: f"{match[1]}continued_by: [{', '.join(chosen)}]\n" if chosen else "",
+            entry,
+        )
     assert "<" not in entry, f"the printed entry keeps a placeholder:\n{entry}"
     return entry
 
 
-def _base_to_cut_from(remedy: str, case: _Case) -> str:
-    """The selector a remedy says to cut from."""
-    named = re.search(r"\(Successor to ([a-z0-9-]+)\.\)", remedy)
+_LISTED_HEADS = (
+    re.compile(r"continued through [a-z0-9, -]+ \(([a-z0-9, -]+)\), and name that one first"),
+    re.compile(r"The newest selectors from [a-z0-9-]+, through its successors: ([a-z0-9, -]+)\."),
+)
+
+
+def _bases(remedy: str, case: _Case) -> list[str]:
+    """The selectors a remedy says to cut from: the one it names, or each one it lists."""
+    named = [
+        name
+        for name in re.findall(r"\(Successor to ([a-z0-9-]+)\.\)", remedy)
+        if name not in case.selectors
+    ]
     if named:
-        return named[1]
-    listed = re.search(
-        r"The newest selectors from [a-z0-9-]+, through its successors: ([^.]+)\.", remedy
-    )
-    assert listed, f"the remedy names no selector to cut from:\n{remedy}"
-    others = [name for name in listed[1].split(", ") if name != case.selector]
-    assert len(others) == 1, others
-    return others[0]
+        return named[:1]
+    for pattern in _LISTED_HEADS:
+        listed = pattern.search(remedy)
+        if listed:
+            bases = [name for name in listed[1].split(", ") if name not in case.selectors]
+            assert bases, remedy
+            return bases
+    raise AssertionError(f"the remedy names no selector to cut from:\n{remedy}")
 
 
-def _follow(copy: _MainCopy, case: _Case, option: str, finding: Finding, remedy: str) -> None:
+def _follow(
+    copy: _MainCopy,
+    case: _Case,
+    option: str,
+    findings: list[Finding],
+    remedies: list[str],
+    base: str | None,
+) -> None:
+    """Do what ``option`` of the printed remedies says, on ``copy``."""
     selectors = copy.selectors()
-    if option == "record":
-        continued_by = None
-        if isinstance(finding, Fork) and finding.predecessor not in copy.baseline().forks:
-            # A new fork: the line goes on through the branch that was there first.
-            continued_by = next(name for name in finding.successors if name != case.selector)
-        copy.record(_printed_entry(remedy, _today(copy.baseline()), continued_by))
-    elif option == "record, and the line goes on through it":
-        copy.record(_printed_entry(remedy, _today(copy.baseline()), case.selector))
-    elif option == "record, and the line does not go on through it":
-        copy.record(_printed_entry(remedy, _today(copy.baseline()), None))
-    elif option == "cut from the selector it names":
-        base = _base_to_cut_from(remedy, case)
-        copy.write(
-            case.selector,
-            {*selectors[base].scope_keys, *case.added},
-            f"Successor to {base}. {_NOTE}",
-        )
-    elif option == "keep the pair":
+    if option == _CUT:
+        assert base is not None
+        if len(case.selectors) > 1:
+            assert all(_ONE_AFTER_ANOTHER in remedy for remedy in remedies), remedies
+        before = base
+        for name in case.selectors:
+            copy.write(
+                name,
+                {*copy.selectors()[before].scope_keys, *case.added},
+                f"Successor to {before}. {_NOTE}",
+            )
+            before = name
+    elif option in (_RECORD, _GOES_ON, _DOES_NOT_GO_ON):
+        entries = []
+        for finding, remedy in zip(findings, remedies, strict=True):
+            choose: Callable[[list[str]], list[str]]
+            if option == _GOES_ON:
+                choose = lambda listed: [name for name in listed if name in case.selectors]  # noqa: E731
+            elif isinstance(finding, Fork) and not finding.recorded and option == _RECORD:
+                # A new fork: the line goes on through the branch that was there first.
+                choose = lambda listed: [name for name in listed if name not in case.selectors]  # noqa: E731
+            else:
+                choose = lambda listed: []  # noqa: E731
+            entries.append(_printed_entry(remedy, _today(copy.baseline()), choose))
+        copy.record(*entries)
+    elif option == _KEEP:
+        (finding,) = findings
         assert isinstance(finding, DroppedPair)
-        assert f"Keep a version of {pair_label(finding.pair)}" in remedy, remedy
+        assert f"Keep a version of {pair_label(finding.pair)}" in remedies[0], remedies[0]
         restored = [key for key in selectors[case.base].scope_keys if key[:2] == finding.pair]
         copy.write(
-            case.selector,
-            {*selectors[case.selector].scope_keys, *restored},
+            case.selectors[0],
+            {*selectors[case.selectors[0]].scope_keys, *restored},
             f"Successor to {case.base}. {_NOTE}",
         )
-    elif option == "name the predecessor":
-        assert "Name the selector it succeeds first in its description" in remedy, remedy
+    elif option == _NAME:
+        assert "Name the selector it succeeds first in its description" in remedies[0], remedies[0]
         copy.write(
-            case.selector, selectors[case.selector].scope_keys, f"Successor to {case.base}. {_NOTE}"
+            case.selectors[0],
+            selectors[case.selectors[0]].scope_keys,
+            f"Successor to {case.base}. {_NOTE}",
+        )
+    elif option == _NAME_EACH:
+        assert "Name each selector's real predecessor first" in remedies[0], remedies[0]
+        copy.write(
+            case.selectors[0],
+            selectors[case.selectors[0]].scope_keys,
+            f"Successor to {case.base}. {_NOTE}",
         )
     else:
-        assert option == "name each real predecessor", option
-        assert "Name each selector's real predecessor first in its description" in remedy, remedy
-        copy.write(
-            case.selector, selectors[case.selector].scope_keys, f"Successor to {case.base}. {_NOTE}"
-        )
+        assert option == _UNDO, option
+        for remedy in remedies:
+            assert _MARKER not in remedy, f"the remedy records the change again:\n{remedy}"
+            assert "undo the change" in remedy, remedy
+        copy.write_text(case.selectors[0], case.original)
+
+
+def _on_an_ended_branch(
+    name: str, predecessors: Mapping[str, str | None], baseline: LineageBaseline
+) -> bool:
+    """Whether the line to ``name`` leaves a recorded fork through a branch it ended."""
+    seen: set[str] = set()
+    child, parent = name, predecessors.get(name)
+    while parent is not None and child not in seen:
+        seen.add(child)
+        if parent in baseline.forks and child not in baseline.fork_continued_by(parent):
+            return True
+        child, parent = parent, predecessors.get(parent)
+    return False
+
+
+def _assert_the_advice_is_sound(
+    findings: list[Finding], remedies: list[str], report: LineageReport, baseline: LineageBaseline
+) -> None:
+    """No newest selector a remedy names lies on an ended branch, and each names its line."""
+    for finding, remedy in zip(findings, remedies, strict=True):
+        if isinstance(finding, Fork | EndedBranch):
+            for head in finding.heads:
+                assert not _on_an_ended_branch(head, report.predecessors, baseline), head
+        fork = finding.fork if isinstance(finding, EndedBranch) else None
+        if isinstance(finding, Fork) and finding.recorded and "no longer holds" not in remedy:
+            fork = finding.predecessor
+        if fork is not None:
+            through = ", ".join(baseline.fork_continued_by(fork))
+            assert f"continued through {through}" in remedy, remedy
 
 
 _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
-    ("dropped pair", _build_dropped_pair, "keep the pair"),
-    ("dropped pair", _build_dropped_pair, "record"),
-    ("new fork (#729)", _build_new_fork, "cut from the selector it names"),
-    ("new fork (#729)", _build_new_fork, "record"),
+    ("dropped pair", _build_dropped_pair, _KEEP),
+    ("dropped pair", _build_dropped_pair, _RECORD),
+    ("new fork (#729)", _build_new_fork, _CUT),
+    ("new fork (#729)", _build_new_fork, _RECORD),
+    ("new successor of a recorded fork", _build_new_successor_of_a_recorded_fork, _CUT),
+    ("new successor of a recorded fork", _build_new_successor_of_a_recorded_fork, _GOES_ON),
+    ("new successor of a recorded fork", _build_new_successor_of_a_recorded_fork, _DOES_NOT_GO_ON),
+    ("two new successors of a recorded fork", _build_two_new_successors_of_a_recorded_fork, _CUT),
     (
-        "third successor of ca-concurrent-versions",
-        _build_new_successor_of_a_recorded_fork,
-        "cut from the selector it names",
+        "two new successors of a recorded fork",
+        _build_two_new_successors_of_a_recorded_fork,
+        _GOES_ON,
+    ),
+    ("ended branch (#746)", _build_ended_branch, _CUT),
+    ("ended branch (#746)", _build_ended_branch, _RECORD),
+    (
+        "ended branch of a line that went on twice",
+        _build_ended_branch_of_a_line_that_went_on_twice,
+        _CUT,
     ),
     (
-        "third successor of ca-concurrent-versions",
-        _build_new_successor_of_a_recorded_fork,
-        "record, and the line goes on through it",
+        "ended branch of a line that went on twice",
+        _build_ended_branch_of_a_line_that_went_on_twice,
+        _RECORD,
     ),
     (
-        "third successor of ca-concurrent-versions",
-        _build_new_successor_of_a_recorded_fork,
-        "record, and the line does not go on through it",
+        "ended branch, once #746 records its continuation",
+        _build_ended_branch_once_746_records_its_continuation,
+        _CUT,
     ),
-    ("ended branch (#746)", _build_ended_branch, "cut from the selector it names"),
-    ("ended branch (#746)", _build_ended_branch, "record"),
-    ("unnamed predecessor (#819)", _build_unnamed_predecessor, "name the predecessor"),
-    ("unnamed predecessor (#819)", _build_unnamed_predecessor, "record"),
-    ("cycle", _build_cycle, "name each real predecessor"),
+    (
+        "ended branch, once #746 records its continuation",
+        _build_ended_branch_once_746_records_its_continuation,
+        _RECORD,
+    ),
+    (
+        "new successor, once the recorded fork goes on twice",
+        _build_new_successor_once_the_fork_goes_on_twice,
+        _CUT,
+    ),
+    (
+        "new successor, once the recorded fork goes on twice",
+        _build_new_successor_once_the_fork_goes_on_twice,
+        _GOES_ON,
+    ),
+    (
+        "new successor and ended branch at one fork",
+        _build_new_successor_and_ended_branch_at_one_fork,
+        _CUT,
+    ),
+    (
+        "new successor and ended branch at one fork",
+        _build_new_successor_and_ended_branch_at_one_fork,
+        _RECORD,
+    ),
+    ("unnamed predecessor (#819)", _build_unnamed_predecessor, _NAME),
+    ("unnamed predecessor (#819)", _build_unnamed_predecessor, _RECORD),
+    ("cycle", _build_cycle, _NAME_EACH),
+    ("edited first cut", _build_edited_first_cut, _UNDO),
+    ("edited selector of a recorded drop", _build_edited_selector_of_a_recorded_drop, _UNDO),
+    ("edited successor of a recorded fork", _build_edited_successor_of_a_recorded_fork, _UNDO),
 ]
 
 
@@ -598,20 +889,31 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
 def test_every_printed_remedy_can_be_followed(
     tmp_path: Path, build: Callable[[_MainCopy], _Case], option: str
 ) -> None:
-    """Follow each option a remedy prints; the guard and the freeze test then pass."""
-    copy = _MainCopy(tmp_path)
+    """Follow each option the remedies print; the guard and the freeze test then pass.
+
+    Where a remedy lists several newest selectors to cut from, each one is
+    followed on its own copy.
+    """
+    copy = _MainCopy(tmp_path / "found")
     case = build(copy)
     selectors, baseline = copy.selectors(), copy.baseline()
     report = check_selector_lineage(selectors, baseline)
-    findings: list[Finding] = [
-        *report.dropped,
-        *report.forks,
-        *report.ended_branches,
-        *report.unnamed,
-        *report.cycles,
-    ]
-    assert [type(finding) for finding in findings] == [case.kind], report.problems()
-    _follow(copy, case, option, findings[0], _remedy(findings[0], selectors, baseline))
-    problems = _guard_problems(copy.selectors(), copy.baseline())
-    assert not problems, "\n".join(problems)
-    _assert_frozen(copy.baseline())
+    findings = _findings(report)
+    assert [type(finding) for finding in findings] == list(case.kinds), report.problems()
+    remedies = [_remedy(finding, selectors, baseline) for finding in findings]
+    _assert_the_advice_is_sound(findings, remedies, report, baseline)
+    bases = (
+        sorted({base for remedy in remedies for base in _bases(remedy, case)})
+        if option == _CUT
+        else [None]
+    )
+    for index, base in enumerate(bases):
+        followed = _MainCopy(tmp_path / f"followed-{index}")
+        assert build(followed) == case
+        _follow(followed, case, option, findings, remedies, base)
+        problems = _guard_problems(followed.selectors(), followed.baseline())
+        assert not problems, f"after {option} from {base}:\n" + "\n".join(problems)
+        _assert_frozen(followed.baseline())
+        if option in (_GOES_ON, _DOES_NOT_GO_ON):
+            continued = set(followed.baseline().fork_continued_by(case.base))
+            assert (set(case.selectors) <= continued) == (option == _GOES_ON), continued
