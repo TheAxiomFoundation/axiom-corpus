@@ -400,6 +400,50 @@ def test_a_first_label_both_readings_confirm_equally_soon_keeps_the_default() ->
     assert _paths(body) == ["II", "II/a", "II/b"]
 
 
+def test_a_first_label_takes_the_reading_confirmed_soonest() -> None:
+    # The run-in "(1)" confirms the letter reading of "(ii)" before the line-leading
+    # "(iii)" could confirm the roman one, so the letter wins and "(iii)" falls in
+    # under (ii)(1).
+    body = _paragraphs("(ii) Heading. (1) text.", "(iii) three.")
+    assert _paths(body) == ["ii", "ii/1", "ii/1/iii"]
+
+
+def test_an_unconfirmed_first_label_of_more_than_one_character_reads_as_roman() -> None:
+    # "(iv)" confirms neither reading of "(ii)" (it skips "(iii)"), so the default
+    # stands: roman, and "(iv)" follows it at the top level across the gap.
+    assert _paths(_paragraphs("(ii) two.", "(iv) four.")) == ["ii", "iv"]
+
+
+def test_only_the_sections_first_label_is_read_by_what_follows() -> None:
+    # "(iii)" after (h)(1) is ambiguous too, but it is not the section's first
+    # label: sequence continuity places it, under (h)(1), and "(2)" then
+    # continues (h).
+    body = _paragraphs("(h) H.", "(1) one.", "(iii) gap.", "(A) a.", "(2) two.")
+    assert _paths(body) == ["h", "h/1", "h/1/iii", "h/1/iii/A", "h/2"]
+
+
+def test_a_single_letter_first_label_both_readings_confirm_keeps_the_letter() -> None:
+    # As with "(II)", the run-in "(a)" confirms both readings of "(V)" at once.
+    # The default for a single letter is the letter, so (a) and (b) are not its
+    # children.
+    body = _paragraphs("(V) Heading—(a) first.", "(b) second.")
+    assert _paths(body) == ["V", "a", "b"]
+
+
+@pytest.mark.parametrize(
+    ("blocks", "expected"),
+    [
+        (["(II) two.", "(A) a.", "(III) three."], ["II", "III"]),
+        (["(V) five.", "(A) a.", "(VI) six."], ["V", "A"]),
+    ],
+    ids=["II-A-III", "V-A-VI"],
+)
+def test_upper_case_roman_has_no_child_level(blocks: list[str], expected: list[str]) -> None:
+    # Limit: the outline ladder has no upper-case roman level, so "(A)" cannot be
+    # a child of a roman "(II)" and does not confirm that reading.
+    assert _paths(_paragraphs(*blocks)) == expected
+
+
 def test_a_first_label_read_one_way_cannot_take_the_other_readings_sibling() -> None:
     # Limit: "(1)" confirms "(II)" as a letter, so the roman-only "(III)" that
     # follows continues nothing and stays text. 1.0.1 gave II, II/1, III.

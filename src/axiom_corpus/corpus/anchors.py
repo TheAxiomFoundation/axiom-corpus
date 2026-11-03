@@ -666,10 +666,12 @@ def _first_label_reading(
 
     "(ii)" is the 35th letter or the second roman numeral; "(v)" the 22nd
     letter or the fifth numeral. Neither reading opens a list, so the label
-    alone cannot decide. Each reading is tried with the heads that follow, and
-    the one they confirm soonest wins: "(1)" or "(jj)" after "(ii)" confirms
-    the letter, "(A)" or "(iii)" the numeral. If neither is confirmed, or both
-    are confirmed equally soon, ``default`` stands.
+    alone cannot decide. Each reading is tried with the heads that follow, as
+    far as the next line-leading head, and the one they confirm soonest wins:
+    "(1)" or "(jj)" after "(ii)" confirms the letter, "(A)" or "(iii)" the
+    numeral. Upper case has no roman level in the ladder, so "(A)" never
+    confirms a roman "(II)". If neither is confirmed, or both are confirmed
+    equally soon, ``default`` stands.
     """
     readings = [
         _Placement(-1, form, continues=False)
