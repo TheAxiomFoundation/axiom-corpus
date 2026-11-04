@@ -44,6 +44,7 @@ from axiom_corpus.corpus.io import (
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
+    LAYER_BASE,
     ReleaseManifest,
     validate_release_name,
 )
@@ -52,7 +53,13 @@ if TYPE_CHECKING:
     from axiom_corpus.corpus.navigation import NavigationNode
 
 RELEASE_OBJECT_SCHEMA_V2 = "axiom-corpus/release-object/v2"
-RELEASE_OBJECT_SCHEMA_VERSION = "axiom-corpus/release-object/v3"
+RELEASE_OBJECT_SCHEMA_V3 = "axiom-corpus/release-object/v3"
+# v4 is v3 plus signed scope layers. It is emitted only for a release that
+# carries at least one base scope, so every release without one keeps producing
+# byte-identical v3 objects.
+RELEASE_OBJECT_SCHEMA_V4 = "axiom-corpus/release-object/v4"
+RELEASE_OBJECT_SCHEMA_VERSION = RELEASE_OBJECT_SCHEMA_V3
+_PROFILED_SCHEMAS = frozenset({RELEASE_OBJECT_SCHEMA_V3, RELEASE_OBJECT_SCHEMA_V4})
 RELEASE_OBJECT_SIGNATURE_ALGORITHM = "ed25519"
 RELEASE_OBJECT_SIGNATURE_KEY_ID = "axiom-corpus-release-v2"
 RELEASE_OBJECT_PRIVATE_KEY_ENV = "AXIOM_CORPUS_RELEASE_PRIVATE_KEY"
@@ -178,16 +185,11 @@ def release_content_sha256(content: Mapping[str, Any]) -> str:
 
 
 def selector_sha256(release: ReleaseManifest) -> str:
+    # A primary scope maps to exactly its three identity fields, so a selector
+    # without a base scope hashes exactly as it did before layers existed.
     selector: dict[str, Any] = {
         "name": release.name,
-        "scopes": [
-            {
-                "jurisdiction": scope.jurisdiction,
-                "document_class": scope.document_class,
-                "version": scope.version,
-            }
-            for scope in release.scopes
-        ],
+        "scopes": [scope.to_selector_mapping() for scope in release.scopes],
     }
     if release.quality_profile is not None:
         selector["quality_profile"] = release.quality_profile
@@ -279,17 +281,18 @@ def build_release_content(
         navigation_projection = navigation_projection_sha256(
             node.to_supabase_row() for node in navigation
         )
-        scopes.append(
-            {
-                "jurisdiction": scope.jurisdiction,
-                "document_class": scope.document_class,
-                "version": scope.version,
-                "provision_rows": provision_rows,
-                "navigation_rows": provision_rows,
-                "provision_projection_sha256": provision_projection,
-                "navigation_projection_sha256": navigation_projection,
-            }
-        )
+        scope_entry: dict[str, Any] = {
+            "jurisdiction": scope.jurisdiction,
+            "document_class": scope.document_class,
+            "version": scope.version,
+            "provision_rows": provision_rows,
+            "navigation_rows": provision_rows,
+            "provision_projection_sha256": provision_projection,
+            "navigation_projection_sha256": navigation_projection,
+        }
+        if scope.is_base:
+            scope_entry["layer"] = LAYER_BASE
+        scopes.append(scope_entry)
         artifacts.extend(scope_entries)
 
     _require_tracked_release_inputs(root, release=release, artifacts=artifacts)
@@ -326,11 +329,20 @@ def build_unsigned_release_object(content: Mapping[str, Any]) -> dict[str, Any]:
             "new release objects require the complete-expression-dates-v1 quality profile"
         )
     return {
-        "schema_version": RELEASE_OBJECT_SCHEMA_VERSION,
+        "schema_version": _release_object_schema_for(materialized),
         "release": release,
         "content_sha256": release_content_sha256(materialized),
         "content": materialized,
     }
+
+
+def _release_object_schema_for(content: Mapping[str, Any]) -> str:
+    scopes = content.get("scopes")
+    if isinstance(scopes, list) and any(
+        isinstance(scope, dict) and "layer" in scope for scope in scopes
+    ):
+        return RELEASE_OBJECT_SCHEMA_V4
+    return RELEASE_OBJECT_SCHEMA_V3
 
 
 def canonical_release_object_bytes(payload: Mapping[str, Any]) -> bytes:
@@ -357,7 +369,7 @@ def sign_release_object(
     """Attach an Ed25519 signature to an already validated release object."""
     signed = copy.deepcopy(dict(payload))
     signed.pop("signature", None)
-    if signed.get("schema_version") != RELEASE_OBJECT_SCHEMA_VERSION:
+    if signed.get("schema_version") not in _PROFILED_SCHEMAS:
         raise ReleaseManifestError(
             "new signatures require the current profiled release object schema"
         )
@@ -423,8 +435,9 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
             f"release object has unsupported top-level fields: {', '.join(sorted(extra))}"
         )
     schema_version = payload.get("schema_version")
-    if schema_version not in {RELEASE_OBJECT_SCHEMA_V2, RELEASE_OBJECT_SCHEMA_VERSION}:
+    if schema_version not in {RELEASE_OBJECT_SCHEMA_V2, *_PROFILED_SCHEMAS}:
         raise ReleaseManifestError("release object uses an unsupported schema version")
+    profiled = schema_version in _PROFILED_SCHEMAS
     release = payload.get("release")
     if not isinstance(release, str):
         raise ReleaseManifestError("release object is missing its release name")
@@ -443,17 +456,14 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
         "artifacts",
         "validation",
     }
-    if schema_version == RELEASE_OBJECT_SCHEMA_VERSION:
+    if profiled:
         expected_content_fields.add("quality_profile")
     if set(content) != expected_content_fields:
         raise ReleaseManifestError(
             f"release object content does not match the {schema_version} schema"
         )
     quality_profile = content.get("quality_profile")
-    if (
-        schema_version == RELEASE_OBJECT_SCHEMA_VERSION
-        and quality_profile != COMPLETE_EXPRESSION_DATES_PROFILE
-    ):
+    if profiled and quality_profile != COMPLETE_EXPRESSION_DATES_PROFILE:
         raise ReleaseManifestError("release object has an unsupported quality profile")
     if content.get("release") != release:
         raise ReleaseManifestError("release object name does not match its content")
@@ -481,15 +491,19 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
         raise ReleaseManifestError("release object must contain at least one scope")
     if not isinstance(artifacts, list) or not artifacts:
         raise ReleaseManifestError("release object must contain artifact entries")
-    _validate_scope_entries(scopes)
+    _validate_scope_entries(scopes, layered=schema_version == RELEASE_OBJECT_SCHEMA_V4)
     selector: dict[str, Any] = {
         "name": release,
         "scopes": [
-            {field: raw[field] for field in ("jurisdiction", "document_class", "version")}
+            {
+                field: raw[field]
+                for field in ("jurisdiction", "document_class", "version", "layer")
+                if field in raw
+            }
             for raw in scopes
         ],
     }
-    if schema_version == RELEASE_OBJECT_SCHEMA_VERSION:
+    if profiled:
         selector["quality_profile"] = quality_profile
     if not isinstance(content.get("selector_sha256"), str) or not _SHA256_RE.fullmatch(
         content["selector_sha256"]
@@ -516,20 +530,19 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
         scopes=scopes,
         artifacts=artifacts,
         bucket=bucket,
-        quality_profile=(
-            str(quality_profile)
-            if schema_version == RELEASE_OBJECT_SCHEMA_VERSION
-            else None
-        ),
+        quality_profile=str(quality_profile) if profiled else None,
     )
 
 
-def _validate_scope_entries(scopes: Sequence[Any]) -> None:
+def _validate_scope_entries(scopes: Sequence[Any], *, layered: bool = False) -> None:
     seen: set[tuple[str, str, str]] = set()
+    base_pairs: set[tuple[str, str]] = set()
     for raw in scopes:
         if not isinstance(raw, dict):
             raise ReleaseManifestError("release object contains a non-object scope")
-        if set(raw) != {
+        # Only v4 may carry a layer, and only the base layer is spelled out: a
+        # primary scope keeps exactly its historical signed dictionary.
+        if set(raw) - ({"layer"} if layered else set()) != {
             "jurisdiction",
             "document_class",
             "version",
@@ -539,6 +552,17 @@ def _validate_scope_entries(scopes: Sequence[Any]) -> None:
             "navigation_projection_sha256",
         }:
             raise ReleaseManifestError("release object scope does not match the v2 schema")
+        if "layer" in raw:
+            if raw["layer"] != LAYER_BASE:
+                raise ReleaseManifestError(
+                    f"release object scope has an unsupported layer: {raw['layer']!r}"
+                )
+            pair = (str(raw.get("jurisdiction") or ""), str(raw.get("document_class") or ""))
+            if pair in base_pairs:
+                raise ReleaseManifestError(
+                    f"release object has more than one base scope for {'/'.join(pair)}"
+                )
+            base_pairs.add(pair)
         key = tuple(
             str(raw.get(field) or "") for field in ("jurisdiction", "document_class", "version")
         )
@@ -577,6 +601,10 @@ def _validate_scope_entries(scopes: Sequence[Any]) -> None:
                 raise ReleaseManifestError(
                     f"release object scope has invalid {digest_field}: {'/'.join(key)}"
                 )
+    if layered and not base_pairs:
+        raise ReleaseManifestError(
+            "release-object/v4 is reserved for releases with at least one base scope"
+        )
 
 
 def _validate_artifact_entries(artifacts: Sequence[Any], *, bucket: str) -> None:

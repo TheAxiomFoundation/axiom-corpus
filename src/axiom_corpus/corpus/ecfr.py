@@ -1142,8 +1142,8 @@ def _resolved_part_appendix(
     return appendix, numbering
 
 
-# An appendix to a subchapter sits in that subchapter's last part on the eCFR: 41 CFR
-# chapter 101's "Appendix to Subchapter D" is in part 101-21, at reader path
+# The eCFR places 41 CFR chapter 101's "Appendix to Subchapter D" in that subchapter's
+# last part, part 101-21, at reader path
 # .../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D. It is read only
 # inside the subchapter it names. The part that holds it is its parent, and its path
 # segment names the subchapter, so it is never taken for the part's own appendix.

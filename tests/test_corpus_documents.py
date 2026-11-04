@@ -2407,6 +2407,149 @@ documents:
     assert records[1].body == "Body text."
 
 
+def test_labeled_pdf_sections_mark_only_declared_bodyless_reserved_rows(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "reserved-section.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "364.710: Benefit Amount\nOperative text.\n"
+        "364.800: Reserved\n364.800: Reserved\n"
+        "364.810: Notice of Eligibility\nNotice text.",
+    )
+    document.save(pdf_path)
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^364\.(?P<section>\d{3}):\s*(?P<heading>.*)$",
+        "section_label_template": "{section}",
+        "reserved_section_labels": ["800"],
+    }
+
+    blocks = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(), extraction=extraction
+    )
+
+    assert [block.metadata.get("status") for block in blocks] == [
+        None,
+        "reserved",
+        None,
+    ]
+    assert blocks[1].heading == "800 Reserved"
+    assert blocks[1].body == ""
+    assert blocks[1].metadata["section_label"] == "800"
+    without_declaration = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            k: v for k, v in extraction.items() if k != "reserved_section_labels"
+        },
+    )
+    assert without_declaration[1].metadata.get("status") is None
+
+
+@pytest.mark.parametrize(
+    ("lines", "reserved_labels"),
+    [
+        ("364.800: General\n364.810: Notice\nNotice text.", ["800"]),
+        ("364.800: Reserved\nOperative text.\n364.810: Notice", ["800"]),
+        ("364.810: Notice\nNotice text.", ["800"]),
+        ("364.800: Reserved", ["800", "800"]),
+        ("364.800: Reserved", "800"),
+    ],
+)
+def test_labeled_pdf_reserved_declaration_rejects_mismatched_source(
+    tmp_path: Path, lines: str, reserved_labels: object
+) -> None:
+    pdf_path = tmp_path / "mismatched-reserved.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), lines)
+    document.save(pdf_path)
+    document.close()
+
+    with pytest.raises(ValueError, match="reserved_section_labels"):
+        documents_module._extract_pdf_blocks(
+            pdf_path.read_bytes(),
+            extraction={
+                "segmentation": "labeled_sections",
+                "section_heading_pattern": r"^364\.(?P<section>\d{3}):\s*(?P<heading>.*)$",
+                "section_label_template": "{section}",
+                "reserved_section_labels": reserved_labels,
+            },
+        )
+
+
+@pytest.mark.parametrize(
+    ("repeated_heading", "section_heading_pattern"),
+    [
+        (
+            "364.800: General",
+            r"^364\.(?P<section>\d{3}):\s*(?P<heading>.*)$",
+        ),
+        (
+            "364.800: Reserved. Operative text.",
+            r"^364\.(?P<section>\d{3}):\s*(?P<heading>[^.]*)(?:\.\s*(?P<body>.*))?$",
+        ),
+    ],
+)
+def test_labeled_pdf_reserved_declaration_checks_repeated_headings(
+    tmp_path: Path, repeated_heading: str, section_heading_pattern: str
+) -> None:
+    pdf_path = tmp_path / "contradictory-repeated-reserved.pdf"
+    document = fitz.open()
+    for page_text in (
+        "364.710: Benefit Amount\nOperative text.",
+        "364.800: Reserved",
+        f"{repeated_heading}\n364.810: Notice\nNotice text.",
+    ):
+        document.new_page().insert_text((72, 72), page_text)
+    document.save(pdf_path)
+    document.close()
+
+    with pytest.raises(ValueError, match="reserved_section_labels"):
+        documents_module._extract_pdf_blocks(
+            pdf_path.read_bytes(),
+            extraction={
+                "segmentation": "labeled_sections",
+                "section_heading_pattern": section_heading_pattern,
+                "section_label_template": "{section}",
+                "reserved_section_labels": ["800"],
+            },
+        )
+
+
+def test_labeled_pdf_reserved_declaration_accepts_split_repeated_heading(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "split-repeated-reserved.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72), "800\nReserved\n800\nReserved\n810\nNotice\nNotice text."
+    )
+    document.save(pdf_path)
+    document.close()
+
+    blocks = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            "segmentation": "labeled_sections",
+            "section_label_pattern": r"^(?P<section>\d{3})$",
+            "section_label_template": "{section}",
+            "label_only_heading_pattern": r"^[A-Z].+$",
+            "label_only_requires_heading": True,
+            "reserved_section_labels": ["800"],
+        },
+    )
+
+    assert [(block.heading, block.body, block.metadata.get("status")) for block in blocks] == [
+        ("800 Reserved", "", "reserved"),
+        ("810 Notice", "Notice text.", None),
+    ]
+
+
 def test_extract_labeled_pdf_sections_preserves_inline_heading_body(tmp_path: Path) -> None:
     pdf_path = tmp_path / "inline-body-rule.pdf"
     document = fitz.open()

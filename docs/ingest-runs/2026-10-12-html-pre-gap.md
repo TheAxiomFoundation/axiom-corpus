@@ -196,7 +196,7 @@ is not cloned here). That citation is rulespec-us `us/statutes/42/416/l.yaml` â†
 `us/guidance/ssa/cola/2026/federal-register/block-1`, excerpt "are exactly 12 times the
 monthly"; its line break falls inside the excerpt.
 
-## Follow-up for the Axiom eng hub: successor versions
+## Follow-up: successor versions
 
 Released scopes stay as they are. These are what re-extraction with the patched
 extractor would change; each needs a signed successor version to carry the change into
@@ -238,6 +238,6 @@ Reformat only (no text added, no successor needed):
 
 Not yet released:
 
-9. `us/manual/2026-10-12-oasdi-poms-rs` (#826, handed to the eng hub, which folds it
-   into the #819 release): re-extract this scope once this lands, before it is
-   released, so its first version carries RS 02510.026's 248 words.
+9. `us/manual/2026-10-12-oasdi-poms-rs` (#826; the #819 release selector includes
+   it): re-extract this scope with the patched extractor before its first release, so
+   its first version carries RS 02510.026's 248 words.
