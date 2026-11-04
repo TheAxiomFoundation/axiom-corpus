@@ -4,8 +4,10 @@ from collections import Counter
 from pathlib import Path
 
 import pytest
+import yaml
 from bs4 import BeautifulSoup
 
+from axiom_corpus.corpus import documents as documents_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -674,6 +676,30 @@ def test_ma_snap_regulations_scope_retains_complete_official_sources():
     assert {
         path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in source_files
     } == expected_source_hashes
+
+    manifest = yaml.safe_load(
+        (
+            Path(__file__).resolve().parents[1] / "manifests/us-ma-dta-snap-regulations.yaml"
+        ).read_text()
+    )
+    chapter_364_extraction = next(
+        document["extraction"]
+        for document in manifest["documents"]
+        if document["source_id"] == "ma-dta-106-cmr-364"
+    )
+    chapter_364_blocks = documents_module._extract_pdf_blocks(
+        (source_root / "official-documents/ma-dta-106-cmr-364.pdf").read_bytes(),
+        extraction=chapter_364_extraction,
+    )
+    reserved = [
+        block
+        for block in chapter_364_blocks
+        if block.metadata.get("section_label") == "800"
+    ]
+    assert len(reserved) == 1
+    assert reserved[0].heading == "800 Reserved"
+    assert reserved[0].body == ""
+    assert reserved[0].metadata["status"] == "reserved"
 
     records = load_provisions(
         corpus_root / "provisions" / "us-ma" / "regulation" / f"{version}.jsonl"
