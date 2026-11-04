@@ -2233,6 +2233,20 @@ def _extract_labeled_pdf_section_blocks(
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
     citation_suffix_replacements = _section_citation_suffix_replacements(extraction)
+    reserved_section_labels = extraction.get("reserved_section_labels", [])
+    if (
+        not isinstance(reserved_section_labels, list)
+        or any(
+            not isinstance(label, str) or not label
+            for label in reserved_section_labels
+        )
+        or len(set(reserved_section_labels)) != len(reserved_section_labels)
+    ):
+        raise ValueError(
+            "reserved_section_labels must be a list of unique nonempty labels"
+        )
+    reserved_labels = set(reserved_section_labels)
+    matched_reserved_labels: set[str] = set()
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     label_heading_continuation = bool(
         extraction.get("label_only_heading_continuation", True)
@@ -2302,18 +2316,32 @@ def _extract_labeled_pdf_section_blocks(
         ):
             return
         pages = current_body_pages or [current_start_page]
+        body = _normalize_text("\n".join(current_body))
+        metadata: dict[str, Any] = {
+            "citation_suffix": current_citation_label,
+            "section_label": current_label,
+            "page_start": min(pages),
+            "page_end": max(pages),
+        }
+        if current_label in reserved_labels:
+            if (
+                current_citation_label != current_label
+                or current_heading != f"{current_label} Reserved"
+                or bool(body)
+            ):
+                raise ValueError(
+                    "reserved_section_labels declaration conflicts with extracted "
+                    f"section {current_label!r}"
+                )
+            metadata["status"] = "reserved"
+            matched_reserved_labels.add(current_label)
         sections.append(
             _DocumentBlock(
                 kind="section",
                 ordinal=len(sections) + 1,
                 heading=current_heading,
-                body=_normalize_text("\n".join(current_body)),
-                metadata={
-                    "citation_suffix": current_citation_label,
-                    "section_label": current_label,
-                    "page_start": min(pages),
-                    "page_end": max(pages),
-                },
+                body=body,
+                metadata=metadata,
             )
         )
         current_label = None
@@ -2447,6 +2475,12 @@ def _extract_labeled_pdf_section_blocks(
         raise ValueError(
             "section_citation_suffix_replacements keys matched no section label: "
             + ", ".join(repr(key) for key in unmatched)
+        )
+    unmatched_reserved = sorted(reserved_labels - matched_reserved_labels)
+    if unmatched_reserved:
+        raise ValueError(
+            "reserved_section_labels matched no section label: "
+            + ", ".join(repr(label) for label in unmatched_reserved)
         )
     return tuple(sections)
 
