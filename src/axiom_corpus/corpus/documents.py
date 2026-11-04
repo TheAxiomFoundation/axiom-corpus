@@ -2389,11 +2389,34 @@ def _extract_labeled_pdf_section_blocks(
             heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
             if drop_repeated and citation_label == current_citation_label:
+                repeated_heading_text = heading_text
+                consumed_repeated_heading = False
+                if current_label in reserved_labels or label in reserved_labels:
+                    if (
+                        not repeated_heading_text
+                        and label_heading_re is not None
+                        and index + 1 < len(lines)
+                        and label_heading_re.match(lines[index + 1][0])
+                    ):
+                        repeated_heading_text = lines[index + 1][0]
+                        consumed_repeated_heading = True
+                    if (
+                        label != current_label
+                        or citation_label != label
+                        or repeated_heading_text != "Reserved"
+                        or bool(inline_body)
+                    ):
+                        raise ValueError(
+                            "reserved_section_labels declaration conflicts with "
+                            f"repeated section {label!r}"
+                        )
                 index += 1
+                if consumed_repeated_heading:
+                    index += 1
                 full_heading = (current_heading or "").removeprefix(f"{label} ")
                 remaining_heading = (
-                    full_heading.removeprefix(heading_text).strip()
-                    if full_heading.startswith(heading_text)
+                    full_heading.removeprefix(repeated_heading_text).strip()
+                    if full_heading.startswith(repeated_heading_text)
                     else ""
                 )
                 while remaining_heading and index < len(lines):
