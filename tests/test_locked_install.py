@@ -12,10 +12,11 @@ agreement in place:
 - ``uv lock --check``: uv.lock is up to date with pyproject.toml;
 - every locked package has a wheel for CI's platform, which install-locked.sh
   requires;
-- every job in .github/workflows/ci.yml that runs this project's code installs
-  it through install-locked.sh, and no step there installs packages any other
-  way. That check reads the commands in ``run:`` blocks; it guards against
-  mistakes, not against a workflow written to get around it.
+- every job in .github/workflows/ that runs this project's code installs it
+  through install-locked.sh first, the release workflows included, and no step
+  installs packages any other way. That check reads the commands in ``run:``
+  blocks; it guards against mistakes, not against a workflow written to get
+  around it.
 
 Installed packages the lock does not name are not flagged: on a pull request
 CI installs the base commit's lock first (for the corpus guard) into the same
@@ -50,17 +51,11 @@ PROJECT = "axiom-corpus"
 CI_PYTHON = (3, 14)
 CI_GLIBC_MINOR = 39
 
-# Release workflows that still install with a bare `pip install -e .`
-# (axiom-corpus#866). They run no extraction and no tests; moving them changes
-# the versions that sign and publish releases, so it is a change of its own.
-# Remove a name here in the pull request that moves its workflow to
-# install-locked.sh.
-WORKFLOWS_NOT_YET_LOCKED = {
-    "activate-release.yml",
-    "mirror-release.yml",
-    "publish.yml",
-    "register-release-object.yml",
-}
+# Workflows that may install outside install-locked.sh. None may: the release
+# workflows (publish, activate-release, register-release-object and
+# mirror-release) moved to the lock in axiom-corpus#866, so the versions that
+# sign, publish, register, mirror and activate releases are the ones CI tests.
+WORKFLOWS_NOT_YET_LOCKED: set[str] = set()
 
 # A package install by pip (options may sit between `pip` and `install`), pipx
 # or uv.
@@ -160,6 +155,27 @@ def test_lock_is_up_to_date_with_pyproject() -> None:
     _run_uv("lock", "--check", "--offline")
 
 
+def test_the_lock_doc_names_every_build_requirement_the_lock_leaves_unpinned() -> None:
+    """install-locked.sh builds the project with pyproject.toml's [build-system] requirements.
+
+    The lock pins none of them, so docs/dependency-lock.md's "What the lock does
+    not pin" must quote each one in full, name and bound, as a code span exactly
+    as pyproject.toml writes it, so a bound changed in one file and not the
+    other fails here. Code spans, not word boundaries, because a requirement can
+    end in a quote (a marker such as ``python_version < '3.11'``), and ``\\b``
+    never matches between that quote and a backtick or a space.
+    """
+    pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    requires = pyproject["build-system"]["requires"]
+    doc = (ROOT / "docs" / "dependency-lock.md").read_text(encoding="utf-8")
+    section = doc.split("## What the lock does not pin", 1)[1].split("\n## ", 1)[0]
+    unquoted = [requirement for requirement in requires if f"`{requirement}`" not in section]
+    assert not unquoted, (
+        'docs/dependency-lock.md\'s "What the lock does not pin" does not quote these '
+        f"[build-system] requirements as pyproject.toml writes them: {unquoted}"
+    )
+
+
 def _ci_wheel_tags() -> set[tags.Tag]:
     platforms = [f"manylinux_2_{minor}_x86_64" for minor in range(CI_GLIBC_MINOR, 4, -1)]
     platforms += [
@@ -217,9 +233,10 @@ def test_ci_workflow_installs_only_through_the_locked_script() -> None:
     assert not bare, f"ci.yml steps install outside install-locked.sh: {bare}"
 
 
-def test_every_ci_job_that_runs_project_code_installs_it_from_the_lock() -> None:
+@pytest.mark.parametrize("workflow", sorted(WORKFLOWS.glob("*.yml")), ids=lambda path: path.name)
+def test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow: Path) -> None:
     uninstalled = []
-    for job, steps in _steps(WORKFLOWS / "ci.yml").items():
+    for job, steps in _steps(workflow).items():
         first = next(
             (index for index, (_, run) in enumerate(steps) if _PROJECT_CODE.search(run)), None
         )
@@ -228,7 +245,8 @@ def test_every_ci_job_that_runs_project_code_installs_it_from_the_lock() -> None
         if not any("install-locked.sh" in run for _, run in steps[: first + 1]):
             uninstalled.append(f"{job}: {steps[first][0]}")
     assert not uninstalled, (
-        f"these ci.yml steps run project code before any install-locked.sh step: {uninstalled}"
+        f"these {workflow.name} steps run project code before any install-locked.sh step: "
+        f"{uninstalled}"
     )
 
 

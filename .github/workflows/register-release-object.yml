@@ -60,7 +60,8 @@ jobs:
           python-version: "3.14"
 
       - name: Install package before exposing production credentials
-        run: python -I -m pip install -e .
+        # uv.lock's versions and hashes, the ones CI tests (docs/dependency-lock.md).
+        run: bash .github/scripts/install-locked.sh --editable
 
       - name: Verify official publication workflow run
         env:

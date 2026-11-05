@@ -63,12 +63,10 @@ jobs:
         with:
           python-version: "3.14"
 
-      # Dependencies are installed BEFORE any secret enters the environment.
+      # Dependencies are installed BEFORE any secret enters the environment:
+      # every package, boto3 included, at the version and hashes uv.lock pins.
       - name: Install verifier and client (no secrets in env)
-        run: |
-          set -euo pipefail
-          python -m pip install --quiet 'boto3==1.40.11'
-          python -m pip install --quiet -e .
+        run: bash .github/scripts/install-locked.sh --editable
 
       - name: Download signed publication object
         uses: actions/download-artifact@v8

@@ -1,11 +1,13 @@
 # Dependency versions: one lock for local runs and CI
 
 `uv.lock` pins the version and file hashes of every dependency. Local runs use
-it through `uv sync` and `uv run`. CI and the authenticated release-artifact
-exporter (`export-release-artifact.yml`) install from it through
+it through `uv sync` and `uv run`. CI, the authenticated release-artifact
+exporter (`export-release-artifact.yml`) and the release workflows
+(`publish.yml`, `activate-release.yml`, `register-release-object.yml` and
+`mirror-release.yml`) install from it through
 `.github/scripts/install-locked.sh`. A test therefore runs on the same versions
-on a laptop and in CI, and an extraction run under
-`uv run axiom-corpus-ingest ...` uses the versions the tests ran on.
+on a laptop and in CI, an extraction run under `uv run axiom-corpus-ingest ...`
+uses the versions the tests ran on, and so does a release workflow.
 
 `pyproject.toml` still declares lower bounds (`pymupdf>=1.25.0`). They say what
 the code needs. The lock says what runs.
@@ -74,7 +76,10 @@ installs in a step that has no credentials, and a later step, the only one
 that receives the read-only storage credentials, runs
 `scripts/export_release_artifact.py` with that Python. (#892 brought the
 installer, its uv pin, the lock changes and `tests/test_locked_install.py` to
-`main` with the exporter.) On a pull request the corpus
+`main` with the exporter.) The release workflows call the script too (#866):
+each installs in a step before the ones that sign, publish, register, mirror or
+activate. `mirror-release.yml` no longer installs `boto3==1.40.11` on its own;
+it takes the lock's boto3 like every other job. On a pull request the corpus
 guard still runs the base commit's code, on the versions the base commit's
 `uv.lock` pins, installed by the base commit's own copy of the script. The
 pull request changes none of these, but `ci.yml` itself runs as the pull
@@ -99,10 +104,10 @@ stays installed for the pull request's tests.
   dependency change without `uv lock` fails;
 - every locked package has a wheel for CPython 3.14 on manylinux x86_64,
   which the wheels-only install needs;
-- every job in `ci.yml` that runs this project's code installs it through
-  the script, and no step there installs packages another way (pip, pipx or
-  uv in a `run:` block). This reads the commands; it catches mistakes, not a
-  workflow written to get around it.
+- every job in every workflow under `.github/workflows/` that runs this
+  project's code installs it through the script first, and no step installs
+  packages another way (pip, pipx or uv in a `run:` block). This reads the
+  commands; it catches mistakes, not a workflow written to get around it.
 
 ## Changing a dependency
 
@@ -263,10 +268,8 @@ decision; until it is made, the lock stays on 1.26.7.
 
 ## What the lock does not pin
 
-- The release workflows (`publish.yml`, `activate-release.yml`,
-  `register-release-object.yml`, `mirror-release.yml`) still install with
-  `pip install -e .` (#866).
-- The build backend `pyproject.toml` names (setuptools). pip fetches it to
-  build this project in step 3.
+- The build requirements in `pyproject.toml`'s `[build-system]`:
+  `setuptools>=61.0` and `wheel`. pip fetches both, unpinned, to build this
+  project in step 3.
 - Programs outside Python, such as the Tesseract binary that OCR extraction
   calls.
