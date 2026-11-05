@@ -12,7 +12,7 @@ agreement in place:
 - ``uv lock --check``: uv.lock is up to date with pyproject.toml;
 - every locked package has a wheel for CI's platform, which install-locked.sh
   requires;
-- every release job's checkout leaves no token in .git/config;
+- every release job's checkout persists no credentials for the install to read;
 - every job in .github/workflows/ that runs this project's code or Python
   installs it through install-locked.sh first, and every install form named
   by _INSTALL counts as an install. These checks read ``run:`` blocks; they
@@ -66,12 +66,13 @@ RELEASE_WORKFLOWS = (
     "export-release-artifact.yml",
 )
 
-# Named install forms, including uv's ephemeral environments. Shell separators
-# end the uv run command; a backslash-newline continues it.
+# Named install forms, including uv's ephemeral environments. A shell separator
+# ends the uv run command unless it sits inside quotes; a backslash-newline
+# continues it.
 _INSTALL = re.compile(
     r"\b(?:pip3?|pipx)\b[^\n;&|]*?\binstall\b"
     r"|\buv\s+(?:pip\s+install|sync|add|tool\s+(?:install|run))\b"
-    r"|\buv\s+run\b(?:[^\n;&|]|\\\n)*?(?<!\S)--with(?:[=\s]|$)"
+    r"|\buv\s+run\b(?:[^\n;&|'\"]|'[^'\n]*'|\"[^\"\n]*\"|\\\n)*?(?<!\S)--with(?:[=\s]|$)"
     r"|\buvx\b"
 )
 # A step that runs this project's code, its checks, or any Python code (which
@@ -220,12 +221,31 @@ def test_every_locked_package_has_a_wheel_for_ci() -> None:
     )
 
 
+def _step_shell(document: dict, job: dict, step: dict) -> str:
+    """The shell that runs a step: its own, else the job's default, else the workflow's."""
+    for scope in (
+        step,
+        job.get("defaults", {}).get("run", {}),
+        document.get("defaults", {}).get("run", {}),
+    ):
+        if scope.get("shell"):
+            return str(scope["shell"])
+    return ""
+
+
 def _steps(workflow: Path) -> dict[str, list[tuple[str, str]]]:
-    """Job name -> its steps' (name, run block), in order; steps without run are ''."""
+    """Job name -> its steps' (name, commands), in order; steps without run are ''.
+
+    The commands start with the step's shell, since `shell: python` runs the
+    block as Python with no python command in it.
+    """
     document = yaml.safe_load(workflow.read_text(encoding="utf-8"))
     return {
         job_name: [
-            (step.get("name", f"step {index + 1}"), str(step.get("run", "")))
+            (
+                step.get("name", f"step {index + 1}"),
+                f"{_step_shell(document, job, step)}\n{step['run']}" if "run" in step else "",
+            )
             for index, step in enumerate(job.get("steps", []))
         ]
         for job_name, job in document["jobs"].items()
@@ -315,6 +335,33 @@ def test_python_steps_require_the_locked_install(tmp_path: Path, run: str) -> No
         test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow)
 
 
+@pytest.mark.parametrize(
+    ("step_shell", "job_defaults", "workflow_defaults"),
+    [
+        ("python", None, None),
+        ("python3 -u {0}", None, None),
+        (None, "python", None),
+        (None, None, "python"),
+    ],
+)
+def test_python_shell_steps_require_the_locked_install(
+    tmp_path: Path, step_shell: str | None, job_defaults: str | None, workflow_defaults: str | None
+) -> None:
+    early = {"name": "early Python", "run": "import boto3"}
+    if step_shell:
+        early["shell"] = step_shell
+    job: dict = {"steps": [early, {"run": "bash .github/scripts/install-locked.sh --editable"}]}
+    if job_defaults:
+        job["defaults"] = {"run": {"shell": job_defaults}}
+    document: dict = {"jobs": {"example": job}}
+    if workflow_defaults:
+        document["defaults"] = {"run": {"shell": workflow_defaults}}
+    workflow = tmp_path / "python-shell.yml"
+    workflow.write_text(yaml.safe_dump(document), encoding="utf-8")
+    with pytest.raises(AssertionError, match="example: early Python"):
+        test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow)
+
+
 def test_mirror_dependency_import_cannot_move_before_the_locked_install(tmp_path: Path) -> None:
     document = yaml.safe_load((WORKFLOWS / "mirror-release.yml").read_text(encoding="utf-8"))
     steps = document["jobs"]["mirror"]["steps"]
@@ -355,6 +402,8 @@ _INSTALL_FORMS = (
     "uv run --with=boto3 python -c 'import boto3'",
     "uv run --offline --with boto3 python -c 'import boto3'",
     "uv run \\\n  --with boto3 python -c 'import boto3'",
+    "uv run --index-url 'https://example.invalid/simple?a=1&b=2' --with boto3 python",
+    'uv run --index-url "https://example.invalid/simple?a=1&b=2" --with boto3 python',
     "uvx ruff check .",
     "uv tool run ruff check .",
 )
@@ -383,6 +432,8 @@ _NON_INSTALL_COMMANDS = (
     "uv run echo ok && echo --with boto3",
     "uv run echo ok | cat --with boto3",
     "uv run echo ok\necho --with boto3",
+    "uv run echo 'a;b'; echo --with boto3",
+    'uv run echo "a&b" && echo --with boto3',
     "uvxfoo ruff",
     "uv tool list",
     "pip list",

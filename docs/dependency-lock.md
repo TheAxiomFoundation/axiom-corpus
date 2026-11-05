@@ -104,8 +104,8 @@ stays installed for the pull request's tests.
   dependency change without `uv lock` fails;
 - every locked package has a wheel for CPython 3.14 on manylinux x86_64,
   which the wheels-only install needs;
-- every release job's checkout sets `persist-credentials: false`, leaving no
-  token in `.git/config` when the install runs;
+- every release job's checkout sets `persist-credentials: false`, so the job
+  holds no persisted checkout credentials when the install runs;
 - every job in every workflow under `.github/workflows/` that runs this
   project's code or Python installs it through the script first, including
   inline code that imports only third-party packages;
