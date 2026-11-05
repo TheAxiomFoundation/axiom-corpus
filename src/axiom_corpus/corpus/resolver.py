@@ -10,9 +10,11 @@ from __future__ import annotations
 
 import contextlib
 import dataclasses
+import errno
 import functools
 import os
 import posixpath
+import re
 import stat
 import subprocess
 import sys
@@ -308,12 +310,21 @@ def _checkout_for(path: Path, physical: Path | None = None) -> Path | None:
     return find_repo_root(_existing_ancestor(physical))
 
 
-def _symlink_on_path(repo: Path, rel: str) -> Path | None:
-    """The first component of ``rel`` below ``repo`` that is a symlink (fetch refuses them)."""
+def _symlink_on_path(
+    repo: Path, rel: str, *, checked: dict[Path, bool] | None = None
+) -> Path | None:
+    """The first component of ``rel`` below ``repo`` that is a symlink (fetch refuses them).
+
+    A caller walking many paths passes ``checked``, so the directories they share
+    get one lstat each.
+    """
+    known = {} if checked is None else checked
     lexical = repo
     for part in rel.split("/"):
         lexical = lexical / part
-        if lexical.is_symlink():
+        if lexical not in known:
+            known[lexical] = lexical.is_symlink()
+        if known[lexical]:
             return lexical
     return None
 
@@ -339,6 +350,87 @@ def _symlinked_error(rel: str, target: Path) -> CorpusNotMaterializedError:
         "corpus files are placed as regular files, never symlinks. Remove it and run "
         f"`axiom-corpus-ingest corpus fetch --path {rel}`."
     )
+
+
+_AUTH_FAILURE = re.compile(
+    # FetchReport retains str(exc), not ClientError.response. Match boto's
+    # error-code slot, including bare HTTP errors, rather than a code mentioned
+    # in an unrelated error's message or path.
+    r"An error occurred \((?:AccessDenied|InvalidAccessKeyId|SignatureDoesNotMatch|"
+    r"ExpiredToken|InvalidToken|TokenRefreshRequired|RequestExpired|401|403)\) "
+    r"when calling the \w+ operation\b"
+    r"|(?:^|: )Unable to locate credentials(?:$|; )"
+    r"|(?:^|: )Partial credentials found in .+, missing: .+"
+)
+
+# str(OSError) opens with its errno, so a filename that quotes one doesn't match.
+_DISK_FULL = re.compile(rf"(?:^|: )\[Errno {errno.ENOSPC}\]")
+
+
+# The store's reasons name each file's path and hash, so a failed fetch of the
+# whole corpus has one distinct reason per file. `corpus fetch` prints the same
+# number of FAILED lines.
+_MAX_OTHER_REASONS = 20
+
+
+def _fetch_failure_hints(
+    repo: Path, failed: dict[str, str], sources: Iterable[ObjectSource]
+) -> str:
+    """Summarize every failure kind once, counting files rather than sources.
+
+    One reason can contain errors from several sources, so its file may count
+    toward several kinds. The first _MAX_OTHER_REASONS distinct unknown reasons
+    appear verbatim, and the summary counts the rest. Symlinks keep their
+    existing remedy, irrespective of the store's reason for that path.
+    """
+    hints = {
+        "ENOSPC": "The disk ran out of space. Free disk space in the corpus worktree "
+        "and cache, then fetch again.",
+        "No source holds it": "No configured source has the object. Check which sources "
+        "are configured and whether an earlier fetch failed.",
+        "Authentication": "Check R2 credentials (~/.config/axiom-foundation/r2-credentials.json) "
+        "or run `axiom-corpus-ingest corpus fetch` with network access.",
+        "Symlinks": "Corpus files are placed as regular files, never through symlinks: "
+        "remove the symlink and fetch again.",
+    }
+    names = "|".join(re.escape(source.name) for source in sources)
+    source_boundary = re.compile(f"; (?=(?:{names}): )")
+    checked: dict[Path, bool] = {}
+    grouped: dict[str, list[str]] = {}
+    for path, reason in sorted(failed.items()):
+        if _symlink_on_path(repo, path, checked=checked) is not None:
+            kinds = {"Symlinks"}
+        else:
+            kinds = set()
+            # The store joins source failures with '; ', and an exception's own
+            # text can hold the same punctuation, so only a configured source's
+            # name starts a new failure. Keep an unknown source's reason even
+            # when another source has a known failure.
+            for detail in source_boundary.split(reason):
+                matched = set()
+                if _DISK_FULL.search(detail):
+                    matched.add("ENOSPC")
+                if detail == "no source holds it" or detail.endswith(": no source holds it"):
+                    matched.add("No source holds it")
+                if _AUTH_FAILURE.search(detail):
+                    matched.add("Authentication")
+                kinds.update(matched or {"Other errors"})
+        for kind in sorted(kinds):
+            grouped.setdefault(kind, []).append(reason)
+    summaries = [
+        f"{kind} ({len(grouped[kind])} file(s)): {hint}"
+        for kind, hint in hints.items()
+        if kind in grouped
+    ]
+    if "Other errors" in grouped:
+        reasons = sorted(set(grouped["Other errors"]))
+        more = len(reasons) - _MAX_OTHER_REASONS
+        summaries.append(
+            f"Other errors ({len(grouped['Other errors'])} file(s)): "
+            + "; ".join(reasons[:_MAX_OTHER_REASONS])
+            + (f"; and {more} more" if more > 0 else "")
+        )
+    return " ".join(summaries)
 
 
 class CorpusResolver:
@@ -528,13 +620,7 @@ class CorpusResolver:
             report.modified[:0] = in_place["modified"]
             if report.failed:
                 first, reason = next(iter(sorted(report.failed.items())))
-                hint = (
-                    "Corpus files are placed as regular files, never through symlinks: "
-                    "remove the symlink and fetch again."
-                    if _symlink_on_path(self.repo, first) is not None
-                    else "Check R2 credentials (~/.config/axiom-foundation/r2-credentials.json) "
-                    "or run `axiom-corpus-ingest corpus fetch` with network access."
-                )
+                hint = _fetch_failure_hints(self.repo, report.failed, self.sources)
                 raise CorpusNotMaterializedError(
                     f"{len(report.failed)} locked corpus file(s) could not be fetched; "
                     f"first: {first}: {reason}. {hint}"
