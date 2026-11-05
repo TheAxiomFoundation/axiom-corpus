@@ -240,10 +240,7 @@ _Enclosing = tuple[str, str, list[str], list[str] | None, bool]
 # A word without these holds nothing that a second reading could split.
 _READ_AGAIN = re.compile(r"""[\s;&|()`'"\\]""")
 _ASSIGNMENT = re.compile(r"[^\s=]+=")
-# The runner replaces ${{ ... }} before the shell starts, with text this check
-# can't see, so it reads like any other expansion.
-_GITHUB_EXPRESSION = re.compile(r"\$\{\{[^\n]{0,200}?\}\}")
-_ANSI_ESCAPES = {"n": "\n", "t": "\t", "r": "\r"}
+_ANSI_ESCAPES = {"n": "\n", "t": "\t"}
 
 
 class _ShellReader:
@@ -413,10 +410,8 @@ def _read_shell(text: str, *, by_line: bool = False) -> _ShellReader:
         elif char == "$" and text.startswith("(", i):
             reader.enter(")")
             i += 1
-        elif char == "$" and (expression := _GITHUB_EXPRESSION.match(text, i - 1)):
-            reader.extend_word("$")
-            i = expression.end()
         elif char == "$" and text.startswith("{", i):
+            # The word holds the bare $, for a variable or a ${{ ... }} the runner fills in.
             reader.extend_word("$")
             reader.enter("}")
             i += 1
@@ -448,8 +443,9 @@ def _shell_commands(text: str) -> Iterator[list[str]]:
 # `python -m uv sync` and `FOO=1 uvx ruff` count. A word can be a Python list item,
 # since a step may run Python: ["uv", "sync"] reads as `[uv,` and `sync]`.
 _PIP_PROGRAM = re.compile(r"pip(?:x|\d[\d.]*)?")
-# `python -mpip` and `python -Impip` spell `python -m pip`.
-_ATTACHED_MODULE = re.compile(r"^-[A-Za-z]*m(?=[A-Za-z])")
+# `python -mpip` and `python -Impip` spell `python -m pip`. A bare -m reads as no word,
+# so `uv run -m pytest` takes pytest as the command it runs.
+_ATTACHED_MODULE = re.compile(r"^-[A-Za-z]*m")
 # uv run's options that install packages, per `uv run --help`. -w may close a
 # cluster of short flags (-qw) or hold its value (-wboto3).
 _UV_RUN_WITH = re.compile(r"--with(?:-editable|-requirements)?(?:=|$)|-[A-Za-z]*w")
@@ -468,8 +464,8 @@ _UV_GRAMMAR = {
 
 
 def _program_name(word: str) -> str:
-    """A word without list punctuation, directories or the $ and braces around a variable."""
-    return word.strip("[],").rsplit("/", 1)[-1].strip("${}")
+    """A word without its directories, or the $ and braces around a variable."""
+    return word.rsplit("/", 1)[-1].strip("${}")
 
 
 def _command_installs(words: list[str]) -> bool:
@@ -730,6 +726,7 @@ _INSTALL_FORMS = (
     "python -mpip install boto3",
     "python3 -Impip install boto3",
     "python -muv sync",
+    "pip3.14 install boto3",
     # Quotes and escapes around options, and inside the values before them.
     'uv run --index-url "https://example.invalid/?a=\\"b" --with boto3 python',
     'uv run --index-url "a\\\\" --with boto3 python',
@@ -785,6 +782,8 @@ _NON_INSTALL_COMMANDS = (
     "uv run pytest --with boto3",
     "uv run -- echo --with boto3",
     "uv run --extra dev pytest --with boto3",
+    "uv run -m pytest --with boto3",
+    "pip-compile install",
     # A word spells a uv subcommand only directly after uv, or after uv's options.
     "uv run sync",
     "uv run --offline sync",
@@ -949,6 +948,8 @@ def test_a_word_cut_by_a_continuation_also_reads_as_two_words() -> None:
         'uv run $"--with" boto3 python',
         "bash -c $'echo ready\\nuv sync'",
         "bash -c $'echo ready\\tuv sync'",
+        # A backslash-newline inside double quotes.
+        'uv run "--wi\\\nth" boto3 python',
     ],
 )
 def test_install_forms_match_inside_quotes_that_balance(command: str) -> None:
@@ -989,6 +990,10 @@ def test_install_forms_match_inside_quotes_that_balance(command: str) -> None:
         "echo ${#x}; uv sync",
         "if [ ${#files[@]} -eq 0 ]; then uv sync; fi",
         "echo `# note`; uv sync",
+        # A substitution or quote that never closes, and a line ending in CRLF.
+        "uv sync $(cat",
+        'uv sync "$(cat',
+        "uv sync\r\n",
     ],
 )
 def test_install_forms_match_in_shell_structure(command: str) -> None:
@@ -1010,6 +1015,7 @@ def test_install_forms_match_in_shell_structure(command: str) -> None:
         'sudo sh -c "cd x && pip install -e ."',
         "bash -c \"bash -c 'uv sync'\"",
         "trap 'uv sync' EXIT",
+        "bash -c 'true;uvx'",
         # By design: the check can't tell which programs run their arguments.
         "echo 'uv sync'",
     ],
@@ -1045,6 +1051,7 @@ def test_redirects_are_not_the_command_uv_runs(command: str) -> None:
         "uv run $flags --with boto3 python",
         'uv run "${flags[@]}" --with boto3 python',
         "uv run $(cat flags) --with boto3 python",
+        'uv run "$(cat flags)" --with boto3 python',
         "uv run `cat flags` --with boto3 python",
         "uv run --python ${{ matrix.python }} --with boto3 python",
         "uv run ${{ inputs.flags }} --with boto3 python",
@@ -1065,7 +1072,7 @@ def test_a_word_after_an_option_may_be_its_value_so_the_options_go_on() -> None:
 @pytest.mark.parametrize("prefix", ["'", '"', "x\\", "$(", "<<EOF", "`", "(", ">", ">\\", "${{"])
 def test_a_misread_line_cannot_hide_an_install_on_the_next_line(prefix: str) -> None:
     """A quote the reader misjudges, such as one in a heredoc body, stops at its line's end."""
-    for command in _INSTALL_FORMS:
+    for command in (*_INSTALL_FORMS, "bash -c 'uv sync'"):
         for closer in ("", "'", '"'):
             text = f"{prefix}\n{command}\n{closer}"
             assert _installs(text), text
@@ -1143,6 +1150,22 @@ def test_the_reader_finds_the_commands_bash_runs(data: st.DataObject) -> None:
     assert sorted(_read_shell(script).commands) == sorted(_bash_commands(script)), script
 
 
+@pytest.mark.parametrize(
+    "script",
+    [
+        "f a2>/dev/null b",
+        "f 2>/dev/null b",
+        "f '2'>/dev/null b",
+        "f a>/dev/null b",
+        "f a 2>/dev/null>/dev/null b",
+        "f a>|/dev/null b",
+        "f a&>/dev/null",
+    ],
+)
+def test_the_reader_splits_a_redirect_from_the_word_before_it(script: str) -> None:
+    assert _read_shell(script).commands == _bash_commands(script)
+
+
 @given(words=st.lists(st.text(max_size=20), min_size=1, max_size=6))
 def test_the_reader_undoes_shlex_join(words: list[str]) -> None:
     assert _read_shell(shlex.join(words)).commands == [words]
@@ -1202,6 +1225,7 @@ def test_the_install_scan_stays_within_its_time_bound(text: str) -> None:
     [
         "bash --rcfile /some/path/python.rc {0}",
         "bash --rcfile python {0}",
+        "/bin/bash --rcfile python {0}",
         "bash --noprofile --norecurse -eo pipefail {0}",
         "sh -e {0}",
         "pwsh -command \". '{0}'\"",
@@ -1239,6 +1263,23 @@ def test_a_program_in_a_step_shell_makes_it_project_code(tmp_path: Path, shell: 
     )
     with pytest.raises(AssertionError, match="example: early"):
         test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow)
+
+
+def test_a_default_shell_counts_only_for_steps_that_run_commands(tmp_path: Path) -> None:
+    workflow = tmp_path / "shell.yml"
+    document = {
+        "defaults": {"run": {"shell": "python"}},
+        "jobs": {
+            "example": {
+                "steps": [
+                    {"uses": "actions/checkout@v4"},
+                    {"run": "bash .github/scripts/install-locked.sh --editable"},
+                ]
+            }
+        },
+    }
+    workflow.write_text(yaml.safe_dump(document), encoding="utf-8")
+    test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow)
 
 
 def test_a_step_shell_can_install_outside_the_script(tmp_path: Path) -> None:
