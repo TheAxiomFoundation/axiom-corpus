@@ -6,7 +6,10 @@ Invariants:
 * every failure kind is reported once with its file count, including several
   kinds in one file's source errors; the first 20 distinct unknown reasons
   survive verbatim, and the message counts the rest;
-* the same report, including a different insertion order, gives the same text.
+* the same report, including a different insertion order, gives the same text;
+* an exception's own text adds no failure kind and hides none, unless it names
+  a configured source after '; ' or puts the errno right after ': ';
+* one summary checks each directory its paths share once.
 """
 
 from __future__ import annotations
@@ -14,6 +17,7 @@ from __future__ import annotations
 import errno
 from collections import Counter
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 import pytest
@@ -63,6 +67,8 @@ AUTH_ERRORS = [
 DISK_REASON = f"OSError: {OSError(errno.ENOSPC, 'No space left on device')}"
 MISSING_REASON = "ContentStoreError: cannot obtain object (sha256 abc, 1 bytes): no source holds it"
 UNKNOWN_REASON = "RuntimeError: unexpected checksum failure"
+# ensure() takes source names from the resolver and never opens these stubs.
+SOURCES = [SimpleNamespace(name=name) for name in ("r2", "git", "mirror", "local")]
 
 
 def _source_failure(error: BaseException) -> str:
@@ -74,7 +80,7 @@ def _source_failure(error: BaseException) -> str:
 def _message(repo: Path, failed: dict[str, str]) -> str:
     report = FetchReport(failed=dict(failed))
     entries = [LockEntry(path=path, sha256="a" * 64, size=1) for path in failed]
-    resolver = CorpusResolver(repo, cache=ContentCache(repo / "cache"), sources=[])
+    resolver = CorpusResolver(repo, cache=ContentCache(repo / "cache"), sources=SOURCES)
     with patch.object(resolver_module, "materialize_resilient", return_value=report):
         if not failed:
             assert resolver.ensure(entries).ok
@@ -203,6 +209,112 @@ def test_ensure_counts_multiple_source_failure_kinds_once_per_file(tmp_path: Pat
     _assert_hints(message, "ENOSPC", "Authentication")
     assert "Authentication (1 file(s))" in message
     assert "ENOSPC (1 file(s))" in message
+
+
+def _kinds(message: str) -> set[str]:
+    return {kind for kind in (*HINTS, "Other errors") if f"{kind} (" in message}
+
+
+def _denied(text: str) -> ClientError:
+    return ClientError({"Error": {"Code": "AccessDenied", "Message": text}}, "GetObject")
+
+
+def _refused(filename: str) -> PermissionError:
+    return PermissionError(errno.EACCES, "Permission denied", filename)
+
+
+def _disk_full(filename: str) -> OSError:
+    return OSError(errno.ENOSPC, "No space left on device", filename)
+
+
+@pytest.mark.parametrize(
+    ("error", "kind"),
+    [
+        (_denied("request refused; RequestId: abc"), "Authentication"),
+        (
+            PartialCredentialsError(
+                provider="env; backend: metadata", cred_var="aws_secret_access_key"
+            ),
+            "Authentication",
+        ),
+        (_refused("/archive/[Errno 28].json"), "Other errors"),
+        (_disk_full("/cache; tmp: object"), "ENOSPC"),
+    ],
+    ids=["message-separator", "provider-separator", "quoted-errno", "filename-separator"],
+)
+def test_ensure_reads_the_kind_past_an_exceptions_own_text(
+    tmp_path: Path, error: BaseException, kind: str
+) -> None:
+    reason = _source_failure(error)
+    message = _message(tmp_path, {f"{PREFIX}/text.jsonl": reason})
+    assert _kinds(message) == {kind}, message
+    assert f"{kind} (1 file(s))" in message
+
+
+# An exception's text can still imitate the store in two ways, and these fragments
+# leave both out: none names a configured source, and no ": " can directly precede the errno.
+TEXT_FRAGMENTS = ["; ", ": ", "RequestId", "backend", "/[Errno 28].json", "a", " "]
+
+
+@settings(
+    max_examples=100, deadline=None, suppress_health_check=[HealthCheck.function_scoped_fixture]
+)
+@given(text=st.lists(st.sampled_from(TEXT_FRAGMENTS), max_size=8).map("".join))
+def test_generated_exception_text_leaves_the_kind_alone(tmp_path: Path, text: str) -> None:
+    for error, kind in [
+        (_denied(text), "Authentication"),
+        (_refused(text), "Other errors"),
+        (_disk_full(text), "ENOSPC"),
+    ]:
+        message = _message(tmp_path, {f"{PREFIX}/text.jsonl": _source_failure(error)})
+        assert _kinds(message) == {kind}, message
+
+
+def test_only_a_configured_source_starts_a_new_source_failure(tmp_path: Path) -> None:
+    failed = {f"{PREFIX}/text.jsonl": f"{_source_failure(AUTH_ERRORS[0])}; mirror: boom"}
+    message = _message(tmp_path, failed)
+    assert _kinds(message) == {"Authentication", "Other errors"}, message
+    entries = [LockEntry(path=path, sha256="a" * 64, size=1) for path in failed]
+    alone = CorpusResolver(
+        tmp_path, cache=ContentCache(tmp_path / "cache"), sources=[SimpleNamespace(name="r2")]
+    )
+    with (
+        patch.object(
+            resolver_module, "materialize_resilient", return_value=FetchReport(failed=dict(failed))
+        ),
+        pytest.raises(CorpusNotMaterializedError) as raised,
+    ):
+        alone.ensure(entries)
+    assert _kinds(str(raised.value)) == {"Authentication"}, raised.value
+
+
+def test_summary_checks_each_shared_directory_once(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    files = 50
+    failed = {f"{PREFIX}/{index:02}.jsonl": UNKNOWN_REASON for index in range(files)}
+    checks: Counter[Path] = Counter()
+    is_symlink = Path.is_symlink
+
+    def counted(path: Path) -> bool:
+        checks[path] += 1
+        return is_symlink(path)
+
+    monkeypatch.setattr(Path, "is_symlink", counted)
+    resolver_module._fetch_failure_hints(tmp_path, failed, SOURCES)
+    assert set(checks.values()) == {1}
+    assert len(checks) == files + len(PREFIX.split("/"))
+
+
+def test_ensure_counts_every_file_under_a_symlinked_directory(tmp_path: Path) -> None:
+    parent, leaf = PREFIX.rsplit("/", 1)
+    (tmp_path / parent).mkdir(parents=True)
+    (tmp_path / parent / leaf).symlink_to(tmp_path / "elsewhere")
+    failed = {f"{PREFIX}/{index}.jsonl": UNKNOWN_REASON for index in range(3)}
+    message = _message(tmp_path, failed)
+    _assert_hints(message, "Symlinks")
+    assert "Symlinks (3 file(s))" in message
+    assert "Other errors" not in message
 
 
 def test_ensure_retains_unknown_source_error_alongside_known_error(tmp_path: Path) -> None:

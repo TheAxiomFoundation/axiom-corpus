@@ -310,12 +310,21 @@ def _checkout_for(path: Path, physical: Path | None = None) -> Path | None:
     return find_repo_root(_existing_ancestor(physical))
 
 
-def _symlink_on_path(repo: Path, rel: str) -> Path | None:
-    """The first component of ``rel`` below ``repo`` that is a symlink (fetch refuses them)."""
+def _symlink_on_path(
+    repo: Path, rel: str, *, checked: dict[Path, bool] | None = None
+) -> Path | None:
+    """The first component of ``rel`` below ``repo`` that is a symlink (fetch refuses them).
+
+    A caller walking many paths passes ``checked``, so the directories they share
+    get one lstat each.
+    """
+    known = {} if checked is None else checked
     lexical = repo
     for part in rel.split("/"):
         lexical = lexical / part
-        if lexical.is_symlink():
+        if lexical not in known:
+            known[lexical] = lexical.is_symlink()
+        if known[lexical]:
             return lexical
     return None
 
@@ -351,8 +360,11 @@ _AUTH_FAILURE = re.compile(
     r"ExpiredToken|InvalidToken|TokenRefreshRequired|RequestExpired|401|403)\) "
     r"when calling the \w+ operation\b"
     r"|(?:^|: )Unable to locate credentials(?:$|; )"
-    r"|(?:^|: )Partial credentials found in [^;]+, missing: [^;]+"
+    r"|(?:^|: )Partial credentials found in .+, missing: .+"
 )
+
+# str(OSError) opens with its errno, so a filename that quotes one doesn't match.
+_DISK_FULL = re.compile(rf"(?:^|: )\[Errno {errno.ENOSPC}\]")
 
 
 # The store's reasons name each file's path and hash, so a failed fetch of the
@@ -361,7 +373,9 @@ _AUTH_FAILURE = re.compile(
 _MAX_OTHER_REASONS = 20
 
 
-def _fetch_failure_hints(repo: Path, failed: dict[str, str]) -> str:
+def _fetch_failure_hints(
+    repo: Path, failed: dict[str, str], sources: Iterable[ObjectSource]
+) -> str:
     """Summarize every failure kind once, counting files rather than sources.
 
     One reason can contain errors from several sources, so its file may count
@@ -379,17 +393,22 @@ def _fetch_failure_hints(repo: Path, failed: dict[str, str]) -> str:
         "Symlinks": "Corpus files are placed as regular files, never through symlinks: "
         "remove the symlink and fetch again.",
     }
+    names = "|".join(re.escape(source.name) for source in sources)
+    source_boundary = re.compile(f"; (?=(?:{names}): )")
+    checked: dict[Path, bool] = {}
     grouped: dict[str, list[str]] = {}
     for path, reason in sorted(failed.items()):
-        if _symlink_on_path(repo, path) is not None:
+        if _symlink_on_path(repo, path, checked=checked) is not None:
             kinds = {"Symlinks"}
         else:
             kinds = set()
-            # The store joins source failures with '; '. Keep an unknown
-            # source's reason even when another source has a known failure.
-            for detail in re.split(r"; (?=[\w-]+: )", reason):
+            # The store joins source failures with '; ', and an exception's own
+            # text can hold the same punctuation, so only a configured source's
+            # name starts a new failure. Keep an unknown source's reason even
+            # when another source has a known failure.
+            for detail in source_boundary.split(reason):
                 matched = set()
-                if f"[Errno {errno.ENOSPC}]" in detail:
+                if _DISK_FULL.search(detail):
                     matched.add("ENOSPC")
                 if detail == "no source holds it" or detail.endswith(": no source holds it"):
                     matched.add("No source holds it")
@@ -601,7 +620,7 @@ class CorpusResolver:
             report.modified[:0] = in_place["modified"]
             if report.failed:
                 first, reason = next(iter(sorted(report.failed.items())))
-                hint = _fetch_failure_hints(self.repo, report.failed)
+                hint = _fetch_failure_hints(self.repo, report.failed, self.sources)
                 raise CorpusNotMaterializedError(
                     f"{len(report.failed)} locked corpus file(s) could not be fetched; "
                     f"first: {first}: {reason}. {hint}"
