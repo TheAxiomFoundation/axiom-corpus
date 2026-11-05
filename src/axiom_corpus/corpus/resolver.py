@@ -10,9 +10,11 @@ from __future__ import annotations
 
 import contextlib
 import dataclasses
+import errno
 import functools
 import os
 import posixpath
+import re
 import stat
 import subprocess
 import sys
@@ -341,6 +343,77 @@ def _symlinked_error(rel: str, target: Path) -> CorpusNotMaterializedError:
     )
 
 
+_AUTH_FAILURE = re.compile(
+    # FetchReport retains str(exc), not ClientError.response. Match boto's
+    # error-code slot, including bare HTTP errors, rather than a code mentioned
+    # in an unrelated error's message or path.
+    r"An error occurred \((?:AccessDenied|InvalidAccessKeyId|SignatureDoesNotMatch|"
+    r"ExpiredToken|InvalidToken|TokenRefreshRequired|RequestExpired|401|403)\) "
+    r"when calling the \w+ operation\b"
+    r"|(?:^|: )Unable to locate credentials(?:$|; )"
+    r"|(?:^|: )Partial credentials found in [^;]+, missing: [^;]+"
+)
+
+
+# The store's reasons name each file's path and hash, so a failed fetch of the
+# whole corpus has one distinct reason per file. `corpus fetch` prints the same
+# number of FAILED lines.
+_MAX_OTHER_REASONS = 20
+
+
+def _fetch_failure_hints(repo: Path, failed: dict[str, str]) -> str:
+    """Summarize every failure kind once, counting files rather than sources.
+
+    One reason can contain errors from several sources, so its file may count
+    toward several kinds. The first _MAX_OTHER_REASONS distinct unknown reasons
+    appear verbatim, and the summary counts the rest. Symlinks keep their
+    existing remedy, irrespective of the store's reason for that path.
+    """
+    hints = {
+        "ENOSPC": "The disk ran out of space. Free disk space in the corpus worktree "
+        "and cache, then fetch again.",
+        "No source holds it": "No configured source has the object. Check which sources "
+        "are configured and whether an earlier fetch failed.",
+        "Authentication": "Check R2 credentials (~/.config/axiom-foundation/r2-credentials.json) "
+        "or run `axiom-corpus-ingest corpus fetch` with network access.",
+        "Symlinks": "Corpus files are placed as regular files, never through symlinks: "
+        "remove the symlink and fetch again.",
+    }
+    grouped: dict[str, list[str]] = {}
+    for path, reason in sorted(failed.items()):
+        if _symlink_on_path(repo, path) is not None:
+            kinds = {"Symlinks"}
+        else:
+            kinds = set()
+            # The store joins source failures with '; '. Keep an unknown
+            # source's reason even when another source has a known failure.
+            for detail in re.split(r"; (?=[\w-]+: )", reason):
+                matched = set()
+                if f"[Errno {errno.ENOSPC}]" in detail:
+                    matched.add("ENOSPC")
+                if detail == "no source holds it" or detail.endswith(": no source holds it"):
+                    matched.add("No source holds it")
+                if _AUTH_FAILURE.search(detail):
+                    matched.add("Authentication")
+                kinds.update(matched or {"Other errors"})
+        for kind in sorted(kinds):
+            grouped.setdefault(kind, []).append(reason)
+    summaries = [
+        f"{kind} ({len(grouped[kind])} file(s)): {hint}"
+        for kind, hint in hints.items()
+        if kind in grouped
+    ]
+    if "Other errors" in grouped:
+        reasons = sorted(set(grouped["Other errors"]))
+        more = len(reasons) - _MAX_OTHER_REASONS
+        summaries.append(
+            f"Other errors ({len(grouped['Other errors'])} file(s)): "
+            + "; ".join(reasons[:_MAX_OTHER_REASONS])
+            + (f"; and {more} more" if more > 0 else "")
+        )
+    return " ".join(summaries)
+
+
 class CorpusResolver:
     """Materialize locked corpus files into one worktree on demand."""
 
@@ -528,13 +601,7 @@ class CorpusResolver:
             report.modified[:0] = in_place["modified"]
             if report.failed:
                 first, reason = next(iter(sorted(report.failed.items())))
-                hint = (
-                    "Corpus files are placed as regular files, never through symlinks: "
-                    "remove the symlink and fetch again."
-                    if _symlink_on_path(self.repo, first) is not None
-                    else "Check R2 credentials (~/.config/axiom-foundation/r2-credentials.json) "
-                    "or run `axiom-corpus-ingest corpus fetch` with network access."
-                )
+                hint = _fetch_failure_hints(self.repo, report.failed)
                 raise CorpusNotMaterializedError(
                     f"{len(report.failed)} locked corpus file(s) could not be fetched; "
                     f"first: {first}: {reason}. {hint}"
