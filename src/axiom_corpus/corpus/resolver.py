@@ -512,10 +512,12 @@ class CorpusResolver:
                     self.sources,
                     verify=verify,
                     workers=self.workers,
-                    # A symlink on the path is deterministic, so retrying it only
-                    # delays the refusal the caller needs.
+                    # A symlink or a full disk is deterministic; another pass
+                    # only delays the refusal or fills the disk again.
                     retriable=lambda failed: all(
-                        _symlink_on_path(self.repo, path) is None for path in failed
+                        "[Errno 28]" not in reason
+                        and _symlink_on_path(self.repo, path) is None
+                        for path, reason in failed.items()
                     ),
                     # Call this module's `materialize`, which existing tests patch
                     # to simulate files vanishing mid-fetch.

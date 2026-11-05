@@ -337,6 +337,9 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         verify=args.verify,
         workers=args.workers,
         progress=None if args.json else _progress("corpus fetch"),
+        # Rollback can free space, but downloading the scope again fills it
+        # again. Leave a full-disk failure for the caller to resolve.
+        retriable=lambda failed: all("[Errno 28]" not in reason for reason in failed.values()),
     )
     _emit(
         args,
@@ -350,7 +353,8 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
     lines = [
         f"{selected} locked file(s) selected: {len(report.materialized)} fetched "
         f"({report.bytes_materialized:,} bytes), {len(report.present)} already present, "
-        f"{len(report.modified)} modified, {len(report.failed)} failed."
+        f"{len(report.modified)} modified, {len(report.failed)} failed, "
+        f"{len(report.rolled_back)} rolled back."
     ]
     if report.sources:
         lines.append(
@@ -362,6 +366,7 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
         )
     lines.extend(f"modified (left as is; --force replaces): {p}" for p in sorted(report.modified)[:20])
     lines.extend(f"FAILED {p}: {why}" for p, why in sorted(report.failed.items())[:20])
+    lines.extend(f"ROLLED BACK {p}" for p in sorted(report.rolled_back)[:20])
     return lines
 
 
