@@ -104,10 +104,17 @@ stays installed for the pull request's tests.
   dependency change without `uv lock` fails;
 - every locked package has a wheel for CPython 3.14 on manylinux x86_64,
   which the wheels-only install needs;
+- every release job's checkout sets `persist-credentials: false`, leaving no
+  token in `.git/config` when the install runs;
 - every job in every workflow under `.github/workflows/` that runs this
-  project's code installs it through the script first, and no step installs
-  packages another way (pip, pipx or uv in a `run:` block). This reads the
-  commands; it catches mistakes, not a workflow written to get around it.
+  project's code or Python installs it through the script first, including
+  inline code that imports only third-party packages;
+- every install form the pattern names counts as an install: `pip`, `pip3`
+  or `pipx` followed by `install`, `uv pip install`, `uv sync`, `uv add`,
+  `uv tool install`, `uv run --with` (also `--with=`, with intervening
+  options), `uvx`, and `uv tool run` in a `run:` block. Ordinary `uv run`
+  without `--with` stays allowed. The test reads commands; it catches
+  mistakes, not a workflow written to get around it.
 
 ## Changing a dependency
 

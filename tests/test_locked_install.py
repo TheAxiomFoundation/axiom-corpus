@@ -12,11 +12,11 @@ agreement in place:
 - ``uv lock --check``: uv.lock is up to date with pyproject.toml;
 - every locked package has a wheel for CI's platform, which install-locked.sh
   requires;
-- every job in .github/workflows/ that runs this project's code installs it
-  through install-locked.sh first, the release workflows included, and no step
-  installs packages any other way. That check reads the commands in ``run:``
-  blocks; it guards against mistakes, not against a workflow written to get
-  around it.
+- every release job's checkout leaves no token in .git/config;
+- every job in .github/workflows/ that runs this project's code or Python
+  installs it through install-locked.sh first, and every install form named
+  by _INSTALL counts as an install. These checks read ``run:`` blocks; they
+  guard against mistakes, not against a workflow written to get around them.
 
 Installed packages the lock does not name are not flagged: on a pull request
 CI installs the base commit's lock first (for the corpus guard) into the same
@@ -38,6 +38,8 @@ from pathlib import Path
 
 import pytest
 import yaml
+from hypothesis import given
+from hypothesis import strategies as st
 from packaging import tags
 from packaging.markers import Marker
 from packaging.utils import canonicalize_name, parse_wheel_filename
@@ -56,16 +58,27 @@ CI_GLIBC_MINOR = 39
 # mirror-release) moved to the lock in axiom-corpus#866, so the versions that
 # sign, publish, register, mirror and activate releases are the ones CI tests.
 WORKFLOWS_NOT_YET_LOCKED: set[str] = set()
-
-# A package install by pip (options may sit between `pip` and `install`), pipx
-# or uv.
-_INSTALL = re.compile(
-    r"\b(?:pip3?|pipx)\b[^\n;&|]*?\binstall\b|\buv\s+(?:pip\s+install|sync|add|tool\s+install)\b"
+RELEASE_WORKFLOWS = (
+    "publish.yml",
+    "activate-release.yml",
+    "register-release-object.yml",
+    "mirror-release.yml",
+    "export-release-artifact.yml",
 )
-# A step that runs this project's code or its checks.
+
+# Named install forms, including uv's ephemeral environments. Shell separators
+# end the uv run command; a backslash-newline continues it.
+_INSTALL = re.compile(
+    r"\b(?:pip3?|pipx)\b[^\n;&|]*?\binstall\b"
+    r"|\buv\s+(?:pip\s+install|sync|add|tool\s+(?:install|run))\b"
+    r"|\buv\s+run\b(?:[^\n;&|]|\\\n)*?(?<!\S)--with(?:[=\s]|$)"
+    r"|\buvx\b"
+)
+# A step that runs this project's code, its checks, or any Python code (which
+# may import only third-party packages, so no project name appears).
 _PROJECT_CODE = re.compile(
     r"\baxiom-corpus(?:-ingest)?\b|\bpytest\b|\bruff\b|\bmypy\b|\btowncrier\b"
-    r"|python3?\s+(?:-I\s+)?scripts/|\baxiom_corpus\b"
+    r"|\bpython3?\b|\baxiom_corpus\b"
 )
 
 
@@ -257,6 +270,151 @@ def test_only_the_listed_release_workflows_install_outside_the_lock() -> None:
         if _installs_outside_the_script(workflow)
     }
     assert bare == WORKFLOWS_NOT_YET_LOCKED
+
+
+@pytest.mark.parametrize("workflow_name", RELEASE_WORKFLOWS)
+def test_release_checkouts_do_not_persist_credentials(workflow_name: str) -> None:
+    document = yaml.safe_load((WORKFLOWS / workflow_name).read_text(encoding="utf-8"))
+    for job_name, job in document["jobs"].items():
+        for step in job.get("steps", []):
+            if str(step.get("uses", "")).startswith("actions/checkout@"):
+                assert step.get("with", {}).get("persist-credentials") is False, (
+                    f"{workflow_name}: {job_name} checkout must set persist-credentials: false"
+                )
+
+
+@pytest.mark.parametrize(
+    "run",
+    [
+        'python -c "import boto3"',
+        'python3 -I -c "import boto3"',
+        "python <<'PY'\nimport boto3\nPY\n",
+        "python - <<'PY'\nimport boto3\nPY\n",
+        "python3 - <<'PY'\nimport boto3\nPY\n",
+        "python third_party_only.py",
+    ],
+)
+def test_python_steps_require_the_locked_install(tmp_path: Path, run: str) -> None:
+    workflow = tmp_path / "python.yml"
+    workflow.write_text(
+        yaml.safe_dump(
+            {
+                "jobs": {
+                    "example": {
+                        "steps": [
+                            {"name": "early Python", "run": run},
+                            {"run": "bash .github/scripts/install-locked.sh --editable"},
+                        ]
+                    }
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(AssertionError, match="example: early Python"):
+        test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow)
+
+
+def test_mirror_dependency_import_cannot_move_before_the_locked_install(tmp_path: Path) -> None:
+    document = yaml.safe_load((WORKFLOWS / "mirror-release.yml").read_text(encoding="utf-8"))
+    steps = document["jobs"]["mirror"]["steps"]
+    gate = next(
+        step
+        for step in steps
+        if step.get("name") == "Fetch canonical object and run deterministic mirror gate"
+    )
+    assert "import boto3\n" in gate["run"]
+    gate["run"] = gate["run"].replace("import boto3\n", "")
+    install_index = next(
+        index for index, step in enumerate(steps) if "install-locked.sh" in step.get("run", "")
+    )
+    steps.insert(
+        install_index,
+        {
+            "name": "Import mirror dependency before install",
+            "run": "python - <<'PY'\nimport boto3\nPY\n",
+        },
+    )
+    workflow = tmp_path / "mirror-release.yml"
+    workflow.write_text(yaml.safe_dump(document), encoding="utf-8")
+    with pytest.raises(AssertionError, match="mirror: Import mirror dependency before install"):
+        test_every_job_that_runs_project_code_installs_it_from_the_lock(workflow)
+
+
+# Each named form gets its own examples and property test, so omitting one
+# alternative cannot be hidden by Hypothesis sampling a different form.
+_INSTALL_FORMS = (
+    "pip install boto3",
+    "pip3 -q install boto3",
+    "pipx install ruff",
+    "uv pip install boto3",
+    "uv sync --extra dev",
+    "uv add boto3",
+    "uv tool install ruff",
+    "uv run --with boto3 python -c 'import boto3'",
+    "uv run --with=boto3 python -c 'import boto3'",
+    "uv run --offline --with boto3 python -c 'import boto3'",
+    "uv run \\\n  --with boto3 python -c 'import boto3'",
+    "uvx ruff check .",
+    "uv tool run ruff check .",
+)
+
+
+@pytest.mark.parametrize("command", _INSTALL_FORMS)
+def test_each_named_install_form_matches(command: str) -> None:
+    assert _INSTALL.search(command)
+
+
+@pytest.mark.parametrize("command", _INSTALL_FORMS)
+@given(prefix=st.text(max_size=100), suffix=st.text(max_size=100))
+def test_install_forms_match_in_surrounding_shell_text(
+    command: str, prefix: str, suffix: str
+) -> None:
+    assert _INSTALL.search(f"{prefix}\n{command}\n{suffix}")
+
+
+_NON_INSTALL_COMMANDS = (
+    "uv run --extra dev pytest -q",
+    "uv run python scripts/check_release_gate.py",
+    "uv run --extra dev python -m towncrier build --draft --version 0.0.0",
+    "uv run axiom-corpus-ingest --help",
+    "uv run --without dev python -c 'import boto3'",
+    "uv run echo ok; echo --with boto3",
+    "uv run echo ok && echo --with boto3",
+    "uv run echo ok | cat --with boto3",
+    "uv run echo ok\necho --with boto3",
+    "uvxfoo ruff",
+    "uv tool list",
+    "pip list",
+    "pip3 --version",
+    "pipx list",
+    "echo ready",
+    "git status --short",
+)
+
+
+@pytest.mark.parametrize("command", _NON_INSTALL_COMMANDS)
+def test_non_install_commands_stay_allowed(command: str) -> None:
+    assert not _INSTALL.search(command)
+
+
+@given(
+    commands=st.lists(
+        st.tuples(
+            st.sampled_from(_NON_INSTALL_COMMANDS),
+            # Independently generated arguments cannot spell an install form.
+            st.text(alphabet="abcxyz0123456789_./-", max_size=30),
+        ),
+        min_size=1,
+        max_size=10,
+    ),
+    separator=st.sampled_from(("\n", "; ", " && ", " || ", " | ")),
+)
+def test_generated_commands_without_install_forms_stay_allowed(
+    commands: list[tuple[str, str]], separator: str
+) -> None:
+    run = separator.join(f"{command} '{argument}'" for command, argument in commands)
+    assert not _INSTALL.search(run)
 
 
 @pytest.mark.parametrize(
