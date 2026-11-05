@@ -221,10 +221,14 @@ def _remove_captions(elem):
 
 @pytest.mark.parametrize("appendix", [False, True])
 def test_repeated_labeled_captions_do_not_create_paragraph_anchors(appendix):
-    # 26 CFR 1.412(c)(1)-2 repeats (A) captions after its (a) paragraph text.
+    # 26 CFR 1.412(c)(1)-2 repeats (A) captions after its (a) paragraph text. An
+    # open (a)(1)(i) makes "(A)" the next paragraph label the outline expects, so
+    # without the caption mask the first caption would become a/1/i/A.
     elem = ET.fromstring(
         '<DIV8 N="§ 1.412(c)(1)-2" TYPE="SECTION">'
         '<P>(a) Computation of the charge.</P>'
+        '<P>(1) In general.</P>'
+        '<P>(i) Net shortfall.</P>'
         '<TABLE><CAPTION><P>(A) Computation of Net Shortfall Charge</P></CAPTION>'
         '<TR><TD>First computation</TD></TR></TABLE>'
         '<TABLE><CAPTION><P>(A) Computation of Net Shortfall Charge</P></CAPTION>'
@@ -235,7 +239,7 @@ def test_repeated_labeled_captions_do_not_create_paragraph_anchors(appendix):
     _remove_captions(elem)
 
     assert actual == _anchor_signature(elem, appendix=appendix)
-    assert [path.rsplit("/", 1)[-1] for path, *_ in actual] == ["a", "b"]
+    assert [path.rsplit("/", 1)[-1] for path, *_ in actual] == ["a", "1", "i", "b"]
 
 
 _caption_label = st.sampled_from(["a", "A", "B", "C", "1", "2", "i", "ii"])
