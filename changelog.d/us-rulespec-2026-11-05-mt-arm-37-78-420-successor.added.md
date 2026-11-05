@@ -1,0 +1,1 @@
+Added the immutable `us-rulespec-2026-11-05-mt-arm-37-78-420-successor` release selector: `us-rulespec-2026-10-29-ecfr-section-text` with `us-mt/regulation/2026-07-13-recovery` swapped for its signed successor, which carries ARM 37.78.420 without the rules.mt.gov page chrome. Publish it only as a pin release for rulespec-us; do not activate it.
