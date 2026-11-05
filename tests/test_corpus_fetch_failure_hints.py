@@ -7,8 +7,10 @@ Invariants:
   kinds in one file's source errors; the first 20 distinct unknown reasons
   survive verbatim, and the message counts the rest;
 * the same report, including a different insertion order, gives the same text;
-* an exception's own text adds no failure kind and hides none, unless it names
-  a configured source after '; ' or puts the errno right after ': ';
+* an exception's own text adds no failure kind and hides none, unless it copies
+  a shape the store or botocore writes: a configured source's name after '; ',
+  the errno right after ': ', a trailing ': no source holds it', or botocore's
+  authentication text;
 * one summary checks each directory its paths share once.
 """
 
@@ -270,6 +272,26 @@ def test_generated_exception_text_leaves_the_kind_alone(tmp_path: Path, text: st
         assert _kinds(message) == {kind}, message
 
 
+@pytest.mark.parametrize(
+    ("reason", "kind"),
+    [
+        ("RuntimeError: request refused: no source holds it", "No source holds it"),
+        (
+            "ClientError: An error occurred (ServiceUnavailable) when calling the GetObject "
+            "operation: An error occurred (AccessDenied) when calling the GetObject operation",
+            "Authentication",
+        ),
+    ],
+    ids=["no-source-suffix", "quoted-auth-error"],
+)
+def test_an_exception_that_copies_a_known_shape_reads_as_that_kind(
+    tmp_path: Path, reason: str, kind: str
+) -> None:
+    # str(exc) is all the store keeps, so these two read as the shape they copy.
+    message = _message(tmp_path, {f"{PREFIX}/text.jsonl": reason})
+    assert _kinds(message) == {kind}, message
+
+
 def test_only_a_configured_source_starts_a_new_source_failure(tmp_path: Path) -> None:
     failed = {f"{PREFIX}/text.jsonl": f"{_source_failure(AUTH_ERRORS[0])}; mirror: boom"}
     message = _message(tmp_path, failed)
@@ -286,6 +308,18 @@ def test_only_a_configured_source_starts_a_new_source_failure(tmp_path: Path) ->
     ):
         alone.ensure(entries)
     assert _kinds(str(raised.value)) == {"Authentication"}, raised.value
+
+
+@pytest.mark.parametrize("name", ["r2+mirror.[x]", "mirror|backup", "mirror(1)", "x[y"])
+def test_a_source_name_with_regex_syntax_still_starts_a_new_failure(
+    tmp_path: Path, name: str
+) -> None:
+    reason = f"{_source_failure(AUTH_ERRORS[0])}; {name}: {UNKNOWN_REASON}"
+    sources = [SimpleNamespace(name="r2"), SimpleNamespace(name=name)]
+    message = resolver_module._fetch_failure_hints(
+        tmp_path, {f"{PREFIX}/text.jsonl": reason}, sources
+    )
+    assert _kinds(message) == {"Authentication", "Other errors"}, message
 
 
 def test_summary_checks_each_shared_directory_once(
