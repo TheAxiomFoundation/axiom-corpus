@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import contextlib
 import dataclasses
-import errno
 import functools
 import os
 import posixpath
@@ -33,6 +32,7 @@ from axiom_corpus.corpus.content_store import (
     destination_state,
     materialize,
     materialize_resilient,
+    reports_disk_full,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -363,10 +363,6 @@ _AUTH_FAILURE = re.compile(
     r"|(?:^|: )Partial credentials found in .+, missing: .+"
 )
 
-# str(OSError) opens with its errno, so a filename that quotes one doesn't match.
-_DISK_FULL = re.compile(rf"(?:^|: )\[Errno {errno.ENOSPC}\]")
-
-
 # The store's reasons name each file's path and hash, so a failed fetch of the
 # whole corpus has one distinct reason per file. `corpus fetch` prints the same
 # number of FAILED lines.
@@ -408,7 +404,7 @@ def _fetch_failure_hints(
             # when another source has a known failure.
             for detail in source_boundary.split(reason):
                 matched = set()
-                if _DISK_FULL.search(detail):
+                if reports_disk_full(detail):
                     matched.add("ENOSPC")
                 if detail == "no source holds it" or detail.endswith(": no source holds it"):
                     matched.add("No source holds it")
@@ -607,7 +603,7 @@ class CorpusResolver:
                     # A symlink or a full disk is deterministic; another pass
                     # only delays the refusal or fills the disk again.
                     retriable=lambda failed: all(
-                        "[Errno 28]" not in reason
+                        not reports_disk_full(reason)
                         and _symlink_on_path(self.repo, path) is None
                         for path, reason in failed.items()
                     ),

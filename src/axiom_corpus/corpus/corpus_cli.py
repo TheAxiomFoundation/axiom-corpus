@@ -26,6 +26,7 @@ from axiom_corpus.corpus.content_store import (
     destination_state,
     ensure_cached,
     materialize_resilient,
+    reports_disk_full,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -339,7 +340,7 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         progress=None if args.json else _progress("corpus fetch"),
         # Rollback can free space, but downloading the scope again fills it
         # again. Leave a full-disk failure for the caller to resolve.
-        retriable=lambda failed: all("[Errno 28]" not in reason for reason in failed.values()),
+        retriable=lambda failed: not any(reports_disk_full(reason) for reason in failed.values()),
     )
     _emit(
         args,

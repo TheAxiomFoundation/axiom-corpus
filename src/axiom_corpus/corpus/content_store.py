@@ -21,6 +21,7 @@ import math
 import os
 import queue
 import random
+import re
 import shutil
 import signal
 import subprocess
@@ -1297,6 +1298,18 @@ def _install_sigint_flag(flag: list[bool]) -> Any:
 
 
 FETCH_RETRY_DELAYS: tuple[float, ...] = (1.0, 4.0, 10.0)
+
+# str(OSError) opens with its errno, so a filename that quotes one doesn't match.
+_DISK_FULL = re.compile(rf"(?:^|: )\[Errno {errno.ENOSPC}\]")
+
+
+def reports_disk_full(reason: str) -> bool:
+    """True when a fetch failure reason holds an ENOSPC ``OSError``.
+
+    Hints and retry refusals share this test, so a path that quotes
+    ``[Errno 28]`` neither names a full disk nor stops a retry.
+    """
+    return _DISK_FULL.search(reason) is not None
 
 
 def materialize_resilient(

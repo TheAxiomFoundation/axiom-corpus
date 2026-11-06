@@ -313,10 +313,12 @@ def test_first_pass_enospc_asks_for_no_more_objects(
             workers=1,
             verify=True,
             delays=(0, 0, 0),
-            retriable=lambda failed: all("[Errno 28]" not in reason for reason in failed.values()),
+            retriable=lambda failed: not any(
+                content_store.reports_disk_full(reason) for reason in failed.values()
+            ),
         )
 
-        assert any("[Errno 28]" in reason for reason in report.failed.values())
+        assert any(content_store.reports_disk_full(reason) for reason in report.failed.values())
         assert not report.ok
         assert source.asks == Counter({file.path: 1 for file in files}), "no second pass"
         _assert_invariants(repo, files, report)

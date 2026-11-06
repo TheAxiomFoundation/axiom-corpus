@@ -366,3 +366,57 @@ def test_resolver_full_disk_stops_before_a_second_pass(
 
     assert source.asks == list(BODIES), "the resolver must combine ENOSPC with its symlink refusal"
     assert not any((repo / p).exists() for p in BODIES)
+
+
+class QuotedErrnoSource(ScheduledSource):
+    """Each file's first ask fails transiently, under a path that quotes ENOSPC."""
+
+    def open(self, entry: LockEntry) -> Iterator[bytes]:
+        self.asks.append(entry.path)
+        self.counts[entry.path] += 1
+        if self.counts[entry.path] == 1:
+            raise OSError(
+                errno.ECONNRESET,
+                "Connection reset by peer",
+                f"/archive/[Errno {errno.ENOSPC}]/{entry.path}",
+            )
+        return iter([BODIES[entry.path]])
+
+
+def test_cli_retries_a_failure_whose_path_quotes_enospc(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    repo = _repo(tmp_path)
+    source = QuotedErrnoSource({})
+
+    status = _cli(repo, source, monkeypatch)
+
+    assert status == 0
+    assert source.counts == Counter(dict.fromkeys(BODIES, 2))
+    assert all((repo / path).read_bytes() == body for path, body in BODIES.items())
+    assert "0 failed, 0 rolled back." in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("cached", [False, True])
+def test_resolver_retries_a_failure_whose_path_quotes_enospc(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    cached: bool,
+) -> None:
+    repo = _repo(tmp_path)
+    source = QuotedErrnoSource({})
+    resolver = CorpusResolver(
+        repo,
+        cache=ContentCache(tmp_path / "cache"),
+        sources=[source],
+        workers=1,
+    )
+    if not cached:
+        monkeypatch.setattr(resolver, "cache", None)
+
+    resolver.ensure(_entries())
+
+    assert source.counts == Counter(dict.fromkeys(BODIES, 2))
+    assert all((repo / path).read_bytes() == body for path, body in BODIES.items())
