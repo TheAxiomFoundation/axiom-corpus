@@ -1,0 +1,1 @@
+Register the current codified Connecticut General Statutes Section 19a-754c (Covered Connecticut program) as a manifest-driven statute source at citation path us-ct/statute/19a-754c, supporting the rulespec-us Covered Connecticut premium-subsidy encoding and the PolicyEngine-US oracle comparison.
