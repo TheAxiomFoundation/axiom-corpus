@@ -152,15 +152,18 @@ consumers are affected:
 corpus, database or git history, in the required `test (3.14)` job
 (`tests/test_selector_lineage_repository.py`). A selector's **predecessor** is
 the first tracked selector its description names ("Successor to <name>",
-"after <name>", "<name>'s scope set"). The check fails on:
+"after <name>", "<name>'s scope set"). If it names none, a recorded
+`succession` can identify the single tracked selector its prose describes.
+All rules use that resolved predecessor, including the walk to a line's newest
+selectors (`line_heads`). The check fails on:
 
 | Finding | Rule |
 | --- | --- |
 | dropped pair | the selector selects no version of a pair its predecessor carries, so the pair's last version leaves the line |
-| fork | two or more selectors name the same predecessor, so at most one of them is the newest cut of the line |
-| ended branch | the selector names a successor of a recorded fork that the line did not continue through |
-| unnamed predecessor | the description names no tracked selector, and no record says the selector is the first cut of a line |
-| cycle | selectors name each other as predecessors |
+| fork | two or more selectors resolve to the same predecessor, so at most one of them is the newest cut of the line |
+| ended branch | the selector succeeds a branch of a recorded fork that the line did not continue through |
+| unnamed predecessor | no description or succession record connects the selector to a tracked predecessor, and no record says it is the first cut of a line |
+| cycle | resolved predecessor edges form a cycle |
 
 The comparison is per pair. A pair the successor still carries, with any of its
 versions, is not a drop: swapping `us-ny/statute/2026-06-05-nyc-admin-code` for
@@ -193,75 +196,158 @@ mechanical. Other comparisons fail:
   `us-rulespec-2026-10-22-ca-concurrent-versions`, which the SSI POMS cut already
   succeeded. Neither branch carries the other's additions. Once such a fork is
   recorded, the ended-branch rule refuses a cut that extends its dead branch.
-- A cut that names no tracked selector would be compared with nothing, so the
-  check fails closed: it has to name its predecessor, or be recorded as the
-  first cut of a line.
+- A cut with no resolved predecessor would be compared with nothing, so the
+  check fails closed: it has to name its predecessor, have a succession record
+  supported by unambiguous prose, or be recorded as the first cut of a line.
 
-At main `980e39792` the check reads 161 selectors. 61 name another tracked
-selector, and in each the first one named is its predecessor. The other 100
-name none: they are first cuts of their lines, or describe their predecessor
-without naming it, as the UK cuts of 2026-08-08 to 2026-09-07 ("2026-08-07 set
-plus ...") and the DE Kindergeld cuts do. It reports one dropped pair
-(`uk-rulespec-2026-08-02` retires the `uk-shropshire` manual by omission, as its
-description says) and six forks. None of the three 2026-10-25 cuts drops a
-pair. They form a line: SSI POMS, then NYC chapter 127 and Title 52, then
-Montana separate filing.
+When the guard began, main `980e39792` held 161 selectors: 61 named another
+tracked selector and 100 named none. Its baseline recorded those 100 as first
+cuts, one dropped pair (`uk-rulespec-2026-08-02` retires the `uk-shropshire`
+manual by omission, as its description says), and six forks. Those dated
+2026-11-02 entries remain an unchanged record of what main held then. None of
+the three 2026-10-25 cuts drops a pair. They form a line: SSI POMS, then NYC
+chapter 127 and Title 52, then Montana separate filing.
 
-`manifests/selector-lineage-baseline.yaml` records what is allowed. Every
-selector an entry names is pinned to its digest
-(`axiom_corpus.release.manifest.selector_sha256`) under `selector_digests`, so
-an entry holds only for those exact selectors:
+With the 2026-11-05 prose audit, the checkout holds 162 selectors. Of these,
+62 name a tracked predecessor, 49 have a recorded succession, and 51 remain
+roots. The 49 recorded edges replace 49 historical first-cut claims without
+removing them. In particular, the five UK edges from 2026-08-08 through
+2026-09-07 now connect their "2026-08-07 set plus" style descriptions to the
+named edges of the newer UK cuts. A copy from 2026-08-07 is therefore a fork,
+and its finding points through the connected line to
+`uk-rulespec-2026-11-02-uc-retirement-pension-income`.
 
+The audit also establishes DE Kindergeld successions where words such as
+"Preserves all seventeen civil-release scopes" identify one tracked base.
+Their names alone do not establish a single line. Four prose bases remain
+ambiguous: `de-rulespec-2026-09-08-kindergeld-frontier` preserves "the July
+pinned scopes", `-2026-09-09-kindergeld-adult-services` retains "all preceding
+DE release scopes", `-2026-09-09-kindergeld-bfh-decisions` retains "prior
+scopes", and `-2026-09-09-kindergeld-dakg` retains "all preceding DE scopes".
+No edge is guessed for them. The `-2026-09-15-kindergeld-eu-priority-references`
+and `-2026-09-15-kindergeld-priority-followup` descriptions specify separate
+source additions without stating a base, so they also stay separate roots.
+
+A selector that derives some of a line's pairs and leaves the others unchanged
+stays outside that line, and we record it in the baseline as a first cut, not
+as a succession. The description of `us-az-snap-ece-2026-10-23-manual-union`
+reads "Preserves every Arizona manual scope in the active W7 union" and "Other
+serving jurisdiction/document-class pairs are deliberately unchanged." The
+selector derives `us-az/manual` alone, so it stays a 2026-11-02 first cut and
+doesn't advance the W7 union line.
+
+Comparing the newly connected cuts exposes two forks, for totals of one
+recorded drop and eight recorded forks. The additional forks are:
+
+- `de-rulespec-2026-09-08-kindergeld-civil` has the context and parentage cuts,
+  both saying "Preserves all seventeen civil-release scopes". The later
+  2025-history cut says "Preserves all twenty context-release scopes", so the
+  recorded line continues through context.
+- `us-rulespec-2026-07-19-dedup` has the PIT-recovery cut, described as
+  "unpublished", and the SNAP cut, described as "Successor to the collision-free
+  RuleSpec US release". The Georgia PIT cut explicitly succeeds PIT-recovery,
+  and the later `us-rulespec-2026-07-24-snap-cms-pit-union` says it is "restoring
+  every collision-free SNAP scope from us-rulespec-snap-2026-07-21". The recorded
+  line continues through PIT; the later union restores the other branch's SNAP
+  content.
+
+`manifests/selector-lineage-baseline.yaml` records both predecessor evidence
+and the release decisions the check allows. Every selector an entry names is
+pinned to its digest (`axiom_corpus.release.manifest.selector_sha256`) under
+`selector_digests`, so an entry holds only for those exact selectors:
+
+- `successions`: the `selector`, its `predecessor`, `listed_on` and a `reason`
+  quoting the description's words that identify that predecessor. Both sides
+  require digest pins. These records connect historical prose; new cuts name
+  their predecessor directly.
 - `dropped_pairs`: the `selector`, its `predecessor` and the `pair`, with
   `replaced_by` listing the scopes the selector selects that carry the pair's
   text, or a `reason` that says why nothing does;
-- `forks`: every selector that names the `predecessor` (a further successor is a
-  new fork), and under `continued_by` the ones the line went on through;
-- `first_cuts`: selectors that name no tracked predecessor.
+- `forks`: every selector that resolves to the `predecessor` (a further successor
+  is a new fork), and under `continued_by` the ones the line went on through;
+- `first_cuts`: dated claims that selectors have no tracked predecessor. A later
+  succession supersedes the claim for its selector while preserving the entry.
 
 Each entry has `listed_on` and a `reason`, and entries are append-only: a
 decision made on a later day is a new entry, not an edit of an entry from an
-earlier day. A recorded fork can carry later entries for the same
-predecessor, each adding successors, `continued_by` branches or both, and the
-check reads a predecessor's entries as their union. Decisions about one fork
-made on one day share one entry. The loader requires `selector_digests` in name
-order and fork entries in order of predecessor, then `listed_on`, so a later
-entry goes right after its predecessor's earlier ones. It refuses a second
-entry for one predecessor on the same date, a later entry that repeats a branch
-an earlier one records, and one that adds nothing. The entries listed on
-2026-11-02 are what main held when the check began: the drop, the six forks
-and the 100 first cuts. The repository test fixes what those entries record
-(the drop's selector, predecessor and pair, and each fork's successors and
-`continued_by`) and how many first cuts are listed on that date. It checks
-nothing listed later, so review keeps later entries from being edited. An
-entry that no longer matches a finding, or whose pinned selector changed,
-fails the check. The fix for a changed selector is to undo the change, not to
-record the finding again. A drop the baseline does not record, by or from a
-selector pinned at a digest it no longer has, such as a successor that lacks a
-pair the changed selector gained, says it may follow from that change and gives
-the same fix: the old digest does not say which pairs the selector had. The
-digest leaves out the description, so a drop entry also names the predecessor
-it was written for.
+earlier day. Successions are sorted by selector, with at most one per selector;
+a succession superseding a first-cut claim must be listed on a later date.
+The loader refuses a record if either selector file is absent, either pin is
+missing, or its edge would close a cycle, including one with named edges.
+A description that already names a tracked predecessor always wins: adding a
+succession for it fails the check, even if both name the same base. Omit that
+redundant new record; if an established record was invalidated by editing its
+selector's description, restore the reviewed description. Changing either
+pinned selector also fails, with instructions to undo the change.
+
+A recorded fork can carry later entries for the same predecessor, each adding
+successors, `continued_by` branches or both, and the check reads a predecessor's
+entries as their union. Decisions about one fork made on one day share one
+entry. The loader requires `selector_digests` in name order and fork entries in
+order of predecessor, then `listed_on`, so a later entry goes right after its
+predecessor's earlier ones. It refuses a second entry for one predecessor on
+the same date, a later entry that repeats a branch an earlier one records, and
+one that adds nothing.
+
+The optional `successions` section extends the existing v1 schema: no existing
+field changes meaning, and older baselines without the section still load.
+An old strict loader rejects the new field instead of silently ignoring the
+recorded edges. The schema version therefore stays
+`axiom-corpus/selector-lineage-baseline/v1`.
+
+The repository test fixes what the 2026-11-02 entries record (the drop's
+selector, predecessor and pair, each fork's successors and `continued_by`, and
+the count of 100 first cuts), even after later successions replace their active
+root claims. Later entries remain subject to append-only review.
+`tests/test_selector_lineage_prose_repository.py` additionally fixes the
+2026-11-05 succession evidence: its exact quoted words, resolved predecessor,
+and both selectors' full description hashes and selector digest pins. The
+selector digest omits descriptions, so the extra description hashes make an
+edit to either side of the reviewed prose fail. Later succession records must
+also quote the selector's description and pin both sides.
+
+An allowance that no longer matches a finding, or whose pinned selector
+changed, fails the check. The fix for a changed selector is to undo the change,
+not to record the finding again. A drop the baseline does not record, by or
+from a selector pinned at a digest it no longer has, such as a successor that
+lacks a pair the changed selector gained, says it may follow from that change
+and gives the same fix: the old digest does not say which pairs the selector
+had. A drop entry also names the predecessor it was written for.
 
 What the check does not catch:
 
-- a document leaving a pair the cut still carries (above);
-- a cut that names a selector another cut superseded without naming it: a new
-  UK cut that names `uk-rulespec-2026-08-07` is compared with it, not with the
-  newest UK cut, because the cuts from 2026-08-08 to 2026-09-07 describe their
-  predecessors without naming them, and the DE Kindergeld cuts do the same
+- a document or version leaving a pair the cut still carries: it compares
+  pairs, not the versions within a pair (above);
+- a pair-scoped derivation outside a line. A full cut of the W7 union line
+  that names `us-rulespec-2026-10-13-w7-bundle-gaps-union` and carries
+  `us-az/manual` at W7's versions passes. Activating it would repoint
+  `us-az/manual` to W7's versions and drop the dated ECE scope Arizona added:
+  activation replaces each carried pair's pointer
+  (`supabase/migrations/20260719043000_profiled_release_activation.sql:248`,
+  `:276`), and serving reads that pointer's selected versions
+  (`supabase/migrations/20260718193000_scope_level_activation.sql:156`). The
+  next full cut of that line must take `us-az/manual`'s scopes from
+  `us-az-snap-ece-2026-10-23-manual-union`, including
+  `us-az/manual/2026-10-09-az-des-snap-ece-dated-authority`, and say so in its
+  description;
+- a selector whose intended succession is connected by neither a named
+  predecessor nor a recorded edge. A first-cut allowance can leave it
+  disconnected, so a later cut from its real but unconnected base may still
+  pass. Ambiguous prose such as the four DE descriptions above does not justify
+  guessing an edge; a reviewer must resolve it before recording one
   ([#970](https://github.com/TheAxiomFoundation/axiom-corpus/issues/970));
 - a description that names some other selector before its predecessor: the
   check compares the cut with that selector instead, so it reports what that
   selector carries and the cut lacks, and misses what the real predecessor
-  carries.
+  carries. A recorded succession cannot override that named edge.
 
 ### Cutting a successor
 
 1. Derive the cut from the newest selector of its line. If you cut from an
-   older one that another cut already succeeds, or from a branch a recorded
-   fork's line ended, the check fails, and the advice under the finding names
-   the selector to build on, in one of three forms:
+   older one that another cut already succeeds through a named or recorded
+   edge, or from a branch a recorded fork's line ended, the check fails, and the
+   advice under the finding names the selector to build on, in one of three
+   forms:
    - `Cut … from <name>, the newest selector of the line …`, when it finds
      exactly one;
    - `… the newest selector of the line that continued through <branches>
@@ -271,15 +357,18 @@ What the check does not catch:
      a fork the baseline does not record, where the new cut is one of them.
 
    A change that adds more than one cut to a line cuts them one after another,
-   each from the one before. A stale base that no tracked selector names
-   passes (see what the check does not catch, above).
+   each from the one before. A stale base can still pass if its real successor
+   has no named or recorded edge connecting it (see the limitations above).
 2. Name it first in the description: `Successor to <name>.` A selector that
-   starts a new line is recorded under `first_cuts` instead.
+   starts a new line is recorded under `first_cuts` instead. For a historical
+   selector whose unambiguous prose already states its base, add a dated
+   `successions` entry quoting those words and pinning both sides; preserve any
+   earlier first-cut claim. Ambiguous prose needs a review decision first.
 3. Run
-   `AXIOM_CORPUS_PARTIAL_TESTS=1 uv run --extra dev python -m pytest -q tests/test_selector_lineage_repository.py`.
-   It reads no corpus bytes, so it runs on a checkout without them. A failure
-   prints each finding, the usual fix and the baseline entry that would
-   record the finding on purpose.
+   `AXIOM_CORPUS_PARTIAL_TESTS=1 uv run --extra dev python -m pytest -q tests/test_selector_lineage_repository.py tests/test_selector_lineage_prose_repository.py`.
+   Both files read no corpus bytes, so they run on a checkout without them. A
+   failure prints each finding, the usual fix and the baseline entry that
+   would record the finding on purpose.
 
 Dropping a pair, splitting a line or starting one is a release decision:
 record it with its reason and review it as one. The usual fix comes first.
