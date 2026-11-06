@@ -290,6 +290,9 @@ def _section_record(
             metadata["schedule"] = citation.section
         if citation.part:
             metadata["part"] = citation.part
+    if section.unrendered_mathml:
+        # Formulas whose structure the body does not show (see _mathml_text).
+        metadata["unrendered_mathml"] = list(section.unrendered_mathml)
     return ProvisionRecord(
         id=deterministic_provision_id(citation_path),
         jurisdiction="uk",

@@ -244,12 +244,184 @@ def _operative_text_parts(parent: ET.Element, ns: dict) -> list[str]:
     return [part for part in parts if part]
 
 
+_MATH_TAG = f"{{{NAMESPACES['math']}}}math"
+# Token elements: their character data is the expression's text.
+_MATHML_TOKENS = frozenset({"mi", "mn", "mo", "mtext", "ms"})
+# Elements that only group or style their children, so a plain row loses nothing.
+_MATHML_ROWS = frozenset({"math", "mrow", "mstyle", "mpadded", "merror"})
+# Elements that carry no text.
+_MATHML_BLANKS = frozenset({"mspace", "malignmark", "maligngroup"})
+# Another encoding of the expression beside its presentation, inside <semantics>.
+_MATHML_ANNOTATIONS = frozenset({"annotation", "annotation-xml"})
+# Elements written in linear notation, with the number of children each needs
+# (None: any number, read as one row).
+_MATHML_STRUCTURES: dict[str, int | None] = {
+    "mfrac": 2,
+    "msub": 2,
+    "msup": 2,
+    "msubsup": 3,
+    "msqrt": None,
+    "mroot": 2,
+    "mfenced": None,
+}
+# An operand written without parentheses: one name or number.
+_MATHML_ATOM = re.compile(r"[\w.,'′″‴]+")
+
+
 def _mathml_text(element: ET.Element) -> str:
-    """Prefer supplied alternative text, otherwise separate presentation tokens."""
+    """Render one MathML expression as text.
+
+    Supplied ``alttext`` wins. Otherwise the presentation tree is written in
+    linear notation: a row's tokens are separated by single spaces, so a flat
+    product renders exactly as its tokens print (``M × W``); ``mfrac`` renders
+    ``a/b``, ``msub`` ``x_1``, ``msup`` ``x^2``, ``msubsup`` ``x_1^2``,
+    ``msqrt`` ``√(a + b)``, ``mroot`` ``root(x, 3)`` and ``mfenced`` its fences
+    and separators (``(a, b)``). An operand of a fraction or script that is
+    more than one name or number, and not already in parentheses, is
+    parenthesized, so ``(M × 12)/365`` keeps its grouping. ``<semantics>``
+    renders its first child and skips the annotations. An element with no
+    notation here (``munder``, ``mtable``, a fraction without a rule, a form
+    with the wrong number of children) keeps its tokens in order as a plain
+    row, and ``unrendered_mathml_elements`` names it.
+    """
     alternative = element.get("alttext", "").strip()
     if alternative:
         return re.sub(r"\s+", " ", alternative)
-    return " ".join(token for text in element.itertext() for token in text.split())
+    return " ".join(_MathMLRenderer().pieces(element))
+
+
+def unrendered_mathml_elements(root: ET.Element) -> list[str]:
+    """Sorted names of the MathML elements in ``root`` whose structure its text does not show.
+
+    ``root`` may be a ``<math>`` element or any element holding some. Formulas
+    with ``alttext`` render as that text and lose nothing. Every other formula
+    renders as ``_mathml_text`` does, and this names each element it wrote as
+    a plain row although the element means more than a row.
+    """
+    renderer = _MathMLRenderer()
+    for math in root.iter(_MATH_TAG):
+        if not math.get("alttext", "").strip():
+            renderer.pieces(math)
+    return sorted(renderer.unrendered)
+
+
+class _MathMLRenderer:
+    """Write a MathML presentation tree as pieces of linear text.
+
+    A piece is one token or one structured form, never empty and without
+    spaces at either end; a row joins its pieces with single spaces. Every
+    token of the presentation tree lands in some piece, in document order.
+    """
+
+    def __init__(self) -> None:
+        self.unrendered: set[str] = set()
+
+    def pieces(self, element: ET.Element) -> list[str]:
+        name = _mathml_name(element)
+        children = list(element)
+        if name in _MATHML_TOKENS:
+            return [token for text in element.itertext() for token in text.split()]
+        if name in _MATHML_BLANKS:
+            return []
+        if name == "semantics" and _readable_semantics(element, children):
+            # The first child is the presentation; annotations re-encode it.
+            return self._operand(children[0])
+        if name in _MATHML_STRUCTURES and _readable_structure(name, element, children):
+            return [self._structure(name, element, children)]
+        if name not in _MATHML_ROWS:
+            self.unrendered.add(name)
+        return self._row(element)
+
+    def _structure(self, name: str, element: ET.Element, children: list[ET.Element]) -> str:
+        if name == "msqrt":
+            return f"√({' '.join(self._row(element))})"
+        if name == "mfenced":
+            return self._fenced(element, children)
+        if name == "mroot":
+            base, index = (" ".join(self._operand(child)) for child in children)
+            return f"root({base}, {index})"
+        groups = [self._group(child) for child in children]
+        if name == "mfrac":
+            return f"{groups[0]}/{groups[1]}"
+        if name == "msub":
+            return f"{groups[0]}_{groups[1]}"
+        if name == "msup":
+            return f"{groups[0]}^{groups[1]}"
+        return f"{groups[0]}_{groups[1]}^{groups[2]}"
+
+    def _row(self, element: ET.Element) -> list[str]:
+        pieces = (element.text or "").split()
+        for child in element:
+            pieces.extend(self._operand(child))
+        return pieces
+
+    def _operand(self, child: ET.Element) -> list[str]:
+        """One child's pieces, then any text that follows it in its parent."""
+        return self.pieces(child) + (child.tail or "").split()
+
+    def _group(self, child: ET.Element) -> str:
+        pieces = self._operand(child)
+        joined = " ".join(pieces)
+        if (len(pieces) == 1 and _MATHML_ATOM.fullmatch(joined)) or _parenthesized(joined):
+            return joined
+        return f"({joined})"
+
+    def _fenced(self, element: ET.Element, children: list[ET.Element]) -> str:
+        # MathML puts the n-th separator after the n-th child, repeating the last.
+        separators = "".join(element.get("separators", ",").split())
+        items = [" ".join(self._operand(child)) for child in children]
+        text = items[0] if items else ""
+        for index, item in enumerate(items[1:]):
+            separator = separators[min(index, len(separators) - 1)] if separators else ""
+            text = f"{text}{separator} {item}"
+        return f"{element.get('open', '(')}{text.strip()}{element.get('close', ')')}"
+
+
+def _readable_structure(name: str, element: ET.Element, children: list[ET.Element]) -> bool:
+    """Whether a structured element has the shape its linear notation needs."""
+    arity = _MATHML_STRUCTURES[name]
+    if (element.text or "").strip() or (arity is not None and len(children) != arity):
+        return False
+    return name != "mfrac" or not _zero_thickness(element.get("linethickness"))
+
+
+def _readable_semantics(element: ET.Element, children: list[ET.Element]) -> bool:
+    return (
+        not (element.text or "").strip()
+        and bool(children)
+        and _mathml_name(children[0]) not in _MATHML_ANNOTATIONS
+    )
+
+
+def _zero_thickness(value: str | None) -> bool:
+    """Whether a fraction's ``linethickness`` draws no rule (``0``, ``0px``, ``0.0em``)."""
+    if value is None:
+        return False
+    match = re.match(r"\s*(\d*\.?\d*)", value)
+    number = match.group(1) if match else ""
+    return bool(number.strip(".")) and float(number) == 0
+
+
+def _parenthesized(text: str) -> bool:
+    """Whether one pair of parentheses encloses the whole of ``text``."""
+    if not (text.startswith("(") and text.endswith(")")):
+        return False
+    depth = 0
+    for position, character in enumerate(text):
+        if character == "(":
+            depth += 1
+        elif character == ")":
+            depth -= 1
+            if depth == 0 and position != len(text) - 1:
+                return False
+    return depth == 0
+
+
+def _mathml_name(element: ET.Element) -> str:
+    """A MathML element's local name; any other element keeps its qualified tag."""
+    prefix = f"{{{NAMESPACES['math']}}}"
+    tag = element.tag
+    return tag[len(prefix) :] if tag.startswith(prefix) else tag
 
 
 def _provision_extent(root: ET.Element, provision: ET.Element | None) -> list[str]:
@@ -718,6 +890,7 @@ def parse_section(xml_str: str) -> UKSection:
         amendments=amendments,
         references_to=references,
         source_url=doc_uri,
+        unrendered_mathml=unrendered_mathml_elements(content_root),
     )
 
 
