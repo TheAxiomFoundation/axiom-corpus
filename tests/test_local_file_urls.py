@@ -669,6 +669,84 @@ def test_redaction_takes_unencoded_paths_whole(text: str, expected: str) -> None
     assert redact_file_urls(text) == expected
 
 
+# What a URL parser drops anywhere in a URL (tab, CR, LF), raw or as repr()
+# shows it, and so what can split a file: URL's text without ending it.
+_URL_SPLITS = ("\t", "\n", "\r", "\\t", "\\n", "\\r")
+# A file: URL's path is drawn from these, and the text around it from the
+# context alphabet, which shares none of them and holds no colon, so the text
+# around it holds no other URL and any path character in the output survived
+# redaction. ``<file: URL>`` itself holds no path character.
+_PATH_CHARACTERS = "ABCDEGHJKMNOPQSTVWXYZ0123456789/._-%"
+_CONTEXT_CHARACTERS = "abcdghjkmnopqrstuvwxyz ,;()[]{}<>|\"'`\t\n\r"
+
+
+@st.composite
+def _split_file_urls(draw) -> tuple[str, str]:
+    """A file: URL, as text split anywhere by ``_URL_SPLITS``, and its path."""
+    path = "/" + draw(
+        st.lists(
+            st.text(alphabet=_PATH_CHARACTERS.replace("/", ""), min_size=1, max_size=8)
+            | st.just("Jane Doe")
+            | st.just("O'BRIEN"),
+            min_size=1,
+            max_size=5,
+        ).map("/".join)
+    )
+    lead = draw(st.sampled_from(["", "/", "//", "//HOST"]))
+    pieces = [draw(st.sampled_from([letter, letter.upper()])) for letter in "file"] + [":"]
+    pieces += list(lead + path)
+    text = ""
+    for piece in pieces:
+        text += piece + "".join(draw(st.lists(st.sampled_from(_URL_SPLITS), max_size=2)))
+    return text, path
+
+
+@settings(max_examples=500, deadline=None)
+@given(
+    url=_split_file_urls(),
+    before=st.text(alphabet=_CONTEXT_CHARACTERS, max_size=12),
+    after=st.text(alphabet=_CONTEXT_CHARACTERS, max_size=12),
+)
+def test_no_part_of_a_file_urls_path_survives_redaction_however_its_text_is_split(
+    url, before, after
+) -> None:
+    """A URL parser drops tabs and newlines, so a newline does not end the URL either."""
+    text, path = url
+    redacted = redact_file_urls(before + text + after)
+
+    assert not any(character in redacted for character in _PATH_CHARACTERS), (path, redacted)
+    assert redact_file_urls(redacted) == redacted
+
+
+@settings(max_examples=300, deadline=None)
+@given(
+    url=_split_file_urls(),
+    before=st.text(alphabet=_CONTEXT_CHARACTERS, max_size=12),
+    closing=st.sampled_from(['"', "`"]),
+    after=st.text(alphabet=_CONTEXT_CHARACTERS, max_size=12),
+)
+def test_a_split_file_url_is_redacted_up_to_its_closing_quote(url, before, closing, after) -> None:
+    """The redaction runs from the scheme to the quote or backtick that ends its context, no further."""
+    text, _ = url
+    assert redact_file_urls(before + text + closing + after) == (
+        before + "<file: URL>" + closing + redact_file_urls(after)
+    )
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "see file:///Users/al\nice/secret/y here",
+        "`c` metadata.file:///Users/jane\ndoe/private.pdf.download_url",
+        "file:///home/a\r\nb/c",
+    ],
+)
+def test_a_newline_inside_a_file_url_does_not_end_its_redaction(text: str) -> None:
+    redacted = redact_file_urls(text)
+    for leaked in ("ice", "secret", "doe", "private", "b/c"):
+        assert leaked not in redacted
+
+
 @pytest.mark.parametrize(
     ("value", "expected"),
     [

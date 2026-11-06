@@ -77,6 +77,7 @@ from axiom_corpus.corpus.germany_gii import (
 from axiom_corpus.corpus.illinois_admin_code import extract_illinois_admin_code
 from axiom_corpus.corpus.ingest_manifests import (
     INGEST_MANIFEST_PRIVATE_KEY_ENV,
+    ManifestLocalPathError,
     build_ingest_manifest,
     guard_ingested_artifacts,
     write_signed_ingest_manifest,
@@ -352,24 +353,28 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         except (corpus_cli.LockRefusedError, OSError, ValueError) as exc:
             print(f"corpus lock: {exc} (nothing was signed)", file=sys.stderr)
             return 2
-    manifest = build_ingest_manifest(
-        repo=repo,
-        base=args.base,
-        jurisdiction=args.jurisdiction,
-        document_class=args.document_class,
-        version=args.version,
-        command=args.command,
-        applied_files=applied_files,
-        deleted_files=deleted_files,
-        reasoning_logs=reasoning_logs,
-    )
-    manifest_path = write_signed_ingest_manifest(
-        repo=repo,
-        manifest=manifest,
-        private_key=private_key,
-        output=args.output,
-        key_id=args.key_id,
-    )
+    try:
+        manifest = build_ingest_manifest(
+            repo=repo,
+            base=args.base,
+            jurisdiction=args.jurisdiction,
+            document_class=args.document_class,
+            version=args.version,
+            command=args.command,
+            applied_files=applied_files,
+            deleted_files=deleted_files,
+            reasoning_logs=reasoning_logs,
+        )
+        manifest_path = write_signed_ingest_manifest(
+            repo=repo,
+            manifest=manifest,
+            private_key=private_key,
+            output=args.output,
+            key_id=args.key_id,
+        )
+    except ManifestLocalPathError as exc:
+        print(f"sign-ingest-manifest: {exc} (nothing was signed)", file=sys.stderr)
+        return 2
     summary: dict[str, Any] = {
         "manifest": str(manifest_path),
         "applied_files": len(manifest["applied_files"]),
@@ -5856,7 +5861,13 @@ def build_parser() -> argparse.ArgumentParser:
     sign_ingest.add_argument(
         "--command",
         required=True,
-        help="Exact ingestion command or run description to record in the manifest.",
+        help=(
+            "Exact ingestion command or run description to record in the manifest. "
+            "Absolute paths inside the repository are recorded repository-relative; "
+            "any other path on this machine (/Users/, /home/, /tmp/, /private/, "
+            "~/, $HOME/, file: URLs, ...) is refused: write a placeholder such as "
+            "<scratchpad> and name the run note under docs/ingest-runs/."
+        ),
     )
     sign_ingest.add_argument(
         "--file",

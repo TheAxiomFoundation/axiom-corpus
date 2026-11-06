@@ -516,6 +516,20 @@ def _federal_register_records(
     return items, records
 
 
+def recorded_fetched_dir(fetched_dir: Path, repo: Path) -> str:
+    """The fetched directory as the signed manifest records it.
+
+    A directory inside the checkout is recorded repository-relative; any other
+    is a path on this machine, which a public manifest must not record, so it
+    is recorded as the placeholder ``<fetched-dir>`` (its provenance sidecars,
+    not its location, are what the recovery reads).
+    """
+    try:
+        return fetched_dir.resolve().relative_to(repo.resolve()).as_posix()
+    except ValueError:
+        return "<fetched-dir>"
+
+
 def recover(
     entry: dict[str, Any], fetched_dir: Path, *, base: Path, repo: Path, dry_run: bool
 ) -> RecoveryResult:
@@ -583,7 +597,10 @@ def recover(
     artifacts = tuple(staged + [inventory_path, provisions_path, coverage_path])
     manifest_path: Path | None = None
     if not dry_run:
-        command = f"scripts/recover_ingest.py --fetched-dir {fetched_dir} --plan <plan>"
+        command = (
+            f"scripts/recover_ingest.py --fetched-dir {recorded_fetched_dir(fetched_dir, repo)}"
+            " --plan <plan>"
+        )
         manifest = build_ingest_manifest(
             repo=repo,
             base=base,
