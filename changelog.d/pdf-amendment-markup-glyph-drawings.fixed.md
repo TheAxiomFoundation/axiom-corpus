@@ -1,0 +1,1 @@
+PDF `amendment_markup` no longer takes a Type 3 glyph that MuPDF draws as a vector path for a strike or underline rule, so the bar of a hyphen or an underscore no longer marks the text around it as deleted or inserted.
