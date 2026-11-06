@@ -1,7 +1,7 @@
 schema_version: axiom-corpus/selector-lineage-baseline/v1
-# Drops, forks and first cuts of selector lines that a release decision allows
+# Prose successions, drops, forks and first cuts recorded by release decisions
 # (axiom_corpus.corpus.selector_lineage, docs/release-gate-policy.md#selector-lineage).
-# A selector's predecessor is the first tracked selector its description names.
+# A selector names its predecessor first, or a succession resolves its prose base.
 # Every selector an entry names is pinned here to its selector digest
 # (axiom_corpus.release.manifest.selector_sha256): the entry holds only for that
 # exact selector. The entries listed on 2026-11-02 are what main held when the
@@ -70,6 +70,7 @@ selector_digests:
   mz-rulespec-2026-07-23: b67e1bf3d5acbde34e451e36c5f3e4717e2286a051547462ff42e4190ff8def4
   ng-rulespec-2026-07-10: f5d3c6704ca26ef63a39bd9415b99cdb81a3e0c80bee21e92999899f0ee88386
   nz-rulespec-2026-07-10: 7e2a7a92e038bb0b1e5cef8d8e5e7830d8bfaceda71cc74ac561b4cab122eff2
+  nz-rulespec-2026-07-18: 12c5f596b0203d6c4b7350aad46ba63e89151cc89f9b3c69db1e366b47163e93
   nz-rulespec-2026-07-19: dee7557919863fc95fcbd93792fd1f246b9e7bd68cddb35681a71b603820699b
   nz-rulespec-2026-07-20: 03558a39482d62c876c2189656f69346f2c5bb28b0d99298084f6c03b1783ce7
   nz-rulespec-2026-07-25: 642ce790c1b38cf9224df8450e45340a02e7d5e00c28fcb12dc947f2afa08b43
@@ -85,6 +86,7 @@ selector_digests:
   uk-rulespec-2026-07-12: cd1e1969a4072ef59db627f9925a67dcc98f3ef86c35865ceb0b860ac0b99d77
   uk-rulespec-2026-07-26: 3bc41f2c1c215f851de0a70fb97c8b0d47126cf0c62ae00baa7c782dd6be4e9f
   uk-rulespec-2026-08-02: 85d0f967654d0b0f80c1e11a2eebd23fafd4a184b8af57b10fecfc37f7f2c3e3
+  uk-rulespec-2026-08-07: 2a9fe63b01bac2179a78088e40dca5c05ba676de714262fae0f2f44c6902ed43
   uk-rulespec-2026-08-08: 3c859df5a746290b7d945e79b41cf7e2a1db1893d1d1b3d5dbfa8f84ce57cf5e
   uk-rulespec-2026-08-10: 2f33cfee351b9e165b30e65e08dd77151ad7d1507ca606fa25a3b634c44f1ec9
   uk-rulespec-2026-09-05: 827ed5d5a005734d5145583ffaa8fef5fbdd1fb85d874d2a274e4382f99c066d
@@ -98,6 +100,8 @@ selector_digests:
   us-rulespec-2026-07-13: 6c98bfd3939049d1231112f1ea91c0825cd1ef4d43d19bf31eadfce2a049507a
   us-rulespec-2026-07-16: 9c7654f832aa4ee584b3c1f6b1a8a89b87e7a441a2d8ebc3e2d61e4881e12bcf
   us-rulespec-2026-07-17: f0b56dc5945b32c324391f027e5f3a4e42f0a626710536002715277a86c97ed7
+  us-rulespec-2026-07-17-pit-recovery: a4fe7b185967413eb5fd947638aee40a1bd87a4baa91e2fdd298129c2eddddb8
+  us-rulespec-2026-07-18: 8e3919eacc86fe4c092f6a1a5d1c5d35cacd3bac461337590a63372c2e789311
   us-rulespec-2026-07-19: 79c091b4501eecb2996936ba51c87955f89460d9e3690b0fde88c30742547e9d
   us-rulespec-2026-07-19-dedup: 6b18a3e3842b5cfa0736fc0352fada4d07d2417912383e0847b84a1e121552d6
   us-rulespec-2026-07-21-az-140es-current: b8f41849f54c056c7072f2ac929b76e41b93889a7efda1e45d542d8e2322fb0c
@@ -114,6 +118,7 @@ selector_digests:
   us-rulespec-2026-09-24-snap-fy2027-cola: 89ea3de4e2312473bbf992195b3d995e375d6014e03f78c02b8b66e28c20c5f0
   us-rulespec-2026-10-09-az-des-ece-dated: aaa43893d846a829d897db199e4e34b372c9919e52d4c765640c1ded27a28db5
   us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected: acdd6106f82490f6a9827b97943600321003125254c5ebfa42b635295e7208ed
+  us-rulespec-2026-10-13-w7-bundle-gaps-union: c09b3bbc62b9134612eb2ec1bb8bb90042da57cd5f6058f61408701674e38620
   us-rulespec-2026-10-16-snap-abawd-memo-source-corrected: 8395fecaf863bc7e839a10808160bc3ac93048193cee55b14d2426446ed81519
   us-rulespec-2026-10-20-fs-pilot-reg-e-f: 002113b75208226f3d57a2e52cdfd0836f5f311f0db3cab3014452a5ea1a3e7a
   us-rulespec-2026-10-22-ca-concurrent-versions: af8622c3960b7d9d693020fe6393cf9de5fa21608f49117d5417c55b8e1b24e7
@@ -142,6 +147,3186 @@ dropped_pairs:
       On main before the lineage check began. Its description retires the
       mislabeled uk-shropshire manual by omission: the manual's operative text is
       the 2024/2025 default scheme under a 2026/27 cover.
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ak/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ak/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ak/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ak/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ak/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-al/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-al/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-al/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-al/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-al/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-al/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ar/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ar/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ar/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ar/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ar/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-as/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-az/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-az/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-az/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-az/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-az/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ca/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ca/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ca/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ca/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ca/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ca/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-co/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-co/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-co/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-co/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-co/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-co/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ct/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ct/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ct/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ct/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ct/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ct/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-dc/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-dc/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-dc/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-dc/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-dc/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-dc/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-de/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-fl/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-fl/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-fl/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-fl/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-fl/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ga/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ga/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ga/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ga/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ga/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ga/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-gu/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-gu/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-hi/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-hi/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-hi/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-hi/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-hi/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-hi/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ia/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ia/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ia/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ia/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ia/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ia/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-id/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-id/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-id/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-id/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-id/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-il/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-il/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-il/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-il/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-il/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-il/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-in/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-in/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-in/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-in/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-in/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-in/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ks/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ks/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ks/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ks/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ks/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ks/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ky/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ky/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ky/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ky/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ky/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ky/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-la/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ma/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ma/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ma/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ma/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ma/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ma/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-md/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-md/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-md/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-md/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-md/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-md/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-me/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mi/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mi/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mi/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mi/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mi/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mi/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mn/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mn/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mn/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mn/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mn/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mn/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mo/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mo/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mo/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mo/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mo/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mo/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mp/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mp/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ms/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ms/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ms/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ms/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ms/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ms/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mt/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mt/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mt/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mt/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mt/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-mt/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nc/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nc/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nc/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nc/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nc/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nc/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nd/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nd/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nd/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nd/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nd/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nd/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ne/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ne/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ne/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ne/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ne/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ne/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nh/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nh/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nh/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nh/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nh/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nh/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nj/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nm/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nv/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nv/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nv/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-nv/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ny/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-oh/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-oh/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-oh/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-oh/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-oh/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-oh/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ok/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ok/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ok/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ok/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ok/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ok/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-or/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-or/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-or/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-or/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-or/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-or/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pa/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pr/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pr/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-pr/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ri/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ri/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ri/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ri/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ri/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ri/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sc/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sc/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sc/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sc/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sc/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sc/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sd/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sd/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sd/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sd/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-sd/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tn/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tn/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tn/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tn/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tn/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tx/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tx/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tx/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-tx/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ut/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ut/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ut/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ut/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ut/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-ut/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-va/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-va/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-va/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-va/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-va/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-va/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-vt/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-vt/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-vt/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-vt/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-vt/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-vt/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wa/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/rulemaking
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wi/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wv/form
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wv/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wv/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wv/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wv/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wv/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wy/guidance
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wy/manual
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wy/policy
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wy/regulation
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    pair: us-wy/statute
+    listed_on: 2026-11-05
+    reason: >-
+      The selector explicitly limits itself to "Arizona DES manual-only successor" and states
+      "Other serving jurisdiction/document-class pairs are deliberately unchanged"; no scope
+      replaces this pair within this selector because activation leaves those other serving
+      pairs unchanged.
+    replaced_by: []
 # A predecessor that more than one tracked selector names, in entries sorted by
 # predecessor, then listed_on. The first entry lists the selectors that named
 # the predecessor when the fork was recorded (successors) and the ones the line
@@ -151,6 +3336,30 @@ dropped_pairs:
 # predecessor and no entry lists is a new fork; one that names a successor
 # outside continued_by extends a branch the line ended.
 forks:
+  - predecessor: de-rulespec-2026-09-08-kindergeld-civil
+    successors:
+      - de-rulespec-2026-09-08-kindergeld-context
+      - de-rulespec-2026-09-08-kindergeld-parentage
+    continued_by:
+      - de-rulespec-2026-09-08-kindergeld-context
+    listed_on: 2026-11-05
+    reason: >-
+      Both branches say "Preserves all seventeen civil-release scopes". The later
+      de-rulespec-2026-09-08-kindergeld-2025-history says "Preserves all twenty
+      context-release scopes", explicitly continuing the context branch.
+  - predecessor: us-rulespec-2026-07-19-dedup
+    successors:
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-snap-2026-07-21
+    continued_by:
+      - us-rulespec-2026-07-17-pit-recovery
+    listed_on: 2026-11-05
+    reason: >-
+      The SNAP cut says "Successor to the collision-free RuleSpec US release"; PIT names the
+      same base. The line continues through PIT and its named successors to
+      us-rulespec-2026-07-24-snap-cms-pit-union, whose description says "restoring every
+      collision-free SNAP scope from us-rulespec-snap-2026-07-21 for complete federal and
+      state SNAP encoding".
   - predecessor: us-rulespec-2026-07-21-az-140es-current
     successors:
       - us-rulespec-2026-07-21-oh-hb96-current
@@ -223,8 +3432,8 @@ forks:
       scopes are not in the line's newest cut,
       us-rulespec-2026-10-29-ecfr-section-text (axiom-corpus#935).
 # Selectors whose description names no tracked selector, so the check compares
-# nothing with them. A new selector that names none is a finding unless it is
-# listed here as the first cut of a line.
+# nothing with them until a later succession resolves their prose base. A new
+# selector with neither a predecessor nor a first-cut record is a finding.
 first_cuts:
   - listed_on: 2026-11-02
     reason: >-
@@ -332,3 +3541,311 @@ first_cuts:
       - vn-rulespec-2026-07-24-r2
       - zm-rulespec-2026-07-10
       - zm-rulespec-2026-07-12
+
+# Unambiguous prose bases, in selector order; both endpoints are pinned above.
+# A later succession supersedes the historical first-cut claim without removing it.
+successions:
+  - selector: bo-rulespec-2026-07-24
+    predecessor: bo-rulespec-2026-07-23
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the BOLMOD t1 scopes plus"; this identifies
+      bo-rulespec-2026-07-23.
+  - selector: bo-rulespec-2026-07-24-r2
+    predecessor: bo-rulespec-2026-07-24
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the BOLMOD t1 scopes, the Ley 065 t2 slices, and"; this
+      identifies bo-rulespec-2026-07-24.
+  - selector: co-rulespec-2026-07-24
+    predecessor: co-rulespec-2026-07-23
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the COLMOD t1 scopes plus"; this identifies
+      co-rulespec-2026-07-23.
+  - selector: de-rulespec-2026-07-21
+    predecessor: de-rulespec-2026-07-16
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Composes the byte-identical 2026-07-16
+      gesetze-im-internet consolidations with"; this identifies de-rulespec-2026-07-16.
+  - selector: de-rulespec-2026-09-08-kindergeld-2025-history
+    predecessor: de-rulespec-2026-09-08-kindergeld-context
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all twenty context-release scopes"; this
+      identifies de-rulespec-2026-09-08-kindergeld-context.
+  - selector: de-rulespec-2026-09-08-kindergeld-civil
+    predecessor: de-rulespec-2026-09-08-kindergeld-frontier
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all fourteen published September frontier
+      scopes"; this identifies de-rulespec-2026-09-08-kindergeld-frontier.
+  - selector: de-rulespec-2026-09-08-kindergeld-context
+    predecessor: de-rulespec-2026-09-08-kindergeld-civil
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all seventeen civil-release scopes"; this
+      identifies de-rulespec-2026-09-08-kindergeld-civil.
+  - selector: de-rulespec-2026-09-08-kindergeld-parentage
+    predecessor: de-rulespec-2026-09-08-kindergeld-civil
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all seventeen civil-release scopes"; this
+      identifies de-rulespec-2026-09-08-kindergeld-civil.
+  - selector: de-rulespec-2026-09-09-kindergeld-allowance-context
+    predecessor: de-rulespec-2026-09-08-kindergeld-2025-history
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Retains all 22 earlier scopes"; this identifies
+      de-rulespec-2026-09-08-kindergeld-2025-history.
+  - selector: de-rulespec-2026-09-09-kindergeld-bgb-amendment
+    predecessor: de-rulespec-2026-09-09-kindergeld-estg32-paragraphs
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Retain all30preceding scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-estg32-paragraphs.
+  - selector: de-rulespec-2026-09-09-kindergeld-bmf-context
+    predecessor: de-rulespec-2026-09-09-kindergeld-allowance-context
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all23preceding scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-allowance-context.
+  - selector: de-rulespec-2026-09-09-kindergeld-estg32-paragraphs
+    predecessor: de-rulespec-2026-09-09-kindergeld-eu-articles
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all29prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-eu-articles.
+  - selector: de-rulespec-2026-09-09-kindergeld-eu-articles
+    predecessor: de-rulespec-2026-09-09-kindergeld-swiss-coordination
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all28prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-swiss-coordination.
+  - selector: de-rulespec-2026-09-09-kindergeld-marginal-employment
+    predecessor: de-rulespec-2026-09-09-kindergeld-dakg
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 37 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-dakg.
+  - selector: de-rulespec-2026-09-09-kindergeld-swiss-coordination
+    predecessor: de-rulespec-2026-09-09-kindergeld-treaty-texts
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all27prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-treaty-texts.
+  - selector: de-rulespec-2026-09-09-kindergeld-threshold
+    predecessor: de-rulespec-2026-09-09-kindergeld-marginal-employment
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 40 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-marginal-employment.
+  - selector: de-rulespec-2026-09-09-kindergeld-treaty-texts
+    predecessor: de-rulespec-2026-09-09-kindergeld-bmf-context
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all24prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-bmf-context.
+  - selector: de-rulespec-2026-09-10-kindergeld-eu-service-earlier
+    predecessor: de-rulespec-2026-09-10-kindergeld-eu-service-predecessors
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all47 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-eu-service-predecessors.
+  - selector: de-rulespec-2026-09-10-kindergeld-eu-service-predecessors
+    predecessor: de-rulespec-2026-09-10-kindergeld-recipient-priority
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all46 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-recipient-priority.
+  - selector: de-rulespec-2026-09-10-kindergeld-generations-service
+    predecessor: de-rulespec-2026-09-10-kindergeld-eu-service-earlier
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve48prior DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-eu-service-earlier.
+  - selector: de-rulespec-2026-09-10-kindergeld-maternity
+    predecessor: de-rulespec-2026-09-09-kindergeld-threshold
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 41 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-threshold.
+  - selector: de-rulespec-2026-09-10-kindergeld-recipient-priority
+    predecessor: de-rulespec-2026-09-10-kindergeld-maternity
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all45 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-maternity.
+  - selector: de-rulespec-2026-09-11-kindergeld-bgh-counterpart
+    predecessor: de-rulespec-2026-09-11-kindergeld-disability-definition
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all52 preceding release scopes"; this
+      identifies de-rulespec-2026-09-11-kindergeld-disability-definition.
+  - selector: de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor
+    predecessor: de-rulespec-2026-09-11-kindergeld-bgh-counterpart
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all54 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-11-kindergeld-bgh-counterpart.
+  - selector: de-rulespec-2026-09-11-kindergeld-disability-definition
+    predecessor: de-rulespec-2026-09-11-kindergeld-illness-precedents
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all50 prior DE scopes"; this identifies
+      de-rulespec-2026-09-11-kindergeld-illness-precedents.
+  - selector: de-rulespec-2026-09-11-kindergeld-illness-precedents
+    predecessor: de-rulespec-2026-09-10-kindergeld-generations-service
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 49 prior DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-generations-service.
+  - selector: de-rulespec-2026-09-14-kindergeld-dakg2025-evidence
+    predecessor: de-rulespec-2026-09-14-kindergeld-eu-territory
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 56 prior DE scopes"; this identifies
+      de-rulespec-2026-09-14-kindergeld-eu-territory.
+  - selector: de-rulespec-2026-09-14-kindergeld-dakg2025-sections
+    predecessor: de-rulespec-2026-09-14-kindergeld-dakg2025-evidence
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 57 prior DE scopes"; this identifies
+      de-rulespec-2026-09-14-kindergeld-dakg2025-evidence.
+  - selector: de-rulespec-2026-09-14-kindergeld-eu-territory
+    predecessor: de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 55 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor.
+  - selector: de-rulespec-2026-09-15-kindergeld-cross-border-priority
+    predecessor: de-rulespec-2026-09-15-kindergeld-dakg2025-preface
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 59 prior DE scopes"; this identifies
+      de-rulespec-2026-09-15-kindergeld-dakg2025-preface.
+  - selector: de-rulespec-2026-09-15-kindergeld-dakg2025-preface
+    predecessor: de-rulespec-2026-09-14-kindergeld-dakg2025-sections
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all58 prior DE scopes"; this identifies
+      de-rulespec-2026-09-14-kindergeld-dakg2025-sections.
+  - selector: dk-rulespec-2026-08-22
+    predecessor: dk-rulespec-2026-08-07
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-08-07 Tier-1 full-parity statute scope"; this
+      identifies dk-rulespec-2026-08-07.
+  - selector: ec-rulespec-2026-07-24
+    predecessor: ec-rulespec-2026-07-22
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the ECUAMOD t1 scopes plus"; this identifies
+      ec-rulespec-2026-07-22.
+  - selector: nz-rulespec-2026-07-19
+    predecessor: nz-rulespec-2026-07-18
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-06-16 PCO statute and regulation scopes and
+      the 2026-07-18 Wellington district-plan scope carried unchanged"; this identifies
+      nz-rulespec-2026-07-18.
+  - selector: nz-rulespec-2026-07-20
+    predecessor: nz-rulespec-2026-07-19
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-06-16 PCO statute and regulation scopes, the
+      2026-07-18 Wellington district-plan scope, and the 2026-07-19 PCO supplement scopes
+      carried unchanged"; this identifies nz-rulespec-2026-07-19.
+  - selector: nz-rulespec-2026-07-25
+    predecessor: nz-rulespec-2026-07-20
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-06-16 PCO statute and regulation scopes, the
+      2026-07-18 Wellington district-plan scope, the 2026-07-19 PCO supplement scopes, and the
+      2026-07-20 guidance scope carried unchanged"; this identifies nz-rulespec-2026-07-20.
+  - selector: pe-rulespec-2026-07-24
+    predecessor: pe-rulespec-2026-07-22
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the PERUMOD t1 scopes plus"; this identifies
+      pe-rulespec-2026-07-22.
+  - selector: uk-rulespec-2026-08-08
+    predecessor: uk-rulespec-2026-08-07
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-08-07 set plus"; this identifies
+      uk-rulespec-2026-08-07.
+  - selector: uk-rulespec-2026-08-10
+    predecessor: uk-rulespec-2026-08-08
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-08-08 set plus"; this identifies
+      uk-rulespec-2026-08-08.
+  - selector: uk-rulespec-2026-09-05
+    predecessor: uk-rulespec-2026-08-10
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-08-10 set plus"; this identifies
+      uk-rulespec-2026-08-10.
+  - selector: uk-rulespec-2026-09-06
+    predecessor: uk-rulespec-2026-09-05
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-09-05 set plus"; this identifies
+      uk-rulespec-2026-09-05.
+  - selector: uk-rulespec-2026-09-07
+    predecessor: uk-rulespec-2026-09-06
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-09-06 set plus"; this identifies
+      uk-rulespec-2026-09-06.
+  - selector: us-az-snap-ece-2026-10-23-manual-union
+    predecessor: us-rulespec-2026-10-13-w7-bundle-gaps-union
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves every Arizona manual scope in the active W7
+      union"; the unique W7 union is us-rulespec-2026-10-13-w7-bundle-gaps-union. Its
+      scope-limited succession preserves Arizona manuals only.
+  - selector: us-rulespec-2026-07-16
+    predecessor: us-rulespec-2026-07-13
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Re-cut of the 07-13 plan"; this identifies
+      us-rulespec-2026-07-13.
+  - selector: us-rulespec-2026-07-19
+    predecessor: us-rulespec-2026-07-18
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "all other July 18 scope selections remain unchanged";
+      this identifies us-rulespec-2026-07-18.
+  - selector: us-rulespec-2026-07-19-dedup
+    predecessor: us-rulespec-2026-07-19
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "all other July 19 scope selections"; this identifies
+      us-rulespec-2026-07-19.
+  - selector: us-rulespec-foundation-v4-2026-07-15
+    predecessor: us-rulespec-foundation-v3-2026-07-15
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "adding the CMS Medicaid/CHIP/BHP eligibility table to
+      the v3 foundation"; this identifies us-rulespec-foundation-v3-2026-07-15.
+  - selector: us-rulespec-foundation-v5-2026-07-15
+    predecessor: us-rulespec-foundation-v4-2026-07-15
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "adding the CHIP Title XXI legal hierarchy to the v4
+      foundation"; this identifies us-rulespec-foundation-v4-2026-07-15.
+  - selector: us-rulespec-snap-2026-07-21
+    predecessor: us-rulespec-2026-07-19-dedup
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Successor to the collision-free RuleSpec US release";
+      this identifies us-rulespec-2026-07-19-dedup.
+  - selector: vn-rulespec-2026-07-24-r2
+    predecessor: vn-rulespec-2026-07-24
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the VNMOD t1 scopes plus"; this identifies
+      vn-rulespec-2026-07-24.

@@ -50,6 +50,7 @@ from axiom_corpus.corpus.selector_lineage import (
     load_tracked_selectors,
     pair_label,
     pair_versions,
+    resolved_predecessors,
 )
 from axiom_corpus.release.manifest import selector_sha256
 
@@ -118,7 +119,7 @@ def _selectors() -> dict[str, ReleaseManifest]:
 
 @cache
 def _baseline() -> LineageBaseline:
-    return LineageBaseline.load(REPO_ROOT)
+    return load_lineage_baseline(REPO_ROOT / LINEAGE_BASELINE_PATH, selectors=_selectors())
 
 
 def _fork_entries(baseline: LineageBaseline) -> list[RecordedFork]:
@@ -364,6 +365,7 @@ def test_no_entry_is_listed_before_the_guard_or_after_this_commit() -> None:
         *_baseline().drops.values(),
         *_fork_entries(_baseline()),
         *_baseline().first_cuts.values(),
+        *_baseline().successions.values(),
     ]
     for record in records:
         assert GUARD_BEGAN <= record.listed_on <= head, record
@@ -397,9 +399,11 @@ _MARKER = f"{LINEAGE_BASELINE_PATH}:\n"
 _ONE_AFTER_ANOTHER = "cut them one after another, each from the one before"
 _SHARE_ONE_ENTRY = "decisions about one fork made on one day share one entry"
 _SECTION_ORDER: dict[str, Callable[[Mapping[str, object]], tuple[str, ...]]] = {
-    "dropped_pairs": lambda entry: (str(entry["selector"]), str(entry["pair"])),
+    # Pair components follow the loader's (jurisdiction, document_class) order.
+    "dropped_pairs": lambda entry: (str(entry["selector"]), *str(entry["pair"]).split("/")),
     "forks": lambda entry: (str(entry["predecessor"]), str(entry["listed_on"])),
     "first_cuts": lambda entry: (str(entry["listed_on"]),),
+    "successions": lambda entry: (str(entry["selector"]),),
 }
 
 _CUT = "cut from the selector it names"
@@ -424,18 +428,38 @@ class _MainCopy:
         self.baseline_path = root / LINEAGE_BASELINE_PATH
         shutil.copytree(RELEASES, self.releases)
         shutil.copyfile(REPO_ROOT / LINEAGE_BASELINE_PATH, self.baseline_path)
+        self._selector_cache: dict[str, ReleaseManifest] | None = _selectors().copy()
+        self._baseline_cache: LineageBaseline | None = None
 
     def selectors(self) -> dict[str, ReleaseManifest]:
-        return load_tracked_selectors(self.releases)
+        if self._selector_cache is None:
+            self._selector_cache = load_tracked_selectors(self.releases)
+        return self._selector_cache.copy()
 
     def baseline(self) -> LineageBaseline:
-        return load_lineage_baseline(self.baseline_path)
+        if self._baseline_cache is None:
+            self._baseline_cache = load_lineage_baseline(
+                self.baseline_path, selectors=self.selectors()
+            )
+        return self._baseline_cache
 
     def text(self, name: str) -> str:
         return (self.releases / f"{name}.json").read_text(encoding="utf-8")
 
     def write_text(self, name: str, text: str) -> None:
-        (self.releases / f"{name}.json").write_text(text, encoding="utf-8")
+        path = self.releases / f"{name}.json"
+        path.write_text(text, encoding="utf-8")
+        cached = self._selector_cache
+        self._selector_cache = None
+        self._baseline_cache = None
+        if cached is not None:
+            try:
+                changed = ReleaseManifest.load(path)
+            except (OSError, ValueError):
+                return  # The next read uses the full loader's error path.
+            if changed.name == name:
+                cached[name] = changed
+                self._selector_cache = cached
 
     def write(self, name: str, keys: Iterable[ScopeKey], description: str) -> None:
         scopes = [
@@ -476,7 +500,11 @@ class _MainCopy:
         for section, order in _SECTION_ORDER.items():
             if data.get(section):
                 data[section] = sorted(data[section], key=order)
-        self.baseline_path.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
+        self.baseline_path.write_text(
+            yaml.safe_dump(data, sort_keys=False),
+            encoding="utf-8",
+        )
+        self._baseline_cache = None
 
 
 def _merge_fork_entry(entry: dict[str, object], other: Mapping[str, object]) -> None:
@@ -505,9 +533,11 @@ class _Case:
 
 
 def _successor_counts(selectors: Mapping[str, ReleaseManifest]) -> dict[str, int]:
-    report = check_selector_lineage(selectors)
+    # Copies used by the remedies retain main's prose successions. Counting only
+    # named edges would choose a superseded prose base as an open head.
+    predecessors = resolved_predecessors(selectors, _baseline())
     counts = dict.fromkeys(selectors, 0)
-    for predecessor in report.predecessors.values():
+    for predecessor in predecessors.values():
         if predecessor is not None:
             counts[predecessor] += 1
     return counts
@@ -538,8 +568,8 @@ def _newest_through_continued(copy: _MainCopy, fork: str) -> tuple[str, ...]:
     continued = {
         predecessor: baseline.fork_continued_by(predecessor) for predecessor in baseline.forks
     }
-    report = check_selector_lineage(copy.selectors())
-    return line_heads(report.predecessors, continued, continued[fork])
+    predecessors = resolved_predecessors(copy.selectors(), baseline)
+    return line_heads(predecessors, continued, continued[fork])
 
 
 def _open_head(copy: _MainCopy) -> str:
@@ -791,6 +821,7 @@ def _today(baseline: LineageBaseline) -> str:
         *(record.listed_on for record in baseline.drops.values()),
         *(entry.listed_on for entry in _fork_entries(baseline)),
         *(record.listed_on for record in baseline.first_cuts.values()),
+        *(record.listed_on for record in baseline.successions.values()),
     ]
     return (date.fromisoformat(max(listed)) + timedelta(days=1)).isoformat()
 
@@ -946,10 +977,18 @@ def _assert_the_advice_is_sound(
     any other drop gets the usual keep-or-record remedy. The digests are compared
     here, apart from _remedy.
     """
+    drop_endpoints = {
+        name
+        for finding in findings
+        if isinstance(finding, DroppedPair)
+        for name in (finding.predecessor, finding.selector)
+    }
     stale = {
         name
-        for name, digest in baseline.selector_digests.items()
-        if name in selectors and selector_sha256(selectors[name]) != digest
+        for name in drop_endpoints
+        if name in baseline.selector_digests
+        and name in selectors
+        and selector_sha256(selectors[name]) != baseline.selector_digests[name]
     }
     broken = "already records this, but the record no longer holds"
     for finding, remedy in zip(findings, remedies, strict=True):
