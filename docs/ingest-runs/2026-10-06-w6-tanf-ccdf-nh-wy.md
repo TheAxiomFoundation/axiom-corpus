@@ -3,8 +3,8 @@
 Date: 2026-10-06 (US Eastern; agent run 19:02 to 20:10 EDT).
 Work order: `docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-nh-wy.csv` (341 rows, 340 Tier 1, 21
 jurisdictions) with `wave6/00-common-preamble.md` and `wave6/tanf-ccdf-nh-wy-brief.md` (branch
-`analysis/program-bundle-gaps-2026-10-06`, worktree `~/axiom-corpus-worktrees/bundle-gaps`).
-Worktree `~/axiom-corpus-worktrees/w6-tanf-ccdf-nh-wy` (sparse, `data/corpus/` excluded, never symlinked), branch
+`analysis/program-bundle-gaps-2026-10-06`, worktree `<axiom-corpus worktrees>/bundle-gaps`).
+Worktree `<axiom-corpus worktrees>/w6-tanf-ccdf-nh-wy` (sparse, `data/corpus/` excluded, never symlinked), branch
 `discovery/ingest-w6-tanf-ccdf-nh-wy` cut from main e16ccb799. Every extraction wrote to the main checkout's corpus root
 (`--base <axiom-corpus checkout>/data/corpus`); nothing under `data/corpus/` is committed, nothing is signed,
 nothing was pushed to R2 or loaded into Supabase.
@@ -361,10 +361,10 @@ another agent also uses, before moving to `scratchpad/w6-tanf-ccdf-nh-wy/`. If a
 ## Rebuild
 
 ```bash
-cd ~/axiom-corpus-worktrees/w6-tanf-ccdf-nh-wy
+cd <axiom-corpus worktrees>/w6-tanf-ccdf-nh-wy
 B=<axiom-corpus checkout>/data/corpus
-cat $(uv run python -c "import certifi;print(certifi.where())") data/certs/*.pem > /tmp/w6-ca.pem
-export REQUESTS_CA_BUNDLE=/tmp/w6-ca.pem
+cat $(uv run python -c "import certifi;print(certifi.where())") data/certs/*.pem > <scratchpad>/w6-ca.pem
+export REQUESTS_CA_BUNDLE=<scratchpad>/w6-ca.pem
 uv run python scripts/build_w6_tanf_ccdf_nh_wy_manifests.py           # 62 manifests
 for f in manifests/us-*-tanf-ccdf-w6-*.yaml; do
   uv run axiom-corpus-ingest extract-official-documents --base $B \

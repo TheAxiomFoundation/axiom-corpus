@@ -14,12 +14,12 @@ User-Agent block that the extractor's own built-in browser User-Agent fallback a
 
 ## Worktree, branch, timing, disk
 
-- Worktree `~/axiom-corpus-worktrees/w8-ny`, branch `discovery/ingest-w8-ny` cut from `main` 393127f8b. `uv sync --extra
+- Worktree `<axiom-corpus worktrees>/w8-ny`, branch `discovery/ingest-w8-ny` cut from `main` 393127f8b. `uv sync --extra
   dev` was needed: the worktree's `.venv` held no dev extras, so `uv run pytest` had been resolving Anaconda's pytest.
 - Every extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`).
   Artifacts are unsigned and uncommitted; `data/corpus` is not tracked in that checkout. Nothing was signed, locked,
   pushed to R2 or loaded to Supabase. `manifests/releases/` and `manifests/program-bundles/` are untouched. Only
-  read-only git commands ran in `~/axiom-corpus`.
+  read-only git commands ran in `<axiom-corpus checkout>`.
 - Timing: started 2026-10-20T18:52:05Z; duplicate-work check and baseline tests to 19:00Z; publisher probes
   18:58-19:06Z; index inventory 19:06-19:08Z; Medicaid extraction 19:08:34Z, **5 s** wall for all three documents;
   checks, queue rows and this note to 19:40Z. TANF extraction seconds: 0 (blocked, nothing fetched). SSI extraction

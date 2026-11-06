@@ -192,7 +192,7 @@ against the rows by script. Top-level `queue_status` stays `in_progress`.
 for us-fl/regulation, us-ma/regulation, us-nc/manual, us-va/manual under
 `<axiom-corpus checkout>/data/corpus` (main checkout).
 
-Rebuild (the generator caches index pages under `~/.axiom/ssi-state-supplement-cache`; the extractor
+Rebuild (the generator caches index pages under `<axiom-cache>/ssi-state-supplement-cache`; the extractor
 re-fetches every document):
 
 ```bash

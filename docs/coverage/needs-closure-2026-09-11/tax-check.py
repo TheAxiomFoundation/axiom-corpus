@@ -6,11 +6,11 @@ emits tax-schema.yaml, tax-matrix.csv and tax-stats.json next to this file.
 Read-only with respect to data/corpus.
 
     python3 docs/coverage/needs-closure-2026-09-11/tax-check.py \
-        --corpus /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+        --corpus data/corpus \
         --selector docs/ingest-runs/2026-09-11-us-rulespec-program-ingestion-union.selector.json \
         --queue manifests/tax-agent-queue.yaml \
-        --pe /Users/pavelmakarchuk/policyengine-us/policyengine_us/parameters/gov \
-        --rulespec /Users/pavelmakarchuk/rulespec-us
+        --pe <policyengine-us>/policyengine_us/parameters/gov \
+        --rulespec <rulespec-us>
 
 Schema: the law's own structure. Federal elements are facts read section by
 section from 26 U.S.C. subtitle A chapter 1 (subchapters A and B in full for the

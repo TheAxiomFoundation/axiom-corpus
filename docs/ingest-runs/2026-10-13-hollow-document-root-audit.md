@@ -373,7 +373,7 @@ corpus and re-running #847's check leaves none hollow and none with a navigation
 
 ## Reproduce
 
-The evidence lives outside the repository, in `~/reviews/axiom-corpus-hollow-roots-2026-10-13/`
+The evidence lives outside the repository, in `<reviews>/axiom-corpus-hollow-roots-2026-10-13/`
 (see its `README.md` for every file's schema). It holds the baseline copy;
 `build_dossier.py` (reproduces the 188 findings and builds per-finding evidence);
 `scripts/build_table.py` (writes the CSV); `scripts/cms_index_sweep.py` (the index-page

@@ -5,7 +5,7 @@ Work order: close the two state-level chart families of the needs-driven closure
 (`docs/coverage/needs-closure-2026-09-11/liheap.md`, `ssi.md`): LIHEAP-ST-09 (heating/cooling benefit matrix, a plan
 attachment) for the 37 EXTRACTABLE and 13 REVIEW states, and SSI-ST-4 (state supplement payment standards by living
 arrangement, current year) for the 10 REVIEW states, with SSI-ST-2 where the same publisher carries the authority.
-Branch `discovery/ingest-liheap-matrix-ssi-standards` in the sparse worktree `~/axiom-corpus-worktrees/liheap-ssi-charts`
+Branch `discovery/ingest-liheap-matrix-ssi-standards` in the sparse worktree `<axiom-corpus worktrees>/liheap-ssi-charts`
 (`data/corpus/` excluded, never symlinked; re-synced to `origin/main` 5c2505ec6 on 2026-09-14 before the artifacts were
 committed); every extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`)
 with `--source-as-of 2026-09-14`; the artifacts stay uncommitted for the controller. Versions

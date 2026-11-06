@@ -2,7 +2,7 @@
 """Fold wave-5 decisions CSVs back into the recount matrices and print the before/after roll-up.
 
     python3 wave5/apply_decisions.py --matrices docs/coverage/needs-closure-2026-09-14 \
-        --decisions ~/axiom-corpus-worktrees/w5-*/docs/ingest-runs/2026-09-15-*-decisions.csv [--write]
+        --decisions docs/ingest-runs/2026-09-15-*-decisions.csv [--write]
 
 Decision classes map to matrix statuses: PRESENT, ALREADY-HELD -> PRESENT (with the cited scope/path);
 PATTERN-CONFIRMED -> PRESENT for the cells the row names; ABSENT, ABSENT-IN-CITED -> ABSENT; EXTRACTABLE,
