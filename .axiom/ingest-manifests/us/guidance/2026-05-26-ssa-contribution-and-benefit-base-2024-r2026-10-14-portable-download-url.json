@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024-r2026-10-14-portable-download-url.json",
+      "sha256": "a50e031232dc49b37f7e3327b1966eeeb86fbb6fa4c1810aca382718638eb067"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024-r2026-10-14-portable-download-url.json",
+      "sha256": "89a8985b23acc1d8e2e2504c8da129a5acee3c539bfeb98fbda70af5b3365197"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "c96c29d85f68c52b7dd72e1941d1e97d5d7514f887cfe7b8f492c7b9701b6933"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-cbb.html",
+      "sha256": "deb8970175f9175aa0348161d248a7446babb5c16502e4f811e596d9da80944f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-cbb.provenance.json",
+      "sha256": "ab60fd8e87362277fcb8d43900ed96f279ce890c33f65003d4fbdbc37c8f8110"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py rewrite --scope us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024 --tag r2026-10-14-portable-download-url (successor of us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024 without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-us.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:10:30.671087+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-us-audit.json",
+      "sha256": "47c73fbb6e3f83852149577a6fd6537563bf0d5509fd19c6e133d30853254f0a"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-us.md",
+      "sha256": "078846e7cd0da5a769061184f720b0fd79f3a0d7b0d5ddc6ad906d1750135221"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cO+2FzmU8PCHFSKrytxJJgW2GkNjkpDn79EvjU5+/qgnkWODB2aZjx27Z4jvLwN676wD2si8fJ8cFo1kgbXWAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-26-ssa-contribution-and-benefit-base-2024-r2026-10-14-portable-download-url"
+}
