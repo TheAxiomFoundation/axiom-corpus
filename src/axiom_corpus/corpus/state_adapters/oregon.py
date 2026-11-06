@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import re
-import time
 from collections.abc import Iterable, Iterator
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -16,6 +15,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.bounded_http import get_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -26,6 +26,14 @@ OREGON_ORS_LANDING_RELATIVE = "Pages/ORS.aspx"
 OREGON_ORS_SOURCE_FORMAT = "oregon-ors-html"
 OREGON_ORS_DEFAULT_YEAR = 2025
 OREGON_USER_AGENT = "axiom-corpus/0.1 (contact@axiom-foundation.org)"
+# A live page fetch makes two attempts with these socket timeouts, and gives
+# up on the page when the deadline passes, whatever the server does. The
+# real-source smoke test fetches two pages under CI's 60-second per-test limit
+# and skips on "failed to fetch Oregon source page"; two 30-second connect
+# timeouts spent that limit on one page (CI run 40042942746).
+OREGON_CONNECT_TIMEOUT_SECONDS = 10.0
+OREGON_READ_TIMEOUT_SECONDS = 20.0
+OREGON_FETCH_DEADLINE_SECONDS = 25.0
 
 _CHAPTER_RE = re.compile(
     r"^Chapter\s+(?P<chapter>\d{1,3}[A-Z]?)\s*[\u2014-]\s*(?P<heading>.+)$",
@@ -165,6 +173,18 @@ class _VariantCue:
     note: str
 
 
+@dataclass(frozen=True)
+class _UncheckedChapter:
+    """A candidate chapter whose page could not be fetched, so it may exist."""
+
+    chapter: OregonOrsChapter
+    error: str
+
+
+class _OregonPageNotFoundError(ValueError):
+    """The Oregon site answered that a page does not exist (HTTP 404 or 410)."""
+
+
 class _OregonFetcher:
     def __init__(
         self,
@@ -279,7 +299,7 @@ def extract_oregon_ors(
         landing_source_key = _state_source_key(jurisdiction, run_id, landing_page.relative_path)
         titles = parse_oregon_ors_landing_html(landing_page.data)
 
-    chapters = _selected_chapters(
+    chapters, unchecked = _selected_chapters(
         source_root=Path(source_dir) if source_dir is not None else None,
         titles=titles,
         title_filter=title_filter,
@@ -287,8 +307,16 @@ def extract_oregon_ors(
         fetcher=fetcher,
         workers=workers,
     )
+    for item in unchecked:
+        # A candidate whose page could not be fetched may exist, so it is
+        # reported as skipped, never dropped as absent.
+        skipped_source_count += 1
+        errors.append(f"chapter {item.chapter.chapter}: could not check whether it exists: {item.error}")
     if not chapters:
-        raise ValueError(f"no Oregon ORS chapters selected for filters: {only_title!r}, {only_chapter!r}")
+        message = f"no Oregon ORS chapters selected for filters: {only_title!r}, {only_chapter!r}"
+        if errors:
+            raise ValueError(message + "; " + "; ".join(errors[:3]))
+        raise ValueError(message)
 
     title_by_number = {title.number: title for title in titles}
     for chapter in chapters:
@@ -410,6 +438,10 @@ def extract_oregon_ors(
                 container_count += 1
 
     if not items:
+        if errors:
+            # A chapter that could not be fetched names its cause, so a caller
+            # can tell an unreachable source from a page with no provisions.
+            raise ValueError("no Oregon ORS provisions extracted; " + "; ".join(errors[:3]))
         raise ValueError("no Oregon ORS provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -642,24 +674,27 @@ def _selected_chapters(
     chapter_filter: str | None,
     fetcher: _OregonFetcher,
     workers: int,
-) -> tuple[OregonOrsChapter, ...]:
+) -> tuple[tuple[OregonOrsChapter, ...], tuple[_UncheckedChapter, ...]]:
+    """The chapters to extract, and the discovered candidates that could not be checked."""
     if chapter_filter is not None:
         title = _title_for_chapter(chapter_filter, titles)
         if title_filter is not None and (title is None or title.number != title_filter):
-            return ()
-        return (_chapter_from_title(chapter_filter, title),)
+            return (), ()
+        return (_chapter_from_title(chapter_filter, title),), ()
 
+    unchecked: tuple[_UncheckedChapter, ...] = ()
     if source_root is not None:
         chapters = tuple(
             _chapter_from_title(token, _title_for_chapter(token, titles))
             for token in _iter_source_dir_chapter_tokens(source_root)
         )
     else:
-        chapters = _discover_live_chapters(titles, fetcher=fetcher, workers=workers)
+        chapters, unchecked = _discover_live_chapters(titles, fetcher=fetcher, workers=workers)
 
     if title_filter is not None:
         chapters = tuple(chapter for chapter in chapters if chapter.title_number == title_filter)
-    return tuple(sorted(chapters, key=lambda chapter: _chapter_sort_key(chapter.chapter)))
+        unchecked = tuple(item for item in unchecked if item.chapter.title_number == title_filter)
+    return tuple(sorted(chapters, key=lambda chapter: _chapter_sort_key(chapter.chapter))), unchecked
 
 
 def _discover_live_chapters(
@@ -667,7 +702,8 @@ def _discover_live_chapters(
     *,
     fetcher: _OregonFetcher,
     workers: int,
-) -> tuple[OregonOrsChapter, ...]:
+) -> tuple[tuple[OregonOrsChapter, ...], tuple[_UncheckedChapter, ...]]:
+    """Probe every candidate chapter: the ones that exist, and the ones that could not be checked."""
     if not titles:
         raise ValueError("official ORS landing page did not expose title chapter ranges")
     candidates = [
@@ -676,6 +712,7 @@ def _discover_live_chapters(
         for token in _candidate_chapter_tokens(title.start_chapter, title.end_chapter)
     ]
     found: list[OregonOrsChapter] = []
+    unchecked: list[_UncheckedChapter] = []
     with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
         future_to_candidate = {
             executor.submit(_live_chapter_exists, fetcher, token): (token, title)
@@ -683,15 +720,29 @@ def _discover_live_chapters(
         }
         for future in as_completed(future_to_candidate):
             token, title = future_to_candidate[future]
-            if future.result():
-                found.append(_chapter_from_title(token, title))
-    return tuple(found)
+            chapter = _chapter_from_title(token, title)
+            try:
+                exists = future.result()
+            except ValueError as exc:
+                unchecked.append(_UncheckedChapter(chapter=chapter, error=str(exc)))
+                continue
+            if exists:
+                found.append(chapter)
+    unchecked.sort(key=lambda item: _chapter_sort_key(item.chapter.chapter))
+    return tuple(found), tuple(unchecked)
 
 
 def _live_chapter_exists(fetcher: _OregonFetcher, token: str) -> bool:
+    """Whether the chapter's page exists.
+
+    Only a "not found" answer means the chapter does not exist. Any other
+    failure (a timeout, a refused or dropped connection, a server error, no
+    free fetch thread) raises the fetch's ``ValueError``, since the chapter
+    may exist.
+    """
     try:
         fetcher.fetch_chapter(token)
-    except ValueError:
+    except _OregonPageNotFoundError:
         return False
     return True
 
@@ -1128,21 +1179,20 @@ def _references_to(text: str, self_section: str) -> tuple[str, ...]:
 
 
 def _download_oregon_page(url: str) -> bytes:
-    last_error: Exception | None = None
-    for attempt in range(2):
-        try:
-            response = requests.get(
-                url,
-                headers={"User-Agent": OREGON_USER_AGENT},
-                timeout=30,
-            )
-            response.raise_for_status()
-            return response.content
-        except requests.RequestException as exc:
-            last_error = exc
-            if attempt == 0:
-                time.sleep(0.5)
-    raise ValueError(f"failed to fetch Oregon source page {url}: {last_error}")
+    try:
+        return get_bytes(
+            url,
+            connect_timeout=OREGON_CONNECT_TIMEOUT_SECONDS,
+            read_timeout=OREGON_READ_TIMEOUT_SECONDS,
+            deadline=OREGON_FETCH_DEADLINE_SECONDS,
+            attempts=2,
+            retry_delay=0.5,
+            headers={"User-Agent": OREGON_USER_AGENT},
+        )
+    except requests.RequestException as exc:
+        status = exc.response.status_code if exc.response is not None else None
+        error = _OregonPageNotFoundError if status in (404, 410) else ValueError
+        raise error(f"failed to fetch Oregon source page {url}: {exc}") from exc
 
 
 def _source_dir_file(source_root: Path, relative_path: str) -> Path | None:
