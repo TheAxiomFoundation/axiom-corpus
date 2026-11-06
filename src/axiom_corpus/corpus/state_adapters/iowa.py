@@ -502,8 +502,20 @@ def extract_iowa_code(
                 workers=workers,
             ):
                 section = result.section
+                # A section the chapter section index lists stays an inventory
+                # gap when its PDF cannot be fetched or read, so coverage reads
+                # incomplete instead of silently losing it. A PDF that could not
+                # be fetched is sourced from the section index; one that was
+                # fetched but is unusable from itself.
                 if result.error is not None:
                     errors.append(f"section {section.section}: {result.error}")
+                    gap_source = section_index_recorded
+                    if result.source is not None:
+                        gap_path, gap_source = _record_source(
+                            store, jurisdiction, run_id, result.source
+                        )
+                        source_paths.append(gap_path)
+                    _append_section_gap(items, seen, section, gap_source)
                     continue
                 assert result.source is not None
                 assert result.parsed_text is not None
@@ -636,15 +648,18 @@ def _fetch_one_iowa_section_pdf(
 ) -> _IowaSectionFetchResult:
     try:
         source = fetcher.fetch_section_pdf(section)
+    except (requests.RequestException, OSError, ValueError) as exc:
+        return _IowaSectionFetchResult(section=section, error=exc)
+    try:
         parsed_text = parse_iowa_section_pdf(
             source.data,
             section=section.section,
             heading=section.heading,
             source_year=source_year,
         )
-        return _IowaSectionFetchResult(section=section, source=source, parsed_text=parsed_text)
-    except (requests.RequestException, OSError, ValueError) as exc:
-        return _IowaSectionFetchResult(section=section, error=exc)
+    except ValueError as exc:
+        return _IowaSectionFetchResult(section=section, source=source, error=exc)
+    return _IowaSectionFetchResult(section=section, source=source, parsed_text=parsed_text)
 
 
 def parse_iowa_title_index(
@@ -812,6 +827,11 @@ def parse_iowa_section_pdf(
 
 
 def _pdf_text_lines(data: bytes, *, section: str, source_year: int) -> list[str]:
+    # PyMuPDF reads an HTML page (a maintenance or error page served in place
+    # of the PDF) as text, so require the PDF header the file format puts in
+    # its first 1024 bytes.
+    if b"%PDF-" not in data[:1024]:
+        raise ValueError("invalid Iowa section PDF: no PDF header")
     try:
         document = fitz.open(stream=data, filetype="pdf")
     except Exception as exc:  # pragma: no cover - PyMuPDF exception classes vary.
@@ -963,6 +983,39 @@ def _section_status(
     if "reserved" in text:
         return "reserved"
     return None
+
+
+def _append_section_gap(
+    items: list[SourceInventoryItem],
+    seen: set[str],
+    section: IowaSectionListing,
+    source: _RecordedSource,
+) -> None:
+    """Record a listed section whose PDF yielded no provision.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the section
+    is expected: the chapter section index, or the section's own unusable PDF.
+    """
+    if section.citation_path in seen:
+        return
+    seen.add(section.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=section.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=source.source_format,
+            sha256=source.sha256,
+            metadata={
+                "kind": "section",
+                "title": section.title_roman,
+                "chapter": section.chapter,
+                "section": section.section,
+                "target_source_url": section.pdf_url,
+            },
+        )
+    )
 
 
 def _append_record(

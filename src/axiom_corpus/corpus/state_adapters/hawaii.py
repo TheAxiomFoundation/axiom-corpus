@@ -571,6 +571,11 @@ def extract_hawaii_revised_statutes(
                     break
                 selected_listings.append(listing)
 
+            # A section file the chapter directory lists stays an inventory gap
+            # when its page cannot be fetched or read, so coverage reads
+            # incomplete instead of silently losing it. A page that could not
+            # be fetched is sourced from the chapter directory; a page that was
+            # fetched but is unusable from itself.
             for result in _fetch_hawaii_section_results(
                 fetcher,
                 selected_listings,
@@ -579,6 +584,9 @@ def extract_hawaii_revised_statutes(
                 if result.error is not None:
                     errors.append(
                         f"section {result.listing.fallback_section}: {result.error}"
+                    )
+                    _append_section_gap(
+                        seen, items, result.listing, chapter_directory_recorded
                     )
                     continue
                 assert result.source is not None
@@ -606,6 +614,7 @@ def extract_hawaii_revised_statutes(
                     errors.append(
                         f"section {result.listing.fallback_section}: {exc}"
                     )
+                    _append_section_gap(seen, items, result.listing, section_recorded)
                     continue
                 if section.citation_path in seen:
                     errors.append(f"duplicate citation path: {section.citation_path}")
@@ -932,7 +941,7 @@ def _fetch_hawaii_section_result(
             listing=listing,
             source=fetcher.fetch_section(listing),
         )
-    except BaseException as exc:  # pragma: no cover
+    except Exception as exc:  # noqa: BLE001
         return _HawaiiSectionFetchResult(listing=listing, error=exc)
 
 
@@ -1164,6 +1173,42 @@ def _section_metadata(section: HawaiiSection) -> dict[str, Any]:
     if section.status:
         metadata["status"] = section.status
     return metadata
+
+
+def _append_section_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    listing: HawaiiSectionListing,
+    source: _RecordedSource,
+) -> None:
+    """Record a listed section file whose page yielded no provision.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the section
+    is expected: the chapter directory, or the section's own unusable page.
+    The section number is the one its file name gives, as when a page parses.
+    """
+    citation_path = f"us-hi/statute/{listing.fallback_section.upper()}"
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=source.source_format,
+            sha256=source.sha256,
+            metadata={
+                "kind": "section",
+                "volume": listing.volume_number,
+                "chapter": listing.chapter,
+                "section": listing.fallback_section.upper(),
+                "source_filename": listing.filename,
+                "target_source_url": listing.source_url,
+            },
+        )
+    )
 
 
 def _append_unique(
