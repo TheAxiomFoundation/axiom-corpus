@@ -1299,15 +1299,18 @@ def _install_sigint_flag(flag: list[bool]) -> Any:
 
 FETCH_RETRY_DELAYS: tuple[float, ...] = (1.0, 4.0, 10.0)
 
-# str(OSError) opens with its errno, so a filename that quotes one doesn't match.
+# str(OSError) opens with its errno, so a filename that quotes one matches only
+# where the filename itself puts ": " directly before the quote.
 _DISK_FULL = re.compile(rf"(?:^|: )\[Errno {errno.ENOSPC}\]")
 
 
 def reports_disk_full(reason: str) -> bool:
     """True when a fetch failure reason holds an ENOSPC ``OSError``.
 
-    Hints and retry refusals share this test, so a path that quotes
-    ``[Errno 28]`` neither names a full disk nor stops a retry.
+    Hints and retry refusals share this test. A path that quotes
+    ``[Errno 28]`` neither names a full disk nor stops a retry, unless the
+    path puts ``": "`` directly before the quote, as ``/label: [Errno 28]/x``
+    does.
     """
     return _DISK_FULL.search(reason) is not None
 
