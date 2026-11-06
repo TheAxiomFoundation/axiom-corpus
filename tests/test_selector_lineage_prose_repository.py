@@ -273,10 +273,18 @@ _EVIDENCE_EDGES = (
         "vn-rulespec-2026-07-24",
         "the VNMOD t1 scopes plus",
     ),
+)
+
+# Pair-scoped derivations identify a source for only part of its serving pairs.
+# They remain first cuts rather than advancing that source's whole line.
+_PAIR_SCOPED_DERIVATIONS = (
     (
         "us-az-snap-ece-2026-10-23-manual-union",
         "us-rulespec-2026-10-13-w7-bundle-gaps-union",
-        "Preserves every Arizona manual scope in the active W7 union",
+        (
+            "Preserves every Arizona manual scope in the active W7 union",
+            "Other serving jurisdiction/document-class pairs are deliberately unchanged.",
+        ),
     ),
 )
 
@@ -646,6 +654,34 @@ def test_all_recorded_successions_quote_selector_prose_and_pin_both_sides(
         )
         for name in (record.selector, record.predecessor):
             assert baseline.selector_digests[name] == selector_sha256(selectors[name])
+
+
+@pytest.mark.parametrize(
+    ("selector", "base", "quotes"),
+    _PAIR_SCOPED_DERIVATIONS,
+    ids=[entry[0] for entry in _PAIR_SCOPED_DERIVATIONS],
+)
+def test_pair_scoped_prose_bases_stay_first_cuts(
+    selectors: dict[str, ReleaseManifest],
+    baseline: LineageBaseline,
+    selector: str,
+    base: str,
+    quotes: tuple[str, ...],
+) -> None:
+    for quote in quotes:
+        assert quote in (selectors[selector].description or "")
+    selected_pairs = {
+        (scope.jurisdiction, scope.document_class) for scope in selectors[selector].scopes
+    }
+    base_pairs = {(scope.jurisdiction, scope.document_class) for scope in selectors[base].scopes}
+    assert selected_pairs < base_pairs
+    assert selector not in baseline.successions
+    report = check_selector_lineage(selectors, baseline)
+    assert report.predecessors[selector] is None
+    assert baseline.first_cuts[selector].listed_on == "2026-11-02"
+    for name in (selector, base):
+        _assert_reviewed_description_and_selector(selectors, name)
+    assert baseline.selector_digests[selector] == selector_sha256(selectors[selector])
 
 
 @pytest.mark.parametrize(

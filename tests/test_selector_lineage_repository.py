@@ -348,6 +348,23 @@ def test_no_tracked_selector_drops_a_pair_or_forks_its_line_without_a_record() -
     assert not problems, "\n".join(problems)
 
 
+def test_the_w7_union_line_keeps_its_head_and_arizona_stays_a_first_cut() -> None:
+    selectors = _selectors()
+    baseline = _baseline()
+    predecessors = resolved_predecessors(selectors, baseline)
+    continued_by = {
+        predecessor: baseline.fork_continued_by(predecessor) for predecessor in baseline.forks
+    }
+    w7 = "us-rulespec-2026-10-13-w7-bundle-gaps-union"
+    arizona = "us-az-snap-ece-2026-10-23-manual-union"
+    heads = line_heads(predecessors, continued_by, (w7,))
+    assert w7 in heads
+    assert arizona not in heads
+    assert predecessors[arizona] is None
+    assert arizona not in baseline.successions
+    assert baseline.first_cuts[arizona].listed_on == GUARD_BEGAN
+
+
 def test_the_entries_listed_when_the_guard_began_are_what_main_held_then() -> None:
     """The baseline grows only by later, dated release decisions."""
     _assert_frozen(_baseline())

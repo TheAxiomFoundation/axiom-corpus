@@ -209,8 +209,8 @@ the three 2026-10-25 cuts drops a pair. They form a line: SSI POMS, then NYC
 chapter 127 and Title 52, then Montana separate filing.
 
 With the 2026-11-05 prose audit, the checkout holds 162 selectors. Of these,
-62 name a tracked predecessor, 50 have a recorded succession, and 50 remain
-roots. The 50 recorded edges replace 50 historical first-cut claims without
+62 name a tracked predecessor, 49 have a recorded succession, and 51 remain
+roots. The 49 recorded edges replace 49 historical first-cut claims without
 removing them. In particular, the five UK edges from 2026-08-08 through
 2026-09-07 now connect their "2026-08-07 set plus" style descriptions to the
 named edges of the newer UK cuts. A copy from 2026-08-07 is therefore a fork,
@@ -228,13 +228,16 @@ No edge is guessed for them. The `-2026-09-15-kindergeld-eu-priority-references`
 and `-2026-09-15-kindergeld-priority-followup` descriptions specify separate
 source additions without stating a base, so they also stay separate roots.
 
-Comparing all the newly connected cuts exposes 318 additional dropped pairs
-and two forks, for totals of 319 recorded drops and eight recorded forks.
-The drops all belong to `us-az-snap-ece-2026-10-23-manual-union`, which states
-"Preserves every Arizona manual scope in the active W7 union" and limits its
-cut with "Other serving jurisdiction/document-class pairs are deliberately
-unchanged." Those omissions are recorded with that reason; the selector is
-not rewritten. The additional forks are:
+A selector that derives some of a line's pairs and leaves the others unchanged
+stays outside that line, and we record it in the baseline as a first cut, not
+as a succession. The description of `us-az-snap-ece-2026-10-23-manual-union`
+reads "Preserves every Arizona manual scope in the active W7 union" and "Other
+serving jurisdiction/document-class pairs are deliberately unchanged." The
+selector derives `us-az/manual` alone, so it stays a 2026-11-02 first cut and
+doesn't advance the W7 union line.
+
+Comparing the newly connected cuts exposes two forks, for totals of one
+recorded drop and eight recorded forks. The additional forks are:
 
 - `de-rulespec-2026-09-08-kindergeld-civil` has the context and parentage cuts,
   both saying "Preserves all seventeen civil-release scopes". The later
@@ -313,17 +316,20 @@ had. A drop entry also names the predecessor it was written for.
 
 What the check does not catch:
 
-- a document or version leaving a pair the cut still carries (above);
-- pairs omitted by an earlier, scope-limited successor. The recorded Arizona
-  manual succession makes `us-az-snap-ece-2026-10-23-manual-union` the head of
-  the W7 union line, although it carries only `us-az/manual`. A later cut that
-  names Arizona can omit the W7 union's other 318 pairs and pass: the check
-  compares only with its immediate predecessor. Even a full union naming
-  Arizona can omit its ECE version and pass while carrying another version of
-  `us-az/manual`. A fork warning on a cut naming W7 usefully points out the
-  Arizona branch, but deriving a full union from that head requires restoring
-  the other pairs separately. Whether this scope-limited claim should establish
-  succession of the whole union line remains a release-policy decision;
+- a document or version leaving a pair the cut still carries: it compares
+  pairs, not the versions within a pair (above);
+- a pair-scoped derivation outside a line. A full cut of the W7 union line
+  that names `us-rulespec-2026-10-13-w7-bundle-gaps-union` and carries
+  `us-az/manual` at W7's versions passes. Activating it would repoint
+  `us-az/manual` to W7's versions and drop the dated ECE scope Arizona added:
+  activation replaces each carried pair's pointer
+  (`supabase/migrations/20260719043000_profiled_release_activation.sql:248`,
+  `:276`), and serving reads that pointer's selected versions
+  (`supabase/migrations/20260718193000_scope_level_activation.sql:156`). The
+  next full cut of that line must take `us-az/manual`'s scopes from
+  `us-az-snap-ece-2026-10-23-manual-union`, including
+  `us-az/manual/2026-10-09-az-des-snap-ece-dated-authority`, and say so in its
+  description;
 - a selector whose intended succession is connected by neither a named
   predecessor nor a recorded edge. A first-cut allowance can leave it
   disconnected, so a later cut from its real but unconnected base may still

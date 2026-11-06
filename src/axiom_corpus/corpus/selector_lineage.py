@@ -38,7 +38,21 @@ record, from every successor, the new one among them.
 
 The comparison is per pair. A pair the successor still carries, with any of its
 versions, is not a drop, so one document can leave a pair the successor keeps
-without a finding. The activation gate's ``scope_monotonicity`` check
+without a finding. A selector that derives some of a line's pairs and leaves
+the others unchanged stays outside the line, and we record it in the baseline
+as a first cut, not as a succession. The check cannot see that pair-scoped
+derivation.
+A full W7 union cut that names ``us-rulespec-2026-10-13-w7-bundle-gaps-union``
+and carries ``us-az/manual`` at W7's versions passes. Activating it would
+repoint that pair to W7's versions and drop Arizona's dated ECE scope:
+activation replaces each carried pair's pointer
+(``supabase/migrations/20260719043000_profiled_release_activation.sql:248``,
+``:276``), and serving reads its selected versions
+(``supabase/migrations/20260718193000_scope_level_activation.sql:156``).
+The next full cut of that line must take ``us-az/manual``'s scopes from
+``us-az-snap-ece-2026-10-23-manual-union``, including
+``us-az/manual/2026-10-09-az-des-snap-ece-dated-authority``, and say so in its
+description. The activation gate's ``scope_monotonicity`` check
 (``scripts/check_release_gate.py``) compares only a pair's newest version, so
 it reports that case only when the document that leaves is the pair's newest.
 
