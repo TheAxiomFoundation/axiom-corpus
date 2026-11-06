@@ -168,7 +168,11 @@ during the same call (`rolled_back`). It removes only a file that is still as
 placed (same inode, size and modification time) and still holds the locked
 bytes; the content check catches a same-size rewrite within one coarse
 timestamp tick. A file that an extractor or another fetch has rewritten
-stays, and fetch reports it as modified. An interrupt is handled without asynchronous
+stays, and fetch reports it as modified. A retry asks for the rolled-back files
+along with the failed one. `FetchReport.ok` reads false while `rolled_back`
+holds a file, and `corpus fetch` exits nonzero for those reported rollback
+leftovers. Its text summary counts all of them and lists at most 20 rolled-back
+paths. An interrupt is handled without asynchronous
 exceptions: on the main thread Ctrl-C only stores a flag (no lock, so a burst
 of signals cannot deadlock the handler), each worker logs its own outcome and
 the file it placed, and on an interrupt (or a progress callback that raises)
@@ -206,9 +210,12 @@ simultaneous reads on the same object` (`GetObject`), `429 Too Many Requests`
   retries inside a read: `R2ObjectStore.from_environment` gives reads a client
   with botocore's own retries off (`make_r2_client(..., sdk_retries=False)`).
   Above the store, `corpus fetch` and the resolver call `materialize_resilient`,
-  which re-asks entries that still failed up to three more times (1, 4 and 10 s
-  later, at a quarter of the concurrency), so an entry that keeps failing is
-  read in at most 4 passes before the fetch fails. After
+  which re-asks entries that still failed, and the files their rollback removed,
+  up to three more times (1, 4 and 10 s later, at a quarter of the concurrency),
+  so an entry that keeps failing is read in at most 4 passes before the fetch
+  fails. Both callers stop after the first pass when a failure reads
+  `[Errno 28]`, since a second pass would download the scope and fill the disk
+  again. After
   failure `n` the read waits a random time between half and all of
   `min(30 s, 2^(n-1) s)`, or the `Retry-After` R2 sent (at most 30 s) plus up
   to a second, so parallel readers spread out instead of retrying in step;

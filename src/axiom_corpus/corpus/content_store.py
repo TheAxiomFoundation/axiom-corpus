@@ -21,6 +21,7 @@ import math
 import os
 import queue
 import random
+import re
 import shutil
 import signal
 import subprocess
@@ -1053,7 +1054,7 @@ class FetchReport:
 
     @property
     def ok(self) -> bool:
-        return not self.failed
+        return not self.failed and not self.rolled_back
 
     def to_mapping(self) -> dict[str, Any]:
         return {
@@ -1247,6 +1248,7 @@ def _roll_back(
             try:
                 current = _identity(target)
             except FileNotFoundError:
+                report.rolled_back.append(entry.path)  # absent, so a retry asks for it again
                 continue
             # Remove only the file this call placed, still holding the locked
             # bytes; anything written over it since (an extractor, another
@@ -1259,7 +1261,8 @@ def _roll_back(
                     and hash_path(target) == (entry.sha256, entry.size)
                 )
             except FileNotFoundError:
-                continue  # someone removed it meanwhile
+                report.rolled_back.append(entry.path)  # someone removed it meanwhile
+                continue
             if still_ours:
                 target.unlink(missing_ok=True)
                 report.rolled_back.append(entry.path)
@@ -1296,6 +1299,21 @@ def _install_sigint_flag(flag: list[bool]) -> Any:
 
 FETCH_RETRY_DELAYS: tuple[float, ...] = (1.0, 4.0, 10.0)
 
+# str(OSError) opens with its errno, so a filename that quotes one matches only
+# where the filename itself puts ": " directly before the quote.
+_DISK_FULL = re.compile(rf"(?:^|: )\[Errno {errno.ENOSPC}\]")
+
+
+def reports_disk_full(reason: str) -> bool:
+    """True when a fetch failure reason holds an ENOSPC ``OSError``.
+
+    Hints and retry refusals share this test. A path that quotes
+    ``[Errno 28]`` neither names a full disk nor stops a retry, unless the
+    path puts ``": "`` directly before the quote, as ``/label: [Errno 28]/x``
+    does.
+    """
+    return _DISK_FULL.search(reason) is not None
+
 
 def materialize_resilient(
     repo: Path,
@@ -1311,7 +1329,7 @@ def materialize_resilient(
     retriable: Callable[[dict[str, str]], bool] | None = None,
     fetch: Callable[..., FetchReport] | None = None,
 ) -> FetchReport:
-    """``materialize``, re-asking the store for whatever failed.
+    """``materialize``, re-asking for failed and rolled-back entries.
 
     A bulk fetch asks for tens of thousands of objects at high concurrency, and
     a small random subset can fail on throttling or a dropped connection.
@@ -1320,10 +1338,12 @@ def materialize_resilient(
     first flake: CI could not fetch 22 objects on one run and 6 wholly
     different ones on its own re-run, with the corpus itself intact.
 
-    Each pass re-asks only the entries that failed, and at a quarter of the
-    concurrency, because lowering pressure is what clears throttling. Pass
-    ``retriable`` to refuse a failure that cannot be transient; ``delays=()``
-    restores ``materialize``'s own behaviour exactly. ``fetch`` overrides which
+    Each pass re-asks the failed entries and every source file removed by that
+    pass's scope rollback, at a quarter of the concurrency, because lowering
+    pressure is what clears throttling. A retry must restore the whole source
+    directory or leave none of its own placements there. Pass ``retriable`` to
+    refuse a failure that cannot be transient; ``delays=()`` restores
+    ``materialize``'s own behaviour exactly. ``fetch`` overrides which
     materialize is called, so a caller keeps whatever seam its own tests patch.
     """
     selected = list(entries)
@@ -1333,11 +1353,12 @@ def materialize_resilient(
     )
     by_path = {entry.path: entry for entry in selected}
     for delay in delays:
-        if not report.failed:
+        if report.ok:
             return report
         if retriable is not None and not retriable(report.failed):
             return report
-        again = [by_path[path] for path in report.failed if path in by_path]
+        pending = set(report.failed) | set(report.rolled_back)
+        again = [entry for path, entry in by_path.items() if path in pending]
         if not again:
             return report
         time.sleep(delay)
@@ -1349,11 +1370,21 @@ def materialize_resilient(
 
 
 def _absorb_retry(first: FetchReport, retry: FetchReport) -> FetchReport:
-    """``first`` with ``retry`` folded in; ``failed`` becomes what still fails."""
+    """Fold in final outcomes; discarded placements never count as fetched.
+
+    Only failed or rolled-back entries are retried, so placements and their
+    accounting are disjoint between passes. Replace their old rollback state
+    with the retry's outcome, including a new failure or another rollback.
+    """
+    retried = set(
+        retry.present + retry.materialized + retry.modified + list(retry.failed) + retry.rolled_back
+    )
+    first.rolled_back = list(
+        dict.fromkeys([path for path in first.rolled_back if path not in retried] + retry.rolled_back)
+    )
     first.present.extend(retry.present)
     first.materialized.extend(retry.materialized)
     first.modified.extend(retry.modified)
-    first.rolled_back.extend(retry.rolled_back)
     for name, count in retry.sources.items():
         first.sources[name] = first.sources.get(name, 0) + count
     for name, count in retry.methods.items():
