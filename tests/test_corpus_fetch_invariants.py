@@ -189,6 +189,83 @@ def test_fetch_conserves_entries_scopes_success_and_accounting(files: tuple[_Fil
         _assert_invariants(repo, files, report)
 
 
+@settings(max_examples=20, deadline=None)
+@given(
+    cases=st.lists(
+        st.tuples(
+            st.binary(min_size=1, max_size=32),
+            st.sampled_from(("present", "modified", "absent")),
+        ),
+        min_size=1,
+        max_size=4,
+    ),
+    failing_body=st.binary(min_size=1, max_size=32),
+)
+@example(cases=[(b"a", "present"), (b"bb", "modified"), (b"ccc", "absent")], failing_body=b"d")
+def test_recreated_sources_conserve_outcomes_and_retained_accounting(
+    cases: list[tuple[bytes, str]], failing_body: bytes
+) -> None:
+    files = tuple(
+        _File(f"data/corpus/sources/nz/statute/2026/{index}.txt", body)
+        for index, (body, _outcome) in enumerate(cases)
+    ) + (_File("data/corpus/sources/nz/statute/2026/failing.txt", failing_body, failures=(True,)),)
+    replacements = {
+        file.path: bytes([body[0] ^ 1]) + body[1:] if outcome == "modified" else body
+        for file, (body, outcome) in zip(files[:-1], cases, strict=True)
+        if outcome != "absent"
+    }
+    expected_present = {
+        file.path for file, (_, mode) in zip(files[:-1], cases, strict=True) if mode == "present"
+    }
+    expected_modified = {
+        file.path for file, (_, mode) in zip(files[:-1], cases, strict=True) if mode == "modified"
+    }
+    expected_materialized = {file.path for file in files} - replacements.keys()
+    source = _ScheduledSource(files)
+
+    with tempfile.TemporaryDirectory(prefix="axiom-fetch-recreated-property-") as raw:
+        repo = Path(raw)
+        passes = 0
+
+        def fetch(*args: object, **kwargs: object) -> FetchReport:
+            nonlocal passes
+            report = content_store.materialize(*args, **kwargs)
+            passes += 1
+            if passes == 1:
+                assert set(report.rolled_back) == {file.path for file in files[:-1]}
+                assert report.materialized == []
+                assert report.bytes_materialized == 0
+                assert report.sources == report.methods == {}
+                for path, body in replacements.items():
+                    assert not (repo / path).exists()
+                    (repo / path).write_bytes(body)
+            return report
+
+        report = content_store.materialize_resilient(
+            repo,
+            [file.entry() for file in files],
+            None,
+            [source],
+            workers=1,
+            verify=True,
+            delays=(0,),
+            fetch=fetch,
+        )
+
+        _assert_invariants(repo, files, report)
+        assert passes == 2
+        assert report.ok
+        assert set(report.present) == expected_present
+        assert set(report.modified) == expected_modified
+        assert set(report.materialized) == expected_materialized
+        assert all((repo / path).read_bytes() == body for path, body in replacements.items())
+        assert report.sources == {"scheduled": len(expected_materialized)}
+        assert report.methods == {"stream": len(expected_materialized)}
+        assert source.asks == Counter(
+            {file.path: 1 if file.path in replacements else 2 for file in files}
+        )
+
+
 class _FullDiskSource:
     """A streamed body raises a real ENOSPC once its byte capacity is exhausted."""
 

@@ -124,6 +124,58 @@ def test_retry_restores_every_rolled_back_source(tmp_path: Path) -> None:
     assert report.methods == {"stream": len(BODIES)}
 
 
+@pytest.mark.parametrize("recreated_outcome", ["present", "modified"])
+def test_retry_accepts_a_source_recreated_after_rollback(
+    tmp_path: Path, recreated_outcome: str
+) -> None:
+    repo = _repo(tmp_path)
+    entries = _entries()
+    recreated, *retained = list(BODIES)
+    body = BODIES[recreated]
+    replacement = bytes([body[0] ^ 1]) + body[1:] if recreated_outcome == "modified" else body
+    source = ScheduledSource({entries[-1].path: {1}})
+    passes = 0
+
+    def fetch(*args: object, **kwargs: object) -> FetchReport:
+        nonlocal passes
+        report = content_store.materialize(*args, **kwargs)
+        passes += 1
+        if passes == 1:
+            assert set(report.rolled_back) == {entry.path for entry in entries[:-1]}
+            assert report.materialized == []
+            assert report.bytes_materialized == 0
+            assert report.sources == report.methods == {}
+            assert not (repo / recreated).exists()
+            (repo / recreated).write_bytes(replacement)
+        return report
+
+    report = content_store.materialize_resilient(
+        repo, entries, None, [source], workers=1, verify=True, delays=(0,), fetch=fetch
+    )
+
+    outcomes = Counter(
+        report.present
+        + report.materialized
+        + report.modified
+        + list(report.failed)
+        + report.rolled_back
+    )
+    assert outcomes == Counter(dict.fromkeys(BODIES, 1)), "each path has exactly one final outcome"
+    assert passes == 2
+    assert report.present == ([recreated] if recreated_outcome == "present" else [])
+    assert report.modified == ([recreated] if recreated_outcome == "modified" else [])
+    assert report.materialized == retained
+    assert report.failed == {}
+    assert report.rolled_back == []
+    assert report.ok
+    assert (repo / recreated).read_bytes() == replacement
+    assert all((repo / path).read_bytes() == BODIES[path] for path in retained)
+    assert report.bytes_materialized == sum(len(BODIES[path]) for path in retained)
+    assert report.sources == {"fake": len(retained)}
+    assert report.methods == {"stream": len(retained)}
+    assert source.counts == Counter({recreated: 1, **dict.fromkeys(retained, 2)})
+
+
 def test_permanent_failure_leaves_no_sources_and_no_duplicate_rollback(tmp_path: Path) -> None:
     repo = _repo(tmp_path)
     entries = _entries()

@@ -170,7 +170,9 @@ bytes; the content check catches a same-size rewrite within one coarse
 timestamp tick. A file that an extractor or another fetch has rewritten
 stays, and fetch reports it as modified. A retry asks for the rolled-back files
 along with the failed one. `FetchReport.ok` reads false while `rolled_back`
-holds a file, and `corpus fetch` then exits nonzero and names the file. An interrupt is handled without asynchronous
+holds a file, and `corpus fetch` exits nonzero for those reported rollback
+leftovers. Its text summary counts all of them and lists at most 20 rolled-back
+paths. An interrupt is handled without asynchronous
 exceptions: on the main thread Ctrl-C only stores a flag (no lock, so a burst
 of signals cannot deadlock the handler), each worker logs its own outcome and
 the file it placed, and on an interrupt (or a progress callback that raises)
