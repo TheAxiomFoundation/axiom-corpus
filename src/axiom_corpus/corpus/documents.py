@@ -1181,7 +1181,7 @@ def _extract_pdf_blocks(
 # rendering of the pages or the publisher's HTML
 # (``scripts/compare_pdf_amendment_markup_with_html.py``).
 #
-# A drawing that is a glyph is not a rule (``_pdf_drawn_glyph_sizes``). MuPDF
+# A drawing that is a glyph is not a rule (``_pdf_glyph_drawings``). MuPDF
 # draws some Type 3 glyphs as vector paths, and the bar of such a hyphen lies at
 # a strike offset from its own line, an underscore at an underline offset.
 _AMENDMENT_DELETED = "deleted"
@@ -1227,11 +1227,19 @@ _PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
 # ``Page.get_texttrace`` span type of text the page does not paint (PyMuPDF:
 # "ignored text", PDF text rendering mode 3).
 _PDF_TEXTTRACE_HIDDEN = 3
+# ``Page.get_bboxlog`` entry kinds: a filled path, a stroked path, and text the
+# page does not paint.
+_PDF_BBOX_FILL_PATH = "fill-path"
+_PDF_BBOX_STROKE_PATH = "stroke-path"
+_PDF_BBOX_HIDDEN_TEXT = "ignore-text"
+# A drawing's rectangle and a bbox-log bound agree within this many points.
+_PDF_BOUND_TOLERANCE = 0.01
 # A drawing is a glyph only if it is at most this many font sizes wide and high.
-# In the retained PDFs (PyMuPDF 1.26.7) the 2.5 million drawings that directly
-# precede a one-character hidden Type 3 span are at most 1.25 font sizes, except
-# three rules 55 to 69 font sizes long on one page, which are not glyphs.
+# GLYPH_EXTENT_CALIBRATION_PLACEHOLDER
 _PDF_GLYPH_MAX_EXTENT = 2.0
+# MuPDF keeps at most this many bytes of a font's name (``fz_font.name`` is 32
+# bytes with its terminating zero), so a longer name reaches spans cut short.
+_PDF_FONT_NAME_BYTES = 31
 _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements", "sort_text")
 _PDF_WARNING_EXAMPLES = 8
 
@@ -1816,103 +1824,317 @@ def _pdf_horizontal_rules(
     thickness is its height plus, when it is stroked, the stroke width; a line's
     is its stroke width. White paint and paint with zero opacity are invisible and
     never make a rule, and neither does a drawing that is a glyph
-    (``_pdf_drawing_is_glyph``).
+    (``_pdf_glyph_drawings``). Glyphs are looked for only among the drawings that
+    would make a rule, so a page without any reads no fonts and no text.
     """
+    found: list[tuple[list[_PdfHorizontalRule], list[_PdfHorizontalRule]]] = []
+    paths: list[dict[str, Any]] = []
+    for path in page.get_drawings():
+        thin, thick = _pdf_path_rules(path)
+        if thin or thick:
+            found.append((thin, thick))
+            paths.append(path)
+    glyphs = _pdf_glyph_drawings(page, paths)
     rules: list[_PdfHorizontalRule] = []
     thick_rules: list[_PdfHorizontalRule] = []
-    glyph_sizes = _pdf_drawn_glyph_sizes(page)
-    for path in page.get_drawings():
-        if _pdf_drawing_is_glyph(path, glyph_sizes):
-            continue
-        path_type = str(path.get("type") or "")
-        filled = "f" in path_type and _pdf_paint_is_visible(
-            path.get("fill"), path.get("fill_opacity")
-        )
-        stroked = "s" in path_type and _pdf_paint_is_visible(
-            path.get("color"), path.get("stroke_opacity")
-        )
-        stroke_width = float(path.get("width") or 0.0)
-        for item in path.get("items", ()):
-            operator = item[0]
-            if operator == "re":
-                rect = item[1]
-                if rect.width <= rect.height or not (filled or stroked):
-                    continue
-                # A stroke is centred on the outline, so it adds its width to the
-                # painted height of the rectangle.
-                thickness = rect.height + (stroke_width if stroked else 0.0)
-                rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
-                if thickness <= _PDF_RULE_MAX_THICKNESS:
-                    rules.append(rule)
-                elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
-                    thick_rules.append(rule)
-            elif operator == "l" and stroked:
-                start, end = item[1], item[2]
-                if abs(start.y - end.y) > 0.5 or abs(start.x - end.x) <= 0.5:
-                    continue
-                rule = _PdfHorizontalRule(
-                    min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2, stroke_width
-                )
-                if stroke_width <= _PDF_RULE_MAX_THICKNESS:
-                    rules.append(rule)
-                elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
-                    thick_rules.append(rule)
+    for position, (thin, thick) in enumerate(found):
+        if position not in glyphs:
+            rules.extend(thin)
+            thick_rules.extend(thick)
     return tuple(rules), tuple(thick_rules)
 
 
-def _pdf_drawn_glyph_sizes(page: Any) -> dict[int, float]:
-    """Map the page commands that may be drawn Type 3 glyphs to their font size.
+def _pdf_path_rules(
+    path: dict[str, Any],
+) -> tuple[list[_PdfHorizontalRule], list[_PdfHorizontalRule]]:
+    """Return a drawing's rules and its thicker rules (``_pdf_horizontal_rules``)."""
+    rules: list[_PdfHorizontalRule] = []
+    thick_rules: list[_PdfHorizontalRule] = []
+    path_type = str(path.get("type") or "")
+    filled = "f" in path_type and _pdf_paint_is_visible(path.get("fill"), path.get("fill_opacity"))
+    stroked = "s" in path_type and _pdf_paint_is_visible(
+        path.get("color"), path.get("stroke_opacity")
+    )
+    stroke_width = float(path.get("width") or 0.0)
+    for item in path.get("items", ()):
+        operator = item[0]
+        if operator == "re":
+            rect = item[1]
+            if rect.width <= rect.height or not (filled or stroked):
+                continue
+            # A stroke is centred on the outline, so it adds its width to the
+            # painted height of the rectangle.
+            thickness = rect.height + (stroke_width if stroked else 0.0)
+            rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
+            if thickness <= _PDF_RULE_MAX_THICKNESS:
+                rules.append(rule)
+            elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                thick_rules.append(rule)
+        elif operator == "l" and stroked:
+            start, end = item[1], item[2]
+            if abs(start.y - end.y) > 0.5 or abs(start.x - end.x) <= 0.5:
+                continue
+            rule = _PdfHorizontalRule(
+                min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2, stroke_width
+            )
+            if stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                rules.append(rule)
+            elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                thick_rules.append(rule)
+    return rules, thick_rules
+
+
+def _pdf_glyph_drawings(page: Any, paths: list[dict[str, Any]]) -> frozenset[int]:
+    """Return the positions in ``paths``, drawings of ``page``, that are Type 3 glyphs.
 
     MuPDF draws a Type 3 glyph that it cannot cache by running the glyph's
-    procedure on the page, and then reports the character as hidden text so that
-    it can still be extracted (``pdf_show_char`` in MuPDF's ``pdf-op-run.c``,
-    which flushes pending text before each such glyph, so the hidden span holds
-    that one character). PyMuPDF therefore lists the glyph among the page's
-    drawings, and the page command right after it (``seqno`` + 1) is a hidden
-    text span of one character in a Type 3 font. Such a drawing is text the page
-    shows, not a rule: the bar of a hyphen lies at a strike offset from its own
-    line and an underscore at an underline offset.
+    procedure on the page, and then shows the character as hidden text so that it
+    can still be extracted (``pdf_show_char`` in MuPDF's ``pdf-op-run.c``, which
+    flushes pending text before such a glyph and again before the next character,
+    so the hidden text is one call that holds that one character). PyMuPDF
+    therefore lists the glyph among the page's drawings, and the page's next
+    command is that hidden character. Such a drawing is text the page shows, not
+    a rule: the bar of a hyphen lies at a strike offset from its own line and an
+    underscore at an underline offset.
 
-    The keys are the command numbers right before such a span. A glyph drawn as
-    several paths is recognised only by its last one. The span's font is a Type 3
-    font when ``_pdf_type3_font_names`` names it (the names MuPDF gives the spans
-    of the page's Type 3 fonts, appearance streams included).
+    A drawing is taken for such a glyph only when all of these hold:
+
+    - its command, found in ``Page.get_bboxlog`` by its number
+      (``_pdf_drawing_commands``), agrees with it (``_pdf_drawing_end``);
+    - the next command that is not a path without segments (which draws
+      nothing) is hidden text that ``Page.get_texttrace`` reports as one span of
+      one character, in a font named as only Type 3 fonts on the page are
+      (``_pdf_glyph_font_names``);
+    - the drawing lies inside that character's bound and is at most
+      ``_PDF_GLYPH_MAX_EXTENT`` font sizes wide and high.
+
+    Any other drawing stays a rule. MuPDF draws no glyph for text that the PDF
+    itself hides (render mode 3), so a rule right before such a character is taken
+    for a glyph only if it lies inside the character's bound and is no larger than
+    a glyph. A glyph drawn as several paths is recognised only by its last one,
+    and a glyph whose character maps to several characters (a ligature) not at
+    all.
 
     Only a PDF has Type 3 fonts. MuPDF opens some other files given as PDF (a Word
     file saved under a ``.pdf`` name opens as an Office document), and on such a
     page reading ``Page.xref``, which ``_pdf_type3_font_names`` does, crashed
     PyMuPDF 1.26.7 with a segmentation fault; its drawings are never glyphs here.
     """
-    if not page.parent.is_pdf:
-        return {}
-    type3_fonts = _pdf_type3_font_names(page)
-    if not type3_fonts:
-        return {}
-    return {
-        int(span["seqno"]) - 1: float(span["size"])
-        for span in page.get_texttrace()
-        if span["type"] == _PDF_TEXTTRACE_HIDDEN
-        and span["font"] in type3_fonts
-        and len(span["chars"]) == 1
-    }
+    if not paths or not page.parent.is_pdf:
+        return frozenset()
+    fonts = _pdf_glyph_font_names(page)
+    if not fonts:
+        return frozenset()
+    log = page.get_bboxlog()
+    commands = _pdf_drawing_commands(log)
+    spans: dict[int, list[dict[str, Any]]] = {}
+    for span in page.get_texttrace():
+        spans.setdefault(int(span["seqno"]), []).append(span)
+    glyphs: set[int] = set()
+    for position, path in enumerate(paths):
+        seqno = path.get("seqno")
+        index = commands.get(seqno) if isinstance(seqno, int) else None
+        end = None if index is None else _pdf_drawing_end(path, log, index)
+        while end is not None and end < len(log) and _pdf_entry_is_empty_path(log[end]):
+            end += 1  # a path with no segments draws nothing
+        if end is None or end >= len(log) or log[end][0] != _PDF_BBOX_HIDDEN_TEXT:
+            continue
+        text = spans.get(end, [])
+        if len(text) != 1:
+            continue
+        span = text[0]
+        size = float(span["size"])
+        rect = path["rect"]
+        if (
+            span["type"] == _PDF_TEXTTRACE_HIDDEN
+            and span["font"] in fonts
+            and len(span["chars"]) == 1
+            and size > 0
+            and max(rect.width, rect.height) <= _PDF_GLYPH_MAX_EXTENT * size
+            and _pdf_rect_within(rect, log[end][1])
+        ):
+            glyphs.add(position)
+    return frozenset(glyphs)
 
 
-def _pdf_drawing_is_glyph(path: dict[str, Any], glyph_sizes: dict[int, float]) -> bool:
-    """Return whether a drawing is a Type 3 glyph that MuPDF drew as a path.
+def _pdf_drawing_commands(log: list[tuple[Any, ...]]) -> dict[int, int]:
+    """Map ``Page.get_drawings`` numbers (``seqno``) to positions in ``Page.get_bboxlog``.
 
-    It is when the next page command is a one-character hidden Type 3 span
-    (``_pdf_drawn_glyph_sizes``) and the drawing is no larger than a glyph of
-    that font size. A hidden character is not always preceded by its own glyph:
-    text the PDF itself hides is not drawn. A rule drawn before such a character
-    is then the previous command, so a drawing larger than
-    ``_PDF_GLYPH_MAX_EXTENT`` font sizes stays a rule.
+    In PyMuPDF 1.26.7 the bbox log has an entry for each path the page fills or
+    strokes, each text call (painted or hidden), shading and image, in order, and
+    ``Page.get_texttrace`` numbers its spans by the same count, so a span's
+    ``seqno`` is the position of its text's entry. ``get_drawings`` counts the
+    same commands, except that it leaves out, without counting, a path that has
+    no segments (only moves). MuPDF bounds such a path with an empty rectangle
+    (``fz_bound_path`` in ``path.c``) and a path with a segment with a proper one,
+    so leaving out the paths whose bounds are empty numbers the rest of the bbox
+    log as ``get_drawings`` does.
     """
-    seqno = path.get("seqno")
-    size = glyph_sizes.get(seqno) if isinstance(seqno, int) else None
-    if size is None or size <= 0:
-        return False
+    commands: dict[int, int] = {}
+    for position, entry in enumerate(log):
+        if not _pdf_entry_is_empty_path(entry):
+            commands[len(commands)] = position
+    return commands
+
+
+def _pdf_entry_is_empty_path(entry: tuple[Any, ...]) -> bool:
+    """Whether a bbox-log entry is a path with no segments (``_pdf_drawing_commands``)."""
+    return entry[0] in (_PDF_BBOX_FILL_PATH, _PDF_BBOX_STROKE_PATH) and _pdf_bound_is_inverted(
+        entry[1]
+    )
+
+
+def _pdf_drawing_end(path: dict[str, Any], log: list[tuple[Any, ...]], index: int) -> int | None:
+    """Return the bbox-log position right after a drawing's commands, or None when the
+    entry at ``index`` does not agree with the drawing.
+
+    A fill (``f``) agrees with a ``fill-path`` entry whose bound is its rectangle,
+    and a stroke (``s``) with a ``stroke-path`` entry whose bound, widened by the
+    stroke, holds its rectangle. PyMuPDF reports a stroke of the same segments as
+    the fill before it as one drawing (``fs``), numbered as the fill; it agrees
+    only when the stroke is the very next entry.
+    """
+    kind, bound = log[index][0], log[index][1]
     rect = path["rect"]
-    return bool(max(rect.width, rect.height) <= _PDF_GLYPH_MAX_EXTENT * size)
+    path_type = path.get("type")
+    if path_type == "f" and kind == _PDF_BBOX_FILL_PATH and _pdf_rect_matches(rect, bound):
+        return index + 1
+    if path_type == "s" and kind == _PDF_BBOX_STROKE_PATH and _pdf_rect_within(rect, bound):
+        return index + 1
+    if (
+        path_type == "fs"
+        and kind == _PDF_BBOX_FILL_PATH
+        and _pdf_rect_matches(rect, bound)
+        and index + 1 < len(log)
+        and log[index + 1][0] == _PDF_BBOX_STROKE_PATH
+        and _pdf_rect_within(rect, log[index + 1][1])
+    ):
+        return index + 2
+    return None
+
+
+def _pdf_bound_is_inverted(bound: Any) -> bool:
+    """Whether a bound is MuPDF's empty rectangle, which ends before it starts.
+
+    A path of one point has a bound of no width that still counts as a drawing, so this
+    is not ``_pdf_rect_is_empty``, which takes a box of no width for empty too.
+    """
+    x0, y0, x1, y1 = bound
+    return bool(x0 > x1 or y0 > y1)
+
+
+def _pdf_rect_matches(rect: Any, bound: Any) -> bool:
+    return all(
+        abs(float(a) - float(b)) <= _PDF_BOUND_TOLERANCE for a, b in zip(rect, bound, strict=True)
+    )
+
+
+def _pdf_rect_within(rect: Any, bound: Any) -> bool:
+    x0, y0, x1, y1 = (float(value) for value in rect)
+    left, top, right, bottom = (float(value) for value in bound)
+    return bool(
+        x0 >= left - _PDF_BOUND_TOLERANCE
+        and y0 >= top - _PDF_BOUND_TOLERANCE
+        and x1 <= right + _PDF_BOUND_TOLERANCE
+        and y1 <= bottom + _PDF_BOUND_TOLERANCE
+    )
+
+
+def _pdf_glyph_font_names(page: Any) -> frozenset[str]:
+    """Return the span font names that only the page's Type 3 fonts carry.
+
+    A span names its font but not the font's type, so a Type 3 font named as
+    another font on the page is (a Type 3 font named "Helvetica" beside a Type 1
+    Helvetica) can't be told from it, and its name is left out
+    (``_pdf_other_font_names``).
+    """
+    type3 = _pdf_type3_font_names(page)
+    if not type3:
+        return frozenset()
+    return type3 - _pdf_other_font_names(page)
+
+
+def _pdf_other_font_names(page: Any) -> frozenset[str]:
+    """Return every name the spans of the page's other fonts (not Type 3) may carry.
+
+    MuPDF names the spans of such a font after its /BaseFont (a Type0 font's after
+    its descendant font's) and keeps the name's first ``_PDF_FONT_NAME_BYTES``
+    bytes, and PyMuPDF leaves out a subset prefix, six characters before the
+    name's first "+" (``_pdf_span_name_forms``). The fonts are those of the page
+    and its forms (``get_fonts``; a font written inline in their resources is
+    read there, ``_pdf_inline_font``) and of its annotation and widget appearance
+    streams (``_pdf_appearance_font_names``). A name listed that no span carries
+    only keeps a Type 3 font's glyphs drawn as rules. Not read: a name that can't
+    be read, an inline font that can't be found by its resource name, and fonts
+    used only inside Type 3 glyph procedures.
+    """
+    document = page.parent
+    count = document.xref_length()
+    names = set(_pdf_appearance_font_names(page)[1])
+    for font in page.get_fonts(full=True):
+        if font[2] == "Type3":
+            continue
+        names |= _pdf_span_name_forms(str(font[3]))
+        if font[0]:
+            names |= _pdf_font_span_names(document, int(font[0]), count)
+        else:
+            names |= _pdf_font_span_names(document, _pdf_inline_font(page, font), count)
+    return frozenset(names)
+
+
+def _pdf_inline_font(page: Any, font: tuple[Any, ...]) -> str:
+    """The printed dictionary of a font that ``get_fonts`` lists without an object number,
+    read by its resource name (``font[4]``) from the resources of the form that uses it
+    (``font[6]``) or of the page; empty when it can't be read. This never raises."""
+    try:
+        kind, value = page.parent.xref_get_key(
+            int(font[6]) or page.xref, f"Resources/Font/{font[4]}"
+        )
+    except Exception:
+        return ""
+    return str(value) if kind == "dict" else ""
+
+
+def _pdf_span_name_forms(name: str) -> set[str]:
+    """Every name MuPDF may give the spans of a font named ``name``: the name whole
+    and cut to ``_PDF_FONT_NAME_BYTES`` bytes, each with and without a subset prefix
+    (six characters before the first "+"). ``name`` is read as PyMuPDF prints font
+    names, one character to a byte."""
+    forms: set[str] = set()
+    for form in (name, name[:_PDF_FONT_NAME_BYTES]):
+        forms.add(form)
+        if form.find("+") == 6:
+            forms.add(form[7:])
+    return forms
+
+
+def _pdf_font_span_names(document: Any, font: int | str, count: int) -> set[str]:
+    """Every name the spans of a font that is not Type 3 may carry (``_pdf_span_name_forms``),
+    from its /BaseFont and, for a Type0 font, its descendant fonts'. ``font`` is the font's
+    object number or its dictionary as printed; ``count`` is the document's
+    ``xref_length``. A name that can't be read gives none, and this never raises."""
+    names: set[str] = set()
+    try:
+        entries = _pdf_dict_entries(
+            str(document.xref_object(font)) if isinstance(font, int) else font
+        )
+        dictionaries = [entries]
+        if entries.get("Subtype") == "/Type0":
+            descendants = _pdf_entry_text(document, entries.get("DescendantFonts", ""), count)
+            descendants = descendants.strip()
+            for number in map(int, _PDF_OBJECT_REFERENCE.findall(descendants)):
+                if 0 < number < count:
+                    dictionaries.append(_pdf_dict_entries(str(document.xref_object(number))))
+            if descendants.startswith("[") and descendants.endswith("]"):
+                dictionaries.append(_pdf_dict_entries(descendants[1:-1]))  # written inline
+        for dictionary in dictionaries:
+            value = _pdf_entry_text(document, dictionary.get("BaseFont", ""), count)
+            name = _pdf_printed_name(value.strip())
+            if name:
+                names |= _pdf_span_name_forms(name.decode("latin-1"))
+    except Exception:
+        pass
+    return names
 
 
 def _pdf_paint_is_visible(color: Any, opacity: Any) -> bool:
@@ -3971,6 +4193,15 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
     used as a lookup path. A reference to a missing object, or anything else that can't be
     read, is skipped: this only finds fonts, and must never fail a page.
     """
+    return _pdf_appearance_font_names(page)[0]
+
+
+def _pdf_appearance_font_names(page: Any) -> tuple[set[str], set[str]]:
+    """The span font names of the Type3 fonts in the page's appearance streams
+    (``_pdf_appearance_type3_font_names``, which says how they are found), and every name
+    the spans of their other fonts may carry (``_pdf_other_font_names``). Reading another
+    font's names never changes the Type3 names: a font whose names can't be read is skipped
+    alone."""
     document = page.parent
     count = document.xref_length()
 
@@ -4001,6 +4232,7 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
         except Exception:
             continue
     names: set[str] = set()
+    others: set[str] = set()
     seen: set[int] = set()
     while holders and len(seen) < _PDF_APPEARANCE_STREAMS:
         holder = holders.pop()
@@ -4019,6 +4251,8 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
                         names.add(inline)
                         if inline == "Unnamed-T3":
                             names.add("Type3 (0 0 R)")
+                    else:
+                        others |= _pdf_font_span_names(document, value, count)
                     continue
                 for font in references(value):
                     if document.xref_get_key(font, "Subtype") == ("name", "/Type3"):
@@ -4026,6 +4260,8 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
                         names.add(named)
                         if named == "Unnamed-T3":
                             names.add(f"Type3 ({font} 0 R)")
+                    else:
+                        others |= _pdf_font_span_names(document, font, count)
             xobjects = _pdf_dict_entries(
                 _pdf_entry_text(document, resources.get("XObject", ""), count)
             )
@@ -4033,7 +4269,7 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
                 holders.extend(references(value))
         except Exception:
             continue
-    return names
+    return names, others
 
 
 def _pdf_entry_text(document: Any, value: str, count: int) -> str:

@@ -566,14 +566,20 @@ in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
 0.22 (underline). White rules and rules with zero opacity are ignored. So is a
 drawing that is a glyph: MuPDF draws some Type 3 glyphs as vector paths and
 reports their characters as hidden text, and the bar of such a hyphen would
-strike the text around it, an underscore underline it. A drawing is a glyph when
-the next page command is a hidden text span of one character in a Type 3 font
-(a font `_pdf_type3_font_names` names, the helper the OCR overlay uses) and the
-drawing is at most two of that span's font sizes wide and high. Which glyphs
-MuPDF draws this way depends on its version. A file MuPDF does not open as a PDF
-(a Word file saved under a `.pdf` name) has no Type 3 fonts, and its fonts are
-not read. Hidden text is still
-classified: a rule under the text of an OCR layer reads as an underline. A thin
+strike the text around it, an underscore underline it. The classifier takes a
+drawing for a glyph when the page's next command, paths without segments aside,
+is hidden text of one character in a font named as only the page's Type 3 fonts
+are (the names `_pdf_type3_font_names` gives, the helper the OCR overlay uses,
+less any that another font on the page shares), and the drawing lies inside that
+character's bound and spans at most two of its font sizes each way. It finds
+each drawing's command by number in `get_bboxlog`, which numbers commands as the
+text trace does; `get_drawings` skips paths without segments, which the bbox log
+bounds with an empty rectangle, and the classifier skips them too. It recognises
+a glyph drawn as several paths only by its last one. Which glyphs MuPDF draws
+this way depends on its version. A file MuPDF does not open as a PDF (a Word
+file saved under a `.pdf` name) has no Type 3 fonts, and the classifier reads no
+fonts there; on a page without a rule it reads no fonts and no text. Hidden text
+still counts: a rule under the text of an OCR layer reads as an underline. A thin
 table rule drawn 1-2 pt under 10 pt text reads as an underline too. Extraction
 warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font
 sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or

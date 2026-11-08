@@ -7,7 +7,7 @@ bar of a hyphen for a strike and an underscore for an underline. With PyMuPDF
 1.26.7 that marked characters on ten pages of CMS state plan approval packages
 set in Type 3 fonts. PyMuPDF 1.28.2 paints those fonts' glyphs as text and
 marks none of them; it still draws the glyphs of the font built here.
-``_pdf_drawing_is_glyph`` recognises the glyph drawings and
+``_pdf_glyph_drawings`` recognises the glyph drawings and
 ``_pdf_horizontal_rules`` leaves them out.
 
 Invariants (Hypothesis):
@@ -20,12 +20,25 @@ Invariants (Hypothesis):
 3. Leaving glyph drawings out only removes rules. A page's rules are the rules
    of the same page without its glyph drawings, they are among the rules found
    when no drawing is taken for a glyph, and they are all of those when the
-   page has no Type 3 font, in which case the page's text is not traced. A
-   glyph drawing is one that directly precedes a one-character hidden span in
-   a Type 3 font and is at most two of that span's font sizes wide and high.
+   page has no Type 3 font, in which case the page's text is neither traced nor
+   bounded. A page without a rule reads no fonts and no text. A glyph drawing
+   is one whose next command, paths without segments aside, is hidden text of
+   one span of one character in a font only the page's Type 3 fonts are named,
+   and that lies inside that character's bound and is at most two of its font
+   sizes wide and high. The drawings and the bbox log are matched by command
+   number as PyMuPDF 1.26.7 numbers them, which a model page reproduces.
 4. Only a PDF has Type 3 fonts. A page of a file MuPDF opens as something else
    (a Word file saved under a ``.pdf`` name) has no glyph drawings, its fonts
    are never read, and it extracts with ``amendment_markup`` as before.
+5. A path without segments changes nothing. Adding such paths anywhere in a
+   page's content, or inside a glyph's procedure, leaves its extraction as it
+   was, though ``get_drawings`` neither lists nor counts them.
+6. Only a Type 3 font's hidden character makes a glyph. A hidden character in
+   another font never makes the drawing before it a glyph, however the page's
+   Type 3 and other fonts are named (a subset prefix, a name MuPDF cuts short,
+   a Type0 font named after its descendant) and wherever the other font sits
+   (the page's resources, referenced or inline, or an annotation's appearance
+   stream).
 
 The Type 3 fonts are the ones ``_pdf_type3_font_names`` (the OCR overlay's
 helper) names.
@@ -33,6 +46,7 @@ helper) names.
 
 from __future__ import annotations
 
+import ast
 import warnings
 from collections import Counter
 from pathlib import Path
@@ -170,8 +184,17 @@ def _states(body: str) -> list[tuple[str, str | None]]:
     ]
 
 
-def _no_glyph_drawings(_page: Any) -> dict[int, float]:
-    return {}
+def _no_glyph_drawings(_page: Any, _paths: list[dict[str, Any]]) -> frozenset[int]:
+    return frozenset()
+
+
+def _glyph_seqnos(page: Any) -> set[int]:
+    """The command numbers of the page's drawings that are glyphs."""
+    drawings = page.get_drawings()
+    return {
+        drawings[position]["seqno"]
+        for position in documents_module._pdf_glyph_drawings(page, drawings)
+    }
 
 
 # 1. What PyMuPDF reports for drawn Type 3 text ------------------------------------
@@ -212,11 +235,21 @@ def test_pymupdf_draws_each_glyph_and_then_reports_its_character_as_hidden_text(
 def test_the_glyph_drawings_are_found_by_the_hidden_character_that_follows_each() -> None:
     with fitz.open(stream=_type3_pdf("a-_ a"), filetype="pdf") as document:
         page = document[0]
-        sizes = documents_module._pdf_drawn_glyph_sizes(page)
+        log = page.get_bboxlog()
         drawings = page.get_drawings()
+        glyphs = documents_module._pdf_glyph_drawings(page, drawings)
 
-    assert sizes == {0: SIZE, 2: SIZE, 4: SIZE, 7: SIZE}
-    assert all(documents_module._pdf_drawing_is_glyph(path, sizes) for path in drawings)
+    assert glyphs == {0, 1, 2, 3}
+    # Without empty paths the drawings' numbers are their bbox-log positions.
+    assert documents_module._pdf_drawing_commands(log) == {n: n for n in range(len(log))}
+    for path in drawings:
+        # Each glyph lies inside the bound of the hidden character after it,
+        # which MuPDF gives one point more on each side.
+        (left, top, right, bottom) = log[path["seqno"] + 1][1]
+        rect = path["rect"]
+        assert (rect.x0 - left, rect.y0 - top, right - rect.x1, bottom - rect.y1) == pytest.approx(
+            (1.0, 1.0, 1.0, 1.0), abs=1e-4
+        )
     # The largest, the block of "a", is half a font size high.
     assert max(max(path["rect"].width, path["rect"].height) for path in drawings) == 6.0
 
@@ -237,7 +270,7 @@ def test_a_hyphen_and_an_underscore_do_not_mark_themselves(
 
     # Taking the glyph drawings for rules strikes the hyphen with its own bar
     # and underlines the underscore with itself.
-    monkeypatch.setattr(documents_module, "_pdf_drawn_glyph_sizes", _no_glyph_drawings)
+    monkeypatch.setattr(documents_module, "_pdf_glyph_drawings", _no_glyph_drawings)
     assert [block.body for block in _marked(content)] == ["aa[---]aa{+_+}a a"]
 
 
@@ -254,7 +287,7 @@ def test_the_glyphs_of_a_type3_font_without_a_name_do_not_mark_its_text() -> Non
         (name,) = {span["font"] for span in page.get_texttrace()}
         assert name in ("Unnamed-T3", f"Type3 ({font[0]} 0 R)")
         # One drawn glyph for each character but the space.
-        assert len(documents_module._pdf_drawn_glyph_sizes(page)) == 8
+        assert len(_glyph_seqnos(page)) == 8
     assert [block.body for block in _marked(content)] == ["aa-aa_a a"]
 
 
@@ -276,7 +309,7 @@ def test_an_underlined_hyphen_is_inserted_text(monkeypatch: pytest.MonkeyPatch) 
     assert [block.body for block in _marked(content)] == ["{+a-a+}"]
 
     # Its own bar made the hyphen struck as well, which stopped the page.
-    monkeypatch.setattr(documents_module, "_pdf_drawn_glyph_sizes", _no_glyph_drawings)
+    monkeypatch.setattr(documents_module, "_pdf_glyph_drawings", _no_glyph_drawings)
     with pytest.raises(ValueError, match="'-' is both struck through and underlined"):
         _marked(content)
 
@@ -288,7 +321,7 @@ def test_a_heavy_glyph_bar_draws_no_thick_rule_warning(monkeypatch: pytest.Monke
 
     assert [block.body for block in _marked(content)] == ["a-a"]
 
-    monkeypatch.setattr(documents_module, "_pdf_drawn_glyph_sizes", _no_glyph_drawings)
+    monkeypatch.setattr(documents_module, "_pdf_glyph_drawings", _no_glyph_drawings)
     with pytest.raises(PdfAmendmentMarkupWarning, match="thicker than 1.5 pt"):
         _marked(content)
 
@@ -300,7 +333,7 @@ def test_a_glyph_drawn_as_two_paths_is_recognised_only_by_its_last_one() -> None
     with fitz.open(stream=_type3_pdf("a=a"), filetype="pdf") as document:
         page = document[0]
         assert [path["seqno"] for path in page.get_drawings()] == [0, 2, 3, 5]
-        assert set(documents_module._pdf_drawn_glyph_sizes(page)) == {0, 3, 5}
+        assert _glyph_seqnos(page) == {0, 3, 5}
 
     assert [block.body for block in _marked(_type3_pdf("a=a"))] == ["a[-=-]a"]
 
@@ -317,33 +350,40 @@ def test_hidden_text_in_an_ordinary_font_keeps_the_rule_drawn_before_it() -> Non
 
     with fitz.open(stream=content, filetype="pdf") as reopened:
         assert [kind for kind, _bbox in reopened[0].get_bboxlog()] == ["stroke-path", "ignore-text"]
-        assert documents_module._pdf_drawn_glyph_sizes(reopened[0]) == {}
+        assert _glyph_seqnos(reopened[0]) == set()
     assert [block.body for block in _marked(content)] == ["{+I+}"]
 
 
 @pytest.mark.parametrize(
-    ("rule_length", "expected"),
+    ("state", "x0", "x1", "expected"),
     [
-        # 120 pt is ten font sizes: no glyph of a 12 pt font is that long.
-        (120.0, "{+a+}"),
-        # 7.2 pt, the width of the "a", could be a glyph: it is taken for one.
-        (7.2, "a"),
+        # Underlines 120 pt and 7.2 pt long (the width of the "a") lie below the
+        # character's bound, so neither is taken for its glyph.
+        (I, LEFT, LEFT + 120.0, "{+a+}"),
+        (I, LEFT, LEFT + 7.2, "{+a+}"),
+        # A strike 5 pt long lies inside the bound and is glyph-sized: it is taken
+        # for a glyph. One 18 pt long runs out of the bound and marks.
+        (D, LEFT + 1.0, LEFT + 6.0, "a"),
+        (D, LEFT, LEFT + 18.0, "[-a-]"),
     ],
 )
-def test_a_rule_before_hidden_type3_text_is_a_glyph_only_if_it_is_glyph_sized(
-    rule_length: float, expected: str
+def test_a_rule_before_hidden_type3_text_is_a_glyph_only_inside_its_bound(
+    state: str, x0: float, x1: float, expected: str
 ) -> None:
     # Text rendering mode 3 hides the "a" in the PDF itself, so MuPDF does not
-    # draw its glyph, and the underline drawn before it is the previous command.
-    stream = _line(LEFT, LEFT + rule_length, REAL_OFFSETS[I], SIZE) + (
+    # draw its glyph, and the rule drawn before it is the previous command.
+    stream = _line(x0, x1, REAL_OFFSETS[state], SIZE) + (
         f"BT /T1 {SIZE} Tf 3 Tr {LEFT} {PAGE_HEIGHT - BASELINE} Td (a) Tj ET\n"
     )
     content = _type3_document(stream)
 
     with fitz.open(stream=content, filetype="pdf") as document:
         page = document[0]
-        assert [kind for kind, _bbox in page.get_bboxlog()] == ["stroke-path", "ignore-text"]
-        assert documents_module._pdf_drawn_glyph_sizes(page) == {0: SIZE}
+        log = page.get_bboxlog()
+        assert [kind for kind, _bbox in log] == ["stroke-path", "ignore-text"]
+        # The character's bound is its glyph's box and a point more each way.
+        assert log[1][1] == pytest.approx((LEFT + 0.2, 93.0, LEFT + 7.0, 101.0), abs=1e-4)
+        assert _glyph_seqnos(page) == ({0} if expected == "a" else set())
     assert [block.body for block in _marked(content)] == [expected]
 
 
@@ -407,45 +447,90 @@ def test_property_only_real_rules_mark_drawn_type3_text(
 # 3. Leaving glyph drawings out only removes rules ----------------------------------
 
 # Object number, get_fonts base name, font type, and the name MuPDF gives the
-# font in a text trace. A Type 3 font without a /Name has an empty base name and
-# is "Unnamed-T3" to MuPDF 1.26, "Type3 (N 0 R)" to MuPDF 1.28.
+# font's spans in a text trace. A Type 3 font without a /Name has an empty base
+# name and is "Unnamed-T3" to MuPDF 1.26, "Type3 (N 0 R)" to MuPDF 1.28. A Type0
+# font's spans carry its descendant's name (``_DESCENDANTS``). MuPDF keeps 31
+# bytes of a name and PyMuPDF leaves out a subset prefix (six characters and "+").
+_LONG_NAME = "ABCDEF+AVeryLongFontNameThatMuPDFCutsShort"
 _FONTS = [
     (11, "T1", "Type3", "T1"),
     (12, "", "Type3", "Unnamed-T3"),
     (13, "", "Type3", "Type3 (13 0 R)"),
     (14, "Helvetica", "Type1", "Helvetica"),
-    (15, "HiddenHorzOCR", "Type0", "HiddenHorzOCR"),
+    (15, "ABCDEF+HiddenHorzOCR-Identity-H", "Type0", "HiddenHorzOCR"),
+    # Named as the Type 3 font T1.
+    (16, "T1", "TrueType", "T1"),
+    # Its descendant is named as the Type 3 fonts without a name.
+    (17, "GHIJKL+Other-Identity-H", "Type0", "Unnamed-T3"),
+    # Its spans' name, cut short and without the prefix, is the next font's name.
+    (18, _LONG_NAME, "Type1", _LONG_NAME[7:31]),
+    (19, _LONG_NAME[7:31], "Type3", _LONG_NAME[7:31]),
 ]
-_TRACE_NAMES = [*(font[3] for font in _FONTS), "Type3 (12 0 R)", "Type3 (14 0 R)", "NotOnThePage"]
+# A Type0 font's descendant: its object number and /BaseFont.
+_DESCENDANTS = {15: (25, "ABCDEF+HiddenHorzOCR"), 17: (27, "GHIJKL+Unnamed-T3")}
+_TRACE_NAMES = sorted({font[3] for font in _FONTS}) + [
+    "Type3 (12 0 R)",
+    "Type3 (14 0 R)",
+    "NotOnThePage",
+]
+# MuPDF's bound of a path with no segments, as PyMuPDF prints it.
+_EMPTY_BOUND = (2147483520.0, 2147483520.0, -2147483648.0, -2147483648.0)
+_STROKE = 0.2
+_TEXT_KINDS = {0: "fill-text", 1: "stroke-text", 3: "ignore-text"}
 
 
 class _CommandDocument:
     """The PDF a ``_CommandPage`` belongs to: its objects are the page's fonts.
 
-    ``_pdf_type3_font_names`` reads a font's /Name through ``xref_get_key`` and
-    the page's /Annots through the page's own object; every other key is null.
+    It answers what the glyph rule reads of a font: a Type 3 font's /Name
+    (``xref_get_key``) and any other font's dictionary (``xref_object``), with a
+    Type0 font's descendant. Every other key is null, so the page has no
+    annotations.
     """
 
     is_pdf = True
 
     def __init__(self, fonts: list[tuple[int, str, str, str]]) -> None:
-        self.names = {xref: base for xref, base, _kind, _trace_name in fonts}
+        self.fonts = {font[0]: font for font in fonts}
 
     def xref_length(self) -> int:
         return 100
 
     def xref_get_key(self, xref: int, key: str) -> tuple[str, str]:
-        if key == "Name" and self.names.get(xref):
-            return "name", f"/{self.names[xref]}"
+        font = self.fonts.get(xref)
+        if font is not None and font[2] == "Type3" and key == "Name" and font[1]:
+            return "name", f"/{font[1]}"
         return "null", "null"
+
+    def xref_object(self, xref: int) -> str:
+        for number, (descendant, name) in _DESCENDANTS.items():
+            if xref == descendant and number in self.fonts:
+                return f"<< /Type /Font /Subtype /CIDFontType2 /BaseFont /{name} >>"
+        if xref not in self.fonts:
+            return "null"
+        _number, base, kind, _trace_name = self.fonts[xref]
+        entries = f"/Type /Font /Subtype /{kind}" + (f" /BaseFont /{base}" if base else "")
+        if xref in _DESCENDANTS:
+            entries += f" /DescendantFonts [{_DESCENDANTS[xref][0]} 0 R]"
+        return f"<< {entries} >>"
+
+
+def _rule_rect(command: tuple[Any, ...]) -> fitz.Rect:
+    _kind, x0, x1, y, thickness, _paint = command
+    return fitz.Rect(x0, y - thickness / 2, x1, y + thickness / 2)
 
 
 class _CommandPage:
-    """A page given as its sequence of commands: rule drawings and text spans.
+    """A page given as its sequence of commands: rules, empty paths and text.
 
-    ``commands`` holds ``("rule", x0, x1, y, thickness)`` and ``("text", trace
-    font name, span type, characters, font size)``; a command's index is its
-    ``seqno``. ``fonts`` holds entries of ``_FONTS``.
+    ``commands`` holds ``("rule", x0, x1, y, thickness, paint)``, a rectangle
+    filled (``f``), stroked (``s``) or both (``fs``); ``("empty", kind)``, a path
+    with no segments; and ``("text", trace font name, span type, characters,
+    font size, bound, spans)``. It numbers them as PyMuPDF 1.26.7 does: the bbox
+    log has an entry for each command, two for a filled and stroked rectangle,
+    and a text's spans carry its entry's position; ``get_drawings`` lists the
+    rectangles, numbered by the entries before them less the empty paths, which
+    it neither lists nor counts. ``fonts`` holds entries of ``_FONTS``.
     """
 
     xref = 1
@@ -455,133 +540,211 @@ class _CommandPage:
     ) -> None:
         self.commands = commands
         self.fonts = fonts
-        self.traces = 0
+        self.reads: Counter[str] = Counter()
         self.parent = _CommandDocument(fonts)
+
+    def _starts(self) -> tuple[list[int], list[int]]:
+        """Each command's first bbox-log position and ``get_drawings`` number."""
+        positions, numbers = [], []
+        position = number = 0
+        for command in self.commands:
+            positions.append(position)
+            numbers.append(number)
+            entries = 2 if command[0] == "rule" and command[5] == "fs" else 1
+            position += entries
+            number += 0 if command[0] == "empty" else entries
+        return positions, numbers
 
     def get_fonts(self, full: bool = False) -> list[tuple[Any, ...]]:
         assert full
+        self.reads["fonts"] += 1
         return [
             (xref, "n/a", kind, base, f"F{xref}", "", 0)
             for xref, base, kind, _trace_name in self.fonts
         ]
 
+    def get_bboxlog(self) -> list[tuple[str, tuple[float, ...]]]:
+        self.reads["bboxlog"] += 1
+        log: list[tuple[str, tuple[float, ...]]] = []
+        for command in self.commands:
+            if command[0] == "rule":
+                rect = _rule_rect(command)
+                half = _STROKE / 2
+                if "f" in command[5]:
+                    log.append(("fill-path", tuple(rect)))
+                if "s" in command[5]:
+                    log.append(
+                        (
+                            "stroke-path",
+                            (rect.x0 - half, rect.y0 - half, rect.x1 + half, rect.y1 + half),
+                        )
+                    )
+            elif command[0] == "empty":
+                log.append((command[1], _EMPTY_BOUND))
+            else:
+                log.append((_TEXT_KINDS[command[2]], command[5]))
+        return log
+
     def get_texttrace(self) -> list[dict[str, Any]]:
-        self.traces += 1
+        self.reads["texttrace"] += 1
+        positions, _numbers = self._starts()
         return [
             {
-                "seqno": seqno,
+                "seqno": positions[index],
                 "type": command[2],
                 "font": command[1],
                 "chars": ((),) * command[3],
                 "size": command[4],
             }
-            for seqno, command in enumerate(self.commands)
+            for index, command in enumerate(self.commands)
             if command[0] == "text"
+            for _span in range(command[6])
         ]
 
     def get_drawings(self) -> list[dict[str, Any]]:
+        _positions, numbers = self._starts()
         drawings = []
-        for seqno, command in enumerate(self.commands):
+        for index, command in enumerate(self.commands):
             if command[0] != "rule":
                 continue
-            _kind, x0, x1, y, thickness = command
-            rect = fitz.Rect(x0, y - thickness / 2, x1, y + thickness / 2)
-            drawings.append(
-                {
-                    "seqno": seqno,
-                    "type": "f",
-                    "fill": (0.0, 0.0, 0.0),
-                    "fill_opacity": 1.0,
-                    "rect": rect,
-                    "items": [("re", rect, 1)],
-                }
-            )
+            rect = _rule_rect(command)
+            paint = command[5]
+            drawing: dict[str, Any] = {
+                "seqno": numbers[index],
+                "type": paint,
+                "rect": rect,
+                "items": [("re", rect, 1)],
+                "command": index,
+            }
+            if "f" in paint:
+                drawing |= {"fill": (0.0, 0.0, 0.0), "fill_opacity": 1.0}
+            if "s" in paint:
+                drawing |= {"color": (0.0, 0.0, 0.0), "stroke_opacity": 1.0, "width": _STROKE}
+            drawings.append(drawing)
         return drawings
 
 
 class _WithoutCommands(_CommandPage):
-    """The same page with some drawings left out and no fonts; seqnos are kept."""
+    """The same page with some rules left out and no fonts; numbers are kept."""
 
     def __init__(self, page: _CommandPage, dropped: set[int]) -> None:
         super().__init__(page.commands, [])
         self.dropped = dropped
 
     def get_drawings(self) -> list[dict[str, Any]]:
-        return [path for path in super().get_drawings() if path["seqno"] not in self.dropped]
+        return [path for path in super().get_drawings() if path["command"] not in self.dropped]
 
 
 # Rules 3 to 228 pt long and text of 4 to 40 pt: some rules are glyph-sized
-# for some of the text, some for none.
+# for some of the text, some for none. The text bounds hold all, some or none of
+# the rules.
+_TEXT_BOUNDS = [(70.0, 90.0, 310.0, 130.0), (71.0, 99.0, 112.0, 104.0), (0.0, 0.0, 10.0, 10.0)]
 _RULE_COMMAND = st.tuples(
     st.just("rule"),
     st.sampled_from([72.0, 80.0, 100.0]),
     st.sampled_from([103.0, 110.0, 150.0, 300.0]),
     st.sampled_from([97.0, 101.5, 120.0]),
     st.sampled_from([0.4, 0.8, 2.0, 5.0]),
+    st.sampled_from(["f", "s", "fs"]),
 )
+_EMPTY_COMMAND = st.tuples(st.just("empty"), st.sampled_from(["fill-path", "stroke-path"]))
 _TEXT_COMMAND = st.tuples(
     st.just("text"),
     st.sampled_from(_TRACE_NAMES),
     st.sampled_from([0, 1, 3]),
     st.integers(min_value=1, max_value=3),
     st.sampled_from([4.0, 12.0, 40.0]),
+    st.sampled_from(_TEXT_BOUNDS),
+    st.sampled_from([1, 1, 1, 2]),
 )
 _COMMAND_PAGES = st.builds(
     _CommandPage,
-    st.lists(st.one_of(_RULE_COMMAND, _TEXT_COMMAND), max_size=12),
+    st.lists(st.one_of(_RULE_COMMAND, _EMPTY_COMMAND, _TEXT_COMMAND), max_size=14),
     st.lists(st.sampled_from(_FONTS), unique=True, max_size=len(_FONTS)),
 )
 
 
-def _oracle_glyph_drawings(page: _CommandPage) -> set[int]:
-    """Walk the commands: a glyph-sized rule right before one hidden Type 3 character."""
-    type3 = set()
-    for xref, base, kind, _trace_name in page.fonts:
+def _oracle_glyph_commands(page: _CommandPage) -> set[int]:
+    """Walk the commands: a glyph-sized rule inside the bound of the one hidden
+    character after it, empty paths aside, in a font only Type 3 fonts are named."""
+    type3: set[str] = set()
+    others: set[str] = set()
+    for xref, base, kind, trace_name in page.fonts:
         if kind == "Type3":
             type3 |= {base} if base else {"Unnamed-T3", f"Type3 ({xref} 0 R)"}
+        else:
+            others.add(trace_name)
     glyphs = set()
-    for seqno, command in enumerate(page.commands[:-1]):
-        following = page.commands[seqno + 1]
+    for index, command in enumerate(page.commands):
+        following = next(
+            (later for later in page.commands[index + 1 :] if later[0] != "empty"), None
+        )
+        if command[0] != "rule" or following is None or following[0] != "text":
+            continue
+        rect = _rule_rect(command)
+        _kind, font, span_type, characters, size, (left, top, right, bottom), spans = following
         if (
-            command[0] == "rule"
-            and following[0] == "text"
-            and following[1] in type3
-            and following[2] == 3
-            and following[3] == 1
-            and max(command[2] - command[1], command[4]) <= 2 * following[4]
+            font in type3 - others
+            and (span_type, characters, spans) == (3, 1, 1)
+            and max(rect.width, rect.height) <= 2 * size
+            and left <= rect.x0 <= rect.x1 <= right
+            and top <= rect.y0 <= rect.y1 <= bottom
         ):
-            glyphs.add(seqno)
+            glyphs.add(index)
     return glyphs
 
 
-@settings(max_examples=1500, deadline=None)
+@settings(max_examples=2000, deadline=None)
 @given(_COMMAND_PAGES)
 def test_property_leaving_glyph_drawings_out_only_removes_rules(page: _CommandPage) -> None:
     rules = documents_module._pdf_horizontal_rules(page)
     every_rule = documents_module._pdf_horizontal_rules(_WithoutCommands(page, set()))
-    glyphs = _oracle_glyph_drawings(page)
+    glyphs = _oracle_glyph_commands(page)
 
     assert rules == documents_module._pdf_horizontal_rules(_WithoutCommands(page, glyphs))
     for kept, all_of_them in zip(rules, every_rule, strict=True):
         assert not Counter(kept) - Counter(all_of_them)
     if not any(kind == "Type3" for _xref, _base, kind, _trace_name in page.fonts):
         assert rules == every_rule
-        assert page.traces == 0
+        assert page.reads["texttrace"] == page.reads["bboxlog"] == 0
+    if every_rule == ((), ()):
+        assert not page.reads
+    # The drawings taken for glyphs are the oracle's, among those that would make rules.
+    candidates = [
+        path for path in page.get_drawings() if any(documents_module._pdf_path_rules(path))
+    ]
+    found = documents_module._pdf_glyph_drawings(page, candidates)
+    assert {candidates[position]["command"] for position in found} == glyphs & {
+        path["command"] for path in candidates
+    }
 
 
 def test_a_page_without_a_type3_font_is_not_traced() -> None:
     page = _CommandPage(
-        [("rule", 72.0, 110.0, 101.5, 0.6), ("text", "Helvetica", 3, 1, 40.0)],
+        [
+            ("rule", 72.0, 110.0, 101.5, 0.6, "f"),
+            ("text", "Helvetica", 3, 1, 40.0, _TEXT_BOUNDS[0], 1),
+        ],
         [_FONTS[3], _FONTS[4]],
     )
 
     thin, thick = documents_module._pdf_horizontal_rules(page)
 
-    assert (len(thin), len(thick), page.traces) == (1, 0, 0)
+    assert (len(thin), len(thick), page.reads["texttrace"], page.reads["bboxlog"]) == (1, 0, 0, 0)
+
+
+def test_a_page_without_a_rule_reads_no_fonts_and_no_text(monkeypatch: pytest.MonkeyPatch) -> None:
+    # Drawn Type 3 text and no rule: its glyphs are not looked for.
+    monkeypatch.setattr(documents_module, "_pdf_type3_font_names", _refuse_type3_lookup)
+    with fitz.open(stream=_type3_pdf("a a"), filetype="pdf") as document:
+        page = document[0]
+        assert page.get_drawings()  # the glyphs of "a", a block 3.6 by 6 pt
+
+        assert documents_module._pdf_horizontal_rules(page) == ((), ())
 
 
 def _refuse_type3_lookup(page: Any) -> frozenset[str]:
-    raise AssertionError("read the Type 3 fonts of a page that is not a PDF page")
+    raise AssertionError("read the Type 3 fonts of a page")
 
 
 def test_a_page_of_a_file_that_is_not_a_pdf_has_no_glyph_drawings(
@@ -590,17 +753,19 @@ def test_a_page_of_a_file_that_is_not_a_pdf_has_no_glyph_drawings(
     # The glyph a Type 3 font draws is the only drawing taken for text, and only a
     # PDF has Type 3 fonts, so the fonts of another document are never read.
     page = _CommandPage(
-        [("rule", 72.0, 110.0, 101.5, 0.6), ("text", "T1", 3, 1, 40.0)], [_FONTS[0]]
+        [("rule", 72.0, 110.0, 101.5, 0.6, "f"), ("text", "T1", 3, 1, 40.0, _TEXT_BOUNDS[0], 1)],
+        [_FONTS[0]],
     )
     page.parent.is_pdf = False
     monkeypatch.setattr(documents_module, "_pdf_type3_font_names", _refuse_type3_lookup)
 
     thin, thick = documents_module._pdf_horizontal_rules(page)
 
-    assert (len(thin), len(thick), page.traces) == (1, 0, 0)
+    assert (len(thin), len(thick), page.reads["texttrace"], page.reads["bboxlog"]) == (1, 0, 0, 0)
     with fitz.open(stream=b"<p>Some <u>underlined</u> text</p>", filetype="html") as document:
         assert not document.is_pdf
-        assert documents_module._pdf_drawn_glyph_sizes(document[0]) == {}
+        drawing = {"seqno": 0, "type": "f", "rect": fitz.Rect(72, 100, 110, 101), "items": []}
+        assert documents_module._pdf_glyph_drawings(document[0], [drawing]) == frozenset()
 
 
 # A Word 2007+ file saved under a .pdf name; MuPDF opens it as an Office document.
@@ -640,59 +805,444 @@ def test_a_word_file_given_as_a_pdf_still_extracts_with_amendment_markup() -> No
     assert int(result.stdout.split()[-1]) > 0
 
 
+_RULE = ("rule", 72.0, 110.0, 101.5, 0.6, "f")
+_AROUND = _TEXT_BOUNDS[0]
+
+
 @pytest.mark.parametrize(
-    ("following", "glyph"),
+    ("commands", "fonts", "glyph"),
     [
         # The rule is 38 pt long: 0.95 and 2 font sizes of the text after it.
-        (("text", "T1", 3, 1, 40.0), True),
-        (("text", "Unnamed-T3", 3, 1, 19.0), True),
-        (("text", "Type3 (13 0 R)", 3, 1, 40.0), True),
+        ([_RULE, ("text", "T1", 3, 1, 40.0, _AROUND, 1)], [0], True),
+        ([_RULE, ("text", "Unnamed-T3", 3, 1, 19.0, _AROUND, 1)], [1], True),
+        ([_RULE, ("text", "Type3 (13 0 R)", 3, 1, 40.0, _AROUND, 1)], [2], True),
+        # Stroked, or filled and stroked; or with empty paths before or after it.
+        ([(*_RULE[:5], "s"), ("text", "T1", 3, 1, 40.0, _AROUND, 1)], [0], True),
+        ([(*_RULE[:5], "fs"), ("text", "T1", 3, 1, 40.0, _AROUND, 1)], [0], True),
+        (
+            [("empty", "fill-path"), ("empty", "stroke-path"), _RULE, ("empty", "fill-path")]
+            + [("text", "T1", 3, 1, 40.0, _AROUND, 1)],
+            [0],
+            True,
+        ),
         # The object number of a font that is not Type 3.
-        (("text", "Type3 (14 0 R)", 3, 1, 40.0), False),
-        # Longer than two font sizes.
-        (("text", "T1", 3, 1, 18.0), False),
-        # Painted text, several hidden characters, or hidden text in another font.
-        (("text", "T1", 0, 1, 40.0), False),
-        (("text", "T1", 3, 2, 40.0), False),
-        (("text", "HiddenHorzOCR", 3, 1, 40.0), False),
-        (("rule", 72.0, 110.0, 300.0, 0.6), False),
+        ([_RULE, ("text", "Type3 (14 0 R)", 3, 1, 40.0, _AROUND, 1)], [0, 3], False),
+        # Longer than two font sizes, or not inside the character's bound.
+        ([_RULE, ("text", "T1", 3, 1, 18.0, _AROUND, 1)], [0], False),
+        ([_RULE, ("text", "T1", 3, 1, 40.0, (0.0, 0.0, 10.0, 10.0), 1)], [0], False),
+        # Painted text, several hidden characters or spans, or hidden text in another font.
+        ([_RULE, ("text", "T1", 0, 1, 40.0, _AROUND, 1)], [0], False),
+        ([_RULE, ("text", "T1", 3, 2, 40.0, _AROUND, 1)], [0], False),
+        ([_RULE, ("text", "T1", 3, 1, 40.0, _AROUND, 2)], [0], False),
+        ([_RULE, ("text", "HiddenHorzOCR", 3, 1, 40.0, _AROUND, 1)], [0, 4], False),
+        # A Type 3 font named as another font on the page: as a TrueType font,
+        # as a Type0 font's descendant, or as a long name cut short.
+        ([_RULE, ("text", "T1", 3, 1, 40.0, _AROUND, 1)], [0, 5], False),
+        ([_RULE, ("text", "Unnamed-T3", 3, 1, 40.0, _AROUND, 1)], [1, 6], False),
+        ([_RULE, ("text", "Type3 (12 0 R)", 3, 1, 40.0, _AROUND, 1)], [1, 6], True),
+        ([_RULE, ("text", _LONG_NAME[7:31], 3, 1, 40.0, _AROUND, 1)], [8], True),
+        ([_RULE, ("text", _LONG_NAME[7:31], 3, 1, 40.0, _AROUND, 1)], [7, 8], False),
+        # Another drawing in between.
+        (
+            [_RULE, (*_RULE[:3], 300.0, 0.6, "f"), ("text", "T1", 3, 1, 40.0, _AROUND, 1)],
+            [0],
+            False,
+        ),
     ],
 )
 def test_a_drawing_is_a_glyph_only_right_before_one_hidden_type3_character(
-    following: tuple[Any, ...], glyph: bool
+    commands: list[tuple[Any, ...]], fonts: list[int], glyph: bool
 ) -> None:
-    page = _CommandPage([("rule", 72.0, 110.0, 101.5, 0.6), following], list(_FONTS))
+    page = _CommandPage(commands, [_FONTS[index] for index in fonts])
+    index = commands.index(next(command for command in commands if command[0] == "rule"))
 
     thin, _thick = documents_module._pdf_horizontal_rules(page)
 
-    assert (0 in _oracle_glyph_drawings(page)) is glyph
+    assert (index in _oracle_glyph_commands(page)) is glyph
     assert all(rule.y != 101.5 for rule in thin) is glyph
 
 
 @pytest.mark.parametrize(
-    ("seqno", "width", "height", "glyph"),
+    ("width", "height", "glyph"),
     [
-        # The command before a 12 pt hidden Type 3 character, up to 24 pt each way.
-        (4, 3.0, 0.8, True),
-        (4, 24.0, 24.0, True),
-        (4, 24.1, 0.8, False),
+        # Before a 12 pt hidden Type 3 character, up to 24 pt each way.
+        (3.0, 0.8, True),
+        (24.0, 0.8, True),
+        (24.01, 0.8, False),
         # Several short rules stacked in one tall path.
-        (4, 3.0, 24.1, False),
-        # Not before such a character, no command number, or no font size.
-        (5, 3.0, 0.8, False),
-        (None, 3.0, 0.8, False),
-        (6, 3.0, 0.8, False),
+        (3.0, 24.0, True),
+        (3.0, 24.01, False),
     ],
 )
 def test_a_glyph_drawing_is_at_most_two_font_sizes_wide_and_high(
-    seqno: int | None, width: float, height: float, glyph: bool
+    width: float, height: float, glyph: bool
 ) -> None:
-    path = {"seqno": seqno, "rect": fitz.Rect(72.0, 100.0, 72.0 + width, 100.0 + height)}
+    rect = fitz.Rect(72.0, 90.0, 72.0 + width, 90.0 + height)
+    drawing = {"seqno": 0, "type": "f", "rect": rect, "items": [("re", rect, 1)]}
+    page = _CommandPage([("text", "T1", 3, 1, 12.0, _AROUND, 1)], [_FONTS[0]])
+    page.get_bboxlog = lambda: [("fill-path", tuple(rect)), ("ignore-text", _AROUND)]  # type: ignore[method-assign]
+    page.get_texttrace = lambda: [  # type: ignore[method-assign]
+        {"seqno": 1, "type": 3, "font": "T1", "chars": ((),), "size": 12.0}
+    ]
 
-    assert documents_module._pdf_drawing_is_glyph(path, {4: 12.0, 6: 0.0}) is glyph
+    assert (documents_module._pdf_glyph_drawings(page, [drawing]) == {0}) is glyph
 
 
-# 4. The CMS approval package pages -------------------------------------------------
+_R = (72.0, 100.0, 110.0, 101.0)
+_WIDE = (71.9, 99.9, 110.1, 101.1)
+
+
+@pytest.mark.parametrize(
+    ("path_type", "log", "end"),
+    [
+        ("f", [("fill-path", _R)], 1),
+        ("f", [("fill-path", _WIDE)], None),
+        ("f", [("stroke-path", _WIDE)], None),
+        ("s", [("stroke-path", _WIDE)], 1),
+        ("s", [("stroke-path", (72.0, 100.0, 109.0, 101.0))], None),
+        ("s", [("fill-path", _R)], None),
+        ("fs", [("fill-path", _R), ("stroke-path", _WIDE)], 2),
+        ("fs", [("fill-path", _R)], None),
+        # PyMuPDF merges a stroke into the fill before it across text; the
+        # drawing then does not agree with the entries after its fill.
+        ("fs", [("fill-path", _R), ("ignore-text", _WIDE), ("stroke-path", _WIDE)], None),
+    ],
+)
+def test_a_drawing_agrees_with_its_bbox_log_entries(
+    path_type: str, log: list[tuple[str, tuple[float, ...]]], end: int | None
+) -> None:
+    path = {"type": path_type, "rect": fitz.Rect(_R)}
+
+    assert documents_module._pdf_drawing_end(path, log, 0) == end
+
+
+_LOG_ENTRY = st.one_of(
+    st.tuples(
+        st.sampled_from(["fill-path", "stroke-path"]), st.sampled_from([_R, _WIDE, _EMPTY_BOUND])
+    ),
+    st.tuples(
+        st.sampled_from(["fill-text", "ignore-text", "fill-shade", "fill-image"]), st.just(_R)
+    ),
+)
+
+
+@settings(max_examples=300, deadline=None)
+@given(st.lists(_LOG_ENTRY, max_size=20))
+def test_property_drawing_numbers_skip_exactly_the_empty_paths(
+    log: list[tuple[str, tuple[float, ...]]],
+) -> None:
+    commands = documents_module._pdf_drawing_commands(log)
+
+    kept = [
+        position
+        for position, (kind, bound) in enumerate(log)
+        if not (kind.endswith("-path") and bound == _EMPTY_BOUND)
+    ]
+    assert list(commands) == list(range(len(kept)))
+    assert list(commands.values()) == kept
+
+
+@pytest.mark.parametrize(
+    "body",
+    [
+        b"5 5 m 5 5 l f 10 10 m 20 10 l 0.5 w S",
+        b"5 5 m 5 5 l S 10 10 m 20 10 l 0.5 w S",
+        b"0 0 m f 10 10 m 20 10 l 0.5 w S",
+        b"5 5 m h f 10 10 m 20 10 l 0.5 w S",
+    ],
+)
+def test_a_path_of_one_point_keeps_its_drawing_number(body: bytes) -> None:
+    # MuPDF bounds a path without segments by a rectangle that ends before it
+    # starts, and PyMuPDF makes no drawing of it; a path of one point has a bound of
+    # no width and is a drawing.
+    document = fitz.open()
+    page = document.new_page(width=100, height=100)
+    page.insert_text((1, 99), " ")
+    document.update_stream(page.get_contents()[0], body)
+    page = document[0]
+    log = page.get_bboxlog()
+    commands = documents_module._pdf_drawing_commands(log)
+    drawings = page.get_drawings()
+
+    assert len(drawings) == (2 if b"5 5 l" in body else 1)
+    for drawing in drawings:
+        index = commands[drawing["seqno"]]
+        assert documents_module._pdf_drawing_end(drawing, log, index) == index + 1
+
+
+def test_no_function_of_the_documents_module_replaces_another() -> None:
+    # A second ``def`` of a name replaces the first for every caller, and ruff does
+    # not report it when a function body uses the first. The OCR overlay's helper
+    # takes a box of no width for empty; the drawing numbers must not.
+    tree = ast.parse(Path(documents_module.__file__).read_text(encoding="utf-8"))
+    names = Counter(
+        node.name for node in tree.body if isinstance(node, ast.FunctionDef | ast.ClassDef)
+    )
+
+    assert [name for name, count in names.items() if count > 1] == []
+    assert documents_module._pdf_rect_is_empty((5.0, 5.0, 5.0, 9.0))
+    assert not documents_module._pdf_bound_is_inverted((5.0, 5.0, 5.0, 9.0))
+    assert documents_module._pdf_bound_is_inverted(_EMPTY_BOUND)
+
+
+# 4. A path without segments changes nothing --------------------------------------
+
+
+def _type3_stream_with_empty_paths(
+    text: str, rules: list[tuple[str, int, int]], places: list[int], size: float
+) -> str:
+    """``_type3_pdf``'s content, one text object a character, with an empty path
+    (a move, filled, stroked or closed) before each part whose index is in ``places``."""
+    empties = ["0 0 m f\n", "10 10 m S\n", "5 5 m h f\n", "1 2 m 3 4 m B\n"]
+    lefts = [LEFT]
+    for character in text:
+        lefts.append(lefts[-1] + _advance(character, size))
+    parts = [
+        f"BT /T1 {size} Tf {lefts[index]} {PAGE_HEIGHT - BASELINE} Td ({character}) Tj ET\n"
+        for index, character in enumerate(text)
+    ]
+    parts += [
+        _line(lefts[first], lefts[last + 1], REAL_OFFSETS[state], size)
+        for state, first, last in rules
+    ]
+    return "".join(
+        (empties[index % len(empties)] if index in places else "") + part
+        for index, part in enumerate(parts + [""])
+    )
+
+
+@settings(max_examples=150, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(
+    case=_text_and_real_rules(),
+    places=st.sets(st.integers(min_value=0, max_value=30), max_size=6),
+    in_glyphs=st.booleans(),
+)
+def test_property_paths_without_segments_change_nothing(
+    case: tuple[str, list[tuple[str, int, int]]], places: set[int], in_glyphs: bool
+) -> None:
+    text, rules = case
+    plain = _type3_document(_type3_stream_with_empty_paths(text, rules, [], SIZE))
+    saved = dict(_GLYPHS)
+    try:
+        if in_glyphs:
+            # Each glyph's procedure begins and ends with an empty path (the
+            # space's stays empty, so MuPDF still paints it as text).
+            for character, (name, advance, body) in saved.items():
+                if body:
+                    _GLYPHS[character] = (name, advance, f"0 0 m f {body} 0 0 m S")
+        content = _type3_document(_type3_stream_with_empty_paths(text, rules, sorted(places), SIZE))
+    finally:
+        _GLYPHS.clear()
+        _GLYPHS.update(saved)
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        log = document[0].get_bboxlog()
+    assert sum(bound == _EMPTY_BOUND for _kind, bound in log) >= len(
+        places & set(range(len(text) + len(rules) + 1))
+    )
+    try:
+        expected = [block.body for block in _marked(plain)]
+    except ValueError as error:
+        with pytest.raises(ValueError) as raised:
+            _marked(content)
+        assert str(raised.value) == str(error)
+        return
+    assert [block.body for block in _marked(content)] == expected
+
+
+def test_empty_paths_before_a_drawn_glyph_do_not_hide_a_real_underline() -> None:
+    # Two empty fills put get_drawings' numbers two behind the bbox log's. The
+    # underline is then the command before the hidden "a" by get_drawings'
+    # count, but not on the page: it stays a rule and marks the "a".
+    stream = (
+        "0 0 m f 1 1 m f\n"
+        f"BT /T1 {SIZE} Tf {LEFT} {PAGE_HEIGHT - BASELINE} Td (a) Tj ET\n"
+        + _line(LEFT, LEFT + 7.2, REAL_OFFSETS[I], SIZE)
+    )
+    content = _type3_document(stream)
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        assert [kind for kind, _bbox in page.get_bboxlog()] == [
+            "fill-path",
+            "fill-path",
+            "fill-path",
+            "ignore-text",
+            "stroke-path",
+        ]
+        assert [(path["seqno"], path["type"]) for path in page.get_drawings()] == [
+            (0, "f"),
+            (2, "s"),
+        ]
+        assert _glyph_seqnos(page) == {0}
+    assert [block.body for block in _marked(content)] == ["{+a+}"]
+
+
+def test_a_glyph_filled_and_stroked_is_one_drawing_and_still_a_glyph() -> None:
+    # B fills and strokes the hyphen's bar: PyMuPDF reports one drawing (fs)
+    # numbered as the fill, and the stroke's number goes unused.
+    saved = dict(_GLYPHS)
+    try:
+        _GLYPHS["-"] = ("hyphen", 350, "50 190 250 70 re B")
+        content = _type3_document(
+            f"0.2 w BT /T1 {SIZE} Tf {LEFT} {PAGE_HEIGHT - BASELINE} Td (a-a) Tj ET\n"
+        )
+    finally:
+        _GLYPHS.clear()
+        _GLYPHS.update(saved)
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        assert [(path["seqno"], path["type"]) for path in page.get_drawings()] == [
+            (0, "f"),
+            (2, "fs"),
+            (5, "f"),
+        ]
+        assert _glyph_seqnos(page) == {0, 2, 5}
+    assert [block.body for block in _marked(content)] == ["a-a"]
+
+
+# 5. Only a Type 3 font's hidden character makes a glyph --------------------------
+
+
+_WHERE = ["page", "page-inline", "appearance", "appearance-inline"]
+
+
+def _hidden_other_font_page(
+    type3_name: str, other: str, base: str, descendant: str, *, where: str = "page"
+) -> bytes:
+    """A strike inside the bound of one hidden "a", then that "a", in a font that is
+    not Type 3: a Type 1 font named ``base``, or a Type0 font named ``base`` whose
+    descendant is named ``descendant``. The page also has a Type 3 font named
+    ``type3_name``. ``where`` puts the strike, the "a" and its font in the page's
+    content or in an annotation's appearance stream, with the font referenced or
+    written inline (one of ``_WHERE``)."""
+    document = fitz.open(
+        stream=_type3_document("", font_name=f"/Name /{type3_name} "), filetype="pdf"
+    )
+    page = document[0]
+    if other == "Type1":
+        font = f"<< /Type /Font /Subtype /Type1 /BaseFont /{base} >>"
+        code = "(a)"
+    else:
+        cid = document.get_new_xref()
+        document.update_object(
+            cid,
+            f"<< /Type /Font /Subtype /CIDFontType2 /BaseFont /{descendant} "
+            "/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> "
+            f"/FontDescriptor << /Type /FontDescriptor /FontName /{descendant} /Flags 32 "
+            "/FontBBox [0 -200 1000 800] /ItalicAngle 0 /Ascent 800 /Descent -200 "
+            "/CapHeight 700 /StemV 80 >> >>",
+        )
+        font = (
+            f"<< /Type /Font /Subtype /Type0 /BaseFont /{base} /Encoding /Identity-H "
+            f"/DescendantFonts [{cid} 0 R] >>"
+        )
+        code = "<0041>"
+    if not where.endswith("inline"):
+        xref = document.get_new_xref()
+        document.update_object(xref, font)
+        font = f"{xref} 0 R"
+    y = PAGE_HEIGHT - (BASELINE + REAL_OFFSETS[D] * SIZE)
+    stream = (
+        f"0.6 w {LEFT + 1} {y} m {LEFT + 6} {y} l S\n"
+        f"BT 3 Tr /H {SIZE} Tf {LEFT} {PAGE_HEIGHT - BASELINE} Td {code} Tj ET\n"
+    )
+    type3_font = document.xref_get_key(page.xref, "Resources/Font/T1")[1]
+    if where.startswith("page"):
+        document.xref_set_key(
+            page.xref, "Resources", f"<< /Font << /T1 {type3_font} /H {font} >> >>"
+        )
+        contents = document.get_new_xref()
+        document.update_object(contents, "<<>>")
+        document.update_stream(contents, stream.encode(), compress=False)
+        document.xref_set_key(page.xref, "Contents", f"{contents} 0 R")
+    else:
+        appearance = document.get_new_xref()
+        document.update_object(
+            appearance,
+            f"<< /Type /XObject /Subtype /Form /BBox [0 0 595 {PAGE_HEIGHT}] "
+            f"/Resources << /Font << /H {font} >> >> >>",
+        )
+        document.update_stream(appearance, stream.encode(), compress=False)
+        annotation = document.get_new_xref()
+        document.update_object(
+            annotation,
+            f"<< /Type /Annot /Subtype /Square /Rect [0 0 595 {PAGE_HEIGHT}] /F 4 "
+            f"/AP << /N {appearance} 0 R >> >>",
+        )
+        document.xref_set_key(page.xref, "Annots", f"[{annotation} 0 R]")
+    content = document.tobytes()
+    document.close()
+    return content
+
+
+_NAMES = st.sampled_from(
+    ["Helvetica", "T1", "ABCDEF+T1", "AB+CDEF+T1", _LONG_NAME, _LONG_NAME[7:31]]
+)
+
+
+@settings(max_examples=80, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(
+    type3_name=_NAMES,
+    other=st.sampled_from(["Type1", "Type0"]),
+    base=_NAMES,
+    descendant=_NAMES,
+    where=st.sampled_from(_WHERE),
+)
+def test_property_hidden_text_in_another_font_never_makes_a_glyph(
+    type3_name: str, other: str, base: str, descendant: str, where: str
+) -> None:
+    content = _hidden_other_font_page(type3_name, other, base, descendant, where=where)
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        (span,) = page.get_texttrace()
+        assert span["type"] == 3
+        names = documents_module._pdf_type3_font_names(page)
+        # The span carries the name of a font that is not Type 3; some cases
+        # give it a Type 3 font's name.
+        assert span["font"] not in documents_module._pdf_glyph_font_names(page)
+        assert _glyph_seqnos(page) == set()
+        thin, _thick = documents_module._pdf_horizontal_rules(page)
+    assert len(thin) == 1
+    if type3_name == base and other == "Type1" and len(base) <= 31:
+        assert span["font"] in names  # the collision the rule guards against
+
+
+@pytest.mark.parametrize("where", _WHERE)
+def test_a_type3_font_named_as_another_font_keeps_that_fonts_rule(
+    where: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # An unused Type 3 font named Helvetica, then a strike inside the bound of one
+    # hidden Type 1 Helvetica "a": the hidden character's span names a Type 3 font
+    # too, and without the other fonts' names the strike is taken for its glyph.
+    content = _hidden_other_font_page("Helvetica", "Type1", "Helvetica", "", where=where)
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        assert documents_module._pdf_type3_font_names(page) == {"Helvetica"}
+        assert documents_module._pdf_glyph_font_names(page) == frozenset()
+    assert [block.body for block in _marked(content)] == ["[-a-]"]
+    monkeypatch.setattr(documents_module, "_pdf_other_font_names", lambda _page: frozenset())
+    assert [block.body for block in _marked(content)] == ["a"]
+
+
+@pytest.mark.parametrize("where", ["page-inline", "appearance-inline"])
+def test_an_inline_type0_font_is_known_by_its_descendant_name(where: str) -> None:
+    # MuPDF names a Type0 font's spans after its descendant font, here "T1", the
+    # name of the page's Type 3 font too.
+    content = _hidden_other_font_page("T1", "Type0", "Outer-Identity-H", "T1", where=where)
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        (span,) = page.get_texttrace()
+        assert span["font"] == "T1"
+        assert "T1" in documents_module._pdf_type3_font_names(page)
+        assert documents_module._pdf_glyph_font_names(page) == frozenset()
+
+
+# 6. The CMS approval package pages -------------------------------------------------
 
 AZ_22_0007 = (
     "us-az/policy/2026-09-13-chip-state-plan/official-documents/"
