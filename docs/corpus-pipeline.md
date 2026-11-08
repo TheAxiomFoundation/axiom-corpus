@@ -167,6 +167,28 @@ the same part grammar (`Appendix A to Part 60-300` is
 sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
 `manifests/releases/` carried title 41 then.
 
+A few live section identifiers break the PART.SECTION form (the eCFR's own reader files
+the stray-space and rule-numbered ones as appendices). The adapter reads each only where
+the enclosing part confirms it:
+
+| Published identifier | Citation path | Confirmed by |
+| --- | --- | --- |
+| `105.60.001` in part 105-60 | `us/regulation/41/105-60/001` | the dotted spelling of the enclosing hyphenated part |
+| `52. 36`, `1222. 27` | `us/regulation/36/52/36`, `us/regulation/12/1222/27` | another section of the part names part 52, 1222 |
+| `3141. 5` in 43 CFR part 3140 | `us/regulation/43/3141/5`, as its sibling `3141.3`; it belongs to part 3140, as below | another section of part 3140 names 3141 |
+| `956.1 (Rule 1)` | `us/regulation/39/956/1` (heading keeps "(Rule 1)") | another section names part 956; the rule number is the section number |
+| `03`, `1-1`, `19-8.1` in 14 CFR part 241 | `us/regulation/14/241/03`, `.../1-1`, `.../19-8.1` | no section of part 241 names any part; the number is digits joined by `-` or `.` and does not begin with `241` |
+
+No confirmed reading takes a path that another section of the same part would take; a
+refused dotted spelling keeps the earlier reading. The inventory reads this evidence
+from the title structure, and `extract-ecfr` gives the same evidence to the XML pass, so
+the two passes confirm the same sections. Headings drop one designation (`Sec. 1-1`,
+`Section 03`, `§ 52. 36`). The inventory records that heading because the eCFR's
+`label_description` splits inside `52. 36`. `--section` selectors take the PART.SECTION
+form (`241.19-8.1`, `105-60.001`). Before this change the inventory skipped 61 of these 62
+sections and filed `105.60.001` under part 105 (`us/regulation/41/105/60.001`), and the
+XML pass read `19-8.1` as part 8, section 1. No locked eCFR source contains these parts.
+
 A section may be numbered for a part other than the eCFR part that holds it. The title
 43 fixtures in `tests/test_corpus_ecfr_group_part_sections.py` model BLM group part
 3800: its subpart 3809 holds 43 CFR 3809.1, and the structure fixture has no part 3809.
@@ -266,7 +288,13 @@ and only certifies coverage for that scoped inventory.
 byte-for-byte as the inventoried source under `sources/us/statute/{run_id}/olrc/`
 (inventory and provision `source_path` and `sha256` point at the zip, and
 `metadata.source_archive_member` names the parsed member), which keeps Title 42
-scopes under GitHub's 100 MB file limit: the extracted `usc42.xml` is 113 MB.
+scopes under GitHub's 100 MB file limit: the extracted `usc42.xml`
+is 113,735,961 bytes (113.7 MB) at release point 119-103.
+The zip is refused before parsing if it is over 512 MiB, if any member name is
+unsafe (absolute, drive-letter, backslash, NUL, or an empty, `.` or `..`
+segment), if a member is a symlink, encrypted or duplicated, or if the member
+inflates past 512 MiB or has corrupt compressed data. Release validation reruns
+these checks on each retained `olrc/*.zip`.
 
 ```bash
 axiom-corpus-ingest extract-usc \

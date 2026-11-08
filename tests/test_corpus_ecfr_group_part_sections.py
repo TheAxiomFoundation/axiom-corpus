@@ -379,7 +379,9 @@ def test_section_selector_does_not_reach_another_part():
         (30, "1206", "F", "206.253", "us/regulation/30/206/253", "30 CFR 206.253"),
         (32, "865", "A", "856.7", "us/regulation/32/856/7", "32 CFR 856.7"),
         (48, "1415", "1415.2", "1414.209-70", "us/regulation/48/1414/209-70", "48 CFR 1414.209-70"),
-        (41, "105-60", "A", "105.60.001", "us/regulation/41/105/60.001", "41 CFR 105.60.001"),
+        # 41 CFR 105-60.001, published "105.60.001", is not here: the dotted spelling of
+        # its enclosing part reads it under that part (#842,
+        # test_hyphenated_selector_selects_only_a_section_under_that_part).
     ],
 )
 def test_misnumbered_section_belongs_to_the_part_that_holds_it(
@@ -1119,6 +1121,28 @@ def _expected_sections(structure, *, reserved=False):
     """
     title = structure["identifier"]
     rows = []
+    part_less: dict[str, set[str]] = {}
+
+    def section_identifiers(node):
+        for child in node.get("children", []):
+            if child["type"] == "section":
+                yield child["identifier"]
+            else:
+                yield from section_identifiers(child)
+
+    def readable_part_less(part_node):
+        """The part-less numbers part ``part_node`` reads as its own sections (#842):
+        only where none of its sections, reserved ones included, names a part, and
+        only numbers no other section of the part folds to."""
+        part = part_node["identifier"]
+        identifiers = list(section_identifiers(part_node))
+        if any("-" not in identifier.split(".", 1)[0] or identifier.startswith(f"{part}.")
+               for identifier in identifiers):
+            return set()  # a section names a part
+        numbers = [identifier for identifier in identifiers
+                   if re.fullmatch(r"[0-9]+(?:[-.][0-9]+)*", identifier)
+                   and not identifier.startswith(part)]
+        return {number for number in numbers if numbers.count(number) == 1}
 
     def walk(node, part=None, subpart=None):
         kind = node["type"]
@@ -1126,12 +1150,21 @@ def _expected_sections(structure, *, reserved=False):
             return
         if kind == "part":
             part = node["identifier"]
+            part_less[part] = readable_part_less(node)
         if kind == "subpart":
             subpart = node["identifier"]
         if kind == "section":
             prefix = node["identifier"].split(".", 1)[0]
             if "-" in prefix and prefix != part:
-                return  # no grammar reads a foreign hyphenated part
+                if node["identifier"] not in part_less[part]:
+                    return  # no grammar reads a foreign hyphenated part here
+                # A part whose sections name no part numbers them without it, as
+                # 14 CFR part 241 numbers 19-8.1 (#842).
+                part_path = f"us/regulation/{title}/{part}"
+                parent = f"{part_path}/subpart-{subpart}" if subpart else part_path
+                rows.append((f"{part_path}/{node['identifier']}", part, part, parent,
+                             f"{part}.{node['identifier']}"))
+                return
             part_path = f"us/regulation/{title}/{part}"
             parent = f"{part_path}/subpart-{subpart}" if subpart else part_path
             rows.append((f"us/regulation/{title}/{prefix}/{node['_segment']}", prefix, part,
@@ -1280,8 +1313,13 @@ def test_property_retained_xml_reads_another_parts_section_only_as_its_identifie
     that names its own part is admitted as before."""
     xml = (f'<ECFR><DIV5 N="{part}" TYPE="PART"><HEAD>PART {part}</HEAD>'
            f'<DIV8 N="{n_attr}" TYPE="SECTION"><HEAD>Heading</HEAD><P>Body.</P></DIV8></DIV5></ECFR>')
+    # A retained XML confirms readings on its part element's own evidence (#842).
+    part_elem = ET.fromstring(xml).find("DIV5")
     reading = ecfr._section_citation_from_element(
-        title, ET.fromstring(xml).find("DIV5/DIV8"), part
+        title,
+        part_elem.find("DIV8"),
+        part,
+        evidence=ecfr._element_section_evidence(part_elem),
     )
     assume(reading is not None)
     path, cited, section = reading
@@ -1339,9 +1377,12 @@ def test_property_retained_extraction_writes_the_one_element_that_claims_the_pat
         f"<P>Body {index}.</P></DIV8>"
         for index, n_attr in enumerate(n_attrs)
     ) + "</DIV5></ECFR>")
+    # A retained XML confirms readings on its part element's own evidence (#842).
+    part_elem = ET.fromstring(xml).find("DIV5")
+    evidence = ecfr._element_section_evidence(part_elem)
     readings = [
-        ecfr._selectable_section_from_element(43, elem, part)
-        for elem in ET.fromstring(xml).iter("DIV8")
+        ecfr._selectable_section_from_element(43, elem, part, evidence=evidence)
+        for elem in part_elem.iter("DIV8")
     ]
     selectors = sorted({f"{reading[1]}.{reading[2]}" for reading in readings if reading})
     assume(selectors)
@@ -1350,11 +1391,19 @@ def test_property_retained_extraction_writes_the_one_element_that_claims_the_pat
     claimants = [index for index, reading in enumerate(readings) if reading and reading[0] == path]
     if not selector.startswith(f"{part}."):
         # Numbered for another part: only elements that publish the selector's path
-        # whole claim it, never one the XML search alone reads.
-        assert all(
-            re.fullmatch(ALNUM_SECTION_IDENTIFIER, re.sub(r"^§\s*", "", n_attrs[index].strip()))
-            for index in claimants
-        )
+        # whole claim it, never one the XML search alone reads. A stray-space spelling
+        # ("3809. 1") that another section of the part confirms is read whole by the
+        # structure grammar on the same evidence (#842).
+        def read_whole(n_attr):
+            bare = re.sub(r"^§\s*", "", n_attr.strip())
+            if re.fullmatch(ALNUM_SECTION_IDENTIFIER, bare):
+                return True
+            structure_reading = ecfr._section_citation_from_identifier(
+                43, bare, part, evidence=evidence
+            )
+            return structure_reading is not None and structure_reading[0] == path
+
+        assert all(read_whole(n_attrs[index]) for index in claimants)
 
     with tempfile.TemporaryDirectory() as tmp:
         source_xml = Path(tmp) / "official.xml"

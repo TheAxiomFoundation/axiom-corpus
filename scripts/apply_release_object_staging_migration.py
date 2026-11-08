@@ -12,13 +12,18 @@ from axiom_corpus.corpus.supabase import (
     _project_ref_from_url,
 )
 
+# The latest definition of the registration RPC: v2 and v3 exactly as
+# 20260803175000 registers them, plus release-object/v4 (signed scope layers).
+# Re-applying the older file would reinstall a function that rejects v4. The
+# insert trigger guard_corpus_release_object_insert stays in 20260803175000.
 MIGRATION = (
     Path(__file__).resolve().parents[1]
-    / "supabase/migrations/20260803175000_stage_signed_release_object.sql"
+    / "supabase/migrations/20260927100000_stage_signed_release_object_v4.sql"
 )
 EXPECTED_PROJECT_REF = "swocpijqqahhuwtuahwc"
 REQUIRED_FRAGMENTS = (
     "CREATE OR REPLACE FUNCTION corpus.stage_corpus_release_object",
+    "'axiom-corpus/release-object/v4'",
     "INSERT INTO corpus.release_objects",
     "REVOKE EXECUTE ON FUNCTION corpus.stage_corpus_release_object(jsonb)",
 )
