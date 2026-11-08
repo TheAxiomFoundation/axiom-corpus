@@ -12,6 +12,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import zlib
+from collections import Counter
 from collections.abc import Callable, Iterable, Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -428,6 +429,29 @@ _SECTION_NUMBER_PATTERN = r"[0-9A-Za-z][0-9A-Za-z.()-]*"
 _SECTION_IDENTIFIER_PATTERN = rf"([0-9A-Za-z]+)\.({_SECTION_NUMBER_PATTERN})"
 # A section selector names its part, so it may use a hyphenated one.
 _SECTION_SELECTOR_PATTERN = rf"{_PART_IDENTIFIER_PATTERN}\.{_SECTION_NUMBER_PATTERN}"
+# A few live identifiers break the PART.SECTION form (the eCFR's own reader files the
+# stray-space and rule-numbered ones as appendices). Each is read only where its
+# enclosing part confirms the reading (_SectionEvidence):
+# - 41 CFR 105-60.001 is published as "105.60.001": the enclosing hyphenated part
+#   with its hyphen typeset as a dot. This one takes precedence over PART.SECTION,
+#   which would read part 105.
+# - "52. 36" (36 CFR 52.36), "1222. 27", "3141. 5": a stray space after the dot.
+# - "956.1 (Rule 1)": the section with its rule number. Like 17 CFR 240.17ad-7's
+#   "(Rule 17Ad-7)", the rule number stays in the heading.
+# - 14 CFR part 241 numbers its sections without the part ("03", "1-1", "19-8.1";
+#   eCFR reader path section-241.19-8.1), read as sections of the enclosing part.
+# The stray-space and rule-numbered forms must name a part that another section of the
+# enclosing part names (43 CFR part 3140 numbers subpart 3141's sections 3141.1,
+# 3141.3, ...). Part-less numbering applies only to a part none of whose sections name
+# any part, and only to numbers that do not begin with the part's own (a dropped dot,
+# "2739" in part 273, stays unread). No confirmed reading takes a path that another
+# section of the part would also take.
+_STRAY_SPACE_IDENTIFIER_PATTERN = rf"({_PART_IDENTIFIER_PATTERN})\.\s+({_SECTION_NUMBER_PATTERN})"
+_RULE_NUMBER_IDENTIFIER_PATTERN = (
+    rf"({_PART_IDENTIFIER_PATTERN})\.({_SECTION_NUMBER_PATTERN})"
+    r"\s+\(Rule\s+([0-9A-Za-z.-]+)\)"
+)
+_PART_LESS_SECTION_PATTERN = r"[0-9]+(?:[-.][0-9]+)*"
 
 
 def _section_path_segment(section: str) -> str:
@@ -455,17 +479,146 @@ def _part_scoped_section(part: str | None, identifier: str) -> tuple[str, str] |
     return part, section
 
 
-def _section_citation_from_identifier(
-    title: int, identifier: str, part: str | None = None
-) -> tuple[str, str] | None:
-    """Parse a structure section identifier; ``part`` is the enclosing part."""
+def _dotted_part_scoped_section(part: str | None, identifier: str) -> tuple[str, str] | None:
+    """Split ``identifier`` as ``part``.SECTION when it spells a hyphenated enclosing
+    part with dots ("105.60.001" in part 105-60)."""
+    if part is None or "-" not in part or not re.fullmatch(_PART_IDENTIFIER_PATTERN, part):
+        return None
+    prefix = f"{part.replace('-', '.')}."
+    section = identifier[len(prefix):]
+    if not identifier.startswith(prefix) or not re.fullmatch(_SECTION_NUMBER_PATTERN, section):
+        return None
+    return part, section
+
+
+def _bare_section_identifier(value: str) -> str:
+    return re.sub(r"^§\s*", "", value.strip())
+
+
+def _named_part(part: str | None, identifier: str) -> str | None:
+    """The part a bare identifier names: the enclosing part when the identifier is
+    PART.SECTION under it or its dotted spelling, else the PART of PART.SECTION."""
+    scoped = _part_scoped_section(part, identifier) or _dotted_part_scoped_section(
+        part, identifier
+    )
+    if scoped is not None:
+        return scoped[0]
+    match = re.fullmatch(_SECTION_IDENTIFIER_PATTERN, identifier)
+    return match.group(1) if match else None
+
+
+# (part, section, designation): the designation is the section number as published,
+# when it is not PART.SECTION; headings drop it as they drop "§ PART.SECTION".
+_SectionReading = tuple[str, str, str | None]
+
+
+@dataclass(frozen=True)
+class _SectionEvidence:
+    """What the section identifiers of one enclosing part show about its numbering.
+
+    The inventory takes it from the structure part node; extract_ecfr hands the same
+    evidence to the XML pass, which otherwise takes it from the part element.
+    """
+
+    # The parts its identifiers name (_named_part).
+    named_parts: frozenset[str]
+    # (part, path segment) pairs that more than one of its identifiers would take; no
+    # confirmed reading takes one.
+    contested: frozenset[tuple[str, str]] = frozenset()
+
+
+def _confirmed_section(
+    part: str | None, identifier: str, evidence: _SectionEvidence | None
+) -> _SectionReading | None:
+    """Read a bare identifier that no PART.SECTION grammar reads, where the enclosing
+    ``part`` and its ``evidence`` confirm it."""
+    if part is None or evidence is None:
+        return None
+    reading: _SectionReading | None = None
+    stray_space = re.fullmatch(_STRAY_SPACE_IDENTIFIER_PATTERN, identifier)
+    rule_number = re.fullmatch(_RULE_NUMBER_IDENTIFIER_PATTERN, identifier)
+    if stray_space and stray_space.group(1) in evidence.named_parts:
+        reading = stray_space.group(1), stray_space.group(2), identifier
+    elif (
+        rule_number
+        and rule_number.group(1) in evidence.named_parts
+        and rule_number.group(3).lower() == rule_number.group(2).lower()
+    ):
+        reading = rule_number.group(1), rule_number.group(2), None
+    elif (
+        not evidence.named_parts
+        and re.fullmatch(_PART_IDENTIFIER_PATTERN, part)
+        and re.fullmatch(_PART_LESS_SECTION_PATTERN, identifier)
+        and not identifier.startswith(part)
+    ):
+        reading = part, identifier, identifier
+    return _uncontested(reading, evidence)
+
+
+def _dotted_section(
+    part: str | None, identifier: str, evidence: _SectionEvidence | None
+) -> _SectionReading | None:
+    dotted = _dotted_part_scoped_section(part, identifier) if evidence is not None else None
+    return _uncontested((*dotted, identifier) if dotted else None, evidence)
+
+
+def _uncontested(
+    reading: _SectionReading | None, evidence: _SectionEvidence | None
+) -> _SectionReading | None:
+    if reading is None or evidence is None:
+        return None
+    if (reading[0], _section_path_segment(reading[1])) in evidence.contested:
+        return None
+    return reading
+
+
+def _section_reading(
+    identifier: str, part: str | None, evidence: _SectionEvidence | None
+) -> _SectionReading | None:
+    """Read a structure section identifier."""
     scoped = _part_scoped_section(part, identifier)
     if scoped is not None:
-        return _section_citation_path(title, *scoped), scoped[1]
+        return *scoped, None
+    dotted = _dotted_section(part, identifier, evidence)
+    if dotted is not None:
+        return dotted
     match = re.fullmatch(_SECTION_IDENTIFIER_PATTERN, identifier)
-    if not match:
+    if match:
+        return match.group(1), match.group(2), None
+    return _confirmed_section(part, identifier, evidence)
+
+
+def _section_evidence(part: str, identifiers: Iterable[str]) -> _SectionEvidence:
+    """The evidence the section identifiers of enclosing part ``part`` give."""
+    bare = [_bare_section_identifier(value) for value in identifiers]
+    named = frozenset(
+        name for name in (_named_part(part, identifier) for identifier in bare) if name
+    )
+    uncontested = _SectionEvidence(named_parts=named)
+    taken = Counter(
+        (reading[0], _section_path_segment(reading[1]))
+        for identifier in bare
+        if (reading := _section_reading(identifier, part, uncontested)) is not None
+    )
+    return _SectionEvidence(
+        named_parts=named,
+        contested=frozenset(key for key, count in taken.items() if count > 1),
+    )
+
+
+def _section_citation_from_identifier(
+    title: int,
+    identifier: str,
+    part: str | None = None,
+    *,
+    evidence: _SectionEvidence | None = None,
+) -> tuple[str, str] | None:
+    """Parse a structure section identifier; ``part`` is the enclosing part and
+    ``evidence`` what its section identifiers show (_section_evidence)."""
+    reading = _section_reading(identifier, part, evidence)
+    if reading is None:
         return None
-    named_part, section = match.groups()
+    named_part, section, _designation = reading
     return _section_citation_path(title, named_part, section), section
 
 
@@ -476,43 +629,123 @@ def _title_from_citation_path(citation_path: str) -> int:
     return int(parts[2])
 
 
-def _section_citation_from_element(
-    title: int, elem: ET.Element, part: str | None = None
-) -> tuple[str, str, str] | None:
-    """Parse a section element's N; ``part`` is the N of its enclosing part element."""
+def _element_section_reading(
+    elem: ET.Element, part: str | None, evidence: _SectionEvidence | None
+) -> _SectionReading | None:
+    """Read a section element's N: the grammars above on the bare N, then the earlier
+    search for PART.SECTION anywhere in N."""
     n_attr = elem.get("N", "")
-    scoped = _part_scoped_section(part, re.sub(r"^§\s*", "", n_attr.strip()))
+    bare = _bare_section_identifier(n_attr)
+    scoped = _part_scoped_section(part, bare)
     if scoped is not None:
-        return _section_citation_path(title, *scoped), *scoped
+        return *scoped, None
+    dotted = _dotted_section(part, bare, evidence)
+    if dotted is not None:
+        return dotted
+    if not re.fullmatch(_SECTION_IDENTIFIER_PATTERN, bare):
+        confirmed = _confirmed_section(part, bare, evidence)
+        if confirmed is not None:
+            return confirmed
     match = re.search(_SECTION_IDENTIFIER_PATTERN, n_attr)
     if not match:
         return None
-    named_part, section = match.groups()
+    return match.group(1), match.group(2), None
+
+
+def _section_citation_from_element(
+    title: int,
+    elem: ET.Element,
+    part: str | None = None,
+    *,
+    evidence: _SectionEvidence | None = None,
+) -> tuple[str, str, str] | None:
+    """Parse a section element's N; ``part`` is the N of its enclosing part element and
+    ``evidence`` what that part's sections show (_section_evidence)."""
+    reading = _element_section_reading(elem, part, evidence)
+    if reading is None:
+        return None
+    named_part, section, _designation = reading
     return _section_citation_path(title, named_part, section), named_part, section
 
 
-def _bare_section_identifier(value: str) -> str:
-    return re.sub(r"^§\s*", "", value.strip())
+def _element_section_evidence(part_elem: ET.Element) -> _SectionEvidence:
+    """The evidence of a part element's section elements."""
+    return _section_evidence(
+        part_elem.get("N", ""),
+        (
+            elem.get("N", "")
+            for elem in part_elem.iter("DIV8")
+            if elem.get("TYPE") == "SECTION"
+        ),
+    )
+
+
+def _structure_section_evidence(part_node: Mapping[str, Any]) -> _SectionEvidence:
+    """The evidence of a structure part node's section nodes."""
+
+    def identifiers(node: Mapping[str, Any]) -> Iterator[str]:
+        for child in node.get("children", []) or ():
+            if child.get("type") == "section":
+                yield str(child.get("identifier") or "")
+            else:
+                yield from identifiers(child)
+
+    return _section_evidence(str(part_node.get("identifier") or ""), identifiers(part_node))
+
+
+def _structure_section_evidence_by_part(
+    structure: Mapping[str, Any],
+) -> dict[str, _SectionEvidence]:
+    """Each live part's evidence, as the inventory walk reads it."""
+
+    def part_nodes(node: Mapping[str, Any]) -> Iterator[Mapping[str, Any]]:
+        if node.get("type") == "part":
+            yield node
+            return
+        for child in node.get("children", []) or ():
+            yield from part_nodes(child)
+
+    return {
+        str(node["identifier"]): _structure_section_evidence(node)
+        for node in part_nodes(structure)
+        if node.get("identifier") and not node.get("reserved")
+    }
+
+
+def _selectable_section_reading(
+    elem: ET.Element, part: str | None, evidence: _SectionEvidence | None
+) -> _SectionReading | None:
+    """Read a section element's N as an inventory can select it.
+
+    As _element_section_reading, except that a section numbered for another part
+    must publish an identifier the structure grammar reads whole, on the same
+    ``evidence``, as the inventory read it. The XML search alone finds PART.SECTION
+    anywhere in N: it reads "19-3809.1" as 3809.1, which would take that section's
+    citation path. A confirmed reading under another part ("3141. 5" in part 3140)
+    stays selectable, since the structure grammar confirms it on the same evidence.
+    """
+    reading = _element_section_reading(elem, part, evidence)
+    if reading is None or part is None or reading[0] == part:
+        return reading
+    structure = _section_reading(_bare_section_identifier(elem.get("N", "")), part, evidence)
+    if structure is None or structure[:2] != reading[:2]:
+        return None
+    return reading
 
 
 def _selectable_section_from_element(
-    title: int, elem: ET.Element, part: str | None
+    title: int,
+    elem: ET.Element,
+    part: str | None,
+    *,
+    evidence: _SectionEvidence | None = None,
 ) -> tuple[str, str, str] | None:
-    """Parse a section element's N as an inventory can select it.
-
-    As _section_citation_from_element, except that a section numbered for another part
-    must publish an identifier the structure grammar reads whole, as the inventory read
-    it. The XML search alone finds PART.SECTION anywhere in N: it reads "19-3809.1" as
-    3809.1, which would take that section's citation path.
-    """
-    parsed = _section_citation_from_element(title, elem, part)
-    if parsed is None or part is None or parsed[1] == part:
-        return parsed
-    citation_path, _named_part, section = parsed
-    bare = _bare_section_identifier(elem.get("N", ""))
-    if _section_citation_from_identifier(title, bare, part) != (citation_path, section):
+    """(citation path, part, section) of _selectable_section_reading."""
+    reading = _selectable_section_reading(elem, part, evidence)
+    if reading is None:
         return None
-    return parsed
+    named_part, section, _designation = reading
+    return _section_citation_path(title, named_part, section), named_part, section
 
 
 # A part appendix names its part: "Appendix A to Part 604", "Appendix II to Part 200",
@@ -909,8 +1142,8 @@ def _resolved_part_appendix(
     return appendix, numbering
 
 
-# An appendix to a subchapter sits in that subchapter's last part on the eCFR: 41 CFR
-# chapter 101's "Appendix to Subchapter D" is in part 101-21, at reader path
+# The eCFR places 41 CFR chapter 101's "Appendix to Subchapter D" in that subchapter's
+# last part, part 101-21, at reader path
 # .../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D. It is read only
 # inside the subchapter it names. The part that holds it is its parent, and its path
 # segment names the subchapter, so it is never taken for the part's own appendix.
@@ -1040,14 +1273,15 @@ def _scoped_structure_from_part_xml(
         raise ValueError(f"retained eCFR XML does not contain part {part}")
 
     requested = tuple(dict.fromkeys(only_sections))
+    evidence = _element_section_evidence(part_elem)
     sections_by_selector: dict[str, ET.Element] = {}
     for elem in part_elem.iter("DIV8"):
         if elem.get("TYPE") != "SECTION":
             continue
-        parsed = _selectable_section_from_element(title, elem, part)
-        if parsed is None:
+        reading = _selectable_section_reading(elem, part, evidence)
+        if reading is None:
             continue
-        _citation_path, actual_part, section = parsed
+        actual_part, section, _designation = reading
         selector = f"{actual_part}.{section}"
         if selector in requested:
             if selector in sections_by_selector:
@@ -1080,16 +1314,16 @@ def _scoped_structure_from_part_xml(
     subpart_nodes: dict[ET.Element, dict[str, Any]] = {}
     for selector in requested:
         elem = sections_by_selector[selector]
-        parsed = _selectable_section_from_element(title, elem, part)
-        if parsed is None:
+        reading = _selectable_section_reading(elem, part, evidence)
+        if reading is None:
             continue
-        _citation_path, actual_part, section = parsed
+        actual_part, section, designation = reading
         head = elem.find("HEAD")
         label = _element_text(head) if head is not None else f"§ {selector}"
         section_node = {
             "identifier": f"{actual_part}.{section}",
             "label": label,
-            "label_description": _section_heading(elem, actual_part, section),
+            "label_description": _section_heading(elem, actual_part, section, designation),
             "type": "section",
         }
         formal_subpart_elem = formal_subpart_by_section.get(elem)
@@ -1187,6 +1421,7 @@ def _walk_inventory_items(
     subpart: str | None = None,
     *,
     include_appendices: bool = False,
+    evidence: _SectionEvidence | None = None,
     appendix_numbering: _AppendixNumbering | None = None,
 ) -> Iterator[SourceInventoryItem]:
     node_type = node.get("type")
@@ -1207,6 +1442,7 @@ def _walk_inventory_items(
         part = identifier
         if only_part is not None and part != only_part:
             return
+        evidence = _structure_section_evidence(node)
         part_path = f"us/regulation/{title}/{part}"
         yield SourceInventoryItem(
             citation_path=part_path,
@@ -1249,10 +1485,10 @@ def _walk_inventory_items(
         )
     elif node_type == "section":
         if not node.get("reserved"):
-            parsed = _section_citation_from_identifier(title, identifier, part)
-            if parsed is not None:
-                citation_path, section = parsed
-                actual_part = citation_path.split("/")[-2]
+            reading = _section_reading(identifier, part, evidence)
+            if reading is not None:
+                actual_part, section, designation = reading
+                citation_path = _section_citation_path(title, actual_part, section)
                 # The eCFR part that holds the section, which may differ from the part
                 # its identifier names (43 CFR 3809.1 in part 3800).
                 enclosing_part = part or actual_part
@@ -1276,6 +1512,12 @@ def _walk_inventory_items(
                     "label_description": node.get("label_description"),
                     "received_on": node.get("received_on"),
                 }
+                if designation:
+                    # The eCFR splits label_description off at the first space,
+                    # inside a designation such as "52. 36".
+                    metadata["heading"] = _designated_heading(
+                        node.get("label"), actual_part, section, designation
+                    )
                 if enclosing_part != actual_part:
                     metadata["enclosing_part"] = enclosing_part
                 yield SourceInventoryItem(
@@ -1369,6 +1611,7 @@ def _walk_inventory_items(
             part,
             subpart,
             include_appendices=include_appendices,
+            evidence=evidence,
             appendix_numbering=appendix_numbering,
         )
 
@@ -1642,12 +1885,33 @@ def _fetch_available_structures(
                 raise
 
 
-def _section_heading(elem: ET.Element, part: str, section: str) -> str | None:
+def _without_section_designation(
+    text: str, part: str, section: str, designation: str | None
+) -> str:
+    """Drop one leading section designation: "§ PART.SECTION", or else the published
+    designation of a confirmed reading ("Sec. 1-1", "Section 03", "§ 52. 36")."""
+    stripped = re.sub(rf"^§\s*{re.escape(part)}\.{re.escape(section)}\s*", "", text)
+    if stripped != text or not designation:
+        return stripped
+    pattern = r"\s+".join(re.escape(token) for token in designation.split())
+    return re.sub(rf"^(?:§|Sec\.|Section)?\s*{pattern}(?=\s|$)\s*", "", text)
+
+
+def _section_heading(
+    elem: ET.Element, part: str, section: str, designation: str | None = None
+) -> str | None:
     head = elem.find("HEAD")
     if head is None:
         return None
-    heading = _element_text(head)
-    heading = re.sub(rf"^§\s*{re.escape(part)}\.{re.escape(section)}\s*", "", heading)
+    heading = _without_section_designation(_element_text(head), part, section, designation)
+    return heading.strip(" .") or None
+
+
+def _designated_heading(
+    label: str | None, part: str, section: str, designation: str
+) -> str | None:
+    """A section heading from its structure label, as _section_heading reads HEAD."""
+    heading = _without_section_designation(_clean_text(label), part, section, designation)
     return heading.strip(" .") or None
 
 
@@ -1710,12 +1974,16 @@ def _non_math_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
 
 
 def _element_citation_path(
-    title: int, elem: ET.Element, part: str | None = None
+    title: int,
+    elem: ET.Element,
+    part: str | None = None,
+    *,
+    evidence: _SectionEvidence | None = None,
 ) -> str | None:
     """``part`` is the N of the enclosing part element: a section under a hyphenated
     part and a subchapter appendix take their paths from it."""
     if elem.tag == "DIV8" and elem.get("TYPE") == "SECTION":
-        parsed = _section_citation_from_element(title, elem, part)
+        parsed = _section_citation_from_element(title, elem, part, evidence=evidence)
         return parsed[0] if parsed is not None else None
     if elem.tag == "DIV9" and elem.get("TYPE") == "APPENDIX":
         part_appendix = _part_appendix_from_identifier(elem.get("N", ""))
@@ -2152,12 +2420,14 @@ def _section_provision(
     level: int,
     subpart: str | None = None,
     graphic_transcriptions: Mapping[str, str] | None = None,
+    evidence: _SectionEvidence | None = None,
 ) -> ProvisionRecord | None:
-    parsed = _section_citation_from_element(title, elem, target.part)
-    if parsed is None:
+    reading = _element_section_reading(elem, target.part, evidence)
+    if reading is None:
         return None
-    citation_path, part, section = parsed
-    heading = _section_heading(elem, part, section)
+    part, section, designation = reading
+    citation_path = _section_citation_path(title, part, section)
+    heading = _section_heading(elem, part, section, designation)
     metadata: dict[str, Any] = {
         "title": title,
         "part": part,
@@ -2408,6 +2678,7 @@ def iter_ecfr_title_provisions(
     *,
     include_appendices: bool = False,
     appendix_numbering: _AppendixNumbering | None = None,
+    section_evidence: Mapping[str, _SectionEvidence] | None = None,
 ) -> Iterator[ProvisionRecord]:
     """Convert one title's eCFR XML into provision records in source order.
 
@@ -2416,6 +2687,11 @@ def iter_ecfr_title_provisions(
     appendices. ``extract_ecfr`` passes the numbering it derived from the
     structure, so XML records and structure-only placeholders agree; without it the
     numbering is derived from the XML's own appendices.
+
+    ``section_evidence`` maps each part to what its sections show about their
+    numbering (_SectionEvidence). extract_ecfr passes the evidence the inventory read
+    from the structure, so the XML pass confirms the same sections; without it each
+    part element supplies its own.
     """
     root = ET.fromstring(xml_content)
     target_by_part = {target.part: target for target in targets}
@@ -2559,6 +2835,11 @@ def iter_ecfr_title_provisions(
             yield part_record
 
         parent_citation_path = f"us/regulation/{target.title}/{part}"
+        evidence = (
+            section_evidence.get(part)
+            if section_evidence is not None
+            else _element_section_evidence(div5)
+        )
         numbering_by_container: _AppendixNumbering = {}
         if include_appendices:
             numbering_by_container = (
@@ -2589,12 +2870,16 @@ def iter_ecfr_title_provisions(
                     parent_citation_path=parent_citation_path,
                     level=1,
                     graphic_transcriptions=graphic_transcriptions,
+                    evidence=evidence,
                 )
                 if record is None:
                     continue
                 if allowed_citation_paths is not None and (
                     record.citation_path not in allowed_citation_paths
-                    or _selectable_section_from_element(target.title, child, part) is None
+                    or _selectable_section_from_element(
+                        target.title, child, part, evidence=evidence
+                    )
+                    is None
                 ):
                     continue
                 yield record
@@ -2640,12 +2925,16 @@ def iter_ecfr_title_provisions(
                     level=2,
                     subpart=child.get("N"),
                     graphic_transcriptions=graphic_transcriptions,
+                    evidence=evidence,
                 )
                 if record is None:
                     continue
                 if allowed_citation_paths is not None and (
                     record.citation_path not in allowed_citation_paths
-                    or _selectable_section_from_element(target.title, nested, part) is None
+                    or _selectable_section_from_element(
+                        target.title, nested, part, evidence=evidence
+                    )
+                    is None
                 ):
                     continue
                 yield record
@@ -2864,6 +3153,18 @@ def extract_ecfr(
                 appendix_numbering_by_title=appendix_numbering_by_title,
                 staged_xml_by_title=staged_xml_by_title,
                 replacement_xml_by_title=replacement_xml_by_title,
+                # The XML pass confirms sections on the inventory's evidence. A local
+                # source_xml's structure was itself read from that XML.
+                section_evidence_by_title=(
+                    {
+                        int(structure["identifier"]): _structure_section_evidence_by_part(
+                            structure
+                        )
+                        for structure in structures
+                    }
+                    if source_xml is None
+                    else None
+                ),
             )
         ) + tuple(
             _EcfrTitleResult(title=title, error=error)
@@ -3022,12 +3323,22 @@ def _reject_repeated_citation_paths(provisions: tuple[ProvisionRecord, ...]) -> 
         source_id_by_path[record.citation_path] = record.source_id
 
 
-def _enclosing_part_by_section(root: ET.Element) -> dict[ET.Element, str]:
-    """Map each section element to the N of the part element that encloses it."""
+def _enclosing_part_by_section(
+    root: ET.Element,
+    section_evidence: Mapping[str, _SectionEvidence] | None = None,
+) -> dict[ET.Element, tuple[str, _SectionEvidence | None]]:
+    """Map each section element to the N of the part element that encloses it and that
+    part's evidence, from ``section_evidence`` when given (see
+    iter_ecfr_title_provisions)."""
     return {
-        section: part
+        section: (part, evidence)
         for part_elem in root.iter("DIV5")
         if part_elem.get("TYPE") == "PART" and (part := part_elem.get("N"))
+        for evidence in (
+            section_evidence.get(part)
+            if section_evidence is not None
+            else _element_section_evidence(part_elem),
+        )
         for section in part_elem.iter("DIV8")
     }
 
@@ -3042,6 +3353,7 @@ def _capture_ecfr_math_graphics(
     allowed_citation_paths: set[str] | None,
     include_appendices: bool = False,
     pending_source_writes: dict[Path, bytes] | None = None,
+    section_evidence: Mapping[str, _SectionEvidence] | None = None,
 ) -> tuple[
     tuple[Path, ...],
     dict[str, str],
@@ -3056,14 +3368,15 @@ def _capture_ecfr_math_graphics(
     if allowed_citation_paths is None:
         graphic_roots = (root,)
     else:
-        part_by_section = _enclosing_part_by_section(root)
+        part_by_section = _enclosing_part_by_section(root, section_evidence)
         graphic_roots = tuple(
             elem
             for elem in root.iter("DIV8")
             if elem.get("TYPE") == "SECTION"
+            and (enclosing := part_by_section.get(elem, (None, None)))
             and (
                 selected := _selectable_section_from_element(
-                    title, elem, part_by_section.get(elem)
+                    title, elem, enclosing[0], evidence=enclosing[1]
                 )
             )
             is not None
@@ -3146,6 +3459,7 @@ def _extract_title_results(
     appendix_numbering_by_title: Mapping[int, _AppendixNumbering] | None = None,
     staged_xml_by_title: Mapping[int, Path] | None = None,
     replacement_xml_by_title: Mapping[int, bytes] | None = None,
+    section_evidence_by_title: Mapping[int, Mapping[str, _SectionEvidence]] | None = None,
 ) -> Iterator[_EcfrTitleResult]:
     max_workers = max(1, workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -3166,6 +3480,7 @@ def _extract_title_results(
                 (appendix_numbering_by_title or {}).get(title),
                 (staged_xml_by_title or {}).get(title),
                 (replacement_xml_by_title or {}).get(title),
+                (section_evidence_by_title or {}).get(title),
             ): title
             for title, targets, _paths in pending_titles
         }
@@ -3310,6 +3625,7 @@ def _extract_one_title(
     appendix_numbering: _AppendixNumbering | None = None,
     staged_xml: Path | None = None,
     replacement_xml: bytes | None = None,
+    section_evidence: Mapping[str, _SectionEvidence] | None = None,
 ) -> _EcfrTitleResult:
     source_relative_name = _ecfr_source_relative_name(title, only_part)
     source_path = store.source_path(
@@ -3357,6 +3673,7 @@ def _extract_one_title(
         allowed_citation_paths=allowed_citation_paths,
         include_appendices=include_appendices,
         appendix_numbering=appendix_numbering,
+        section_evidence=section_evidence,
     )
     replacement_bytes = (
         replacement_xml if replacement_xml is not None else xml_content.encode("utf-8")
@@ -3397,6 +3714,7 @@ def _extract_one_title(
                 allowed_citation_paths=allowed_citation_paths,
                 include_appendices=include_appendices,
                 pending_source_writes=pending_source_writes,
+                section_evidence=section_evidence,
             )
         )
         if used_transcriptions:
