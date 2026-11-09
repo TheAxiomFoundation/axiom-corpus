@@ -41,6 +41,10 @@ Invariants (Hypothesis):
    it, or inherited from the page tree), an annotation's appearance stream, a
    tiling pattern, a soft mask's group, or a Type 3 font's glyph procedure. A page
    whose other fonts can't all be read has no glyph drawings.
+7. The drawings taken for glyphs are the ones the glyph procedures paint. On a
+   page of drawn Type 3 text and real rules, they are exactly the drawings that
+   go away when every glyph procedure paints nothing, an oracle that reads no
+   bbox log, text trace or font name.
 
 The Type 3 fonts are the ones ``_pdf_type3_font_names`` (the OCR overlay's
 helper) names.
@@ -49,6 +53,7 @@ helper) names.
 from __future__ import annotations
 
 import ast
+import re
 import warnings
 from collections import Counter
 from pathlib import Path
@@ -444,6 +449,43 @@ def test_property_only_real_rules_mark_drawn_type3_text(
     assert _states(marked[0].body) == [
         (character, next(iter(states), None)) for character, states in expected
     ]
+
+
+def _drawing_key(path: dict[str, Any]) -> tuple[Any, ...]:
+    return (path["type"], *(round(value, 2) for value in path["rect"]))
+
+
+def _empty_glyph_procedures(document: Any) -> None:
+    """Make every glyph procedure of the document's Type 3 fonts paint nothing."""
+    for xref in range(1, document.xref_length()):
+        if document.xref_get_key(xref, "Subtype") == ("name", "/Type3"):
+            _kind, procedures = document.xref_get_key(xref, "CharProcs")
+            for number in re.findall(r"(\d+) 0 R", procedures):
+                document.update_stream(int(number), b"0 0 d0")
+
+
+@settings(max_examples=100, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(case=_text_and_real_rules(), size=_SIZES)
+def test_property_the_glyph_drawings_are_the_ones_the_glyph_procedures_paint(
+    case: tuple[str, list[tuple[str, int, int]]], size: float
+) -> None:
+    text, rules = case
+    content = _type3_pdf(text, rules=rules, size=size)
+
+    with (
+        fitz.open(stream=content, filetype="pdf") as document,
+        fitz.open(stream=content, filetype="pdf") as emptied,
+    ):
+        _empty_glyph_procedures(emptied)
+        drawings = document[0].get_drawings()
+        left = Counter(_drawing_key(path) for path in emptied[0].get_drawings())
+        glyphs = documents_module._pdf_glyph_drawings(document[0], drawings)
+
+    assert Counter(_drawing_key(drawings[position]) for position in glyphs) == (
+        Counter(_drawing_key(path) for path in drawings) - left
+    )
+    # The emptied copy still has every real rule.
+    assert sum(left.values()) == len(rules)
 
 
 # 3. Leaving glyph drawings out only removes rules ----------------------------------
