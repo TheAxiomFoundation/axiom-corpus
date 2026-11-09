@@ -563,15 +563,21 @@ The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
 line's stroke width) marks a character when its offset from the text baseline,
 in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
-0.22 (underline). White rules and rules with zero opacity are ignored. So is a
-drawing that is a glyph: MuPDF draws some Type 3 glyphs as vector paths and
+0.22 (underline). The classifier ignores white rules, rules with zero opacity,
+and drawings that are glyphs: MuPDF draws some Type 3 glyphs as vector paths and
 reports their characters as hidden text, and the bar of such a hyphen would
 strike the text around it, an underscore underline it. The classifier takes a
 drawing for a glyph when the page's next command, paths without segments aside,
 is hidden text of one character in a font named as only the page's Type 3 fonts
-are (the names `_pdf_type3_font_names` gives, the helper the OCR overlay uses,
-less any that another font on the page shares), and the drawing lies inside that
-character's bound and spans at most two of its font sizes each way. It finds
+are, and the drawing lies inside that character's bound and spans at most two of
+its font sizes each way. The bound alone would let a long rule through: a font
+that declares a large box gives each character a bound to match, about 20 font
+sizes wide on some CMS pages. The Type 3 names are the ones
+`_pdf_type3_font_names` gives (the helper the OCR overlay uses), less any name
+another font shares. The classifier reads every font the page can show text in,
+through its resources, forms, tiling patterns, soft masks, Type 3 glyph
+procedures and annotation appearance streams; when it can't read them all, it
+takes no drawing on the page for a glyph. It finds
 each drawing's command by number in `get_bboxlog`, which numbers commands as the
 text trace does; `get_drawings` skips paths without segments, which the bbox log
 bounds with an empty rectangle, and the classifier skips them too. It recognises

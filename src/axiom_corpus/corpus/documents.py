@@ -1234,9 +1234,16 @@ _PDF_BBOX_STROKE_PATH = "stroke-path"
 _PDF_BBOX_HIDDEN_TEXT = "ignore-text"
 # A drawing's rectangle and a bbox-log bound agree within this many points.
 _PDF_BOUND_TOLERANCE = 0.01
-# A drawing is a glyph only if it is at most this many font sizes wide and high.
-# GLYPH_EXTENT_CALIBRATION_PLACEHOLDER
+# A drawing is a glyph only if it is at most this many font sizes wide and high. In
+# the 105 retained PDFs with a Type 3 font (PyMuPDF 1.26.7, 2026-11-08), each of the
+# 2,499,765 drawings whose next command shows one hidden character of a glyph font
+# lies inside that character's bound and spans at most 1.002 font sizes. The bound
+# alone admits far longer rules: a font that declares a box 20 units on a side, as
+# Arizona's and Michigan's do, gives each character a bound about 20 font sizes wide.
 _PDF_GLYPH_MAX_EXTENT = 2.0
+# The most resource dictionaries ``_pdf_page_fonts`` reads on one page; a page that
+# reaches more recognises no glyphs.
+_PDF_FONT_RESOURCES = 4096
 # MuPDF keeps at most this many bytes of a font's name (``fz_font.name`` is 32
 # bytes with its terminating zero), so a longer name reaches spans cut short.
 _PDF_FONT_NAME_BYTES = 31
@@ -2043,56 +2050,139 @@ def _pdf_rect_within(rect: Any, bound: Any) -> bool:
 def _pdf_glyph_font_names(page: Any) -> frozenset[str]:
     """Return the span font names that only the page's Type 3 fonts carry.
 
-    A span names its font but not the font's type, so a Type 3 font named as
-    another font on the page is (a Type 3 font named "Helvetica" beside a Type 1
-    Helvetica) can't be told from it, and its name is left out
-    (``_pdf_other_font_names``).
+    A span names its font but not the font's type, so nothing tells a Type 3 font
+    from another font with the same name (a Type 3 font named "Helvetica" beside a
+    Type 1 Helvetica), and this leaves such names out (``_pdf_other_font_names``).
+    When it can't read all of the page's other fonts, it gives no name at all, and
+    every drawing on the page stays a rule, as before the classifier recognised
+    glyphs.
     """
     type3 = _pdf_type3_font_names(page)
     if not type3:
         return frozenset()
-    return type3 - _pdf_other_font_names(page)
+    others = _pdf_other_font_names(page)
+    if others is None:
+        return frozenset()
+    return frozenset(type3 - others)
 
 
-def _pdf_other_font_names(page: Any) -> frozenset[str]:
-    """Return every name the spans of the page's other fonts (not Type 3) may carry.
+def _pdf_other_font_names(page: Any) -> frozenset[str] | None:
+    """Return every name the spans of the page's fonts that are not Type 3 may carry,
+    or None when it can't name them all.
 
     MuPDF names the spans of such a font after its /BaseFont (a Type0 font's after
     its descendant font's) and keeps the name's first ``_PDF_FONT_NAME_BYTES``
     bytes, and PyMuPDF leaves out a subset prefix, six characters before the
-    name's first "+" (``_pdf_span_name_forms``). The fonts are those of the page
-    and its forms (``get_fonts``; a font written inline in their resources is
-    read there, ``_pdf_inline_font``) and of its annotation and widget appearance
-    streams (``_pdf_appearance_font_names``). A name listed that no span carries
-    only keeps a Type 3 font's glyphs drawn as rules. Not read: a name that can't
-    be read, an inline font that can't be found by its resource name, and fonts
-    used only inside Type 3 glyph procedures.
+    name's first "+" (``_pdf_span_name_forms``). The fonts are every font the page
+    can show text in (``_pdf_page_fonts``). A name listed that no span carries
+    only keeps a Type 3 font's glyphs drawn as rules; a font missing from the list
+    could make its hidden text pass for a Type 3 font's, so a walk that can't
+    finish, or a font without a name to read, gives None.
     """
+    fonts = _pdf_page_fonts(page)
+    if fonts is None:
+        return None
     document = page.parent
     count = document.xref_length()
-    names = set(_pdf_appearance_font_names(page)[1])
-    for font in page.get_fonts(full=True):
-        if font[2] == "Type3":
-            continue
-        names |= _pdf_span_name_forms(str(font[3]))
-        if font[0]:
-            names |= _pdf_font_span_names(document, int(font[0]), count)
-        else:
-            names |= _pdf_font_span_names(document, _pdf_inline_font(page, font), count)
+    names: set[str] = set()
+    for font in fonts:
+        forms = _pdf_font_span_names(document, font, count)
+        if not forms:
+            return None  # a font without a /BaseFont: its spans' name is unknown
+        names |= forms
     return frozenset(names)
 
 
-def _pdf_inline_font(page: Any, font: tuple[Any, ...]) -> str:
-    """The printed dictionary of a font that ``get_fonts`` lists without an object number,
-    read by its resource name (``font[4]``) from the resources of the form that uses it
-    (``font[6]``) or of the page; empty when it can't be read. This never raises."""
+def _pdf_page_fonts(page: Any) -> list[int | str] | None:
+    """Every font that is not Type 3 and that the page can show text in: its object
+    number, or its printed dictionary when the font is written inline. None when the
+    walk can't finish: a read raised, or the page reaches more than
+    ``_PDF_FONT_RESOURCES`` resource dictionaries.
+
+    MuPDF runs content with the page's resources (its own, or those of the page-tree
+    node it inherits them from), with those of its annotation and widget appearance
+    streams (/Annots, then each annotation's /AP /N: a stream, or a dictionary of
+    appearance states), and, reached from any of these, with those of forms
+    (/XObject), tiling patterns (/Pattern), soft-mask groups (/ExtGState, its /SMask
+    and the mask's /G) and Type 3 fonts, whose glyph procedures can show text in
+    other fonts. This reads all of them; ``get_fonts`` reads only the page's and its
+    forms'. It reads resource dictionaries in their printed form
+    (``_pdf_dict_entries``), so no resource name serves as a lookup path, and reads
+    each object once.
+    """
+    document = page.parent
+    count = document.xref_length()
+
+    def references(text: str) -> list[int]:
+        return [n for n in map(int, _PDF_OBJECT_REFERENCE.findall(text)) if 0 < n < count]
+
+    def resolved(kind: str, value: str) -> str:
+        if kind == "xref":
+            numbers = references(value)
+            return str(document.xref_object(numbers[0])) if numbers else ""
+        return str(value) if kind == "dict" else ""
+
+    def entries(value: str) -> dict[str, str]:
+        return _pdf_dict_entries(_pdf_entry_text(document, value, count))
+
+    fonts: list[int | str] = []
+    # Printed resource dictionaries, and objects whose /Resources to read.
+    pending: list[int | str] = []
+    seen: set[int] = set()
+    read = 0
     try:
-        kind, value = page.parent.xref_get_key(
-            int(font[6]) or page.xref, f"Resources/Font/{font[4]}"
-        )
+        holder = page.xref
+        for _ in range(64):  # the page's resources, or the page-tree node's it inherits
+            kind, value = document.xref_get_key(holder, "Resources")
+            if kind != "null":
+                pending.append(resolved(kind, value))
+                break
+            kind, value = document.xref_get_key(holder, "Parent")
+            if kind != "xref":
+                break
+            holder = int(value.split()[0])
+        kind, value = document.xref_get_key(page.xref, "Annots")
+        for annot in references(resolved(kind, value) or str(value)):
+            kind, value = document.xref_get_key(annot, "AP/N")
+            if kind == "xref":
+                numbers = references(value)
+                if numbers and not document.xref_is_stream(numbers[0]):
+                    value = document.xref_object(numbers[0])  # a dictionary of states
+            pending.extend(references(value) if kind in ("xref", "dict") else [])
+        while pending:
+            item = pending.pop()
+            if isinstance(item, int):
+                if item in seen:
+                    continue
+                seen.add(item)
+                item = resolved(*document.xref_get_key(item, "Resources"))
+            read += 1
+            if read > _PDF_FONT_RESOURCES:
+                return None
+            resources = _pdf_dict_entries(item)
+            for value in entries(resources.get("Font", "")).values():
+                if value.startswith("<<"):
+                    font = _pdf_dict_entries(value)
+                    if font.get("Subtype") == "/Type3":
+                        pending.append(_pdf_entry_text(document, font.get("Resources", ""), count))
+                    else:
+                        fonts.append(value)
+                    continue
+                for number in references(value):
+                    if document.xref_get_key(number, "Subtype") == ("name", "/Type3"):
+                        pending.append(number)
+                    elif number not in seen:
+                        seen.add(number)
+                        fonts.append(number)
+            for key in ("XObject", "Pattern"):
+                for value in entries(resources.get(key, "")).values():
+                    pending.extend(references(value))
+            for value in entries(resources.get("ExtGState", "")).values():
+                mask = entries(entries(value).get("SMask", ""))
+                pending.extend(references(mask.get("G", "")))
     except Exception:
-        return ""
-    return str(value) if kind == "dict" else ""
+        return None
+    return fonts
 
 
 def _pdf_span_name_forms(name: str) -> set[str]:
@@ -4193,15 +4283,6 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
     used as a lookup path. A reference to a missing object, or anything else that can't be
     read, is skipped: this only finds fonts, and must never fail a page.
     """
-    return _pdf_appearance_font_names(page)[0]
-
-
-def _pdf_appearance_font_names(page: Any) -> tuple[set[str], set[str]]:
-    """The span font names of the Type3 fonts in the page's appearance streams
-    (``_pdf_appearance_type3_font_names``, which says how they are found), and every name
-    the spans of their other fonts may carry (``_pdf_other_font_names``). Reading another
-    font's names never changes the Type3 names: a font whose names can't be read is skipped
-    alone."""
     document = page.parent
     count = document.xref_length()
 
@@ -4232,7 +4313,6 @@ def _pdf_appearance_font_names(page: Any) -> tuple[set[str], set[str]]:
         except Exception:
             continue
     names: set[str] = set()
-    others: set[str] = set()
     seen: set[int] = set()
     while holders and len(seen) < _PDF_APPEARANCE_STREAMS:
         holder = holders.pop()
@@ -4251,8 +4331,6 @@ def _pdf_appearance_font_names(page: Any) -> tuple[set[str], set[str]]:
                         names.add(inline)
                         if inline == "Unnamed-T3":
                             names.add("Type3 (0 0 R)")
-                    else:
-                        others |= _pdf_font_span_names(document, value, count)
                     continue
                 for font in references(value):
                     if document.xref_get_key(font, "Subtype") == ("name", "/Type3"):
@@ -4260,8 +4338,6 @@ def _pdf_appearance_font_names(page: Any) -> tuple[set[str], set[str]]:
                         names.add(named)
                         if named == "Unnamed-T3":
                             names.add(f"Type3 ({font} 0 R)")
-                    else:
-                        others |= _pdf_font_span_names(document, font, count)
             xobjects = _pdf_dict_entries(
                 _pdf_entry_text(document, resources.get("XObject", ""), count)
             )
@@ -4269,7 +4345,7 @@ def _pdf_appearance_font_names(page: Any) -> tuple[set[str], set[str]]:
                 holders.extend(references(value))
         except Exception:
             continue
-    return names, others
+    return names
 
 
 def _pdf_entry_text(document: Any, value: str, count: int) -> str:

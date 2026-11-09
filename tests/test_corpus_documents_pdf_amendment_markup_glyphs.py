@@ -36,9 +36,11 @@ Invariants (Hypothesis):
 6. Only a Type 3 font's hidden character makes a glyph. A hidden character in
    another font never makes the drawing before it a glyph, however the page's
    Type 3 and other fonts are named (a subset prefix, a name MuPDF cuts short,
-   a Type0 font named after its descendant) and wherever the other font sits
-   (the page's resources, referenced or inline, or an annotation's appearance
-   stream).
+   a Type0 font named after its descendant) and wherever the other font sits:
+   the page's resources (referenced, inline, under a resource name with a "/" in
+   it, or inherited from the page tree), an annotation's appearance stream, a
+   tiling pattern, a soft mask's group, or a Type 3 font's glyph procedure. A page
+   whose other fonts can't all be read has no glyph drawings.
 
 The Type 3 fonts are the ones ``_pdf_type3_font_names`` (the OCR overlay's
 helper) names.
@@ -482,10 +484,10 @@ _TEXT_KINDS = {0: "fill-text", 1: "stroke-text", 3: "ignore-text"}
 class _CommandDocument:
     """The PDF a ``_CommandPage`` belongs to: its objects are the page's fonts.
 
-    It answers what the glyph rule reads of a font: a Type 3 font's /Name
-    (``xref_get_key``) and any other font's dictionary (``xref_object``), with a
-    Type0 font's descendant. Every other key is null, so the page has no
-    annotations.
+    It answers what the glyph rule reads: the page's resources, which list its
+    fonts, each font's /Subtype and a Type 3 font's /Name (``xref_get_key``), and
+    any other font's dictionary (``xref_object``), with a Type0 font's descendant.
+    Every other key is null, so the page has no annotations and no forms.
     """
 
     is_pdf = True
@@ -497,7 +499,12 @@ class _CommandDocument:
         return 100
 
     def xref_get_key(self, xref: int, key: str) -> tuple[str, str]:
+        if xref == _CommandPage.xref and key == "Resources":
+            fonts = " ".join(f"/F{number} {number} 0 R" for number in self.fonts)
+            return "dict", f"<< /Font << {fonts} >> >>"
         font = self.fonts.get(xref)
+        if font is not None and key == "Subtype":
+            return "name", f"/{font[2]}"
         if font is not None and font[2] == "Type3" and key == "Name" and font[1]:
             return "name", f"/{font[1]}"
         return "null", "null"
@@ -1105,7 +1112,24 @@ def test_a_glyph_filled_and_stroked_is_one_drawing_and_still_a_glyph() -> None:
 # 5. Only a Type 3 font's hidden character makes a glyph --------------------------
 
 
-_WHERE = ["page", "page-inline", "appearance", "appearance-inline"]
+_WHERE = [
+    "page",
+    "page-inline",
+    "page-inline-escaped",
+    "page-inherited",
+    "page-inherited-inline",
+    "form",
+    "form-inline",
+    "appearance",
+    "appearance-inline",
+    "appearance-states",
+    "pattern",
+    "soft-mask",
+    "type3-glyph",
+    "type3-glyph-inline",
+]
+# The second Type 3 font of the "type3-glyph" pages, whose glyph shows the "a".
+_GLYPH_FONT = "Outline"
 
 
 def _hidden_other_font_page(
@@ -1114,9 +1138,27 @@ def _hidden_other_font_page(
     """A strike inside the bound of one hidden "a", then that "a", in a font that is
     not Type 3: a Type 1 font named ``base``, or a Type0 font named ``base`` whose
     descendant is named ``descendant``. The page also has a Type 3 font named
-    ``type3_name``. ``where`` puts the strike, the "a" and its font in the page's
-    content or in an annotation's appearance stream, with the font referenced or
-    written inline (one of ``_WHERE``)."""
+    ``type3_name``. ``where`` (one of ``_WHERE``) says where the "a" and its font
+    sit:
+
+    - ``page``: in the page's content and resources, the font referenced;
+      ``-inline`` writes it in the resources, ``-escaped`` also names it there
+      ``/H#2F1`` (a "/" in its resource name), and ``-inherited`` moves the
+      resources to the page-tree node the page inherits them from;
+    - ``form``: in a form the page draws right after the strike, the font
+      referenced or (``-inline``) written inline;
+    - ``appearance``: in an annotation's appearance stream, the font referenced
+      or (``-inline``) written inline; ``-states`` reaches the stream through a
+      dictionary of appearance states;
+    - ``pattern``, ``soft-mask``: in a tiling pattern the page fills with, or in
+      the group of a soft mask the page paints through, right after the strike;
+    - ``type3-glyph``: in the procedure of a glyph of a second Type 3 font
+      (``_GLYPH_FONT``; with ``-inline`` both fonts are written inline). The
+      procedure shows the "a" and then strokes a line in the width it inherits,
+      so MuPDF draws the glyph on the page, and the glyph's own hidden character
+      follows.
+
+    The strike is always the page's first command and the "a" its second."""
     document = fitz.open(
         stream=_type3_document("", font_name=f"/Name /{type3_name} "), filetype="pdf"
     )
@@ -1139,42 +1181,96 @@ def _hidden_other_font_page(
             f"/DescendantFonts [{cid} 0 R] >>"
         )
         code = "<0041>"
-    if not where.endswith("inline"):
+
+    def placed(dictionary: str) -> str:
+        """``dictionary`` as written in a resource dictionary: inline, or referenced."""
+        if "inline" in where:
+            return dictionary
         xref = document.get_new_xref()
-        document.update_object(xref, font)
-        font = f"{xref} 0 R"
+        document.update_object(xref, dictionary)
+        return f"{xref} 0 R"
+
+    def stream_object(dictionary: str, stream: str) -> int:
+        xref = document.get_new_xref()
+        document.update_object(xref, dictionary)
+        document.update_stream(xref, stream.encode(), compress=False)
+        return xref
+
+    name = "H#2F1" if where.endswith("escaped") else "H"
+    own = f"<< /Font << /{name} {placed(font)} >> >>"  # the resources the "a" runs with
     y = PAGE_HEIGHT - (BASELINE + REAL_OFFSETS[D] * SIZE)
-    stream = (
-        f"0.6 w {LEFT + 1} {y} m {LEFT + 6} {y} l S\n"
-        f"BT 3 Tr /H {SIZE} Tf {LEFT} {PAGE_HEIGHT - BASELINE} Td {code} Tj ET\n"
-    )
-    type3_font = document.xref_get_key(page.xref, "Resources/Font/T1")[1]
+    strike = f"0.6 w {LEFT + 1} {y} m {LEFT + 6} {y} l S\n"
+    text = f"BT 3 Tr /{name} {SIZE} Tf {LEFT} {PAGE_HEIGHT - BASELINE} Td {code} Tj ET\n"
+    square = f"{LEFT} {PAGE_HEIGHT - BASELINE - 2} 20 20 re f"
+    fonts = "/T1 " + document.xref_get_key(page.xref, "Resources/Font/T1")[1]
+    others = ""
+    stream = strike + text
+    form = f"/Type /XObject /Subtype /Form /BBox [0 0 595 {PAGE_HEIGHT}]"
     if where.startswith("page"):
-        document.xref_set_key(
-            page.xref, "Resources", f"<< /Font << /T1 {type3_font} /H {font} >> >>"
-        )
-        contents = document.get_new_xref()
-        document.update_object(contents, "<<>>")
-        document.update_stream(contents, stream.encode(), compress=False)
-        document.xref_set_key(page.xref, "Contents", f"{contents} 0 R")
-    else:
-        appearance = document.get_new_xref()
-        document.update_object(
-            appearance,
-            f"<< /Type /XObject /Subtype /Form /BBox [0 0 595 {PAGE_HEIGHT}] "
-            f"/Resources << /Font << /H {font} >> >> >>",
-        )
-        document.update_stream(appearance, stream.encode(), compress=False)
+        fonts += f" /{name} {placed(font)}"
+    elif where.startswith("form"):
+        drawn = stream_object(f"<< {form} /Resources {own} >>", text)
+        others = f" /XObject << /Fm1 {drawn} 0 R >>"
+        stream = strike + "/Fm1 Do\n"
+    elif where.startswith("appearance"):
+        normal = f"{stream_object(f'<< {form} /Resources {own} >>', stream)} 0 R"
+        if where.endswith("states"):
+            states = document.get_new_xref()
+            document.update_object(states, f"<< /On {normal} >>")
+            normal = f"{states} 0 R"
         annotation = document.get_new_xref()
         document.update_object(
             annotation,
-            f"<< /Type /Annot /Subtype /Square /Rect [0 0 595 {PAGE_HEIGHT}] /F 4 "
-            f"/AP << /N {appearance} 0 R >> >>",
+            f"<< /Type /Annot /Subtype /Square /Rect [0 0 595 {PAGE_HEIGHT}] /F 4 /AS /On "
+            f"/AP << /N {normal} >> >>",
         )
         document.xref_set_key(page.xref, "Annots", f"[{annotation} 0 R]")
+        stream = ""
+    elif where == "pattern":
+        pattern = stream_object(
+            f"<< /PatternType 1 /PaintType 1 /TilingType 1 /BBox [0 0 595 {PAGE_HEIGHT}] "
+            f"/XStep 595 /YStep {PAGE_HEIGHT} /Resources {own} >>",
+            text,
+        )
+        others = f" /Pattern << /P1 {pattern} 0 R >>"
+        stream = strike + f"/Pattern cs /P1 scn {square}\n"
+    elif where == "soft-mask":
+        group = stream_object(
+            f"<< {form} /Group << /S /Transparency /CS /DeviceGray >> /Resources {own} >>",
+            text + f"1 g 0 0 595 {PAGE_HEIGHT} re f\n",
+        )
+        others = f" /ExtGState << /G1 << /SMask << /S /Luminosity /G {group} 0 R >> >> >>"
+        stream = strike + f"q /G1 gs 0 0 1 rg {square} Q\n"
+    else:
+        procedure = stream_object(
+            "<<>>", f"600 0 d0 BT 3 Tr /{name} 1000 Tf 0 0 Td {code} Tj ET 0 0 m 0 500 l S"
+        )
+        glyphs = (
+            f"<< /Type /Font /Subtype /Type3 /Name /{_GLYPH_FONT} /FontBBox [0 -200 1000 800] "
+            f"/FontMatrix [0.001 0 0 0.001 0 0] /Resources {own} /CharProcs << /g {procedure} "
+            "0 R >> /Encoding << /Type /Encoding /Differences [98 /g] >> /FirstChar 98 "
+            "/LastChar 98 /Widths [600] >>"
+        )
+        fonts += f" /G {placed(glyphs)}"
+        stream = strike + f"BT /G {SIZE} Tf {LEFT} {PAGE_HEIGHT - BASELINE} Td (b) Tj ET\n"
+    resources = f"<< /Font << {fonts} >>{others} >>"
+    holder = page.xref
+    if "inherited" in where:
+        holder = int(document.xref_get_key(document.pdf_catalog(), "Pages")[1].split()[0])
+        document.xref_set_key(page.xref, "Resources", "null")
+    document.xref_set_key(holder, "Resources", resources)
+    contents = stream_object("<<>>", stream)
+    document.xref_set_key(page.xref, "Contents", f"{contents} 0 R")
     content = document.tobytes()
     document.close()
     return content
+
+
+def _hidden_a(page: Any) -> dict[str, Any]:
+    """The span of the hidden "a" of a ``_hidden_other_font_page``: the page's second
+    command."""
+    (span,) = [span for span in page.get_texttrace() if span["seqno"] == 1]
+    return span
 
 
 _NAMES = st.sampled_from(
@@ -1182,7 +1278,7 @@ _NAMES = st.sampled_from(
 )
 
 
-@settings(max_examples=80, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@settings(max_examples=120, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(
     type3_name=_NAMES,
     other=st.sampled_from(["Type1", "Type0"]),
@@ -1197,13 +1293,14 @@ def test_property_hidden_text_in_another_font_never_makes_a_glyph(
 
     with fitz.open(stream=content, filetype="pdf") as document:
         page = document[0]
-        (span,) = page.get_texttrace()
+        span = _hidden_a(page)
         assert span["type"] == 3
         names = documents_module._pdf_type3_font_names(page)
         # The span carries the name of a font that is not Type 3; some cases
         # give it a Type 3 font's name.
         assert span["font"] not in documents_module._pdf_glyph_font_names(page)
-        assert _glyph_seqnos(page) == set()
+        # Only the second Type 3 font's glyph, the line its procedure strokes, is one.
+        assert _glyph_seqnos(page) == ({2} if where.startswith("type3-glyph") else set())
         thin, _thick = documents_module._pdf_horizontal_rules(page)
     assert len(thin) == 1
     if type3_name == base and other == "Type1" and len(base) <= 31:
@@ -1218,17 +1315,32 @@ def test_a_type3_font_named_as_another_font_keeps_that_fonts_rule(
     # hidden Type 1 Helvetica "a": the hidden character's span names a Type 3 font
     # too, and without the other fonts' names the strike is taken for its glyph.
     content = _hidden_other_font_page("Helvetica", "Type1", "Helvetica", "", where=where)
+    second = {_GLYPH_FONT} if where.startswith("type3-glyph") else set()
 
     with fitz.open(stream=content, filetype="pdf") as document:
         page = document[0]
-        assert documents_module._pdf_type3_font_names(page) == {"Helvetica"}
-        assert documents_module._pdf_glyph_font_names(page) == frozenset()
-    assert [block.body for block in _marked(content)] == ["[-a-]"]
+        assert documents_module._pdf_type3_font_names(page) == {"Helvetica"} | second
+        assert "Helvetica" in (documents_module._pdf_other_font_names(page) or ())
+        assert documents_module._pdf_glyph_font_names(page) == second
+    kept = [block.body for block in _marked(content)]
     monkeypatch.setattr(documents_module, "_pdf_other_font_names", lambda _page: frozenset())
-    assert [block.body for block in _marked(content)] == ["a"]
+    lost = [block.body for block in _marked(content)]
+    assert [_strip_amendment_markup(body) for body in kept] == [
+        _strip_amendment_markup(body) for body in lost
+    ]
+    assert "[-a" in kept[0] and "[-" not in lost[0]
 
 
-@pytest.mark.parametrize("where", ["page-inline", "appearance-inline"])
+@pytest.mark.parametrize(
+    "where",
+    [
+        "page-inline",
+        "page-inline-escaped",
+        "page-inherited-inline",
+        "form-inline",
+        "appearance-inline",
+    ],
+)
 def test_an_inline_type0_font_is_known_by_its_descendant_name(where: str) -> None:
     # MuPDF names a Type0 font's spans after its descendant font, here "T1", the
     # name of the page's Type 3 font too.
@@ -1236,10 +1348,91 @@ def test_an_inline_type0_font_is_known_by_its_descendant_name(where: str) -> Non
 
     with fitz.open(stream=content, filetype="pdf") as document:
         page = document[0]
-        (span,) = page.get_texttrace()
-        assert span["font"] == "T1"
+        assert _hidden_a(page)["font"] == "T1"
         assert "T1" in documents_module._pdf_type3_font_names(page)
         assert documents_module._pdf_glyph_font_names(page) == frozenset()
+
+
+# When the page's other fonts can't all be read, nothing on it is a glyph, and its
+# drawn glyphs mark it as they did before the classifier recognised glyphs.
+_DRAWN = "aa-aa_a a"
+_AS_BEFORE = "aa[---]aa{+_+}a a"
+
+
+def _with_page_resources(content: bytes, resources: str) -> bytes:
+    """``content`` with its page's resources set to ``resources``, in which ``{t1}``
+    stands for the Type 3 font and ``{new}`` for a new object's number; the new
+    object, when used, is a form that draws itself (``/XObject << /X0 {new} 0 R >>``
+    in its own resources)."""
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        new = document.get_new_xref()
+        document.update_object(
+            new,
+            "<< /Type /XObject /Subtype /Form /BBox [0 0 10 10] "
+            f"/Resources << /XObject << /X0 {new} 0 R >> >> >>",
+        )
+        document.update_stream(new, b"", compress=False)
+        t1 = document.xref_get_key(page.xref, "Resources/Font/T1")[1]
+        document.xref_set_key(page.xref, "Resources", resources.format(t1=t1, new=new))
+        return document.tobytes()
+
+
+def test_a_walk_past_its_bound_recognises_no_glyph(monkeypatch: pytest.MonkeyPatch) -> None:
+    content = _type3_pdf(_DRAWN)
+    assert [block.body for block in _marked(content)] == [_DRAWN]
+
+    monkeypatch.setattr(documents_module, "_PDF_FONT_RESOURCES", 0)
+    with fitz.open(stream=content, filetype="pdf") as document:
+        assert documents_module._pdf_page_fonts(document[0]) is None
+        assert documents_module._pdf_glyph_font_names(document[0]) == frozenset()
+    assert [block.body for block in _marked(content)] == [_AS_BEFORE]
+
+
+def test_a_read_that_raises_recognises_no_glyph(monkeypatch: pytest.MonkeyPatch) -> None:
+    # The Type 1 Helvetica "a" sits in an appearance stream; the walk can't read
+    # the annotation, so the strike stays a rule though a Type 3 font is named
+    # Helvetica too.
+    content = _hidden_other_font_page("Helvetica", "Type1", "Helvetica", "", where="appearance")
+
+    def unreadable(_document: Any, _xref: int) -> bool:
+        raise RuntimeError("an object that can't be read")
+
+    monkeypatch.setattr(fitz.Document, "xref_is_stream", unreadable)
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        assert documents_module._pdf_page_fonts(page) is None
+        assert documents_module._pdf_other_font_names(page) is None
+        assert documents_module._pdf_type3_font_names(page) == {"Helvetica"}
+        assert documents_module._pdf_glyph_font_names(page) == frozenset()
+    assert [block.body for block in _marked(content)] == ["[-a-]"]
+
+
+def test_a_font_without_a_name_recognises_no_glyph() -> None:
+    # MuPDF names the spans of a font without a /BaseFont after nothing in its
+    # dictionary (an empty name, for one without a font program), so nothing tells
+    # its hidden text from a Type 3 font's.
+    content = _with_page_resources(
+        _type3_pdf(_DRAWN), "<< /Font << /T1 {t1} /F2 << /Type /Font /Subtype /Type1 >> >> >>"
+    )
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        assert documents_module._pdf_page_fonts(page) == ["<</Type/Font/Subtype/Type1>>"]
+        assert documents_module._pdf_other_font_names(page) is None
+    assert [block.body for block in _marked(content)] == [_AS_BEFORE]
+
+
+def test_a_form_that_draws_itself_ends_no_walk() -> None:
+    # The walk reads each object once, so a cycle through a form's resources
+    # neither loops nor reaches the bound, and the glyphs stay glyphs.
+    content = _with_page_resources(
+        _type3_pdf(_DRAWN), "<< /Font << /T1 {t1} >> /XObject << /X0 {new} 0 R >> >>"
+    )
+
+    with fitz.open(stream=content, filetype="pdf") as document:
+        assert documents_module._pdf_page_fonts(document[0]) == []
+    assert [block.body for block in _marked(content)] == [_DRAWN]
 
 
 # 6. The CMS approval package pages -------------------------------------------------
