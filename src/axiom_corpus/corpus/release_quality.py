@@ -27,6 +27,7 @@ from axiom_corpus.corpus.io import (
     load_source_inventory_references,
 )
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
+from axiom_corpus.corpus.navigation import merge_layered_parent_paths, scope_parent_paths
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.release_policy import (
     CONTENT_BASELINE_PATH,
@@ -36,8 +37,14 @@ from axiom_corpus.corpus.release_policy import (
     ReleaseGatePolicy,
     scope_label,
 )
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import (
+    LAYER_BASE,
+    LAYER_PRIMARY,
+    ReleaseManifest,
+    ReleaseScope,
+)
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from axiom_corpus.corpus.usc import read_uslm_zip
 from axiom_corpus.release.manifest import selector_sha256
 
 _PROFILED_CITATION_UNIQUENESS_GRANDFATHER = {
@@ -233,12 +240,14 @@ def validate_releases(
     distinct scopes), so validating each selector on its own read and checked
     every scope about nine times. A scope's deep checks read only its own
     artifacts and the selector's expression-date profile (parent integrity is
-    scope-local; the one release-wide provision check is citation uniqueness),
-    so they run once per scope and profile, optionally in ``workers``
-    processes. Each selector's report then replays them, in scope order and
-    under its own issue limit, after the selector's artifact-report, profile
-    and uniqueness checks: every report equals what ``validate_release``
-    returns for that selector.
+    scope-local; the release-wide provision checks are citation uniqueness and,
+    for a pair a selector layers, its merged navigation), so they run once per
+    scope and profile, optionally in ``workers`` processes. The same pass reads
+    each scope's citation paths and, when any selector layers the scope's pair,
+    its navigation parents. Each selector's report then replays them, in scope
+    order and under its own issue limit, after the selector's artifact-report,
+    profile and uniqueness checks, and ends with its layered warnings: every
+    report equals what ``validate_release`` returns for that selector.
     """
     if max_issues <= 0:
         raise ValueError("max_issues must be positive")
@@ -250,9 +259,16 @@ def validate_releases(
     store = CorpusArtifactStore(root)
     gate_policy = policy if policy is not None else ReleaseGatePolicy.for_corpus(root)
     needed: dict[tuple[tuple[str, str, str], bool], ReleaseScope] = {}
+    # Scopes of a pair some selector layers: their parents are read too. A
+    # scope's provisions do not depend on its layer, so one read serves every
+    # selector that carries the scope.
+    layered: set[tuple[str, str, str]] = set()
     for release, report in zip(releases, reports, strict=True):
         rows = _artifact_rows(report)
+        layered_pairs = {scope.pair for scope in release.scopes if scope.is_base}
         for scope in release.scopes:
+            if scope.pair in layered_pairs:
+                layered.add(scope.key)
             if not _scope_has_remote_artifacts(scope, rows):
                 needed.setdefault((scope.key, release.requires_complete_expression_dates), scope)
     keys = list(needed)
@@ -261,6 +277,7 @@ def validate_releases(
         [needed[key] for key in keys],
         [key[1] for key in keys],
         [gate_policy] * len(keys),
+        [key[0] in layered for key in keys],
     )
     if workers == 1 or len(keys) < 2:
         results = list(map(_check_scope, *args, strict=True))
@@ -268,7 +285,12 @@ def validate_releases(
         with ProcessPoolExecutor(max_workers=workers) as pool:
             results = list(pool.map(_check_scope, *args, chunksize=4))
     checks = dict(zip(keys, results, strict=True))
-    citation_paths = {key[0]: result[1] for key, result in checks.items()}
+    scope_citations = {key[0]: result[1] for key, result in checks.items()}
+
+    def citations(scope: ReleaseScope, keep_parents: bool) -> _ScopeCitations | None:
+        found = scope_citations[scope.key]
+        assert found is None or not keep_parents or found.parents is not None
+        return found
     out = []
     for release, report in zip(releases, reports, strict=True):
         collector = _IssueCollector(max_issues=max_issues)
@@ -283,7 +305,7 @@ def validate_releases(
                 strict_warnings=strict_warnings,
                 ignore_r2_missing=ignore_r2_missing,
                 deep_check=_replay_checks(collector, checks, profile),
-                citation_paths=lambda scope: citation_paths[scope.key],
+                citations=citations,
             )
         )
     return out
@@ -293,7 +315,7 @@ def _replay_checks(
     collector: _IssueCollector,
     checks: Mapping[
         tuple[tuple[str, str, str], bool],
-        tuple[tuple[ReleaseValidationIssue, ...], list[str] | None],
+        tuple[tuple[ReleaseValidationIssue, ...], _ScopeCitations | None],
     ],
     profile: bool,
 ) -> Callable[[ReleaseScope], None]:
@@ -310,15 +332,19 @@ def _check_scope(
     scope: ReleaseScope,
     require_expression_dates: bool,
     policy: ReleaseGatePolicy,
-) -> tuple[tuple[ReleaseValidationIssue, ...], list[str] | None]:
+    keep_parents: bool = False,
+) -> tuple[tuple[ReleaseValidationIssue, ...], _ScopeCitations | None]:
     """One scope's deep-check issues, in the order they arise, and its
-    citation paths (a process-pool task of ``validate_releases``)."""
+    citation paths, with its navigation parents when ``keep_parents`` (a
+    process-pool task of ``validate_releases``)."""
     store = CorpusArtifactStore(root)
     recorder = _IssueCollector(max_issues=sys.maxsize)
     _validate_scope(
         store, scope, recorder, require_expression_dates=require_expression_dates, policy=policy
     )
-    return tuple(recorder.issues + recorder.notices), _scope_citation_paths(store, scope)
+    return tuple(recorder.issues + recorder.notices), _scope_citations(
+        store, scope, keep_parents=keep_parents
+    )
 
 
 def _artifact_rows(
@@ -341,10 +367,11 @@ def _release_report(
     strict_warnings: bool,
     ignore_r2_missing: bool,
     deep_check: Callable[[ReleaseScope], None],
-    citation_paths: Callable[[ReleaseScope], list[str] | None] | None = None,
+    citations: Callable[[ReleaseScope, bool], _ScopeCitations | None] | None = None,
 ) -> ReleaseValidationReport:
     """A selector's report: its artifact-report, profile and uniqueness checks,
-    then each locally held scope's deep checks (``deep_check``), in order."""
+    then each locally held scope's deep checks (``deep_check``), in order, then
+    the merged-navigation warnings of each pair the selector layers."""
     if artifact_report is not None:
         _validate_artifact_report(
             artifact_report,
@@ -376,13 +403,15 @@ def _release_report(
             "legacy_release_citation_uniqueness_grandfathered",
             "known historical release predates release-wide citation uniqueness enforcement",
         )
+    layered_parents = _LayeredScopeParents(release)
     _check_release_citation_uniqueness(
         store,
         release,
         artifact_rows,
         collector,
         require_unique=require_unique_citations,
-        citation_paths=citation_paths,
+        citations=citations,
+        layered_parents=layered_parents,
     )
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
@@ -397,6 +426,8 @@ def _release_report(
             )
             continue
         deep_check(scope)
+    # After the scope checks, so a capped issue list shows their errors first.
+    layered_parents.report(collector)
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
@@ -463,14 +494,30 @@ def _citation_uniqueness_grandfathered(release: ReleaseManifest) -> bool:
     return expected is not None and selector_sha256(release) == expected
 
 
-def _scope_citation_paths(store: CorpusArtifactStore, scope: ReleaseScope) -> list[str] | None:
-    """A scope's citation paths, or None when its provisions do not parse
-    (``_validate_scope`` reports that, once)."""
+class _ScopeCitations(NamedTuple):
+    """A scope's citation paths, in file order, and, for a scope of a pair a
+    release layers, the navigation parent of each path."""
+
+    paths: list[str]
+    parents: dict[str, str | None] | None
+
+
+def _scope_citations(
+    store: CorpusArtifactStore, scope: ReleaseScope, *, keep_parents: bool
+) -> _ScopeCitations | None:
+    """A scope's citation paths (and parents when ``keep_parents``), or None
+    when its provisions do not parse (``_validate_scope`` reports that, once)."""
     path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
     try:
-        return [record.citation_path for record in iter_provisions(path)]
+        if not keep_parents:
+            return _ScopeCitations([record.citation_path for record in iter_provisions(path)], None)
+        entries = [
+            (record.citation_path, record.parent_citation_path)
+            for record in iter_provisions(path)
+        ]
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
         return None
+    return _ScopeCitations([path for path, _parent in entries], scope_parent_paths(entries))
 
 
 def _check_release_citation_uniqueness(
@@ -480,7 +527,8 @@ def _check_release_citation_uniqueness(
     collector: _IssueCollector,
     *,
     require_unique: bool,
-    citation_paths: Callable[[ReleaseScope], list[str] | None] | None = None,
+    citations: Callable[[ReleaseScope, bool], _ScopeCitations | None] | None = None,
+    layered_parents: _LayeredScopeParents | None = None,
 ) -> None:
     """Report a citation path that two scopes of a profiled release both carry.
 
@@ -489,8 +537,19 @@ def _check_release_citation_uniqueness(
     in another scope cannot satisfy a scope's foreign key; see
     ``missing_parent_citation``). Parsing errors remain owned by
     ``_validate_scope`` so they are reported once.
+
+    Citation uniqueness is per layer: a base scope may carry a path a primary
+    scope also carries (serving picks the primary row), but two scopes of the
+    same layer may not, and the overlap must stay inside one
+    (jurisdiction, document_class) pair because serving resolves precedence
+    per pair. A primary scope that leaves its parent title to the base declares
+    no parent for that section; serving hangs it under the base tree
+    (20260927110000), and ``layered_parents`` records each layered pair's
+    parents on the way, so the merged tree can be checked once every scope is
+    read. ``citations`` supplies a scope's citation paths (and its parents when
+    asked); by default they are read from the scope's provisions.
     """
-    owners: dict[str, ReleaseScope] = {}
+    owners = _LayeredCitationOwners()
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             if require_unique:
@@ -505,28 +564,140 @@ def _check_release_citation_uniqueness(
                 )
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
-        scope_paths = (
-            citation_paths(scope)
-            if citation_paths is not None
-            else _scope_citation_paths(store, scope)
+        keep_parents = layered_parents is not None and layered_parents.needs(scope)
+        scope_citations = (
+            citations(scope, keep_parents)
+            if citations is not None
+            else _scope_citations(store, scope, keep_parents=keep_parents)
         )
-        if scope_paths is None:
+        if scope_citations is None:
             continue
-        for citation_path in scope_paths:
-            owner = owners.get(citation_path)
-            if require_unique and owner is not None and owner != scope:
+        if layered_parents is not None and keep_parents:
+            assert scope_citations.parents is not None
+            layered_parents.record(scope, scope_citations.parents)
+        for citation_path in scope_citations.paths:
+            conflict = owners.claim(citation_path, scope)
+            if require_unique and conflict is not None:
+                code, message = conflict
+                collector.add("error", code, message, scope=scope, path=path)
+
+
+class _LayeredCitationOwners:
+    """Track which release scope owns each citation path in each layer."""
+
+    def __init__(self) -> None:
+        # One map per layer, keyed by the path itself: a release's citation
+        # set is held once per layer, without a tuple per path.
+        self._owners: dict[str, dict[str, ReleaseScope]] = {
+            LAYER_BASE: {},
+            LAYER_PRIMARY: {},
+        }
+
+    def claim(self, citation_path: str, scope: ReleaseScope) -> tuple[str, str] | None:
+        """Record ``scope`` as an owner of ``citation_path``; return any conflict.
+
+        Duplicates inside one scope are reported by ``_validate_provisions``.
+        """
+        owners = self._owners[scope.layer]
+        owner = owners.get(citation_path)
+        if owner is not None and owner != scope:
+            return (
+                "duplicate_release_citation",
+                (
+                    f"citation_path {citation_path} is also present in "
+                    f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
+                ),
+            )
+        owners.setdefault(citation_path, scope)
+        other_layer = LAYER_PRIMARY if scope.is_base else LAYER_BASE
+        other = self._owners[other_layer].get(citation_path)
+        if other is not None and other.pair != scope.pair:
+            return (
+                "layered_citation_outside_pair",
+                (
+                    f"citation_path {citation_path} is carried by {scope.layer} scope "
+                    f"{scope.jurisdiction}/{scope.document_class}/{scope.version} and "
+                    f"{other.layer} scope "
+                    f"{other.jurisdiction}/{other.document_class}/{other.version}; "
+                    "a base row can only be shadowed by a primary row of its own "
+                    "jurisdiction and document class"
+                ),
+            )
+        return None
+
+
+class _LayeredScopeParents:
+    """Check how serving merges each pair that has a base scope.
+
+    Serving places a primary root under its base twin's parent, else under its
+    nearest ancestor path the pair serves (20260927110000), so a root whose
+    path is mistyped silently becomes a new top-level document, and two layers
+    that disagree about which of two paths is the ancestor form a parent cycle
+    that serving breaks. Neither is an error; both are warned about.
+    """
+
+    def __init__(self, release: ReleaseManifest) -> None:
+        self._release = release
+        self._pairs = {scope.pair for scope in release.scopes if scope.is_base}
+        # The navigation parent of each path, per scope of a layered pair.
+        self._parents: dict[ReleaseScope, dict[str, str | None]] = {}
+
+    def needs(self, scope: ReleaseScope) -> bool:
+        """Whether the scope belongs to a pair this release layers."""
+        return scope.pair in self._pairs
+
+    def record(self, scope: ReleaseScope, parents: dict[str, str | None]) -> None:
+        """Keep a layered scope's navigation parents (``scope_parent_paths``)."""
+        self._parents[scope] = parents
+
+    def report(self, collector: _IssueCollector) -> None:
+        for base in self._release.scopes:
+            if not base.is_base:
+                continue
+            primaries = [
+                scope
+                for scope in self._release.scopes
+                if scope.pair == base.pair and not scope.is_base
+            ]
+            if any(scope not in self._parents for scope in (base, *primaries)):
+                # A scope was not read; its own checks report why.
+                continue
+            merged = merge_layered_parent_paths(
+                self._parents[base], [self._parents[scope] for scope in primaries]
+            )
+            pair = f"{base.jurisdiction}/{base.document_class}"
+            # One warning per scope: a class of flat documents (each one a
+            # root) would otherwise warn once per new document.
+            new_roots: dict[int, list[str]] = {}
+            for index, path in merged.new_roots:
+                new_roots.setdefault(index, []).append(path)
+            for index, paths in sorted(new_roots.items()):
+                shown = ", ".join(sorted(paths)[:5])
+                more = f" and {len(paths) - 5} more" if len(paths) > 5 else ""
                 collector.add(
-                    "error",
-                    "duplicate_release_citation",
+                    "warning",
+                    "layered_primary_root_unattached",
                     (
-                        f"citation_path {citation_path} is also present in "
-                        f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
+                        f"{pair} serves no ancestor path of {len(paths)} root(s) of this "
+                        "primary scope, so serving lists each as a new top-level document; "
+                        f"check their citation paths: {shown}{more}"
                     ),
-                    scope=scope,
-                    path=path,
+                    scope=primaries[index],
                 )
-            else:
-                owners[citation_path] = scope
+            owners = dict.fromkeys(self._parents[base], base)
+            for scope in reversed(primaries):
+                owners.update(dict.fromkeys(self._parents[scope], scope))
+            for cycle in merged.broken_cycles:
+                collector.add(
+                    "warning",
+                    "layered_parent_cycle_broken",
+                    (
+                        f"the scopes of {pair} disagree about parents, so its merged "
+                        f"navigation has the cycle {' -> '.join((*cycle, cycle[0]))}; "
+                        f"serving makes {cycle[0]} a top-level document"
+                    ),
+                    scope=owners[cycle[0]],
+                )
 
 
 class _ProvisionFacts(NamedTuple):
@@ -937,6 +1108,7 @@ def _validate_inventory(
 ) -> set[str]:
     source_hashes: dict[str, str] = {}
     inventory_source_paths: set[str] = set()
+    checked_uslm_zips: set[str] = set()
     for item in inventory:
         if not item.citation_path:
             collector.add(
@@ -990,7 +1162,47 @@ def _validate_inventory(
                     scope=scope,
                     path=source_path,
                 )
+            elif (
+                _is_retained_uslm_zip(scope, source_identity)
+                and source_identity not in checked_uslm_zips
+            ):
+                checked_uslm_zips.add(source_identity)
+                _validate_retained_uslm_zip(source_path, scope, collector)
     return inventory_source_paths
+
+
+def _is_retained_uslm_zip(scope: ReleaseScope, source_identity: str) -> bool:
+    """Whether a source is an OLRC zip retained by ``extract-usc --source-zip``."""
+    return (
+        scope.jurisdiction == "us"
+        and scope.document_class == DocumentClass.STATUTE.value
+        and "/olrc/" in source_identity
+        and source_identity.lower().endswith(".zip")
+    )
+
+
+def _validate_retained_uslm_zip(
+    source_path: Path,
+    scope: ReleaseScope,
+    collector: _IssueCollector,
+) -> None:
+    """Recheck a retained USLM zip with the extractor's own refusal rules.
+
+    The extractor parses the member in memory and retains only the zip, so a
+    zip whose member no longer inflates cleanly (corrupt DEFLATE data, CRC
+    mismatch, past the member cap) or that carries an unsafe member list
+    must fail release validation even when its sha256 matches the inventory.
+    """
+    try:
+        read_uslm_zip(source_path)
+    except (ValueError, OSError) as exc:
+        collector.add(
+            "error",
+            "unreadable_uslm_source_zip",
+            f"retained USLM zip fails the extractor's checks: {exc}",
+            scope=scope,
+            path=source_path,
+        )
 
 
 def _validate_source_file(

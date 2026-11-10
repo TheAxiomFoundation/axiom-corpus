@@ -322,6 +322,39 @@ def extract_alaska_statutes(
     for title in titles:
         if limit is not None and section_count >= limit:
             break
+        # A container is written as a provision only once its own table of
+        # contents lists children. Otherwise it stays an inventory gap, so
+        # coverage reads incomplete instead of silently losing everything
+        # under it. A page that could not be fetched is sourced from the
+        # parent listing that names it; a page that was read but lists nothing
+        # is sourced from that page.
+        try:
+            toc_source = fetcher.fetch_title_toc(title)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"title {title.number}: {exc}")
+            _append_inventory_gap(
+                items,
+                seen,
+                citation_path=title.citation_path,
+                source_url=title.source_url,
+                recorded=title_index_recorded,
+                metadata={"kind": "title", "source_year": source_year, "title": title.number},
+            )
+            continue
+        toc_path, toc_recorded = _record_source(store, jurisdiction, run_id, toc_source)
+        source_paths.append(toc_path)
+        chapters = parse_alaska_title_toc(toc_source.data, title=title, base_url=base_url)
+        if not chapters:
+            errors.append(f"title {title.number}: no chapters listed in title table of contents")
+            _append_inventory_gap(
+                items,
+                seen,
+                citation_path=title.citation_path,
+                source_url=toc_recorded.source_url,
+                recorded=toc_recorded,
+                metadata={"kind": "title", "source_year": source_year, "title": title.number},
+            )
+            continue
         if title.citation_path not in seen:
             seen.add(title.citation_path)
             title_count += 1
@@ -353,11 +386,6 @@ def extract_alaska_statutes(
                 },
             )
 
-        toc_source = fetcher.fetch_title_toc(title)
-        toc_path, toc_recorded = _record_source(store, jurisdiction, run_id, toc_source)
-        source_paths.append(toc_path)
-        chapters = parse_alaska_title_toc(toc_source.data, title=title, base_url=base_url)
-
         if limit is None:
             chapter_results = _fetch_alaska_chapter_results(
                 fetcher,
@@ -373,6 +401,45 @@ def extract_alaska_statutes(
             chapter = result.chapter
             if limit is not None and section_count >= limit:
                 break
+            chapter_metadata = {
+                "kind": "chapter",
+                "source_year": source_year,
+                "title": title.number,
+                "chapter": chapter.number,
+            }
+            if result.error is not None:
+                errors.append(f"chapter {chapter.number}: {result.error}")
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=chapter.citation_path,
+                    source_url=chapter.source_url,
+                    recorded=toc_recorded,
+                    metadata=chapter_metadata,
+                )
+                continue
+            assert result.source is not None
+            assert result.document is not None
+            chapter_source = result.source
+            chapter_path, chapter_recorded = _record_source(
+                store,
+                jurisdiction,
+                run_id,
+                chapter_source,
+            )
+            source_paths.append(chapter_path)
+            document = result.document
+            if not document.sections:
+                errors.append(f"chapter {chapter.number}: no sections in chapter print page")
+                _append_inventory_gap(
+                    items,
+                    seen,
+                    citation_path=chapter.citation_path,
+                    source_url=chapter_source.source_url,
+                    recorded=chapter_recorded,
+                    metadata=chapter_metadata,
+                )
+                continue
             if chapter.citation_path not in seen:
                 seen.add(chapter.citation_path)
                 container_count += 1
@@ -400,28 +467,9 @@ def extract_alaska_statutes(
                         "alaska:title": title.number,
                         "alaska:chapter": chapter.number,
                     },
-                    metadata={
-                        "kind": "chapter",
-                        "source_year": source_year,
-                        "title": title.number,
-                        "chapter": chapter.number,
-                    },
+                    metadata=chapter_metadata,
                 )
 
-            if result.error is not None:
-                errors.append(f"chapter {chapter.number}: {result.error}")
-                continue
-            assert result.source is not None
-            assert result.document is not None
-            chapter_source = result.source
-            chapter_path, chapter_recorded = _record_source(
-                store,
-                jurisdiction,
-                run_id,
-                chapter_source,
-            )
-            source_paths.append(chapter_path)
-            document = result.document
             for article in document.articles:
                 if article.citation_path in seen:
                     continue
@@ -833,6 +881,36 @@ def _append_record(
             kind=kind,
             legal_identifier=legal_identifier,
             identifiers=identifiers,
+            metadata=metadata,
+        )
+    )
+
+
+def _append_inventory_gap(
+    items: list[SourceInventoryItem],
+    seen: set[str],
+    *,
+    citation_path: str,
+    source_url: str,
+    recorded: _RecordedSource,
+    metadata: dict[str, Any],
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``recorded`` is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source_url,
+            source_path=recorded.source_path,
+            source_format=recorded.source_format,
+            sha256=recorded.sha256,
             metadata=metadata,
         )
     )

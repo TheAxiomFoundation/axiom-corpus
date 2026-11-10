@@ -26,6 +26,7 @@ from axiom_corpus.corpus.content_store import (
     destination_state,
     ensure_cached,
     materialize_resilient,
+    reports_disk_full,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -273,7 +274,7 @@ def _selected_entries(
             chosen[entry.path] = entry
     for path in paths:
         rel = Path(path).as_posix().rstrip("/")
-        matches = locks.entries_under(rel)
+        matches = locks.entries_under(locks.locked_spelling(repo, rel))
         if not matches and rel != CORPUS_BASE:
             _usage_exit(f"no locked files at or under {rel}")
         for entry in matches:
@@ -337,6 +338,9 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         verify=args.verify,
         workers=args.workers,
         progress=None if args.json else _progress("corpus fetch"),
+        # Rollback can free space, but downloading the scope again fills it
+        # again. Leave a full-disk failure for the caller to resolve.
+        retriable=lambda failed: not any(reports_disk_full(reason) for reason in failed.values()),
     )
     _emit(
         args,
@@ -350,7 +354,8 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
     lines = [
         f"{selected} locked file(s) selected: {len(report.materialized)} fetched "
         f"({report.bytes_materialized:,} bytes), {len(report.present)} already present, "
-        f"{len(report.modified)} modified, {len(report.failed)} failed."
+        f"{len(report.modified)} modified, {len(report.failed)} failed, "
+        f"{len(report.rolled_back)} rolled back."
     ]
     if report.sources:
         lines.append(
@@ -362,6 +367,7 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
         )
     lines.extend(f"modified (left as is; --force replaces): {p}" for p in sorted(report.modified)[:20])
     lines.extend(f"FAILED {p}: {why}" for p, why in sorted(report.failed.items())[:20])
+    lines.extend(f"ROLLED BACK {p}" for p in sorted(report.rolled_back)[:20])
     return lines
 
 
@@ -441,7 +447,9 @@ def _unlocked_files(repo: Path, locks: LockSet, selectors: list[tuple[str, ...]]
             if not path.is_file():
                 continue
             rel = path.relative_to(repo).as_posix()
-            if rel in locks.by_path:
+            # A file stored under another spelling of a locked path (``ACT.html``
+            # for ``act.html`` on APFS) is that locked file, not an unlocked one.
+            if locks.locked_spelling(repo, rel) in locks.by_path:
                 continue
             scope = scope_for_path(rel)
             if selectors and (scope is None or not any(scope[: len(s)] == s for s in selectors)):

@@ -268,6 +268,71 @@ def _one_row_scope(
     return release, {scope: tree}
 
 
+def _damaged_retained_zip() -> bytes:
+    """A single-member zip whose DEFLATE data is corrupt, as a retained source could be."""
+    import io
+    import struct
+    import zipfile
+
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("usc1.xml", "<uscDoc/>" * 20)
+    content = bytearray(buffer.getvalue())
+    name_length, extra_length = struct.unpack_from("<HH", content, 26)
+    content[30 + name_length + extra_length] = 0b111  # reserved BTYPE=3
+    return bytes(content)
+
+
+def _retained_zip_scope(
+    jurisdiction: str, document_class: str, source_name: str
+) -> tuple[ReleaseManifest, dict]:
+    """One scope whose inventoried source is a damaged zip with a matching sha256."""
+    scope = (jurisdiction, document_class, "2026-05-01")
+    payload = _damaged_retained_zip()
+    source_path = f"sources/{jurisdiction}/{document_class}/2026-05-01/{source_name}"
+    citation_path = f"{jurisdiction}/{document_class}/1"
+    record = {
+        "body": "Text.",
+        "citation_path": citation_path,
+        "document_class": document_class,
+        "expression_date": "2026-05-01",
+        "heading": None,
+        "jurisdiction": jurisdiction,
+        "source_as_of": "2026-05-01",
+        "source_path": source_path,
+        "version": "2026-05-01",
+    }
+    item = {
+        "citation_path": citation_path,
+        "source_path": source_path,
+        "sha256": hashlib.sha256(payload).hexdigest(),
+    }
+    coverage = {
+        "complete": True,
+        "extra_provisions": [],
+        "matched_count": 1,
+        "missing_from_provisions": [],
+        "provision_count": 1,
+        "source_count": 1,
+    }
+    tree = {
+        "sources": {source_name: payload},
+        "inventory": json.dumps({"items": [item]}, indent=2, sort_keys=True) + "\n",
+        "provisions": json.dumps(record, sort_keys=True) + "\n",
+        "coverage": json.dumps(coverage, indent=2, sort_keys=True) + "\n",
+    }
+    release = ReleaseManifest(name="us-streaming-2026-09-25", scopes=(ReleaseScope(*scope),))
+    return release, {scope: tree}
+
+
+#: Retained-zip placements: only the first is gated (us, statute, under olrc/).
+_RETAINED_ZIP_SCOPES = (
+    ("us", "statute", "olrc/xml_usc1@119-103.zip"),
+    ("us", "regulation", "olrc/xml_usc1@119-103.zip"),
+    ("us", "statute", "uslm/xml_usc1@119-103.zip"),
+)
+
+
 @_SETTINGS
 @given(
     release_trees=_release(),
@@ -284,6 +349,22 @@ def _one_row_scope(
     release_trees=_one_row_scope(
         source=b"<html><body><nav><a href='/'>Home</a></nav><p>Text.</p></body></html>"
     ),
+    max_issues=200,
+    strict_warnings=False,
+)
+# A damaged retained zip: reported where the gate applies, ignored elsewhere.
+@example(
+    release_trees=_retained_zip_scope(*_RETAINED_ZIP_SCOPES[0]),
+    max_issues=200,
+    strict_warnings=False,
+)
+@example(
+    release_trees=_retained_zip_scope(*_RETAINED_ZIP_SCOPES[1]),
+    max_issues=200,
+    strict_warnings=False,
+)
+@example(
+    release_trees=_retained_zip_scope(*_RETAINED_ZIP_SCOPES[2]),
     max_issues=200,
     strict_warnings=False,
 )
@@ -318,6 +399,21 @@ def test_validate_release_matches_full_record_validation(
     else:
         event(f"raised {expected[1][0].__name__}")  # type: ignore[index]
     assert actual == expected
+
+
+def test_the_retained_zip_examples_exercise_the_gate() -> None:
+    # Anti-vacuous for the examples above: the oracle and production both report
+    # the damaged zip where the gate applies, and neither reports it elsewhere.
+    for placement, gated in zip(_RETAINED_ZIP_SCOPES, (True, False, False), strict=True):
+        release, trees = _retained_zip_scope(*placement)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for scope, tree in trees.items():
+                _write_scope(root, scope, tree)
+            for validator in (_reference_validate_release, validate_release):
+                report = validator(root, release, max_issues=200)
+                codes = {issue.code for issue in report.issues}
+                assert ("unreadable_uslm_source_zip" in codes) is gated, (placement, validator)
 
 
 @_SETTINGS

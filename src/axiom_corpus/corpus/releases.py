@@ -13,6 +13,12 @@ from axiom_corpus.corpus.models import DocumentClass
 
 ScopeKey = tuple[str, str, str]
 COMPLETE_EXPRESSION_DATES_PROFILE = "complete-expression-dates-v1"
+# A base scope is served underneath the primary scopes of its release: for a
+# citation path both layers carry, serving picks the primary row. Primary is
+# the default and has exactly one encoding, the absent key, so historical
+# selectors and signed scope dictionaries keep their byte-for-byte identity.
+LAYER_BASE = "base"
+LAYER_PRIMARY = "primary"
 _RELEASE_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _SCOPE_COMPONENT_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
 _RESERVED_RELEASE_NAMES = {"current"}
@@ -23,6 +29,7 @@ class ReleaseScope:
     jurisdiction: str
     document_class: str
     version: str
+    layer: str = LAYER_PRIMARY
 
     def __post_init__(self) -> None:
         for field, value in (
@@ -38,10 +45,31 @@ class ReleaseScope:
             raise ValueError(
                 f"Release scope contains invalid document_class: {self.document_class}"
             ) from exc
+        if self.layer not in {LAYER_BASE, LAYER_PRIMARY}:
+            raise ValueError(f"Release scope contains invalid layer: {self.layer!r}")
 
     @property
     def key(self) -> ScopeKey:
         return (self.jurisdiction, self.document_class, self.version)
+
+    @property
+    def pair(self) -> tuple[str, str]:
+        return (self.jurisdiction, self.document_class)
+
+    @property
+    def is_base(self) -> bool:
+        return self.layer == LAYER_BASE
+
+    def to_selector_mapping(self) -> dict[str, str]:
+        """Return the one canonical selector encoding of this scope."""
+        mapping = {
+            "jurisdiction": self.jurisdiction,
+            "document_class": self.document_class,
+            "version": self.version,
+        }
+        if self.is_base:
+            mapping["layer"] = LAYER_BASE
+        return mapping
 
 
 @dataclass(frozen=True)
@@ -59,6 +87,7 @@ class ReleaseManifest:
                 f"{self.quality_profile!r}"
             )
         _require_unique_scopes(self.scopes, manifest_path=Path(f"<{self.name}>"))
+        _require_one_base_per_pair(self.scopes, manifest_path=Path(f"<{self.name}>"))
 
     @classmethod
     def load(cls, path: str | Path) -> ReleaseManifest:
@@ -83,6 +112,7 @@ class ReleaseManifest:
             )
         scopes = tuple(_parse_scope(scope, manifest_path=manifest_path) for scope in raw_scopes)
         _require_unique_scopes(scopes, manifest_path=manifest_path)
+        _require_one_base_per_pair(scopes, manifest_path=manifest_path)
         return cls(
             name=name,
             description=description,
@@ -97,6 +127,10 @@ class ReleaseManifest:
     @property
     def requires_complete_expression_dates(self) -> bool:
         return self.quality_profile == COMPLETE_EXPRESSION_DATES_PROFILE
+
+    @property
+    def has_base_scope(self) -> bool:
+        return any(scope.is_base for scope in self.scopes)
 
 
 def resolve_release_manifest_path(release: str | Path) -> Path:
@@ -138,8 +172,18 @@ def _load_json_object(path: Path) -> dict[str, Any]:
 def _parse_scope(raw_scope: Any, *, manifest_path: Path) -> ReleaseScope:
     if not isinstance(raw_scope, dict):
         raise ValueError(f"Release manifest {manifest_path} contains a non-object scope")
-    if set(raw_scope) != {"jurisdiction", "document_class", "version"}:
+    if set(raw_scope) - {"layer"} != {"jurisdiction", "document_class", "version"}:
         raise ValueError(f"Release manifest {manifest_path} scope has unsupported fields")
+    layer = LAYER_PRIMARY
+    if "layer" in raw_scope:
+        # Only the base layer is spelled out. An explicit "primary" would give a
+        # primary scope a second encoding and break byte-for-byte scope reuse.
+        if raw_scope["layer"] != LAYER_BASE:
+            raise ValueError(
+                f"Release manifest {manifest_path} scope layer must be {LAYER_BASE!r} "
+                f"or absent (primary): {raw_scope['layer']!r}"
+            )
+        layer = LAYER_BASE
     jurisdiction = _required_string(raw_scope, "jurisdiction", manifest_path=manifest_path)
     document_class = _required_string(raw_scope, "document_class", manifest_path=manifest_path)
     version = _required_string(raw_scope, "version", manifest_path=manifest_path)
@@ -162,6 +206,7 @@ def _parse_scope(raw_scope: Any, *, manifest_path: Path) -> ReleaseScope:
         jurisdiction=jurisdiction,
         document_class=document_class,
         version=version,
+        layer=layer,
     )
 
 
@@ -181,3 +226,16 @@ def _require_unique_scopes(scopes: Iterable[ReleaseScope], *, manifest_path: Pat
                 f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
             )
         seen.add(scope.key)
+
+
+def _require_one_base_per_pair(scopes: Iterable[ReleaseScope], *, manifest_path: Path) -> None:
+    seen: set[tuple[str, str]] = set()
+    for scope in scopes:
+        if not scope.is_base:
+            continue
+        if scope.pair in seen:
+            raise ValueError(
+                f"Release manifest {manifest_path} contains more than one base scope for "
+                f"{scope.jurisdiction}/{scope.document_class}"
+            )
+        seen.add(scope.pair)

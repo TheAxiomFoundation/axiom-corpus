@@ -461,11 +461,20 @@ def extract_new_hampshire_rsa(
     if not titles:
         raise ValueError(f"no New Hampshire RSA titles selected for filter: {only_title!r}")
 
+    # A title or chapter is written as a provision only once its own table of
+    # contents lists children and, for a chapter, its merged page carries them.
+    # Otherwise it stays an inventory gap, so coverage reads incomplete instead
+    # of silently losing everything under it. A page that could not be fetched
+    # is sourced from the listing that names the container; a page that was
+    # fetched but is unusable from itself. A chapter whose TOC lists nothing
+    # because the whole chapter was repealed stays complete.
     for title_page in _fetch_title_pages(fetcher, titles, workers=workers):
         if remaining_sections is not None and remaining_sections <= 0:
             break
         if title_page.error is not None:
             errors.append(f"title {title_page.title.title}: {title_page.error}")
+            # The root listing is the title's recorded source until its page is read.
+            _append_gap(seen, items, _title_inventory_item(title_page.title))
             continue
         assert title_page.source is not None
         title_recorded = _record_source(
@@ -492,6 +501,15 @@ def extract_new_hampshire_rsa(
             sha256=title_recorded.sha256,
             ordinal=title_page.title.ordinal,
         )
+        chapter_listings = parse_new_hampshire_title_page(
+            title_page.source.data,
+            title=title,
+            base_url=base_url,
+        )
+        if not chapter_listings:
+            errors.append(f"title {title.title}: no chapters listed in title table of contents")
+            _append_gap(seen, items, _title_inventory_item(title))
+            continue
         if _append_unique(
             seen,
             items,
@@ -506,11 +524,6 @@ def extract_new_hampshire_rsa(
         ):
             title_count += 1
             container_count += 1
-        chapter_listings = parse_new_hampshire_title_page(
-            title_page.source.data,
-            title=title,
-            base_url=base_url,
-        )
         if chapter_filter is not None:
             chapter_listings = tuple(
                 listing
@@ -531,6 +544,9 @@ def extract_new_hampshire_rsa(
             if chapter_page.error is not None:
                 errors.append(
                     f"chapter {chapter_page.listing.chapter}: {chapter_page.error}"
+                )
+                _append_gap(
+                    seen, items, _chapter_listing_inventory_item(chapter_page.listing, title)
                 )
                 continue
             assert chapter_page.toc_source is not None
@@ -607,14 +623,12 @@ def extract_new_hampshire_rsa(
                     source_format=merged_recorded.source_format,
                     metadata=chapter_metadata,
                 )
-            if _append_unique(
-                seen,
-                items,
-                records,
-                chapter_item,
-                chapter_provision,
-            ):
-                container_count += 1
+            if not listings and not _is_whole_chapter_repealed(chapter_page.merged_source.data):
+                errors.append(
+                    f"chapter {chapter.chapter}: no sections listed in chapter table of contents"
+                )
+                _append_gap(seen, items, chapter_item)
+                continue
             selected_listings: list[NewHampshireSectionListing] = []
             for listing in listings:
                 if (
@@ -624,6 +638,8 @@ def extract_new_hampshire_rsa(
                     break
                 selected_listings.append(listing)
             if not selected_listings:
+                if _append_unique(seen, items, records, chapter_item, chapter_provision):
+                    container_count += 1
                 continue
             try:
                 sections = parse_new_hampshire_merged_chapter(
@@ -633,7 +649,20 @@ def extract_new_hampshire_rsa(
                 )
             except ValueError as exc:
                 errors.append(f"chapter {chapter.chapter}: {exc}")
+                _append_gap(
+                    seen,
+                    items,
+                    replace(
+                        chapter_item,
+                        source_url=merged_recorded.source_url,
+                        source_path=merged_recorded.source_path,
+                        source_format=merged_recorded.source_format,
+                        sha256=merged_recorded.sha256,
+                    ),
+                )
                 continue
+            if _append_unique(seen, items, records, chapter_item, chapter_provision):
+                container_count += 1
             for section in sections:
                 if section.citation_path in seen:
                     errors.append(f"duplicate citation path: {section.citation_path}")
@@ -1099,6 +1128,43 @@ def _chapter_inventory_item(chapter: NewHampshireChapter) -> SourceInventoryItem
             "chapter": chapter.chapter,
         },
     )
+
+
+def _chapter_listing_inventory_item(
+    listing: NewHampshireChapterListing,
+    title: NewHampshireTitle,
+) -> SourceInventoryItem:
+    """Inventory a chapter from the title TOC that lists it."""
+    return SourceInventoryItem(
+        citation_path=f"us-nh/statute/chapter-{_slug(listing.chapter)}",
+        source_url=title.source_url,
+        source_path=title.source_path,
+        source_format=title.source_format,
+        sha256=title.sha256,
+        metadata={"kind": "chapter", "title": listing.title, "chapter": listing.chapter},
+    )
+
+
+def _is_whole_chapter_repealed(merged_html: str | bytes) -> bool:
+    """Whether a merged chapter page says the entire chapter was repealed."""
+    text = _clean_text(BeautifulSoup(_decode(merged_html), "lxml"))
+    return "Entire Chapter was repealed" in text
+
+
+def _append_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
 
 
 def _chapter_record(
