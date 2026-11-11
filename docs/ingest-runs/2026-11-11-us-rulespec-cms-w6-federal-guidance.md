@@ -58,7 +58,7 @@ brings the seven Kansas LIHEAP scopes; it drops nothing the pin holds.
   rulespec-us#1365, which was to re-point the modules citing them, is closed without a merge (checked
   2026-11-11); the first cut in the line after that re-pointing lands drops them.
 - The lineage tests pass with the selector in place; its description names the base first.
-- `scripts/publish_corpus.py --dry-run` passes and plans 284 scopes, 16,110 artifacts and 117,101
+- `scripts/publish_corpus.py --dry-run` passes and plans 284 scopes, 16,104 artifacts and 117,101
   provision rows, with no external writes. The base alone has 116,749 rows.
 - A Hypothesis property checks the addition over arbitrary bases, including bases where other pairs
   reuse the added scope's version string. The reproducer refuses a base that already holds the scope
