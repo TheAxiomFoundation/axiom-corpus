@@ -1,4 +1,4 @@
-"""Selector lineage: each cut names its predecessor and keeps every pair it carries.
+"""Selector lineage: resolve each cut's predecessor and keep its carried pairs.
 
 Tracked selectors under ``manifests/releases/`` are cut as lines: each cut
 names the selector it succeeds and carries its scopes forward. Two consumers
@@ -12,24 +12,24 @@ derived from a superseded base therefore drops what the newer cuts of its line
 added, and whichever release is pinned or activated last decides what remains
 (axiom-corpus#935).
 
-This module checks, from the selector files alone:
+This module checks selector files and pinned records of prose successions:
 
 ``dropped_pair``
     The selector selects no version of a pair its predecessor selects: the
     pair's last version leaves the line, and nothing in the same pair replaces
     it.
 ``fork``
-    Two or more selectors name the same predecessor. At most one of them can be
+    Two or more selectors resolve to the same predecessor. At most one of them can be
     the newest cut of the line; the others were cut from a base that another
     cut had already superseded, which is how the 2026-10-25 cuts diverged.
 ``ended_branch``
-    The selector names a successor of a recorded fork that the line did not
+    The selector succeeds a branch of a recorded fork that the line did not
     continue through, so it extends a branch no cut follows.
 ``unnamed_predecessor``
-    The description names no tracked selector, and no record says the selector
-    is the first cut of a line, so nothing would be compared with it.
+    Neither the description nor a succession supplies a predecessor, and no
+    record says the selector is the first cut of a line.
 ``cycle``
-    Selectors name each other as predecessors, so their line has no first cut.
+    Selectors resolve to each other as predecessors, so their line has no first cut.
 
 A fork or an ended branch also carries ``heads`` (``line_heads``), the newest
 selectors of the line, to cut from instead: the ones reached from the
@@ -38,16 +38,34 @@ record, from every successor, the new one among them.
 
 The comparison is per pair. A pair the successor still carries, with any of its
 versions, is not a drop, so one document can leave a pair the successor keeps
-without a finding. The activation gate's ``scope_monotonicity`` check
+without a finding. A selector that derives some of a line's pairs and leaves
+the others unchanged stays outside the line, and we record it in the baseline
+as a first cut, not as a succession. The check cannot see that pair-scoped
+derivation.
+A full W7 union cut that names ``us-rulespec-2026-10-13-w7-bundle-gaps-union``
+and carries ``us-az/manual`` at W7's versions passes. Activating it would
+repoint that pair to W7's versions and drop Arizona's dated ECE scope:
+activation replaces each carried pair's pointer
+(``supabase/migrations/20260719043000_profiled_release_activation.sql:248``,
+``:276``), and serving reads its selected versions
+(``supabase/migrations/20260718193000_scope_level_activation.sql:156``).
+The next full cut of that line must take ``us-az/manual``'s scopes from
+``us-az-snap-ece-2026-10-23-manual-union``, including
+``us-az/manual/2026-10-09-az-des-snap-ece-dated-authority``, and say so in its
+description. The activation gate's ``scope_monotonicity`` check
 (``scripts/check_release_gate.py``) compares only a pair's newest version, so
 it reports that case only when the document that leaves is the pair's newest.
 
 A selector's predecessor is the first tracked selector its description names
 ("Successor to <name>", "after <name>", "<name>'s scope set"). On ``main``,
 every selector that names another tracked selector names its predecessor first.
+Otherwise a dated ``successions`` record resolves an unambiguous prose base.
+Named predecessors always win; recording one is an error. Records participate
+in every comparison and head traversal. A selector no description or record
+connects can still conceal a stale base; names and dates alone imply no edge.
 
-``manifests/selector-lineage-baseline.yaml`` records the drops, forks and first
-cuts a release decision allows, each pinned to the digest
+``manifests/selector-lineage-baseline.yaml`` records prose successions and the
+drops, forks and first cuts a release decision allows, each pinned to the digest
 (``axiom_corpus.release.manifest.selector_sha256``) of every selector it names,
 so a record holds only for those exact selectors. A drop record names the
 scopes that carry the pair's text in its place (``replaced_by``), or says in
@@ -58,6 +76,13 @@ branch the line now goes on through, is another entry for the same
 predecessor with its own ``listed_on`` and reason, and the check reads a
 predecessor's entries as their union. The entries listed on 2026-11-02 are
 what ``main`` held when the check began.
+Those historical first-cut entries remain: a later succession supersedes the
+claim without making it stale. Both endpoints must still match their pins,
+and the reason quotes the selector's prose. The loader refuses missing
+endpoint files and cycles closed by recorded edges, including mixed cycles
+with named edges. The digest excludes descriptions; repository evidence tests
+also pin the reviewed prose on both sides. An optional section extends v1:
+older strict readers reject it rather than silently ignoring recorded edges.
 """
 
 from __future__ import annotations
@@ -97,12 +122,14 @@ _BASELINE_FIELDS = {
     "dropped_pairs",
     "forks",
     "first_cuts",
+    "successions",
 }
 _DROP_FIELDS = {"selector", "predecessor", "pair", "listed_on", "reason", "replaced_by"}
 _DROP_REQUIRED = {"selector", "predecessor", "pair", "listed_on", "reason"}
 _FORK_FIELDS = {"predecessor", "successors", "continued_by", "listed_on", "reason"}
 _FORK_REQUIRED = {"predecessor", "listed_on", "reason"}
 _FIRST_CUT_FIELDS = {"selectors", "listed_on", "reason"}
+_SUCCESSION_FIELDS = {"selector", "predecessor", "listed_on", "reason"}
 
 
 class SelectorLineageError(ValueError):
@@ -320,14 +347,25 @@ class RecordedFirstCut:
 
 
 @dataclass(frozen=True)
+class RecordedSuccession:
+    """A pinned, dated resolution of the base a selector describes in prose."""
+
+    selector: str
+    predecessor: str
+    listed_on: str
+    reason: str
+
+
+@dataclass(frozen=True)
 class LineageBaseline:
-    """The drops, forks and first cuts a release decision allows, pinned to selector digests."""
+    """Pinned release decisions and resolutions of prose predecessor claims."""
 
     selector_digests: Mapping[str, str] = field(default_factory=dict)
     drops: Mapping[tuple[str, Pair], RecordedDrop] = field(default_factory=dict)
     # Each predecessor's fork entries, oldest first.
     forks: Mapping[str, tuple[RecordedFork, ...]] = field(default_factory=dict)
     first_cuts: Mapping[str, RecordedFirstCut] = field(default_factory=dict)
+    successions: Mapping[str, RecordedSuccession] = field(default_factory=dict)
 
     @classmethod
     def load(cls, repo_root: str | Path) -> LineageBaseline:
@@ -373,7 +411,7 @@ class LineageReport:
 
     @property
     def roots(self) -> tuple[str, ...]:
-        """Selectors that name no tracked predecessor, so nothing is compared with them."""
+        """Selectors with no resolved predecessor, so nothing is compared with them."""
         return tuple(sorted(name for name, prior in self.predecessors.items() if prior is None))
 
     def problems(self) -> list[str]:
@@ -387,23 +425,37 @@ class LineageReport:
         ]
 
 
+def resolved_predecessors(
+    selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
+) -> dict[str, str | None]:
+    """One predecessor per selector, named first, otherwise recorded; in name order.
+
+    Stale pins do not erase an edge and thereby hide findings. The check reports
+    those errors separately, just as it does for a stale recorded fork.
+    """
+    names = frozenset(selectors)
+    return {
+        name: declared_predecessor(release, names)
+        or (baseline.successions[name].predecessor if name in baseline.successions else None)
+        for name, release in sorted(selectors.items())
+    }
+
+
 def check_selector_lineage(
     selectors: Mapping[str, ReleaseManifest],
     baseline: LineageBaseline | None = None,
 ) -> LineageReport:
-    """Compare every selector with its declared predecessor, and check the line's shape.
+    """Compare every selector with its resolved predecessor, and check the line's shape.
 
     ``selectors`` maps each tracked selector's name to its manifest; a name
     must equal its manifest's name.
     """
     baseline = baseline or LineageBaseline()
-    for name, release in selectors.items():
-        if release.name != name:
-            raise ValueError(f"selector {name!r} holds a manifest named {release.name!r}")
+    for name, manifest in selectors.items():
+        if manifest.name != name:
+            raise ValueError(f"selector {name!r} holds a manifest named {manifest.name!r}")
     names = frozenset(selectors)
-    predecessors = {
-        name: declared_predecessor(release, names) for name, release in sorted(selectors.items())
-    }
+    predecessors = resolved_predecessors(selectors, baseline)
     errors: list[str] = []
     pinned: set[str] = set()
     for name, digest in sorted(baseline.selector_digests.items()):
@@ -418,50 +470,83 @@ def check_selector_lineage(
         else:
             pinned.add(name)
 
+    for name, record in sorted(baseline.successions.items()):
+        endpoints = {name, record.predecessor}
+        if not endpoints <= pinned:
+            errors.append(
+                f"the succession {name} from {record.predecessor} no longer holds for "
+                f"{', '.join(sorted(endpoints - pinned))}; undo the selector changes or restore "
+                "the missing selectors and digest pins, then run the check again"
+            )
+        release = selectors.get(name)
+        if release is not None:
+            named = declared_predecessor(release, names)
+            if named is not None:
+                errors.append(
+                    f"the succession for {name} is redundant: its description already names "
+                    f"{named}; undo the description change, or remove the redundant succession "
+                    "before recording it; named predecessors take precedence"
+                )
+            quotes = re.findall(r'"([^"\n]+)"', record.reason)
+            if not any(quote in (release.description or "") for quote in quotes):
+                errors.append(
+                    f"the succession for {name} must quote its description's base words; "
+                    "undo the description change or supply the quoted evidence before recording it"
+                )
+        first_cut = baseline.first_cuts.get(name)
+        if first_cut is not None and record.listed_on <= first_cut.listed_on:
+            errors.append(
+                f"the succession for {name} must be listed later than its historical first-cut "
+                "claim; preserve the old entry and date the new decision"
+            )
+
     dropped: list[DroppedPair] = []
     recorded_drops: list[DroppedPair] = []
     matched_drops: set[tuple[str, Pair]] = set()
     for name, predecessor in predecessors.items():
         if predecessor is None:
             continue
+        if predecessor not in selectors:
+            errors.append(f"{name}'s recorded predecessor {predecessor} is not a tracked selector")
+            continue
         lost = dropped_pairs(selectors[predecessor], selectors[name])
         for pair in sorted(lost):
             finding = DroppedPair(name, predecessor, pair, tuple(sorted(lost[pair])))
-            record = baseline.drops.get((name, pair))
+            drop_record = baseline.drops.get((name, pair))
             if (
-                record is not None
-                and record.predecessor == predecessor
+                drop_record is not None
+                and drop_record.predecessor == predecessor
                 and {name, predecessor} <= pinned
-                and set(record.replaced_by) <= set(selectors[name].scope_keys)
+                and set(drop_record.replaced_by) <= set(selectors[name].scope_keys)
             ):
                 matched_drops.add((name, pair))
                 recorded_drops.append(finding)
             else:
                 dropped.append(finding)
-    for key, record in sorted(baseline.drops.items()):
+    for key, drop_record in sorted(baseline.drops.items()):
         if key in matched_drops:
             continue
         name, pair = key
         recorded = selectors.get(name)
-        prior = selectors.get(record.predecessor)
+        prior = selectors.get(drop_record.predecessor)
         if recorded is None or prior is None:
             continue  # already reported: the baseline pins a selector that is not tracked
-        missing = sorted(set(record.replaced_by) - set(recorded.scope_keys))
+        missing = sorted(set(drop_record.replaced_by) - set(recorded.scope_keys))
         if missing:
             errors.append(
                 f"the baseline names {', '.join('/'.join(scope) for scope in missing)} as "
                 f"replacing {pair_label(pair)} in {name}, which does not select it"
             )
-        elif predecessors.get(name) != record.predecessor:
+        elif predecessors.get(name) != drop_record.predecessor:
             errors.append(
                 f"the baseline records {name} dropping {pair_label(pair)} from "
-                f"{record.predecessor}, but {name} names "
+                f"{drop_record.predecessor}, but {name} names "
                 f"{predecessors.get(name) or 'no tracked selector'} as its predecessor"
             )
         elif pair not in dropped_pairs(prior, recorded):
             errors.append(
                 f"the baseline records {name} dropping {pair_label(pair)} from "
-                f"{record.predecessor}, but it does not drop that pair"
+                f"{drop_record.predecessor}, but it does not drop that pair"
             )
 
     successors: dict[str, list[str]] = defaultdict(list)
@@ -522,6 +607,13 @@ def check_selector_lineage(
             unnamed.append(UnnamedPredecessor(name))
     for name in sorted(baseline.first_cuts):
         if name in selectors and predecessors[name] is not None:
+            succession = baseline.successions.get(name)
+            if (
+                succession is not None
+                and declared_predecessor(selectors[name], names) is None
+                and succession.listed_on > baseline.first_cuts[name].listed_on
+            ):
+                continue
             errors.append(
                 f"the baseline records {name} as the first cut of a line, but its "
                 f"description names {predecessors[name]}"
@@ -641,8 +733,15 @@ def _sorted_unique(values: Iterable[Any], where: str) -> None:
         raise SelectorLineageError(f"{where} must be sorted and free of duplicates")
 
 
-def load_lineage_baseline(path: str | Path) -> LineageBaseline:
-    """Parse ``manifests/selector-lineage-baseline.yaml``; reject anything malformed."""
+def load_lineage_baseline(
+    path: str | Path, *, selectors: Mapping[str, ReleaseManifest] | None = None
+) -> LineageBaseline:
+    """Parse the baseline, checking recorded edges against sibling selector files.
+
+    ``selectors`` supplies the same tracked set for callers that already loaded
+    it or generate fixtures. Without successions the original v1 loader needs
+    no selector files, as before.
+    """
     where = str(path)
     data = _mapping(yaml.safe_load(Path(path).read_text(encoding="utf-8")), where)
     _fields(data, _BASELINE_FIELDS, where)
@@ -684,7 +783,7 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
             )
         )
         _sorted_unique(replaced_by, f"{entry_where}.replaced_by")
-        record = RecordedDrop(
+        drop_record = RecordedDrop(
             selector=pinned_name(item["selector"], f"{entry_where}.selector"),
             predecessor=pinned_name(item["predecessor"], f"{entry_where}.predecessor"),
             pair=_pair(item["pair"], f"{entry_where}.pair"),
@@ -692,10 +791,10 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
             reason=_text(item["reason"], f"{entry_where}.reason"),
             replaced_by=replaced_by,
         )
-        if record.selector == record.predecessor:
+        if drop_record.selector == drop_record.predecessor:
             raise SelectorLineageError(f"{entry_where}: a selector cannot succeed itself")
-        drop_keys.append((record.selector, record.pair))
-        drops[(record.selector, record.pair)] = record
+        drop_keys.append((drop_record.selector, drop_record.pair))
+        drops[(drop_record.selector, drop_record.pair)] = drop_record
     _sorted_unique(drop_keys, f"{where}: dropped_pairs (by selector, then pair)")
 
     forks: dict[str, list[RecordedFork]] = {}
@@ -808,24 +907,78 @@ def load_lineage_baseline(path: str | Path) -> LineageBaseline:
             )
         listed_on = _iso_date(item["listed_on"], f"{entry_where}.listed_on")
         reason = _text(item["reason"], f"{entry_where}.reason")
-        selectors = tuple(
+        first_cut_selectors = tuple(
             pinned_name(value, f"{entry_where}.selectors[{position}]")
             for position, value in enumerate(_list(item["selectors"], f"{entry_where}.selectors"))
         )
-        if not selectors:
+        if not first_cut_selectors:
             raise SelectorLineageError(f"{entry_where}.selectors must list at least one selector")
-        _sorted_unique(selectors, f"{entry_where}.selectors")
-        for name in selectors:
+        _sorted_unique(first_cut_selectors, f"{entry_where}.selectors")
+        for name in first_cut_selectors:
             if name in first_cuts:
                 raise SelectorLineageError(f"{entry_where}: {name} is listed twice")
             first_cuts[name] = RecordedFirstCut(name, listed_on, reason)
 
+    successions: dict[str, RecordedSuccession] = {}
+    succession_order: list[str] = []
+    for index, raw in enumerate(
+        _list(_absent_as_empty(data.get("successions")), f"{where}: successions")
+    ):
+        entry_where = f"{where}: successions[{index}]"
+        item = _mapping(raw, entry_where)
+        _fields(item, _SUCCESSION_FIELDS, entry_where)
+        missing = _SUCCESSION_FIELDS - set(item)
+        if missing:
+            raise SelectorLineageError(f"{entry_where}: missing {sorted(missing)}")
+        record = RecordedSuccession(
+            selector=pinned_name(item["selector"], f"{entry_where}.selector"),
+            predecessor=pinned_name(item["predecessor"], f"{entry_where}.predecessor"),
+            listed_on=_iso_date(item["listed_on"], f"{entry_where}.listed_on"),
+            reason=_text(item["reason"], f"{entry_where}.reason"),
+        )
+        if record.selector == record.predecessor:
+            raise SelectorLineageError(f"{entry_where}: a selector cannot succeed itself")
+        first_cut = first_cuts.get(record.selector)
+        if first_cut is not None and record.listed_on <= first_cut.listed_on:
+            raise SelectorLineageError(
+                f"{entry_where}: a succession must be listed later than the first-cut claim "
+                f"it replaces ({first_cut.listed_on}); preserve that historical entry"
+            )
+        succession_order.append(record.selector)
+        successions[record.selector] = record
+    _sorted_unique(succession_order, f"{where}: successions (by selector)")
+
     unused = sorted(set(digests) - named)
     if unused:
         raise SelectorLineageError(f"{where}: selector_digests lists unused selectors {unused}")
-    return LineageBaseline(
+    baseline = LineageBaseline(
         selector_digests=digests,
         drops=drops,
         forks={predecessor: tuple(entries) for predecessor, entries in forks.items()},
         first_cuts=first_cuts,
+        successions=successions,
     )
+    if successions:
+        tracked = (
+            load_tracked_selectors(Path(path).parent / "releases")
+            if selectors is None
+            else selectors
+        )
+        for record in successions.values():
+            for name in (record.selector, record.predecessor):
+                if name not in tracked:
+                    raise SelectorLineageError(
+                        f"{where}: succession {record.selector} names {name}, which has no "
+                        "tracked selector file; restore the file or correct the new entry"
+                    )
+        cycles = lineage_cycles(resolved_predecessors(tracked, baseline))
+        for cycle in cycles:
+            if any(
+                name in successions and declared_predecessor(tracked[name], tracked) is None
+                for name in cycle
+            ):
+                raise SelectorLineageError(
+                    f"{where}: recorded succession closes a cycle ({', '.join(cycle)}); "
+                    "correct the new entry to name the actual prose base"
+                )
+    return baseline
