@@ -150,9 +150,9 @@ only make the source text available.
 One shared index serves every session. Where this note and the generated block below differ, follow this note.
 
 - **Home.** The index lives on a locked worktree of `origin/main` at `~/TheAxiomFoundation/_worktrees/gitnexus-index/axiom-corpus`. The graph shows `origin/main` as of the last refresh, not your branch.
-- **Refresh.** Run `gitnexus-index refresh axiom-corpus`. `gitnexus-index doctor` checks the setup. Don't run `gitnexus analyze` or a floating runner in a working checkout: `.gitnexusrc` names this index, so GitNexus runs the whole pipeline and then refuses to register a second path.
+- **Refresh.** Run `gitnexus-index refresh axiom-corpus`. `gitnexus-index doctor` checks the setup. Don't run `gitnexus analyze` or a floating runner in a working checkout: `.gitnexusrc` names this index, so GitNexus runs the whole pipeline and then refuses to register a second path. From a session checkout the CLI warns that your cwd is a sibling clone and says to re-run `gitnexus analyze`; ignore that warning.
 - **Impact and context.** Pass `repo: "axiom-corpus"` to the MCP tools. The CLI form is `gitnexus impact "symbolName" --direction upstream --repo axiom-corpus`.
-- **Your branch's changes.** Call `detect_changes({scope: "all", repo: "axiom-corpus", worktree: "<absolute path to your checkout>"})`. Without `worktree`, and from the CLI, it diffs the clean index worktree and reports "No changes detected", which proves nothing.
+- **Your branch's changes.** Call `detect_changes({scope: "compare", base_ref: "<output of git merge-base origin/main HEAD>", repo: "axiom-corpus", worktree: "<absolute path to your checkout>"})`. It diffs your checkout, commits and uncommitted edits alike, against the commit where your branch leaves `origin/main`. Use this call for the block's regression review too, never `base_ref: "main"`: local `main` lags weeks behind on this machine, and `origin/main` counts other people's newer commits as yours. Without `worktree`, and from the CLI, the tool diffs the clean index worktree, so its answer says nothing about your work. `scope: "all"` sees uncommitted edits only.
 
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
