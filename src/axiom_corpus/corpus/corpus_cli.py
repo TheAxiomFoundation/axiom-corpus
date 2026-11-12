@@ -107,6 +107,7 @@ def register(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
     fetch.add_argument("--verify", action="store_true", help="Hash present files, not just size.")
     fetch.add_argument("--force", action="store_true", help="Replace files that differ from the lock.")
     fetch.add_argument("--no-r2", action="store_true", help="Use only the cache and git objects.")
+    fetch.add_argument("--no-git", action="store_true", help="Use only the cache and R2 objects.")
     fetch.add_argument(
         "--no-cache",
         action="store_true",
@@ -199,8 +200,10 @@ def _cache(args: argparse.Namespace) -> ContentCache:
     return ContentCache(Path(args.cache) if args.cache else None)
 
 
-def _sources(repo: Path, *, r2: bool = True, workers: int = 16) -> list[ObjectSource]:
-    sources: list[ObjectSource] = [GitBlobSource(repo)]
+def _sources(
+    repo: Path, *, r2: bool = True, git_objects: bool = True, workers: int = 16
+) -> list[ObjectSource]:
+    sources: list[ObjectSource] = [GitBlobSource(repo)] if git_objects else []
     if r2:
         with contextlib.suppress(RuntimeError):  # no credentials: cache and git only
             sources.append(R2ObjectStore.from_environment(workers=workers))
@@ -333,7 +336,7 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         repo,
         _spread(entries),
         None if args.no_cache else _cache(args),
-        _sources(repo, r2=not args.no_r2, workers=args.workers),
+        _sources(repo, r2=not args.no_r2, git_objects=not args.no_git, workers=args.workers),
         force=args.force,
         verify=args.verify,
         workers=args.workers,

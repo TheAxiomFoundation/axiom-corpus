@@ -136,6 +136,11 @@ For each selected lock entry, fetch:
 `--no-cache` streams verified bytes straight into place. CI uses it: runners
 have no copy-on-write clones, so a cache would double disk use.
 
+`--no-git` excludes the local Git object source. Combine it with `--no-cache`
+to stream verified R2 bytes into place. When a file needs materialization,
+the fetch fails if R2 cannot supply bytes matching its lock, even if Git holds
+a copy. Other fetches keep the source order described above.
+
 Bytes on their way into a checkout wait in `data/corpus/.corpus-fetch-tmp/`,
 on the same filesystem but outside every scope, so an interrupted fetch never
 leaves a file that `corpus lock` or signing would pick up (`corpus lock`
@@ -532,8 +537,15 @@ not caught, which is why real runs use the full tree.
 CI jobs fetch before they read, and skip the fetch when no lock files exist:
 
 - `test`: `corpus verify --remote --changed-since <base>` (every entry on
-  pushes and the daily run), then `corpus fetch --all --no-cache`. The job's
-  full-history checkout serves moved files from git objects.
+  pushes and the daily run), then `corpus fetch --all --no-git --no-cache`.
+  A blobless checkout retains full commit and tree history. An explicit
+  prefetch supplies endpoint metadata, historical release-policy metadata,
+  changed protected files, and the Git blobs the guard and audit require.
+  Prefetch may omit a migrated blob only when the canonical verifier validates
+  a signed manifest attesting its path and SHA256; changed lock scopes retain
+  all their Git blobs. Missing required Git objects fail before the original
+  guard and whole-lock audit run. Payloads then stream from R2 with the usual
+  SHA256 and size checks.
 - `citation-path-grammar`: `corpus fetch --path data/corpus/provisions`.
 - `validate-release`: fetches every selector's scopes, then validates with
   `AXIOM_CORPUS_NO_FETCH=1`, under which a missing locked file fails loudly.

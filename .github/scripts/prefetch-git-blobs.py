@@ -131,8 +131,59 @@ def historical_policy_blobs(repo: Path, main: str) -> set[str]:
     return blobs
 
 
+def audit_git_payloads(repo: Path, head: str, locks, changed: set[bytes]) -> set[str]:
+    """Keep the unchanged audit's Git fallback and every changed lock's blobs.
+
+    Only the canonical verifier can establish a manifest's signature and Git
+    ancestry. This selection is an optimization, never an attestation verdict:
+    the normal guard and whole-lock audit still run independently afterward.
+    """
+    from axiom_corpus.corpus.ingest_manifests import (
+        _load_ingest_manifests,
+        verify_ingest_manifest,
+    )
+
+    public_key = os.environ.get("AXIOM_CORPUS_INGEST_PUBLIC_KEY")
+    if not public_key:
+        raise ValueError("R2 preparation requires AXIOM_CORPUS_INGEST_PUBLIC_KEY")
+    manifests = _load_ingest_manifests(repo, ref=head)
+    attestations = {}
+    for path, payload in manifests.items():
+        for entry in payload.get("applied_files", []):
+            if isinstance(entry, dict) and isinstance(entry.get("path"), str):
+                attestations.setdefault(entry["path"], []).append((path, entry))
+    verdicts = {}
+    required = set()
+    for lock in locks.locks.values():
+        # The guard checks new/changed git_blob references even if signed.
+        # A changed scope is a conservative superset of those references and
+        # avoids reading an unhydrated base lock during inventory planning.
+        changed_lock = os.fsencode(lock.relative_path.as_posix()) in changed
+        for entry in lock.files:
+            if entry.git_blob is None:
+                continue
+            attested = False
+            if not changed_lock:
+                for path, attestation in attestations.get(entry.path, []):
+                    if (
+                        attestation.get("deleted") is True
+                        or attestation.get("sha256") != entry.sha256
+                    ):
+                        continue
+                    if path not in verdicts:
+                        verdicts[path] = not verify_ingest_manifest(
+                            manifests[path], public_key=public_key, repo=repo, head_ref=head
+                        )
+                    if verdicts[path]:
+                        attested = True
+                        break
+            if not attested:
+                required.add(entry.git_blob)
+    return required
+
+
 def inventory(
-    repo: Path, head: str, base: str | None
+    repo: Path, head: str, base: str | None, *, payload_source: str = "git"
 ) -> tuple[dict[str, int], set[str], dict[str, str]]:
     if any(os.environ.get(name) != "1" for name in ("GIT_NO_LAZY_FETCH", "GIT_NO_REPLACE_OBJECTS")):
         raise ValueError("canonical lock reads require the offline Git environment")
@@ -157,18 +208,21 @@ def inventory(
         if not path.startswith(PROTECTED)
     }
     metadata.update(historical_policy_blobs(repo, main))
+    changed = set()
     if base:
-        changed = git(
-            repo,
-            "diff",
-            "--no-ext-diff",
-            "--name-only",
-            "--no-renames",
-            "-z",
-            refs["merge_base"],
-            head,
-            "--",
-        ).split(b"\0")
+        changed = set(
+            git(
+                repo,
+                "diff",
+                "--no-ext-diff",
+                "--name-only",
+                "--no-renames",
+                "-z",
+                refs["merge_base"],
+                head,
+                "--",
+            ).split(b"\0")
+        )
         for ref in (head, refs["merge_base"]):
             metadata.update(trees[ref][path] for path in changed if path in trees[ref])
     locks = load_locks_at_ref(repo, head)
@@ -181,10 +235,23 @@ def inventory(
         if entry.git_blob in payloads and payloads[entry.git_blob] != entry.size:
             raise ValueError(f"conflicting lock sizes for {entry.git_blob}")
         payloads[entry.git_blob] = entry.size
+    if payload_source == "r2":
+        required = audit_git_payloads(repo, head, locks, changed)
+        payloads = {oid: size for oid, size in payloads.items() if oid in required}
+    elif payload_source != "git":
+        raise ValueError("unknown payload source")
     return payloads, metadata, refs
 
 
-def prepare(repo: Path, head: str, base: str | None, output: Path, *, plan_only: bool) -> dict:
+def prepare(
+    repo: Path,
+    head: str,
+    base: str | None,
+    output: Path,
+    *,
+    plan_only: bool,
+    payload_source: str = "git",
+) -> dict:
     started = time.monotonic()
     if git(repo, "rev-parse", "--show-object-format").strip() != b"sha1":
         raise ValueError("CI prefetch requires a SHA-1 repository")
@@ -194,7 +261,7 @@ def prepare(repo: Path, head: str, base: str | None, output: Path, *, plan_only:
     if commit(repo, "HEAD") != head:
         raise ValueError("expected head differs from the actual checked-out commit")
     base = commit(repo, base) if base else None
-    payloads, metadata, refs = inventory(repo, head, base)
+    payloads, metadata, refs = inventory(repo, head, base, payload_source=payload_source)
     oids = sorted(set(payloads) | metadata)
     before = local_headers(repo, oids)
     missing = [oid for oid in oids if before[oid] is None]
@@ -209,6 +276,7 @@ def prepare(repo: Path, head: str, base: str | None, output: Path, *, plan_only:
     )
     receipt = {
         "mode": "plan_only" if plan_only else "prefetch_and_verify",
+        "payload_source": payload_source,
         "refs": refs,
         "payload_object_count": len(payloads),
         "payload_declared_bytes": sum(payloads.values()),
@@ -264,6 +332,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--base-ref")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--plan-only", action="store_true")
+    parser.add_argument("--payload-source", choices=("git", "r2"), default="git")
     args = parser.parse_args(argv)
     # Canonical lock-loader subprocesses inherit the process environment;
     # forcing flags only in this script's own Git wrapper would miss them.
@@ -271,7 +340,12 @@ def main(argv: list[str] | None = None) -> int:
     os.environ["GIT_NO_REPLACE_OBJECTS"] = "1"
     try:
         result = prepare(
-            args.repo, args.head_ref, args.base_ref, args.output_dir, plan_only=args.plan_only
+            args.repo,
+            args.head_ref,
+            args.base_ref,
+            args.output_dir,
+            plan_only=args.plan_only,
+            payload_source=args.payload_source,
         )
     except (OSError, ValueError, subprocess.CalledProcessError) as exc:
         print(f"prefetch-git-blobs: {exc}", file=sys.stderr)

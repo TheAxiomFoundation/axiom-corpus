@@ -141,11 +141,13 @@ jobs:
 
       - name: Prefetch and verify the required local Git blobs
         env:
+          AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
           EVENT_BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
           EXPECTED_HEAD: ${{ github.sha }}
         run: |
           set -euo pipefail
           args=(--repo "$GITHUB_WORKSPACE" --head-ref "$EXPECTED_HEAD"
+                --payload-source r2
                 --output-dir "$RUNNER_TEMP/corpus-git-prefetch")
           if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
             base="$EVENT_BASE"
@@ -237,8 +239,9 @@ jobs:
         # tests/conftest.py stops the session if any locked file is absent.
         # --no-cache streams verified bytes into place: runners have no
         # copy-on-write clones, so a cache would double disk use. The
-        # explicit prefetch above serves migrated files from verified local
-        # git objects; the normal fallback and remote-existence gate remain.
+        # explicit prefetch above retains Git blobs needed by the unchanged
+        # guard/audit. Fetch payloads from R2 so old migrated bytes need not
+        # enter the Git object store. SHA256/size and remote gates remain.
         # No-op without lock files.
         env:
           # Read-only R2 token for corpus bytes kept outside git
@@ -248,7 +251,7 @@ jobs:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
-        run: axiom-corpus-ingest corpus fetch --all --no-cache --workers 32
+        run: axiom-corpus-ingest corpus fetch --all --no-git --no-cache --workers 32
 
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
