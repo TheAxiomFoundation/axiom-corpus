@@ -1,0 +1,137 @@
+name: Temporary Git object cache benchmark
+
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: read
+
+env:
+  BASELINE: 90d9631ada649a1f0a58914974c5daa3c67b41f6
+  CACHE_KEY: corpus-ci-bench-990-${{ github.run_id }}-90d9631
+  GIT_NO_LAZY_FETCH: '1'
+  GIT_NO_REPLACE_OBJECTS: '1'
+
+jobs:
+  fill:
+    if: github.event.pull_request.number == 990 && github.event.label.name == 'ci-git-cache-bench-990'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    outputs:
+      first-parents: ${{ steps.metrics.outputs.first-parents }}
+    steps:
+      - name: Cold full-history checkout
+        id: cold_checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: 90d9631ada649a1f0a58914974c5daa3c67b41f6
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Measure cold objects and history
+        id: metrics
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$BASELINE"
+          test "$(git rev-parse --is-shallow-repository)" = false
+          test ! -s .git/objects/info/alternates
+          first_parents=$(git rev-list --first-parent --count "$BASELINE")
+          test "$first_parents" -gt 1
+          object_bytes=$(du -sb .git/objects | cut -f1)
+          echo "first-parents=$first_parents" >> "$GITHUB_OUTPUT"
+          {
+            echo '### Cold full-history sample'
+            echo "Cache key: $CACHE_KEY"
+            echo "HEAD: $(git rev-parse HEAD); shallow: false"
+            echo "First-parent commits: $first_parents"
+            echo "Object-store bytes: $object_bytes"
+            echo '```text'
+            du -sh .git/objects
+            git count-objects -v
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          if ! test "$object_bytes" -lt 9000000000; then
+            echo "::error::Object store $object_bytes bytes exceeds the benchmark budget."
+            echo "No cache upload: $object_bytes bytes is not below 9000000000." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+      - name: Save exact owned object cache
+        id: save_objects
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .git/objects
+          key: ${{ env.CACHE_KEY }}
+      - name: Record timing interpretation
+        shell: bash
+        run: |
+          {
+            echo 'Read job-step API timings for cold_checkout and save_objects.'
+            echo 'The save step is cold cache-fill overhead; it is not free.'
+            echo 'Reference: prior full-history PR checkout took 93 seconds.'
+            echo 'A successful warm exact-key restore must confirm the save.'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+  warm:
+    needs: fill
+    if: github.event.pull_request.number == 990 && github.event.label.name == 'ci-git-cache-bench-990'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Initialize an empty repository without checkout or fetch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e .git
+          git init
+      - name: Restore exact owned object cache
+        id: restore_objects
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .git/objects
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
+      - name: Require local cached commit objects
+        env:
+          CACHE_HIT: ${{ steps.restore_objects.outputs.cache-hit }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$CACHE_HIT" = true
+          test -z "$(git remote)"
+          test ! -s .git/objects/info/alternates
+          git cat-file -e "$BASELINE^{commit}"
+          git update-ref refs/heads/cache-base "$BASELINE"
+      - name: Local detached checkout
+        id: local_checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -c advice.detachedHead=false checkout --detach "$BASELINE"
+      - name: Verify history and measure warm objects
+        env:
+          EXPECTED_FIRST_PARENTS: ${{ needs.fill.outputs.first-parents }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$BASELINE"
+          test "$(git rev-parse --is-shallow-repository)" = false
+          parent=$(git rev-parse "$BASELINE^")
+          test "$(git merge-base "$BASELINE" "$parent")" = "$parent"
+          first_parents=$(git rev-list --first-parent --count "$BASELINE")
+          test "$first_parents" -gt 1
+          test "$first_parents" = "$EXPECTED_FIRST_PARENTS"
+          {
+            echo '### Warm object-only sample'
+            echo "Cache key: $CACHE_KEY; exact hit: true"
+            echo "HEAD: $(git rev-parse HEAD); shallow: false"
+            echo "Verified parent/merge-base: $parent"
+            echo "First-parent commits: $first_parents"
+            echo "Object-store bytes: $(du -sb .git/objects | cut -f1)"
+            echo '```text'
+            du -sh .git/objects
+            git count-objects -v
+            echo '```'
+            echo 'Read API timings for restore_objects and local_checkout.'
+            echo 'Include initialization/validation overhead in the warm total.'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
