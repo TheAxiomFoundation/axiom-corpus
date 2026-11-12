@@ -1,0 +1,1 @@
+Add official-publisher manifests for the Alabama, Florida and Tennessee SNAP rules that the corpus held as partial Cornell LII captures, and a test that stops new manifests from taking text from that mirror.
