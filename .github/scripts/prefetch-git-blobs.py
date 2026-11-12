@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prefetch the CI verifier's fixed-ref metadata and HEAD lock payloads.
+"""Prefetch endpoint metadata, first-parent policy history and HEAD lock payloads.
 
 Checkout must first hydrate HEAD. All subsequent reads disable lazy fetching.
 This preparation supplements the unchanged signature, SHA256 and history gates.
@@ -84,6 +84,53 @@ def local_headers(repo: Path, oids: list[str]) -> dict[str, int | None]:
     return result
 
 
+def historical_policy_blobs(repo: Path, main: str) -> set[str]:
+    """Keep every policy/selector version the first-parent release test reads."""
+    records = iter(
+        git(
+            repo,
+            "-c",
+            "log.showSignature=false",
+            "log",
+            "--first-parent",
+            "--diff-merges=first-parent",
+            "--root",
+            "--raw",
+            "--no-renames",
+            "--no-abbrev",
+            "-z",
+            "--format=",
+            main,
+            "--",
+            "manifests/withdrawn-scopes.yaml",
+            "manifests/releases",
+        ).split(b"\0")
+    )
+    blobs = set()
+    for raw in records:
+        header = raw.lstrip(b"\n")
+        if not header:
+            continue
+        if not header.startswith(b":"):
+            raise ValueError("unexpected historical policy diff header")
+        fields = header[1:].split()
+        path = next(records, None)
+        if len(fields) != 5 or path is None:
+            raise ValueError("incomplete historical policy diff record")
+        old_mode, new_mode, old_oid, new_oid, _status = fields
+        if not (
+            path == b"manifests/withdrawn-scopes.yaml" or path.startswith(b"manifests/releases/")
+        ):
+            raise ValueError("unexpected historical policy path")
+        for mode, raw_oid in ((old_mode, old_oid), (new_mode, new_oid)):
+            oid = raw_oid.decode("ascii")
+            if not OID.fullmatch(oid):
+                raise ValueError("invalid historical policy object identifier")
+            if mode in {b"100644", b"100755", b"120000"} and oid != "0" * 40:
+                blobs.add(oid)
+    return blobs
+
+
 def inventory(
     repo: Path, head: str, base: str | None
 ) -> tuple[dict[str, int], set[str], dict[str, str]]:
@@ -93,20 +140,23 @@ def inventory(
     # locks. Do not infer objects for entries that intentionally use R2 only.
     from axiom_corpus.corpus.corpus_locks import load_locks_at_ref
 
-    refs = {"head": head}
+    main = commit(repo, os.environ.get("AXIOM_CORPUS_MAIN_REF", "origin/main"))
+    refs = {"head": head, "main": main}
     if base:
         refs["base"] = base
         merge_base = git(repo, "merge-base", base, head).decode().strip()
         if not OID.fullmatch(merge_base):
             raise ValueError("unable to establish one complete merge base")
         refs["merge_base"] = merge_base
-    trees = {ref: tree(repo, ref) for ref in set(refs.values())}
+    tree_refs = {head, *([base, refs["merge_base"]] if base else [])}
+    trees = {ref: tree(repo, ref) for ref in tree_refs}
     metadata = {
         oid
         for blobs in trees.values()
         for path, oid in blobs.items()
         if not path.startswith(PROTECTED)
     }
+    metadata.update(historical_policy_blobs(repo, main))
     if base:
         changed = git(
             repo,
@@ -166,6 +216,7 @@ def prepare(repo: Path, head: str, base: str | None, output: Path, *, plan_only:
         "required_object_count": len(oids),
         "missing_before": len(missing),
         "missing_oid_set_sha256": hashlib.sha256(request).hexdigest(),
+        "git_objects_before": git(repo, "count-objects", "-v").decode("ascii"),
     }
     if not plan_only:
         if missing:
@@ -200,6 +251,7 @@ def prepare(repo: Path, head: str, base: str | None, output: Path, *, plan_only:
             env={**os.environ, "GIT_NO_LAZY_FETCH": "1", "GIT_NO_REPLACE_OBJECTS": "1"},
         )
         receipt["missing_after"] = 0
+        receipt["git_objects_after"] = git(repo, "count-objects", "-v").decode("ascii")
     receipt["elapsed_seconds"] = time.monotonic() - started
     (output / "receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
     return receipt

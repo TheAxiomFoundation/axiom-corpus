@@ -1,4 +1,4 @@
-"""Tiny actual-Git checks for the fixed-ref CI prefetch, without real corpus data."""
+"""Tiny actual-Git checks for endpoint and historical CI prefetch, without real corpus data."""
 
 from __future__ import annotations
 
@@ -93,7 +93,15 @@ def history(tmp_path):
     (seed / "README.md").write_text("tiny synthetic fixture\n")
     unrelated = seed / "unrelated-past.bin"
     unrelated.write_bytes(b"never required\n" * 16)
-    commit(seed, "old unrelated payload")
+    registry = seed / "manifests/withdrawn-scopes.yaml"
+    registry.parent.mkdir()
+    registry.write_text("scopes: []\n# first main version\n")
+    selector = seed / "manifests/releases/fixture.json"
+    selector.parent.mkdir()
+    selector.write_text('{"version":1}\n')
+    first_policy_commit = commit(seed, "old unrelated payload and release policy")
+    registry_oid = oid(seed, "HEAD", registry.relative_to(seed).as_posix())
+    selector_oid = oid(seed, "HEAD", selector.relative_to(seed).as_posix())
     unrelated_oid = oid(seed, "HEAD", unrelated.name)
     unrelated.unlink()
     rel = "data/corpus/provisions/nz/statute/v1.jsonl"
@@ -102,6 +110,8 @@ def history(tmp_path):
         path = seed / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
+    registry.write_text("scopes: []\n# second main version\n")
+    selector.write_text('{"version":2}\n')
     merge_base = commit(seed, "pre-migration tree")
     payload_oid, deleted_oid = oid(seed, "HEAD", rel), oid(seed, "HEAD", deleted)
     entry = LockEntry(rel, hashlib.sha256(b'{"tiny":true}\n').hexdigest(), 14, payload_oid)
@@ -109,9 +119,12 @@ def history(tmp_path):
     git(seed, "checkout", "-q", "-b", "base")
     side = seed / "data/corpus/provisions/nz/statute/side.jsonl"
     side.write_bytes(b'{"side":true}\n')
+    registry.write_text("scopes: []\n# side-only policy\n")
     commit(seed, "side-only protected bytes")
     side_oid = oid(seed, "HEAD", side.relative_to(seed).as_posix())
+    side_registry_oid = oid(seed, "HEAD", registry.relative_to(seed).as_posix())
     side.unlink()
+    registry.write_text("scopes: []\n# second main version\n")
     for name in [rel, deleted]:
         (seed / name).unlink()
     base_meta = seed / "only-base.json"
@@ -124,11 +137,14 @@ def history(tmp_path):
     for name in [rel, deleted]:
         (seed / name).unlink()
     (seed / "README.md").write_text("head metadata changed\n")
+    registry.write_text("scopes: []\n# third main version\n")
+    selector.write_text('{"version":3}\n')
     lock = write_lock(seed, CorpusLock.from_entries(("nz", "statute", "v1"), [entry, remote_only]))
     head = commit(seed, "head migrates with one R2-only entry")
     origin = tmp_path / "origin.git"
     git(tmp_path, "clone", "--bare", "-q", str(seed), str(origin))
     git(origin, "config", "uploadpack.allowFilter", "true")
+    git(seed, "update-ref", "refs/remotes/origin/main", head)
     return {
         "seed": seed,
         "origin": origin,
@@ -143,6 +159,10 @@ def history(tmp_path):
         "base_meta_oid": base_meta_oid,
         "unrelated_oid": unrelated_oid,
         "side_oid": side_oid,
+        "registry_oid": registry_oid,
+        "selector_oid": selector_oid,
+        "side_registry_oid": side_registry_oid,
+        "first_policy_commit": first_policy_commit,
         "lock_rel": lock.relative_to(seed).as_posix(),
         "rel": rel,
         "side_rel": side.relative_to(seed).as_posix(),
@@ -169,7 +189,10 @@ def test_prefetch_closure_and_local_only_guards(history, tmp_path, monkeypatch):
         history[k] for k in ["payload_oid", "deleted_oid", "base_lock_oid", "base_meta_oid"]
     } <= missing
     assert history["unrelated_oid"] not in missing and history["side_oid"] not in missing
-    assert receipt["refs"] == {k: history[k] for k in ["head", "base", "merge_base"]}
+    assert receipt["refs"] == {
+        **{k: history[k] for k in ["head", "base", "merge_base"]},
+        "main": history["head"],
+    }
     assert json.loads((plan / "payload-inventory.json").read_text()) == [
         {"oid": history["payload_oid"], "size": 14}
     ]
@@ -198,14 +221,44 @@ def test_prefetch_closure_and_local_only_guards(history, tmp_path, monkeypatch):
     assert held == {(history["rel"], history["payload_oid"])}
 
 
-def test_schedule_is_head_only_and_exempts_no_git_blob_entries(history, tmp_path):
+def test_schedule_uses_head_and_main_history_and_exempts_no_git_blob_entries(history, tmp_path):
     repo = clone(history["origin"], tmp_path / "partial")
     out = tmp_path / "schedule"
     receipt = prefetch.prepare(repo, history["head"], None, out, plan_only=False)
-    assert receipt["refs"] == {"head": history["head"]}
+    assert receipt["refs"] == {"head": history["head"], "main": history["head"]}
     assert receipt["payload_object_count"] == 1
-    assert (out / "missing-oids.txt").read_text().splitlines() == [history["payload_oid"]]
+    assert set((out / "missing-oids.txt").read_text().splitlines()) == {
+        history["payload_oid"],
+        history["registry_oid"],
+        history["selector_oid"],
+        oid(history["seed"], history["merge_base"], "manifests/withdrawn-scopes.yaml"),
+        oid(history["seed"], history["merge_base"], "manifests/releases/fixture.json"),
+    }
     assert receipt["missing_after"] == 0
+
+
+def test_historical_release_policy_reads_remain_strict_and_available(
+    history, tmp_path, monkeypatch
+):
+    from tests import test_release_policy_repository as release_policy_test
+
+    repo = clone(history["origin"], tmp_path / "partial")
+    monkeypatch.setattr(release_policy_test, "REPO_ROOT", repo)
+    commit_at = history["first_policy_commit"]
+    with pytest.raises(subprocess.CalledProcessError):
+        release_policy_test._show(commit_at, "manifests/withdrawn-scopes.yaml")
+    out = tmp_path / "history-proof"
+    prefetch.prepare(repo, history["head"], history["base"], out, plan_only=False)
+    assert (
+        release_policy_test._show(commit_at, "manifests/withdrawn-scopes.yaml")
+        == "scopes: []\n# first main version\n"
+    )
+    assert (
+        release_policy_test._show(commit_at, "manifests/releases/fixture.json") == '{"version":1}\n'
+    )
+    assert prefetch.local_headers(repo, [history["side_registry_oid"]]) == {
+        history["side_registry_oid"]: None
+    }
 
 
 def test_shallow_checkout_and_head_mismatch_are_rejected(history, tmp_path):
