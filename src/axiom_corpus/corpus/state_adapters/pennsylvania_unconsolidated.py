@@ -35,6 +35,7 @@ PENNSYLVANIA_UNCONSOLIDATED_TIMEOUT_SECONDS = 120.0
 PENNSYLVANIA_UNCONSOLIDATED_REQUEST_ATTEMPTS = 3
 
 _SECTION_HEADING_RE_TEMPLATE = r"^Section\s+{section}\.\s*(?P<rest>.+)$"
+_ARTICLE_HISTORY_RE = re.compile(r"^\(Art\.", re.I)
 
 
 @dataclass(frozen=True)
@@ -44,7 +45,8 @@ class PennsylvaniaUnconsolidatedProvision:
     kind: str
     act_year: int
     act_number: int
-    article: int
+    article: str
+    act_name: str
     display_number: str
     heading: str | None
     body: str | None
@@ -60,29 +62,35 @@ class PennsylvaniaUnconsolidatedProvision:
         act_path = f"us-pa/statute/act-{self.act_year}-{self.act_number}"
         if self.kind == "act":
             return act_path
-        article_path = f"{act_path}/article-{self.article}"
+        article_path = f"{act_path}/article-{_article_slug(self.article)}"
         if self.kind == "article":
             return article_path
-        return f"{article_path}/section-{self.display_number}"
+        return f"{article_path}/section-{self.display_number.lower()}"
 
     @property
     def source_id(self) -> str:
         if self.kind == "act":
             return f"{self.act_year}-{self.act_number}"
         if self.kind == "article":
-            return f"{self.act_year}-{self.act_number}-article-{self.article}"
+            return (
+                f"{self.act_year}-{self.act_number}-article-{_article_slug(self.article)}"
+            )
         return f"{self.act_year}-{self.act_number}-{self.display_number}"
 
     @property
     def legal_identifier(self) -> str:
-        act_name = "Tax Reform Code of 1971"
         if self.kind == "act":
-            return f"{act_name} (Act {self.act_number} of {self.act_year})"
+            return f"{self.act_name} (Act {self.act_number} of {self.act_year})"
         if self.kind == "article":
-            return f"{act_name}, Article {_roman(self.article)}"
-        purdons = _purdons_identifier(self.article, self.display_number)
+            return f"{self.act_name}, Article {_article_label(self.article)}"
+        purdons = _purdons_identifier(
+            self.act_year,
+            self.act_number,
+            self.article,
+            self.display_number,
+        )
         suffix = f" ({purdons})" if purdons else ""
-        return f"{act_name} \u00a7 {self.display_number}{suffix}"
+        return f"{self.act_name} \u00a7 {self.display_number}{suffix}"
 
 
 def extract_pennsylvania_unconsolidated_statutes(
@@ -91,7 +99,9 @@ def extract_pennsylvania_unconsolidated_statutes(
     version: str,
     act_year: int,
     act_number: int,
-    article: int,
+    article: str | int | None = None,
+    articles: tuple[str | int, ...] = (),
+    act_name: str = "Tax Reform Code of 1971",
     source_dir: str | Path | None = None,
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
@@ -101,50 +111,80 @@ def extract_pennsylvania_unconsolidated_statutes(
     request_attempts: int = PENNSYLVANIA_UNCONSOLIDATED_REQUEST_ATTEMPTS,
     timeout_seconds: float = PENNSYLVANIA_UNCONSOLIDATED_TIMEOUT_SECONDS,
 ) -> StateStatuteExtractReport:
-    """Snapshot and extract one complete article of an unconsolidated act."""
+    """Snapshot and extract one or more complete articles of an unconsolidated act."""
     jurisdiction = "us-pa"
+    requested_articles = articles or ((article,) if article is not None else ())
+    article_ids = tuple(dict.fromkeys(_normalize_article(item) for item in requested_articles))
+    if not article_ids:
+        raise ValueError("at least one Pennsylvania unconsolidated article is required")
     run_id = _run_id(
         version,
         act_year=act_year,
         act_number=act_number,
-        article=article,
+        articles=article_ids,
         limit=limit,
     )
-    source_as_of_text = source_as_of or version
-    expression_date_text = _date_text(expression_date, source_as_of_text)
-    source_url = _article_url(
-        view_url,
-        act_year=act_year,
-        act_number=act_number,
-        article=article,
-    )
-    relative_path = _article_relative_path(act_year, act_number, article)
-    data = _load_article(
-        source_dir=Path(source_dir) if source_dir is not None else None,
-        download_dir=Path(download_dir) if download_dir is not None else None,
-        relative_path=relative_path,
-        source_url=source_url,
-        request_attempts=request_attempts,
-        timeout_seconds=timeout_seconds,
-    )
-
-    artifact_path = store.source_path(
-        jurisdiction,
-        DocumentClass.STATUTE,
-        run_id,
-        relative_path,
-    )
-    sha256 = store.write_bytes(artifact_path, data)
-    source_key = _state_source_key(jurisdiction, run_id, relative_path)
-    provisions = parse_pennsylvania_unconsolidated_article_html(
-        data,
-        act_year=act_year,
-        act_number=act_number,
-        article=article,
-    )
+    provision_sources: list[
+        tuple[PennsylvaniaUnconsolidatedProvision, str, str, str, str, str]
+    ] = []
+    source_paths: list[Path] = []
+    seen_citation_paths: set[str] = set()
+    for article_id in article_ids:
+        source_url = _article_url(
+            view_url,
+            act_year=act_year,
+            act_number=act_number,
+            article=article_id,
+        )
+        relative_path = _article_relative_path(act_year, act_number, article_id)
+        data = _load_article(
+            source_dir=Path(source_dir) if source_dir is not None else None,
+            download_dir=Path(download_dir) if download_dir is not None else None,
+            relative_path=relative_path,
+            source_url=source_url,
+            request_attempts=request_attempts,
+            timeout_seconds=timeout_seconds,
+        )
+        artifact_path = store.source_path(
+            jurisdiction,
+            DocumentClass.STATUTE,
+            run_id,
+            relative_path,
+        )
+        sha256 = store.write_bytes(artifact_path, data)
+        source_paths.append(artifact_path)
+        source_key = _state_source_key(jurisdiction, run_id, relative_path)
+        article_source_as_of = source_as_of or _html_revision_date(data) or version
+        article_expression_date = _date_text(expression_date, article_source_as_of)
+        article_provisions = parse_pennsylvania_unconsolidated_article_html(
+            data,
+            act_year=act_year,
+            act_number=act_number,
+            article=article_id,
+            act_name=act_name,
+        )
+        for provision in article_provisions:
+            if provision.citation_path in seen_citation_paths:
+                if provision.kind == "act":
+                    continue
+                raise ValueError(
+                    "duplicate Pennsylvania unconsolidated provision: "
+                    f"{provision.citation_path}"
+                )
+            seen_citation_paths.add(provision.citation_path)
+            provision_sources.append(
+                (
+                    provision,
+                    source_url,
+                    source_key,
+                    sha256,
+                    article_source_as_of,
+                    article_expression_date,
+                )
+            )
     if limit is not None:
-        provisions = provisions[:limit]
-    if not provisions:
+        provision_sources = provision_sources[:limit]
+    if not provision_sources:
         raise ValueError("no Pennsylvania unconsolidated provisions extracted")
 
     items = tuple(
@@ -154,7 +194,7 @@ def extract_pennsylvania_unconsolidated_statutes(
             source_path=source_key,
             sha256=sha256,
         )
-        for provision in provisions
+        for provision, source_url, source_key, sha256, _, _ in provision_sources
     )
     records = tuple(
         _provision_record(
@@ -162,10 +202,17 @@ def extract_pennsylvania_unconsolidated_statutes(
             version=run_id,
             source_url=source_url,
             source_path=source_key,
-            source_as_of=source_as_of_text,
-            expression_date=expression_date_text,
+            source_as_of=article_source_as_of,
+            expression_date=article_expression_date,
         )
-        for provision in provisions
+        for (
+            provision,
+            source_url,
+            source_key,
+            _,
+            article_source_as_of,
+            article_expression_date,
+        ) in provision_sources
     )
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)
@@ -182,15 +229,17 @@ def extract_pennsylvania_unconsolidated_statutes(
     store.write_json(coverage_path, coverage.to_mapping())
     return StateStatuteExtractReport(
         jurisdiction=jurisdiction,
-        title_count=sum(provision.kind == "act" for provision in provisions),
-        container_count=sum(provision.kind == "article" for provision in provisions),
-        section_count=sum(provision.kind == "section" for provision in provisions),
+        title_count=sum(provision.kind == "act" for provision, *_ in provision_sources),
+        container_count=sum(
+            provision.kind == "article" for provision, *_ in provision_sources
+        ),
+        section_count=sum(provision.kind == "section" for provision, *_ in provision_sources),
         provisions_written=len(records),
         inventory_path=inventory_path,
         provisions_path=provisions_path,
         coverage_path=coverage_path,
         coverage=coverage,
-        source_paths=(artifact_path,),
+        source_paths=tuple(source_paths),
         errors=(),
     )
 
@@ -200,24 +249,27 @@ def parse_pennsylvania_unconsolidated_article_html(
     *,
     act_year: int,
     act_number: int,
-    article: int,
+    article: str | int,
+    act_name: str = "Tax Reform Code of 1971",
 ) -> tuple[PennsylvaniaUnconsolidatedProvision, ...]:
     """Parse one official Pennsylvania unconsolidated-act article page."""
+    article_id = _normalize_article(article)
     soup = BeautifulSoup(html, "lxml")
     body = soup.select_one(".BodyContainer") or soup.body or soup
     text = _clean_text(body.get_text(" ", strip=True))
     if "403 - Forbidden" in text or "Request blocked" in text:
         raise ValueError("source page is blocked")
 
-    article_heading = _article_heading(body, article)
+    article_heading = _article_heading(body, article_id)
     provisions: list[PennsylvaniaUnconsolidatedProvision] = [
         PennsylvaniaUnconsolidatedProvision(
             kind="act",
             act_year=act_year,
             act_number=act_number,
-            article=article,
+            article=article_id,
+            act_name=act_name,
             display_number=str(act_number),
-            heading="Tax Reform Code of 1971",
+            heading=act_name,
             body=None,
             parent_citation_path=None,
             level=0,
@@ -230,13 +282,14 @@ def parse_pennsylvania_unconsolidated_article_html(
             kind="article",
             act_year=act_year,
             act_number=act_number,
-            article=article,
-            display_number=str(article),
+            article=article_id,
+            act_name=act_name,
+            display_number=article_id,
             heading=article_heading,
             body=None,
             parent_citation_path=act_path,
             level=1,
-            ordinal=article,
+            ordinal=_article_ordinal(article_id),
         )
     )
     article_path = provisions[1].citation_path
@@ -260,7 +313,8 @@ def parse_pennsylvania_unconsolidated_article_html(
                 kind="section",
                 act_year=act_year,
                 act_number=act_number,
-                article=article,
+                article=article_id,
+                act_name=act_name,
                 display_number=section,
                 heading=heading,
                 body=body_text,
@@ -275,7 +329,7 @@ def parse_pennsylvania_unconsolidated_article_html(
     if len(provisions) == 2:
         raise ValueError(
             f"no sections parsed for Pennsylvania Act {act_number} of {act_year}, "
-            f"Article {article}"
+            f"Article {_article_label(article_id)}"
         )
     return tuple(provisions)
 
@@ -326,21 +380,35 @@ def _parse_section_heading(text: str, section: str) -> tuple[str | None, str | N
 
 def _section_marker_re(act_year: int, act_number: int) -> re.Pattern[str]:
     prefix = f"{act_year:04d}{act_number:04d}"
-    return re.compile(rf"^{prefix}u(?P<section>[0-9]+(?:\.[0-9]+)?)s$", re.I)
+    return re.compile(
+        rf"^{prefix}u"
+        r"(?P<section>[0-9]+(?:\.[0-9]+)?(?:-[A-Z]+(?:\.[0-9]+)?)?)s$",
+        re.I,
+    )
 
 
-def _article_heading(root: Tag, article: int) -> str:
-    marker = f"ARTICLE {_roman(article)}"
+def _article_heading(root: Tag, article: str) -> str:
+    marker = f"ARTICLE {_article_label(article)}"
     for paragraph in root.find_all("p"):
         if _clean_text(paragraph.get_text(" ", strip=True)).upper() != marker:
             continue
+        heading_lines: list[str] = []
         for sibling in paragraph.next_siblings:
-            if not isinstance(sibling, Tag) or sibling.name != "p":
+            if not isinstance(sibling, Tag):
+                continue
+            if _marker_text(sibling) is not None:
+                break
+            if sibling.name != "p":
                 continue
             text = _clean_text(sibling.get_text(" ", strip=True))
-            if text and not text.startswith("("):
-                return _title_case(text)
-    return f"Article {_roman(article)}"
+            if not text:
+                continue
+            if _ARTICLE_HISTORY_RE.match(text):
+                break
+            heading_lines.append(text)
+        if heading_lines:
+            return _title_case(" ".join(heading_lines))
+    return f"Article {_article_label(article)}"
 
 
 def _load_article(
@@ -440,7 +508,12 @@ def _provision_record(
         "pennsylvania:source_id": provision.source_id,
     }
     purdons = (
-        _purdons_identifier(provision.article, provision.display_number)
+        _purdons_identifier(
+            provision.act_year,
+            provision.act_number,
+            provision.article,
+            provision.display_number,
+        )
         if provision.kind == "section"
         else None
     )
@@ -500,26 +573,26 @@ def _article_url(
     *,
     act_year: int,
     act_number: int,
-    article: int,
+    article: str,
 ) -> str:
     query = urlencode(
         {
-            "act": act_number,
-            "chpt": article,
             "iFrame": "true",
-            "sessInd": 0,
-            "smthLwInd": 0,
             "txtType": "HTM",
-            "yr": act_year,
+            "SessYr": act_year,
+            "SessInd": 0,
+            "ActNum": f"{act_number:04d}.",
+            "chpt": article,
+            "subchpt": "000.",
         }
     )
-    return f"{view_url}?{query}"
+    return f"{view_url}?100&{query}"
 
 
-def _article_relative_path(act_year: int, act_number: int, article: int) -> str:
+def _article_relative_path(act_year: int, act_number: int, article: str) -> str:
     return (
         f"{PENNSYLVANIA_UNCONSOLIDATED_SOURCE_FORMAT}/"
-        f"act-{act_year}-{act_number}/article-{article}.html"
+        f"act-{act_year}-{act_number}/article-{_article_slug(article)}.html"
     )
 
 
@@ -528,22 +601,30 @@ def _run_id(
     *,
     act_year: int,
     act_number: int,
-    article: int,
+    articles: tuple[str, ...],
     limit: int | None,
 ) -> str:
     parts = [
         version,
         "us-pa",
         f"act-{act_year}-{act_number}",
-        f"article-{article}",
     ]
+    if len(articles) == 1:
+        parts.append(f"article-{_article_slug(articles[0])}")
+    else:
+        parts.append("articles-" + "-".join(_article_slug(article) for article in articles))
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)
 
 
-def _purdons_identifier(article: int, section: str) -> str | None:
-    if article != 3:
+def _purdons_identifier(
+    act_year: int,
+    act_number: int,
+    article: str,
+    section: str,
+) -> str | None:
+    if (act_year, act_number, article) != (1971, 2, "3"):
         return None
     base, dot, suffix = section.partition(".")
     if not base.isdigit():
@@ -552,6 +633,45 @@ def _purdons_identifier(article: int, section: str) -> str | None:
     if dot:
         number = f"{number}.{suffix}"
     return f"72 P.S. \u00a7 {number}"
+
+
+def _normalize_article(value: str | int) -> str:
+    article = str(value).strip().upper()
+    if not re.fullmatch(r"[0-9]+(?:[A-Z]+(?:\.[0-9]+)?)?", article):
+        raise ValueError(f"unsupported Pennsylvania unconsolidated article: {value!r}")
+    return article
+
+
+def _article_slug(article: str) -> str:
+    return article.lower()
+
+
+def _article_label(article: str) -> str:
+    match = re.fullmatch(r"(?P<number>[0-9]+)(?P<suffix>[A-Z]+(?:\.[0-9]+)?)?", article)
+    if match is None:
+        raise ValueError(f"unsupported Pennsylvania unconsolidated article: {article!r}")
+    label = _roman(int(match.group("number")))
+    suffix = match.group("suffix")
+    return f"{label}-{suffix}" if suffix else label
+
+
+def _article_ordinal(article: str) -> int:
+    match = re.match(r"[0-9]+", article)
+    if match is None:
+        raise ValueError(f"unsupported Pennsylvania unconsolidated article: {article!r}")
+    return int(match.group())
+
+
+def _html_revision_date(data: str | bytes) -> str | None:
+    soup = BeautifulSoup(data, "lxml")
+    revised = soup.find("meta", attrs={"name": re.compile(r"^revised$", re.I)})
+    if not isinstance(revised, Tag):
+        return None
+    content = revised.get("content")
+    if not isinstance(content, str):
+        return None
+    match = re.match(r"\d{4}-\d{2}-\d{2}", content.strip())
+    return match.group() if match else None
 
 
 def _section_status(heading: str | None, body: str | None) -> str | None:

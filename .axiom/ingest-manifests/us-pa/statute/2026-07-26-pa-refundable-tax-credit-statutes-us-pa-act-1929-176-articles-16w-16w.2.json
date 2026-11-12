@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/statute/2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2.json",
+      "sha256": "16bdc5a6acbd09d1b9a488dda4901a0878d7c04ae3376d2ccd12d4db644ca127"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/statute/2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2.json",
+      "sha256": "8754a1fc15f1dcbf7bc13fe0aa7942746849ddc8b3b90fabf6dabab0b62dc452"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/statute/2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2.jsonl",
+      "sha256": "ef752e2dc54dce1a1fdeb66634169cc865353f2ce276db08a945d2cf4d886cd2"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/statute/2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2/pennsylvania-unconsolidated-statutes-html/act-1929-176/article-16w.2.html",
+      "sha256": "4261d8f391b74f87678d0f1dd5e904c159d56688099885a544034208697b97c8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/statute/2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2/pennsylvania-unconsolidated-statutes-html/act-1929-176/article-16w.html",
+      "sha256": "2045ac6a94eed2d395d98e5a09a1edc6fbc0801fb4ced4e75fe436f8bb6b77df"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "060a1c8ddfe38a479aba95440cb32d6cf30dcd69",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/us-pa-refundable-tax-credit-statutes.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-26T10:49:01.923530+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z6B9k/cH3RqLxSqTWfsgcjQwojPqDfAOmoQe/V+DebjLWDdrA4NKnw15rHozox30I01FY7vxC8MXmTLPRamzDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2"
+}
