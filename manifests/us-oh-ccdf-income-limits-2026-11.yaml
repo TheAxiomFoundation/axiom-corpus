@@ -1,0 +1,62 @@
+version: 2026-11-13-ccdf-income-limits
+documents:
+- source_id: us-oh-dcy-ccdf-procedure-letter-45
+  jurisdiction: us-oh
+  document_class: policy
+  title: Ohio DCY Child Care Procedure Letter 45
+  source_url: https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Partners%20and%20Providers/Rules%20and%20Resources/2026/PL_45.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2026-10-01'
+  citation_path: us-oh/policy/dcy/ccdf/procedure-letter-45
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Children and Youth
+    official_publisher: Ohio Department of Children and Youth
+    document_subtype: procedure_letter
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-oh/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: printed effective date
+- source_id: us-oh-dcy-ccdf-procedure-letter-36
+  jurisdiction: us-oh
+  document_class: policy
+  title: Ohio DCY Child Care Procedure Letter 36 (Child Care Choice Voucher)
+  source_url: https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/For%20Partners/Rules%20and%20Resources/2025/PL_36.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2025-11-01'
+  citation_path: us-oh/policy/dcy/ccdf/procedure-letter-36
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Children and Youth
+    official_publisher: Ohio Department of Children and Youth
+    document_subtype: procedure_letter
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-oh/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: printed effective date
+- source_id: us-oh-lsc-hb96-children-and-youth-analysis
+  jurisdiction: us-oh
+  document_class: policy
+  title: 'Ohio Legislative Service Commission: H.B. 96 (136th GA) final analysis, Department of Children and Youth'
+  source_url: https://www.lsc.ohio.gov/assets/legislation/136/hb96/en0/files/hb96-kid-bill-analysis-as-enacted-136th-general-assembly.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2025-09-30'
+  citation_path: us-oh/policy/lsc/hb96/children-and-youth-final-analysis
+  metadata:
+    primary_source: true
+    source_authority: Ohio Legislative Service Commission
+    official_publisher: Ohio Legislative Service Commission
+    document_subtype: bill_analysis
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-oh/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: act effective date

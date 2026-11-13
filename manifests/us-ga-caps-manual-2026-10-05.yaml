@@ -1,0 +1,47 @@
+version: 2026-11-13-ga-caps-2026-10-05
+documents:
+- source_id: ga-decal-caps-policy-manual
+  jurisdiction: us-ga
+  document_class: manual
+  title: Georgia CAPS Policy Manual (revision effective October 5, 2026)
+  source_url: https://caps.decal.ga.gov/assets/downloads/CAPS/0-CAPS_Policy-Manual.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2026-10-05'
+  citation_path: us-ga/manual/decal/caps/policy-manual
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Early Care and Learning
+    official_publisher: Georgia Department of Early Care and Learning
+    document_subtype: policy_manual
+    program: CAPS
+    federal_program: CCDF
+    source_discovery_group: us-ga/manual/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: PDF creation date (2026-10-05) matches the Appendix A effective date printed in the same
+      release
+    manual_landing_page: https://caps.decal.ga.gov/en/Resources
+    predecessor_scope: us-ga/manual/2026-06-25-ga-caps
+- source_id: ga-decal-caps-appendix-a-income-limits
+  jurisdiction: us-ga
+  document_class: manual
+  title: Georgia CAPS Appendix A - Maximum Income Limits by Family Size (effective October 5, 2026)
+  source_url: https://caps.decal.ga.gov/assets/downloads/CAPS/AppendixA-CAPS%20Maximum%20Income%20Limits%20by%20Family%20Size.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2026-10-05'
+  citation_path: us-ga/manual/decal/caps/appendix-a-income-limits
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Early Care and Learning
+    official_publisher: Georgia Department of Early Care and Learning
+    document_subtype: policy_manual_appendix
+    program: CAPS
+    federal_program: CCDF
+    source_discovery_group: us-ga/manual/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: printed effective date
+    manual_landing_page: https://caps.decal.ga.gov/en/Resources
+    predecessor_scope: us-ga/manual/2026-06-25-ga-caps

@@ -1,0 +1,42 @@
+version: 2026-11-13-ccdf-income-limits
+documents:
+- source_id: us-id-dhw-ccdf-iccp-applications-resume-notice
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho DHW news release: DHW will resume applications for the Idaho Child Care Program in January'
+  source_url: https://healthandwelfare.idaho.gov/news/dhw-will-resume-applications-idaho-child-care-program-january
+  source_format: html
+  source_as_of: '2026-11-13'
+  expression_date: '2024-11-14'
+  citation_path: us-id/policy/dhw/ccdf/iccp-applications-resume-2025-01-13
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare
+    official_publisher: Idaho Department of Health and Welfare
+    document_subtype: news_release
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-id/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: publication date
+- source_id: us-id-dhw-ccdf-apply-for-child-care
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho DHW: Apply for Child Care (application income chart)'
+  source_url: https://healthandwelfare.idaho.gov/services-programs/children-families/apply-child-care
+  source_format: html
+  source_as_of: '2026-11-13'
+  expression_date: '2025-10-01'
+  citation_path: us-id/policy/dhw/ccdf/apply-for-child-care
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare
+    official_publisher: Idaho Department of Health and Welfare
+    document_subtype: agency_policy_page
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-id/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: printed effective month (Effective October 2025)

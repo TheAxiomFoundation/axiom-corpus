@@ -1,0 +1,42 @@
+version: 2026-11-13-ccdf-income-limits
+documents:
+- source_id: us-al-dhr-ccdf-child-care-fact-sheet-2026-01
+  jurisdiction: us-al
+  document_class: policy
+  title: Alabama DHR Child Care Subsidy Program Fact Sheet, January 2026
+  source_url: https://dhr.alabama.gov/wp-content/uploads/2025/12/CHILD-CARE-FACT-SHEET-Jan2026.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2026-01-01'
+  citation_path: us-al/policy/dhr/ccdf/child-care-fact-sheet-2026-01
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    official_publisher: Alabama Department of Human Resources
+    document_subtype: fact_sheet
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-al/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: printed effective date
+- source_id: us-al-dhr-ccdf-child-care-fact-sheet-2026-06
+  jurisdiction: us-al
+  document_class: policy
+  title: Alabama DHR Child Care Subsidy Program Fact Sheet, June 2026
+  source_url: https://dhr.alabama.gov/wp-content/uploads/2026/06/CHILD-CARE-FACT-SHEET-Jun2026-1.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2026-06-01'
+  citation_path: us-al/policy/dhr/ccdf/child-care-fact-sheet-2026-06
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    official_publisher: Alabama Department of Human Resources
+    document_subtype: fact_sheet
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-al/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: printed effective date
