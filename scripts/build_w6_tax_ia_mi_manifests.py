@@ -23,6 +23,8 @@ from typing import Any
 
 import yaml
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_AS_OF = "2026-10-06"
 FAMILY = {"form": "income-tax-forms", "guidance": "income-tax-guidance", "statute": "income-tax-statute"}
@@ -991,7 +993,9 @@ QUEUE_KEY = "w6_bundle_gap_scopes"
 
 def _scope_stats(base: Path, scope: str) -> dict[str, Any]:
     jur, cls, ver = scope.split("/")
-    coverage = json_load(base / "coverage" / jur / cls / f"{ver}.json")
+    path = base / "coverage" / jur / cls / f"{ver}.json"
+    ensure_corpus_paths([path.absolute()])  # fetched, not tracked; no-op without locks
+    coverage = json_load(path)
     return {
         "complete": bool(coverage.get("complete")),
         "provision_count": coverage.get("provision_count"),

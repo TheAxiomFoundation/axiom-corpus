@@ -309,8 +309,12 @@ def build_ny_tanf_compatibility_scope(
     current_source_dir = (
         base / "sources" / JURISDICTION / DOCUMENT_CLASS / CURRENT_VERSION
     )
-    # Corpus bytes may live outside git: fetch the input scope's sources first.
-    require_materialized([current_source_dir], fetch=True)
+    # Corpus bytes may live outside git: fetch the input scope's sources first,
+    # and the three artifacts attested below, which are hashed before loading.
+    require_materialized(
+        [current_source_dir, current_inventory_path, current_provisions_path, old_provisions_path],
+        fetch=True,
+    )
     if not current_source_dir.is_dir() or current_source_dir.is_symlink():
         raise ValueError(f"input source directory is not regular: {current_source_dir}")
     if any(path.is_symlink() for path in current_source_dir.rglob("*")):

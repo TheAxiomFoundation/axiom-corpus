@@ -8,9 +8,32 @@ import json
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 
 def _rows(path: Path) -> list[dict[str, Any]]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
+def _provisions_path(corpus_root: Path, raw_scope: dict[str, Any]) -> Path:
+    return (
+        corpus_root
+        / "provisions"
+        / str(raw_scope["jurisdiction"])
+        / str(raw_scope["document_class"])
+        / f"{raw_scope['version']}.jsonl"
+    )
+
+
+def ensure_corpus_inputs(release: dict[str, Any], corpus_root: Path) -> None:
+    """Fetch the provisions file of every release scope. Does nothing without locks.
+
+    Paths are made absolute so that a relative ``--base`` resolves against the
+    checkout that holds it, whatever the working directory.
+    """
+    ensure_corpus_paths(
+        [_provisions_path(corpus_root, scope).absolute() for scope in release["scopes"]]
+    )
 
 
 def find_scope_residuals(
@@ -27,14 +50,7 @@ def find_scope_residuals(
         jurisdiction = str(raw_scope["jurisdiction"])
         document_class = str(raw_scope["document_class"])
         version = str(raw_scope["version"])
-        path = (
-            corpus_root
-            / "provisions"
-            / jurisdiction
-            / document_class
-            / f"{version}.jsonl"
-        )
-        rows = _rows(path)
+        rows = _rows(_provisions_path(corpus_root, raw_scope))
         local_paths = {str(row["citation_path"]) for row in rows}
         for row in rows:
             parent = row.get("parent_citation_path")
@@ -60,6 +76,7 @@ def main() -> int:
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
     release = json.loads(args.release.read_text())
+    ensure_corpus_inputs(release, args.base)
     residuals = find_scope_residuals(release, args.base)
     report = {
         "scope_count": len(release["scopes"]),

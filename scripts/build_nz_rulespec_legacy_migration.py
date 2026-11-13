@@ -13,11 +13,13 @@ from typing import Any
 from urllib.parse import urlsplit
 
 from axiom_corpus.corpus.releases import ReleaseManifest
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.release.manifest import selector_sha256
 
 SCHEMA_VERSION = "axiom-corpus/nz-rulespec-legacy-migration/v2"
 RELEASE_NAME = "nz-rulespec-2026-07-10"
 SELECTOR_RELATIVE_PATH = Path("manifests/releases") / f"{RELEASE_NAME}.json"
+PRIOR_PROVISIONS_RELATIVE_PATH = Path("data/corpus/provisions/nz/statute/2026-07-08.jsonl")
 VERSION = "2026-06-16-rulespec-nz-pco"
 SOURCE_REPOSITORY = "TheAxiomFoundation/rulespec-nz"
 SOURCE_COMMIT = "c9e0c069a8f9ec9aacb41f8f0bb1b5d56c148e38"
@@ -320,15 +322,33 @@ def _load_active_rows(
         raise ValueError(f"Release selector {SELECTOR_RELATIVE_PATH} must name {RELEASE_NAME!r}")
     rows: list[dict[str, Any]] = []
     for scope in selector["scopes"]:
-        artifact = (
-            repo
-            / "data/corpus/provisions"
-            / scope["jurisdiction"]
-            / scope["document_class"]
-            / f"{scope['version']}.jsonl"
-        )
+        artifact = _provisions_path(repo, scope)
         rows.extend(json.loads(line) for line in artifact.read_text().splitlines())
     return rows, selector, release
+
+
+def _provisions_path(repo: Path, scope: dict[str, Any]) -> Path:
+    return (
+        repo
+        / "data/corpus/provisions"
+        / scope["jurisdiction"]
+        / scope["document_class"]
+        / f"{scope['version']}.jsonl"
+    )
+
+
+def ensure_corpus_inputs(repo: Path) -> None:
+    """Fetch the locked provisions this ledger reads. Does nothing without locks.
+
+    Those are the selector's scopes and the prior NZ statute scope in ``repo``;
+    the legacy RuleSpec-NZ checkout is read from its own git tree.
+    """
+    selector = json.loads((repo / SELECTOR_RELATIVE_PATH).read_text())
+    ensure_corpus_paths(
+        [_provisions_path(repo, scope) for scope in selector["scopes"]]
+        + [repo / PRIOR_PROVISIONS_RELATIVE_PATH],
+        repo=repo,
+    )
 
 
 def _canonical_target(row: dict[str, Any]) -> dict[str, Any]:
@@ -400,9 +420,7 @@ def build_migration(repo: Path, legacy_root: Path) -> dict[str, Any]:
         row["citation_path"]: row
         for row in (
             json.loads(line)
-            for line in (repo / "data/corpus/provisions/nz/statute/2026-07-08.jsonl")
-            .read_text()
-            .splitlines()
+            for line in (repo / PRIOR_PROVISIONS_RELATIVE_PATH).read_text().splitlines()
         )
     }
     entries: list[dict[str, Any]] = []
@@ -501,6 +519,7 @@ def main() -> int:
         default=Path("data/corpus/migrations/nz/rulespec-nz-legacy-2026-06-17.json"),
     )
     args = parser.parse_args()
+    ensure_corpus_inputs(args.repo.resolve())
     payload = build_migration(args.repo.resolve(), args.legacy_root.resolve())
     output = args.output if args.output.is_absolute() else args.repo / args.output
     output.parent.mkdir(parents=True, exist_ok=True)

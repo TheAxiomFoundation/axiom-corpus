@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 from uuid import NAMESPACE_URL, uuid5
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 JURISDICTION = "us-ma"
 DOCUMENT_CLASS = "guidance"
 PARENT = "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01"
@@ -21,13 +23,23 @@ def _deterministic_id(citation_path: str) -> str:
     return str(uuid5(NAMESPACE_URL, f"axiom:{citation_path}"))
 
 
+def _scope_paths(base: Path, version: str) -> tuple[Path, Path]:
+    return (
+        base / "provisions" / JURISDICTION / DOCUMENT_CLASS / f"{version}.jsonl",
+        base / "inventory" / JURISDICTION / DOCUMENT_CLASS / f"{version}.json",
+    )
+
+
+def ensure_corpus_inputs(*, base: Path, version: str) -> None:
+    """Fetch the scope's provisions and inventory, which this rewrites in place.
+
+    Does nothing without locks.
+    """
+    ensure_corpus_paths([path.absolute() for path in _scope_paths(base, version)])
+
+
 def add_alias(*, base: Path, version: str) -> None:
-    provisions_path = (
-        base / "provisions" / JURISDICTION / DOCUMENT_CLASS / f"{version}.jsonl"
-    )
-    inventory_path = (
-        base / "inventory" / JURISDICTION / DOCUMENT_CLASS / f"{version}.json"
-    )
+    provisions_path, inventory_path = _scope_paths(base, version)
     records = [
         json.loads(line)
         for line in provisions_path.read_text(encoding="utf-8").splitlines()
@@ -100,6 +112,7 @@ def main() -> None:
     parser.add_argument("--base", type=Path, default=Path("data/corpus"))
     parser.add_argument("--version", required=True)
     args = parser.parse_args()
+    ensure_corpus_inputs(base=args.base, version=args.version)
     add_alias(base=args.base, version=args.version)
 
 

@@ -53,6 +53,7 @@ from axiom_corpus.corpus.montana_rule_page import (
     parse_montana_rule_document,
     parse_montana_rule_page_chrome,
 )
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 JURISDICTION = "us-mt"
 DOCUMENT_CLASS = DocumentClass.REGULATION
@@ -227,6 +228,27 @@ def fetch_verification_sources(*, base: Path) -> tuple[Path, ...]:
         store.write_bytes(root / leaf, (json.dumps(record, indent=2) + "\n").encode("utf-8"))
         written.append(root / leaf)
     return tuple(written)
+
+
+def ensure_corpus_inputs(*, source_base: Path) -> None:
+    """Fetch the files ``build`` reads; a no-op without lock files.
+
+    That is the retained page and its provenance in the recovery scope, and the
+    verification renditions that ``fetch`` placed in this version's sources,
+    which are locked once the successor is signed.
+    """
+    old_root = _scope_root(source_base, SOURCE_VERSION)
+    verification_root = _scope_root(source_base, VERSION)
+    ensure_corpus_paths(
+        [
+            path.absolute()
+            for path in (
+                old_root / RETAINED_LEAF,
+                old_root / RETAINED_PROVENANCE_LEAF,
+                *(verification_root / leaf for leaf in VERIFICATION_LEAVES),
+            )
+        ]
+    )
 
 
 def build_scope(*, base: Path, source_base: Path) -> tuple[Path, Path, Path]:
@@ -410,6 +432,7 @@ def main() -> None:
         for path in fetch_verification_sources(base=args.base):
             print(path)
         return
+    ensure_corpus_inputs(source_base=args.source_base or args.base)
     for path in build_scope(base=args.base, source_base=args.source_base or args.base):
         print(path)
 

@@ -47,6 +47,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 REVISION = "r2026-10-13-hollow-roots"
 
 STATE_PLAN_JURISDICTIONS = (
@@ -635,6 +637,17 @@ def cmd_build(args: argparse.Namespace) -> int:
     base = args.base.resolve()
     source_base = (args.source_base or args.base).resolve()
     specs = select_specs(args.scope)
+    # Fetch every original scope before any worker lists its sources (no-op
+    # without locks): an unfetched source directory would read as empty.
+    ensure_corpus_paths(
+        [
+            path
+            for spec in specs
+            for path in _artifact_paths(
+                source_base, spec.jurisdiction, spec.document_class, spec.original_version
+            ).values()
+        ]
+    )
     results: list[dict[str, Any]] = []
     ocr_cache = str(args.ocr_cache) if args.ocr_cache else None
     if args.workers <= 1:
@@ -854,6 +867,21 @@ def compare_scope(
 
 def cmd_compare(args: argparse.Namespace) -> int:
     specs = select_specs(args.scope)
+    left_base, right_base = args.left_base.resolve(), args.right_base.resolve()
+    # Both sides are inputs here: fetch them (no-op without locks).
+    ensure_corpus_paths(
+        [
+            path
+            for spec in specs
+            for base, version in (
+                (left_base, spec.original_version if args.left == "original" else spec.version),
+                (right_base, spec.version),
+            )
+            for path in _artifact_paths(
+                base, spec.jurisdiction, spec.document_class, version
+            ).values()
+        ]
+    )
     rows = []
     for spec in specs:
         left_version = spec.original_version if args.left == "original" else spec.version

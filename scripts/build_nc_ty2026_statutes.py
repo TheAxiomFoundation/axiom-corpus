@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from scripts.recover_ingest_batch import _targeted_state_html
 
@@ -359,6 +360,15 @@ def build_records(
     return manifest, tuple(inventory), tuple(records)
 
 
+def ensure_corpus_inputs(base: Path, manifest_path: Path) -> None:
+    """Fetch the scope's retained sources, the only corpus files read. No-op without locks.
+
+    The inventory, provisions and coverage of the scope are outputs.
+    """
+    version = str(_load_manifest(manifest_path)["version"])
+    ensure_corpus_paths([(base / "sources/us-nc/statute" / version).absolute()])
+
+
 def build_scope(base: Path, manifest_path: Path) -> tuple[Path, Path, Path]:
     manifest, inventory, records = build_records(base, manifest_path)
     version = str(manifest["version"])
@@ -382,6 +392,7 @@ def main() -> int:
     parser.add_argument("--base", type=Path, default=Path("data/corpus"))
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     args = parser.parse_args()
+    ensure_corpus_inputs(args.base, args.manifest)
     for path in build_scope(args.base, args.manifest):
         print(path)
     return 0

@@ -31,6 +31,7 @@ from axiom_corpus.corpus.ingest_manifests import (
     default_ingest_manifest_path,
 )
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
     _build_usc_inventory,
@@ -65,6 +66,8 @@ def assert_ecfr_recovery_supported(entry: dict[str, Any], *, base: Path | None =
         inventory = CorpusArtifactStore(base).inventory_path(
             entry["jurisdiction"], entry["document_class"], entry[version_key]
         )
+        # A locked destination that is not fetched would pass this check.
+        ensure_corpus_paths([inventory.absolute()])
         if inventory.exists():
             items = json.loads(inventory.read_text()).get("items", [])
             if any(
