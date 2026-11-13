@@ -34,6 +34,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import OfficialDocumentManifest
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.state_adapters.new_york import (
     NEW_YORK_SENATE_SOURCE_FORMAT,
     _append_inventory_and_record,
@@ -42,6 +43,7 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     parse_new_york_law_page,
 )
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
 JURISDICTION = "us-ny"
 DOCUMENT_CLASS = DocumentClass.STATUTE
 SOURCE_VERSION = "2026-09-14-income-tax-chapter"
@@ -202,12 +204,27 @@ def build_scope(
     )
 
 
+def ensure_corpus_inputs(*, repo: Path = REPO_ROOT, source_base: Path | None = None) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    input_root = source_base.resolve() if source_base is not None else Path("data/corpus")
+    scope_path = Path(JURISDICTION) / DOCUMENT_CLASS.value
+    ensure_corpus_paths(
+        [
+            input_root / "sources" / scope_path / SOURCE_VERSION,
+            input_root / "inventory" / scope_path / f"{SOURCE_VERSION}.json",
+            input_root / "provisions" / scope_path / f"{SOURCE_VERSION}.jsonl",
+        ],
+        repo=repo,
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--base", type=Path, default=Path("data/corpus"))
     parser.add_argument("--source-base", type=Path, default=Path("data/corpus"))
     parser.add_argument("--manifest", type=Path, default=MANIFEST)
     args = parser.parse_args(argv)
+    ensure_corpus_inputs(source_base=args.source_base)
     scope = build_scope(base=args.base, source_base=args.source_base, manifest_path=args.manifest)
     print(
         json.dumps(

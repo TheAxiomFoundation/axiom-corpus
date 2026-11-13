@@ -1,0 +1,1 @@
+Add official income-tax regulation coverage for Arkansas (Code of Arkansas Rules Title 26 Parts 100-104), the District of Columbia (DCMR Title 9 Chapter 1 Income and Franchise Taxes) and Utah (Utah Admin. Code R865-9I Income Tax), three rows the 2026-09-14 state income-tax regulation run could not reach; repair the Utah rule address after the 2026-10-16 eRules relaunch.

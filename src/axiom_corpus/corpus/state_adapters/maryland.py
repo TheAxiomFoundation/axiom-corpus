@@ -341,7 +341,19 @@ def extract_maryland_code(
     for article in articles:
         if limit is not None and len(section_targets) >= limit:
             break
-        sections_source = fetcher.fetch_sections(article)
+        # An article is written as a provision only once its own section list
+        # names sections. Otherwise it stays an inventory gap, so coverage reads
+        # incomplete instead of silently losing every section under it. A list
+        # that could not be fetched is sourced from the article list that names
+        # the article; a list that was fetched but is unusable from itself.
+        try:
+            sections_source = fetcher.fetch_sections(article)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{article.code} sections: {exc}")
+            _append_inventory_gap(
+                _article_provision(article), articles_recorded, items=items, seen=seen
+            )
+            continue
         sections_recorded = _record_source(
             store,
             jurisdiction=jurisdiction,
@@ -350,7 +362,16 @@ def extract_maryland_code(
             source_by_relative=source_by_relative,
             source_paths=source_paths,
         )
-        targets = list(parse_maryland_sections(sections_source.data, article=article))
+        try:
+            targets = list(parse_maryland_sections(sections_source.data, article=article))
+            if not targets:
+                raise ValueError("no sections listed for article")
+        except ValueError as exc:
+            errors.append(f"{article.code} sections: {exc}")
+            _append_inventory_gap(
+                _article_provision(article), sections_recorded, items=items, seen=seen
+            )
+            continue
         if limit is not None:
             targets = targets[: max(0, limit - len(section_targets))]
 
@@ -584,6 +605,34 @@ def _record_source(
     )
     source_by_relative[source.relative_path] = recorded
     return recorded
+
+
+def _append_inventory_gap(
+    provision: MarylandProvision,
+    source: _RecordedSource,
+    *,
+    items: list[SourceInventoryItem],
+    seen: set[str],
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if provision.citation_path in seen:
+        return
+    seen.add(provision.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=provision.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=MARYLAND_CODE_SOURCE_FORMAT,
+            sha256=source.sha256,
+            metadata=_metadata(provision),
+        )
+    )
 
 
 def _append_provision(

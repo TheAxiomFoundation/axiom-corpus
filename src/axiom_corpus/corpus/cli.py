@@ -5927,7 +5927,7 @@ def build_parser() -> argparse.ArgumentParser:
     inventory_ecfr.add_argument(
         "--include-appendices",
         action="store_true",
-        help="Include supported part appendices; reject unsupported selected appendix shapes.",
+        help="Include supported part and subpart appendices; reject unsupported selected appendix shapes.",
     )
     inventory_ecfr.add_argument(
         "--section",
@@ -5988,7 +5988,7 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ecfr_cmd.add_argument(
         "--include-appendices",
         action="store_true",
-        help="Include supported part appendices and their source images; reject unsupported shapes.",
+        help="Include supported part and subpart appendices and their source images; reject unsupported shapes.",
     )
     extract_ecfr_cmd.add_argument(
         "--section",

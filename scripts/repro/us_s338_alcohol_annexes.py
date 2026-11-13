@@ -28,6 +28,7 @@ from axiom_corpus.corpus.models import (
     ProvisionRecord,
     SourceInventoryItem,
 )
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RETAINED_BASE = REPO_ROOT / "data/corpus"
@@ -637,6 +638,22 @@ def reproduce(base: Path, source_dir: Path | None = None) -> dict[str, Any]:
     }
 
 
+def ensure_corpus_inputs(*, repo: Path = REPO_ROOT, source_dir: Path | None = None) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    input_root = source_dir.resolve() if source_dir is not None else Path("data/corpus")
+    ensure_corpus_paths(
+        [
+            *(
+                input_root / path
+                for annex in ANNEXES
+                for path in (annex.source_filename, annex.source_relative_path)
+            ),
+            input_root / FR_SOURCE_FILENAME,
+        ],
+        repo=repo,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", type=Path, required=True, help="Destination corpus base.")
@@ -649,6 +666,7 @@ def main() -> int:
         ),
     )
     args = parser.parse_args()
+    ensure_corpus_inputs(source_dir=args.source_dir)
     print(json.dumps(reproduce(args.base, args.source_dir), indent=2, sort_keys=True))
     return 0
 

@@ -387,7 +387,7 @@ def test_section_selector_still_rejects_malformed_hyphenated_parts(selector):
 
 def test_hyphenated_selector_selects_only_a_section_under_that_part():
     # eCFR files 41 CFR 105-60.001 under part 105-60 with the identifier "105.60.001",
-    # which the alphanumeric grammar reads as part 105, as it did before this change.
+    # the dotted spelling of the part (test_corpus_ecfr_confirmed_section_identifiers.py).
     structure = {"identifier": "41", "type": "title", "children": [{
         "identifier": "105-60", "label": "Part 105-60—Public Availability", "type": "part",
         "children": [{"identifier": "A", "label": "Subpart A—General", "type": "subpart",
@@ -399,7 +399,7 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
         "us/regulation/41/105-60",
         "us/regulation/41/105-60/subpart-A",
         "us/regulation/41/105-60/000",
-        "us/regulation/41/105/60.001",
+        "us/regulation/41/105-60/001",
     ]
 
     selected = build_ecfr_inventory_from_structures(
@@ -407,7 +407,9 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
     )
     assert selected.part_count == 1
     assert _paths(selected.items) == whole[:3]
-    # Its part and section would spell "105-60.60.001", but its path is not under 105-60.
+    dotted = build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.001",))
+    assert _paths(dotted.items) == [*whole[:2], whole[3]]
+    # Neither the earlier reading's spelling nor eCFR's own selects it.
     with pytest.raises(ValueError, match="not found: 105-60.60.001"):
         build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.60.001",))
     with pytest.raises(ValueError, match="not found: 105.60.001"):
@@ -415,17 +417,23 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
 
 
 def test_selector_main_accepts_still_matches_a_dotted_part():
-    # Main reads "1.2-3.4" as part 1, section 2-3.4, and selects the section that the
-    # structure files as "1.4" under a part identified "1.2-3". That selector keeps working.
+    # Main selected the section that the structure files as "1.4" under a part identified
+    # "1.2-3" with "1.2-3.4": its metadata named the enclosing part, so part and section
+    # spelled that (and main reads it as part 1, section 2-3.4). A section's metadata now
+    # names the part its identifier names, with the part that holds it in enclosing_part
+    # (#841), so its own citation selects it, under that part. This fixture's section
+    # is selected by "1.4"; the former spelling "1.2-3.4" no longer selects it.
     structure = {"identifier": "41", "type": "title", "children": [
         {"identifier": "1", "label": "Part 1", "type": "part", "children": []},
         {"identifier": "1.2-3", "label": "Part 1.2-3", "type": "part",
          "children": [_section("1.4", "§ 1.4 x.")]},
     ]}
 
-    selected = build_ecfr_inventory_from_structures((structure,), only_sections=("1.2-3.4",))
+    selected = build_ecfr_inventory_from_structures((structure,), only_sections=("1.4",))
 
-    assert _paths(selected.items) == ["us/regulation/41/1", "us/regulation/41/1/4"]
+    assert _paths(selected.items) == ["us/regulation/41/1.2-3", "us/regulation/41/1/4"]
+    with pytest.raises(ValueError, match="not found: 1.2-3.4"):
+        build_ecfr_inventory_from_structures((structure,), only_sections=("1.2-3.4",))
 
 
 def test_lettered_appendix_of_a_hyphenated_part():
@@ -463,8 +471,29 @@ def test_lettered_appendix_of_a_hyphenated_part():
     ],
 )
 def test_hyphenated_part_appendix_rejects_unicode_lookalikes(identifier):
-    assert ecfr._appendix_citation_from_identifier(41, identifier) is None
-    assert ecfr._appendix_citation_from_identifier(41, identifier, require_supported=False) is None
+    assert ecfr._part_appendix_from_identifier(identifier) is None
+    assert ecfr._part_appendix_from_identifier(identifier, require_supported=False) is None
+
+
+@pytest.mark.parametrize(
+    "identifier,path,legal",
+    [
+        ("Appendix to Part 60-20", "us/regulation/41/60-20/appendix", "41 CFR part 60-20, appendix"),
+        (
+            "Appendix II to Part 60-300",
+            "us/regulation/41/60-300/appendix-ii",
+            "41 CFR part 60-300, appendix II",
+        ),
+    ],
+)
+def test_hyphenated_part_takes_unnumbered_and_roman_appendices(identifier, path, legal):
+    """The part-appendix grammar reads a hyphenated part in every designator form."""
+    appendix = ecfr._part_appendix_from_identifier(identifier)
+
+    assert appendix is not None
+    assert appendix.citation_path(41) == path
+    assert appendix.legal_identifier(41) == legal
+    assert _valid_citation_path(path)
 
 
 def test_hyphenated_part_appendix_naming_another_part_fails_closed():
@@ -733,25 +762,31 @@ def _old_appendix(title, identifier, supported):
 )
 def test_property_appendix_part_grammar(title, designator, part, supported):
     identifier = f"Appendix {designator} to Part {part}"
-    new = ecfr._appendix_citation_from_identifier(title, identifier, require_supported=supported)
-    if "-" not in part:
-        # The alphanumeric form parses exactly as before, lookalikes included.
-        assert new == _old_appendix(title, identifier, supported)
-        return
-    # A hyphenated part is new: ASCII only, and every path it yields is schema-valid.
+    parsed = ecfr._part_appendix_from_identifier(identifier, require_supported=supported)
+    new = (
+        None
+        if parsed is None
+        else (parsed.citation_path(title), parsed.part, parsed.appendix)
+    )
+    # Every part, hyphenated or not, matches ASCII only, and every path it yields is
+    # schema-valid. The part-appendix grammar (#831) also supports roman numerals.
     grammatical = (
         re.fullmatch(ecfr._PART_IDENTIFIER_PATTERN, part) is not None
         and re.fullmatch("[0-9A-Za-z]+", designator) is not None
     )
-    designator_ok = not supported or designator.isdigit() or (
-        len(designator) == 1 and designator.isalpha()
-    )
+    designator_ok = not supported or ecfr._is_supported_appendix_designator(designator)
     if grammatical and designator_ok:
         appendix = designator.lower()
         assert new == (f"us/regulation/{title}/{part}/appendix-{appendix}", part, appendix)
         assert _valid_citation_path(new[0])
     else:
         assert new is None
+    if "-" not in part and designator.isascii() and part.isascii():
+        # The alphanumeric form parses as before, except that a roman numeral is now
+        # supported; non-ASCII look-alikes, which it once read, now fail closed.
+        old = _old_appendix(title, identifier, supported)
+        if old is not None or not (supported and ecfr._is_roman_numeral(designator)):
+            assert new == old
 
 
 def _old_filter(items, only_sections):
@@ -785,6 +820,30 @@ def _old_filter(items, only_sections):
                 ((parent.metadata if parent else None) or {}).get("parent_citation_path") or ""
             )
     return [item for item in items if item.citation_path in retained_paths]
+
+
+def _structure_paths(structure):
+    """Every part, subpart and readable live section path of a title, with repeats."""
+    title = int(structure["identifier"])
+    paths = []
+
+    def walk(node, part=None):
+        kind = node.get("type")
+        if kind == "part":
+            part = node["identifier"]
+            paths.append(f"us/regulation/{title}/{part}")
+        elif kind == "subpart":
+            paths.append(f"us/regulation/{title}/{part}/subpart-{node['identifier']}")
+        elif kind == "section" and not node.get("reserved"):
+            parsed = ecfr._section_citation_from_identifier(title, node["identifier"], part)
+            if parsed is not None:
+                paths.append(parsed[0])
+            return
+        for child in node.get("children", []):
+            walk(child, part)
+
+    walk(structure)
+    return paths
 
 
 def _filter_outcome(fn, items, selectors):
@@ -821,7 +880,15 @@ def _odd_titles(draw):
 @settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(structure=_odd_titles(), extra=st.lists(_chars("0123456789aZ.-", max_size=10), max_size=4))
 def test_property_selectors_main_accepts_filter_as_on_main(structure, extra):
-    items = list(build_ecfr_inventory_from_structures((structure,)).items)
+    try:
+        items = list(build_ecfr_inventory_from_structures((structure,)).items)
+    except ValueError as exc:
+        # Two items under one citation path fail closed (#841); main wrote both. Check
+        # that two items of the structure do claim the path the error names.
+        claimed = re.search(r"'([^']+)' is claimed twice", str(exc))
+        assert claimed is not None, exc
+        assert _structure_paths(structure).count(claimed.group(1)) >= 2
+        return
     candidates = {
         f"{item.metadata['part']}.{item.metadata['section']}"
         for item in items
@@ -840,10 +907,12 @@ def _title_structures(draw):
     """A title of distinct parts; each part's sections name it, optionally in subparts.
 
     Alphanumeric parts sometimes also carry a section numbered like a hyphenated part
-    ("19-8.1" in part 241), which no part may claim. It is left out when the title has a
-    part 8: the XML pass keeps the earlier reading of a section that does not name its part,
-    which takes "19-8.1" as part 8, section 1, and would repeat 8.1's path. No eCFR title
-    has that collision (all 49 titles, 2026-10-08).
+    ("19-8.1" in part 241), which no part may claim as a part. It is the part's own
+    section only when no section of the part names a part, as in 14 CFR part 241. It is
+    left out when the title has a part 8: where its part does not confirm it, the XML pass
+    keeps the earlier reading of a section that does not name its part, which takes
+    "19-8.1" as part 8, section 1, and would repeat 8.1's path. No eCFR title has that
+    collision (all 49 titles, 2026-10-08).
     """
     parts = draw(st.lists(_PART, min_size=1, max_size=5, unique=True))
     children = []
@@ -915,18 +984,31 @@ def test_property_inventory_partitions_by_part_and_matches_the_xml(structure):
         scoped = _paths(build_ecfr_inventory_from_structures((structure,), only_part=part).items)
         assert scoped == [p for p in paths if p == part_path or p.startswith(part_path + "/")]
 
-    # Structure order: live sections that name their part, in document order.
+    # Structure order: live sections that name their part, in document order, and
+    # "19-8.1" in a part none of whose sections (reserved ones too) names it.
     expected_sections = []
 
-    def walk(node, part=None):
+    def section_identifiers(node):
+        for child in node.get("children", []):
+            if child["type"] == "section":
+                yield child["identifier"]
+            else:
+                yield from section_identifiers(child)
+
+    def walk(node, part=None, part_less=False):
         if node["type"] == "part":
             part = node["identifier"]
+            part_less = not any(
+                identifier.startswith(f"{part}.") for identifier in section_identifiers(node)
+            )
         if node["type"] == "section" and not node.get("reserved"):
             identifier = node["identifier"]
             if identifier.startswith(f"{part}."):
                 expected_sections.append(f"us/regulation/41/{part}/{identifier[len(part) + 1:]}")
+            elif part_less:
+                expected_sections.append(f"us/regulation/41/{part}/{identifier}")
         for child in node.get("children", []):
-            walk(child, part)
+            walk(child, part, part_less)
 
     walk(structure)
     assert [

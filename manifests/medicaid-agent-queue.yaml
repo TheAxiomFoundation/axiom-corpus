@@ -88,8 +88,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 7
-  agent_ready: 196
-  blocked_primary_source: 9
+  agent_ready: 197
+  blocked_primary_source: 8
   done: 6
 states:
 - jurisdiction: us
@@ -11806,15 +11806,49 @@ states:
 - jurisdiction: us-ny
   name: New York
   family: w6_bundle_gap
-  queue_status: blocked_primary_source
+  queue_status: agent_ready
   source_kind: official_documents_program_bundle_gap
   primary_source_url: https://info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid,%20CHPlus%20&%20EP.pdf
-  blocked_count: 1
+  blocked_count: 0
+  target_manifest: manifests/us-ny-medicaid-income-levels-2026.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: guidance
+    version: 2026-10-20-w8-ny-medicaid
   work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
-  run_note: docs/ingest-runs/2026-10-06-w6-health.md
-  notes: '2026-10-06 wave 6 health: info.nystateofhealth.ny.gov blocks the corpus client (info.nystateofhealth.ny.gov answers
-    HTTP 403 CloudFront ''The request could not be satisfied''; no run note documents an impersonation fallback for this host).
-    OUTREACH; not worked around.'
+  run_note: docs/ingest-runs/2026-10-20-w8-ny-unblock.md
+  index_url: https://info.nystateofhealth.ny.gov/AssistorToolKit
+  index_document_count: 61
+  taken_count: 3
+  index_families:
+    eligibility_income_chart_pdf:
+      found: 3
+      taken: 3
+    assistor_newsletter_pdf:
+      found: 45
+      taken: 0
+    identity_form_or_instruction_pdf:
+      found: 9
+      taken: 0
+    account_instruction_pdf:
+      found: 2
+      taken: 0
+    assistor_training_memo_pdf:
+      found: 1
+      taken: 0
+    qhp_benefit_attachment_pdf:
+      found: 1
+      taken: 0
+  notes: '2026-10-20 wave 8 New York unblock: taken. The publisher''s own index is the NY State of Health Assistor Tool Kit
+    page (https://info.nystateofhealth.ny.gov/AssistorToolKit; 91 links, 61 document links): it lists the row''s PDF as ''2026
+    FPL Medicaid, Child Health Plus, Essential Plan'' and two current companions in the same income-levels family (''2026
+    Child Health Plus Desk Aid'', ''2025 Income Levels for QHP 2026 Plan Year''). All 3 taken as us-ny/guidance 2026-10-20-w8-ny-medicaid
+    (6 provisions: 3 document roots and 3 page rows; coverage complete, 0 missing, 0 extra, 0 duplicate; no content-check
+    finding). Access: the 2026-10-06 CloudFront 403 is a User-Agent block, not a challenge. info.nystateofhealth.ny.gov answers
+    HTTP 403 (919 bytes) to the extractor''s own Axiom User-Agent and HTTP 200 to its built-in browser User-Agent fallback,
+    so no manifest request option was needed (curl-cffi chrome120 also answers 200). The resources library index (/resources)
+    renders its items server-side but lists none of these PDFs; the site search form is JavaScript-only and the sitemap holds
+    no resource nodes.'
 - jurisdiction: us-wy
   name: Wyoming
   family: magi_verification_plan

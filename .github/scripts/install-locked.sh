@@ -21,8 +21,8 @@
 # predates this script.
 #
 # DIR defaults to $GITHUB_WORKSPACE, or the current directory outside Actions.
-# The lock does not pin the build backend pyproject.toml names (setuptools);
-# pip fetches it to build the project in step 3.
+# The lock does not pin the build requirements pyproject.toml names
+# (setuptools and wheel); pip fetches both to build the project in step 3.
 set -euo pipefail
 
 usage() {

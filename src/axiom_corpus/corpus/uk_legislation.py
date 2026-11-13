@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, replace
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
@@ -623,7 +623,11 @@ def _date_text(value: date | str | None, fallback: str, *, flag: str) -> str:
     (``value`` wins when given; ``fallback`` is used only when ``value`` is
     ``None``):
 
-      (a) A ``date`` instance -> its ``.isoformat()``, unchanged.
+      (a) A ``date`` instance -> its ``.isoformat()``, unchanged. A
+          ``datetime`` is a ``date`` subclass whose ``.isoformat()`` carries a
+          time, so it resolves to the calendar date it names, ``.date()``, in
+          its own offset. That is the same date (c) takes from its ISO string
+          form, so the object and its string never resolve differently.
       (b) A string that is already an exact ``YYYY-MM-DD`` date -> returned
           unchanged.
       (c) A string with a *leading* ``YYYY-MM-DD`` prefix followed by other
@@ -643,6 +647,8 @@ def _date_text(value: date | str | None, fallback: str, *, flag: str) -> str:
           ``flag``, so the caller must pass an explicit, valid date rather
           than have non-date text silently persisted into a date field.
     """
+    if isinstance(value, datetime):
+        return value.date().isoformat()
     if isinstance(value, date):
         return value.isoformat()
     candidate = fallback if value is None else value

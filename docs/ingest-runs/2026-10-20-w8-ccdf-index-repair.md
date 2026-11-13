@@ -2,7 +2,7 @@
 
 Date: 2026-10-20. Program: CCDF (`manifests/ccdf-agent-queue.yaml`).
 Worktree `~/axiom-corpus-worktrees/w8-ccdf-index`, branch `discovery/ingest-w8-ccdf-index` cut from main 393127f8b.
-Extraction wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`); nothing
+Extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`); nothing
 under `data/corpus/` is committed, nothing is signed, nothing was pushed.
 
 Earlier notes: `2026-09-10-ccdf-state-plans-fy2025-2027.md`, `...-retry.md`, `...-retry-2.md` (the three plan runs),
@@ -343,7 +343,7 @@ Committed:
 
 Not committed: no certificate changed (`data/certs/ccdf-ca-bundle.pem` is generated and gitignored, as before), and
 nothing under `data/corpus/` - unsigned and uncommitted, in the shared root
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus`:
+`<axiom-corpus checkout>/data/corpus`:
 
 - `sources/us-in/policy/2026-10-20-w8-ccdf-plan-fy2025-2027/official-documents/us-in-acf-ccdf-plan-fy2025-2027.pdf`
 - `inventory/us-in/policy/2026-10-20-w8-ccdf-plan-fy2025-2027.json`
@@ -362,7 +362,7 @@ uv run python scripts/build_ccdf_state_plan_manifests.py --only-plan-rows ak,as,
 # 3. extract Indiana
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/ccdf-ca-bundle.pem
 uv run axiom-corpus-ingest extract-official-documents \
-  --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  --base <axiom-corpus checkout>/data/corpus \
   --version 2026-10-20-w8-ccdf-plan-fy2025-2027 \
   --manifest manifests/us-in-ccdf-state-plan-fy2025-2027.yaml \
   --source-as-of 2026-10-20 --expression-date 2024-10-01

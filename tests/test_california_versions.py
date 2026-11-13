@@ -234,6 +234,69 @@ def test_a_version_anchor_with_missing_submission_fields_raises(handler):
         parse_leginfo_picker(html.encode())
 
 
+def _mojarra_anchor(fields: dict[str, str], *, attrs: str = "", text: str = "Version") -> str:
+    """One picker anchor as LegInfo writes it, with ``fields`` as its submission fields."""
+    params = ",".join(f"'{key}':'{value}'" for key, value in fields.items())
+    return (
+        f'<a href="#" {attrs} onclick="mojarra.jsfcljs(document.getElementById('
+        f"'selectFromMultiples'),{{{params}}},'');return false\">{text}</a>"
+    )
+
+
+def _command(name: str) -> dict[str, str]:
+    command = f"selectFromMultiples:{name}"
+    return {command: command, "lawCode": "WIC", "sectionNum": "11450."}
+
+
+def _picker_html(*anchors: str) -> bytes:
+    return f'<form id="selectFromMultiples">{"".join(anchors)}</form>'.encode()
+
+
+_FAVORITES = _mojarra_anchor(
+    _command("addMyFavTitle"),
+    attrs='id="selectFromMultiples:addMyFavTitle"',
+    text="Add To My Favorites",
+)
+_VALID_VERSION = _mojarra_anchor(
+    _command("j_idt139:0:j_idt141")
+    | {"op_statues": "2024", "op_chapter": "798", "op_section": "1"},
+    attrs='class="portletNav"',
+)
+
+
+def test_navigation_commands_are_not_versions():
+    picker = parse_leginfo_picker(_picker_html(_FAVORITES, _VALID_VERSION, '<a href="#">Top</a>'))
+    assert picker is not None
+    assert picker.versions == (("2024", "798", "1"),)
+
+
+@pytest.mark.parametrize(
+    ("anchor", "message"),
+    [
+        # A row-indexed version command with no op_* fields (the axiom-corpus#752 review case).
+        (_mojarra_anchor(_command("j_idt139:1:j_idt141")), "missing op_statues"),
+        # The row-indexed command only in the anchor's id, with a navigation-style handler.
+        (
+            _mojarra_anchor(
+                _command("addMyFavTitle"), attrs='id="selectFromMultiples:j_idt139:1:j_idt141"'
+            ),
+            "missing op_statues",
+        ),
+        # The submission fields only in a plain link, with no handler to post them.
+        (
+            '<a href="/faces/codes_displaySection.xhtml?lawCode=WIC&amp;sectionNum=11450.'
+            '&amp;op_statues=2026&amp;op_chapter=310&amp;op_section=2">Version</a>',
+            "no onclick handler",
+        ),
+    ],
+    ids=["command-in-onclick", "command-in-id", "fields-in-href"],
+)
+def test_a_classless_version_anchor_beside_a_valid_one_raises(anchor, message):
+    """Before this check, the classless anchor was skipped and capture saw one version."""
+    with pytest.raises(ValueError, match=message):
+        parse_leginfo_picker(_picker_html(_FAVORITES, _VALID_VERSION, anchor))
+
+
 # --- properties -----------------------------------------------------------------------
 
 _VALUES = st.from_regex(r"[0-9a-z]{1,4}(\.[0-9a-z]{1,3})?", fullmatch=True)
@@ -325,3 +388,45 @@ def test_operative_and_repealed_clauses_carry_their_own_date(when, triple, joine
     assert leginfo_variant_slug(operative, version) == f"operative-{when.isoformat()}"
     assert leginfo_variant_slug(repealed, version) == f"repealed-{when.isoformat()}"
     assert leginfo_variant_slug(f"(Effective {_long(when)}.)", version) == version.act_slug
+
+
+# Navigation command ids, nested in naming containers or not, with no row index.
+_NAVIGATION_NAMES = (
+    st.lists(st.from_regex(r"[A-Za-z][A-Za-z0-9_]{0,8}", fullmatch=True), min_size=1, max_size=3)
+    .map(":".join)
+    .filter(lambda name: "op_" not in name)
+)
+_COMPONENT_IDS = st.from_regex(r"[A-Za-z_][A-Za-z0-9_-]{0,8}", fullmatch=True)
+
+
+@given(
+    st.lists(_TRIPLES, min_size=1, max_size=4),
+    st.lists(_NAVIGATION_NAMES, max_size=3),
+    _COMPONENT_IDS,
+    st.integers(min_value=0, max_value=999),
+    _COMPONENT_IDS,
+    st.data(),
+)
+def test_a_picker_yields_every_version_link_in_order_or_raises(
+    triples, navigation, repeat_id, row, link_id, data
+):
+    """Navigation commands never change the parsed versions, and a version command
+    without its submission fields raises wherever it sits in the picker."""
+    anchors = [
+        _mojarra_anchor(
+            _command(f"j_idt139:{index}:j_idt141")
+            | dict(zip(("op_statues", "op_chapter", "op_section"), triple, strict=True)),
+            attrs='class="portletNav"',
+        )
+        for index, triple in enumerate(triples)
+    ]
+    for name in navigation:
+        anchors.insert(data.draw(st.integers(0, len(anchors))), _mojarra_anchor(_command(name)))
+    picker = parse_leginfo_picker(_picker_html(*anchors))
+    assert picker is not None
+    assert picker.versions == tuple(LegInfoVersion(*triple).normalized() for triple in triples)
+
+    stray = _mojarra_anchor(_command(f"{repeat_id}:{row}:{link_id}"))
+    anchors.insert(data.draw(st.integers(0, len(anchors))), stray)
+    with pytest.raises(ValueError, match="missing op_statues"):
+        parse_leginfo_picker(_picker_html(*anchors))

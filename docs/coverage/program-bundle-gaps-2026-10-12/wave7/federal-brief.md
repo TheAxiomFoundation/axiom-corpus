@@ -1,7 +1,7 @@
 # Wave 7 brief — Federal documents (group `federal`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w7-federal`, branch `discovery/ingest-w7-federal` (cut from main). Input:
-`/Users/pavelmakarchuk/axiom-corpus-worktrees/w7-workorder/docs/coverage/program-bundle-gaps-2026-10-12/wave7/federal.csv` (13 rows, 13 of them in Tier 1; 1 jurisdictions).
+Read `00-common-preamble.md` first. Worktree `<axiom-corpus worktrees>/w7-federal`, branch `discovery/ingest-w7-federal` (cut from main). Input:
+`<axiom-corpus worktrees>/w7-workorder/docs/coverage/program-bundle-gaps-2026-10-12/wave7/federal.csv` (13 rows, 13 of them in Tier 1; 1 jurisdictions).
 
 ## Rows by action
 
