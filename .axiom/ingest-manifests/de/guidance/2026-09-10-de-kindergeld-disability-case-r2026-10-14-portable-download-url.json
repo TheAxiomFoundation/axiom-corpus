@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-10-de-kindergeld-disability-case-r2026-10-14-portable-download-url.json",
+      "sha256": "3139ff47d1ea542f59ddeb63ae8525b6b21b94b209ece76792a2cf9d99fe20fd"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-10-de-kindergeld-disability-case-r2026-10-14-portable-download-url.json",
+      "sha256": "28f890c166dd231f8f3fbaac277e09b590b9099bac80b510206939f105781968"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-10-de-kindergeld-disability-case-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "dceca6c4c735d71b9375455061b45245dd07891eb3bb4e679b61ccf574561f4b"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-10-de-kindergeld-disability-case-r2026-10-14-portable-download-url/official-documents/bfh-iii-r-42-22-2024-01-30.pdf",
+      "sha256": "275820dfebd8c3dee3d3b5404923231674ba2d0d4b7a78f00c40c87f20ffc920"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-10-de-kindergeld-disability-case --manifest manifests/de-kindergeld-disability-case.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-10-de-kindergeld-disability-case without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:18:02.224312+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "im5WYeaP076dYHFJGgNS0b9cUk0EQeattD9kj35S++QosKEQvTc/Nv4UKkvUjAefLZoUXWRGEdNM3EoCIT4fDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-disability-case-r2026-10-14-portable-download-url"
+}

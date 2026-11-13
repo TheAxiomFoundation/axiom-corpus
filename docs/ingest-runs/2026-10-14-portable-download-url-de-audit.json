@@ -1,0 +1,1500 @@
+{
+  "fix": "https://github.com/TheAxiomFoundation/axiom-corpus/pull/878",
+  "group": "de",
+  "jurisdiction_owner": "Pavel Makarchuk (the DE Kindergeld scopes and their de-rulespec-2026-09-* selectors)",
+  "schema": "axiom-corpus/local-file-url-repair-audit/v1",
+  "scopes": [
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-08-de-kindergeld-eea-parties --manifest manifests/de-kindergeld-eea-parties.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.efta.int/eea-relations-eu/eea-institutions-two-pillar-structure/eea-efta-states": "https://www.efta.int/eea-relations-eu/eea-institutions-two-pillar-structure/eea-efta-states"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-eea-parties.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-08-de-kindergeld-eea-parties-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-08-de-kindergeld-eea-parties",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-civil",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-frontier",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-eea-efta-states.html": "b2b89976c605dfd72cf0f35aec8d1a2f6c0203cf8e142db6a11ee84774dbbed4"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-08-de-kindergeld-handbooks-retained --manifest manifests/de-kindergeld-bmf-handbooks.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://amtliche-handbuecher.bundesfinanzministerium.de/ao/2025/Abgabenordnung/Erster-Teil/Zweiter-Abschnitt/Paragraf-8/inhalt.html": "https://amtliche-handbuecher.bundesfinanzministerium.de/ao/2025/Abgabenordnung/Erster-Teil/Zweiter-Abschnitt/Paragraf-8/inhalt.html",
+        "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/A-Einkommensteuergesetz/II-Einkommen-2-24b/2-Steuerfreie-Einnahmen-3-3c/Paragraf-3/inhalt.html": "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/A-Einkommensteuergesetz/II-Einkommen-2-24b/2-Steuerfreie-Einnahmen-3-3c/Paragraf-3/inhalt.html"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-bmf-handbooks.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/guidance/2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-08-de-kindergeld-handbooks-retained",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-civil",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-frontier",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-aeao-2025-8.html": "002dc32d90b9c06c05dd8f0eca45819ccea0016ed22257207118d788acc82389",
+        "official-documents/de-esth-2024-3.html": "b95da6147270270312816d7b192cb79c27e1189b35962d62041c31e0303374b2"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-adult-services --manifest manifests/de-kindergeld-adult-services-guidance.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bmbfsfj.bund.de/resource/blob/96666/5ffc360fed7c4a1185e16b8a622ecf59/richtlinie-internationaler-jugendfreiwilligendienst-data.pdf": "https://www.bmbfsfj.bund.de/resource/blob/96666/5ffc360fed7c4a1185e16b8a622ecf59/richtlinie-internationaler-jugendfreiwilligendienst-data.pdf",
+        "https://www.weltwaerts.de/files/media/dokumente_dc/de/Organisationen/Nord-Sued-Komponente/Foerderleitlinie-weltwaerts-Freiwilligendienst-2016.pdf": "https://www.weltwaerts.de/files/media/dokumente_dc/de/Organisationen/Nord-Sued-Komponente/Foerderleitlinie-weltwaerts-Freiwilligendienst-2016.pdf"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-adult-services-guidance.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/guidance/2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-09-de-kindergeld-adult-services",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-ijfd-2021.pdf": "167f7f0fe4edf6125a41575e12be752a87f615aad60eb84116c17b03e0f58664",
+        "official-documents/de-kindergeld-weltwaerts-2016.pdf": "28b0e86682aef921afc52f6a569633435c1b3e309dc72add0db5b4747bf6d058"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-allowance-explanation --manifest manifests/de-kindergeld-allowance-explanation.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://dserver.bundestag.de/btd/20/127/2012778.pdf": "https://dserver.bundestag.de/btd/20/127/2012778.pdf"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-allowance-explanation.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-09-de-kindergeld-allowance-explanation-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-09-de-kindergeld-allowance-explanation",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-bt-drs-20-12778-kindergeld-explanation.pdf": "e88696d40b46f2841ec0b7cc0ce56fe8bfaf269aa1cb67c4e5bc6ab5aadb26ee"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-bmf-letter-context --manifest manifests/de-kindergeld-bmf-letter-context.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 8,
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-19c/I/anhang-19c-I.html": "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-19c/I/anhang-19c-I.html",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:62020CJ0328": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:62020CJ0328",
+        "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-12-02-beruecks-auslaendischer-verhaeltnisse.pdf?__blob=publicationFile&v=4": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-12-02-beruecks-auslaendischer-verhaeltnisse.pdf?__blob=publicationFile&v=4"
+      },
+      "inventory_rows": 6,
+      "manifest": "manifests/de-kindergeld-bmf-letter-context.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 6,
+      "repaired_rows": 12,
+      "repaired_scope": "de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-09-de-kindergeld-bmf-letter-context",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-bmf-2013-06-28-child-allowance-transfer.html": "c9cc5e7fff4cdcd13a82987a199ed502a4bea4bffe5f56268954bd06b00e7210",
+        "official-documents/de-bmf-2025-12-02-country-groups.pdf": "745c34ec78b01e23896a46ea9c6e6c6c7c0ae69186c920908c95aaff6d95e0a0",
+        "official-documents/de-cjeu-c-328-20.pdf": "efdd53c5338484844376e54c8401a244a0578dd87d9e436dc22656eb6c8d937d"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-civil-partner-letter --manifest manifests/de-kindergeld-civil-partner-letter.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-19c/II/anhang-19c-II.html": "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-19c/II/anhang-19c-II.html"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-civil-partner-letter.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-09-de-kindergeld-civil-partner-letter-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-09-de-kindergeld-civil-partner-letter",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-bmf-2014-01-17-civil-partners.html": "32c35766674768558952d8a0582c82eae4e17311cc7fa019a4f7026197445df7"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-10-de-kindergeld-disability-case --manifest manifests/de-kindergeld-disability-case.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE202410069?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE202410069?type=1646225765"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-disability-case.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-10-de-kindergeld-disability-case-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-10-de-kindergeld-disability-case",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bfh-iii-r-42-22-2024-01-30.pdf": "275820dfebd8c3dee3d3b5404923231674ba2d0d4b7a78f00c40c87f20ffc920"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-11-de-kindergeld-bgh-counterpart --manifest manifests/de-kindergeld-bgh-counterpart.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2016/XII_ZR_129-16.pdf?__blob=publicationFile&v=1": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2016/XII_ZR_129-16.pdf?__blob=publicationFile&v=1"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-bgh-counterpart.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-11-de-kindergeld-bgh-counterpart-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-11-de-kindergeld-bgh-counterpart",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bgh-xii-zr-129-16-2018-03-07.pdf": "58238829ae53bd36f736a94254898025b31cd1eabd2b3df83f7c4bb17ba7744e"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor --manifest manifests/de-kindergeld-bgh-form-predecessor.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2013/XII_ZR__98-13.pdf?__blob=publicationFile&v=1": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2013/XII_ZR__98-13.pdf?__blob=publicationFile&v=1"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-bgh-form-predecessor.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bgh-xii-zr-98-13-2015-06-17.pdf": "5ef56d5e4a7229f2067ff414a65f6d1399611d861cb352e08677d708f3174432"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence --manifest manifests/de-kindergeld-dakg2025-evidence.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf": "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-dakg2025-evidence.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-bzst-dakg-2025-a19-2.pdf": "33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-14-de-kindergeld-dakg2025-sections --manifest manifests/de-kindergeld-dakg2025-sections.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 842
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf": "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf"
+      },
+      "inventory_rows": 421,
+      "manifest": "manifests/de-kindergeld-dakg2025-sections.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 421,
+      "repaired_rows": 842,
+      "repaired_scope": "de/guidance/2026-09-14-de-kindergeld-dakg2025-sections-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-14-de-kindergeld-dakg2025-sections",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-bzst-dakg-2025-sections.pdf": "33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-15-de-kindergeld-cross-border-priority --manifest manifests/de-kindergeld-cross-border-priority.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 20
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610125?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610125?type=1646225765",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610238?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610238?type=1646225765",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610245?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610245?type=1646225765",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201650230?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201650230?type=1646225765",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201650276?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201650276?type=1646225765"
+      },
+      "inventory_rows": 10,
+      "manifest": "manifests/de-kindergeld-cross-border-priority.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 10,
+      "repaired_rows": 20,
+      "repaired_scope": "de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-15-de-kindergeld-cross-border-priority",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bfh-iii-r-10-13-2016-08-04.pdf": "9e2ebb3ae27a8020fef4581f19e6ea96677da4c5970110ec6a468cb2326bfb51",
+        "official-documents/bfh-iii-r-11-13-2016-07-07.pdf": "25ba562e1f6c42e1e7537699941e6de49f129d27a641551f0f26c350ea64b3e1",
+        "official-documents/bfh-iii-r-14-13-2016-04-13.pdf": "ecfdf0280d74e455dbaad8aa4fcd855d8ed87eff08d999e4154f6f0e77258702",
+        "official-documents/bfh-iii-r-17-13-2016-02-04.pdf": "ac34deb1e9a099ac7acc57b52ab88d008f77d4fcea6e865e44e72507b57fb7a9",
+        "official-documents/bfh-iii-r-8-13-2016-03-10.pdf": "7b4b245a9fb286246a7aa5a9b27e8d558c9780333846d1c5a12232cb9294aef5"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-15-de-kindergeld-dakg2025-preface --manifest manifests/de-kindergeld-dakg2025-preface.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf": "https://www.tacheles-sozialhilfe.de/files/Aktuelles/2025/DA-KG%202025..pdf"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-dakg2025-preface.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/guidance/2026-09-15-de-kindergeld-dakg2025-preface-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-15-de-kindergeld-dakg2025-preface",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-bzst-dakg-2025-preface.pdf": "33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-15-de-kindergeld-eu-priority-references --manifest manifests/de-kindergeld-eu-priority-references.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 28
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A61994CJ0245": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A61994CJ0245",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A61999CJ0085": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A61999CJ0085",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62003CJ0153": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62003CJ0153",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62003CJ0543": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62003CJ0543",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62008CJ0363": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62008CJ0363",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62009CJ0016": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62009CJ0016",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62012CJ0177": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A62012CJ0177"
+      },
+      "inventory_rows": 14,
+      "manifest": "manifests/de-kindergeld-eu-priority-references.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 14,
+      "repaired_rows": 28,
+      "repaired_scope": "de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-15-de-kindergeld-eu-priority-references",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references"
+      ],
+      "source_files": {
+        "official-documents/cjeu-c-153-03-2005-07-07.html": "1c4a0a6cd76c508ed0e99b0fe3d472c6497228e8128f345dae2b105024d72acc",
+        "official-documents/cjeu-c-16-09-2010-10-14.html": "eec627c3aabcb6f84666ca666aba0b24937b9e0e073a09c624e7157947f1102e",
+        "official-documents/cjeu-c-177-12-2013-10-24.html": "bad324ba4b7f2ce216b7f43118dc9ffa69788cd0b74e87d366e6e478a1652170",
+        "official-documents/cjeu-c-245-94-c-312-94-1996-10-10.html": "514fbf97756a101f2425c85388909456733c59ed2ed338b3ba8f83bca4e8b890",
+        "official-documents/cjeu-c-363-08-2009-11-26.html": "aebbc584b2e5c0b93dfc8b711e11ba1e5a64b3b11ff070e7e94a397b02d11a4f",
+        "official-documents/cjeu-c-543-03-2005-06-07.html": "4f575350ed8d0ebd35b713e7ac360b327150ab9aad835b326b515b497fed8bf5",
+        "official-documents/cjeu-c-85-99-2001-03-15.html": "1f8ffd55e45919a86f6fe653e3de1bdee0c0bcdd28e99f4a5cf028b3137992ba"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-15-de-kindergeld-priority-followup --manifest manifests/de-kindergeld-priority-followup.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 12,
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://juris.curia.europa.eu/juris/document/document.jsf?docid=170306&doclang=DE": "https://juris.curia.europa.eu/juris/document/document.jsf?docid=170306&doclang=DE",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201410183?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201410183?type=1646225765",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201510185?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201510185?type=1646225765",
+        "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610174?type=1646225765": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610174?type=1646225765"
+      },
+      "inventory_rows": 8,
+      "manifest": "manifests/de-kindergeld-priority-followup.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 8,
+      "repaired_rows": 16,
+      "repaired_scope": "de/guidance/2026-09-15-de-kindergeld-priority-followup-r2026-10-14-portable-download-url",
+      "scope": "de/guidance/2026-09-15-de-kindergeld-priority-followup",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bfh-iii-b-127-14-2015-04-27.pdf": "b8d9b25b33efc9010d2c859d1bb05e09c5f6b693b36f97481d362fc238e4ca6a",
+        "official-documents/bfh-iii-r-17-13-2014-05-08.pdf": "f2db917e8c36ef40b64af6c5797da2e728da501dbb66457a17bbb2cced3b99cf",
+        "official-documents/bfh-iii-r-68-13-2016-04-28.pdf": "a3f40b08424fcca3c53c12b57e7af7fd553f71d798b54f77b187fbfe5060ac6b",
+        "official-documents/cjeu-c-378-14-2015-10-22.html": "ee2955a404a1d0cc04600afb1121f860986400ac3c358bd16c0886941ffa2c37"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-08-de-kindergeld-arb --manifest manifests/de-kindergeld-arb-3-80.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://publications.europa.eu/resource/cellar/fba26a64-1ef1-42d6-87c3-b841c3218831.0002.01/DOC_1": "https://publications.europa.eu/resource/cellar/fba26a64-1ef1-42d6-87c3-b841c3218831.0002.01/DOC_1"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-arb-3-80.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/regulation/2026-09-08-de-kindergeld-arb-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-08-de-kindergeld-arb",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-civil",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-frontier",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-arb-3-80.pdf": "00fa5e09d753d67f45421529161f5ce11b115e02a681ee64d7a02cd3266f10f8"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-08-de-kindergeld-bilateral --manifest manifests/de-kindergeld-bilateral-treaties.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 88
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/bosnien_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/bosnien_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/bosnien_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/bosnien_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/bosnien_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/bosnien_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/kosovo_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/kosovo_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/kosovo_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/kosovo_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/kosovo_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/kosovo_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/marokko_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/marokko_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/marokko_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/marokko_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/marokko_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/marokko_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/montenegro_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/montenegro_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/montenegro_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/montenegro_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/montenegro_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/montenegro_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/serbien_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/serbien_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/serbien_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/serbien_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/serbien_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/serbien_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tuerkei_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tuerkei_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tuerkei_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tuerkei_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tuerkei_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tuerkei_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_dv.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_dv.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_sp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_sp.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_sva.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_sva.pdf",
+        "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_zp.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/svabkommen/tunesien_zp.pdf"
+      },
+      "inventory_rows": 44,
+      "manifest": "manifests/de-kindergeld-bilateral-treaties.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 44,
+      "repaired_rows": 88,
+      "repaired_scope": "de/regulation/2026-09-08-de-kindergeld-bilateral-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-08-de-kindergeld-bilateral",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-civil",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-frontier",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-bosnien-dv.pdf": "d00f32b27f0675c77a9e6d4db509ea14fe39da8842ae54ca4fca07777531e2f2",
+        "official-documents/de-kindergeld-bosnien-sp.pdf": "b82817999f22e2ca2256b7d91599ef6409793b097ec86b3f600b89bb6d08297f",
+        "official-documents/de-kindergeld-bosnien-sva.pdf": "000e5397168a0ce575334b1609b972c5a1a7a59d94b10d80868f93baf9ce2a17",
+        "official-documents/de-kindergeld-kosovo-dv.pdf": "cd36658b707779fda4aff8a65055491c385e4fce7d1f9c94eafd950cbbb9f1f3",
+        "official-documents/de-kindergeld-kosovo-sp.pdf": "1c5760b15209bf19fd1d09d9b896a6b6b0df53ad9b3c0fe9ba2b5d6166cd6db1",
+        "official-documents/de-kindergeld-kosovo-sva.pdf": "e84b6dcd33e3159e4452fe8385d5840b26e64462b9094ae4be7ede6bbb286885",
+        "official-documents/de-kindergeld-marokko-dv.pdf": "abbd54b6bf3b70e58b3bf5e16babb000892b4ab175765c98885e34f3a48bc06a",
+        "official-documents/de-kindergeld-marokko-sp.pdf": "5c231919e86994cc34905dbf636b3aafe12a642356ac40350de427ce9cfb8ccc",
+        "official-documents/de-kindergeld-marokko-sva.pdf": "561fbe59dc6420b2ecc9fed53d55f11bd92f5578fe53eb3f92f72061a3c4be55",
+        "official-documents/de-kindergeld-montenegro-dv.pdf": "6e2615382a703a2528e886372114be19c3bdc037d30538b273b8f7be0e455350",
+        "official-documents/de-kindergeld-montenegro-sp.pdf": "379a864d2dc4a20200e9cf52a6b358c5b5b964bb89957bf06eaee96fce692eb7",
+        "official-documents/de-kindergeld-montenegro-sva.pdf": "522d2ce54b42db229683fa1fda7dc1f1ed158580df3f97d8dba04aff38beab51",
+        "official-documents/de-kindergeld-serbien-dv.pdf": "d2c5e3bb17e6481cab9c02278049a0b492f22a693ac274bd9dff3c63597d0b82",
+        "official-documents/de-kindergeld-serbien-sp.pdf": "53ae224d04a196074a0aa7573416e81f8e5b8baec5df60b6d37a6b47b3e5061d",
+        "official-documents/de-kindergeld-serbien-sva.pdf": "64c62799ed6523dd115c62d6d54f326a16ef212b736117133c96f85503336b06",
+        "official-documents/de-kindergeld-tuerkei-dv.pdf": "e1c3b81e715800dd41e2f6a355a4a4424db48975ad9681af18484ab586ecf8cb",
+        "official-documents/de-kindergeld-tuerkei-sp.pdf": "cf37cd7709d345e728414df2efe88bae589a7db310848060dd1939a0e0e2d55d",
+        "official-documents/de-kindergeld-tuerkei-sva.pdf": "e496311c91ac7a9b3a9229ad51eef5fe9d0e0f5a69660170070f42cd31fa882b",
+        "official-documents/de-kindergeld-tunesien-dv.pdf": "70221dd6d730bd3b25e43af6b27f8377ea0732664e7f275d8d8663a95fb2bb83",
+        "official-documents/de-kindergeld-tunesien-sp.pdf": "e7394717779dc786f4e8a59619d51089380f74057f7dcf8a096042f98205922a",
+        "official-documents/de-kindergeld-tunesien-sva.pdf": "243040fcc438cf8f46dda2cd5afb4579006ab81a27445c1c3008c08919ef1510",
+        "official-documents/de-kindergeld-tunesien-zp.pdf": "a85f5d922c08aa89728c6e4fba763f583553cb9e9b67c226efc07098a2705d4b"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-08-de-kindergeld-eea --manifest manifests/de-kindergeld-eea-official-documents.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.dvka.de/media/dokumente/rechtsquellen/abkommen_ewr.pdf": "https://www.dvka.de/media/dokumente/rechtsquellen/abkommen_ewr.pdf"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-eea-official-documents.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/regulation/2026-09-08-de-kindergeld-eea-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-08-de-kindergeld-eea",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-civil",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-frontier",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-eea-agreement.pdf": "b59a696b19ccc7277580ac4abae6e42f10fd14c59093221b43eed327a059b1e4"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-08-de-kindergeld-withdrawal --manifest manifests/de-kindergeld-withdrawal-agreement.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://publications.europa.eu/resource/cellar/6b06c8b6-43f0-11ea-b81b-01aa75ed71a1.0004.01/DOC_1": "https://publications.europa.eu/resource/cellar/6b06c8b6-43f0-11ea-b81b-01aa75ed71a1.0004.01/DOC_1"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-withdrawal-agreement.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/regulation/2026-09-08-de-kindergeld-withdrawal-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-08-de-kindergeld-withdrawal",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-civil",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-frontier",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-withdrawal-agreement.pdf": "d7715ff758b2b17db74e9ab6c772484b3764e65a38f59a87522c077798876ae5"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-09-de-kindergeld-eu-articles --manifest manifests/de-kindergeld-eu-articles.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 32
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://publications.europa.eu/resource/cellar/00185d05-a69f-4055-8a8e-341c14c29d50.0012.03/DOC_2": "https://publications.europa.eu/resource/cellar/00185d05-a69f-4055-8a8e-341c14c29d50.0012.03/DOC_2",
+        "https://publications.europa.eu/resource/cellar/296c9322-ca95-11e9-992f-01aa75ed71a1.0005.02/DOC_1": "https://publications.europa.eu/resource/cellar/296c9322-ca95-11e9-992f-01aa75ed71a1.0005.02/DOC_1"
+      },
+      "inventory_rows": 16,
+      "manifest": "manifests/de-kindergeld-eu-articles.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 16,
+      "repaired_rows": 32,
+      "repaired_scope": "de/regulation/2026-09-09-de-kindergeld-eu-articles-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-09-de-kindergeld-eu-articles",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-883-2004-article-1-z.pdf": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4",
+        "official-documents/de-kindergeld-883-2004-article-2.pdf": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4",
+        "official-documents/de-kindergeld-883-2004-article-3.pdf": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4",
+        "official-documents/de-kindergeld-883-2004-article-67.pdf": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4",
+        "official-documents/de-kindergeld-883-2004-article-68.pdf": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4",
+        "official-documents/de-kindergeld-987-2009-article-58.pdf": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0",
+        "official-documents/de-kindergeld-987-2009-article-59.pdf": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0",
+        "official-documents/de-kindergeld-987-2009-article-60.pdf": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-09-de-kindergeld-swiss-coordination --manifest manifests/de-kindergeld-swiss-coordination.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:02002A0430(01)-20210101": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:02002A0430(01)-20210101",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:22012D0195": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:22012D0195"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-swiss-coordination.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/regulation/2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-09-de-kindergeld-swiss-coordination",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/eu-ch-decision-2012-195.pdf": "ab135f0d377ad2d02eb7d1880aa3ca4073ad796ed369590549a34b7e350a579d",
+        "official-documents/eu-ch-free-movement-2021.pdf": "c0799313b8f1f8bc98c3a356d8279ccbc7bf32d698999eeb88d8b4eca6d36c4f"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-09-de-kindergeld-treaty-texts --manifest manifests/de-kindergeld-treaty-commencement.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl296s1455b.pdf%27%5D": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl296s1455b.pdf%27%5D",
+        "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl296s2522a.pdf%27%5D": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl296s2522a.pdf%27%5D"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-treaty-commencement.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/regulation/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-09-de-kindergeld-treaty-texts",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bgbl296s1455b.pdf": "241a171232aa1f5aa00a6fba36595ade7ebbabfff27d49df34702716cbbfe5a6",
+        "official-documents/bgbl296s2522a.pdf": "c4dc1d5ae797ee072204729caac0346d4362535c4ef8eed95e2dc5211deed021"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-14-de-kindergeld-eu-territory --manifest manifests/de-kindergeld-eu-territory.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 12
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016E355": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016E355",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M050": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M050",
+        "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M052": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A12016M052"
+      },
+      "inventory_rows": 6,
+      "manifest": "manifests/de-kindergeld-eu-territory.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 6,
+      "repaired_rows": 12,
+      "repaired_scope": "de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url",
+      "scope": "de/regulation/2026-09-14-de-kindergeld-eu-territory",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindergeld-eu-teu-2016-article-50.html": "013825824c196557e34782d08c723c1c0839a0a53d6157a4dd71060cfabf9cec",
+        "official-documents/de-kindergeld-eu-teu-2016-article-52.html": "f65cd39d0db1fee8b0e9e1a2aaa3ac7038b46c4b0570f0a7ad08aa7cc66673fe",
+        "official-documents/de-kindergeld-eu-tfeu-2016-article-355.html": "acd14074a0140c984361085d913a6fdbe8849ab867400d0c798891bb5f7e3c15"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-08-de-kindergeld-parentage-context --manifest manifests/de-kindergeld-parentage-context.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F*%5B%40attr_id%3D%27bgbl197s2942.pdf%27%5D": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F*%5B%40attr_id%3D%27bgbl197s2942.pdf%27%5D"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-parentage-context.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/statute/2026-09-08-de-kindergeld-parentage-context-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-08-de-kindergeld-parentage-context",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindrg-1997-parentage-context.pdf": "bd58391268f7d4103670967f86ab7642fe9bae34faf56ec36415b2dadc1e2c7b"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-08-de-kindergeld-parentage-history --manifest manifests/de-kindergeld-parentage-history.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F*%5B%40attr_id%3D%27bgbl197s2942.pdf%27%5D": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F*%5B%40attr_id%3D%27bgbl197s2942.pdf%27%5D"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-parentage-history.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/statute/2026-09-08-de-kindergeld-parentage-history-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-08-de-kindergeld-parentage-history",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-08-kindergeld-2025-history",
+        "de-rulespec-2026-09-08-kindergeld-context",
+        "de-rulespec-2026-09-08-kindergeld-parentage",
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-allowance-context",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-bmf-context",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-kindrg-1997.pdf": "bd58391268f7d4103670967f86ab7642fe9bae34faf56ec36415b2dadc1e2c7b"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-09-de-kindergeld-adult-service-history --manifest manifests/de-kindergeld-adult-service-history.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_S-Z/SG/0058b/0058b_2013_04_13.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_S-Z/SG/0058b/0058b_2013_04_13.html"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-adult-service-history.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/statute/2026-09-09-de-kindergeld-adult-service-history-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-09-de-kindergeld-adult-service-history",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-sg-58b-2025-history.html": "adbeee56908a82812b85247823ec2fbba9a5f1bd7cf343173f2f1c0bdf522343"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-09-de-kindergeld-marginal-employment-history --manifest manifests/de-kindergeld-marginal-employment-history.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/04_SGB_IV/pp_0001_25/0008/0008_2024_03_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/04_SGB_IV/pp_0001_25/0008/0008_2024_03_01.html"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-marginal-employment-history.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/statute/2026-09-09-de-kindergeld-marginal-employment-history-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-09-de-kindergeld-marginal-employment-history",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-sgbiv8-2025-history.html": "886aef88aa54188995714b7b6e620a0f4ecd56dcd22985af7670c35f9e8996ab"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-09-de-kindergeld-sgbiv8-threshold-paragraph --manifest manifests/de-kindergeld-sgbiv8-threshold-paragraph.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/04_SGB_IV/pp_0001_25/0008/0008_2024_03_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/04_SGB_IV/pp_0001_25/0008/0008_2024_03_01.html"
+      },
+      "inventory_rows": 2,
+      "manifest": "manifests/de-kindergeld-sgbiv8-threshold-paragraph.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 2,
+      "repaired_rows": 4,
+      "repaired_scope": "de/statute/2026-09-09-de-kindergeld-sgbiv8-threshold-paragraph-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-09-de-kindergeld-sgbiv8-threshold-paragraph",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-sgbiv8-2025-absatz-1a.html": "886aef88aa54188995714b7b6e620a0f4ecd56dcd22985af7670c35f9e8996ab"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-09-de-kindergeld-treaty-texts --manifest manifests/de-kindergeld-treaty-texts.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl295s0634.pdf%27%5D": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl295s0634.pdf%27%5D",
+        "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl295s0641.pdf%27%5D": "https://www.bgbl.de/xaver/bgbl/start.xav?start=%2F%2F%2A%5B%40attr_id%3D%27bgbl295s0641.pdf%27%5D"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-treaty-texts.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/statute/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-09-de-kindergeld-treaty-texts",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-09-kindergeld-adult-services",
+        "de-rulespec-2026-09-09-kindergeld-bfh-decisions",
+        "de-rulespec-2026-09-09-kindergeld-bgb-amendment",
+        "de-rulespec-2026-09-09-kindergeld-dakg",
+        "de-rulespec-2026-09-09-kindergeld-estg32-paragraphs",
+        "de-rulespec-2026-09-09-kindergeld-eu-articles",
+        "de-rulespec-2026-09-09-kindergeld-marginal-employment",
+        "de-rulespec-2026-09-09-kindergeld-swiss-coordination",
+        "de-rulespec-2026-09-09-kindergeld-threshold",
+        "de-rulespec-2026-09-09-kindergeld-treaty-texts",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/bgbl295s0634.pdf": "78b16512c74d6f7bd83109222b200a2b00911b78f70461ac2b9af5eb73dce081",
+        "official-documents/bgbl295s0641.pdf": "27c2f8335b8f939af7bf53cda02e2092c8fdf0e9719879bf2c247e97510b37fa"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-10-de-kindergeld-maternity-amendments --manifest manifests/de-kindergeld-maternity-amendments.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.recht.bund.de/bgbl/1/2025/371/regelungstext.pdf?__blob=publicationFile": "https://www.recht.bund.de/bgbl/1/2025/371/regelungstext.pdf?__blob=publicationFile",
+        "https://www.recht.bund.de/bgbl/1/2025/59/regelungstext.pdf?__blob=publicationFile": "https://www.recht.bund.de/bgbl/1/2025/59/regelungstext.pdf?__blob=publicationFile"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-maternity-amendments.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/statute/2026-09-10-de-kindergeld-maternity-amendments-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-10-de-kindergeld-maternity-amendments",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-maternity-bgbl-2025-i-371.pdf": "b8aeb7b5420007f20b23223a085533e8f250a5a0315d17f818aa6fe7bf826535",
+        "official-documents/de-maternity-bgbl-2025-i-59.pdf": "15c50f5d88110f09363ad62ed59da60dd4b22d50a751c4783aec5586279bc66e"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-10-de-kindergeld-maternity-history --manifest manifests/de-kindergeld-maternity-history.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_L-R/MuSchG/0003/0003_2018_01_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_L-R/MuSchG/0003/0003_2018_01_01.html",
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_L-R/MuSchG/0003/0003_2025_06_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/02_L-R/MuSchG/0003/0003_2025_06_01.html"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-maternity-history.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/statute/2026-09-10-de-kindergeld-maternity-history-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-10-de-kindergeld-maternity-history",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-10-kindergeld-eu-service-earlier",
+        "de-rulespec-2026-09-10-kindergeld-eu-service-predecessors",
+        "de-rulespec-2026-09-10-kindergeld-generations-service",
+        "de-rulespec-2026-09-10-kindergeld-maternity",
+        "de-rulespec-2026-09-10-kindergeld-recipient-priority",
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-11-kindergeld-illness-precedents",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-muschg3-2018-01-01.html": "8ace5248d4693335363dece0ad38035b126686a89e3844bceb3d238f91e5e116",
+        "official-documents/de-muschg3-2025-06-01.html": "76201945054a678389da88c35b8428ac8f02def9e73766f897c311ff6076467b"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-11-de-kindergeld-disability-definition-history --manifest manifests/de-kindergeld-disability-definition-history.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2001_07_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2001_07_01.html",
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2018_01_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2018_01_01.html"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-disability-definition-history.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/statute/2026-09-11-de-kindergeld-disability-definition-history-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-11-de-kindergeld-disability-definition-history",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-11-kindergeld-disability-definition",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-sgbix-2-2001-history.html": "9e2991c8d89911da844ba1ef49bdc0c13b07aa7a2c2a2bc46bc59236e1e69f16",
+        "official-documents/de-sgbix-2-2018-history.html": "9df302e8acfb73706f3716b430f0f9795c1699f0b11497781e3827638ba59ff0"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-11-de-kindergeld-disability-paragraphs --manifest manifests/de-kindergeld-disability-paragraphs.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "text/html": 8
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2001_07_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2001_07_01.html",
+        "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2018_01_01.html": "https://rvrecht.deutsche-rentenversicherung.de/SharedDocs/rvRecht/05_Normen_und_Vertraege/01_Sozialgesetzbuch/09_SGB_IX/pp_0001_25/0002/0002_2018_01_01.html"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/de-kindergeld-disability-paragraphs.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 8,
+      "repaired_scope": "de/statute/2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url",
+      "scope": "de/statute/2026-09-11-de-kindergeld-disability-paragraphs",
+      "selectors_naming_old_scope": [
+        "de-rulespec-2026-09-11-kindergeld-bgh-counterpart",
+        "de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-evidence",
+        "de-rulespec-2026-09-14-kindergeld-dakg2025-sections",
+        "de-rulespec-2026-09-14-kindergeld-eu-territory",
+        "de-rulespec-2026-09-15-kindergeld-cross-border-priority",
+        "de-rulespec-2026-09-15-kindergeld-dakg2025-preface",
+        "de-rulespec-2026-09-15-kindergeld-eu-priority-references",
+        "de-rulespec-2026-09-15-kindergeld-priority-followup"
+      ],
+      "source_files": {
+        "official-documents/de-sgbix2-absatz1-2001.html": "9e2991c8d89911da844ba1ef49bdc0c13b07aa7a2c2a2bc46bc59236e1e69f16",
+        "official-documents/de-sgbix2-absatz1-2018.html": "9df302e8acfb73706f3716b430f0f9795c1699f0b11497781e3827638ba59ff0"
+      }
+    }
+  ],
+  "tag": "r2026-10-14-portable-download-url"
+}

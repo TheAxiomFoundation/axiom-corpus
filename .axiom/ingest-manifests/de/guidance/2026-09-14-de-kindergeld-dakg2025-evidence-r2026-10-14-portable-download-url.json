@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence-r2026-10-14-portable-download-url.json",
+      "sha256": "9522a7a8fb75ae98f3f08be1a438f263c827a5cb12b86547ebeb446a01dfec9d"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence-r2026-10-14-portable-download-url.json",
+      "sha256": "778a5529a415475df02391bdbe5b91528facde65a5c86adbade991e551ce055b"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "bc947335de67a66773ecb27a30b4c3ca55e16927bda4a4ba1c418680e4f966d0"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence-r2026-10-14-portable-download-url/official-documents/de-bzst-dakg-2025-a19-2.pdf",
+      "sha256": "33e1a8c4f6bd65034febc9d0c45850e64e982f665f519f08eaeceb80ac02dedd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence --manifest manifests/de-kindergeld-dakg2025-evidence.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-14-de-kindergeld-dakg2025-evidence without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:18:37.360645+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FW8xtx5v4fBOBS0plWmNv8iiAFV35JnYIxM7G3KY7m2OdYt17L8IljIYgLfvpcXnPfxSHrqIKCgZ0aqz0rXNCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-de-kindergeld-dakg2025-evidence-r2026-10-14-portable-download-url"
+}

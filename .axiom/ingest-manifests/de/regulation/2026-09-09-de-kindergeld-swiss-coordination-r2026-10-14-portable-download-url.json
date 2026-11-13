@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url.json",
+      "sha256": "bd0797eee253209cbbf1ac9419bfbbfec1b967b98049a904cb3be96d52a2970c"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url.json",
+      "sha256": "60df66cf66360e1e7a0133abad68f6357c2fbc27c06b4ed645a9359844cc53c7"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "5acbf0c714e6808358050bbdbdaf7b7c55192d8adc279e8c6309819d64af13dc"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url/official-documents/eu-ch-decision-2012-195.pdf",
+      "sha256": "ab135f0d377ad2d02eb7d1880aa3ca4073ad796ed369590549a34b7e350a579d"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url/official-documents/eu-ch-free-movement-2021.pdf",
+      "sha256": "c0799313b8f1f8bc98c3a356d8279ccbc7bf32d698999eeb88d8b4eca6d36c4f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-09-de-kindergeld-swiss-coordination --manifest manifests/de-kindergeld-swiss-coordination.yaml --tag r2026-10-14-portable-download-url (successor of de/regulation/2026-09-09-de-kindergeld-swiss-coordination without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-23T15:21:07.109909+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zt+IjyP6lGyCWdFCHZauQNyDtR5pI13zRHq04qyxgTatBDg0cYV6c0lqgcv6BHYZyjHL+s717jhrPx6fdyTPDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-swiss-coordination-r2026-10-14-portable-download-url"
+}
