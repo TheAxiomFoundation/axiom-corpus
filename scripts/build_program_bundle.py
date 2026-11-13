@@ -279,10 +279,14 @@ def unarchive(url: str) -> str:
 
 def normalize_url(url: str) -> str:
     """The page a link names: an archived page, and a WebWorks manual link
-    (index.html#page/<chapter>/<page>.html) names its page in the fragment."""
-    url = unarchive(url)
-    m = re.match(r"(https?://[^/]+)/index\.html#page/(.+)$", url)
-    return f"{m.group(1)}/{m.group(2)}" if m else url.split("#")[0]
+    names its page in the fragment, under the reader's index page
+    (index.html#page/<chapter>/<page>.html) or under the host root
+    (/#page/<chapter>/<page>.html)."""
+    url = unarchive(url).strip()
+    m = re.match(r"(https?://[^/?#]+)/?(?:index\.html)?#page/(.+)$", url)
+    if m and (page := m.group(2).strip("/")):
+        return f"{m.group(1)}/{page}"
+    return url.split("#")[0]
 
 
 def title_state(titles: list[str]) -> str | None:

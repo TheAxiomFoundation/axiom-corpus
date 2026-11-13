@@ -102,6 +102,37 @@ def test_normalize_url_reads_a_webworks_page_from_its_fragment():
     )
 
 
+def test_normalize_url_reads_a_webworks_page_named_under_the_host_root():
+    page = "https://dbmefaapolicy.azdes.gov/FAA5/NA_Utility_Expenses_and_Allowances.html"
+    fragment = "#page/FAA5/NA_Utility_Expenses_and_Allowances.html"
+    for reader in (
+        "https://dbmefaapolicy.azdes.gov/index.html",
+        "https://dbmefaapolicy.azdes.gov/",
+        "https://dbmefaapolicy.azdes.gov",
+    ):
+        assert bundle.normalize_url(reader + fragment) == page
+        assert bundle.normalize_url(reader + fragment + "/") == page
+    assert (
+        bundle.normalize_url(
+            "https://dbmefaapolicy.azdes.gov/#page/FAA6/Utility_Allowance_Current_Amount.html"
+        )
+        == "https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html"
+    )
+    assert bundle.url_key(
+        bundle.normalize_url("https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html")
+    ) == bundle.url_key("https://dbmefaapolicy.azdes.gov/FAA5/A.html")
+    # A fragment that names no page, and a page-like fragment under another
+    # path, stay the page before the fragment.
+    assert (
+        bundle.normalize_url("https://dbmefaapolicy.azdes.gov/#page/")
+        == "https://dbmefaapolicy.azdes.gov/"
+    )
+    assert (
+        bundle.normalize_url("https://example.gov/manual/#page/FAA5/A.html")
+        == "https://example.gov/manual/"
+    )
+
+
 def test_fiscal_year_starts_in_october():
     assert bundle.fiscal_year(dt.date(2026, 9, 30)) == 2026
     assert bundle.fiscal_year(dt.date(2026, 10, 1)) == 2027
