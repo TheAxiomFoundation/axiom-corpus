@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/statute/2026-11-13-ccdf-income-limits.json",
+      "sha256": "2e9c7ecbe3a444d43ec7cd83da4a2d5e81de16a50bc607a41c6765a0cd78c952"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/statute/2026-11-13-ccdf-income-limits.json",
+      "sha256": "daa14ed6ee2a2d0200336e457eb6bfa1fcf165a6b1e460b539a3587060623e0e"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/statute/2026-11-13-ccdf-income-limits.jsonl",
+      "sha256": "cf26d61dde67a749139a551ffbead7c8c56e93a21f350b6c8f9a6b0f78cffb3b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-11-13-ccdf-income-limits/official-documents/us-mt-statute-52-2-715.html",
+      "sha256": "0f1e6c74571819d1f1b027374b6b7482686492af4ee4ae595d2291553a171673"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1428e5d2c4a7ac90d2617f4f0218543f96295820",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-13-ccdf-income-limits --manifest manifests/us-mt-ccdf-income-limits-statute-2026-11.yaml (run note: docs/ingest-runs/2026-11-13-us-ccdf-income-limits.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-11-13T20:18:43.811785+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8N0wrZypjabJK0tWEAAIRXEKlucXJg7mcLs/ruNxOH3BJzE5Lsft5MQg33hh3cH4F83uU3rA6e20bnWveAmhDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-13-ccdf-income-limits"
+}
