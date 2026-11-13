@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import csv
+import math
 import re
 import shutil
 import subprocess
@@ -14,7 +15,7 @@ import unicodedata
 import warnings
 import zipfile
 from collections import Counter
-from collections.abc import Iterator
+from collections.abc import Iterator, Sequence
 from copy import copy
 from dataclasses import dataclass, replace
 from datetime import date
@@ -22,7 +23,7 @@ from io import BytesIO, StringIO
 from json import dumps as json_dumps
 from json import loads as json_loads
 from pathlib import Path
-from typing import Any, Self, TextIO, cast
+from typing import Any, NamedTuple, Self, TextIO, cast
 from xml.etree import ElementTree
 
 import fitz
@@ -3254,6 +3255,7 @@ def _filtered_pdf_styled_lines(
     page_header_patterns = _page_header_patterns(extraction)
     started = start_after_re is None
     lines: list[tuple[str, int, int]] = []
+    pages: list[tuple[int, tuple[_PdfLine, ...]]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
@@ -3261,16 +3263,21 @@ def _filtered_pdf_styled_lines(
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for line, style in _without_page_header(
-                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
-            ):
-                if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
-                    continue
-                if not started:
-                    if start_after_re is not None and start_after_re.search(line):
-                        started = True
-                    continue
-                lines.append((line, page_index, style))
+            pages.append(
+                (
+                    page_index,
+                    _without_page_header(
+                        _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
+                    ),
+                )
+            )
+    for page_index, kept in _kept_pdf_lines_by_page(pages, drop_lines, drop_line_patterns):
+        for line, style in kept:
+            if not started:
+                if start_after_re is not None and start_after_re.search(line):
+                    started = True
+                continue
+            lines.append((line, page_index, style))
     last_page = min(parsed_end_page or page_count, page_count)
     context = (
         f"PDF start_page {start_page} is beyond its {page_count} pages"
@@ -3366,30 +3373,36 @@ def _windowed_pdf_styled_lines(
     started: dict[int, bool] = {id(window): window.start_at_re is None for window in windows}
     stopped: dict[int, bool] = {id(window): False for window in windows}
     lines: list[tuple[str, int, int]] = []
+    pages: list[tuple[int, tuple[_PdfLine, ...]]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
                 break
-            page_window = window_by_page.get(page_index)
-            if page_window is None or stopped[id(page_window)]:
+            if page_index in window_by_page:
+                pages.append(
+                    (
+                        page_index,
+                        _without_page_header(
+                            _pdf_page_styled_lines(page, extraction=extraction),
+                            page_header_patterns,
+                        ),
+                    )
+                )
+    for page_index, kept in _kept_pdf_lines_by_page(pages, drop_lines, drop_line_patterns):
+        page_window = window_by_page[page_index]
+        if stopped[id(page_window)]:
+            continue
+        for line, style in kept:
+            if not started[id(page_window)]:
+                if page_window.start_at_re is not None and page_window.start_at_re.search(line):
+                    started[id(page_window)] = True
+                    lines.append((line, page_index, style))
                 continue
-            for line, style in _without_page_header(
-                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
-            ):
-                if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
-                    continue
-                if not started[id(page_window)]:
-                    if page_window.start_at_re is not None and page_window.start_at_re.search(
-                        line
-                    ):
-                        started[id(page_window)] = True
-                        lines.append((line, page_index, style))
-                    continue
-                if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
-                    stopped[id(page_window)] = True
-                    break
-                lines.append((line, page_index, style))
+            if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
+                stopped[id(page_window)] = True
+                break
+            lines.append((line, page_index, style))
     for window in windows:
         if window.start_at_re is not None and not started[id(window)]:
             raise ValueError(
@@ -3399,12 +3412,27 @@ def _windowed_pdf_styled_lines(
     return tuple(lines)
 
 
-def _pdf_page_styled_lines(
-    page: Any, *, extraction: dict[str, Any]
-) -> tuple[tuple[str, int], ...]:
-    """Pair the normal PDF text stream with first-span font flags by occurrence."""
+class _PdfLine(NamedTuple):
+    """One line of a PDF page's text stream, with its font flags and its place on the page."""
+
+    text: str
+    style: int
+    # Top and bottom of the line on the page. None when the page's dict output
+    # has no left-to-right line with this text: OCR text, or rotated text.
+    extent: tuple[float, float] | None
+
+
+def _pdf_page_styled_lines(page: Any, *, extraction: dict[str, Any]) -> tuple[_PdfLine, ...]:
+    """Pair the normal PDF text stream with the dict output's lines by occurrence.
+
+    A text-stream line takes the first-span font flags and the vertical extent
+    of the dict output's line with the same text and occurrence. The extent is
+    left unknown for every line of a text that the two outputs hold a different
+    number of times: their lines are split differently there, so the k-th
+    occurrences need not be the same line.
+    """
     text_replacements = _text_replacements(extraction)
-    styles: dict[str, list[int]] = {}
+    placements: dict[str, list[tuple[int, tuple[float, float] | None]]] = {}
     if not extraction.get("force_ocr"):
         page_dict = page.get_text(
             "dict",
@@ -3423,22 +3451,44 @@ def _pdf_page_styled_lines(
                 text = "".join(str(span.get("text", "")) for span in spans)
                 text = _normalize_text(_replace_text(text, text_replacements))
                 if text:
-                    styles.setdefault(text, []).append(
-                        int(first_span.get("flags", 0))
+                    placements.setdefault(text, []).append(
+                        (int(first_span.get("flags", 0)), _pdf_line_extent(line))
                     )
 
+    stream = [
+        line
+        for line in (
+            _normalize_text(raw_line)
+            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines()
+        )
+        if line
+    ]
+    counts = Counter(stream)
     occurrences: dict[str, int] = {}
-    lines: list[tuple[str, int]] = []
-    for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
-        line = _normalize_text(raw_line)
-        if not line:
-            continue
+    lines: list[_PdfLine] = []
+    for line in stream:
         occurrence = occurrences.get(line, 0)
         occurrences[line] = occurrence + 1
-        line_styles = styles.get(line, ())
-        style = line_styles[occurrence] if occurrence < len(line_styles) else 0
-        lines.append((line, style))
+        line_placements = placements.get(line, ())
+        style, extent = (
+            line_placements[occurrence] if occurrence < len(line_placements) else (0, None)
+        )
+        if len(line_placements) != counts[line]:
+            extent = None
+        lines.append(_PdfLine(line, style, extent))
     return tuple(lines)
+
+
+def _pdf_line_extent(line: dict[str, Any]) -> tuple[float, float] | None:
+    """The top and bottom of a dict-output line that runs left to right, else None.
+
+    Rows and margins are horizontal bands, which mean nothing for rotated text.
+    """
+    direction = line.get("dir") or (1.0, 0.0)
+    bbox = line.get("bbox")
+    if bbox is None or float(direction[0]) <= 0 or abs(float(direction[1])) > 0.02:
+        return None
+    return (float(bbox[1]), float(bbox[3]))
 
 
 def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
@@ -5072,31 +5122,140 @@ def _page_header_patterns(extraction: dict[str, Any]) -> tuple[re.Pattern[str], 
     return tuple(re.compile(pattern) for pattern in raw)
 
 
-def _without_page_header(
-    page_lines: tuple[tuple[str, int], ...], patterns: tuple[re.Pattern[str], ...]
-) -> tuple[tuple[str, int], ...]:
+def _without_page_header[PageLine: tuple[Any, ...]](
+    page_lines: tuple[PageLine, ...], patterns: tuple[re.Pattern[str], ...]
+) -> tuple[PageLine, ...]:
     """Drop one page's running header, by position rather than by content.
 
     ``page_header_patterns`` lists the header's lines in order: the page's
     k-th line is dropped when it fully matches the k-th pattern and every
     line above it was dropped. The first mismatch ends the header, so a page
-    whose top does not look like the header loses nothing. Unlike
-    ``drop_line_patterns``, which drops a matching line anywhere, this can
-    remove a bare page number without removing the same number printed as a
-    table cell further down the page.
+    whose top does not look like the header loses nothing. Position here is
+    the line's place in the text stream, not on the page: it removes a page
+    number the stream emits with the header even where nothing else marks it
+    as one (``drop_line_patterns`` drops a bare number only where a page
+    number prints; see ``_kept_pdf_lines_by_page``).
 
     The header is matched on the page's lines as extracted, before
     ``drop_lines`` and ``drop_line_patterns`` run: a line those filters would
     remove still counts as a line, so list it here if it sits inside the
     header. Each pattern must match its whole line (``fullmatch``), where
-    ``drop_line_patterns`` uses ``search``.
+    ``drop_line_patterns`` uses ``search``. Each page line is a tuple whose
+    first item is its text.
     """
     header_length = 0
-    for (line, _style), pattern in zip(page_lines, patterns, strict=False):
-        if pattern.fullmatch(line) is None:
+    for page_line, pattern in zip(page_lines, patterns, strict=False):
+        if pattern.fullmatch(page_line[0]) is None:
             break
         header_length += 1
     return page_lines[header_length:]
+
+
+# A line that is only digits, as a page number prints.
+_BARE_NUMBER_LINE = re.compile(r"\d+")
+
+
+# A page number prints in the same place page after page. A matched bare
+# number lies in that place when matched bare numbers sit within this many
+# points of its vertical centre on at least this share of the document's pages
+# with text, and on at least two of them.
+_PAGE_NUMBER_SLOT_TOLERANCE = 3.0
+_PAGE_NUMBER_SLOT_SHARE = 0.3
+
+
+def _kept_pdf_lines_by_page(
+    pages: Sequence[tuple[int, tuple[_PdfLine, ...]]],
+    drop_lines: set[str],
+    drop_line_patterns: tuple[re.Pattern[str], ...],
+) -> list[tuple[int, tuple[tuple[str, int], ...]]]:
+    """Apply ``drop_lines`` and ``drop_line_patterns`` to a document's pages.
+
+    A line either filter matches is dropped, except a bare number (a line of
+    digits only): that is dropped only where a page number prints, so a table
+    cell, list number or citation title that a page-number pattern matches
+    stays. A bare number prints where a page number does when either
+
+    - it lies in its page's margin: no line the filters keep shares its row,
+      and every kept line lies below it, or every one lies above it (two lines
+      share a row when either one's vertical centre falls within the other's
+      height); or
+    - it lies in the document's page-number slot: matched bare numbers sit at
+      the same height (within ``_PAGE_NUMBER_SLOT_TOLERANCE`` points) on at
+      least ``_PAGE_NUMBER_SLOT_SHARE`` of the pages with text, and on two or
+      more. This catches a page number printed beside running-header text the
+      filters keep, which the margin test reads as body text.
+
+    Position decides, not the value, so a bare number with no kept text above
+    it (or below it) and none on its row still goes, as a page number would;
+    ``page_header_patterns`` can drop header lines by their place in the text
+    stream instead. A bare number the page cannot place (OCR text, text that
+    does not run left to right) is dropped as before.
+    """
+    matched_pages: list[tuple[int, tuple[_PdfLine, ...], tuple[bool, ...]]] = []
+    bare_centres: list[tuple[int, float]] = []
+    for page_index, page_lines in pages:
+        matched = tuple(
+            not line.text or _drop_pdf_line(line.text, drop_lines, drop_line_patterns)
+            for line in page_lines
+        )
+        matched_pages.append((page_index, page_lines, matched))
+        bare_centres.extend(
+            (page_index, (line.extent[0] + line.extent[1]) / 2)
+            for line, dropped in zip(page_lines, matched, strict=True)
+            if dropped and line.extent is not None and _BARE_NUMBER_LINE.fullmatch(line.text)
+        )
+    pages_with_text = sum(1 for _page_index, page_lines in pages if page_lines)
+    slot_pages = max(2, math.ceil(_PAGE_NUMBER_SLOT_SHARE * pages_with_text))
+
+    def in_page_number_slot(extent: tuple[float, float]) -> bool:
+        centre = (extent[0] + extent[1]) / 2
+        nearby = {
+            page_index
+            for page_index, other in bare_centres
+            if abs(other - centre) <= _PAGE_NUMBER_SLOT_TOLERANCE
+        }
+        return len(nearby) >= slot_pages
+
+    kept_pages: list[tuple[int, tuple[tuple[str, int], ...]]] = []
+    for page_index, page_lines, matched in matched_pages:
+        body = tuple(
+            line.extent
+            for line, dropped in zip(page_lines, matched, strict=True)
+            if not dropped and line.extent is not None
+        )
+        kept = tuple(
+            (line.text, line.style)
+            for line, dropped in zip(page_lines, matched, strict=True)
+            if not dropped
+            or (
+                line.extent is not None
+                and _BARE_NUMBER_LINE.fullmatch(line.text) is not None
+                and not _in_pdf_page_margin(line.extent, body)
+                and not in_page_number_slot(line.extent)
+            )
+        )
+        kept_pages.append((page_index, kept))
+    return kept_pages
+
+
+def _in_pdf_page_margin(extent: tuple[float, float], body: tuple[tuple[float, float], ...]) -> bool:
+    """Whether a line shares no row with the body lines and has all of them on one side."""
+    centre = (extent[0] + extent[1]) / 2
+    above = below = False
+    for other in body:
+        if _same_pdf_row(extent, other):
+            return False
+        if (other[0] + other[1]) / 2 < centre:
+            above = True
+        else:
+            below = True
+    return not (above and below)
+
+
+def _same_pdf_row(first: tuple[float, float], second: tuple[float, float]) -> bool:
+    first_centre = (first[0] + first[1]) / 2
+    second_centre = (second[0] + second[1]) / 2
+    return first[0] <= second_centre <= first[1] or second[0] <= first_centre <= second[1]
 
 
 def _drop_pdf_line(

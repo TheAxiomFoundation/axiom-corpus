@@ -92,7 +92,10 @@ Its docstring defines each verdict. In short:
   of it.
 - PDF rows must equal the shared PDF extractor's page (or, for the Colorado Works
   rows, the section of the same label made with the tracked manifest's
-  `extraction` block).
+  `extraction` block). The extractor now keeps a bare number that a drop pattern
+  matches unless it sits in the page margin (axiom-corpus#814); the audit
+  replays the earlier rule, which dropped it anywhere, because that is how
+  these rows were made.
 
 All 756 rows get a verdict other than `unclassified`. Two tests check that the
 verdicts are strict:
