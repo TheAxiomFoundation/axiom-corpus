@@ -241,3 +241,15 @@ We wrote manifests for the Indiana and Maryland captures in the form
 `manifests/us-az-des-faa5-manual.yaml` uses (`source_url` official, `download_url` the `id_`
 capture, plus `source_access_note`), and both extract with complete coverage. They can follow in
 their own scopes if the corpus accepts Internet Archive captures for these sources.
+
+## Citation-path ratchet
+
+Run against every locked us-al, us-ga, us-id, us-in, us-mo, us-mt, us-nv and us-oh scope,
+`scripts/validate_citation_paths.py` counts 6 `block_n` paths and 834 `page_n` paths in these
+scopes that no locked scope held. The `block_n` paths come from the two Idaho DHW pages (five blocks) and
+MCA 52-2-715 (one). Alabama adds 2 `page_n` paths, Georgia's notices 28, the Georgia manual 2, Indiana 246, Missouri 1,
+Montana 14, Nevada 496 and Ohio 45. The October 2026 Georgia CAPS manual repeats 109 of
+its predecessor's page paths and its Appendix A page, which the validator counts once.
+`schema/citation-path.v1.json` raises `block_n` from 105419 to 105425 and `page_n` from 178888 to
+179722; the merged-tree scan in PR CI checks both. The validator finds no pattern, jurisdiction,
+document-class or identity failures in the new rows.
