@@ -1,0 +1,82 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url.json",
+      "sha256": "65261b810954883c5aa065fdde40ce109f94f7250fe7aaeb53b8e6969848dbf2"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url.json",
+      "sha256": "ff216fcb80bc0293f58048ceb4b2a6c3f67426e1912f10a22aa0dd59cc9555ec"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "69c18f88fc096018628db05514841be15e871486856f45db6ac0510b82a5a188"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-153-03-2005-07-07.html",
+      "sha256": "1c4a0a6cd76c508ed0e99b0fe3d472c6497228e8128f345dae2b105024d72acc"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-16-09-2010-10-14.html",
+      "sha256": "eec627c3aabcb6f84666ca666aba0b24937b9e0e073a09c624e7157947f1102e"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-177-12-2013-10-24.html",
+      "sha256": "bad324ba4b7f2ce216b7f43118dc9ffa69788cd0b74e87d366e6e478a1652170"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-245-94-c-312-94-1996-10-10.html",
+      "sha256": "514fbf97756a101f2425c85388909456733c59ed2ed338b3ba8f83bca4e8b890"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-363-08-2009-11-26.html",
+      "sha256": "aebbc584b2e5c0b93dfc8b711e11ba1e5a64b3b11ff070e7e94a397b02d11a4f"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-543-03-2005-06-07.html",
+      "sha256": "4f575350ed8d0ebd35b713e7ac360b327150ab9aad835b326b515b497fed8bf5"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url/official-documents/cjeu-c-85-99-2001-03-15.html",
+      "sha256": "1f8ffd55e45919a86f6fe653e3de1bdee0c0bcdd28e99f4a5cf028b3137992ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-15-de-kindergeld-eu-priority-references --manifest manifests/de-kindergeld-eu-priority-references.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-15-de-kindergeld-eu-priority-references without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:19:20.233869+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zKPHgy+qWPpfDegfL+qjJICF9hhSj08++H/E6c5qZxz/3OxVXXqgbJtVb41k0Wf7Io5EpA+NfsZJ/XPwFcJYCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-de-kindergeld-eu-priority-references-r2026-10-14-portable-download-url"
+}

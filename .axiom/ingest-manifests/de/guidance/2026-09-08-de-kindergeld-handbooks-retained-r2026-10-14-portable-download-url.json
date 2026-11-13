@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url.json",
+      "sha256": "f8348b557d85e83e51ca1ee007bebaa10069ef2fa811d5eec12db67643c91680"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url.json",
+      "sha256": "cbc67688c72ec98322d3680fd008b1681ccfcdf63890a79b36ddca2de4b226c2"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "f6cd34297ce20feacbc12b80f02797d773bb42b66076547947e89fe2c55e0b39"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url/official-documents/de-aeao-2025-8.html",
+      "sha256": "002dc32d90b9c06c05dd8f0eca45819ccea0016ed22257207118d788acc82389"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url/official-documents/de-esth-2024-3.html",
+      "sha256": "b95da6147270270312816d7b192cb79c27e1189b35962d62041c31e0303374b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-08-de-kindergeld-handbooks-retained --manifest manifests/de-kindergeld-bmf-handbooks.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-08-de-kindergeld-handbooks-retained without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:17:11.235436+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wzaLs/onpCrwfHQFcXtbi7ANcrMpP+V6NVhCNdz695xVlI5Rd943OsbkzL/48Yq18fSJDSv4tV9Isl/BqVSTDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-handbooks-retained-r2026-10-14-portable-download-url"
+}
