@@ -1149,11 +1149,21 @@ def extract_dc_code(
     items: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
     source_paths: list[Path] = []
+    errors: list[str] = []
+    seen: set[str] = set()
     title_count = 0
     container_count = 0
     section_count = 0
     remaining = limit
 
+    # A title index is the table of contents for every container and section
+    # under it. A title is written only once its index parses and lists
+    # something, unless the index marks the title reserved; containers it
+    # lists stay complete as listed (a "[Reserved]" container lists nothing
+    # by law). A section the index lists is written only once its file reads
+    # and parses. Otherwise each stays an inventory gap, so coverage reads
+    # incomplete: sourced from the index when the file cannot be read, from
+    # the file itself when it was read but is unusable.
     for title_dir in _iter_dc_title_dirs(title_root, only_title_token):
         if remaining is not None and remaining <= 0:
             break
@@ -1167,15 +1177,30 @@ def extract_dc_code(
         index_sha256 = store.write_bytes(index_artifact_path, index_bytes)
         source_paths.append(index_artifact_path)
         index_key = _state_source_key("us-dc", run_id, index_relative)
-        root = ET.fromstring(index_bytes)
+        try:
+            root = ET.fromstring(index_bytes)
+        except ET.ParseError as exc:
+            errors.append(f"title {title}: {index_relative}: {exc}")
+            title_container = _dc_index_items(
+                ET.Element("container"),
+                title=title,
+                source_path=index_key,
+                source_sha256=index_sha256,
+            )[0][0]
+            _append_container_gap(seen, items, title_container)
+            continue
 
-        title_count += 1
         containers, targets = _dc_index_items(
             root,
             title=title,
             source_path=index_key,
             source_sha256=index_sha256,
         )
+        if len(containers) == 1 and not targets and not _dc_is_reserved(containers[0].heading):
+            errors.append(f"title {title}: {index_relative} lists no containers or sections")
+            _append_container_gap(seen, items, containers[0])
+            continue
+        title_count += 1
         for container in containers:
             if remaining is not None and remaining <= 0:
                 break
@@ -1198,10 +1223,20 @@ def extract_dc_code(
             if remaining is not None and remaining <= 0:
                 break
             section_path = title_dir / "sections" / f"{target.section}.xml"
-            if not section_path.exists():
-                continue
-            section_bytes = section_path.read_bytes()
             section_relative = f"dc-law-xml/titles/{title}/sections/{target.section}.xml"
+            try:
+                section_bytes = section_path.read_bytes()
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"section {target.section}: {section_relative}: {exc}")
+                _append_dc_section_gap(
+                    seen,
+                    items,
+                    target,
+                    source_url=_dc_title_url(title),
+                    source_path=index_key,
+                    sha256=index_sha256,
+                )
+                continue
             section_artifact_path = store.source_path(
                 "us-dc",
                 DocumentClass.STATUTE,
@@ -1211,7 +1246,20 @@ def extract_dc_code(
             section_sha256 = store.write_bytes(section_artifact_path, section_bytes)
             source_paths.append(section_artifact_path)
             section_source_key = _state_source_key("us-dc", run_id, section_relative)
-            document = _parse_dc_section_xml(section_bytes)
+            try:
+                document = _parse_dc_section_xml(section_bytes)
+            except (ET.ParseError, ValueError) as exc:
+                errors.append(f"section {target.section}: {section_relative}: {exc}")
+                _append_dc_section_gap(
+                    seen,
+                    items,
+                    target,
+                    source_url=_dc_section_url(target.section),
+                    source_path=section_source_key,
+                    sha256=section_sha256,
+                )
+                continue
+            seen.add(document.citation_path)
             item = SourceInventoryItem(
                 citation_path=document.citation_path,
                 source_url=_dc_section_url(document.section),
@@ -1245,7 +1293,7 @@ def extract_dc_code(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError(f"no DC Code provisions extracted from {title_root}")
 
     inventory_path = store.inventory_path("us-dc", DocumentClass.STATUTE, run_id)
@@ -1272,6 +1320,7 @@ def extract_dc_code(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
 
 
@@ -1315,7 +1364,7 @@ def extract_ohio_revised_code(
         index_relative,
     )
     index_sha = store.write_bytes(index_path, index_bytes)
-    del index_sha
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
     titles = _parse_ohio_titles(index_bytes)
     if only_title_token is not None:
@@ -1336,13 +1385,30 @@ def extract_ohio_revised_code(
         if remaining is not None and remaining <= 0:
             break
         title_relative = f"ohio-revised-code/titles/{_ohio_title_file_token(title)}.html"
-        title_bytes = _load_ohio_html(
-            session,
-            source_root,
-            download_root,
-            relative_name=title_relative,
-            url=title.source_url,
-        )
+        try:
+            title_bytes = _load_ohio_html(
+                session,
+                source_root,
+                download_root,
+                relative_name=title_relative,
+                url=title.source_url,
+            )
+        except (requests.RequestException, OSError) as exc:
+            # A failed download, or a --source-dir title file that cannot be read.
+            errors.append(f"title {title.num}: {exc}")
+            if title.citation_path not in seen_citation_paths:
+                seen_citation_paths.add(title.citation_path)
+                # The index TOC is the source evidence for the rejected title.
+                items.append(
+                    _container_inventory_item(
+                        _ohio_title_container(
+                            title, source_path=index_source_key, sha256=index_sha
+                        )
+                    )
+                )
+                if remaining is not None:
+                    remaining -= 1
+            continue
         title_path = store.source_path(
             jurisdiction,
             DocumentClass.STATUTE,
@@ -1358,9 +1424,17 @@ def extract_ohio_revised_code(
             source_path=title_source_key,
             sha256=title_sha,
         )
+        # A title is written as a provision only when its TOC lists chapters;
+        # otherwise it stays an inventory gap and coverage reads incomplete.
+        chapters = _parse_ohio_chapters(title_bytes, title=title)
         if title_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(title_container.citation_path)
             items.append(_container_inventory_item(title_container))
+            if not chapters:
+                errors.append(f"title {title.num}: no chapters parsed")
+                if remaining is not None:
+                    remaining -= 1
+                continue
             records.append(
                 _container_provision(
                     title_container,
@@ -1374,7 +1448,6 @@ def extract_ohio_revised_code(
             if remaining is not None:
                 remaining -= 1
 
-        chapters = _parse_ohio_chapters(title_bytes, title=title)
         for chapter in chapters:
             if remaining is not None and remaining <= 0:
                 break
@@ -1552,7 +1625,8 @@ def extract_minnesota_statutes(
         url=f"{MINNESOTA_STATUTES_BASE_URL}/statutes/",
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     parts = _parse_minnesota_parts(index_bytes)
@@ -1570,6 +1644,14 @@ def extract_minnesota_statutes(
     selected_parts: dict[str, _MinnesotaPart] = {}
     chapters: list[_MinnesotaChapter] = []
     part_sources: dict[str, tuple[str, str]] = {}
+    # A part, or a chapter, is written as a provision only once its own page
+    # lists children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A page that
+    # could not be fetched is sourced from the listing that names it; a page
+    # that was fetched but is unusable from itself. A chapter-filtered run
+    # leaves out parts it cannot read: it cannot tell whether they hold the
+    # chapter, and fails if no part does.
+    part_gaps: dict[str, _StateContainer] = {}
 
     for part in parts:
         part_relative = f"minnesota-statutes-html/parts/{_clean_path_token(part.token)}.html"
@@ -1581,8 +1663,13 @@ def extract_minnesota_statutes(
                 relative_name=part_relative,
                 url=part.source_url,
             )
-        except requests.RequestException as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"part {part.heading}: {exc}")
+            if only_chapter is None:
+                part_gaps[part.citation_path] = _dataclass_replace(
+                    _minnesota_part_container(part, source_path=index_source_key, sha256=index_sha),
+                    source_url=f"{MINNESOTA_STATUTES_BASE_URL}/statutes/",
+                )
             continue
         part_path = store.source_path(
             jurisdiction,
@@ -1593,7 +1680,15 @@ def extract_minnesota_statutes(
         part_sha = store.write_bytes(part_path, part_bytes)
         source_paths.append(part_path)
         part_source_key = _state_source_key(jurisdiction, run_id, part_relative)
-        part_chapters = _parse_minnesota_chapters(part_bytes, part=part)
+        listed_chapters = _parse_minnesota_chapters(part_bytes, part=part)
+        if not listed_chapters:
+            errors.append(f"part {part.heading}: no chapters listed on part page")
+            if only_chapter is None:
+                part_gaps[part.citation_path] = _minnesota_part_container(
+                    part, source_path=part_source_key, sha256=part_sha
+                )
+            continue
+        part_chapters = listed_chapters
         if only_chapter is not None:
             part_chapters = tuple(chapter for chapter in part_chapters if chapter.num == only_chapter)
         if not part_chapters:
@@ -1609,9 +1704,14 @@ def extract_minnesota_statutes(
     if not chapters:
         raise ValueError(f"no Minnesota Statutes chapters selected for filter: {only_title!r}")
 
-    for part in selected_parts.values():
+    for part in parts:
         if remaining is not None and remaining <= 0:
             break
+        if part.citation_path in part_gaps:
+            _append_container_gap(seen_citation_paths, items, part_gaps[part.citation_path])
+            continue
+        if part.citation_path not in selected_parts:
+            continue
         source_key, source_sha = part_sources[part.citation_path]
         part_container = _minnesota_part_container(part, source_path=source_key, sha256=source_sha)
         seen_citation_paths.add(part_container.citation_path)
@@ -1638,10 +1738,20 @@ def extract_minnesota_statutes(
         ):
             if remaining is not None and remaining <= 0:
                 break
-            if error is not None:
-                errors.append(f"chapter {chapter.num}: {error}")
-                continue
-            if chapter_bytes is None:
+            if error is not None or chapter_bytes is None:
+                errors.append(f"chapter {chapter.num}: {error or 'unknown source error'}")
+                # The part page lists the chapter; it is the source until the chapter is read.
+                part_source_key, part_sha = part_sources[chapter.part.citation_path]
+                _append_container_gap(
+                    seen_citation_paths,
+                    items,
+                    _dataclass_replace(
+                        _minnesota_chapter_container(
+                            chapter, source_path=part_source_key, sha256=part_sha
+                        ),
+                        source_url=chapter.part.source_url,
+                    ),
+                )
                 continue
             chapter_relative = _minnesota_chapter_relative(chapter)
             chapter_path = store.source_path(
@@ -1653,10 +1763,21 @@ def extract_minnesota_statutes(
             chapter_sha = store.write_bytes(chapter_path, chapter_bytes)
             source_paths.append(chapter_path)
             chapter_source_key = _state_source_key(jurisdiction, run_id, chapter_relative)
-            parsed_heading, sections = _parse_minnesota_chapter_sections(
-                chapter_bytes,
-                chapter=chapter,
-            )
+            try:
+                parsed_heading, sections = _parse_minnesota_chapter_sections(
+                    chapter_bytes,
+                    chapter=chapter,
+                )
+            except ValueError as exc:
+                errors.append(f"chapter {chapter.num}: {exc}")
+                _append_container_gap(
+                    seen_citation_paths,
+                    items,
+                    _minnesota_chapter_container(
+                        chapter, source_path=chapter_source_key, sha256=chapter_sha
+                    ),
+                )
+                continue
             chapter_with_heading = _MinnesotaChapter(
                 part=chapter.part,
                 num=chapter.num,
@@ -1669,6 +1790,10 @@ def extract_minnesota_statutes(
                 source_path=chapter_source_key,
                 sha256=chapter_sha,
             )
+            if not sections:
+                errors.append(f"chapter {chapter.num}: no sections on chapter page")
+                _append_container_gap(seen_citation_paths, items, chapter_container)
+                continue
             if chapter_container.citation_path not in seen_citation_paths:
                 seen_citation_paths.add(chapter_container.citation_path)
                 items.append(_container_inventory_item(chapter_container))
@@ -1722,7 +1847,7 @@ def extract_minnesota_statutes(
                 if remaining is not None:
                     remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Minnesota Statutes provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -1788,7 +1913,8 @@ def extract_nebraska_revised_statutes(
         url=f"{NEBRASKA_STATUTES_BASE_URL}/browse-statutes.php",
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     chapters = _parse_nebraska_chapters(index_bytes)
@@ -1808,6 +1934,11 @@ def extract_nebraska_revised_statutes(
     # Full chapter HTML is the Nebraska extraction unit; keep the shared CLI option accepted.
     del workers
 
+    # A chapter is written as a provision only once its full-chapter page
+    # yields sections. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing every section under it. A page
+    # that could not be fetched is sourced from the index that lists the
+    # chapter; a page that was fetched but is unusable from itself.
     for chapter in chapters:
         if remaining is not None and remaining <= 0:
             break
@@ -1820,8 +1951,18 @@ def extract_nebraska_revised_statutes(
                 relative_name=chapter_relative,
                 url=chapter.full_source_url,
             )
-        except (OSError, requests.RequestException) as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"chapter {chapter.num}: {exc}")
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _nebraska_chapter_container(
+                        chapter, source_path=index_source_key, sha256=index_sha
+                    ),
+                    source_url=f"{NEBRASKA_STATUTES_BASE_URL}/browse-statutes.php",
+                ),
+            )
             continue
         chapter_path = store.source_path(
             jurisdiction,
@@ -1843,6 +1984,11 @@ def extract_nebraska_revised_statutes(
             source_path=chapter_source_key,
             sha256=chapter_sha,
         )
+        sections = _parse_nebraska_chapter_sections(chapter_bytes, chapter=chapter_with_heading)
+        if not sections:
+            errors.append(f"chapter {chapter.num}: no sections parsed")
+            _append_container_gap(seen_citation_paths, items, chapter_container)
+            continue
         if chapter_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(chapter_container.citation_path)
             items.append(_container_inventory_item(chapter_container))
@@ -1859,9 +2005,6 @@ def extract_nebraska_revised_statutes(
             if remaining is not None:
                 remaining -= 1
 
-        sections = _parse_nebraska_chapter_sections(chapter_bytes, chapter=chapter_with_heading)
-        if not sections:
-            errors.append(f"chapter {chapter.num}: no sections parsed")
         for section in sections:
             if remaining is not None and remaining <= 0:
                 break
@@ -1901,7 +2044,7 @@ def extract_nebraska_revised_statutes(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Nebraska Revised Statutes provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -1969,7 +2112,8 @@ def extract_washington_rcw(
         url=WASHINGTON_RCW_BASE_URL,
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     titles = _parse_washington_titles(index_bytes)
@@ -1988,7 +2132,17 @@ def extract_washington_rcw(
     section_count = 0
     skipped_source_count = 0
     seen_citation_paths: set[str] = set()
+    # Title page (source key, sha256, URL) by title number: the evidence for a
+    # chapter whose own page cannot be fetched.
+    title_sources: dict[str, tuple[str, str, str]] = {}
 
+    # A title, or a chapter, is written as a provision only once its own page
+    # lists children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A page that
+    # could not be fetched is sourced from the listing that names it; a page
+    # that was fetched but is unusable from itself. A chapter page that names
+    # its chapter and carries no section anchors (a recodified or wholly
+    # repealed chapter) stays a complete, skipped source.
     for title in titles:
         if remaining is not None and remaining <= 0:
             break
@@ -2001,8 +2155,18 @@ def extract_washington_rcw(
                 relative_name=title_relative,
                 url=title.source_url,
             )
-        except (OSError, requests.RequestException) as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"title {title.num}: {exc}")
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _washington_title_container(
+                        title, source_path=index_source_key, sha256=index_sha
+                    ),
+                    source_url=WASHINGTON_RCW_BASE_URL,
+                ),
+            )
             continue
         title_path = store.source_path(
             jurisdiction,
@@ -2024,6 +2188,12 @@ def extract_washington_rcw(
             source_path=title_source_key,
             sha256=title_sha,
         )
+        listed_chapters = _parse_washington_chapters(title_bytes, title=title_with_heading)
+        if not listed_chapters:
+            errors.append(f"title {title.num}: no chapters parsed")
+            _append_container_gap(seen_citation_paths, items, title_container)
+            continue
+        title_sources[title.num] = (title_source_key, title_sha, title.source_url)
         if title_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(title_container.citation_path)
             items.append(_container_inventory_item(title_container))
@@ -2040,7 +2210,7 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-        title_chapters = _parse_washington_chapters(title_bytes, title=title_with_heading)
+        title_chapters = listed_chapters
         if only_chapter_num is not None:
             title_chapters = tuple(
                 chapter for chapter in title_chapters if chapter.num == only_chapter_num
@@ -2065,6 +2235,17 @@ def extract_washington_rcw(
             break
         if error is not None or chapter_bytes is None:
             errors.append(f"chapter {chapter.num}: {error or 'unknown source error'}")
+            title_source_key, title_sha, title_url = title_sources[chapter.title.num]
+            _append_container_gap(
+                seen_citation_paths,
+                items,
+                _dataclass_replace(
+                    _washington_chapter_container(
+                        chapter, source_path=title_source_key, sha256=title_sha
+                    ),
+                    source_url=title_url,
+                ),
+            )
             continue
         chapter_relative = _washington_chapter_relative(chapter)
         chapter_path = store.source_path(
@@ -2088,6 +2269,19 @@ def extract_washington_rcw(
             source_path=chapter_source_key,
             sha256=chapter_sha,
         )
+        sections = _parse_washington_chapter_sections(
+            chapter_bytes,
+            chapter=chapter_with_heading,
+        )
+        if not sections:
+            if _washington_chapter_without_sections(
+                chapter_bytes
+            ) and _washington_page_names_chapter(chapter_bytes, chapter.num):
+                skipped_source_count += 1
+            else:
+                errors.append(f"chapter {chapter.num}: no sections parsed")
+                _append_container_gap(seen_citation_paths, items, chapter_container)
+                continue
         if chapter_container.citation_path not in seen_citation_paths:
             seen_citation_paths.add(chapter_container.citation_path)
             items.append(_container_inventory_item(chapter_container))
@@ -2103,15 +2297,6 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-        sections = _parse_washington_chapter_sections(
-            chapter_bytes,
-            chapter=chapter_with_heading,
-        )
-        if not sections:
-            if _washington_chapter_without_sections(chapter_bytes):
-                skipped_source_count += 1
-            else:
-                errors.append(f"chapter {chapter.num}: no sections parsed")
         for section in sections:
             if remaining is not None and remaining <= 0:
                 break
@@ -2153,7 +2338,7 @@ def extract_washington_rcw(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Revised Code of Washington provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -3003,6 +3188,42 @@ def _iter_dc_title_dirs(title_root: Path, only_title: str | None) -> Iterator[Pa
         title = _clean_title_token(title_dir.name)
         if only_title is None or title == only_title:
             yield title_dir
+
+
+def _dc_is_reserved(heading: str | None) -> bool:
+    """Whether a DC index heading marks its container reserved (e.g. "[Reserved].")."""
+    return heading is not None and re.search(r"\breserved\b", heading, re.I) is not None
+
+
+def _append_dc_section_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    target: _DcSectionTarget,
+    *,
+    source_url: str,
+    source_path: str,
+    sha256: str,
+) -> None:
+    """Record a section the title index lists but whose file yielded nothing."""
+    citation_path = f"us-dc/statute/{target.title}/{target.section}"
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source_url,
+            source_path=source_path,
+            source_format=DC_XML_SOURCE_FORMAT,
+            sha256=sha256,
+            metadata={
+                "kind": "section",
+                "title": target.title,
+                "section": target.section,
+                "parent_citation_path": target.parent_citation_path,
+            },
+        )
+    )
 
 
 def _dc_index_items(
@@ -3877,7 +4098,7 @@ def _load_minnesota_chapter_source(
             url=chapter.full_source_url,
         )
         return chapter, data, None
-    except requests.RequestException as exc:
+    except Exception as exc:  # noqa: BLE001
         return chapter, None, str(exc)
 
 
@@ -4579,7 +4800,7 @@ def _load_washington_chapter_source(
             url=chapter.full_source_url,
         )
         return chapter, data, None
-    except (OSError, requests.RequestException) as exc:
+    except Exception as exc:  # noqa: BLE001
         return chapter, None, str(exc)
 
 
@@ -4659,6 +4880,17 @@ def _washington_chapter_without_sections(data: bytes) -> bool:
     soup = BeautifulSoup(data.decode("utf-8", errors="replace"), "html.parser")
     expanded = soup.select_one("#ContentPlaceHolder1_pnlExpanded")
     return not (isinstance(expanded, Tag) and expanded.select("a[name]"))
+
+
+def _washington_page_names_chapter(data: bytes, chapter: str) -> bool:
+    """Whether ``data`` is the RCW page for ``chapter``: it carries "Chapter N RCW".
+
+    A maintenance, empty or unrelated page has no section anchors either, so
+    the sectionless-chapter exemption also needs the page to be the chapter's.
+    """
+    soup = BeautifulSoup(data.decode("utf-8", errors="replace"), "html.parser")
+    text = _clean_text(soup.get_text(" ", strip=True))
+    return re.search(rf"\bChapter\s+{re.escape(chapter)}\s+RCW\b", text, re.I) is not None
 
 
 def _washington_listing_heading(link: Tag) -> str | None:
@@ -8140,6 +8372,22 @@ def _replace_container_source(
         sha256=sha256,
         metadata=metadata,
     )
+
+
+def _append_container_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    container: _StateContainer,
+) -> None:
+    """Record a container whose listing yielded nothing as an inventory gap.
+
+    The item has no matching provision, so coverage lists it in
+    ``missing_from_provisions`` and reads incomplete.
+    """
+    if container.citation_path in seen:
+        return
+    seen.add(container.citation_path)
+    items.append(_container_inventory_item(container))
 
 
 def _container_inventory_item(container: _StateContainer) -> SourceInventoryItem:

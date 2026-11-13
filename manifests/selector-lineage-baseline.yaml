@@ -1,0 +1,663 @@
+schema_version: axiom-corpus/selector-lineage-baseline/v1
+# Prose successions, drops, forks and first cuts recorded by release decisions
+# (axiom_corpus.corpus.selector_lineage, docs/release-gate-policy.md#selector-lineage).
+# A selector names its predecessor first, or a succession resolves its prose base.
+# Every selector an entry names is pinned here to its selector digest
+# (axiom_corpus.release.manifest.selector_sha256): the entry holds only for that
+# exact selector. The entries listed on 2026-11-02 are what main held when the
+# check began (980e39792); a later entry is a release decision and says why.
+# Entries are append-only: a decision made on a later day is a new dated entry,
+# never an edit of an entry from an earlier day.
+selector_digests:
+  am-rulespec-2026-08-30: 69cf5d0eb4c8755d9f883fc40f541fb8c1dc3bc37f15ea5b18af8c855b3bf6fd
+  be-rulespec-2026-07-10: 723ab15d6396ec3a1f20bd96a945e9e6d919584e793cc6a9e5f7c104e65915f1
+  bo-rulespec-2026-07-23: 9e16dcfdf3ca5acb3235d419392cebabdc6da0edd100e75b7f5051747dc479fd
+  bo-rulespec-2026-07-24: faa41653f6447b12776e021193152bae19b2d659b0452b09d8428341410d3a44
+  bo-rulespec-2026-07-24-r2: 0aabe666da3351b8325629313a122909d8191001fd222dd6a203e2a3ee494541
+  ca-rulespec-2026-07-21: 6d7bd8fcd71da6b685fc056a1f24da53ab21584bb24cf253f7494d62ca08f587
+  ca-rulespec-2026-07-21-complete: 057073d7240073e7ccdda927476b50869233d736eaecd845fedec0d63cd1fa68
+  ca-rulespec-2026-07-21-oracle-complete: cb0b9b2e4f031c6137d31a99ab123afdb27f8c9faea6a548dac9c8c3e8b4fa3d
+  ca-rulespec-2026-07-21-oracle-complete-v2: 4b4f9723c443aa4e7e4ef3b867786713eec408338e4b55aa28811dd69aadf693
+  ca-rulespec-2026-07-21-source-complete: 4016b85fc30824ada537792c671c6c7cec31c5e8041c505e72d1354c5239d295
+  co-rulespec-2026-07-23: 530a3c64a3c7b35703979d037e6128f6a616eb02a595d888fff8ca90f216c120
+  co-rulespec-2026-07-24: 30243f217800b967bdf964cbc89d3267d7e5777daabd9ff69ddb000c62a5a645
+  de-rulespec-2026-07-16: 95ab4f21767cfd7435a423e885ad87cc4ca4c39b2a08f981c01a210ca9c00f3b
+  de-rulespec-2026-07-21: 106612aa6075a23fae4aae7fc80c39920cb6e0ff95e38694baa6191f8f3905f5
+  de-rulespec-2026-09-08-kindergeld-2025-history: 379332d080b513de848338be2495f29370d6280e487791228d12a4efc15687e0
+  de-rulespec-2026-09-08-kindergeld-civil: 76600c66ac8b9b6c5740ca8fb300a975b717879f6751a4f6d2e061ce84258940
+  de-rulespec-2026-09-08-kindergeld-context: 3f3392ce27bf299c991ef6305017a0491f550552bbd3e5e9fdd859519dca6b68
+  de-rulespec-2026-09-08-kindergeld-frontier: 9d5fd12e8110bfa1cad19cf46645989941da3457e1c998c8db7e251440939404
+  de-rulespec-2026-09-08-kindergeld-parentage: 9aae8581d66731d1a72ae70784a59bd8b9503c3f4be901b1949321f35a3de95f
+  de-rulespec-2026-09-09-kindergeld-adult-services: a1555ce6f92447ad03509c75b789a4ecfd0ea96c4c0a8e79c5f77e5b3f97fb7a
+  de-rulespec-2026-09-09-kindergeld-allowance-context: 064b0c353046849d896c4d36c56c63620ca54921ad5f6c00bcfc4aee7889ce78
+  de-rulespec-2026-09-09-kindergeld-bfh-decisions: 587957360fd67dc5177f60f423b3ac28a556a47680de69e052d416bbc1860bc0
+  de-rulespec-2026-09-09-kindergeld-bgb-amendment: 5d6b446eca6d292b3c24ba36d280e58ed1d4ec631a6f7094e70145ef213b3647
+  de-rulespec-2026-09-09-kindergeld-bmf-context: f45b1dc24d2187706b6e0680819deabbe76182580dbcd4785f53dc6707f8b95f
+  de-rulespec-2026-09-09-kindergeld-dakg: c09e67bd0c245bc5ab121f192cea129246c2cb129ec12ea945a6cc269482e62a
+  de-rulespec-2026-09-09-kindergeld-estg32-paragraphs: 713a7514188325379fd58218c828912402e60b26271f5a29702089684ad89aa7
+  de-rulespec-2026-09-09-kindergeld-eu-articles: 827056319929968ac40a34d43f24b18652e5d991c35226a1b6b42d97d2386409
+  de-rulespec-2026-09-09-kindergeld-marginal-employment: 27a7a2058e3f56c57fa9c7e1a92bc08dc29d2b2c0a8e9e1cbba75f0549771074
+  de-rulespec-2026-09-09-kindergeld-swiss-coordination: fff38c38e07dce53e492e754a8812069641643b0e4ff3e47f03d5a54a0203721
+  de-rulespec-2026-09-09-kindergeld-threshold: 751e5c7e7aa9cb97dbe1f38b4dca183f3482fd6f24cdf3fcf97587aa6c341212
+  de-rulespec-2026-09-09-kindergeld-treaty-texts: 57f442572d728f35d821b9f8e4a994a0410040baeeb43e29287cd9190a3e0996
+  de-rulespec-2026-09-10-kindergeld-eu-service-earlier: ab820cd80aad283252b606ac7dc10e075bb286d69163666d2a63635077494732
+  de-rulespec-2026-09-10-kindergeld-eu-service-predecessors: 2bba8f8afc9b6a179bac132a9721268515b696bba7a093befde58ad030142689
+  de-rulespec-2026-09-10-kindergeld-generations-service: 5d048faacf21ec2df0934a56b9af629787810fd44cda37044258fb37d9d84f71
+  de-rulespec-2026-09-10-kindergeld-maternity: 46b58c751d3defeffdaef986ddb39443e5de45d292881e76ad4c7b38c89ab0c2
+  de-rulespec-2026-09-10-kindergeld-recipient-priority: 334b1e1edb7826341da11a4069f801e4dedab795734aae1607aa38e338dbbe9b
+  de-rulespec-2026-09-11-kindergeld-bgh-counterpart: 6f52b6c60dc8898e1c36de6e6dc3c2fa1cd4c012a87fe4fb4a9994e8b314c3ac
+  de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor: 440bc1611dd3d2cde8e82fd3cee430180d216d7947d5d80c67bdedca6cf34c5b
+  de-rulespec-2026-09-11-kindergeld-disability-definition: dd95c1280fa612344b731ef72493b25c53b08c506d3d3499e697a6dfa7b89729
+  de-rulespec-2026-09-11-kindergeld-illness-precedents: a8f4521f60195362fa2aec2034a44aa4777775572a4a13bc906332090d4ba945
+  de-rulespec-2026-09-14-kindergeld-dakg2025-evidence: f8df4bb02786b5123b06adcbd7ab5b6e62299216f67493394a557fcd60301c74
+  de-rulespec-2026-09-14-kindergeld-dakg2025-sections: 3b4f1f9fc163a1ab6e80d9e46f4a286ca406660c34e05339f4557d42454e0f05
+  de-rulespec-2026-09-14-kindergeld-eu-territory: 309eb77793c927637b5f482036d47fb5267e3f47013b3f3fd371bd48a254adc8
+  de-rulespec-2026-09-15-kindergeld-cross-border-priority: f06d72f9b19d4a76f8d7cfe7a8492272262d5eab3cd70ec97f0967588cd4408d
+  de-rulespec-2026-09-15-kindergeld-dakg2025-preface: dce4dbdd45da7d287888e7a438d417e9873187320f659dc8f58ea806c143c732
+  de-rulespec-2026-09-15-kindergeld-eu-priority-references: 5a77c1280d36dad176a1d1be2c58995407e3106a51b1f9e829aac9425a1b5e73
+  de-rulespec-2026-09-15-kindergeld-priority-followup: baf9752c319b3ee08becd2bd3e2f2156902b444007b578ba9d840903db85e34f
+  dk-rulespec-2026-07-12: 2c343f69a4e7273d3170b16dfa32e5fda9deeade4a7342038fa8e561f099f0ce
+  dk-rulespec-2026-08-07: 0d9e3e02d05e0d36b45a16545ebe80b2f26f990ec1064a2d17a75831d4b6bb3d
+  dk-rulespec-2026-08-22: ff4b159d7570d17bc714db49181678074156fec211aa4bb2180b97d8ca7f5ebb
+  ec-rulespec-2026-07-22: bf00211838d253e081ba1c14361d6655fa930bc60c83153b93404a7d32ce28e5
+  ec-rulespec-2026-07-24: aebf79c37248f0f9930bfe9500a19642abea35f43412b04b39b0b766a169d170
+  eg-rulespec-2026-07-24: fdec86f5d0308e94f8f6de3575dd13bbff7262512b719b36aa8c7bf05ea47472
+  et-rulespec-2026-07-10: 62bd0a668ef27276fc5af749c77e44b90bd1a9d7bd4eba4ff09280fde1155fc0
+  et-rulespec-2026-07-12: 8fc9705f65a158df1cd32a0b3c0b344e027a54430d82fd6fd842f15b2e575306
+  gh-rulespec-2026-07-10: 4faee39976d0410fc981365b49fa5f062220cf8aaa5d293ed5eb2aaa45faec12
+  gh-rulespec-2026-07-12: 3c4e882818f338cc7a5c7e8fabf7f9eed468ff58f877425a5e3dd263fdbe9b3d
+  il-rulespec-2026-09-06: 062e482445a64369c8199c59ff25bc86fce6ec18c6606d740ab0bbd2afe795e2
+  mz-rulespec-2026-07-23: b67e1bf3d5acbde34e451e36c5f3e4717e2286a051547462ff42e4190ff8def4
+  ng-rulespec-2026-07-10: f5d3c6704ca26ef63a39bd9415b99cdb81a3e0c80bee21e92999899f0ee88386
+  nz-rulespec-2026-07-10: 7e2a7a92e038bb0b1e5cef8d8e5e7830d8bfaceda71cc74ac561b4cab122eff2
+  nz-rulespec-2026-07-18: 12c5f596b0203d6c4b7350aad46ba63e89151cc89f9b3c69db1e366b47163e93
+  nz-rulespec-2026-07-19: dee7557919863fc95fcbd93792fd1f246b9e7bd68cddb35681a71b603820699b
+  nz-rulespec-2026-07-20: 03558a39482d62c876c2189656f69346f2c5bb28b0d99298084f6c03b1783ce7
+  nz-rulespec-2026-07-25: 642ce790c1b38cf9224df8450e45340a02e7d5e00c28fcb12dc947f2afa08b43
+  pe-rulespec-2026-07-22: 93b00b211a313a3e199aa018406c651c0795593526e0094aa5a8e464a288d105
+  pe-rulespec-2026-07-24: 2e26ec6702ab8dd63c7ab07399335582444f616886d2bdb4533815c1d734a462
+  rw-rulespec-2026-07-16: 1ea93595a8573a85fd459803e13dcc2e2b189f1db4a6951dcb614ee8d8219397
+  tz-rulespec-2026-07-16: 90db91bbb3ef9c4b8b007914cb0a3a2699abcca039cc20647fca2dd6a8f48365
+  tz-znz-rulespec-2026-07-21: ee0dea64bc886e88e8c267cd0c4fbd9d21489c6df811e8dfda587f9d0ac7429f
+  ug-rulespec-2026-07-10: 8c06b83cbe077171b8c8568006c6f8352e41718c684054bd46ce5c8f35e2a1b1
+  ug-rulespec-2026-07-12: 51d38b3103b3479fb88f04de366049ed25d07b95db6c7a5ebdb7ca9b8127a04e
+  ug-rulespec-2026-09-25: 0c8b4bce9e8e85e4295580633c0c1e0e7456098abf30e6e744844c2ec2ea3687
+  uk-legislation-pilot: 87fa76ea66f5b0a808153b068a22a61f48d36649bf6225fb65dd8cd1acf315eb
+  uk-rulespec-2026-07-12: cd1e1969a4072ef59db627f9925a67dcc98f3ef86c35865ceb0b860ac0b99d77
+  uk-rulespec-2026-07-26: 3bc41f2c1c215f851de0a70fb97c8b0d47126cf0c62ae00baa7c782dd6be4e9f
+  uk-rulespec-2026-08-02: 85d0f967654d0b0f80c1e11a2eebd23fafd4a184b8af57b10fecfc37f7f2c3e3
+  uk-rulespec-2026-08-07: 2a9fe63b01bac2179a78088e40dca5c05ba676de714262fae0f2f44c6902ed43
+  uk-rulespec-2026-08-08: 3c859df5a746290b7d945e79b41cf7e2a1db1893d1d1b3d5dbfa8f84ce57cf5e
+  uk-rulespec-2026-08-10: 2f33cfee351b9e165b30e65e08dd77151ad7d1507ca606fa25a3b634c44f1ec9
+  uk-rulespec-2026-09-05: 827ed5d5a005734d5145583ffaa8fef5fbdd1fb85d874d2a274e4382f99c066d
+  uk-rulespec-2026-09-06: 1f1ded6be3d2d5243f0633bb3f211a35cf70c6e73f961891492aa70cf4f4f6bd
+  uk-rulespec-2026-09-07: 3b25db3ea0fe1ee6c2576f7776b86aeb2da45b473c950c0639288a70ae92c71f
+  us-2026-07-24-1401-coordination-repair: 8b9b42df1601112a5a7bbf30811133d0eb62032470bd973d18048c1c8e0f0b44
+  us-2026-07-27-usc-63-repair-165: 4df520d864c8c380264a352b6b3b810d8d940155b1eeed6cb202528b4ebdd191
+  us-2026-07-27-usc-amt-ftc-sections: ee3604924ed794b4f21293ec462ef3631e88af0d855ffe628b54ea44efc13113
+  us-az-snap-ece-2026-10-23-manual-union: 78433f540ff7b037a449192885a10eff20d4cacdf7c157db4fd96e7cae348cc4
+  us-ca-2026-07-28-calfresh-bbce-authority: ce350c84459eb104a4b3f9241da149231eb4fc9d30511bd0dcd831bdba08be63
+  us-rulespec-2026-07-13: 6c98bfd3939049d1231112f1ea91c0825cd1ef4d43d19bf31eadfce2a049507a
+  us-rulespec-2026-07-16: 9c7654f832aa4ee584b3c1f6b1a8a89b87e7a441a2d8ebc3e2d61e4881e12bcf
+  us-rulespec-2026-07-17: f0b56dc5945b32c324391f027e5f3a4e42f0a626710536002715277a86c97ed7
+  us-rulespec-2026-07-17-pit-recovery: a4fe7b185967413eb5fd947638aee40a1bd87a4baa91e2fdd298129c2eddddb8
+  us-rulespec-2026-07-18: 8e3919eacc86fe4c092f6a1a5d1c5d35cacd3bac461337590a63372c2e789311
+  us-rulespec-2026-07-19: 79c091b4501eecb2996936ba51c87955f89460d9e3690b0fde88c30742547e9d
+  us-rulespec-2026-07-19-dedup: 6b18a3e3842b5cfa0736fc0352fada4d07d2417912383e0847b84a1e121552d6
+  us-rulespec-2026-07-21-az-140es-current: b8f41849f54c056c7072f2ac929b76e41b93889a7efda1e45d542d8e2322fb0c
+  us-rulespec-2026-07-21-oh-hb96-current: ada56e6bc50d5c96714a80b7f4bdab0bc68c5cfda2505709490f8a1271c195c5
+  us-rulespec-2026-07-22-current: 2edc30670f498a7f56b74024023c032f0e834643d6483bbd48fb11830f946d67
+  us-rulespec-2026-07-22-current-la-status-fix: 18211b6f6b23fb698994abfa2726d7e483ba97c9315814bb87788996b891441e
+  us-rulespec-2026-07-22-hi-capital-gain-current: 0f7cf5d64b70e31717b4314fc2eaf337f8a75191a32e7e1df90206f3f722b57e
+  us-rulespec-2026-07-24-cms-435-correction: 4303778fbe9434951e5943336728eba5dd5aa09250a76ebdea4f54963eab6e05
+  us-rulespec-2026-08-08-obbb-alien-snap: 1b88863f0e6f09c3383e0572666da892d49125f34bda5088bd90a6706d8b37fd
+  us-rulespec-2026-08-09-cutover-surface-union: e8a66545095eff763e7e1dab473c9848e62a0407b83421bb0e879009e78a7fd9
+  us-rulespec-2026-08-23-canada-338-suspension-union: 56ec2f9b1996c2eae16a96e9b5254bb93ab5fa6329bc78be12d6ea24c8bdf9ed
+  us-rulespec-2026-09-11-program-ingestion-union: aea3024644ff8c10cd1f7fabf757ece448ad2913d4120ea52c89e9f0ca1432a3
+  us-rulespec-2026-09-24-irs-sales-tax-tables-union: 24af198531138cf3d8f0828a3fea221b7ed6e3afdc2f57a4b35a7e6ded30d639
+  us-rulespec-2026-09-24-snap-fy2027-cola: 89ea3de4e2312473bbf992195b3d995e375d6014e03f78c02b8b66e28c20c5f0
+  us-rulespec-2026-10-09-az-des-ece-dated: aaa43893d846a829d897db199e4e34b372c9919e52d4c765640c1ded27a28db5
+  us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected: acdd6106f82490f6a9827b97943600321003125254c5ebfa42b635295e7208ed
+  us-rulespec-2026-10-16-snap-abawd-memo-source-corrected: 8395fecaf863bc7e839a10808160bc3ac93048193cee55b14d2426446ed81519
+  us-rulespec-2026-10-20-fs-pilot-reg-e-f: 002113b75208226f3d57a2e52cdfd0836f5f311f0db3cab3014452a5ea1a3e7a
+  us-rulespec-2026-10-22-ca-concurrent-versions: af8622c3960b7d9d693020fe6393cf9de5fa21608f49117d5417c55b8e1b24e7
+  us-rulespec-2026-10-23-ks-liheap: 0a7bbd78608da08d9a1b3572719d2190f843bd3780d1b59c29b5989d82740793
+  us-rulespec-2026-10-25-ssi-poms-public-laws: 4fce914c090b565ccc5eae0780050a04c299bb9dead043bc0f6edf0550ba9c92
+  us-rulespec-foundation-2026-07-15: 9b2cf7eacecaab041a55d0dbd31c528ac5ae94c9d6c98136d4073ddd9334f4ad
+  us-rulespec-foundation-v2-2026-07-15: ddcc5a1ed01e5272cf61b934a4a3172f28cd6d82ee306e48edb2d7b9e0b36065
+  us-rulespec-foundation-v3-2026-07-15: e611ad5be69a3247ea546d1b66f815492f0f83e58f820f1d4af64baf5f716fc7
+  us-rulespec-foundation-v4-2026-07-15: a2ad8ffb1bee801aa8c157fbff64de3f068cad459f65bef8d0edee7983394bc5
+  us-rulespec-foundation-v5-2026-07-15: 7d1f76b08431bad493822d6264480755f0768a3de67570a716df914595cf7317
+  us-rulespec-snap-2026-07-21: 1d2cae04d8b83694e13756fe3302cda386272013b72818342dc0ccfb826a744a
+  us-sc-snap-2026-07-15: 49247388408c2000de9e1553e8e858ddb7393ef8bcddb302eafe4fe70d3a3653
+  vn-rulespec-2026-07-24: 8f0184addf2f4a7c7b2139a89f94a6de6aebaf9d055661b21f7fea08a5ae1d28
+  vn-rulespec-2026-07-24-r2: 98981e1542c7b8c069dc98858a818c6c26f86ea29a2177ee0ef9d9a73799bbd1
+  zm-rulespec-2026-07-10: f41975050e618d08248c0faa149fa2549d3a8496db23e5c4e40de67b67cee4fb
+  zm-rulespec-2026-07-12: d7acbb7ae0df24635beaaa239a611e4cc9e960a252cf053f3ef52feb8f60096e
+# A selector that selects no version of a (jurisdiction, document_class) pair its
+# predecessor carries. replaced_by names the scopes the selector selects that carry
+# the pair's text in its place; without it, reason says why nothing does.
+dropped_pairs:
+  - selector: uk-rulespec-2026-08-02
+    predecessor: uk-rulespec-2026-07-26
+    pair: uk-shropshire/manual
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. Its description retires the
+      mislabeled uk-shropshire manual by omission: the manual's operative text is
+      the 2024/2025 default scheme under a 2026/27 cover.
+# A predecessor that more than one tracked selector names, in entries sorted by
+# predecessor, then listed_on. The first entry lists the selectors that named
+# the predecessor when the fork was recorded (successors) and the ones the line
+# went on through (continued_by). A later entry for the same predecessor, with
+# its own listed_on and reason, adds successors, continued_by branches or both,
+# and the check reads the entries as their union. A selector that names the
+# predecessor and no entry lists is a new fork; one that names a successor
+# outside continued_by extends a branch the line ended.
+forks:
+  - predecessor: de-rulespec-2026-09-08-kindergeld-civil
+    successors:
+      - de-rulespec-2026-09-08-kindergeld-context
+      - de-rulespec-2026-09-08-kindergeld-parentage
+    continued_by:
+      - de-rulespec-2026-09-08-kindergeld-context
+    listed_on: 2026-11-05
+    reason: >-
+      Both branches say "Preserves all seventeen civil-release scopes". The later
+      de-rulespec-2026-09-08-kindergeld-2025-history says "Preserves all twenty
+      context-release scopes", explicitly continuing the context branch.
+  - predecessor: us-rulespec-2026-07-19-dedup
+    successors:
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-snap-2026-07-21
+    continued_by:
+      - us-rulespec-2026-07-17-pit-recovery
+    listed_on: 2026-11-05
+    reason: >-
+      The SNAP cut says "Successor to the collision-free RuleSpec US release"; PIT names the
+      same base. The line continues through PIT and its named successors to
+      us-rulespec-2026-07-24-snap-cms-pit-union, whose description says "restoring every
+      collision-free SNAP scope from us-rulespec-snap-2026-07-21 for complete federal and
+      state SNAP encoding".
+  - predecessor: us-rulespec-2026-07-21-az-140es-current
+    successors:
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-22-current
+    continued_by:
+      - us-rulespec-2026-07-22-current
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-07-22-current; no tracked selector names
+      us-rulespec-2026-07-21-oh-hb96-current as its predecessor.
+  - predecessor: us-rulespec-2026-07-22-current-la-status-fix
+    successors:
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+    continued_by:
+      - us-rulespec-2026-07-24-cms-435-correction
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-07-24-cms-435-correction; no tracked selector names
+      us-rulespec-2026-07-22-hi-capital-gain-current as its predecessor.
+  - predecessor: us-rulespec-2026-08-08-obbb-alien-snap
+    successors:
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected
+    continued_by:
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The union lineage continued from
+      us-rulespec-2026-08-09-cutover-surface-union and the dated cuts from
+      us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected; no tracked
+      selector names us-rulespec-2026-09-24-snap-fy2027-cola as its predecessor.
+  - predecessor: us-rulespec-2026-08-23-canada-338-suspension-union
+    successors:
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-24-irs-sales-tax-tables-union
+    continued_by:
+      - us-rulespec-2026-09-11-program-ingestion-union
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The union lineage continued from
+      us-rulespec-2026-09-11-program-ingestion-union; no tracked selector names
+      us-rulespec-2026-09-24-irs-sales-tax-tables-union as its predecessor.
+  - predecessor: us-rulespec-2026-10-09-az-des-ece-dated
+    successors:
+      - us-rulespec-2026-10-16-snap-abawd-memo-source-corrected
+      - us-rulespec-2026-10-20-fs-pilot-reg-e-f
+    continued_by:
+      - us-rulespec-2026-10-20-fs-pilot-reg-e-f
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-10-20-fs-pilot-reg-e-f; no tracked selector names
+      us-rulespec-2026-10-16-snap-abawd-memo-source-corrected as its predecessor.
+  - predecessor: us-rulespec-2026-10-22-ca-concurrent-versions
+    successors:
+      - us-rulespec-2026-10-23-ks-liheap
+      - us-rulespec-2026-10-25-ssi-poms-public-laws
+    continued_by:
+      - us-rulespec-2026-10-25-ssi-poms-public-laws
+    listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. The line continued from
+      us-rulespec-2026-10-25-ssi-poms-public-laws; no tracked selector names
+      us-rulespec-2026-10-23-ks-liheap as its predecessor, and its us-ks/policy
+      scopes are not in the line's newest cut,
+      us-rulespec-2026-10-29-ecfr-section-text (axiom-corpus#935).
+# Selectors whose description names no tracked selector, so the check compares
+# nothing with them until a later succession resolves their prose base. A new
+# selector with neither a predecessor nor a first-cut record is a finding.
+first_cuts:
+  - listed_on: 2026-11-02
+    reason: >-
+      On main before the lineage check began. Each is the first cut of its line,
+      or describes its predecessor without naming it, as the UK cuts of 2026-08-08
+      to 2026-09-07 and the DE Kindergeld cuts do.
+    selectors:
+      - am-rulespec-2026-08-30
+      - be-rulespec-2026-07-10
+      - bo-rulespec-2026-07-23
+      - bo-rulespec-2026-07-24
+      - bo-rulespec-2026-07-24-r2
+      - ca-rulespec-2026-07-21
+      - ca-rulespec-2026-07-21-complete
+      - ca-rulespec-2026-07-21-oracle-complete
+      - ca-rulespec-2026-07-21-oracle-complete-v2
+      - ca-rulespec-2026-07-21-source-complete
+      - co-rulespec-2026-07-23
+      - co-rulespec-2026-07-24
+      - de-rulespec-2026-07-16
+      - de-rulespec-2026-07-21
+      - de-rulespec-2026-09-08-kindergeld-2025-history
+      - de-rulespec-2026-09-08-kindergeld-civil
+      - de-rulespec-2026-09-08-kindergeld-context
+      - de-rulespec-2026-09-08-kindergeld-frontier
+      - de-rulespec-2026-09-08-kindergeld-parentage
+      - de-rulespec-2026-09-09-kindergeld-adult-services
+      - de-rulespec-2026-09-09-kindergeld-allowance-context
+      - de-rulespec-2026-09-09-kindergeld-bfh-decisions
+      - de-rulespec-2026-09-09-kindergeld-bgb-amendment
+      - de-rulespec-2026-09-09-kindergeld-bmf-context
+      - de-rulespec-2026-09-09-kindergeld-dakg
+      - de-rulespec-2026-09-09-kindergeld-estg32-paragraphs
+      - de-rulespec-2026-09-09-kindergeld-eu-articles
+      - de-rulespec-2026-09-09-kindergeld-marginal-employment
+      - de-rulespec-2026-09-09-kindergeld-swiss-coordination
+      - de-rulespec-2026-09-09-kindergeld-threshold
+      - de-rulespec-2026-09-09-kindergeld-treaty-texts
+      - de-rulespec-2026-09-10-kindergeld-eu-service-earlier
+      - de-rulespec-2026-09-10-kindergeld-eu-service-predecessors
+      - de-rulespec-2026-09-10-kindergeld-generations-service
+      - de-rulespec-2026-09-10-kindergeld-maternity
+      - de-rulespec-2026-09-10-kindergeld-recipient-priority
+      - de-rulespec-2026-09-11-kindergeld-bgh-counterpart
+      - de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor
+      - de-rulespec-2026-09-11-kindergeld-disability-definition
+      - de-rulespec-2026-09-11-kindergeld-illness-precedents
+      - de-rulespec-2026-09-14-kindergeld-dakg2025-evidence
+      - de-rulespec-2026-09-14-kindergeld-dakg2025-sections
+      - de-rulespec-2026-09-14-kindergeld-eu-territory
+      - de-rulespec-2026-09-15-kindergeld-cross-border-priority
+      - de-rulespec-2026-09-15-kindergeld-dakg2025-preface
+      - de-rulespec-2026-09-15-kindergeld-eu-priority-references
+      - de-rulespec-2026-09-15-kindergeld-priority-followup
+      - dk-rulespec-2026-07-12
+      - dk-rulespec-2026-08-07
+      - dk-rulespec-2026-08-22
+      - ec-rulespec-2026-07-22
+      - ec-rulespec-2026-07-24
+      - eg-rulespec-2026-07-24
+      - et-rulespec-2026-07-10
+      - et-rulespec-2026-07-12
+      - gh-rulespec-2026-07-10
+      - gh-rulespec-2026-07-12
+      - il-rulespec-2026-09-06
+      - mz-rulespec-2026-07-23
+      - ng-rulespec-2026-07-10
+      - nz-rulespec-2026-07-10
+      - nz-rulespec-2026-07-19
+      - nz-rulespec-2026-07-20
+      - nz-rulespec-2026-07-25
+      - pe-rulespec-2026-07-22
+      - pe-rulespec-2026-07-24
+      - rw-rulespec-2026-07-16
+      - tz-rulespec-2026-07-16
+      - tz-znz-rulespec-2026-07-21
+      - ug-rulespec-2026-07-10
+      - ug-rulespec-2026-07-12
+      - ug-rulespec-2026-09-25
+      - uk-legislation-pilot
+      - uk-rulespec-2026-07-12
+      - uk-rulespec-2026-08-08
+      - uk-rulespec-2026-08-10
+      - uk-rulespec-2026-09-05
+      - uk-rulespec-2026-09-06
+      - uk-rulespec-2026-09-07
+      - us-2026-07-24-1401-coordination-repair
+      - us-2026-07-27-usc-63-repair-165
+      - us-2026-07-27-usc-amt-ftc-sections
+      - us-az-snap-ece-2026-10-23-manual-union
+      - us-ca-2026-07-28-calfresh-bbce-authority
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-foundation-2026-07-15
+      - us-rulespec-foundation-v2-2026-07-15
+      - us-rulespec-foundation-v3-2026-07-15
+      - us-rulespec-foundation-v4-2026-07-15
+      - us-rulespec-foundation-v5-2026-07-15
+      - us-rulespec-snap-2026-07-21
+      - us-sc-snap-2026-07-15
+      - vn-rulespec-2026-07-24
+      - vn-rulespec-2026-07-24-r2
+      - zm-rulespec-2026-07-10
+      - zm-rulespec-2026-07-12
+
+# Unambiguous prose bases, in selector order; both endpoints are pinned above.
+# A later succession supersedes the historical first-cut claim without removing it.
+successions:
+  - selector: bo-rulespec-2026-07-24
+    predecessor: bo-rulespec-2026-07-23
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the BOLMOD t1 scopes plus"; this identifies
+      bo-rulespec-2026-07-23.
+  - selector: bo-rulespec-2026-07-24-r2
+    predecessor: bo-rulespec-2026-07-24
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the BOLMOD t1 scopes, the Ley 065 t2 slices, and"; this
+      identifies bo-rulespec-2026-07-24.
+  - selector: co-rulespec-2026-07-24
+    predecessor: co-rulespec-2026-07-23
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the COLMOD t1 scopes plus"; this identifies
+      co-rulespec-2026-07-23.
+  - selector: de-rulespec-2026-07-21
+    predecessor: de-rulespec-2026-07-16
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Composes the byte-identical 2026-07-16
+      gesetze-im-internet consolidations with"; this identifies de-rulespec-2026-07-16.
+  - selector: de-rulespec-2026-09-08-kindergeld-2025-history
+    predecessor: de-rulespec-2026-09-08-kindergeld-context
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all twenty context-release scopes"; this
+      identifies de-rulespec-2026-09-08-kindergeld-context.
+  - selector: de-rulespec-2026-09-08-kindergeld-civil
+    predecessor: de-rulespec-2026-09-08-kindergeld-frontier
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all fourteen published September frontier
+      scopes"; this identifies de-rulespec-2026-09-08-kindergeld-frontier.
+  - selector: de-rulespec-2026-09-08-kindergeld-context
+    predecessor: de-rulespec-2026-09-08-kindergeld-civil
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all seventeen civil-release scopes"; this
+      identifies de-rulespec-2026-09-08-kindergeld-civil.
+  - selector: de-rulespec-2026-09-08-kindergeld-parentage
+    predecessor: de-rulespec-2026-09-08-kindergeld-civil
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all seventeen civil-release scopes"; this
+      identifies de-rulespec-2026-09-08-kindergeld-civil.
+  - selector: de-rulespec-2026-09-09-kindergeld-allowance-context
+    predecessor: de-rulespec-2026-09-08-kindergeld-2025-history
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Retains all 22 earlier scopes"; this identifies
+      de-rulespec-2026-09-08-kindergeld-2025-history.
+  - selector: de-rulespec-2026-09-09-kindergeld-bgb-amendment
+    predecessor: de-rulespec-2026-09-09-kindergeld-estg32-paragraphs
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Retain all30preceding scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-estg32-paragraphs.
+  - selector: de-rulespec-2026-09-09-kindergeld-bmf-context
+    predecessor: de-rulespec-2026-09-09-kindergeld-allowance-context
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all23preceding scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-allowance-context.
+  - selector: de-rulespec-2026-09-09-kindergeld-estg32-paragraphs
+    predecessor: de-rulespec-2026-09-09-kindergeld-eu-articles
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all29prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-eu-articles.
+  - selector: de-rulespec-2026-09-09-kindergeld-eu-articles
+    predecessor: de-rulespec-2026-09-09-kindergeld-swiss-coordination
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all28prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-swiss-coordination.
+  - selector: de-rulespec-2026-09-09-kindergeld-marginal-employment
+    predecessor: de-rulespec-2026-09-09-kindergeld-dakg
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 37 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-dakg.
+  - selector: de-rulespec-2026-09-09-kindergeld-swiss-coordination
+    predecessor: de-rulespec-2026-09-09-kindergeld-treaty-texts
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all27prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-treaty-texts.
+  - selector: de-rulespec-2026-09-09-kindergeld-threshold
+    predecessor: de-rulespec-2026-09-09-kindergeld-marginal-employment
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 40 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-marginal-employment.
+  - selector: de-rulespec-2026-09-09-kindergeld-treaty-texts
+    predecessor: de-rulespec-2026-09-09-kindergeld-bmf-context
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserves all24prior scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-bmf-context.
+  - selector: de-rulespec-2026-09-10-kindergeld-eu-service-earlier
+    predecessor: de-rulespec-2026-09-10-kindergeld-eu-service-predecessors
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all47 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-eu-service-predecessors.
+  - selector: de-rulespec-2026-09-10-kindergeld-eu-service-predecessors
+    predecessor: de-rulespec-2026-09-10-kindergeld-recipient-priority
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all46 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-recipient-priority.
+  - selector: de-rulespec-2026-09-10-kindergeld-generations-service
+    predecessor: de-rulespec-2026-09-10-kindergeld-eu-service-earlier
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve48prior DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-eu-service-earlier.
+  - selector: de-rulespec-2026-09-10-kindergeld-maternity
+    predecessor: de-rulespec-2026-09-09-kindergeld-threshold
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 41 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-09-kindergeld-threshold.
+  - selector: de-rulespec-2026-09-10-kindergeld-recipient-priority
+    predecessor: de-rulespec-2026-09-10-kindergeld-maternity
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all45 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-maternity.
+  - selector: de-rulespec-2026-09-11-kindergeld-bgh-counterpart
+    predecessor: de-rulespec-2026-09-11-kindergeld-disability-definition
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all52 preceding release scopes"; this
+      identifies de-rulespec-2026-09-11-kindergeld-disability-definition.
+  - selector: de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor
+    predecessor: de-rulespec-2026-09-11-kindergeld-bgh-counterpart
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all54 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-11-kindergeld-bgh-counterpart.
+  - selector: de-rulespec-2026-09-11-kindergeld-disability-definition
+    predecessor: de-rulespec-2026-09-11-kindergeld-illness-precedents
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all50 prior DE scopes"; this identifies
+      de-rulespec-2026-09-11-kindergeld-illness-precedents.
+  - selector: de-rulespec-2026-09-11-kindergeld-illness-precedents
+    predecessor: de-rulespec-2026-09-10-kindergeld-generations-service
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 49 prior DE scopes"; this identifies
+      de-rulespec-2026-09-10-kindergeld-generations-service.
+  - selector: de-rulespec-2026-09-14-kindergeld-dakg2025-evidence
+    predecessor: de-rulespec-2026-09-14-kindergeld-eu-territory
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 56 prior DE scopes"; this identifies
+      de-rulespec-2026-09-14-kindergeld-eu-territory.
+  - selector: de-rulespec-2026-09-14-kindergeld-dakg2025-sections
+    predecessor: de-rulespec-2026-09-14-kindergeld-dakg2025-evidence
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 57 prior DE scopes"; this identifies
+      de-rulespec-2026-09-14-kindergeld-dakg2025-evidence.
+  - selector: de-rulespec-2026-09-14-kindergeld-eu-territory
+    predecessor: de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 55 preceding DE scopes"; this identifies
+      de-rulespec-2026-09-11-kindergeld-bgh-form-predecessor.
+  - selector: de-rulespec-2026-09-15-kindergeld-cross-border-priority
+    predecessor: de-rulespec-2026-09-15-kindergeld-dakg2025-preface
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all 59 prior DE scopes"; this identifies
+      de-rulespec-2026-09-15-kindergeld-dakg2025-preface.
+  - selector: de-rulespec-2026-09-15-kindergeld-dakg2025-preface
+    predecessor: de-rulespec-2026-09-14-kindergeld-dakg2025-sections
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Preserve all58 prior DE scopes"; this identifies
+      de-rulespec-2026-09-14-kindergeld-dakg2025-sections.
+  - selector: dk-rulespec-2026-08-22
+    predecessor: dk-rulespec-2026-08-07
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-08-07 Tier-1 full-parity statute scope"; this
+      identifies dk-rulespec-2026-08-07.
+  - selector: ec-rulespec-2026-07-24
+    predecessor: ec-rulespec-2026-07-22
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the ECUAMOD t1 scopes plus"; this identifies
+      ec-rulespec-2026-07-22.
+  - selector: nz-rulespec-2026-07-19
+    predecessor: nz-rulespec-2026-07-18
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-06-16 PCO statute and regulation scopes and
+      the 2026-07-18 Wellington district-plan scope carried unchanged"; this identifies
+      nz-rulespec-2026-07-18.
+  - selector: nz-rulespec-2026-07-20
+    predecessor: nz-rulespec-2026-07-19
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-06-16 PCO statute and regulation scopes, the
+      2026-07-18 Wellington district-plan scope, and the 2026-07-19 PCO supplement scopes
+      carried unchanged"; this identifies nz-rulespec-2026-07-19.
+  - selector: nz-rulespec-2026-07-25
+    predecessor: nz-rulespec-2026-07-20
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the 2026-06-16 PCO statute and regulation scopes, the
+      2026-07-18 Wellington district-plan scope, the 2026-07-19 PCO supplement scopes, and the
+      2026-07-20 guidance scope carried unchanged"; this identifies nz-rulespec-2026-07-20.
+  - selector: pe-rulespec-2026-07-24
+    predecessor: pe-rulespec-2026-07-22
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the PERUMOD t1 scopes plus"; this identifies
+      pe-rulespec-2026-07-22.
+  - selector: uk-rulespec-2026-08-08
+    predecessor: uk-rulespec-2026-08-07
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-08-07 set plus"; this identifies
+      uk-rulespec-2026-08-07.
+  - selector: uk-rulespec-2026-08-10
+    predecessor: uk-rulespec-2026-08-08
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-08-08 set plus"; this identifies
+      uk-rulespec-2026-08-08.
+  - selector: uk-rulespec-2026-09-05
+    predecessor: uk-rulespec-2026-08-10
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-08-10 set plus"; this identifies
+      uk-rulespec-2026-08-10.
+  - selector: uk-rulespec-2026-09-06
+    predecessor: uk-rulespec-2026-09-05
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-09-05 set plus"; this identifies
+      uk-rulespec-2026-09-05.
+  - selector: uk-rulespec-2026-09-07
+    predecessor: uk-rulespec-2026-09-06
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "2026-09-06 set plus"; this identifies
+      uk-rulespec-2026-09-06.
+  - selector: us-rulespec-2026-07-16
+    predecessor: us-rulespec-2026-07-13
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Re-cut of the 07-13 plan"; this identifies
+      us-rulespec-2026-07-13.
+  - selector: us-rulespec-2026-07-19
+    predecessor: us-rulespec-2026-07-18
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "all other July 18 scope selections remain unchanged";
+      this identifies us-rulespec-2026-07-18.
+  - selector: us-rulespec-2026-07-19-dedup
+    predecessor: us-rulespec-2026-07-19
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "all other July 19 scope selections"; this identifies
+      us-rulespec-2026-07-19.
+  - selector: us-rulespec-foundation-v4-2026-07-15
+    predecessor: us-rulespec-foundation-v3-2026-07-15
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "adding the CMS Medicaid/CHIP/BHP eligibility table to
+      the v3 foundation"; this identifies us-rulespec-foundation-v3-2026-07-15.
+  - selector: us-rulespec-foundation-v5-2026-07-15
+    predecessor: us-rulespec-foundation-v4-2026-07-15
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "adding the CHIP Title XXI legal hierarchy to the v4
+      foundation"; this identifies us-rulespec-foundation-v4-2026-07-15.
+  - selector: us-rulespec-snap-2026-07-21
+    predecessor: us-rulespec-2026-07-19-dedup
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "Successor to the collision-free RuleSpec US release";
+      this identifies us-rulespec-2026-07-19-dedup.
+  - selector: vn-rulespec-2026-07-24-r2
+    predecessor: vn-rulespec-2026-07-24
+    listed_on: 2026-11-05
+    reason: >-
+      The selector description states "the VNMOD t1 scopes plus"; this identifies
+      vn-rulespec-2026-07-24.

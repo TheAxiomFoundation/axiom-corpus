@@ -1,0 +1,1 @@
+Added the immutable `us-rulespec-2026-11-11-cms-w6-federal-guidance` release selector: `us-rulespec-2026-10-27-ks-liheap` plus the signed `us/guidance/2026-10-06-w6-federal-cms-guidance` scope, which carries the CMCS Informational Bulletin of 2025-12-08 on Medicaid community engagement requirements. Publish it only as a pin release for rulespec-us; do not activate it.

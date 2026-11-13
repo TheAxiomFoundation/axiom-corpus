@@ -3,7 +3,7 @@
 Closes the federal STATUTE gaps that `docs/coverage/needs-closure-2026-09-11/` found, from the
 official U.S. Code (Office of the Law Revision Counsel, uscode.house.gov, USLM XML), with the
 `extract-usc` adapter the repository already uses for every `us/statute` scope. One self-contained
-scope per program; every extraction pointed at `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`
+scope per program; every extraction pointed at `--base <axiom-corpus checkout>/data/corpus`
 from the sparse worktree `~/axiom-corpus-worktrees/federal-statute` (branch
 `discovery/ingest-federal-statute`, cut from `origin/main` at `8dc61300`). Everything under
 `data/corpus` is local and unsigned; nothing under it is committed on this branch. GitNexus MCP
@@ -172,7 +172,7 @@ released recovery scope.
 ## Commands
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 # per scope: the downloaded release-point zip is the source; extract-usc retains it under olrc/
 V=2026-09-13-wic-statute-1786; T=42; RUN_ID=$V-title-$T
 uv run axiom-corpus-ingest extract-usc --base $B --version $V --source-zip xml_usc$T@119-103.zip --title $T \

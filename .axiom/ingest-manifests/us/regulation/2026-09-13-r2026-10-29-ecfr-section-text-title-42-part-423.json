@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-r2026-10-29-ecfr-section-text-title-42-part-423.json",
+      "sha256": "89c054aace9e89a91cb3a695e79559823d45d7789653afa3dea6828e9c12a4c3"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-r2026-10-29-ecfr-section-text-title-42-part-423.json",
+      "sha256": "5eb8870b08c0a01d253574633c56788679b31fa03e8f6dd017685b063eafc59d"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-r2026-10-29-ecfr-section-text-title-42-part-423.jsonl",
+      "sha256": "d860c70bf6fbf4205b0b009de0c18b23378bf383c5984a6d3721807112133800"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-r2026-10-29-ecfr-section-text-title-42-part-423/ecfr/title-42-part-423.xml",
+      "sha256": "5294e3b1fb9e58c7a779b17fdb2238f250753c86df966f3e86981f1f71e48e47"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-r2026-10-29-ecfr-section-text-title-42-part-423/ecfr/title-42.structure.json",
+      "sha256": "e26fcf6a5b5d463b8402883ca8159ecfdbdc37f3c215fdfaef9efce4d0faf1ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "03da58baf6bdb1bca9a6b97e3c0b1aee302e82a2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-ecfr --base data/corpus --only-title 42 --only-part 423 --version 2026-09-13-r2026-10-29-ecfr-section-text --as-of 2026-09-10 --expression-date 2026-09-10 --workers 1"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 360,
+    "missing_count": 0,
+    "provision_count": 360,
+    "source_count": 360
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-29T14:44:48.528600+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gXXI003rmRbk3t7joMOCMqiLZ/qiAaXK32HKNeoUehcZ8nRBbZxQMfNwKHpybMJaXdsyO7FRXBtbrU4KAVdGCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-r2026-10-29-ecfr-section-text-title-42-part-423"
+}

@@ -171,6 +171,8 @@ documents:
     start_page: 3
     section_heading_pattern: '^364\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
     section_label_template: '{section}'
+    reserved_section_labels:
+    - '800'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers

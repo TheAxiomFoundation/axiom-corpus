@@ -38,6 +38,7 @@ from axiom_corpus.corpus.documents import (
 from axiom_corpus.corpus.ingest_manifests import (
     LocalFileUrlScanError,
     _content_issues,
+    is_file_url,
     local_file_url_fields,
     redact_file_urls,
 )
@@ -285,6 +286,15 @@ def test_guard_reports_file_urls_in_url_fields_only() -> None:
     assert _content_issues("data/corpus/coverage/de/guidance/v.json", provisions.encode()) == []
 
 
+def _reference_is_file(value) -> bool:
+    if not isinstance(value, str):
+        return False
+    parsed = "".join(c for c in value if c not in "\t\n\r")
+    while parsed and ord(parsed[0]) <= 0x20:
+        parsed = parsed[1:]
+    return parsed.lower().startswith("file:") or value.strip().lower().startswith("file:")
+
+
 def _reference(path: str, payload: bytes) -> list[tuple[str, str]]:
     """Parse every row with no prefilter and visit every key, depth first."""
     text = payload.decode("utf-8-sig")
@@ -305,9 +315,7 @@ def _reference(path: str, payload: bytes) -> list[tuple[str, str]]:
             here = f"{dotted}.{key}" if dotted else key
             url_key = key in ("url", "urls") or key.endswith(("_url", "_urls"))
             values = child if isinstance(child, list) else [child]
-            if url_key and any(
-                isinstance(v, str) and v.strip().lower().startswith("file:") for v in values
-            ):
+            if url_key and any(_reference_is_file(v) for v in values):
                 found.append(here)
             visit(child, here)
 
@@ -320,21 +328,29 @@ def _reference(path: str, payload: bytes) -> list[tuple[str, str]]:
 
 
 def _escape_some(serialized: str, data: st.DataObject) -> str:
-    """Spell some ASCII letters of the serialized JSON as \\uXXXX escapes."""
+    """Spell some ASCII letters inside JSON strings as \\uXXXX escapes.
+
+    Existing escapes are copied whole, including the four hex digits of a
+    \\uXXXX escape, so the result stays valid JSON for the same value.
+    """
     out = []
     in_string = False
-    escaped = False
-    for char in serialized:
-        if in_string and not escaped and char.isalpha() and data.draw(st.booleans()):
+    index = 0
+    while index < len(serialized):
+        char = serialized[index]
+        if in_string and char == "\\":
+            width = 6 if serialized[index + 1] == "u" else 2
+            out.append(serialized[index : index + width])
+            index += width
+            continue
+        if char == '"':
+            in_string = not in_string
+            out.append(char)
+        elif in_string and char.isalpha() and data.draw(st.booleans()):
             out.append(f"\\u{ord(char):04x}")
         else:
             out.append(char)
-        if escaped:
-            escaped = False
-        elif char == "\\":
-            escaped = True
-        elif char == '"':
-            in_string = not in_string
+        index += 1
     return "".join(out)
 
 
@@ -347,6 +363,13 @@ _URLISH = st.sampled_from(
         "files.example/a",
         "http://file:8080/a",
         "",
+        # A URL parser drops leading C0 controls and tabs or newlines anywhere.
+        "\x00file:///Users/someone/a.pdf",
+        "\x1f file:///tmp/a",
+        "fi\tle:///tmp/a",
+        "f\ni\rle:///tmp/a",
+        "\u00a0file:///tmp/a",
+        "\x7ffile:///tmp/a",
     ]
 )
 
@@ -580,7 +603,7 @@ def test_a_repeated_key_that_is_itself_a_path_is_not_echoed() -> None:
     name = "file:///Users/person/private.pdf"
     line = f'{{"citation_path": "de/guidance/k", "metadata": {{"{name}": 1, "{name}": 2}}}}\n'
     (issue,) = _content_issues(PROVISIONS, line.encode())
-    assert "repeats the key" in issue
+    assert "repeats a key," in issue
     assert "/Users/person" not in issue
 
 
@@ -599,15 +622,118 @@ def test_a_repeated_key_that_is_itself_a_path_is_not_echoed() -> None:
                 "<",
                 "file:",
                 "%20file:///q",
+                "/Users/Jane Doe/",
+                "o'brien",
+                "\n",
+                "\t",
+                "\r",
+                "\\t",
+                "fi",
+                "le:",
+                "f",
+                "ile:",
+                ")",
             ]
         ),
-        max_size=8,
+        max_size=10,
     )
 )
 def test_redaction_leaves_no_file_url(parts) -> None:
+    """No file: URL survives, read as a URL parser reads it (tabs and newlines dropped)."""
     import re
 
     text = "".join(parts)
     redacted = redact_file_urls(text)
-    assert not re.search(r"(?i)file:[^\s\"'<>`]", redacted)
+    as_parsed = re.sub(r"[\t\r\n]|\\[tnr]", "", redacted)
+    assert not re.search(r"(?i)file:(?=\S)", as_parsed)
     assert redact_file_urls(redacted) == redacted
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        ("repeats the key 'file:///Users/Jane Doe/private.pdf'", "repeats the key '<file: URL>"),
+        ("path file:///home/o'brien/a.pdf, done", "path <file: URL>"),
+        ('in "file:///tmp/a b.pdf" here', 'in "<file: URL>" here'),
+        ("no file: URL here", "no file: URL here"),
+        (
+            "`fi\tle:///Users/Jane Doe/x.pdf` metadata.download_url",
+            "`<file: URL>` metadata.download_url",
+        ),
+        ("repeats the key 'prefix fi\\tle:///Users/p.pdf'", "repeats the key 'prefix <file: URL>"),
+        ("a-file:///x", "a-<file: URL>"),
+        ("a file:\t///Users/Jane Doe/x.pdf", "a <file: URL>"),
+    ],
+)
+def test_redaction_takes_unencoded_paths_whole(text: str, expected: str) -> None:
+    assert redact_file_urls(text) == expected
+
+
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        ("file:///a", True),
+        ("  FILE:/a", True),
+        ("\x00file:///a", True),
+        ("fi\tle:///a", True),
+        ("\u00a0file:///a", True),
+        ("https://x.example/file:///a", False),
+        ("files.example", False),
+        (None, False),
+    ],
+)
+def test_is_file_url_reads_a_value_as_a_url_parser_would(value, expected: bool) -> None:
+    assert is_file_url(value) is expected
+
+
+def test_identifiers_that_name_a_control_split_file_url_are_redacted() -> None:
+    """Hardening review: a crafted citation or key could print a tab-split path."""
+    leak = "fi\tle:///Users/Jane Doe/private.pdf"
+    row = {"citation_path": leak, "metadata": {"download_url": leak}}
+    (issue,) = _content_issues(PROVISIONS, (json.dumps(row) + "\n").encode())
+    assert "/Users/Jane" not in issue and "records a file: URL" in issue
+    duplicated = '{"citation_path": "c", "metadata": {"prefix fi\\tle:///Users/p.pdf": 1, "prefix fi\\tle:///Users/p.pdf": 2}}\n'
+    (issue,) = _content_issues(PROVISIONS, duplicated.encode())
+    assert "repeats a key," in issue and "/Users/p" not in issue
+
+
+def test_jsonl_lines_are_split_as_load_provisions_splits_them(tmp_path: Path) -> None:
+    """A record with a literal U+2028 is two lines to the loader, so the scan fails closed too."""
+    from axiom_corpus.corpus.io import load_provisions
+
+    row = {"citation_path": "de/guidance/u", "body": "First\u2028Second\nThird"}
+    payload = (json.dumps(row, ensure_ascii=False) + "\n").encode()
+    with pytest.raises(LocalFileUrlScanError, match="line 2 is not JSON"):
+        local_file_url_fields(PROVISIONS, payload)
+    path = tmp_path / "rows.jsonl"
+    path.write_bytes(payload)
+    with pytest.raises(json.JSONDecodeError):
+        load_provisions(path)
+    # The canonical writer escapes U+2028, and that record scans clean.
+    assert local_file_url_fields(PROVISIONS, (json.dumps(row) + "\n").encode()) == []
+
+
+def test_a_candidate_line_that_is_not_an_object_fails_closed() -> None:
+    """Opus review of #885: a bare CR splits a record into fragments that parse alone."""
+    record = b'{"citation_path": "c",\r"source_url":\r"file:///Users/Jane/private.pdf"\r}\n'
+    with pytest.raises(LocalFileUrlScanError, match="line 3 is not a JSON object"):
+        local_file_url_fields(PROVISIONS, record)
+    (issue,) = _content_issues(PROVISIONS, record)
+    assert "/Users/Jane" not in issue
+
+
+def test_audit_field_names_that_name_a_path_are_redacted(tmp_path: Path) -> None:
+    """Opus review of #885: nothing pinned the audit's field-name sanitization."""
+    from scripts.audit_local_file_urls import audit
+
+    repo = tmp_path / "repo"
+    key = "fi\tle:///Users/Jane Doe/private.pdf_url"
+    _locked_scope(
+        repo,
+        ("de", "guidance", "2026-09-14-crafted"),
+        [_row("de/guidance/c", metadata={key: "file:///Users/Jane Doe/a.pdf"})],
+    )
+    (record,) = audit(repo)["scopes"]
+    fields = {name for detail in record["artifacts"].values() for name in detail["fields"]}
+    assert fields == {"metadata.<file: URL>"}
+    assert "/Users/Jane" not in json.dumps(record)

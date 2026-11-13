@@ -54,13 +54,15 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.14"
 
       - name: Install package before exposing production credentials
-        run: python -I -m pip install -e .
+        # uv.lock's versions and hashes, the ones CI tests (docs/dependency-lock.md).
+        run: bash .github/scripts/install-locked.sh --editable
 
       - name: Verify official publication workflow run
         env:

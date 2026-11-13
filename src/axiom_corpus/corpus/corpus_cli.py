@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import contextlib
 import json
+import random
 import subprocess
 import sys
 from collections.abc import Iterable
@@ -24,7 +25,8 @@ from axiom_corpus.corpus.content_store import (
     R2ObjectStore,
     destination_state,
     ensure_cached,
-    materialize,
+    materialize_resilient,
+    reports_disk_full,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -105,6 +107,7 @@ def register(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
     fetch.add_argument("--verify", action="store_true", help="Hash present files, not just size.")
     fetch.add_argument("--force", action="store_true", help="Replace files that differ from the lock.")
     fetch.add_argument("--no-r2", action="store_true", help="Use only the cache and git objects.")
+    fetch.add_argument("--no-git", action="store_true", help="Use only the cache and R2 objects.")
     fetch.add_argument(
         "--no-cache",
         action="store_true",
@@ -197,8 +200,10 @@ def _cache(args: argparse.Namespace) -> ContentCache:
     return ContentCache(Path(args.cache) if args.cache else None)
 
 
-def _sources(repo: Path, *, r2: bool = True, workers: int = 16) -> list[ObjectSource]:
-    sources: list[ObjectSource] = [GitBlobSource(repo)]
+def _sources(
+    repo: Path, *, r2: bool = True, git_objects: bool = True, workers: int = 16
+) -> list[ObjectSource]:
+    sources: list[ObjectSource] = [GitBlobSource(repo)] if git_objects else []
     if r2:
         with contextlib.suppress(RuntimeError):  # no credentials: cache and git only
             sources.append(R2ObjectStore.from_environment(workers=workers))
@@ -210,6 +215,21 @@ def _remote(workers: int) -> R2ObjectStore:
         return R2ObjectStore.from_environment(workers=workers)
     except RuntimeError as exc:
         raise SystemExit(f"corpus: {exc}") from exc
+
+
+def _spread(entries: Iterable[LockEntry]) -> list[LockEntry]:
+    """``entries`` in a random order, for the commands that read R2 for each one.
+
+    Every CI job, and every pull request's run, walks the same sorted lock
+    entries; in that order they ask R2 for the same object at the same moment,
+    as do a successor scope and the predecessor whose files it repeats, and R2
+    has refused such reads ("Reduce your rate of simultaneous reads on the same
+    object"). Nothing else depends on the order: each entry is fetched,
+    verified and reported on its own.
+    """
+    spread = list(entries)
+    random.shuffle(spread)
+    return spread
 
 
 def _emit(args: argparse.Namespace, payload: dict[str, Any], lines: Iterable[str]) -> None:
@@ -257,7 +277,7 @@ def _selected_entries(
             chosen[entry.path] = entry
     for path in paths:
         rel = Path(path).as_posix().rstrip("/")
-        matches = locks.entries_under(rel)
+        matches = locks.entries_under(locks.locked_spelling(repo, rel))
         if not matches and rel != CORPUS_BASE:
             _usage_exit(f"no locked files at or under {rel}")
         for entry in matches:
@@ -308,15 +328,22 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         releases=args.release,
         paths=paths,
     )
-    report = materialize(
+    # A bulk fetch asks for tens of thousands of objects, so a small random subset
+    # can fail on throttling; re-ask for those rather than report the whole fetch
+    # failed (exit 1 below). This is the same resilience `CorpusResolver.ensure`
+    # relies on, which is why both callers share one implementation.
+    report = materialize_resilient(
         repo,
-        entries,
+        _spread(entries),
         None if args.no_cache else _cache(args),
-        _sources(repo, r2=not args.no_r2, workers=args.workers),
+        _sources(repo, r2=not args.no_r2, git_objects=not args.no_git, workers=args.workers),
         force=args.force,
         verify=args.verify,
         workers=args.workers,
         progress=None if args.json else _progress("corpus fetch"),
+        # Rollback can free space, but downloading the scope again fills it
+        # again. Leave a full-disk failure for the caller to resolve.
+        retriable=lambda failed: not any(reports_disk_full(reason) for reason in failed.values()),
     )
     _emit(
         args,
@@ -330,7 +357,8 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
     lines = [
         f"{selected} locked file(s) selected: {len(report.materialized)} fetched "
         f"({report.bytes_materialized:,} bytes), {len(report.present)} already present, "
-        f"{len(report.modified)} modified, {len(report.failed)} failed."
+        f"{len(report.modified)} modified, {len(report.failed)} failed, "
+        f"{len(report.rolled_back)} rolled back."
     ]
     if report.sources:
         lines.append(
@@ -342,6 +370,7 @@ def _fetch_lines(selected: int, report: FetchReport) -> list[str]:
         )
     lines.extend(f"modified (left as is; --force replaces): {p}" for p in sorted(report.modified)[:20])
     lines.extend(f"FAILED {p}: {why}" for p, why in sorted(report.failed.items())[:20])
+    lines.extend(f"ROLLED BACK {p}" for p in sorted(report.rolled_back)[:20])
     return lines
 
 
@@ -421,7 +450,9 @@ def _unlocked_files(repo: Path, locks: LockSet, selectors: list[tuple[str, ...]]
             if not path.is_file():
                 continue
             rel = path.relative_to(repo).as_posix()
-            if rel in locks.by_path:
+            # A file stored under another spelling of a locked path (``ACT.html``
+            # for ``act.html`` on APFS) is that locked file, not an unlocked one.
+            if locks.locked_spelling(repo, rel) in locks.by_path:
                 continue
             scope = scope_for_path(rel)
             if selectors and (scope is None or not any(scope[: len(s)] == s for s in selectors)):
@@ -622,7 +653,7 @@ def _push_entries(
         return entry, remote.has(entry.sha256, entry.size)
 
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
-        for future in as_completed([pool.submit(probe, e) for e in unique.values()]):
+        for future in as_completed([pool.submit(probe, e) for e in _spread(unique.values())]):
             entry, present = future.result()
             if present:
                 result["present"] += 1
@@ -718,7 +749,7 @@ def _cmd_verify(args: argparse.Namespace) -> int:
 
         absent: set[str] = set()
         with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
-            for future in as_completed([pool.submit(probe, e) for e in unique.values()]):
+            for future in as_completed([pool.submit(probe, e) for e in _spread(unique.values())]):
                 entry, present = future.result()
                 if not present:
                     absent.add(entry.sha256)
