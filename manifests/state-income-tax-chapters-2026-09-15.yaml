@@ -19,7 +19,7 @@ sources:
       only_part: "I"
       only_title: "IX"
       only_chapter: "62"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ma-mgl/2026-09-15-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-ma-mgl/2026-09-15-income-tax-chapter
       base_url: https://malegislature.gov
       request_delay_seconds: 0.05
       timeout_seconds: 60

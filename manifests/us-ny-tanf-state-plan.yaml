@@ -6,7 +6,11 @@ documents:
     title: New York Temporary Assistance for Needy Families State Plan 2024-2026
     source_url: https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf
     download_url: https://web.archive.org/web/20240314142010if_/https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf
-    local_path: /tmp/ny-tanf-source/TANF-State-Plan-2024-2026.pdf
+    # The plan's bytes as the corpus locks them (sha256 f222c3316f975a3a9281846e724ee3ce2c34878d14fe073f24def5c057f94c2f,
+    # which the 2026-06-05-ny-tanf inventory records for the copy this scope was first extracted from),
+    # relative to this manifest. Fetch them before re-extracting:
+    #   uv run axiom-corpus-ingest corpus fetch us-ny/policy/2026-08-03-ny-tanf-official-source-recovery
+    local_path: ../data/corpus/sources/us-ny/policy/2026-08-03-ny-tanf-official-source-recovery/official-documents/ny-otda-tanf-state-plan-2024-2026.pdf
     source_format: pdf
     source_as_of: "2026-06-05"
     expression_date: "2024-10-01"

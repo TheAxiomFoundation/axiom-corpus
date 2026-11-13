@@ -797,7 +797,7 @@ states:
       found: 11
       taken: 0
   notes: 'Batch 2 (2026-09-10, #680): 1 documents taken from the publisher''s own index (23 documents inventoried across 5
-    families; 1 taken; citation paths checked against every us-ky provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    families; 1 taken; citation paths checked against every us-ky provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-2.md.
     Superseded 2026-09-11: us-ky/manual/2026-09-11-ky-snap-manual-supersede (2 documents, 405 provisions, coverage complete)
     re-extracts Volumes II and IIA; the batch-2 completion scope (Volume I) is unaffected. Volume II moved again after the
@@ -1006,7 +1006,7 @@ states:
       found: 23
       taken: 0
   notes: 'Territories pass (2026-09-11): 1 documents taken from the publisher''s own index (27 documents inventoried across
-    4 families; 1 taken; citation paths checked against every us-mp provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    4 families; 1 taken; citation paths checked against every us-mp provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
 - jurisdiction: us-mt
   name: Montana
@@ -1119,7 +1119,7 @@ states:
       found: 12
       taken: 0
   notes: 'Batch 2 (2026-09-10, #680): 4 documents taken from the publisher''s own index (160 documents inventoried across
-    6 families; 4 taken; citation paths checked against every us-nd provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    6 families; 4 taken; citation paths checked against every us-nd provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-2.md.'
   superseding_scope:
     jurisdiction: us-nd
@@ -1220,7 +1220,7 @@ states:
       found: 109
       taken: 0
   notes: 'Batch 1 (2026-09-10, #680): 502 documents taken from the publisher''s own index (1542 documents inventoried across
-    5 families; 502 taken; citation paths checked against every us-nh provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    5 families; 502 taken; citation paths checked against every us-nh provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-1.md.'
 - jurisdiction: us-nm
   name: New Mexico
@@ -1457,7 +1457,7 @@ states:
       found: 3
       taken: 0
   notes: 'Territories pass (2026-09-11): 1 documents taken from the publisher''s own index (16 documents inventoried across
-    5 families; 1 taken; citation paths checked against every us-pr provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    5 families; 1 taken; citation paths checked against every us-pr provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
 - jurisdiction: us-tn
   name: Tennessee
@@ -1565,7 +1565,7 @@ states:
       found: 5
       taken: 0
   notes: 'Batch 1 (2026-09-10, #680): 283 documents taken from the publisher''s own index (507 documents inventoried across
-    17 families; 283 taken; citation paths checked against every us-tx provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    17 families; 283 taken; citation paths checked against every us-tx provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-1.md.'
 - jurisdiction: us-vi
   name: Virgin Islands
@@ -1695,7 +1695,7 @@ states:
       found: 1
       taken: 1
   notes: 'Batch 2 (2026-09-10, #680): 4 documents taken from the publisher''s own index (15 documents inventoried across 14
-    families; 4 taken; citation paths checked against every us-wy provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    families; 4 taken; citation paths checked against every us-wy provisions file in data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-2.md.'
   superseding_scope:
     jurisdiction: us-wy

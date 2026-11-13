@@ -11,7 +11,7 @@
 ## Command
 
 ```bash
-uv run axiom-corpus-ingest extract-colorado-ccr --base data/corpus --version 2026-06-20-co-ssp --only-series "9 CCR 2503-5" --source-as-of 2026-06-20 --expression-date 2026-06-20 --workers 1 --download-dir /tmp/axiom-co-ssp-download
+uv run axiom-corpus-ingest extract-colorado-ccr --base data/corpus --version 2026-06-20-co-ssp --only-series "9 CCR 2503-5" --source-as-of 2026-06-20 --expression-date 2026-06-20 --workers 1 --download-dir <scratchpad>/axiom-co-ssp-download
 ```
 
 ## Notes

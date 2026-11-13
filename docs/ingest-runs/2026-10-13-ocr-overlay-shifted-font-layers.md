@@ -560,7 +560,7 @@ successors are built and signed.
 
 ## Reproduce
 
-Scripts and outputs: `~/reviews/axiom-corpus-shifted-font-layers-2026-10-13/` (README). Run
+Scripts and outputs: `<reviews>/axiom-corpus-shifted-font-layers-2026-10-13/` (README). Run
 from the worktree with its `.venv/bin/python` (GIL Python 3.14):
 `scripts/page_before_after.py` (the table), `scripts/summarize.py` (families, chance),
 `scripts/doc_before_after.py` with `DECODE=0` and `DECODE=1`, and `scripts/doc_diff.py`

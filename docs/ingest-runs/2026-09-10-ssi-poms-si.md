@@ -180,7 +180,7 @@ table-of-contents section. 1,693 sections in part SI; 915 taken.
   (verified independently over the JSONL). started_at 2026-09-10T16:45:41+0200, finished_at
   2026-09-10T16:49:20+0200, elapsed_seconds=219, exit 0, no `--allow-incomplete`.
 - Generator (index + 915 section-page fetches for Effective Dates/TN): 197 s first pass; re-runs use
-  the cache at `~/.axiom/poms-si-cache` (not in the repo).
+  the cache at `<axiom-cache>/poms-si-cache` (not in the repo).
 
 Artifacts (unsigned, awaiting controller; in the main checkout, not this worktree):
 

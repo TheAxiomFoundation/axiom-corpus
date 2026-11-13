@@ -15,7 +15,7 @@ sources:
       only_article: "16"
       source_as_of: "2026-10-06"
       expression_date: "2025-08-31"
-      download_dir: /private/tmp/claude-501/-Users-pavelmakarchuk-axiom-foundation-org/4788cc86-65d1-4116-8a62-4f9ef246d8f4/scratchpad/w6-health/downloads/us-co-crs-2025-title-10
+      download_dir: ../data/corpus/downloads/us-co-crs/2025-title-10
       timeout_seconds: 120
       request_attempts: 3
     metadata:

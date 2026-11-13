@@ -229,7 +229,7 @@ Path('tmp/ks-source-audit/ca.pem').write_bytes(
     + Path('data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem').read_bytes()
 )
 PY
-export REQUESTS_CA_BUNDLE="$PWD/tmp/ks-source-audit/ca.pem"
+export REQUESTS_CA_BUNDLE="tmp/ks-source-audit/ca.pem"
 uv run python - <<'PY'
 from pathlib import Path
 import subprocess

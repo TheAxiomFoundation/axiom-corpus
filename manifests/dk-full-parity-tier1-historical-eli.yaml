@@ -8,7 +8,7 @@
 # LBK 724 + LOV 482 evidence the DK_2025 § 1 a "mellemskat" expression, while
 # LOV 1642 is the post-LBK-603 amendment changing the rounding divisor to 24.
 #
-#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#   UV_CACHE_DIR=<uv-cache> uv run --no-sync \
 #     axiom-corpus-ingest extract-eli-documents --base data/corpus \
 #     --version 2026-08-04-dk-full-parity-tier1-historical \
 #     --manifest manifests/dk-full-parity-tier1-historical-eli.yaml \

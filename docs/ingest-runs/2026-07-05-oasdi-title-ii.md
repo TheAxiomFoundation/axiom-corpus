@@ -62,7 +62,7 @@ Command:
 env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-usc \
   --base data/corpus \
   --version 2026-07-05-oasdi-title-ii \
-  --source-xml ~/.axiom/uscode-119-100/usc42.xml \
+  --source-xml <axiom-cache>/uscode-119-100/usc42.xml \
   --title 42 \
   --section 402 --section 403 --section 413 --section 414 --section 415 --section 416 \
   --include-title \

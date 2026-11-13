@@ -5,7 +5,7 @@ Work order: the "slice taken, publisher posts whole" row of the needs-driven clo
 (`docs/coverage/needs-closure-2026-09-11/tanf.md`: CT 28, GA 20, AZ 13, DE 17 EXTRACTABLE cells, 78 in all) and the
 held-out Maryland COMAR chapter-03 scope of `docs/ingest-runs/2026-09-11-release-consolidation.md`.
 Branch `discovery/ingest-tanf-whole-manuals-md-comar` cut from `origin/main` (421ffbea4, later moved to 5c2505ec6, the
-CMS state-plans merge) in the sparse worktree `~/axiom-corpus-worktrees/tanf-whole` (`data/corpus/` excluded, never
+CMS state-plans merge) in the sparse worktree `<axiom-corpus worktrees>/tanf-whole` (`data/corpus/` excluded, never
 symlinked); every extraction and the consolidation wrote to the main checkout's corpus root
 (`--base <axiom-corpus checkout>/data/corpus`). Agent timing: worktree created 2026-09-14T01:09Z; probes,
 GA, DE and the MD consolidation done by 01:35Z; the session was then suspended (an API rate limit) and resumed at
@@ -121,7 +121,7 @@ CFR branch had written into the queue directly, is now carried by the generator'
 ## Swaps with cited-path checks
 
 Released scopes are immutable; the controller swaps the selector. For each swap, every citation path of the released
-scope was looked up in the successor and every path `rulespec-us` cites (grep of `~/rulespec-us` for
+scope was looked up in the successor and every path `rulespec-us` cites (grep of `<rulespec-us>` for
 `<jurisdiction>/<class>/...`) was checked too; bodies were compared byte by byte.
 
 | Released scope | Successor | Released rows carried | Bodies | rulespec-us cited paths |
@@ -232,11 +232,11 @@ history only.
 Rebuild:
 
 ```bash
-cd ~/axiom-corpus-worktrees/tanf-whole
+cd <axiom-corpus worktrees>/tanf-whole
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 uv run python scripts/build_tanf_state_policy_manual_manifests.py --only us-ga --only us-de
 uv run python scripts/build_tanf_state_policy_manual_manifests.py --only us-ct --only us-az \
-  --ct-header-cache /tmp/ct_upm_headers.json      # about 20 minutes without the cache
+  --ct-header-cache <scratchpad>/ct_upm_headers.json      # about 20 minutes without the cache
 for m in us-de us-ga us-ct; do
   s=$(date +%s); uv run axiom-corpus-ingest extract-official-documents \
     --base <axiom-corpus checkout>/data/corpus --version 2026-09-14-tanf-manual-whole \

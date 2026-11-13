@@ -8,7 +8,7 @@ the artifacts are under `data/corpus` on the controller's machine only (`data/` 
 nothing under `data/corpus` is committed on this branch.
 
 Branch: `discovery/ingest-federal-cfr-followon`, cut from `origin/discovery/program-ingestion-union`,
-worked in a sparse worktree (`~/axiom-corpus-worktrees/federal-cfr`, `data/corpus` excluded) with
+worked in a sparse worktree (`<axiom-corpus worktrees>/federal-cfr`, `data/corpus` excluded) with
 every extraction pointed at `--base <axiom-corpus checkout>/data/corpus`. GitNexus MCP
 tools were not available in this session, so the impact analysis CLAUDE.md asks for before editing
 `src/axiom_corpus/corpus/ecfr.py` was done by hand (see "Adapter fix").

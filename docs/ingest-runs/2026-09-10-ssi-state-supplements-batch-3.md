@@ -222,7 +222,7 @@ AK, WI, MO, SD, OK), done 22 (16 + AR, AZ, MS, ND, TN, WV), blocked_primary_sour
 for us-ak/manual, us-wi/manual, us-mo/manual, us-sd/regulation, us-ok/regulation, all under
 `<axiom-corpus checkout>/data/corpus` (main checkout). No certificate was added this batch.
 
-Rebuild (the generator caches index pages and API responses under `~/.axiom/ssi-state-supplement-cache`; the
+Rebuild (the generator caches index pages and API responses under `<axiom-cache>/ssi-state-supplement-cache`; the
 extractor re-fetches every document; no CA bundle and no `browser_impersonation` needed):
 
 ```bash

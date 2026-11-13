@@ -5,7 +5,7 @@ Work order: the five `us-xx/regulation` rows of `manifests/tax-agent-queue.yaml`
 income-tax regulation run (`docs/ingest-runs/2026-09-14-state-tax-regulations.md`, needs-closure gap R01) left
 `blocked_primary_source` (us-ar, us-dc, us-nj) or `needs_review` (us-de, us-ut). Four publishers now serve a body
 with content; one moved.
-Worktree `~/axiom-corpus-worktrees/w8-state-tax-regs`, branch `discovery/ingest-w8-state-tax-regs` cut from `main`
+Worktree `<axiom-corpus worktrees>/w8-state-tax-regs`, branch `discovery/ingest-w8-state-tax-regs` cut from `main`
 (393127f8b). Every extraction wrote to the main checkout's corpus root
 (`--base data/corpus` of the main checkout) with `--source-as-of 2026-10-20`. The artifacts there are
 unsigned and uncommitted: 3 new scopes, 344 rows, 619,200 characters of body text, 8.4 MB of sources, 159 source
@@ -333,7 +333,7 @@ Rebuild:
 
 ```bash
 B=data/corpus   # the main checkout's corpus root
-uv run python scripts/build_w8_state_tax_regulation_manifests.py --cache-dir /tmp/w8-tax-reg-cache
+uv run python scripts/build_w8_state_tax_regulation_manifests.py --cache-dir <scratchpad>/w8-tax-reg-cache
 for st in ar dc ut; do
   s=$(date +%s)
   uv run axiom-corpus-ingest extract-official-documents --base $B \

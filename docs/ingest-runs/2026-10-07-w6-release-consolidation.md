@@ -4,7 +4,7 @@ Date: 2026-10-07
 Controller pass that turns the nine wave-6 program-bundle-gap runs of 2026-10-06 (draft PRs #786-#794, branches
 `discovery/ingest-w6-{federal,tax-al-hi,tax-ia-mi,tax-mn-oh,tax-ok-wv,tanf-ccdf-ak-ne,tanf-ccdf-nh-wy,health,benefits}`)
 into the seventh selector of the union lineage. Branch `release/2026-10-07-w6-bundle-gaps`, cut from `main` (e16ccb799)
-in the sparse worktree `~/axiom-corpus-worktrees/w6-release` (`data/corpus/` excluded); the nine branches are merged into
+in the sparse worktree `<axiom-corpus worktrees>/w6-release` (`data/corpus/` excluded); the nine branches are merged into
 it. Everything here is local and unsigned: the artifacts live under `<axiom-corpus checkout>/data/corpus` on
 the controller's machine only. Nothing was signed or locked, nothing was written to R2 or Supabase, no PR was merged.
 
