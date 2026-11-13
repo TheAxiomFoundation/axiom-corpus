@@ -50,10 +50,9 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    # After checkout a green run takes 15-26 minutes. The full-history
-    # checkout below (about 6 GB) usually takes 1-5 minutes but has taken
-    # 11 to more than 30 at busy hours, so a 30-minute cap cancelled healthy
-    # runs before they finished. 90 leaves margin over the worst case seen.
+    # Keep the 90-minute margin until real CI measurements establish the
+    # partial checkout and explicit prefetch's worst-case duration. Commit/tree
+    # history remains complete for merge-base and first-parent attestations.
     timeout-minutes: 90
     env:
       AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
@@ -93,6 +92,14 @@ jobs:
       - uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
+          filter: blob:none
+
+      - name: Disable implicit Git object downloads after checkout
+        # Checkout hydrates HEAD first. Every later verifier, installer and
+        # corpus reader must fail locally rather than lazily fetching a gap.
+        run: |
+          echo 'GIT_NO_LAZY_FETCH=1' >> "$GITHUB_ENV"
+          echo 'GIT_NO_REPLACE_OBJECTS=1' >> "$GITHUB_ENV"
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6.2.0
@@ -102,7 +109,6 @@ jobs:
       - name: Install corpus artifact guard
         # Every install in this workflow goes through install-locked.sh, which
         # installs the versions uv.lock pins (docs/dependency-lock.md).
-        if: github.event_name != 'schedule'
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_REF="${{ github.event.pull_request.base.sha }}"
@@ -132,6 +138,25 @@ jobs:
           else
             bash .github/scripts/install-locked.sh --editable
           fi
+
+      - name: Prefetch and verify the required local Git blobs
+        env:
+          AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
+          EVENT_BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          args=(--repo "$GITHUB_WORKSPACE" --head-ref "$EXPECTED_HEAD"
+                --payload-source r2
+                --output-dir "$RUNNER_TEMP/corpus-git-prefetch")
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
+            base="$EVENT_BASE"
+            if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ]; then
+              base="HEAD~1"
+            fi
+            args+=(--base-ref "$base")
+          fi
+          python -I .github/scripts/prefetch-git-blobs.py "${args[@]}"
 
       - name: Guard generated corpus artifacts
         if: github.event_name != 'schedule'
@@ -213,8 +238,10 @@ jobs:
         # Tests read real corpus data (often whole release selectors), and
         # tests/conftest.py stops the session if any locked file is absent.
         # --no-cache streams verified bytes into place: runners have no
-        # copy-on-write clones, so a cache would double disk use. The full
-        # history checkout above serves migrated files from git objects.
+        # copy-on-write clones, so a cache would double disk use. The
+        # explicit prefetch above retains Git blobs needed by the unchanged
+        # guard/audit. Fetch payloads from R2 so old migrated bytes need not
+        # enter the Git object store. SHA256/size and remote gates remain.
         # No-op without lock files.
         env:
           # Read-only R2 token for corpus bytes kept outside git
@@ -224,7 +251,7 @@ jobs:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
-        run: axiom-corpus-ingest corpus fetch --all --no-cache --workers 32
+        run: axiom-corpus-ingest corpus fetch --all --no-git --no-cache --workers 32
 
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
