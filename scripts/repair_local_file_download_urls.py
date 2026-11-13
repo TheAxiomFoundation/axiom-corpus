@@ -599,6 +599,9 @@ def main(argv: list[str] | None = None) -> int:
     old = Scope(base, jurisdiction, document_class, version)
     new = Scope(base, jurisdiction, document_class, f"{version}-{args.tag}")
     ensure_corpus_scopes([(jurisdiction, document_class, version)], repo=REPO)
+    if args.mode == "verify":
+        # verify reads the successor written by an earlier run, locked once signed.
+        ensure_corpus_scopes([(jurisdiction, document_class, new.version)], repo=REPO)
     unlocked = lock_mismatches(old, REPO)
     if unlocked:
         raise SystemExit(f"{old.label} does not match its lock: " + "; ".join(unlocked[:5]))

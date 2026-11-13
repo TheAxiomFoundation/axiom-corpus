@@ -15,6 +15,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseManifest,
     ReleaseScope,
 )
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.release.manifest import (
     build_release_content,
     build_unsigned_release_object,
@@ -29,6 +30,8 @@ parser.add_argument("--retained-source", type=Path, required=True)
 parser.add_argument("--binding", type=Path, required=True)
 parser.add_argument("--historical-artifact", type=Path, action="append", required=True)
 args = parser.parse_args()
+# The documented inputs are locked corpus files: fetch any that are absent.
+ensure_corpus_paths([p.absolute() for p in (args.retained_source, *args.historical_artifact)])
 history = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in args.historical_artifact}
 root = Path(tempfile.mkdtemp(prefix="axiom-ch50-test-")).resolve()
 (root / "data").mkdir()

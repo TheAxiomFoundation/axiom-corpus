@@ -26,7 +26,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from axiom_corpus.corpus.ingest_manifests import build_ingest_manifest, default_ingest_manifest_path
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
-from axiom_corpus.corpus.resolver import require_materialized
+from axiom_corpus.corpus.resolver import ensure_corpus_paths, require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
     _build_usc_inventory,
@@ -1266,6 +1266,12 @@ def main() -> int:
             and (record.metadata or {}).get("recovery_parser") == "assembled:az-des-faa5-html"
             for record in records
         )
+        if not replace_scope:
+            # Rows already in a locked scope are merged below; an unfetched
+            # scope would read as empty and lose them on the rewrite.
+            ensure_corpus_paths(
+                [inventory_path.absolute(), provisions_path.absolute()], repo=REPO
+            )
         if inventory_path.exists() and not replace_scope:
             inventory_payload = json.loads(inventory_path.read_text())
             existing_items = [

@@ -36,6 +36,7 @@ from axiom_corpus.corpus.ecfr import (
     _section_citation_from_element,
     _section_heading,
 )
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -170,6 +171,22 @@ def _locked_files(base: Path, lock_dir: Path, old: str) -> dict[str, LockEntry]:
             f"predecessor lock lacks {category}",
         )
     return locked
+
+
+def ensure_corpus_inputs(key: str, base: Path = Path("data/corpus")) -> None:
+    """Fetch the whole predecessor scope, every file of which is read; no-op without locks."""
+    old = SCOPES[key]["old"]
+    ensure_corpus_paths(
+        [
+            (base / part).absolute()
+            for part in (
+                f"sources/us/regulation/{old}",
+                f"inventory/us/regulation/{old}.json",
+                f"provisions/us/regulation/{old}.jsonl",
+                f"coverage/us/regulation/{old}.json",
+            )
+        ]
+    )
 
 
 def reconstruct(
@@ -414,6 +431,7 @@ def main() -> None:
     parser.add_argument("--lock-dir", type=Path, default=Path(".axiom/corpus-locks"))
     parser.add_argument("--report", type=Path, help="Also write the JSON report to this path; it always prints to stdout.")
     args = parser.parse_args()
+    ensure_corpus_inputs(args.key, args.base)
     report = reconstruct(args.key, base=args.base, lock_dir=args.lock_dir, report_path=args.report)
     print(json.dumps(report, sort_keys=True))
 

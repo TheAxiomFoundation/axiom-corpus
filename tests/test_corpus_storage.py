@@ -726,6 +726,91 @@ def test_repro_script_fetches_the_locked_inputs_it_reads_and_not_its_outputs(
     assert present() == set()
 
 
+def test_scripts_fetch_the_locked_inputs_they_read_before_reading(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Two scripts that read corpus files directly fetch exactly those files first.
+
+    ``bind_inventory_source_hashes`` fetches in ``main()`` and failed on an
+    unfetched inventory. ``build_tax_forms_manifests._coverage_class`` lists a
+    coverage directory and silently answered None for a locked scope that was
+    not fetched.
+    """
+    from axiom_corpus.corpus import resolver as corpus_resolver
+    from scripts import bind_inventory_source_hashes as bind
+    from scripts import build_tax_forms_manifests as tax_forms
+
+    selected = "nz/statute/2026-07-10"
+    source_rel = f"sources/{selected}/official/act.html"
+    source = b"<html>Act 1</html>\n"
+    inventory = {"items": [{"citation_path": "nz/statute/a", "source_path": source_rel}]}
+    bind_inputs = {
+        f"data/corpus/{source_rel}": source,
+        f"data/corpus/inventory/{selected}.json": json.dumps(inventory).encode(),
+    }
+    form_coverage = {
+        "data/corpus/coverage/us-zz/form/v1.json": b'{"complete": true}\n',
+        "data/corpus/coverage/us-zz/guidance/v2.json": b'{"complete": true}\n',
+    }
+    # Neither script reads these: the selected scope's provisions and coverage,
+    # a scope the release does not select, and the form scope's provisions.
+    unread = {
+        f"data/corpus/provisions/{selected}.jsonl": b'{"citation_path": "nz/statute/a"}\n',
+        f"data/corpus/coverage/{selected}.json": b'{"complete": true}\n',
+        "data/corpus/inventory/nz/statute/2026-07-11.json": b'{"items": []}\n',
+        "data/corpus/provisions/us-zz/form/v1.jsonl": b'{"citation_path": "us-zz/form/a"}\n',
+    }
+    files = {**bind_inputs, **form_coverage, **unread}
+    repo = _init_repo(tmp_path / "repo")
+    release = repo / "manifests" / "releases" / "nz-test.json"
+    release.parent.mkdir(parents=True)
+    release.write_text(
+        json.dumps(
+            {
+                "name": "nz-test",
+                "scopes": [
+                    {"jurisdiction": "nz", "document_class": "statute", "version": "2026-07-10"}
+                ],
+            }
+        )
+    )
+    remote, _fake = _remote({content_key(_sha(d)): d for d in files.values()})
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH", raising=False)
+    monkeypatch.setattr(tax_forms, "CORPUS_BASE", repo / "data" / "corpus")
+
+    def use_fresh_resolver() -> None:
+        resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[remote])
+        monkeypatch.setitem(corpus_resolver._RESOLVERS, repo.resolve(), resolver)
+
+    def present() -> set[str]:
+        root = repo / "data" / "corpus"
+        return {p.relative_to(repo).as_posix() for p in root.rglob("*") if p.is_file()}
+
+    # Without lock files both are inert.
+    use_fresh_resolver()
+    bind.ensure_corpus_inputs(repo, release)
+    assert tax_forms._coverage_class("us-zz", "v1") is None
+    assert not (repo / "data").exists()
+
+    for scope in {scope_for_path(path) for path in files}:
+        write_lock(repo, _scope_lock({p: d for p, d in files.items() if scope_for_path(p) == scope}, scope))
+    use_fresh_resolver()
+
+    # Unfetched, the script's read fails; after its fetch it binds the hash.
+    with pytest.raises(FileNotFoundError):
+        bind.bind_inventory_source_hashes(repo, release)
+    bind.ensure_corpus_inputs(repo, release)
+    assert present() == set(bind_inputs)
+    result = bind.bind_inventory_source_hashes(repo, release)
+    assert result["bound_items"] == 1 and result["changed_scopes"] == [selected]
+
+    # The listed coverage directory is completed before it is read.
+    assert tax_forms._coverage_class("us-zz", "v1") == "form"
+    assert tax_forms._coverage_class("us-zz", "v2") == "guidance"
+    assert present() == set(bind_inputs) | set(form_coverage)
+    assert all((repo / path).read_bytes() == data for path, data in files.items() if (repo / path).exists())
+
+
 def test_cli_inputs_name_paths_selectors_and_optional_scopes(tmp_path: Path, monkeypatch) -> None:
     import argparse
 

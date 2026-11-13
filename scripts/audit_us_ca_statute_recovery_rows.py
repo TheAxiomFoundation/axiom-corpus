@@ -39,6 +39,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from axiom_corpus.corpus.states import (
     _california_html_history,
     _california_html_section_body,
@@ -215,6 +216,23 @@ def _carriers(base: Path, section_paths: set[str]) -> dict[str, list[tuple[str, 
     return found
 
 
+def ensure_corpus_inputs(base: Path, repo_root: Path) -> None:
+    """Fetch the locked corpus files the audit reads. Does nothing without locks.
+
+    First the scope's provisions and the reference carriers' provisions, then
+    the sources (with their provenance sidecars) that the scope's rows name.
+    """
+    directory = base / "provisions" / JURISDICTION / DOCUMENT_CLASS
+    provisions = [directory / f"{version}.jsonl" for version in (VERSION, *REFERENCE_CARRIERS)]
+    ensure_corpus_paths([path.absolute() for path in provisions], repo=repo_root)
+    sources = sorted({row["source_path"] for row in _scope_rows(base, VERSION)})
+    provenance = base / "sources" / JURISDICTION / DOCUMENT_CLASS / VERSION / "provenance"
+    ensure_corpus_paths(
+        [(base / source).absolute() for source in sources] + [provenance.absolute()],
+        repo=repo_root,
+    )
+
+
 def audit(base: Path, repo_root: Path) -> dict[str, Any]:
     rows = _scope_rows(base, VERSION)
     manifest = json.loads((repo_root / MANIFEST).read_text(encoding="utf-8"))
@@ -332,6 +350,7 @@ def main() -> int:
     parser.add_argument("--repo-root", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
+    ensure_corpus_inputs(args.base, args.repo_root.resolve())
     report = audit(args.base, args.repo_root)
     args.output.write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"

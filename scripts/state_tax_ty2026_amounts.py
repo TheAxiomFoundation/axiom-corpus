@@ -690,13 +690,18 @@ STATUTE_BLOCKED: dict[str, dict[str, Any]] = {
 
 
 def _coverage(jurisdiction: str, document_class: str, version: str) -> dict[str, Any] | None:
+    from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
     path = CORPUS_BASE / "coverage" / jurisdiction / document_class / f"{version}.json"
+    provisions = CORPUS_BASE / "provisions" / jurisdiction / document_class / f"{version}.jsonl"
+    # Fetch locked files first (no-op without locks), or the queue row would
+    # record an unfetched scope as having no coverage and no rows.
+    ensure_corpus_paths([path.absolute(), provisions.absolute()])
     if not path.is_file():
         return None
     import json
 
     payload = json.loads(path.read_text())
-    provisions = CORPUS_BASE / "provisions" / jurisdiction / document_class / f"{version}.jsonl"
     rows = sum(1 for _ in provisions.open()) if provisions.is_file() else None
     return {
         "version": version,

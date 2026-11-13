@@ -14,6 +14,7 @@ import yaml
 from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.documents import _extract_html_blocks
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 WS = re.compile(r"\s+")
 PURPOSE = re.compile(r"^\s*Purpose\s*:", re.IGNORECASE)
@@ -139,6 +140,9 @@ def main() -> int:
 
     base = Path(args.base)
     prov_path = base / "provisions" / f"{args.scope}.jsonl"
+    # Fetch the scope's provisions and retained sources (no-op without locks):
+    # an unfetched source would be reported as never retained.
+    ensure_corpus_paths([prov_path.absolute(), (base / "sources" / args.scope).absolute()])
     provisions: dict[str, list[dict]] = {}
     for line in prov_path.read_text().splitlines():
         if not line.strip():

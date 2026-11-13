@@ -24,10 +24,13 @@ import csv
 import json
 import re
 import sys
+from fnmatch import fnmatch
 from pathlib import Path
 from typing import Any
 
 import yaml
+
+from axiom_corpus.corpus.resolver import ensure_corpus_paths, locked_entries_under
 
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_AS_OF = "2026-10-06"
@@ -956,6 +959,17 @@ def update_queue(base: Path, decisions: Path) -> None:
             status_counts.setdefault(r["jurisdiction"], {}).setdefault(r["new_status"], 0)
             status_counts[r["jurisdiction"]][r["new_status"]] += 1
     scopes: dict[str, list[dict[str, Any]]] = {}
+    # Fetch the locked provisions the glob below lists (no-op without locks);
+    # an unfetched scope would otherwise drop out of the queue block.
+    ensure_corpus_paths(
+        [
+            path
+            for path, _entry in locked_entries_under(
+                [(base / "provisions" / jur).absolute() for jur in STATE_NAMES]
+            )
+            if fnmatch(path.name, f"{VERSION_PREFIX}-*.jsonl")
+        ]
+    )
     for prov in sorted(base.glob(f"provisions/us-*/*/{VERSION_PREFIX}-*.jsonl")):
         jur, cls = prov.parts[-3], prov.parts[-2]
         version = prov.stem

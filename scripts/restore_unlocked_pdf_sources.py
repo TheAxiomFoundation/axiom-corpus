@@ -341,7 +341,12 @@ def main(argv: list[str] | None = None) -> int:
         repo=repo,
         fetch=True,
     )
-    if not args.check:
+    if args.check:
+        # The restored sources are inputs only to the check; they are locked now.
+        require_materialized(
+            [repo / CORPUS / r.source_path for r in RESTORATIONS], repo=repo, fetch=True
+        )
+    else:
         for path in apply_rename(repo, SNAP_QC_RENAME):
             print(f"rewrote {path}")
         for restoration in RESTORATIONS:
