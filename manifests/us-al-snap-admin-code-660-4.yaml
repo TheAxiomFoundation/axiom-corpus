@@ -1,0 +1,202 @@
+# Alabama SNAP: Administrative Code chapters 660-4-1 to 660-4-7 from the official publisher, one chapter PDF each.
+# Replaces the Cornell LII captures of manifests/us-al-snap-primary-policy.yaml; see docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md.
+version: 2026-11-11-snap-official-chapters-al
+documents:
+- source_id: al-dhr-admin-code-660-4-1
+  jurisdiction: us-al
+  document_class: regulation
+  citation_path: us-al/regulation/alabama-administrative-code/660/4/1
+  title: 'Alabama Administrative Code Chapter 660-4-1: Scope and Authority'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/660-4-1
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-11-11'
+  download_url: https://admincode.legislature.state.al.us/api/chapter/660-4-1
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 524288
+    browser_user_agent: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    manual: Alabama Administrative Code
+    title_number: '660'
+    chapter: '4'
+    subchapter: '1'
+    program: SNAP
+    federal_program: SNAP
+    state: AL
+    source_discovery_group: us-al/regulation/snap
+    expression_date_note: fetch date; the publisher serves the current text
+    source_url_note: source_url is the chapter page (a JavaScript application); download_url is the publisher's chapter PDF
+      route, the same /api route as the held 660-2-2 and 660-2-4 chapters
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-al/regulation/660-4/1/NN
+      in us-al/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: al-dhr-admin-code-660-4-2
+  jurisdiction: us-al
+  document_class: regulation
+  citation_path: us-al/regulation/alabama-administrative-code/660/4/2
+  title: 'Alabama Administrative Code Chapter 660-4-2: Certification of Eligible Households'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/660-4-2
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-11-11'
+  download_url: https://admincode.legislature.state.al.us/api/chapter/660-4-2
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 524288
+    browser_user_agent: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    manual: Alabama Administrative Code
+    title_number: '660'
+    chapter: '4'
+    subchapter: '2'
+    program: SNAP
+    federal_program: SNAP
+    state: AL
+    source_discovery_group: us-al/regulation/snap
+    expression_date_note: fetch date; the publisher serves the current text
+    source_url_note: source_url is the chapter page (a JavaScript application); download_url is the publisher's chapter PDF
+      route, the same /api route as the held 660-2-2 and 660-2-4 chapters
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-al/regulation/660-4/2/NN
+      in us-al/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: al-dhr-admin-code-660-4-3
+  jurisdiction: us-al
+  document_class: regulation
+  citation_path: us-al/regulation/alabama-administrative-code/660/4/3
+  title: 'Alabama Administrative Code Chapter 660-4-3: Issuance'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/660-4-3
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-11-11'
+  download_url: https://admincode.legislature.state.al.us/api/chapter/660-4-3
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 524288
+    browser_user_agent: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    manual: Alabama Administrative Code
+    title_number: '660'
+    chapter: '4'
+    subchapter: '3'
+    program: SNAP
+    federal_program: SNAP
+    state: AL
+    source_discovery_group: us-al/regulation/snap
+    expression_date_note: fetch date; the publisher serves the current text
+    source_url_note: source_url is the chapter page (a JavaScript application); download_url is the publisher's chapter PDF
+      route, the same /api route as the held 660-2-2 and 660-2-4 chapters
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-al/regulation/660-4/3/NN
+      in us-al/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: al-dhr-admin-code-660-4-4
+  jurisdiction: us-al
+  document_class: regulation
+  citation_path: us-al/regulation/alabama-administrative-code/660/4/4
+  title: 'Alabama Administrative Code Chapter 660-4-4: Food Stamp Overpayment'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/660-4-4
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-11-11'
+  download_url: https://admincode.legislature.state.al.us/api/chapter/660-4-4
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 524288
+    browser_user_agent: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    manual: Alabama Administrative Code
+    title_number: '660'
+    chapter: '4'
+    subchapter: '4'
+    program: SNAP
+    federal_program: SNAP
+    state: AL
+    source_discovery_group: us-al/regulation/snap
+    expression_date_note: fetch date; the publisher serves the current text
+    source_url_note: source_url is the chapter page (a JavaScript application); download_url is the publisher's chapter PDF
+      route, the same /api route as the held 660-2-2 and 660-2-4 chapters
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-al/regulation/660-4/4/NN
+      in us-al/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: al-dhr-admin-code-660-4-5
+  jurisdiction: us-al
+  document_class: regulation
+  citation_path: us-al/regulation/alabama-administrative-code/660/4/5
+  title: 'Alabama Administrative Code Chapter 660-4-5: Emergency Food Assistance for Victims of Disasters'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/660-4-5
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-11-11'
+  download_url: https://admincode.legislature.state.al.us/api/chapter/660-4-5
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 524288
+    browser_user_agent: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    manual: Alabama Administrative Code
+    title_number: '660'
+    chapter: '4'
+    subchapter: '5'
+    program: SNAP
+    federal_program: SNAP
+    state: AL
+    source_discovery_group: us-al/regulation/snap
+    expression_date_note: fetch date; the publisher serves the current text
+    source_url_note: source_url is the chapter page (a JavaScript application); download_url is the publisher's chapter PDF
+      route, the same /api route as the held 660-2-2 and 660-2-4 chapters
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-al/regulation/660-4/5/NN
+      in us-al/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: al-dhr-admin-code-660-4-7
+  jurisdiction: us-al
+  document_class: regulation
+  citation_path: us-al/regulation/alabama-administrative-code/660/4/7
+  title: 'Alabama Administrative Code Chapter 660-4-7: Simplified Reporting and Prospective Budgeting'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/660-4-7
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-11-11'
+  download_url: https://admincode.legislature.state.al.us/api/chapter/660-4-7
+  request:
+    range_fetch: true
+    range_backend: curl
+    range_chunk_size: 524288
+    browser_user_agent: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    manual: Alabama Administrative Code
+    title_number: '660'
+    chapter: '4'
+    subchapter: '7'
+    program: SNAP
+    federal_program: SNAP
+    state: AL
+    source_discovery_group: us-al/regulation/snap
+    expression_date_note: fetch date; the publisher serves the current text
+    source_url_note: source_url is the chapter page (a JavaScript application); download_url is the publisher's chapter PDF
+      route, the same /api route as the held 660-2-2 and 660-2-4 chapters
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-al/regulation/660-4/7/NN
+      in us-al/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
