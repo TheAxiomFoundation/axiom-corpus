@@ -1,0 +1,1 @@
+Add official sources for state child care subsidy income limits in Alabama, Georgia, Idaho, Indiana, Missouri, Montana, Nevada and Ohio, with the October 2026 Georgia CAPS manual and Appendix A as successors of the June 2026 scope.
