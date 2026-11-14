@@ -2,6 +2,8 @@
 
 The ordinary NZ extractor is deliberately unchanged. This module's command
 re-extracts a predecessor scope before enriching its rows; it makes no captures.
+The predecessor was extracted with structural labels bare (``1\nA person…``),
+so the re-extraction replays that layout (``bare_structural_labels``).
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ from xml.etree import ElementTree as ET
 
 import yaml
 
+from axiom_corpus.converters.nz_pco import bare_structural_labels
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -339,13 +342,15 @@ def reproduce_scope(
     temp_root.mkdir(parents=True, exist_ok=True)
     with TemporaryDirectory(prefix="reextract-", dir=temp_root) as temporary:
         scratch = Path(temporary)
-        report = extract_nz_legislation(
-            CorpusArtifactStore(scratch),
-            version=base_version,
-            source_dir=source_root,
-            source_as_of=source_as_of,
-            expression_date=expression_date,
-        ).class_reports[0]
+        # The predecessor holds labels bare, as extractions wrote them before #822.
+        with bare_structural_labels():
+            report = extract_nz_legislation(
+                CorpusArtifactStore(scratch),
+                version=base_version,
+                source_dir=source_root,
+                source_as_of=source_as_of,
+                expression_date=expression_date,
+            ).class_reports[0]
         generated = [
             report.inventory_path,
             report.provisions_path,

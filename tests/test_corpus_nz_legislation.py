@@ -4,7 +4,7 @@ from xml.etree import ElementTree as ET
 
 import pytest
 
-from axiom_corpus.converters.nz_pco import NZPCOConverter
+from axiom_corpus.converters.nz_pco import NZPCOConverter, bare_structural_labels
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.nz_legislation import (
@@ -909,7 +909,14 @@ def test_extract_nz_legislation_directory_limit(tmp_path):
     assert report.class_reports[0].document_class == "statute"
 
 
-def test_nz_release_has_one_exact_row_for_every_current_pco_provision():
+@pytest.fixture
+def released_label_layout():
+    """The release rows hold structural labels bare, as extractions wrote them before #822."""
+    with bare_structural_labels():
+        yield
+
+
+def test_nz_release_has_one_exact_row_for_every_current_pco_provision(released_label_layout):
     converter = NZPCOConverter()
     expected: dict[str, tuple[str, str]] = {}
     expected_structural: dict[
