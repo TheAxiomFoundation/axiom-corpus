@@ -3,6 +3,8 @@
 # Brillman. It offers states an optional hold harmless period through June 30, 2027 for
 # the community engagement requirement of section 1902(xx) of the Social Security Act.
 # Run note: docs/ingest-runs/2026-11-14-cms-smd-26-006.md.
+# sort_text keeps each running header's page number in its header ("Page 2 – State
+# Medicaid Director"); the unsorted stream moves the number below the header.
 #
 # Version is set on the command line; this key is documentation only:
 version: 2026-11-14-cms-smd-26-006
@@ -18,6 +20,7 @@ documents:
   citation_path: us/guidance/cms/smd/26-006
   extraction:
     page_citation_prefix: page
+    sort_text: true
   metadata:
     primary_source: true
     source_authority: Centers for Medicare & Medicaid Services
