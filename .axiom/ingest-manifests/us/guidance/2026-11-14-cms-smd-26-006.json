@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-11-14-cms-smd-26-006.jsonl",
-      "sha256": "a52a4cc3b257687803ca6fc43e77ffbcf9b56aec90238fdd3e4e01b7fbcce540"
+      "sha256": "84c7859e2e7370bada90746852d70642600c875d8991c0fc7ef255f147d09286"
     },
     {
       "path": "data/corpus/sources/us/guidance/2026-11-14-cms-smd-26-006/official-documents/cms-smd-26-006.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "52d0b8e14dfb3eff27293c2befadbba7fcff1542",
+    "commit": "f4d8edf6ea89a3da62395a019b4c21ac3ab879bb",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 5
   },
   "document_class": "guidance",
-  "generated_at": "2026-11-14T19:45:51.531165+00:00",
+  "generated_at": "2026-11-14T20:16:05.729859+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-11-14-cms-smd-26-006.md",
-      "sha256": "9d1202618f770edeac461b35f126c755ad460a474d1a92dfc86ae8c269cdfc9b"
+      "sha256": "df873f1a2ff19fe2f0ae59af6144b9baadf6051db897360f3d80d0eefef33dd6"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Pump+cCrNmQlFiv9uPJsSOYJeJzGsiM/79yH8tkkNaDyr/CR+M0LvTJIJS+lO9UHzzapJfwz4ZeowQLAQk2qBQ=="
+    "value": "VkqkfopQD3L5sHsWNOXxVfftI8Na4yfONRXsg51A5gw4O33XEUp5/9X1/+4TqTFAjDQQxKo2AX9GBDuij3wLBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-11-14-cms-smd-26-006"
