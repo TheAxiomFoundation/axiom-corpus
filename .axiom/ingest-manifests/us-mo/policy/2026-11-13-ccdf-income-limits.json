@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-mo/policy/2026-11-13-ccdf-income-limits.json",
-      "sha256": "ad2dc9efe9c25d5dc0f0389837b94c42d3832ece39e24ce99f39ec586471dbd2"
+      "sha256": "7f6cc7ae294029826fac5716c4850168961f16377cc0753c7693d42ce2e01b0f"
     },
     {
       "path": "data/corpus/provisions/us-mo/policy/2026-11-13-ccdf-income-limits.jsonl",
-      "sha256": "74401ba4a0c6034afc5484e5447cdce3f5ca04a4ed6a6078de73a16c15f1c533"
+      "sha256": "86f4190b8206e575fb610aec366fe58a1dc3fcb01b77470429105d99a8877f16"
     },
     {
       "path": "data/corpus/sources/us-mo/policy/2026-11-13-ccdf-income-limits/official-documents/us-mo-dese-ccdf-income-eligibility-table-2026-07.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1428e5d2c4a7ac90d2617f4f0218543f96295820",
+    "commit": "636a4036e19d7a266370fc6d0b47f88258bde86a",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,14 +35,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-11-13T20:18:22.466946+00:00",
+  "generated_at": "2026-11-14T23:02:10.566373+00:00",
   "jurisdiction": "us-mo",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "WMjaiMM2z0dw+3qLBgHeBoWhFmvFGvff0HcV7TQIxhno7YmL47Jm2K4Xl49CjRxvhNpEddhCatLqge8d1A/eBg=="
+    "value": "6Ax655ej2KJ70IV54c1JB7oYvoB93gF5Zs5+Kbh8fCT6wVdVRTzpcAhH2qnQnr6BuJSwP8D3lJSWuGYgvhEKDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-11-13-ccdf-income-limits"
