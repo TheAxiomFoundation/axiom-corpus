@@ -1169,13 +1169,21 @@ def _extract_pdf_blocks(
 # the page's thin horizontal rules and written with the GNU wdiff delimiters:
 # ``[-deleted text-]`` and ``{+inserted text+}``. Removing the delimiters gives
 # back exactly the page text that extraction without the markup would produce;
-# ``_pdf_check_layered_page_text`` checks that on every layered page.
+# ``_pdf_page_layered_text`` checks that on every marked page. The delimiters
+# are read left to right (``_amendment_markup_runs``): outside a run only an
+# opener is a delimiter, and inside a run only that run's closer is. Replacing
+# every occurrence of the four tokens is not the same: a struck run that ends
+# in a literal "[" reads ``[-[-]``.
 #
 # The classification is geometric: any thin horizontal rule at a strike or
 # underline offset from a text line marks it, so a table rule drawn just under a
 # row of text reads as an underline. Each new use must be checked against a
 # rendering of the pages or the publisher's HTML
 # (``scripts/compare_pdf_amendment_markup_with_html.py``).
+#
+# A drawing that is a glyph is not a rule (``_pdf_glyph_drawings``). MuPDF
+# draws some Type 3 glyphs as vector paths, and the bar of such a hyphen lies at
+# a strike offset from its own line, an underscore at an underline offset.
 _AMENDMENT_DELETED = "deleted"
 _AMENDMENT_INSERTED = "inserted"
 _AMENDMENT_MARKUP_DELIMITERS = {
@@ -1183,6 +1191,10 @@ _AMENDMENT_MARKUP_DELIMITERS = {
     _AMENDMENT_INSERTED: ("{+", "+}"),
 }
 _AMENDMENT_MARKUP_TOKENS = ("[-", "-]", "{+", "+}")
+_AMENDMENT_MARKUP_OPENERS = {
+    opener: state for state, (opener, _closer) in _AMENDMENT_MARKUP_DELIMITERS.items()
+}
+_AMENDMENT_MARKUP_OPENER = re.compile("|".join(map(re.escape, _AMENDMENT_MARKUP_OPENERS)))
 _AMENDMENT_MARKUP_NOTATION = {
     "notation": "wdiff",
     "deleted": "[-text-]",
@@ -1212,6 +1224,29 @@ _PDF_UNDERLINE_OFFSET_RANGE = (0.05, 0.22)
 # would flip it between marked and unmarked.
 _PDF_RULE_NEAR_THRESHOLD_MARGIN = 0.03
 _PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
+# ``Page.get_texttrace`` span type of text the page does not paint (PyMuPDF:
+# "ignored text", PDF text rendering mode 3).
+_PDF_TEXTTRACE_HIDDEN = 3
+# ``Page.get_bboxlog`` entry kinds: a filled path, a stroked path, and text the
+# page does not paint.
+_PDF_BBOX_FILL_PATH = "fill-path"
+_PDF_BBOX_STROKE_PATH = "stroke-path"
+_PDF_BBOX_HIDDEN_TEXT = "ignore-text"
+# A drawing's rectangle and a bbox-log bound agree within this many points.
+_PDF_BOUND_TOLERANCE = 0.01
+# A drawing is a glyph only if it is at most this many font sizes wide and high. In
+# the 105 retained PDFs with a Type 3 font (PyMuPDF 1.26.7, 2026-11-08), each of the
+# 2,499,765 drawings whose next command shows one hidden character of a glyph font
+# lies inside that character's bound and spans at most 1.002 font sizes. The bound
+# alone admits far longer rules: a font that declares a box 20 units on a side, as
+# Arizona's and Michigan's do, gives each character a bound about 20 font sizes wide.
+_PDF_GLYPH_MAX_EXTENT = 2.0
+# The most resource dictionaries ``_pdf_page_fonts`` reads on one page; a page that
+# reaches more recognises no glyphs.
+_PDF_FONT_RESOURCES = 4096
+# MuPDF keeps at most this many bytes of a font's name (``fz_font.name`` is 32
+# bytes with its terminating zero), so a longer name reaches spans cut short.
+_PDF_FONT_NAME_BYTES = 31
 _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements", "sort_text")
 _PDF_WARNING_EXAMPLES = 8
 
@@ -1405,7 +1440,21 @@ def _pdf_page_layered_text(
     rendered = _render_amendment_markup(
         raw_text, states, typographic_underlines=markup.typographic_underlines
     )
-    if _strip_amendment_markup(rendered.text) != plain_text:
+    if rendered.delimiters_in_text:
+        # The raw text holds no delimiter, so the two characters were apart in it:
+        # normalizing drops the zero-width characters between them.
+        raise ValueError(
+            f"PDF page {page_number} text contains amendment markup delimiters "
+            f"{list(rendered.delimiters_in_text)} once its zero-width characters are "
+            "dropped; amendment_markup output would be ambiguous"
+        )
+    try:
+        stripped = _strip_amendment_markup(rendered.text)
+    except ValueError as error:
+        raise RuntimeError(
+            f"amendment markup of PDF page {page_number} cannot be read back: {error}"
+        ) from error
+    if stripped != plain_text:
         raise RuntimeError(f"amendment markup changed the text of PDF page {page_number}")
     for phrase, count in rendered.typographic_underlines_kept.items():
         if count:
@@ -1781,45 +1830,401 @@ def _pdf_horizontal_rules(
     ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. A rectangle's
     thickness is its height plus, when it is stroked, the stroke width; a line's
     is its stroke width. White paint and paint with zero opacity are invisible and
-    never make a rule.
+    never make a rule, and neither does a drawing that is a glyph
+    (``_pdf_glyph_drawings``). Glyphs are looked for only among the drawings that
+    would make a rule, so a page without any reads no fonts and no text.
     """
+    found: list[tuple[list[_PdfHorizontalRule], list[_PdfHorizontalRule]]] = []
+    paths: list[dict[str, Any]] = []
+    for path in page.get_drawings():
+        thin, thick = _pdf_path_rules(path)
+        if thin or thick:
+            found.append((thin, thick))
+            paths.append(path)
+    glyphs = _pdf_glyph_drawings(page, paths)
     rules: list[_PdfHorizontalRule] = []
     thick_rules: list[_PdfHorizontalRule] = []
-    for path in page.get_drawings():
-        path_type = str(path.get("type") or "")
-        filled = "f" in path_type and _pdf_paint_is_visible(
-            path.get("fill"), path.get("fill_opacity")
-        )
-        stroked = "s" in path_type and _pdf_paint_is_visible(
-            path.get("color"), path.get("stroke_opacity")
-        )
-        stroke_width = float(path.get("width") or 0.0)
-        for item in path.get("items", ()):
-            operator = item[0]
-            if operator == "re":
-                rect = item[1]
-                if rect.width <= rect.height or not (filled or stroked):
-                    continue
-                # A stroke is centred on the outline, so it adds its width to the
-                # painted height of the rectangle.
-                thickness = rect.height + (stroke_width if stroked else 0.0)
-                rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
-                if thickness <= _PDF_RULE_MAX_THICKNESS:
-                    rules.append(rule)
-                elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
-                    thick_rules.append(rule)
-            elif operator == "l" and stroked:
-                start, end = item[1], item[2]
-                if abs(start.y - end.y) > 0.5 or abs(start.x - end.x) <= 0.5:
-                    continue
-                rule = _PdfHorizontalRule(
-                    min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2, stroke_width
-                )
-                if stroke_width <= _PDF_RULE_MAX_THICKNESS:
-                    rules.append(rule)
-                elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
-                    thick_rules.append(rule)
+    for position, (thin, thick) in enumerate(found):
+        if position not in glyphs:
+            rules.extend(thin)
+            thick_rules.extend(thick)
     return tuple(rules), tuple(thick_rules)
+
+
+def _pdf_path_rules(
+    path: dict[str, Any],
+) -> tuple[list[_PdfHorizontalRule], list[_PdfHorizontalRule]]:
+    """Return a drawing's rules and its thicker rules (``_pdf_horizontal_rules``)."""
+    rules: list[_PdfHorizontalRule] = []
+    thick_rules: list[_PdfHorizontalRule] = []
+    path_type = str(path.get("type") or "")
+    filled = "f" in path_type and _pdf_paint_is_visible(path.get("fill"), path.get("fill_opacity"))
+    stroked = "s" in path_type and _pdf_paint_is_visible(
+        path.get("color"), path.get("stroke_opacity")
+    )
+    stroke_width = float(path.get("width") or 0.0)
+    for item in path.get("items", ()):
+        operator = item[0]
+        if operator == "re":
+            rect = item[1]
+            if rect.width <= rect.height or not (filled or stroked):
+                continue
+            # A stroke is centred on the outline, so it adds its width to the
+            # painted height of the rectangle.
+            thickness = rect.height + (stroke_width if stroked else 0.0)
+            rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
+            if thickness <= _PDF_RULE_MAX_THICKNESS:
+                rules.append(rule)
+            elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                thick_rules.append(rule)
+        elif operator == "l" and stroked:
+            start, end = item[1], item[2]
+            if abs(start.y - end.y) > 0.5 or abs(start.x - end.x) <= 0.5:
+                continue
+            rule = _PdfHorizontalRule(
+                min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2, stroke_width
+            )
+            if stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                rules.append(rule)
+            elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                thick_rules.append(rule)
+    return rules, thick_rules
+
+
+def _pdf_glyph_drawings(page: Any, paths: list[dict[str, Any]]) -> frozenset[int]:
+    """Return the positions in ``paths``, drawings of ``page``, that are Type 3 glyphs.
+
+    MuPDF draws a Type 3 glyph that it cannot cache by running the glyph's
+    procedure on the page, and then shows the character as hidden text so that it
+    can still be extracted (``pdf_show_char`` in MuPDF's ``pdf-op-run.c``, which
+    flushes pending text before such a glyph and again before the next character,
+    so the hidden text is one call that holds that one character). PyMuPDF
+    therefore lists the glyph among the page's drawings, and the page's next
+    command is that hidden character. Such a drawing is text the page shows, not
+    a rule: the bar of a hyphen lies at a strike offset from its own line and an
+    underscore at an underline offset.
+
+    A drawing is taken for such a glyph only when all of these hold:
+
+    - its command, found in ``Page.get_bboxlog`` by its number
+      (``_pdf_drawing_commands``), agrees with it (``_pdf_drawing_end``);
+    - the next command that is not a path without segments (which draws
+      nothing) is hidden text that ``Page.get_texttrace`` reports as one span of
+      one character, in a font named as only Type 3 fonts on the page are
+      (``_pdf_glyph_font_names``);
+    - the drawing lies inside that character's bound and is at most
+      ``_PDF_GLYPH_MAX_EXTENT`` font sizes wide and high.
+
+    Any other drawing stays a rule. MuPDF draws no glyph for text that the PDF
+    itself hides (render mode 3), so a rule right before such a character is taken
+    for a glyph only if it lies inside the character's bound and is no larger than
+    a glyph. A glyph drawn as several paths is recognised only by its last one,
+    and a glyph whose character maps to several characters (a ligature) not at
+    all.
+
+    Only a PDF has Type 3 fonts. MuPDF opens some other files given as PDF (a Word
+    file saved under a ``.pdf`` name opens as an Office document), and on such a
+    page reading ``Page.xref``, which ``_pdf_type3_font_names`` does, crashed
+    PyMuPDF 1.26.7 with a segmentation fault; its drawings are never glyphs here.
+    """
+    if not paths or not page.parent.is_pdf:
+        return frozenset()
+    fonts = _pdf_glyph_font_names(page)
+    if not fonts:
+        return frozenset()
+    log = page.get_bboxlog()
+    commands = _pdf_drawing_commands(log)
+    spans: dict[int, list[dict[str, Any]]] = {}
+    for span in page.get_texttrace():
+        spans.setdefault(int(span["seqno"]), []).append(span)
+    glyphs: set[int] = set()
+    for position, path in enumerate(paths):
+        seqno = path.get("seqno")
+        index = commands.get(seqno) if isinstance(seqno, int) else None
+        end = None if index is None else _pdf_drawing_end(path, log, index)
+        while end is not None and end < len(log) and _pdf_entry_is_empty_path(log[end]):
+            end += 1  # a path with no segments draws nothing
+        if end is None or end >= len(log) or log[end][0] != _PDF_BBOX_HIDDEN_TEXT:
+            continue
+        text = spans.get(end, [])
+        if len(text) != 1:
+            continue
+        span = text[0]
+        size = float(span["size"])
+        rect = path["rect"]
+        if (
+            span["type"] == _PDF_TEXTTRACE_HIDDEN
+            and span["font"] in fonts
+            and len(span["chars"]) == 1
+            and size > 0
+            and max(rect.width, rect.height) <= _PDF_GLYPH_MAX_EXTENT * size
+            and _pdf_rect_within(rect, log[end][1])
+        ):
+            glyphs.add(position)
+    return frozenset(glyphs)
+
+
+def _pdf_drawing_commands(log: list[tuple[Any, ...]]) -> dict[int, int]:
+    """Map ``Page.get_drawings`` numbers (``seqno``) to positions in ``Page.get_bboxlog``.
+
+    In PyMuPDF 1.26.7 the bbox log has an entry for each path the page fills or
+    strokes, each text call (painted or hidden), shading and image, in order, and
+    ``Page.get_texttrace`` numbers its spans by the same count, so a span's
+    ``seqno`` is the position of its text's entry. ``get_drawings`` counts the
+    same commands, except that it leaves out, without counting, a path that has
+    no segments (only moves). MuPDF bounds such a path with an empty rectangle
+    (``fz_bound_path`` in ``path.c``) and a path with a segment with a proper one,
+    so leaving out the paths whose bounds are empty numbers the rest of the bbox
+    log as ``get_drawings`` does.
+    """
+    commands: dict[int, int] = {}
+    for position, entry in enumerate(log):
+        if not _pdf_entry_is_empty_path(entry):
+            commands[len(commands)] = position
+    return commands
+
+
+def _pdf_entry_is_empty_path(entry: tuple[Any, ...]) -> bool:
+    """Whether a bbox-log entry is a path with no segments (``_pdf_drawing_commands``)."""
+    return entry[0] in (_PDF_BBOX_FILL_PATH, _PDF_BBOX_STROKE_PATH) and _pdf_bound_is_inverted(
+        entry[1]
+    )
+
+
+def _pdf_drawing_end(path: dict[str, Any], log: list[tuple[Any, ...]], index: int) -> int | None:
+    """Return the bbox-log position right after a drawing's commands, or None when the
+    entry at ``index`` does not agree with the drawing.
+
+    A fill (``f``) agrees with a ``fill-path`` entry whose bound is its rectangle,
+    and a stroke (``s``) with a ``stroke-path`` entry whose bound, widened by the
+    stroke, holds its rectangle. PyMuPDF reports a stroke of the same segments as
+    the fill before it as one drawing (``fs``), numbered as the fill; it agrees
+    only when the stroke is the very next entry.
+    """
+    kind, bound = log[index][0], log[index][1]
+    rect = path["rect"]
+    path_type = path.get("type")
+    if path_type == "f" and kind == _PDF_BBOX_FILL_PATH and _pdf_rect_matches(rect, bound):
+        return index + 1
+    if path_type == "s" and kind == _PDF_BBOX_STROKE_PATH and _pdf_rect_within(rect, bound):
+        return index + 1
+    if (
+        path_type == "fs"
+        and kind == _PDF_BBOX_FILL_PATH
+        and _pdf_rect_matches(rect, bound)
+        and index + 1 < len(log)
+        and log[index + 1][0] == _PDF_BBOX_STROKE_PATH
+        and _pdf_rect_within(rect, log[index + 1][1])
+    ):
+        return index + 2
+    return None
+
+
+def _pdf_bound_is_inverted(bound: Any) -> bool:
+    """Whether a bound is MuPDF's empty rectangle, which ends before it starts.
+
+    A path of one point has a bound of no width that still counts as a drawing, so this
+    is not ``_pdf_rect_is_empty``, which takes a box of no width for empty too.
+    """
+    x0, y0, x1, y1 = bound
+    return bool(x0 > x1 or y0 > y1)
+
+
+def _pdf_rect_matches(rect: Any, bound: Any) -> bool:
+    return all(
+        abs(float(a) - float(b)) <= _PDF_BOUND_TOLERANCE for a, b in zip(rect, bound, strict=True)
+    )
+
+
+def _pdf_rect_within(rect: Any, bound: Any) -> bool:
+    x0, y0, x1, y1 = (float(value) for value in rect)
+    left, top, right, bottom = (float(value) for value in bound)
+    return bool(
+        x0 >= left - _PDF_BOUND_TOLERANCE
+        and y0 >= top - _PDF_BOUND_TOLERANCE
+        and x1 <= right + _PDF_BOUND_TOLERANCE
+        and y1 <= bottom + _PDF_BOUND_TOLERANCE
+    )
+
+
+def _pdf_glyph_font_names(page: Any) -> frozenset[str]:
+    """Return the span font names that only the page's Type 3 fonts carry.
+
+    A span names its font but not the font's type, so nothing tells a Type 3 font
+    from another font with the same name (a Type 3 font named "Helvetica" beside a
+    Type 1 Helvetica), and this leaves such names out (``_pdf_other_font_names``).
+    When it can't read all of the page's other fonts, it gives no name at all, and
+    every drawing on the page stays a rule, as before the classifier recognised
+    glyphs.
+    """
+    type3 = _pdf_type3_font_names(page)
+    if not type3:
+        return frozenset()
+    others = _pdf_other_font_names(page)
+    if others is None:
+        return frozenset()
+    return frozenset(type3 - others)
+
+
+def _pdf_other_font_names(page: Any) -> frozenset[str] | None:
+    """Return every name the spans of the page's fonts that are not Type 3 may carry,
+    or None when it can't name them all.
+
+    MuPDF names the spans of such a font after its /BaseFont (a Type0 font's after
+    its descendant font's) and keeps the name's first ``_PDF_FONT_NAME_BYTES``
+    bytes, and PyMuPDF leaves out a subset prefix, six characters before the
+    name's first "+" (``_pdf_span_name_forms``). The fonts are every font the page
+    can show text in (``_pdf_page_fonts``). A name listed that no span carries
+    only keeps a Type 3 font's glyphs drawn as rules; a font missing from the list
+    could make its hidden text pass for a Type 3 font's, so a walk that can't
+    finish, or a font without a name to read, gives None.
+    """
+    fonts = _pdf_page_fonts(page)
+    if fonts is None:
+        return None
+    document = page.parent
+    count = document.xref_length()
+    names: set[str] = set()
+    for font in fonts:
+        forms = _pdf_font_span_names(document, font, count)
+        if not forms:
+            return None  # a font without a /BaseFont: its spans' name is unknown
+        names |= forms
+    return frozenset(names)
+
+
+def _pdf_page_fonts(page: Any) -> list[int | str] | None:
+    """Every font that is not Type 3 and that the page can show text in: its object
+    number, or its printed dictionary when the font is written inline. None when the
+    walk can't finish: a read raised, or the page reaches more than
+    ``_PDF_FONT_RESOURCES`` resource dictionaries.
+
+    MuPDF runs content with the page's resources (its own, or those of the page-tree
+    node it inherits them from), with those of its annotation and widget appearance
+    streams (/Annots, then each annotation's /AP /N: a stream, or a dictionary of
+    appearance states), and, reached from any of these, with those of forms
+    (/XObject), tiling patterns (/Pattern), soft-mask groups (/ExtGState, its /SMask
+    and the mask's /G) and Type 3 fonts, whose glyph procedures can show text in
+    other fonts. This reads all of them; ``get_fonts`` reads only the page's and its
+    forms'. It reads resource dictionaries in their printed form
+    (``_pdf_dict_entries``), so no resource name serves as a lookup path, and reads
+    each object once.
+    """
+    document = page.parent
+    count = document.xref_length()
+
+    def references(text: str) -> list[int]:
+        return [n for n in map(int, _PDF_OBJECT_REFERENCE.findall(text)) if 0 < n < count]
+
+    def resolved(kind: str, value: str) -> str:
+        if kind == "xref":
+            numbers = references(value)
+            return str(document.xref_object(numbers[0])) if numbers else ""
+        return str(value) if kind == "dict" else ""
+
+    def entries(value: str) -> dict[str, str]:
+        return _pdf_dict_entries(_pdf_entry_text(document, value, count))
+
+    fonts: list[int | str] = []
+    # Printed resource dictionaries, and objects whose /Resources to read.
+    pending: list[int | str] = []
+    seen: set[int] = set()
+    read = 0
+    try:
+        holder = page.xref
+        for _ in range(64):  # the page's resources, or the page-tree node's it inherits
+            kind, value = document.xref_get_key(holder, "Resources")
+            if kind != "null":
+                pending.append(resolved(kind, value))
+                break
+            kind, value = document.xref_get_key(holder, "Parent")
+            if kind != "xref":
+                break
+            holder = int(value.split()[0])
+        kind, value = document.xref_get_key(page.xref, "Annots")
+        for annot in references(resolved(kind, value) or str(value)):
+            kind, value = document.xref_get_key(annot, "AP/N")
+            if kind == "xref":
+                numbers = references(value)
+                if numbers and not document.xref_is_stream(numbers[0]):
+                    value = document.xref_object(numbers[0])  # a dictionary of states
+            pending.extend(references(value) if kind in ("xref", "dict") else [])
+        while pending:
+            item = pending.pop()
+            if isinstance(item, int):
+                if item in seen:
+                    continue
+                seen.add(item)
+                item = resolved(*document.xref_get_key(item, "Resources"))
+            read += 1
+            if read > _PDF_FONT_RESOURCES:
+                return None
+            resources = _pdf_dict_entries(item)
+            for value in entries(resources.get("Font", "")).values():
+                if value.startswith("<<"):
+                    font = _pdf_dict_entries(value)
+                    if font.get("Subtype") == "/Type3":
+                        pending.append(_pdf_entry_text(document, font.get("Resources", ""), count))
+                    else:
+                        fonts.append(value)
+                    continue
+                for number in references(value):
+                    if document.xref_get_key(number, "Subtype") == ("name", "/Type3"):
+                        pending.append(number)
+                    elif number not in seen:
+                        seen.add(number)
+                        fonts.append(number)
+            for key in ("XObject", "Pattern"):
+                for value in entries(resources.get(key, "")).values():
+                    pending.extend(references(value))
+            for value in entries(resources.get("ExtGState", "")).values():
+                mask = entries(entries(value).get("SMask", ""))
+                pending.extend(references(mask.get("G", "")))
+    except Exception:
+        return None
+    return fonts
+
+
+def _pdf_span_name_forms(name: str) -> set[str]:
+    """Every name MuPDF may give the spans of a font named ``name``: the name whole
+    and cut to ``_PDF_FONT_NAME_BYTES`` bytes, each with and without a subset prefix
+    (six characters before the first "+"). ``name`` is read as PyMuPDF prints font
+    names, one character to a byte."""
+    forms: set[str] = set()
+    for form in (name, name[:_PDF_FONT_NAME_BYTES]):
+        forms.add(form)
+        if form.find("+") == 6:
+            forms.add(form[7:])
+    return forms
+
+
+def _pdf_font_span_names(document: Any, font: int | str, count: int) -> set[str]:
+    """Every name the spans of a font that is not Type 3 may carry (``_pdf_span_name_forms``),
+    from its /BaseFont and, for a Type0 font, its descendant fonts'. ``font`` is the font's
+    object number or its dictionary as printed; ``count`` is the document's
+    ``xref_length``. A name that can't be read gives none, and this never raises."""
+    names: set[str] = set()
+    try:
+        entries = _pdf_dict_entries(
+            str(document.xref_object(font)) if isinstance(font, int) else font
+        )
+        dictionaries = [entries]
+        if entries.get("Subtype") == "/Type0":
+            descendants = _pdf_entry_text(document, entries.get("DescendantFonts", ""), count)
+            descendants = descendants.strip()
+            for number in map(int, _PDF_OBJECT_REFERENCE.findall(descendants)):
+                if 0 < number < count:
+                    dictionaries.append(_pdf_dict_entries(str(document.xref_object(number))))
+            if descendants.startswith("[") and descendants.endswith("]"):
+                dictionaries.append(_pdf_dict_entries(descendants[1:-1]))  # written inline
+        for dictionary in dictionaries:
+            value = _pdf_entry_text(document, dictionary.get("BaseFont", ""), count)
+            name = _pdf_printed_name(value.strip())
+            if name:
+                names |= _pdf_span_name_forms(name.decode("latin-1"))
+    except Exception:
+        pass
+    return names
 
 
 def _pdf_paint_is_visible(color: Any, opacity: Any) -> bool:
@@ -1933,9 +2338,15 @@ class _RenderedAmendmentMarkup:
     inserted_runs: int
     typographic_underlines: dict[str, int]
     typographic_underlines_kept: dict[str, int]
+    # Delimiter tokens that the text itself spells inside one run or inside one
+    # stretch of plain text between runs. With any, the markup cannot be read back.
+    delimiters_in_text: tuple[str, ...] = ()
 
 
 _WORD_SEPARATOR = "separator"
+# Stands where a delimiter was written, in the copy of the output that is
+# searched for delimiters the text spells. It is in none of the four tokens.
+_AMENDMENT_MARKUP_BREAK = "\n"
 
 
 def _render_amendment_markup(
@@ -1957,6 +2368,11 @@ def _render_amendment_markup(
     name followed by a footnote digit. Every occurrence, overlapping ones
     included, is judged on the states before any phrase is
     applied, so the result does not depend on the order of the phrases.
+
+    ``delimiters_in_text`` lists the delimiter tokens that the text itself
+    spells inside one run or inside one stretch of plain text between runs.
+    Two characters with a delimiter written between them, such as an underlined
+    "[" before a plain "-" (``{+[+}-``), spell none.
     """
     kept = [
         (character, state)
@@ -1997,6 +2413,7 @@ def _render_amendment_markup(
     typographic_kept = dict.fromkeys(typographic_underlines, 0)
     counts = {_AMENDMENT_DELETED: 0, _AMENDMENT_INSERTED: 0}
     rendered: list[str] = []
+    rendered_stretches: list[str] = []
     for paragraph in paragraphs:
         paragraph_text = "".join(character for character, _state in paragraph)
         cleared: set[int] = set()
@@ -2017,14 +2434,18 @@ def _render_amendment_markup(
             if state == _AMENDMENT_INSERTED:
                 paragraph[position] = (character, None)
         out: list[str] = []
+        # The same characters with a break where each delimiter is written.
+        stretches: list[str] = []
         open_state: str | None = None
         for position, (character, state) in enumerate(paragraph):
             if state == _WORD_SEPARATOR:
                 next_state = paragraph[position + 1][1]
                 if open_state is not None and open_state != next_state:
                     out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
+                    stretches.append(_AMENDMENT_MARKUP_BREAK)
                     open_state = None
                 out.append(character)
+                stretches.append(character)
                 continue
             if state != open_state:
                 if open_state is not None:
@@ -2032,17 +2453,24 @@ def _render_amendment_markup(
                 if state is not None:
                     out.append(_AMENDMENT_MARKUP_DELIMITERS[state][0])
                     counts[state] += 1
+                stretches.append(_AMENDMENT_MARKUP_BREAK)
                 open_state = state
             out.append(character)
+            stretches.append(character)
         if open_state is not None:
             out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
         rendered.append("".join(out))
+        rendered_stretches.append("".join(stretches))
+    text_without_delimiters = _AMENDMENT_MARKUP_BREAK.join(rendered_stretches)
     return _RenderedAmendmentMarkup(
         text="\n\n".join(rendered),
         deleted_runs=counts[_AMENDMENT_DELETED],
         inserted_runs=counts[_AMENDMENT_INSERTED],
         typographic_underlines=typographic_counts,
         typographic_underlines_kept=typographic_kept,
+        delimiters_in_text=tuple(
+            token for token in _AMENDMENT_MARKUP_TOKENS if token in text_without_delimiters
+        ),
     )
 
 
@@ -2083,10 +2511,63 @@ def _typographic_underline_occurrence(
     return _AMENDMENT_INSERTED not in (before, after)
 
 
+def _amendment_markup_runs(text: str) -> list[tuple[str, str | None]]:
+    """Split text that ``_render_amendment_markup`` wrote into (text, state) runs.
+
+    The delimiters are read left to right. Outside a run only an opener, ``[-``
+    or ``{+``, is a delimiter; inside a run only that run's closer, ``-]`` or
+    ``+}``, is, and the first one ends the run. Removing every occurrence of
+    the four tokens instead misreads a run whose last character and its closer
+    make a token: a struck run ending in "[" is written ``[-[-]``, and an
+    underlined run ending in "{" is written ``{+{+}``. Maryland prints a
+    deletion in brackets and strikes the brackets where an amendment struck it
+    (2025 ch. 604, page 87: ``the budget bill [-[-]shall[-] MAY-] specify``).
+
+    In the markup of a page ``_pdf_page_layered_text`` accepts, plain text
+    between runs and the text of a run hold none of the four tokens: it refuses
+    a page whose markup has one there
+    (``_RenderedAmendmentMarkup.delimiters_in_text``). So this reads only such
+    text, and raises ``ValueError`` for a token there, a run left open or an
+    empty run. A page outside the marked range is plain text, not markup.
+    """
+    runs: list[tuple[str, str | None]] = []
+    position = 0
+    while True:
+        opener = _AMENDMENT_MARKUP_OPENER.search(text, position)
+        plain_end = len(text) if opener is None else opener.start()
+        _check_amendment_markup_run(text, position, plain_end, state=None)
+        if plain_end > position:
+            runs.append((text[position:plain_end], None))
+        if opener is None:
+            return runs
+        state = _AMENDMENT_MARKUP_OPENERS[opener.group()]
+        closer = _AMENDMENT_MARKUP_DELIMITERS[state][1]
+        end = text.find(closer, opener.end())
+        if end < 0:
+            raise ValueError(
+                f"amendment markup run opened at offset {opener.start()} is never closed"
+            )
+        if end == opener.end():
+            raise ValueError(f"amendment markup run at offset {opener.start()} is empty")
+        _check_amendment_markup_run(text, opener.end(), end, state=state)
+        runs.append((text[opener.end() : end], state))
+        position = end + len(closer)
+
+
+def _check_amendment_markup_run(text: str, start: int, end: int, *, state: str | None) -> None:
+    run = text[start:end]
+    found = [token for token in _AMENDMENT_MARKUP_TOKENS if token in run]
+    if found:
+        where = "outside a run" if state is None else f"inside a {state} run"
+        raise ValueError(
+            f"amendment markup has {found} {where} (offsets {start} to {end}); "
+            "markup that amendment_markup accepts has no delimiter there"
+        )
+
+
 def _strip_amendment_markup(text: str) -> str:
-    for token in _AMENDMENT_MARKUP_TOKENS:
-        text = text.replace(token, "")
-    return text
+    """Remove the delimiters ``_render_amendment_markup`` wrote (``_amendment_markup_runs``)."""
+    return "".join(run for run, _state in _amendment_markup_runs(text))
 
 
 _SINGLE_BLOCK_PDF_FILTER_KEYS = (
