@@ -383,6 +383,12 @@ class UKSection(BaseModel):
     source_url: str | None = Field(None, description="legislation.gov.uk URL")
     retrieved_at: date | None = Field(None, description="Date this version was retrieved")
 
+    # Formulas
+    unrendered_mathml: list[str] = Field(
+        default_factory=list,
+        description="MathML elements the text keeps as plain rows, without their structure",
+    )
+
     model_config = {"extra": "forbid"}
 
     @property

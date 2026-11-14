@@ -53,3 +53,20 @@ The pilot excludes:
 This lets the UK corpus grow from PE-discovered legislation toward a broader
 current revised legislation.gov.uk corpus without treating PE values as source
 truth.
+
+## Formulas
+
+CLML carries operative formulas as MathML. A formula with `alttext` renders as
+that text. Otherwise the provision body writes it in linear notation, in place
+in the prose: a row's tokens separated by single spaces (`M × W`), and `a/b`,
+`x_1`, `x^2`, `x_1^2`, `√(a + b)`, `root(x, 3)` and `(a, b)` for fractions,
+sub- and superscripts, roots and fences. An operand that is more than one name
+or number is parenthesized, so Universal Credit Regulations 2013 reg 73(2A)
+reads `N × ( (M × 12)/365 )`. `<semantics>` renders its presentation and skips
+its annotations.
+
+A MathML element with no notation here (`munder`, `mover`, `mtable`,
+`menclose`, a fraction drawn without a rule, a form with the wrong number of
+children, and so on) keeps its tokens in order as a plain row. The row's
+`metadata.unrendered_mathml` names every such element, so a provision whose
+formula lost structure can be found; rows without one carry no such key.
