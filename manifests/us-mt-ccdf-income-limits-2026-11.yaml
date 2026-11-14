@@ -1,0 +1,22 @@
+version: 2026-11-13-ccdf-income-limits
+documents:
+- source_id: us-mt-lfd-child-care-overview-2024-06
+  jurisdiction: us-mt
+  document_class: policy
+  title: 'Montana Legislative Fiscal Division: Child Care Overview, June 2024'
+  source_url: https://leg.mt.gov/content/Publications/fiscal/2025-Biennium/Special-Topics/Childcare/Childcare-Overview-LEG-Days-June2024.pdf
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2024-06-18'
+  citation_path: us-mt/policy/lfd/child-care-overview-2024-06
+  metadata:
+    primary_source: true
+    source_authority: Montana Legislative Fiscal Division
+    official_publisher: Montana Legislative Fiscal Division
+    document_subtype: legislative_fiscal_report
+    program: best_beginnings_child_care_scholarship
+    federal_program: CCDF
+    source_discovery_group: us-mt/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: PDF creation date; the report prints no date and its tables run to June 13, 2024

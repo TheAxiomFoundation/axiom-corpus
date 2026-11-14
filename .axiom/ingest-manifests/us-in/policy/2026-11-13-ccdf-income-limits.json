@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/policy/2026-11-13-ccdf-income-limits.json",
+      "sha256": "2f87fcdd63e9afcc7c71d1e1f1bd12aa14e082b63aeacd68d232135ce24d7784"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/policy/2026-11-13-ccdf-income-limits.json",
+      "sha256": "e6787a603b47b22d76ecb16dbcc2dd69ce6b9c9d448c15fd7818666f39417035"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/policy/2026-11-13-ccdf-income-limits.jsonl",
+      "sha256": "bc90025825869816ed69575991d4b0e2257b5936fb1297c39f1c7b787f284687"
+    },
+    {
+      "path": "data/corpus/sources/us-in/policy/2026-11-13-ccdf-income-limits/official-documents/us-in-fssa-ccdf-plan-fy2025-2027-amendment-2.pdf",
+      "sha256": "85f25fed567232a255983fc298ddb1d2703f538f4e72c3395a79335a1f533caf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1428e5d2c4a7ac90d2617f4f0218543f96295820",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-13-ccdf-income-limits --manifest manifests/us-in-ccdf-income-limits-2026-11.yaml (run note: docs/ingest-runs/2026-11-13-us-ccdf-income-limits.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 247,
+    "missing_count": 0,
+    "provision_count": 247,
+    "source_count": 247
+  },
+  "document_class": "policy",
+  "generated_at": "2026-11-13T20:18:12.215726+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "s60/HRynSR8P2d/nGO2zgoYClCRO9IHbb7ePOy2xyvt7ELTieWY5Pc/16AAWZk/HrDCNEuoOgznS0iPFRR9RCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-13-ccdf-income-limits"
+}

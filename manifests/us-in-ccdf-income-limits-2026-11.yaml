@@ -1,0 +1,22 @@
+version: 2026-11-13-ccdf-income-limits
+documents:
+- source_id: us-in-fssa-ccdf-plan-fy2025-2027-amendment-2
+  jurisdiction: us-in
+  document_class: policy
+  title: Indiana CCDF State Plan FFY 2025-2027, Amendment 2 (ACF-118)
+  source_url: https://www.in.gov/dA/6307709ae5/ACF-118CCDFFFY2025-2027IndianaAmendment.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-11-13'
+  expression_date: '2025-11-14'
+  citation_path: us-in/policy/fssa/oecosl/ccdf-plan-fy2025-2027-amendment-2
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration
+    official_publisher: Indiana Family and Social Services Administration
+    document_subtype: state_plan_amendment
+    program: CCDF
+    federal_program: CCDF
+    source_discovery_group: us-in/policy/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: plan status printed on the cover (Approved as of 2025-11-14)
