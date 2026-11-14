@@ -3,7 +3,8 @@
 Date: 2026-11-13. Branch `ingest/child-care-income-limits-2026-11`, cut from `origin/main` `8d8076b82`.
 
 - Ten scopes hold 28 documents and 978 provision rows. The extractor fetched each document live
-  from its publisher's URL.
+  from its publisher's site, except two Nevada notices that it fetched from nevadachildcare.org
+  (see Notes).
 - Manifests: `manifests/us-{al,id,in,mo,nv,oh}-ccdf-income-limits-2026-11.yaml`,
   `manifests/us-ga-caps-manual-2026-10-05.yaml`, `manifests/us-ga-caps-notices-2026-11.yaml`,
   `manifests/us-mt-ccdf-income-limits-2026-11.yaml` and
@@ -13,13 +14,15 @@ Date: 2026-11-13. Branch `ingest/child-care-income-limits-2026-11`, cut from `or
 
 PolicyEngine/policyengine-us#10670 sets child care subsidy income limits to the figures each state
 posts. The rulespec-us parity issues it files cite each limit's source by corpus path, and no scope
-held these documents. Two citations already sit in the corpus but off the rulespec-us pin line:
+held these documents. Two citations already sit in the corpus. rulespec-us pins
+`us-rulespec-2026-10-29-ecfr-section-text`, which carries the first and leaves out the second:
 
+- Georgia's CCDF plan for FFY 2025-2027 at `us-ga/manual/decal/caps/ccdf-state-plan-2025-2027` in
+  `us-ga/manual/2026-06-25-ga-caps`.
 - ARM 37.80.202, Montana's 150% and 185% FPG tests, at
   `us-mt/regulation/title-37/chapter-37-80/subchapter-37-80-2/rule-37-80-202` (version 49811,
   effective 2020-06-01) in
   `us-mt/regulation/2026-09-14-income-tax-regulations-title-42-section-42-15-r2026-10-07-w6-37-78-37-80-sans-420-consolidated`.
-- Georgia's CCDF plan for FFY 2025-2027 in `us-ga/policy/2026-09-13-ccdf-plan-fy2025-2027`.
 
 This run adds neither.
 
@@ -53,7 +56,7 @@ Each document row's `expression_date_basis` names the source of its date.
 
 2 documents, 4 provision rows, 4 inventory items; coverage complete, matched 4, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-al/policy/dhr/ccdf/child-care-fact-sheet-2026-01` | 2026-01-01 | 2 | 253,907 | `08599174be9d…` |
 | `us-al/policy/dhr/ccdf/child-care-fact-sheet-2026-06` | 2026-06-01 | 2 | 199,423 | `e08a22eb3a49…` |
@@ -67,7 +70,7 @@ Sources:
 
 2 documents, 114 provision rows, 114 inventory items; coverage complete, matched 114, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-ga/manual/decal/caps/policy-manual` | 2026-10-05 | 112 | 2,100,349 | `24603b1ce662…` |
 | `us-ga/manual/decal/caps/appendix-a-income-limits` | 2026-10-05 | 2 | 165,475 | `83b123ab9b0c…` |
@@ -81,7 +84,7 @@ Sources:
 
 10 documents, 38 provision rows, 38 inventory items; coverage complete, matched 38, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-ga/policy/decal/caps/funding-restrictions-qa-2016` | 2016-08-01 | 3 | 288,568 | `2ecdb27a65f8…` |
 | `us-ga/policy/decal/caps/provider-letter-2018-06-18` | 2018-06-18 | 2 | 536,857 | `4500232839a5…` |
@@ -111,7 +114,7 @@ Sources:
 
 2 documents, 7 provision rows, 7 inventory items; coverage complete, matched 7, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-id/policy/dhw/ccdf/iccp-applications-resume-2025-01-13` | 2024-11-14 | 2 | 164,489 | `7f927024a95c…` |
 | `us-id/policy/dhw/ccdf/apply-for-child-care` | 2025-10-01 | 5 | 178,255 | `419caac68780…` |
@@ -125,7 +128,7 @@ Sources:
 
 1 document, 247 provision rows, 247 inventory items; coverage complete, matched 247, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-in/policy/fssa/oecosl/ccdf-plan-fy2025-2027-amendment-2` | 2025-11-14 | 247 | 3,150,811 | `85f25fed5672…` |
 
@@ -137,7 +140,7 @@ Sources:
 
 1 document, 2 provision rows, 2 inventory items; coverage complete, matched 2, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-mo/policy/dese/ccdf/income-eligibility-table-2026-07` | 2026-07-01 | 2 | 146,996 | `efb37b48e38b…` |
 
@@ -149,7 +152,7 @@ Sources:
 
 1 document, 15 provision rows, 15 inventory items; coverage complete, matched 15, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-mt/policy/lfd/child-care-overview-2024-06` | 2024-06-18 | 15 | 221,258 | `d1aa768469b7…` |
 
@@ -161,7 +164,7 @@ Sources:
 
 1 document, 2 provision rows, 2 inventory items; coverage complete, matched 2, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-mt/statute/52-2-715` | 2026-11-13 | 2 | 10,598 | `0f1e6c745718…` |
 
@@ -173,7 +176,7 @@ Sources:
 
 5 documents, 501 provision rows, 501 inventory items; coverage complete, matched 501, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-nv/policy/ccdf/policy-transmittals/ccdp-annual-income-changes-2026` | 2026-10-01 | 5 | 861,558 | `b972df2458d2…` |
 | `us-nv/policy/ccdf/state-plan/ffy2022-2024-draft` | 2021-10-01 | 181 | 2,914,153 | `d1ffaa847b22…` |
@@ -193,7 +196,7 @@ Sources:
 
 3 documents, 48 provision rows, 48 inventory items; coverage complete, matched 48, missing 0, extra 0, duplicate citation paths 0.
 
-| Citation path | Expression date | Rows | Bytes | SHA-256 |
+| Citation path | Expression date | Rows | Bytes | SHA-256 prefix |
 | --- | --- | --- | --- | --- |
 | `us-oh/policy/dcy/ccdf/procedure-letter-45` | 2026-10-01 | 8 | 1,234,986 | `2ced4d319dfc…` |
 | `us-oh/policy/dcy/ccdf/procedure-letter-36` | 2025-11-01 | 5 | 253,141 | `c4726615ce79…` |
@@ -214,9 +217,11 @@ Sources:
   pages to 111, so a `page-N` path here can hold different text from the predecessor's `page-N`.
   The other appendices stay with the predecessor scope.
 - **Idaho.** The Department of Health and Welfare (DHW) moved its "Apply for Child Care" page; the old address answers 301. `source_url`
-  keeps the address the parity issue cites, and `download_url` names the page's current address.
+  keeps the address the parity issue cites, and the `download_url` in each row's metadata names the page's current address.
+  DHW's pages embed a view id that changes on every request, so two captures differ in bytes; the visible text stays
+  identical.
 - **Nevada.** The FFY 2022-2024 CCDF plans' `dwss.nv.gov/uploadedFiles/...` addresses now redirect, in
-  three steps, to `www.dss.nv.gov/siteassets/...`; `download_url` names that final address. The parent notice and the
+  three steps, to `www.dss.nv.gov/siteassets/...`; each row's `download_url` names that final address. The parent notice and the
   copayment Q&A come from nevadachildcare.org, the Child Care and Development Program site that the
   Division of Welfare and Supportive Services funds.
 - **Montana statute.** No scope used the plain path `us-mt/statute/52-2-715`, which now holds the
@@ -224,7 +229,10 @@ Sources:
   captures differ in bytes; the statute text and history stay identical, and the provision rows
   carry no script.
 - **Montana Legislative Fiscal Division overview.** The report prints no date. Its PDF metadata gives June 18, 2024, and its tables
-  report fiscal 2024 spending to June 13, 2024.
+  report fiscal 2024 spending to June 13, 2024. `leg.mt.gov` now redirects it to `archive.legmt.gov`, and each row's
+  `download_url` names that address.
+- **Georgia's 2019 policy webinar.** DECAL redirects its http address to https; each row's `download_url` names the
+  https address.
 
 ## Left out
 
