@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-11-14-cms-smd-26-006.json",
+      "sha256": "86da6dc34a06bc7eea722bfceff8cd1a09ce05d9d7999b6835ad1addef91388c"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-11-14-cms-smd-26-006.json",
+      "sha256": "45b65df7bb70bbbd8ed6de7e1d2cd89dc7fa59054d647ac5155d67c85447afee"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-11-14-cms-smd-26-006.jsonl",
+      "sha256": "a52a4cc3b257687803ca6fc43e77ffbcf9b56aec90238fdd3e4e01b7fbcce540"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-11-14-cms-smd-26-006/official-documents/cms-smd-26-006.pdf",
+      "sha256": "9afc56d8ba71256491e5fa0cbc5cc0bde9916b6e03c3b7918e86d721792991be"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "52d0b8e14dfb3eff27293c2befadbba7fcff1542",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-14-cms-smd-26-006 --manifest manifests/us-cms-smd-26-006-hold-harmless.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-11-14T19:45:51.531165+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-11-14-cms-smd-26-006.md",
+      "sha256": "9d1202618f770edeac461b35f126c755ad460a474d1a92dfc86ae8c269cdfc9b"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Pump+cCrNmQlFiv9uPJsSOYJeJzGsiM/79yH8tkkNaDyr/CR+M0LvTJIJS+lO9UHzzapJfwz4ZeowQLAQk2qBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-14-cms-smd-26-006"
+}
