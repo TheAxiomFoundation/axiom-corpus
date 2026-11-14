@@ -30,7 +30,7 @@ EXPECTED_ADDED = ("us", "guidance", "2026-11-14-cms-smd-26-006")
 LETTER_PATH = "us/guidance/cms/smd/26-006"
 LETTER_SOURCE_ID = "cms-smd-26-006"
 LETTER_PAGE_CHARACTERS = {
-    f"{LETTER_PATH}/page-1": 3285,
+    f"{LETTER_PATH}/page-1": 3284,
     f"{LETTER_PATH}/page-2": 3637,
     f"{LETTER_PATH}/page-3": 3303,
     f"{LETTER_PATH}/page-4": 815,

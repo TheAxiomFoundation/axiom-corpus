@@ -41,7 +41,7 @@ this cut with it.
 | | |
 | --- | --- |
 | Provision rows | 5, in one document |
-| Letter | one document row at `us/guidance/cms/smd/26-006` and four page rows `page-1` to `page-4` (3,285, 3,637, 3,303 and 815 body characters), source id `cms-smd-26-006`, `expression_date` 2026-11-13 |
+| Letter | one document row at `us/guidance/cms/smd/26-006` and four page rows `page-1` to `page-4` (3,284, 3,637, 3,303 and 815 body characters), source id `cms-smd-26-006`, `expression_date` 2026-11-13 |
 | Source | the official PDF from medicaid.gov, 170,600 bytes, SHA-256 `9afc56d8…991be` |
 | Citation paths | all under `us/guidance/cms/smd/26-006` |
 | Content findings | none; no entry in `manifests/release-content-baseline.json` |
@@ -71,6 +71,11 @@ this cut with it.
 - `corpus verify --remote --attest --changed-since origin/main`: 4 lock entries checked, 0 missing from
   R2.
 - Ruff, mypy on `src/axiom_corpus/corpus`, and `towncrier check --compare-with origin/main` pass.
+- Citation-path ratchet. The scope's five paths match the grammar, and each stored `id` is the
+  path-only identity. The four page rows are the only members of any irregular family (`page_n`), so
+  `schema/citation-path.v1.json` raises the `page_n` baseline from main 7242a0229's 178888 to 178892,
+  with a sentence in the ratchet's description. The full-tree scan needs every locked scope, so PR CI
+  runs it.
 - A Hypothesis property checks the addition over arbitrary bases, including bases where other pairs
   reuse the added scope's version string. The reproducer refuses a base that already holds the scope
   or repeats a scope.
@@ -109,6 +114,13 @@ check rejects two unrecorded successors of one selector, so the cuts go one afte
 - If #980 is re-cut on `us-rulespec-2026-11-11-cms-w6-federal-guidance` and merges first, this cut
   sets its `BASE_RELEASE` to #980's selector and reruns the reproducer. The change is the same one
   scope added; the count stays 285, and the digest and the three exceptions are re-recorded.
+
+## Coordination with rulespec-us#2196
+
+Draft rulespec-us#2196 re-pins rulespec-us to `us-rulespec-2026-11-11-cms-w6-federal-guidance`, this
+selector's base. This selector holds all 284 of that release's scopes and adds only the letter, so
+once it is published a re-pin to it supersedes #2196: the re-pin PR names #2196, and #2196 closes
+unmerged, or is retargeted to this release, whichever Max prefers.
 
 ## After merge
 
