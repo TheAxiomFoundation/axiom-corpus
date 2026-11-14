@@ -1,0 +1,30 @@
+# CMS State Medicaid Director letter SMD# 26-006, "Optional Hold Harmless Period for
+# Community Engagement Implementation", dated November 13, 2026 and signed by Daniel
+# Brillman. It offers states an optional hold harmless period through June 30, 2027 for
+# the community engagement requirement of section 1902(xx) of the Social Security Act.
+# Run note: docs/ingest-runs/2026-11-14-cms-smd-26-006.md.
+# sort_text keeps each running header's page number in its header ("Page 2 – State
+# Medicaid Director"); the unsorted stream moves the number below the header.
+#
+# Version is set on the command line; this key is documentation only:
+version: 2026-11-14-cms-smd-26-006
+documents:
+- source_id: cms-smd-26-006
+  jurisdiction: us
+  document_class: guidance
+  title: 'SMD #26-006, Optional Hold Harmless Period for Community Engagement Implementation (State Medicaid Director letter, November 13, 2026)'
+  source_url: https://www.medicaid.gov/Federal-Policy-Guidance/Downloads/smd26006.pdf
+  source_format: pdf
+  source_as_of: '2026-11-14'
+  expression_date: '2026-11-13'
+  citation_path: us/guidance/cms/smd/26-006
+  extraction:
+    page_citation_prefix: page
+    sort_text: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: state_medicaid_director_letter
+    discovered_via: medicaid.gov Federal Policy Guidance listing (https://www.medicaid.gov/federal-policy-guidance),
+      which lists the letter as a State Medicaid Director Letter dated November 13, 2026
+    run_note: docs/ingest-runs/2026-11-14-cms-smd-26-006.md

@@ -68,6 +68,7 @@ selector_digests:
   us-rulespec-2026-10-27-ks-liheap: c8f901852f437b64175224913893c3e313ed29d969a323795de76779b395c4ff
   us-rulespec-2026-10-29-ecfr-section-text: 444c008bdf2afeb149d9f392f0ad64d86f460f2ba69aebc8861f37d87bd48bcb
   us-rulespec-2026-11-11-cms-w6-federal-guidance: 811d8842d794697389198d187c15e4e05b683f4aa5d9b39d301b7709aa80ec8f
+  us-rulespec-2026-11-14-cms-smd-26-006: e4471a0a15618706f46644a60d0a1e7f709769da55991bac227eee471e36b8b0
   us-rulespec-ny-snap-2026-07-17: 7ff17ffafe5c61205dd9b8ee92d6580093d9fd30d1e4692eaab30893835ffb3c
   us-rulespec-snap-2026-07-21: 1d2cae04d8b83694e13756fe3302cda386272013b72818342dc0ccfb826a744a
 scopes:
@@ -520,6 +521,15 @@ scopes:
           modules' citations, has not landed; it is closed without a merge (checked
           2026-11-11). The first cut in the line after that re-pointing lands drops the scope
           and selects its replacement scopes.
+      - selector: us-rulespec-2026-11-14-cms-smd-26-006
+        reason: >-
+          CMS SMD #26-006 pin release decision recorded in
+          docs/ingest-runs/2026-11-14-us-rulespec-cms-smd-26-006.md: this successor of
+          us-rulespec-2026-11-11-cms-w6-federal-guidance keeps the scope for the same reason as
+          us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
+          modules' citations, has not landed; it is closed without a merge (checked
+          2026-11-14). The first cut in the line after that re-pointing lands drops the scope
+          and selects its replacement scopes.
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -629,6 +639,15 @@ scopes:
           us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
           modules' citations, has not landed; it is closed without a merge (checked
           2026-11-11). The first cut in the line after that re-pointing lands drops the scope
+          and selects its replacement scopes.
+      - selector: us-rulespec-2026-11-14-cms-smd-26-006
+        reason: >-
+          CMS SMD #26-006 pin release decision recorded in
+          docs/ingest-runs/2026-11-14-us-rulespec-cms-smd-26-006.md: this successor of
+          us-rulespec-2026-11-11-cms-w6-federal-guidance keeps the scope for the same reason as
+          us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
+          modules' citations, has not landed; it is closed without a merge (checked
+          2026-11-14). The first cut in the line after that re-pointing lands drops the scope
           and selects its replacement scopes.
   - scope: us-mn/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
@@ -741,6 +760,15 @@ scopes:
           us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
           modules' citations, has not landed; it is closed without a merge (checked
           2026-11-11). The first cut in the line after that re-pointing lands drops the scope
+          and selects its replacement scopes.
+      - selector: us-rulespec-2026-11-14-cms-smd-26-006
+        reason: >-
+          CMS SMD #26-006 pin release decision recorded in
+          docs/ingest-runs/2026-11-14-us-rulespec-cms-smd-26-006.md: this successor of
+          us-rulespec-2026-11-11-cms-w6-federal-guidance keeps the scope for the same reason as
+          us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
+          modules' citations, has not landed; it is closed without a merge (checked
+          2026-11-14). The first cut in the line after that re-pointing lands drops the scope
           and selects its replacement scopes.
   - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
     withdrawn_on: "2026-10-03"
