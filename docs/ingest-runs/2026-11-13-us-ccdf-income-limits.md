@@ -13,7 +13,7 @@ Date: 2026-11-13. Branch `ingest/child-care-income-limits-2026-11`, cut from `or
 ## Why
 
 PolicyEngine/policyengine-us#10670 sets child care subsidy income limits to the figures each state
-posts. The rulespec-us parity issues it files cite each limit's source by corpus path, and no scope
+posts. The rulespec-us parity issues drafted for it cite each limit's source by corpus path, and no scope
 held these documents. Two citations already sit in the corpus. rulespec-us pins
 `us-rulespec-2026-10-29-ecfr-section-text`, which carries the first and leaves out the second:
 
@@ -213,17 +213,25 @@ Sources:
 - **Georgia CAPS manual.** `us-ga/manual/2026-11-13-ga-caps-2026-10-05` succeeds
   `us-ga/manual/2026-06-25-ga-caps` for the policy manual and Appendix A only, at the same citation
   paths. Georgia's Department of Early Care and Learning (DECAL) serves both at unchanged URLs. Appendix A now prints SMI thresholds effective
-  October 5, 2026, and the manual's PDF carries the same creation date. The manual grew from 109
+  October 5, 2026, the manual's revised sections print "Revision Effective: 10/05/2026", and the
+  manual's PDF carries the same creation date. The manual grew from 109
   pages to 111, so a `page-N` path here can hold different text from the predecessor's `page-N`.
   The other appendices stay with the predecessor scope.
 - **Idaho.** The Department of Health and Welfare (DHW) moved its "Apply for Child Care" page; the old address answers 301. `source_url`
   keeps the address the parity issue cites, and the `download_url` in each row's metadata names the page's current address.
-  DHW's pages embed a view id that changes on every request, so two captures differ in bytes; the visible text stays
-  identical.
-- **Nevada.** The FFY 2022-2024 CCDF plans' `dwss.nv.gov/uploadedFiles/...` addresses now redirect, in
-  three steps, to `www.dss.nv.gov/siteassets/...`; each row's `download_url` names that final address. The parent notice and the
-  copayment Q&A come from nevadachildcare.org, the Child Care and Development Program site that the
-  Division of Welfare and Supportive Services funds.
+  DHW's pages embed a view id that changes whenever the site rebuilds its page cache, so captures taken at
+  different times differ in bytes; the visible text stays identical.
+- **Nevada.** The October 2026 policy transmittal, CC PT XX-27, carries the letterhead of the Department
+  of Human Services, Division of Social Services, and its row names that division as publisher. The FFY
+  2022-2024 CCDF plans' `dwss.nv.gov/uploadedFiles/...` addresses now redirect, in three steps, to
+  `www.dss.nv.gov/siteassets/...`; each row's `download_url` names that final address. The amended plan
+  prints "Version: Amendment 1", and its expression date, 2022-07-01, is the effective date its section
+  3.1.3 f gives for the income eligibility limits. The parent notice and the copayment Q&A, both on
+  Division of Welfare and Supportive Services (DWSS) letterhead, come from nevadachildcare.org. That is the
+  site of Nevada Child Care Resource & Referral, a collaboration of DWSS's Child Care and Development
+  Program and The Children's Cabinet that the Child Care and Development Fund primarily funds. The site
+  says it will redirect to First5Nevada.org starting January 1, 2027, so its two `source_url`s may stop
+  serving these files then.
 - **Montana statute.** No scope used the plain path `us-mt/statute/52-2-715`, which now holds the
   Montana Code Annotated 2025 text. The page embeds a script that changes on every request, so two
   captures differ in bytes; the statute text and history stay identical, and the provision rows
@@ -242,7 +250,7 @@ The parity issues also cite sources that no live official URL serves, so we left
 | --- | --- | --- |
 | Indiana CCDF Sliding Fee Schedule with Copays, March 2023, March 2024 and March 2025 editions | `https://www.in.gov/fssa/carefinder/files/CCDFSlidingFeeSchedule_withCopays.pdf` now answers 404 | Internet Archive `20230501122705`, `20240413093550` and `20250403065234` |
 | Maryland MSDE Child Care Scholarship Program page (income scales effective 12.15.2024) | Every URL on `earlychildhood.marylandpublicschools.org` redirects (302) to an Internet Archive capture of the site's home page | Internet Archive `20261009215322` |
-| Georgia CAPS Appendix A editions, November 2020 through March 2026 | DECAL serves only the current edition | Internet Archive `20201124060600`, `20211026013823`, `20220301180356`, `20230304133123`, `20231208060145`, `20240520214500`, `20250301224420`, `20250308021446` and `20260308171215` |
+| Georgia CAPS Appendix A editions, November 2020 through March 2026 | DECAL serves only the current edition | Internet Archive `20201124060600`, `20211026013823`, `20211101160413`, `20220301180356`, `20230304133123`, `20231208060145`, `20240520214500`, `20250301224420`, `20250308021446` and `20260308171215` (the first capture of each of the ten distinct files) |
 | ACF, CCDF Family Income Eligibility Levels by State (January 2025) | acf.gov answers automated requests for it with an empty 202 response | none fetched |
 
 We wrote manifests for the Indiana and Maryland captures in the form
