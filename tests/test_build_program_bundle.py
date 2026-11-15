@@ -133,6 +133,55 @@ def test_normalize_url_reads_a_webworks_page_named_under_the_host_root():
     )
 
 
+def test_normalize_url_webworks_page_edge_forms():
+    page = "dbmefaapolicy.azdes.gov/FAA5/A.html"
+    # Scheme: http and https both read; an uppercase scheme reads the same.
+    assert (
+        bundle.normalize_url("http://dbmefaapolicy.azdes.gov/#page/FAA5/A.html") == "http://" + page
+    )
+    assert (
+        bundle.normalize_url("HTTPS://dbmefaapolicy.azdes.gov/#page/FAA5/A.html")
+        == "HTTPS://" + page
+    )
+    assert bundle.url_key(
+        bundle.normalize_url("HTTPS://DBMEFAAPOLICY.AZDES.GOV/#page/FAA5/A.html")
+    ) == bundle.url_key("https://" + page)
+    # A second fragment inside the page fragment is not part of the page.
+    assert (
+        bundle.normalize_url("https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html#sec")
+        == "https://" + page
+    )
+    # Archived and padded links read the page they archive.
+    assert (
+        bundle.normalize_url(
+            "https://web.archive.org/web/2026id_/https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html"
+        )
+        == "https://" + page
+    )
+    assert (
+        bundle.normalize_url("  https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html\n")
+        == "https://" + page
+    )
+    # A query before the fragment, an empty fragment, a fragment that is not a
+    # page, and a reader index under another path keep the page before the fragment.
+    for url, expected in (
+        (
+            "https://dbmefaapolicy.azdes.gov/?x=1#page/FAA5/A.html",
+            "https://dbmefaapolicy.azdes.gov/?x=1",
+        ),
+        ("https://dbmefaapolicy.azdes.gov/#", "https://dbmefaapolicy.azdes.gov/"),
+        ("https://dbmefaapolicy.azdes.gov/#page", "https://dbmefaapolicy.azdes.gov/"),
+        ("https://dbmefaapolicy.azdes.gov/#page//", "https://dbmefaapolicy.azdes.gov/"),
+        ("https://example.gov/#top", "https://example.gov/"),
+        ("https://example.gov/index.html#overview", "https://example.gov/index.html"),
+        (
+            "https://example.gov/manual/index.html#page/X/A.html",
+            "https://example.gov/manual/index.html",
+        ),
+    ):
+        assert bundle.normalize_url(url) == expected
+
+
 def test_fiscal_year_starts_in_october():
     assert bundle.fiscal_year(dt.date(2026, 9, 30)) == 2026
     assert bundle.fiscal_year(dt.date(2026, 10, 1)) == 2027

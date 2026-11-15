@@ -283,8 +283,8 @@ def normalize_url(url: str) -> str:
     (index.html#page/<chapter>/<page>.html) or under the host root
     (/#page/<chapter>/<page>.html)."""
     url = unarchive(url).strip()
-    m = re.match(r"(https?://[^/?#]+)/?(?:index\.html)?#page/(.+)$", url)
-    if m and (page := m.group(2).strip("/")):
+    m = re.match(r"((?i:https?)://[^/?#]+)/?(?:index\.html)?#page/(.+)$", url)
+    if m and (page := m.group(2).split("#")[0].strip("/")):
         return f"{m.group(1)}/{page}"
     return url.split("#")[0]
 
