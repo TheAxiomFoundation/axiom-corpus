@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url.json",
+      "sha256": "76b7725a94df25be8e31b75539500fd508d43ad9739e466ada6da315e263fc1b"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url.json",
+      "sha256": "2b9d8b7036060489477e146609f48dfd4c177e61c60c8e68a5db4fe7733a2764"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "71f481f5671baecfe2d489bc459e4db10db6a4e7a511de00f939afda97f2b016"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url/official-documents/de-kindergeld-ijfd-2021.pdf",
+      "sha256": "167f7f0fe4edf6125a41575e12be752a87f615aad60eb84116c17b03e0f58664"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url/official-documents/de-kindergeld-weltwaerts-2016.pdf",
+      "sha256": "28b0e86682aef921afc52f6a569633435c1b3e309dc72add0db5b4747bf6d058"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-adult-services --manifest manifests/de-kindergeld-adult-services-guidance.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-09-de-kindergeld-adult-services without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:17:20.127602+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "REcBy2lPKGLaydFaHMl71teJ/1QpFzmb1KBt2/MHA+0qXX5BERw+cYS5UvouUux6hbS87lhEgWM+NQofyOfgBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-adult-services-r2026-10-14-portable-download-url"
+}

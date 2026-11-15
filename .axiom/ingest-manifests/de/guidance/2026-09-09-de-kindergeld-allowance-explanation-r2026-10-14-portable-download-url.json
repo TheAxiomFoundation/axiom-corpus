@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-allowance-explanation-r2026-10-14-portable-download-url.json",
+      "sha256": "b51476421fcda982d5905ff8e5e518dc0d5a3db1b6f075013a764109ba432029"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-allowance-explanation-r2026-10-14-portable-download-url.json",
+      "sha256": "563fba6d6ece4715d5ddc9822d78570f4ad8ede0079d47c7440e5effc628b682"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-allowance-explanation-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "6b51fee141860009c0ae42b7679ecbcee4d099ca66f3ba4c22ad7e44c9c706c1"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-allowance-explanation-r2026-10-14-portable-download-url/official-documents/de-bt-drs-20-12778-kindergeld-explanation.pdf",
+      "sha256": "e88696d40b46f2841ec0b7cc0ce56fe8bfaf269aa1cb67c4e5bc6ab5aadb26ee"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-allowance-explanation --manifest manifests/de-kindergeld-allowance-explanation.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-09-de-kindergeld-allowance-explanation without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:17:31.494798+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jj8leWFvj2B3YxHvq8f1y4aaNhdLuKR0vTpnKykxR4RNcweojSy3ahcwqO3wpRjiJSocN6M29jrE1m1THb5ZCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-allowance-explanation-r2026-10-14-portable-download-url"
+}

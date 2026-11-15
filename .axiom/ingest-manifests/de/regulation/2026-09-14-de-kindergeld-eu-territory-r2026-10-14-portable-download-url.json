@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url.json",
+      "sha256": "16d53f23bf55803d079094675094db8d943a7aa767384e2202cd1773d6411059"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url.json",
+      "sha256": "d41ccf429b036ae053d7c0bc77661b5590f156ef1c02c43f129c165fcdda118c"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "c82f3693f755ee192901cf5bd75b65affee2e43efffd350af38a269935cd2995"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url/official-documents/de-kindergeld-eu-teu-2016-article-50.html",
+      "sha256": "013825824c196557e34782d08c723c1c0839a0a53d6157a4dd71060cfabf9cec"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url/official-documents/de-kindergeld-eu-teu-2016-article-52.html",
+      "sha256": "f65cd39d0db1fee8b0e9e1a2aaa3ac7038b46c4b0570f0a7ad08aa7cc66673fe"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url/official-documents/de-kindergeld-eu-tfeu-2016-article-355.html",
+      "sha256": "acd14074a0140c984361085d913a6fdbe8849ab867400d0c798891bb5f7e3c15"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-14-de-kindergeld-eu-territory --manifest manifests/de-kindergeld-eu-territory.yaml --tag r2026-10-14-portable-download-url (successor of de/regulation/2026-09-14-de-kindergeld-eu-territory without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-23T15:21:30.270104+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rsdgURU+lkFfMrATRFOG/UglPSeysEWQbCQJ1KsIKFjxL53zUQ3lqEiNiYu5RbbysDAHNPgfmai9ZDKGUr4uAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-de-kindergeld-eu-territory-r2026-10-14-portable-download-url"
+}

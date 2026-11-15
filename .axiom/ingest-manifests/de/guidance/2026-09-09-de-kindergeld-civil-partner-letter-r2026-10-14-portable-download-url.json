@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter-r2026-10-14-portable-download-url.json",
+      "sha256": "35d131064170d1d017b5e841f7bdedceff30a41f23b2d6f516ebe8c93d3b238a"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter-r2026-10-14-portable-download-url.json",
+      "sha256": "18c043e28f0bfd73aa078c06cbab03e6c1a151497f4ae73634e1678fb9f693c2"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "6c2e9a287799c582be65ad3f27ff33a2f8ac25589b0364b97921dac616660323"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-civil-partner-letter-r2026-10-14-portable-download-url/official-documents/de-bmf-2014-01-17-civil-partners.html",
+      "sha256": "32c35766674768558952d8a0582c82eae4e17311cc7fa019a4f7026197445df7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-civil-partner-letter --manifest manifests/de-kindergeld-civil-partner-letter.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-09-de-kindergeld-civil-partner-letter without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:17:51.241531+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9OTHlVscCiX/CDn6LX4yhqFeWw3X9Z7ItFQl/7q7K9YEaDR138WxFksjDAQvXlWkI6rpsdDenkD2AnisOfHgDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-civil-partner-letter-r2026-10-14-portable-download-url"
+}

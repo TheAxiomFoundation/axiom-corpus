@@ -1,0 +1,74 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url.json",
+      "sha256": "cd609a841096e50942642c6d699ebc0e00f1269d6d3c9e3bc7f69f34e4a180cc"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url.json",
+      "sha256": "ab7c2d8f2ed340ab651b7dd080d36bd9f92d6db045128f503deac5b9011fd5ea"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "558a409536a0e3ea754a2cd4f098d201650eeea9a1faa750a90c6d7304cacb78"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url/official-documents/bfh-iii-r-10-13-2016-08-04.pdf",
+      "sha256": "9e2ebb3ae27a8020fef4581f19e6ea96677da4c5970110ec6a468cb2326bfb51"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url/official-documents/bfh-iii-r-11-13-2016-07-07.pdf",
+      "sha256": "25ba562e1f6c42e1e7537699941e6de49f129d27a641551f0f26c350ea64b3e1"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url/official-documents/bfh-iii-r-14-13-2016-04-13.pdf",
+      "sha256": "ecfdf0280d74e455dbaad8aa4fcd855d8ed87eff08d999e4154f6f0e77258702"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url/official-documents/bfh-iii-r-17-13-2016-02-04.pdf",
+      "sha256": "ac34deb1e9a099ac7acc57b52ab88d008f77d4fcea6e865e44e72507b57fb7a9"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url/official-documents/bfh-iii-r-8-13-2016-03-10.pdf",
+      "sha256": "7b4b245a9fb286246a7aa5a9b27e8d558c9780333846d1c5a12232cb9294aef5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-15-de-kindergeld-cross-border-priority --manifest manifests/de-kindergeld-cross-border-priority.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-15-de-kindergeld-cross-border-priority without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:18:57.409764+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "89OFLiWivOQmrIwbNTGzJlwCbabwK7p/cSxG9oaOwHMlsoatmUJX5yW/hBbcycB3LVX6FF7bXnmCcIBBZhnsAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-de-kindergeld-cross-border-priority-r2026-10-14-portable-download-url"
+}
