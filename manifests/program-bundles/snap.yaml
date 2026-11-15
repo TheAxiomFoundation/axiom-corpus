@@ -48,7 +48,7 @@ tiers:
       us-vi: 1
     in_scope_by_layer:
       federal: 151
-      state: 73
+      state: 74
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
@@ -64,7 +64,7 @@ tiers:
     known_sources: 12
     in_scope_by_layer:
       federal: 238
-      state: 8378
+      state: 8379
 layers:
 - jurisdiction: us
   screener:
@@ -6296,6 +6296,28 @@ layers:
     part: Other
     reason: 'Program administration (quality control, retailers, territories, disasters): no household rule. Proposed;
       needs review'
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2024/federal-register
+    name: Annual Update of the HHS Poverty Guidelines (89 FR 2961, January 17, 2024)
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2024/federal-register
+    source_url: https://www.govinfo.gov/content/pkg/FR-2024-01-17/html/2024-00796.htm
+    sources:
+    - manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    manifest: manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2025/federal-register
+    name: Annual Update of the HHS Poverty Guidelines (90 FR 5917, January 17, 2025)
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2025/federal-register
+    source_url: https://www.govinfo.gov/content/pkg/FR-2025-01-17/html/2025-01377.htm
+    sources:
+    - manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    manifest: manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
   - key: us/guidance/usda/fns/snap-fy2026-cola-memo
     name: SNAP - Fiscal Year 2026 Cost-of-Living Adjustments (memorandum)
     layer: federal
@@ -9514,25 +9536,30 @@ layers:
     - path: us-az/manual/des/faa5/na-medical-expenses-and-deduction
       references: 1
       part: Deductions
+  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
+    layer: state
+    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+      references: 1
+      part: Deductions
   - key: us-az/manual/des/faa6/utility-allowance-current-amount
     name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
     layer: state
     citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
     source_url: null
     sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://dbmefaapolicy.azdes.gov/
-    name: dbmefaapolicy.azdes.gov/
-    layer: state
-    citation_path: null
-    source_url: https://dbmefaapolicy.azdes.gov/
-    sources:
     - policyengine-references
-    references: 2
-    scope: excluded
-    reason: 'Back-year table: not current law'
+    - plan
+    references: 1
+    scope: in
     part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2024.pdf
@@ -9590,12 +9617,22 @@ layers:
     - screener
     - manifests/us-az-des-faa5-manual.yaml
     scope: in
+  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
+    layer: state
+    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-az-des-faa5-manual.yaml
+    scope: in
   - key: us-az/manual/des/faa6/utility-allowance-current-amount
     name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
     layer: state
     citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
     source_url: null
-    part: Benefit amount
+    part: Deductions
     sources:
     - screener
     - manifests/us-az-des-faa6-utility-amounts.yaml
@@ -10291,16 +10328,6 @@ layers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
     part: Deductions
-  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
-    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
-    layer: state
-    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
-    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Utility_Expenses_and_Allowances.html
-    sources:
-    - manifests/us-az-des-faa5-manual.yaml
-    manifest: manifests/us-az-des-faa5-manual.yaml
-    scope: in
-    part: Deductions
   - key: us-az/manual/des/faa5/benefit-replacement-and-ebt-cards
     name: 'Arizona DES FAA5: FAA5.J Benefit Replacement and EBT Cards'
     layer: state
@@ -10442,6 +10469,16 @@ layers:
     manifest: manifests/us-az-des-faa5-manual.yaml
     scope: in
     part: Issuance and EBT
+  - key: us-az/manual/des/archived-policy/2026-03-23-whats-changed
+    name: 'Arizona DES Cash and Nutrition Assistance Policy Manual: What''s Changed on 03/23/2026'
+    layer: state
+    citation_path: us-az/manual/des/archived-policy/2026-03-23-whats-changed
+    source_url: https://dbmefaapolicy.azdes.gov/Archived_Policy/baggage/2026-03-23_What'sChanged.pdf
+    sources:
+    - manifests/us-az-des-snap-ece-dated-authority.yaml
+    manifest: manifests/us-az-des-snap-ece-dated-authority.yaml
+    scope: in
+    part: Other
   - key: us-az/policy/snap-et-state-plan/ffy2026
     name: Arizona SNAP E&T State Plan FFY 2026
     layer: state
