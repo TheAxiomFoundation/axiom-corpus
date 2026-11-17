@@ -2,10 +2,16 @@
 """Remove cross-scope citation duplicates from unreleased release additions.
 
 The canonical selector identifies the scopes that retain citation ownership. The
-target selector must contain every canonical scope and may add unreleased scopes.
-When a citation occurs once in a canonical scope and once in an added scope, this
-command removes the added provision and its matching inventory item, then refreshes
-that scope's coverage report. Any ambiguous collision is rejected.
+target selector must contain every canonical scope, each in the same layer, and
+may add unreleased scopes. When a citation occurs once in a canonical primary
+scope and once in an added primary scope, this command removes the added
+provision and its matching inventory item, then refreshes that scope's coverage
+report. Any ambiguous collision is rejected.
+
+Base scopes are never opened and never cut. For a citation path that both
+layers carry, serving picks the primary row, so a primary row over a base row
+is layering, not a duplicate: only primary scopes compete for a citation. The
+report lists the base scopes the run left untouched.
 
 Released scopes are immutable. Re-version them before using this command.
 """
@@ -15,45 +21,33 @@ from __future__ import annotations
 import argparse
 import json
 from collections import Counter, defaultdict
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-
-@dataclass(frozen=True, order=True)
-class Scope:
-    jurisdiction: str
-    document_class: str
-    version: str
-
-    @classmethod
-    def from_payload(cls, payload: dict[str, Any]) -> Scope:
-        return cls(
-            jurisdiction=str(payload["jurisdiction"]),
-            document_class=str(payload["document_class"]),
-            version=str(payload["version"]),
-        )
-
-    def as_dict(self) -> dict[str, str]:
-        return {
-            "jurisdiction": self.jurisdiction,
-            "document_class": self.document_class,
-            "version": self.version,
-        }
+from axiom_corpus.corpus.releases import ReleaseScope, parse_release_scope
 
 
-def _read_selector(path: Path) -> tuple[Scope, ...]:
+def _read_selector(path: Path) -> tuple[ReleaseScope, ...]:
     payload = json.loads(path.read_text())
     raw_scopes = payload.get("scopes")
     if not isinstance(raw_scopes, list):
         raise ValueError(f"{path}: selector must contain a scopes list")
-    scopes = tuple(Scope.from_payload(scope) for scope in raw_scopes)
-    if len(scopes) != len(set(scopes)):
+    scopes = tuple(parse_release_scope(scope, manifest_path=path) for scope in raw_scopes)
+    if len(scopes) != len({scope.key for scope in scopes}):
         raise ValueError(f"{path}: selector contains duplicate scopes")
     return scopes
 
 
-def _artifact_path(corpus: Path, artifact: str, scope: Scope, suffix: str) -> Path:
+def _scope_order(scope: ReleaseScope) -> tuple[str, str, str, str]:
+    return (*scope.key, scope.layer)
+
+
+def _render(scope: ReleaseScope) -> str:
+    rendered = f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
+    return f"{rendered} (base)" if scope.is_base else rendered
+
+
+def _artifact_path(corpus: Path, artifact: str, scope: ReleaseScope, suffix: str) -> Path:
     return (
         corpus
         / artifact
@@ -87,7 +81,7 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 
 def _refresh_scope(
     corpus: Path,
-    scope: Scope,
+    scope: ReleaseScope,
     removed_paths: set[str],
     *,
     apply: bool,
@@ -167,7 +161,7 @@ def _refresh_scope(
         _write_json(coverage_path, coverage)
 
     return {
-        **scope.as_dict(),
+        **scope.to_selector_mapping(),
         "provision_count": len(retained_paths),
         "removed_count": len(removed_paths),
         "removed_paths": sorted(removed_paths),
@@ -183,15 +177,19 @@ def deduplicate(
 ) -> dict[str, Any]:
     canonical_scopes = set(_read_selector(canonical_selector))
     target_scopes = _read_selector(target_selector)
-    missing = sorted(canonical_scopes - set(target_scopes))
+    # Whole-scope comparison: a canonical scope carried in the other layer is
+    # omitted, not kept.
+    missing = sorted(canonical_scopes - set(target_scopes), key=_scope_order)
     if missing:
         raise ValueError(
-            "target selector omits canonical scopes: "
-            + ", ".join(f"{s.jurisdiction}/{s.document_class}/{s.version}" for s in missing)
+            "target selector omits canonical scopes: " + ", ".join(_render(s) for s in missing)
         )
 
-    carriers: dict[str, list[tuple[Scope, bool]]] = defaultdict(list)
+    base_scopes = sorted((scope for scope in target_scopes if scope.is_base), key=_scope_order)
+    carriers: dict[str, list[tuple[ReleaseScope, bool]]] = defaultdict(list)
     for scope in target_scopes:
+        if scope.is_base:
+            continue
         path = _artifact_path(corpus, "provisions", scope, ".jsonl")
         seen_in_scope: set[str] = set()
         for _, row in _read_provision_lines(path):
@@ -201,7 +199,7 @@ def deduplicate(
             seen_in_scope.add(citation_path)
             carriers[citation_path].append((scope, scope in canonical_scopes))
 
-    removals: dict[Scope, set[str]] = defaultdict(set)
+    removals: dict[ReleaseScope, set[str]] = defaultdict(set)
     inherited_collision_paths: list[str] = []
     for citation_path, matches in sorted(carriers.items()):
         if len(matches) == 1:
@@ -213,21 +211,21 @@ def deduplicate(
             continue
         if len(canonical_matches) != 1 or len(added_matches) != 1:
             rendered = ", ".join(
-                f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
-                f" ({'canonical' if canonical else 'added'})"
+                f"{_render(scope)} ({'canonical' if canonical else 'added'})"
                 for scope, canonical in matches
             )
             raise ValueError(f"ambiguous citation carrier for {citation_path}: {rendered}")
         removals[added_matches[0]].add(citation_path)
 
+    ordered_removals = sorted(removals.items(), key=lambda item: _scope_order(item[0]))
     preflight = [
         _refresh_scope(corpus, scope, removed_paths, apply=False)
-        for scope, removed_paths in sorted(removals.items())
+        for scope, removed_paths in ordered_removals
     ]
     scopes = (
         [
             _refresh_scope(corpus, scope, removed_paths, apply=True)
-            for scope, removed_paths in sorted(removals.items())
+            for scope, removed_paths in ordered_removals
         ]
         if apply
         else preflight
@@ -239,6 +237,7 @@ def deduplicate(
         "inherited_collision_paths": inherited_collision_paths,
         "scope_count": len(scopes),
         "scopes": scopes,
+        "untouched_base_scopes": [scope.to_selector_mapping() for scope in base_scopes],
     }
 
 
