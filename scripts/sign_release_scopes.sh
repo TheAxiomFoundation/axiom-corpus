@@ -15,8 +15,13 @@
 # or step 2 will sign it again), export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell
 # only (never written to a file); the script checks for it before it stages anything.
 #
-# The unreleased scopes are the draft selector's scopes minus the predecessor's.
-# Order matters: the signer records HEAD and requires a clean tracked tree, and the
+# The unreleased scopes are the draft selector's primary scopes minus the predecessor's.
+# A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
+# also has as a base, and stops before it stages anything when the draft has a base scope
+# that the predecessor lacks or has as primary, has as primary a scope that the
+# predecessor has as a base, or spells a layer other than "base". A base scope enters a
+# release through its restore manifest (docs/named-release-publication.md), not this
+# script. Order matters: the signer records HEAD and requires a clean tracked tree, and the
 # signed manifest must describe committed artifact bytes. So: (1) force-add and commit
 # the artifacts, (2) sign every unreleased scope against that commit, (3) commit those
 # scopes' manifests and no others, (4) copy the draft to manifests/releases/<name>.json,
@@ -62,7 +67,9 @@ NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])'
 TARGET="manifests/releases/$NAME.json"
 [ ! -e "$TARGET" ] || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
 
-# Unreleased scopes: draft minus predecessor, as "jurisdiction document_class version" lines.
+# Unreleased scopes: the draft's primary scopes minus the predecessor's, as
+# "jurisdiction document_class version" lines. The layer is read on both sides (see the
+# header), and a base scope that is not carried as it is stops the run here.
 # (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
 SCOPE_LIST=$(mktemp)
 # From step 1 on, a run that stops before the selector commit undoes what it has not
@@ -122,11 +129,45 @@ trap 'exit 129' HUP
 python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
 import json, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
-released = {(s["jurisdiction"], s["document_class"], s["version"]) for s in predecessor}
-for s in sorted(draft, key=lambda s: (s["jurisdiction"], s["document_class"], s["version"])):
-    key = (s["jurisdiction"], s["document_class"], s["version"])
-    if key not in released:
-        print(*key)
+
+
+def key(s):
+    return (s["jurisdiction"], s["document_class"], s["version"])
+
+
+def is_base(s):
+    # A selector marks a base scope "layer": "base" and a primary scope with no layer.
+    return s.get("layer") == "base"
+
+
+# validate-release rejects any other layer, but only in step 4, after step 1 has
+# committed the scope and step 2 has signed it.
+problems = [
+    f"scope {'/'.join(key(s))} in {path} has layer {s['layer']!r}; a selector marks a"
+    ' base scope "layer": "base" and a primary scope with no layer'
+    for path, scopes in zip(sys.argv[1:3], (draft, predecessor))
+    for s in sorted(scopes, key=key)
+    if "layer" in s and not is_base(s)
+]
+# True for a base scope of the predecessor, False for a primary one.
+released = {key(s): is_base(s) for s in predecessor}
+for s in sorted(draft, key=key):
+    scope, carried = "/".join(key(s)), released.get(key(s))
+    if is_base(s) and not carried:
+        problems.append(
+            f"base scope {scope} is not carried from the predecessor; a base scope enters"
+            " through its restore manifest (docs/named-release-publication.md), not this script"
+        )
+    elif not is_base(s) and carried:
+        problems.append(
+            f"base scope {scope} of the predecessor is primary in the draft; a successor"
+            " carries a base scope unchanged, as a base"
+        )
+    elif key(s) not in released:
+        print(*key(s))
+if problems:
+    print(*problems, sep="\n", file=sys.stderr)
+    sys.exit(1)
 PY
 # MANIFESTS holds each scope's signed ingest manifest, where sign-ingest-manifest writes it.
 SCOPES=() MANIFESTS=()

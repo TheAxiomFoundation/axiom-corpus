@@ -1450,6 +1450,137 @@ def test_with_no_main_to_compare_signs_again_only_untracked_manifests(
         assert _signed_versions() == list(UNRELEASED)
 
 
+# A selector's scopes as (version, layer); a layer of None is a primary scope.
+LayeredScopes = list[tuple[str, str | None]]
+# A version older than every other here; its scope is a base wherever a selector says so.
+BASE = "2026-05-01"
+NOT_CARRIED = (
+    "base scope {scope} is not carried from the predecessor; a base scope enters through its"
+    " restore manifest (docs/named-release-publication.md), not this script"
+)
+MADE_PRIMARY = (
+    "base scope {scope} of the predecessor is primary in the draft; a successor carries a"
+    " base scope unchanged, as a base"
+)
+BAD_LAYER = (
+    "scope {scope} in {path} has layer 'Base'; a selector marks a base scope"
+    ' "layer": "base" and a primary scope with no layer'
+)
+
+
+def _layered_selector(name: str, scopes: LayeredScopes) -> dict:
+    selector = _selector(name, [version for version, _ in scopes])
+    for entry, (_, layer) in zip(selector["scopes"], scopes, strict=True):
+        if layer is not None:
+            entry["layer"] = layer
+    return selector
+
+
+def _track_selectors(repo: Path, predecessor: LayeredScopes, draft: LayeredScopes) -> None:
+    """Rewrite test-rel-1 and the test-rel-2 draft with these scopes, and commit them."""
+    _write_json(repo / PREDECESSOR, _layered_selector("test-rel-1", predecessor))
+    _write_json(repo / DRAFT, _layered_selector("test-rel-2", draft))
+    _git(repo, "add", PREDECESSOR, DRAFT)
+    _git(repo, "commit", "-qm", "Layer the selectors")
+
+
+PRIMARIES: LayeredScopes = [(version, None) for version in UNRELEASED]
+# case: (the predecessor's scopes, the draft's, and every line the run stops with)
+BASE_REFUSALS: dict[str, tuple[LayeredScopes, LayeredScopes, list[str]]] = {
+    "draft-adds-a-base": (
+        [(RELEASED, None)],
+        [(BASE, "base"), (RELEASED, None), *PRIMARIES],
+        [NOT_CARRIED.format(scope=_scope(BASE))],
+    ),
+    "draft-has-a-released-primary-as-a-base": (
+        [(RELEASED, None)],
+        [(RELEASED, "base"), *PRIMARIES],
+        [NOT_CARRIED.format(scope=_scope(RELEASED))],
+    ),
+    "draft-has-a-released-base-as-a-primary": (
+        [(RELEASED, "base")],
+        [(RELEASED, None), *PRIMARIES],
+        [MADE_PRIMARY.format(scope=_scope(RELEASED))],
+    ),
+    "draft-misspells-a-layer": (
+        [(RELEASED, None)],
+        [(RELEASED, None), (UNRELEASED[0], None), (UNRELEASED[1], "Base")],
+        [BAD_LAYER.format(scope=_scope(UNRELEASED[1]), path=DRAFT)],
+    ),
+    "predecessor-misspells-a-layer": (
+        [(RELEASED, "Base")],
+        [(RELEASED, None), *PRIMARIES],
+        [BAD_LAYER.format(scope=_scope(RELEASED), path=PREDECESSOR)],
+    ),
+    "every-scope-named": (
+        [(RELEASED, "base")],
+        [(BASE, "base"), (RELEASED, None), (UNRELEASED[0], None), (UNRELEASED[1], "Base")],
+        [
+            BAD_LAYER.format(scope=_scope(UNRELEASED[1]), path=DRAFT),
+            NOT_CARRIED.format(scope=_scope(BASE)),
+            MADE_PRIMARY.format(scope=_scope(RELEASED)),
+        ],
+    ),
+}
+
+
+@pytest.mark.parametrize("case", BASE_REFUSALS)
+def test_stops_before_staging_when_the_draft_does_not_carry_a_base_as_it_is(
+    repo: Path, case: str
+) -> None:
+    """A base scope enters through its restore manifest, never as a scope this script signs.
+
+    Every scope's artifacts are complete and the private key is set, so without the layer
+    check the run would go on to commit and sign the draft's scopes.
+    """
+    predecessor, draft, lines = BASE_REFUSALS[case]
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == "".join(f"{line}\n" for line in lines)
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+    for version in (BASE, *UNRELEASED):
+        assert not _manifest(repo, version).exists()
+
+
+def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
+    """A base carried as it is is not unreleased: the run commits and signs none of it.
+
+    Main commits and signs the base, so that validate-release can read its artifacts.
+    """
+    _ingest_pr(repo, (BASE,))
+    carried: LayeredScopes = [(BASE, "base"), (RELEASED, None)]
+    _track_selectors(repo, carried, [*carried, (UNRELEASED[0], None)])
+    _write_scope(repo, UNRELEASED[0])
+    _set_main_refs(repo, "origin-main")
+    _git(repo, "checkout", "-qb", "release")
+    start = _git(repo, "rev-parse", "HEAD")
+
+    result = _run(repo)
+
+    _assert_cut(repo, result, start)
+    assert "unreleased scopes: 1 (draft test-rel-2)\n" in result.stdout
+    assert _signed_versions() == [UNRELEASED[0]]
+    scope = _scope(UNRELEASED[0])
+    assert _git(repo, "show", "--name-only", "--format=", "HEAD~2").splitlines() == [
+        f"data/corpus/coverage/{scope}.json",
+        f"data/corpus/inventory/{scope}.json",
+        f"data/corpus/provisions/{scope}.jsonl",
+        f"data/corpus/sources/{scope}/source.html",
+    ]
+    assert _git(repo, "show", "--name-only", "--format=", "HEAD~1").splitlines() == [
+        f"{MANIFEST_DIR}/{UNRELEASED[0]}.json"
+    ]
+
+
 # Step 2's plan, in the script's own words, run as the script runs it.
 PLAN_SOURCE = re.compile(r"^plan_signing\(\) \{.*?<<'PY'\n(.*?)^PY$", re.S | re.M)
 PLAN_VERSION = "2026-09-24-p"
