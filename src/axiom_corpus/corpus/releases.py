@@ -169,6 +169,16 @@ def _load_json_object(path: Path) -> dict[str, Any]:
     return data
 
 
+def parse_release_scope(raw_scope: Any, *, manifest_path: Path) -> ReleaseScope:
+    """Parse one selector scope mapping exactly as ``ReleaseManifest.load`` does.
+
+    The layer is read from its one canonical encoding: ``"layer": "base"`` for
+    a base scope, no key for a primary scope. ``manifest_path`` only names the
+    selector in error messages.
+    """
+    return _parse_scope(raw_scope, manifest_path=manifest_path)
+
+
 def _parse_scope(raw_scope: Any, *, manifest_path: Path) -> ReleaseScope:
     if not isinstance(raw_scope, dict):
         raise ValueError(f"Release manifest {manifest_path} contains a non-object scope")
