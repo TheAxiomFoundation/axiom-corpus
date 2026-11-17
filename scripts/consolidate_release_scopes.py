@@ -15,7 +15,35 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.resolver import require_materialized
+from axiom_corpus.corpus.successors import tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+
+# The tracked selectors are the only record of which scopes are bases.
+DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[1] / "manifests" / "releases"
+
+
+def _refuse_base_scopes(
+    *,
+    jurisdiction: str,
+    document_class: str,
+    versions: tuple[str, ...],
+    releases_dir: Path | None,
+) -> None:
+    """Refuse every named scope that a tracked selector marks as a base.
+
+    A base scope is carried into every successor unchanged, so this script
+    neither reads one as a source nor writes one as its target.
+    """
+    bases = tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir)
+    refused = sorted(
+        f"{jurisdiction}/{document_class}/{version}"
+        for version in set(versions)
+        if (jurisdiction, document_class, version) in bases
+    )
+    if refused:
+        raise ValueError(
+            "base scopes are carried unchanged and cannot be consolidated: " + ", ".join(refused)
+        )
 
 
 def _rewritten_source_path(
@@ -95,6 +123,7 @@ def consolidate_release_scopes(
     preferred_duplicate_version: str | None = None,
     shadowed_block_versions: dict[str, str] | None = None,
     included_citations_by_version: dict[str, frozenset[str]] | None = None,
+    releases_dir: Path | None = None,
 ) -> tuple[Path, ...]:
     """Create one immutable scope from ordered sources, deduping empty containers.
 
@@ -102,6 +131,12 @@ def consolidate_release_scopes(
     its complete scope. A source version present in the mapping contributes
     only the explicitly listed citations. This supports narrow successor
     overlays without importing unrelated historical provisions.
+
+    A source or target scope that a selector under ``releases_dir`` marks as a
+    base (``layer: base``) is refused before anything is fetched, read or
+    written. ``None`` means this repository's ``manifests/releases``. A base
+    is known here only once a tracked selector marks it, so a selector that
+    adds a base must be committed before this script runs on that scope.
     """
     if not source_versions:
         raise ValueError("at least one source version is required")
@@ -144,6 +179,12 @@ def consolidate_release_scopes(
         )
     if any(source == successor for source, successor in shadowing.items()):
         raise ValueError("shadowed block source and successor versions must differ")
+    _refuse_base_scopes(
+        jurisdiction=jurisdiction,
+        document_class=document_class,
+        versions=(*source_versions, target_version),
+        releases_dir=releases_dir,
+    )
 
     store = CorpusArtifactStore(base)
     target_inventory_path = store.inventory_path(jurisdiction, document_class, target_version)
