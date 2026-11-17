@@ -6,6 +6,11 @@ Invariants:
   carries is in its successor, or the check reports the drop, or a pinned
   record allows it;
 - along a line of cuts, a pair that leaves is reported at the cut it leaves;
+- a base the predecessor selects is carried as the same base scope while its
+  pair is carried, or the check reports a dropped base, or a pinned record of
+  the replacement allows it; a pair dropped whole is a dropped pair only;
+- a scope the predecessor selects as a primary scope never becomes a base
+  scope without a report;
 - a predecessor named by two or more selectors is a fork, unless a pinned
   record lists exactly those successors;
 - a selector that names a fork's successor the line did not continue through is
@@ -38,6 +43,7 @@ import tempfile
 import textwrap
 from collections import defaultdict
 from collections.abc import Collection, Iterable, Mapping
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -46,20 +52,30 @@ from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.models import DocumentClass
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, ScopeKey
+from axiom_corpus.corpus.releases import (
+    LAYER_BASE,
+    LAYER_PRIMARY,
+    ReleaseManifest,
+    ReleaseScope,
+    ScopeKey,
+)
 from axiom_corpus.corpus.selector_lineage import (
     LINEAGE_BASELINE_SCHEMA,
     Cycle,
+    DroppedBase,
     DroppedPair,
     EndedBranch,
     Fork,
+    LayerChanged,
     LineageBaseline,
     LineageReport,
+    RecordedBaseReplacement,
     RecordedDrop,
     RecordedFirstCut,
     RecordedFork,
     SelectorLineageError,
     UnnamedPredecessor,
+    base_changes,
     check_selector_lineage,
     declared_predecessor,
     dropped_pairs,
@@ -1035,6 +1051,305 @@ def test_selectors_must_be_keyed_by_their_names() -> None:
         check_selector_lineage({"other": _selector("pin-ssi", _PIN)})
 
 
+# --- bases: a pair's base is carried unchanged while the pair is carried ---
+
+_US_CODE: ScopeKey = ("us", "statute", "2026-05-01-us-code")
+_ECFR: ScopeKey = ("us", "regulation", "2026-05-01-ecfr")
+_NEW_US_CODE: ScopeKey = ("us", "statute", "2026-11-01-us-code")
+_LAYERED_PRIMARIES: list[ScopeKey] = [
+    ("us", "regulation", "2026-10-29-ecfr-section-text"),
+    ("us", "statute", "2026-09-29-election-statute-uocava-nvra-title-52"),
+    ("us", "statute", "2026-10-06-w6-federal-public-laws"),
+    ("us-mt", "statute", "2026-07-13-recovery"),
+]
+
+
+def _layered(
+    name: str,
+    primaries: Iterable[ScopeKey],
+    bases: Iterable[ScopeKey] = (),
+    description: str | None = None,
+) -> ReleaseManifest:
+    scopes = [ReleaseScope(*key) for key in primaries]
+    scopes += [ReleaseScope(*key, layer=LAYER_BASE) for key in bases]
+    return ReleaseManifest(
+        name=name,
+        scopes=tuple(sorted(scopes, key=lambda scope: scope.key)),
+        description=description,
+    )
+
+
+def _layered_predecessor() -> ReleaseManifest:
+    return _layered("pin-layered", _LAYERED_PRIMARIES, [_US_CODE, _ECFR])
+
+
+def _layered_successor(
+    primaries: Iterable[ScopeKey], bases: Iterable[ScopeKey], name: str = "pin-next"
+) -> ReleaseManifest:
+    return _layered(name, primaries, bases, "Successor to pin-layered. It adds what it adds.")
+
+
+def _base_report(successor: ReleaseManifest) -> LineageReport:
+    predecessor = _layered_predecessor()
+    return _check(predecessor, successor, baseline=_baseline(predecessor))
+
+
+_DROPPED_US_CODE = DroppedBase("pin-next", "pin-layered", ("us", "statute"), _US_CODE[2])
+
+
+@pytest.mark.parametrize(
+    ("primaries", "bases"),
+    [
+        (_LAYERED_PRIMARIES, [_ECFR]),
+        (_LAYERED_PRIMARIES, [_ECFR, _NEW_US_CODE]),
+        ([*_LAYERED_PRIMARIES, _US_CODE], [_ECFR]),
+    ],
+    ids=["base-left-out", "base-version-changed", "base-flipped-to-primary"],
+)
+def test_a_kept_pair_whose_base_changes_is_a_dropped_base(
+    primaries: list[ScopeKey], bases: list[ScopeKey]
+) -> None:
+    report = _base_report(_layered_successor(primaries, bases))
+    assert report.dropped_bases == (_DROPPED_US_CODE,)
+    assert report.dropped == () and report.layer_changes == ()
+    assert report.problems() == [
+        "pin-next does not select us/statute/2026-05-01-us-code as a base scope, which its "
+        "predecessor pin-layered selects as the base of us/statute: a base is carried "
+        "unchanged while its pair is carried"
+    ]
+
+
+def test_a_primary_flipped_to_base_is_a_layer_change() -> None:
+    moved: ScopeKey = ("us-mt", "statute", "2026-07-13-recovery")
+    primaries = [key for key in _LAYERED_PRIMARIES if key != moved]
+    report = _base_report(_layered_successor(primaries, [_US_CODE, _ECFR, moved]))
+    assert report.layer_changes == (LayerChanged("pin-next", "pin-layered", moved),)
+    assert report.dropped_bases == () and report.dropped == ()
+    assert report.problems() == [
+        "pin-next selects us-mt/statute/2026-07-13-recovery as a base scope, which its "
+        "predecessor pin-layered selects as a primary scope"
+    ]
+
+
+def test_a_primary_moved_into_a_pairs_base_also_drops_the_old_base() -> None:
+    moved: ScopeKey = ("us", "statute", "2026-10-06-w6-federal-public-laws")
+    primaries = [key for key in _LAYERED_PRIMARIES if key != moved]
+    report = _base_report(_layered_successor(primaries, [_ECFR, moved]))
+    assert report.dropped_bases == (_DROPPED_US_CODE,)
+    assert report.layer_changes == (LayerChanged("pin-next", "pin-layered", moved),)
+
+
+@pytest.mark.parametrize(
+    "primaries",
+    [
+        [*_LAYERED_PRIMARIES, ("us", "statute", "2026-11-11-new-public-laws")],
+        [
+            ("us", "regulation", "2026-11-11-ecfr-section-text"),
+            *_LAYERED_PRIMARIES[1:],
+        ],
+        _LAYERED_PRIMARIES[1:],
+    ],
+    ids=["primary-added", "primary-replaced", "primary-removed-base-keeps-the-pair"],
+)
+def test_a_base_carried_unchanged_is_not_a_finding(primaries: list[ScopeKey]) -> None:
+    successor = _layered_successor(primaries, [_US_CODE, _ECFR])
+    assert base_changes(_layered_predecessor(), successor) == ({}, ())
+    assert _base_report(successor).ok
+
+
+def test_a_base_added_to_a_pair_with_none_is_not_a_finding() -> None:
+    """A restore puts a base under a pair whose predecessor has none (PR5)."""
+    predecessor = _layered("pin-layered", _LAYERED_PRIMARIES, [_US_CODE])
+    successor = _layered_successor(_LAYERED_PRIMARIES, [_US_CODE, _ECFR])
+    assert base_changes(predecessor, successor) == ({}, ())
+    assert _check(predecessor, successor, baseline=_baseline(predecessor)).ok
+
+
+def test_a_pair_dropped_whole_drops_its_base_as_a_dropped_pair_only() -> None:
+    kept = [key for key in _LAYERED_PRIMARIES if key[:2] != ("us", "statute")]
+    report = _base_report(_layered_successor(kept, [_ECFR]))
+    assert report.dropped == (
+        DroppedPair(
+            "pin-next",
+            "pin-layered",
+            ("us", "statute"),
+            (
+                "2026-05-01-us-code",
+                "2026-09-29-election-statute-uocava-nvra-title-52",
+                "2026-10-06-w6-federal-public-laws",
+            ),
+        ),
+    )
+    assert report.dropped_bases == () and report.layer_changes == ()
+
+
+def _replacement(**changes: object) -> RecordedBaseReplacement:
+    values: dict[str, object] = {
+        "selector": "pin-next",
+        "predecessor": "pin-layered",
+        "pair": ("us", "statute"),
+        "replaced": _US_CODE[2],
+        "replaced_by": _NEW_US_CODE,
+        "listed_on": "2026-11-17",
+        "reason": "The reviewed restore replaces the May base.",
+    }
+    values.update(changes)
+    return RecordedBaseReplacement(**values)  # type: ignore[arg-type]
+
+
+def _replacement_baseline(
+    *roots: ReleaseManifest,
+    pinned: Iterable[ReleaseManifest],
+    replacement: RecordedBaseReplacement,
+) -> LineageBaseline:
+    """Record ``roots`` as first cuts, pin them and ``pinned``, and record ``replacement``."""
+    baseline = _baseline(*roots, pinned=pinned)
+    return replace(
+        baseline, base_replacements={(replacement.selector, replacement.pair): replacement}
+    )
+
+
+def test_a_pinned_base_replacement_is_recorded_not_reported() -> None:
+    predecessor = _layered_predecessor()
+    successor = _layered_successor(_LAYERED_PRIMARIES, [_ECFR, _NEW_US_CODE])
+    baseline = _replacement_baseline(predecessor, pinned=[successor], replacement=_replacement())
+    report = _check(predecessor, successor, baseline=baseline)
+    assert report.ok, report.problems()
+    assert report.recorded_base_replacements == (_DROPPED_US_CODE,)
+    assert report.dropped_bases == ()
+
+
+_REPLACING = "us/statute/2026-05-01-us-code"
+_NOT_A_BASE = (
+    "the baseline names us/statute/{version} as the base replacing "
+    f"{_REPLACING} in pin-next, which does not select it as a base scope"
+)
+
+
+@pytest.mark.parametrize(
+    ("primaries", "bases", "changes", "stale", "error"),
+    [
+        pytest.param(
+            _LAYERED_PRIMARIES,
+            [_ECFR, _NEW_US_CODE],
+            {},
+            "pin-next",
+            "the baseline pins pin-next at",
+            id="stale-pin-of-the-selector",
+        ),
+        pytest.param(
+            _LAYERED_PRIMARIES,
+            [_ECFR, _NEW_US_CODE],
+            {},
+            "pin-layered",
+            "the baseline pins pin-layered at",
+            id="stale-pin-of-the-predecessor",
+        ),
+        pytest.param(
+            _LAYERED_PRIMARIES,
+            [_ECFR, _NEW_US_CODE],
+            {"replaced_by": ("us", "statute", "2026-12-01-us-code")},
+            None,
+            _NOT_A_BASE.format(version="2026-12-01-us-code"),
+            id="replaced-by-not-selected",
+        ),
+        pytest.param(
+            [*_LAYERED_PRIMARIES, _NEW_US_CODE],
+            [_ECFR],
+            {},
+            None,
+            _NOT_A_BASE.format(version=_NEW_US_CODE[2]),
+            id="replaced-by-selected-as-a-primary-scope",
+        ),
+        pytest.param(
+            _LAYERED_PRIMARIES,
+            [_ECFR, _NEW_US_CODE],
+            {"replaced": "2026-04-01-us-code"},
+            None,
+            "the baseline records pin-next replacing the base us/statute/2026-04-01-us-code "
+            "of pin-layered, but it does not drop that base",
+            id="replaced-is-not-the-predecessors-base",
+        ),
+        pytest.param(
+            _LAYERED_PRIMARIES,
+            [_ECFR, _NEW_US_CODE],
+            {"predecessor": "pin-other"},
+            None,
+            f"the baseline records pin-next replacing the base {_REPLACING} of pin-other, "
+            "but pin-next names pin-layered as its predecessor",
+            id="another-predecessor",
+        ),
+    ],
+)
+def test_a_base_replacement_record_that_no_longer_holds_is_a_baseline_error(
+    primaries: list[ScopeKey],
+    bases: list[ScopeKey],
+    changes: dict[str, object],
+    stale: str | None,
+    error: str,
+) -> None:
+    """The finding stays a problem, and the record that no longer holds is one error."""
+    predecessor = _layered_predecessor()
+    other = _layered("pin-other", _LAYERED_PRIMARIES, [_US_CODE, _ECFR])
+    successor = _layered_successor(primaries, bases)
+    baseline = _replacement_baseline(
+        predecessor, other, pinned=[successor], replacement=_replacement(**changes)
+    )
+    if stale is not None:
+        baseline = replace(
+            baseline, selector_digests={**baseline.selector_digests, stale: "0" * 64}
+        )
+    report = _check(predecessor, other, successor, baseline=baseline)
+    assert report.dropped_bases == (_DROPPED_US_CODE,)
+    assert report.recorded_base_replacements == ()
+    assert len(report.baseline_errors) == 1, report.baseline_errors
+    assert report.baseline_errors[0].startswith(error), report.baseline_errors
+
+
+@st.composite
+def _layered_scopes(draw: st.DrawFn) -> tuple[ReleaseScope, ...]:
+    """A scope set with at most one base per pair."""
+    keys = sorted(draw(_SCOPE_SETS))
+    members: dict[tuple[str, str], list[ScopeKey]] = defaultdict(list)
+    for key in keys:
+        members[key[:2]].append(key)
+    bases: set[ScopeKey] = set()
+    for pair in sorted(members):
+        if draw(st.booleans()):
+            bases.add(draw(st.sampled_from(members[pair])))
+    return tuple(
+        ReleaseScope(*key, layer=LAYER_BASE if key in bases else LAYER_PRIMARY) for key in keys
+    )
+
+
+@_SETTINGS
+@given(before=_layered_scopes(), after=_layered_scopes())
+def test_a_base_never_changes_without_a_report(
+    before: tuple[ReleaseScope, ...], after: tuple[ReleaseScope, ...]
+) -> None:
+    """Each base is carried unchanged, leaves with its pair, or is a dropped base: one of them."""
+    predecessor = ReleaseManifest("line-a", before)
+    successor = ReleaseManifest("line-b", after, "Successor to line-a.")
+    report = _check(predecessor, successor, baseline=_baseline(predecessor))
+    pairs_dropped = {finding.pair for finding in report.dropped}
+    bases_dropped = {finding.pair: finding.base_version for finding in report.dropped_bases}
+    for base in (scope for scope in before if scope.is_base):
+        outcomes = [
+            base in after,
+            base.pair in pairs_dropped,
+            bases_dropped.get(base.pair) == base.version,
+        ]
+        assert outcomes.count(True) == 1, (base, outcomes)
+    assert set(bases_dropped) <= {scope.pair for scope in before if scope.is_base}
+    primary = {scope.key for scope in before if not scope.is_base}
+    assert {finding.scope for finding in report.layer_changes} == {
+        scope.key for scope in after if scope.is_base and scope.key in primary
+    }
+    for finding in (*report.dropped_bases, *report.layer_changes):
+        assert (finding.selector, finding.predecessor) == ("line-b", "line-a")
+    assert base_changes(predecessor, predecessor) == ({}, ())
+
+
 # --- the baseline file ---
 
 _DIGEST_A = "a" * 64
@@ -1239,7 +1554,9 @@ def test_forks_must_be_sorted_by_predecessor(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize("value", ["not-a-list", "''", "{}", "0", "false"])
-@pytest.mark.parametrize("section", ["dropped_pairs", "forks", "first_cuts"])
+@pytest.mark.parametrize(
+    "section", ["dropped_pairs", "forks", "first_cuts", "successions", "base_replacements"]
+)
 def test_a_section_that_is_not_a_list_is_refused(tmp_path: Path, section: str, value: str) -> None:
     """Only an absent or null section reads as empty, as for a fork entry's lists."""
     text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n{section}: {value}\n"
@@ -1255,7 +1572,14 @@ def test_selector_digests_that_is_not_a_mapping_is_refused(tmp_path: Path, value
 
 
 def test_an_absent_or_null_section_reads_as_empty(tmp_path: Path) -> None:
-    sections = ["selector_digests", "dropped_pairs", "forks", "first_cuts"]
+    sections = [
+        "selector_digests",
+        "dropped_pairs",
+        "forks",
+        "first_cuts",
+        "successions",
+        "base_replacements",
+    ]
     text = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n" + "".join(f"{s}:\n" for s in sections)
     assert load_lineage_baseline(_write(tmp_path, text)) == LineageBaseline()
     only_schema = f"schema_version: {LINEAGE_BASELINE_SCHEMA}\n"
@@ -1440,3 +1764,119 @@ def test_a_malformed_later_fork_entry_is_refused(
     assert _DATED.count(old) == 1, old
     with pytest.raises(SelectorLineageError, match=message):
         load_lineage_baseline(_write(tmp_path, _DATED.replace(old, new, 1)))
+
+
+# --- the base_replacements section ---
+
+_REPLACEMENT = """\
+base_replacements:
+  - selector: line-c
+    predecessor: line-a
+    pair: us/statute
+    replaced: 2026-05-01-us-code
+    replaced_by: us/statute/2026-11-01-us-code
+    listed_on: 2026-11-17
+    reason: The reviewed restore replaces the May base.
+"""
+_LAYERED_VALID = _VALID + _REPLACEMENT
+
+
+def test_a_base_replacement_parses(tmp_path: Path) -> None:
+    baseline = load_lineage_baseline(_write(tmp_path, _LAYERED_VALID))
+    assert baseline.base_replacements == {
+        ("line-c", ("us", "statute")): RecordedBaseReplacement(
+            "line-c",
+            "line-a",
+            ("us", "statute"),
+            "2026-05-01-us-code",
+            ("us", "statute", "2026-11-01-us-code"),
+            "2026-11-17",
+            "The reviewed restore replaces the May base.",
+        )
+    }
+    assert load_lineage_baseline(_write(tmp_path, _VALID)).base_replacements == {}
+
+
+def test_a_date_only_replaced_version_reads_as_its_text(tmp_path: Path) -> None:
+    """YAML reads an unquoted 2026-08-07 as a date; the version is its ISO text."""
+    for spelled in ("2026-08-07", "'2026-08-07'"):
+        text = _LAYERED_VALID.replace("replaced: 2026-05-01-us-code", f"replaced: {spelled}")
+        baseline = load_lineage_baseline(_write(tmp_path, text))
+        (replacement,) = baseline.base_replacements.values()
+        assert replacement.replaced == "2026-08-07"
+
+
+@pytest.mark.parametrize(
+    ("old", "new", "message"),
+    [
+        ("    replaced: 2026-05-01-us-code\n", "", r"missing \['replaced'\]"),
+        (
+            "    replaced_by: us/statute/2026-11-01-us-code\n",
+            "",
+            r"missing \['replaced_by'\]",
+        ),
+        (
+            "    reason: The reviewed restore replaces the May base.\n",
+            "    reason: The reviewed restore replaces the May base.\n    note: x\n",
+            r"base_replacements\[0\]: unsupported fields \['note'\]",
+        ),
+        (
+            "    replaced_by: us/statute/2026-11-01-us-code",
+            "    replaced_by: [us/statute/2026-11-01-us-code]",
+            r"replaced_by must be a non-empty string",
+        ),
+        (
+            "    replaced_by: us/statute/2026-11-01-us-code",
+            "    replaced_by: us/statute",
+            "jurisdiction/document_class/version",
+        ),
+        (
+            "    replaced_by: us/statute/2026-11-01-us-code",
+            "    replaced_by: us/regulation/2026-11-01-ecfr",
+            "replaced_by must be a scope of us/statute",
+        ),
+        (
+            "    replaced_by: us/statute/2026-11-01-us-code",
+            "    replaced_by: us/statute/2026-05-01-us-code",
+            "replaced_by must differ from the base it replaces",
+        ),
+        (
+            "    replaced: 2026-05-01-us-code",
+            "    replaced: Bad-Version",
+            r"replaced: .*invalid version",
+        ),
+        ("    replaced: 2026-05-01-us-code", "    replaced: 20260501", "must be a version string"),
+        ("    pair: us/statute\n", "    pair: us\n", "jurisdiction/document_class"),
+        (
+            "  - selector: line-c\n    predecessor: line-a\n    pair: us/statute",
+            "  - selector: line-a\n    predecessor: line-a\n    pair: us/statute",
+            "cannot succeed itself",
+        ),
+        (
+            "  - selector: line-c\n    predecessor: line-a\n    pair: us/statute",
+            "  - selector: line-e\n    predecessor: line-a\n    pair: us/statute",
+            "line-e has no selector_digests entry",
+        ),
+        ("    listed_on: 2026-11-17", "    listed_on: soon", "ISO date"),
+    ],
+)
+def test_a_malformed_base_replacement_is_refused(
+    tmp_path: Path, old: str, new: str, message: str
+) -> None:
+    assert _REPLACEMENT.count(old) == 1 and _VALID.count(old) == 0, old
+    with pytest.raises(SelectorLineageError, match=message):
+        load_lineage_baseline(_write(tmp_path, _LAYERED_VALID.replace(old, new, 1)))
+
+
+def test_base_replacements_are_sorted_by_selector_then_pair_and_unique(tmp_path: Path) -> None:
+    entry = _REPLACEMENT.split("base_replacements:\n", 1)[1]
+    earlier = entry.replace("  - selector: line-c\n", "  - selector: line-b\n", 1)
+    for entries in (entry + entry, entry + earlier):
+        text = _VALID + "base_replacements:\n" + entries
+        with pytest.raises(
+            SelectorLineageError,
+            match=r"base_replacements \(by selector, then pair\) must be sorted and free of",
+        ):
+            load_lineage_baseline(_write(tmp_path, text))
+    in_order = _VALID + "base_replacements:\n" + earlier + entry
+    assert len(load_lineage_baseline(_write(tmp_path, in_order)).base_replacements) == 2
