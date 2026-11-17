@@ -160,6 +160,8 @@ selectors (`line_heads`). The check fails on:
 | Finding | Rule |
 | --- | --- |
 | dropped pair | the selector selects no version of a pair its predecessor carries, so the pair's last version leaves the line |
+| dropped base | the selector still carries a pair whose base scope its predecessor selects, but does not select that base as the same base scope: it leaves the base out, selects another version as the pair's base, or selects the base's version as a primary scope |
+| layer changed | a scope the predecessor selects as a primary scope is a base scope in the selector |
 | fork | two or more selectors resolve to the same predecessor, so at most one of them is the newest cut of the line |
 | ended branch | the selector succeeds a branch of a recorded fork that the line did not continue through |
 | unnamed predecessor | no description or succession record connects the selector to a tracked predecessor, and no record says it is the first cut of a line |
@@ -176,7 +178,19 @@ and keeps the newer `us/statute/2026-10-06-w6-federal-public-laws` passes both
 checks. The fork and ended-branch rules catch the way it happened in #935, a cut
 from a stale base.
 
-It compares a cut with its own predecessor because that is the claim every cut
+Base scopes (`"layer": "base"`) are the exception to the per-pair comparison.
+A base is served underneath its release's primary scopes, so while a cut
+carries a pair whose base its predecessor selects, it must select that base
+as the same scope. `selector_lineage.base_changes` compares whole
+`ReleaseScope`s, version and layer included, not pairs. A cut that does not
+gets a dropped base finding unless the baseline records the replacement under
+`base_replacements`. A cut that drops the pair whole gets a dropped pair
+finding only. A base version the predecessor does not select, added to a pair
+whose predecessor has no base, is not a finding.
+[Successor cuts](named-release-publication.md#successor-cuts) describes the
+composer that carries every base forward.
+
+The check compares a cut with its own predecessor because that is the claim every cut
 already makes ("It preserves every prior scope"), and the check makes it
 mechanical. Other comparisons fail:
 
@@ -263,6 +277,11 @@ pinned to its digest (`axiom_corpus.release.manifest.selector_sha256`) under
 - `dropped_pairs`: the `selector`, its `predecessor` and the `pair`, with
   `replaced_by` listing the scopes the selector selects that carry the pair's
   text, or a `reason` that says why nothing does;
+- `base_replacements`: the `selector`, its `predecessor`, the `pair`, the
+  version of the predecessor's base for the pair (`replaced`) and the base
+  scope the selector selects for the pair instead (`replaced_by`). A layer
+  change has no record, and neither does a base that leaves a pair the cut
+  carries without a new base;
 - `forks`: every selector that resolves to the `predecessor` (a further successor
   is a new fork), and under `continued_by` the ones the line went on through;
 - `first_cuts`: dated claims that selectors have no tracked predecessor. A later
@@ -272,6 +291,8 @@ Each entry has `listed_on` and a `reason`, and entries are append-only: a
 decision made on a later day is a new entry, not an edit of an entry from an
 earlier day. Successions are sorted by selector, with at most one per selector;
 a succession superseding a first-cut claim must be listed on a later date.
+Base replacements are sorted by selector, then pair, with one per selector and
+pair.
 The loader refuses a record if either selector file is absent, either pin is
 missing, or its edge would close a cycle, including one with named edges.
 A description that already names a tracked predecessor always wins: adding a
@@ -289,10 +310,11 @@ predecessor's earlier ones. It refuses a second entry for one predecessor on
 the same date, a later entry that repeats a branch an earlier one records, and
 one that adds nothing.
 
-The optional `successions` section extends the existing v1 schema: no existing
-field changes meaning, and older baselines without the section still load.
-An old strict loader rejects the new field instead of silently ignoring the
-recorded edges. The schema version therefore stays
+Two optional sections, `successions` and `base_replacements`, extend the
+existing v1 schema: no existing field changes meaning, and older baselines
+without them still load, each absent section read as empty. An old strict
+loader rejects the new fields instead of silently ignoring the recorded edges
+or replacements. The schema version therefore stays
 `axiom-corpus/selector-lineage-baseline/v1`.
 
 The repository test fixes what the 2026-11-02 entries record (the drop's
@@ -316,8 +338,9 @@ had. A drop entry also names the predecessor it was written for.
 
 What the check does not catch:
 
-- a document or version leaving a pair the cut still carries: it compares
-  pairs, not the versions within a pair (above);
+- a primary document or version leaving a pair the cut still carries: apart
+  from the pair's base, it compares pairs, not the versions within a pair
+  (above);
 - a pair-scoped derivation outside a line. A full cut of the W7 union line
   that names `us-rulespec-2026-10-13-w7-bundle-gaps-union` and carries
   `us-az/manual` at W7's versions passes. Activating it would repoint

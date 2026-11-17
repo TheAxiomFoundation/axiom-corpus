@@ -18,9 +18,9 @@
 # The unreleased scopes are the draft selector's primary scopes minus the predecessor's.
 # A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
 # also has as a base, and stops before it stages anything when the draft has a base scope
-# that the predecessor lacks or has as primary, has as primary a scope that the
-# predecessor has as a base, or spells a layer other than "base". A base scope enters a
-# release through its restore manifest (docs/named-release-publication.md), not this
+# that the predecessor lacks or has as primary, or has as primary a scope that the
+# predecessor has as a base, or either selector spells a layer other than "base". A base
+# scope enters a release through its restore manifest (axiom-corpus#728), not this
 # script. Order matters: the signer records HEAD and requires a clean tracked tree, and the
 # signed manifest must describe committed artifact bytes. So: (1) force-add and commit
 # the artifacts, (2) sign every unreleased scope against that commit, (3) commit those
@@ -156,7 +156,7 @@ for s in sorted(draft, key=key):
     if is_base(s) and not carried:
         problems.append(
             f"base scope {scope} is not carried from the predecessor; a base scope enters"
-            " through its restore manifest (docs/named-release-publication.md), not this script"
+            " through its restore manifest (axiom-corpus#728), not this script"
         )
     elif not is_base(s) and carried:
         problems.append(

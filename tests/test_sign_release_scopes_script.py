@@ -1456,7 +1456,7 @@ LayeredScopes = list[tuple[str, str | None]]
 BASE = "2026-05-01"
 NOT_CARRIED = (
     "base scope {scope} is not carried from the predecessor; a base scope enters through its"
-    " restore manifest (docs/named-release-publication.md), not this script"
+    " restore manifest (axiom-corpus#728), not this script"
 )
 MADE_PRIMARY = (
     "base scope {scope} of the predecessor is primary in the draft; a successor carries a"

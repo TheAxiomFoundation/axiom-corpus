@@ -9,6 +9,7 @@ layered selector files and load them through ``ReleaseManifest.load``.
 from __future__ import annotations
 
 import json
+import shutil
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -17,6 +18,7 @@ import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
+from axiom_corpus.corpus import successors
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     LAYER_BASE,
@@ -139,52 +141,94 @@ def test_golden_reproduces_committed_cms_w6_selector_bytes() -> None:
 # The description resolves to the predecessor against every tracked selector name.
 
 
+FIRST_CUT_NAMED_FIRST = (
+    f"Adds one scope to the Kansas LIHEAP scopes first cut in {KS_LIHEAP_FIRST_CUT}; "
+    f"successor to {GOLDEN_PREDECESSOR}."
+)
+PREDECESSOR_NAMED_FIRST = (
+    f"Successor to {GOLDEN_PREDECESSOR}; it adds one scope to the Kansas LIHEAP "
+    f"scopes first cut in {KS_LIHEAP_FIRST_CUT}."
+)
+NAMED_FIRST_REFUSAL = (
+    f"must name its predecessor {GOLDEN_PREDECESSOR} before the tracked "
+    f"selector {KS_LIHEAP_FIRST_CUT}"
+)
+
+
+def _compose_golden_addition(description: str, **tracked: Any) -> ReleaseManifest:
+    predecessor = ReleaseManifest.load(RELEASE_DIR / f"{GOLDEN_PREDECESSOR}.json")
+    return compose_successor(
+        predecessor,
+        name=UNTRACKED_SUCCESSOR,
+        description=description,
+        add=[GOLDEN_ADDED],
+        **tracked,
+    )
+
+
+# With no tracked argument the composer reads the repository's tracked selector names.
+@pytest.mark.parametrize("pass_tracked", [True, False], ids=["tracked-passed", "tracked-default"])
 @pytest.mark.parametrize(
     ("description", "refused"),
     [
-        pytest.param(
-            f"Adds one scope to the Kansas LIHEAP scopes first cut in {KS_LIHEAP_FIRST_CUT}; "
-            f"successor to {GOLDEN_PREDECESSOR}.",
-            True,
-            id="other-tracked-selector-named-first",
-        ),
-        pytest.param(
-            f"Successor to {GOLDEN_PREDECESSOR}; it adds one scope to the Kansas LIHEAP "
-            f"scopes first cut in {KS_LIHEAP_FIRST_CUT}.",
-            False,
-            id="predecessor-named-first",
-        ),
+        pytest.param(FIRST_CUT_NAMED_FIRST, True, id="other-tracked-selector-named-first"),
+        pytest.param(PREDECESSOR_NAMED_FIRST, False, id="predecessor-named-first"),
     ],
 )
 def test_description_resolves_to_the_predecessor_among_tracked_selectors(
-    description: str, refused: bool
+    description: str, refused: bool, pass_tracked: bool
 ) -> None:
-    predecessor = ReleaseManifest.load(RELEASE_DIR / f"{GOLDEN_PREDECESSOR}.json")
     tracked = _tracked_names()
     assert {GOLDEN_PREDECESSOR, KS_LIHEAP_FIRST_CUT} <= tracked
     assert UNTRACKED_SUCCESSOR not in tracked
-
-    def compose() -> ReleaseManifest:
-        return compose_successor(
-            predecessor,
-            name=UNTRACKED_SUCCESSOR,
-            description=description,
-            add=[GOLDEN_ADDED],
-            tracked=tracked,
-        )
+    arguments = {"tracked": tracked} if pass_tracked else {}
 
     if refused:
-        with pytest.raises(
-            SuccessorError,
-            match=(
-                f"must name its predecessor {GOLDEN_PREDECESSOR} before the tracked "
-                f"selector {KS_LIHEAP_FIRST_CUT}"
-            ),
-        ):
-            compose()
+        with pytest.raises(SuccessorError, match=NAMED_FIRST_REFUSAL):
+            _compose_golden_addition(description, **arguments)
         return
-    successor = compose()
+    successor = _compose_golden_addition(description, **arguments)
     assert declared_predecessor(successor, tracked) == GOLDEN_PREDECESSOR
+
+
+def test_default_releases_dir_is_this_checkouts_selectors() -> None:
+    # An import from another checkout would read that checkout's selectors instead.
+    assert successors.DEFAULT_RELEASES_DIR == RELEASE_DIR
+
+
+def test_default_tracked_names_are_read_from_the_releases_dir_at_each_call(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    releases = tmp_path / "releases"
+    releases.mkdir()
+    shutil.copy(RELEASE_DIR / f"{GOLDEN_PREDECESSOR}.json", releases)
+    monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", releases)
+
+    # The first cut is not tracked here, so the predecessor is the first tracked name.
+    successor = _compose_golden_addition(FIRST_CUT_NAMED_FIRST)
+    assert declared_predecessor(successor, {GOLDEN_PREDECESSOR}) == GOLDEN_PREDECESSOR
+
+    shutil.copy(RELEASE_DIR / f"{KS_LIHEAP_FIRST_CUT}.json", releases)
+    with pytest.raises(SuccessorError, match=NAMED_FIRST_REFUSAL):
+        _compose_golden_addition(FIRST_CUT_NAMED_FIRST)
+
+
+@pytest.mark.parametrize("state", ["missing", "no-selector"])
+def test_default_tracked_names_fail_closed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, state: str
+) -> None:
+    releases = tmp_path / "releases"
+    if state == "no-selector":
+        releases.mkdir()
+        (releases / "README.md").write_text("Not a selector.\n", encoding="utf-8")
+    monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", releases)
+    predecessor = _layered_predecessor(tmp_path)
+
+    with pytest.raises(FileNotFoundError, match="pass tracked"):
+        _compose(predecessor)
+    # Passing the names, even none, still works without the directory.
+    assert _compose(predecessor, tracked=()).name == SUCCESSOR_NAME
+    assert _compose(predecessor, tracked=[PREDECESSOR_NAME]).name == SUCCESSOR_NAME
 
 
 # Rendering pins JSON's ASCII escapes for non-ASCII text.

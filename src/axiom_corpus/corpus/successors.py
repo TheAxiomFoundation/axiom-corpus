@@ -9,8 +9,9 @@ so a successor can neither omit a base nor change one. Replacing a base is a
 reviewed change that this module does not make.
 
 ``compose_successor`` checks every requested change against the predecessor
-and raises ``SuccessorError`` for any it refuses. It writes no file, so a
-refused cut leaves nothing behind.
+and raises ``SuccessorError`` for any it refuses. Unless the caller passes
+the tracked selector names, it reads them from ``DEFAULT_RELEASES_DIR``. It
+writes no file, so a refused cut leaves nothing behind.
 
 ``render_selector`` returns the selector text a new cut commits: keys sorted,
 a two-space indent and a final newline, the layout of
@@ -38,6 +39,9 @@ from axiom_corpus.corpus.releases import (
     ScopeKey,
 )
 from axiom_corpus.corpus.selector_lineage import declared_predecessor
+
+# The tracked selectors of the checkout this module is imported from.
+DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[3] / "manifests" / "releases"
 
 
 class SuccessorError(ValueError):
@@ -69,6 +73,26 @@ def _scope_keys(argument: str, values: Iterable[object]) -> tuple[ScopeKey, ...]
     return tuple(keys)
 
 
+def _tracked_selector_names(releases_dir: Path) -> frozenset[str]:
+    """Return the stems of ``releases_dir/*.json``, refusing a missing or empty directory.
+
+    Reading no names would check the description against the predecessor's
+    name alone, so a directory that is missing or holds no selector raises.
+    """
+    if not releases_dir.is_dir():
+        raise FileNotFoundError(
+            f"Release selector directory not found: {releases_dir}; pass tracked, the "
+            "names of the tracked selectors"
+        )
+    names = frozenset(path.stem for path in releases_dir.glob("*.json"))
+    if not names:
+        raise FileNotFoundError(
+            f"No release selector in {releases_dir}; pass tracked, the names of the "
+            "tracked selectors"
+        )
+    return names
+
+
 def _scope(key: ScopeKey, *, layer: str) -> ReleaseScope:
     try:
         return ReleaseScope(jurisdiction=key[0], document_class=key[1], version=key[2], layer=layer)
@@ -85,7 +109,7 @@ def compose_successor(
     replace: Mapping[ScopeKey, str] | None = None,
     remove: Iterable[ScopeKey] = (),
     add_base: Iterable[ScopeKey] = (),
-    tracked: Collection[str] = (),
+    tracked: Collection[str] | None = None,
 ) -> ReleaseManifest:
     """Return the successor of ``predecessor`` with the given primary-scope changes.
 
@@ -102,12 +126,18 @@ def compose_successor(
     the selector lineage check resolves the cut's predecessor
     (``selector_lineage.declared_predecessor``). That check takes the first
     tracked selector a description names, so the composer resolves the
-    description against ``tracked`` plus ``predecessor.name`` and refuses it
-    unless the result is the predecessor. A repro script passes the names of
-    the tracked selectors, the stems of ``manifests/releases/*.json``, so a
-    description that names another tracked selector before the predecessor is
-    refused here rather than by the lineage check. With the default, empty
-    ``tracked``, only the predecessor's own name is checked.
+    description against the tracked selector names plus ``predecessor.name``
+    and refuses it unless the result is the predecessor. A description that
+    names another tracked selector before the predecessor is therefore refused
+    here rather than by the lineage check.
+
+    With ``tracked`` left as ``None``, each call reads the tracked selector
+    names as the stems of ``DEFAULT_RELEASES_DIR/*.json``, the
+    ``manifests/releases`` directory of the checkout this module is imported
+    from. It raises ``FileNotFoundError`` when that directory is missing or
+    holds no selector, so a copy installed outside a checkout must pass
+    ``tracked``. An explicit ``tracked`` replaces those names, and
+    ``tracked=()`` checks the predecessor's own name alone.
 
     Raises ``SuccessorError`` for any refused change. Nothing is written.
     """
@@ -124,6 +154,7 @@ def compose_successor(
     added_bases = _scope_keys("add_base", add_base)
     if isinstance(tracked, str):
         raise SuccessorError("tracked must be a collection of selector names, not one string")
+    names = _tracked_selector_names(DEFAULT_RELEASES_DIR) if tracked is None else tracked
 
     if name == predecessor.name:
         raise SuccessorError(f"A successor must have a new name, not {predecessor.name!r}")
@@ -208,7 +239,7 @@ def compose_successor(
     except ValueError as exc:
         raise SuccessorError(str(exc)) from exc
 
-    declared = declared_predecessor(successor, {*tracked, predecessor.name})
+    declared = declared_predecessor(successor, {*names, predecessor.name})
     if declared is None:
         raise SuccessorError(
             f"The description of {name} must name its predecessor {predecessor.name}"

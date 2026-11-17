@@ -509,12 +509,15 @@ make. The lineage baseline records it under `base_replacements`.
 
 The description must name the predecessor. The lineage check takes the first
 tracked selector a description names as the cut's predecessor
-([Selector lineage](release-gate-policy.md#selector-lineage)). Pass the names
-of the tracked selectors, the stems of `manifests/releases/*.json`, as
-`tracked`. The composer then resolves the description against those names and
-the predecessor's, as the check does. It refuses the description unless the
-first name it finds is the predecessor. With the default, empty `tracked`, it
-checks the predecessor's name alone.
+([Selector lineage](release-gate-policy.md#selector-lineage)). The composer
+resolves the description against the names of the tracked selectors and the
+predecessor's, as the check does. It refuses the description unless the first
+name it finds is the predecessor. By default each call reads the tracked names
+as the stems of `manifests/releases/*.json` in the checkout the module is
+imported from, and raises `FileNotFoundError` when that directory is missing or
+holds no selector. A `tracked` argument replaces those names: a copy installed
+outside a checkout must pass it, and `tracked=()` checks the predecessor's name
+alone.
 
 **Rendering.** `render_selector` returns the selector text a new cut commits.
 Keys are sorted at every level, with a two-space indent, JSON escapes for
@@ -537,7 +540,6 @@ successor = compose_successor(
     name="us-rulespec-2026-11-11-cms-w6-federal-guidance",
     description=DESCRIPTION,  # the committed text; it names the predecessor first
     add=[("us", "guidance", "2026-10-06-w6-federal-cms-guidance")],
-    tracked={path.stem for path in releases.glob("*.json")},
 )
 text = render_selector(successor)  # the committed selector's bytes
 ```
@@ -549,9 +551,9 @@ the composer for new cuts.
 
 **Lineage findings.** The selector lineage check
 (`axiom_corpus.corpus.selector_lineage`) runs in the required `test (3.14)`
-job through `tests/test_selector_lineage_repository.py`. Beside the findings
-[Selector lineage](release-gate-policy.md#selector-lineage) lists, it compares
-each cut's base scopes with its predecessor's:
+job through `tests/test_selector_lineage_repository.py`. Two of the findings
+[Selector lineage](release-gate-policy.md#selector-lineage) lists compare each
+cut's base scopes with its predecessor's:
 
 | Finding | Rule |
 | --- | --- |
@@ -636,8 +638,11 @@ It names every such scope on stderr, one line each. A base the draft leaves out
 does not stop the script. The lineage check reports it as a dropped base, or as
 a dropped pair when the cut drops the pair whole. For a base the predecessor
 does not carry, the message says that "a base scope enters through its restore
-manifest". `compose_successor`'s `add_base` puts a new base into a selector,
-but a draft that adds a base cannot go through this script.
+manifest". The restore procedure is not documented yet. It lands with the
+restoration work in
+[#728](https://github.com/TheAxiomFoundation/axiom-corpus/issues/728), which
+the message cites. `compose_successor`'s `add_base` puts a new base into a
+selector, but a draft that adds a base cannot go through this script.
 
 ## Commands
 
