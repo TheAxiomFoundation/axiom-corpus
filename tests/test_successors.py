@@ -26,6 +26,7 @@ from axiom_corpus.corpus.releases import (
     ScopeKey,
     parse_release_scope,
 )
+from axiom_corpus.corpus.selector_lineage import declared_predecessor
 from axiom_corpus.corpus.successors import (
     SuccessorError,
     compose_successor,
@@ -41,6 +42,9 @@ RELEASE_DIR = ROOT / "manifests/releases"
 GOLDEN_PREDECESSOR = "us-rulespec-2026-10-27-ks-liheap"
 GOLDEN_SUCCESSOR = "us-rulespec-2026-11-11-cms-w6-federal-guidance"
 GOLDEN_ADDED: ScopeKey = ("us", "guidance", "2026-10-06-w6-federal-cms-guidance")
+# The first Kansas LIHEAP cut, which the golden predecessor's description also names.
+KS_LIHEAP_FIRST_CUT = "us-rulespec-2026-10-23-ks-liheap"
+UNTRACKED_SUCCESSOR = "us-rulespec-2099-01-01-composer-check"
 
 PREDECESSOR_NAME = "zz-rulespec-2026-11-01-layered"
 SUCCESSOR_NAME = "zz-rulespec-2026-11-02-layered"
@@ -99,6 +103,11 @@ def _mapping_bytes(scope: ReleaseScope) -> bytes:
     return json.dumps(scope.to_selector_mapping(), sort_keys=True).encode("utf-8")
 
 
+def _tracked_names() -> frozenset[str]:
+    """The tracked selector names, as a repro script passes them."""
+    return frozenset(path.stem for path in RELEASE_DIR.glob("*.json"))
+
+
 # Golden reproduction of a committed cut.
 
 
@@ -110,18 +119,97 @@ def test_golden_reproduces_committed_cms_w6_selector_bytes() -> None:
     assert set(committed.scope_keys) == set(predecessor.scope_keys) | {GOLDEN_ADDED}
     assert GOLDEN_ADDED not in predecessor.scope_keys
     assert committed.description is not None
+    tracked = _tracked_names()
 
     successor = compose_successor(
         predecessor,
         name=committed.name,
         description=committed.description,
         add=[GOLDEN_ADDED],
+        tracked=tracked,
     )
 
     assert render_selector(successor).encode("utf-8") == committed_path.read_bytes()
     assert successor == committed
     assert selector_sha256(successor) == selector_sha256(committed)
     assert successor.quality_profile == predecessor.quality_profile
+    assert declared_predecessor(successor, tracked) == GOLDEN_PREDECESSOR
+
+
+# The description resolves to the predecessor against every tracked selector name.
+
+
+@pytest.mark.parametrize(
+    ("description", "refused"),
+    [
+        pytest.param(
+            f"Adds one scope to the Kansas LIHEAP scopes first cut in {KS_LIHEAP_FIRST_CUT}; "
+            f"successor to {GOLDEN_PREDECESSOR}.",
+            True,
+            id="other-tracked-selector-named-first",
+        ),
+        pytest.param(
+            f"Successor to {GOLDEN_PREDECESSOR}; it adds one scope to the Kansas LIHEAP "
+            f"scopes first cut in {KS_LIHEAP_FIRST_CUT}.",
+            False,
+            id="predecessor-named-first",
+        ),
+    ],
+)
+def test_description_resolves_to_the_predecessor_among_tracked_selectors(
+    description: str, refused: bool
+) -> None:
+    predecessor = ReleaseManifest.load(RELEASE_DIR / f"{GOLDEN_PREDECESSOR}.json")
+    tracked = _tracked_names()
+    assert {GOLDEN_PREDECESSOR, KS_LIHEAP_FIRST_CUT} <= tracked
+    assert UNTRACKED_SUCCESSOR not in tracked
+
+    def compose() -> ReleaseManifest:
+        return compose_successor(
+            predecessor,
+            name=UNTRACKED_SUCCESSOR,
+            description=description,
+            add=[GOLDEN_ADDED],
+            tracked=tracked,
+        )
+
+    if refused:
+        with pytest.raises(
+            SuccessorError,
+            match=(
+                f"must name its predecessor {GOLDEN_PREDECESSOR} before the tracked "
+                f"selector {KS_LIHEAP_FIRST_CUT}"
+            ),
+        ):
+            compose()
+        return
+    successor = compose()
+    assert declared_predecessor(successor, tracked) == GOLDEN_PREDECESSOR
+
+
+# Rendering pins JSON's ASCII escapes for non-ASCII text.
+
+
+def test_render_selector_escapes_non_ascii_description(tmp_path: Path) -> None:
+    predecessor = _layered_predecessor(tmp_path)
+    # Built with chr() so this file stays ASCII: u-umlaut, section sign, em dash.
+    description = (
+        f"Nachfolger von {PREDECESSOR_NAME} {chr(0xFC)}ber {chr(0xA7)} 1 {chr(0x2014)} "
+        "keeps every base."
+    )
+    successor = _compose(predecessor, description=description, add=[NEW_FORM])
+
+    rendered = render_selector(successor)
+
+    backslash = chr(92)
+    assert rendered.isascii()
+    assert (
+        f'  "description": "Nachfolger von {PREDECESSOR_NAME} {backslash}u00fcber '
+        f'{backslash}u00a7 1 {backslash}u2014 keeps every base.",'
+    ) in rendered.splitlines()
+    path = tmp_path / f"{SUCCESSOR_NAME}.json"
+    path.write_text(rendered, encoding="utf-8")
+    assert ReleaseManifest.load(path).description == description
 
 
 # Carry-forward of base scopes on a layered predecessor.
@@ -321,6 +409,46 @@ def test_parse_release_scope_reads_the_canonical_layer_encoding() -> None:
             {"name": PREDECESSOR_NAME},
             "must have a new name",
             id="successor-reuses-predecessor-name",
+        ),
+        pytest.param(
+            {"name": "Bad Name"},
+            "lowercase alphanumeric segments separated by single hyphens",
+            id="invalid-name",
+        ),
+        pytest.param(
+            {"name": "current"},
+            "Release name 'current' is reserved",
+            id="reserved-name-current",
+        ),
+        pytest.param(
+            {"add": ("us", "guidance", "v")},
+            "add must name each scope as a",
+            id="bare-triple-in-add",
+        ),
+        pytest.param(
+            {"remove": [["us", "guidance", "2026-10-03-snap-memo"]]},
+            "remove must name each scope as a",
+            id="list-in-remove",
+        ),
+        pytest.param(
+            {"add_base": [("us", "guidance")]},
+            "add_base must name each scope as a",
+            id="pair-in-add-base",
+        ),
+        pytest.param(
+            {"replace": {("us", "statute", 1): "2026-11-02-26-usc-1"}},
+            "replace must name each scope as a",
+            id="non-string-part-in-replace-key",
+        ),
+        pytest.param(
+            {"replace": {PRIMARY_STATUTE.key: ["2026-11-02-26-usc-1"]}},
+            "replace must map us/statute/2026-10-01-26-usc-1 to a version string",
+            id="non-string-replacement-version",
+        ),
+        pytest.param(
+            {"tracked": PREDECESSOR_NAME},
+            "tracked must be a collection of selector names, not one string",
+            id="tracked-is-one-string",
         ),
     ],
 )

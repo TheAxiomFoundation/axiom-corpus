@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
-from collections.abc import Iterable, Mapping
+from collections.abc import Collection, Iterable, Mapping
 from pathlib import Path
 from typing import Any
 
@@ -48,6 +48,27 @@ def _label(key: ScopeKey) -> str:
     return "/".join(key)
 
 
+def _scope_keys(argument: str, values: Iterable[object]) -> tuple[ScopeKey, ...]:
+    """Return ``values`` as scope keys, refusing anything but 3-tuples of strings.
+
+    A bare triple passed where a list of triples belongs would otherwise be
+    read as three one-string keys.
+    """
+    keys: list[ScopeKey] = []
+    for value in values:
+        if not (
+            isinstance(value, tuple)
+            and len(value) == 3
+            and all(isinstance(part, str) for part in value)
+        ):
+            raise SuccessorError(
+                f"{argument} must name each scope as a (jurisdiction, document_class, "
+                f"version) tuple of strings, not {value!r}"
+            )
+        keys.append((value[0], value[1], value[2]))
+    return tuple(keys)
+
+
 def _scope(key: ScopeKey, *, layer: str) -> ReleaseScope:
     try:
         return ReleaseScope(jurisdiction=key[0], document_class=key[1], version=key[2], layer=layer)
@@ -64,27 +85,45 @@ def compose_successor(
     replace: Mapping[ScopeKey, str] | None = None,
     remove: Iterable[ScopeKey] = (),
     add_base: Iterable[ScopeKey] = (),
+    tracked: Collection[str] = (),
 ) -> ReleaseManifest:
     """Return the successor of ``predecessor`` with the given primary-scope changes.
 
     ``add`` names new primary scopes. ``replace`` maps a primary scope of the
     predecessor to a new version in the same pair. ``remove`` names primary
     scopes of the predecessor to drop. ``add_base`` names a base scope for a
-    pair the predecessor has no base for. Every base scope of the predecessor
-    is carried unchanged, the quality profile is inherited, and the scopes are
-    sorted by ``(jurisdiction, document_class, version)``.
+    pair the predecessor has no base for. Each scope is a
+    ``(jurisdiction, document_class, version)`` tuple of strings. Every base
+    scope of the predecessor is carried unchanged, the quality profile is
+    inherited, and the scopes are sorted by
+    ``(jurisdiction, document_class, version)``.
 
     ``description`` must name ``predecessor.name`` as a whole release name, so
     the selector lineage check resolves the cut's predecessor
     (``selector_lineage.declared_predecessor``). That check takes the first
-    tracked selector a description names, so name the predecessor first.
+    tracked selector a description names, so the composer resolves the
+    description against ``tracked`` plus ``predecessor.name`` and refuses it
+    unless the result is the predecessor. A repro script passes the names of
+    the tracked selectors, the stems of ``manifests/releases/*.json``, so a
+    description that names another tracked selector before the predecessor is
+    refused here rather than by the lineage check. With the default, empty
+    ``tracked``, only the predecessor's own name is checked.
 
     Raises ``SuccessorError`` for any refused change. Nothing is written.
     """
-    added = tuple(add)
+    added = _scope_keys("add", add)
     replacements: dict[ScopeKey, str] = dict(replace or {})
-    removed = tuple(remove)
-    added_bases = tuple(add_base)
+    replaced = _scope_keys("replace", replacements)
+    for old in replaced:
+        version = replacements[old]
+        if not isinstance(version, str):
+            raise SuccessorError(
+                f"replace must map {_label(old)} to a version string, not {version!r}"
+            )
+    removed = _scope_keys("remove", remove)
+    added_bases = _scope_keys("add_base", add_base)
+    if isinstance(tracked, str):
+        raise SuccessorError("tracked must be a collection of selector names, not one string")
 
     if name == predecessor.name:
         raise SuccessorError(f"A successor must have a new name, not {predecessor.name!r}")
@@ -169,9 +208,16 @@ def compose_successor(
     except ValueError as exc:
         raise SuccessorError(str(exc)) from exc
 
-    if declared_predecessor(successor, {predecessor.name}) != predecessor.name:
+    declared = declared_predecessor(successor, {*tracked, predecessor.name})
+    if declared is None:
         raise SuccessorError(
             f"The description of {name} must name its predecessor {predecessor.name}"
+        )
+    if declared != predecessor.name:
+        raise SuccessorError(
+            f"The description of {name} must name its predecessor {predecessor.name} "
+            f"before the tracked selector {declared}; the selector lineage check takes "
+            "the first tracked selector a description names"
         )
     return successor
 
@@ -183,6 +229,10 @@ def render_selector(release: ReleaseManifest) -> str:
     and each scope uses its one canonical encoding
     (``ReleaseScope.to_selector_mapping``). ``description`` and
     ``quality_profile`` appear when set.
+
+    Non-ASCII characters are written as JSON escapes (``json.dumps``' default
+    ``ensure_ascii=True``), as the rulespec-us builders under ``scripts/repro/``
+    write them, so the file is ASCII and reads the same under any locale.
     """
     payload: dict[str, Any] = {
         "name": release.name,
