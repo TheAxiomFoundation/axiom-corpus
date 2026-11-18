@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import subprocess
 import sys
+from argparse import Namespace
 from base64 import b64encode
 from pathlib import Path
 from typing import Any
@@ -23,6 +25,9 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.release.manifest import (
+    RELEASE_OBJECT_SCHEMA_V2,
+    RELEASE_OBJECT_SCHEMA_V3,
+    RELEASE_OBJECT_SCHEMA_V4,
     build_release_content,
     build_unsigned_release_object,
     sign_release_object,
@@ -947,3 +952,204 @@ def test_mirror_provenance_compares_layers(release_repo) -> None:
     assert result.evidence == (
         "cut-plan layer mismatch (us/statute/2026-04-29: plan primary, object base)"
     )
+
+
+# The Supabase provider, fed as data: every test patches both network calls and
+# the direct database preview before it builds the provider, with a dummy token.
+_INCOMING = {"release": "us-incoming", "content_sha256": "a" * 64}
+
+
+def _stored_scope(scope: ReleaseScope) -> dict[str, Any]:
+    return {**scope.to_selector_mapping(), "provision_rows": 1, "navigation_rows": 1}
+
+
+def _stored_detail(
+    name: str,
+    scopes: object,
+    *,
+    schema_version: str = RELEASE_OBJECT_SCHEMA_V4,
+    content_sha256: str | None = None,
+) -> dict[str, Any]:
+    return {
+        "release_name": name,
+        "content_sha256": content_sha256 or f"{name}-sha",
+        "published_at": "2026-07-26T00:00:00Z",
+        "release_object": {
+            "schema_version": schema_version,
+            "release": name,
+            "content": {"scopes": scopes},
+        },
+    }
+
+
+def _incoming_detail() -> dict[str, Any]:
+    # Its bases differ from every active object's, so a provider that read the
+    # incoming release's base map would report the wrong current_base_version.
+    return _stored_detail(
+        "us-incoming",
+        [_stored_scope(B_NEW), _stored_scope(P2), _stored_scope(BR)],
+        content_sha256=_INCOMING["content_sha256"],
+    )
+
+
+def _changed_row(pair: tuple[str, str], release: str) -> dict[str, Any]:
+    return {
+        "jurisdiction": pair[0],
+        "document_class": pair[1],
+        "changes": True,
+        "current_release_name": release,
+        "current_content_sha256": f"{release}-sha",
+    }
+
+
+def _fake_supabase_provider(
+    monkeypatch,
+    rows: list[dict[str, Any]],
+    details: list[dict[str, Any]],
+    queries: list[dict[str, Any]],
+):
+    monkeypatch.setenv(gate.DEFAULT_ACCESS_TOKEN_ENV, "test-token")
+    monkeypatch.delenv(gate.DEFAULT_DATABASE_URL_ENV, raising=False)
+
+    def no_direct_preview(*_args: object, **_kwargs: object) -> list[dict[str, Any]]:
+        raise AssertionError("the direct database preview must not run")
+
+    def preview(_release_object: object, **_kwargs: object) -> list[dict[str, Any]]:
+        return rows
+
+    def post(_url: str, **kwargs: Any) -> list[dict[str, Any]]:
+        queries.append(kwargs)
+        return details
+
+    monkeypatch.setattr(gate, "preview_corpus_release_activation_direct", no_direct_preview)
+    monkeypatch.setattr(gate, "preview_corpus_release_activation", preview)
+    monkeypatch.setattr(gate, "_management_api_post_json_with_curl", post)
+    return gate._supabase_active_state_provider(
+        Namespace(supabase_url="https://abcdefghijklmnop.supabase.co", expected_project_ref=None),
+        "unused-public-key",
+    )
+
+
+def test_supabase_provider_records_current_base_version(monkeypatch) -> None:
+    rows = [
+        _changed_row(("us", "statute"), "us-layered"),
+        _changed_row(("us", "regulation"), "us-plain"),
+        _changed_row(("us", "guidance"), "us-missing"),
+        # The active object carries no version of this pair, so no base is recorded.
+        _changed_row(("us", "rulings"), "us-layered"),
+    ]
+    details = [
+        _incoming_detail(),
+        _stored_detail("us-layered", [_stored_scope(B), _stored_scope(P1)]),
+        _stored_detail("us-plain", [_stored_scope(R1)], schema_version=RELEASE_OBJECT_SCHEMA_V3),
+    ]
+    queries: list[dict[str, Any]] = []
+    provide = _fake_supabase_provider(monkeypatch, rows, details, queries)
+
+    by_pair = {(row["jurisdiction"], row["document_class"]): row for row in provide(_INCOMING)}
+
+    statute = by_pair["us", "statute"]
+    assert statute["current_base_version"] == "2026-04-29"
+    assert statute["current_versions"] == ["2026-04-29", "2026-07-26-p1"]
+    regulation = by_pair["us", "regulation"]
+    assert "current_base_version" in regulation
+    assert regulation["current_base_version"] is None
+    assert regulation["current_versions"] == ["2026-07-26-r1"]
+    guidance = by_pair["us", "guidance"]
+    assert "current_base_version" not in guidance
+    assert guidance["current_versions"] == []
+    rulings = by_pair["us", "rulings"]
+    assert "current_base_version" not in rulings
+    assert rulings["current_versions"] == []
+    assert len(queries) == 1
+    assert queries[0]["access_token"] == "test-token"
+    assert queries[0]["payload"]["read_only"] is True
+    assert queries[0]["payload"]["parameters"][0] == [
+        "us-incoming",
+        "us-layered",
+        "us-missing",
+        "us-plain",
+    ]
+
+
+@pytest.mark.parametrize(
+    ("release_object", "message"),
+    [
+        pytest.param(
+            "not an object",
+            "stored release object of 'us-active' is not a JSON object with a content object",
+            id="non_object",
+        ),
+        pytest.param(
+            {"schema_version": RELEASE_OBJECT_SCHEMA_V4, "content": ["not", "an", "object"]},
+            "stored release object of 'us-active' is not a JSON object with a content object",
+            id="non_object_content",
+        ),
+        pytest.param(
+            {
+                "schema_version": RELEASE_OBJECT_SCHEMA_V3,
+                "content": {"scopes": [_stored_scope(B), _stored_scope(P1)]},
+            },
+            "only release-object/v4 may sign scope layers",
+            id="layer_on_v3",
+        ),
+        pytest.param(
+            {
+                "schema_version": RELEASE_OBJECT_SCHEMA_V2,
+                "content": {"scopes": [_stored_scope(B), _stored_scope(P1)]},
+            },
+            "only release-object/v4 may sign scope layers",
+            id="layer_on_v2",
+        ),
+        pytest.param(
+            {
+                "schema_version": RELEASE_OBJECT_SCHEMA_V4,
+                "content": {"scopes": [_stored_scope(B), _stored_scope(B_NEW)]},
+            },
+            "more than one base scope for us/statute",
+            id="two_bases",
+        ),
+        pytest.param(
+            {
+                "schema_version": RELEASE_OBJECT_SCHEMA_V4,
+                "content": {"scopes": [{**_stored_scope(P1), "layer": "overlay"}]},
+            },
+            "scope us/statute/2026-07-26-p1 has an unsupported layer: 'overlay'",
+            id="unknown_layer",
+        ),
+        pytest.param(
+            {
+                "schema_version": RELEASE_OBJECT_SCHEMA_V4,
+                "content": {"scopes": [{**_stored_scope(P1), "layer": "primary"}]},
+            },
+            "scope us/statute/2026-07-26-p1 has an unsupported layer: 'primary'",
+            id="explicit_primary_layer",
+        ),
+        pytest.param(
+            {"schema_version": RELEASE_OBJECT_SCHEMA_V4, "content": {"scopes": _stored_scope(P1)}},
+            "scopes must be a JSON array",
+            id="non_list_scopes",
+        ),
+        pytest.param(
+            {
+                "schema_version": RELEASE_OBJECT_SCHEMA_V4,
+                "content": {"scopes": [_stored_scope(B), _stored_scope(B_PRIMARY)]},
+            },
+            "duplicate scope triple: ('us', 'statute', '2026-04-29')",
+            id="duplicate_triple",
+        ),
+    ],
+)
+def test_supabase_provider_refuses_malformed_active_objects(
+    monkeypatch, release_object: object, message: str
+) -> None:
+    active = _stored_detail("us-active", [])
+    active["release_object"] = release_object
+    provide = _fake_supabase_provider(
+        monkeypatch,
+        [_changed_row(("us", "statute"), "us-active")],
+        [_incoming_detail(), active],
+        [],
+    )
+    with pytest.raises(ValueError, match=re.escape(message)):
+        provide(_INCOMING)
