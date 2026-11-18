@@ -18,6 +18,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
+    LAYER_BASE,
     ReleaseManifest,
     ReleaseScope,
 )
@@ -34,6 +35,15 @@ assert _SPEC and _SPEC.loader
 gate = importlib.util.module_from_spec(_SPEC)
 sys.modules[_SPEC.name] = gate
 _SPEC.loader.exec_module(gate)
+
+# A layered United States line: the May base of the Code under its primary cuts.
+B = ReleaseScope("us", "statute", "2026-04-29", layer=LAYER_BASE)
+B_PRIMARY = ReleaseScope("us", "statute", "2026-04-29")
+B_NEW = ReleaseScope("us", "statute", "2026-11-01-us-code", layer=LAYER_BASE)
+P1 = ReleaseScope("us", "statute", "2026-07-26-p1")
+P2 = ReleaseScope("us", "statute", "2026-07-28-p2")
+R1 = ReleaseScope("us", "regulation", "2026-07-26-r1")
+BR = ReleaseScope("us", "regulation", "2026-05-01", layer=LAYER_BASE)
 
 
 @pytest.fixture
@@ -161,14 +171,7 @@ def release_repo(tmp_path: Path, signing_keys: tuple[str, str]):
                 {
                     "name": name,
                     "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
-                    "scopes": [
-                        {
-                            "jurisdiction": scope.jurisdiction,
-                            "document_class": scope.document_class,
-                            "version": scope.version,
-                        }
-                        for scope in scopes
-                    ],
+                    "scopes": [scope.to_selector_mapping() for scope in scopes],
                 }
             )
         )
@@ -341,6 +344,86 @@ def test_non_ancestor_commit(release_repo) -> None:
         active_state_provider=lambda _obj: [],
     )
     assert "not proven ancestor" in _by_name(results)["cut_plan_provenance"].evidence
+
+
+def _rewrite_plan_scopes(root: Path, name: str, scopes: list[dict[str, str]]) -> None:
+    plan = root / "manifests" / "releases" / f"{name}.json"
+    payload = json.loads(plan.read_text())
+    payload["scopes"] = scopes
+    plan.write_text(json.dumps(payload))
+
+
+def _activate_without_state(release_repo, name: str, obj: dict[str, Any], path: Path):
+    root, public, _ = release_repo
+    return gate.run_gate(
+        release_object_path=path,
+        release=name,
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="activate",
+        public_key=public,
+        active_state_provider=lambda _obj: [],
+    )
+
+
+def test_provenance_passes_with_matching_base_layers(release_repo) -> None:
+    obj, _, results = _results(release_repo, "us-layered-plan", [B, P1], [])
+    assert obj["schema_version"] == "axiom-corpus/release-object/v4"
+    assert {scope["version"]: scope.get("layer") for scope in obj["content"]["scopes"]} == {
+        B.version: LAYER_BASE,
+        P1.version: None,
+    }
+    by_name = _by_name(results)
+    assert by_name["object_identity"].passed, by_name["object_identity"].evidence
+    assert by_name["cut_plan_provenance"].passed, by_name["cut_plan_provenance"].evidence
+
+
+@pytest.mark.parametrize("variant", ["object_base_plan_primary", "object_primary_plan_base"])
+def test_provenance_fails_on_a_layer_flip(release_repo, variant: str) -> None:
+    # The triples match, so only the layer comparison can see the flip.
+    signed, planned = (B, B_PRIMARY) if variant == "object_base_plan_primary" else (B_PRIMARY, B)
+    name = f"us-flip-{variant.replace('_', '-')}"
+    obj, path = release_repo[2](name, [signed, P1])
+    _rewrite_plan_scopes(
+        release_repo[0], name, [planned.to_selector_mapping(), P1.to_selector_mapping()]
+    )
+    by_name = _by_name(_activate_without_state(release_repo, name, obj, path))
+    assert by_name["object_identity"].passed, by_name["object_identity"].evidence
+    result = by_name["cut_plan_provenance"]
+    assert not result.passed
+    assert result.evidence == (
+        f"cut-plan layer mismatch (us/statute/2026-04-29: plan {planned.layer}, "
+        f"object {signed.layer})"
+    )
+
+
+def test_provenance_refuses_an_explicit_primary_layer(release_repo) -> None:
+    obj, path = release_repo[2]("us-explicit-primary", [B, P1])
+    _rewrite_plan_scopes(
+        release_repo[0],
+        "us-explicit-primary",
+        [B.to_selector_mapping(), {**P1.to_selector_mapping(), "layer": "primary"}],
+    )
+    results = _activate_without_state(release_repo, "us-explicit-primary", obj, path)
+    result = _by_name(results)["cut_plan_provenance"]
+    assert not result.passed
+    assert "cannot validate cut plan" in result.evidence
+    assert "scope layer must be 'base' or absent (primary): 'primary'" in result.evidence
+
+
+def test_provenance_still_refuses_duplicate_triples(release_repo) -> None:
+    # A plan that names one triple twice, once as a base, is not two scopes.
+    obj, path = release_repo[2]("us-duplicate-triple", [B, P1])
+    _rewrite_plan_scopes(
+        release_repo[0],
+        "us-duplicate-triple",
+        [B_PRIMARY.to_selector_mapping(), B.to_selector_mapping(), P1.to_selector_mapping()],
+    )
+    results = _activate_without_state(release_repo, "us-duplicate-triple", obj, path)
+    result = _by_name(results)["cut_plan_provenance"]
+    assert not result.passed
+    assert "cannot validate cut plan" in result.evidence
+    assert "duplicate scope triple: ('us', 'statute', '2026-04-29')" in result.evidence
 
 
 def test_older_release_vs_active_fails_incident_replay(release_repo) -> None:
@@ -831,3 +914,36 @@ def test_mirror_path_or_artifact_mismatch(release_repo, mismatch: str) -> None:
         destination_path=destination,
     )
     assert not _by_name(results)["mirror_artifact_path"].passed
+
+
+def test_mirror_provenance_compares_layers(release_repo) -> None:
+    root, public, make = release_repo
+    obj, path = make("us-layered-mirror", [B, P1])
+    _rewrite_plan_scopes(
+        root, "us-layered-mirror", [B_PRIMARY.to_selector_mapping(), P1.to_selector_mapping()]
+    )
+    artifact = root / "publish-artifact.json"
+    artifact.write_bytes(path.read_bytes())
+    results = gate.run_gate(
+        release_object_path=path,
+        release="us-layered-mirror",
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="mirror",
+        public_key=public,
+        published_artifact=artifact,
+        destination_path=f"releases/us-layered-mirror/{obj['content_sha256']}.json",
+    )
+    assert [result.name for result in results] == [
+        "object_identity",
+        "cut_plan_provenance",
+        "mirror_artifact_path",
+    ]
+    by_name = _by_name(results)
+    assert by_name["object_identity"].passed, by_name["object_identity"].evidence
+    assert by_name["mirror_artifact_path"].passed, by_name["mirror_artifact_path"].evidence
+    result = by_name["cut_plan_provenance"]
+    assert not result.passed
+    assert result.evidence == (
+        "cut-plan layer mismatch (us/statute/2026-04-29: plan primary, object base)"
+    )
