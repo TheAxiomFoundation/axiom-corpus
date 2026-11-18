@@ -9,7 +9,10 @@ layered selector files and load them through ``ReleaseManifest.load``.
 from __future__ import annotations
 
 import json
+import os
 import shutil
+import subprocess
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -229,6 +232,41 @@ def test_default_tracked_names_fail_closed(
     # Passing the names, even none, still works without the directory.
     assert _compose(predecessor, tracked=()).name == SUCCESSOR_NAME
     assert _compose(predecessor, tracked=[PREDECESSOR_NAME]).name == SUCCESSOR_NAME
+
+
+def test_explicit_tracked_replaces_the_default_names() -> None:
+    # The repository tracks the first cut, so the default names refuse this
+    # description. Names passed explicitly replace them, even while the
+    # default directory is readable.
+    with pytest.raises(SuccessorError, match=NAMED_FIRST_REFUSAL):
+        _compose_golden_addition(FIRST_CUT_NAMED_FIRST)
+    for tracked in ((), [GOLDEN_PREDECESSOR]):
+        successor = _compose_golden_addition(FIRST_CUT_NAMED_FIRST, tracked=tracked)
+        assert successor.name == UNTRACKED_SUCCESSOR
+
+
+def test_default_releases_dir_does_not_depend_on_the_working_directory(
+    tmp_path: Path,
+) -> None:
+    # A script run from another directory still reads this checkout's selectors.
+    source_root = Path(successors.__file__).resolve().parents[2]
+    environment = dict(os.environ)
+    environment["PYTHONPATH"] = os.pathsep.join(
+        part for part in (str(source_root), environment.get("PYTHONPATH", "")) if part
+    )
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            "from axiom_corpus.corpus import successors; print(successors.DEFAULT_RELEASES_DIR)",
+        ],
+        cwd=tmp_path,
+        env=environment,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert Path(result.stdout.strip()) == RELEASE_DIR.resolve()
 
 
 # Rendering pins JSON's ASCII escapes for non-ASCII text.
