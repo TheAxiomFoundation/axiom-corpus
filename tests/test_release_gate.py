@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import pytest
+import yaml
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
@@ -237,21 +238,11 @@ def _by_name(results) -> dict[str, Any]:
     return {result.name: result for result in results}
 
 
-def _install_active_manifest(root: Path, name: str, scope: ReleaseScope) -> None:
+def _install_active_manifest(root: Path, name: str, *scopes: ReleaseScope) -> None:
     path = root / "manifests" / "releases" / f"{name}.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(
-            {
-                "name": name,
-                "scopes": [
-                    {
-                        "jurisdiction": scope.jurisdiction,
-                        "document_class": scope.document_class,
-                        "version": scope.version,
-                    }
-                ],
-            }
-        )
+        json.dumps({"name": name, "scopes": [scope.to_selector_mapping() for scope in scopes]})
     )
     subprocess.run(["git", "-C", str(root), "add", str(path)], check=True)
     subprocess.run(
@@ -616,6 +607,7 @@ def test_strict_superset_passes(release_repo) -> None:
             "changes": True,
             "current_release_name": "uk-active",
             "current_versions": [shared.version],
+            "current_base_version": None,
             "incoming_published_at": "2026-07-26T01:00:00Z",
             "current_published_at": "2026-07-26T00:00:00Z",
         },
@@ -847,6 +839,7 @@ def test_proven_ordering_regression_with_flag_warns_and_acknowledges(
             "changes": True,
             "current_release_name": "uk-active",
             "current_versions": ["2026-07-26-council"],
+            "current_base_version": None,
             "current_published_at": "2026-07-26T00:00:00Z",
         }
     ]
@@ -1153,3 +1146,512 @@ def test_supabase_provider_refuses_malformed_active_objects(
     )
     with pytest.raises(ValueError, match=re.escape(message)):
         provide(_INCOMING)
+
+
+# Activation's base_carry_forward check, fed preview rows as data. A row carries
+# current_base_version only where the provider read the active object.
+_STATUTE = ("us", "statute")
+_REGULATION = ("us", "regulation")
+_UNSET: Any = object()
+_EARLIER = "2026-07-27T00:00:00Z"
+_LATER = "2026-07-29T00:00:00Z"
+_ACTIVATE_NAMES = [
+    "object_identity",
+    "cut_plan_provenance",
+    "scope_monotonicity",
+    "no_orphan",
+    "base_carry_forward",
+]
+
+
+def _layered_row(
+    pair: tuple[str, str],
+    current_versions: list[Any],
+    base: Any = _UNSET,
+    *,
+    release: str = "us-active",
+    incoming_at: str = _LATER,
+    current_at: str = _EARLIER,
+) -> dict[str, Any]:
+    row: dict[str, Any] = {
+        "jurisdiction": pair[0],
+        "document_class": pair[1],
+        "changes": True,
+        "current_release_name": release,
+        "current_versions": current_versions,
+        "incoming_published_at": incoming_at,
+        "current_published_at": current_at,
+    }
+    if base is not _UNSET:
+        row["current_base_version"] = base
+    return row
+
+
+def _write_lineage_baseline(
+    root: Path,
+    *,
+    selector: str,
+    predecessor: str,
+    pair: tuple[str, str],
+    replaced: str,
+    replaced_by: ReleaseScope,
+    digest: str,
+) -> Path:
+    # The gate reads only the incoming selector's pin; the loader still needs both.
+    # Quoted, because YAML reads an all-digit digest as a number.
+    digests = {selector: digest, predecessor: "f" * 64}
+    lines = [
+        "schema_version: axiom-corpus/selector-lineage-baseline/v1",
+        "selector_digests:",
+        *(f'  {name}: "{digests[name]}"' for name in sorted(digests)),
+        "base_replacements:",
+        f"  - selector: {selector}",
+        f"    predecessor: {predecessor}",
+        f"    pair: {'/'.join(pair)}",
+        f'    replaced: "{replaced}"',
+        f"    replaced_by: {'/'.join(replaced_by.key)}",
+        "    listed_on: 2026-11-18",
+        "    reason: A reviewed replacement of the May base.",
+    ]
+    path = root / "manifests" / "selector-lineage-baseline.yaml"
+    path.write_text("\n".join(lines) + "\n")
+    return path
+
+
+def _activate(
+    release_repo,
+    name: str,
+    obj: dict[str, Any],
+    path: Path,
+    rows: list[dict[str, Any]],
+    *,
+    allow_regression: bool = False,
+):
+    root, public, _ = release_repo
+    return gate.run_gate(
+        release_object_path=path,
+        release=name,
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="activate",
+        public_key=public,
+        active_state_provider=lambda _obj: rows,
+        allow_regression=allow_regression,
+    )
+
+
+def _evidence(results) -> list[tuple[str, bool, str]]:
+    return [(result.name, result.passed, result.evidence) for result in results]
+
+
+def _stop_serving(incoming: str, selects: str, current: str = "us-active") -> str:
+    return (
+        f"us/statute: activation would stop serving base us/statute/2026-04-29 of "
+        f"{current!r}; {incoming} selects {selects} for us/statute. Carry the base "
+        "unchanged, or record the replacement under base_replacements in "
+        f"manifests/selector-lineage-baseline.yaml for {incoming}"
+    )
+
+
+def test_ordinary_later_cut_passes_every_check(release_repo) -> None:
+    _install_active_manifest(release_repo[0], "us-restore", B, P1)
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
+    _, _, results = _results(release_repo, "us-later", [B, P1, P2], rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
+    assert _by_name(results)["base_carry_forward"].evidence == (
+        "1 incoming pair(s): 1 displace an active base; 1 carry it unchanged and 0 replace "
+        "it under a recorded base_replacements entry"
+    )
+
+
+def _restore_rows(*, incoming_at: str, current_at: str) -> list[dict[str, Any]]:
+    times = {"release": "us-head", "incoming_at": incoming_at, "current_at": current_at}
+    return [
+        _layered_row(_STATUTE, [P1.version, P2.version], None, **times),
+        _layered_row(_REGULATION, [R1.version], None, **times),
+    ]
+
+
+def test_restore_composite_passes_every_check(release_repo) -> None:
+    # The head serves primaries only; the restore adds both May bases beneath them.
+    _install_active_manifest(release_repo[0], "us-head", P1, P2, R1)
+    rows = _restore_rows(incoming_at=_LATER, current_at=_EARLIER)
+    _, _, results = _results(release_repo, "us-restore", [P1, P2, B, R1, BR], rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
+    by_name = _by_name(results)
+    assert "2 displaced pair(s) are version/publication monotone" in (
+        by_name["scope_monotonicity"].evidence
+    )
+    assert by_name["base_carry_forward"].evidence == (
+        "2 incoming pair(s): 0 displace an active base; 0 carry it unchanged and 0 replace "
+        "it under a recorded base_replacements entry"
+    )
+
+
+def test_restore_tie_branch_still_requires_publication_recency(release_repo) -> None:
+    # The bases are older than every primary, so the frontiers tie and only the
+    # publication order can prove the restore is not a replay.
+    _install_active_manifest(release_repo[0], "us-head", P1, P2, R1)
+    rows = _restore_rows(incoming_at=_EARLIER, current_at=_LATER)
+    _, _, results = _results(release_repo, "us-restore", [P1, P2, B, R1, BR], rows)
+    by_name = _by_name(results)
+    monotonicity = by_name["scope_monotonicity"]
+    assert not monotonicity.passed
+    assert "('us', 'statute'): versions tie at '2026-07-28-p2'" in monotonicity.evidence
+    assert "('us', 'regulation'): versions tie at '2026-07-26-r1'" in monotonicity.evidence
+    assert by_name["base_carry_forward"].passed, by_name["base_carry_forward"].evidence
+
+
+@pytest.mark.parametrize("allow_regression", [False, True])
+def test_omitted_base_is_the_only_failure(release_repo, allow_regression: bool) -> None:
+    _install_active_manifest(release_repo[0], "us-active", B, P1)
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    _, _, results = _results(
+        release_repo, "us-omitted", [P1, P2], rows, allow_regression=allow_regression
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    result = _by_name(results)["base_carry_forward"]
+    assert (result.passed, result.warning) == (False, False)
+    # One exact string under both flag values: the flag does not reach this check.
+    assert result.evidence == _stop_serving("us-omitted", "no base")
+    assert "activation would stop serving base us/statute/2026-04-29" in result.evidence
+    others = [item for item in results if item.name != "base_carry_forward"]
+    assert all(item.passed and not item.warning for item in others), _evidence(others)
+
+
+def test_base_carried_as_primary_fails(release_repo) -> None:
+    _install_active_manifest(release_repo[0], "us-active", B, P1)
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    _, _, results = _results(release_repo, "us-as-primary", [B_PRIMARY, P1], rows)
+    by_name = _by_name(results)
+    # The same versions on both sides take monotonicity's identical branch.
+    assert by_name["scope_monotonicity"].passed, by_name["scope_monotonicity"].evidence
+    result = by_name["base_carry_forward"]
+    assert not result.passed
+    assert result.evidence == _stop_serving("us-as-primary", "no base")
+
+
+@pytest.mark.parametrize(
+    "variant", ["none", "matching", "wrong_replaced", "wrong_replaced_by", "stale_pin"]
+)
+def test_base_replacement_needs_a_recorded_entry(release_repo, variant: str) -> None:
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-restore", B, P1)
+    obj, path = make("us-restore-next", [B_NEW, P1])
+    signed = obj["content"]["selector_sha256"]
+    other_base = ReleaseScope("us", "statute", "2026-11-02-us-code", layer=LAYER_BASE)
+    if variant != "none":
+        _write_lineage_baseline(
+            root,
+            selector="us-restore-next",
+            predecessor="us-restore",
+            pair=_STATUTE,
+            replaced="2026-04-30" if variant == "wrong_replaced" else B.version,
+            replaced_by=other_base if variant == "wrong_replaced_by" else B_NEW,
+            digest="0" * 64 if variant == "stale_pin" else signed,
+        )
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
+    results = _activate(release_repo, "us-restore-next", obj, path, rows)
+    result = _by_name(results)["base_carry_forward"]
+    if variant == "matching":
+        assert result.passed, result.evidence
+        assert result.evidence == (
+            "1 incoming pair(s): 1 displace an active base; 0 carry it unchanged and 1 "
+            "replace it under a recorded base_replacements entry"
+        )
+        return
+    suffix = {
+        "none": "",
+        "wrong_replaced": " (the recorded replacement differs: replaced '2026-04-30' is not "
+        "the active base '2026-04-29')",
+        "wrong_replaced_by": " (the recorded replacement differs: replaced_by "
+        "'us/statute/2026-11-02-us-code' is not the incoming base "
+        "(us/statute/2026-11-01-us-code))",
+        "stale_pin": " (the recorded replacement differs: the selector_digests pin "
+        f"'{'0' * 64}' is not the signed selector_sha256 '{signed}')",
+    }[variant]
+    assert not result.passed
+    assert result.evidence == (
+        _stop_serving("us-restore-next", "base us/statute/2026-11-01-us-code", current="us-restore")
+        + suffix
+    )
+
+
+def test_a_replacement_recorded_for_another_cut_does_not_clear_this_one(release_repo) -> None:
+    # The replacement sits on an intermediate cut that was never activated. The
+    # incoming cut is pinned at its signed digest, but no record names it for the pair.
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-restore", B, P1)
+    obj, path = make("us-restore-next", [B_NEW, P1])
+    (root / "manifests" / "selector-lineage-baseline.yaml").write_text(
+        "schema_version: axiom-corpus/selector-lineage-baseline/v1\n"
+        "selector_digests:\n"
+        f'  us-restore: "{"f" * 64}"\n'
+        f'  us-restore-mid: "{"e" * 64}"\n'
+        f'  us-restore-next: "{obj["content"]["selector_sha256"]}"\n'
+        "base_replacements:\n"
+        "  - selector: us-restore-mid\n"
+        "    predecessor: us-restore\n"
+        "    pair: us/statute\n"
+        '    replaced: "2026-04-29"\n'
+        "    replaced_by: us/statute/2026-11-01-us-code\n"
+        "    listed_on: 2026-11-18\n"
+        "    reason: The intermediate cut replaces the May base.\n"
+        "  - selector: us-restore-next\n"
+        "    predecessor: us-restore-mid\n"
+        "    pair: us/regulation\n"
+        '    replaced: "2026-05-01"\n'
+        "    replaced_by: us/regulation/2026-11-01-cfr\n"
+        "    listed_on: 2026-11-18\n"
+        "    reason: The later cut replaces the regulation base.\n"
+    )
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
+    results = _activate(release_repo, "us-restore-next", obj, path, rows)
+    result = _by_name(results)["base_carry_forward"]
+    assert not result.passed
+    assert result.evidence == _stop_serving(
+        "us-restore-next", "base us/statute/2026-11-01-us-code", current="us-restore"
+    )
+
+
+@pytest.mark.parametrize("allow_regression", [False, True])
+def test_missing_current_base_version_fails_closed(release_repo, allow_regression: bool) -> None:
+    _install_active_manifest(release_repo[0], "us-active", B, P1)
+    rows = [_layered_row(_STATUTE, [B.version, P1.version])]
+    _, _, results = _results(
+        release_repo, "us-no-base-evidence", [B, P1, P2], rows, allow_regression=allow_regression
+    )
+    by_name = _by_name(results)
+    assert by_name["scope_monotonicity"].passed, by_name["scope_monotonicity"].evidence
+    result = by_name["base_carry_forward"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == "us/statute: active-state evidence lacks current_base_version"
+
+
+_STATUTE_ROW = _layered_row(_STATUTE, [B.version, P1.version], B.version)
+
+
+@pytest.mark.parametrize(
+    ("rows", "message"),
+    [
+        pytest.param(
+            [_layered_row(_STATUTE, [P1.version], B.version)],
+            "us/statute: current_base_version '2026-04-29' is not among current_versions "
+            "['2026-07-26-p1']",
+            id="base_not_listed",
+        ),
+        pytest.param(
+            [_layered_row(_STATUTE, [B.version, P1.version], 20260429)],
+            "us/statute: current_base_version 20260429 is not among current_versions "
+            "['2026-04-29', '2026-07-26-p1']",
+            id="non_string_base",
+        ),
+        pytest.param(
+            [_layered_row(_STATUTE, [], None)],
+            "us/statute: active release 'us-active' has no version evidence",
+            id="empty_versions",
+        ),
+        pytest.param(
+            [_layered_row(_STATUTE, [B.version, 7], B.version)],
+            "us/statute: active release 'us-active' has no version evidence",
+            id="non_string_version",
+        ),
+        pytest.param(
+            [{**_STATUTE_ROW, "changes": "true"}],
+            "us/statute: changes must be present and boolean, not 'true'",
+            id="non_bool_changes",
+        ),
+        pytest.param(
+            [{key: value for key, value in _STATUTE_ROW.items() if key != "current_release_name"}],
+            "us/statute: active-state evidence lacks current_release_name",
+            id="missing_release_key",
+        ),
+        pytest.param(
+            [{**_STATUTE_ROW, "current_release_name": ""}],
+            "us/statute: current_release_name must be a non-empty string or null, not ''",
+            id="empty_release_name",
+        ),
+        pytest.param(
+            [_STATUTE_ROW, _STATUTE_ROW],
+            "us/statute: active-state preview has 2 row(s) for an incoming pair; "
+            "refusing vacuous pass",
+            id="duplicate_rows",
+        ),
+        pytest.param(
+            [],
+            "us/statute: active-state preview has 0 row(s) for an incoming pair; "
+            "refusing vacuous pass",
+            id="no_row",
+        ),
+    ],
+)
+def test_base_carry_forward_rejects_malformed_evidence(
+    release_repo, rows: list[dict[str, Any]], message: str
+) -> None:
+    _, _, results = _results(release_repo, "us-malformed", [B, P1, P2], rows)
+    result = _by_name(results)["base_carry_forward"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == message
+
+
+def test_unchanged_new_and_uncarried_pairs_are_not_checked(release_repo) -> None:
+    # None of these rows carries current_base_version, and none needs it.
+    rows = [
+        {
+            "jurisdiction": "us",
+            "document_class": "statute",
+            "changes": False,
+            "current_release_name": "us-mixed",
+        },
+        {
+            "jurisdiction": "us",
+            "document_class": "regulation",
+            "changes": True,
+            "current_release_name": None,
+            "current_versions": [],
+        },
+        {
+            "jurisdiction": "us",
+            "document_class": "guidance",
+            "changes": True,
+            "current_release_name": "us-other",
+            "current_versions": ["2026-07-01-guidance"],
+        },
+    ]
+    _, _, results = _results(release_repo, "us-mixed", [B, P1, R1], rows)
+    result = _by_name(results)["base_carry_forward"]
+    assert result.passed, result.evidence
+    assert result.evidence == (
+        "2 incoming pair(s): 0 displace an active base; 0 carry it unchanged and 0 replace "
+        "it under a recorded base_replacements entry"
+    )
+
+
+def test_a_carried_base_cannot_hide_a_primary_regression(release_repo) -> None:
+    _install_active_manifest(release_repo[0], "us-active", B, P2)
+    rows = [_layered_row(_STATUTE, [B.version, P2.version], B.version)]
+    _, _, results = _results(release_repo, "us-behind", [B, P1], rows)
+    by_name = _by_name(results)
+    monotonicity = by_name["scope_monotonicity"]
+    assert not monotonicity.passed
+    assert (
+        "incoming frontier '2026-07-26-p1' precedes active '2026-07-28-p2'" in monotonicity.evidence
+    )
+    assert by_name["base_carry_forward"].passed, by_name["base_carry_forward"].evidence
+
+
+def test_activate_results_are_named_once_in_order(release_repo) -> None:
+    root, public, make = release_repo
+    _install_active_manifest(root, "us-active", B, P1)
+    obj, path = make("us-named", [B, P1, P2])
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    results = _activate(release_repo, "us-named", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    artifact = root / "publish-artifact.json"
+    artifact.write_bytes(path.read_bytes())
+    mirror = gate.run_gate(
+        release_object_path=path,
+        release="us-named",
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="mirror",
+        public_key=public,
+        published_artifact=artifact,
+        destination_path=f"releases/us-named/{obj['content_sha256']}.json",
+    )
+    assert [result.name for result in mirror] == [
+        "object_identity",
+        "cut_plan_provenance",
+        "mirror_artifact_path",
+    ]
+
+
+@pytest.mark.parametrize("failure", ["raises", "none"])
+def test_provider_failure_fails_every_state_check(release_repo, failure: str) -> None:
+    root, public, make = release_repo
+    obj, path = make("us-no-state", [B, P1])
+
+    def raising(_release_object: object) -> list[dict[str, Any]]:
+        raise ValueError("boom")
+
+    results = gate.run_gate(
+        release_object_path=path,
+        release="us-no-state",
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="activate",
+        public_key=public,
+        active_state_provider=raising if failure == "raises" else None,
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    state = {result.name: result for result in results[2:]}
+    assert not any(result.passed or result.warning for result in state.values())
+    if failure == "raises":
+        expected = {
+            "scope_monotonicity": "active-state lookup failed: boom",
+            "no_orphan": "active-state evidence unavailable",
+            "base_carry_forward": "active-state evidence unavailable",
+        }
+    else:
+        expected = dict.fromkeys(state, "active-state provider is missing")
+    assert {name: result.evidence for name, result in state.items()} == expected
+
+
+@pytest.mark.parametrize("variant", ["unknown_field", "yaml_syntax"])
+def test_malformed_lineage_baseline_fails_only_base_carry_forward(
+    release_repo, variant: str
+) -> None:
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-restore", B, P1)
+    obj, path = make("us-restore-next", [B_NEW, P1])
+    baseline = _write_lineage_baseline(
+        root,
+        selector="us-restore-next",
+        predecessor="us-restore",
+        pair=_STATUTE,
+        replaced=B.version,
+        replaced_by=B_NEW,
+        digest=obj["content"]["selector_sha256"],
+    )
+    if variant == "unknown_field":
+        baseline.write_text(baseline.read_text() + "unreviewed_section: []\n")
+        error = f"SelectorLineageError: {baseline}: unsupported fields ['unreviewed_section']"
+    else:
+        baseline.write_text(baseline.read_text() + "selector_digests: {unclosed\n")
+        # A YAML error is not a ValueError, so only a broad guard contains it.
+        with pytest.raises(yaml.YAMLError) as info:
+            yaml.safe_load(baseline.read_text())
+        assert not isinstance(info.value, ValueError)
+        error = f"{type(info.value).__name__}: "
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
+    results = _activate(release_repo, "us-restore-next", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    result = by_name["base_carry_forward"]
+    assert not result.passed
+    assert result.evidence.startswith(f"base_carry_forward could not run: {error}")
+    monotonicity = by_name["scope_monotonicity"]
+    assert monotonicity.passed, monotonicity.evidence
+    assert "active-state lookup failed" not in monotonicity.evidence
+    assert by_name["no_orphan"].passed, by_name["no_orphan"].evidence
+
+
+@pytest.mark.parametrize("case", ["carried_base", "no_active_base"])
+def test_carried_and_absent_bases_never_read_the_lineage_baseline(release_repo, case: str) -> None:
+    # An unreadable baseline cannot fail a pair that needs no recorded replacement.
+    root, _, make = release_repo
+    if case == "carried_base":
+        _install_active_manifest(root, "us-restore", B, P1)
+        name, scopes = "us-later", [B, P1, P2]
+        rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
+    else:
+        _install_active_manifest(root, "us-head", P1, P2, R1)
+        name, scopes = "us-restore", [P1, P2, B, R1, BR]
+        rows = _restore_rows(incoming_at=_LATER, current_at=_EARLIER)
+    obj, path = make(name, scopes)
+    (root / "manifests" / "selector-lineage-baseline.yaml").write_text("selector_digests: {\n")
+    results = _activate(release_repo, name, obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed for result in results), _evidence(results)
