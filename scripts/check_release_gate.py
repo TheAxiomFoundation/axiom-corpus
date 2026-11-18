@@ -26,6 +26,7 @@ from axiom_corpus.corpus.supabase import (
 )
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
+    RELEASE_OBJECT_SCHEMA_V4,
     ReleaseManifestError,
     verify_release_object,
 )
@@ -621,9 +622,18 @@ def _supabase_active_state_provider(
         )
         by_identity: dict[tuple[str, str], dict[str, Any]] = {}
         for detail in details:
-            obj = detail.get("release_object", {})
-            scopes = _scope_triples(obj.get("content", {}).get("scopes"))
-            detail["scopes"] = scopes
+            obj = detail.get("release_object")
+            if not isinstance(obj, dict) or not isinstance(obj.get("content"), dict):
+                raise ValueError(
+                    f"stored release object of {detail.get('release_name')!r} "
+                    "is not a JSON object with a content object"
+                )
+            layers = _scope_layers(obj["content"].get("scopes"))
+            base_versions = _base_versions(layers)
+            if base_versions and obj.get("schema_version") != RELEASE_OBJECT_SCHEMA_V4:
+                raise ValueError("only release-object/v4 may sign scope layers")
+            detail["scopes"] = set(layers)
+            detail["base_versions"] = base_versions
             by_identity[(str(detail["release_name"]), str(detail["content_sha256"]))] = detail
         for row in rows:
             incoming_detail = by_identity.get(
@@ -646,6 +656,10 @@ def _supabase_active_state_provider(
                 scope[2] for scope in active_detail["scopes"] if scope[:2] == pair
             )
             row["current_published_at"] = active_detail["published_at"]
+            # No default when the active object is missing or carries no version of
+            # the pair: an absent key marks missing evidence, which a reader refuses.
+            if row["current_versions"]:
+                row["current_base_version"] = active_detail["base_versions"].get(pair)
         return cast(list[dict[str, Any]], rows)
 
     return provide
