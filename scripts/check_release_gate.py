@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any, cast
 
 from axiom_corpus.corpus.releases import LAYER_BASE, LAYER_PRIMARY, parse_release_scope
+from axiom_corpus.corpus.selector_lineage import LineageBaseline
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
@@ -513,6 +514,157 @@ def _no_orphan_check(active_rows: list[dict[str, Any]], *, repo_root: Path) -> C
     )
 
 
+def _displaced_row(
+    pair: Pair, rows: Sequence[Mapping[str, Any]], failures: list[str]
+) -> tuple[str, frozenset[str], str | None] | None:
+    """The active release, versions and base that activation displaces for ``pair``.
+
+    None when activation displaces nothing (the pair reaffirms the incoming
+    release or has no active pointer) and when the evidence fails. Every failure
+    is appended to ``failures``; none is skipped.
+    """
+    label = "/".join(pair)
+    matching = [row for row in rows if (row.get("jurisdiction"), row.get("document_class")) == pair]
+    if len(matching) != 1:
+        failures.append(
+            f"{label}: active-state preview has {len(matching)} row(s) for an incoming pair; "
+            "refusing vacuous pass"
+        )
+        return None
+    row = matching[0]
+    changes = row.get("changes")
+    if not isinstance(changes, bool):
+        failures.append(f"{label}: changes must be present and boolean, not {changes!r}")
+        return None
+    if not changes:
+        return None
+    if "current_release_name" not in row:
+        failures.append(f"{label}: active-state evidence lacks current_release_name")
+        return None
+    current = row["current_release_name"]
+    if current is None:
+        return None
+    if not (isinstance(current, str) and current):
+        failures.append(
+            f"{label}: current_release_name must be a non-empty string or null, not {current!r}"
+        )
+        return None
+    versions = row.get("current_versions")
+    if not (
+        isinstance(versions, list)
+        and versions
+        and all(isinstance(version, str) and version for version in versions)
+    ):
+        failures.append(f"{label}: active release {current!r} has no version evidence")
+        return None
+    if "current_base_version" not in row:
+        failures.append(f"{label}: active-state evidence lacks current_base_version")
+        return None
+    base = row["current_base_version"]
+    if base is not None and base not in versions:
+        failures.append(
+            f"{label}: current_base_version {base!r} is not among current_versions "
+            f"{sorted(versions)!r}"
+        )
+        return None
+    return current, frozenset(versions), base
+
+
+def _base_carry_forward_check(
+    release_object: Mapping[str, Any],
+    active_rows: list[dict[str, Any]],
+    *,
+    repo_root: Path,
+) -> CheckResult:
+    """Fail an activation that stops serving the base of a displaced active release.
+
+    A pair passes when its active release serves no base, when the incoming
+    release selects that same version as its base, or when the lineage baseline
+    records the replacement for the incoming release, pinned at its signed
+    selector digest. The baseline is read only for a pair that needs a record.
+    """
+    content = release_object["content"]
+    incoming_release = str(release_object["release"])
+    layers = _scope_layers(content["scopes"])
+    incoming_bases = _base_versions(layers)
+    incoming_pairs = sorted({(triple[0], triple[1]) for triple in layers})
+    failures: list[str] = []
+    baseline: LineageBaseline | None = None
+    based = carried = recorded = 0
+    for pair in incoming_pairs:
+        displaced = _displaced_row(pair, active_rows, failures)
+        if displaced is None:
+            continue
+        current, _versions, active_base = displaced
+        if active_base is None:
+            continue
+        based += 1
+        incoming_base = incoming_bases.get(pair)
+        if incoming_base == active_base:
+            carried += 1
+            continue
+        if baseline is None:
+            baseline = LineageBaseline.load(repo_root)
+        record = baseline.base_replacements.get((incoming_release, pair))
+        label = "/".join(pair)
+        mismatches: list[str] = []
+        if record is not None:
+            if record.replaced != active_base:
+                mismatches.append(
+                    f"replaced {record.replaced!r} is not the active base {active_base!r}"
+                )
+            if incoming_base is None or record.replaced_by != (*pair, incoming_base):
+                selected = "no base" if incoming_base is None else f"{label}/{incoming_base}"
+                mismatches.append(
+                    f"replaced_by {'/'.join(record.replaced_by)!r} is not the incoming base "
+                    f"({selected})"
+                )
+            pin = baseline.selector_digests.get(incoming_release)
+            signed = content.get("selector_sha256")
+            if pin != signed:
+                mismatches.append(
+                    f"the selector_digests pin {pin!r} is not the signed selector_sha256 {signed!r}"
+                )
+            if not mismatches:
+                recorded += 1
+                continue
+        selects = "no base" if incoming_base is None else f"base {label}/{incoming_base}"
+        message = (
+            f"{label}: activation would stop serving base {label}/{active_base} of "
+            f"{current!r}; {incoming_release} selects {selects} for {label}. Carry the base "
+            "unchanged, or record the replacement under base_replacements in "
+            f"manifests/selector-lineage-baseline.yaml for {incoming_release}"
+        )
+        if mismatches:
+            message += f" (the recorded replacement differs: {', '.join(mismatches)})"
+        failures.append(message)
+    return CheckResult(
+        "base_carry_forward",
+        not failures,
+        "; ".join(failures)
+        if failures
+        else (
+            f"{len(incoming_pairs)} incoming pair(s): {based} displace an active base; "
+            f"{carried} carry it unchanged and {recorded} replace it under a recorded "
+            "base_replacements entry"
+        ),
+    )
+
+
+def _guarded_check(
+    name: str,
+    active_rows: list[dict[str, Any]] | None,
+    check: Callable[[list[dict[str, Any]]], CheckResult],
+) -> CheckResult:
+    """Run one active-state check so that any error fails that check alone."""
+    if active_rows is None:
+        return CheckResult(name, False, "active-state evidence unavailable")
+    try:
+        return check(active_rows)
+    except Exception as exc:  # a YAML error is not a ValueError, so catch broadly
+        return CheckResult(name, False, f"{name} could not run: {type(exc).__name__}: {exc}")
+
+
 def _mirror_check(
     release_object_path: Path,
     *,
@@ -694,9 +846,12 @@ def run_gate(
                 [
                     CheckResult("scope_monotonicity", False, "active-state provider is missing"),
                     CheckResult("no_orphan", False, "active-state provider is missing"),
+                    CheckResult("base_carry_forward", False, "active-state provider is missing"),
                 ]
             )
         else:
+            # Stays None when the provider raises, so the guarded checks below fail.
+            active_rows: list[dict[str, Any]] | None = None
             try:
                 active_rows = active_state_provider(release_object)
                 results.append(
@@ -714,6 +869,17 @@ def run_gate(
                         CheckResult("no_orphan", False, "active-state evidence unavailable"),
                     ]
                 )
+            # Each later check runs in its own guard, outside the shared try, so its
+            # error fails it alone and never adds a second result for another check.
+            results.append(
+                _guarded_check(
+                    "base_carry_forward",
+                    active_rows,
+                    lambda rows: _base_carry_forward_check(
+                        release_object, rows, repo_root=repo_root
+                    ),
+                )
+            )
     else:
         results.append(
             _mirror_check(
