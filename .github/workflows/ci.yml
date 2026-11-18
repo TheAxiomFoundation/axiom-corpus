@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     # The 22 green runs from 2026-11-13 to 11-18 took 18 to 32 minutes. Each
     # checked out in 10-15 seconds and prefetched Git blobs in under 65; the
-    # R2 corpus fetch (4-8 minutes) now varies most. 60 covers the slowest
+    # R2 corpus fetch (4-7 minutes) now varies most. 60 covers the slowest
     # run plus one test running to its 20-minute budget (tests/corpus_scan.py),
     # so pytest-timeout rather than the runner reports a hang. Commit/tree
     # history remains complete for merge-base and first-parent attestations.
