@@ -15,6 +15,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any, cast
 
+from axiom_corpus.corpus.releases import LAYER_BASE, LAYER_PRIMARY, parse_release_scope
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
@@ -66,6 +67,45 @@ def _scope_triples(scopes: object) -> set[Scope]:
             raise ValueError(f"duplicate scope triple: {triple!r}")
         triples.add(triple)
     return triples
+
+
+def _scope_layers(scopes: object) -> dict[Scope, str]:
+    """Map each signed scope triple to its layer.
+
+    A primary scope has no ``layer`` key and a base scope spells ``"layer": "base"``,
+    the one encoding release-object verification accepts. Any other layer value and
+    a second base for one pair are refused, as verification refuses them.
+    """
+    _scope_triples(scopes)
+    layers: dict[Scope, str] = {}
+    base_pairs: set[Pair] = set()
+    for scope in cast(list[dict[str, Any]], scopes):
+        triple = cast(
+            Scope,
+            tuple(scope[field] for field in ("jurisdiction", "document_class", "version")),
+        )
+        if "layer" not in scope:
+            layers[triple] = LAYER_PRIMARY
+            continue
+        if scope["layer"] != LAYER_BASE:
+            raise ValueError(
+                f"scope {'/'.join(triple)} has an unsupported layer: {scope['layer']!r}"
+            )
+        pair = (triple[0], triple[1])
+        if pair in base_pairs:
+            raise ValueError(f"more than one base scope for {'/'.join(pair)}")
+        base_pairs.add(pair)
+        layers[triple] = LAYER_BASE
+    return layers
+
+
+def _base_versions(layers: Mapping[Scope, str]) -> dict[Pair, str]:
+    """Return each pair's base version; a pair without a base is absent."""
+    return {
+        (jurisdiction, document_class): version
+        for (jurisdiction, document_class, version), layer in layers.items()
+        if layer == LAYER_BASE
+    }
 
 
 def _version_key(value: str) -> tuple[date, str]:
@@ -177,6 +217,22 @@ def _provenance_check(
             missing = sorted(object_scopes - plan_scopes)
             extra = sorted(plan_scopes - object_scopes)
             failures.append(f"cut-plan scope mismatch (missing={missing!r}, extra={extra!r})")
+        # The plan is a selector, so its layers are read exactly as the selector
+        # loader reads them; the object's scopes also carry row and digest fields.
+        plan_layers = {
+            parsed.key: parsed.layer
+            for parsed in (
+                parse_release_scope(raw, manifest_path=plan_path) for raw in plan["scopes"]
+            )
+        }
+        object_layers = _scope_layers(release_object.get("content", {}).get("scopes"))
+        flips = [
+            f"{'/'.join(triple)}: plan {plan_layers[triple]}, object {object_layers[triple]}"
+            for triple in sorted(plan_scopes & object_scopes)
+            if plan_layers[triple] != object_layers[triple]
+        ]
+        if flips:
+            failures.append(f"cut-plan layer mismatch ({'; '.join(flips)})")
     except (OSError, json.JSONDecodeError, ValueError, AttributeError) as exc:
         failures.append(f"cannot validate cut plan {plan_path}: {exc}")
 
