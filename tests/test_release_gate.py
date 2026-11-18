@@ -50,6 +50,7 @@ P1 = ReleaseScope("us", "statute", "2026-07-26-p1")
 P2 = ReleaseScope("us", "statute", "2026-07-28-p2")
 R1 = ReleaseScope("us", "regulation", "2026-07-26-r1")
 BR = ReleaseScope("us", "regulation", "2026-05-01", layer=LAYER_BASE)
+BR_NEW = ReleaseScope("us", "regulation", "2026-11-01-cfr", layer=LAYER_BASE)
 
 
 @pytest.fixture
@@ -1334,12 +1335,16 @@ def test_base_carried_as_primary_fails(release_repo) -> None:
 
 
 @pytest.mark.parametrize(
-    "variant", ["none", "matching", "wrong_replaced", "wrong_replaced_by", "stale_pin"]
+    "variant",
+    ["none", "matching", "wrong_replaced", "wrong_replaced_by", "stale_pin", "no_incoming_base"],
 )
 def test_base_replacement_needs_a_recorded_entry(release_repo, variant: str) -> None:
     root, _, make = release_repo
     _install_active_manifest(root, "us-restore", B, P1)
-    obj, path = make("us-restore-next", [B_NEW, P1])
+    # no_incoming_base: the record names the active base and the pin, but the cut
+    # selects no base, so the record cannot match what the cut serves.
+    scopes = [P1, P2] if variant == "no_incoming_base" else [B_NEW, P1]
+    obj, path = make("us-restore-next", scopes)
     signed = obj["content"]["selector_sha256"]
     other_base = ReleaseScope("us", "statute", "2026-11-02-us-code", layer=LAYER_BASE)
     if variant != "none":
@@ -1371,11 +1376,13 @@ def test_base_replacement_needs_a_recorded_entry(release_repo, variant: str) -> 
         "(us/statute/2026-11-01-us-code))",
         "stale_pin": " (the recorded replacement differs: the selector_digests pin "
         f"'{'0' * 64}' is not the signed selector_sha256 '{signed}')",
+        "no_incoming_base": " (the recorded replacement differs: replaced_by "
+        "'us/statute/2026-11-01-us-code' is not the incoming base (no base))",
     }[variant]
+    selects = "no base" if variant == "no_incoming_base" else "base us/statute/2026-11-01-us-code"
     assert not result.passed
     assert result.evidence == (
-        _stop_serving("us-restore-next", "base us/statute/2026-11-01-us-code", current="us-restore")
-        + suffix
+        _stop_serving("us-restore-next", selects, current="us-restore") + suffix
     )
 
 
@@ -1474,6 +1481,11 @@ _STATUTE_ROW = _layered_row(_STATUTE, [B.version, P1.version], B.version)
             id="empty_release_name",
         ),
         pytest.param(
+            [{**_STATUTE_ROW, "current_release_name": 5}],
+            "us/statute: current_release_name must be a non-empty string or null, not 5",
+            id="non_string_release_name",
+        ),
+        pytest.param(
             [_STATUTE_ROW, _STATUTE_ROW],
             "us/statute: active-state preview has 2 row(s) for an incoming pair; "
             "refusing vacuous pass",
@@ -1527,6 +1539,57 @@ def test_unchanged_new_and_uncarried_pairs_are_not_checked(release_repo) -> None
         "2 incoming pair(s): 0 displace an active base; 0 carry it unchanged and 0 replace "
         "it under a recorded base_replacements entry"
     )
+
+
+@pytest.mark.parametrize("regulation", ["carried", "recorded", "no_active_base", "null_pointer"])
+def test_a_later_pair_is_checked_after_an_earlier_pair_passes(
+    release_repo, regulation: str
+) -> None:
+    # us/regulation sorts first and passes each way; us/statute still omits its base.
+    root, _, make = release_repo
+    obj, path = make("us-two-pairs", [BR_NEW if regulation == "recorded" else BR, R1, P1, P2])
+    if regulation == "recorded":
+        _write_lineage_baseline(
+            root,
+            selector="us-two-pairs",
+            predecessor="us-active",
+            pair=_REGULATION,
+            replaced=BR.version,
+            replaced_by=BR_NEW,
+            digest=obj["content"]["selector_sha256"],
+        )
+    based_regulation = _layered_row(_REGULATION, [BR.version, R1.version], BR.version)
+    regulation_row = {
+        "carried": based_regulation,
+        "recorded": based_regulation,
+        "no_active_base": _layered_row(_REGULATION, [R1.version], None),
+        "null_pointer": {
+            "jurisdiction": "us",
+            "document_class": "regulation",
+            "changes": True,
+            "current_release_name": None,
+            "current_versions": [],
+        },
+    }[regulation]
+    rows = [regulation_row, _layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    results = _activate(release_repo, "us-two-pairs", obj, path, rows)
+    result = _by_name(results)["base_carry_forward"]
+    assert (result.passed, result.warning) == (False, False)
+    # The evidence names only us/statute, so us/regulation passed before it.
+    assert result.evidence == _stop_serving("us-two-pairs", "no base")
+
+
+def test_a_base_only_incoming_pair_is_checked(release_repo) -> None:
+    # The cut selects only a fresh base for us/statute, whose active release serves
+    # its base alone, and no record names the replacement.
+    rows = [
+        _layered_row(_REGULATION, [R1.version], None),
+        _layered_row(_STATUTE, [B.version], B.version),
+    ]
+    _, _, results = _results(release_repo, "us-base-only", [B_NEW, R1], rows)
+    result = _by_name(results)["base_carry_forward"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == _stop_serving("us-base-only", "base us/statute/2026-11-01-us-code")
 
 
 def test_a_carried_base_cannot_hide_a_primary_regression(release_repo) -> None:
