@@ -651,6 +651,62 @@ def _base_carry_forward_check(
     )
 
 
+def _base_only_pair_check(
+    release_object: Mapping[str, Any], active_rows: list[dict[str, Any]]
+) -> CheckResult:
+    """Fail an activation that serves a pair from its base alone over active primaries.
+
+    A pair is base-only when the incoming release selects a base scope for it and
+    no primary scope. Its displaced active release must then serve no primary
+    scope there. Only the active base version is subtracted from the active
+    versions, so an incoming base that relabels an active primary version fails
+    too. The check reads no lineage baseline, and no flag softens it.
+    """
+    content = release_object["content"]
+    incoming_release = str(release_object["release"])
+    layers = _scope_layers(content["scopes"])
+    incoming_bases = _base_versions(layers)
+    incoming_pairs = {(triple[0], triple[1]) for triple in layers}
+    primary_pairs = {
+        (triple[0], triple[1]) for triple, layer in layers.items() if layer == LAYER_PRIMARY
+    }
+    base_only = sorted(set(incoming_bases) - primary_pairs)
+    if not base_only:
+        return CheckResult(
+            "base_only_pair",
+            True,
+            f"all {len(incoming_pairs)} incoming pair(s) select a primary scope",
+        )
+    failures: list[str] = []
+    cleared = 0
+    for pair in base_only:
+        displaced = _displaced_row(pair, active_rows, failures)
+        if displaced is None:
+            cleared += 1
+            continue
+        current, versions, active_base = displaced
+        primaries = sorted(version for version in versions if version != active_base)
+        if not primaries:
+            cleared += 1
+            continue
+        label = "/".join(pair)
+        listed = ", ".join(f"{label}/{version}" for version in primaries)
+        failures.append(
+            f"{label}: activation would serve {label} from base {label}/{incoming_bases[pair]} "
+            f"alone and stop serving primary scope(s) {listed} of {current!r}: "
+            f"{incoming_release} selects no primary scope of {label}. Carry a primary scope "
+            f"of {label}; --allow-regression does not waive this check"
+        )
+    return CheckResult(
+        "base_only_pair",
+        not failures,
+        "; ".join(failures)
+        if failures
+        else f"{len(base_only)} base-only incoming pair(s): {cleared} displace no active "
+        "primary scope",
+    )
+
+
 def _guarded_check(
     name: str,
     active_rows: list[dict[str, Any]] | None,
@@ -847,6 +903,7 @@ def run_gate(
                     CheckResult("scope_monotonicity", False, "active-state provider is missing"),
                     CheckResult("no_orphan", False, "active-state provider is missing"),
                     CheckResult("base_carry_forward", False, "active-state provider is missing"),
+                    CheckResult("base_only_pair", False, "active-state provider is missing"),
                 ]
             )
         else:
@@ -878,6 +935,13 @@ def run_gate(
                     lambda rows: _base_carry_forward_check(
                         release_object, rows, repo_root=repo_root
                     ),
+                )
+            )
+            results.append(
+                _guarded_check(
+                    "base_only_pair",
+                    active_rows,
+                    lambda rows: _base_only_pair_check(release_object, rows),
                 )
             )
     else:

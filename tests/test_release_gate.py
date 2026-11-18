@@ -1162,6 +1162,7 @@ _ACTIVATE_NAMES = [
     "scope_monotonicity",
     "no_orphan",
     "base_carry_forward",
+    "base_only_pair",
 ]
 
 
@@ -1656,6 +1657,7 @@ def test_provider_failure_fails_every_state_check(release_repo, failure: str) ->
             "scope_monotonicity": "active-state lookup failed: boom",
             "no_orphan": "active-state evidence unavailable",
             "base_carry_forward": "active-state evidence unavailable",
+            "base_only_pair": "active-state evidence unavailable",
         }
     else:
         expected = dict.fromkeys(state, "active-state provider is missing")
@@ -1718,3 +1720,260 @@ def test_carried_and_absent_bases_never_read_the_lineage_baseline(release_repo, 
     results = _activate(release_repo, name, obj, path, rows)
     assert [result.name for result in results] == _ACTIVATE_NAMES
     assert all(result.passed for result in results), _evidence(results)
+
+
+# Activation's base_only_pair check: a pair the incoming release selects only a
+# base for must not displace an active release that serves primaries there.
+def _base_alone(
+    pair: tuple[str, str],
+    incoming: str,
+    base: str,
+    primaries: list[str],
+    current: str = "us-active",
+) -> str:
+    label = "/".join(pair)
+    listed = ", ".join(f"{label}/{version}" for version in primaries)
+    return (
+        f"{label}: activation would serve {label} from base {label}/{base} alone and stop "
+        f"serving primary scope(s) {listed} of {current!r}: {incoming} selects no primary "
+        f"scope of {label}. Carry a primary scope of {label}; --allow-regression does not "
+        "waive this check"
+    )
+
+
+@pytest.mark.parametrize("allow_regression", [False, True])
+def test_base_only_successor_cannot_displace_active_primaries(
+    release_repo, allow_regression: bool
+) -> None:
+    # The cut keeps the base, so lineage and base_carry_forward see nothing wrong;
+    # only base_only_pair sees that it drops the primary above the base.
+    _install_active_manifest(release_repo[0], "us-active", B, P1)
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    _, _, results = _results(
+        release_repo, "us-base-alone", [B], rows, allow_regression=allow_regression
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    result = by_name["base_only_pair"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == _base_alone(_STATUTE, "us-base-alone", B.version, [P1.version])
+    assert by_name["base_carry_forward"].passed, by_name["base_carry_forward"].evidence
+    monotonicity = by_name["scope_monotonicity"]
+    assert (monotonicity.passed, monotonicity.warning) == (allow_regression, allow_regression)
+    assert "incoming frontier '2026-04-29' precedes active '2026-07-26-p1'" in (
+        monotonicity.evidence
+    )
+    for name in ("object_identity", "cut_plan_provenance", "no_orphan"):
+        assert by_name[name].passed, by_name[name].evidence
+
+
+def test_base_only_pair_fails_the_cli_under_allow_regression(
+    release_repo, capsys, monkeypatch
+) -> None:
+    root, public, make = release_repo
+    obj, path = make("us-base-alone", [B])
+    _install_active_manifest(root, "us-active", B, P1)
+    active_path = root / "active-state.json"
+    active_path.write_text(json.dumps([_layered_row(_STATUTE, [B.version, P1.version], B.version)]))
+    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", public)
+    exit_code = gate.main(
+        [
+            "--release-object",
+            str(path),
+            "--release",
+            "us-base-alone",
+            "--content-sha",
+            obj["content_sha256"],
+            "--repo-root",
+            str(root),
+            "--mode",
+            "activate",
+            "--active-state-file",
+            str(active_path),
+            "--allow-regression",
+        ]
+    )
+    output = capsys.readouterr().out
+    assert exit_code == 1
+    assert "| scope_monotonicity | WARN |" in output
+    assert "| base_only_pair | FAIL |" in output
+    # The flag turns the frontier regression into a warning; base_only_pair alone fails.
+    assert re.findall(r"^\| (\w+) \| (PASS|FAIL|WARN) \|", output, re.MULTILINE) == [
+        ("object_identity", "PASS"),
+        ("cut_plan_provenance", "PASS"),
+        ("scope_monotonicity", "WARN"),
+        ("no_orphan", "PASS"),
+        ("base_carry_forward", "PASS"),
+        ("base_only_pair", "FAIL"),
+    ]
+
+
+def test_separate_base_only_release_cannot_displace_primaries(release_repo) -> None:
+    # The active release serves us/statute from primaries alone; the cut selects
+    # only the May base, which no active base needs to carry forward.
+    _install_active_manifest(release_repo[0], "us-active", P1)
+    rows = [_layered_row(_STATUTE, [P1.version], None)]
+    _, _, results = _results(release_repo, "us-base-release", [B], rows)
+    by_name = _by_name(results)
+    assert by_name["base_carry_forward"].passed, by_name["base_carry_forward"].evidence
+    result = by_name["base_only_pair"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == _base_alone(_STATUTE, "us-base-release", B.version, [P1.version])
+
+
+def test_fresh_base_alone_cannot_displace_primaries(release_repo) -> None:
+    # A recorded replacement clears base_carry_forward, and the fresh base advances
+    # the frontier, but the cut still drops the primary above the old base.
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-active", B, P1)
+    obj, path = make("us-fresh-base", [B_NEW])
+    _write_lineage_baseline(
+        root,
+        selector="us-fresh-base",
+        predecessor="us-active",
+        pair=_STATUTE,
+        replaced=B.version,
+        replaced_by=B_NEW,
+        digest=obj["content"]["selector_sha256"],
+    )
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    results = _activate(release_repo, "us-fresh-base", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert [result.name for result in results if not result.passed] == ["base_only_pair"], (
+        _evidence(results)
+    )
+    by_name = _by_name(results)
+    assert by_name["base_carry_forward"].evidence == (
+        "1 incoming pair(s): 1 displace an active base; 0 carry it unchanged and 1 replace "
+        "it under a recorded base_replacements entry"
+    )
+    assert by_name["base_only_pair"].evidence == _base_alone(
+        _STATUTE, "us-fresh-base", B_NEW.version, [P1.version]
+    )
+
+
+def test_base_only_pair_refuses_a_primary_relabelled_as_base(release_repo) -> None:
+    # The cut serves the active primary version again, now as a base. Only the
+    # active base is subtracted, so the version still counts as a displaced primary.
+    _install_active_manifest(release_repo[0], "us-active", B_PRIMARY)
+    rows = [_layered_row(_STATUTE, [B.version], None)]
+    _, _, results = _results(release_repo, "us-relabelled", [B], rows)
+    by_name = _by_name(results)
+    assert by_name["scope_monotonicity"].passed, by_name["scope_monotonicity"].evidence
+    assert by_name["base_carry_forward"].passed, by_name["base_carry_forward"].evidence
+    result = by_name["base_only_pair"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == _base_alone(_STATUTE, "us-relabelled", B.version, [B.version])
+
+
+@pytest.mark.parametrize("case", ["new_pair", "already_base_only", "reaffirm"])
+def test_base_only_pair_passes_when_nothing_is_displaced(release_repo, case: str) -> None:
+    row = {
+        "new_pair": {
+            "jurisdiction": "us",
+            "document_class": "statute",
+            "changes": True,
+            "current_release_name": None,
+            "current_versions": [],
+        },
+        "already_base_only": _layered_row(_STATUTE, [B.version], B.version),
+        "reaffirm": {
+            "jurisdiction": "us",
+            "document_class": "statute",
+            "changes": False,
+            "current_release_name": "us-base-alone",
+        },
+    }[case]
+    _, _, results = _results(release_repo, "us-base-alone", [B], [row])
+    result = _by_name(results)["base_only_pair"]
+    assert (result.passed, result.warning) == (True, False), result.evidence
+    assert result.evidence == "1 base-only incoming pair(s): 1 displace no active primary scope"
+
+
+@pytest.mark.parametrize(
+    ("rows", "message"),
+    [
+        pytest.param(
+            [_layered_row(_STATUTE, [B.version, P1.version])],
+            "us/statute: active-state evidence lacks current_base_version",
+            id="missing_key",
+        ),
+        pytest.param(
+            # Empty versions and a null base would leave no primaries to subtract from.
+            [_layered_row(_STATUTE, [], None)],
+            "us/statute: active release 'us-active' has no version evidence",
+            id="empty_versions",
+        ),
+        pytest.param(
+            [_layered_row(_STATUTE, [P1.version], B.version)],
+            "us/statute: current_base_version '2026-04-29' is not among current_versions "
+            "['2026-07-26-p1']",
+            id="base_not_listed",
+        ),
+        pytest.param(
+            [],
+            "us/statute: active-state preview has 0 row(s) for an incoming pair; "
+            "refusing vacuous pass",
+            id="no_row",
+        ),
+    ],
+)
+def test_base_only_pair_rejects_malformed_evidence(
+    release_repo, rows: list[dict[str, Any]], message: str
+) -> None:
+    _, _, results = _results(release_repo, "us-base-alone", [B], rows)
+    result = _by_name(results)["base_only_pair"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == message
+
+
+@pytest.mark.parametrize("regulation", ["null_pointer", "already_base_only", "displaced"])
+def test_a_later_base_only_pair_is_checked_after_an_earlier_one(
+    release_repo, regulation: str
+) -> None:
+    # us/regulation sorts first; us/statute still displaces an active primary.
+    regulation_row = {
+        "null_pointer": {
+            "jurisdiction": "us",
+            "document_class": "regulation",
+            "changes": True,
+            "current_release_name": None,
+            "current_versions": [],
+        },
+        "already_base_only": _layered_row(_REGULATION, [BR.version], BR.version),
+        "displaced": _layered_row(_REGULATION, [BR.version, R1.version], BR.version),
+    }[regulation]
+    rows = [regulation_row, _layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    _, _, results = _results(release_repo, "us-bases-alone", [BR, B], rows)
+    result = _by_name(results)["base_only_pair"]
+    assert (result.passed, result.warning) == (False, False)
+    expected = [_base_alone(_STATUTE, "us-bases-alone", B.version, [P1.version])]
+    if regulation == "displaced":
+        expected.insert(0, _base_alone(_REGULATION, "us-bases-alone", BR.version, [R1.version]))
+    assert result.evidence == "; ".join(expected)
+
+
+def test_an_unreadable_signed_layer_fails_each_layer_check_alone(release_repo) -> None:
+    # A tampered object fails identity, and each layer check reports its own error
+    # without a second result for the checks in the provider's shared try.
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-active", B, P1)
+    obj, path = make("us-tampered", [B, P1])
+    for scope in obj["content"]["scopes"]:
+        if scope.get("layer") == LAYER_BASE:
+            scope["layer"] = "overlay"
+    path.write_text(json.dumps(obj, indent=2, sort_keys=True) + "\n")
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    results = _activate(release_repo, "us-tampered", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    assert not by_name["object_identity"].passed
+    monotonicity = by_name["scope_monotonicity"]
+    assert monotonicity.passed, monotonicity.evidence
+    assert "active-state lookup failed" not in monotonicity.evidence
+    error = "ValueError: scope us/statute/2026-04-29 has an unsupported layer: 'overlay'"
+    for name in ("base_carry_forward", "base_only_pair"):
+        assert (by_name[name].passed, by_name[name].evidence) == (
+            False,
+            f"{name} could not run: {error}",
+        )
