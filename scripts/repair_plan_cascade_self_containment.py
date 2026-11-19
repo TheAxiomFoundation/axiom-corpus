@@ -75,13 +75,13 @@ def _refuse_base_repairs(
     """Refuse a repair that would re-version a base scope or write over one.
 
     A base scope is carried into every successor unchanged. A repaired scope
-    (a key of ``mappings``) is refused when the release payload marks it
-    ``"layer": "base"`` or when it is in ``base_scopes``, the scopes a tracked
-    selector marks as bases. Its new scope (a value) is refused when it is in
-    ``base_scopes``. A payload scope whose ``layer`` is anything but
-    ``"base"`` is refused too, since only the base layer is spelled out. The
-    check reads and writes nothing, so ``main`` runs it before the first move
-    or unlink. A base is known here only once a selector marks it.
+    (a key of ``mappings``) or its new scope (a value) is refused when the
+    release payload marks it ``"layer": "base"`` or when it is in
+    ``base_scopes``, the scopes a tracked selector marks as bases. A payload
+    scope whose ``layer`` is anything but ``"base"`` is refused too, since
+    only the base layer is spelled out. The check reads and writes nothing,
+    so ``main`` runs it before the first move or unlink. A base is known here
+    only once a selector marks it.
     """
     payload_bases: set[tuple[str, str, str]] = set()
     for row in release_payload["scopes"]:
@@ -93,10 +93,8 @@ def _refuse_base_repairs(
                 f"release scope {'/'.join(scope)} has an invalid layer: {row['layer']!r}"
             )
         payload_bases.add(scope)
-    refused = sorted(
-        {scope for scope in mappings if scope in payload_bases or scope in base_scopes}
-        | {scope for scope in mappings.values() if scope in base_scopes}
-    )
+    bases = payload_bases | set(base_scopes)
+    refused = sorted(bases.intersection({*mappings, *mappings.values()}))
     if refused:
         raise ValueError(
             "base scopes are carried unchanged and cannot be repaired: "

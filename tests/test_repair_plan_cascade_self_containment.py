@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -13,6 +14,7 @@ SUFFIX = "r2026-11-17-repaired"
 BASE = ("us-example", "statute", "base-v")
 PRIMARY = ("us-example", "statute", "primary-v")
 OTHER_PRIMARY = ("us-example", "regulation", "primary-w")
+REPAIRED_PRIMARY = ("us-example", "statute", f"primary-v-{SUFFIX}")
 
 
 def _row(scope: tuple[str, str, str], *, layer: str | None = None) -> dict[str, str]:
@@ -78,6 +80,39 @@ def test_refuses_a_repair_whose_new_scope_is_a_tracked_base():
             _mapped(PRIMARY),
             frozenset({new_scope}),
         )
+
+
+@pytest.mark.parametrize(
+    ("rows", "repaired", "tracked", "refused"),
+    [
+        pytest.param(
+            (_row(PRIMARY), _row(REPAIRED_PRIMARY, layer="base")),
+            (PRIMARY,),
+            frozenset(),
+            f"us-example/statute/primary-v-{SUFFIX}",
+            id="payload-base-is-the-new-scope",
+        ),
+        pytest.param(
+            (_row(PRIMARY), _row(REPAIRED_PRIMARY, layer="base"), _row(OTHER_PRIMARY)),
+            (PRIMARY, OTHER_PRIMARY),
+            frozenset({OTHER_PRIMARY}),
+            f"us-example/regulation/primary-w, us-example/statute/primary-v-{SUFFIX}",
+            id="beside-a-tracked-base-key",
+        ),
+    ],
+)
+def test_refuses_a_repair_whose_new_scope_the_release_payload_marks_as_base(
+    rows, repaired, tracked, refused
+):
+    # The release's own payload declares the new scope a base, so the repair
+    # would write over a base's files. No tracked selector needs to say so.
+    with pytest.raises(
+        ValueError,
+        match="^"
+        + re.escape(f"base scopes are carried unchanged and cannot be repaired: {refused}")
+        + "$",
+    ):
+        _refuse_base_repairs(_payload(*rows), _mapped(*repaired), tracked)
 
 
 def test_names_every_refused_scope_in_order():
@@ -216,5 +251,120 @@ def test_main_refuses_a_base_repair_before_moving_anything(
 
     # The audit reached the repair plan, and nothing was moved, written or unlinked.
     assert fetched == [[BASE]]
+    assert _tree(repo) == before
+    assert not report.exists()
+
+
+def _write_scope_files(
+    corpus: Path, scope: tuple[str, str, str], rows: list[dict[str, str]], *, sources: bool
+) -> None:
+    jurisdiction, document_class, version = scope
+    provisions = corpus / "provisions" / jurisdiction / document_class / f"{version}.jsonl"
+    provisions.parent.mkdir(parents=True, exist_ok=True)
+    provisions.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows))
+    inventory = corpus / "inventory" / jurisdiction / document_class / f"{version}.json"
+    inventory.parent.mkdir(parents=True, exist_ok=True)
+    items = [{"citation_path": row["citation_path"]} for row in rows]
+    inventory.write_text(json.dumps({"items": items}) + "\n")
+    coverage = corpus / "coverage" / jurisdiction / document_class / f"{version}.json"
+    coverage.parent.mkdir(parents=True, exist_ok=True)
+    coverage.write_text(json.dumps({"complete": True, "version": version}) + "\n")
+    if sources:
+        source = corpus / "sources" / jurisdiction / document_class / version / "source.html"
+        source.parent.mkdir(parents=True)
+        source.write_text(f"<p>{version}</p>\n")
+
+
+def _write_payload_base_repo(repo: Path) -> None:
+    """Write a primary scope to repair and the base its release payload names as the repair."""
+    corpus = repo / "data" / "corpus"
+    # The primary scope's row names a parent it lacks, so an audit repairs it.
+    _write_scope_files(
+        corpus,
+        PRIMARY,
+        [
+            {
+                "citation_path": "us-example/statute/1/a",
+                "document_class": PRIMARY[1],
+                "jurisdiction": PRIMARY[0],
+                "parent_citation_path": "us-example/statute/1",
+                "version": PRIMARY[2],
+            }
+        ],
+        sources=True,
+    )
+    manifest = repo / ".axiom" / "ingest-manifests" / PRIMARY[0] / PRIMARY[1] / f"{PRIMARY[2]}.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps({"applied_files": [], "version": PRIMARY[2]}) + "\n")
+    # The base whose name the suffix spells: self-contained, so the audit leaves it alone.
+    _write_scope_files(
+        corpus,
+        REPAIRED_PRIMARY,
+        [
+            {
+                "citation_path": "us-example/statute/2",
+                "document_class": REPAIRED_PRIMARY[1],
+                "jurisdiction": REPAIRED_PRIMARY[0],
+                "version": REPAIRED_PRIMARY[2],
+            }
+        ],
+        sources=False,
+    )
+    release = repo / "repair" / "release.json"
+    release.parent.mkdir(parents=True)
+    release.write_text(
+        json.dumps(
+            _payload(_row(PRIMARY), _row(REPAIRED_PRIMARY, layer="base")), indent=2, sort_keys=True
+        )
+        + "\n"
+    )
+    releases = repo / "manifests" / "releases"
+    releases.mkdir(parents=True)
+    # A tracked selector that marks no base, so only the release payload names one.
+    (releases / "us-example-plain.json").write_text(
+        json.dumps({"name": "us-example-plain", "scopes": [_row(PRIMARY)]}) + "\n"
+    )
+    (repo / "SIGNING-COMMANDS.md").write_text(
+        f"sign_scope {PRIMARY[0]} {PRIMARY[1]} {PRIMARY[2]}\n"
+    )
+
+
+def test_main_refuses_a_repair_onto_a_payload_base_before_moving_anything(tmp_path, monkeypatch):
+    repo = tmp_path / "repo"
+    _write_payload_base_repo(repo)
+    report = tmp_path / "report.json"
+    before = _tree(repo)
+    fetched: list[list[tuple[str, str, str]]] = []
+    monkeypatch.setattr(
+        repair_module,
+        "ensure_corpus_scopes",
+        lambda scopes, *, repo: fetched.append(list(scopes)),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "repair_plan_cascade_self_containment.py",
+            "--audit-residuals",
+            "--repo",
+            str(repo),
+            "--release",
+            str(Path("repair") / "release.json"),
+            "--suffix",
+            SUFFIX,
+            "--report",
+            str(report),
+        ],
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=rf"^base scopes are carried unchanged and cannot be repaired: "
+        rf"us-example/statute/primary-v-{SUFFIX}$",
+    ):
+        repair_module.main()
+
+    # The audit reached the repair plan, and the base's files are as they were.
+    assert fetched == [[PRIMARY, REPAIRED_PRIMARY]]
     assert _tree(repo) == before
     assert not report.exists()
