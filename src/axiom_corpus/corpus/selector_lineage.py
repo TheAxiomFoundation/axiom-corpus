@@ -427,6 +427,8 @@ class RecordedBaseReplacement:
 
     ``replaced`` is the version of the predecessor's base for the pair, and
     ``replaced_by`` the base scope the selector selects for the pair instead.
+    It is keyed by its selector and pair, and replaced_by is another scope of
+    that pair.
     """
 
     selector: str
@@ -436,6 +438,24 @@ class RecordedBaseReplacement:
     replaced_by: ScopeKey
     listed_on: str
     reason: str
+
+
+def _require_base_replacement(
+    key: object, replacement: RecordedBaseReplacement, where: str
+) -> None:
+    """Refuse a base replacement record the baseline file could not hold."""
+    if key != (replacement.selector, replacement.pair):
+        raise SelectorLineageError(
+            f"{where}: keyed by {key!r}; a base replacement is keyed by its own selector and pair"
+        )
+    if replacement.selector == replacement.predecessor:
+        raise SelectorLineageError(f"{where}: a selector cannot succeed itself")
+    if replacement.replaced_by[:2] != replacement.pair:
+        raise SelectorLineageError(
+            f"{where}.replaced_by must be a scope of {pair_label(replacement.pair)}"
+        )
+    if replacement.replaced_by[2] == replacement.replaced:
+        raise SelectorLineageError(f"{where}.replaced_by must differ from the base it replaces")
 
 
 @dataclass(frozen=True)
@@ -573,12 +593,19 @@ def check_selector_lineage(
     """Compare every selector with its resolved predecessor, and check the line's shape.
 
     ``selectors`` maps each tracked selector's name to its manifest; a name
-    must equal its manifest's name.
+    must equal its manifest's name. Each base replacement must be keyed by its
+    own selector and pair and name another scope of that pair, as the loader
+    requires; otherwise the check raises SelectorLineageError before it
+    compares anything.
     """
     baseline = baseline or LineageBaseline()
     for name, manifest in selectors.items():
         if manifest.name != name:
             raise ValueError(f"selector {name!r} holds a manifest named {manifest.name!r}")
+    for key, candidate in baseline.base_replacements.items():
+        _require_base_replacement(
+            key, candidate, f"base_replacements[{candidate.selector}, {pair_label(candidate.pair)}]"
+        )
     names = frozenset(selectors)
     predecessors = resolved_predecessors(selectors, baseline)
     errors: list[str] = []
@@ -1155,16 +1182,7 @@ def load_lineage_baseline(
             listed_on=_iso_date(item["listed_on"], f"{entry_where}.listed_on"),
             reason=_text(item["reason"], f"{entry_where}.reason"),
         )
-        if replacement.selector == replacement.predecessor:
-            raise SelectorLineageError(f"{entry_where}: a selector cannot succeed itself")
-        if replacement.replaced_by[:2] != pair:
-            raise SelectorLineageError(
-                f"{entry_where}.replaced_by must be a scope of {pair_label(pair)}"
-            )
-        if replacement.replaced_by[2] == replacement.replaced:
-            raise SelectorLineageError(
-                f"{entry_where}.replaced_by must differ from the base it replaces"
-            )
+        _require_base_replacement((replacement.selector, pair), replacement, entry_where)
         replacement_keys.append((replacement.selector, pair))
         base_replacements[(replacement.selector, pair)] = replacement
     _sorted_unique(replacement_keys, f"{where}: base_replacements (by selector, then pair)")

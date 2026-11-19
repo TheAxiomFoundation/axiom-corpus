@@ -1306,6 +1306,91 @@ def test_a_base_replacement_record_that_no_longer_holds_is_a_baseline_error(
     assert report.baseline_errors[0].startswith(error), report.baseline_errors
 
 
+@pytest.mark.parametrize(
+    ("bases", "key", "changes", "message"),
+    [
+        pytest.param(
+            [_ECFR],
+            ("pin-next", ("us", "statute")),
+            {"replaced_by": _ECFR},
+            r"base_replacements\[pin-next, us/statute\]\.replaced_by must be a scope of "
+            r"us/statute",
+            id="replaced-by-another-pairs-base",
+        ),
+        pytest.param(
+            [_ECFR],
+            ("pin-next", ("us", "statute")),
+            {"pair": ("us", "regulation"), "replaced_by": _ECFR},
+            r"base_replacements\[pin-next, us/regulation\]: keyed by "
+            r"\('pin-next', \('us', 'statute'\)\)",
+            id="another-pairs-record-under-this-key",
+        ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"selector": "pin-other"},
+            r"base_replacements\[pin-other, us/statute\]: keyed by",
+            id="another-selectors-record-under-this-key",
+        ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"predecessor": "pin-next"},
+            r": a selector cannot succeed itself",
+            id="selector-succeeds-itself",
+        ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"replaced_by": _US_CODE},
+            r"\.replaced_by must differ from the base it replaces",
+            id="replaced-by-the-base-it-replaces",
+        ),
+    ],
+)
+def test_a_base_replacement_built_in_code_is_held_to_the_files_rules(
+    bases: list[ScopeKey],
+    key: tuple[str, tuple[str, str]],
+    changes: dict[str, object],
+    message: str,
+) -> None:
+    """A baseline built in code meets the loader's rules before the check compares anything."""
+    predecessor = _layered_predecessor()
+    successor = _layered_successor(_LAYERED_PRIMARIES, bases)
+    baseline = replace(
+        _baseline(predecessor, pinned=[successor]),
+        base_replacements={key: _replacement(**changes)},
+    )
+    with pytest.raises(SelectorLineageError, match=message):
+        _check(predecessor, successor, baseline=baseline)
+
+
+@pytest.mark.parametrize(
+    "replaced_by", sorted({*_LAYERED_PRIMARIES, _US_CODE, _ECFR, _NEW_US_CODE})
+)
+@pytest.mark.parametrize(
+    "bases",
+    [[_ECFR], [_ECFR, _NEW_US_CODE]],
+    ids=["us-code-left-out", "us-code-replaced"],
+)
+def test_a_base_replacement_allows_only_a_base_of_its_own_pair(
+    bases: list[ScopeKey], replaced_by: ScopeKey
+) -> None:
+    predecessor = _layered_predecessor()
+    successor = _layered_successor(_LAYERED_PRIMARIES, bases)
+    baseline = _replacement_baseline(
+        predecessor, pinned=[successor], replacement=_replacement(replaced_by=replaced_by)
+    )
+    if replaced_by[:2] != ("us", "statute") or replaced_by == _US_CODE:
+        with pytest.raises(SelectorLineageError):
+            _check(predecessor, successor, baseline=baseline)
+        return
+    report = _check(predecessor, successor, baseline=baseline)
+    allowed = replaced_by in bases
+    assert report.recorded_base_replacements == ((_DROPPED_US_CODE,) if allowed else ())
+    assert report.dropped_bases == (() if allowed else (_DROPPED_US_CODE,))
+
+
 @st.composite
 def _layered_scopes(draw: st.DrawFn) -> tuple[ReleaseScope, ...]:
     """A scope set with at most one base per pair."""
