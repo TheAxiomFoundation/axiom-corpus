@@ -36,6 +36,7 @@ from pathlib import Path
 import pytest
 import yaml
 
+from axiom_corpus.corpus import selector_lineage
 from axiom_corpus.corpus.releases import LAYER_BASE, ReleaseManifest, ReleaseScope, ScopeKey
 from axiom_corpus.corpus.selector_lineage import (
     LINEAGE_BASELINE_PATH,
@@ -115,7 +116,14 @@ FORKS_ON_MAIN_WHEN_THE_GUARD_BEGAN = {
 }
 
 type Finding = (
-    DroppedPair | DroppedBase | LayerChanged | Fork | EndedBranch | UnnamedPredecessor | Cycle
+    DroppedPair
+    | DroppedBase
+    | LayerChanged
+    | selector_lineage.LayerConflict
+    | Fork
+    | EndedBranch
+    | UnnamedPredecessor
+    | Cycle
 )
 
 
@@ -289,6 +297,13 @@ def _remedy(
             f"a base for {pair_label(finding.scope[:2])} takes a version {finding.predecessor} "
             "does not select"
         )
+    if isinstance(finding, selector_lineage.LayerConflict):
+        scope = "/".join(finding.scope)
+        return (
+            f"{finding.describe()}.\n  Select {scope} as a base scope in "
+            f"{', '.join(finding.primaries)}, or select a new version of that text there as "
+            "the primary scope; no record allows a layer conflict"
+        )
     if isinstance(finding, Fork):
         new = [name for name in finding.successors if name not in finding.recorded]
         if not finding.recorded:
@@ -363,6 +378,7 @@ def _guard_problems(
         *report.dropped,
         *report.dropped_bases,
         *report.layer_changes,
+        *report.layer_conflicts,
         *report.forks,
         *report.ended_branches,
         *report.unnamed,
@@ -409,6 +425,26 @@ def test_no_tracked_selector_drops_a_pair_or_forks_its_line_without_a_record() -
     """The guard: a cut names its predecessor, keeps its pairs, and grows the line's head."""
     problems = _guard_problems(_selectors(), _baseline())
     assert not problems, "\n".join(problems)
+
+
+def test_the_guard_prints_a_layer_conflict_with_its_remedy() -> None:
+    from axiom_corpus.corpus.selector_lineage import LayerConflict, RecordedFirstCut
+
+    scope: ScopeKey = ("us", "statute", "2026-05-01-remedy-test-base")
+    selectors = {
+        "line-x": ReleaseManifest("line-x", (ReleaseScope(*scope, layer=LAYER_BASE),)),
+        "line-y": ReleaseManifest("line-y", (ReleaseScope(*scope),)),
+    }
+    baseline = LineageBaseline(
+        selector_digests={name: selector_sha256(release) for name, release in selectors.items()},
+        first_cuts={name: RecordedFirstCut(name, "2026-11-02", "first cut") for name in selectors},
+    )
+    conflict = LayerConflict(scope, ("line-x",), ("line-y",))
+    assert _guard_problems(selectors, baseline) == [
+        f"{conflict.describe()}.\n  Select us/statute/2026-05-01-remedy-test-base as a base "
+        "scope in line-y, or select a new version of that text there as the primary scope; "
+        "no record allows a layer conflict"
+    ]
 
 
 def test_the_w7_union_line_keeps_its_head_and_arizona_stays_a_first_cut() -> None:
@@ -505,6 +541,7 @@ def _findings(report: LineageReport) -> list[Finding]:
         *report.dropped,
         *report.dropped_bases,
         *report.layer_changes,
+        *report.layer_conflicts,
         *report.forks,
         *report.ended_branches,
         *report.unnamed,
@@ -1330,6 +1367,9 @@ def _assert_the_advice_is_sound(
         if isinstance(finding, LayerChanged):
             assert _MARKER not in remedy, remedy
             assert f"Select {'/'.join(finding.scope)} as a primary scope" in remedy, remedy
+        if isinstance(finding, selector_lineage.LayerConflict):
+            assert _MARKER not in remedy, remedy
+            assert f"Select {'/'.join(finding.scope)} as a base scope in" in remedy, remedy
         if isinstance(finding, UnnamedPredecessor) and finding.selector in baseline.first_cuts:
             assert broken in remedy, remedy
         if (

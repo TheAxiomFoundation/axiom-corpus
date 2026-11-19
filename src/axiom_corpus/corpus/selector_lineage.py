@@ -26,6 +26,9 @@ This module checks selector files and pinned records of prose successions:
 ``layer_changed``
     A scope the predecessor selects as a primary scope is a base scope in the
     selector.
+``layer_conflict``
+    A scope is a base scope in one tracked selector and a primary scope in
+    another, whether or not the two share a line. No record allows it.
 ``fork``
     Two or more selectors resolve to the same predecessor. At most one of them can be
     the newest cut of the line; the others were cut from a base that another
@@ -232,6 +235,25 @@ def _selects_base(release: ReleaseManifest, key: ScopeKey) -> bool:
     return any(scope.is_base and scope.key == key for scope in release.scopes)
 
 
+def layer_conflicts(
+    selectors: Mapping[str, ReleaseManifest],
+) -> dict[ScopeKey, tuple[tuple[str, ...], tuple[str, ...]]]:
+    """Each scope some selectors select as a base and others as a primary scope.
+
+    Each scope maps to the names of the selectors that select it as a base,
+    then the names of those that select it as a primary scope, each sorted.
+    """
+    bases: dict[ScopeKey, set[str]] = defaultdict(set)
+    primaries: dict[ScopeKey, set[str]] = defaultdict(set)
+    for name, release in selectors.items():
+        for scope in release.scopes:
+            (bases if scope.is_base else primaries)[scope.key].add(name)
+    return {
+        key: (tuple(sorted(bases[key])), tuple(sorted(primaries[key])))
+        for key in sorted(set(bases) & set(primaries))
+    }
+
+
 def lineage_cycles(predecessors: Mapping[str, str | None]) -> tuple[tuple[str, ...], ...]:
     """Each cycle of selectors that name each other as predecessors, sorted, once."""
     cycles: set[tuple[str, ...]] = set()
@@ -339,6 +361,22 @@ class LayerChanged:
         return (
             f"{self.selector} selects {'/'.join(self.scope)} as a base scope, which its "
             f"predecessor {self.predecessor} selects as a primary scope"
+        )
+
+
+@dataclass(frozen=True)
+class LayerConflict:
+    """A scope some tracked selectors select as a base and others as a primary scope."""
+
+    scope: ScopeKey
+    bases: tuple[str, ...]
+    primaries: tuple[str, ...]
+
+    def describe(self) -> str:
+        return (
+            f"{'/'.join(self.scope)} is a base scope in {', '.join(self.bases)} and a primary "
+            f"scope in {', '.join(self.primaries)}: a scope that a tracked selector marks as a "
+            "base is a base scope in every selector"
         )
 
 
@@ -549,9 +587,9 @@ class LineageBaseline:
 class LineageReport:
     """What the check found across a set of tracked selectors.
 
-    ``dropped``, ``dropped_bases``, ``layer_changes``, ``forks``,
-    ``ended_branches``, ``unnamed`` and ``cycles`` are the findings no record
-    allows, and ``baseline_errors`` the records that no longer hold; any of them
+    ``dropped``, ``dropped_bases``, ``layer_changes``, ``layer_conflicts``,
+    ``forks``, ``ended_branches``, ``unnamed`` and ``cycles`` are the findings
+    no record allows, and ``baseline_errors`` the records that no longer hold; any of them
     fails the check. ``recorded_drops``, ``recorded_base_replacements``,
     ``recorded_forks`` and ``recorded_first_cuts`` are allowed by the baseline.
     """
@@ -560,6 +598,7 @@ class LineageReport:
     dropped: tuple[DroppedPair, ...] = ()
     dropped_bases: tuple[DroppedBase, ...] = ()
     layer_changes: tuple[LayerChanged, ...] = ()
+    layer_conflicts: tuple[LayerConflict, ...] = ()
     forks: tuple[Fork, ...] = ()
     ended_branches: tuple[EndedBranch, ...] = ()
     unnamed: tuple[UnnamedPredecessor, ...] = ()
@@ -584,6 +623,7 @@ class LineageReport:
             *(finding.describe() for finding in self.dropped),
             *(finding.describe() for finding in self.dropped_bases),
             *(finding.describe() for finding in self.layer_changes),
+            *(finding.describe() for finding in self.layer_conflicts),
             *(fork.describe() for fork in self.forks),
             *(branch.describe() for branch in self.ended_branches),
             *(unnamed.describe() for unnamed in self.unnamed),
@@ -717,6 +757,16 @@ def check_selector_lineage(
                 recorded_drops.append(finding)
             else:
                 dropped.append(finding)
+    # A dropped base or a layer change already names its scope; a recorded
+    # replacement does not, so it never hides a conflict.
+    named_scopes = {finding.base for finding in dropped_bases} | {
+        finding.scope for finding in layer_changes
+    }
+    conflicts = tuple(
+        LayerConflict(scope, bases, primaries)
+        for scope, (bases, primaries) in sorted(layer_conflicts(selectors).items())
+        if scope not in named_scopes
+    )
     for key, drop_record in sorted(baseline.drops.items()):
         if key in matched_drops:
             continue
@@ -841,6 +891,7 @@ def check_selector_lineage(
         dropped=tuple(dropped),
         dropped_bases=tuple(dropped_bases),
         layer_changes=tuple(layer_changes),
+        layer_conflicts=conflicts,
         forks=tuple(forks),
         ended_branches=tuple(ended_branches),
         unnamed=tuple(unnamed),

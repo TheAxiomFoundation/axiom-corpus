@@ -51,6 +51,7 @@ import yaml
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
+from axiom_corpus.corpus import selector_lineage
 from axiom_corpus.corpus.models import DocumentClass
 from axiom_corpus.corpus.releases import (
     LAYER_BASE,
@@ -1139,6 +1140,77 @@ def test_a_primary_moved_into_a_pairs_base_also_drops_the_old_base() -> None:
     assert report.layer_changes == (LayerChanged("pin-next", "pin-layered", moved),)
 
 
+@pytest.mark.parametrize("case", ["replaced-base-re-added", "unrelated-first-cuts"])
+def test_a_base_another_tracked_selector_selects_as_primary_is_a_layer_conflict(
+    case: str,
+) -> None:
+    """A scope keeps one layer across every tracked selector, related or not."""
+    if case == "replaced-base-re-added":
+        predecessor = _layered_predecessor()
+        successor = _layered_successor(_LAYERED_PRIMARIES, [_ECFR, _NEW_US_CODE])
+        after = _layered(
+            "pin-after",
+            [*_LAYERED_PRIMARIES, _US_CODE],
+            [_ECFR, _NEW_US_CODE],
+            "Successor to pin-next.",
+        )
+        selectors = [predecessor, successor, after]
+        baseline = _replacement_baseline(
+            predecessor, pinned=[successor], replacement=_replacement()
+        )
+        sides = (("pin-layered",), ("pin-after",))
+        recorded: tuple[DroppedBase, ...] = (_DROPPED_US_CODE,)
+    else:
+        line_x = _layered("line-x", _LAYERED_PRIMARIES, [_US_CODE])
+        line_y = _layered("line-y", [*_LAYERED_PRIMARIES, _US_CODE])
+        selectors = [line_x, line_y]
+        baseline = _baseline(line_x, line_y)
+        sides = (("line-x",), ("line-y",))
+        recorded = ()
+    report = _check(*selectors, baseline=baseline)
+    assert not report.ok
+    expected = selector_lineage.LayerConflict(_US_CODE, *sides)
+    assert report.layer_conflicts == (expected,)
+    assert report.recorded_base_replacements == recorded
+    assert report.dropped_bases == () and report.layer_changes == ()
+    assert report.problems() == [expected.describe()]
+
+
+@pytest.mark.parametrize(
+    ("primaries", "bases", "record", "count"),
+    [
+        pytest.param([*_LAYERED_PRIMARIES, _US_CODE], [_ECFR], False, 1, id="base-flipped"),
+        pytest.param(
+            [key for key in _LAYERED_PRIMARIES if key[0] != "us-mt"],
+            [_US_CODE, _ECFR, ("us-mt", "statute", "2026-07-13-recovery")],
+            False,
+            1,
+            id="primary-flipped",
+        ),
+        pytest.param(
+            [*_LAYERED_PRIMARIES, _US_CODE],
+            [_ECFR, _NEW_US_CODE],
+            True,
+            2,
+            id="replaced-base-kept-under-a-record",
+        ),
+    ],
+)
+def test_a_layer_conflict_a_finding_already_names_is_not_reported_again(
+    primaries: list[ScopeKey], bases: list[ScopeKey], record: bool, count: int
+) -> None:
+    predecessor = _layered_predecessor()
+    successor = _layered_successor(primaries, bases)
+    baseline = (
+        _replacement_baseline(predecessor, pinned=[successor], replacement=_replacement())
+        if record
+        else _baseline(predecessor)
+    )
+    report = _check(predecessor, successor, baseline=baseline)
+    assert report.layer_conflicts == ()
+    assert len(report.problems()) == count, report.problems()
+
+
 @pytest.mark.parametrize(
     "primaries",
     [
@@ -1461,6 +1533,7 @@ def test_a_base_never_changes_without_a_report(
     }
     for finding in (*report.dropped_bases, *report.layer_changes):
         assert (finding.selector, finding.predecessor) == ("line-b", "line-a")
+    assert report.layer_conflicts == ()
     assert base_changes(predecessor, predecessor) == ({}, ())
 
 
