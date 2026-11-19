@@ -190,7 +190,20 @@ whose predecessor has no base, is not a finding.
 [Successor cuts](named-release-publication.md#successor-cuts) describes the
 composer that carries every base forward.
 
-The check compares a cut with its own predecessor because that is the claim every cut
+The activation gate checks bases against what serves. Its
+`base_carry_forward` check, the serving-side counterpart of the dropped base
+rule, fails an activation that stops serving the base of a release it
+displaces, unless the incoming release selects that base unchanged or a
+`base_replacements` entry for the incoming release records that replacement.
+Its `base_only_pair` check fails an activation that would serve a pair from a
+base alone over the displaced release's primary scopes; the lineage check has
+no such rule. Both compare the incoming release with the release that serves
+each pair now, which need not be its lineage predecessor, and
+`--allow-regression` softens neither.
+[Successor cuts](named-release-publication.md#successor-cuts) describes both
+checks and their known limits.
+
+The lineage check compares a cut with its own predecessor because that is the claim every cut
 already makes ("It preserves every prior scope"), and the check makes it
 mechanical. Other comparisons fail:
 

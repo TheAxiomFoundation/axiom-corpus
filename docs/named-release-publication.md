@@ -594,6 +594,90 @@ Neither does a base that leaves a pair the cut carries without a new base. The
 tracked baseline has no `base_replacements` section, and the loader reads an
 absent section as empty.
 
+**Activation gate.** The activation workflow
+(`.github/workflows/activate-release.yml`) runs
+`scripts/check_release_gate.py --mode activate` in its preview job and again
+before it activates. Three of the gate's checks read scope layers, and its
+active-state preview reports the base of each release that activation
+displaces:
+
+- `cut_plan_provenance` reads each scope's layer from the tracked selector, as
+  the selector loader does, and from the signed object. It fails on a scope
+  that one side marks as a base and the other as a primary scope. Mirror mode
+  runs this check too.
+- The preview adds `current_base_version` to each pair whose active release it
+  reads: that release's base version for the pair, or null when the release
+  serves the pair without a base. It takes the base from the stored signed
+  object and refuses a stored object that signs a base scope without being
+  `axiom-corpus/release-object/v4`. It leaves the field out when the database
+  returns no stored object for the active release, or that object carries no
+  version of the pair.
+- `base_carry_forward` fails when activation would stop serving the base of a
+  release it displaces. A pair passes when its active release serves no base
+  there, or when the incoming release selects the same version as the pair's
+  base scope. A base version that the incoming release selects as a primary
+  scope does not count. Otherwise the gate reads
+  `manifests/selector-lineage-baseline.yaml` from the checkout it runs in and
+  looks up the pair's `base_replacements` entry whose `selector` is the
+  incoming release. The pair passes only when the entry's `replaced` is the
+  active base, its `replaced_by` is the base scope the incoming release
+  selects for the pair, and the incoming release's `selector_digests` pin
+  equals its signed `selector_sha256`. The gate reads the baseline only for a
+  pair that needs such an entry.
+- `base_only_pair` fails when the incoming release selects a base and no
+  primary scope for a pair, and the release it displaces there serves a
+  primary scope. The check subtracts only the active base from the active
+  versions, so an incoming base that relabels an active primary version fails
+  too. It reads no lineage baseline, and no entry waives it.
+
+Both new checks run in activate mode only, each in a guard of its own: an
+error, such as a lineage baseline that does not load, fails that check alone
+with `<check> could not run`. When the preview lookup raises a `KeyError`,
+`TypeError`, `ValueError` or `RuntimeError`, both report
+`active-state evidence unavailable`. Neither sets a warning, so
+`--allow-regression`, which softens only `scope_monotonicity`, softens neither.
+Both read the preview rows through the same rules and fail closed: each pair
+they check needs exactly one row with a boolean `changes`, and a row that
+displaces a release needs a non-empty `current_versions` list of version
+strings and a `current_base_version` field, whose non-null value must be one
+of `current_versions`. A row with `changes` false (the pair already serves the
+incoming release) or a null `current_release_name` (no release serves the
+pair) displaces nothing and passes. A `base_replacements` entry clears
+`base_carry_forward` only for the cut it names as its `selector`. The gate
+compares the entry's `replaced` with the base of the release it displaces,
+whichever release that is, and never with the bases of cuts in between.
+
+A restore cut keeps the active release's primary scopes of a pair and adds a
+base under them. It passes `base_carry_forward` when the active release serves
+no base for the pair. `scope_monotonicity` orders every signed version of a
+pair, bases included. A base older than every primary scope leaves both
+frontiers at the newest primary scope, so the check takes its frontier-tie
+branch. Its branch for a cut that keeps every active version applies only when
+none of those versions parses as a dated version key. The tie branch needs
+both releases' publication timestamps and reports a regression when the
+incoming release's is earlier than the active release's.
+
+Known limits of the activation gate:
+
+- A new base dated after a pair's primary scopes raises the incoming frontier.
+  A cut that drops the pair's newest primary scope, keeps another and adds
+  such a base can pass every check.
+- A cut that keeps the pair's base and newest primary scope and drops another
+  primary scope can pass every check. Serving then falls back to the base's
+  row for each path that only the dropped scope carried, where the base has
+  that path. This is the per-pair limit of `scope_monotonicity` that
+  [Selector lineage](release-gate-policy.md#selector-lineage) describes.
+- The gate passes no activation that would serve a pair from its base alone
+  while the active release serves primary scopes there. `base_only_pair` has
+  no override, so a reviewed retirement of a pair's primary scopes cannot pass
+  the gate.
+- Skipping activation of the cut that records a base replacement leaves the
+  old base serving, and a later cut that carries the new base then fails
+  `base_carry_forward`. The later cut carries the new base unchanged from its
+  predecessor, so the lineage check finds no dropped base for it, and an entry
+  for it is a baseline error. Activate the cut that records the replacement
+  before any later cut.
+
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves base scopes alone.
 It never opens or cuts a base scope, however large. For a citation path both
 layers of a pair carry, serving picks the primary row, so a primary row over a
