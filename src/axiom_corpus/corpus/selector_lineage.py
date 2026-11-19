@@ -85,8 +85,10 @@ drop record names the scopes that carry the pair's text in its place
 (``replaced_by``), or says in its reason why nothing does. A base replacement
 record names the predecessor's base version (``replaced``) and the base scope
 the selector selects for the pair instead (``replaced_by``); a base that leaves
-a pair with no replacement, and a layer change, have no record. A
-predecessor's fork entries together list every successor and the ones the
+a pair with no replacement, and a layer change, have no record. A base
+replacement record holds only while the selector no longer selects
+``replaced`` in either layer: a replaced base kept as a primary scope is a
+layer change, which no record allows. A predecessor's fork entries together list every successor and the ones the
 line continued through. Records are append-only
 and dated: a later decision about a recorded fork, a new successor or a
 branch the line now goes on through, is another entry for the same
@@ -428,7 +430,8 @@ class RecordedBaseReplacement:
     ``replaced`` is the version of the predecessor's base for the pair, and
     ``replaced_by`` the base scope the selector selects for the pair instead.
     It is keyed by its selector and pair, and replaced_by is another scope of
-    that pair.
+    that pair. It holds only while ``selector`` no longer selects the replaced
+    version.
     """
 
     selector: str
@@ -456,6 +459,25 @@ def _require_base_replacement(
         )
     if replacement.replaced_by[2] == replacement.replaced:
         raise SelectorLineageError(f"{where}.replaced_by must differ from the base it replaces")
+
+
+def _base_replacement_conflict(
+    replacement: RecordedBaseReplacement, successor: ReleaseManifest
+) -> str | None:
+    """Why ``replacement`` does not hold for ``successor``'s bases, or None if it does."""
+    replaced = f"{pair_label(replacement.pair)}/{replacement.replaced}"
+    if not _selects_base(successor, replacement.replaced_by):
+        return (
+            f"the baseline names {'/'.join(replacement.replaced_by)} as the base replacing "
+            f"{replaced} in {replacement.selector}, which does not select it as a base scope"
+        )
+    if (*replacement.pair, replacement.replaced) in successor.scope_keys:
+        return (
+            f"the baseline records {replacement.selector} replacing the base {replaced} of "
+            f"{replacement.predecessor}, but {replacement.selector} still selects {replaced}: "
+            "a replaced base leaves the cut, and no record lets a base become a primary scope"
+        )
+    return None
 
 
 @dataclass(frozen=True)
@@ -674,7 +696,7 @@ def check_selector_lineage(
                 and replacement.predecessor == predecessor
                 and replacement.replaced == lost_bases[pair]
                 and {name, predecessor} <= pinned
-                and _selects_base(selectors[name], replacement.replaced_by)
+                and _base_replacement_conflict(replacement, selectors[name]) is None
             ):
                 matched_replacements.add((name, pair))
                 recorded_base_replacements.append(base_finding)
@@ -729,11 +751,9 @@ def check_selector_lineage(
         if recorded is None or prior is None:
             continue  # already reported: the baseline pins a selector that is not tracked
         replaced = f"{pair_label(pair)}/{replacement.replaced}"
-        if not _selects_base(recorded, replacement.replaced_by):
-            errors.append(
-                f"the baseline names {'/'.join(replacement.replaced_by)} as the base replacing "
-                f"{replaced} in {name}, which does not select it as a base scope"
-            )
+        conflict = _base_replacement_conflict(replacement, recorded)
+        if conflict is not None:
+            errors.append(conflict)
         elif predecessors.get(name) != replacement.predecessor:
             errors.append(
                 f"the baseline records {name} replacing the base {replaced} of "

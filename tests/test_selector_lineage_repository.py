@@ -257,8 +257,13 @@ def _remedy(
             return _may_follow_from_a_change(finding, changed, "dropped base")
         carry = f"{finding.describe()}.\n  Carry {'/'.join(finding.base)} as a base scope unchanged"
         replacing = _base_of(selectors[finding.selector], finding.pair)
-        if replacing is None or replacing in selectors[finding.predecessor].scope_keys:
-            # With no other base, or a base that is a layer change, no record can hold.
+        if (
+            replacing is None
+            or replacing in selectors[finding.predecessor].scope_keys
+            or finding.base in selectors[finding.selector].scope_keys
+        ):
+            # With no other base, a base that is a layer change, or a replaced base the cut
+            # keeps as a primary scope, no record can hold.
             return (
                 f"{carry}. Only a base version {finding.predecessor} does not select can "
                 "replace it, as a reviewed release decision recorded under base_replacements "
@@ -962,6 +967,15 @@ def _build_base_flipped_to_primary(copy: _MainCopy) -> _Case:
     )
 
 
+def _build_replaced_base_kept_as_primary(copy: _MainCopy) -> _Case:
+    return _layered_successor_case(
+        copy,
+        (DroppedBase,),
+        lambda scopes, base: _replaced(scopes, base) | {ReleaseScope(*base.key)},
+        "remedy-test-replaced-base-kept",
+    )
+
+
 def _first_primary(scopes: set[ReleaseScope], pair: tuple[str, str] | None = None) -> ReleaseScope:
     """The first primary scope of ``pair``, or of the first pair other than a base's."""
     based = {scope.pair for scope in scopes if scope.is_base}
@@ -1310,6 +1324,7 @@ def _assert_the_advice_is_sound(
                     if scope.is_base and scope.pair == finding.pair
                 )
                 assert replacing not in selectors[finding.predecessor].scope_keys, remedy
+                assert finding.base not in selectors[finding.selector].scope_keys, remedy
                 assert f"replaced_by: {'/'.join(replacing)}\n" in remedy, remedy
                 assert f'replaced: "{finding.base_version}"\n' in remedy, remedy
         if isinstance(finding, LayerChanged):
@@ -1344,6 +1359,7 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
     ("dropped base, replaced", _build_dropped_base, _RECORD),
     ("dropped base, left out", _build_left_out_base, _CARRY),
     ("dropped base, flipped to primary", _build_base_flipped_to_primary, _CARRY),
+    ("dropped base, replaced and kept as primary", _build_replaced_base_kept_as_primary, _CARRY),
     ("layer changed", _build_layer_changed, _KEEP_PRIMARY),
     ("primary moved into a base", _build_primary_moved_into_a_base, _CARRY),
     (

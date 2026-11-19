@@ -1219,6 +1219,26 @@ def test_a_pinned_base_replacement_is_recorded_not_reported() -> None:
     assert report.dropped_bases == ()
 
 
+@pytest.mark.parametrize(
+    ("primaries", "recorded"),
+    [
+        pytest.param(_LAYERED_PRIMARIES, True, id="old-base-left-out"),
+        pytest.param([*_LAYERED_PRIMARIES, _US_CODE], False, id="old-base-kept-as-a-primary-scope"),
+    ],
+)
+def test_a_base_replacement_never_allows_the_old_base_to_stay_as_a_primary_scope(
+    primaries: list[ScopeKey], recorded: bool
+) -> None:
+    predecessor = _layered_predecessor()
+    successor = _layered_successor(primaries, [_ECFR, _NEW_US_CODE])
+    baseline = _replacement_baseline(predecessor, pinned=[successor], replacement=_replacement())
+    report = _check(predecessor, successor, baseline=baseline)
+    assert report.ok is recorded, report.problems()
+    assert report.recorded_base_replacements == ((_DROPPED_US_CODE,) if recorded else ())
+    assert report.dropped_bases == (() if recorded else (_DROPPED_US_CODE,))
+    assert report.layer_changes == ()
+
+
 _REPLACING = "us/statute/2026-05-01-us-code"
 _NOT_A_BASE = (
     "the baseline names us/statute/{version} as the base replacing "
@@ -1278,6 +1298,15 @@ _NOT_A_BASE = (
             f"the baseline records pin-next replacing the base {_REPLACING} of pin-other, "
             "but pin-next names pin-layered as its predecessor",
             id="another-predecessor",
+        ),
+        pytest.param(
+            [*_LAYERED_PRIMARIES, _US_CODE],
+            [_ECFR, _NEW_US_CODE],
+            {},
+            None,
+            f"the baseline records pin-next replacing the base {_REPLACING} of pin-layered, "
+            f"but pin-next still selects {_REPLACING}",
+            id="replaced-base-kept-as-a-primary-scope",
         ),
     ],
 )
