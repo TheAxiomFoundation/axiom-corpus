@@ -646,3 +646,79 @@ def test_compose_cli_reads_the_selectors_of_the_checkout_holding_base(
         compose_module.main()
     assert seen == [tmp_path / "other-checkout" / "manifests" / "releases"]
     assert asked == [store.root]
+
+
+# Spellings a selector cannot hold that name the files of us-example/statute/tracked-base:
+# artifacts.safe_segment strips whitespace and "/" and rewrites "\\" and ":",
+# and APFS folds case.
+BASE_ALIASES = [
+    pytest.param(("us-example", "statute", "tracked-base "), id="trailing-space"),
+    pytest.param(("us-example", "statute", " tracked-base"), id="leading-space"),
+    pytest.param(("us-example", "statute", "tracked-base\t"), id="trailing-tab"),
+    pytest.param(("us-example", "statute", "tracked-base\n"), id="trailing-newline"),
+    pytest.param(("us-example", "statute", "tracked-base/"), id="trailing-slash"),
+    pytest.param(("us-example", "statute", "tracked:base"), id="colon"),
+    pytest.param(("us-example", "statute", "tracked\\base"), id="backslash"),
+    pytest.param(("us-example", "statute", "Tracked-Base"), id="upper-case"),
+    pytest.param(("us-example ", "statute", "tracked-base"), id="jurisdiction-alias"),
+    pytest.param(("us-example", "statute/", "tracked-base"), id="document-class-alias"),
+]
+
+
+@pytest.mark.parametrize("role", ["source", "target"])
+@pytest.mark.parametrize("alias", BASE_ALIASES)
+def test_compose_refuses_a_spelling_that_names_a_tracked_base(tmp_path, monkeypatch, alias, role):
+    jurisdiction, document_class, version = alias
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    releases_dir = _write_layered_selector(tmp_path / "releases")
+    before = _tree(store.root)
+    monkeypatch.setattr(compose_module, "require_materialized", _refuse_fetch)
+    if role == "source":
+        source_versions = [version, "primary-one"]
+        target_version = "composed"
+    else:
+        source_versions = ["primary-one", "primary-two"]
+        target_version = version
+
+    # The name is refused before any path is built or anything is fetched.
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction=jurisdiction,
+            document_class=document_class,
+            source_versions=source_versions,
+            target_version=target_version,
+            releases_dir=releases_dir,
+        )
+
+    assert _tree(store.root) == before
+    assert not (store.root / "sources/us-example/statute/tracked-base").exists()
+    assert not store.inventory_path("us-example", "statute", "tracked-base").exists()
+    assert not store.provisions_path("us-example", "statute", "tracked-base").exists()
+    assert not store.coverage_path("us-example", "statute", "tracked-base").exists()
+
+
+@pytest.mark.parametrize("target_version", ["tracked-base ", "tracked-base/"])
+def test_compose_writes_nothing_at_a_tracked_base_path_through_an_alias(tmp_path, target_version):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    releases_dir = _write_layered_selector(tmp_path / "releases")
+
+    # With the real fetch step: the alias would otherwise write the base's files.
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="us-example",
+            document_class="statute",
+            source_versions=["primary-one", "primary-two"],
+            target_version=target_version,
+            releases_dir=releases_dir,
+        )
+
+    assert not store.provisions_path("us-example", "statute", "tracked-base").exists()
+    assert not store.inventory_path("us-example", "statute", "tracked-base").exists()
+    assert not store.coverage_path("us-example", "statute", "tracked-base").exists()
+    assert not (store.root / "sources/us-example/statute/tracked-base").exists()

@@ -22,6 +22,10 @@ a two-space indent and a final newline, the layout of
 selectors. Other tracked selectors use other layouts, so the builders under
 ``scripts/repro/`` that reproduce them keep their own code.
 
+``canonical_scope_key`` returns the key of a scope named outside a selector,
+such as on a command line, and refuses a spelling no selector can hold, so a
+comparison against the tracked bases is exact.
+
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
 and a directory that holds no selector file is refused rather than read as
@@ -121,6 +125,27 @@ def _tracked_selector_names(releases_dir: Path, predecessor: ReleaseManifest) ->
             "committed to, or tracked"
         )
     return frozenset(files)
+
+
+def canonical_scope_key(jurisdiction: str, document_class: str, version: str) -> ScopeKey:
+    """Return the scope key a selector spells with these parts, refusing any other spelling.
+
+    Artifact paths pass each part through ``artifacts.safe_segment``, which
+    strips surrounding whitespace and ``/`` and rewrites ``\\`` and ``:``,
+    and APFS folds case. So ``v ``, ``v/`` or ``V`` can name the files of
+    ``v`` while comparing unequal to it, and a check that compares names
+    would let such a spelling read or write a base's files. For a part a
+    selector can spell, ``safe_segment`` is the identity, so the key names its
+    own files. Raises ``ValueError`` naming the parts and the reason.
+    """
+    try:
+        return ReleaseScope(
+            jurisdiction=jurisdiction, document_class=document_class, version=version
+        ).key
+    except ValueError as exc:
+        raise ValueError(
+            f"not a canonical scope: {jurisdiction!r}/{document_class!r}/{version!r} ({exc})"
+        ) from exc
 
 
 def _scope(key: ScopeKey, *, layer: str) -> ReleaseScope:

@@ -23,7 +23,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.resolver import cli_repo, require_materialized
-from axiom_corpus.corpus.successors import tracked_base_scopes
+from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 # The tracked selectors are the only record of which scopes are bases.
@@ -41,13 +41,15 @@ def _refuse_base_scopes(
 
     A base scope is carried into every successor unchanged, so this script
     neither reads one as a constituent nor writes one as its target.
+
+    Named scopes must be spelled as a selector spells them, so the comparison
+    is exact. A spelling such as ``v `` or ``V``, which names the files of
+    ``v`` (``successors.canonical_scope_key``), raises before the tracked
+    selectors are read.
     """
+    keys = [canonical_scope_key(jurisdiction, document_class, version) for version in versions]
     bases = tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir)
-    refused = sorted(
-        f"{jurisdiction}/{document_class}/{version}"
-        for version in set(versions)
-        if (jurisdiction, document_class, version) in bases
-    )
+    refused = sorted({"/".join(key) for key in keys if key in bases})
     if refused:
         raise ValueError(
             "base scopes are carried unchanged and cannot be composed: " + ", ".join(refused)

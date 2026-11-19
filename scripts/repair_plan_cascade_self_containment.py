@@ -21,7 +21,7 @@ from typing import Any
 
 from axiom_corpus.corpus.releases import LAYER_BASE
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
-from axiom_corpus.corpus.successors import tracked_base_scopes
+from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 ARTIFACT_KINDS = ("coverage", "inventory", "provisions", "sources")
@@ -79,9 +79,13 @@ def _refuse_base_repairs(
     release payload marks it ``"layer": "base"`` or when it is in
     ``base_scopes``, the scopes a tracked selector marks as bases. A payload
     scope whose ``layer`` is anything but ``"base"`` is refused too, since
-    only the base layer is spelled out. The check reads and writes nothing,
-    so ``main`` runs it before the first move or unlink. A base is known here
-    only once a selector marks it.
+    only the base layer is spelled out. Every payload scope and every new
+    scope must be spelled as a selector spells it (``canonical_scope_key``):
+    a suffix such as ``FIX`` or ``fix/``, or a payload base spelled with an
+    upper-case letter, would otherwise name another scope's files on APFS or
+    through ``safe_segment`` while comparing unequal to it. The check reads
+    and writes nothing, so ``main`` runs it before the first move or unlink.
+    A base is known here only once a selector marks it.
     """
     payload_bases: set[tuple[str, str, str]] = set()
     for row in release_payload["scopes"]:
@@ -93,6 +97,11 @@ def _refuse_base_repairs(
                 f"release scope {'/'.join(scope)} has an invalid layer: {row['layer']!r}"
             )
         payload_bases.add(scope)
+    # A name no selector can spell is refused before any comparison.
+    for scope in _release_scopes(release_payload):
+        canonical_scope_key(*scope)
+    for new_scope in sorted(mappings.values()):
+        canonical_scope_key(*new_scope)
     bases = payload_bases | set(base_scopes)
     refused = sorted(bases.intersection({*mappings, *mappings.values()}))
     if refused:

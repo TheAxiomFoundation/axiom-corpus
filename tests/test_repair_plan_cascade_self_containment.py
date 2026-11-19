@@ -368,3 +368,33 @@ def test_main_refuses_a_repair_onto_a_payload_base_before_moving_anything(tmp_pa
     assert fetched == [[PRIMARY, REPAIRED_PRIMARY]]
     assert _tree(repo) == before
     assert not report.exists()
+
+
+@pytest.mark.parametrize(
+    ("rows", "mapping", "tracked"),
+    [
+        pytest.param(
+            (_row(PRIMARY),),
+            {PRIMARY: ("us-example", "statute", "primary-v-FIX")},
+            frozenset({("us-example", "statute", "primary-v-fix")}),
+            id="suffix-case",
+        ),
+        pytest.param(
+            (_row(PRIMARY),),
+            {PRIMARY: ("us-example", "statute", "primary-v-fix/")},
+            frozenset({("us-example", "statute", "primary-v-fix")}),
+            id="suffix-slash",
+        ),
+        pytest.param(
+            (_row(PRIMARY), _row(("us-example", "statute", "primary-v-FIX"), layer="base")),
+            {PRIMARY: ("us-example", "statute", "primary-v-fix")},
+            frozenset(),
+            id="payload-base-case",
+        ),
+    ],
+)
+def test_refuses_a_scope_name_a_selector_cannot_spell(rows, mapping, tracked):
+    # On case-insensitive APFS, or through safe_segment, each spelling names
+    # the files of another scope while comparing unequal to it.
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        _refuse_base_repairs(_payload(*rows), mapping, tracked)

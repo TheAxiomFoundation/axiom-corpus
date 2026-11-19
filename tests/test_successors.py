@@ -22,6 +22,8 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import successors
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.models import DocumentClass
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     LAYER_BASE,
@@ -787,3 +789,60 @@ def test_tracked_base_scopes_loads_every_tracked_selector() -> None:
     bases = tracked_base_scopes(RELEASE_DIR)
 
     assert all(isinstance(key, tuple) and len(key) == 3 for key in bases)
+
+
+# Canonical scope names: what a selector can spell, and nothing that only names its files.
+
+
+@pytest.mark.parametrize(
+    "parts",
+    [
+        *(
+            pytest.param(("us", "statute", version), id=f"version-{name}")
+            for name, version in (
+                ("trailing-space", "v "),
+                ("leading-space", " v"),
+                ("tab", "v\t"),
+                ("newline", "v\n"),
+                ("trailing-slash", "v/"),
+                ("leading-slash", "/v"),
+                ("colon", "a:b"),
+                ("backslash", "a\\b"),
+                ("upper-case", "V"),
+                ("empty", ""),
+                ("dot-dot", ".."),
+            )
+        ),
+        pytest.param(("us ", "statute", "v"), id="jurisdiction-trailing-space"),
+        pytest.param(("us", "statute/", "v"), id="document-class-slash"),
+        pytest.param(("us", "Statute", "v"), id="document-class-case"),
+        pytest.param(("us", "not-a-class", "v"), id="document-class-unknown"),
+    ],
+)
+def test_canonical_scope_key_refuses_a_name_a_selector_cannot_spell(
+    parts: tuple[str, str, str],
+) -> None:
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        successors.canonical_scope_key(*parts)
+
+
+_CANONICAL_PART = st.from_regex(r"[a-z0-9][a-z0-9._-]{0,40}", fullmatch=True)
+
+
+@settings(max_examples=200, deadline=None)
+@given(
+    jurisdiction=_CANONICAL_PART,
+    document_class=st.sampled_from([member.value for member in DocumentClass]),
+    version=_CANONICAL_PART,
+)
+def test_canonical_scope_key_keeps_a_selector_scope_and_its_paths(
+    jurisdiction: str, document_class: str, version: str
+) -> None:
+    key = successors.canonical_scope_key(jurisdiction, document_class, version)
+
+    assert key == (jurisdiction, document_class, version)
+    # For a canonical name safe_segment is the identity, so the key names its own files.
+    assert (
+        CorpusArtifactStore(Path("/r")).provisions_path(jurisdiction, document_class, version)
+        == Path("/r/provisions") / jurisdiction / document_class / f"{version}.jsonl"
+    )
