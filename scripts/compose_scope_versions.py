@@ -22,7 +22,7 @@ from pathlib import Path
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.resolver import require_materialized
+from axiom_corpus.corpus.resolver import cli_repo, require_materialized
 from axiom_corpus.corpus.successors import tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -83,9 +83,12 @@ def compose_scope_versions(
 
     A constituent or target scope that a selector under ``releases_dir`` marks
     as a base (``layer: base``) is refused before anything is fetched, read or
-    written. ``None`` means this repository's ``manifests/releases``. A base
-    is known here only once a tracked selector marks it, so a selector that
-    adds a base must be committed before this script runs on that scope.
+    written. ``None`` means the ``manifests/releases`` of the checkout this
+    script belongs to. ``main()`` passes the ``manifests/releases`` of the
+    checkout holding ``--base`` (``resolver.cli_repo``), so a run on another
+    checkout's corpus reads that checkout's selectors. A base is known here
+    only once a tracked selector marks it, so a selector that adds a base
+    must be committed before this script runs on that scope.
     """
     if len(source_versions) < 2:
         raise ValueError("compose requires at least two source versions")
@@ -328,12 +331,19 @@ def main() -> int:
     )
     parser.add_argument("--target-version", required=True)
     args = parser.parse_args()
+    repo = cli_repo(args)
+    if repo is None:
+        parser.error(
+            "neither --base nor the working directory is in an axiom-corpus checkout, so no "
+            "tracked selectors say which scopes are bases"
+        )
     generated = compose_scope_versions(
         base=args.base,
         jurisdiction=args.jurisdiction,
         document_class=args.document_class,
         source_versions=args.source_version,
         target_version=args.target_version,
+        releases_dir=repo / "manifests" / "releases",
     )
     for path in generated:
         print(path)

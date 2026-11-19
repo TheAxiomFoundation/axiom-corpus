@@ -10,8 +10,11 @@ reviewed change that this module does not make.
 
 ``compose_successor`` checks every requested change against the predecessor
 and raises ``SuccessorError`` for any it refuses. Unless the caller passes
-the tracked selector names, it reads them from ``DEFAULT_RELEASES_DIR``. It
-writes no file, so a refused cut leaves nothing behind.
+the tracked selector names, it reads them from ``releases_dir``, the
+``manifests/releases`` of the checkout the cut is committed to, which
+defaults to ``DEFAULT_RELEASES_DIR``; that directory must hold the
+predecessor as given. It writes no file, so a refused cut leaves nothing
+behind.
 
 ``render_selector`` returns the selector text a new cut commits: keys sorted,
 a two-space indent and a final newline, the layout of
@@ -20,7 +23,9 @@ selectors. Other tracked selectors use other layouts, so the builders under
 ``scripts/repro/`` that reproduce them keep their own code.
 
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
-selectors. Corpus locks carry no layer, so the selectors are the only record.
+selectors. Corpus locks carry no layer, so the selectors are the only record,
+and a directory that holds no selector file is refused rather than read as
+holding no base.
 """
 
 from __future__ import annotations
@@ -73,24 +78,49 @@ def _scope_keys(argument: str, values: Iterable[object]) -> tuple[ScopeKey, ...]
     return tuple(keys)
 
 
-def _tracked_selector_names(releases_dir: Path) -> frozenset[str]:
-    """Return the stems of ``releases_dir/*.json``, refusing a missing or empty directory.
+def _selector_files(releases_dir: Path) -> dict[str, Path]:
+    """Return the selector files of ``releases_dir`` by name, refusing an unusable directory.
 
-    Reading no names would check the description against the predecessor's
-    name alone, so a directory that is missing or holds no selector raises.
+    Each ``*.json`` entry must be a file. A directory that is missing or holds
+    no selector file raises ``FileNotFoundError``, since reading no selector
+    would report no name and no base.
     """
     if not releases_dir.is_dir():
+        raise FileNotFoundError(f"Release selector directory not found: {releases_dir}")
+    files: dict[str, Path] = {}
+    for path in sorted(releases_dir.glob("*.json")):
+        if not path.is_file():
+            raise ValueError(f"{path} is not a selector file")
+        files[path.stem] = path
+    if not files:
+        raise FileNotFoundError(f"No release selector in {releases_dir}")
+    return files
+
+
+def _tracked_selector_names(releases_dir: Path, predecessor: ReleaseManifest) -> frozenset[str]:
+    """Return the selector names of ``releases_dir``, which must hold ``predecessor`` as given.
+
+    Reading no names would check the description against the predecessor's
+    name alone, so a directory that is missing or holds no selector file
+    raises. A directory without the predecessor's file, or whose file loads to
+    another selector, belongs to another checkout or another state of this
+    one, so its names are not the ones the cut is checked against.
+    """
+    try:
+        files = _selector_files(releases_dir)
+    except FileNotFoundError as exc:
         raise FileNotFoundError(
-            f"Release selector directory not found: {releases_dir}; pass tracked, the "
-            "names of the tracked selectors"
+            f"{exc}; pass tracked, the names of the tracked selectors, or releases_dir, "
+            "the manifests/releases of the checkout the cut is committed to"
+        ) from exc
+    path = files.get(predecessor.name)
+    if path is None or ReleaseManifest.load(path) != predecessor:
+        raise SuccessorError(
+            f"{releases_dir} does not hold the predecessor {predecessor.name} as given; "
+            "pass releases_dir, the manifests/releases of the checkout the cut is "
+            "committed to, or tracked"
         )
-    names = frozenset(path.stem for path in releases_dir.glob("*.json"))
-    if not names:
-        raise FileNotFoundError(
-            f"No release selector in {releases_dir}; pass tracked, the names of the "
-            "tracked selectors"
-        )
-    return names
+    return frozenset(files)
 
 
 def _scope(key: ScopeKey, *, layer: str) -> ReleaseScope:
@@ -110,6 +140,7 @@ def compose_successor(
     remove: Iterable[ScopeKey] = (),
     add_base: Iterable[ScopeKey] = (),
     tracked: Collection[str] | None = None,
+    releases_dir: Path | None = None,
 ) -> ReleaseManifest:
     """Return the successor of ``predecessor`` with the given primary-scope changes.
 
@@ -132,12 +163,21 @@ def compose_successor(
     here rather than by the lineage check.
 
     With ``tracked`` left as ``None``, each call reads the tracked selector
-    names as the stems of ``DEFAULT_RELEASES_DIR/*.json``, the
-    ``manifests/releases`` directory of the checkout this module is imported
-    from. It raises ``FileNotFoundError`` when that directory is missing or
-    holds no selector, so a copy installed outside a checkout must pass
-    ``tracked``. An explicit ``tracked`` replaces those names, and
-    ``tracked=()`` checks the predecessor's own name alone.
+    names as the stems of ``releases_dir/*.json``. ``releases_dir`` names the
+    ``manifests/releases`` directory of the checkout the cut is committed to;
+    ``None`` means ``DEFAULT_RELEASES_DIR``, that directory in the checkout
+    this module is imported from. The directory must hold the predecessor's
+    selector file, and that file must load to ``predecessor`` itself, or a
+    ``SuccessorError`` says so. It raises ``FileNotFoundError`` when the
+    directory is missing or holds no selector file, and ``ValueError`` when a
+    ``*.json`` entry is not a file, so a copy installed outside a checkout
+    must pass ``releases_dir`` or ``tracked``. The default directory decides
+    only what it holds: when it holds the predecessor but lacks a selector the
+    destination tracks, a description that names that selector first still
+    passes, so a cut for another checkout passes that checkout's
+    ``releases_dir``. An explicit ``tracked`` replaces those names and skips
+    the predecessor check, and ``tracked=()`` checks the predecessor's own
+    name alone.
 
     Raises ``SuccessorError`` for any refused change. Nothing is written.
     """
@@ -154,7 +194,13 @@ def compose_successor(
     added_bases = _scope_keys("add_base", add_base)
     if isinstance(tracked, str):
         raise SuccessorError("tracked must be a collection of selector names, not one string")
-    names = _tracked_selector_names(DEFAULT_RELEASES_DIR) if tracked is None else tracked
+    names = (
+        tracked
+        if tracked is not None
+        else _tracked_selector_names(
+            DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir, predecessor
+        )
+    )
 
     if name == predecessor.name:
         raise SuccessorError(f"A successor must have a new name, not {predecessor.name!r}")
@@ -280,12 +326,13 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
     """Return every scope that a selector under ``releases_dir`` marks as a base.
 
     Each ``*.json`` file in the directory is loaded with ``ReleaseManifest.load``,
-    so a selector that does not load raises instead of being skipped.
+    so a selector that does not load raises instead of being skipped. A
+    directory that is missing or holds no selector file raises
+    ``FileNotFoundError``, and a ``*.json`` entry that is not a file raises
+    ``ValueError``, since either would otherwise report no base.
     """
-    if not releases_dir.is_dir():
-        raise FileNotFoundError(f"Release selector directory not found: {releases_dir}")
     bases: set[ScopeKey] = set()
-    for path in sorted(releases_dir.glob("*.json")):
+    for path in _selector_files(releases_dir).values():
         release = ReleaseManifest.load(path)
         bases.update(scope.key for scope in release.scopes if scope.is_base)
     return frozenset(bases)

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import sys
 from dataclasses import replace
 from pathlib import Path
 
@@ -584,3 +585,64 @@ def test_reads_the_repository_selectors_by_default(tmp_path, monkeypatch):
     repository_releases = Path(__file__).resolve().parents[1] / "manifests" / "releases"
     assert seen == [repository_releases]
     assert repository_releases.is_dir()
+
+
+@pytest.mark.parametrize(
+    "checkout",
+    [
+        pytest.param("other-checkout", id="base-checkout"),
+        pytest.param(None, id="no-checkout"),
+    ],
+)
+def test_cli_reads_the_selectors_of_the_checkout_holding_base(tmp_path, monkeypatch, checkout):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    asked: list[Path] = []
+    seen: list[Path] = []
+
+    def fake_cli_repo(args) -> Path | None:
+        asked.append(Path(args.base))
+        return None if checkout is None else tmp_path / checkout
+
+    def recording_tracked_base_scopes(releases_dir: Path) -> frozenset[tuple[str, str, str]]:
+        seen.append(releases_dir)
+        return frozenset({("us-example", "statute", "primary-two")})
+
+    monkeypatch.setattr(consolidate_module, "cli_repo", fake_cli_repo, raising=False)
+    monkeypatch.setattr(consolidate_module, "tracked_base_scopes", recording_tracked_base_scopes)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "consolidate_release_scopes.py",
+            "--base",
+            str(store.root),
+            "--jurisdiction",
+            "us-example",
+            "--document-class",
+            "statute",
+            "--source-version",
+            "primary-one",
+            "--source-version",
+            "primary-two",
+            "--target-version",
+            "consolidated",
+        ],
+    )
+
+    if checkout is None:
+        # No checkout holds --base or the working directory, so no selector
+        # says which scopes are bases: the command line refuses to guess.
+        with pytest.raises(SystemExit) as exited:
+            consolidate_module.main()
+        assert exited.value.code == 2
+        assert seen == []
+        return
+    with pytest.raises(
+        ValueError, match=r"cannot be consolidated: us-example/statute/primary-two$"
+    ):
+        consolidate_module.main()
+    assert seen == [tmp_path / "other-checkout" / "manifests" / "releases"]
+    assert asked == [store.root]

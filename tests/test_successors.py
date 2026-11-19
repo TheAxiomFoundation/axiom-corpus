@@ -101,6 +101,9 @@ def _layered_predecessor(directory: Path) -> ReleaseManifest:
 def _compose(predecessor: ReleaseManifest, **changes: Any) -> ReleaseManifest:
     changes.setdefault("name", SUCCESSOR_NAME)
     changes.setdefault("description", DESCRIPTION)
+    # The synthetic predecessors are not tracked selectors, so the default
+    # inventory would refuse them; a test of that default passes tracked=None.
+    changes.setdefault("tracked", ())
     return compose_successor(predecessor, **changes)
 
 
@@ -228,10 +231,62 @@ def test_default_tracked_names_fail_closed(
     predecessor = _layered_predecessor(tmp_path)
 
     with pytest.raises(FileNotFoundError, match="pass tracked"):
-        _compose(predecessor)
+        _compose(predecessor, tracked=None)
     # Passing the names, even none, still works without the directory.
     assert _compose(predecessor, tracked=()).name == SUCCESSOR_NAME
     assert _compose(predecessor, tracked=[PREDECESSOR_NAME]).name == SUCCESSOR_NAME
+
+
+PLACEHOLDER_REFUSAL = r"placeholder\.json is not a selector file"
+NOT_HELD_REFUSAL = f"does not hold the predecessor {PREDECESSOR_NAME} as given"
+
+
+@pytest.mark.parametrize(
+    ("layout", "error", "message"),
+    [
+        pytest.param("placeholder-only", ValueError, PLACEHOLDER_REFUSAL, id="placeholder-only"),
+        pytest.param(
+            "placeholder-beside-predecessor",
+            ValueError,
+            PLACEHOLDER_REFUSAL,
+            id="placeholder-beside-predecessor",
+        ),
+        pytest.param(
+            "predecessor-absent", SuccessorError, NOT_HELD_REFUSAL, id="predecessor-absent"
+        ),
+        pytest.param(
+            "predecessor-differs", SuccessorError, NOT_HELD_REFUSAL, id="predecessor-differs"
+        ),
+    ],
+)
+def test_default_inventory_must_hold_the_predecessor_as_selector_files(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    layout: str,
+    error: type[Exception],
+    message: str,
+) -> None:
+    releases = tmp_path / "releases"
+    releases.mkdir()
+    monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", releases)
+    predecessor = _layered_predecessor(tmp_path)
+    if layout.startswith("placeholder"):
+        # A directory whose name ends in .json is not a selector.
+        (releases / "placeholder.json").mkdir()
+    if layout == "placeholder-beside-predecessor":
+        assert _layered_predecessor(releases) == predecessor
+    if layout == "predecessor-absent":
+        _write_selector(
+            releases / "zz-rulespec-2026-10-01-plain.json",
+            "zz-rulespec-2026-10-01-plain",
+            (PRIMARY_STATUTE,),
+        )
+    if layout == "predecessor-differs":
+        _write_selector(releases / f"{PREDECESSOR_NAME}.json", PREDECESSOR_NAME, (PRIMARY_STATUTE,))
+
+    with pytest.raises(error, match=message) as raised:
+        _compose(predecessor, tracked=None)
+    assert type(raised.value) is error
 
 
 def test_explicit_tracked_replaces_the_default_names() -> None:
@@ -243,6 +298,28 @@ def test_explicit_tracked_replaces_the_default_names() -> None:
     for tracked in ((), [GOLDEN_PREDECESSOR]):
         successor = _compose_golden_addition(FIRST_CUT_NAMED_FIRST, tracked=tracked)
         assert successor.name == UNTRACKED_SUCCESSOR
+
+
+def test_releases_dir_names_the_destination_inventory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    default = tmp_path / "a"
+    destination = tmp_path / "b"
+    default.mkdir()
+    destination.mkdir()
+    shutil.copy(RELEASE_DIR / f"{GOLDEN_PREDECESSOR}.json", default)
+    for name in (GOLDEN_PREDECESSOR, KS_LIHEAP_FIRST_CUT):
+        shutil.copy(RELEASE_DIR / f"{name}.json", destination)
+    monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", default)
+
+    # Without releases_dir the default inventory decides. It lacks the first
+    # cut, so this description passes: the residual the docstring names.
+    assert _compose_golden_addition(FIRST_CUT_NAMED_FIRST).name == UNTRACKED_SUCCESSOR
+    # The destination tracks the first cut, so its names refuse the description.
+    with pytest.raises(SuccessorError, match=NAMED_FIRST_REFUSAL):
+        _compose_golden_addition(FIRST_CUT_NAMED_FIRST, releases_dir=destination)
+    successor = _compose_golden_addition(PREDECESSOR_NAMED_FIRST, releases_dir=destination)
+    assert successor.name == UNTRACKED_SUCCESSOR
 
 
 def test_default_releases_dir_does_not_depend_on_the_working_directory(
@@ -674,6 +751,36 @@ def test_tracked_base_scopes_fails_closed(tmp_path: Path) -> None:
     (releases / "zz-rulespec-2026-10-01-broken.json").write_text("[]\n", encoding="utf-8")
     with pytest.raises(ValueError, match="must be a JSON object"):
         tracked_base_scopes(releases)
+
+
+@pytest.mark.parametrize(
+    ("layout", "error", "message"),
+    [
+        pytest.param(
+            "empty-directory", FileNotFoundError, "No release selector in", id="empty-directory"
+        ),
+        pytest.param(
+            "no-selector-file", FileNotFoundError, "No release selector in", id="no-selector-file"
+        ),
+        pytest.param(
+            "placeholder-directory", ValueError, PLACEHOLDER_REFUSAL, id="placeholder-directory"
+        ),
+    ],
+)
+def test_tracked_base_scopes_refuses_an_inventory_without_selector_files(
+    tmp_path: Path, layout: str, error: type[Exception], message: str
+) -> None:
+    # Reading no selector would report no base, so every base would pass as primary.
+    releases = tmp_path / "releases"
+    releases.mkdir()
+    if layout == "no-selector-file":
+        (releases / "README.md").write_text("Not a selector.\n", encoding="utf-8")
+    if layout == "placeholder-directory":
+        (releases / "placeholder.json").mkdir()
+
+    with pytest.raises(error, match=message) as raised:
+        tracked_base_scopes(releases)
+    assert type(raised.value) is error
 
 
 def test_tracked_base_scopes_loads_every_tracked_selector() -> None:

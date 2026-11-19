@@ -159,6 +159,11 @@ def _write_repo(
             )
             + "\n"
         )
+    else:
+        # A tracked selector that marks no base: an inventory with no selector is refused.
+        (releases / "us-example-plain.json").write_text(
+            json.dumps({"name": "us-example-plain", "scopes": [_row(PRIMARY)]}) + "\n"
+        )
 
 
 @pytest.mark.parametrize(

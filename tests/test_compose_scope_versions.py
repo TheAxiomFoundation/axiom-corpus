@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -584,3 +585,64 @@ def test_compose_reads_the_repository_selectors_by_default(tmp_path, monkeypatch
     repository_releases = Path(__file__).resolve().parents[1] / "manifests" / "releases"
     assert seen == [repository_releases]
     assert repository_releases.is_dir()
+
+
+@pytest.mark.parametrize(
+    "checkout",
+    [
+        pytest.param("other-checkout", id="base-checkout"),
+        pytest.param(None, id="no-checkout"),
+    ],
+)
+def test_compose_cli_reads_the_selectors_of_the_checkout_holding_base(
+    tmp_path, monkeypatch, checkout
+):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    asked: list[Path] = []
+    seen: list[Path] = []
+
+    def fake_cli_repo(args) -> Path | None:
+        asked.append(Path(args.base))
+        return None if checkout is None else tmp_path / checkout
+
+    def recording_tracked_base_scopes(releases_dir: Path) -> frozenset[tuple[str, str, str]]:
+        seen.append(releases_dir)
+        return frozenset({("us-example", "statute", "primary-two")})
+
+    monkeypatch.setattr(compose_module, "cli_repo", fake_cli_repo, raising=False)
+    monkeypatch.setattr(compose_module, "tracked_base_scopes", recording_tracked_base_scopes)
+    monkeypatch.setattr(compose_module, "require_materialized", _refuse_fetch)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "compose_scope_versions.py",
+            "--base",
+            str(store.root),
+            "--jurisdiction",
+            "us-example",
+            "--document-class",
+            "statute",
+            "--source-version",
+            "primary-one",
+            "--source-version",
+            "primary-two",
+            "--target-version",
+            "composed",
+        ],
+    )
+
+    if checkout is None:
+        # No checkout holds --base or the working directory, so no selector
+        # says which scopes are bases: the command line refuses to guess.
+        with pytest.raises(SystemExit) as exited:
+            compose_module.main()
+        assert exited.value.code == 2
+        assert seen == []
+        return
+    with pytest.raises(ValueError, match=r"cannot be composed: us-example/statute/primary-two$"):
+        compose_module.main()
+    assert seen == [tmp_path / "other-checkout" / "manifests" / "releases"]
+    assert asked == [store.root]

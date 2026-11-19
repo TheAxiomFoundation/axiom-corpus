@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import sys
 from dataclasses import replace
 
 import pytest
 
+import scripts.build_ca_rulespec_composite_scope as ca_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -233,3 +235,64 @@ def test_rejects_additional_citation_already_in_contract(tmp_path) -> None:
             target_version="combined",
             additional_citation_paths=("ca/policy/example",),
         )
+
+
+class _ConsolidateCalledError(Exception):
+    def __init__(self, kwargs: dict[str, object]) -> None:
+        super().__init__("consolidate_release_scopes called")
+        self.kwargs = kwargs
+
+
+@pytest.mark.parametrize(
+    "owner",
+    [pytest.param("owner", id="base-checkout"), pytest.param(None, id="no-checkout")],
+)
+def test_cli_reads_the_selectors_of_the_checkout_holding_base(tmp_path, monkeypatch, owner) -> None:
+    selector_path = tmp_path / "selector.json"
+    selector_path.write_text(
+        json.dumps(
+            {
+                "name": "ca-test",
+                "scopes": [
+                    {"jurisdiction": "ca", "document_class": "policy", "version": "source-v1"}
+                ],
+            }
+        )
+    )
+    contract_path = tmp_path / "citations.json"
+    contract_path.write_text(json.dumps({"citation_paths": ["ca/policy/example"]}))
+
+    def stop_at_consolidate(**kwargs: object) -> tuple[()]:
+        raise _ConsolidateCalledError(kwargs)
+
+    monkeypatch.setattr(
+        ca_module,
+        "cli_repo",
+        lambda args: None if owner is None else tmp_path / owner,
+        raising=False,
+    )
+    monkeypatch.setattr(ca_module, "consolidate_release_scopes", stop_at_consolidate)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "build_ca_rulespec_composite_scope.py",
+            "--base",
+            str(tmp_path / "corpus"),
+            "--selector",
+            str(selector_path),
+            "--citation-contract",
+            str(contract_path),
+            "--target-version",
+            "combined",
+        ],
+    )
+
+    if owner is None:
+        with pytest.raises(SystemExit) as exited:
+            ca_module.main()
+        assert exited.value.code == 2
+        return
+    with pytest.raises(_ConsolidateCalledError) as called:
+        ca_module.main()
+    assert called.value.kwargs.get("releases_dir") == tmp_path / "owner" / "manifests" / "releases"

@@ -14,6 +14,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.releases import ReleaseManifest
+from axiom_corpus.corpus.resolver import cli_repo
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from scripts.consolidate_release_scopes import consolidate_release_scopes
 
@@ -123,7 +124,15 @@ def build_ca_rulespec_composite_scope(
     target_version: str,
     supplemental_versions: tuple[str, ...] = (),
     additional_citation_paths: tuple[str, ...] = (),
+    releases_dir: Path | None = None,
 ) -> tuple[Path, ...]:
+    """Consolidate the selector's ca/policy scopes and promote the contracted roots.
+
+    ``releases_dir`` names the tracked selectors that say which scopes are
+    bases, as ``consolidate_release_scopes`` reads them; ``None`` means the
+    checkout this script belongs to. ``main()`` passes the
+    ``manifests/releases`` of the checkout holding ``--base``.
+    """
     release = ReleaseManifest.load(selector_path)
     unexpected = sorted(
         scope.key
@@ -146,6 +155,7 @@ def build_ca_rulespec_composite_scope(
         document_class="policy",
         source_versions=all_source_versions,
         target_version=target_version,
+        releases_dir=releases_dir,
     )
     promote_program_roots(
         base=base,
@@ -174,6 +184,12 @@ def main() -> int:
         help="Additional program-root citation outside the base contract (repeatable).",
     )
     args = parser.parse_args()
+    repo = cli_repo(args)
+    if repo is None:
+        parser.error(
+            "neither --base nor the working directory is in an axiom-corpus checkout, so no "
+            "tracked selectors say which scopes are bases"
+        )
     generated = build_ca_rulespec_composite_scope(
         base=args.base,
         selector_path=args.selector,
@@ -181,6 +197,7 @@ def main() -> int:
         target_version=args.target_version,
         supplemental_versions=tuple(args.supplemental_version),
         additional_citation_paths=tuple(args.additional_citation),
+        releases_dir=repo / "manifests" / "releases",
     )
     for path in generated:
         print(path)
