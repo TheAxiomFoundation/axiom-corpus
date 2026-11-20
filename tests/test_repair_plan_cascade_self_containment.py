@@ -398,3 +398,27 @@ def test_refuses_a_scope_name_a_selector_cannot_spell(rows, mapping, tracked):
     # the files of another scope while comparing unequal to it.
     with pytest.raises(ValueError, match=r"^not a canonical scope: "):
         _refuse_base_repairs(_payload(*rows), mapping, tracked)
+
+
+@pytest.mark.parametrize(
+    ("rows", "mapping", "refusal"),
+    [
+        pytest.param(
+            (_row(("us-example", "statute", "Base-V"), layer="primary"), _row(PRIMARY)),
+            _mapped(PRIMARY),
+            "release scope us-example/statute/Base-V has an invalid layer: 'primary'",
+            id="same-row",
+        ),
+        pytest.param(
+            (_row(BASE, layer="primary"), _row(PRIMARY)),
+            {PRIMARY: ("us-example", "statute", "primary-v-FIX")},
+            "release scope us-example/statute/base-v has an invalid layer: 'primary'",
+            id="new-scope",
+        ),
+    ],
+)
+def test_refuses_an_invalid_layer_before_a_spelling(rows, mapping, refusal):
+    # The layer loop runs before the spelling check, so a payload with a
+    # layer other than "base" gets the layer refusal whatever else it misspells.
+    with pytest.raises(ValueError, match=rf"^{re.escape(refusal)}$"):
+        _refuse_base_repairs(_payload(*rows), mapping, frozenset())

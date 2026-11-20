@@ -722,3 +722,33 @@ def test_compose_writes_nothing_at_a_tracked_base_path_through_an_alias(tmp_path
     assert not store.inventory_path("us-example", "statute", "tracked-base").exists()
     assert not store.coverage_path("us-example", "statute", "tracked-base").exists()
     assert not (store.root / "sources/us-example/statute/tracked-base").exists()
+
+
+@pytest.mark.parametrize("role", ["source", "target"])
+def test_compose_refuses_a_spelling_before_reading_the_tracked_selectors(
+    tmp_path, monkeypatch, role
+):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    monkeypatch.setattr(compose_module, "require_materialized", _refuse_fetch)
+    if role == "source":
+        source_versions = ["tracked-base ", "primary-one"]
+        target_version = "composed"
+    else:
+        source_versions = ["primary-one", "primary-two"]
+        target_version = "tracked-base "
+
+    # No selector directory exists, so the spelling refusal can win only if
+    # the check runs before tracked_base_scopes reads the directory.
+    with pytest.raises(
+        ValueError, match=r"^not a canonical scope: 'us-example'/'statute'/'tracked-base ' "
+    ):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="us-example",
+            document_class="statute",
+            source_versions=source_versions,
+            target_version=target_version,
+            releases_dir=tmp_path / "missing",
+        )
