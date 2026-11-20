@@ -294,12 +294,14 @@ decision made on a later day is a new entry, not an edit of an entry from an
 earlier day. Successions are sorted by selector, with at most one per selector;
 a succession superseding a first-cut claim must be listed on a later date.
 Base replacements are sorted by selector, then pair, with one per selector and
-pair. The check holds base replacements built in code to the same rules. The
-loader refuses any record that names a selector without a pin. For a
-succession it also refuses the record if either selector file is absent or its
-edge would close a cycle, including one with named edges. The loader compares
-no pin with its selector; the check reports a pin whose selector is missing or
-changed as a baseline error.
+pair. The check holds base replacements built in code to the loader's shape
+rules: each is keyed by its own selector and pair, names another selector as
+its predecessor, and names another version of that pair as `replaced_by`. The
+loader refuses any record that names a selector without a pin. For a succession
+it also refuses the record if either selector file is absent or its edge would
+close a cycle, including one with named edges. The loader compares no pin with
+its selector; the check reports a pin whose selector is missing or changed as a
+baseline error.
 A description that already names a tracked predecessor always wins: adding a
 succession for it fails the check, even if both name the same base. Omit that
 redundant new record; if an established record was invalidated by editing its
