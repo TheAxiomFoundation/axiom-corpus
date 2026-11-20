@@ -19,8 +19,9 @@
 # A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
 # also has as a base, and stops before it stages anything when the draft has a base scope
 # that the predecessor lacks or has as primary, or has as primary a scope that the
-# predecessor has as a base, or either selector spells a layer other than "base". A base
-# scope enters a release through its restore manifest (axiom-corpus#728), not this
+# predecessor has as a base, or either selector spells a layer other than "base". The run
+# also stops when either selector misspells a part of a scope or lists a scope twice. A
+# base scope enters a release through its restore manifest (axiom-corpus#728), not this
 # script. Order matters: the signer records HEAD and requires a clean tracked tree, and the
 # signed manifest must describe committed artifact bytes. So: (1) force-add and commit
 # the artifacts, (2) sign every unreleased scope against that commit, (3) commit those
@@ -127,8 +128,36 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 trap 'exit 129' HUP
 python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
-import json, sys
+import json, re, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
+
+# The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
+# a part no selector can spell, such as "2026-05-01 ", would name another scope's files.
+COMPONENT = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
+spelling = []
+for path, scopes in zip(sys.argv[1:3], (draft, predecessor)):
+    seen = set()
+    for s in scopes:
+        for field in ("jurisdiction", "document_class", "version"):
+            value = s.get(field)
+            if not (isinstance(value, str) and COMPONENT.fullmatch(value)):
+                spelling.append(
+                    f"a scope in {path} has {field} {value!r}; a selector spells each"
+                    " part of a scope as a lowercase letter or digit followed by up to"
+                    " 255 lowercase letters, digits, '.', '_' or '-'"
+                )
+        triple = (s.get("jurisdiction"), s.get("document_class"), s.get("version"))
+        if triple in seen:
+            spelling.append(
+                f"scope {'/'.join(map(str, triple))} appears more than once in {path}; a"
+                " selector selects each scope once"
+            )
+        seen.add(triple)
+# A predecessor that lists a scope twice makes the layer checks below read one layer of
+# it, so the run stops here, before them.
+if spelling:
+    print(*spelling, sep="\n", file=sys.stderr)
+    sys.exit(1)
 
 
 def key(s):
