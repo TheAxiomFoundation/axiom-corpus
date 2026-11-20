@@ -353,8 +353,8 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
     Each ``*.json`` file in the directory is loaded with ``ReleaseManifest.load``,
     so a selector that does not load raises instead of being skipped. A
     directory that is missing or holds no selector file raises
-    ``FileNotFoundError``, and a ``*.json`` entry that is not a file raises
-    ``ValueError``, since either would otherwise report no base.
+    ``FileNotFoundError``, since reading no selector would report no base,
+    and a ``*.json`` entry that is not a file raises ``ValueError``.
     """
     bases: set[ScopeKey] = set()
     for path in _selector_files(releases_dir).values():
