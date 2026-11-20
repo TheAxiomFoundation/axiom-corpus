@@ -1703,6 +1703,59 @@ def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
     ]
 
 
+# Two earlier cuts still mark BASE as a base. A later cut replaced it with REPLACING, or
+# carries no base, so the predecessor says nothing about BASE.
+REPLACING = "2026-05-02"
+EARLIER = ("manifests/releases/test-rel-0.json", "manifests/releases/test-rel-0a.json")
+TRACKED_BASE = (
+    "base scope {scope} of {path} is primary in the draft; a scope that a tracked selector"
+    ' marks "layer": "base" is selected only as a base, never signed as a primary scope'
+)
+# case: (the predecessor's scopes, the draft's)
+TRACKED_BASE_REFUSALS: dict[str, tuple[LayeredScopes, LayeredScopes]] = {
+    "replaced-base-re-added": (
+        [(REPLACING, "base"), (RELEASED, None)],
+        [(REPLACING, "base"), (RELEASED, None), (BASE, None), *PRIMARIES],
+    ),
+    "predecessor-lacks-the-base": (
+        [(RELEASED, None)],
+        [(RELEASED, None), (BASE, None), *PRIMARIES],
+    ),
+}
+
+
+@pytest.mark.parametrize("case", TRACKED_BASE_REFUSALS)
+def test_stops_before_staging_when_the_draft_selects_a_tracked_base_as_primary(
+    repo: Path, case: str
+) -> None:
+    """A scope that any tracked selector marks as a base is never signed as a primary scope.
+
+    The predecessor does not carry the base, so the comparison with it finds nothing:
+    without the tracked selectors the run would commit and sign the base as unreleased.
+    The line names the first selector, in name order, that marks the scope as a base.
+    """
+    predecessor, draft = TRACKED_BASE_REFUSALS[case]
+    for path in EARLIER:
+        earlier = _layered_selector(Path(path).stem, [(BASE, "base"), (RELEASED, None)])
+        _write_json(repo / path, earlier)
+    _git(repo, "add", *EARLIER)  # committed with the two selectors below
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+    for version in (BASE, *UNRELEASED):
+        assert not _manifest(repo, version).exists()
+
+
 # Step 2's plan, in the script's own words, run as the script runs it.
 PLAN_SOURCE = re.compile(r"^plan_signing\(\) \{.*?<<'PY'\n(.*?)^PY$", re.S | re.M)
 PLAN_VERSION = "2026-09-24-p"

@@ -19,14 +19,16 @@
 # A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
 # also has as a base, and stops before it stages anything when the draft has a base scope
 # that the predecessor lacks or has as primary, or has as primary a scope that the
-# predecessor has as a base, or either selector spells a layer other than "base". The run
-# also stops when either selector misspells a part of a scope or lists a scope twice. A
-# base scope enters a release through its restore manifest (axiom-corpus#728), not this
-# script. Order matters: the signer records HEAD and requires a clean tracked tree, and the
-# signed manifest must describe committed artifact bytes. So: (1) force-add and commit
-# the artifacts, (2) sign every unreleased scope against that commit, (3) commit those
-# scopes' manifests and no others, (4) copy the draft to manifests/releases/<name>.json,
-# deep-validate it against the committed artifacts and commit it.
+# predecessor has as a base, or has as primary a scope that a tracked selector under
+# manifests/releases marks as a base, or either selector spells a layer other than "base".
+# The run also stops when either selector misspells a part of a scope or lists a scope
+# twice. A base scope enters a release through its restore manifest (axiom-corpus#728),
+# not this script. Order matters: the signer records HEAD and requires a clean tracked
+# tree, and the signed manifest must describe committed artifact bytes. So: (1) force-add
+# and commit the artifacts, (2) sign every unreleased scope against that commit, (3) commit
+# those scopes' manifests and no others, (4) copy the draft to
+# manifests/releases/<name>.json, deep-validate it against the committed artifacts and
+# commit it.
 #
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
@@ -70,7 +72,9 @@ TARGET="manifests/releases/$NAME.json"
 
 # Unreleased scopes: the draft's primary scopes minus the predecessor's, as
 # "jurisdiction document_class version" lines. The layer is read on both sides (see the
-# header), and a base scope that is not carried as it is stops the run here.
+# header), and a base scope the draft adds, a scope the draft moves between layers, and a
+# tracked base drafted as primary stop the run here; a base the draft leaves out is the
+# lineage check's finding.
 # (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
 SCOPE_LIST=$(mktemp)
 # From step 1 on, a run that stops before the selector commit undoes what it has not
@@ -128,7 +132,7 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 trap 'exit 129' HUP
 python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
-import json, re, sys
+import glob, json, re, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
 
 # The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
@@ -180,6 +184,15 @@ problems = [
 ]
 # True for a base scope of the predecessor, False for a primary one.
 released = {key(s): is_base(s) for s in predecessor}
+# Every scope a tracked selector marks as a base, with the first such selector in name
+# order. The predecessor says nothing about a base that an earlier cut replaced or that it
+# never carried, so the comparison with it alone would let the draft sign one as primary.
+# A tracked selector that cannot be read stops the run.
+tracked_bases = {}
+for tracked in sorted(glob.glob("manifests/releases/*.json")):
+    for s in json.load(open(tracked))["scopes"]:
+        if is_base(s):
+            tracked_bases.setdefault(key(s), tracked)
 for s in sorted(draft, key=key):
     scope, carried = "/".join(key(s)), released.get(key(s))
     if is_base(s) and not carried:
@@ -191,6 +204,12 @@ for s in sorted(draft, key=key):
         problems.append(
             f"base scope {scope} of the predecessor is primary in the draft; a successor"
             " carries a base scope unchanged, as a base"
+        )
+    elif not is_base(s) and key(s) in tracked_bases:
+        problems.append(
+            f"base scope {scope} of {tracked_bases[key(s)]} is primary in the draft; a scope "
+            'that a tracked selector marks "layer": "base" is selected only as a base, '
+            "never signed as a primary scope"
         )
     elif key(s) not in released:
         print(*key(s))
