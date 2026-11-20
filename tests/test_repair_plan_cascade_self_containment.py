@@ -255,6 +255,89 @@ def test_main_refuses_a_base_repair_before_moving_anything(
     assert not report.exists()
 
 
+@pytest.mark.parametrize(
+    ("opening", "closing", "says", "never_says"),
+    [
+        pytest.param(
+            "**Consolidation, composition and repair.**",
+            "- `scripts/consolidate_release_scopes.py`",
+            (),
+            ("before it changes anything",),
+            id="lead",
+        ),
+        pytest.param(
+            "- `scripts/repair_plan_cascade_self_containment.py`",
+            "**Signing.**",
+            ("after it fetches", "before its first move, rewrite or unlink"),
+            (),
+            id="repair",
+        ),
+    ],
+)
+def test_the_docs_time_the_base_refusal_as_main_runs_it(
+    tmp_path, monkeypatch, opening, closing, says, never_says
+):
+    # main() fetches and reads the release's scopes to plan the repair, then
+    # refuses a base before it moves anything; the docs must say so.
+    repo = tmp_path / "repo"
+    _write_repo(
+        repo, release=Path("repair") / "release.json", release_layer="base", tracked_base=False
+    )
+    report = tmp_path / "report.json"
+    before = _tree(repo)
+    events: list[str] = []
+    monkeypatch.setattr(
+        repair_module,
+        "ensure_corpus_scopes",
+        lambda scopes, *, repo: events.append("fetch"),
+    )
+    refuse = repair_module._refuse_base_repairs
+
+    def recording_refusal(*args, **kwargs):
+        events.append("refuse")
+        return refuse(*args, **kwargs)
+
+    monkeypatch.setattr(repair_module, "_refuse_base_repairs", recording_refusal)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "repair_plan_cascade_self_containment.py",
+            "--audit-residuals",
+            "--repo",
+            str(repo),
+            "--release",
+            str(Path("repair") / "release.json"),
+            "--suffix",
+            SUFFIX,
+            "--report",
+            str(report),
+        ],
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=r"^base scopes are carried unchanged and cannot be repaired: "
+        r"us-example/statute/base-v$",
+    ):
+        repair_module.main()
+
+    assert events == ["fetch", "refuse"]
+    assert _tree(repo) == before
+
+    docs = " ".join(
+        (Path(__file__).parents[1] / "docs" / "named-release-publication.md")
+        .read_text(encoding="utf-8")
+        .split()
+    )
+    start = docs.index(opening)
+    section = docs[start : docs.index(closing, start + len(opening))]
+    for phrase in says:
+        assert phrase in section, phrase
+    for phrase in never_says:
+        assert phrase not in section, phrase
+
+
 def _write_scope_files(
     corpus: Path, scope: tuple[str, str, str], rows: list[dict[str, str]], *, sources: bool
 ) -> None:

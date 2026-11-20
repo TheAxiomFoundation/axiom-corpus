@@ -162,6 +162,7 @@ selectors (`line_heads`). The check fails on:
 | dropped pair | the selector selects no version of a pair its predecessor carries, so the pair's last version leaves the line |
 | dropped base | the selector still carries a pair whose base scope its predecessor selects, but does not select that base as the same base scope: it leaves the base out, selects another version as the pair's base, or selects the base's version as a primary scope |
 | layer changed | a scope the predecessor selects as a primary scope is a base scope in the selector |
+| layer conflict | a scope one tracked selector selects as a base scope and another as a primary scope, unless a dropped base or layer changed finding already names it; no record allows it |
 | fork | two or more selectors resolve to the same predecessor, so at most one of them is the newest cut of the line |
 | ended branch | the selector succeeds a branch of a recorded fork that the line did not continue through |
 | unnamed predecessor | no description or succession record connects the selector to a tracked predecessor, and no record says it is the first cut of a line |
@@ -184,9 +185,10 @@ carries a pair whose base its predecessor selects, it must select that base
 as the same scope. `selector_lineage.base_changes` compares whole
 `ReleaseScope`s, version and layer included, not pairs. A cut that does not
 gets a dropped base finding unless the baseline records the replacement under
-`base_replacements`. A cut that drops the pair whole gets a dropped pair
-finding only. A base version the predecessor does not select, added to a pair
-whose predecessor has no base, is not a finding.
+`base_replacements` and the cut no longer selects the replaced base; no record
+allows a base the cut keeps as a primary scope. A cut that drops the pair whole
+gets a dropped pair finding only. A base version the predecessor does not
+select, added to a pair whose predecessor has no base, is not a finding.
 [Successor cuts](named-release-publication.md#successor-cuts) describes the
 composer that carries every base forward.
 
@@ -280,8 +282,8 @@ pinned to its digest (`axiom_corpus.release.manifest.selector_sha256`) under
 - `base_replacements`: the `selector`, its `predecessor`, the `pair`, the
   version of the predecessor's base for the pair (`replaced`) and the base
   scope the selector selects for the pair instead (`replaced_by`). A layer
-  change has no record, and neither does a base that leaves a pair the cut
-  carries without a new base;
+  change has no record, including a replaced base kept as a primary scope, and
+  neither does a base that leaves a pair the cut carries without a new base;
 - `forks`: every selector that resolves to the `predecessor` (a further successor
   is a new fork), and under `continued_by` the ones the line went on through;
 - `first_cuts`: dated claims that selectors have no tracked predecessor. A later
@@ -292,9 +294,12 @@ decision made on a later day is a new entry, not an edit of an entry from an
 earlier day. Successions are sorted by selector, with at most one per selector;
 a succession superseding a first-cut claim must be listed on a later date.
 Base replacements are sorted by selector, then pair, with one per selector and
-pair.
-The loader refuses a record if either selector file is absent, either pin is
-missing, or its edge would close a cycle, including one with named edges.
+pair. The check holds base replacements built in code to the same rules. The
+loader refuses any record that names a selector without a pin. For a
+succession it also refuses the record if either selector file is absent or its
+edge would close a cycle, including one with named edges. The loader compares
+no pin with its selector; the check reports a pin whose selector is missing or
+changed as a baseline error.
 A description that already names a tracked predecessor always wins: adding a
 succession for it fails the check, even if both name the same base. Omit that
 redundant new record; if an established record was invalidated by editing its

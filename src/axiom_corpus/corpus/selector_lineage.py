@@ -91,21 +91,22 @@ the selector selects for the pair instead (``replaced_by``); a base that leaves
 a pair with no replacement, and a layer change, have no record. A base
 replacement record holds only while the selector no longer selects
 ``replaced`` in either layer: a replaced base kept as a primary scope is a
-layer change, which no record allows. A predecessor's fork entries together list every successor and the ones the
-line continued through. Records are append-only
-and dated: a later decision about a recorded fork, a new successor or a
-branch the line now goes on through, is another entry for the same
+layer change, which no record allows. A predecessor's fork entries together
+list every successor and the ones the line continued through. Records are
+append-only and dated: a later decision about a recorded fork, a new successor
+or a branch the line now goes on through, is another entry for the same
 predecessor with its own ``listed_on`` and reason, and the check reads a
-predecessor's entries as their union. The entries listed on 2026-11-02 are
-what ``main`` held when the check began.
-Those historical first-cut entries remain: a later succession supersedes the
-claim without making it stale. Both endpoints must still match their pins,
-and the reason quotes the selector's prose. The loader refuses missing
-endpoint files and cycles closed by recorded edges, including mixed cycles
-with named edges. The digest excludes descriptions; repository evidence tests
-also pin the reviewed prose on both sides. Two optional sections extend v1,
-``successions`` and ``base_replacements``: older strict readers reject them
-rather than silently ignoring recorded edges or replacements.
+predecessor's entries as their union. The entries listed on 2026-11-02 are what
+``main`` held when the check began. Those historical first-cut entries remain:
+a later succession supersedes the claim without making it stale. Both endpoints
+must still match their pins, and the reason quotes the selector's prose. For a
+succession, the loader also refuses a missing endpoint file and a cycle closed
+by recorded edges, including a mixed cycle with named edges; the other records
+load without selector files, and the check verifies their pins. The digest
+excludes descriptions; repository evidence tests also pin the reviewed prose on
+both sides. Two optional sections extend v1, ``successions`` and
+``base_replacements``: older strict readers reject them rather than silently
+ignoring recorded edges or replacements.
 """
 
 from __future__ import annotations

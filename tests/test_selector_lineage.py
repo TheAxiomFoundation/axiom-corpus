@@ -1984,6 +1984,72 @@ def test_a_base_replacement_parses(tmp_path: Path) -> None:
     assert load_lineage_baseline(_write(tmp_path, _VALID)).base_replacements == {}
 
 
+@pytest.mark.parametrize(
+    ("section", "entry", "pinned", "refusal"),
+    [
+        pytest.param(
+            "dropped_pairs",
+            "  - selector: line-b\n    predecessor: line-a\n    pair: uk-shropshire/manual\n"
+            "    listed_on: 2026-11-02\n    reason: Retired by omission.\n",
+            ("line-a", "line-b"),
+            None,
+            id="drop",
+        ),
+        pytest.param(
+            "base_replacements",
+            _REPLACEMENT.split("base_replacements:\n", 1)[1],
+            ("line-a", "line-c"),
+            None,
+            id="base-replacement",
+        ),
+        pytest.param(
+            "successions",
+            "  - selector: line-c\n    predecessor: line-a\n    listed_on: 2026-11-17\n"
+            "    reason: The reviewed prose names line-a.\n",
+            ("line-a", "line-c"),
+            "succession line-c names line-c, which has no tracked selector file",
+            id="succession",
+        ),
+    ],
+)
+def test_only_a_succession_needs_its_selector_files_to_load(
+    tmp_path: Path, section: str, entry: str, pinned: tuple[str, ...], refusal: str | None
+) -> None:
+    """The loader opens selector files for a succession alone; the check verifies other pins.
+
+    The docs and the module docstring say the same: each sentence that names
+    an absent selector file or an endpoint file also names the succession.
+    """
+    digests = "".join(f"  {name}: {name[-1] * 64}\n" for name in pinned)
+    path = _write(
+        tmp_path,
+        f"schema_version: {LINEAGE_BASELINE_SCHEMA}\nselector_digests:\n{digests}"
+        f"{section}:\n{entry}",
+    )
+    (tmp_path / "releases").mkdir()
+    if refusal is not None:
+        with pytest.raises(SelectorLineageError) as refused:
+            load_lineage_baseline(path)
+        assert refusal in str(refused.value)
+    else:
+        report = check_selector_lineage({}, load_lineage_baseline(path))
+        assert report.baseline_errors == tuple(
+            f"the baseline pins {name}, which is not a tracked selector" for name in pinned
+        )
+
+    policy = (Path(__file__).parents[1] / "docs" / "release-gate-policy.md").read_text(
+        encoding="utf-8"
+    )
+    for text, phrase in (
+        (policy, "selector file is absent"),
+        (selector_lineage.__doc__ or "", "endpoint file"),
+    ):
+        sentences = [chunk for chunk in " ".join(text.split()).split(". ") if phrase in chunk]
+        assert sentences, phrase
+        for sentence in sentences:
+            assert "succession" in sentence, sentence
+
+
 def test_a_date_only_replaced_version_reads_as_its_text(tmp_path: Path) -> None:
     """YAML reads an unquoted 2026-08-07 as a date; the version is its ISO text."""
     for spelled in ("2026-08-07", "'2026-08-07'"):
