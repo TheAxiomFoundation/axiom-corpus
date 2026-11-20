@@ -603,11 +603,11 @@ the cut selects `replaced_by` as a base scope, and the cut no longer selects
 the `replaced` version. An entry that no longer holds is a baseline error,
 which fails the check. A layer change has no record, in either direction: a
 cut that keeps the replaced base as a primary scope fails even with an entry.
-Neither does a base that leaves a pair the cut carries without a new base. The
-check holds an entry built in code, rather than loaded from the file, to the
-same rules: keyed by its own selector and pair, with `replaced_by` in that
-pair. The tracked baseline has no `base_replacements` section, and the loader
-reads an absent section as empty.
+A base that leaves a pair the cut carries without a new base has no record
+either. The check holds an entry built in code, rather than loaded from the
+file, to the same rules: keyed by its own selector and pair, with `replaced_by`
+in that pair. The tracked baseline has no `base_replacements` section, and the
+loader reads an absent section as empty.
 
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves base scopes alone.
 It never opens or cuts a base scope the target declares. Before it opens any
