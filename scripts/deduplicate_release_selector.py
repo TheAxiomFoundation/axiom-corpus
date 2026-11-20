@@ -8,7 +8,9 @@ scope and once in an added primary scope, this command removes the added
 provision and its matching inventory item, then refreshes that scope's coverage
 report. Any ambiguous collision is rejected.
 
-Base scopes are never opened and never cut. For a citation path that both
+Base scopes the target declares are never opened and never cut. A target
+that selects, as a primary scope, a scope that a tracked selector marks as a
+base is refused before any artifact is opened. For a citation path that both
 layers carry, serving picks the primary row, so a primary row over a base row
 is layering, not a duplicate: only primary scopes compete for a citation. The
 report lists the base scopes the run left untouched.
@@ -25,6 +27,11 @@ from pathlib import Path
 from typing import Any
 
 from axiom_corpus.corpus.releases import ReleaseScope, parse_release_scope
+from axiom_corpus.corpus.resolver import cli_repo
+from axiom_corpus.corpus.successors import refuse_tracked_bases_as_primary, tracked_base_scopes
+
+# The tracked selectors are the only record of which scopes are bases.
+DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[1] / "manifests" / "releases"
 
 
 def _read_selector(path: Path) -> tuple[ReleaseScope, ...]:
@@ -174,7 +181,16 @@ def deduplicate(
     target_selector: Path,
     *,
     apply: bool,
+    releases_dir: Path | None = None,
 ) -> dict[str, Any]:
+    """Remove from the target's added primary scopes each citation a canonical scope carries.
+
+    ``releases_dir`` names the ``manifests/releases`` directory whose tracked
+    selectors say which scopes are bases; ``None`` means
+    ``DEFAULT_RELEASES_DIR``, that directory in this script's checkout. A
+    target that selects one of those bases as a primary scope raises
+    ``ValueError`` before any artifact is opened.
+    """
     canonical_scopes = set(_read_selector(canonical_selector))
     target_scopes = _read_selector(target_selector)
     # Whole-scope comparison: a canonical scope carried in the other layer is
@@ -184,6 +200,12 @@ def deduplicate(
         raise ValueError(
             "target selector omits canonical scopes: " + ", ".join(_render(s) for s in missing)
         )
+    # The canonical scopes are among the target's, so this checks them too.
+    refuse_tracked_bases_as_primary(
+        target_scopes,
+        tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir),
+        selector=f"target selector {target_selector}",
+    )
 
     base_scopes = sorted((scope for scope in target_scopes if scope.is_base), key=_scope_order)
     carriers: dict[str, list[tuple[ReleaseScope, bool]]] = defaultdict(list)
@@ -248,11 +270,20 @@ def main() -> int:
     parser.add_argument("--target-selector", type=Path, required=True)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
+    # The checkout holding --corpus decides which scopes are bases, as --base does
+    # for compose_scope_versions.py and consolidate_release_scopes.py.
+    repo = cli_repo(argparse.Namespace(base=args.corpus))
+    if repo is None:
+        parser.error(
+            "neither --corpus nor the working directory is in an axiom-corpus checkout, so no "
+            "tracked selectors say which scopes are bases"
+        )
     report = deduplicate(
         args.corpus,
         args.canonical_selector,
         args.target_selector,
         apply=args.apply,
+        releases_dir=repo / "manifests" / "releases",
     )
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0

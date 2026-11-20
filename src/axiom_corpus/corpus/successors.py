@@ -13,8 +13,12 @@ and raises ``SuccessorError`` for any it refuses. Unless the caller passes
 the tracked selector names, it reads them from ``releases_dir``, the
 ``manifests/releases`` of the checkout the cut is committed to, which
 defaults to ``DEFAULT_RELEASES_DIR``; that directory must hold the
-predecessor as given. It writes no file, so a refused cut leaves nothing
-behind.
+predecessor as given. It also refuses a new primary scope, added or a
+replacement, that a tracked selector marks as a base, so a base that another
+cut replaced cannot come back as primary. Unless the caller passes those
+bases as ``tracked_bases``, it reads them from the same directory, and only
+for a cut that adds or replaces a primary scope. It writes no file, so a
+refused cut leaves nothing behind.
 
 ``render_selector`` returns the selector text a new cut commits: keys sorted,
 a two-space indent and a final newline, the layout of
@@ -29,7 +33,9 @@ comparison against the tracked bases is exact.
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
 and a directory that holds no selector file is refused rather than read as
-holding no base.
+holding no base. ``refuse_tracked_bases_as_primary`` refuses any of those
+bases that a selector selects as a primary scope; the composer and
+``scripts/deduplicate_release_selector.py`` call it.
 """
 
 from __future__ import annotations
@@ -166,6 +172,7 @@ def compose_successor(
     add_base: Iterable[ScopeKey] = (),
     tracked: Collection[str] | None = None,
     releases_dir: Path | None = None,
+    tracked_bases: Collection[ScopeKey] | None = None,
 ) -> ReleaseManifest:
     """Return the successor of ``predecessor`` with the given primary-scope changes.
 
@@ -203,6 +210,17 @@ def compose_successor(
     ``releases_dir``. An explicit ``tracked`` replaces those names and skips
     the predecessor check, and ``tracked=()`` checks the predecessor's own
     name alone.
+
+    A new primary scope, one in ``add`` or a replacement, may not be a scope
+    that a tracked selector marks as a base: a scope has one layer across the
+    tracked selectors (the lineage check reports a ``LayerConflict``
+    otherwise), so a base that another cut replaced cannot come back as
+    primary. ``tracked_bases`` names those bases. With ``tracked_bases`` left
+    as ``None``, they are read with ``tracked_base_scopes`` from
+    ``releases_dir``, or ``DEFAULT_RELEASES_DIR`` when that is ``None``, and
+    only when the cut adds or replaces a primary scope, so only such a cut
+    needs that directory. ``add_base`` is not checked, so a restore may bring
+    a tracked base back as a base.
 
     Raises ``SuccessorError`` for any refused change. Nothing is written.
     """
@@ -291,6 +309,16 @@ def compose_successor(
         if count > 1:
             raise SuccessorError(f"add_base names more than one base for {'/'.join(pair)}")
 
+    new_primaries = [*added, *replacement_keys.values()]
+    if new_primaries:
+        refuse_tracked_bases_as_primary(
+            [_scope(key, layer=LAYER_PRIMARY) for key in new_primaries],
+            tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir)
+            if tracked_bases is None
+            else tracked_bases,
+            selector=name,
+        )
+
     dropped = {*removed, *replacement_keys}
     scopes = [scope for scope in predecessor.scopes if scope.key not in dropped]
     scopes.extend(_scope(key, layer=LAYER_PRIMARY) for key in added)
@@ -361,3 +389,28 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
         release = ReleaseManifest.load(path)
         bases.update(scope.key for scope in release.scopes if scope.is_base)
     return frozenset(bases)
+
+
+def refuse_tracked_bases_as_primary(
+    scopes: Iterable[ReleaseScope],
+    tracked_bases: Collection[ScopeKey],
+    *,
+    selector: str,
+) -> None:
+    """Refuse every primary scope in ``scopes`` that ``tracked_bases`` holds.
+
+    ``tracked_bases`` is the set ``tracked_base_scopes`` returns. A scope
+    that a tracked selector marks as a base is selected only as a base, so
+    this raises ``SuccessorError`` naming ``selector`` and each such scope,
+    sorted. Base scopes in ``scopes`` are not checked.
+    """
+    refused = sorted(
+        {scope.key for scope in scopes if not scope.is_base and scope.key in tracked_bases}
+    )
+    if refused:
+        raise SuccessorError(
+            f"{selector} selects a tracked base scope as a primary scope: "
+            + ", ".join(_label(key) for key in refused)
+            + '; a scope that a tracked selector marks "layer": "base" is selected only '
+            "as a base"
+        )

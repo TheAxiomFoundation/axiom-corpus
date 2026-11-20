@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 import pytest
 
+import scripts.deduplicate_release_selector as dedup_module
 from scripts.deduplicate_release_selector import deduplicate
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def _write_json(path: Path, payload: dict[str, object]) -> None:
@@ -327,3 +331,185 @@ def test_deduplicate_refuses_a_scope_selected_in_both_layers(tmp_path: Path) -> 
 
     with pytest.raises(ValueError, match="selector contains duplicate scopes"):
         deduplicate(tmp_path / "corpus", canonical, target, apply=False)
+
+
+# A tracked selector marks us-example/statute/base as a base, and canonical as a primary scope.
+LAYERED_SELECTOR = "us-example-layered"
+TRACKED_BASE_REFUSAL = (
+    "target selector {target} selects a tracked base scope as a primary scope: "
+    'us-example/statute/base; a scope that a tracked selector marks "layer": "base" '
+    "is selected only as a base"
+)
+
+
+def _write_tracked_releases(directory: Path) -> Path:
+    releases = directory / "releases"
+    _write_json(
+        releases / f"{LAYERED_SELECTOR}.json",
+        {
+            "name": LAYERED_SELECTOR,
+            "scopes": [
+                {"document_class": "statute", "jurisdiction": "us-example", "version": "canonical"},
+                _base_mapping("base"),
+            ],
+        },
+    )
+    return releases
+
+
+@pytest.mark.parametrize(
+    ("canonical_versions", "target_versions"),
+    [
+        pytest.param(["canonical"], ["canonical", "base"], id="reviewer-draft-drops-the-layer"),
+        pytest.param(["canonical"], ["canonical", "base", "added"], id="beside-an-added-primary"),
+        pytest.param(
+            ["canonical", "base"], ["canonical", "base"], id="canonical-carries-it-as-primary"
+        ),
+    ],
+)
+def test_deduplicate_refuses_a_tracked_base_selected_as_primary(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    canonical_versions: list[str],
+    target_versions: list[str],
+) -> None:
+    corpus = tmp_path / "corpus"
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_scope(corpus, "canonical", ["us-example/statute/1"])
+    _write_scope(corpus, "base", ["us-example/statute/1", "us-example/statute/2"])
+    _write_scope(corpus, "added", ["us-example/statute/3"])
+    _write_selector(canonical, canonical_versions)
+    _write_selector(target, target_versions)
+    releases = _write_tracked_releases(tmp_path)
+    base_files = _scope_files(corpus, "base")
+    before = _digests(base_files + _scope_files(corpus, "canonical"))
+    opened: list[Path] = []
+    read_text = Path.read_text
+
+    def recording_read_text(self: Path, *args: Any, **kwargs: Any) -> str:
+        opened.append(self)
+        return read_text(self, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "read_text", recording_read_text)
+    with pytest.raises(ValueError) as raised:
+        deduplicate(corpus, canonical, target, apply=True, releases_dir=releases)
+    monkeypatch.undo()
+
+    assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
+    assert set(opened).isdisjoint(base_files)
+    assert _digests(base_files + _scope_files(corpus, "canonical")) == before
+
+
+def test_deduplicate_leaves_a_tracked_base_declared_as_base_alone(tmp_path: Path) -> None:
+    corpus = tmp_path / "corpus"
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_scope(corpus, "canonical", ["us-example/statute/1"])
+    _write_scope(corpus, "base", ["us-example/statute/1", "us-example/statute/2"])
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "base"], bases=("base",))
+    releases = _write_tracked_releases(tmp_path)
+    files = _scope_files(corpus, "base") + _scope_files(corpus, "canonical")
+    before = _digests(files)
+
+    report = deduplicate(corpus, canonical, target, apply=True, releases_dir=releases)
+
+    assert report["collision_count"] == 0
+    assert report["untouched_base_scopes"] == [_base_mapping("base")]
+    assert _digests(files) == before
+
+
+def test_deduplicate_reads_the_repository_selectors_by_default(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    corpus = tmp_path / "corpus"
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_scope(corpus, "canonical", ["us-example/statute/1"])
+    _write_scope(corpus, "base", ["us-example/statute/1", "us-example/statute/2"])
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "base"])
+    seen: list[Path] = []
+
+    def recording_tracked_base_scopes(releases_dir: Path) -> frozenset[tuple[str, str, str]]:
+        seen.append(releases_dir)
+        return frozenset({("us-example", "statute", "base")})
+
+    monkeypatch.setattr(
+        dedup_module, "tracked_base_scopes", recording_tracked_base_scopes, raising=False
+    )
+
+    with pytest.raises(ValueError) as raised:
+        deduplicate(corpus, canonical, target, apply=True)
+
+    assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
+    repository_releases = ROOT / "manifests" / "releases"
+    assert seen == [repository_releases]
+    assert getattr(dedup_module, "DEFAULT_RELEASES_DIR", None) == repository_releases
+
+
+@pytest.mark.parametrize(
+    "checkout",
+    [
+        pytest.param("other-checkout", id="base-checkout"),
+        pytest.param(None, id="no-checkout"),
+    ],
+)
+def test_deduplicate_cli_reads_the_selectors_of_the_checkout_holding_corpus(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, checkout: str | None
+) -> None:
+    corpus = tmp_path / "corpus"
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_scope(corpus, "canonical", ["us-example/statute/1"])
+    _write_scope(corpus, "base", ["us-example/statute/1", "us-example/statute/2"])
+    _write_selector(canonical, ["canonical"])
+    # The draft drops the layer of a scope that a tracked selector marks as a base.
+    _write_selector(target, ["canonical", "base"])
+    base_files = _scope_files(corpus, "base")
+    before = _digests(base_files)
+    asked: list[Path] = []
+    seen: list[Path] = []
+
+    def fake_cli_repo(args: Any) -> Path | None:
+        asked.append(Path(args.base))
+        return None if checkout is None else tmp_path / checkout
+
+    def recording_tracked_base_scopes(releases_dir: Path) -> frozenset[tuple[str, str, str]]:
+        seen.append(releases_dir)
+        return frozenset({("us-example", "statute", "base")})
+
+    monkeypatch.setattr(dedup_module, "cli_repo", fake_cli_repo, raising=False)
+    monkeypatch.setattr(
+        dedup_module, "tracked_base_scopes", recording_tracked_base_scopes, raising=False
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "deduplicate_release_selector.py",
+            "--corpus",
+            str(corpus),
+            "--canonical-selector",
+            str(canonical),
+            "--target-selector",
+            str(target),
+            "--apply",
+        ],
+    )
+
+    if checkout is None:
+        # No checkout holds --corpus or the working directory, so no selector
+        # says which scopes are bases: the command line refuses to guess.
+        with pytest.raises(SystemExit) as exited:
+            dedup_module.main()
+        assert exited.value.code == 2
+        assert seen == []
+    else:
+        with pytest.raises(ValueError) as raised:
+            dedup_module.main()
+        assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
+        assert seen == [tmp_path / "other-checkout" / "manifests" / "releases"]
+    assert asked == [corpus]
+    assert _digests(base_files) == before

@@ -106,6 +106,9 @@ def _compose(predecessor: ReleaseManifest, **changes: Any) -> ReleaseManifest:
     # The synthetic predecessors are not tracked selectors, so the default
     # inventory would refuse them; a test of that default passes tracked=None.
     changes.setdefault("tracked", ())
+    # Reading every tracked selector on each call would slow the property test;
+    # a test of the default tracked bases passes tracked_bases=None.
+    changes.setdefault("tracked_bases", frozenset())
     return compose_successor(predecessor, **changes)
 
 
@@ -621,6 +624,80 @@ def test_refusals(tmp_path: Path, changes: dict[str, Any], message: str) -> None
         _compose(predecessor, **changes)
 
     assert sorted(path.name for path in tmp_path.iterdir()) == before
+
+
+# A base that another cut replaced is still a tracked base, so no cut may select it as primary.
+REPLACED_BASE: ScopeKey = ("us", "statute", "2026-04-29-uscode")
+TRACKED_BASE_REFUSAL = (
+    f"{SUCCESSOR_NAME} selects a tracked base scope as a primary scope: "
+    'us/statute/2026-04-29-uscode; a scope that a tracked selector marks "layer": "base" '
+    "is selected only as a base"
+)
+
+
+@pytest.mark.parametrize(
+    "changes",
+    [
+        pytest.param({"add": [REPLACED_BASE]}, id="re-add-a-replaced-base"),
+        pytest.param(
+            {"replace": {PRIMARY_STATUTE.key: REPLACED_BASE[2]}}, id="replace-into-a-tracked-base"
+        ),
+        pytest.param({"add": [NEW_FORM, REPLACED_BASE]}, id="tracked-base-among-additions"),
+    ],
+)
+def test_refuses_a_tracked_base_as_a_new_primary_scope(
+    tmp_path: Path, changes: dict[str, Any]
+) -> None:
+    predecessor = _layered_predecessor(tmp_path)
+    tracked_bases = frozenset({REPLACED_BASE, BASE_STATUTE.key, BASE_REGULATION.key})
+
+    with pytest.raises(SuccessorError) as raised:
+        _compose(predecessor, tracked_bases=tracked_bases, **changes)
+
+    assert str(raised.value) == TRACKED_BASE_REFUSAL
+
+
+def test_default_tracked_bases_are_read_only_when_a_cut_adds_a_primary(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    replaced = tmp_path / "replaced"
+    replaced.mkdir()
+    predecessor = _layered_predecessor(replaced)
+    _write_selector(
+        replaced / "zz-rulespec-2026-10-01-replaced.json",
+        "zz-rulespec-2026-10-01-replaced",
+        (ReleaseScope(*REPLACED_BASE, layer=LAYER_BASE), PRIMARY_STATUTE),
+    )
+    monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", replaced)
+
+    # _compose passes tracked_bases=frozenset(); None reads the default directory.
+    with pytest.raises(SuccessorError) as raised:
+        _compose(predecessor, add=[REPLACED_BASE], tracked_bases=None)
+    assert str(raised.value) == TRACKED_BASE_REFUSAL
+    assert NEW_FORM in _compose(predecessor, add=[NEW_FORM], tracked_bases=None).scope_keys
+
+    monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", tmp_path / "missing")
+    with pytest.raises(FileNotFoundError):
+        _compose(predecessor, add=[NEW_FORM], tracked_bases=None)
+    assert NEW_FORM in _compose(predecessor, add=[NEW_FORM], tracked_bases=()).scope_keys
+    # A cut that adds no primary scope reads no selector.
+    assert _compose(predecessor, tracked_bases=None).name == SUCCESSOR_NAME
+    # releases_dir names the inventory the bases are read from, as it does for the names.
+    with pytest.raises(SuccessorError) as raised:
+        _compose(predecessor, add=[REPLACED_BASE], tracked_bases=None, releases_dir=replaced)
+    assert str(raised.value) == TRACKED_BASE_REFUSAL
+
+
+def test_add_base_may_name_a_tracked_base_for_a_pair_without_one(tmp_path: Path) -> None:
+    # A restore brings a tracked base back as a base, which the refusal leaves alone.
+    predecessor = _layered_predecessor(tmp_path)
+    guidance_base: ScopeKey = ("us", "guidance", "2026-05-01-guidance-base")
+
+    successor = _compose(
+        predecessor, add_base=[guidance_base], tracked_bases=frozenset({guidance_base})
+    )
+
+    assert guidance_base in {scope.key for scope in successor.scopes if scope.is_base}
 
 
 def test_refuses_a_successor_with_no_scope(tmp_path: Path) -> None:
