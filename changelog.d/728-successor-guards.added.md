@@ -9,15 +9,15 @@ predecessor's base scope unchanged (dropped base), a primary scope moved into
 the base layer (layer changed), and a scope one tracked selector selects as a
 base and another as a primary scope (layer conflict). Its baseline accepts
 reviewed `base_replacements` for a base the cut no longer selects, and the
-check holds entries built in code to the file's rules. The release dedup never
-opens or cuts a base scope the target declares, and refuses a target that
-selects a tracked base as a primary scope. Scope consolidation, composition and
-repair refuse a scope a tracked selector marks as a base and a scope name a
-selector could not spell, and repair also refuses a new scope its own release
-selector marks as a base. On the command line, consolidation, composition and
-dedup read the tracked selectors of the checkout holding `--base` or
-`--corpus`. `scripts/sign_release_scopes.sh` stops before it stages anything
-when either selector misspells a scope or lists one twice, or when a draft adds
-a base scope, moves a scope between layers, misspells a layer or selects a
-tracked base as a primary scope. See "Successor cuts" in
+check holds entries built in code to the loader's shape rules. The release
+dedup never opens or cuts a base scope the target declares, and refuses a
+target that selects a tracked base as a primary scope. Scope consolidation,
+composition and repair refuse a scope a tracked selector marks as a base and a
+scope name a selector could not spell, and repair also refuses a new scope its
+own release selector marks as a base. On the command line, consolidation,
+composition and dedup read the tracked selectors of the checkout holding
+`--base` or `--corpus`. `scripts/sign_release_scopes.sh` stops before it stages
+anything when either selector misspells a scope or lists one twice, or when a
+draft adds a base scope, moves a scope between layers, misspells a layer or
+selects a tracked base as a primary scope. See "Successor cuts" in
 `docs/named-release-publication.md`.
