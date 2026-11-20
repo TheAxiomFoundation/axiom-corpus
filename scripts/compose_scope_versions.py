@@ -22,8 +22,38 @@ from pathlib import Path
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.resolver import require_materialized
+from axiom_corpus.corpus.resolver import cli_repo, require_materialized
+from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+
+# The tracked selectors are the only record of which scopes are bases.
+DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[1] / "manifests" / "releases"
+
+
+def _refuse_base_scopes(
+    *,
+    jurisdiction: str,
+    document_class: str,
+    versions: list[str],
+    releases_dir: Path | None,
+) -> None:
+    """Refuse every named scope that a tracked selector marks as a base.
+
+    A base scope is carried into every successor unchanged, so this script
+    neither reads one as a constituent nor writes one as its target.
+
+    Named scopes must be spelled as a selector spells them, so the comparison
+    is exact. A spelling such as ``v `` or ``V``, which names the files of
+    ``v`` (``successors.canonical_scope_key``), raises before the tracked
+    selectors are read.
+    """
+    keys = [canonical_scope_key(jurisdiction, document_class, version) for version in versions]
+    bases = tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir)
+    refused = sorted({"/".join(key) for key in keys if key in bases})
+    if refused:
+        raise ValueError(
+            "base scopes are carried unchanged and cannot be composed: " + ", ".join(refused)
+        )
 
 
 def _rewrite_source_path(
@@ -49,14 +79,31 @@ def compose_scope_versions(
     document_class: str,
     source_versions: list[str],
     target_version: str,
+    releases_dir: Path | None = None,
 ) -> tuple[Path, ...]:
-    """Concatenate constituent scope versions into one new immutable version."""
+    """Concatenate constituent scope versions into one new immutable version.
+
+    A constituent or target scope that a selector under ``releases_dir`` marks
+    as a base (``layer: base``) is refused before anything is fetched, read or
+    written. ``None`` means the ``manifests/releases`` of the checkout this
+    script belongs to. ``main()`` passes the ``manifests/releases`` of the
+    checkout holding ``--base`` (``resolver.cli_repo``), so a run on another
+    checkout's corpus reads that checkout's selectors. A base is known here
+    only once a tracked selector marks it, so a selector that adds a base
+    must be committed before this script runs on that scope.
+    """
     if len(source_versions) < 2:
         raise ValueError("compose requires at least two source versions")
     if len(set(source_versions)) != len(source_versions):
         raise ValueError("source versions must be distinct")
     if target_version in source_versions:
         raise ValueError("target version must differ from every source version")
+    _refuse_base_scopes(
+        jurisdiction=jurisdiction,
+        document_class=document_class,
+        versions=[*source_versions, target_version],
+        releases_dir=releases_dir,
+    )
 
     store = CorpusArtifactStore(base)
     target_inventory_path = store.inventory_path(
@@ -286,12 +333,19 @@ def main() -> int:
     )
     parser.add_argument("--target-version", required=True)
     args = parser.parse_args()
+    repo = cli_repo(args)
+    if repo is None:
+        parser.error(
+            "neither --base nor the working directory is in an axiom-corpus checkout, so no "
+            "tracked selectors say which scopes are bases"
+        )
     generated = compose_scope_versions(
         base=args.base,
         jurisdiction=args.jurisdiction,
         document_class=args.document_class,
         source_versions=args.source_version,
         target_version=args.target_version,
+        releases_dir=repo / "manifests" / "releases",
     )
     for path in generated:
         print(path)

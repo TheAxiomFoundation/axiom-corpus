@@ -18,6 +18,17 @@ This module checks selector files and pinned records of prose successions:
     The selector selects no version of a pair its predecessor selects: the
     pair's last version leaves the line, and nothing in the same pair replaces
     it.
+``dropped_base``
+    The selector still carries a pair whose base scope its predecessor
+    selects, but does not select that base as the same base scope: it leaves
+    the base out, selects another version as the pair's base, or selects the
+    base's version as a primary scope.
+``layer_changed``
+    A scope the predecessor selects as a primary scope is a base scope in the
+    selector.
+``layer_conflict``
+    A scope is a base scope in one tracked selector and a primary scope in
+    another, whether or not the two share a line. No record allows it.
 ``fork``
     Two or more selectors resolve to the same predecessor. At most one of them can be
     the newest cut of the line; the others were cut from a base that another
@@ -38,10 +49,15 @@ record, from every successor, the new one among them.
 
 The comparison is per pair. A pair the successor still carries, with any of its
 versions, is not a drop, so one document can leave a pair the successor keeps
-without a finding. A selector that derives some of a line's pairs and leaves
-the others unchanged stays outside the line, and we record it in the baseline
-as a first cut, not as a succession. The check cannot see that pair-scoped
-derivation.
+without a finding. Bases are the exception: a base scope is served underneath
+its release's primary scopes (``axiom_corpus.corpus.releases``), so while the
+successor carries the pair it must select the predecessor's base unchanged,
+or the baseline must record the replacement. A pair the successor drops whole
+is a ``dropped_pair`` only, and a base version the predecessor does not select,
+added to a pair whose predecessor has no base, is not a finding. A selector
+that derives some of a line's pairs and leaves the others unchanged stays
+outside the line, and we record it in the baseline as a first cut, not as a
+succession. The check cannot see that pair-scoped derivation.
 A full W7 union cut that names ``us-rulespec-2026-10-13-w7-bundle-gaps-union``
 and carries ``us-az/manual`` at W7's versions passes. Activating it would
 repoint that pair to W7's versions and drop Arizona's dated ECE scope:
@@ -65,24 +81,32 @@ in every comparison and head traversal. A selector no description or record
 connects can still conceal a stale base; names and dates alone imply no edge.
 
 ``manifests/selector-lineage-baseline.yaml`` records prose successions and the
-drops, forks and first cuts a release decision allows, each pinned to the digest
-(``axiom_corpus.release.manifest.selector_sha256``) of every selector it names,
-so a record holds only for those exact selectors. A drop record names the
-scopes that carry the pair's text in its place (``replaced_by``), or says in
-its reason why nothing does. A predecessor's fork entries together list every
-successor and the ones the line continued through. Records are append-only
-and dated: a later decision about a recorded fork, a new successor or a
-branch the line now goes on through, is another entry for the same
+drops, base replacements, forks and first cuts a release decision allows, each
+pinned to the digest (``axiom_corpus.release.manifest.selector_sha256``) of
+every selector it names, so a record holds only for those exact selectors. A
+drop record names the scopes that carry the pair's text in its place
+(``replaced_by``), or says in its reason why nothing does. A base replacement
+record names the predecessor's base version (``replaced``) and the base scope
+the selector selects for the pair instead (``replaced_by``); a base that leaves
+a pair with no replacement, and a layer change, have no record. A base
+replacement record holds only while the selector no longer selects
+``replaced`` in either layer: a replaced base kept as a primary scope is a
+layer change, which no record allows. A predecessor's fork entries together
+list every successor and the ones the line continued through. Records are
+append-only and dated: a later decision about a recorded fork, a new successor
+or a branch the line now goes on through, is another entry for the same
 predecessor with its own ``listed_on`` and reason, and the check reads a
-predecessor's entries as their union. The entries listed on 2026-11-02 are
-what ``main`` held when the check began.
-Those historical first-cut entries remain: a later succession supersedes the
-claim without making it stale. Both endpoints must still match their pins,
-and the reason quotes the selector's prose. The loader refuses missing
-endpoint files and cycles closed by recorded edges, including mixed cycles
-with named edges. The digest excludes descriptions; repository evidence tests
-also pin the reviewed prose on both sides. An optional section extends v1:
-older strict readers reject it rather than silently ignoring recorded edges.
+predecessor's entries as their union. The entries listed on 2026-11-02 are what
+``main`` held when the check began. Those historical first-cut entries remain:
+a later succession supersedes the claim without making it stale. Both endpoints
+must still match their pins, and the reason quotes the selector's prose. For a
+succession, the loader also refuses a missing endpoint file and a cycle closed
+by recorded edges, including a mixed cycle with named edges; the other records
+load without selector files, and the check verifies their pins. The digest
+excludes descriptions; repository evidence tests also pin the reviewed prose on
+both sides. Two optional sections extend v1, ``successions`` and
+``base_replacements``: older strict readers reject them rather than silently
+ignoring recorded edges or replacements.
 """
 
 from __future__ import annotations
@@ -123,6 +147,7 @@ _BASELINE_FIELDS = {
     "forks",
     "first_cuts",
     "successions",
+    "base_replacements",
 }
 _DROP_FIELDS = {"selector", "predecessor", "pair", "listed_on", "reason", "replaced_by"}
 _DROP_REQUIRED = {"selector", "predecessor", "pair", "listed_on", "reason"}
@@ -130,6 +155,15 @@ _FORK_FIELDS = {"predecessor", "successors", "continued_by", "listed_on", "reaso
 _FORK_REQUIRED = {"predecessor", "listed_on", "reason"}
 _FIRST_CUT_FIELDS = {"selectors", "listed_on", "reason"}
 _SUCCESSION_FIELDS = {"selector", "predecessor", "listed_on", "reason"}
+_BASE_REPLACEMENT_FIELDS = {
+    "selector",
+    "predecessor",
+    "pair",
+    "replaced",
+    "replaced_by",
+    "listed_on",
+    "reason",
+}
 
 
 class SelectorLineageError(ValueError):
@@ -168,6 +202,56 @@ def dropped_pairs(
     kept = pair_versions(successor)
     return {
         pair: versions for pair, versions in pair_versions(predecessor).items() if pair not in kept
+    }
+
+
+def base_changes(
+    predecessor: ReleaseManifest, successor: ReleaseManifest
+) -> tuple[dict[Pair, str], tuple[ScopeKey, ...]]:
+    """The bases ``successor`` does not carry unchanged, and the scopes it moves into a base.
+
+    The first maps each pair whose base scope the predecessor selects, and which
+    the successor still carries, to that base's version, when the successor
+    does not select the base as the same base scope: it leaves it out, selects
+    another version as the pair's base, or selects the version as a primary
+    scope. A pair the successor drops whole is ``dropped_pairs``' finding only.
+    The second lists, sorted, each scope the predecessor selects as a primary
+    scope and the successor as a base scope.
+    """
+    carried = set(successor.scopes)
+    kept = pair_versions(successor)
+    dropped = {
+        scope.pair: scope.version
+        for scope in predecessor.scopes
+        if scope.is_base and scope.pair in kept and scope not in carried
+    }
+    primary = {scope.key for scope in predecessor.scopes if not scope.is_base}
+    moved = tuple(
+        sorted(scope.key for scope in successor.scopes if scope.is_base and scope.key in primary)
+    )
+    return dropped, moved
+
+
+def _selects_base(release: ReleaseManifest, key: ScopeKey) -> bool:
+    return any(scope.is_base and scope.key == key for scope in release.scopes)
+
+
+def layer_conflicts(
+    selectors: Mapping[str, ReleaseManifest],
+) -> dict[ScopeKey, tuple[tuple[str, ...], tuple[str, ...]]]:
+    """Each scope some selectors select as a base and others as a primary scope.
+
+    Each scope maps to the names of the selectors that select it as a base,
+    then the names of those that select it as a primary scope, each sorted.
+    """
+    bases: dict[ScopeKey, set[str]] = defaultdict(set)
+    primaries: dict[ScopeKey, set[str]] = defaultdict(set)
+    for name, release in selectors.items():
+        for scope in release.scopes:
+            (bases if scope.is_base else primaries)[scope.key].add(name)
+    return {
+        key: (tuple(sorted(bases[key])), tuple(sorted(primaries[key])))
+        for key in sorted(set(bases) & set(primaries))
     }
 
 
@@ -238,6 +322,62 @@ class DroppedPair:
         return (
             f"{self.selector} selects no {pair_label(self.pair)} scope, which its predecessor "
             f"{self.predecessor} carries ({versions})"
+        )
+
+
+@dataclass(frozen=True)
+class DroppedBase:
+    """A base the predecessor selects that ``selector`` does not carry unchanged.
+
+    ``selector`` still carries ``pair``, but does not select ``base_version`` as
+    the pair's base scope.
+    """
+
+    selector: str
+    predecessor: str
+    pair: Pair
+    base_version: str
+
+    @property
+    def base(self) -> ScopeKey:
+        return (*self.pair, self.base_version)
+
+    def describe(self) -> str:
+        return (
+            f"{self.selector} does not select {'/'.join(self.base)} as a base scope, which its "
+            f"predecessor {self.predecessor} selects as the base of {pair_label(self.pair)}: "
+            "a base is carried unchanged while its pair is carried"
+        )
+
+
+@dataclass(frozen=True)
+class LayerChanged:
+    """A scope the predecessor selects as a primary scope and ``selector`` as a base scope."""
+
+    selector: str
+    predecessor: str
+    scope: ScopeKey
+
+    def describe(self) -> str:
+        return (
+            f"{self.selector} selects {'/'.join(self.scope)} as a base scope, which its "
+            f"predecessor {self.predecessor} selects as a primary scope"
+        )
+
+
+@dataclass(frozen=True)
+class LayerConflict:
+    """A scope some tracked selectors select as a base and others as a primary scope."""
+
+    scope: ScopeKey
+    bases: tuple[str, ...]
+    primaries: tuple[str, ...]
+
+    def describe(self) -> str:
+        return (
+            f"{'/'.join(self.scope)} is a base scope in {', '.join(self.bases)} and a primary "
+            f"scope in {', '.join(self.primaries)}: a scope that a tracked selector marks as a "
+            "base is a base scope in every selector"
         )
 
 
@@ -323,6 +463,63 @@ class RecordedDrop:
 
 
 @dataclass(frozen=True)
+class RecordedBaseReplacement:
+    """A reviewed decision that ``selector`` serves ``pair`` over another base.
+
+    ``replaced`` is the version of the predecessor's base for the pair, and
+    ``replaced_by`` the base scope the selector selects for the pair instead.
+    It is keyed by its selector and pair, and replaced_by is another scope of
+    that pair. It holds only while ``selector`` no longer selects the replaced
+    version.
+    """
+
+    selector: str
+    predecessor: str
+    pair: Pair
+    replaced: str
+    replaced_by: ScopeKey
+    listed_on: str
+    reason: str
+
+
+def _require_base_replacement(
+    key: object, replacement: RecordedBaseReplacement, where: str
+) -> None:
+    """Refuse a base replacement record the baseline file could not hold."""
+    if key != (replacement.selector, replacement.pair):
+        raise SelectorLineageError(
+            f"{where}: keyed by {key!r}; a base replacement is keyed by its own selector and pair"
+        )
+    if replacement.selector == replacement.predecessor:
+        raise SelectorLineageError(f"{where}: a selector cannot succeed itself")
+    if replacement.replaced_by[:2] != replacement.pair:
+        raise SelectorLineageError(
+            f"{where}.replaced_by must be a scope of {pair_label(replacement.pair)}"
+        )
+    if replacement.replaced_by[2] == replacement.replaced:
+        raise SelectorLineageError(f"{where}.replaced_by must differ from the base it replaces")
+
+
+def _base_replacement_conflict(
+    replacement: RecordedBaseReplacement, successor: ReleaseManifest
+) -> str | None:
+    """Why ``replacement`` does not hold for ``successor``'s bases, or None if it does."""
+    replaced = f"{pair_label(replacement.pair)}/{replacement.replaced}"
+    if not _selects_base(successor, replacement.replaced_by):
+        return (
+            f"the baseline names {'/'.join(replacement.replaced_by)} as the base replacing "
+            f"{replaced} in {replacement.selector}, which does not select it as a base scope"
+        )
+    if (*replacement.pair, replacement.replaced) in successor.scope_keys:
+        return (
+            f"the baseline records {replacement.selector} replacing the base {replaced} of "
+            f"{replacement.predecessor}, but {replacement.selector} still selects {replaced}: "
+            "a replaced base leaves the cut, and no record lets a base become a primary scope"
+        )
+    return None
+
+
+@dataclass(frozen=True)
 class RecordedFork:
     """One dated fork entry.
 
@@ -366,6 +563,9 @@ class LineageBaseline:
     forks: Mapping[str, tuple[RecordedFork, ...]] = field(default_factory=dict)
     first_cuts: Mapping[str, RecordedFirstCut] = field(default_factory=dict)
     successions: Mapping[str, RecordedSuccession] = field(default_factory=dict)
+    base_replacements: Mapping[tuple[str, Pair], RecordedBaseReplacement] = field(
+        default_factory=dict
+    )
 
     @classmethod
     def load(cls, repo_root: str | Path) -> LineageBaseline:
@@ -388,19 +588,24 @@ class LineageBaseline:
 class LineageReport:
     """What the check found across a set of tracked selectors.
 
-    ``dropped``, ``forks``, ``ended_branches``, ``unnamed`` and ``cycles`` are
-    the findings no record allows, and ``baseline_errors`` the records that no
-    longer hold; any of them fails the check. ``recorded_drops``,
+    ``dropped``, ``dropped_bases``, ``layer_changes``, ``layer_conflicts``,
+    ``forks``, ``ended_branches``, ``unnamed`` and ``cycles`` are the findings
+    no record allows, and ``baseline_errors`` the records that no longer hold; any of them
+    fails the check. ``recorded_drops``, ``recorded_base_replacements``,
     ``recorded_forks`` and ``recorded_first_cuts`` are allowed by the baseline.
     """
 
     predecessors: Mapping[str, str | None]
     dropped: tuple[DroppedPair, ...] = ()
+    dropped_bases: tuple[DroppedBase, ...] = ()
+    layer_changes: tuple[LayerChanged, ...] = ()
+    layer_conflicts: tuple[LayerConflict, ...] = ()
     forks: tuple[Fork, ...] = ()
     ended_branches: tuple[EndedBranch, ...] = ()
     unnamed: tuple[UnnamedPredecessor, ...] = ()
     cycles: tuple[Cycle, ...] = ()
     recorded_drops: tuple[DroppedPair, ...] = ()
+    recorded_base_replacements: tuple[DroppedBase, ...] = ()
     recorded_forks: tuple[Fork, ...] = ()
     recorded_first_cuts: tuple[str, ...] = ()
     baseline_errors: tuple[str, ...] = ()
@@ -417,6 +622,9 @@ class LineageReport:
     def problems(self) -> list[str]:
         return [
             *(finding.describe() for finding in self.dropped),
+            *(finding.describe() for finding in self.dropped_bases),
+            *(finding.describe() for finding in self.layer_changes),
+            *(finding.describe() for finding in self.layer_conflicts),
             *(fork.describe() for fork in self.forks),
             *(branch.describe() for branch in self.ended_branches),
             *(unnamed.describe() for unnamed in self.unnamed),
@@ -448,12 +656,19 @@ def check_selector_lineage(
     """Compare every selector with its resolved predecessor, and check the line's shape.
 
     ``selectors`` maps each tracked selector's name to its manifest; a name
-    must equal its manifest's name.
+    must equal its manifest's name. Each base replacement must be keyed by its
+    own selector and pair and name another scope of that pair, as the loader
+    requires; otherwise the check raises SelectorLineageError before it
+    compares anything.
     """
     baseline = baseline or LineageBaseline()
     for name, manifest in selectors.items():
         if manifest.name != name:
             raise ValueError(f"selector {name!r} holds a manifest named {manifest.name!r}")
+    for key, candidate in baseline.base_replacements.items():
+        _require_base_replacement(
+            key, candidate, f"base_replacements[{candidate.selector}, {pair_label(candidate.pair)}]"
+        )
     names = frozenset(selectors)
     predecessors = resolved_predecessors(selectors, baseline)
     errors: list[str] = []
@@ -503,12 +718,32 @@ def check_selector_lineage(
     dropped: list[DroppedPair] = []
     recorded_drops: list[DroppedPair] = []
     matched_drops: set[tuple[str, Pair]] = set()
+    dropped_bases: list[DroppedBase] = []
+    layer_changes: list[LayerChanged] = []
+    recorded_base_replacements: list[DroppedBase] = []
+    matched_replacements: set[tuple[str, Pair]] = set()
     for name, predecessor in predecessors.items():
         if predecessor is None:
             continue
         if predecessor not in selectors:
             errors.append(f"{name}'s recorded predecessor {predecessor} is not a tracked selector")
             continue
+        lost_bases, moved = base_changes(selectors[predecessor], selectors[name])
+        for pair in sorted(lost_bases):
+            base_finding = DroppedBase(name, predecessor, pair, lost_bases[pair])
+            replacement = baseline.base_replacements.get((name, pair))
+            if (
+                replacement is not None
+                and replacement.predecessor == predecessor
+                and replacement.replaced == lost_bases[pair]
+                and {name, predecessor} <= pinned
+                and _base_replacement_conflict(replacement, selectors[name]) is None
+            ):
+                matched_replacements.add((name, pair))
+                recorded_base_replacements.append(base_finding)
+            else:
+                dropped_bases.append(base_finding)
+        layer_changes.extend(LayerChanged(name, predecessor, scope) for scope in moved)
         lost = dropped_pairs(selectors[predecessor], selectors[name])
         for pair in sorted(lost):
             finding = DroppedPair(name, predecessor, pair, tuple(sorted(lost[pair])))
@@ -523,6 +758,16 @@ def check_selector_lineage(
                 recorded_drops.append(finding)
             else:
                 dropped.append(finding)
+    # A dropped base or a layer change already names its scope; a recorded
+    # replacement does not, so it never hides a conflict.
+    named_scopes = {finding.base for finding in dropped_bases} | {
+        finding.scope for finding in layer_changes
+    }
+    conflicts = tuple(
+        LayerConflict(scope, bases, primaries)
+        for scope, (bases, primaries) in sorted(layer_conflicts(selectors).items())
+        if scope not in named_scopes
+    )
     for key, drop_record in sorted(baseline.drops.items()):
         if key in matched_drops:
             continue
@@ -547,6 +792,29 @@ def check_selector_lineage(
             errors.append(
                 f"the baseline records {name} dropping {pair_label(pair)} from "
                 f"{drop_record.predecessor}, but it does not drop that pair"
+            )
+    for key, replacement in sorted(baseline.base_replacements.items()):
+        if key in matched_replacements:
+            continue
+        name, pair = key
+        recorded = selectors.get(name)
+        prior = selectors.get(replacement.predecessor)
+        if recorded is None or prior is None:
+            continue  # already reported: the baseline pins a selector that is not tracked
+        replaced = f"{pair_label(pair)}/{replacement.replaced}"
+        conflict = _base_replacement_conflict(replacement, recorded)
+        if conflict is not None:
+            errors.append(conflict)
+        elif predecessors.get(name) != replacement.predecessor:
+            errors.append(
+                f"the baseline records {name} replacing the base {replaced} of "
+                f"{replacement.predecessor}, but {name} names "
+                f"{predecessors.get(name) or 'no tracked selector'} as its predecessor"
+            )
+        elif base_changes(prior, recorded)[0].get(pair) != replacement.replaced:
+            errors.append(
+                f"the baseline records {name} replacing the base {replaced} of "
+                f"{replacement.predecessor}, but it does not drop that base"
             )
 
     successors: dict[str, list[str]] = defaultdict(list)
@@ -622,11 +890,15 @@ def check_selector_lineage(
     return LineageReport(
         predecessors=predecessors,
         dropped=tuple(dropped),
+        dropped_bases=tuple(dropped_bases),
+        layer_changes=tuple(layer_changes),
+        layer_conflicts=conflicts,
         forks=tuple(forks),
         ended_branches=tuple(ended_branches),
         unnamed=tuple(unnamed),
         cycles=tuple(Cycle(members) for members in lineage_cycles(predecessors)),
         recorded_drops=tuple(recorded_drops),
+        recorded_base_replacements=tuple(recorded_base_replacements),
         recorded_forks=tuple(recorded_forks),
         recorded_first_cuts=tuple(recorded_first_cuts),
         baseline_errors=tuple(errors),
@@ -706,6 +978,19 @@ def _scope(value: object, where: str) -> ScopeKey:
         raise SelectorLineageError(f"{where} must be jurisdiction/document_class/version")
     try:
         return ReleaseScope(*parts).key
+    except ValueError as exc:
+        raise SelectorLineageError(f"{where}: {exc}") from exc
+
+
+def _version(value: object, pair: Pair, where: str) -> str:
+    """A version of ``pair``; YAML reads an unquoted date-only version as a date."""
+    text = value.isoformat() if isinstance(value, date) else value
+    if not isinstance(text, str):
+        raise SelectorLineageError(
+            f"{where} must be a version string; quote a version YAML reads as another type"
+        )
+    try:
+        return ReleaseScope(*pair, _text(text, where)).version
     except ValueError as exc:
         raise SelectorLineageError(f"{where}: {exc}") from exc
 
@@ -948,6 +1233,32 @@ def load_lineage_baseline(
         successions[record.selector] = record
     _sorted_unique(succession_order, f"{where}: successions (by selector)")
 
+    base_replacements: dict[tuple[str, Pair], RecordedBaseReplacement] = {}
+    replacement_keys: list[tuple[str, Pair]] = []
+    for index, raw in enumerate(
+        _list(_absent_as_empty(data.get("base_replacements")), f"{where}: base_replacements")
+    ):
+        entry_where = f"{where}: base_replacements[{index}]"
+        item = _mapping(raw, entry_where)
+        _fields(item, _BASE_REPLACEMENT_FIELDS, entry_where)
+        missing = _BASE_REPLACEMENT_FIELDS - set(item)
+        if missing:
+            raise SelectorLineageError(f"{entry_where}: missing {sorted(missing)}")
+        pair = _pair(item["pair"], f"{entry_where}.pair")
+        replacement = RecordedBaseReplacement(
+            selector=pinned_name(item["selector"], f"{entry_where}.selector"),
+            predecessor=pinned_name(item["predecessor"], f"{entry_where}.predecessor"),
+            pair=pair,
+            replaced=_version(item["replaced"], pair, f"{entry_where}.replaced"),
+            replaced_by=_scope(item["replaced_by"], f"{entry_where}.replaced_by"),
+            listed_on=_iso_date(item["listed_on"], f"{entry_where}.listed_on"),
+            reason=_text(item["reason"], f"{entry_where}.reason"),
+        )
+        _require_base_replacement((replacement.selector, pair), replacement, entry_where)
+        replacement_keys.append((replacement.selector, pair))
+        base_replacements[(replacement.selector, pair)] = replacement
+    _sorted_unique(replacement_keys, f"{where}: base_replacements (by selector, then pair)")
+
     unused = sorted(set(digests) - named)
     if unused:
         raise SelectorLineageError(f"{where}: selector_digests lists unused selectors {unused}")
@@ -957,6 +1268,7 @@ def load_lineage_baseline(
         forks={predecessor: tuple(entries) for predecessor, entries in forks.items()},
         first_cuts=first_cuts,
         successions=successions,
+        base_replacements=base_replacements,
     )
     if successions:
         tracked = (

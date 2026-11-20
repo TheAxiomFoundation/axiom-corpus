@@ -15,12 +15,20 @@
 # or step 2 will sign it again), export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell
 # only (never written to a file); the script checks for it before it stages anything.
 #
-# The unreleased scopes are the draft selector's scopes minus the predecessor's.
-# Order matters: the signer records HEAD and requires a clean tracked tree, and the
-# signed manifest must describe committed artifact bytes. So: (1) force-add and commit
-# the artifacts, (2) sign every unreleased scope against that commit, (3) commit those
-# scopes' manifests and no others, (4) copy the draft to manifests/releases/<name>.json,
-# deep-validate it against the committed artifacts and commit it.
+# The unreleased scopes are the draft selector's primary scopes minus the predecessor's.
+# A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
+# also has as a base, and stops before it stages anything when the draft has a base scope
+# that the predecessor lacks or has as primary, or has as primary a scope that the
+# predecessor has as a base, or has as primary a scope that a tracked selector under
+# manifests/releases marks as a base, or either selector spells a layer other than "base".
+# The run also stops when either selector misspells a part of a scope or lists a scope
+# twice. A base scope enters a release through its restore manifest (axiom-corpus#728),
+# not this script. Order matters: the signer records HEAD and requires a clean tracked
+# tree, and the signed manifest must describe committed artifact bytes. So: (1) force-add
+# and commit the artifacts, (2) sign every unreleased scope against that commit, (3) commit
+# those scopes' manifests and no others, (4) copy the draft to
+# manifests/releases/<name>.json, deep-validate it against the committed artifacts and
+# commit it.
 #
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
@@ -62,7 +70,11 @@ NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])'
 TARGET="manifests/releases/$NAME.json"
 [ ! -e "$TARGET" ] || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
 
-# Unreleased scopes: draft minus predecessor, as "jurisdiction document_class version" lines.
+# Unreleased scopes: the draft's primary scopes minus the predecessor's, as
+# "jurisdiction document_class version" lines. The layer is read on both sides (see the
+# header), and a base scope the draft adds, a scope the draft moves between layers, and a
+# tracked base drafted as primary stop the run here; a base the draft leaves out is the
+# lineage check's finding.
 # (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
 SCOPE_LIST=$(mktemp)
 # From step 1 on, a run that stops before the selector commit undoes what it has not
@@ -120,13 +132,90 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 trap 'exit 129' HUP
 python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
-import json, sys
+import glob, json, re, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
-released = {(s["jurisdiction"], s["document_class"], s["version"]) for s in predecessor}
-for s in sorted(draft, key=lambda s: (s["jurisdiction"], s["document_class"], s["version"])):
-    key = (s["jurisdiction"], s["document_class"], s["version"])
-    if key not in released:
-        print(*key)
+
+# The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
+# a part no selector can spell, such as "2026-05-01 ", would name another scope's files.
+COMPONENT = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
+spelling = []
+for path, scopes in zip(sys.argv[1:3], (draft, predecessor)):
+    seen = set()
+    for s in scopes:
+        for field in ("jurisdiction", "document_class", "version"):
+            value = s.get(field)
+            if not (isinstance(value, str) and COMPONENT.fullmatch(value)):
+                spelling.append(
+                    f"a scope in {path} has {field} {value!r}; a selector spells each"
+                    " part of a scope as a lowercase letter or digit followed by up to"
+                    " 255 lowercase letters, digits, '.', '_' or '-'"
+                )
+        triple = (s.get("jurisdiction"), s.get("document_class"), s.get("version"))
+        if triple in seen:
+            spelling.append(
+                f"scope {'/'.join(map(str, triple))} appears more than once in {path}; a"
+                " selector selects each scope once"
+            )
+        seen.add(triple)
+# A predecessor that lists a scope twice makes the layer checks below read one layer of
+# it, so the run stops here, before them.
+if spelling:
+    print(*spelling, sep="\n", file=sys.stderr)
+    sys.exit(1)
+
+
+def key(s):
+    return (s["jurisdiction"], s["document_class"], s["version"])
+
+
+def is_base(s):
+    # A selector marks a base scope "layer": "base" and a primary scope with no layer.
+    return s.get("layer") == "base"
+
+
+# validate-release rejects any other layer, but only in step 4, after step 1 has
+# committed the scope and step 2 has signed it.
+problems = [
+    f"scope {'/'.join(key(s))} in {path} has layer {s['layer']!r}; a selector marks a"
+    ' base scope "layer": "base" and a primary scope with no layer'
+    for path, scopes in zip(sys.argv[1:3], (draft, predecessor))
+    for s in sorted(scopes, key=key)
+    if "layer" in s and not is_base(s)
+]
+# True for a base scope of the predecessor, False for a primary one.
+released = {key(s): is_base(s) for s in predecessor}
+# Every scope a tracked selector marks as a base, with the first such selector in name
+# order. The predecessor says nothing about a base that an earlier cut replaced or that it
+# never carried, so the comparison with it alone would let the draft sign one as primary.
+# A tracked selector that cannot be read stops the run.
+tracked_bases = {}
+for tracked in sorted(glob.glob("manifests/releases/*.json")):
+    for s in json.load(open(tracked))["scopes"]:
+        if is_base(s):
+            tracked_bases.setdefault(key(s), tracked)
+for s in sorted(draft, key=key):
+    scope, carried = "/".join(key(s)), released.get(key(s))
+    if is_base(s) and not carried:
+        problems.append(
+            f"base scope {scope} is not carried from the predecessor; a base scope enters"
+            " through its restore manifest (axiom-corpus#728), not this script"
+        )
+    elif not is_base(s) and carried:
+        problems.append(
+            f"base scope {scope} of the predecessor is primary in the draft; a successor"
+            " carries a base scope unchanged, as a base"
+        )
+    elif not is_base(s) and key(s) in tracked_bases:
+        problems.append(
+            f"base scope {scope} of {tracked_bases[key(s)]} is primary in the draft; a scope "
+            'that a tracked selector marks "layer": "base" is selected only as a base, '
+            "never signed as a primary scope"
+        )
+    elif key(s) not in released:
+        print(*key(s))
+if problems:
+    print(*problems, sep="\n", file=sys.stderr)
+    sys.exit(1)
 PY
 # MANIFESTS holds each scope's signed ingest manifest, where sign-ingest-manifest writes it.
 SCOPES=() MANIFESTS=()

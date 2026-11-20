@@ -14,11 +14,14 @@ import hashlib
 import json
 import shutil
 from collections import defaultdict
+from collections.abc import Collection, Mapping
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.releases import LAYER_BASE
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
+from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 ARTIFACT_KINDS = ("coverage", "inventory", "provisions", "sources")
@@ -62,6 +65,50 @@ def _release_scopes(payload: dict[str, Any]) -> list[tuple[str, str, str]]:
         (str(row["jurisdiction"]), str(row["document_class"]), str(row["version"]))
         for row in payload["scopes"]
     ]
+
+
+def _refuse_base_repairs(
+    release_payload: dict[str, Any],
+    mappings: Mapping[tuple[str, str, str], tuple[str, str, str]],
+    base_scopes: Collection[tuple[str, str, str]],
+) -> None:
+    """Refuse a repair that would re-version a base scope or write over one.
+
+    A base scope is carried into every successor unchanged. A repaired scope
+    (a key of ``mappings``) or its new scope (a value) is refused when the
+    release payload marks it ``"layer": "base"`` or when it is in
+    ``base_scopes``, the scopes a tracked selector marks as bases. A payload
+    scope whose ``layer`` is anything but ``"base"`` is refused too, since
+    only the base layer is spelled out. Every payload scope and every new
+    scope must be spelled as a selector spells it (``canonical_scope_key``):
+    a suffix such as ``FIX`` or ``fix/``, or a payload base spelled with an
+    upper-case letter, would otherwise name another scope's files on APFS or
+    through ``safe_segment`` while comparing unequal to it. The check reads
+    and writes nothing, so ``main`` runs it before the first move or unlink.
+    A base is known here only once a selector marks it.
+    """
+    payload_bases: set[tuple[str, str, str]] = set()
+    for row in release_payload["scopes"]:
+        scope = (str(row["jurisdiction"]), str(row["document_class"]), str(row["version"]))
+        if "layer" not in row:
+            continue
+        if row["layer"] != LAYER_BASE:
+            raise ValueError(
+                f"release scope {'/'.join(scope)} has an invalid layer: {row['layer']!r}"
+            )
+        payload_bases.add(scope)
+    # A name no selector can spell is refused before any comparison.
+    for scope in _release_scopes(release_payload):
+        canonical_scope_key(*scope)
+    for new_scope in sorted(mappings.values()):
+        canonical_scope_key(*new_scope)
+    bases = payload_bases | set(base_scopes)
+    refused = sorted(bases.intersection({*mappings, *mappings.values()}))
+    if refused:
+        raise ValueError(
+            "base scopes are carried unchanged and cannot be repaired: "
+            + ", ".join("/".join(scope) for scope in refused)
+        )
 
 
 def _direct_scope(
@@ -379,6 +426,8 @@ def main() -> int:
         raise AssertionError(f"assigned {assigned}/{len(conflicts)} conflicts")
 
     mappings = {scope: (scope[0], scope[1], f"{scope[2]}-{args.suffix}") for scope in repair}
+    # No scope artifact has been moved, rewritten or unlinked yet.
+    _refuse_base_repairs(release, mappings, tracked_base_scopes(repo / "manifests" / "releases"))
     total_added = 0
     for old_scope, new_scope in sorted(mappings.items()):
         old_paths = _scope_paths(base, old_scope)

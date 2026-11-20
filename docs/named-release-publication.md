@@ -470,6 +470,214 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
    refresh. Serving reads see the previous state until it commits. It took
    2.9 s on the 401,299-row copy and 7.3 s for the derivation at 1.52M rows.
 
+### Successor cuts
+
+A later cut of a layered line carries every base scope of its predecessor
+unchanged. A shared composer builds new cuts that way. The selector lineage
+check reports a cut that does not. The scripts that cut, write or sign scope
+artifacts leave alone every scope a tracked selector marks as a base, and
+refuse one named as a primary scope.
+
+**Composing a cut.** `axiom_corpus.corpus.successors.compose_successor` builds
+a successor's `ReleaseManifest` from its predecessor's. Each change names
+scopes as `(jurisdiction, document_class, version)` tuples of strings:
+
+- `add`: new primary scopes.
+- `replace`: a map from a primary scope of the predecessor to a new version in
+  the same pair.
+- `remove`: primary scopes of the predecessor to drop.
+- `add_base`: a base scope for a pair the predecessor has no base for.
+
+Every base scope of the predecessor appears in the result as the same
+`ReleaseScope`. The successor inherits the predecessor's quality profile. Its
+scopes are sorted by `(jurisdiction, document_class, version)`. The composer
+writes no file. It raises `SuccessorError` when a change would:
+
+- replace or remove a base scope;
+- replace or remove a scope the predecessor does not select as a primary
+  scope;
+- add a scope the predecessor selects, in either layer;
+- replace a scope with its own version, or with a version the predecessor
+  already selects;
+- add a scope, or replace a scope with a version, that a tracked selector
+  marks as a base (`tracked_bases`, read from `releases_dir`);
+- list one scope more than once across `add`, `replace`, `remove` and
+  `add_base`, or select one scope twice;
+- add a base for a pair the predecessor already has a base for, or two bases
+  for one pair;
+- give the successor the predecessor's name, or no scope at all.
+
+Replacing a base is a reviewed release decision, which the composer does not
+make. The lineage baseline records it under `base_replacements`.
+
+The description must name the predecessor. The lineage check takes the first
+tracked selector a description names as the cut's predecessor
+([Selector lineage](release-gate-policy.md#selector-lineage)). The composer
+resolves the description against the tracked selector names and the
+predecessor's, as the check does, and refuses it unless the first name it
+finds is the predecessor. It reads the names from `releases_dir`, the
+`manifests/releases` of the checkout the cut is committed to, and without it
+from the checkout the module is imported from. That directory must hold the
+predecessor's selector as given, and every `*.json` entry in it must be a
+file. Otherwise the call refuses, and a missing directory or one with no
+selector raises `FileNotFoundError`. A `tracked` argument replaces the names: a
+copy installed outside a checkout must pass it or `releases_dir`, and
+`tracked=()` checks the predecessor's name alone. When a cut adds or replaces a
+primary scope, the composer also reads the tracked base scopes from the same
+directory, unless `tracked_bases` replaces them. Both are read when the call
+runs, so a selector the destination gains later is not seen; the lineage check
+then takes the first tracked name the description gives.
+
+**Rendering.** `render_selector` returns the selector text a new cut commits.
+Keys are sorted at every level, with a two-space indent, JSON escapes for
+non-ASCII characters and a final newline. Each scope uses its one encoding:
+`"layer": "base"` for a base scope and no `layer` key for a primary scope.
+That is the layout of `us-rulespec-2026-11-11-cms-w6-federal-guidance`.
+`tests/test_successors.py` rebuilds that selector byte for byte from its
+predecessor:
+
+```python
+from pathlib import Path
+
+from axiom_corpus.corpus.releases import ReleaseManifest
+from axiom_corpus.corpus.successors import compose_successor, render_selector
+
+releases = Path("manifests/releases")
+predecessor = ReleaseManifest.load(releases / "us-rulespec-2026-10-27-ks-liheap.json")
+successor = compose_successor(
+    predecessor,
+    name="us-rulespec-2026-11-11-cms-w6-federal-guidance",
+    description=DESCRIPTION,  # the committed text; it names the predecessor first
+    add=[("us", "guidance", "2026-10-06-w6-federal-cms-guidance")],
+)
+text = render_selector(successor)  # the committed selector's bytes
+```
+
+On main at `7242a0229`, loading and re-rendering reproduces 85 of the 164
+tracked selectors byte for byte. The other 79 use other layouts. The builders
+under `scripts/repro/` that reproduce historical cuts keep their own code. Use
+the composer for new cuts.
+
+**Lineage findings.** The selector lineage check
+(`axiom_corpus.corpus.selector_lineage`) runs in the required `test (3.14)`
+job through `tests/test_selector_lineage_repository.py`. Three of the findings
+[Selector lineage](release-gate-policy.md#selector-lineage) lists compare base
+scopes. The first two compare each cut with its predecessor; the third
+compares every tracked selector:
+
+| Finding | Rule |
+| --- | --- |
+| dropped base (`DroppedBase`) | the cut still carries a pair whose base scope its predecessor selects, and does not select that base as the same base scope: it leaves the base out, selects another version as the pair's base, or selects the base's version as a primary scope |
+| layer changed (`LayerChanged`) | a scope the predecessor selects as a primary scope is a base scope in the cut |
+| layer conflict (`LayerConflict`) | a scope one tracked selector selects as a base scope and another as a primary scope, unless a dropped base or layer changed finding already names it; no record allows it |
+
+A cut that drops a pair whole gets a dropped pair finding and no dropped base
+finding. A base scope added to a pair whose predecessor has no base is not a
+finding. The usual fix for a dropped base is to carry it unchanged. The fix for
+a layer change is to keep the scope primary. A new base for the pair takes a
+version the predecessor does not select, and the old base leaves the cut. A
+failing check prints each finding with its fix.
+
+**Base replacements.** A cut that serves a pair over a different base is a
+reviewed release decision. Record it in the optional `base_replacements`
+section of `manifests/selector-lineage-baseline.yaml`, and pin both selectors
+under `selector_digests`:
+
+```yaml
+base_replacements:
+  - selector: <the cut>
+    predecessor: <its predecessor>
+    pair: us/statute
+    replaced: "<the predecessor's base version>"
+    replaced_by: us/statute/<the cut's base version>
+    listed_on: <the date of the decision>
+    reason: <the decision, and why the new base replaces the old one>
+```
+
+Every field is required. Entries are sorted by selector, then pair, with one
+entry per selector and pair. `replaced_by` must be a scope of the same pair
+with a version other than `replaced`. The entry allows the dropped base when
+both selectors match their pins, the entry's predecessor is the cut's
+predecessor, that predecessor's base for the pair has the `replaced` version,
+the cut selects `replaced_by` as a base scope, and the cut no longer selects
+the `replaced` version. An entry that no longer holds is a baseline error,
+which fails the check. A layer change has no record, in either direction: a
+cut that keeps the replaced base as a primary scope fails even with an entry.
+A base that leaves a pair the cut carries without a new base has no record
+either. The check holds an entry built in code, rather than loaded from the
+file, to the same rules: keyed by its own selector and pair, with `replaced_by`
+in that pair. The tracked baseline has no `base_replacements` section, and the
+loader reads an absent section as empty.
+
+**Dedup.** `scripts/deduplicate_release_selector.py` leaves base scopes alone.
+It never opens or cuts a base scope the target declares. Before it opens any
+artifact, it refuses a target that selects, as a primary scope, a scope a
+tracked selector marks as a base. On the command line it reads the tracked
+selectors of the checkout holding `--corpus`; called as a function, its
+`releases_dir` defaults to the script's own checkout. For a citation path both
+layers of a pair carry, serving picks the primary row, so a primary row over a
+base row is layering, not a duplicate. Primary scopes alone compete for a
+citation path. The target selector must carry every canonical scope in the same
+layer. A canonical base carried as a primary scope, or a canonical primary
+carried as a base, is refused as an omitted canonical scope. The report lists
+the base scopes the run left untouched under `untouched_base_scopes`.
+
+**Consolidation, composition and repair.** Three scripts write new scope
+versions, and each refuses a base scope before it writes a new version or
+moves, rewrites or unlinks an artifact:
+
+- `scripts/consolidate_release_scopes.py` refuses a source or target scope that
+  a tracked selector marks as a base, and a jurisdiction, document class or
+  version a selector could not spell (a lowercase letter or digit followed by
+  lowercase letters, digits, `.`, `_` and `-`). Artifact paths strip whitespace
+  and slashes and rewrite `:` and `\`, and a case-insensitive filesystem folds
+  case, so `v `, `v/` or `V` would otherwise name the files of `v`. It refuses
+  before it fetches, reads or writes anything.
+- `scripts/compose_scope_versions.py` refuses a base constituent or target, and
+  a misspelled name, in the same way.
+- `scripts/repair_plan_cascade_self_containment.py` refuses to repair a scope,
+  or to write a new scope, that the release selector it repairs or a tracked
+  selector marks as a base, and a scope name a selector could not spell. It
+  must read the release's scopes to plan the repair, so these refusals come
+  after it fetches and reads every scope the release selects, and before its
+  first move, rewrite or unlink.
+
+On the command line, consolidation and composition read the
+`manifests/releases` of the checkout holding `--base` (the corpus CLI's rule,
+`resolver.cli_repo`), and stop when neither `--base` nor the working directory
+is in a checkout; repair reads `--repo`'s. Called as functions, the first two
+take `releases_dir`, which defaults to the script's own checkout. All three
+read the tracked base scopes with `tracked_base_scopes`, which loads every
+`*.json` selector in that directory and stops on one that does not load, on an
+entry that is not a file, and on a directory with no selector. Corpus locks
+carry no layer, so the tracked selectors are the record of which scopes are
+bases. Known limit: a base becomes known to these scripts once a tracked
+selector marks it. Until then they treat it as any other scope. Commit the
+selector of a cut that adds a base before running any of them on that scope.
+
+**Signing.** `scripts/sign_release_scopes.sh` signs the draft's primary scopes
+that the predecessor lacks. It skips a base scope the predecessor also has as a
+base. It exits 1, before it stages, commits or signs anything, when:
+
+- either selector spells a part of a scope in a way a selector cannot, or lists
+  a scope twice (this check runs first, and the run reports only its lines);
+- the draft has a base scope that the predecessor lacks;
+- the draft has a base scope that the predecessor has as a primary scope;
+- the draft has a primary scope that the predecessor has as a base;
+- either selector gives a scope a `layer` other than `"base"`;
+- the draft has a primary scope that a tracked selector under
+  `manifests/releases` marks as a base.
+
+It names every such scope on stderr, one line each. A base the draft leaves out
+does not stop the script. The lineage check reports it as a dropped base, or as
+a dropped pair when the cut drops the pair whole. For a base the predecessor
+does not carry, the message says that "a base scope enters through its restore
+manifest". The restore procedure is not documented yet. It lands with the
+restoration work in
+[#728](https://github.com/TheAxiomFoundation/axiom-corpus/issues/728), which
+the message cites. `compose_successor`'s `add_base` puts a new base into a
+selector, but a draft that adds a base cannot go through this script.
+
 ## Commands
 
 Local preflight without external writes:

@@ -14,8 +14,38 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
-from axiom_corpus.corpus.resolver import require_materialized
+from axiom_corpus.corpus.resolver import cli_repo, require_materialized
+from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+
+# The tracked selectors are the only record of which scopes are bases.
+DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[1] / "manifests" / "releases"
+
+
+def _refuse_base_scopes(
+    *,
+    jurisdiction: str,
+    document_class: str,
+    versions: tuple[str, ...],
+    releases_dir: Path | None,
+) -> None:
+    """Refuse every named scope that a tracked selector marks as a base.
+
+    A base scope is carried into every successor unchanged, so this script
+    neither reads one as a source nor writes one as its target.
+
+    Named scopes must be spelled as a selector spells them, so the comparison
+    is exact. A spelling such as ``v `` or ``V``, which names the files of
+    ``v`` (``successors.canonical_scope_key``), raises before the tracked
+    selectors are read.
+    """
+    keys = [canonical_scope_key(jurisdiction, document_class, version) for version in versions]
+    bases = tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir)
+    refused = sorted({"/".join(key) for key in keys if key in bases})
+    if refused:
+        raise ValueError(
+            "base scopes are carried unchanged and cannot be consolidated: " + ", ".join(refused)
+        )
 
 
 def _rewritten_source_path(
@@ -95,6 +125,7 @@ def consolidate_release_scopes(
     preferred_duplicate_version: str | None = None,
     shadowed_block_versions: dict[str, str] | None = None,
     included_citations_by_version: dict[str, frozenset[str]] | None = None,
+    releases_dir: Path | None = None,
 ) -> tuple[Path, ...]:
     """Create one immutable scope from ordered sources, deduping empty containers.
 
@@ -102,6 +133,15 @@ def consolidate_release_scopes(
     its complete scope. A source version present in the mapping contributes
     only the explicitly listed citations. This supports narrow successor
     overlays without importing unrelated historical provisions.
+
+    A source or target scope that a selector under ``releases_dir`` marks as a
+    base (``layer: base``) is refused before anything is fetched, read or
+    written. ``None`` means the ``manifests/releases`` of the checkout this
+    script belongs to. ``main()`` passes the ``manifests/releases`` of the
+    checkout holding ``--base`` (``resolver.cli_repo``), so a run on another
+    checkout's corpus reads that checkout's selectors. A base is known here
+    only once a tracked selector marks it, so a selector that adds a base
+    must be committed before this script runs on that scope.
     """
     if not source_versions:
         raise ValueError("at least one source version is required")
@@ -144,6 +184,12 @@ def consolidate_release_scopes(
         )
     if any(source == successor for source, successor in shadowing.items()):
         raise ValueError("shadowed block source and successor versions must differ")
+    _refuse_base_scopes(
+        jurisdiction=jurisdiction,
+        document_class=document_class,
+        versions=(*source_versions, target_version),
+        releases_dir=releases_dir,
+    )
 
     store = CorpusArtifactStore(base)
     target_inventory_path = store.inventory_path(jurisdiction, document_class, target_version)
@@ -437,6 +483,12 @@ def main() -> int:
                 f"duplicate included citation for {source_version}: {citation_path}"
             )
         citations.add(citation_path)
+    repo = cli_repo(args)
+    if repo is None:
+        parser.error(
+            "neither --base nor the working directory is in an axiom-corpus checkout, so no "
+            "tracked selectors say which scopes are bases"
+        )
     generated = consolidate_release_scopes(
         base=args.base,
         jurisdiction=args.jurisdiction,
@@ -450,6 +502,7 @@ def main() -> int:
             source_version: frozenset(citations)
             for source_version, citations in included_citations.items()
         },
+        releases_dir=repo / "manifests" / "releases",
     )
     for path in generated:
         print(path)

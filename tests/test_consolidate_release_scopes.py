@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import json
 import shutil
+import sys
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
+import scripts.consolidate_release_scopes as consolidate_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -18,8 +21,9 @@ def _write_scope(
     *,
     version: str,
     records: tuple[ProvisionRecord, ...],
+    jurisdiction: str = "us",
 ) -> None:
-    source = store.source_path("us", "statute", version, "source.xml")
+    source = store.source_path(jurisdiction, "statute", version, "source.xml")
     source_sha256 = store.write_text(source, f"<source version='{version}' />")
     source_path = source.relative_to(store.root).as_posix()
     normalized = tuple(
@@ -33,7 +37,7 @@ def _write_scope(
         for record in records
     )
     store.write_inventory(
-        store.inventory_path("us", "statute", version),
+        store.inventory_path(jurisdiction, "statute", version),
         [
             SourceInventoryItem(
                 citation_path=record.citation_path,
@@ -45,7 +49,7 @@ def _write_scope(
         ],
     )
     store.write_provisions(
-        store.provisions_path("us", "statute", version),
+        store.provisions_path(jurisdiction, "statute", version),
         normalized,
     )
 
@@ -417,3 +421,332 @@ def test_copy_failure_leaves_target_retryable(tmp_path, monkeypatch):
         target_version="published-three",
     )
     assert all(path.exists() for path in targets)
+
+
+def _write_layered_selector(releases_dir: Path) -> Path:
+    """Write a tracked selector that marks us-example/statute/tracked-base as a base."""
+    releases_dir.mkdir(parents=True)
+    selector = {
+        "name": "us-example-layered",
+        "scopes": [
+            {
+                "document_class": "statute",
+                "jurisdiction": "us-example",
+                "layer": "base",
+                "version": "tracked-base",
+            },
+            {
+                "document_class": "statute",
+                "jurisdiction": "us-example",
+                "version": "primary-one",
+            },
+        ],
+    }
+    (releases_dir / "us-example-layered.json").write_text(
+        json.dumps(selector, indent=2, sort_keys=True) + "\n"
+    )
+    return releases_dir
+
+
+def _write_example_scope(
+    store: CorpusArtifactStore, version: str, *, jurisdiction: str = "us-example"
+) -> None:
+    _write_scope(
+        store,
+        version=version,
+        jurisdiction=jurisdiction,
+        records=(
+            ProvisionRecord(
+                jurisdiction=jurisdiction,
+                document_class="statute",
+                citation_path=f"{jurisdiction}/statute/{version}",
+                body=f"Text of {version}.",
+            ),
+        ),
+    )
+
+
+def _tree(root: Path) -> dict[str, bytes | None]:
+    """Every path under ``root``, with a file's bytes and None for a directory."""
+    return {
+        path.relative_to(root).as_posix(): path.read_bytes() if path.is_file() else None
+        for path in sorted(root.rglob("*"))
+    }
+
+
+def _refuse_fetch(*_args, **_kwargs):
+    raise AssertionError("require_materialized ran for a refused base scope")
+
+
+@pytest.mark.parametrize(
+    ("source_versions", "target_version"),
+    [
+        pytest.param(("tracked-base", "primary-one"), "consolidated", id="base-source"),
+        pytest.param(("primary-one", "primary-two"), "tracked-base", id="base-target"),
+    ],
+)
+def test_refuses_a_tracked_base_scope_before_fetching(
+    tmp_path, monkeypatch, source_versions, target_version
+):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    for version in source_versions:
+        _write_example_scope(store, version)
+    releases_dir = _write_layered_selector(tmp_path / "releases")
+    before = _tree(store.root)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+
+    with pytest.raises(
+        ValueError,
+        match=(
+            r"^base scopes are carried unchanged and cannot be consolidated: "
+            r"us-example/statute/tracked-base$"
+        ),
+    ):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us-example",
+            document_class="statute",
+            source_versions=source_versions,
+            target_version=target_version,
+            releases_dir=releases_dir,
+        )
+
+    # Nothing was created, moved or rewritten, and no staging directory is left.
+    assert _tree(store.root) == before
+    assert not (store.root / "sources/us-example/statute" / target_version).exists()
+    assert not store.inventory_path("us-example", "statute", target_version).exists()
+    assert not store.provisions_path("us-example", "statute", target_version).exists()
+    assert not store.coverage_path("us-example", "statute", target_version).exists()
+
+
+def test_consolidates_primary_scopes_beside_a_tracked_base(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    releases_dir = _write_layered_selector(tmp_path / "releases")
+    # Primary scopes of the pair whose base the selector marks.
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    # The base's version string under another pair names a primary scope.
+    _write_example_scope(store, "tracked-base", jurisdiction="us")
+    _write_example_scope(store, "primary-one", jurisdiction="us")
+
+    consolidate_release_scopes(
+        base=store.root,
+        jurisdiction="us-example",
+        document_class="statute",
+        source_versions=("primary-one", "primary-two"),
+        target_version="consolidated",
+        releases_dir=releases_dir,
+    )
+    consolidate_release_scopes(
+        base=store.root,
+        jurisdiction="us",
+        document_class="statute",
+        source_versions=("tracked-base", "primary-one"),
+        target_version="consolidated",
+        releases_dir=releases_dir,
+    )
+
+    assert [
+        record.citation_path
+        for record in load_provisions(
+            store.provisions_path("us-example", "statute", "consolidated")
+        )
+    ] == ["us-example/statute/primary-one", "us-example/statute/primary-two"]
+    assert [
+        record.citation_path
+        for record in load_provisions(store.provisions_path("us", "statute", "consolidated"))
+    ] == ["us/statute/tracked-base", "us/statute/primary-one"]
+
+
+def test_reads_the_repository_selectors_by_default(tmp_path, monkeypatch):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    seen: list[Path] = []
+
+    def recording_tracked_base_scopes(releases_dir: Path) -> frozenset[tuple[str, str, str]]:
+        seen.append(releases_dir)
+        return frozenset({("us-example", "statute", "primary-two")})
+
+    monkeypatch.setattr(consolidate_module, "tracked_base_scopes", recording_tracked_base_scopes)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+
+    with pytest.raises(
+        ValueError, match=r"cannot be consolidated: us-example/statute/primary-two$"
+    ):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us-example",
+            document_class="statute",
+            source_versions=("primary-one", "primary-two"),
+            target_version="consolidated",
+        )
+
+    repository_releases = Path(__file__).resolve().parents[1] / "manifests" / "releases"
+    assert seen == [repository_releases]
+    assert repository_releases.is_dir()
+
+
+@pytest.mark.parametrize(
+    "checkout",
+    [
+        pytest.param("other-checkout", id="base-checkout"),
+        pytest.param(None, id="no-checkout"),
+    ],
+)
+def test_cli_reads_the_selectors_of_the_checkout_holding_base(tmp_path, monkeypatch, checkout):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    asked: list[Path] = []
+    seen: list[Path] = []
+
+    def fake_cli_repo(args) -> Path | None:
+        asked.append(Path(args.base))
+        return None if checkout is None else tmp_path / checkout
+
+    def recording_tracked_base_scopes(releases_dir: Path) -> frozenset[tuple[str, str, str]]:
+        seen.append(releases_dir)
+        return frozenset({("us-example", "statute", "primary-two")})
+
+    monkeypatch.setattr(consolidate_module, "cli_repo", fake_cli_repo, raising=False)
+    monkeypatch.setattr(consolidate_module, "tracked_base_scopes", recording_tracked_base_scopes)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "consolidate_release_scopes.py",
+            "--base",
+            str(store.root),
+            "--jurisdiction",
+            "us-example",
+            "--document-class",
+            "statute",
+            "--source-version",
+            "primary-one",
+            "--source-version",
+            "primary-two",
+            "--target-version",
+            "consolidated",
+        ],
+    )
+
+    if checkout is None:
+        # No checkout holds --base or the working directory, so no selector
+        # says which scopes are bases: the command line refuses to guess.
+        with pytest.raises(SystemExit) as exited:
+            consolidate_module.main()
+        assert exited.value.code == 2
+        assert seen == []
+        return
+    with pytest.raises(
+        ValueError, match=r"cannot be consolidated: us-example/statute/primary-two$"
+    ):
+        consolidate_module.main()
+    assert seen == [tmp_path / "other-checkout" / "manifests" / "releases"]
+    assert asked == [store.root]
+
+
+# Spellings a selector cannot hold that name the files of us-example/statute/tracked-base:
+# artifacts.safe_segment strips whitespace and "/" and rewrites "\\" and ":",
+# and APFS folds case.
+BASE_ALIASES = [
+    pytest.param(("us-example", "statute", "tracked-base "), id="trailing-space"),
+    pytest.param(("us-example", "statute", " tracked-base"), id="leading-space"),
+    pytest.param(("us-example", "statute", "tracked-base\t"), id="trailing-tab"),
+    pytest.param(("us-example", "statute", "tracked-base\n"), id="trailing-newline"),
+    pytest.param(("us-example", "statute", "tracked-base/"), id="trailing-slash"),
+    pytest.param(("us-example", "statute", "tracked:base"), id="colon"),
+    pytest.param(("us-example", "statute", "tracked\\base"), id="backslash"),
+    pytest.param(("us-example", "statute", "Tracked-Base"), id="upper-case"),
+    pytest.param(("us-example ", "statute", "tracked-base"), id="jurisdiction-alias"),
+    pytest.param(("us-example", "statute/", "tracked-base"), id="document-class-alias"),
+]
+
+
+@pytest.mark.parametrize("role", ["source", "target"])
+@pytest.mark.parametrize("alias", BASE_ALIASES)
+def test_refuses_a_spelling_that_names_a_tracked_base(tmp_path, monkeypatch, alias, role):
+    jurisdiction, document_class, version = alias
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    releases_dir = _write_layered_selector(tmp_path / "releases")
+    before = _tree(store.root)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+    if role == "source":
+        source_versions = (version, "primary-one")
+        target_version = "consolidated"
+    else:
+        source_versions = ("primary-one", "primary-two")
+        target_version = version
+
+    # The name is refused before any path is built or anything is fetched.
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction=jurisdiction,
+            document_class=document_class,
+            source_versions=source_versions,
+            target_version=target_version,
+            releases_dir=releases_dir,
+        )
+
+    assert _tree(store.root) == before
+    assert not (store.root / "sources/us-example/statute/tracked-base").exists()
+    assert not store.inventory_path("us-example", "statute", "tracked-base").exists()
+    assert not store.provisions_path("us-example", "statute", "tracked-base").exists()
+    assert not store.coverage_path("us-example", "statute", "tracked-base").exists()
+
+
+@pytest.mark.parametrize("target_version", ["tracked-base ", "tracked-base/"])
+def test_writes_nothing_at_a_tracked_base_path_through_an_alias(tmp_path, target_version):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    releases_dir = _write_layered_selector(tmp_path / "releases")
+
+    # With the real fetch step: the alias would otherwise write the base's files.
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us-example",
+            document_class="statute",
+            source_versions=("primary-one", "primary-two"),
+            target_version=target_version,
+            releases_dir=releases_dir,
+        )
+
+    assert not store.provisions_path("us-example", "statute", "tracked-base").exists()
+    assert not store.inventory_path("us-example", "statute", "tracked-base").exists()
+    assert not store.coverage_path("us-example", "statute", "tracked-base").exists()
+    assert not (store.root / "sources/us-example/statute/tracked-base").exists()
+
+
+@pytest.mark.parametrize("role", ["source", "target"])
+def test_refuses_a_spelling_before_reading_the_tracked_selectors(tmp_path, monkeypatch, role):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+    if role == "source":
+        source_versions = ("tracked-base ", "primary-one")
+        target_version = "consolidated"
+    else:
+        source_versions = ("primary-one", "primary-two")
+        target_version = "tracked-base "
+
+    # No selector directory exists, so the spelling refusal can win only if
+    # the check runs before tracked_base_scopes reads the directory.
+    with pytest.raises(
+        ValueError, match=r"^not a canonical scope: 'us-example'/'statute'/'tracked-base ' "
+    ):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us-example",
+            document_class="statute",
+            source_versions=source_versions,
+            target_version=target_version,
+            releases_dir=tmp_path / "missing",
+        )

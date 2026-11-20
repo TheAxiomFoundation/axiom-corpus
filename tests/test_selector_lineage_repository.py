@@ -4,17 +4,20 @@ The check (``axiom_corpus.corpus.selector_lineage``) reads only the selector
 files under ``manifests/releases/`` and ``manifests/selector-lineage-baseline.yaml``:
 no corpus fetch, no database, no git history beyond this commit's date. It
 fails on a cut that selects no version of a ``(jurisdiction, document_class)``
-pair its predecessor carries, names a predecessor another cut already succeeds,
-extends a fork's branch the line did not continue, names no tracked
-predecessor without a first-cut record, or forms a cycle. ``test (3.14)`` is a
-required check, so none of these merges unrecorded. A document that leaves a
-pair the cut still carries is not checked.
+pair its predecessor carries, carries a pair without its predecessor's base
+scope for it unchanged, selects a scope its predecessor selects as primary as
+a base, names a predecessor another cut already succeeds, extends a fork's
+branch the line did not continue, names no tracked predecessor without a
+first-cut record, or forms a cycle. ``test (3.14)`` is a required check, so
+none of these merges unrecorded. A document that leaves a pair the cut still
+carries is not checked.
 
 For each finding the guard prints a remedy (``_remedy``): the usual fix, then
 the baseline entry that records the finding on purpose.
 ``test_every_printed_remedy_can_be_followed`` builds each kind of finding on a
 copy of main's selectors and baseline, follows each option as printed, and
-requires the guard and the freeze test to pass on the result.
+requires the guard and the freeze test to pass on the result. Main has no
+layered selector, so each base case first cuts one into its copy.
 """
 
 from __future__ import annotations
@@ -33,13 +36,16 @@ from pathlib import Path
 import pytest
 import yaml
 
-from axiom_corpus.corpus.releases import ReleaseManifest, ScopeKey
+from axiom_corpus.corpus import selector_lineage
+from axiom_corpus.corpus.releases import LAYER_BASE, ReleaseManifest, ReleaseScope, ScopeKey
 from axiom_corpus.corpus.selector_lineage import (
     LINEAGE_BASELINE_PATH,
     Cycle,
+    DroppedBase,
     DroppedPair,
     EndedBranch,
     Fork,
+    LayerChanged,
     LineageBaseline,
     LineageReport,
     RecordedFork,
@@ -109,7 +115,16 @@ FORKS_ON_MAIN_WHEN_THE_GUARD_BEGAN = {
     ),
 }
 
-type Finding = DroppedPair | Fork | EndedBranch | UnnamedPredecessor | Cycle
+type Finding = (
+    DroppedPair
+    | DroppedBase
+    | LayerChanged
+    | selector_lineage.LayerConflict
+    | Fork
+    | EndedBranch
+    | UnnamedPredecessor
+    | Cycle
+)
 
 
 @cache
@@ -189,6 +204,30 @@ def _changed_since_pinned(
     ]
 
 
+def _may_follow_from_a_change(finding: Finding, changed: list[str], what: str) -> str:
+    """The remedy for ``what`` (a drop) by or from pinned selectors that changed.
+
+    The pin's old digest does not say which scopes the selector had, so the
+    finding may or may not come from the change. Either way no entry can pass
+    while the pin is stale: undo the change, then see what is left.
+    """
+    them, that, change = (
+        ("it", "that", "change") if len(changed) == 1 else ("them", "those", "changes")
+    )
+    return (
+        f"{finding.describe()}.\n  {' and '.join(changed)} changed since the baseline "
+        f"pinned {them}, and this {what} may follow from {that} {change}: undo the {change} "
+        "the baseline errors below describe, then run the check again"
+    )
+
+
+def _base_of(release: ReleaseManifest, pair: tuple[str, str]) -> ScopeKey | None:
+    """The scope ``release`` selects as the base of ``pair``, if any."""
+    return next(
+        (scope.key for scope in release.scopes if scope.is_base and scope.pair == pair), None
+    )
+
+
 def _remedy(
     finding: Finding, selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
 ) -> str:
@@ -204,17 +243,7 @@ def _remedy(
             return _no_longer_holds(finding)
         changed = _changed_since_pinned(selectors, baseline, finding.predecessor, finding.selector)
         if changed:
-            # The pin's old digest does not say which pairs the selector had, so the
-            # drop may or may not come from the change. Either way no entry can pass
-            # while the pin is stale: undo the change, then see what is left.
-            them, that, change = (
-                ("it", "that", "change") if len(changed) == 1 else ("them", "those", "changes")
-            )
-            return (
-                f"{finding.describe()}.\n  {' and '.join(changed)} changed since the baseline "
-                f"pinned {them}, and this drop may follow from {that} {change}: undo the {change} "
-                "the baseline errors below describe, then run the check again"
-            )
+            return _may_follow_from_a_change(finding, changed, "drop")
         return (
             f"{finding.describe()}.\n  Keep a version of {pair_label(finding.pair)}, or record "
             "the release decision, with pins in name order and drops in order of selector, then "
@@ -227,6 +256,53 @@ def _remedy(
             "        listed_on: <today>\n"
             "        replaced_by: [<scopes this selector selects that carry the pair's text>]\n"
             "        reason: <the decision; say why nothing replaces the pair if nothing does>"
+        )
+    if isinstance(finding, DroppedBase):
+        if (finding.selector, finding.pair) in baseline.base_replacements:
+            return _no_longer_holds(finding)
+        changed = _changed_since_pinned(selectors, baseline, finding.predecessor, finding.selector)
+        if changed:
+            return _may_follow_from_a_change(finding, changed, "dropped base")
+        carry = f"{finding.describe()}.\n  Carry {'/'.join(finding.base)} as a base scope unchanged"
+        replacing = _base_of(selectors[finding.selector], finding.pair)
+        if (
+            replacing is None
+            or replacing in selectors[finding.predecessor].scope_keys
+            or finding.base in selectors[finding.selector].scope_keys
+        ):
+            # With no other base, a base that is a layer change, or a replaced base the cut
+            # keeps as a primary scope, no record can hold.
+            return (
+                f"{carry}. Only a base version {finding.predecessor} does not select can "
+                "replace it, as a reviewed release decision recorded under base_replacements "
+                f"in {LINEAGE_BASELINE_PATH}"
+            )
+        return (
+            f"{carry}, or record the reviewed base replacement, with pins in name order and "
+            f"replacements in order of selector, then pair, in {LINEAGE_BASELINE_PATH}:"
+            f"{_pins(selectors, baseline, finding.predecessor, finding.selector)}\n"
+            "    base_replacements:\n"
+            f"      - selector: {finding.selector}\n"
+            f"        predecessor: {finding.predecessor}\n"
+            f"        pair: {pair_label(finding.pair)}\n"
+            f'        replaced: "{finding.base_version}"\n'
+            f"        replaced_by: {'/'.join(replacing)}\n"
+            "        listed_on: <today>\n"
+            "        reason: <the decision, and why the new base replaces the old one>"
+        )
+    if isinstance(finding, LayerChanged):
+        return (
+            f"{finding.describe()}.\n  Select {'/'.join(finding.scope)} as a primary scope, as "
+            f"{finding.predecessor} does: a scope keeps its layer from one cut to the next, so "
+            f"a base for {pair_label(finding.scope[:2])} takes a version {finding.predecessor} "
+            "does not select"
+        )
+    if isinstance(finding, selector_lineage.LayerConflict):
+        scope = "/".join(finding.scope)
+        return (
+            f"{finding.describe()}.\n  Select {scope} as a base scope in "
+            f"{', '.join(finding.primaries)}, or select a new version of that text there as "
+            "the primary scope; no record allows a layer conflict"
         )
     if isinstance(finding, Fork):
         new = [name for name in finding.successors if name not in finding.recorded]
@@ -300,6 +376,9 @@ def _guard_problems(
     report = check_selector_lineage(selectors, baseline)
     findings: list[Finding] = [
         *report.dropped,
+        *report.dropped_bases,
+        *report.layer_changes,
+        *report.layer_conflicts,
         *report.forks,
         *report.ended_branches,
         *report.unnamed,
@@ -348,6 +427,26 @@ def test_no_tracked_selector_drops_a_pair_or_forks_its_line_without_a_record() -
     assert not problems, "\n".join(problems)
 
 
+def test_the_guard_prints_a_layer_conflict_with_its_remedy() -> None:
+    from axiom_corpus.corpus.selector_lineage import LayerConflict, RecordedFirstCut
+
+    scope: ScopeKey = ("us", "statute", "2026-05-01-remedy-test-base")
+    selectors = {
+        "line-x": ReleaseManifest("line-x", (ReleaseScope(*scope, layer=LAYER_BASE),)),
+        "line-y": ReleaseManifest("line-y", (ReleaseScope(*scope),)),
+    }
+    baseline = LineageBaseline(
+        selector_digests={name: selector_sha256(release) for name, release in selectors.items()},
+        first_cuts={name: RecordedFirstCut(name, "2026-11-02", "first cut") for name in selectors},
+    )
+    conflict = LayerConflict(scope, ("line-x",), ("line-y",))
+    assert _guard_problems(selectors, baseline) == [
+        f"{conflict.describe()}.\n  Select us/statute/2026-05-01-remedy-test-base as a base "
+        "scope in line-y, or select a new version of that text there as the primary scope; "
+        "no record allows a layer conflict"
+    ]
+
+
 def test_the_w7_union_line_keeps_its_head_and_arizona_stays_a_first_cut() -> None:
     selectors = _selectors()
     baseline = _baseline()
@@ -383,6 +482,7 @@ def test_no_entry_is_listed_before_the_guard_or_after_this_commit() -> None:
         *_fork_entries(_baseline()),
         *_baseline().first_cuts.values(),
         *_baseline().successions.values(),
+        *_baseline().base_replacements.values(),
     ]
     for record in records:
         assert GUARD_BEGAN <= record.listed_on <= head, record
@@ -421,6 +521,7 @@ _SECTION_ORDER: dict[str, Callable[[Mapping[str, object]], tuple[str, ...]]] = {
     "forks": lambda entry: (str(entry["predecessor"]), str(entry["listed_on"])),
     "first_cuts": lambda entry: (str(entry["listed_on"]),),
     "successions": lambda entry: (str(entry["selector"]),),
+    "base_replacements": lambda entry: (str(entry["selector"]), *str(entry["pair"]).split("/")),
 }
 
 _CUT = "cut from the selector it names"
@@ -428,13 +529,24 @@ _RECORD = "record"
 _GOES_ON = "record, and the line goes on through it"
 _DOES_NOT_GO_ON = "record, and the line does not go on through it"
 _KEEP = "keep the pair"
+_CARRY = "carry the base unchanged"
+_KEEP_PRIMARY = "keep the scope primary"
 _NAME = "name the predecessor"
 _NAME_EACH = "name each real predecessor"
 _UNDO = "undo the change"
 
 
 def _findings(report: LineageReport) -> list[Finding]:
-    return [*report.dropped, *report.forks, *report.ended_branches, *report.unnamed, *report.cycles]
+    return [
+        *report.dropped,
+        *report.dropped_bases,
+        *report.layer_changes,
+        *report.layer_conflicts,
+        *report.forks,
+        *report.ended_branches,
+        *report.unnamed,
+        *report.cycles,
+    ]
 
 
 class _MainCopy:
@@ -479,11 +591,14 @@ class _MainCopy:
                 self._selector_cache = cached
 
     def write(self, name: str, keys: Iterable[ScopeKey], description: str) -> None:
-        scopes = [
-            {"document_class": document_class, "jurisdiction": jurisdiction, "version": version}
-            for jurisdiction, document_class, version in sorted(set(keys))
+        self.write_scopes(name, [ReleaseScope(*key) for key in keys], description)
+
+    def write_scopes(self, name: str, scopes: Iterable[ReleaseScope], description: str) -> None:
+        """Write a selector of ``scopes`` in each one's canonical encoding, layer included."""
+        mappings = [
+            scope.to_selector_mapping() for scope in sorted(set(scopes), key=lambda s: s.key)
         ]
-        payload = {"name": name, "description": description, "scopes": scopes}
+        payload = {"name": name, "description": description, "scopes": mappings}
         self.write_text(name, json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
     def record(self, *entries: str) -> None:
@@ -832,6 +947,178 @@ def _build_edited_successor_of_a_recorded_fork(copy: _MainCopy) -> _Case:
     return _Case((Fork,), (branch,), fork, originals=((branch, _edit(copy, branch)),))
 
 
+_LAYERED = "remedy-test-layered"
+_BASE_VERSION = "2026-05-01-remedy-test-base"
+_REPLACING_VERSION = "2026-11-03-remedy-test-base-replacement"
+
+
+def _write_layered_predecessor(copy: _MainCopy) -> ReleaseScope:
+    """Cut a selector with a base under its first pair from an open head; return the base.
+
+    Main has no layered selector. Adding a base to a pair whose predecessor has
+    none is not a finding, so the copy stays green.
+    """
+    head = _open_head(copy)
+    selector = copy.selectors()[head]
+    pair = sorted(pair_versions(selector))[0]
+    base = ReleaseScope(*pair, _BASE_VERSION, layer=LAYER_BASE)
+    copy.write_scopes(_LAYERED, [*selector.scopes, base], f"Successor to {head}. {_NOTE}")
+    return base
+
+
+def _layered_successor_case(
+    copy: _MainCopy,
+    kinds: tuple[type, ...],
+    change: Callable[[set[ReleaseScope], ReleaseScope], set[ReleaseScope]],
+    name: str,
+) -> _Case:
+    """Cut ``name`` from the layered predecessor, with ``change`` made to its scopes."""
+    base = _write_layered_predecessor(copy)
+    scopes = change(set(copy.selectors()[_LAYERED].scopes), base)
+    copy.write_scopes(name, scopes, f"Successor to {_LAYERED}. {_NOTE}")
+    return _Case(kinds, (name,), _LAYERED)
+
+
+def _replaced(scopes: set[ReleaseScope], base: ReleaseScope) -> set[ReleaseScope]:
+    replacing = ReleaseScope(base.jurisdiction, base.document_class, _REPLACING_VERSION, LAYER_BASE)
+    return (scopes - {base}) | {replacing}
+
+
+def _build_dropped_base(copy: _MainCopy) -> _Case:
+    """The successor selects another version as the pair's base: a replacement."""
+    return _layered_successor_case(copy, (DroppedBase,), _replaced, "remedy-test-dropped-base")
+
+
+def _build_left_out_base(copy: _MainCopy) -> _Case:
+    return _layered_successor_case(
+        copy, (DroppedBase,), lambda scopes, base: scopes - {base}, "remedy-test-left-out-base"
+    )
+
+
+def _build_base_flipped_to_primary(copy: _MainCopy) -> _Case:
+    return _layered_successor_case(
+        copy,
+        (DroppedBase,),
+        lambda scopes, base: (scopes - {base}) | {ReleaseScope(*base.key)},
+        "remedy-test-base-flipped",
+    )
+
+
+def _build_replaced_base_kept_as_primary(copy: _MainCopy) -> _Case:
+    return _layered_successor_case(
+        copy,
+        (DroppedBase,),
+        lambda scopes, base: _replaced(scopes, base) | {ReleaseScope(*base.key)},
+        "remedy-test-replaced-base-kept",
+    )
+
+
+def _first_primary(scopes: set[ReleaseScope], pair: tuple[str, str] | None = None) -> ReleaseScope:
+    """The first primary scope of ``pair``, or of the first pair other than a base's."""
+    based = {scope.pair for scope in scopes if scope.is_base}
+    return min(
+        (
+            scope
+            for scope in scopes
+            if not scope.is_base and (scope.pair == pair if pair else scope.pair not in based)
+        ),
+        key=lambda scope: scope.key,
+    )
+
+
+def _into_base(scope: ReleaseScope) -> ReleaseScope:
+    return ReleaseScope(*scope.key, layer=LAYER_BASE)
+
+
+def _build_layer_changed(copy: _MainCopy) -> _Case:
+    """A primary scope of a pair with no base becomes that pair's base."""
+
+    def change(scopes: set[ReleaseScope], base: ReleaseScope) -> set[ReleaseScope]:
+        moved = _first_primary(scopes)
+        return (scopes - {moved}) | {_into_base(moved)}
+
+    return _layered_successor_case(copy, (LayerChanged,), change, "remedy-test-layer-changed")
+
+
+def _build_primary_moved_into_a_base(copy: _MainCopy) -> _Case:
+    """A primary scope of the base's pair takes the base's place: both findings."""
+
+    def change(scopes: set[ReleaseScope], base: ReleaseScope) -> set[ReleaseScope]:
+        moved = _first_primary(scopes, base.pair)
+        return (scopes - {base, moved}) | {_into_base(moved)}
+
+    return _layered_successor_case(
+        copy, (DroppedBase, LayerChanged), change, "remedy-test-primary-into-base"
+    )
+
+
+def _build_edited_selector_of_a_recorded_base_replacement(copy: _MainCopy) -> _Case:
+    """A recorded replacement holds until its selector changes."""
+    case = _build_dropped_base(copy)
+    (name,) = case.selectors
+    selectors = copy.selectors()
+    base = next(scope for scope in selectors[_LAYERED].scopes if scope.is_base)
+    replacing = _base_of(selectors[name], base.pair)
+    assert replacing is not None
+    _record_on_main(
+        copy,
+        f"selector_digests:\n  {_LAYERED}: {selector_sha256(selectors[_LAYERED])}\n"
+        f"  {name}: {selector_sha256(selectors[name])}\n"
+        f"base_replacements:\n  - selector: {name}\n    predecessor: {_LAYERED}\n"
+        f'    pair: {pair_label(base.pair)}\n    replaced: "{base.version}"\n'
+        f"    replaced_by: {'/'.join(replacing)}\n    listed_on: <today>\n"
+        "    reason: A reviewed replacement.\n",
+    )
+    assert not _guard_problems(copy.selectors(), copy.baseline())
+    original = copy.text(name)
+    edited = ReleaseScope(*base.pair, _EDITED_VERSION)
+    copy.write_scopes(name, {*selectors[name].scopes, edited}, selectors[name].description or "")
+    return _Case((DroppedBase,), (name,), _LAYERED, originals=((name, original),))
+
+
+def _build_edited_first_cut_that_gains_a_base(copy: _MainCopy) -> _Case:
+    """A pinned first cut gains a base its one successor lacks: the change, not the cut."""
+    selectors = copy.selectors()
+    baseline = copy.baseline()
+    predecessors = resolved_predecessors(selectors, baseline)
+    in_other_records = {
+        *(
+            name
+            for record in baseline.drops.values()
+            for name in (record.selector, record.predecessor)
+        ),
+        *(
+            name
+            for entry in _fork_entries(baseline)
+            for name in (entry.predecessor, *entry.successors)
+        ),
+        *(
+            name
+            for record in baseline.successions.values()
+            for name in (record.selector, record.predecessor)
+        ),
+    }
+    for name in sorted(baseline.first_cuts):
+        successors = sorted(child for child, prior in predecessors.items() if prior == name)
+        if (
+            name in in_other_records
+            or baseline.selector_digests.get(name) != selector_sha256(selectors[name])
+            or len(successors) != 1
+        ):
+            continue
+        shared = sorted(
+            set(pair_versions(selectors[name])) & set(pair_versions(selectors[successors[0]]))
+        )
+        if shared:
+            break
+    else:
+        raise AssertionError("main has no pinned first cut with one successor sharing a pair")
+    original = copy.text(name)
+    base = ReleaseScope(*shared[0], _BASE_VERSION, layer=LAYER_BASE)
+    copy.write_scopes(name, {*selectors[name].scopes, base}, selectors[name].description or "")
+    return _Case((DroppedBase, UnnamedPredecessor), (name,), name, originals=((name, original),))
+
+
 def _today(baseline: LineageBaseline) -> str:
     """The day after the newest entry: when a person follows the remedy."""
     listed = [
@@ -839,6 +1126,7 @@ def _today(baseline: LineageBaseline) -> str:
         *(entry.listed_on for entry in _fork_entries(baseline)),
         *(record.listed_on for record in baseline.first_cuts.values()),
         *(record.listed_on for record in baseline.successions.values()),
+        *(record.listed_on for record in baseline.base_replacements.values()),
     ]
     return (date.fromisoformat(max(listed)) + timedelta(days=1)).isoformat()
 
@@ -942,6 +1230,26 @@ def _follow(
             {*selectors[case.selectors[0]].scope_keys, *restored},
             f"Successor to {case.base}. {_NOTE}",
         )
+    elif option in (_CARRY, _KEEP_PRIMARY):
+        for finding, remedy in zip(findings, remedies, strict=True):
+            current = copy.selectors()[finding.selector]
+            scopes = set(current.scopes)
+            if isinstance(finding, DroppedBase):
+                base = "/".join(finding.base)
+                assert f"Carry {base} as a base scope unchanged" in remedy, remedy
+                scopes = {
+                    scope
+                    for scope in scopes
+                    if scope.key != finding.base
+                    and not (scope.is_base and scope.pair == finding.pair)
+                }
+                scopes.add(ReleaseScope(*finding.base, layer=LAYER_BASE))
+            else:
+                assert isinstance(finding, LayerChanged), finding
+                assert f"Select {'/'.join(finding.scope)} as a primary scope" in remedy, remedy
+                scopes = {scope for scope in scopes if scope.key != finding.scope}
+                scopes.add(ReleaseScope(*finding.scope))
+            copy.write_scopes(finding.selector, scopes, current.description or "")
     elif option == _NAME:
         assert "Name the selector it succeeds first in its description" in remedies[0], remedies[0]
         copy.write(
@@ -997,7 +1305,7 @@ def _assert_the_advice_is_sound(
     drop_endpoints = {
         name
         for finding in findings
-        if isinstance(finding, DroppedPair)
+        if isinstance(finding, DroppedPair | DroppedBase)
         for name in (finding.predecessor, finding.selector)
     }
     stale = {
@@ -1028,6 +1336,40 @@ def _assert_the_advice_is_sound(
             else:
                 expected = f"Keep a version of {pair_label(finding.pair)}, or record"
             assert expected in remedy, (expected, remedy)
+        if isinstance(finding, DroppedBase):
+            changed = [n for n in (finding.predecessor, finding.selector) if n in stale]
+            if (finding.selector, finding.pair) in baseline.base_replacements:
+                expected = broken
+            elif changed:
+                them, that, change = (
+                    ("it", "that", "change") if len(changed) == 1 else ("them", "those", "changes")
+                )
+                expected = (
+                    f"{' and '.join(changed)} changed since the baseline pinned {them}, and this "
+                    f"dropped base may follow from {that} {change}: undo the {change} the baseline "
+                    "errors below describe, then run the check again"
+                )
+            else:
+                expected = f"Carry {'/'.join(finding.base)} as a base scope unchanged"
+            assert expected in remedy, (expected, remedy)
+            if _MARKER in remedy:
+                # A record holds only for a base the selector selects in the pair, which
+                # its predecessor does not select (that would be a layer change).
+                replacing = next(
+                    scope.key
+                    for scope in selectors[finding.selector].scopes
+                    if scope.is_base and scope.pair == finding.pair
+                )
+                assert replacing not in selectors[finding.predecessor].scope_keys, remedy
+                assert finding.base not in selectors[finding.selector].scope_keys, remedy
+                assert f"replaced_by: {'/'.join(replacing)}\n" in remedy, remedy
+                assert f'replaced: "{finding.base_version}"\n' in remedy, remedy
+        if isinstance(finding, LayerChanged):
+            assert _MARKER not in remedy, remedy
+            assert f"Select {'/'.join(finding.scope)} as a primary scope" in remedy, remedy
+        if isinstance(finding, selector_lineage.LayerConflict):
+            assert _MARKER not in remedy, remedy
+            assert f"Select {'/'.join(finding.scope)} as a base scope in" in remedy, remedy
         if isinstance(finding, UnnamedPredecessor) and finding.selector in baseline.first_cuts:
             assert broken in remedy, remedy
         if (
@@ -1053,6 +1395,19 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
     ("dropped pair", _build_dropped_pair, _RECORD),
     ("dropped pair from a pinned head", _build_dropped_pair_from_a_pinned_head, _KEEP),
     ("dropped pair from a pinned head", _build_dropped_pair_from_a_pinned_head, _RECORD),
+    ("dropped base, replaced", _build_dropped_base, _CARRY),
+    ("dropped base, replaced", _build_dropped_base, _RECORD),
+    ("dropped base, left out", _build_left_out_base, _CARRY),
+    ("dropped base, flipped to primary", _build_base_flipped_to_primary, _CARRY),
+    ("dropped base, replaced and kept as primary", _build_replaced_base_kept_as_primary, _CARRY),
+    ("layer changed", _build_layer_changed, _KEEP_PRIMARY),
+    ("primary moved into a base", _build_primary_moved_into_a_base, _CARRY),
+    (
+        "edited selector of a recorded base replacement",
+        _build_edited_selector_of_a_recorded_base_replacement,
+        _UNDO,
+    ),
+    ("edited first cut that gains a base", _build_edited_first_cut_that_gains_a_base, _UNDO),
     ("new fork (#729)", _build_new_fork, _CUT),
     ("new fork (#729)", _build_new_fork, _RECORD),
     ("new successor of a recorded fork", _build_new_successor_of_a_recorded_fork, _CUT),
