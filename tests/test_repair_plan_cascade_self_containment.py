@@ -961,6 +961,7 @@ def _case_insensitive(directory: Path) -> bool:
         "lock-file",
         "class-place-linked-out",
         "lock-place-linked-out",
+        "case-variant-absent-place",
     ],
 )
 def test_main_refuses_a_report_path_in_a_protected_place(
@@ -972,6 +973,7 @@ def test_main_refuses_a_report_path_in_a_protected_place(
     coverage = _base_coverage(repo / "data" / "corpus")
     root, place = repo, "data"
     report: Path
+    fetch: Callable[[], None] | None = None
     if case == "coverage":
         report = coverage
     elif case == "selector":
@@ -1039,10 +1041,28 @@ def test_main_refuses_a_report_path_in_a_protected_place(
         (repo / place).rename(out)
         (repo / place).symlink_to(out)
         report = out / "us-example" / "regulation" / "new-v.json"
+    elif case == "case-variant-absent-place":
+        if not _case_insensitive(tmp_path):
+            pytest.skip("the filesystem tells letter case apart")
+        # Nothing is fetched yet, so no place exists to compare by identity;
+        # the fetch would create data/, where the report spelled Data/ lands.
+        shutil.rmtree(repo / "data")
+
+        def fetch_scopes() -> None:
+            corpus = repo / "data" / "corpus"
+            _write_scope_files(
+                corpus, PRIMARY, [{"citation_path": "us-example/statute/1"}], sources=True
+            )
+            _write_scope_files(
+                corpus, REPORT_BASE, [{"citation_path": "us-example/regulation/1"}], sources=True
+            )
+
+        fetch = fetch_scopes
+        report = _base_coverage(repo / "Data" / "corpus", "never-fetched")
     else:
         raise AssertionError(case)
     spelled = report if report.is_absolute() else Path.cwd() / report
-    events = _report_argv(monkeypatch, repo, report)
+    events = _report_argv(monkeypatch, repo, report, fetch=fetch)
     before = _snapshot(tmp_path)
 
     with pytest.raises(ValueError) as raised:

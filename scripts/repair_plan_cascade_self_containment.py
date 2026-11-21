@@ -115,8 +115,8 @@ def _refuse_report_destination(
        For each root and place in ``PLACES``, the path is refused when the
        place, followed through any link, is the same file as the path's
        realpath or one of its existing ancestors, or when the realpath lies
-       under the root's realpath and starts with the place's parts (a place
-       that does not exist yet).
+       under the root's realpath and starts with the place's parts, letter
+       case ignored (a place that does not exist yet).
     2. Inputs: the path is refused when it is an existing ``inputs`` file.
     3. Target: ``_refuse_report_target``.
 
@@ -137,10 +137,11 @@ def _refuse_report_destination(
             ancestors.append(os.stat(ancestor))
     for root in roots:
         real_root = Path(os.path.realpath(root))
-        try:
-            relative: tuple[str, ...] | None = physical.relative_to(real_root).parts
-        except ValueError:
-            relative = None
+        folded_root = tuple(part.casefold() for part in real_root.parts)
+        folded = tuple(part.casefold() for part in physical.parts)
+        relative: tuple[str, ...] | None = (
+            folded[len(folded_root) :] if folded[: len(folded_root)] == folded_root else None
+        )
         for place in PLACES:
             place_parts = tuple(place.split("/"))
             try:
