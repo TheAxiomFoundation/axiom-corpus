@@ -815,6 +815,7 @@ def _sources(checkout: Path) -> CorpusArtifactStore:
         "target-named-after-another-checkouts-base",
         "source-is-another-checkouts-base",
         "coverage-link-target",
+        "sources-link-target",
         "link-outside-checkouts",
         "directory-alias",
     ],
@@ -841,6 +842,15 @@ def test_compose_refuses_a_base_or_an_alias_another_path_holds(
         _sources(a)
         (b / "data" / "corpus" / "coverage").mkdir(parents=True)
         _link(a / "data" / "corpus" / "coverage", b / "data" / "corpus" / "coverage")
+        refused = "us-example/statute/composed"
+    elif case == "sources-link-target":
+        # Only A's sources directory leads into B, which marks the target as a base.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", base="composed")
+        _sources(a)
+        (b / "data" / "corpus").mkdir(parents=True)
+        (a / "data" / "corpus" / "sources").rename(b / "data" / "corpus" / "sources")
+        _link(a / "data" / "corpus" / "sources", b / "data" / "corpus" / "sources")
         refused = "us-example/statute/composed"
     elif case == "link-outside-checkouts":
         a = _checkout(make_checkout, "a")
