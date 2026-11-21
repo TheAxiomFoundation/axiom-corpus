@@ -592,9 +592,12 @@ def _exactly(text: str) -> str:
     [
         "corpus-link",
         "provisions-link",
+        "inventory-link",
+        "coverage-link",
         "link-outside-checkouts",
         "link-holder-marks-base",
         "selector-holder",
+        "canonical-holder",
         "sparse-holder-without-markers",
         "file-symlinks",
         "directory-alias",
@@ -621,13 +624,15 @@ def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
         _link(a / "data" / "corpus", b / "data" / "corpus")
         corpus, releases = a / "data" / "corpus", _releases(a)
         expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
-    elif case == "provisions-link":
+    elif case in ("provisions-link", "inventory-link", "coverage-link"):
+        # Only A's directory of one artifact kind leads into B, which marks base.
+        kind = case.removesuffix("-link")
         a = _checkout(make_checkout, "a")
         b = _checkout(make_checkout, "b", marks_base=True)
         _write_scopes(a / "data" / "corpus")
         _write_scopes(b / "data" / "corpus")
-        shutil.rmtree(a / "data" / "corpus" / "provisions")
-        _link(a / "data" / "corpus" / "provisions", b / "data" / "corpus" / "provisions")
+        shutil.rmtree(a / "data" / "corpus" / kind)
+        _link(a / "data" / "corpus" / kind, b / "data" / "corpus" / kind)
         corpus, releases = a / "data" / "corpus", _releases(a)
         expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
     elif case == "link-outside-checkouts":
@@ -655,6 +660,15 @@ def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
         corpus, releases = m / "data" / "corpus", _releases(m)
         # The draft lies in a checkout whose HEAD marks base as a base.
         target = wt / "draft.json"
+        expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
+    elif case == "canonical-holder":
+        m = _checkout(make_checkout, "m")
+        wt = _checkout(make_checkout, "wt", marks_base=True)
+        _write_scopes(m / "data" / "corpus")
+        corpus, releases = m / "data" / "corpus", _releases(m)
+        # The canonical selector lies in a checkout whose HEAD marks base as a base.
+        canonical = wt / "canonical.json"
+        _write_selector(canonical, ["canonical"])
         expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
     elif case == "sparse-holder-without-markers":
         b = _checkout(make_checkout, "b", marks_base=True)
