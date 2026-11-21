@@ -264,6 +264,7 @@ def _base_corpus(tmp_path: Path) -> tuple[Path, list[Path], Path]:
         "coverage-symlink",
         "directory-alias",
         "case-alias",
+        "hard-link",
         "ingest-manifest-symlink",
         "sources-dir-link",
         "sources-parent-link",
@@ -295,6 +296,9 @@ def test_refuse_links_into_bases(tmp_path: Path, layout: str) -> None:
             pytest.skip("the filesystem keeps us and US apart, so there is no case alias")
         bases = {REGULATION_Q}
         expected = r"q\.jsonl is also us/regulation/q's provisions through a link"
+    elif layout == "hard-link":
+        os.link(_artifact(corpus, "provisions", Q), _artifact(corpus, "provisions", B))
+        expected = r"q\.jsonl is also us/statute/b's provisions through a link"
     elif layout == "ingest-manifest-symlink":
         ingest = tmp_path / "ingest"
         q_manifest = _write(ingest / "us" / "statute" / "q.json")
