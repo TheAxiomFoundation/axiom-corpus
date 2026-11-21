@@ -411,7 +411,15 @@ def _ca_checkout(make_checkout: MakeCheckout, name: str, *, base: str | None = N
     return make_checkout(name, {selector: {"name": selector, "scopes": _ca_scopes(base=base)}})
 
 
-@pytest.mark.parametrize("case", ["corpus-link", "hard-link", "tracked-base-links-to-promoted"])
+@pytest.mark.parametrize(
+    "case",
+    [
+        "corpus-link",
+        "hard-link",
+        "tracked-base-links-to-promoted",
+        "linked-holders-base-links-to-promoted",
+    ],
+)
 def test_promotion_refuses_a_base_a_link_reaches(
     tmp_path, monkeypatch, make_checkout: MakeCheckout, case
 ) -> None:
@@ -435,6 +443,26 @@ def test_promotion_refuses_a_base_a_link_reaches(
             r"^scope artifact shares its file with another path: "
             + re.escape(str(provisions))
             + r" \(2 links\)$"
+        )
+    elif case == "linked-holders-base-links-to-promoted":
+        # A marks no base; only B, which A's corpus link leads into, marks
+        # base-w, and B's base-w provisions link to composite-v's.
+        a = _ca_checkout(make_checkout, "a")
+        b = _ca_checkout(make_checkout, "b", base="base-w")
+        shared = CorpusArtifactStore(b / "data" / "corpus")
+        _write_program_scope(shared, "composite-v")
+        shared.provisions_path("ca", "policy", "base-w").symlink_to(
+            shared.provisions_path("ca", "policy", "composite-v")
+        )
+        (a / "data").mkdir()
+        (a / "data" / "corpus").symlink_to(b / "data" / "corpus")
+        store = CorpusArtifactStore(a / "data" / "corpus")
+        releases, version = a / "manifests" / "releases", "composite-v"
+        provisions = store.provisions_path("ca", "policy", version)
+        expected = (
+            "^"
+            + re.escape(f"{provisions} is also ca/policy/base-w's provisions through a link")
+            + "$"
         )
     else:
         store = CorpusArtifactStore(tmp_path / "corpus")
@@ -521,4 +549,50 @@ def test_the_builder_hands_its_releases_dir_to_promotion(tmp_path, monkeypatch) 
             releases_dir=releases,
         )
 
+    assert _tree(tmp_path) == before
+
+
+def test_the_builder_hands_its_holders_to_promotion(
+    tmp_path, monkeypatch, make_checkout: MakeCheckout
+) -> None:
+    # Only C, a checkout the caller names in holders_of, marks base-w as a base,
+    # and base-w's provisions link to the target's.
+    c = _ca_checkout(make_checkout, "c", base="base-w")
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_program_scope(store, "composite-v")
+    provisions = store.provisions_path("ca", "policy", "composite-v")
+    store.provisions_path("ca", "policy", "base-w").symlink_to(provisions)
+    releases = _write_releases(tmp_path / "releases", base=None)
+    selector_path = tmp_path / "selector.json"
+    selector_path.write_text(json.dumps({"name": "ca-s", "scopes": _ca_scopes(base=None)}))
+    contract_path = tmp_path / "citations.json"
+    contract_path.write_text(json.dumps({"citation_paths": [ROOT_PATH]}))
+    # Consolidation writes nothing, so promotion runs on the existing composite-v.
+    monkeypatch.setattr(ca_module, "consolidate_release_scopes", lambda **kwargs: ())
+    promotions: list[dict[str, object]] = []
+    promote = ca_module.promote_program_roots
+
+    def recording_promote(**kwargs):
+        promotions.append(kwargs)
+        return promote(**kwargs)
+
+    monkeypatch.setattr(ca_module, "promote_program_roots", recording_promote)
+    before = _tree(tmp_path)
+
+    with pytest.raises(
+        ValueError,
+        match="^"
+        + re.escape(f"{provisions} is also ca/policy/base-w's provisions through a link")
+        + "$",
+    ):
+        build_ca_rulespec_composite_scope(
+            base=store.root,
+            selector_path=selector_path,
+            citation_contract_path=contract_path,
+            target_version="composite-v",
+            releases_dir=releases,
+            holders_of=(c,),
+        )
+
+    assert [call.get("holders_of") for call in promotions] == [(c,)]
     assert _tree(tmp_path) == before
