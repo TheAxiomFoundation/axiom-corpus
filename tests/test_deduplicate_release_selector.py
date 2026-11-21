@@ -2,7 +2,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import re
+import shutil
 import sys
+from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +14,7 @@ import pytest
 
 import scripts.deduplicate_release_selector as dedup_module
 from scripts.deduplicate_release_selector import deduplicate
+from tests.conftest import fixture_git
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -513,3 +518,361 @@ def test_deduplicate_cli_reads_the_selectors_of_the_checkout_holding_corpus(
         assert seen == [tmp_path / "other-checkout" / "manifests" / "releases"]
     assert asked == [corpus]
     assert _digests(base_files) == before
+
+
+# Finding 1 of round 2: the checkouts that hold dedup's paths. Each checkout is
+# built with ``make_checkout`` and commits its selectors; ``canonical`` carries
+# X, and ``base`` and ``added`` carry X and Y.
+MakeCheckout = Callable[[str, Mapping[str, Mapping[str, object]]], Path]
+X = "us-example/statute/1"
+Y = "us-example/statute/2"
+
+
+def _selector_payload(name: str, *, marks_base: bool) -> dict[str, object]:
+    scopes: list[dict[str, str]] = [
+        {"document_class": "statute", "jurisdiction": "us-example", "version": "canonical"}
+    ]
+    if marks_base:
+        scopes.append(_base_mapping("base"))
+    return {"name": name, "scopes": scopes}
+
+
+def _checkout(make_checkout: MakeCheckout, name: str, *, marks_base: bool = False) -> Path:
+    selector = f"{name}-selector"
+    return make_checkout(name, {selector: _selector_payload(selector, marks_base=marks_base)})
+
+
+def _releases(checkout: Path) -> Path:
+    return checkout / "manifests" / "releases"
+
+
+def _clear_resolver_cache() -> None:
+    from axiom_corpus.corpus import resolver
+
+    resolver._repo_root_for_dir.cache_clear()
+
+
+def _write_scopes(corpus: Path) -> None:
+    _write_scope(corpus, "canonical", [X])
+    _write_scope(corpus, "base", [X, Y])
+    _write_scope(corpus, "added", [X, Y])
+
+
+def _link(link: Path, target: Path) -> None:
+    link.parent.mkdir(parents=True, exist_ok=True)
+    link.symlink_to(target)
+
+
+def _relink(path: Path, target: Path, *, hard: bool = False) -> None:
+    path.unlink()
+    if hard:
+        os.link(target, path)
+    else:
+        path.symlink_to(target)
+
+
+def _bytes_under(root: Path) -> dict[str, bytes]:
+    """Every file below ``root`` outside ``.git``, read through its own path."""
+    found: dict[str, bytes] = {}
+    for directory, directories, filenames in os.walk(root):
+        directories[:] = [name for name in directories if name != ".git"]
+        for name in filenames:
+            path = Path(directory, name)
+            if name != ".git" and path.is_file():
+                found[str(path.relative_to(root))] = path.read_bytes()
+    return found
+
+
+def _exactly(text: str) -> str:
+    return "^" + re.escape(text) + "$"
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "corpus-link",
+        "provisions-link",
+        "link-outside-checkouts",
+        "link-holder-marks-base",
+        "selector-holder",
+        "sparse-holder-without-markers",
+        "file-symlinks",
+        "directory-alias",
+        "base-path-links-to-primary",
+        "hard-link",
+        "coverage-only-hard-link",
+        "tracked-base-links-to-cut-primary",
+        "linked-holders-base-links-to-cut-primary",
+    ],
+)
+def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout, case: str
+) -> None:
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_selector(canonical, ["canonical"])
+    # The draft selects base as a primary scope unless the case says otherwise.
+    target_versions = ["canonical", "base"]
+    target_bases: tuple[str, ...] = ()
+    if case == "corpus-link":
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        _write_scopes(b / "data" / "corpus")
+        _link(a / "data" / "corpus", b / "data" / "corpus")
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
+    elif case == "provisions-link":
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        _write_scopes(a / "data" / "corpus")
+        _write_scopes(b / "data" / "corpus")
+        shutil.rmtree(a / "data" / "corpus" / "provisions")
+        _link(a / "data" / "corpus" / "provisions", b / "data" / "corpus" / "provisions")
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
+    elif case == "link-outside-checkouts":
+        a = _checkout(make_checkout, "a")
+        _write_scopes(tmp_path / "shared")
+        _link(a / "data" / "corpus", tmp_path / "shared")
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        target_versions = ["canonical", "added"]
+        expected = (
+            "^scope artifact leads through a link outside every axiom-corpus checkout: "
+            + re.escape(str(_scope_files(corpus, "canonical")[0]))
+        )
+    elif case == "link-holder-marks-base":
+        a = _checkout(make_checkout, "a", marks_base=True)
+        b = _checkout(make_checkout, "b")
+        c = _checkout(make_checkout, "c")
+        _write_scopes(b / "data" / "corpus")
+        _link(a / "data" / "corpus", b / "data" / "corpus")
+        corpus, releases = a / "data" / "corpus", _releases(c)
+        expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
+    elif case == "selector-holder":
+        m = _checkout(make_checkout, "m")
+        wt = _checkout(make_checkout, "wt", marks_base=True)
+        _write_scopes(m / "data" / "corpus")
+        corpus, releases = m / "data" / "corpus", _releases(m)
+        # The draft lies in a checkout whose HEAD marks base as a base.
+        target = wt / "draft.json"
+        expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
+    elif case == "sparse-holder-without-markers":
+        b = _checkout(make_checkout, "b", marks_base=True)
+        c = _checkout(make_checkout, "c")
+        fixture_git(b, "sparse-checkout", "set", "--no-cone", "/*", "!/src/", "!/.axiom/")
+        _clear_resolver_cache()
+        assert not (b / "src").exists() and not (b / ".axiom").exists()
+        _write_scopes(b / "data" / "corpus")
+        corpus, releases = b / "data" / "corpus", _releases(c)
+        expected = _exactly(TRACKED_BASE_REFUSAL.format(target=target))
+    elif case == "file-symlinks":
+        a = _checkout(make_checkout, "a", marks_base=True)
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        _write_scopes(corpus)
+        for added, base in zip(
+            _scope_files(corpus, "added"), _scope_files(corpus, "base"), strict=True
+        ):
+            _relink(added, base)
+        target_versions = ["canonical", "added"]
+        expected = "^scope artifact resolves to another path: " + re.escape(
+            str(_scope_files(corpus, "added")[0]) + " -> "
+        )
+    elif case == "directory-alias":
+        a = _checkout(make_checkout, "a", marks_base=True)
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        _write_scopes(corpus)
+        for kind in ("provisions", "inventory", "coverage"):
+            _link(
+                corpus / kind / "us-example" / "regulation",
+                corpus / kind / "us-example" / "statute",
+            )
+        _write_json(
+            target,
+            {
+                "scopes": [
+                    {
+                        "document_class": "statute",
+                        "jurisdiction": "us-example",
+                        "version": "canonical",
+                    },
+                    {
+                        "document_class": "regulation",
+                        "jurisdiction": "us-example",
+                        "version": "base",
+                    },
+                ]
+            },
+        )
+        target_versions = []
+        alias = corpus / "provisions" / "us-example" / "regulation" / "base.jsonl"
+        expected = "^scope artifact resolves to another path: " + re.escape(f"{alias} -> ")
+    elif case == "base-path-links-to-primary":
+        a = _checkout(make_checkout, "a", marks_base=True)
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        _write_scopes(corpus)
+        for base, added in zip(
+            _scope_files(corpus, "base"), _scope_files(corpus, "added"), strict=True
+        ):
+            _relink(base, added)
+        target_versions, target_bases = ["canonical", "added", "base"], ("base",)
+        expected = "^scope artifact resolves to another path: " + re.escape(
+            str(_scope_files(corpus, "base")[0]) + " -> "
+        )
+    elif case in ("hard-link", "coverage-only-hard-link"):
+        a = _checkout(make_checkout, "a", marks_base=True)
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        _write_scopes(corpus)
+        pairs = list(zip(_scope_files(corpus, "added"), _scope_files(corpus, "base"), strict=True))
+        if case == "coverage-only-hard-link":
+            pairs = pairs[2:]
+        for added, base in pairs:
+            _relink(added, base, hard=True)
+        target_versions = ["canonical", "added"]
+        expected = _exactly(
+            f"scope artifact shares its file with another path: {pairs[0][0]} (2 links)"
+        )
+    elif case == "tracked-base-links-to-cut-primary":
+        a = _checkout(make_checkout, "a", marks_base=True)
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        _write_scopes(corpus)
+        added_provisions = _scope_files(corpus, "added")[0]
+        _relink(_scope_files(corpus, "base")[0], added_provisions)
+        target_versions = ["canonical", "added"]
+        expected = _exactly(
+            f"{added_provisions} is also us-example/statute/base's provisions through a link"
+        )
+    elif case == "linked-holders-base-links-to-cut-primary":
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        shared = b / "data" / "corpus"
+        _write_scopes(shared)
+        _relink(_scope_files(shared, "base")[2], _scope_files(shared, "added")[2])
+        _link(a / "data" / "corpus", shared)
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        target_versions = ["canonical", "added"]
+        expected = _exactly(
+            f"{_scope_files(corpus, 'added')[2]} is also us-example/statute/base's coverage "
+            "through a link"
+        )
+    if target_versions:
+        _write_selector(target, target_versions, bases=target_bases)
+    before = _bytes_under(tmp_path)
+    opened: list[Path] = []
+    read_text = Path.read_text
+
+    def recording_read_text(self: Path, *args: Any, **kwargs: Any) -> str:
+        opened.append(self)
+        return read_text(self, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "read_text", recording_read_text)
+    with pytest.raises(ValueError, match=expected):
+        deduplicate(corpus, canonical, target, apply=True, releases_dir=releases)
+    monkeypatch.undo()
+
+    # Refused before any provisions file is read, and nothing changed anywhere.
+    assert [path for path in opened if path.suffix == ".jsonl"] == []
+    assert _bytes_under(tmp_path) == before
+
+
+@pytest.mark.parametrize(
+    "case",
+    ["shared-corpus-control", "canonical-hard-link-control", "untracked-base-link-control"],
+)
+def test_deduplicate_runs_beside_links_that_reach_no_base_it_knows(
+    tmp_path: Path, make_checkout: MakeCheckout, case: str
+) -> None:
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "added"])
+    a = _checkout(make_checkout, "a")
+    corpus = a / "data" / "corpus"
+    if case == "shared-corpus-control":
+        b = _checkout(make_checkout, "b")
+        _write_scopes(b / "data" / "corpus")
+        _link(corpus, b / "data" / "corpus")
+    elif case == "canonical-hard-link-control":
+        _write_scopes(corpus)
+        # Only rewritten files must have one link; dedup only reads canonical's.
+        os.link(_scope_files(corpus, "canonical")[0], tmp_path / "outside.jsonl")
+    else:
+        # No selector marks base, so dedup does not know it (stated limit 3).
+        _write_scopes(corpus)
+        _relink(_scope_files(corpus, "base")[0], _scope_files(corpus, "added")[0])
+
+    report = deduplicate(corpus, canonical, target, apply=True, releases_dir=_releases(a))
+
+    assert report["collision_count"] == 1
+    assert _provision_paths(corpus, "added") == [Y]
+    assert _provision_paths(corpus, "canonical") == [X]
+
+
+def _cli_argv(corpus: Path, canonical: Path, target: Path) -> list[str]:
+    return [
+        "deduplicate_release_selector.py",
+        "--corpus",
+        str(corpus),
+        "--canonical-selector",
+        str(canonical),
+        "--target-selector",
+        str(target),
+        "--apply",
+    ]
+
+
+def test_deduplicate_cli_reads_the_working_directorys_checkout(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout
+) -> None:
+    m = _checkout(make_checkout, "m")
+    wt = tmp_path / "wt"
+    fixture_git(m, "worktree", "add", "-q", "-b", "feat", str(wt))
+    # The worktree's branch commits a selector that marks base as a base.
+    _write_json(_releases(wt) / "wt-layered.json", _selector_payload("wt-layered", marks_base=True))
+    fixture_git(wt, "add", "--", "manifests")
+    fixture_git(wt, "commit", "-q", "-m", "Mark base as a base")
+    _clear_resolver_cache()
+    corpus = m / "data" / "corpus"
+    _write_scopes(corpus)
+    target = tmp_path / "draft.json"
+    _write_selector(target, ["canonical", "base"])
+    before = _bytes_under(tmp_path)
+    monkeypatch.chdir(wt)
+    monkeypatch.setattr(sys, "argv", _cli_argv(corpus, _releases(m) / "m-selector.json", target))
+
+    # --corpus binds to m, whose HEAD marks nothing; the working directory's does.
+    with pytest.raises(ValueError) as raised:
+        dedup_module.main()
+
+    assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
+    assert _bytes_under(tmp_path) == before
+
+
+def test_the_cli_refuses_a_base_the_main_checkout_tracks_through_a_linked_worktree(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout
+) -> None:
+    m = _checkout(make_checkout, "m")
+    wt = tmp_path / "wt"
+    fixture_git(m, "worktree", "add", "-q", "-b", "feat", str(wt))
+    # After the worktree branched, main commits a selector that marks base as a base.
+    _write_json(_releases(m) / "m-layered.json", _selector_payload("m-layered", marks_base=True))
+    fixture_git(m, "add", "--", "manifests")
+    fixture_git(m, "commit", "-q", "-m", "Mark base as a base")
+    _clear_resolver_cache()
+    _write_scopes(m / "data" / "corpus")
+    _link(wt / "data" / "corpus", m / "data" / "corpus")
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "base"])
+    before = _bytes_under(tmp_path)
+    monkeypatch.chdir(wt)
+    monkeypatch.setattr(sys, "argv", _cli_argv(Path("data/corpus"), canonical, target))
+
+    # cli_repo binds to the worktree, which holds the link and predates the
+    # base; the main checkout physically holds the corpus.
+    with pytest.raises(ValueError) as raised:
+        dedup_module.main()
+
+    assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
+    assert _bytes_under(tmp_path) == before
+    assert _provision_paths(m / "data" / "corpus", "base") == [X, Y]

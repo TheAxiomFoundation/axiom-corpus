@@ -15,6 +15,19 @@ layers carry, serving picks the primary row, so a primary row over a base row
 is layering, not a duplicate: only primary scopes compete for a citation. The
 report lists the base scopes the run left untouched.
 
+Dedup reads the selectors committed at HEAD of ``releases_dir`` (on the
+command line, the checkout ``resolver.cli_repo`` finds from ``--corpus``), of
+the checkouts that physically hold a target scope's artifacts or either
+selector file, of each checkout the resolver recognises that holds a link on
+those paths as dedup spells them, and on the command line of the working
+directory's checkout. Before it opens any artifact it refuses a link at a
+checkout's guarded place that leads into no checkout, an artifact that
+resolves to another scope's path, an added primary's file with another hard
+link, and an added primary's file that a base it knows reaches through a link
+(``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). A
+checkout it does not read is one of the threat model's stated limits (2, 11
+and 15).
+
 Released scopes are immutable. Re-version them before using this command.
 """
 
@@ -23,15 +36,23 @@ from __future__ import annotations
 import argparse
 import json
 from collections import Counter, defaultdict
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
 from axiom_corpus.corpus.releases import ReleaseScope, parse_release_scope
 from axiom_corpus.corpus.resolver import cli_repo
-from axiom_corpus.corpus.successors import refuse_tracked_bases_as_primary, tracked_base_scopes
+from axiom_corpus.corpus.successors import (
+    guard_scope_artifacts,
+    refuse_links_into_bases,
+    refuse_tracked_bases_as_primary,
+    tracked_base_scopes,
+)
 
 # The tracked selectors are the only record of which scopes are bases.
 DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[1] / "manifests" / "releases"
+# The three files of a scope that ``_refresh_scope`` reads and rewrites.
+_ARTIFACTS = (("provisions", ".jsonl"), ("inventory", ".json"), ("coverage", ".json"))
 
 
 def _read_selector(path: Path) -> tuple[ReleaseScope, ...]:
@@ -182,6 +203,7 @@ def deduplicate(
     *,
     apply: bool,
     releases_dir: Path | None = None,
+    holders_of: Iterable[Path] = (),
 ) -> dict[str, Any]:
     """Remove from the target's added primary scopes each citation a canonical scope carries.
 
@@ -190,6 +212,19 @@ def deduplicate(
     ``DEFAULT_RELEASES_DIR``, that directory in this script's checkout. A
     target that selects one of those bases as a primary scope raises
     ``ValueError`` before any artifact is opened.
+
+    It also reads the selectors committed at HEAD of the checkouts that
+    physically hold a target scope's provisions, inventory or coverage or
+    either selector file, of each checkout the resolver recognises that holds
+    a link on those paths as spelled here, and of the checkouts holding each
+    path in ``holders_of`` (``main()`` passes the working directory), and
+    refuses a base of theirs that the target selects as a primary scope.
+    Before any artifact is opened it raises ``ValueError`` for a link at a
+    checkout's guarded place that leads into no checkout, an artifact that
+    resolves to another scope's path, an added primary's file with another
+    hard link, and an added primary's file that a base it knows reaches
+    through a link. A checkout it does not read is one of the threat model's
+    stated limits (2, 11 and 15).
     """
     canonical_scopes = set(_read_selector(canonical_selector))
     target_scopes = _read_selector(target_selector)
@@ -201,11 +236,38 @@ def deduplicate(
             "target selector omits canonical scopes: " + ", ".join(_render(s) for s in missing)
         )
     # The canonical scopes are among the target's, so this checks them too.
+    directory = DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir
+    known = set(tracked_base_scopes(directory))
     refuse_tracked_bases_as_primary(
-        target_scopes,
-        tracked_base_scopes(DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir),
-        selector=f"target selector {target_selector}",
+        target_scopes, known, selector=f"target selector {target_selector}"
     )
+    # Only added primary scopes can be cut, so only their files are rewritten.
+    # Base scopes' paths are guarded too, since a base path that links to a
+    # primary file is an alias; the guard and the link check only resolve
+    # paths, so no base scope is opened.
+    rewritten = [
+        _artifact_path(corpus, kind, scope, suffix)
+        for scope in target_scopes
+        if not scope.is_base and scope not in canonical_scopes
+        for kind, suffix in _ARTIFACTS
+    ]
+    paths = [
+        _artifact_path(corpus, kind, scope, suffix)
+        for scope in target_scopes
+        for kind, suffix in _ARTIFACTS
+    ]
+    for inventory in guard_scope_artifacts(
+        paths,
+        releases_dir=directory,
+        rewritten=rewritten,
+        holders_of=(canonical_selector, target_selector, *holders_of),
+    ):
+        extra = tracked_base_scopes(inventory)
+        refuse_tracked_bases_as_primary(
+            target_scopes, extra, selector=f"target selector {target_selector}"
+        )
+        known |= extra
+    refuse_links_into_bases(corpus=corpus, bases=known, rewritten=rewritten)
 
     base_scopes = sorted((scope for scope in target_scopes if scope.is_base), key=_scope_order)
     carriers: dict[str, list[tuple[ReleaseScope, bool]]] = defaultdict(list)
@@ -271,7 +333,9 @@ def main() -> int:
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
     # The checkout holding --corpus decides which scopes are bases, as --base does
-    # for compose_scope_versions.py and consolidate_release_scopes.py.
+    # for compose_scope_versions.py and consolidate_release_scopes.py; the
+    # working directory's checkout, such as a sparse worktree whose branch
+    # commits a new base, is read too.
     repo = cli_repo(argparse.Namespace(base=args.corpus))
     if repo is None:
         parser.error(
@@ -284,6 +348,7 @@ def main() -> int:
         args.target_selector,
         apply=args.apply,
         releases_dir=repo / "manifests" / "releases",
+        holders_of=(Path.cwd(),),
     )
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
