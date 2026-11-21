@@ -11,9 +11,11 @@ reads the selectors committed at HEAD of ``releases_dir`` (by default this
 script's checkout), of the checkouts that physically hold those three files,
 of each checkout the resolver recognises that holds a link on them as given,
 and of the checkouts holding each path in ``holders_of``. It refuses a scope
-any of them marks as a base, a link or a shared file on its three files, and
-any of the three that a base it knows reaches through a link. A checkout it
-does not read is one of the threat model's stated limits (2, 11 and 15).
+any of them marks as a base, a link at a checkout's guarded place that leads
+into no checkout, any of the three files that resolves to another scope's
+path or has another hard link, and any of the three that a base it knows
+reaches through a link. A checkout it does not read is one of the threat
+model's stated limits (2, 11 and 15).
 """
 
 from __future__ import annotations
@@ -194,13 +196,14 @@ def build_ca_rulespec_composite_scope(
     consolidation, with consolidation's refusal text. ``releases_dir`` names
     the tracked selectors that say which scopes are bases, as consolidation
     and promotion read them; ``None`` means the checkout this script belongs
-    to. ``main()`` passes the ``manifests/releases`` of the checkout holding
-    ``--base``. Consolidation and promotion also read the selectors committed
-    at HEAD of the checkouts that physically hold their paths, of each
-    checkout the resolver recognises that holds a link on them as spelled
-    through ``base``, and of the checkouts holding each path in ``holders_of``
-    (``main()`` passes the working directory). A checkout they do not read is
-    one of the threat model's stated limits (2, 11 and 15).
+    to. ``main()`` passes the ``manifests/releases`` of the checkout
+    ``resolver.cli_repo`` finds from ``--base``. Consolidation and promotion
+    also read the selectors committed at HEAD of the checkouts that
+    physically hold their paths, of each checkout the resolver recognises
+    that holds a link on them as spelled through ``base``, and of the
+    checkouts holding each path in ``holders_of`` (``main()`` passes the
+    working directory). A checkout they do not read is one of the threat
+    model's stated limits (2, 11 and 15).
     """
     release = ReleaseManifest.load(selector_path)
     unexpected = sorted(
