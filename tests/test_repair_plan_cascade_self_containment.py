@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import contextlib
 import json
 import os
 import re
 import shutil
 import sys
+import threading
 from collections.abc import Callable, Mapping
 from pathlib import Path
 
@@ -802,3 +804,395 @@ def test_main_repairs_beside_a_base_no_link_reaches(
         if kind != "sources"
     } == base_files
     assert json.loads(report.read_text())["scopes_repaired"] == [list(PV1_FIX)]
+
+
+# Finding 5 of round 2: repair's --report path. The repository holds a
+# self-contained primary scope, so the audit repairs nothing and reaches the
+# report write, and ``us-example-layered`` marks ``REPORT_BASE`` as a base.
+REPORT_BASE = ("us-example", "regulation", "base-v")
+LAYERED_RELEASE = Path("manifests") / "releases" / "us-example-layered.json"
+
+
+def _layered_selector() -> dict[str, object]:
+    return {
+        "name": "us-example-layered",
+        "scopes": [_row(PRIMARY), _row(REPORT_BASE, layer="base")],
+    }
+
+
+def _write_report_repo(repo: Path) -> None:
+    corpus = repo / "data" / "corpus"
+    _write_scope_files(corpus, PRIMARY, [{"citation_path": "us-example/statute/1"}], sources=True)
+    _write_scope_files(
+        corpus, REPORT_BASE, [{"citation_path": "us-example/regulation/1"}], sources=True
+    )
+    selector = repo / LAYERED_RELEASE
+    selector.parent.mkdir(parents=True)
+    selector.write_text(json.dumps(_layered_selector(), indent=2, sort_keys=True) + "\n")
+    lock = repo / ".axiom" / "corpus-locks" / "us-example" / "regulation" / "base-v.json"
+    lock.parent.mkdir(parents=True)
+    lock.write_text(json.dumps({"files": []}) + "\n")
+    (repo / "SIGNING-COMMANDS.md").write_text("sign_scope us-example statute primary-v\n")
+
+
+def _base_coverage(corpus: Path, version: str = "base-v") -> Path:
+    return corpus / "coverage" / "us-example" / "regulation" / f"{version}.json"
+
+
+def _report_argv(
+    monkeypatch: pytest.MonkeyPatch,
+    repo: Path,
+    report: Path | str,
+    *,
+    release: Path = LAYERED_RELEASE,
+    conflicts: Path | None = None,
+    fetch: Callable[[], None] | None = None,
+) -> list[str]:
+    """Point ``main()`` at ``repo``; the fetch stub records ``"fetch"``, then runs ``fetch``."""
+    events: list[str] = []
+
+    def fetched(scopes: object, *, repo: Path) -> None:
+        events.append("fetch")
+        if fetch is not None:
+            fetch()
+
+    monkeypatch.setattr(repair_module, "ensure_corpus_scopes", fetched)
+    source = ["--conflicts", str(conflicts)] if conflicts is not None else ["--audit-residuals"]
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "repair_plan_cascade_self_containment.py",
+            *source,
+            "--repo",
+            str(repo),
+            "--release",
+            str(release),
+            "--report",
+            str(report),
+        ],
+    )
+    return events
+
+
+def _case_insensitive(directory: Path) -> bool:
+    probe = directory / "Case-Probe"
+    probe.mkdir()
+    try:
+        return (directory / "case-probe").exists()
+    finally:
+        probe.rmdir()
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "coverage",
+        "selector",
+        "symlink-alias",
+        "case-variant",
+        "dotdot",
+        "relative-cwd",
+        "absent-base",
+        "dir-link",
+        "other-checkout",
+        "other-sparse-checkout",
+        "linked-corpus-target",
+        "other-checkout-linked-corpus",
+        "dangling-link-into-repo",
+        "new-file-in-releases",
+        "lock-file",
+    ],
+)
+def test_main_refuses_a_report_path_in_a_protected_place(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout, case: str
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    coverage = _base_coverage(repo / "data" / "corpus")
+    root, place = repo, "data"
+    report: Path
+    if case == "coverage":
+        report = coverage
+    elif case == "selector":
+        report, place = repo / LAYERED_RELEASE, "manifests"
+    elif case == "symlink-alias":
+        report = tmp_path / "alias.json"
+        report.symlink_to(coverage)
+    elif case == "case-variant":
+        if not _case_insensitive(tmp_path):
+            pytest.skip("the filesystem tells letter case apart")
+        report = repo / "DATA" / "corpus" / "coverage" / "us-example" / "regulation" / "BASE-V.json"
+    elif case == "dotdot":
+        (tmp_path / "x").mkdir()
+        report = tmp_path / "x" / ".." / "repo" / coverage.relative_to(repo)
+    elif case == "relative-cwd":
+        monkeypatch.chdir(repo)
+        report = coverage.relative_to(repo)
+    elif case == "absent-base":
+        coverage.unlink()
+        report = coverage
+    elif case == "dir-link":
+        (tmp_path / "covdir").symlink_to(coverage.parent)
+        report = tmp_path / "covdir" / "base-v.json"
+    elif case in ("other-checkout", "other-sparse-checkout"):
+        root = make_checkout("b", {"us-example-layered": _layered_selector()})
+        if case == "other-sparse-checkout":
+            fixture_git(root, "sparse-checkout", "set", "--no-cone", "/*", "!/src/", "!/.axiom/")
+            from axiom_corpus.corpus import resolver
+
+            resolver._repo_root_for_dir.cache_clear()
+            assert not (root / "src").exists()
+        report = _base_coverage(root / "data" / "corpus")
+        report.parent.mkdir(parents=True)
+        report.write_text(json.dumps({"complete": True, "version": "base-v"}) + "\n")
+    elif case == "linked-corpus-target":
+        # --repo's data/corpus leads to a directory outside every checkout.
+        shared = tmp_path / "shared-corpus"
+        (repo / "data" / "corpus").rename(shared)
+        (repo / "data" / "corpus").symlink_to(shared)
+        report, place = _base_coverage(shared), "data/corpus"
+    elif case == "other-checkout-linked-corpus":
+        # B marks the base and its data/corpus leads to a directory where the
+        # base was never fetched.
+        root = make_checkout("b", {"us-example-layered": _layered_selector()})
+        shared = tmp_path / "shared"
+        (shared / "coverage" / "us-example" / "regulation").mkdir(parents=True)
+        (root / "data").mkdir()
+        (root / "data" / "corpus").symlink_to(shared)
+        report, place = _base_coverage(root / "data" / "corpus"), "data/corpus"
+    elif case == "dangling-link-into-repo":
+        report, place = tmp_path / "dangle.json", "manifests"
+        report.symlink_to(repo / "manifests" / "releases" / "new.json")
+    elif case == "new-file-in-releases":
+        report, place = repo / "manifests" / "releases" / "report.json", "manifests"
+    elif case == "lock-file":
+        report = repo / ".axiom" / "corpus-locks" / "us-example" / "regulation" / "base-v.json"
+        place = ".axiom"
+    else:
+        raise AssertionError(case)
+    spelled = report if report.is_absolute() else Path.cwd() / report
+    events = _report_argv(monkeypatch, repo, report)
+    before = _snapshot(tmp_path)
+
+    with pytest.raises(ValueError) as raised:
+        repair_module.main()
+
+    assert str(raised.value) == (
+        f"report path resolves into {place} of the checkout {root}: {spelled}"
+    )
+    assert events == []
+    assert _snapshot(tmp_path) == before
+
+
+def _main_within(seconds: float, *, fifo: Path | None = None) -> object:
+    """Run ``main()`` in a daemon thread: its return value, its exception, or "timeout".
+
+    On a timeout, both ends of ``fifo`` are opened without blocking, so a thread
+    stuck opening it returns.
+    """
+    outcome: list[object] = []
+
+    def run() -> None:
+        try:
+            outcome.append(repair_module.main())
+        except BaseException as exc:  # noqa: BLE001 - the test inspects it
+            outcome.append(exc)
+
+    thread = threading.Thread(target=run, daemon=True)
+    thread.start()
+    thread.join(seconds)
+    if not thread.is_alive():
+        return outcome[0]
+    if fifo is not None:
+        for flags in (os.O_RDONLY | os.O_NONBLOCK, os.O_WRONLY | os.O_NONBLOCK):
+            with contextlib.suppress(OSError):
+                os.close(os.open(fifo, flags))
+        thread.join(5)
+    return "timeout"
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "conflicts-is-report",
+        "outside-release-is-report",
+        "hardlink",
+        "outside-symlink",
+        "dangling-final-symlink",
+        "directory",
+        "dev-null",
+        "fifo",
+    ],
+)
+def test_main_refuses_a_report_path_that_is_an_input_or_not_a_plain_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    coverage = _base_coverage(repo / "data" / "corpus")
+    release = LAYERED_RELEASE
+    conflicts: Path | None = None
+    fifo: Path | None = None
+    report = tmp_path / "out" / "report.json"
+    report.parent.mkdir()
+    if case == "conflicts-is-report":
+        conflicts = report
+        conflicts.write_text("[]\n")
+        expected = f"report path is the --conflicts file this run reads: {report}"
+    elif case == "outside-release-is-report":
+        release = report
+        release.write_bytes((repo / LAYERED_RELEASE).read_bytes())
+        expected = f"report path is the --release file this run reads: {report}"
+    elif case == "hardlink":
+        os.link(coverage, report)
+        expected = f"report path is a file with another hard link: {report}"
+    elif case == "outside-symlink":
+        (tmp_path / "out" / "target.json").write_text("{}\n")
+        report.symlink_to(tmp_path / "out" / "target.json")
+        expected = f"report path is a symlink: {report}"
+    elif case == "dangling-final-symlink":
+        report.symlink_to(tmp_path / "out" / "missing.json")
+        expected = f"report path is a symlink: {report}"
+    elif case == "directory":
+        report.mkdir()
+        expected = f"report path is a directory: {report}"
+    elif case == "dev-null":
+        report = Path("/dev/null")
+        expected = "report path is not a regular file: /dev/null"
+    elif case == "fifo":
+        fifo = report
+        os.mkfifo(fifo)
+        expected = f"report path is not a regular file: {report}"
+    else:
+        raise AssertionError(case)
+    events = _report_argv(monkeypatch, repo, report, release=release, conflicts=conflicts)
+    before = _snapshot(tmp_path)
+
+    result = _main_within(10, fifo=fifo)
+
+    assert isinstance(result, ValueError), result
+    assert str(result) == expected
+    assert events == []
+    assert _snapshot(tmp_path) == before
+    assert not (tmp_path / "out" / "missing.json").exists()
+
+
+@pytest.mark.parametrize(
+    "case", ["deep-dir-link", "deep-file-link", "foreign-json", "report-keys-plus-one", "not-json"]
+)
+def test_main_refuses_a_report_path_that_holds_another_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    corpus = repo / "data" / "corpus"
+    out = tmp_path / "out"
+    out.mkdir()
+    if case == "deep-dir-link":
+        # The base's coverage as the checkout reads it lies outside every checkout.
+        (corpus / "coverage" / "us-example").rename(out / "us-example")
+        (corpus / "coverage" / "us-example").symlink_to(out / "us-example")
+        report = out / "us-example" / "regulation" / "base-v.json"
+    elif case == "deep-file-link":
+        inventory = corpus / "inventory" / "us-example" / "regulation" / "base-v.json"
+        inventory.rename(out / "base-v.json")
+        inventory.symlink_to(out / "base-v.json")
+        report = out / "base-v.json"
+    elif case == "foreign-json":
+        report = out / "notes.json"
+        report.write_text(json.dumps({"a": 1}) + "\n")
+    elif case == "report-keys-plus-one":
+        report = out / "report.json"
+        keys = (
+            "assertion",
+            "cascade_parent_paths",
+            "conflict_rows",
+            "rows_added",
+            "scopes_repaired",
+            "scopes_repaired_count",
+            "extra",
+        )
+        report.write_text(json.dumps(dict.fromkeys(keys, 0)) + "\n")
+    elif case == "not-json":
+        report = out / "notes.txt"
+        report.write_text("not a report\n")
+    else:
+        raise AssertionError(case)
+    events = _report_argv(monkeypatch, repo, report)
+    before = _snapshot(tmp_path)
+
+    with pytest.raises(ValueError) as raised:
+        repair_module.main()
+
+    assert str(raised.value) == f"report path holds a file this script did not write: {report}"
+    assert events == []
+    assert _snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize("case", ["fetched-through-deep-link", "link-planted-during-fetch"])
+def test_the_report_write_refuses_what_appeared_during_the_run(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    corpus = repo / "data" / "corpus"
+    base_bytes = json.dumps({"complete": True, "version": "base-w"}).encode() + b"\n"
+    if case == "fetched-through-deep-link":
+        # base-w is unfetched at the check; the fetch writes its coverage
+        # through the checkout's link, at the report path.
+        out = tmp_path / "out"
+        out.mkdir()
+        (corpus / "coverage" / "us-example").rename(out / "us-example")
+        (corpus / "coverage" / "us-example").symlink_to(out / "us-example")
+        base = _base_coverage(corpus, "base-w")
+        report = out / "us-example" / "regulation" / "base-w.json"
+
+        def fetch() -> None:
+            base.write_bytes(base_bytes)
+
+        expected = f"report path holds a file this script did not write: {report}"
+    elif case == "link-planted-during-fetch":
+        base = _base_coverage(corpus)
+        base_bytes = base.read_bytes()
+        report = tmp_path / "out-e" / "report.json"
+        report.parent.mkdir()
+
+        def fetch() -> None:
+            report.symlink_to(base)
+
+        expected = f"report path is a symlink: {report}"
+    else:
+        raise AssertionError(case)
+    events = _report_argv(monkeypatch, repo, report, fetch=fetch)
+
+    with pytest.raises(ValueError) as raised:
+        repair_module.main()
+
+    assert str(raised.value) == expected
+    assert events == ["fetch"]
+    assert base.read_bytes() == base_bytes
+
+
+def test_main_accepts_a_plain_report_outside_protected_places(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    coverage = _base_coverage(repo / "data" / "corpus")
+    base_bytes = coverage.read_bytes()
+    # A new file, a rerun onto the report the first run wrote, and the repository root.
+    for report in (tmp_path / "report.json", tmp_path / "report.json", repo / "report.json"):
+        events = _report_argv(monkeypatch, repo, report)
+
+        assert repair_module.main() == 0
+
+        assert events == ["fetch"]
+        assert report.is_file() and not report.is_symlink()
+        assert set(json.loads(report.read_text())) == repair_module.REPORT_KEYS
+    assert coverage.read_bytes() == base_bytes
