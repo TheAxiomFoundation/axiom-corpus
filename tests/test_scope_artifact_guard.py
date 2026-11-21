@@ -269,6 +269,10 @@ def _base_corpus(tmp_path: Path) -> tuple[Path, list[Path], Path]:
         "sources-dir-link",
         "sources-parent-link",
         "sources-entry-link",
+        "file-into-moved",
+        "sources-entry-to-rewritten",
+        "sources-dir-into-moved",
+        "sources-case-alias",
         "sources-without-moved",
         "plain",
         "base-absent",
@@ -318,6 +322,26 @@ def test_refuse_links_into_bases(tmp_path: Path, layout: str) -> None:
         entry = corpus / "sources" / "us" / "statute" / "b" / "x" / "source.html"
         entry.parent.mkdir(parents=True)
         entry.symlink_to(q_sources / "x" / "source.html")
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/statute/b's sources through a link"
+    elif layout == "file-into-moved":
+        _artifact(corpus, "provisions", B).symlink_to(q_sources / "x" / "source.html")
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/statute/b's provisions through a link"
+    elif layout == "sources-entry-to-rewritten":
+        entry = corpus / "sources" / "us" / "statute" / "b" / "x" / "source.html"
+        entry.parent.mkdir(parents=True)
+        entry.symlink_to(_artifact(corpus, "provisions", Q))
+        arguments = {"rewritten": q_files, "moved": [q_sources]}
+        expected = r"q\.jsonl is also us/statute/b's sources through a link"
+    elif layout == "sources-dir-into-moved":
+        (corpus / "sources" / "us" / "statute" / "b").symlink_to(Path("q") / "x")
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/statute/b's sources through a link"
+    elif layout == "sources-case-alias":
+        (corpus / "sources" / "us" / "statute" / "b").symlink_to("Q")
+        if not (corpus / "sources" / "us" / "statute" / "Q").exists():
+            pytest.skip("the filesystem keeps q and Q apart, so there is no case alias")
         arguments = {"moved": [q_sources]}
         expected = "/q is also us/statute/b's sources through a link"
     elif layout == "plain":
