@@ -5,7 +5,7 @@ whose guarded place it stands at below a symlink (the resolver's rules) and
 the one it physically resolves into (by HEAD). ``guard_scope_artifacts``
 refuses an artifact path that resolves to another artifact's path, a guarded
 link into no checkout, and a rewritten file with more than one link, and it
-returns the inventories of every holder other than the caller's own.
+returns the inventories of the holders it finds, other than the caller's own.
 ``refuse_links_into_bases`` refuses a file the caller rewrites, moves or
 unlinks that a base's provisions, inventory, coverage, ingest manifest or
 sources lead to through a link.

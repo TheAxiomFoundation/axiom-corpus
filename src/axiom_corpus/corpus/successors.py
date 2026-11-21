@@ -42,8 +42,10 @@ comparison against the tracked bases is exact.
 writes before it opens any: an artifact that resolves to another artifact's
 path, a link at a checkout's guarded place that leads into no checkout, and a
 rewritten file with more than one link are refused. It returns the
-``manifests/releases`` of the other checkouts holding those paths, found with
-``checkouts_holding``, so the tool reads their tracked bases too.
+``manifests/releases`` of the checkout that physically holds each path and of
+each checkout holding a link on it as spelled (``checkouts_holding``; the
+threat model's stated limits 11 and 15), other than the caller's own, so the
+tool reads their tracked bases too.
 ``refuse_links_into_bases`` compares the artifact paths of the bases a tool
 knows with the files it rewrites, moves or unlinks, and refuses a base's file
 that leads to one of them through a link.
@@ -53,9 +55,9 @@ selectors. Corpus locks carry no layer, so the selectors are the only record,
 and a directory that holds no selector file is refused rather than read as
 holding no base. Only HEAD is read: a selector main committed after the
 checkout's branch point, a selector that is only staged, and one a commit on
-the branch deleted do not count. ``refuse_tracked_bases_as_primary`` refuses any of those
-bases that a selector selects as a primary scope; the composer and
-``scripts/deduplicate_release_selector.py`` call it.
+the branch deleted do not count. ``refuse_tracked_bases_as_primary`` refuses
+any of those bases that a selector selects as a primary scope; the composer
+and ``scripts/deduplicate_release_selector.py`` call it.
 """
 
 from __future__ import annotations
