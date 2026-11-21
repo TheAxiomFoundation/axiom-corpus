@@ -19,8 +19,10 @@
 # A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
 # also has as a base, and stops before it stages anything when the draft has a base scope
 # that the predecessor lacks or has as primary, or has as primary a scope that the
-# predecessor has as a base, or has as primary a scope that a tracked selector under
-# manifests/releases marks as a base, or either selector spells a layer other than "base".
+# predecessor has as a base, or has as primary a scope that a tracked selector marks as
+# a base, or either selector spells a layer other than "base". A tracked selector is a
+# manifests/releases/*.json file committed at HEAD: one that skip-worktree or a sparse
+# checkout hides from the working tree counts, and an untracked one does not.
 # The run also stops when either selector misspells a part of a scope or lists a scope
 # twice. A base scope enters a release through its restore manifest (axiom-corpus#728),
 # not this script. Order matters: the signer records HEAD and requires a clean tracked
@@ -68,13 +70,16 @@ PREDECESSOR="${2:?predecessor selector path}"
 
 NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])' "$DRAFT")
 TARGET="manifests/releases/$NAME.json"
-[ ! -e "$TARGET" ] || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
+# The name is taken when its selector is on disk or committed at HEAD, hidden or not.
+{ [ ! -e "$TARGET" ] && [ -z "$(git ls-tree --full-tree HEAD -- "$TARGET")" ]; } \
+  || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
 
 # Unreleased scopes: the draft's primary scopes minus the predecessor's, as
 # "jurisdiction document_class version" lines. The layer is read on both sides (see the
 # header), and a base scope the draft adds, a scope the draft moves between layers, and a
 # tracked base drafted as primary stop the run here; a base the draft leaves out is the
-# lineage check's finding.
+# lineage check's finding. The check runs in the project environment (uv run python), which
+# reads the tracked selectors at HEAD.
 # (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
 SCOPE_LIST=$(mktemp)
 # From step 1 on, a run that stops before the selector commit undoes what it has not
@@ -131,8 +136,12 @@ trap on_exit EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 trap 'exit 129' HUP
-python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
-import glob, json, re, sys
+uv run python - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
+import json, re, sys
+from pathlib import Path
+
+from axiom_corpus.corpus.successors import tracked_selector_texts
+
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
 
 # The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
@@ -184,15 +193,21 @@ problems = [
 ]
 # True for a base scope of the predecessor, False for a primary one.
 released = {key(s): is_base(s) for s in predecessor}
-# Every scope a tracked selector marks as a base, with the first such selector in name
-# order. The predecessor says nothing about a base that an earlier cut replaced or that it
-# never carried, so the comparison with it alone would let the draft sign one as primary.
-# A tracked selector that cannot be read stops the run.
+# Every scope a tracked selector (committed at HEAD) marks as a base, with the first such
+# selector in name order. The predecessor says nothing about a base that an earlier cut
+# replaced or that it never carried, so the comparison with it alone would let the draft
+# sign one as primary. A HEAD whose selectors cannot be listed or read, or a tracked
+# selector that is not JSON with a list of scopes, stops the run.
+try:
+    texts = tracked_selector_texts(Path("manifests/releases"))
+except (OSError, ValueError) as exc:
+    print(f"cannot read the tracked selectors at HEAD: {exc}", file=sys.stderr)
+    sys.exit(1)
 tracked_bases = {}
-for tracked in sorted(glob.glob("manifests/releases/*.json")):
-    for s in json.load(open(tracked))["scopes"]:
+for name in sorted(texts):
+    for s in json.loads(texts[name])["scopes"]:
         if is_base(s):
-            tracked_bases.setdefault(key(s), tracked)
+            tracked_bases.setdefault(key(s), f"manifests/releases/{name}.json")
 for s in sorted(draft, key=key):
     scope, carried = "/".join(key(s)), released.get(key(s))
     if is_base(s) and not carried:

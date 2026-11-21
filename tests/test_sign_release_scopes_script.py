@@ -1,9 +1,11 @@
 """End-to-end runs of scripts/sign_release_scopes.sh in a throwaway git repository.
 
-The script calls ``python3`` and ``uv run axiom-corpus-ingest``. Shims on PATH run both
-with this interpreter, so sign-ingest-manifest, guard-ingested and validate-release are
-the real commands; the ``uv`` shim also logs each subcommand line it runs, and on request
-fails a signing or a validation, or interrupts the run during validation as Ctrl-C does.
+The script calls ``python3``, ``uv run python`` and ``uv run axiom-corpus-ingest``. Shims
+on PATH run all three with this interpreter, so sign-ingest-manifest, guard-ingested and
+validate-release are the real commands; the ``uv`` shim also logs each
+``axiom-corpus-ingest`` subcommand line it runs (``uv run python`` goes unlogged), and on
+request fails a signing or a validation, or interrupts the run during validation as
+Ctrl-C does.
 A commit-msg hook can reject one of the script's commits, or hold it while a test sends
 the script a signal. A ``git`` shim can hold the cleanup while a test sends another, or
 fail the cleanup's first unstage. The resumability tests use these to stop a run at each
@@ -64,6 +66,7 @@ PYTHON3_SHIM = """#!/bin/sh
 exec "@PYTHON@" "$@"
 """
 UV_SHIM = """#!/bin/sh
+if [ "$1" = run ] && [ "$2" = python ]; then shift 2; exec "@PYTHON@" "$@"; fi
 # uv run axiom-corpus-ingest <subcommand> ...: log the call, then run the real CLI.
 [ "$1" = run ] && [ "$2" = axiom-corpus-ingest ] || { echo "unexpected uv call: $*" >&2; exit 97; }
 shift 2
@@ -1754,6 +1757,74 @@ def test_stops_before_staging_when_the_draft_selects_a_tracked_base_as_primary(
     assert _uv_calls() == []
     for version in (BASE, *UNRELEASED):
         assert not _manifest(repo, version).exists()
+
+
+@pytest.mark.parametrize("hide", ["skip-worktree", "sparse"])
+def test_stops_on_a_tracked_base_hidden_from_the_working_tree(repo: Path, hide: str) -> None:
+    """A tracked selector is one committed at HEAD, whether or not the working tree shows it.
+
+    The predecessor lacks the base, and the only selector that marks it is off disk while
+    the tracked tree stays clean. A check of the files on disk would find no tracked base
+    and commit and sign the base as unreleased.
+    """
+    earlier = EARLIER[0]
+    _write_json(
+        repo / earlier, _layered_selector(Path(earlier).stem, [(BASE, "base"), (RELEASED, None)])
+    )
+    _git(repo, "add", earlier)  # committed with the two selectors below
+    _track_selectors(repo, [(RELEASED, None)], [(RELEASED, None), (BASE, None), *PRIMARIES])
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+    if hide == "skip-worktree":
+        _git(repo, "update-index", "--skip-worktree", earlier)
+        (repo / earlier).unlink()
+    else:
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", f"!/{earlier}")
+    assert not (repo / earlier).exists()
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == TRACKED_BASE.format(scope=_scope(BASE), path=earlier) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+def test_an_untracked_selector_does_not_stop_the_run(repo: Path) -> None:
+    """A selector file that HEAD does not commit is not a tracked selector."""
+    start = _cut_release_branch(repo)
+    scratch = repo / "manifests/releases/scratch.json"
+    _write_json(scratch, _layered_selector("scratch", [(RELEASED, "base")]))
+
+    result = _run(repo)
+
+    _assert_cut(repo, result, start)
+    assert scratch.exists()
+
+
+def test_stops_when_the_target_is_committed_but_hidden(repo: Path) -> None:
+    """The draft's selector name is taken once HEAD commits it, even off disk."""
+    _write_json(repo / TARGET, _selector("test-rel-2", [RELEASED]))
+    _git(repo, "add", TARGET)
+    _git(repo, "commit", "-qm", "Track test-rel-2")
+    start = _cut_release_branch(repo)
+    _git(repo, "update-index", "--skip-worktree", TARGET)
+    (repo / TARGET).unlink()
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == f"{TARGET} already exists; selectors are immutable\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    assert not (repo / TARGET).exists()
+    assert _uv_calls() == []
 
 
 # Step 2's plan, in the script's own words, run as the script runs it.
