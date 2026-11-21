@@ -5,6 +5,22 @@ The conflict plan is publisher evidence, not a corpus artifact.  This command
 only reads it and fails closed unless every conflict can be assigned either to
 its immutable release scope or to a release scope which owns the legacy parent
 whose replacement would cascade outside the load.
+
+Repair re-versions no base scope. It reads the selectors committed at HEAD of
+``--repo``, of the checkouts that physically hold a path it touches or
+``--release``, of each checkout the resolver recognises that holds a link on
+those paths as repair spells them, and of the working directory's checkout,
+plus the bases ``--release`` itself marks. After it fetches and plans the
+repair, and before its first move, rewrite or unlink, it refuses a scope any
+of them marks as a base, a link at a checkout's guarded place that leads into
+no checkout, a scope artifact path that resolves to another scope's path, a
+new scope's path that already exists, a symlink or a file with another hard
+link in the sources it moves, and a file or sources directory it would unlink
+or move that a base it knows reaches through a link
+(``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). Its
+rewrites of ``--release``, ``manifests/**/*.yaml`` and ``SIGNING-COMMANDS.md``
+follow links and are not guarded (the threat model's stated limit 9), and a
+checkout it does not read is one of its stated limits (2, 11 and 15).
 """
 
 from __future__ import annotations
@@ -12,6 +28,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import shutil
 from collections import defaultdict
 from collections.abc import Collection, Mapping
@@ -21,7 +38,12 @@ from typing import Any
 
 from axiom_corpus.corpus.releases import LAYER_BASE
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
-from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
+from axiom_corpus.corpus.successors import (
+    canonical_scope_key,
+    guard_scope_artifacts,
+    refuse_links_into_bases,
+    tracked_base_scopes,
+)
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 ARTIFACT_KINDS = ("coverage", "inventory", "provisions", "sources")
@@ -67,25 +89,11 @@ def _release_scopes(payload: dict[str, Any]) -> list[tuple[str, str, str]]:
     ]
 
 
-def _refuse_base_repairs(
-    release_payload: dict[str, Any],
-    mappings: Mapping[tuple[str, str, str], tuple[str, str, str]],
-    base_scopes: Collection[tuple[str, str, str]],
-) -> None:
-    """Refuse a repair that would re-version a base scope or write over one.
+def _payload_bases(release_payload: dict[str, Any]) -> set[tuple[str, str, str]]:
+    """The scopes the release payload marks ``"layer": "base"``.
 
-    A base scope is carried into every successor unchanged. A repaired scope
-    (a key of ``mappings``) or its new scope (a value) is refused when the
-    release payload marks it ``"layer": "base"`` or when it is in
-    ``base_scopes``, the scopes a tracked selector marks as bases. A payload
-    scope whose ``layer`` is anything but ``"base"`` is refused too, since
-    only the base layer is spelled out. Every payload scope and every new
-    scope must be spelled as a selector spells it (``canonical_scope_key``):
-    a suffix such as ``FIX`` or ``fix/``, or a payload base spelled with an
-    upper-case letter, would otherwise name another scope's files on APFS or
-    through ``safe_segment`` while comparing unequal to it. The check reads
-    and writes nothing, so ``main`` runs it before the first move or unlink.
-    A base is known here only once a selector marks it.
+    A payload scope whose ``layer`` is anything but ``"base"`` is refused,
+    since only the base layer is spelled out.
     """
     payload_bases: set[tuple[str, str, str]] = set()
     for row in release_payload["scopes"]:
@@ -97,6 +105,33 @@ def _refuse_base_repairs(
                 f"release scope {'/'.join(scope)} has an invalid layer: {row['layer']!r}"
             )
         payload_bases.add(scope)
+    return payload_bases
+
+
+def _refuse_base_repairs(
+    release_payload: dict[str, Any],
+    mappings: Mapping[tuple[str, str, str], tuple[str, str, str]],
+    base_scopes: Collection[tuple[str, str, str]],
+) -> None:
+    """Refuse a repair that would re-version a base scope or write over one.
+
+    A base scope is carried into every successor unchanged. A repaired scope
+    (a key of ``mappings``) or its new scope (a value) is refused when the
+    release payload marks it ``"layer": "base"`` or when it is in
+    ``base_scopes``, the scopes that the tracked selectors of one checkout
+    mark as bases. A payload scope whose ``layer`` is anything but ``"base"``
+    is refused too, since only the base layer is spelled out. Every payload
+    scope and every new scope must be spelled as a selector spells it
+    (``canonical_scope_key``): a suffix such as ``FIX`` or ``fix/``, or a
+    payload base spelled with an upper-case letter, would otherwise name
+    another scope's files on APFS or through ``safe_segment`` while comparing
+    unequal to it. The check reads and writes nothing, so ``main`` runs it
+    before the first move or unlink, once for ``--repo``'s selectors and once
+    for each other checkout ``guard_scope_artifacts`` returns. A base is known
+    here only once a selector repair reads marks it (the threat model's
+    stated limits 2, 3, 11 and 15).
+    """
+    payload_bases = _payload_bases(release_payload)
     # A name no selector can spell is refused before any comparison.
     for scope in _release_scopes(release_payload):
         canonical_scope_key(*scope)
@@ -284,14 +319,52 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _ingest_manifest_path(repo: Path, scope: tuple[str, str, str]) -> Path:
+    return repo / ".axiom" / "ingest-manifests" / scope[0] / scope[1] / f"{scope[2]}.json"
+
+
+def _refuse_unsafe_repair_paths(
+    base: Path,
+    repo: Path,
+    mappings: Mapping[tuple[str, str, str], tuple[str, str, str]],
+) -> None:
+    """Refuse a new scope's path that exists, and a link or shared file in moved sources.
+
+    Repair writes each new scope's files and ingest manifest fresh, so any
+    entry already at one of those paths (a file, a directory or a link,
+    dangling or not) is refused. ``_rename_sources`` rewrites the moved
+    sources with ``write_text``, which follows a symlink and writes into a
+    shared inode, so a symlink anywhere in an old scope's sources, and a file
+    there with another hard link, are refused. It writes nothing.
+    """
+    for new_scope in sorted(mappings.values()):
+        for path in (
+            *_scope_paths(base, new_scope).values(),
+            _ingest_manifest_path(repo, new_scope),
+        ):
+            if os.path.lexists(path):
+                raise ValueError(f"repaired scope artifact already exists: {path}")
+    for old_scope in sorted(mappings):
+        sources = _scope_paths(base, old_scope)["sources"]
+        for path in sorted(sources.rglob("*")):
+            if path.is_symlink():
+                raise ValueError(f"source directory contains a symlink: {sources}")
+            if not path.is_file():
+                continue
+            links = path.stat().st_nlink
+            if links > 1:
+                raise ValueError(
+                    f"scope artifact shares its file with another path: {path} ({links} links)"
+                )
+
+
 def _rewrite_manifest(
     repo: Path,
     old_scope: tuple[str, str, str],
     new_scope: tuple[str, str, str],
 ) -> None:
-    root = repo / ".axiom" / "ingest-manifests"
-    old = root / old_scope[0] / old_scope[1] / f"{old_scope[2]}.json"
-    new = root / new_scope[0] / new_scope[1] / f"{new_scope[2]}.json"
+    old = _ingest_manifest_path(repo, old_scope)
+    new = _ingest_manifest_path(repo, new_scope)
     payload = _rewrite_value(_json(old), old_scope[2], new_scope[2])
     payload["version"] = new_scope[2]
     payload.pop("signature", None)
@@ -427,7 +500,41 @@ def main() -> int:
 
     mappings = {scope: (scope[0], scope[1], f"{scope[2]}-{args.suffix}") for scope in repair}
     # No scope artifact has been moved, rewritten or unlinked yet.
-    _refuse_base_repairs(release, mappings, tracked_base_scopes(repo / "manifests" / "releases"))
+    tracked = tracked_base_scopes(repo / "manifests" / "releases")
+    _refuse_base_repairs(release, mappings, tracked)
+    # The paths repair reads, moves, writes or unlinks, and the checkouts that
+    # hold them, a link on them, --release or the working directory.
+    touched = [
+        path
+        for scope in (*mappings, *mappings.values())
+        for path in (*_scope_paths(base, scope).values(), _ingest_manifest_path(repo, scope))
+    ]
+    known = set(tracked)
+    for inventory in guard_scope_artifacts(
+        touched,
+        releases_dir=repo / "manifests" / "releases",
+        holders_of=(release_path, Path.cwd()),
+    ):
+        extra = tracked_base_scopes(inventory)
+        _refuse_base_repairs(release, mappings, extra)
+        known |= extra
+    _refuse_unsafe_repair_paths(base, repo, mappings)
+    refuse_links_into_bases(
+        corpus=base,
+        bases=known | _payload_bases(release),
+        rewritten=[
+            path
+            for scope in sorted(mappings)
+            for path in (
+                _scope_paths(base, scope)["provisions"],
+                _scope_paths(base, scope)["inventory"],
+                _scope_paths(base, scope)["coverage"],
+                _ingest_manifest_path(repo, scope),
+            )
+        ],
+        moved=[_scope_paths(base, scope)["sources"] for scope in sorted(mappings)],
+        ingest_manifests=repo / ".axiom" / "ingest-manifests",
+    )
     total_added = 0
     for old_scope, new_scope in sorted(mappings.items()):
         old_paths = _scope_paths(base, old_scope)
