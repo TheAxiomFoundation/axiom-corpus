@@ -2,15 +2,17 @@
 
 The check (``axiom_corpus.corpus.selector_lineage``) reads only the selector
 files under ``manifests/releases/`` and ``manifests/selector-lineage-baseline.yaml``:
-no corpus fetch, no database, no git history beyond this commit's date. It
-fails on a cut that selects no version of a ``(jurisdiction, document_class)``
-pair its predecessor carries, carries a pair without its predecessor's base
-scope for it unchanged, selects a scope its predecessor selects as primary as
-a base, names a predecessor another cut already succeeds, extends a fork's
-branch the line did not continue, names no tracked predecessor without a
-first-cut record, or forms a cycle. ``test (3.14)`` is a required check, so
-none of these merges unrecorded. A document that leaves a pair the cut still
-carries is not checked.
+no corpus fetch and no database. The check reads no git history; the guard's
+layer-conflict remedy runs git to list the selectors at the merge bases of HEAD
+with ``origin/main`` and ``main``, as of the last fetch
+(``_selectors_at_merge_base``). It fails on a cut that selects no version of a
+``(jurisdiction, document_class)`` pair its predecessor carries, carries a pair
+without its predecessor's base scope for it unchanged, selects a scope its
+predecessor selects as primary as a base, names a predecessor another cut
+already succeeds, extends a fork's branch the line did not continue, names no
+tracked predecessor without a first-cut record, or forms a cycle.
+``test (3.14)`` is a required check, so none of these merges unrecorded. A
+document that leaves a pair the cut still carries is not checked.
 
 For each finding the guard prints a remedy (``_remedy``): the usual fix, then
 the baseline entry that records the finding on purpose.
@@ -18,16 +20,23 @@ the baseline entry that records the finding on purpose.
 copy of main's selectors and baseline, follows each option as printed, and
 requires the guard and the freeze test to pass on the result. Main has no
 layered selector, so each base case first cuts one into its copy.
+
+A layer conflict has no record. Its remedy addresses only selectors that main
+does not have at the merge bases of HEAD with ``origin/main`` and ``main`` (as
+of the last fetch) and that the baseline does not pin, or asks to undo a change
+to a pinned one; when neither merge base resolves it names no selector.
+Following it leaves every selector main tracks byte for byte.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
 import textwrap
-from collections.abc import Callable, Iterable, Mapping
+from collections.abc import Callable, Collection, Iterable, Mapping
 from dataclasses import dataclass
 from datetime import date, timedelta
 from functools import cache
@@ -36,7 +45,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from axiom_corpus.corpus import selector_lineage
+from axiom_corpus.corpus import selector_lineage, successors
 from axiom_corpus.corpus.releases import LAYER_BASE, ReleaseManifest, ReleaseScope, ScopeKey
 from axiom_corpus.corpus.selector_lineage import (
     LINEAGE_BASELINE_PATH,
@@ -137,6 +146,45 @@ def _baseline() -> LineageBaseline:
     return load_lineage_baseline(REPO_ROOT / LINEAGE_BASELINE_PATH, selectors=_selectors())
 
 
+@cache
+def _main_names() -> frozenset[str]:
+    """The selectors main tracks: in the follow harness, main means ``RELEASES``."""
+    return frozenset(_selectors())
+
+
+def _selectors_at_merge_base(repo: Path = REPO_ROOT) -> frozenset[str] | None:
+    """The selectors main has, for the layer-conflict remedy, or None when git cannot say.
+
+    They are read at the merge bases of HEAD with ``origin/main`` and with ``main``, as
+    of the last fetch; the union keeps a selector that a stale ``origin/main`` lacks but
+    ``main`` has. A checkout with neither ref, such as a shallow CI clone, gets None.
+    """
+    names: set[str] = set()
+    read = False
+    for ref in ("origin/main", "main"):
+        merge_base = successors._git(repo, "merge-base", "HEAD", ref)
+        if merge_base.returncode != 0:
+            continue
+        listing = successors._git(
+            repo,
+            "ls-tree",
+            "-z",
+            "--full-tree",
+            "--name-only",
+            merge_base.stdout.decode("utf-8").strip(),
+            "--",
+            "manifests/releases/",
+        )
+        if listing.returncode != 0:
+            continue
+        read = True
+        for path in listing.stdout.decode("utf-8").split("\0"):
+            directory, _, file_name = path.rpartition("/")
+            if directory == "manifests/releases" and file_name.endswith(".json"):
+                names.add(file_name.removesuffix(".json"))
+    return frozenset(names) if read else None
+
+
 def _fork_entries(baseline: LineageBaseline) -> list[RecordedFork]:
     return [entry for entries in baseline.forks.values() for entry in entries]
 
@@ -182,6 +230,16 @@ _SEVERAL_CUTS = (
 _ONE_ENTRY_A_DAY = (
     "after its earlier entries (decisions about one fork made on one day share one entry)"
 )
+_CLOSE = "no record allows a layer conflict, and a selector main has keeps its bytes"
+_PINNED_LEAD = (
+    "The selectors here that main lacks are pinned at their current bytes. Change only the one "
+    "this change cut, and replace its selector_digests entry with its new digest: "
+)
+_NO_MAIN = (
+    "This check cannot list main's selectors, because HEAD has no merge base with origin/main "
+    "or main. "
+)
+_CHANGE_ONLY_THE_CUT = "Change only the selector this change cut, never one main has."
 
 
 def _no_longer_holds(finding: Finding) -> str:
@@ -229,7 +287,11 @@ def _base_of(release: ReleaseManifest, pair: tuple[str, str]) -> ScopeKey | None
 
 
 def _remedy(
-    finding: Finding, selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
+    finding: Finding,
+    selectors: Mapping[str, ReleaseManifest],
+    baseline: LineageBaseline,
+    *,
+    history: frozenset[str] | None,
 ) -> str:
     """What to do about a finding: the usual fix, then the entry that records it on purpose.
 
@@ -298,12 +360,7 @@ def _remedy(
             "does not select"
         )
     if isinstance(finding, selector_lineage.LayerConflict):
-        scope = "/".join(finding.scope)
-        return (
-            f"{finding.describe()}.\n  Select {scope} as a base scope in "
-            f"{', '.join(finding.primaries)}, or select a new version of that text there as "
-            "the primary scope; no record allows a layer conflict"
-        )
+        return _layer_conflict_remedy(finding, selectors, baseline, history)
     if isinstance(finding, Fork):
         new = [name for name in finding.successors if name not in finding.recorded]
         if not finding.recorded:
@@ -369,10 +426,92 @@ def _remedy(
     )
 
 
-def _guard_problems(
-    selectors: Mapping[str, ReleaseManifest], baseline: LineageBaseline
+def _generic(pair: str, scope: str) -> str:
+    """The layer-conflict remedy that names no selector."""
+    return (
+        f"{_CHANGE_ONLY_THE_CUT} There, select as the base of {pair} a version that no tracked "
+        f"selector selects as a primary scope; or, if it selects no other base of {pair}, select "
+        f"{scope} as a base scope; or select a new version of that text as the primary scope. If "
+        "that selector is pinned, replace its selector_digests entry with its new digest"
+    )
+
+
+def _options(
+    finding: selector_lineage.LayerConflict,
+    selectors: Mapping[str, ReleaseManifest],
+    free: Collection[str],
 ) -> list[str]:
-    """Each finding with its remedy, then each record that no longer holds."""
+    """The sides of ``finding`` whose selectors are all in ``free``, each as a remedy step.
+
+    A primary-side selector that already selects a base for the pair can only select a
+    new version of the text: a pair holds one base.
+    """
+    scope = "/".join(finding.scope)
+    pair = pair_label(finding.scope[:2])
+    options = []
+    if all(name in free for name in finding.bases):
+        options.append(
+            f"in {', '.join(finding.bases)}, select as the base of {pair} a version that no "
+            "tracked selector selects as a primary scope"
+        )
+    if all(name in free for name in finding.primaries):
+        steps = [
+            f"in {name}, select {scope} as a base scope, or a new version of that text as the "
+            "primary scope"
+            if _base_of(selectors[name], finding.scope[:2]) is None
+            else f"in {name}, select a new version of that text as the primary scope"
+            for name in finding.primaries
+        ]
+        options.append(" and ".join(steps))
+    return options
+
+
+def _layer_conflict_remedy(
+    finding: selector_lineage.LayerConflict,
+    selectors: Mapping[str, ReleaseManifest],
+    baseline: LineageBaseline,
+    history: frozenset[str] | None,
+) -> str:
+    """What to do about a layer conflict: change only a selector main does not have.
+
+    A changed pinned selector comes first: undo the change. Otherwise a selector is
+    free when main does not have it (``history``, read at the merge bases of HEAD with
+    origin/main and main) and the baseline does not pin it, and the remedy addresses
+    only free selectors. When the selectors main lacks are pinned, as a first cut
+    pinned with its record is, it addresses those and says to replace the pin. When
+    ``history`` is None, or no selector main lacks covers a side, it names no selector.
+    """
+    involved = sorted({*finding.bases, *finding.primaries})
+    scope = "/".join(finding.scope)
+    pair = pair_label(finding.scope[:2])
+    changed = _changed_since_pinned(selectors, baseline, *involved)
+    if changed:
+        return _may_follow_from_a_change(finding, changed, "layer conflict")
+    if history is None:
+        return f"{finding.describe()}.\n  {_NO_MAIN}{_generic(pair, scope)}; {_CLOSE}"
+    cut_here = [name for name in involved if name not in history]
+    free = {name for name in cut_here if name not in baseline.selector_digests}
+    options = _options(finding, selectors, free)
+    if options:
+        text = "; or ".join(options)
+        return f"{finding.describe()}.\n  {text[:1].upper()}{text[1:]}; {_CLOSE}"
+    options = _options(finding, selectors, cut_here)
+    if options:
+        return f"{finding.describe()}.\n  {_PINNED_LEAD}{'; or '.join(options)}; {_CLOSE}"
+    return f"{finding.describe()}.\n  {_generic(pair, scope)}; {_CLOSE}"
+
+
+def _guard_problems(
+    selectors: Mapping[str, ReleaseManifest],
+    baseline: LineageBaseline,
+    *,
+    history: frozenset[str] | None,
+) -> list[str]:
+    """Each finding with its remedy, then each record that no longer holds.
+
+    ``history`` names the selectors main has, for the layer-conflict remedy; None means
+    this check cannot list them.
+    """
     report = check_selector_lineage(selectors, baseline)
     findings: list[Finding] = [
         *report.dropped,
@@ -384,7 +523,7 @@ def _guard_problems(
         *report.unnamed,
         *report.cycles,
     ]
-    problems = [*(_remedy(finding, selectors, baseline) for finding in findings)]
+    problems = [*(_remedy(finding, selectors, baseline, history=history) for finding in findings)]
     problems.extend(report.baseline_errors)
     assert report.ok == (not problems)
     return problems
@@ -423,28 +562,161 @@ def test_the_baseline_parses() -> None:
 
 def test_no_tracked_selector_drops_a_pair_or_forks_its_line_without_a_record() -> None:
     """The guard: a cut names its predecessor, keeps its pairs, and grows the line's head."""
-    problems = _guard_problems(_selectors(), _baseline())
+    problems = _guard_problems(_selectors(), _baseline(), history=_selectors_at_merge_base())
     assert not problems, "\n".join(problems)
 
 
-def test_the_guard_prints_a_layer_conflict_with_its_remedy() -> None:
-    from axiom_corpus.corpus.selector_lineage import LayerConflict, RecordedFirstCut
+_REMEDY_TEST_SCOPE: ScopeKey = ("us", "statute", "2026-05-01-remedy-test-base")
+_REMEDY_TEST_OTHER: ScopeKey = ("us", "regulation", "2026-05-01-remedy-test-other")
+_GENERIC_REMEDY = (
+    "Change only the selector this change cut, never one main has. There, select as the base "
+    "of us/statute a version that no tracked selector selects as a primary scope; or, if it "
+    "selects no other base of us/statute, select us/statute/2026-05-01-remedy-test-base as a "
+    "base scope; or select a new version of that text as the primary scope. If that selector "
+    "is pinned, replace its selector_digests entry with its new digest; no record allows a "
+    "layer conflict, and a selector main has keeps its bytes"
+)
+_NO_MERGE_BASE_REMEDY = (
+    "This check cannot list main's selectors, because HEAD has no merge base with origin/main "
+    f"or main. {_GENERIC_REMEDY}"
+)
 
-    scope: ScopeKey = ("us", "statute", "2026-05-01-remedy-test-base")
+
+def _shape_a() -> tuple[dict[str, ReleaseManifest], LineageBaseline, tuple[str, str]]:
+    """line-x selects the scope as a base and line-y as a primary; both are pinned first cuts."""
     selectors = {
-        "line-x": ReleaseManifest("line-x", (ReleaseScope(*scope, layer=LAYER_BASE),)),
-        "line-y": ReleaseManifest("line-y", (ReleaseScope(*scope),)),
+        "line-x": ReleaseManifest("line-x", (ReleaseScope(*_REMEDY_TEST_SCOPE, layer=LAYER_BASE),)),
+        "line-y": ReleaseManifest("line-y", (ReleaseScope(*_REMEDY_TEST_SCOPE),)),
     }
-    baseline = LineageBaseline(
-        selector_digests={name: selector_sha256(release) for name, release in selectors.items()},
-        first_cuts={name: RecordedFirstCut(name, "2026-11-02", "first cut") for name in selectors},
+    return selectors, _first_cuts_pinned(selectors, "line-x", "line-y"), ("line-x", "line-y")
+
+
+def _shape_b() -> tuple[dict[str, ReleaseManifest], LineageBaseline, tuple[str, str]]:
+    """Finding 8's shape: an unpinned cut adds as a base a scope a pinned first cut selects.
+
+    line-y and line-z are pinned first cuts; line-x, unpinned, succeeds line-z, keeps its
+    scope and adds the scope line-y selects as a primary scope as a base.
+    """
+    selectors = {
+        "line-x": ReleaseManifest(
+            "line-x",
+            (
+                ReleaseScope(*_REMEDY_TEST_OTHER),
+                ReleaseScope(*_REMEDY_TEST_SCOPE, layer=LAYER_BASE),
+            ),
+            description="Successor to line-z.",
+        ),
+        "line-y": ReleaseManifest("line-y", (ReleaseScope(*_REMEDY_TEST_SCOPE),)),
+        "line-z": ReleaseManifest("line-z", (ReleaseScope(*_REMEDY_TEST_OTHER),)),
+    }
+    return selectors, _first_cuts_pinned(selectors, "line-y", "line-z"), ("line-x", "line-y")
+
+
+def _first_cuts_pinned(selectors: Mapping[str, ReleaseManifest], *names: str) -> LineageBaseline:
+    from axiom_corpus.corpus.selector_lineage import RecordedFirstCut
+
+    return LineageBaseline(
+        selector_digests={name: selector_sha256(selectors[name]) for name in names},
+        first_cuts={name: RecordedFirstCut(name, "2026-11-02", "first cut") for name in names},
     )
-    conflict = LayerConflict(scope, ("line-x",), ("line-y",))
-    assert _guard_problems(selectors, baseline) == [
-        f"{conflict.describe()}.\n  Select us/statute/2026-05-01-remedy-test-base as a base "
-        "scope in line-y, or select a new version of that text there as the primary scope; "
-        "no record allows a layer conflict"
+
+
+@pytest.mark.parametrize(
+    ("shape", "history", "expected"),
+    [
+        pytest.param(
+            _shape_a,
+            frozenset(),
+            "The selectors here that main lacks are pinned at their current bytes. Change only "
+            "the one this change cut, and replace its selector_digests entry with its new "
+            "digest: in line-x, select as the base of us/statute a version that no tracked "
+            "selector selects as a primary scope; or in line-y, select "
+            "us/statute/2026-05-01-remedy-test-base as a base scope, or a new version of that "
+            "text as the primary scope; no record allows a layer conflict, and a selector main "
+            "has keeps its bytes",
+            id="main-lacks-both-pinned-cuts",
+        ),
+        pytest.param(_shape_a, None, _NO_MERGE_BASE_REMEDY, id="no-merge-base"),
+        pytest.param(
+            _shape_a, frozenset({"line-x", "line-y"}), _GENERIC_REMEDY, id="main-has-both"
+        ),
+        pytest.param(
+            _shape_b,
+            frozenset({"line-y", "line-z"}),
+            "In line-x, select as the base of us/statute a version that no tracked selector "
+            "selects as a primary scope; no record allows a layer conflict, and a selector "
+            "main has keeps its bytes",
+            id="finding-8-main-has-the-pinned-cuts",
+        ),
+        pytest.param(_shape_b, None, _NO_MERGE_BASE_REMEDY, id="finding-8-no-merge-base"),
+    ],
+)
+def test_the_guard_prints_a_layer_conflict_with_its_remedy(
+    shape: Callable[[], tuple[dict[str, ReleaseManifest], LineageBaseline, tuple[str, str]]],
+    history: frozenset[str] | None,
+    expected: str,
+) -> None:
+    """The remedy addresses only selectors main lacks and the baseline does not pin.
+
+    When the selectors main lacks are pinned, it says to change only the one this change
+    cut and to replace its pin; when main has them all, or HEAD has no merge base with
+    main, it names no selector.
+    """
+    from axiom_corpus.corpus.selector_lineage import LayerConflict
+
+    selectors, baseline, (base, primary) = shape()
+    conflict = LayerConflict(_REMEDY_TEST_SCOPE, (base,), (primary,))
+    assert _guard_problems(selectors, baseline, history=history) == [
+        f"{conflict.describe()}.\n  {expected}"
     ]
+
+
+def _git_in(repo: Path, *args: str) -> None:
+    """Run a fixture git command in ``repo``, a ``tmp_path`` repository, with no user config."""
+    environment = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
+    environment.update(
+        GIT_CONFIG_GLOBAL="/dev/null",
+        GIT_CONFIG_NOSYSTEM="1",
+        GIT_AUTHOR_NAME="Remedy Test",
+        GIT_AUTHOR_EMAIL="remedy-test@example.invalid",
+        GIT_COMMITTER_NAME="Remedy Test",
+        GIT_COMMITTER_EMAIL="remedy-test@example.invalid",
+    )
+    subprocess.run(["git", *args], cwd=repo, env=environment, check=True, capture_output=True)
+
+
+def _commit_selector(repo: Path, name: str) -> None:
+    path = repo / "manifests" / "releases" / f"{name}.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"name": name, "scopes": []}) + "\n", encoding="utf-8")
+    _git_in(repo, "add", f"manifests/releases/{name}.json")
+    _git_in(repo, "commit", "-q", "-m", f"Cut {name}")
+
+
+@pytest.mark.parametrize(
+    ("layout", "expected"),
+    [
+        pytest.param("resolves", frozenset({"a"}), id="resolves"),
+        pytest.param("local-main-only", frozenset({"a"}), id="local-main-only"),
+        pytest.param("stale-origin-main", frozenset({"a", "c"}), id="stale-origin-main"),
+        pytest.param("no-main", None, id="no-main"),
+    ],
+)
+def test_selectors_at_merge_base_reads_main_or_says_it_cannot(
+    tmp_path: Path, layout: str, expected: frozenset[str] | None
+) -> None:
+    """The selectors at the merge bases of HEAD with origin/main and main, or None."""
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    _git_in(repo, "init", "-q", "-b", "trunk" if layout == "no-main" else "main")
+    _commit_selector(repo, "a")
+    if layout in ("resolves", "stale-origin-main"):
+        _git_in(repo, "update-ref", "refs/remotes/origin/main", "main")
+    if layout == "stale-origin-main":
+        _commit_selector(repo, "c")
+    _git_in(repo, "checkout", "-q", "-b", "feature")
+    _commit_selector(repo, "b")
+    assert _selectors_at_merge_base(repo) == expected
 
 
 def test_the_w7_union_line_keeps_its_head_and_arizona_stays_a_first_cut() -> None:
@@ -534,6 +806,9 @@ _KEEP_PRIMARY = "keep the scope primary"
 _NAME = "name the predecessor"
 _NAME_EACH = "name each real predecessor"
 _UNDO = "undo the change"
+_OTHER_BASE = "select another version as the base"
+_AS_BASE = "select the scope as a base"
+_NEW_PRIMARY = "select a new version as the primary scope"
 
 
 def _findings(report: LineageReport) -> list[Finding]:
@@ -638,6 +913,14 @@ class _MainCopy:
         )
         self._baseline_cache = None
 
+    def repin(self, name: str) -> None:
+        """Replace ``name``'s selector_digests entry with its selector's current digest."""
+        data = yaml.safe_load(self.baseline_path.read_text(encoding="utf-8"))
+        assert name in data["selector_digests"], f"the baseline does not pin {name}"
+        data["selector_digests"][name] = selector_sha256(self.selectors()[name])
+        self.baseline_path.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
+        self._baseline_cache = None
+
 
 def _merge_fork_entry(entry: dict[str, object], other: Mapping[str, object]) -> None:
     for field_name in ("successors", "continued_by"):
@@ -704,8 +987,8 @@ def _newest_through_continued(copy: _MainCopy, fork: str) -> tuple[str, ...]:
     return line_heads(predecessors, continued, continued[fork])
 
 
-def _open_head(copy: _MainCopy) -> str:
-    """A selector no tracked selector names, on a branch its line did not end."""
+def _open_heads(copy: _MainCopy) -> list[str]:
+    """The selectors no tracked selector names, on branches their lines did not end."""
     selectors = copy.selectors()
     counts = _successor_counts(selectors)
     ended = _ended_branches(copy.baseline())
@@ -715,7 +998,12 @@ def _open_head(copy: _MainCopy) -> str:
         if count == 0 and name not in ended and len(pair_versions(selectors[name])) > 1
     )
     assert heads, "main has no open head with two pairs"
-    return heads[0]
+    return heads
+
+
+def _open_head(copy: _MainCopy) -> str:
+    """A selector no tracked selector names, on a branch its line did not end."""
+    return _open_heads(copy)[0]
 
 
 def _pinned_open_head(copy: _MainCopy) -> str:
@@ -1069,7 +1357,7 @@ def _build_edited_selector_of_a_recorded_base_replacement(copy: _MainCopy) -> _C
         f"    replaced_by: {'/'.join(replacing)}\n    listed_on: <today>\n"
         "    reason: A reviewed replacement.\n",
     )
-    assert not _guard_problems(copy.selectors(), copy.baseline())
+    assert not _guard_problems(copy.selectors(), copy.baseline(), history=_main_names())
     original = copy.text(name)
     edited = ReleaseScope(*base.pair, _EDITED_VERSION)
     copy.write_scopes(name, {*selectors[name].scopes, edited}, selectors[name].description or "")
@@ -1117,6 +1405,159 @@ def _build_edited_first_cut_that_gains_a_base(copy: _MainCopy) -> _Case:
     base = ReleaseScope(*shared[0], _BASE_VERSION, layer=LAYER_BASE)
     copy.write_scopes(name, {*selectors[name].scopes, base}, selectors[name].description or "")
     return _Case((DroppedBase, UnnamedPredecessor), (name,), name, originals=((name, original),))
+
+
+_CONFLICT_BASE = "remedy-test-layer-conflict-base"
+_CONFLICT_PRIMARY = "remedy-test-layer-conflict-primary"
+_OTHER_BASE_VERSION = "2026-05-01-remedy-test-other-base"
+# The triple finding 8's critic found that only an unpinned selector of main,
+# be-rulespec-2026-08-29, selects (as a primary scope).
+_UNPINNED_MAIN_PRIMARY: ScopeKey = ("be", "statute", "2026-08-23-be-rulespec-source-promotion")
+
+
+def _pinned_now(copy: _MainCopy) -> set[str]:
+    """The selectors the baseline pins at the digest they have."""
+    selectors = copy.selectors()
+    return {
+        name
+        for name, digest in copy.baseline().selector_digests.items()
+        if name in selectors and selector_sha256(selectors[name]) == digest
+    }
+
+
+def _scope_a_pinned_selector_selects(
+    copy: _MainCopy, head: str, also_not_in: str | None = None
+) -> ScopeKey:
+    """The first scope a pinned selector other than ``head`` selects and ``head`` does not.
+
+    ``also_not_in`` names another selector that must not select it either.
+    """
+    selectors = copy.selectors()
+    return min(
+        key
+        for name in sorted(_pinned_now(copy))
+        if name != head
+        for key in selectors[name].scope_keys
+        if key not in selectors[head].scope_keys
+        and (also_not_in is None or key not in selectors[also_not_in].scope_keys)
+    )
+
+
+def _write_base_cut(
+    copy: _MainCopy, name: str, head: str, scope: ScopeKey, description: str
+) -> None:
+    """Cut ``name`` with ``head``'s scopes and ``scope`` as a base."""
+    scopes = [*copy.selectors()[head].scopes, ReleaseScope(*scope, layer=LAYER_BASE)]
+    copy.write_scopes(name, scopes, description)
+
+
+def _build_new_base_over_a_pinned_primary(copy: _MainCopy) -> _Case:
+    """Finding 8: a new cut adds as a base a scope a pinned selector of main selects."""
+    head = _open_head(copy)
+    scope = _scope_a_pinned_selector_selects(copy, head)
+    _write_base_cut(copy, _CONFLICT_BASE, head, scope, f"Successor to {head}. {_NOTE}")
+    return _Case((selector_lineage.LayerConflict,), (_CONFLICT_BASE,), head)
+
+
+def _new_primary_over_a_new_base(copy: _MainCopy, *, with_a_base: bool) -> _Case:
+    """A layered cut, then a cut from another head that selects its base as a primary scope.
+
+    With ``with_a_base``, the second cut also selects another base for that pair.
+    """
+    base = _write_layered_predecessor(copy)
+    other = next(head for head in _open_heads(copy) if head != _LAYERED)
+    scopes = [*copy.selectors()[other].scopes, ReleaseScope(*base.key)]
+    if with_a_base:
+        scopes.append(ReleaseScope(*base.pair, _OTHER_BASE_VERSION, layer=LAYER_BASE))
+    copy.write_scopes(_CONFLICT_PRIMARY, scopes, f"Successor to {other}. {_NOTE}")
+    return _Case((selector_lineage.LayerConflict,), (_LAYERED, _CONFLICT_PRIMARY), other)
+
+
+def _build_new_primary_over_a_new_base(copy: _MainCopy) -> _Case:
+    return _new_primary_over_a_new_base(copy, with_a_base=False)
+
+
+def _build_new_primary_that_has_a_base_over_a_new_base(copy: _MainCopy) -> _Case:
+    return _new_primary_over_a_new_base(copy, with_a_base=True)
+
+
+def _build_edited_pinned_head_that_gains_a_base(copy: _MainCopy) -> _Case:
+    """A pinned open head gains as a base a scope another pinned selector selects."""
+    head = _pinned_open_head(copy)
+    selectors = copy.selectors()
+    predecessor = resolved_predecessors(selectors, copy.baseline())[head]
+    scope = _scope_a_pinned_selector_selects(copy, head, also_not_in=predecessor)
+    original = copy.text(head)
+    edited = {*selectors[head].scopes, ReleaseScope(*scope, layer=LAYER_BASE)}
+    copy.write_scopes(head, edited, selectors[head].description or "")
+    return _Case((selector_lineage.LayerConflict,), (head,), head, originals=((head, original),))
+
+
+def _build_edited_pinned_head_that_gains_a_primary(copy: _MainCopy) -> _Case:
+    """A pinned open head gains as a primary scope the base a new layered cut selects."""
+    base = _write_layered_predecessor(copy)
+    head = _pinned_open_head(copy)
+    selectors = copy.selectors()
+    original = copy.text(head)
+    edited = {*selectors[head].scopes, ReleaseScope(*base.key)}
+    copy.write_scopes(head, edited, selectors[head].description or "")
+    return _Case(
+        (selector_lineage.LayerConflict,), (_LAYERED, head), head, originals=((head, original),)
+    )
+
+
+def _build_first_cut_pinned_with_its_record(copy: _MainCopy) -> _Case:
+    """Finding 8's cut as the first cut of a line, pinned with its record in the same change."""
+    head = _open_head(copy)
+    scope = _scope_a_pinned_selector_selects(copy, head)
+    _write_base_cut(copy, _CONFLICT_BASE, head, scope, f"A layered first cut. {_NOTE}")
+    digest = selector_sha256(copy.selectors()[_CONFLICT_BASE])
+    _record_on_main(
+        copy,
+        f"selector_digests:\n  {_CONFLICT_BASE}: {digest}\n"
+        "first_cuts:\n  - listed_on: <today>\n    reason: A layered first cut.\n"
+        f"    selectors: [{_CONFLICT_BASE}]\n",
+    )
+    return _Case((selector_lineage.LayerConflict,), (_CONFLICT_BASE,), _CONFLICT_BASE)
+
+
+def _build_new_base_over_an_unpinned_selector_main_has(copy: _MainCopy) -> _Case:
+    """A new cut adds as a base a scope that only unpinned selectors of main select.
+
+    The scope is _UNPINNED_MAIN_PRIMARY while it still qualifies: selected only as a
+    primary scope, only by unpinned selectors in RELEASES, and not by the head. Otherwise
+    it is the first scope that qualifies.
+    """
+    head = _open_head(copy)
+    selectors = copy.selectors()
+    pinned = set(copy.baseline().selector_digests)
+    primary_in: dict[ScopeKey, set[str]] = {}
+    as_base: set[ScopeKey] = set()
+    for name, release in selectors.items():
+        for scope in release.scopes:
+            if scope.is_base:
+                as_base.add(scope.key)
+            else:
+                primary_in.setdefault(scope.key, set()).add(name)
+
+    def qualifies(key: ScopeKey) -> bool:
+        names = primary_in.get(key, set())
+        return (
+            bool(names)
+            and key not in as_base
+            and not names & pinned
+            and names <= _main_names()
+            and key not in selectors[head].scope_keys
+        )
+
+    scope = (
+        _UNPINNED_MAIN_PRIMARY
+        if qualifies(_UNPINNED_MAIN_PRIMARY)
+        else next(key for key in sorted(primary_in) if qualifies(key))
+    )
+    assert primary_in[scope] <= _main_names() and not primary_in[scope] & pinned, scope
+    _write_base_cut(copy, _CONFLICT_BASE, head, scope, f"Successor to {head}. {_NOTE}")
+    return _Case((selector_lineage.LayerConflict,), (_CONFLICT_BASE,), head)
 
 
 def _today(baseline: LineageBaseline) -> str:
@@ -1264,6 +1705,41 @@ def _follow(
             selectors[case.selectors[0]].scope_keys,
             f"Successor to {case.base}. {_NOTE}",
         )
+    elif option in (_OTHER_BASE, _AS_BASE, _NEW_PRIMARY):
+        rewritten: list[str] = []
+        for finding, remedy in zip(findings, remedies, strict=True):
+            assert isinstance(finding, selector_lineage.LayerConflict), finding
+            pair, version = finding.scope[:2], finding.scope[2]
+            said = remedy.lower()
+            if option == _OTHER_BASE:
+                names = finding.bases
+                offered = (
+                    f"in {', '.join(names)}, select as the base of {pair_label(pair)} a version"
+                )
+                assert offered in said, remedy
+                new = ReleaseScope(*pair, f"{version}-remedy-other", layer=LAYER_BASE)
+            else:
+                names = finding.primaries
+                step = (
+                    f"select {'/'.join(finding.scope)} as a base scope"
+                    if option == _AS_BASE
+                    else "a new version of that text as the primary scope"
+                )
+                for name in names:
+                    assert f"in {name}, select" in said and step in said, remedy
+                new = (
+                    ReleaseScope(*finding.scope, layer=LAYER_BASE)
+                    if option == _AS_BASE
+                    else ReleaseScope(*pair, f"{version}-remedy-text")
+                )
+            for name in names:
+                current = copy.selectors()[name]
+                kept = {scope for scope in current.scopes if scope.key != finding.scope}
+                copy.write_scopes(name, {*kept, new}, current.description or "")
+                rewritten.append(name)
+        if any(_PINNED_LEAD in remedy for remedy in remedies):
+            for name in rewritten:
+                copy.repin(name)
     else:
         assert option == _UNDO, option
         for remedy in remedies:
@@ -1293,14 +1769,18 @@ def _assert_the_advice_is_sound(
     report: LineageReport,
     selectors: Mapping[str, ReleaseManifest],
     baseline: LineageBaseline,
+    history: frozenset[str] | None,
 ) -> None:
     """A remedy says what holds for its finding.
 
     It names every newest selector, none on an ended branch, and the line it took.
     A record a changed selector broke says the baseline already records it; a drop
     by or from a pinned selector that changed says it may follow from the change;
-    any other drop gets the usual keep-or-record remedy. The digests are compared
-    here, apart from _remedy.
+    any other drop gets the usual keep-or-record remedy. A layer conflict with a
+    changed pinned selector says to undo the change; any other addresses only
+    selectors main (``history``) lacks, and only unpinned ones unless it says to
+    replace their pins, or names none at all. The digests are compared here, apart
+    from _remedy.
     """
     drop_endpoints = {
         name
@@ -1308,13 +1788,13 @@ def _assert_the_advice_is_sound(
         if isinstance(finding, DroppedPair | DroppedBase)
         for name in (finding.predecessor, finding.selector)
     }
-    stale = {
+    stale_anywhere = {
         name
-        for name in drop_endpoints
+        for name in selectors
         if name in baseline.selector_digests
-        and name in selectors
         and selector_sha256(selectors[name]) != baseline.selector_digests[name]
     }
+    stale = stale_anywhere & drop_endpoints
     broken = "already records this, but the record no longer holds"
     for finding, remedy in zip(findings, remedies, strict=True):
         if isinstance(finding, DroppedPair):
@@ -1369,7 +1849,25 @@ def _assert_the_advice_is_sound(
             assert f"Select {'/'.join(finding.scope)} as a primary scope" in remedy, remedy
         if isinstance(finding, selector_lineage.LayerConflict):
             assert _MARKER not in remedy, remedy
-            assert f"Select {'/'.join(finding.scope)} as a base scope in" in remedy, remedy
+            involved = {*finding.bases, *finding.primaries}
+            if involved & stale_anywhere:
+                assert "undo the change" in remedy, remedy
+            else:
+                assert "no record allows a layer conflict" in remedy, remedy
+                addressed = set(re.findall(r"(?i)\bin ([a-z0-9-]+), select", remedy))
+                assert not addressed & (history or frozenset()), (addressed, remedy)
+                if _PINNED_LEAD not in remedy:
+                    assert not addressed & set(baseline.selector_digests), (addressed, remedy)
+                if _CHANGE_ONLY_THE_CUT in remedy:
+                    assert not addressed, (addressed, remedy)
+                else:
+                    assert addressed, remedy
+                scope = "/".join(finding.scope)
+                for name in finding.primaries:
+                    if _base_of(selectors[name], finding.scope[:2]) is not None:
+                        # Selecting it as a base would give the pair a second base.
+                        said = f"in {name}, select {scope} as a base scope"
+                        assert said not in remedy.lower(), remedy
         if isinstance(finding, UnnamedPredecessor) and finding.selector in baseline.first_cuts:
             assert broken in remedy, remedy
         if (
@@ -1408,6 +1906,47 @@ _REMEDY_CASES: list[tuple[str, Callable[[_MainCopy], _Case], str]] = [
         _UNDO,
     ),
     ("edited first cut that gains a base", _build_edited_first_cut_that_gains_a_base, _UNDO),
+    (
+        "layer conflict: new base over a pinned primary",
+        _build_new_base_over_a_pinned_primary,
+        _OTHER_BASE,
+    ),
+    (
+        "layer conflict: new primary over a new base",
+        _build_new_primary_over_a_new_base,
+        _OTHER_BASE,
+    ),
+    ("layer conflict: new primary over a new base", _build_new_primary_over_a_new_base, _AS_BASE),
+    (
+        "layer conflict: new primary over a new base",
+        _build_new_primary_over_a_new_base,
+        _NEW_PRIMARY,
+    ),
+    (
+        "layer conflict: new primary over a new base, primary already has a base",
+        _build_new_primary_that_has_a_base_over_a_new_base,
+        _NEW_PRIMARY,
+    ),
+    (
+        "layer conflict: edited pinned head gains a base",
+        _build_edited_pinned_head_that_gains_a_base,
+        _UNDO,
+    ),
+    (
+        "layer conflict: edited pinned head gains a primary",
+        _build_edited_pinned_head_that_gains_a_primary,
+        _UNDO,
+    ),
+    (
+        "layer conflict: first cut pinned with its record",
+        _build_first_cut_pinned_with_its_record,
+        _OTHER_BASE,
+    ),
+    (
+        "layer conflict: new base over an unpinned selector main has",
+        _build_new_base_over_an_unpinned_selector_main_has,
+        _OTHER_BASE,
+    ),
     ("new fork (#729)", _build_new_fork, _CUT),
     ("new fork (#729)", _build_new_fork, _RECORD),
     ("new successor of a recorded fork", _build_new_successor_of_a_recorded_fork, _CUT),
@@ -1504,8 +2043,10 @@ def test_every_printed_remedy_can_be_followed(
     report = check_selector_lineage(selectors, baseline)
     findings = _findings(report)
     assert [type(finding) for finding in findings] == list(case.kinds), report.problems()
-    remedies = [_remedy(finding, selectors, baseline) for finding in findings]
-    _assert_the_advice_is_sound(findings, remedies, report, selectors, baseline)
+    remedies = [
+        _remedy(finding, selectors, baseline, history=_main_names()) for finding in findings
+    ]
+    _assert_the_advice_is_sound(findings, remedies, report, selectors, baseline, _main_names())
     bases = (
         sorted({base for remedy in remedies for base in _bases(remedy, case)})
         if option == _CUT
@@ -1515,9 +2056,16 @@ def test_every_printed_remedy_can_be_followed(
         followed = _MainCopy(tmp_path / f"followed-{index}")
         assert build(followed) == case
         _follow(followed, case, option, findings, remedies, base)
-        problems = _guard_problems(followed.selectors(), followed.baseline())
+        problems = _guard_problems(followed.selectors(), followed.baseline(), history=_main_names())
         assert not problems, f"after {option} from {base}:\n" + "\n".join(problems)
         _assert_frozen(followed.baseline())
+        if selector_lineage.LayerConflict in case.kinds:
+            edited = [
+                name
+                for name in sorted(_main_names())
+                if followed.text(name) != (RELEASES / f"{name}.json").read_text(encoding="utf-8")
+            ]
+            assert not edited, f"after {option}, selectors main has changed: {edited}"
         if option in (_GOES_ON, _DOES_NOT_GO_ON):
             continued = set(followed.baseline().fork_continued_by(case.base))
             assert (set(case.selectors) <= continued) == (option == _GOES_ON), continued
