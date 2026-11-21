@@ -2091,13 +2091,15 @@ def test_stops_unless_the_predecessor_is_the_one_the_draft_names(repo: Path, cas
         "spelled-with-a-dot",
         "predecessor-cut-on-the-branch-without-main",
         "predecessor-on-newer-local-main",
+        "predecessor-on-newer-origin-main",
     ],
 )
 def test_cuts_when_the_predecessor_is_the_one_the_draft_names(repo: Path, case: str) -> None:
     """Controls: the named selector, spelled another way, or checked by the HEAD rule alone.
 
     With no merge base with main, a predecessor first committed on the release branch
-    passes. When origin/main is behind main, the merge base with main counts.
+    passes. When origin/main is behind main, the merge base with main counts, and when
+    main is behind origin/main, the merge base with origin/main counts.
     """
     predecessor = PREDECESSOR
     if case == "spelled-with-a-dot":
@@ -2111,7 +2113,7 @@ def test_cuts_when_the_predecessor_is_the_one_the_draft_names(repo: Path, case: 
         _git(repo, "checkout", "-qb", "release")
         _cut_on_the_branch(repo)
         predecessor = BRANCH_CUT
-    else:
+    elif case == "predecessor-on-newer-local-main":
         # origin/main still points at main's commit before test-rel-1 was tracked.
         for version in UNRELEASED:
             _write_scope(repo, version)
@@ -2119,6 +2121,16 @@ def test_cuts_when_the_predecessor_is_the_one_the_draft_names(repo: Path, case: 
         assert _git(repo, "ls-tree", "--name-only", "origin/main", "--", PREDECESSOR) == ""
         assert _git(repo, "ls-tree", "--name-only", "main", "--", PREDECESSOR) == PREDECESSOR
         _git(repo, "checkout", "-qb", "release")
+    else:
+        # A fetch moved origin/main to main's tip, and the release branch starts there;
+        # local main still points at its commit before test-rel-1 was tracked.
+        for version in UNRELEASED:
+            _write_scope(repo, version)
+        _git(repo, "update-ref", "refs/remotes/origin/main", "main")
+        _git(repo, "checkout", "-qb", "release")
+        _git(repo, "branch", "-f", "main", "main~1")
+        assert _git(repo, "ls-tree", "--name-only", "main", "--", PREDECESSOR) == ""
+        assert _git(repo, "ls-tree", "--name-only", "origin/main", "--", PREDECESSOR) == PREDECESSOR
     start = _git(repo, "rev-parse", "HEAD")
 
     result = _run(repo, predecessor)
