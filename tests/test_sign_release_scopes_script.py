@@ -1819,6 +1819,28 @@ def test_stops_with_one_line_on_a_malformed_scope(repo: Path, case: str) -> None
     assert _uv_calls() == []
 
 
+def test_stops_with_one_line_on_a_predecessor_that_is_not_an_object(repo: Path) -> None:
+    """A predecessor file holding a JSON array gets the shape line, not the identity line.
+
+    The script reads the draft's name before this check, so only the predecessor argument
+    reaches the line.
+    """
+    start = _cut_release_branch(repo)
+    predecessor = "docs/ingest-runs/pred.json"
+    (repo / predecessor).write_text("[]\n")
+
+    result = _run(repo, predecessor)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == f"{predecessor} is not a JSON object; a selector is one\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
 def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
     """A base carried as it is is not unreleased: the run commits and signs none of it.
 
