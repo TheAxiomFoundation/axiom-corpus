@@ -1552,7 +1552,7 @@ def _beside_the_valid_replacement(
         ),
         pytest.param(
             {"selector": "Bad Name"},
-            r"base_replacements\[Bad Name, us/statute\]\.selector: ",
+            r"base_replacements\[Bad Name, us/statute\]\.selector: Release names must be",
             id="bad-selector-name",
         ),
         pytest.param(
