@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import json
+import os
+import re
 import sys
+from collections.abc import Callable, Mapping
 from dataclasses import replace
 from pathlib import Path
 
@@ -299,3 +302,223 @@ def test_cli_reads_the_selectors_of_the_checkout_holding_base(tmp_path, monkeypa
     assert called.value.kwargs.get("releases_dir") == tmp_path / "owner" / "manifests" / "releases"
     # The working directory's checkout is read too, as composition and dedup read it.
     assert called.value.kwargs.get("holders_of") == (Path.cwd(),)
+
+
+# Finding 6 of round 2: promotion and the builder leave bases alone.
+MakeCheckout = Callable[[str, Mapping[str, Mapping[str, object]]], Path]
+ROOT_PATH = "ca/policy/cra/example"
+PROMOTION_REFUSAL = r"^base scopes are carried unchanged and cannot be promoted in place: "
+
+
+def _write_program_scope(store: CorpusArtifactStore, version: str) -> None:
+    """A ca/policy scope whose contracted root carries a body, so promotion rewrites it."""
+    source_path = store.source_path("ca", "policy", version, "example.txt")
+    source_sha256 = store.write_text(source_path, "Primary text")
+    relative_source_path = source_path.relative_to(store.root).as_posix()
+    root = ProvisionRecord(
+        jurisdiction="ca",
+        document_class="policy",
+        citation_path=ROOT_PATH,
+        body="Primary text",
+        id=deterministic_provision_id(ROOT_PATH, version),
+        version=version,
+        source_path=relative_source_path,
+        level=1,
+        ordinal=1,
+        kind="document",
+    )
+    store.write_inventory(
+        store.inventory_path("ca", "policy", version),
+        (
+            SourceInventoryItem(
+                citation_path=ROOT_PATH, source_path=relative_source_path, sha256=source_sha256
+            ),
+        ),
+    )
+    store.write_provisions(store.provisions_path("ca", "policy", version), (root,))
+
+
+def _ca_scopes(*, base: str | None) -> list[dict[str, str]]:
+    scopes = [{"jurisdiction": "ca", "document_class": "policy", "version": "src-v"}]
+    if base is not None:
+        scopes.append(
+            {"jurisdiction": "ca", "document_class": "policy", "version": base, "layer": "base"}
+        )
+    return scopes
+
+
+def _write_releases(directory: Path, *, base: str | None) -> Path:
+    """A selectors directory whose one selector marks ``ca/policy/<base>`` as a base."""
+    directory.mkdir(parents=True)
+    payload = {"name": "ca-layered", "scopes": _ca_scopes(base=base)}
+    (directory / "ca-layered.json").write_text(json.dumps(payload, indent=2) + "\n")
+    return directory
+
+
+def _tree(root: Path) -> dict[str, bytes | None]:
+    """Every entry below ``root`` outside ``.git``: a file's bytes, else None."""
+    found: dict[str, bytes | None] = {}
+    for directory, directories, filenames in os.walk(root):
+        directories[:] = [name for name in directories if name != ".git"]
+        for name in (*directories, *filenames):
+            path = Path(directory, name)
+            if name != ".git":
+                found[str(path.relative_to(root))] = path.read_bytes() if path.is_file() else None
+    return found
+
+
+@pytest.mark.parametrize("through", ["releases_dir", "default"])
+def test_promotion_refuses_a_tracked_base(tmp_path, monkeypatch, through) -> None:
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_program_scope(store, "base-v")
+    releases = _write_releases(tmp_path / "releases", base="base-v")
+    before = _tree(tmp_path)
+
+    with pytest.raises(ValueError, match=PROMOTION_REFUSAL + "ca/policy/base-v$"):
+        if through == "releases_dir":
+            promote_program_roots(
+                base=store.root,
+                version="base-v",
+                citation_paths=(ROOT_PATH,),
+                releases_dir=releases,
+            )
+        else:
+            monkeypatch.setattr(ca_module, "DEFAULT_RELEASES_DIR", releases, raising=False)
+            promote_program_roots(base=store.root, version="base-v", citation_paths=(ROOT_PATH,))
+
+    assert _tree(tmp_path) == before
+
+
+@pytest.mark.parametrize("version", ["base-v ", "base-v/", "BASE-V"])
+def test_promotion_refuses_a_spelling_that_names_a_tracked_base(
+    tmp_path, monkeypatch, version
+) -> None:
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_program_scope(store, "base-v")
+    releases = _write_releases(tmp_path / "releases", base="base-v")
+    monkeypatch.setattr(ca_module, "DEFAULT_RELEASES_DIR", releases, raising=False)
+    before = _tree(tmp_path)
+
+    # Each spelling names base-v's files; a selector cannot hold it.
+    with pytest.raises(ValueError, match=r"^not a canonical scope: "):
+        promote_program_roots(base=store.root, version=version, citation_paths=(ROOT_PATH,))
+
+    assert _tree(tmp_path) == before
+
+
+def _ca_checkout(make_checkout: MakeCheckout, name: str, *, base: str | None = None) -> Path:
+    selector = f"{name}-selector"
+    return make_checkout(name, {selector: {"name": selector, "scopes": _ca_scopes(base=base)}})
+
+
+@pytest.mark.parametrize("case", ["corpus-link", "hard-link", "tracked-base-links-to-promoted"])
+def test_promotion_refuses_a_base_a_link_reaches(
+    tmp_path, monkeypatch, make_checkout: MakeCheckout, case
+) -> None:
+    if case == "corpus-link":
+        # Only B, which the corpus link leads into, marks base-v as a base.
+        a = _ca_checkout(make_checkout, "a")
+        b = _ca_checkout(make_checkout, "b", base="base-v")
+        _write_program_scope(CorpusArtifactStore(b / "data" / "corpus"), "base-v")
+        (a / "data").mkdir()
+        (a / "data" / "corpus").symlink_to(b / "data" / "corpus")
+        store = CorpusArtifactStore(a / "data" / "corpus")
+        releases, version = a / "manifests" / "releases", "base-v"
+        expected = PROMOTION_REFUSAL + "ca/policy/base-v$"
+    elif case == "hard-link":
+        store = CorpusArtifactStore(tmp_path / "corpus")
+        _write_program_scope(store, "composite-v")
+        releases, version = _write_releases(tmp_path / "releases", base=None), "composite-v"
+        provisions = store.provisions_path("ca", "policy", version)
+        os.link(provisions, tmp_path / "other.jsonl")
+        expected = (
+            r"^scope artifact shares its file with another path: "
+            + re.escape(str(provisions))
+            + r" \(2 links\)$"
+        )
+    else:
+        store = CorpusArtifactStore(tmp_path / "corpus")
+        _write_program_scope(store, "composite-v")
+        releases, version = _write_releases(tmp_path / "releases", base="base-w"), "composite-v"
+        provisions = store.provisions_path("ca", "policy", version)
+        base_provisions = store.provisions_path("ca", "policy", "base-w")
+        base_provisions.symlink_to(provisions)
+        expected = (
+            "^"
+            + re.escape(f"{provisions} is also ca/policy/base-w's provisions through a link")
+            + "$"
+        )
+    monkeypatch.setattr(ca_module, "DEFAULT_RELEASES_DIR", releases, raising=False)
+    before = _tree(tmp_path)
+
+    with pytest.raises(ValueError, match=expected):
+        promote_program_roots(base=store.root, version=version, citation_paths=(ROOT_PATH,))
+
+    assert _tree(tmp_path) == before
+
+
+@pytest.mark.parametrize(
+    "scopes",
+    [
+        pytest.param(
+            [{"jurisdiction": "ca", "document_class": "policy", "version": "draft-base"}],
+            id="alone",
+        ),
+        pytest.param(
+            [
+                {"jurisdiction": "ca", "document_class": "policy", "version": "a-primary"},
+                {"jurisdiction": "ca", "document_class": "policy", "version": "draft-base"},
+            ],
+            id="after-a-primary",
+        ),
+    ],
+)
+def test_the_builder_refuses_a_base_in_its_selector(tmp_path, monkeypatch, scopes) -> None:
+    scopes[-1]["layer"] = "base"
+    selector_path = tmp_path / "draft.json"
+    selector_path.write_text(json.dumps({"name": "ca-draft", "scopes": scopes}))
+    contract_path = tmp_path / "citations.json"
+    contract_path.write_text(json.dumps({"citation_paths": [ROOT_PATH]}))
+
+    def stop_at_consolidate(**kwargs: object) -> tuple[()]:
+        raise _ConsolidateCalledError(kwargs)
+
+    monkeypatch.setattr(ca_module, "consolidate_release_scopes", stop_at_consolidate)
+
+    # Refused before consolidation runs.
+    with pytest.raises(
+        ValueError,
+        match=r"^base scopes are carried unchanged and cannot be consolidated: "
+        r"ca/policy/draft-base$",
+    ):
+        build_ca_rulespec_composite_scope(
+            base=tmp_path / "corpus",
+            selector_path=selector_path,
+            citation_contract_path=contract_path,
+            target_version="composite",
+            releases_dir=_write_releases(tmp_path / "releases", base=None),
+        )
+
+
+def test_the_builder_hands_its_releases_dir_to_promotion(tmp_path, monkeypatch) -> None:
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_program_scope(store, "base-v")
+    releases = _write_releases(tmp_path / "releases", base="base-v")
+    selector_path = tmp_path / "selector.json"
+    selector_path.write_text(json.dumps({"name": "ca-s", "scopes": _ca_scopes(base=None)}))
+    contract_path = tmp_path / "citations.json"
+    contract_path.write_text(json.dumps({"citation_paths": [ROOT_PATH]}))
+    # Consolidation writes nothing, so promotion runs on the existing base-v.
+    monkeypatch.setattr(ca_module, "consolidate_release_scopes", lambda **kwargs: ())
+    before = _tree(tmp_path)
+
+    with pytest.raises(ValueError, match=PROMOTION_REFUSAL + "ca/policy/base-v$"):
+        build_ca_rulespec_composite_scope(
+            base=store.root,
+            selector_path=selector_path,
+            citation_contract_path=contract_path,
+            target_version="base-v",
+            releases_dir=releases,
+        )
+
+    assert _tree(tmp_path) == before
