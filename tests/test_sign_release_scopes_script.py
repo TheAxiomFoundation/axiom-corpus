@@ -1970,6 +1970,32 @@ def test_stops_when_the_target_is_committed_but_hidden(repo: Path) -> None:
     assert _uv_calls() == []
 
 
+def test_stops_with_one_line_when_the_tracked_selectors_cannot_be_read(repo: Path) -> None:
+    """A selector entry that HEAD commits as something other than a file stops the run.
+
+    Main commits manifests/releases/alias.json as a symlink to test-rel-1.json. The run
+    prints one line naming it, not a traceback, before step 1.
+    """
+    alias = "manifests/releases/alias.json"
+    os.symlink("test-rel-1.json", repo / alias)
+    _git(repo, "add", alias)
+    _git(repo, "commit", "-qm", "Commit a selector symlink")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr.startswith("cannot read the tracked selectors at HEAD: ")
+    assert result.stderr.endswith(f"{alias} is not a selector file\n")
+    assert result.stderr.count("\n") == 1
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
 NAMED_ONLY = (
     "{predecessor} is not manifests/releases/{named}.json as committed at HEAD, the selector"
     " {draft} names first in its description; pass that file"
