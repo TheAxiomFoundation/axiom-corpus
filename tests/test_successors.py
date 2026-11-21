@@ -928,6 +928,7 @@ def _clear_resolver_cache() -> None:
         pytest.param("manifests-excluded", {HEAD_B}, id="manifests-excluded"),
         pytest.param("standalone-inside-checkout", {HEAD_Q}, id="standalone-inside-checkout"),
         pytest.param("linked-worktree", {HEAD_B}, id="linked-worktree"),
+        pytest.param("linked-worktree-removed", {HEAD_B}, id="linked-worktree-removed"),
         pytest.param("deleted-on-the-branch", set(), id="deleted-on-the-branch"),
         pytest.param("git-env-dir-index", {HEAD_B}, id="git-env-dir-index"),
         pytest.param("git-env-work-tree", {HEAD_B}, id="git-env-work-tree"),
@@ -980,6 +981,10 @@ def test_tracked_selectors_are_read_as_committed_at_head(
         _write_payload(releases / "later.json", _payload("later", ((HEAD_Q, True),)))
         fixture_git(repo, "add", "--", "manifests/releases/later.json")
         fixture_git(repo, "commit", "-q", "-m", "Main commits a later base")
+        read = tmp_path / "wt" / "manifests" / "releases"
+    elif layout == "linked-worktree-removed":
+        fixture_git(repo, "worktree", "add", "-q", "../wt")
+        (tmp_path / "wt" / "manifests" / "releases" / "layered.json").unlink()
         read = tmp_path / "wt" / "manifests" / "releases"
     elif layout == "deleted-on-the-branch":
         fixture_git(repo, "rm", "-q", "--", "manifests/releases/layered.json")
