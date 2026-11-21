@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections.abc import Iterable
 from dataclasses import replace
 from pathlib import Path
 from typing import Any
@@ -125,13 +126,20 @@ def build_ca_rulespec_composite_scope(
     supplemental_versions: tuple[str, ...] = (),
     additional_citation_paths: tuple[str, ...] = (),
     releases_dir: Path | None = None,
+    holders_of: Iterable[Path] = (),
 ) -> tuple[Path, ...]:
     """Consolidate the selector's ca/policy scopes and promote the contracted roots.
 
     ``releases_dir`` names the tracked selectors that say which scopes are
     bases, as ``consolidate_release_scopes`` reads them; ``None`` means the
     checkout this script belongs to. ``main()`` passes the
-    ``manifests/releases`` of the checkout holding ``--base``.
+    ``manifests/releases`` of the checkout holding ``--base``. Consolidation
+    also reads the selectors committed at HEAD of the checkouts that
+    physically hold its paths, of each checkout the resolver recognises that
+    holds a link on them as spelled through ``base``, and of the checkouts
+    holding each path in ``holders_of`` (``main()`` passes the working
+    directory). A checkout it does not read is one of the threat model's
+    stated limits (2, 11 and 15).
     """
     release = ReleaseManifest.load(selector_path)
     unexpected = sorted(
@@ -156,6 +164,7 @@ def build_ca_rulespec_composite_scope(
         source_versions=all_source_versions,
         target_version=target_version,
         releases_dir=releases_dir,
+        holders_of=holders_of,
     )
     promote_program_roots(
         base=base,
@@ -198,6 +207,7 @@ def main() -> int:
         supplemental_versions=tuple(args.supplemental_version),
         additional_citation_paths=tuple(args.additional_citation),
         releases_dir=repo / "manifests" / "releases",
+        holders_of=(Path.cwd(),),
     )
     for path in generated:
         print(path)

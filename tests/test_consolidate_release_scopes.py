@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import sys
+from collections.abc import Callable, Mapping
 from dataclasses import replace
 from pathlib import Path
 
@@ -14,6 +16,7 @@ from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from scripts.consolidate_release_scopes import consolidate_release_scopes
+from tests.conftest import fixture_git
 
 
 def _write_scope(
@@ -750,3 +753,201 @@ def test_refuses_a_spelling_before_reading_the_tracked_selectors(tmp_path, monke
             target_version=target_version,
             releases_dir=tmp_path / "missing",
         )
+
+
+# Finding 1 of round 2: the checkouts that hold the paths consolidation uses. Each
+# checkout is built with ``make_checkout`` and commits one selector.
+MakeCheckout = Callable[[str, Mapping[str, Mapping[str, object]]], Path]
+VERSIONS = ("primary-one", "primary-two")
+
+
+def _checkout(make_checkout: MakeCheckout, name: str, *, base: str | None = None) -> Path:
+    """A checkout whose committed selector marks ``us-example/statute/<base>`` as a base."""
+    selector = f"{name}-selector"
+    scopes: list[dict[str, str]] = [
+        {"document_class": "statute", "jurisdiction": "us-example", "version": "primary-one"}
+    ]
+    if base is not None:
+        scopes.append(
+            {
+                "document_class": "statute",
+                "jurisdiction": "us-example",
+                "layer": "base",
+                "version": base,
+            }
+        )
+    return make_checkout(name, {selector: {"name": selector, "scopes": scopes}})
+
+
+def _releases(checkout: Path) -> Path:
+    return checkout / "manifests" / "releases"
+
+
+def _link(link: Path, target: Path) -> None:
+    link.parent.mkdir(parents=True, exist_ok=True)
+    link.symlink_to(target)
+
+
+def _bytes_under(root: Path) -> dict[str, bytes | None]:
+    """Every entry below ``root`` outside ``.git``: a file's bytes, else None."""
+    found: dict[str, bytes | None] = {}
+    for directory, directories, filenames in os.walk(root):
+        directories[:] = [name for name in directories if name != ".git"]
+        for name in (*directories, *filenames):
+            path = Path(directory, name)
+            if name != ".git":
+                found[str(path.relative_to(root))] = path.read_bytes() if path.is_file() else None
+    return found
+
+
+def _sources(checkout: Path) -> CorpusArtifactStore:
+    store = CorpusArtifactStore(checkout / "data" / "corpus")
+    _write_example_scope(store, "primary-one")
+    _write_example_scope(store, "primary-two")
+    return store
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "target-named-after-another-checkouts-base",
+        "source-is-another-checkouts-base",
+        "coverage-link-target",
+        "link-outside-checkouts",
+        "directory-alias",
+    ],
+)
+def test_refuses_a_base_or_an_alias_another_path_holds(tmp_path, monkeypatch, make_checkout, case):
+    document_class = "statute"
+    target_version = "consolidated"
+    if case == "target-named-after-another-checkouts-base":
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", base="consolidated-base")
+        _link(a / "data" / "corpus", _sources(b).root)
+        target_version = "consolidated-base"
+        refused = "us-example/statute/consolidated-base"
+    elif case == "source-is-another-checkouts-base":
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", base="primary-two")
+        _link(a / "data" / "corpus", _sources(b).root)
+        refused = "us-example/statute/primary-two"
+    elif case == "coverage-link-target":
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", base="consolidated")
+        _sources(a)
+        (b / "data" / "corpus" / "coverage").mkdir(parents=True)
+        _link(a / "data" / "corpus" / "coverage", b / "data" / "corpus" / "coverage")
+        refused = "us-example/statute/consolidated"
+    elif case == "link-outside-checkouts":
+        a = _checkout(make_checkout, "a")
+        shared = CorpusArtifactStore(tmp_path / "shared")
+        _write_example_scope(shared, "primary-one")
+        _write_example_scope(shared, "primary-two")
+        _link(a / "data" / "corpus", shared.root)
+        refused = ""
+        expected = r"^scope artifact leads through a link outside every axiom-corpus checkout: "
+    else:
+        a = _checkout(make_checkout, "a", base="primary-two")
+        store = _sources(a)
+        for kind in ("inventory", "provisions", "sources"):
+            _link(
+                store.root / kind / "us-example" / "regulation",
+                store.root / kind / "us-example" / "statute",
+            )
+        document_class = "regulation"
+        refused = ""
+        expected = r"^scope artifact resolves to another path: "
+    if refused:
+        expected = rf"^base scopes are carried unchanged and cannot be consolidated: {refused}$"
+    before = _bytes_under(tmp_path)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+
+    with pytest.raises(ValueError, match=expected):
+        consolidate_release_scopes(
+            base=a / "data" / "corpus",
+            jurisdiction="us-example",
+            document_class=document_class,
+            source_versions=VERSIONS,
+            target_version=target_version,
+            releases_dir=_releases(a),
+        )
+
+    # Refused before the fetch, and nothing was written in any checkout.
+    assert _bytes_under(tmp_path) == before
+
+
+def test_cli_reads_the_working_directorys_checkout(tmp_path, monkeypatch, make_checkout):
+    m = _checkout(make_checkout, "m")
+    wt = tmp_path / "wt"
+    fixture_git(m, "worktree", "add", "-q", "-b", "feat", str(wt))
+    # The worktree's branch commits a selector that marks primary-two as a base.
+    payload = {
+        "name": "wt-layered",
+        "scopes": [
+            {
+                "document_class": "statute",
+                "jurisdiction": "us-example",
+                "layer": "base",
+                "version": "primary-two",
+            }
+        ],
+    }
+    (_releases(wt) / "wt-layered.json").write_text(json.dumps(payload, indent=2) + "\n")
+    fixture_git(wt, "add", "--", "manifests")
+    fixture_git(wt, "commit", "-q", "-m", "Mark primary-two as a base")
+    store = _sources(m)
+    before = _bytes_under(tmp_path)
+    monkeypatch.setattr(consolidate_module, "require_materialized", _refuse_fetch)
+    monkeypatch.chdir(wt)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "consolidate_release_scopes.py",
+            "--base",
+            str(store.root),
+            "--jurisdiction",
+            "us-example",
+            "--document-class",
+            "statute",
+            "--source-version",
+            "primary-one",
+            "--source-version",
+            "primary-two",
+            "--target-version",
+            "consolidated",
+        ],
+    )
+
+    # --base binds to m, whose HEAD marks nothing; the working directory's does.
+    with pytest.raises(
+        ValueError,
+        match=r"^base scopes are carried unchanged and cannot be consolidated: "
+        r"us-example/statute/primary-two$",
+    ):
+        consolidate_module.main()
+
+    assert _bytes_under(tmp_path) == before
+
+
+def test_runs_through_a_link_into_a_checkout_that_marks_no_base(tmp_path, make_checkout):
+    a = _checkout(make_checkout, "a")
+    b = _checkout(make_checkout, "b")
+    shared = _sources(b)
+    _link(a / "data" / "corpus", shared.root)
+
+    consolidate_release_scopes(
+        base=a / "data" / "corpus",
+        jurisdiction="us-example",
+        document_class="statute",
+        source_versions=VERSIONS,
+        target_version="consolidated",
+        releases_dir=_releases(a),
+    )
+
+    assert [
+        record.citation_path
+        for record in load_provisions(
+            shared.provisions_path("us-example", "statute", "consolidated")
+        )
+    ] == ["us-example/statute/primary-one", "us-example/statute/primary-two"]

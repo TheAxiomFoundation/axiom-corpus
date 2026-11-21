@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import shutil
 import unicodedata
+from collections.abc import Iterable
 from dataclasses import replace
 from pathlib import Path
 
@@ -23,7 +24,11 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.resolver import cli_repo, require_materialized
-from axiom_corpus.corpus.successors import canonical_scope_key, tracked_base_scopes
+from axiom_corpus.corpus.successors import (
+    canonical_scope_key,
+    guard_scope_artifacts,
+    tracked_base_scopes,
+)
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 # The tracked selectors are the only record of which scopes are bases.
@@ -80,6 +85,7 @@ def compose_scope_versions(
     source_versions: list[str],
     target_version: str,
     releases_dir: Path | None = None,
+    holders_of: Iterable[Path] = (),
 ) -> tuple[Path, ...]:
     """Concatenate constituent scope versions into one new immutable version.
 
@@ -91,6 +97,19 @@ def compose_scope_versions(
     checkout's corpus reads that checkout's selectors. A base is known here
     only once a tracked selector marks it, so a selector that adds a base
     must be committed before this script runs on that scope.
+
+    It also reads the selectors committed at HEAD of the checkouts that
+    physically hold its source and target artifact paths, of each checkout
+    the resolver recognises that holds a link on those paths as spelled
+    through ``base``, and of the checkouts holding each path in
+    ``holders_of`` (``main()`` passes the working directory), and refuses a
+    base of theirs the same way. Before anything is fetched it raises
+    ``ValueError`` for a link at a checkout's guarded place that leads into
+    no checkout and for an artifact path that resolves to another scope's
+    path (``successors.guard_scope_artifacts``). A checkout it does not read
+    is one of the threat model's stated limits (2, 11 and 15). It writes only
+    a new version, so it compares no base's path with the target it creates
+    (stated limit 18).
     """
     if len(source_versions) < 2:
         raise ValueError("compose requires at least two source versions")
@@ -118,6 +137,34 @@ def compose_scope_versions(
     target_directory = (
         store.root / "sources" / jurisdiction / document_class / target_version
     )
+    # Before the existing-target check and the fetch: a run through a link
+    # into another checkout reads that checkout's bases first.
+    guarded = [
+        path
+        for source_version in source_versions
+        for path in (
+            store.inventory_path(jurisdiction, document_class, source_version),
+            store.provisions_path(jurisdiction, document_class, source_version),
+            store.root / "sources" / jurisdiction / document_class / source_version,
+        )
+    ]
+    guarded += [
+        target_inventory_path,
+        target_provisions_path,
+        target_directory,
+        target_coverage_path,
+    ]
+    for inventory in guard_scope_artifacts(
+        guarded,
+        releases_dir=DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir,
+        holders_of=holders_of,
+    ):
+        _refuse_base_scopes(
+            jurisdiction=jurisdiction,
+            document_class=document_class,
+            versions=[*source_versions, target_version],
+            releases_dir=inventory,
+        )
     for path in (
         target_inventory_path,
         target_provisions_path,
@@ -346,6 +393,7 @@ def main() -> int:
         source_versions=args.source_version,
         target_version=args.target_version,
         releases_dir=repo / "manifests" / "releases",
+        holders_of=(Path.cwd(),),
     )
     for path in generated:
         print(path)

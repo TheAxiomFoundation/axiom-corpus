@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import sys
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
@@ -296,3 +297,5 @@ def test_cli_reads_the_selectors_of_the_checkout_holding_base(tmp_path, monkeypa
     with pytest.raises(_ConsolidateCalledError) as called:
         ca_module.main()
     assert called.value.kwargs.get("releases_dir") == tmp_path / "owner" / "manifests" / "releases"
+    # The working directory's checkout is read too, as composition and dedup read it.
+    assert called.value.kwargs.get("holders_of") == (Path.cwd(),)
