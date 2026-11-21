@@ -42,6 +42,9 @@ path, a link at a checkout's guarded place that leads into no checkout, and a
 rewritten file with more than one link are refused. It returns the
 ``manifests/releases`` of the other checkouts holding those paths, found with
 ``checkouts_holding``, so the tool reads their tracked bases too.
+``refuse_links_into_bases`` compares the artifact paths of the bases a tool
+knows with the files it rewrites, moves or unlinks, and refuses a base's file
+that leads to one of them through a link.
 
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
@@ -80,6 +83,8 @@ DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[3] / "manifests" / "rele
 # the checkout that holds the directory it runs in.
 _GIT_LOCATION_VARIABLES = ("GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE")
 _SELECTORS_PATH = "manifests/releases"
+# The artifact files of a scope that a base comparison checks, with their suffixes.
+_BASE_FILES = (("provisions", ".jsonl"), ("inventory", ".json"), ("coverage", ".json"))
 # The modes of a regular file in a git tree; a symlink (120000) and a
 # directory (040000) are not selector files.
 _SELECTOR_FILE_MODES = frozenset({"100644", "100755"})
@@ -739,6 +744,124 @@ def guard_scope_artifacts(
         seen.add(real)
         inventories.append(inventory)
     return tuple(sorted(inventories, key=str))
+
+
+def _link_target(path: Path) -> tuple[Path, str, os.stat_result | None]:
+    """``path`` as the caller passed it, its realpath, and its status when it exists."""
+    spelled = path if path.is_absolute() else Path.cwd() / path
+    try:
+        status: os.stat_result | None = os.stat(spelled)
+    except FileNotFoundError:
+        status = None
+    return path, os.path.realpath(spelled), status
+
+
+def _same_entry(
+    real: str, status: os.stat_result | None, target: tuple[Path, str, os.stat_result | None]
+) -> bool:
+    """Equal realpaths, or two existing paths with one status (a hard link, a case alias)."""
+    _, target_real, target_status = target
+    if real == target_real:
+        return True
+    return (
+        status is not None and target_status is not None and os.path.samestat(status, target_status)
+    )
+
+
+def _within(real: str, directory: str) -> bool:
+    return real == directory or real.startswith(directory.rstrip(os.sep) + os.sep)
+
+
+def refuse_links_into_bases(
+    *,
+    corpus: Path,
+    bases: Iterable[ScopeKey],
+    rewritten: Iterable[Path] = (),
+    moved: Iterable[Path] = (),
+    ingest_manifests: Path | None = None,
+) -> None:
+    """Refuse a file the caller changes that is also a base's artifact through a link.
+
+    Refuses when a file the caller rewrites, moves or unlinks is also the
+    provisions, inventory, coverage, ingest manifest or sources of a base in
+    ``bases``, through a symlink, a directory alias or a hard link. Only the
+    bases passed are compared, and only at their paths in ``corpus`` and
+    ``ingest_manifests``: a base that no selector the caller read marks, and a
+    base's file in another directory, are not seen (stated limits 3 and 15).
+    Nothing is compared with a file the caller creates (stated limit 18).
+
+    ``rewritten`` are the files the caller rewrites in place or unlinks;
+    ``moved`` are the directories it moves; ``ingest_manifests`` is the
+    directory of ingest manifests whose files it unlinks, or None. A base's
+    file matches a rewritten file when their realpaths are equal or both
+    exist with one status, and a moved directory when its realpath equals or
+    lies under the directory's. With ``moved`` given, a base's sources
+    directory matches a moved directory when its realpath equals, lies under
+    or contains the directory's, or both exist with one status; otherwise each
+    symlink below it is compared with every moved directory (equal or under)
+    and every rewritten file (equal). The first match raises ``ValueError``
+    naming the caller's path, the base and the artifact. It opens no file.
+    """
+    rewritten_targets = [_link_target(path) for path in rewritten]
+    moved_targets = [_link_target(path) for path in moved]
+    for key in sorted(set(bases)):
+        jurisdiction, document_class, version = key
+        files = [
+            (artifact, corpus / artifact / jurisdiction / document_class / f"{version}{suffix}")
+            for artifact, suffix in _BASE_FILES
+        ]
+        if ingest_manifests is not None:
+            files.append(
+                (
+                    "ingest manifest",
+                    ingest_manifests / jurisdiction / document_class / f"{version}.json",
+                )
+            )
+        for artifact, base_path in files:
+            _, real, status = _link_target(base_path)
+            for target in rewritten_targets:
+                if _same_entry(real, status, target):
+                    raise ValueError(
+                        f"{target[0]} is also {_label(key)}'s {artifact} through a link"
+                    )
+            for target in moved_targets:
+                if _within(real, target[1]):
+                    raise ValueError(
+                        f"{target[0]} is also {_label(key)}'s {artifact} through a link"
+                    )
+        if not moved_targets:
+            continue
+        sources = corpus / "sources" / jurisdiction / document_class / version
+        _, sources_real, sources_status = _link_target(sources)
+        for target in moved_targets:
+            if (
+                _within(sources_real, target[1])
+                or _within(target[1], sources_real)
+                or (
+                    sources_status is not None
+                    and target[2] is not None
+                    and os.path.samestat(sources_status, target[2])
+                )
+            ):
+                raise ValueError(f"{target[0]} is also {_label(key)}'s sources through a link")
+        if not os.path.isdir(sources):
+            continue
+        for root, directories, filenames in os.walk(sources, followlinks=False):
+            for entry in (*directories, *filenames):
+                path = os.path.join(root, entry)
+                if not os.path.islink(path):
+                    continue
+                entry_real = os.path.realpath(path)
+                for target in moved_targets:
+                    if _within(entry_real, target[1]):
+                        raise ValueError(
+                            f"{target[0]} is also {_label(key)}'s sources through a link"
+                        )
+                for target in rewritten_targets:
+                    if entry_real == target[1]:
+                        raise ValueError(
+                            f"{target[0]} is also {_label(key)}'s sources through a link"
+                        )
 
 
 def refuse_tracked_bases_as_primary(

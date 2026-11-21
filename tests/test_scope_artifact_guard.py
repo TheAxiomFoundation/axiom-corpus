@@ -6,6 +6,9 @@ the one it physically resolves into (by HEAD). ``guard_scope_artifacts``
 refuses an artifact path that resolves to another artifact's path, a guarded
 link into no checkout, and a rewritten file with more than one link, and it
 returns the inventories of every holder other than the caller's own.
+``refuse_links_into_bases`` refuses a file the caller rewrites, moves or
+unlinks that a base's provisions, inventory, coverage, ingest manifest or
+sources lead to through a link.
 
 Each checkout is built with ``make_checkout`` under ``tmp_path``. New names
 are reached through the module, so this file still loads on a tree without
@@ -235,3 +238,94 @@ def test_guard_returns_the_inventories_of_every_holder(
     (tmp_path / "alias").symlink_to(real)
     alias_path = _artifact(tmp_path / "alias", "provisions", B)
     assert guard([alias_path], releases_dir=_releases(c)) == ()
+
+
+# A base's file that leads, through a link, to a file the tool rewrites, moves or unlinks.
+
+C = ("us", "statute", "c")
+REGULATION_Q = ("us", "regulation", "q")
+
+
+def _base_corpus(tmp_path: Path) -> tuple[Path, list[Path], Path]:
+    """A corpus where ``q`` holds real provisions, inventory, coverage and one source."""
+    corpus = tmp_path / "corpus"
+    q_files = [
+        _write(_artifact(corpus, kind, Q)) for kind in ("provisions", "inventory", "coverage")
+    ]
+    q_sources = corpus / "sources" / "us" / "statute" / "q"
+    _write(q_sources / "x" / "source.html", "<html></html>\n")
+    return corpus, q_files, q_sources
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "file-symlink",
+        "coverage-symlink",
+        "directory-alias",
+        "case-alias",
+        "ingest-manifest-symlink",
+        "sources-dir-link",
+        "sources-parent-link",
+        "sources-entry-link",
+        "sources-without-moved",
+        "plain",
+        "base-absent",
+        "base-links-to-another-base",
+    ],
+)
+def test_refuse_links_into_bases(tmp_path: Path, layout: str) -> None:
+    corpus, q_files, q_sources = _base_corpus(tmp_path)
+    bases: set[tuple[str, str, str]] = {B}
+    arguments: dict[str, Any] = {"rewritten": q_files}
+    expected: str | None = None
+    if layout == "file-symlink":
+        _artifact(corpus, "provisions", B).symlink_to(_artifact(corpus, "provisions", Q))
+        expected = r"q\.jsonl is also us/statute/b's provisions through a link"
+    elif layout == "coverage-symlink":
+        _artifact(corpus, "coverage", B).symlink_to(_artifact(corpus, "coverage", Q))
+        expected = r"q\.json is also us/statute/b's coverage through a link"
+    elif layout == "directory-alias":
+        (corpus / "provisions" / "us" / "regulation").symlink_to("statute")
+        bases = {REGULATION_Q}
+        expected = r"q\.jsonl is also us/regulation/q's provisions through a link"
+    elif layout == "case-alias":
+        (corpus / "provisions" / "us" / "regulation").symlink_to(Path("..") / "US" / "statute")
+        if not (corpus / "provisions" / "US").exists():
+            pytest.skip("the filesystem keeps us and US apart, so there is no case alias")
+        bases = {REGULATION_Q}
+        expected = r"q\.jsonl is also us/regulation/q's provisions through a link"
+    elif layout == "ingest-manifest-symlink":
+        ingest = tmp_path / "ingest"
+        q_manifest = _write(ingest / "us" / "statute" / "q.json")
+        (ingest / "us" / "statute" / "b.json").symlink_to("q.json")
+        arguments = {"rewritten": [*q_files, q_manifest], "ingest_manifests": ingest}
+        expected = r"q\.json is also us/statute/b's ingest manifest through a link"
+    elif layout in {"sources-dir-link", "sources-without-moved"}:
+        (corpus / "sources" / "us" / "statute" / "b").symlink_to("q")
+        if layout == "sources-dir-link":
+            arguments = {"moved": [q_sources]}
+            expected = "/q is also us/statute/b's sources through a link"
+    elif layout == "sources-parent-link":
+        (corpus / "sources" / "us" / "statute" / "b").symlink_to(".")
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/statute/b's sources through a link"
+    elif layout == "sources-entry-link":
+        entry = corpus / "sources" / "us" / "statute" / "b" / "x" / "source.html"
+        entry.parent.mkdir(parents=True)
+        entry.symlink_to(q_sources / "x" / "source.html")
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/statute/b's sources through a link"
+    elif layout == "plain":
+        for kind in ("provisions", "inventory", "coverage"):
+            _write(_artifact(corpus, kind, B))
+    elif layout == "base-links-to-another-base":
+        _write(_artifact(corpus, "provisions", C))
+        _artifact(corpus, "provisions", B).symlink_to(_artifact(corpus, "provisions", C))
+        bases = {B, C}
+
+    if expected is None:
+        assert successors.refuse_links_into_bases(corpus=corpus, bases=bases, **arguments) is None
+        return
+    with pytest.raises(ValueError, match=expected):
+        successors.refuse_links_into_bases(corpus=corpus, bases=bases, **arguments)
