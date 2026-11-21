@@ -13,10 +13,11 @@ those paths as repair spells them, and of the working directory's checkout,
 plus the bases ``--release`` itself marks. After it fetches and plans the
 repair, and before its first move, rewrite or unlink, it refuses a scope any
 of them marks as a base, a link at a checkout's guarded place that leads into
-no checkout, a scope artifact path that resolves to another scope's path, a
-new scope's path that already exists, a symlink or a file with another hard
-link in the sources it moves, and a file or sources directory it would unlink
-or move that a base it knows reaches through a link
+no checkout, a scope artifact path that does not resolve to a path ending in
+its own artifact kind, jurisdiction, document class and version, a new
+scope's path that already exists, a symlink or a file with another hard link
+in the sources it moves, and a file or sources directory it would unlink or
+move that a base it knows reaches through a link
 (``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). Its
 rewrites of ``--release``, ``manifests/**/*.yaml`` and ``SIGNING-COMMANDS.md``
 follow links and are not guarded (the threat model's stated limit 9), and a
