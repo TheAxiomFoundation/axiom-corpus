@@ -474,9 +474,24 @@ Apply `20260927110000` by hand, as `postgres`, at a time of low traffic:
 
 A later cut of a layered line carries every base scope of its predecessor
 unchanged. A shared composer builds new cuts that way. The selector lineage
-check reports a cut that does not. The scripts that cut, write or sign scope
-artifacts leave alone every scope a tracked selector marks as a base, and
-refuse one named as a primary scope.
+check reports a cut that does not. Dedup
+(`scripts/deduplicate_release_selector.py`), consolidation
+(`scripts/consolidate_release_scopes.py`), composition
+(`scripts/compose_scope_versions.py`), repair
+(`scripts/repair_plan_cascade_self_containment.py`), the CA composite builder
+(`scripts/build_ca_rulespec_composite_scope.py`), the composer
+(`compose_successor`) and the signer (`scripts/sign_release_scopes.sh`) leave
+alone a scope that a selector they read marks as a base, and refuse one named
+as a primary scope. The threat model at the end of this section defines what
+each reads: the checkouts whose committed selectors count, the selectors a run
+is given, and the artifact paths it checks. Its stated limits list what lies
+outside that. Other scripts that rewrite a scope in place have no layer check
+yet: `scripts/self_contain_usc_scope.py`,
+`scripts/slim_us_recovery_statutes.py`,
+`scripts/repair_us_release_source_references.py`, `scripts/recover_ingest.py`,
+`scripts/recover_ingest_batch.py` and the extract writer in
+`src/axiom_corpus/corpus/usc.py`. Don't run them on a base scope; #<follow-up>
+tracks their guard.
 
 **Composing a cut.** `axiom_corpus.corpus.successors.compose_successor` builds
 a successor's `ReleaseManifest` from its predecessor's. Each change names
@@ -511,22 +526,37 @@ Replacing a base is a reviewed release decision, which the composer does not
 make. The lineage baseline records it under `base_replacements`.
 
 The description must name the predecessor. The lineage check takes the first
-tracked selector a description names as the cut's predecessor
-([Selector lineage](release-gate-policy.md#selector-lineage)). The composer
-resolves the description against the tracked selector names and the
-predecessor's, as the check does, and refuses it unless the first name it
-finds is the predecessor. It reads the names from `releases_dir`, the
-`manifests/releases` of the checkout the cut is committed to, and without it
-from the checkout the module is imported from. That directory must hold the
-predecessor's selector as given, and every `*.json` entry in it must be a
-file. Otherwise the call refuses, and a missing directory or one with no
-selector raises `FileNotFoundError`. A `tracked` argument replaces the names: a
-copy installed outside a checkout must pass it or `releases_dir`, and
-`tracked=()` checks the predecessor's name alone. When a cut adds or replaces a
-primary scope, the composer also reads the tracked base scopes from the same
-directory, unless `tracked_bases` replaces them. Both are read when the call
-runs, so a selector the destination gains later is not seen; the lineage check
-then takes the first tracked name the description gives.
+tracked selector a description names as the cut's predecessor ([Selector
+lineage](release-gate-policy.md#selector-lineage)). The composer resolves the
+description against the tracked selector names and the predecessor's, as the
+check does, and refuses it unless the first name it finds is the predecessor.
+It reads the names from `releases_dir`, the `manifests/releases` of the
+checkout the cut is committed to, and without it from the checkout the module
+is imported from. A tracked selector is one committed at HEAD: when
+`releases_dir` is a checkout's `manifests/releases`, the composer reads the
+selectors committed there, so a file the working tree hides (a sparse checkout,
+`skip-worktree`, an unstaged deletion or edit) still counts as committed, and
+an untracked or only staged file does not. Any other directory, inside a
+checkout or not, is read from disk as given. The directory the names come from
+must hold the predecessor's selector as given, and every `*.json` entry in it
+must be a file. Otherwise the call refuses, and a missing directory or one with
+no selector raises `FileNotFoundError`. A `tracked` argument replaces the
+names: a copy installed outside a checkout must pass it or `releases_dir`, and
+`tracked=()` checks the predecessor's name alone. A name already committed in
+that directory is accepted only for a cut that reproduces the committed file
+byte for byte. Otherwise the composer refuses, because a tracked selector is
+never rewritten. Cut a chain one commit at a time. With the default directory,
+or a `releases_dir` that is a checkout's, a cut whose predecessor's selector is
+not yet committed is refused (`commit the predecessor's selector first`):
+commit `cut1`, then cut `cut2` from it. When a cut adds or replaces a primary
+scope, the composer also reads the tracked base scopes from the same directory,
+unless `tracked_bases` replaces them. The names, the bases and the committed
+file the byte rule compares with are all read when the call runs, from the
+checkout `releases_dir` names, or from the checkout the module is imported
+from. A copy imported from one checkout and used for a cut in another, without
+`releases_dir`, reads the wrong selectors and compares with the wrong file;
+pass `releases_dir`, or `tracked` (a tracked name with no file to compare with
+is then refused).
 
 **Rendering.** `render_selector` returns the selector text a new cut commits.
 Keys are sorted at every level, with a two-space indent, JSON escapes for
@@ -609,74 +639,325 @@ file, to the same rules: keyed by its own selector and pair, with `replaced_by`
 in that pair. The tracked baseline has no `base_replacements` section, and the
 loader reads an absent section as empty.
 
-**Dedup.** `scripts/deduplicate_release_selector.py` leaves base scopes alone.
-It never opens or cuts a base scope the target declares. Before it opens any
-artifact, it refuses a target that selects, as a primary scope, a scope a
-tracked selector marks as a base. On the command line it reads the tracked
-selectors of the checkout holding `--corpus`; called as a function, its
-`releases_dir` defaults to the script's own checkout. For a citation path both
-layers of a pair carry, serving picks the primary row, so a primary row over a
-base row is layering, not a duplicate. Primary scopes alone compete for a
-citation path. The target selector must carry every canonical scope in the same
-layer. A canonical base carried as a primary scope, or a canonical primary
-carried as a base, is refused as an omitted canonical scope. The report lists
-the base scopes the run left untouched under `untouched_base_scopes`.
+**Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
+scope the target declares or a tracked selector it reads marks. It never opens
+or cuts a base scope the target declares. Before it opens any artifact, it
+refuses a target that selects, as a primary scope, a scope a tracked selector
+it reads marks as a base. On the command line it reads the tracked selectors of
+the checkout `resolver.cli_repo` finds from `--corpus`; called as a function,
+those of `releases_dir`, which defaults to the script's own checkout. It also
+reads the tracked selectors of the working directory's checkout (on the command
+line), of the checkouts that physically hold the two selector files or a target
+scope's artifacts, and of each checkout the resolver recognises that holds a
+link at `data`, `data/corpus` or below on those paths as dedup spells them.
+Before it opens any artifact, it refuses an artifact that resolves to another
+scope's path, an added primary's file that shares its inode with another path,
+a link at those places that leads into no checkout, and an added primary's file
+that a base it knows reaches through a link. To share a corpus kept outside
+every checkout, make that directory part of an axiom-corpus checkout. A
+checkout outside that list, such as one whose own `data/corpus` links into the
+corpus dedup uses, is not read; the threat model's stated limits list such
+cases. For a citation path both layers of a pair carry, serving picks the
+primary row, so a primary row over a base row is layering, not a duplicate.
+Primary scopes alone compete for a citation path. The target selector must
+carry every canonical scope in the same layer. A canonical base carried as a
+primary scope, or a canonical primary carried as a base, is refused as an
+omitted canonical scope. The report lists the base scopes the run left
+untouched under `untouched_base_scopes`.
 
-**Consolidation, composition and repair.** Three scripts write new scope
-versions, and each refuses a base scope before it writes a new version or
-moves, rewrites or unlinks an artifact:
+**Consolidation, composition and repair.** Four scripts write new scope
+versions or rewrite one in place. Each refuses a base scope it knows before it
+writes a new version or moves, rewrites or unlinks an artifact:
 
 - `scripts/consolidate_release_scopes.py` refuses a source or target scope that
-  a tracked selector marks as a base, and a jurisdiction, document class or
-  version a selector could not spell (a lowercase letter or digit followed by
-  lowercase letters, digits, `.`, `_` and `-`). Artifact paths strip whitespace
-  and slashes and rewrite `:` and `\`, and a case-insensitive filesystem folds
-  case, so `v `, `v/` or `V` would otherwise name the files of `v`. It refuses
-  before it fetches, reads or writes anything.
+  a tracked selector it reads marks as a base, and a jurisdiction, document
+  class or version a selector could not spell (a lowercase letter or digit
+  followed by lowercase letters, digits, `.`, `_` and `-`). Artifact paths
+  strip whitespace and slashes and rewrite `:` and `\`, and a case-insensitive
+  filesystem folds case, so `v `, `v/` or `V` would otherwise name the files of
+  `v`. It refuses before it fetches, reads or writes any scope artifact.
 - `scripts/compose_scope_versions.py` refuses a base constituent or target, and
   a misspelled name, in the same way.
+- `scripts/build_ca_rulespec_composite_scope.py` refuses a base scope in its
+  selector and consolidates through `consolidate_release_scopes.py`. It refuses
+  to promote program roots in place in a scope that a tracked selector it reads
+  marks as a base, in a name a selector could not spell, or when a file
+  promotion rewrites is also the provisions, inventory or coverage of a base it
+  knows, through a link.
 - `scripts/repair_plan_cascade_self_containment.py` refuses to repair a scope,
   or to write a new scope, that the release selector it repairs or a tracked
-  selector marks as a base, and a scope name a selector could not spell. It
-  must read the release's scopes to plan the repair, so these refusals come
-  after it fetches and reads every scope the release selects, and before its
-  first move, rewrite or unlink.
+  selector it reads marks as a base, and a scope name a selector could not
+  spell. It also refuses a repaired scope's new artifact that already exists; a
+  link or a shared file in the sources it moves; and a file or sources
+  directory it would unlink or move that a base it knows reaches through a link
+  (the base's provisions, inventory, coverage, ingest manifest, or a link in
+  its sources). It refuses a `--report` path that resolves into the corpus,
+  lock or selector places of `--repo`, of the checkout that physically holds
+  the path, or of a checkout that holds a link on it; that names an input; that
+  is a link (a dangling one included), a directory, a shared file or anything
+  but a regular file; or that holds a file this script did not write (anything
+  but a previous report). `--report /dev/null` is refused: the report has no
+  "drop" mode. It checks the report path before it reads `--release` or fetches
+  anything, runs the kind and content checks again just before it writes the
+  report, and writes the report to a temporary file that replaces the path, so
+  it never writes through a link. Its rewrites of `--release`,
+  `manifests/**/*.yaml` and `SIGNING-COMMANDS.md` are not guarded. It must read
+  the release's scopes to plan the repair, so its scope and artifact refusals
+  come after it fetches and reads every scope the release selects, and before
+  its first move, rewrite or unlink.
 
 On the command line, consolidation and composition read the
-`manifests/releases` of the checkout holding `--base` (the corpus CLI's rule,
-`resolver.cli_repo`), and stop when neither `--base` nor the working directory
-is in a checkout; repair reads `--repo`'s. Called as functions, the first two
-take `releases_dir`, which defaults to the script's own checkout. All three
-read the tracked base scopes with `tracked_base_scopes`, which loads every
-`*.json` selector in that directory and stops on one that does not load, on an
-entry that is not a file, and on a directory with no selector. Corpus locks
-carry no layer, so the tracked selectors are the record of which scopes are
-bases. Known limit: a base becomes known to these scripts once a tracked
-selector marks it. Until then they treat it as any other scope. Commit the
-selector of a cut that adds a base before running any of them on that scope.
+`manifests/releases` of the checkout `resolver.cli_repo` finds from `--base`
+(the corpus CLI's rule), and stop when neither `--base` nor the working
+directory is in a checkout; repair reads `--repo`'s. Each also reads the
+tracked selectors of the working directory's checkout, of the checkouts that
+physically hold the artifact paths it reads or writes, and of each checkout the
+resolver recognises that holds a link on those paths as it spells them; repair
+also those of the checkout that physically holds `--release`, and the bases
+`--release` marks. A checkout outside that list is not read (see the threat
+model). Called as functions, the first two take `releases_dir`, which defaults
+to the script's own checkout. All three read the tracked base scopes with
+`tracked_base_scopes`, which loads every `*.json` selector committed at HEAD in
+that checkout (or, for any other directory, on disk) and stops on one that does
+not load, on an entry that is not a file, and on a directory with no selector.
+Corpus locks carry no layer, so the tracked selectors are the record of which
+scopes are bases. Known limit: a base becomes known to these scripts once a
+tracked selector of a checkout they read marks it. Until then they treat it as
+any other scope. Commit the selector of a cut that adds a base before running
+any of them on that scope. A selector that is only on disk or only staged does
+not count; a selector main committed after your branch point counts only once
+you merge or rebase main; and a checkout these scripts do not read, for example
+a worktree whose `data/corpus` links into the corpus they use, counts only when
+you run them from it or through its link.
 
 **Signing.** `scripts/sign_release_scopes.sh` signs the draft's primary scopes
 that the predecessor lacks. It skips a base scope the predecessor also has as a
-base. It exits 1, before it stages, commits or signs anything, when:
+base. The predecessor argument must be the committed file of the selector the
+draft names first in its description, the selector the lineage check takes. The
+script exits 1 when the draft names no tracked selector, when the file differs
+from that selector as committed at HEAD, or, when HEAD has a merge base with
+`origin/main` or `main` (as of the last fetch), when that selector is at none
+of those merge bases with the same bytes. With no such merge base, only the
+HEAD rule applies, so a predecessor first committed on the release branch
+passes. It exits 1, before it stages, commits or signs anything, when:
 
+- a selector is not a JSON object, has no list of scopes, or gives a scope that
+  is not an object;
 - either selector spells a part of a scope in a way a selector cannot, or lists
-  a scope twice (this check runs first, and the run reports only its lines);
+  a scope twice (this check and the one above run first, and the run reports
+  only their lines);
 - the draft has a base scope that the predecessor lacks;
 - the draft has a base scope that the predecessor has as a primary scope;
 - the draft has a primary scope that the predecessor has as a base;
 - either selector gives a scope a `layer` other than `"base"`;
-- the draft has a primary scope that a tracked selector under
-  `manifests/releases` marks as a base.
+- the draft has a primary scope that a selector committed at HEAD under
+  `manifests/releases` marks as a base;
+- either selector does not load with the selector parser
+  (`ReleaseManifest.load`), after the layer checks.
 
-It names every such scope on stderr, one line each. A base the draft leaves out
-does not stop the script. The lineage check reports it as a dropped base, or as
-a dropped pair when the cut drops the pair whole. For a base the predecessor
-does not carry, the message says that "a base scope enters through its restore
-manifest". The restore procedure is not documented yet. It lands with the
-restoration work in
+It names every such scope on stderr, one line each. The script reads the
+selectors in the project environment (`uv run python`). A base the draft leaves
+out does not stop the script. The lineage check reports it as a dropped base,
+or as a dropped pair when the cut drops the pair whole. For a base the
+predecessor does not carry, the message says that "a base scope enters through
+its restore manifest". The restore procedure is not documented yet. It lands
+with the restoration work in
 [#728](https://github.com/TheAxiomFoundation/axiom-corpus/issues/728), which
 the message cites. `compose_successor`'s `add_base` puts a new base into a
 selector, but a draft that adds a base cannot go through this script.
+
+#### Threat model
+
+The offline checks in dedup, consolidation, composition, repair, the CA
+builder, the composer and the signer guard against mistakes, not against
+someone who means to get around them. They are not a defence against rewritten
+git history, edits made to the checkout while a tool runs, or a deliberate
+bypass. A tool refuses to change a scope, or to select it as a primary scope,
+when a selector it reads marks that scope as a base, at the artifact paths it
+checks. The paragraphs below define which checkouts, selectors and paths those
+are.
+
+**Terms.**
+
+- A *checkout* is a git working tree whose HEAD commits at least one
+  `manifests/releases/*.json`. The checkout that physically holds a path, and
+  the working directory's checkout, are found with
+  `git rev-parse --show-toplevel`, with `GIT_DIR`, `GIT_WORK_TREE`,
+  `GIT_COMMON_DIR` and `GIT_INDEX_FILE` ignored; markers on disk play no part.
+- A *tracked selector* of a checkout is a `*.json` file committed at HEAD under
+  its `manifests/releases`. A selectors directory that is not a checkout's
+  `manifests/releases` (a `releases_dir` elsewhere, inside a checkout or not)
+  is read from disk as given.
+- A checkout's *guarded places* are `data`, `data/corpus`,
+  `data/corpus/<artifact class>` and every path below them.
+- *Main*, for the signer and for the layer-conflict remedy, means the merge
+  bases of HEAD with `origin/main` and with `main`, as of the last fetch.
+
+**Which checkouts a tool reads.** A tool reads the tracked selectors of these
+checkouts and of no other:
+
+1. The command-line checkout: the one `resolver.cli_repo` finds from `--corpus`
+   (dedup) or `--base` (composition, consolidation and the CA builder), by the
+   resolver's rules. Through a link the resolver recognises, that is the
+   checkout holding the link; otherwise it is the checkout the path resolves
+   into, or the repository an exported `GIT_WORK_TREE` names (limit 11). Repair
+   reads `--repo`. A function caller names the checkout with `releases_dir`;
+   without it, each script reads its own checkout, and the composer the
+   checkout the module is imported from (limit 12). The composer reads only
+   this checkout (or takes `tracked` instead), and the signer only the checkout
+   it runs in.
+2. On the command line of dedup, consolidation, composition, repair and the CA
+   builder, the working directory's checkout.
+3. The checkout that physically holds each of the run's scope artifact paths
+   (below), each of dedup's two selector files, and repair's `--release`.
+4. Each checkout that holds a link on one of those paths, or on the working
+   directory, as the tool spells it: a symlink at one of its guarded places
+   that the spelled path passes through. Such a checkout is found by the
+   resolver's rules, which recognise a checkout by `src/axiom_corpus` or
+   `.axiom/corpus-locks` on disk and follow any inherited `GIT_*` variables
+   (limit 11).
+
+**Which selectors count.** The tracked selectors of those checkouts, and the
+selectors the run itself is given: dedup's canonical and target selectors,
+repair's `--release`, the CA builder's selector, and the signer's draft and
+predecessor. A base is known to a tool once one of these marks it.
+
+**Which artifact paths a tool checks.**
+
+1. The run's own scope artifact paths, spelled through the corpus the tool
+   uses: for dedup, the provisions, inventory and coverage of every target
+   scope; for composition and consolidation, the inventory, provisions and
+   sources of each source version and of the target, and the target's coverage;
+   for repair, the coverage, inventory, provisions, sources and ingest manifest
+   of each scope it repairs and of each new scope; for CA promotion, its
+   inventory, provisions and coverage. Each must resolve to a path that ends in
+   its own artifact kind, jurisdiction, document class and version. A link at a
+   guarded place on it must lead into a checkout; to share a corpus kept
+   elsewhere, make that directory part of an axiom-corpus checkout. Each file
+   dedup or CA promotion rewrites in place, and each file in the sources repair
+   moves, must have one link. Repair also refuses a new scope's path that
+   already exists and a symlink in the sources it moves.
+2. For dedup, repair and CA promotion, the artifact paths of every base the
+   tool knows, in the corpus it uses: the base's provisions, inventory and
+   coverage, and for repair also its ingest manifest, its sources directory and
+   every link below it. None may lead, through a symlink, a directory alias or
+   a hard link, to a file or directory the tool rewrites, moves or unlinks.
+3. Repair's `--report` path. Before the fetch, it must not resolve into the
+   corpus, lock or selector places of `--repo`, of the checkout that physically
+   holds it, or of a checkout that holds a link on it; it must not be the
+   `--release` or `--conflicts` file; and it must be absent, or a regular file
+   with one link that holds a previous report of this script. Just before the
+   write the last rule runs again, and the report replaces the path without
+   following a link. `/dev/null` is not a regular file, so it is refused: the
+   report has no "drop" mode.
+4. The signer's predecessor argument: byte for byte the committed selector the
+   draft names first in its description, and, when HEAD has a merge base with
+   main, at one of those merge bases with the same bytes.
+5. A composer cut under a tracked selector's name: byte for byte that committed
+   file.
+
+##### Not checked (stated limits)
+
+Each limit lies outside one part of the definition above, named in brackets.
+
+1. [Compared] Whether a scope's bytes match its corpus lock or its signed
+   ingest manifest.
+2. [Checkouts] A checkout outside the four the definition names, such as a
+   corpus copied to a plain directory with no link.
+3. [Selectors] A base that no selector the tool reads marks yet.
+4. [Selectors] A base that main committed after the checkout's branch point.
+   Each tool reads the HEAD of the checkouts it finds; merge or rebase main
+   first.
+5. [Selectors] A selector that is staged but not committed. Commit it first.
+6. [Selectors] A commit on the branch that deletes a tracked selector marking a
+   base. From that commit on, the base no longer counts.
+7. [Compared] That a tracked selector was never edited after its cut. Only the
+   composer refuses a rewrite under the cut's own name, and only the signer
+   compares its predecessor with main; the CI lineage guard sees an edit of a
+   pinned selector only.
+8. [Paths] Hard links on paths a tool only reads: the sources of composition
+   and consolidation, and dedup's canonical files and base paths.
+9. [Paths] Rewrites outside the scope artifacts: the signer's writes, and
+   repair's rewrites of its `--release` selector, `manifests/**/*.yaml` and
+   `SIGNING-COMMANDS.md`, which follow links and write into shared files.
+10. [Tools] Other scripts that rewrite a scope in place:
+    `scripts/self_contain_usc_scope.py`,
+    `scripts/slim_us_recovery_statutes.py`,
+    `scripts/repair_us_release_source_references.py`,
+    `scripts/recover_ingest.py`, `scripts/recover_ingest_batch.py` and the
+    extract writer in `src/axiom_corpus/corpus/usc.py`. They have no layer
+    check (#<follow-up>).
+11. [Checkouts] A checkout that holds a link but that the resolver does not
+    recognise: a sparse checkout without `src/axiom_corpus` and
+    `.axiom/corpus-locks`, or any checkout while `GIT_DIR` and `GIT_WORK_TREE`
+    are exported to another repository. Such a link counts as no link, so that
+    checkout's selectors are read only when it is also the working directory's
+    checkout, or the one that physically holds a path the tool reads, its
+    selector files included. On the command line, `cli_repo` then returns the
+    checkout the link leads into, or the repository `GIT_WORK_TREE` names, not
+    the checkout given.
+12. [Checkouts] Called as functions, the scope tools default `releases_dir` to
+    the script's own checkout, and `compose_successor`, its byte rule included,
+    reads the checkout the module is imported from. A caller that works on
+    another checkout passes `releases_dir` (or, for the composer, `tracked`).
+13. [Compared] Drop and first-cut records in a `LineageBaseline` that code
+    builds: one whose selector or predecessor is absent and unpinned is
+    skipped. The baseline file's loader requires both pins; in memory, only
+    base replacements get the loader's checks.
+14. [Paths] A repair `--report` path that does not exist yet, lies outside
+    every checkout, and is where a link of another checkout leads, or where a
+    link deeper than `data/corpus/<artifact class>` (coverage, inventory,
+    provisions or sources) of `--repo` leads. The report creates a file where
+    that checkout expects an artifact it has not fetched; an existing file is
+    protected by the content rule.
+15. [Checkouts, paths] A link held elsewhere that leads into the paths a tool
+    uses. A tool knows a base only once a selector it reads marks it, and it
+    reads the selectors of the checkouts the definition names. A checkout whose
+    own `data` or `data/corpus` link leads into the corpus a tool uses is not
+    one of them unless it is the working directory's checkout or holds a
+    selector file the tool reads: for example, a worktree whose `data/corpus`
+    links to the main checkout's while the tool runs on the main checkout. A
+    tool also compares base artifact paths only in the corpus it uses, so a
+    file elsewhere that links to a file the tool rewrites is not seen. Run the
+    tool from the checkout that commits the base, or through its link; commit
+    and merge a base's selector before others run tools over that corpus.
+16. [Selectors, other readers] Three other readers of tracked selectors read
+    the working tree, not HEAD: `selector_lineage.load_tracked_selectors` (the
+    CI lineage guard's reader), `release_policy.selectors_selecting`, and, once
+    #1001 lands, `scripts/check_release_gate.py`'s `_provenance_check`. The CI
+    guard runs in a full checkout, where the working tree and HEAD agree; in a
+    sparse or edited checkout these readers miss a hidden selector and count an
+    untracked one.
+17. [Main] Main as the signer and the layer-conflict remedy see it: the merge
+    bases of HEAD with `origin/main` and with `main`, as of the last fetch. A
+    selector main gained after the last fetch is at neither; fetch and merge
+    main first. When neither ref has a merge base with HEAD, the signer checks
+    only that its predecessor is committed at HEAD and named first, so a
+    predecessor first committed on the release branch passes; the remedy then
+    names no selector.
+18. [Paths] A base artifact that leads, through a link, to a path where a tool
+    creates a new file: the targets of composition and consolidation, and the
+    new scope versions repair writes. Such a link dangles until the tool
+    creates the file, and these tools compare no base path with what they
+    create.
+
+Later checks enforce what these cannot:
+
+- The CI lineage guard (`tests/test_selector_lineage_repository.py`, part of
+  the required `test (3.14)` check) reads every selector of the pull request's
+  full checkout. It fails on a dropped base, a layer change or a layer conflict
+  that no baseline record allows, and on a pinned selector whose digest changed
+  (the digest leaves out the description,
+  `src/axiom_corpus/release/manifest.py:187-196`). It does not see a rewrite of
+  an unpinned selector, nor a description-only edit of a pinned one.
+- The activation gate (`scripts/check_release_gate.py`, once #1001 lands)
+  compares an incoming release with the active one before activation: cut-plan
+  provenance, base carry-forward and base-only pairs.
+- Publication refuses a released triple whose artifacts differ from the
+  published ones (`scripts/publish_corpus.py:689-696`), so a local rewrite of a
+  released base cannot be published.
+- In lock mode, `guard-ingested` rejects tracked corpus artifacts in a pull
+  request (`src/axiom_corpus/corpus/ingest_manifests.py:424-429`).
 
 ## Commands
 

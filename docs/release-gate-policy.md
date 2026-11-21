@@ -412,7 +412,12 @@ through it. Each remedy prints the entry with only the `selector_digests` pins
 the baseline lacks. `tests/test_selector_lineage_repository.py` builds each
 kind of finding on a copy of main, and on copies where main has moved on,
 follows each option its remedy prints, and requires the check and the freeze
-test to pass afterwards.
+test to pass afterwards. A layer conflict's remedy addresses only selectors
+that main does not have at the merge bases of HEAD with `origin/main` and
+`main` (as of the last fetch) and that the baseline does not pin, or asks to
+undo a change to a pinned one. When neither merge base resolves, the remedy
+names no selector and says to change only the one this change cut. Following it
+leaves every selector main tracks byte for byte.
 
 ## Content check
 

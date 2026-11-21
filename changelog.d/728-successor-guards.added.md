@@ -19,5 +19,22 @@ composition and dedup read the tracked selectors of the checkout holding
 `--base` or `--corpus`. `scripts/sign_release_scopes.sh` stops before it stages
 anything when either selector misspells a scope or lists one twice, or when a
 draft adds a base scope, moves a scope between layers, misspells a layer or
-selects a tracked base as a primary scope. See "Successor cuts" in
+selects a tracked base as a primary scope. Tracked selectors are read as
+committed at HEAD. Dedup, consolidation, composition, repair and the CA builder
+also read the selectors of the working directory's checkout, of the checkouts
+that physically hold their artifacts, and of each checkout the resolver
+recognises that holds a link on the paths they use. They refuse an artifact
+that resolves to another scope's path, a rewritten file with another hard link,
+and a corpus link into no checkout; dedup, repair and CA promotion also refuse
+to rewrite, move or unlink a file that a base they know reaches through a link.
+Repair refuses a report path in such a checkout's corpus, lock or selector
+places, one that is not a regular file (`/dev/null` included), and one over a
+file it did not write, and never writes the report through a link. The composer
+refuses to rewrite a tracked selector. The CA builder refuses a base in its
+selector and in-place promotion of a base. The signer checks that its
+predecessor is the committed selector the draft names first and, when a merge
+base with main exists, that one of those merge bases has it unchanged; it loads
+both selectors with the selector parser. The threat model in
+`docs/named-release-publication.md` defines what these checks read and lists
+what they do not check. See "Successor cuts" in
 `docs/named-release-publication.md`.
