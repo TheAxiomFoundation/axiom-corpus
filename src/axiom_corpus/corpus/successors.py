@@ -36,6 +36,13 @@ selectors. Other tracked selectors use other layouts, so the builders under
 such as on a command line, and refuses a spelling no selector can hold, so a
 comparison against the tracked bases is exact.
 
+``guard_scope_artifacts`` checks the artifact paths a scope tool reads or
+writes before it opens any: an artifact that resolves to another artifact's
+path, a link at a checkout's guarded place that leads into no checkout, and a
+rewritten file with more than one link are refused. It returns the
+``manifests/releases`` of the other checkouts holding those paths, found with
+``checkouts_holding``, so the tool reads their tracked bases too.
+
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
 and a directory that holds no selector file is refused rather than read as
@@ -63,7 +70,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
     ScopeKey,
 )
-from axiom_corpus.corpus.resolver import _existing_ancestor
+from axiom_corpus.corpus.resolver import _existing_ancestor, _standing_places
 from axiom_corpus.corpus.selector_lineage import declared_predecessor
 
 # The tracked selectors of the checkout this module is imported from.
@@ -599,6 +606,139 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
         release = ReleaseManifest.loads(text, manifest_path=releases_dir / f"{name}.json")
         bases.update(scope.key for scope in release.scopes if scope.is_base)
     return frozenset(bases)
+
+
+def checkouts_holding(
+    path: Path, *, memo: dict[Path, Path | None] | None = None
+) -> tuple[frozenset[Path], Path | None]:
+    """The checkouts that hold ``path``: those whose guarded place it stands at below a
+    symlink (the resolver's ``_standing_places``), and the one it physically resolves into.
+
+    A checkout here is a git working tree whose HEAD commits a
+    ``manifests/releases/*.json``. The physical holder is the git toplevel of
+    the nearest existing directory of ``path``'s realpath, found with the
+    ``GIT_*`` location variables ignored and accepted only when its HEAD lists
+    such a selector; markers on disk play no part, so a sparse checkout
+    without ``src/`` and ``.axiom/`` counts, while an unrelated git repository
+    and a plain directory do not. A link holder is a checkout at whose guarded
+    place (``data``, ``data/corpus``, ``data/corpus/<artifact class>`` or below)
+    ``path``, as spelled, passes a symlink. Link holders share the resolver's
+    link walk and are found by its rules: a checkout it recognises by
+    ``src/axiom_corpus`` or ``.axiom/corpus-locks`` on disk, with any inherited
+    ``GIT_*`` variables followed. Only the path as given is walked, so a
+    checkout whose own link leads to this path, and a link the resolver does
+    not recognise, are not found (the threat model's stated limits 15 and 11).
+    ``memo`` keeps physical holders by directory across calls. An ``OSError``
+    from git, such as no ``git`` on ``PATH``, propagates.
+    """
+    spelled = path if path.is_absolute() else Path.cwd() / path
+    physical = Path(os.path.realpath(spelled))
+    places, _ = _standing_places(spelled, physical, None)
+    return frozenset(checkout for checkout, _ in places), _physical_holder(physical, memo)
+
+
+def _physical_holder(physical: Path, memo: dict[Path, Path | None] | None) -> Path | None:
+    """The checkout that holds ``physical``, by git toplevel and HEAD, or None."""
+    directory = _existing_ancestor(physical)
+    if not directory.is_dir():
+        directory = directory.parent
+    if memo is not None and directory in memo:
+        return memo[directory]
+    holder: Path | None = None
+    found = _git(directory, "rev-parse", "--show-toplevel")
+    if found.returncode == 0:
+        top = Path(os.fsdecode(found.stdout.rstrip(b"\n")))
+        listing = _git(
+            top, "ls-tree", "-z", "--full-tree", "--name-only", "HEAD", "--", f"{_SELECTORS_PATH}/"
+        )
+        if listing.returncode == 0 and any(
+            directory_name == _SELECTORS_PATH and filename.endswith(".json")
+            for directory_name, _, filename in (
+                os.fsdecode(entry).rpartition("/") for entry in listing.stdout.split(b"\0") if entry
+            )
+        ):
+            holder = top
+    if memo is not None:
+        memo[directory] = holder
+    return holder
+
+
+def guard_scope_artifacts(
+    paths: Iterable[Path],
+    *,
+    releases_dir: Path,
+    rewritten: Iterable[Path] = (),
+    holders_of: Iterable[Path] = (),
+) -> tuple[Path, ...]:
+    """Refuse aliased scope artifact paths and return the other holders' selector inventories.
+
+    ``paths`` are the scope artifact paths a tool reads or writes, spelled
+    through the corpus it uses; ``rewritten`` are the files among them it
+    rewrites in place. It opens no file and raises ``ValueError``, in order:
+
+    1. when a path resolves to a path whose last four parts (the artifact
+       kind or ``ingest-manifests``, jurisdiction, document class and version
+       file or directory) differ from its own: a symlink or a directory alias
+       makes it another scope's artifact;
+    2. when a path passes a link at a checkout's guarded place and resolves
+       into no checkout: no inventory can say what that directory holds, so
+       to share a corpus kept elsewhere, make that directory part of an
+       axiom-corpus checkout;
+    3. when a rewritten file has more than one link (a hard link).
+
+    It returns the ``manifests/releases`` of each checkout that
+    ``checkouts_holding`` finds for ``paths`` and for each path in
+    ``holders_of`` (such as the working directory or a selector file),
+    de-duplicated by realpath and sorted, leaving out ``releases_dir``.
+    Link holders are found by the resolver's rules and the physical holder by
+    HEAD; only the paths as given are walked, so a checkout whose own link
+    leads into these paths, and a link the resolver does not recognise, are
+    not found (the threat model's stated limits 15 and 11). The caller reads
+    each returned inventory with the same refusal it applied to
+    ``releases_dir``.
+    """
+    memo: dict[Path, Path | None] = {}
+    holders: list[Path] = []
+    for path in paths:
+        spelled = path if path.is_absolute() else Path.cwd() / path
+        physical = Path(os.path.realpath(spelled))
+        if physical.parts[-4:] != spelled.parts[-4:]:
+            raise ValueError(f"scope artifact resolves to another path: {spelled} -> {physical}")
+        links, physical_holder = checkouts_holding(spelled, memo=memo)
+        if links and physical_holder is None:
+            raise ValueError(
+                "scope artifact leads through a link outside every axiom-corpus checkout: "
+                f"{spelled} -> {physical}; no tracked selectors say whether it is a base"
+            )
+        holders.extend(links)
+        if physical_holder is not None:
+            holders.append(physical_holder)
+    for path in rewritten:
+        spelled = path if path.is_absolute() else Path.cwd() / path
+        try:
+            status = os.stat(spelled)
+        except FileNotFoundError:
+            continue
+        if status.st_nlink > 1:
+            raise ValueError(
+                f"scope artifact shares its file with another path: {spelled} "
+                f"({status.st_nlink} links)"
+            )
+    for path in holders_of:
+        links, physical_holder = checkouts_holding(path, memo=memo)
+        holders.extend(links)
+        if physical_holder is not None:
+            holders.append(physical_holder)
+    seen = {os.path.realpath(releases_dir)}
+    inventories: list[Path] = []
+    for checkout in holders:
+        inventory = checkout / "manifests" / "releases"
+        real = os.path.realpath(inventory)
+        if real in seen:
+            continue
+        seen.add(real)
+        inventories.append(inventory)
+    return tuple(sorted(inventories, key=str))
 
 
 def refuse_tracked_bases_as_primary(
