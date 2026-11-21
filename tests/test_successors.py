@@ -868,6 +868,232 @@ def test_tracked_base_scopes_loads_every_tracked_selector() -> None:
     assert all(isinstance(key, tuple) and len(key) == 3 for key in bases)
 
 
+# A checkout's tracked selectors are the ones committed at HEAD, whatever its disk holds.
+
+HEAD_P: ScopeKey = ("us", "statute", "p")
+HEAD_B: ScopeKey = ("us", "regulation", "b")
+HEAD_Q: ScopeKey = ("us", "guidance", "q")
+
+
+def _payload(
+    name: str, scopes: tuple[tuple[ScopeKey, bool], ...], description: str | None = None
+) -> dict[str, object]:
+    """A selector mapping; each scope is ``(key, is_base)``."""
+    raw_scopes: list[dict[str, str]] = []
+    for key, is_base in scopes:
+        raw = {"jurisdiction": key[0], "document_class": key[1], "version": key[2]}
+        if is_base:
+            raw["layer"] = LAYER_BASE
+        raw_scopes.append(raw)
+    payload: dict[str, object] = {"name": name, "scopes": raw_scopes}
+    if description is not None:
+        payload["description"] = description
+    return payload
+
+
+HEAD_SELECTORS = {
+    "earlier": _payload("earlier", ((HEAD_P, False),)),
+    "pred": _payload("pred", ((HEAD_P, False),), "Successor to earlier."),
+    "layered": _payload("layered", ((HEAD_P, False), (HEAD_B, True)), "Successor to pred."),
+}
+
+
+def _write_payload(path: Path, payload: dict[str, object]) -> None:
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _clear_resolver_cache() -> None:
+    from axiom_corpus.corpus import resolver
+
+    resolver._repo_root_for_dir.cache_clear()
+
+
+@pytest.mark.parametrize(
+    ("layout", "expected"),
+    [
+        pytest.param("full", {HEAD_B}, id="full"),
+        pytest.param("sparse-hidden", {HEAD_B}, id="sparse-hidden"),
+        pytest.param("skip-worktree-removed", {HEAD_B}, id="skip-worktree-removed"),
+        pytest.param("unstaged-removal", {HEAD_B}, id="unstaged-removal"),
+        pytest.param("dirty-edit", {HEAD_B}, id="dirty-edit"),
+        pytest.param("untracked-scratch", {HEAD_B}, id="untracked-scratch"),
+        pytest.param("staged-uncommitted", {HEAD_B}, id="staged-uncommitted"),
+        pytest.param("cached-removal", {HEAD_B}, id="cached-removal"),
+        pytest.param("manifests-excluded", {HEAD_B}, id="manifests-excluded"),
+        pytest.param("standalone-inside-checkout", {HEAD_Q}, id="standalone-inside-checkout"),
+        pytest.param("linked-worktree", {HEAD_B}, id="linked-worktree"),
+        pytest.param("deleted-on-the-branch", set(), id="deleted-on-the-branch"),
+        pytest.param("git-env-dir-index", {HEAD_B}, id="git-env-dir-index"),
+        pytest.param("git-env-work-tree", {HEAD_B}, id="git-env-work-tree"),
+    ],
+)
+def test_tracked_selectors_are_read_as_committed_at_head(
+    make_checkout: Any,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    layout: str,
+    expected: set[ScopeKey],
+) -> None:
+    from tests.conftest import fixture_git
+
+    repo = make_checkout("repo", HEAD_SELECTORS)
+    releases = repo / "manifests" / "releases"
+    layered = releases / "layered.json"
+    read = releases
+    if layout == "sparse-hidden":
+        fixture_git(
+            repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/releases/layered.json"
+        )
+        _clear_resolver_cache()
+        assert not layered.exists()
+    elif layout == "skip-worktree-removed":
+        fixture_git(repo, "update-index", "--skip-worktree", "manifests/releases/layered.json")
+        layered.unlink()
+    elif layout in {"unstaged-removal", "git-env-dir-index", "git-env-work-tree"}:
+        layered.unlink()
+    elif layout == "dirty-edit":
+        _write_payload(layered, _payload("layered", ((HEAD_P, False),), "Successor to pred."))
+    elif layout == "untracked-scratch":
+        _write_payload(releases / "scratch.json", _payload("scratch", ((HEAD_P, True),)))
+    elif layout == "staged-uncommitted":
+        _write_payload(releases / "new.json", _payload("new", ((HEAD_Q, True),)))
+        fixture_git(repo, "add", "--", "manifests/releases/new.json")
+    elif layout == "cached-removal":
+        fixture_git(repo, "rm", "-q", "--cached", "manifests/releases/layered.json")
+        assert layered.exists()
+    elif layout == "manifests-excluded":
+        fixture_git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        _clear_resolver_cache()
+        assert not releases.exists()
+    elif layout == "standalone-inside-checkout":
+        read = repo / "scratch-releases"
+        read.mkdir()
+        _write_payload(read / "scratch.json", _payload("scratch", ((HEAD_Q, True),)))
+    elif layout == "linked-worktree":
+        fixture_git(repo, "worktree", "add", "-q", "../wt")
+        _write_payload(releases / "later.json", _payload("later", ((HEAD_Q, True),)))
+        fixture_git(repo, "add", "--", "manifests/releases/later.json")
+        fixture_git(repo, "commit", "-q", "-m", "Main commits a later base")
+        read = tmp_path / "wt" / "manifests" / "releases"
+    elif layout == "deleted-on-the-branch":
+        fixture_git(repo, "rm", "-q", "--", "manifests/releases/layered.json")
+        fixture_git(repo, "commit", "-q", "-m", "Delete the layered selector")
+    if layout.startswith("git-env"):
+        other = make_checkout("other", {"plain": _payload("plain", ((HEAD_P, False),))})
+        # Exported after every fixture git command, as a hook or a shell might.
+        monkeypatch.setenv("GIT_DIR", str(other / ".git"))
+        monkeypatch.setenv("GIT_INDEX_FILE", str(other / ".git" / "index"))
+        if layout == "git-env-work-tree":
+            monkeypatch.setenv("GIT_WORK_TREE", str(other))
+
+    assert successors.tracked_base_scopes(read) == frozenset(expected)
+
+
+@pytest.mark.parametrize(
+    "layout", ["committed-symlink", "committed-directory", "unborn-head", "git-missing"]
+)
+def test_tracked_selectors_refuse_what_head_cannot_hold_as_a_selector(
+    make_checkout: Any, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    from tests.conftest import fixture_git
+
+    if layout == "unborn-head":
+        repo = tmp_path / "unborn"
+        releases = repo / "manifests" / "releases"
+        releases.mkdir(parents=True)
+        for name, payload in HEAD_SELECTORS.items():
+            _write_payload(releases / f"{name}.json", payload)
+        fixture_git(repo, "init", "-q", "-b", "main")
+        fixture_git(repo, "add", "--", "manifests")
+        with pytest.raises(FileNotFoundError, match="Cannot list the selectors of"):
+            successors.tracked_base_scopes(releases)
+        return
+
+    repo = make_checkout("repo", HEAD_SELECTORS)
+    releases = repo / "manifests" / "releases"
+    if layout == "committed-symlink":
+        (releases / "zz-link.json").symlink_to("layered.json")
+        fixture_git(repo, "add", "--", "manifests/releases/zz-link.json")
+        fixture_git(repo, "commit", "-q", "-m", "Commit a link")
+        with pytest.raises(ValueError, match=r"zz-link\.json is not a selector file"):
+            successors.tracked_base_scopes(releases)
+    elif layout == "committed-directory":
+        (releases / "dir.json").mkdir()
+        (releases / "dir.json" / "x").write_text("x\n", encoding="utf-8")
+        fixture_git(repo, "add", "--", "manifests/releases/dir.json/x")
+        fixture_git(repo, "commit", "-q", "-m", "Commit a directory")
+        with pytest.raises(ValueError, match=r"dir\.json is not a selector file"):
+            successors.tracked_base_scopes(releases)
+    elif layout == "git-missing":
+        plain = tmp_path / "plain"
+        plain.mkdir()
+        _write_payload(plain / "layered.json", HEAD_SELECTORS["layered"])
+        empty = tmp_path / "no-git-here"
+        empty.mkdir()
+        monkeypatch.setenv("PATH", str(empty))
+        with pytest.raises(FileNotFoundError, match="git cannot read the checkout at"):
+            successors.tracked_base_scopes(releases)
+        # A directory in no checkout is read from disk without git.
+        assert successors.tracked_base_scopes(plain) == frozenset({HEAD_B})
+
+
+def test_the_composer_reads_committed_names_and_bases_in_a_sparse_checkout(
+    make_checkout: Any,
+) -> None:
+    from tests.conftest import fixture_git
+
+    repo = make_checkout("repo", HEAD_SELECTORS)
+    releases = repo / "manifests" / "releases"
+    fixture_git(
+        repo,
+        "sparse-checkout",
+        "set",
+        "--no-cone",
+        "/*",
+        "!/manifests/releases/layered.json",
+        "!/manifests/releases/earlier.json",
+    )
+    _clear_resolver_cache()
+    assert sorted(path.name for path in releases.iterdir()) == ["pred.json"]
+    predecessor = ReleaseManifest.load(releases / "pred.json")
+
+    with pytest.raises(SuccessorError, match="selects a tracked base scope as a primary scope"):
+        compose_successor(
+            predecessor,
+            name="next",
+            description="Successor to pred.",
+            add=[HEAD_B],
+            releases_dir=releases,
+        )
+    with pytest.raises(
+        SuccessorError, match="must name its predecessor pred before the tracked selector earlier"
+    ):
+        compose_successor(
+            predecessor,
+            name="next",
+            description="Compare earlier, successor to pred.",
+            add=[HEAD_Q],
+            releases_dir=releases,
+        )
+
+
+def test_a_checkout_without_the_committed_predecessor_says_commit_it_first(
+    make_checkout: Any,
+) -> None:
+    selectors = {name: HEAD_SELECTORS[name] for name in ("earlier", "layered")}
+    repo = make_checkout("repo", selectors)
+    releases = repo / "manifests" / "releases"
+    _write_payload(releases / "pred.json", HEAD_SELECTORS["pred"])
+    predecessor = ReleaseManifest.load(releases / "pred.json")
+
+    with pytest.raises(
+        SuccessorError, match="as given at HEAD of .*; commit the predecessor's selector first"
+    ):
+        compose_successor(
+            predecessor, name="next", description="Successor to pred.", releases_dir=releases
+        )
+
+
 # Canonical scope names: what a selector can spell, and nothing that only names its files.
 
 

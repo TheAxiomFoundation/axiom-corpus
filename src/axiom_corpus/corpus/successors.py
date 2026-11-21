@@ -8,17 +8,23 @@ scope for a pair that has none. Every base scope of the predecessor
 so a successor can neither omit a base nor change one. Replacing a base is a
 reviewed change that this module does not make.
 
+A tracked selector is a ``*.json`` file committed at HEAD under a checkout's
+``manifests/releases``; any other directory, inside a checkout or not, is read
+from disk as given. ``tracked_selector_texts`` and ``tracked_selector_text``
+read them, so a sparse checkout, a file hidden from disk, an edit, an
+untracked file and a staged one change nothing.
+
 ``compose_successor`` checks every requested change against the predecessor
 and raises ``SuccessorError`` for any it refuses. Unless the caller passes
 the tracked selector names, it reads them from ``releases_dir``, the
 ``manifests/releases`` of the checkout the cut is committed to, which
 defaults to ``DEFAULT_RELEASES_DIR``; that directory must hold the
-predecessor as given. It also refuses a new primary scope, added or a
-replacement, that a tracked selector marks as a base, so a base that another
-cut replaced cannot come back as primary. Unless the caller passes those
-bases as ``tracked_bases``, it reads them from the same directory, and only
-for a cut that adds or replaces a primary scope. It writes no file, so a
-refused cut leaves nothing behind.
+predecessor as given, committed at HEAD when it is a checkout's. It also
+refuses a new primary scope, added or a replacement, that a tracked selector
+marks as a base, so a base that another cut replaced cannot come back as
+primary. Unless the caller passes those bases as ``tracked_bases``, it reads
+them from the same directory, and only for a cut that adds or replaces a
+primary scope. It writes no file, so a refused cut leaves nothing behind.
 
 ``render_selector`` returns the selector text a new cut commits: keys sorted,
 a two-space indent and a final newline, the layout of
@@ -33,7 +39,9 @@ comparison against the tracked bases is exact.
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
 and a directory that holds no selector file is refused rather than read as
-holding no base. ``refuse_tracked_bases_as_primary`` refuses any of those
+holding no base. Only HEAD is read: a selector main committed after the
+checkout's branch point, a selector that is only staged, and one a commit on
+the branch deleted do not count. ``refuse_tracked_bases_as_primary`` refuses any of those
 bases that a selector selects as a primary scope; the composer and
 ``scripts/deduplicate_release_selector.py`` call it.
 """
@@ -41,6 +49,8 @@ bases that a selector selects as a primary scope; the composer and
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 from collections import Counter
 from collections.abc import Collection, Iterable, Mapping
 from pathlib import Path
@@ -53,10 +63,19 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
     ScopeKey,
 )
+from axiom_corpus.corpus.resolver import _existing_ancestor
 from axiom_corpus.corpus.selector_lineage import declared_predecessor
 
 # The tracked selectors of the checkout this module is imported from.
 DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[3] / "manifests" / "releases"
+# The variables that point git at another repository, index or working tree. A
+# hook or a shell may export them; the readers here ignore them, so git reads
+# the checkout that holds the directory it runs in.
+_GIT_LOCATION_VARIABLES = ("GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE")
+_SELECTORS_PATH = "manifests/releases"
+# The modes of a regular file in a git tree; a symlink (120000) and a
+# directory (040000) are not selector files.
+_SELECTOR_FILE_MODES = frozenset({"100644", "100755"})
 
 
 class SuccessorError(ValueError):
@@ -93,7 +112,8 @@ def _selector_files(releases_dir: Path) -> dict[str, Path]:
 
     Each ``*.json`` entry must be a file. A directory that is missing or holds
     no selector file raises ``FileNotFoundError``, since reading no selector
-    would report no name and no base.
+    would report no name and no base. This reads a directory that is not a
+    checkout's ``manifests/releases`` (``_checkout_of``) from disk.
     """
     if not releases_dir.is_dir():
         raise FileNotFoundError(f"Release selector directory not found: {releases_dir}")
@@ -107,30 +127,208 @@ def _selector_files(releases_dir: Path) -> dict[str, Path]:
     return files
 
 
+def _git(cwd: Path, *args: str, stdin: bytes | None = None) -> subprocess.CompletedProcess[bytes]:
+    """Run git in ``cwd`` without the inherited ``GIT_*`` location variables.
+
+    The output is captured and a non-zero exit is returned, not raised. An
+    ``OSError``, such as no ``git`` on ``PATH``, propagates to the caller.
+    """
+    environment = {
+        key: value for key, value in os.environ.items() if key not in _GIT_LOCATION_VARIABLES
+    }
+    return subprocess.run(
+        ["git", *args], cwd=cwd, env=environment, input=stdin, capture_output=True, check=False
+    )
+
+
+def _stderr(result: subprocess.CompletedProcess[bytes]) -> str:
+    return result.stderr.decode("utf-8", "replace").strip()
+
+
+def _checkout_of(releases_dir: Path) -> Path | None:
+    """Return the checkout whose ``manifests/releases`` ``releases_dir`` is, or None.
+
+    The checkout is the git toplevel of the nearest existing directory, and
+    ``releases_dir`` must be that toplevel's ``manifests/releases``, as the
+    same file or the same realpath. None means "read from disk": a standalone
+    directory, even one inside a checkout, is read as given. When git cannot
+    run in what looks like a checkout's ``manifests/releases`` (a ``.git``
+    entry two levels up), this raises ``FileNotFoundError`` rather than read
+    the disk, which may hide or add selectors.
+    """
+    probe = releases_dir if releases_dir.is_absolute() else Path.cwd() / releases_dir
+    # git runs from the nearest existing directory, found as the resolver finds it.
+    start = _existing_ancestor(probe)
+    if not start.is_dir():
+        start = start.parent
+    try:
+        result = _git(start, "rev-parse", "--show-toplevel")
+    except OSError as exc:
+        reason = str(exc)
+    else:
+        if result.returncode == 0:
+            top = Path(os.fsdecode(result.stdout.rstrip(b"\n")))
+            selectors = top / "manifests" / "releases"
+            if os.path.realpath(probe) == os.path.realpath(selectors):
+                return top
+            try:
+                if probe.exists() and os.path.samefile(probe, selectors):
+                    return top
+            except OSError:
+                pass
+            return None
+        reason = _stderr(result)
+    if probe.parts[-2:] == ("manifests", "releases") and (probe.parent.parent / ".git").exists():
+        raise FileNotFoundError(
+            f"git cannot read the checkout at {probe.parent.parent}, so its committed "
+            f"selectors cannot be listed: {reason}"
+        )
+    return None
+
+
+def _head_entries(top: Path, releases_dir: Path, path: str) -> list[tuple[str, str]]:
+    """Return ``(name, object id)`` for each selector file ``path`` lists at HEAD of ``top``.
+
+    Only direct entries of ``manifests/releases`` whose name ends in
+    ``.json`` count. One that is not a regular file in the tree, such as a
+    committed symlink or directory, raises ``ValueError``. A HEAD that cannot
+    be listed, an unborn one included, raises ``FileNotFoundError``.
+    """
+    listing = _git(top, "ls-tree", "-z", "--full-tree", "HEAD", "--", path)
+    if listing.returncode != 0:
+        raise FileNotFoundError(
+            f"Cannot list the selectors of {releases_dir} at HEAD of {top}: {_stderr(listing)}"
+        )
+    entries: list[tuple[str, str]] = []
+    for record in listing.stdout.split(b"\0"):
+        if not record:
+            continue
+        meta, _, raw_path = record.partition(b"\t")
+        mode, kind, oid = meta.decode("ascii").split(" ")
+        entry = os.fsdecode(raw_path)
+        directory, _, filename = entry.rpartition("/")
+        if directory != _SELECTORS_PATH or not filename.endswith(".json"):
+            continue
+        if mode not in _SELECTOR_FILE_MODES or kind != "blob":
+            raise ValueError(f"{top / entry} is not a selector file")
+        entries.append((filename.removesuffix(".json"), oid))
+    return entries
+
+
+def _read_blobs(top: Path, releases_dir: Path, oids: list[str]) -> list[str]:
+    """Return the UTF-8 text of each blob, in order, with one ``git cat-file --batch``."""
+    batch = _git(top, "cat-file", "--batch", stdin=b"".join(f"{oid}\n".encode() for oid in oids))
+    if batch.returncode != 0:
+        raise FileNotFoundError(
+            f"Cannot read the selectors of {releases_dir} at HEAD of {top}: {_stderr(batch)}"
+        )
+    output = batch.stdout
+    texts: list[str] = []
+    position = 0
+    for oid in oids:
+        end = output.index(b"\n", position)
+        header = output[position:end].split(b" ")
+        if len(header) != 3 or header[1] != b"blob":
+            raise FileNotFoundError(
+                f"Cannot read the selector blob {oid} of {releases_dir} at HEAD of {top}"
+            )
+        size = int(header[2])
+        texts.append(output[end + 1 : end + 1 + size].decode("utf-8"))
+        position = end + 1 + size + 1
+    return texts
+
+
+def _selector_texts(releases_dir: Path) -> tuple[Path | None, dict[str, str]]:
+    """Return the checkout ``releases_dir`` belongs to (or None) and its selector texts."""
+    top = _checkout_of(releases_dir)
+    if top is None:
+        return None, {
+            name: path.read_text(encoding="utf-8")
+            for name, path in _selector_files(releases_dir).items()
+        }
+    entries = _head_entries(top, releases_dir, f"{_SELECTORS_PATH}/")
+    if not entries:
+        raise FileNotFoundError(f"No release selector in {releases_dir} at HEAD of {top}")
+    texts = _read_blobs(top, releases_dir, [oid for _, oid in entries])
+    return top, {name: text for (name, _), text in zip(entries, texts, strict=True)}
+
+
+def tracked_selector_texts(releases_dir: Path) -> dict[str, str]:
+    """Return the text of every tracked selector in ``releases_dir``, by name.
+
+    A tracked selector is a ``*.json`` file committed at HEAD under the
+    checkout's ``manifests/releases``; any other directory, inside a checkout
+    or not, is read from disk as given. For a checkout, an entry that is not
+    a regular file at HEAD (a committed symlink or directory) raises
+    ``ValueError``, and a HEAD that cannot be listed or holds no selector
+    raises ``FileNotFoundError``. For another directory, one that is missing
+    or holds no selector file raises ``FileNotFoundError``, and a ``*.json``
+    entry that is not a file raises ``ValueError``.
+    """
+    return _selector_texts(releases_dir)[1]
+
+
+def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
+    """Return the text of the tracked selector ``name`` in ``releases_dir``, or None.
+
+    The caller validates ``name``. For a checkout's ``manifests/releases``
+    this is the file committed at HEAD, None when HEAD has no such file. For
+    any other directory it is the file on disk, None when nothing is there.
+    An entry that is not a selector file (a committed symlink or directory,
+    or on disk a directory or a dangling link) raises ``ValueError``.
+    """
+    top = _checkout_of(releases_dir)
+    if top is None:
+        path = releases_dir / f"{name}.json"
+        if not os.path.lexists(path):
+            return None
+        if not path.is_file():
+            raise ValueError(f"{path} is not a selector file")
+        return path.read_text(encoding="utf-8")
+    entries = _head_entries(top, releases_dir, f"{_SELECTORS_PATH}/{name}.json")
+    oids = [oid for stem, oid in entries if stem == name]
+    if not oids:
+        return None
+    return _read_blobs(top, releases_dir, oids[:1])[0]
+
+
 def _tracked_selector_names(releases_dir: Path, predecessor: ReleaseManifest) -> frozenset[str]:
-    """Return the selector names of ``releases_dir``, which must hold ``predecessor`` as given.
+    """Return the tracked selector names of ``releases_dir``, which must hold ``predecessor``.
 
     Reading no names would check the description against the predecessor's
     name alone, so a directory that is missing or holds no selector file
-    raises. A directory without the predecessor's file, or whose file loads to
-    another selector, belongs to another checkout or another state of this
-    one, so its names are not the ones the cut is checked against.
+    raises. A directory without the predecessor's selector, or whose selector
+    loads to another one, belongs to another checkout or another state of
+    this one, so its names are not the ones the cut is checked against. For a
+    checkout the names and the predecessor are read as committed at HEAD
+    (``tracked_selector_texts``), so an uncommitted predecessor is refused.
     """
     try:
-        files = _selector_files(releases_dir)
+        top, texts = _selector_texts(releases_dir)
     except FileNotFoundError as exc:
         raise FileNotFoundError(
             f"{exc}; pass tracked, the names of the tracked selectors, or releases_dir, "
             "the manifests/releases of the checkout the cut is committed to"
         ) from exc
-    path = files.get(predecessor.name)
-    if path is None or ReleaseManifest.load(path) != predecessor:
+    text = texts.get(predecessor.name)
+    if (
+        text is None
+        or ReleaseManifest.loads(text, manifest_path=releases_dir / f"{predecessor.name}.json")
+        != predecessor
+    ):
+        if top is not None:
+            raise SuccessorError(
+                f"{releases_dir} does not hold the predecessor {predecessor.name} as given "
+                f"at HEAD of {top}; commit the predecessor's selector first, or pass "
+                "releases_dir, the manifests/releases of the checkout the cut is committed "
+                "to, or tracked"
+            )
         raise SuccessorError(
             f"{releases_dir} does not hold the predecessor {predecessor.name} as given; "
             "pass releases_dir, the manifests/releases of the checkout the cut is "
             "committed to, or tracked"
         )
-    return frozenset(files)
+    return frozenset(texts)
 
 
 def canonical_scope_key(jurisdiction: str, document_class: str, version: str) -> ScopeKey:
@@ -195,15 +393,20 @@ def compose_successor(
     here rather than by the lineage check.
 
     With ``tracked`` left as ``None``, each call reads the tracked selector
-    names as the stems of ``releases_dir/*.json``. ``releases_dir`` names the
+    names from ``releases_dir`` (``tracked_selector_texts``): a tracked
+    selector is a ``*.json`` file committed at HEAD under the checkout's
+    ``manifests/releases``, and any other directory, inside a checkout or
+    not, is read from disk as given. ``releases_dir`` names the
     ``manifests/releases`` directory of the checkout the cut is committed to;
     ``None`` means ``DEFAULT_RELEASES_DIR``, that directory in the checkout
     this module is imported from. The directory must hold the predecessor's
-    selector file, and that file must load to ``predecessor`` itself, or a
-    ``SuccessorError`` says so. It raises ``FileNotFoundError`` when the
-    directory is missing or holds no selector file, and ``ValueError`` when a
-    ``*.json`` entry is not a file, so a copy installed outside a checkout
-    must pass ``releases_dir`` or ``tracked``. The default directory decides
+    selector, committed at HEAD for a checkout, and it must load to
+    ``predecessor`` itself, or a ``SuccessorError`` says so; a chained cut
+    from a cut not yet committed is refused until that cut is committed. It
+    raises ``FileNotFoundError`` when the directory is missing or holds no
+    selector, and ``ValueError`` when a selector entry is not a file, so a
+    copy installed outside a checkout must pass ``releases_dir`` or
+    ``tracked``. The default directory decides
     only what it holds: when it holds the predecessor but lacks a selector the
     destination tracks, a description that names that selector first still
     passes, so a cut for another checkout passes that checkout's
@@ -376,17 +579,24 @@ def render_selector(release: ReleaseManifest) -> str:
 
 
 def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
-    """Return every scope that a selector under ``releases_dir`` marks as a base.
+    """Return every scope that a tracked selector of ``releases_dir`` marks as a base.
 
-    Each ``*.json`` file in the directory is loaded with ``ReleaseManifest.load``,
-    so a selector that does not load raises instead of being skipped. A
-    directory that is missing or holds no selector file raises
+    A tracked selector is a ``*.json`` file committed at HEAD under the
+    checkout's ``manifests/releases``; any other directory, inside a checkout
+    or not, is read from disk as given (``tracked_selector_texts``). Only
+    HEAD is read: a selector main committed after this checkout's branch
+    point, a selector that is only staged, and one a commit on this branch
+    deleted do not count.
+
+    Each selector is loaded with ``ReleaseManifest.loads``, in name order, so
+    a selector that does not load raises instead of being skipped. A
+    directory that is missing or holds no selector raises
     ``FileNotFoundError``, since reading no selector would report no base,
-    and a ``*.json`` entry that is not a file raises ``ValueError``.
+    and a selector entry that is not a file raises ``ValueError``.
     """
     bases: set[ScopeKey] = set()
-    for path in _selector_files(releases_dir).values():
-        release = ReleaseManifest.load(path)
+    for name, text in sorted(tracked_selector_texts(releases_dir).items()):
+        release = ReleaseManifest.loads(text, manifest_path=releases_dir / f"{name}.json")
         bases.update(scope.key for scope in release.scopes if scope.is_base)
     return frozenset(bases)
 

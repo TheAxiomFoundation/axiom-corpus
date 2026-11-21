@@ -92,7 +92,23 @@ class ReleaseManifest:
     @classmethod
     def load(cls, path: str | Path) -> ReleaseManifest:
         manifest_path = Path(path)
-        data = _load_json_object(manifest_path)
+        try:
+            text = manifest_path.read_text()
+        except OSError as exc:
+            raise FileNotFoundError(f"Release manifest not found: {manifest_path}") from exc
+        return cls.loads(text, manifest_path=manifest_path)
+
+    @classmethod
+    def loads(cls, text: str, *, manifest_path: Path) -> ReleaseManifest:
+        """Parse a selector's text exactly as ``load`` parses its file.
+
+        ``manifest_path`` only names the selector in error messages, so a text
+        read from git, such as a selector committed at HEAD, loads with the
+        same checks and messages as the file.
+        """
+        data = json.loads(text)
+        if not isinstance(data, dict):
+            raise ValueError(f"Release manifest {manifest_path} must be a JSON object")
         if set(data) - {"name", "description", "quality_profile", "scopes"}:
             raise ValueError(f"Release selector {manifest_path} has unsupported fields")
         name_value = data.get("name")
@@ -157,16 +173,6 @@ def validate_release_name(name: str) -> str:
             "alphanumeric segments separated by single hyphens"
         )
     return name
-
-
-def _load_json_object(path: Path) -> dict[str, Any]:
-    try:
-        data = json.loads(path.read_text())
-    except OSError as exc:
-        raise FileNotFoundError(f"Release manifest not found: {path}") from exc
-    if not isinstance(data, dict):
-        raise ValueError(f"Release manifest {path} must be a JSON object")
-    return data
 
 
 def parse_release_scope(raw_scope: Any, *, manifest_path: Path) -> ReleaseScope:
