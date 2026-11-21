@@ -2102,9 +2102,10 @@ PREDECESSOR_REFUSALS = {
 def test_stops_unless_the_predecessor_is_the_one_the_draft_names(repo: Path, case: str) -> None:
     """The predecessor argument is the committed selector the draft names first.
 
-    Each passed file carries BASE as a base, so the draft's BASE looks carried and the
-    layer report finds nothing; the selector the draft names, as main has it, lacks it.
-    When HEAD has a merge base with main, that selector must be there, unchanged.
+    Each passed file but unnamed-draft's carries BASE as a base, so the draft's BASE looks
+    carried and the layer report finds nothing; the selector the draft names, as main has
+    it, lacks it. When HEAD has a merge base with main, that selector must be there,
+    unchanged.
     """
     predecessor, line = PREDECESSOR_REFUSALS[case]
     if case == "unnamed-draft":
