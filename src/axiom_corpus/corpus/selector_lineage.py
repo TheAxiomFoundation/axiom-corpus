@@ -491,10 +491,45 @@ class RecordedBaseReplacement:
     reason: str
 
 
+def _strings(value: object, count: int) -> bool:
+    """Whether ``value`` is a tuple of ``count`` strings."""
+    return (
+        isinstance(value, tuple)
+        and len(value) == count
+        and all(isinstance(part, str) for part in value)
+    )
+
+
 def _require_base_replacement(
-    key: object, replacement: RecordedBaseReplacement, where: str
+    key: object,
+    replacement: RecordedBaseReplacement,
+    where: str,
+    *,
+    pins: Mapping[str, str] | None = None,
 ) -> None:
-    """Refuse a base replacement record the baseline file could not hold."""
+    """Refuse a base replacement record the baseline file could not hold.
+
+    It runs the record's fields through the loader's field helpers, then checks its key,
+    pair and replaced base, and, when ``pins`` is given, refuses an endpoint with no entry
+    there, as the loader does.
+    """
+    _name(replacement.selector, f"{where}.selector")
+    _name(replacement.predecessor, f"{where}.predecessor")
+    pair: object = replacement.pair
+    if not _strings(pair, 2) or _pair(pair_label(replacement.pair), f"{where}.pair") != pair:
+        raise SelectorLineageError(
+            f"{where}.pair must be a (jurisdiction, document_class) tuple of strings, not {pair!r}"
+        )
+    _version(replacement.replaced, replacement.pair, f"{where}.replaced")
+    replaced_by: object = replacement.replaced_by
+    if (
+        not _strings(replaced_by, 3)
+        or _scope("/".join(replacement.replaced_by), f"{where}.replaced_by") != replaced_by
+    ):
+        raise SelectorLineageError(
+            f"{where}.replaced_by must be a (jurisdiction, document_class, version) tuple "
+            f"of strings, not {replaced_by!r}"
+        )
     if key != (replacement.selector, replacement.pair):
         raise SelectorLineageError(
             f"{where}: keyed by {key!r}; a base replacement is keyed by its own selector and pair"
@@ -507,6 +542,13 @@ def _require_base_replacement(
         )
     if replacement.replaced_by[2] == replacement.replaced:
         raise SelectorLineageError(f"{where}.replaced_by must differ from the base it replaces")
+    if pins is not None:
+        for role, name in (
+            ("selector", replacement.selector),
+            ("predecessor", replacement.predecessor),
+        ):
+            if name not in pins:
+                raise SelectorLineageError(f"{where}.{role}: {name} has no selector_digests entry")
 
 
 def _base_replacement_conflict(
@@ -665,18 +707,24 @@ def check_selector_lineage(
     """Compare every selector with its resolved predecessor, and check the line's shape.
 
     ``selectors`` maps each tracked selector's name to its manifest; a name
-    must equal its manifest's name. Each base replacement must be keyed by its
-    own selector and pair and name another scope of that pair, as the loader
-    requires; otherwise the check raises SelectorLineageError before it
-    compares anything.
+    must equal its manifest's name. Each base replacement must pass the
+    loader's field checks, be keyed by its own selector and pair, name another
+    scope of that pair, and have both endpoints pinned; otherwise the check
+    raises SelectorLineageError before it compares anything. Drop and
+    first-cut records get no such check here: one whose selector or
+    predecessor is absent and unpinned is skipped.
     """
     baseline = baseline or LineageBaseline()
     for name, manifest in selectors.items():
         if manifest.name != name:
             raise ValueError(f"selector {name!r} holds a manifest named {manifest.name!r}")
     for key, candidate in baseline.base_replacements.items():
+        label = pair_label(candidate.pair) if _strings(candidate.pair, 2) else repr(candidate.pair)
         _require_base_replacement(
-            key, candidate, f"base_replacements[{candidate.selector}, {pair_label(candidate.pair)}]"
+            key,
+            candidate,
+            f"base_replacements[{candidate.selector}, {label}]",
+            pins=baseline.selector_digests,
         )
     names = frozenset(selectors)
     predecessors = resolved_predecessors(selectors, baseline)
@@ -1263,7 +1311,9 @@ def load_lineage_baseline(
             listed_on=_iso_date(item["listed_on"], f"{entry_where}.listed_on"),
             reason=_text(item["reason"], f"{entry_where}.reason"),
         )
-        _require_base_replacement((replacement.selector, pair), replacement, entry_where)
+        _require_base_replacement(
+            (replacement.selector, pair), replacement, entry_where, pins=digests
+        )
         replacement_keys.append((replacement.selector, pair))
         base_replacements[(replacement.selector, pair)] = replacement
     _sorted_unique(replacement_keys, f"{where}: base_replacements (by selector, then pair)")

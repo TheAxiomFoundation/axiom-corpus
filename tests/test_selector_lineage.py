@@ -1492,6 +1492,117 @@ def test_a_base_replacement_allows_only_a_base_of_its_own_pair(
     assert report.dropped_bases == (() if allowed else (_DROPPED_US_CODE,))
 
 
+_GHOST: dict[str, object] = {"selector": "ghost-next", "predecessor": "ghost-prev"}
+
+
+def _beside_the_valid_replacement(
+    record: RecordedBaseReplacement, *, pins: Mapping[str, str] | None = None
+) -> tuple[ReleaseManifest, ReleaseManifest, LineageBaseline]:
+    """pin-layered, pin-next and a baseline whose valid pin-next record ``record`` joins.
+
+    ``record`` sits under its own selector and pair, so it replaces the valid record only
+    when it keeps that key. ``pins`` adds selector_digests entries.
+    """
+    predecessor = _layered_predecessor()
+    successor = _layered_successor(_LAYERED_PRIMARIES, [_ECFR, _NEW_US_CODE])
+    baseline = _replacement_baseline(predecessor, pinned=[successor], replacement=_replacement())
+    baseline = replace(
+        baseline,
+        selector_digests={**baseline.selector_digests, **(pins or {})},
+        base_replacements={
+            **baseline.base_replacements,
+            (record.selector, record.pair): record,
+        },
+    )
+    return predecessor, successor, baseline
+
+
+@pytest.mark.parametrize(
+    ("changes", "message"),
+    [
+        pytest.param(
+            {"replaced_by": ("us", "statute")},
+            r"base_replacements\[pin-next, us/statute\]\.replaced_by must be a "
+            r"\(jurisdiction, document_class, version\) tuple of strings, not "
+            r"\('us', 'statute'\)$",
+            id="replaced-by-pair-only",
+        ),
+        pytest.param(
+            {"replaced_by": (*_NEW_US_CODE, "extra")},
+            r"base_replacements\[pin-next, us/statute\]\.replaced_by must be a "
+            r"\(jurisdiction, document_class, version\) tuple of strings",
+            id="replaced-by-four-parts",
+        ),
+        pytest.param(
+            {"replaced": None},
+            r"base_replacements\[pin-next, us/statute\]\.replaced must be a version string",
+            id="replaced-none",
+        ),
+        pytest.param(
+            {"pair": ("us",)},
+            r"base_replacements\[pin-next, \('us',\)\]\.pair must be a "
+            r"\(jurisdiction, document_class\) tuple of strings, not \('us',\)$",
+            id="pair-one-part",
+        ),
+        pytest.param(
+            {"pair": ("us", 2)},
+            r"base_replacements\[pin-next, \('us', 2\)\]\.pair must be a "
+            r"\(jurisdiction, document_class\) tuple of strings, not \('us', 2\)$",
+            id="pair-non-string",
+        ),
+        pytest.param(
+            {"selector": "Bad Name"},
+            r"base_replacements\[Bad Name, us/statute\]\.selector: ",
+            id="bad-selector-name",
+        ),
+        pytest.param(
+            _GHOST,
+            r"base_replacements\[ghost-next, us/statute\]\.selector: ghost-next has no "
+            r"selector_digests entry$",
+            id="ghost",
+        ),
+        pytest.param(
+            {"selector": "ghost-next"},
+            r"base_replacements\[ghost-next, us/statute\]\.selector: ghost-next has no "
+            r"selector_digests entry$",
+            id="one-endpoint-absent",
+        ),
+        pytest.param(
+            {"predecessor": "ghost-prev"},
+            r"base_replacements\[pin-next, us/statute\]\.predecessor: ghost-prev has no "
+            r"selector_digests entry$",
+            id="predecessor-absent",
+        ),
+    ],
+)
+def test_a_code_built_base_replacement_is_held_to_the_loader_rules(
+    changes: dict[str, object], message: str
+) -> None:
+    """A code-built base replacement meets the loader's field and pin rules, or the check raises.
+
+    The fields go through the loader's own helpers, and both endpoints need a
+    selector_digests entry, as the loader requires; a record whose endpoints are absent
+    and unpinned no longer passes unread.
+    """
+    predecessor, successor, baseline = _beside_the_valid_replacement(_replacement(**changes))
+    with pytest.raises(SelectorLineageError, match=message):
+        _check(predecessor, successor, baseline=baseline)
+
+
+def test_a_code_built_base_replacement_with_pinned_absent_endpoints_is_a_baseline_error() -> None:
+    """Pinned endpoints that are not tracked raise nothing; the report names each pin."""
+    predecessor, successor, baseline = _beside_the_valid_replacement(
+        _replacement(**_GHOST), pins={"ghost-next": "0" * 64, "ghost-prev": "1" * 64}
+    )
+    report = _check(predecessor, successor, baseline=baseline)
+    assert report.baseline_errors == (
+        "the baseline pins ghost-next, which is not a tracked selector",
+        "the baseline pins ghost-prev, which is not a tracked selector",
+    )
+    assert report.recorded_base_replacements == (_DROPPED_US_CODE,)
+    assert report.dropped_bases == ()
+
+
 @st.composite
 def _layered_scopes(draw: st.DrawFn) -> tuple[ReleaseScope, ...]:
     """A scope set with at most one base per pair."""
