@@ -649,6 +649,11 @@ def _relink(path: Path, target: Path, *, hard: bool = False) -> None:
         "tracked-base-sources-link",
         "tracked-base-ingest-manifest-link",
         "release-base-links-to-repaired",
+        "existing-destination-ingest-manifest",
+        "dangling-destination-link",
+        "nested-source-symlink",
+        "holder-base-links-to-repaired",
+        "release-held-by-another-checkout",
     ],
 )
 def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_marks(
@@ -656,6 +661,7 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
 ) -> None:
     monkeypatch.chdir(tmp_path)
     release = PLAIN_RELEASE
+    never_created: Path | None = None
     if case == "linked-corpus":
         # A's corpus is B's, and only B marks pv1 as a base.
         repo = _repair_checkout(make_checkout, "a", bases=())
@@ -686,6 +692,41 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
         release = tmp_path / "release.json"
         release.write_text(json.dumps(_payload(_row(PV1))) + "\n")
         monkeypatch.chdir(worktree)
+        expected = _exactly(
+            "base scopes are carried unchanged and cannot be repaired: us/statute/pv1"
+        )
+    elif case == "dangling-destination-link":
+        # pv1-fix's provisions in A is a dangling link to the same path in B,
+        # whose directory exists; writing through it would create B's file.
+        repo = _repair_checkout(make_checkout, "a", bases=())
+        b = _repair_checkout(make_checkout, "b", bases=())
+        _write_repair_scopes(repo / "data" / "corpus", repo)
+        never_created = repair_module._scope_paths(b / "data" / "corpus", PV1_FIX)["provisions"]
+        never_created.parent.mkdir(parents=True)
+        link = repair_module._scope_paths(repo / "data" / "corpus", PV1_FIX)["provisions"]
+        link.symlink_to(never_created)
+        expected = _exactly(f"repaired scope artifact already exists: {link}")
+    elif case == "holder-base-links-to-repaired":
+        # A's corpus is B's; only B marks bv1, whose provisions lead to pv1's,
+        # which repair unlinks.
+        repo = _repair_checkout(make_checkout, "a", bases=())
+        b = _repair_checkout(make_checkout, "b", bases=(BV1,))
+        _write_repair_scopes(b / "data" / "corpus", repo)
+        (repo / "data").mkdir()
+        (repo / "data" / "corpus").symlink_to(b / "data" / "corpus")
+        _relink(
+            repair_module._scope_paths(b / "data" / "corpus", BV1)["provisions"],
+            repair_module._scope_paths(b / "data" / "corpus", PV1)["provisions"],
+        )
+        old_provisions = repair_module._scope_paths(repo / "data" / "corpus", PV1)["provisions"]
+        expected = _exactly(f"{old_provisions} is also us/statute/bv1's provisions through a link")
+    elif case == "release-held-by-another-checkout":
+        # --release lies in B, which marks pv1 as a base; --repo is A, and the
+        # working directory lies outside every checkout.
+        repo = _repair_checkout(make_checkout, "a", bases=())
+        b = _repair_checkout(make_checkout, "b", bases=(PV1,))
+        _write_repair_scopes(repo / "data" / "corpus", repo)
+        release = b / PLAIN_RELEASE
         expected = _exactly(
             "base scopes are carried unchanged and cannot be repaired: us/statute/pv1"
         )
@@ -753,6 +794,20 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
             expected = _exactly(
                 f"{old['coverage']} is also us/statute/bv2's coverage through a link"
             )
+        elif case == "existing-destination-ingest-manifest":
+            # pv1-fix's ingest manifest exists as a plain file.
+            manifest = _manifest_path(repo, PV1_FIX)
+            manifest.write_text(json.dumps({"applied_files": [], "version": "pv1-fix"}) + "\n")
+            expected = _exactly(f"repaired scope artifact already exists: {manifest}")
+        elif case == "nested-source-symlink":
+            # A link below a subdirectory of pv1's sources leads to bv1's source,
+            # which quotes pv1 and so would be rewritten after the move.
+            base_source = base["sources"] / "source.html"
+            base_source.write_text("<p>bv1 quotes pv1</p>\n")
+            nested = old["sources"] / "sub" / "inner.html"
+            nested.parent.mkdir()
+            nested.symlink_to(base_source)
+            expected = _exactly(f"source directory contains a symlink: {old['sources']}")
         else:
             raise AssertionError(case)
     report = tmp_path / "report.json"
@@ -766,6 +821,8 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
     assert events == ["fetch"]
     assert _snapshot(tmp_path) == before
     assert not report.exists()
+    if never_created is not None:
+        assert not os.path.lexists(never_created)
 
 
 @pytest.mark.parametrize("case", ["plain", "linked-corpus-without-a-base"])
