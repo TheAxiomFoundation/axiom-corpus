@@ -1736,6 +1736,34 @@ def test_stops_on_a_draft_the_selector_parser_refuses(
     assert _uv_calls() == []
 
 
+def test_stops_on_a_predecessor_the_selector_parser_refuses(
+    repo: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The predecessor gets the parser load too, after the draft, and stops the run before step 1.
+
+    Main commits test-rel-1 with a top-level field the parser refuses, so the predecessor
+    passes the checks against HEAD and the merge base, and the spelling and layer checks.
+    """
+    selector = {**_selector("test-rel-1", [RELEASED]), "notes": "cut by hand"}
+    _commit_selectors(repo, {PREDECESSOR: selector}, "Predecessor the parser refuses")
+    start = _cut_release_branch(repo)
+    monkeypatch.chdir(repo)  # the script loads the predecessor by the path it was given
+    with pytest.raises(ValueError) as refusal:
+        releases.ReleaseManifest.load(PREDECESSOR)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == (
+        f"{PREDECESSOR} does not load as a release selector: {refusal.value}\n"
+    )
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
 # case: the draft, and the one line the run stops with
 MALFORMED_SCOPES: dict[str, tuple[dict, str]] = {
     "version-list": (
