@@ -182,13 +182,22 @@ def pair_versions(release: ReleaseManifest) -> dict[Pair, frozenset[str]]:
     return {pair: frozenset(versions) for pair, versions in grouped.items()}
 
 
+def named_predecessor(name: str, description: str | None, tracked: Collection[str]) -> str | None:
+    """The first tracked selector other than ``name`` that ``description`` names.
+
+    This is ``declared_predecessor``'s rule on a selector's name and description, for a
+    caller that has not loaded the selector, such as the signer with a draft.
+    """
+    for match in _NAME_RUN.finditer(description or ""):
+        named = match.group(0)
+        if named != name and named in tracked:
+            return named
+    return None
+
+
 def declared_predecessor(release: ReleaseManifest, tracked: Collection[str]) -> str | None:
     """The first tracked selector other than ``release`` that its description names."""
-    for match in _NAME_RUN.finditer(release.description or ""):
-        name = match.group(0)
-        if name != release.name and name in tracked:
-            return name
-    return None
+    return named_predecessor(release.name, release.description, tracked)
 
 
 def dropped_pairs(

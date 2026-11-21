@@ -15,6 +15,13 @@
 # or step 2 will sign it again), export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell
 # only (never written to a file); the script checks for it before it stages anything.
 #
+# The predecessor argument must be the committed file of the selector the draft names first
+# in its description, the selector the CI lineage guard takes
+# (selector_lineage.named_predecessor), byte for byte as HEAD commits it. When HEAD has a
+# merge base with origin/main or main, that selector must also be at one of those merge
+# bases, unchanged: main is read as of the last fetch. With no such merge base, the HEAD
+# rule alone applies, so a predecessor first committed on the release branch passes.
+#
 # The unreleased scopes are the draft selector's primary scopes minus the predecessor's.
 # A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
 # also has as a base, and stops before it stages anything when the draft has a base scope
@@ -136,13 +143,31 @@ trap on_exit EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 trap 'exit 129' HUP
-uv run python - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
-import json, re, sys
+# guard-ingested diffs base...head from their merge base, so with origin/main (or main) as
+# the base it checks every commit this branch adds, as CI does for the PR: this run's zero,
+# one or two commits and any that an earlier, stopped run made. Step 2's plan reads
+# deletions against that merge base (MERGE_BASE), and it takes a manifest at the merge
+# base with either ref (MAIN_BASES) for main's, in case origin/main is behind main. The
+# scope-list check below looks for the predecessor at every merge base in MAIN_BASES and
+# names the refs they came from (MAIN_REFS). These only read refs.
+GUARD_BASE="" MERGE_BASE="" MAIN_BASES="" MAIN_REFS=""
+for ref in origin/main main; do
+  base=$(git merge-base "$ref" HEAD 2>/dev/null) || continue
+  [ -n "$GUARD_BASE" ] || { GUARD_BASE=$ref; MERGE_BASE=$base; }
+  MAIN_BASES="$MAIN_BASES $base"
+  MAIN_REFS="$MAIN_REFS $ref"
+done
+uv run python - "$DRAFT" "$PREDECESSOR" "$MAIN_BASES" "$MAIN_REFS" > "$SCOPE_LIST" <<'PY'
+import json, re, subprocess, sys
 from pathlib import Path
 
+from axiom_corpus.corpus.selector_lineage import named_predecessor
 from axiom_corpus.corpus.successors import tracked_selector_texts
 
-draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
+draft_path, predecessor_path = sys.argv[1:3]
+main_bases, main_refs = sys.argv[3].split(), sys.argv[4].split()
+selectors = [json.load(open(p)) for p in (draft_path, predecessor_path)]
+draft, predecessor = (selector["scopes"] for selector in selectors)
 
 # The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
 # a part no selector can spell, such as "2026-05-01 ", would name another scope's files.
@@ -172,6 +197,74 @@ if spelling:
     print(*spelling, sep="\n", file=sys.stderr)
     sys.exit(1)
 
+# The tracked selectors: the *.json files under manifests/releases committed at HEAD. A
+# HEAD whose selectors cannot be listed or read stops the run.
+try:
+    texts = tracked_selector_texts(Path("manifests/releases"))
+except (OSError, ValueError) as exc:
+    print(f"cannot read the tracked selectors at HEAD: {exc}", file=sys.stderr)
+    sys.exit(1)
+
+# The predecessor must be the selector the draft names first in its description, as the
+# CI lineage guard takes it, byte for byte as HEAD commits it; and, when HEAD has a merge
+# base with main, as one of those merge bases has it. A copy, an older selector, a
+# working-tree edit git does not show, or a selector cut or rewritten on this branch
+# would make the layer report below compare the draft with the wrong scopes.
+draft_name, description = selectors[0].get("name"), selectors[0].get("description")
+named = named_predecessor(
+    draft_name if isinstance(draft_name, str) else "",
+    description if isinstance(description, str) else None,
+    texts,
+)
+if named is None:
+    print(
+        f"{draft_path} names no tracked selector in its description; a draft names its"
+        " predecessor first, and this script compares the draft with that selector only",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+committed = texts[named].encode("utf-8")
+if Path(predecessor_path).read_bytes() != committed:
+    print(
+        f"{predecessor_path} is not manifests/releases/{named}.json as committed at HEAD,"
+        f" the selector {draft_path} names first in its description; pass that file",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+
+
+def git_output(*args):
+    return subprocess.run(["git", *args], capture_output=True, check=True).stdout
+
+
+if main_bases:
+    listed = False
+    for base in main_bases:
+        entry = git_output("ls-tree", "--full-tree", base, "--", f"manifests/releases/{named}.json")
+        if not entry:
+            continue
+        listed = True
+        meta = entry.split(b"\t", 1)[0].split()
+        if meta[1] == b"blob" and git_output("cat-file", "blob", meta[2].decode()) == committed:
+            break
+    else:
+        refs = " and ".join(main_refs)
+        if not listed:
+            print(
+                f"manifests/releases/{named}.json is not at the merge base of HEAD with {refs};"
+                " a draft's predecessor is a selector main already tracks, as of the last"
+                " fetch, so cut the draft from one of those, or fetch and merge main first",
+                file=sys.stderr,
+            )
+        else:
+            print(
+                f"manifests/releases/{named}.json differs from its copy at the merge base of"
+                f" HEAD with {refs}; a tracked selector is never rewritten, so cut the draft"
+                " from it as main has it",
+                file=sys.stderr,
+            )
+        sys.exit(1)
+
 
 def key(s):
     return (s["jurisdiction"], s["document_class"], s["version"])
@@ -196,13 +289,8 @@ released = {key(s): is_base(s) for s in predecessor}
 # Every scope a tracked selector (committed at HEAD) marks as a base, with the first such
 # selector in name order. The predecessor says nothing about a base that an earlier cut
 # replaced or that it never carried, so the comparison with it alone would let the draft
-# sign one as primary. A HEAD whose selectors cannot be listed or read, or a tracked
-# selector that is not JSON with a list of scopes, stops the run.
-try:
-    texts = tracked_selector_texts(Path("manifests/releases"))
-except (OSError, ValueError) as exc:
-    print(f"cannot read the tracked selectors at HEAD: {exc}", file=sys.stderr)
-    sys.exit(1)
+# sign one as primary. A tracked selector that is not JSON with a list of scopes stops the
+# run.
 tracked_bases = {}
 for name in sorted(texts):
     for s in json.loads(texts[name])["scopes"]:
@@ -241,18 +329,6 @@ while IFS= read -r line; do
 done < "$SCOPE_LIST"
 echo "unreleased scopes: ${#SCOPES[@]} (draft $NAME)"
 [ "${#SCOPES[@]}" -gt 0 ] || { echo "nothing to sign" >&2; exit 1; }
-
-# guard-ingested diffs base...head from their merge base, so with origin/main (or main) as
-# the base it checks every commit this branch adds, as CI does for the PR: this run's zero,
-# one or two commits and any that an earlier, stopped run made. Step 2's plan reads
-# deletions against that merge base (MERGE_BASE), and it takes a manifest at the merge
-# base with either ref (MAIN_BASES) for main's, in case origin/main is behind main.
-GUARD_BASE="" MERGE_BASE="" MAIN_BASES=""
-for ref in origin/main main; do
-  base=$(git merge-base "$ref" HEAD 2>/dev/null) || continue
-  [ -n "$GUARD_BASE" ] || { GUARD_BASE=$ref; MERGE_BASE=$base; }
-  MAIN_BASES="$MAIN_BASES $base"
-done
 
 # The command text step 2 signs a scope with is the rebuild command: the manifest that
 # carries the scope's version when one exists, otherwise the run note that records the
