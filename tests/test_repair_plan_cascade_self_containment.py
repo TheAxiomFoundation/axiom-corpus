@@ -959,6 +959,8 @@ def _case_insensitive(directory: Path) -> bool:
         "dangling-link-into-repo",
         "new-file-in-releases",
         "lock-file",
+        "class-place-linked-out",
+        "lock-place-linked-out",
     ],
 )
 def test_main_refuses_a_report_path_in_a_protected_place(
@@ -1027,6 +1029,16 @@ def test_main_refuses_a_report_path_in_a_protected_place(
     elif case == "lock-file":
         report = repo / ".axiom" / "corpus-locks" / "us-example" / "regulation" / "base-v.json"
         place = ".axiom"
+    elif case in ("class-place-linked-out", "lock-place-linked-out"):
+        # The place itself links to a directory outside every checkout, and the
+        # report is spelled there: a new file the checkout reads in that place.
+        if case == "class-place-linked-out":
+            place, out = "data/corpus/coverage", tmp_path / "out-cov"
+        else:
+            place, out = ".axiom/corpus-locks", tmp_path / "out-locks"
+        (repo / place).rename(out)
+        (repo / place).symlink_to(out)
+        report = out / "us-example" / "regulation" / "new-v.json"
     else:
         raise AssertionError(case)
     spelled = report if report.is_absolute() else Path.cwd() / report
