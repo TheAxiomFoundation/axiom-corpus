@@ -24,7 +24,9 @@ refuses a new primary scope, added or a replacement, that a tracked selector
 marks as a base, so a base that another cut replaced cannot come back as
 primary. Unless the caller passes those bases as ``tracked_bases``, it reads
 them from the same directory, and only for a cut that adds or replaces a
-primary scope. It writes no file, so a refused cut leaves nothing behind.
+primary scope. A cut under the name of a selector the directory already
+tracks is refused unless it reproduces that selector's file byte for byte. It
+writes no file, so a refused cut leaves nothing behind.
 
 ``render_selector`` returns the selector text a new cut commits: keys sorted,
 a two-space indent and a final newline, the layout of
@@ -72,6 +74,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseManifest,
     ReleaseScope,
     ScopeKey,
+    validate_release_name,
 )
 from axiom_corpus.corpus.resolver import _existing_ancestor, _standing_places
 from axiom_corpus.corpus.selector_lineage import declared_predecessor
@@ -437,6 +440,18 @@ def compose_successor(
     needs that directory. ``add_base`` is not checked, so a restore may bring
     a tracked base back as a base.
 
+    A tracked selector is never rewritten, so a name already tracked in the
+    destination (``tracked_selector_text`` of ``releases_dir``, or
+    ``DEFAULT_RELEASES_DIR``) is accepted only for an exact reproduction of
+    that file: the rendered cut (``render_selector``) must equal its text byte
+    for byte, whether or not ``tracked`` is passed. A name in ``tracked`` with
+    no file there is refused, since there is nothing to compare the cut with.
+    The byte rule reads the same directory as the name and base checks.
+    Without ``releases_dir`` that is the checkout the module is imported from,
+    so a caller cutting for another checkout must pass ``releases_dir``, or
+    ``tracked`` (a tracked name with no file in the default directory is then
+    refused).
+
     Raises ``SuccessorError`` for any refused change. Nothing is written.
     """
     added = _scope_keys("add", add)
@@ -462,6 +477,18 @@ def compose_successor(
 
     if name == predecessor.name:
         raise SuccessorError(f"A successor must have a new name, not {predecessor.name!r}")
+    try:
+        validate_release_name(name)
+    except ValueError as exc:
+        raise SuccessorError(str(exc)) from exc
+    directory = DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir
+    existing = tracked_selector_text(directory, name)
+    if existing is None and name in names:
+        raise SuccessorError(
+            f"{name} is a tracked selector, but {directory} holds no {name}.json to compare "
+            "this cut with; pass releases_dir, the manifests/releases of the checkout the "
+            "cut is committed to"
+        )
 
     selected = {scope.key: scope for scope in predecessor.scopes}
     base_pairs = {scope.pair for scope in predecessor.scopes if scope.is_base}
@@ -552,6 +579,12 @@ def compose_successor(
         )
     except ValueError as exc:
         raise SuccessorError(str(exc)) from exc
+    if existing is not None and render_selector(successor) != existing:
+        raise SuccessorError(
+            f"{name} is a tracked selector of {directory}, and this cut is not its committed "
+            "file byte for byte; a tracked selector is never rewritten, so a new cut takes a "
+            "new name"
+        )
 
     declared = declared_predecessor(successor, {*names, predecessor.name})
     if declared is None:

@@ -4,6 +4,12 @@ The golden test reproduces a committed selector byte for byte from its
 predecessor. The synthetic predecessors carry base scopes, which no tracked
 selector does yet, so the carry-forward and refusal tests build their own
 layered selector files and load them through ``ReleaseManifest.load``.
+
+The tracked-selector tests build small checkouts with ``make_checkout`` and
+check that a checkout's tracked selectors are the files committed at HEAD,
+whatever its disk holds, while any other directory is read from disk as
+given. The byte-rule tests check that a cut under a tracked selector's name
+must reproduce that selector's file byte for byte.
 """
 
 from __future__ import annotations
@@ -1092,6 +1098,142 @@ def test_a_checkout_without_the_committed_predecessor_says_commit_it_first(
         compose_successor(
             predecessor, name="next", description="Successor to pred.", releases_dir=releases
         )
+
+
+# A cut under a tracked selector's name must reproduce that file byte for byte.
+
+BYTE_RULE_REFUSAL = (
+    r"cut is a tracked selector of .*, and this cut is not its committed file byte for byte"
+)
+CUT_DESCRIPTION = "Successor to root."
+
+
+def _byte_rule_selectors() -> tuple[ReleaseManifest, ReleaseManifest]:
+    root = ReleaseManifest(
+        name="root", scopes=(ReleaseScope(*HEAD_P),), description="Fixture selector root."
+    )
+    cut = ReleaseManifest(
+        name="cut",
+        scopes=tuple(
+            sorted(
+                (ReleaseScope(*HEAD_P), ReleaseScope(*HEAD_B, layer=LAYER_BASE)),
+                key=lambda scope: scope.key,
+            )
+        ),
+        description=CUT_DESCRIPTION,
+    )
+    return root, cut
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "finding",
+        "tracked-names",
+        "tracked-empty",
+        "default-inventory",
+        "drop-the-base",
+        "description",
+        "add",
+        "layout",
+        "no-final-newline",
+        "reproduce",
+        "tracked-without-file",
+        "directory",
+        "dangling-link",
+        "committed-differs",
+    ],
+)
+def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
+    make_checkout: Any, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    root, cut = _byte_rule_selectors()
+    cut_text = render_selector(cut)
+    directory = tmp_path / "selectors"
+    directory.mkdir()
+    (directory / "root.json").write_text(render_selector(root), encoding="utf-8")
+    cut_path = directory / "cut.json"
+    cut_path.write_text(cut_text, encoding="utf-8")
+    # The call that reproduces the committed cut.
+    call: dict[str, Any] = {
+        "name": "cut",
+        "description": CUT_DESCRIPTION,
+        "add_base": [HEAD_B],
+        "releases_dir": directory,
+    }
+    refusal: tuple[type[Exception], str] | None = (SuccessorError, BYTE_RULE_REFUSAL)
+    if case == "finding":
+        # The finding: a re-cut of the committed name that drops its base.
+        del call["add_base"]
+    elif case == "tracked-names":
+        del call["add_base"]
+        call["tracked"] = ["root", "cut"]
+    elif case == "tracked-empty":
+        del call["add_base"]
+        call["tracked"] = ()
+    elif case == "default-inventory":
+        del call["add_base"], call["releases_dir"]
+        monkeypatch.setattr(successors, "DEFAULT_RELEASES_DIR", directory)
+    elif case == "drop-the-base":
+        del call["add_base"]
+    elif case == "description":
+        call["description"] = CUT_DESCRIPTION + " Amended."
+    elif case == "add":
+        call["add"] = [HEAD_Q]
+    elif case == "layout":
+        cut_path.write_text(json.dumps(json.loads(cut_text), indent=4) + "\n", encoding="utf-8")
+        assert ReleaseManifest.load(cut_path) == cut
+    elif case == "no-final-newline":
+        cut_path.write_text(cut_text.removesuffix("\n"), encoding="utf-8")
+    elif case == "reproduce":
+        refusal = None
+    elif case == "tracked-without-file":
+        cut_path.unlink()
+        call["tracked"] = ["root", "cut"]
+        refusal = (SuccessorError, r"holds no cut\.json to compare this cut with")
+    elif case == "directory":
+        cut_path.unlink()
+        cut_path.mkdir()
+        call["tracked"] = ()
+        refusal = (ValueError, r"cut\.json is not a selector file")
+    elif case == "dangling-link":
+        cut_path.unlink()
+        cut_path.symlink_to(directory / "missing.json")
+        call["tracked"] = ()
+        refusal = (ValueError, r"cut\.json is not a selector file")
+    elif case == "committed-differs":
+        repo = make_checkout(
+            "repo", {"root": json.loads(render_selector(root)), "cut": json.loads(cut_text)}
+        )
+        releases = repo / "manifests" / "releases"
+        # The working tree drops the base; HEAD still holds it.
+        without_base = ReleaseManifest(
+            name="cut", scopes=(ReleaseScope(*HEAD_P),), description=CUT_DESCRIPTION
+        )
+        (releases / "cut.json").write_text(render_selector(without_base), encoding="utf-8")
+        del call["add_base"]
+        call["releases_dir"] = releases
+
+    if refusal is None:
+        successor = compose_successor(root, **call)
+        assert render_selector(successor) == cut_path.read_text(encoding="utf-8")
+        return
+    error, message = refusal
+    with pytest.raises(error, match=message):
+        compose_successor(root, **call)
+
+
+def test_the_golden_cut_reproduces_under_the_default_inventory() -> None:
+    committed_path = RELEASE_DIR / f"{GOLDEN_SUCCESSOR}.json"
+    predecessor = ReleaseManifest.load(RELEASE_DIR / f"{GOLDEN_PREDECESSOR}.json")
+    committed = ReleaseManifest.load(committed_path)
+    assert committed.description is not None
+
+    successor = compose_successor(
+        predecessor, name=committed.name, description=committed.description, add=[GOLDEN_ADDED]
+    )
+
+    assert render_selector(successor).encode("utf-8") == committed_path.read_bytes()
 
 
 # Canonical scope names: what a selector can spell, and nothing that only names its files.
