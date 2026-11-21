@@ -1556,6 +1556,17 @@ def _beside_the_valid_replacement(
             id="bad-selector-name",
         ),
         pytest.param(
+            {"predecessor": "Bad Name"},
+            r"base_replacements\[pin-next, us/statute\]\.predecessor: Release names must be",
+            id="bad-predecessor-name",
+        ),
+        pytest.param(
+            {"replaced_by": ("us", "statute", "Bad V")},
+            r"base_replacements\[pin-next, us/statute\]\.replaced_by: Release scope contains "
+            r"invalid version: 'Bad V'$",
+            id="replaced-by-misspelled",
+        ),
+        pytest.param(
             _GHOST,
             r"base_replacements\[ghost-next, us/statute\]\.selector: ghost-next has no "
             r"selector_digests entry$",
