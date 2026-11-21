@@ -31,13 +31,14 @@
 # manifests/releases/*.json file committed at HEAD: one that skip-worktree or a sparse
 # checkout hides from the working tree counts, and an untracked one does not.
 # The run also stops when either selector misspells a part of a scope or lists a scope
-# twice. A base scope enters a release through its restore manifest (axiom-corpus#728),
-# not this script. Order matters: the signer records HEAD and requires a clean tracked
-# tree, and the signed manifest must describe committed artifact bytes. So: (1) force-add
-# and commit the artifacts, (2) sign every unreleased scope against that commit, (3) commit
-# those scopes' manifests and no others, (4) copy the draft to
-# manifests/releases/<name>.json, deep-validate it against the committed artifacts and
-# commit it.
+# twice, and, after the layer checks, when either does not load as a release selector, as
+# validate-release would refuse it in step 4. A base scope enters a release through its
+# restore manifest (axiom-corpus#728), not this script. Order matters: the signer records
+# HEAD and requires a clean tracked tree, and the signed manifest must describe committed
+# artifact bytes. So: (1) force-add and commit the artifacts, (2) sign every unreleased
+# scope against that commit, (3) commit those scopes' manifests and no others, (4) copy the
+# draft to manifests/releases/<name>.json, deep-validate it against the committed artifacts
+# and commit it.
 #
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
@@ -161,30 +162,49 @@ uv run python - "$DRAFT" "$PREDECESSOR" "$MAIN_BASES" "$MAIN_REFS" > "$SCOPE_LIS
 import json, re, subprocess, sys
 from pathlib import Path
 
+from axiom_corpus.corpus.releases import ReleaseManifest
 from axiom_corpus.corpus.selector_lineage import named_predecessor
 from axiom_corpus.corpus.successors import tracked_selector_texts
 
 draft_path, predecessor_path = sys.argv[1:3]
 main_bases, main_refs = sys.argv[3].split(), sys.argv[4].split()
 selectors = [json.load(open(p)) for p in (draft_path, predecessor_path)]
-draft, predecessor = (selector["scopes"] for selector in selectors)
 
 # The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
 # a part no selector can spell, such as "2026-05-01 ", would name another scope's files.
 COMPONENT = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
-spelling = []
-for path, scopes in zip(sys.argv[1:3], (draft, predecessor)):
+# One line per problem, never a traceback: a selector that is not an object, scopes that
+# are not a list, a scope that is not an object, a part that is not a string or that no
+# selector can spell, and a scope listed twice.
+spelling, scope_lists = [], []
+for path, selector in zip(sys.argv[1:3], selectors):
+    scopes = selector.get("scopes") if isinstance(selector, dict) else None
+    if not isinstance(selector, dict):
+        spelling.append(f"{path} is not a JSON object; a selector is one")
+    elif not isinstance(scopes, list):
+        spelling.append(f'{path} has no list of scopes; a selector lists its scopes under "scopes"')
+    scopes = scopes if isinstance(scopes, list) else []
+    scope_lists.append(scopes)
     seen = set()
     for s in scopes:
+        if not isinstance(s, dict):
+            spelling.append(f"a scope in {path} is {s!r}; a selector gives each scope as an object")
+            continue
+        misspelled = False
         for field in ("jurisdiction", "document_class", "version"):
             value = s.get(field)
             if not (isinstance(value, str) and COMPONENT.fullmatch(value)):
+                misspelled = True
                 spelling.append(
                     f"a scope in {path} has {field} {value!r}; a selector spells each"
                     " part of a scope as a lowercase letter or digit followed by up to"
                     " 255 lowercase letters, digits, '.', '_' or '-'"
                 )
-        triple = (s.get("jurisdiction"), s.get("document_class"), s.get("version"))
+        # A list or an object as a part cannot go into the set, so a misspelled scope
+        # stays out of the repeat check.
+        if misspelled:
+            continue
+        triple = (s["jurisdiction"], s["document_class"], s["version"])
         if triple in seen:
             spelling.append(
                 f"scope {'/'.join(map(str, triple))} appears more than once in {path}; a"
@@ -196,6 +216,7 @@ for path, scopes in zip(sys.argv[1:3], (draft, predecessor)):
 if spelling:
     print(*spelling, sep="\n", file=sys.stderr)
     sys.exit(1)
+draft, predecessor = scope_lists
 
 # The tracked selectors: the *.json files under manifests/releases committed at HEAD. A
 # HEAD whose selectors cannot be listed or read stops the run.
@@ -296,6 +317,7 @@ for name in sorted(texts):
     for s in json.loads(texts[name])["scopes"]:
         if is_base(s):
             tracked_bases.setdefault(key(s), f"manifests/releases/{name}.json")
+unreleased = []
 for s in sorted(draft, key=key):
     scope, carried = "/".join(key(s)), released.get(key(s))
     if is_base(s) and not carried:
@@ -315,10 +337,21 @@ for s in sorted(draft, key=key):
             "never signed as a primary scope"
         )
     elif key(s) not in released:
-        print(*key(s))
+        unreleased.append(key(s))
 if problems:
     print(*problems, sep="\n", file=sys.stderr)
     sys.exit(1)
+# validate-release loads the selector with the selector parser, but only in step 4, after
+# step 1 has committed the scopes and step 2 has signed them. Load both now, after the
+# layer report, so its lines still name a misspelled layer first.
+for path in (draft_path, predecessor_path):
+    try:
+        ReleaseManifest.load(Path(path))
+    except (OSError, ValueError) as exc:
+        print(f"{path} does not load as a release selector: {exc}", file=sys.stderr)
+        sys.exit(1)
+for k in unreleased:
+    print(*k)
 PY
 # MANIFESTS holds each scope's signed ingest manifest, where sign-ingest-manifest writes it.
 SCOPES=() MANIFESTS=()

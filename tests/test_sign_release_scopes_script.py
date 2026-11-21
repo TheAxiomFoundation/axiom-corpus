@@ -1687,6 +1687,110 @@ def test_the_preflight_spells_scope_parts_as_a_selector_does() -> None:
     assert match.group(1) == releases._SCOPE_COMPONENT_RE.pattern
 
 
+def _draft_with(**fields: object) -> dict:
+    """The default draft, named first after test-rel-1, with these fields set."""
+    draft = _selector("test-rel-2", [RELEASED, *UNRELEASED], description=DRAFT_DESCRIPTION)
+    return {**draft, **fields}
+
+
+# case: the draft, which the selector parser refuses for one reason
+PARSER_REFUSALS: dict[str, dict] = {
+    "not-a-class": _draft_with(
+        scopes=[
+            _raw(RELEASED),
+            _raw(UNRELEASED[0]),
+            _raw(UNRELEASED[1], document_class="not-a-class"),
+        ]
+    ),
+    "extra-layer-field": _draft_with(
+        scopes=[_raw(RELEASED), _raw(UNRELEASED[0]), {**_raw(UNRELEASED[1]), "Layer": "base"}]
+    ),
+    "bad-name": _draft_with(name="Next Cut"),
+    "top-level-field": _draft_with(notes="cut by hand"),
+    "quality-profile": _draft_with(quality_profile="strict"),
+}
+
+
+@pytest.mark.parametrize("case", PARSER_REFUSALS)
+def test_stops_on_a_draft_the_selector_parser_refuses(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    """A draft validate-release would refuse in step 4 stops the run before step 1.
+
+    The spelling and layer checks pass each of these drafts.
+    """
+    _commit_selectors(repo, {DRAFT: PARSER_REFUSALS[case]}, "Draft the parser refuses")
+    start = _cut_release_branch(repo)
+    monkeypatch.chdir(repo)  # the script loads the draft by the path it was given
+    with pytest.raises(ValueError) as refusal:
+        releases.ReleaseManifest.load(DRAFT)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == f"{DRAFT} does not load as a release selector: {refusal.value}\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+# case: the draft, and the one line the run stops with
+MALFORMED_SCOPES: dict[str, tuple[dict, str]] = {
+    "version-list": (
+        _draft_with(
+            scopes=[_raw(RELEASED), _raw(UNRELEASED[0]), {**_raw(UNRELEASED[1]), "version": []}]
+        ),
+        MISSPELLED.format(path=DRAFT, field="version", value=[]),
+    ),
+    "jurisdiction-object": (
+        _draft_with(
+            scopes=[
+                _raw(RELEASED),
+                _raw(UNRELEASED[0]),
+                {**_raw(UNRELEASED[1]), "jurisdiction": {}},
+            ]
+        ),
+        MISSPELLED.format(path=DRAFT, field="jurisdiction", value={}),
+    ),
+    "scope-as-list": (
+        _draft_with(
+            scopes=[
+                _raw(RELEASED),
+                _raw(UNRELEASED[0]),
+                [JURISDICTION, DOCUMENT_CLASS, UNRELEASED[1]],
+            ]
+        ),
+        f"a scope in {DRAFT} is {[JURISDICTION, DOCUMENT_CLASS, UNRELEASED[1]]!r}; a selector"
+        " gives each scope as an object",
+    ),
+    "scopes-not-a-list": (
+        _draft_with(scopes=UNRELEASED[0]),
+        f'{DRAFT} has no list of scopes; a selector lists its scopes under "scopes"',
+    ),
+}
+
+
+@pytest.mark.parametrize("case", MALFORMED_SCOPES)
+def test_stops_with_one_line_on_a_malformed_scope(repo: Path, case: str) -> None:
+    """A scope part that is not a string, or a scope that is not an object, gets one line."""
+    draft, line = MALFORMED_SCOPES[case]
+    _commit_selectors(repo, {DRAFT: draft}, "Draft a malformed scope")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == line + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
 def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
     """A base carried as it is is not unreleased: the run commits and signs none of it.
 
