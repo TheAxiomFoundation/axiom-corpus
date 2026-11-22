@@ -107,7 +107,8 @@ excludes descriptions; repository evidence tests also pin the reviewed prose on
 both sides. Two optional sections extend v1, ``successions`` and
 ``base_replacements``: older strict readers reject them rather than silently
 ignoring recorded edges or replacements. The loader refuses a mapping that
-repeats a key, which YAML would otherwise read as its last value.
+repeats a key, which YAML would otherwise read as its last value, and a mapping
+that gives the merge key (``<<``) twice.
 """
 
 from __future__ import annotations
@@ -1076,12 +1077,30 @@ def _sorted_unique(values: Iterable[Any], where: str) -> None:
         raise SelectorLineageError(f"{where} must be sorted and free of duplicates")
 
 
+_YAML_MERGE_TAG = "tag:yaml.org,2002:merge"
+
+
 class _UniqueKeySafeLoader(yaml.SafeLoader):
     """yaml.SafeLoader that refuses a mapping repeating a key, at any depth.
 
     PyYAML keeps a repeated key's last value without a word, so a baseline that
     repeated a pin, a section or a record field would read as its last copy alone.
+    A repeated merge key (``<<``) is refused too: PyYAML merges every copy, where a
+    reader that keeps only the last copy would see fewer keys.
     """
+
+    def flatten_mapping(self, node: yaml.MappingNode) -> None:
+        # SafeConstructor deletes each merge key as it merges it, so count them first.
+        # It flattens a merge source, and each mapping in a list of sources, through
+        # this method too, so the count covers them. One merge key with a list of
+        # mappings stays allowed: it repeats no key.
+        merges = [key for key, _value in node.value if key.tag == _YAML_MERGE_TAG]
+        if len(merges) > 1:
+            raise SelectorLineageError(
+                f"line {merges[1].start_mark.line + 1}: the key '<<' repeats in one mapping; "
+                "merge several mappings with one '<<' and a list of them"
+            )
+        super().flatten_mapping(node)
 
     def construct_mapping(self, node: yaml.MappingNode, deep: bool = False) -> dict[Hashable, Any]:
         mapping = super().construct_mapping(node, deep=deep)

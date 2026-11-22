@@ -2322,3 +2322,88 @@ def test_a_repeated_baseline_key_is_refused(tmp_path: Path, text: str, key: str)
         match=re.escape(f"{path}: line {copies[1]}: the key {key!r} repeats in one mapping"),
     ):
         load_lineage_baseline(path)
+
+
+_SPLIT_FIELDS = "    replaced: 2026-05-01-us-code\n    replaced_by: us/statute/2026-11-01-us-code\n"
+
+
+def _second_merge_key_line(text: str) -> int:
+    """The line of the second merge key in ``text``, a flow mapping's keys included."""
+    seen = 0
+    for number, line in enumerate(text.splitlines(), 1):
+        seen += len(re.findall(r"(?:<<|!!merge \w+):", line))
+        if seen >= 2:
+            return number
+    raise AssertionError("the text gives fewer than two merge keys")
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        pytest.param(_LAYERED_VALID + "<<: {}\n<<: {}\n", id="empty_sources"),
+        pytest.param(
+            _LAYERED_VALID.replace(
+                _SPLIT_FIELDS,
+                "    <<: {replaced: 2026-05-01-us-code}\n"
+                "    <<: {replaced_by: us/statute/2026-11-01-us-code}\n",
+                1,
+            ),
+            id="disjoint_sources",
+        ),
+        pytest.param(_LAYERED_VALID + "<<: {<<: {}, <<: {}}\n", id="in_a_merge_source"),
+        pytest.param(_LAYERED_VALID + "<<: [{}, {<<: {}, <<: {}}]\n", id="in_a_listed_source"),
+        pytest.param(_LAYERED_VALID + "!!merge first: {}\n<<: {}\n", id="explicit_merge_tag"),
+    ],
+)
+def test_a_repeated_merge_key_is_refused(tmp_path: Path, text: str) -> None:
+    """A mapping that gives the merge key twice is refused, merge sources included.
+
+    SafeConstructor deletes each merge key as it merges it, so without a count
+    taken before it flattens, every case here loads as a mapping that repeats no
+    key: the copies merge nothing, or keys no other entry gives. A reader that
+    keeps only the last copy of the key would read disjoint_sources without
+    ``replaced``. A key tagged ``!!merge`` is a merge key whatever its text.
+    """
+    assert "<<" in text and text != _LAYERED_VALID
+    path = _write(tmp_path, text)
+    with pytest.raises(
+        SelectorLineageError,
+        match=re.escape(
+            f"{path}: line {_second_merge_key_line(text)}: the key '<<' repeats in one mapping"
+        ),
+    ):
+        load_lineage_baseline(path)
+
+
+@pytest.mark.parametrize(
+    ("text", "plain"),
+    [
+        pytest.param(
+            _LAYERED_VALID.replace(
+                _SPLIT_FIELDS,
+                "    <<: [{replaced: 2026-05-01-us-code},"
+                " {replaced_by: us/statute/2026-11-01-us-code}]\n",
+                1,
+            ),
+            _LAYERED_VALID,
+            id="one_merge_key_listing_two_sources",
+        ),
+        pytest.param(
+            _VALID.replace(
+                "    listed_on: 2026-11-02\n", "    <<: &day {listed_on: 2026-11-02}\n", 1
+            ).replace("    listed_on: 2026-11-02\n", "    <<: *day\n", 1),
+            _VALID,
+            id="one_merge_key_in_each_of_two_mappings",
+        ),
+    ],
+)
+def test_one_merge_key_per_mapping_still_loads(tmp_path: Path, text: str, plain: str) -> None:
+    """One merge key in a mapping loads as the baseline written without merges.
+
+    One key with a list of mappings is YAML's form for merging several, and one
+    merge key in each of two mappings, the second an alias of the first's source,
+    repeats no key in either. The repeated-merge refusal counts per mapping.
+    """
+    assert "<<" in text and text != plain
+    loaded = load_lineage_baseline(_write(tmp_path, text))
+    assert loaded == load_lineage_baseline(_write(tmp_path, plain))

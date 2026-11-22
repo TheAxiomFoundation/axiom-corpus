@@ -1787,7 +1787,9 @@ def _repeat_a_baseline_key(baseline: Path, variant: str, signed: str) -> str:
     """Repeat one key of the baseline, the copy that does not match the cut first.
 
     Read as its last copy, as YAML reads a repeated key, the baseline would still
-    record the replacement. Returns the error the loader gives for the repeat.
+    record the replacement. repeated_merge gives the recorded entry two empty merge
+    keys, which PyYAML flattens away, so the entry reads as written. Returns the
+    error the loader gives for the repeat.
     """
     text = baseline.read_text()
     pin = f'  us-restore-next: "{signed}"\n'
@@ -1807,6 +1809,7 @@ def _repeat_a_baseline_key(baseline: Path, variant: str, signed: str) -> str:
             "replaced",
             text.replace(replaced, '    replaced: "2026-04-30"\n' + replaced, 1),
         ),
+        "repeated_merge": ("<<", text.replace(replaced, replaced + "    <<: {}\n    <<: {}\n", 1)),
     }[variant]
     copies = [
         number
@@ -1824,7 +1827,14 @@ def _repeat_a_baseline_key(baseline: Path, variant: str, signed: str) -> str:
 @pytest.mark.parametrize("shape", ["primary_kept", "base_only"])
 @pytest.mark.parametrize(
     "variant",
-    ["unknown_field", "yaml_syntax", "repeated_pin", "repeated_section", "repeated_field"],
+    [
+        "unknown_field",
+        "yaml_syntax",
+        "repeated_pin",
+        "repeated_section",
+        "repeated_field",
+        "repeated_merge",
+    ],
 )
 def test_malformed_lineage_baseline_fails_only_base_carry_forward(
     release_repo, variant: str, shape: str
