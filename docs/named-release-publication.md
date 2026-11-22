@@ -133,9 +133,15 @@ Key rotation must preserve the retiring public key before replacing the current
 pair. Set `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to a JSON array of retired
 public keys, then rotate `AXIOM_CORPUS_RELEASE_PRIVATE_KEY` and
 `AXIOM_CORPUS_RELEASE_PUBLIC_KEY` together. Legacy keys authenticate only prior
-immutable release objects during safe scope reuse. Newly published objects,
-R2 readback, and activation must verify with the current public key. Keep every
-retired key needed by a release that can supply an already published scope.
+immutable release objects: during safe scope reuse, and in the activation gate,
+for the stored objects of the releases an activation displaces. Newly published
+objects, R2 readback, and activation, including the gate's check of the
+incoming release, must verify with the current public key. Keep every retired
+key needed by a release that can supply an already published scope or that
+still serves a pair. The activation workflow does not yet pass
+`AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to its gate steps, so until it does
+the gate refuses an activation that displaces a release signed under a retired
+key (see the gate's known limits under "Successor cuts").
 
 9. Activation is a separate, deliberate step (`scripts/activate_release.py`, or
    `publish_corpus.py --activate`), because it moves serving and can displace
@@ -653,11 +659,22 @@ displaces:
   as a base and the other as a primary scope. Mirror mode runs this check
   too. The threat model's stated limits list this reader among those that
   read the working tree rather than HEAD.
-- The preview adds `current_base_version` to each pair whose active release it
-  reads: that release's base version for the pair, or null when the release
-  serves the pair without a base. It takes the base from the stored signed
-  object and refuses a stored object that signs a base scope without being
-  `axiom-corpus/release-object/v4`. It leaves the field out when the database
+- The preview adds `current_base_version` to each pair whose active release
+  it reads: that release's base version for the pair, or null when the
+  release serves the pair without a base. It reads the base and the pair's
+  versions from the stored release object, and the publication time from
+  that object's row (`corpus.release_objects.created_at`, which is not
+  signed). It uses a stored object only when the object names the release
+  the row was looked up under, its recomputed content digest is the row's
+  `content_sha256`, and it verifies: the schema, which keeps scope layers to
+  `axiom-corpus/release-object/v4` and requires a v4 object to mark a base
+  scope, the content and selector digests, and the Ed25519 signature. The
+  incoming release's stored object must verify under the current release
+  public key. The stored object of a release that activation displaces may
+  instead verify under a retired key listed in
+  `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`, as prior objects do in safe
+  scope reuse. A stored object that fails any of this fails every
+  active-state check. The preview leaves the field out when the database
   returns no stored object for the active release, or that object carries no
   version of the pair.
 - `base_carry_forward` fails when activation would stop serving the base of a
@@ -725,6 +742,21 @@ Known limits of the activation gate:
   predecessor, so the lineage check finds no dropped base for it, and an entry
   for it is a baseline error. Activate the cut that records the replacement
   before any later cut.
+- The gate verifies the incoming release's stored object under the current
+  release public key alone, and a displaced release's stored object under the
+  current key or a retired key listed in
+  `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`. The activation workflow does not
+  pass that variable to its gate steps, so an activation that displaces a
+  release signed under a retired key fails every active-state check until the
+  activation workflow passes `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to both
+  gate steps. A retired key the variable lists authenticates a displaced
+  release's stored object as it authenticates prior objects in safe scope
+  reuse.
+- The gate still trusts the database for which release serves each pair (the
+  preview's `current_release_name` and `current_content_sha256`) and for
+  publication times (`corpus.release_objects.created_at`, which is not
+  signed). A database that names a genuine, validly signed older release as
+  active passes verification.
 
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
 scope the target declares or a tracked selector it reads marks. It never opens

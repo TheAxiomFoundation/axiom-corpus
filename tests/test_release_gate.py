@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import copy
 import importlib.util
 import json
 import re
 import subprocess
 import sys
 from argparse import Namespace
-from base64 import b64encode
+from base64 import b64decode, b64encode
 from pathlib import Path
 from typing import Any
 
@@ -29,8 +30,13 @@ from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_SCHEMA_V2,
     RELEASE_OBJECT_SCHEMA_V3,
     RELEASE_OBJECT_SCHEMA_V4,
+    RELEASE_OBJECT_SIGNATURE_ALGORITHM,
+    RELEASE_OBJECT_SIGNATURE_KEY_ID,
     build_release_content,
     build_unsigned_release_object,
+    canonical_release_object_bytes,
+    canonical_release_public_key,
+    release_content_sha256,
     sign_release_object,
 )
 
@@ -51,10 +57,10 @@ P2 = ReleaseScope("us", "statute", "2026-07-28-p2")
 R1 = ReleaseScope("us", "regulation", "2026-07-26-r1")
 BR = ReleaseScope("us", "regulation", "2026-05-01", layer=LAYER_BASE)
 BR_NEW = ReleaseScope("us", "regulation", "2026-11-01-cfr", layer=LAYER_BASE)
+P1_BASE = ReleaseScope("us", "statute", "2026-07-26-p1", layer=LAYER_BASE)
 
 
-@pytest.fixture
-def signing_keys() -> tuple[str, str]:
+def _new_key_pair() -> tuple[str, str]:
     private = Ed25519PrivateKey.generate()
     private_text = b64encode(
         private.private_bytes(
@@ -70,6 +76,11 @@ def signing_keys() -> tuple[str, str]:
         )
     ).decode()
     return private_text, public_text
+
+
+@pytest.fixture
+def signing_keys() -> tuple[str, str]:
+    return _new_key_pair()
 
 
 def _write_scope(store: CorpusArtifactStore, scope: ReleaseScope) -> None:
@@ -986,13 +997,29 @@ def _incoming_detail() -> dict[str, Any]:
     )
 
 
-def _changed_row(pair: tuple[str, str], release: str) -> dict[str, Any]:
+def _changed_row(pair: tuple[str, str], release: str, sha: str | None = None) -> dict[str, Any]:
     return {
         "jurisdiction": pair[0],
         "document_class": pair[1],
         "changes": True,
         "current_release_name": release,
-        "current_content_sha256": f"{release}-sha",
+        "current_content_sha256": f"{release}-sha" if sha is None else sha,
+    }
+
+
+def _signed_detail(
+    obj: dict[str, Any],
+    *,
+    published_at: str,
+    release_name: str | None = None,
+    content_sha256: str | None = None,
+) -> dict[str, Any]:
+    """A stored row for a release object, under the object's own name and digest."""
+    return {
+        "release_name": obj["release"] if release_name is None else release_name,
+        "content_sha256": obj["content_sha256"] if content_sha256 is None else content_sha256,
+        "published_at": published_at,
+        "release_object": obj,
     }
 
 
@@ -1001,6 +1028,9 @@ def _fake_supabase_provider(
     rows: list[dict[str, Any]],
     details: list[dict[str, Any]],
     queries: list[dict[str, Any]],
+    *,
+    public_key: str = "unused-public-key",
+    legacy_public_keys: tuple[str, ...] = (),
 ):
     monkeypatch.setenv(gate.DEFAULT_ACCESS_TOKEN_ENV, "test-token")
     monkeypatch.delenv(gate.DEFAULT_DATABASE_URL_ENV, raising=False)
@@ -1020,27 +1050,37 @@ def _fake_supabase_provider(
     monkeypatch.setattr(gate, "_management_api_post_json_with_curl", post)
     return gate._supabase_active_state_provider(
         Namespace(supabase_url="https://abcdefghijklmnop.supabase.co", expected_project_ref=None),
-        "unused-public-key",
+        public_key,
+        legacy_public_keys=legacy_public_keys,
     )
 
 
-def test_supabase_provider_records_current_base_version(monkeypatch) -> None:
+def test_supabase_provider_records_current_base_version(release_repo, monkeypatch) -> None:
+    _, public, make = release_repo
+    layered, _ = make("us-layered", [B, P1])
+    plain, _ = make("us-plain", [R1])
+    # Its bases differ from every active object's, so a provider that read the
+    # incoming release's base map would report the wrong current_base_version.
+    incoming, _ = make("us-incoming", [B_NEW, P2, BR])
+    assert layered["schema_version"] == RELEASE_OBJECT_SCHEMA_V4
+    assert plain["schema_version"] == RELEASE_OBJECT_SCHEMA_V3
     rows = [
-        _changed_row(("us", "statute"), "us-layered"),
-        _changed_row(("us", "regulation"), "us-plain"),
+        _changed_row(("us", "statute"), "us-layered", layered["content_sha256"]),
+        _changed_row(("us", "regulation"), "us-plain", plain["content_sha256"]),
+        # The database returns no stored object for this release.
         _changed_row(("us", "guidance"), "us-missing"),
         # The active object carries no version of this pair, so no base is recorded.
-        _changed_row(("us", "rulings"), "us-layered"),
+        _changed_row(("us", "rulings"), "us-layered", layered["content_sha256"]),
     ]
     details = [
-        _incoming_detail(),
-        _stored_detail("us-layered", [_stored_scope(B), _stored_scope(P1)]),
-        _stored_detail("us-plain", [_stored_scope(R1)], schema_version=RELEASE_OBJECT_SCHEMA_V3),
+        _signed_detail(incoming, published_at=_LATER),
+        _signed_detail(layered, published_at=_EARLIER),
+        _signed_detail(plain, published_at=_EARLIER),
     ]
     queries: list[dict[str, Any]] = []
-    provide = _fake_supabase_provider(monkeypatch, rows, details, queries)
+    provide = _fake_supabase_provider(monkeypatch, rows, details, queries, public_key=public)
 
-    by_pair = {(row["jurisdiction"], row["document_class"]): row for row in provide(_INCOMING)}
+    by_pair = {(row["jurisdiction"], row["document_class"]): row for row in provide(incoming)}
 
     statute = by_pair["us", "statute"]
     assert statute["current_base_version"] == "2026-04-29"
@@ -1977,3 +2017,355 @@ def test_an_unreadable_signed_layer_fails_each_layer_check_alone(release_repo) -
             False,
             f"{name} could not run: {error}",
         )
+
+
+# The provider reads versions, bases and layers only from a stored release object
+# that is the signed object of its own row: it names the row's release, hashes to
+# the row's digest and verifies (schema, digests, signature).
+def _unsigned(obj: dict[str, Any]) -> dict[str, Any]:
+    unsigned = copy.deepcopy(obj)
+    unsigned.pop("signature")
+    return unsigned
+
+
+def _without_base_marker(obj: dict[str, Any]) -> dict[str, Any]:
+    relabelled = copy.deepcopy(obj)
+    for scope in relabelled["content"]["scopes"]:
+        scope.pop("layer", None)
+    return relabelled
+
+
+def _resign_unchecked(obj: dict[str, Any], private_text: str) -> dict[str, Any]:
+    """Re-sign an object with a valid content digest, skipping sign_release_object's checks."""
+    signed = copy.deepcopy(obj)
+    signed.pop("signature", None)
+    signed["content_sha256"] = release_content_sha256(signed["content"])
+    private = Ed25519PrivateKey.from_private_bytes(b64decode(private_text))
+    signed["signature"] = {
+        "algorithm": RELEASE_OBJECT_SIGNATURE_ALGORITHM,
+        "key_id": RELEASE_OBJECT_SIGNATURE_KEY_ID,
+        "value": b64encode(private.sign(canonical_release_object_bytes(signed))).decode("ascii"),
+    }
+    return signed
+
+
+def _provider_results(
+    release_repo,
+    monkeypatch,
+    name: str,
+    obj: dict[str, Any],
+    path: Path,
+    rows: list[dict[str, Any]],
+    details: list[dict[str, Any]],
+    *,
+    legacy_public_keys: tuple[str, ...] = (),
+):
+    root, public, _ = release_repo
+    provide = _fake_supabase_provider(
+        monkeypatch,
+        rows,
+        details,
+        [],
+        public_key=public,
+        legacy_public_keys=legacy_public_keys,
+    )
+    return gate.run_gate(
+        release_object_path=path,
+        release=name,
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="activate",
+        public_key=public,
+        active_state_provider=provide,
+    )
+
+
+def _forged_activation(variant: str, root: Path, make, private: str):
+    """Set up one forgery: (incoming name, object, path, rows, details, refused, refusal)."""
+    if variant == "null_identity":
+        # A detail with no identity, keyed ('None', 'None'), meets the null row.
+        active, _ = make("us-active", [B, P1])
+        plain, _ = make("us-plain", [R1])
+        obj, path = make("us-new-pair", [B, R1])
+        rows = [
+            {
+                "jurisdiction": "us",
+                "document_class": "statute",
+                "changes": True,
+                "current_release_name": None,
+                "current_content_sha256": None,
+            },
+            _changed_row(_REGULATION, "us-plain", plain["content_sha256"]),
+        ]
+        details = [
+            _signed_detail(obj, published_at=_LATER),
+            _signed_detail(plain, published_at=_EARLIER),
+            {
+                "release_name": None,
+                "content_sha256": None,
+                "published_at": _EARLIER,
+                "release_object": active,
+            },
+        ]
+        return "us-new-pair", obj, path, rows, details, "None", "is not the object of its row"
+    incoming_name, incoming_scopes = "us-next", [P1, P2]
+    refused, refusal = "'us-active'", "is not the object of its row"
+    stored_incoming = None
+    if variant == "relabelled_unsigned":
+        active, _ = make("us-active", [B, P1])
+        stored, digest = _unsigned(_without_base_marker(active)), active["content_sha256"]
+    elif variant in ("unsigned", "foreign_key"):
+        active, _ = make("us-active", [B_PRIMARY, P1])
+        digest = active["content_sha256"]
+        if variant == "unsigned":
+            stored = _unsigned(active)
+            refusal = "does not verify: release object is missing its signature"
+        else:
+            stored = sign_release_object(active, private_key=_new_key_pair()[0])
+            refusal = "does not verify: release object signature is invalid"
+    elif variant == "unmarked_v4_base":
+        active, _ = make("us-active", [B, P1])
+        stored = _resign_unchecked(_without_base_marker(active), private)
+        digest = stored["content_sha256"]
+        refusal = (
+            "does not verify: release-object/v4 is reserved for releases with at least one "
+            "base scope"
+        )
+    elif variant == "other_release":
+        stored, _ = make("us-other", [B_PRIMARY, P1])
+        _install_active_manifest(root, "us-active", B, P1)
+        digest = stored["content_sha256"]
+    elif variant == "other_digest":
+        active, _ = make("us-active", [B, P1])
+        stored, _ = make("us-active", [B_PRIMARY, P1])
+        digest = active["content_sha256"]
+    elif variant == "unsigned_incoming":
+        stored, _ = make("us-active", [B, P1])
+        digest = stored["content_sha256"]
+        incoming_scopes = [B, P1, P2]
+        stored_incoming = _unsigned
+        refused, refusal = "'us-next'", "does not verify: release object is missing its signature"
+    elif variant == "base_only_forgery":
+        active, _ = make("us-active", [B, P1])
+        stored, _ = make("us-active", [P1_BASE])
+        digest = active["content_sha256"]
+        incoming_scopes = [P1_BASE]
+    else:
+        assert variant == "monotonicity_forgery"
+        active, _ = make("us-active", [P2])
+        stored, _ = make("us-active", [P1])
+        digest = active["content_sha256"]
+        incoming_scopes = [P1]
+    obj, path = make(incoming_name, incoming_scopes)
+    incoming_copy = obj if stored_incoming is None else stored_incoming(obj)
+    rows = [_changed_row(_STATUTE, "us-active", digest)]
+    details = [
+        _signed_detail(incoming_copy, published_at=_LATER),
+        _signed_detail(
+            stored, published_at=_EARLIER, release_name="us-active", content_sha256=digest
+        ),
+    ]
+    return incoming_name, obj, path, rows, details, refused, refusal
+
+
+@pytest.mark.parametrize(
+    "variant",
+    [
+        "relabelled_unsigned",
+        "unsigned",
+        "foreign_key",
+        "unmarked_v4_base",
+        "other_release",
+        "other_digest",
+        "unsigned_incoming",
+        "base_only_forgery",
+        "monotonicity_forgery",
+        "null_identity",
+    ],
+)
+def test_a_stored_object_that_is_not_its_rows_signed_object_fails_every_state_check(
+    release_repo, signing_keys, monkeypatch, variant: str
+) -> None:
+    root, _, make = release_repo
+    name, obj, path, rows, details, refused, refusal = _forged_activation(
+        variant, root, make, signing_keys[0]
+    )
+    results = _provider_results(release_repo, monkeypatch, name, obj, path, rows, details)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    for check in ("object_identity", "cut_plan_provenance"):
+        assert by_name[check].passed, by_name[check].evidence
+    monotonicity = by_name["scope_monotonicity"]
+    assert (monotonicity.passed, monotonicity.warning) == (False, False)
+    assert monotonicity.evidence.startswith(
+        f"active-state lookup failed: stored release object of {refused} "
+    ), monotonicity.evidence
+    assert refusal in monotonicity.evidence
+    for result in results[3:]:
+        assert (result.passed, result.warning, result.evidence) == (
+            False,
+            False,
+            "active-state evidence unavailable",
+        )
+
+
+@pytest.mark.parametrize("case", ["base", "base_only", "monotonicity"])
+def test_honest_stored_objects_show_what_the_forgeries_hide(
+    release_repo, monkeypatch, case: str
+) -> None:
+    _, _, make = release_repo
+    active_scopes, incoming_scopes = {
+        "base": ([B, P1], [P1, P2]),
+        "base_only": ([B, P1], [P1_BASE]),
+        "monotonicity": ([P2], [P1]),
+    }[case]
+    active, _ = make("us-active", active_scopes)
+    obj, path = make("us-next", incoming_scopes)
+    rows = [_changed_row(_STATUTE, "us-active", active["content_sha256"])]
+    details = [
+        _signed_detail(obj, published_at=_LATER),
+        _signed_detail(active, published_at=_EARLIER),
+    ]
+    results = _provider_results(release_repo, monkeypatch, "us-next", obj, path, rows, details)
+    by_name = _by_name(results)
+    failed = {result.name: result.evidence for result in results if not result.passed}
+    if case == "base":
+        assert failed == {"base_carry_forward": _stop_serving("us-next", "no base")}
+    elif case == "base_only":
+        assert failed == {
+            "base_carry_forward": _stop_serving("us-next", "base us/statute/2026-07-26-p1"),
+            "base_only_pair": _base_alone(_STATUTE, "us-next", P1.version, [P1.version]),
+        }
+    else:
+        assert list(failed) == ["scope_monotonicity"]
+        assert "incoming frontier '2026-07-26-p1' precedes active '2026-07-28-p2'" in (
+            by_name["scope_monotonicity"].evidence
+        )
+
+
+@pytest.mark.parametrize("keys", ["none", "other", "signer"])
+def test_a_displaced_object_signed_under_a_retired_key_needs_that_key(
+    release_repo, monkeypatch, keys: str
+) -> None:
+    _, _, make = release_repo
+    retired_private, retired_public = _new_key_pair()
+    active, _ = make("us-active", [B, P1])
+    # Re-signing leaves the content, and so its digest, unchanged.
+    retired = sign_release_object(active, private_key=retired_private)
+    assert retired["content_sha256"] == active["content_sha256"]
+    obj, path = make("us-next", [B, P1, P2])
+    rows = [_changed_row(_STATUTE, "us-active", active["content_sha256"])]
+    details = [
+        _signed_detail(obj, published_at=_LATER),
+        _signed_detail(retired, published_at=_EARLIER),
+    ]
+    legacy = {"none": (), "other": (_new_key_pair()[1],), "signer": (retired_public,)}[keys]
+    results = _provider_results(
+        release_repo, monkeypatch, "us-next", obj, path, rows, details, legacy_public_keys=legacy
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    if keys == "signer":
+        assert all(result.passed and not result.warning for result in results), _evidence(results)
+        assert by_name["base_carry_forward"].evidence == (
+            "1 incoming pair(s): 1 displace an active base; 1 carry it unchanged and 0 replace "
+            "it under a recorded base_replacements entry"
+        )
+        return
+    assert by_name["scope_monotonicity"].evidence == (
+        "active-state lookup failed: stored release object of 'us-active' does not verify: "
+        "release object signature is invalid"
+    )
+    for result in results[2:]:
+        assert (result.passed, result.warning) == (False, False), result.evidence
+    for result in results[3:]:
+        assert result.evidence == "active-state evidence unavailable"
+
+
+def test_an_incoming_stored_object_signed_under_a_retired_key_is_refused(
+    release_repo, monkeypatch
+) -> None:
+    _, _, make = release_repo
+    retired_private, retired_public = _new_key_pair()
+    active, _ = make("us-active", [B, P1])
+    # The incoming file verifies under the current key, so object_identity passes;
+    # only its stored copy is signed under the retired key the provider lists.
+    obj, path = make("us-next", [B, P1, P2])
+    details = [
+        _signed_detail(sign_release_object(obj, private_key=retired_private), published_at=_LATER),
+        _signed_detail(active, published_at=_EARLIER),
+    ]
+    rows = [_changed_row(_STATUTE, "us-active", active["content_sha256"])]
+    results = _provider_results(
+        release_repo,
+        monkeypatch,
+        "us-next",
+        obj,
+        path,
+        rows,
+        details,
+        legacy_public_keys=(retired_public,),
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    assert by_name["object_identity"].passed, by_name["object_identity"].evidence
+    assert "of 'us-next' does not verify: release object signature is invalid" in (
+        by_name["scope_monotonicity"].evidence
+    )
+    for result in results[2:]:
+        assert (result.passed, result.warning) == (False, False), result.evidence
+
+
+@pytest.mark.parametrize(
+    "value", ["unset", "valid", "not_json", "not_list", "duplicate", "bad_key"]
+)
+def test_the_gate_reads_retired_keys_as_the_publisher_does(
+    release_repo, monkeypatch, value: str
+) -> None:
+    root, public, make = release_repo
+    _install_active_manifest(root, "us-active", B, P1)
+    obj, path = make("us-next", [B, P1, P2])
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version)]
+    retired = _new_key_pair()[1]
+    recorded: list[tuple[str, ...]] = []
+
+    def recorder(_args: Namespace, _public_key: str, legacy_public_keys: tuple[str, ...] = ()):
+        recorded.append(tuple(legacy_public_keys))
+        return lambda _release_object: rows
+
+    monkeypatch.setattr(gate, "_supabase_active_state_provider", recorder)
+    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", public)
+    # The publisher's variable, named literally.
+    env = "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS"
+    raw = {
+        "unset": None,
+        "valid": json.dumps([retired]),
+        "not_json": "not json",
+        "not_list": json.dumps("key"),
+        "duplicate": json.dumps([retired, retired]),
+        "bad_key": json.dumps(["not-a-key"]),
+    }[value]
+    if raw is None:
+        monkeypatch.delenv(env, raising=False)
+    else:
+        monkeypatch.setenv(env, raw)
+    argv = [
+        "--release-object",
+        str(path),
+        "--release",
+        "us-next",
+        "--content-sha",
+        obj["content_sha256"],
+        "--repo-root",
+        str(root),
+        "--mode",
+        "activate",
+    ]
+    if value in ("unset", "valid"):
+        assert gate.main(argv) == 0
+        expected = () if value == "unset" else (canonical_release_public_key(retired),)
+        assert recorded == [expected]
+    else:
+        with pytest.raises(SystemExit, match=env):
+            gate.main(argv)
+        assert recorded == []

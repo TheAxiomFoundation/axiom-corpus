@@ -29,6 +29,8 @@ from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
     RELEASE_OBJECT_SCHEMA_V4,
     ReleaseManifestError,
+    ReleaseSignatureMismatchError,
+    canonical_release_public_key,
     verify_release_object,
 )
 
@@ -514,6 +516,76 @@ def _no_orphan_check(active_rows: list[dict[str, Any]], *, repo_root: Path) -> C
     )
 
 
+def _require_signed_stored_object(detail: Mapping[str, Any], *, public_keys: Sequence[str]) -> None:
+    """Refuse a stored release object that is not the signed object of its row.
+
+    The provider looks each release up by (release_name, content_sha256) and
+    reads versions, bases and layers from the object the row holds. That object
+    must name the release, hash to the digest and verify under one of
+    public_keys (schema, including the release-object/v4 base rule; content and
+    selector digests; signature), so no row can report evidence its signed
+    object lacks. Only a signature mismatch moves on to the next key, as
+    publish_corpus._verifies_with_any_key does: every other failure is the same
+    under every key.
+    """
+    name = detail.get("release_name")
+    digest = detail.get("content_sha256")
+    obj = cast(Mapping[str, Any], detail["release_object"])
+    actual = _canonical_content_sha(obj.get("content"))
+    if obj.get("release") != name or actual != digest:
+        raise ValueError(
+            f"stored release object of {name!r} is not the object of its row: it names "
+            f"{obj.get('release')!r} and its content hashes to {actual}, but the row is "
+            f"{name!r} at {digest!r}"
+        )
+    mismatch: ReleaseManifestError | None = None
+    for public_key in public_keys:
+        try:
+            verify_release_object(obj, public_key=public_key)
+        except ReleaseSignatureMismatchError as exc:
+            mismatch = exc
+            continue
+        except (ReleaseManifestError, TypeError, ValueError) as exc:
+            raise ValueError(f"stored release object of {name!r} does not verify: {exc}") from exc
+        return
+    # Reached only when no key verifies, including an empty key set.
+    raise ValueError(
+        f"stored release object of {name!r} does not verify: "
+        f"{mismatch or 'no release public key was given'}"
+    )
+
+
+# The same variable publish.yml passes to the publisher (publish.yml:48), which
+# defines its name at scripts/publish_corpus.py:82.
+RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV = "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS"
+
+
+def _legacy_public_keys_from_env() -> tuple[str, ...]:
+    """Retired release public keys, read as the publisher reads them."""
+    raw = os.environ.get(RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV, "")
+    if not raw:
+        return ()
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must be a JSON array of public keys"
+        ) from exc
+    if (
+        not isinstance(payload, list)
+        or any(not isinstance(key, str) or not key for key in payload)
+        or len(set(payload)) != len(payload)
+    ):
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must be a unique JSON array "
+            "of non-empty public keys"
+        )
+    try:
+        return tuple(canonical_release_public_key(key) for key in payload)
+    except ReleaseManifestError as exc:
+        raise ValueError(f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV}: {exc}") from exc
+
+
 def _displaced_row(
     pair: Pair, rows: Sequence[Mapping[str, Any]], failures: list[str]
 ) -> tuple[str, frozenset[str], str | None] | None:
@@ -758,7 +830,7 @@ def _active_state_from_file(path: Path) -> ActiveStateProvider:
 
 
 def _supabase_active_state_provider(
-    args: argparse.Namespace, public_key: str
+    args: argparse.Namespace, public_key: str, legacy_public_keys: Sequence[str] = ()
 ) -> ActiveStateProvider:
     match = _PROJECT_URL_RE.fullmatch(args.supabase_url)
     if match is None:
@@ -843,6 +915,19 @@ def _supabase_active_state_provider(
             detail["scopes"] = set(layers)
             detail["base_versions"] = base_versions
             by_identity[(str(detail["release_name"]), str(detail["content_sha256"]))] = detail
+        # Only the signed object of its own row may supply the versions, bases and
+        # publication evidence projected below. The incoming release verifies under
+        # the current key alone; a release it displaces may also verify under a
+        # retired key, as prior objects do in the publisher's safe scope reuse.
+        incoming_identity = (str(release_object["release"]), str(release_object["content_sha256"]))
+        for detail in details:
+            identity = (str(detail.get("release_name")), str(detail.get("content_sha256")))
+            keys = (
+                (public_key,)
+                if identity == incoming_identity
+                else (public_key, *legacy_public_keys)
+            )
+            _require_signed_stored_object(detail, public_keys=keys)
         for row in rows:
             incoming_detail = by_identity.get(
                 (
@@ -992,10 +1077,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         raise SystemExit(f"{RELEASE_OBJECT_PUBLIC_KEY_ENV} (or RELEASE_TRUST_ROOT) is required")
     provider: ActiveStateProvider | None = None
     if args.mode == "activate":
+        try:
+            legacy_public_keys = _legacy_public_keys_from_env()
+        except ValueError as exc:
+            raise SystemExit(str(exc)) from exc
         provider = (
             _active_state_from_file(args.active_state_file)
             if args.active_state_file
-            else _supabase_active_state_provider(args, public_key)
+            else _supabase_active_state_provider(
+                args, public_key, legacy_public_keys=legacy_public_keys
+            )
         )
         if args.active_state_output is not None:
             base_provider = provider
