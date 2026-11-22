@@ -1704,13 +1704,21 @@ def test_provider_failure_fails_every_state_check(release_repo, failure: str) ->
     assert {name: result.evidence for name, result in state.items()} == expected
 
 
-@pytest.mark.parametrize("variant", ["unknown_field", "yaml_syntax"])
-def test_malformed_lineage_baseline_fails_only_base_carry_forward(
-    release_repo, variant: str
-) -> None:
+def _recorded_replacement(
+    release_repo, shape: str
+) -> tuple[dict[str, Any], Path, Path, list[dict[str, Any]]]:
+    # Both shapes replace the May base under a recorded entry. primary_kept keeps P1
+    # above the new base; base_only selects the new base alone over an active release
+    # that serves its base alone, so base_only_pair reaches its per-pair loop.
     root, _, make = release_repo
-    _install_active_manifest(root, "us-restore", B, P1)
-    obj, path = make("us-restore-next", [B_NEW, P1])
+    if shape == "primary_kept":
+        _install_active_manifest(root, "us-restore", B, P1)
+        obj, path = make("us-restore-next", [B_NEW, P1])
+        current = [B.version, P1.version]
+    else:
+        _install_active_manifest(root, "us-restore", B)
+        obj, path = make("us-restore-next", [B_NEW])
+        current = [B.version]
     baseline = _write_lineage_baseline(
         root,
         selector="us-restore-next",
@@ -1720,6 +1728,16 @@ def test_malformed_lineage_baseline_fails_only_base_carry_forward(
         replaced_by=B_NEW,
         digest=obj["content"]["selector_sha256"],
     )
+    rows = [_layered_row(_STATUTE, current, B.version, release="us-restore")]
+    return obj, path, baseline, rows
+
+
+@pytest.mark.parametrize("shape", ["primary_kept", "base_only"])
+@pytest.mark.parametrize("variant", ["unknown_field", "yaml_syntax"])
+def test_malformed_lineage_baseline_fails_only_base_carry_forward(
+    release_repo, variant: str, shape: str
+) -> None:
+    obj, path, baseline, rows = _recorded_replacement(release_repo, shape)
     if variant == "unknown_field":
         baseline.write_text(baseline.read_text() + "unreviewed_section: []\n")
         error = f"SelectorLineageError: {baseline}: unsupported fields ['unreviewed_section']"
@@ -1730,17 +1748,36 @@ def test_malformed_lineage_baseline_fails_only_base_carry_forward(
             yaml.safe_load(baseline.read_text())
         assert not isinstance(info.value, ValueError)
         error = f"{type(info.value).__name__}: "
-    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
     results = _activate(release_repo, "us-restore-next", obj, path, rows)
     assert [result.name for result in results] == _ACTIVATE_NAMES
     by_name = _by_name(results)
     result = by_name["base_carry_forward"]
-    assert not result.passed
+    assert (result.passed, result.warning) == (False, False)
     assert result.evidence.startswith(f"base_carry_forward could not run: {error}")
-    monotonicity = by_name["scope_monotonicity"]
-    assert monotonicity.passed, monotonicity.evidence
-    assert "active-state lookup failed" not in monotonicity.evidence
-    assert by_name["no_orphan"].passed, by_name["no_orphan"].evidence
+    # The error fails base_carry_forward alone: base_only_pair reads no baseline.
+    others = [item for item in results if item.name != "base_carry_forward"]
+    assert all(item.passed and not item.warning for item in others), _evidence(others)
+    if shape == "base_only":
+        assert by_name["base_only_pair"].evidence == (
+            "1 base-only incoming pair(s): 1 displace no active primary scope"
+        )
+
+
+def test_a_well_formed_baseline_clears_a_displaced_base_only_pair(release_repo) -> None:
+    # The base_only shape with its baseline as written passes every check, so each
+    # malformed-baseline case above fails for its baseline alone.
+    obj, path, _, rows = _recorded_replacement(release_repo, "base_only")
+    results = _activate(release_repo, "us-restore-next", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
+    by_name = _by_name(results)
+    assert by_name["base_carry_forward"].evidence == (
+        "1 incoming pair(s): 1 displace an active base; 0 carry it unchanged and 1 "
+        "replace it under a recorded base_replacements entry"
+    )
+    assert by_name["base_only_pair"].evidence == (
+        "1 base-only incoming pair(s): 1 displace no active primary scope"
+    )
 
 
 @pytest.mark.parametrize("case", ["carried_base", "no_active_base"])
