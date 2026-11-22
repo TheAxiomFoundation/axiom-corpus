@@ -646,10 +646,13 @@ before it activates. Three of the gate's checks read scope layers, and its
 active-state preview reports the base of each release that activation
 displaces:
 
-- `cut_plan_provenance` reads each scope's layer from the tracked selector, as
-  the selector loader does, and from the signed object. It fails on a scope
-  that one side marks as a base and the other as a primary scope. Mirror mode
-  runs this check too.
+- `cut_plan_provenance` reads each scope's layer from the cut plan,
+  `manifests/releases/<release>.json` as it stands in the working tree of
+  the checkout the gate runs in, parsing each scope as the selector loader
+  does, and from the signed object. It fails on a scope that one side marks
+  as a base and the other as a primary scope. Mirror mode runs this check
+  too. The threat model's stated limits list this reader among those that
+  read the working tree rather than HEAD.
 - The preview adds `current_base_version` to each pair whose active release it
   reads: that release's base version for the pair, or null when the release
   serves the pair without a base. It takes the base from the stored signed
@@ -1034,9 +1037,10 @@ Later checks enforce what these cannot:
   (the digest leaves out the description,
   `src/axiom_corpus/release/manifest.py:187-196`). It does not see a rewrite of
   an unpinned selector, nor a description-only edit of a pinned one.
-- The activation gate (`scripts/check_release_gate.py`, once #1001 lands)
-  compares an incoming release with the active one before activation: cut-plan
-  provenance, base carry-forward and base-only pairs.
+- The activation gate (`scripts/check_release_gate.py`; **Activation gate**
+  above) compares an incoming release with the release that serves each of
+  its pairs before activation: cut-plan provenance, base carry-forward and
+  base-only pairs.
 - Publication refuses a released triple whose artifacts differ from the
   published ones (`scripts/publish_corpus.py:689-696`), so a local rewrite of a
   released base cannot be published.
