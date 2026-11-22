@@ -490,7 +490,7 @@ yet: `scripts/self_contain_usc_scope.py`,
 `scripts/slim_us_recovery_statutes.py`,
 `scripts/repair_us_release_source_references.py`, `scripts/recover_ingest.py`,
 `scripts/recover_ingest_batch.py` and the extract writer in
-`src/axiom_corpus/corpus/usc.py`. Don't run them on a base scope; #<follow-up>
+`src/axiom_corpus/corpus/usc.py`. Don't run them on a base scope; #1002
 tracks their guard.
 
 **Composing a cut.** `axiom_corpus.corpus.successors.compose_successor` builds
@@ -886,7 +886,7 @@ Each limit lies outside one part of the definition above, named in brackets.
     `scripts/repair_us_release_source_references.py`,
     `scripts/recover_ingest.py`, `scripts/recover_ingest_batch.py` and the
     extract writer in `src/axiom_corpus/corpus/usc.py`. They have no layer
-    check (#<follow-up>).
+    check (#1002).
 11. [Checkouts] A checkout that holds a link but that the resolver does not
     recognise: a sparse checkout without `src/axiom_corpus` and
     `.axiom/corpus-locks`, or any checkout while `GIT_DIR` and `GIT_WORK_TREE`
