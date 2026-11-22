@@ -1025,18 +1025,15 @@ def _supabase_active_state_provider(
         changing = [row for row in rows if row.get("changes") and row.get("current_release_name")]
         if not changing:
             return rows
-        identities = sorted(
-            {
-                (str(row["current_release_name"]), str(row["current_content_sha256"]))
-                for row in changing
-            }
-            | {
-                (
-                    str(release_object["release"]),
-                    str(release_object["content_sha256"]),
-                )
-            }
+        incoming_identity = (
+            str(release_object["release"]),
+            str(release_object["content_sha256"]),
         )
+        displaced = {
+            (str(row["current_release_name"]), str(row["current_content_sha256"]))
+            for row in changing
+        }
+        identities = sorted(displaced | {incoming_identity})
         details = cast(
             list[dict[str, Any]],
             _management_api_post_json_with_curl(
@@ -1077,7 +1074,6 @@ def _supabase_active_state_provider(
         # publication evidence projected below. The incoming release verifies under
         # the current key alone; a release it displaces may also verify under a
         # retired key, as prior objects do in the publisher's safe scope reuse.
-        incoming_identity = (str(release_object["release"]), str(release_object["content_sha256"]))
         for detail in details:
             identity = (str(detail.get("release_name")), str(detail.get("content_sha256")))
             keys = (
@@ -1086,13 +1082,17 @@ def _supabase_active_state_provider(
                 else (public_key, *legacy_public_keys)
             )
             _require_signed_stored_object(detail, public_keys=keys)
-        for row in rows:
-            incoming_detail = by_identity.get(
-                (
-                    str(release_object["release"]),
-                    str(release_object["content_sha256"]),
-                )
+        # corpus.active_scope_pointer references corpus.release_objects by
+        # (release_name, content_sha256), so an honest response holds the stored
+        # object of every release a changing row names.
+        missing = sorted(displaced - set(by_identity))
+        if missing:
+            raise ValueError(
+                "the database returned no stored release object for displaced release(s) "
+                + ", ".join(f"{name!r} at {digest!r}" for name, digest in missing)
             )
+        incoming_detail = by_identity.get(incoming_identity)
+        for row in rows:
             if incoming_detail is not None:
                 row["incoming_published_at"] = incoming_detail["published_at"]
             identity = (
@@ -1101,6 +1101,9 @@ def _supabase_active_state_provider(
             )
             active_detail = by_identity.get(identity)
             if active_detail is None:
+                # Only a row outside `changing` gets here: a null-name row, a
+                # changes-false row whose release was not returned, or a malformed
+                # row the readers refuse.
                 continue
             pair = (str(row["jurisdiction"]), str(row["document_class"]))
             row["current_versions"] = sorted(

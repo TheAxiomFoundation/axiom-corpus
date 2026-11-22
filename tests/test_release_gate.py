@@ -1068,8 +1068,6 @@ def test_supabase_provider_records_current_base_version(release_repo, monkeypatc
     rows = [
         _changed_row(("us", "statute"), "us-layered", layered["content_sha256"]),
         _changed_row(("us", "regulation"), "us-plain", plain["content_sha256"]),
-        # The database returns no stored object for this release.
-        _changed_row(("us", "guidance"), "us-missing"),
         # The active object carries no version of this pair, so no base is recorded.
         _changed_row(("us", "rulings"), "us-layered", layered["content_sha256"]),
     ]
@@ -1090,9 +1088,6 @@ def test_supabase_provider_records_current_base_version(release_repo, monkeypatc
     assert "current_base_version" in regulation
     assert regulation["current_base_version"] is None
     assert regulation["current_versions"] == ["2026-07-26-r1"]
-    guidance = by_pair["us", "guidance"]
-    assert "current_base_version" not in guidance
-    assert guidance["current_versions"] == []
     rulings = by_pair["us", "rulings"]
     assert "current_base_version" not in rulings
     assert rulings["current_versions"] == []
@@ -1102,7 +1097,6 @@ def test_supabase_provider_records_current_base_version(release_repo, monkeypatc
     assert queries[0]["payload"]["parameters"][0] == [
         "us-incoming",
         "us-layered",
-        "us-missing",
         "us-plain",
     ]
 
@@ -2798,6 +2792,35 @@ def test_a_preview_row_cannot_supply_the_incoming_publication_time(
             "time, not publication time"
         )
     }
+
+
+def test_a_displaced_release_without_a_stored_object_fails_every_state_check(
+    release_repo, monkeypatch
+) -> None:
+    # Moved here from test_supabase_provider_records_current_base_version's
+    # us-missing row. corpus.active_scope_pointer references corpus.release_objects,
+    # so an honest details response always holds the displaced release. Without
+    # the missing-object rule scope_monotonicity, base_carry_forward and
+    # primary_frontier already fail on the empty versions, but no_orphan passes,
+    # because the manifest is on main, and base_only_pair passes, because the cut
+    # has no base-only pair.
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-missing", P1)
+    obj, path = make("us-next", [P1, P2])
+    results = _provider_results(
+        release_repo,
+        monkeypatch,
+        "us-next",
+        obj,
+        path,
+        [_changed_row(_STATUTE, "us-missing")],
+        [_signed_detail(obj, published_at=_LATER)],
+    )
+    _assert_lookup_failed(
+        results,
+        "the database returned no stored release object for displaced release(s) "
+        "'us-missing' at 'us-missing-sha'",
+    )
 
 
 @pytest.mark.parametrize("keys", ["none", "other", "signer"])

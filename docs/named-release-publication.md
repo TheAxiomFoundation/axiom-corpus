@@ -689,15 +689,17 @@ displaces:
   active version it drops or changes (a strict advance). `object_identity`
   verifies the signed object the gate was given under the current key in
   every case. The preview leaves `current_base_version` out when the
-  database returns no stored object for the active release, or that
-  object carries no version of the pair.
+  displaced release's stored object carries no version of the pair.
 - The live preview holds each row the database returns to the preview
   function's five columns: `jurisdiction`, `document_class`,
   `current_release_name`, `current_content_sha256` and `changes`. A row
   with any other field, such as `current_versions`, or without one of the
   five, fails every active-state check, so the database response cannot
   supply the versions, base or publication times the gate derives from
-  verified stored objects.
+  verified stored objects. The stored-object lookup must return the
+  stored object of every release a row names as displaced, which
+  `corpus.active_scope_pointer`'s foreign key to `corpus.release_objects`
+  guarantees; a missing one fails every active-state check.
 - `base_carry_forward` fails when activation would stop serving the base of a
   release it displaces. A pair passes when its active release serves no base
   there, or when the incoming release selects the same version as the pair's
