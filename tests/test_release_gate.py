@@ -2369,3 +2369,149 @@ def test_the_gate_reads_retired_keys_as_the_publisher_does(
         with pytest.raises(SystemExit, match=env):
             gate.main(argv)
         assert recorded == []
+
+
+# A null current_release_name means no active pointer serves the pair, so the row
+# carries no evidence of an active release; a row that does contradicts itself.
+_NULL_POINTER = {
+    "jurisdiction": "us",
+    "document_class": "statute",
+    "changes": True,
+    "current_release_name": None,
+}
+_NULL_POINTER_EVIDENCE = {
+    "versions_and_base": (
+        {"current_versions": [B.version, P1.version], "current_base_version": B.version},
+        "current_versions ['2026-04-29', '2026-07-26-p1'], current_base_version '2026-04-29'",
+    ),
+    "versions_only": ({"current_versions": [P1.version]}, "current_versions ['2026-07-26-p1']"),
+    "base_only": (
+        {"current_versions": [], "current_base_version": B.version},
+        "current_base_version '2026-04-29'",
+    ),
+    "digest_only": (
+        {"current_versions": [], "current_content_sha256": "a" * 64},
+        f"current_content_sha256 '{'a' * 64}'",
+    ),
+    "published_only": (
+        {"current_versions": [], "current_published_at": _EARLIER},
+        f"current_published_at '{_EARLIER}'",
+    ),
+    "falsy_base": ({"current_versions": [], "current_base_version": ""}, "current_base_version ''"),
+    "null_versions": ({"current_versions": None}, "current_versions None"),
+}
+
+
+def _null_pointer_failure(stray: str) -> str:
+    return (
+        "us/statute: current_release_name is null, so no release serves the pair, but the "
+        f"row carries active-release evidence: {stray}"
+    )
+
+
+@pytest.mark.parametrize("variant", list(_NULL_POINTER_EVIDENCE))
+def test_a_null_pointer_with_active_evidence_fails_base_carry_forward(
+    release_repo, variant: str
+) -> None:
+    _, _, make = release_repo
+    fields, stray = _NULL_POINTER_EVIDENCE[variant]
+    rows = [{**_NULL_POINTER, **fields}]
+    obj, path = make("us-new", [P1, P2])
+    for allow_regression in (False, True):
+        results = _activate(
+            release_repo, "us-new", obj, path, rows, allow_regression=allow_regression
+        )
+        result = _by_name(results)["base_carry_forward"]
+        assert (result.passed, result.warning) == (False, False)
+        assert result.evidence == _null_pointer_failure(stray)
+
+
+def test_a_null_pointer_with_active_evidence_fails_base_only_pair(release_repo) -> None:
+    fields, stray = _NULL_POINTER_EVIDENCE["versions_and_base"]
+    _, _, results = _results(release_repo, "us-new", [B], [{**_NULL_POINTER, **fields}])
+    by_name = _by_name(results)
+    for name in ("base_only_pair", "base_carry_forward"):
+        assert (by_name[name].passed, by_name[name].warning) == (False, False)
+        assert by_name[name].evidence == _null_pointer_failure(stray)
+
+
+def test_a_contradictory_offline_preview_fails_the_cli(release_repo, capsys, monkeypatch) -> None:
+    root, public, make = release_repo
+    obj, path = make("us-new", [P1, P2])
+    fields, _ = _NULL_POINTER_EVIDENCE["versions_and_base"]
+    active_path = root / "active-state.json"
+    active_path.write_text(json.dumps([{**_NULL_POINTER, **fields}]))
+    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", public)
+    exit_code = gate.main(
+        [
+            "--release-object",
+            str(path),
+            "--release",
+            "us-new",
+            "--content-sha",
+            obj["content_sha256"],
+            "--repo-root",
+            str(root),
+            "--mode",
+            "activate",
+            "--active-state-file",
+            str(active_path),
+        ]
+    )
+    output = capsys.readouterr().out
+    assert exit_code == 1
+    assert re.findall(r"^\| (\w+) \| (PASS|FAIL|WARN) \|", output, re.MULTILINE) == [
+        ("object_identity", "PASS"),
+        ("cut_plan_provenance", "PASS"),
+        ("scope_monotonicity", "PASS"),
+        ("no_orphan", "PASS"),
+        ("base_carry_forward", "FAIL"),
+        ("base_only_pair", "PASS"),
+    ]
+
+
+def test_a_null_pointer_in_the_provider_shape_displaces_nothing(release_repo, monkeypatch) -> None:
+    # The live provider's null row: a null digest, empty versions and the incoming
+    # publication time. It displaces nothing, so every check passes.
+    root, public, make = release_repo
+    plain, _ = make("us-plain", [R1])
+    obj, path = make("us-new-pair", [B, R1])
+    rows = [
+        {
+            "jurisdiction": "us",
+            "document_class": "statute",
+            "changes": True,
+            "current_release_name": None,
+            "current_content_sha256": None,
+        },
+        _changed_row(_REGULATION, "us-plain", plain["content_sha256"]),
+    ]
+    details = [
+        _signed_detail(plain, published_at=_EARLIER),
+        _signed_detail(obj, published_at=_LATER),
+    ]
+    provide = _fake_supabase_provider(monkeypatch, rows, details, [], public_key=public)
+    statute = next(row for row in provide(obj) if row["document_class"] == "statute")
+    assert statute == {
+        "jurisdiction": "us",
+        "document_class": "statute",
+        "changes": True,
+        "current_release_name": None,
+        "current_content_sha256": None,
+        "current_versions": [],
+        "incoming_published_at": _LATER,
+    }
+    results = gate.run_gate(
+        release_object_path=path,
+        release="us-new-pair",
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="activate",
+        public_key=public,
+        active_state_provider=provide,
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
+    assert _by_name(results)["base_only_pair"].evidence == (
+        "1 base-only incoming pair(s): 1 displace no active primary scope"
+    )

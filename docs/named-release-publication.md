@@ -706,11 +706,18 @@ they check needs exactly one row with a boolean `changes`, and a row that
 displaces a release needs a non-empty `current_versions` list of version
 strings and a `current_base_version` field, whose non-null value must be one
 of `current_versions`. A row with `changes` false (the pair already serves the
-incoming release) or a null `current_release_name` (no release serves the
-pair) displaces nothing and passes. A `base_replacements` entry clears
-`base_carry_forward` only for the cut it names as its `selector`. The gate
-compares the entry's `replaced` with the base of the release it displaces,
-whichever release that is, and never with the bases of cuts in between.
+incoming release) displaces nothing and passes. So does a row with a null
+`current_release_name` (no release serves the pair) that carries no evidence
+of an active release: `current_versions` absent or empty, and
+`current_base_version`, `current_content_sha256` and `current_published_at`
+absent or null. A null-name row with any such evidence fails
+`base_carry_forward`, and `base_only_pair` for a base-only pair, because the
+preview returns a null name only for a pair that has no active pointer.
+`scope_monotonicity` is unchanged and skips the row. A `base_replacements`
+entry clears `base_carry_forward` only for the cut it names as its
+`selector`. The gate compares the entry's `replaced` with the base of the
+release it displaces, whichever release that is, and never with the bases of
+cuts in between.
 
 A restore cut keeps the active release's primary scopes of a pair and adds a
 base under them. It passes `base_carry_forward` when the active release serves
@@ -757,6 +764,9 @@ Known limits of the activation gate:
   publication times (`corpus.release_objects.created_at`, which is not
   signed). A database that names a genuine, validly signed older release as
   active passes verification.
+- The offline `--active-state-file` path is trusted as written: the gate
+  refuses a row that contradicts itself, not a consistent invented one. The
+  activation workflow uses the live preview.
 
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
 scope the target declares or a tracked selector it reads marks. It never opens

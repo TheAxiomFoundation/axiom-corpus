@@ -586,14 +586,36 @@ def _legacy_public_keys_from_env() -> tuple[str, ...]:
         raise ValueError(f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV}: {exc}") from exc
 
 
+# A null current_release_name means no active pointer serves the pair: the preview
+# LEFT JOINs the incoming pairs to corpus.active_scope_pointer, whose release_name is
+# NOT NULL (supabase/migrations/20260718193000_scope_level_activation.sql). Such a row
+# names no release, so it carries none of that release's evidence. The live provider
+# projects none onto it: every stored object is bound to a validated release name
+# (_require_signed_stored_object) before the projection, so no detail keyed
+# ('None', 'None') reaches it.
+_ACTIVE_RELEASE_FIELDS = ("current_base_version", "current_content_sha256", "current_published_at")
+
+
+def _null_pointer_evidence(row: Mapping[str, Any]) -> list[str]:
+    """The active-release evidence a row with a null current_release_name carries."""
+    stray: list[str] = []
+    if "current_versions" in row and row["current_versions"] != []:
+        stray.append(f"current_versions {row['current_versions']!r}")
+    stray.extend(
+        f"{field} {row[field]!r}" for field in _ACTIVE_RELEASE_FIELDS if row.get(field) is not None
+    )
+    return stray
+
+
 def _displaced_row(
     pair: Pair, rows: Sequence[Mapping[str, Any]], failures: list[str]
 ) -> tuple[str, frozenset[str], str | None] | None:
     """The active release, versions and base that activation displaces for ``pair``.
 
     None when activation displaces nothing (the pair reaffirms the incoming
-    release or has no active pointer) and when the evidence fails. Every failure
-    is appended to ``failures``; none is skipped.
+    release or has no active pointer and its row carries no active-release
+    evidence) and when the evidence fails. Every failure is appended to
+    ``failures``; none is skipped.
     """
     label = "/".join(pair)
     matching = [row for row in rows if (row.get("jurisdiction"), row.get("document_class")) == pair]
@@ -615,6 +637,12 @@ def _displaced_row(
         return None
     current = row["current_release_name"]
     if current is None:
+        stray = _null_pointer_evidence(row)
+        if stray:
+            failures.append(
+                f"{label}: current_release_name is null, so no release serves the pair, but the "
+                f"row carries active-release evidence: {', '.join(stray)}"
+            )
         return None
     if not (isinstance(current, str) and current):
         failures.append(
