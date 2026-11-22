@@ -923,11 +923,11 @@ Each limit lies outside one part of the definition above, named in brackets.
     and merge a base's selector before others run tools over that corpus.
 16. [Selectors, other readers] Three other readers of tracked selectors read
     the working tree, not HEAD: `selector_lineage.load_tracked_selectors` (the
-    CI lineage guard's reader), `release_policy.selectors_selecting`, and, once
-    #1001 lands, `scripts/check_release_gate.py`'s `_provenance_check`. The CI
-    guard runs in a full checkout, where the working tree and HEAD agree; in a
-    sparse or edited checkout these readers miss a hidden selector and count an
-    untracked one.
+    CI lineage guard's reader), `release_policy.selectors_selecting`, and
+    `scripts/check_release_gate.py`'s `_provenance_check`. The CI guard runs in
+    a full checkout, where the working tree and HEAD agree; in a sparse or
+    edited checkout these readers miss a hidden selector and count an untracked
+    one.
 17. [Main] Main as the signer and the layer-conflict remedy see it: the merge
     bases of HEAD with `origin/main` and with `main`, as of the last fetch. A
     selector main gained after the last fetch is at neither; fetch and merge
