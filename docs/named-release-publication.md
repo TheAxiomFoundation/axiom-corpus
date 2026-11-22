@@ -699,7 +699,13 @@ displaces:
   verified stored objects. The stored-object lookup must return the
   stored object of every release a row names as displaced, which
   `corpus.active_scope_pointer`'s foreign key to `corpus.release_objects`
-  guarantees; a missing one fails every active-state check.
+  guarantees; a missing one fails every active-state check. Its response
+  must be a list of rows with exactly the query's four columns,
+  `release_name`, `content_sha256`, `published_at` and `release_object`,
+  each naming a release identity the query asked for as two non-empty
+  strings, and none twice. No two rows may share a `release_name` or a
+  `content_sha256`, which the table's primary key and unique constraint
+  rule out. Any other response fails every active-state check.
 - `base_carry_forward` fails when activation would stop serving the base of a
   release it displaces. A pair passes when its active release serves no base
   there, or when the incoming release selects the same version as the pair's

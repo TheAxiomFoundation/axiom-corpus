@@ -1191,6 +1191,7 @@ _REGULATION = ("us", "regulation")
 _UNSET: Any = object()
 _EARLIER = "2026-07-27T00:00:00Z"
 _LATER = "2026-07-29T00:00:00Z"
+_LATEST = "2026-07-30T00:00:00Z"
 _ACTIVATE_NAMES = [
     "object_identity",
     "cut_plan_provenance",
@@ -2489,7 +2490,7 @@ def _forged_activation(variant: str, root: Path, make, private: str):
                 "release_object": active,
             },
         ]
-        return "us-new-pair", obj, path, rows, details, "None", "is not the object of its row"
+        return "us-new-pair", obj, path, rows, details, "None", "has no release identity"
     incoming_name, incoming_scopes = "us-next", [P1, P2]
     refused, refusal = "'us-active'", "is not the object of its row"
     stored_incoming = None
@@ -2820,6 +2821,179 @@ def test_a_displaced_release_without_a_stored_object_fails_every_state_check(
         results,
         "the database returned no stored release object for displaced release(s) "
         "'us-missing' at 'us-missing-sha'",
+    )
+
+
+_RESPONSE_VARIANTS = [
+    "honest",
+    "null",
+    "object",
+    "null_item",
+    "number_item",
+    "missing_column",
+    "extra_column",
+    "empty_name",
+    "numeric_digest",
+]
+
+
+@pytest.mark.parametrize("variant", _RESPONSE_VARIANTS)
+def test_a_malformed_stored_object_response_fails_every_state_check(
+    release_repo, monkeypatch, variant: str
+) -> None:
+    # A strict advance over a plain active release: the honest response passes.
+    _, _, make = release_repo
+    active, _ = make("us-active", [P1])
+    obj, path = make("us-next", [P1, P2])
+    sha = active["content_sha256"]
+    incoming = _signed_detail(obj, published_at=_LATER)
+    stored = _signed_detail(active, published_at=_EARLIER)
+    columns = "stored release object response item 1 does not have the query's columns"
+    identity = "has no release identity: release_name and content_sha256 must be non-empty strings"
+    response, message = {
+        "honest": ([incoming, stored], None),
+        "null": (None, "stored release object response is not a JSON array: NoneType"),
+        "object": (
+            {"rows": [incoming, stored]},
+            "stored release object response is not a JSON array: dict",
+        ),
+        "null_item": (
+            [incoming, None],
+            "stored release object response item 1 is not an object: NoneType",
+        ),
+        "number_item": (
+            [incoming, 42],
+            "stored release object response item 1 is not an object: int",
+        ),
+        "missing_column": (
+            [incoming, {key: value for key, value in stored.items() if key != "published_at"}],
+            f"{columns}: extra [], missing ['published_at']",
+        ),
+        "extra_column": (
+            [incoming, {**stored, "note": "added on the way"}],
+            f"{columns}: extra ['note'], missing []",
+        ),
+        "empty_name": (
+            [incoming, {**stored, "release_name": ""}],
+            f"stored release object of '' {identity}, not '' and {sha!r}",
+        ),
+        "numeric_digest": (
+            [incoming, {**stored, "content_sha256": 7}],
+            f"stored release object of 'us-active' {identity}, not 'us-active' and 7",
+        ),
+    }[variant]
+    rows = [_changed_row(_STATUTE, "us-active", sha)]
+    results = _provider_results(release_repo, monkeypatch, "us-next", obj, path, rows, response)
+    if message is None:
+        assert all(result.passed and not result.warning for result in results), _evidence(results)
+        return
+    _assert_lookup_failed(results, message)
+
+
+@pytest.mark.parametrize("copies", ["first_copy_only", "later_copy_differs", "identical"])
+def test_a_repeated_stored_identity_fails_every_state_check(
+    release_repo, monkeypatch, copies: str
+) -> None:
+    # Identical versions, so publication recency decides. The first stored copy of
+    # the active release was published after the incoming release, so that copy
+    # alone fails scope_monotonicity. Without the repeat rule a later copy with an
+    # earlier time replaces it (the provider kept the last copy), and identical
+    # copies both verify.
+    _, _, make = release_repo
+    active, _ = make("us-active", [P1])
+    obj, path = make("us-next", [P1])
+    first_at = _EARLIER if copies == "identical" else _LATEST
+    details = [
+        _signed_detail(obj, published_at=_LATER),
+        _signed_detail(active, published_at=first_at),
+    ]
+    if copies != "first_copy_only":
+        details.append(_signed_detail(active, published_at=_EARLIER))
+    rows = [_changed_row(_STATUTE, "us-active", active["content_sha256"])]
+    results = _provider_results(release_repo, monkeypatch, "us-next", obj, path, rows, details)
+    if copies == "first_copy_only":
+        failed = {result.name: result.evidence for result in results if not result.passed}
+        assert list(failed) == ["scope_monotonicity"]
+        evidence = failed["scope_monotonicity"]
+        assert "identical version evidence, but incoming 'us-next' was published" in evidence
+        return
+    _assert_lookup_failed(
+        results,
+        f"stored release object of 'us-active' at {active['content_sha256']!r} "
+        "appears more than once",
+    )
+
+
+def test_a_repeated_stored_release_name_fails_every_state_check(release_repo, monkeypatch) -> None:
+    # release_name is corpus.release_objects' primary key, so one name never comes
+    # back at two digests. Here the preview names us-active at two digests for two
+    # pairs, and the response returns a genuine signed object at each. Without the
+    # release_name rule both verify, each row reads its own object, and all seven
+    # checks pass.
+    _, _, make = release_repo
+    statute_only, _ = make("us-active", [P1])
+    both, _ = make("us-active", [P1, R1])
+    obj, path = make("us-next", [P1, P2, R1])
+    rows = [
+        _changed_row(_STATUTE, "us-active", statute_only["content_sha256"]),
+        _changed_row(_REGULATION, "us-active", both["content_sha256"]),
+    ]
+    details = [
+        _signed_detail(obj, published_at=_LATER),
+        _signed_detail(statute_only, published_at=_EARLIER),
+        _signed_detail(both, published_at=_EARLIER),
+    ]
+    results = _provider_results(release_repo, monkeypatch, "us-next", obj, path, rows, details)
+    _assert_lookup_failed(
+        results,
+        f"stored release object of 'us-active' at {both['content_sha256']!r} repeats the "
+        f"release_name of the object at {statute_only['content_sha256']!r}",
+    )
+
+
+def test_a_repeated_stored_digest_fails_every_state_check(release_repo, monkeypatch) -> None:
+    # content_sha256 is UNIQUE in corpus.release_objects, so one digest never comes
+    # back under two names. The signed content names its release, so no genuine
+    # object of another release shares the digest: without the content_sha256 rule
+    # the relabelled copy fails the bind with other text.
+    _, _, make = release_repo
+    active, _ = make("us-active", [P1])
+    obj, path = make("us-next", [P1, P2, R1])
+    sha = active["content_sha256"]
+    rows = [
+        _changed_row(_STATUTE, "us-active", sha),
+        _changed_row(_REGULATION, "us-alias", sha),
+    ]
+    details = [
+        _signed_detail(obj, published_at=_LATER),
+        _signed_detail(active, published_at=_EARLIER),
+        _signed_detail(active, published_at=_EARLIER, release_name="us-alias"),
+    ]
+    results = _provider_results(release_repo, monkeypatch, "us-next", obj, path, rows, details)
+    _assert_lookup_failed(
+        results,
+        f"stored release object of 'us-alias' at {sha!r} repeats the content_sha256 of 'us-active'",
+    )
+
+
+def test_an_unrequested_stored_identity_fails_every_state_check(release_repo, monkeypatch) -> None:
+    # The query asks only for the incoming and displaced identities (WHERE ... IN).
+    # Without the requested rule a genuine signed object of another release
+    # verifies and is ignored.
+    _, _, make = release_repo
+    active, _ = make("us-active", [P1])
+    other, _ = make("us-other", [R1])
+    obj, path = make("us-next", [P1, P2])
+    rows = [_changed_row(_STATUTE, "us-active", active["content_sha256"])]
+    details = [
+        _signed_detail(obj, published_at=_LATER),
+        _signed_detail(active, published_at=_EARLIER),
+        _signed_detail(other, published_at=_EARLIER),
+    ]
+    results = _provider_results(release_repo, monkeypatch, "us-next", obj, path, rows, details)
+    _assert_lookup_failed(
+        results,
+        f"stored release object of 'us-other' at {other['content_sha256']!r} was not requested",
     )
 
 

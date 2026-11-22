@@ -590,9 +590,10 @@ def _legacy_public_keys_from_env() -> tuple[str, ...]:
 # LEFT JOINs the incoming pairs to corpus.active_scope_pointer, whose release_name is
 # NOT NULL (supabase/migrations/20260718193000_scope_level_activation.sql). Such a row
 # names no release, so it carries none of that release's evidence. The live provider
-# projects none onto it: every stored object is bound to a validated release name
-# (_require_signed_stored_object) before the projection, so no detail keyed
-# ('None', 'None') reaches it.
+# projects none onto it: _require_preview_contract refuses a row that brings its own
+# evidence, _stored_details refuses a stored-object row whose release_name or
+# content_sha256 is not a non-empty string, and _require_signed_stored_object binds
+# every stored object to its row's name before the projection.
 _ACTIVE_RELEASE_FIELDS = ("current_base_version", "current_content_sha256", "current_published_at")
 
 
@@ -986,6 +987,76 @@ def _require_preview_contract(rows: Sequence[object]) -> list[dict[str, Any]]:
     return checked
 
 
+# The columns of the stored-object query in _supabase_active_state_provider.
+# corpus.release_objects keys each row by release_name (PRIMARY KEY) and
+# content_sha256 (UNIQUE), and its created_at and release_object are NOT NULL
+# (supabase/migrations/20260710180000_atomic_named_release_activation.sql).
+_DETAIL_COLUMNS = ("release_name", "content_sha256", "published_at", "release_object")
+
+
+def _stored_details(
+    response: object, *, requested: set[tuple[str, str]]
+) -> dict[tuple[str, str], dict[str, Any]]:
+    """Copies of the stored-object rows keyed by identity, refusing any other shape.
+
+    The response must be a JSON array of objects with exactly the query's four
+    columns, each naming, as two non-empty strings, an identity the query asked
+    for, and no identity, release_name or content_sha256 twice. The table and
+    the query's WHERE ... IN guarantee all of this, so a response that breaks it
+    is not the query's. The provider adds its fields to the copies, never to the
+    response.
+    """
+    if not isinstance(response, list):
+        raise ValueError(
+            f"stored release object response is not a JSON array: {type(response).__name__}"
+        )
+    by_identity: dict[tuple[str, str], dict[str, Any]] = {}
+    digest_of: dict[str, str] = {}
+    name_of: dict[str, str] = {}
+    for index, detail in enumerate(response):
+        if not isinstance(detail, dict):
+            raise ValueError(
+                f"stored release object response item {index} is not an object: "
+                f"{type(detail).__name__}"
+            )
+        extra = sorted(set(detail) - set(_DETAIL_COLUMNS))
+        missing = [column for column in _DETAIL_COLUMNS if column not in detail]
+        if extra or missing:
+            raise ValueError(
+                f"stored release object response item {index} does not have the query's "
+                f"columns: extra {extra!r}, missing {missing!r}"
+            )
+        name, digest = detail["release_name"], detail["content_sha256"]
+        if not (isinstance(name, str) and name and isinstance(digest, str) and digest):
+            raise ValueError(
+                f"stored release object of {name!r} has no release identity: release_name "
+                f"and content_sha256 must be non-empty strings, not {name!r} and {digest!r}"
+            )
+        identity = (name, digest)
+        if identity in by_identity:
+            raise ValueError(
+                f"stored release object of {name!r} at {digest!r} appears more than once"
+            )
+        # release_name is the table's primary key and content_sha256 is UNIQUE, so
+        # neither names two rows of one response.
+        if name in digest_of:
+            raise ValueError(
+                f"stored release object of {name!r} at {digest!r} repeats the release_name "
+                f"of the object at {digest_of[name]!r}"
+            )
+        if digest in name_of:
+            raise ValueError(
+                f"stored release object of {name!r} at {digest!r} repeats the content_sha256 "
+                f"of {name_of[digest]!r}"
+            )
+        if identity not in requested:
+            raise ValueError(f"stored release object of {name!r} at {digest!r} was not requested")
+        by_identity[identity] = dict(detail)
+        digest_of[name] = digest
+        name_of[digest] = name
+    return by_identity
+
+
 def _supabase_active_state_provider(
     args: argparse.Namespace, public_key: str, legacy_public_keys: Sequence[str] = ()
 ) -> ActiveStateProvider:
@@ -1034,8 +1105,7 @@ def _supabase_active_state_provider(
             for row in changing
         }
         identities = sorted(displaced | {incoming_identity})
-        details = cast(
-            list[dict[str, Any]],
+        by_identity = _stored_details(
             _management_api_post_json_with_curl(
                 f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
                 payload={
@@ -1054,9 +1124,9 @@ def _supabase_active_state_provider(
                 access_token=access_token,
                 timeout=120,
             ),
+            requested=set(identities),
         )
-        by_identity: dict[tuple[str, str], dict[str, Any]] = {}
-        for detail in details:
+        for detail in by_identity.values():
             obj = detail.get("release_object")
             if not isinstance(obj, dict) or not isinstance(obj.get("content"), dict):
                 raise ValueError(
@@ -1069,13 +1139,11 @@ def _supabase_active_state_provider(
                 raise ValueError("only release-object/v4 may sign scope layers")
             detail["scopes"] = set(layers)
             detail["base_versions"] = base_versions
-            by_identity[(str(detail["release_name"]), str(detail["content_sha256"]))] = detail
         # Only the signed object of its own row may supply the versions, bases and
         # publication evidence projected below. The incoming release verifies under
         # the current key alone; a release it displaces may also verify under a
         # retired key, as prior objects do in the publisher's safe scope reuse.
-        for detail in details:
-            identity = (str(detail.get("release_name")), str(detail.get("content_sha256")))
+        for identity, detail in by_identity.items():
             keys = (
                 (public_key,)
                 if identity == incoming_identity
