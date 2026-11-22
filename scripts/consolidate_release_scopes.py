@@ -228,7 +228,7 @@ def consolidate_release_scopes(
         )
     ]
     guarded += [target_inventory_path, target_provisions_path, target_sources, target_coverage_path]
-    for inventory in guard_scope_artifacts(
+    for holder_releases in guard_scope_artifacts(
         guarded,
         releases_dir=DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir,
         holders_of=holders_of,
@@ -237,7 +237,7 @@ def consolidate_release_scopes(
             jurisdiction=jurisdiction,
             document_class=document_class,
             versions=(*source_versions, target_version),
-            releases_dir=inventory,
+            releases_dir=holder_releases,
         )
     for path in (
         target_inventory_path,
