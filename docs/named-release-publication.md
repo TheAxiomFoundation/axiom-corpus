@@ -696,9 +696,9 @@ displaces:
   too. It reads no lineage baseline, and no entry waives it.
 
 Both new checks run in activate mode only, each in a guard of its own: an
-error, such as a lineage baseline that does not load, fails that check alone
-with `<check> could not run`. When the preview lookup raises a `KeyError`,
-`TypeError`, `ValueError` or `RuntimeError`, both report
+error, such as a lineage baseline that does not load or repeats a mapping key,
+fails that check alone with `<check> could not run`. When the preview lookup
+raises a `KeyError`, `TypeError`, `ValueError` or `RuntimeError`, both report
 `active-state evidence unavailable`. Neither sets a warning, so
 `--allow-regression`, which softens only `scope_monotonicity`, softens neither.
 Both read the preview rows through the same rules and fail closed: each pair

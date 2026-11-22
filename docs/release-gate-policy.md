@@ -328,7 +328,10 @@ entry. The loader requires `selector_digests` in name order and fork entries in
 order of predecessor, then `listed_on`, so a later entry goes right after its
 predecessor's earlier ones. It refuses a second entry for one predecessor on
 the same date, a later entry that repeats a branch an earlier one records, and
-one that adds nothing.
+one that adds nothing. It also refuses a mapping that repeats a key at any
+depth, such as a second pin for one selector, a second section or a record
+field given twice, and names the line, because YAML would keep only the last
+value. A key that a merge key (`<<`) also supplies counts as repeated.
 
 Two optional sections, `successions` and `base_replacements`, extend the
 existing v1 schema: no existing field changes meaning, and older baselines

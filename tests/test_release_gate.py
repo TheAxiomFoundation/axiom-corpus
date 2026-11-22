@@ -1732,8 +1732,49 @@ def _recorded_replacement(
     return obj, path, baseline, rows
 
 
+def _repeat_a_baseline_key(baseline: Path, variant: str, signed: str) -> str:
+    """Repeat one key of the baseline, the copy that does not match the cut first.
+
+    Read as its last copy, as YAML reads a repeated key, the baseline would still
+    record the replacement. Returns the error the loader gives for the repeat.
+    """
+    text = baseline.read_text()
+    pin = f'  us-restore-next: "{signed}"\n'
+    replaced = f'    replaced: "{B.version}"\n'
+    entries = text.split("base_replacements:\n", 1)[1]
+    stale = "base_replacements:\n" + entries.replace(
+        "us/statute/2026-11-01-us-code", "us/statute/2026-11-02-us-code"
+    )
+    schema, rest = text.split("\n", 1)
+    key, edited = {
+        "repeated_pin": (
+            "us-restore-next",
+            text.replace(pin, f'  us-restore-next: "{"0" * 64}"\n' + pin, 1),
+        ),
+        "repeated_section": ("base_replacements", f"{schema}\n{stale}{rest}"),
+        "repeated_field": (
+            "replaced",
+            text.replace(replaced, '    replaced: "2026-04-30"\n' + replaced, 1),
+        ),
+    }[variant]
+    copies = [
+        number
+        for number, line in enumerate(edited.splitlines(), 1)
+        if re.match(rf"\s*{re.escape(key)}:", line)
+    ]
+    assert len(copies) == 2, copies
+    baseline.write_text(edited)
+    return (
+        f"SelectorLineageError: {baseline}: line {copies[1]}: the key {key!r} repeats in one "
+        "mapping"
+    )
+
+
 @pytest.mark.parametrize("shape", ["primary_kept", "base_only"])
-@pytest.mark.parametrize("variant", ["unknown_field", "yaml_syntax"])
+@pytest.mark.parametrize(
+    "variant",
+    ["unknown_field", "yaml_syntax", "repeated_pin", "repeated_section", "repeated_field"],
+)
 def test_malformed_lineage_baseline_fails_only_base_carry_forward(
     release_repo, variant: str, shape: str
 ) -> None:
@@ -1741,13 +1782,15 @@ def test_malformed_lineage_baseline_fails_only_base_carry_forward(
     if variant == "unknown_field":
         baseline.write_text(baseline.read_text() + "unreviewed_section: []\n")
         error = f"SelectorLineageError: {baseline}: unsupported fields ['unreviewed_section']"
-    else:
+    elif variant == "yaml_syntax":
         baseline.write_text(baseline.read_text() + "selector_digests: {unclosed\n")
         # A YAML error is not a ValueError, so only a broad guard contains it.
         with pytest.raises(yaml.YAMLError) as info:
             yaml.safe_load(baseline.read_text())
         assert not isinstance(info.value, ValueError)
         error = f"{type(info.value).__name__}: "
+    else:
+        error = _repeat_a_baseline_key(baseline, variant, obj["content"]["selector_sha256"])
     results = _activate(release_repo, "us-restore-next", obj, path, rows)
     assert [result.name for result in results] == _ACTIVATE_NAMES
     by_name = _by_name(results)

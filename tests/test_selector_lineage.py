@@ -38,6 +38,7 @@ line continued through, to a walk up from every selector.
 from __future__ import annotations
 
 import importlib.util
+import re
 import sys
 import tempfile
 import textwrap
@@ -2255,3 +2256,69 @@ def test_base_replacements_are_sorted_by_selector_then_pair_and_unique(tmp_path:
             load_lineage_baseline(_write(tmp_path, text))
     in_order = _VALID + "base_replacements:\n" + earlier + entry
     assert len(load_lineage_baseline(_write(tmp_path, in_order)).base_replacements) == 2
+
+
+@pytest.mark.parametrize(
+    ("text", "key"),
+    [
+        pytest.param(
+            _LAYERED_VALID.replace(
+                f"  line-c: {_DIGEST_C}\n", f"  line-c: {_DIGEST_A}\n  line-c: {_DIGEST_C}\n", 1
+            ),
+            "line-c",
+            id="pin",
+        ),
+        pytest.param(
+            _VALID
+            + _REPLACEMENT.replace("us/statute/2026-11-01-us-code", "us/statute/2026-11-02-us-code")
+            + _REPLACEMENT,
+            "base_replacements",
+            id="section",
+        ),
+        pytest.param(
+            _LAYERED_VALID
+            + "selector_digests:\n"
+            + "".join(f"  line-{letter}: {letter * 64}\n" for letter in "abcd"),
+            "selector_digests",
+            id="selector_digests_section",
+        ),
+        pytest.param(
+            _LAYERED_VALID.replace(
+                "    replaced: 2026-05-01-us-code\n",
+                "    replaced: 2026-04-30\n    replaced: 2026-05-01-us-code\n",
+                1,
+            ),
+            "replaced",
+            id="field",
+        ),
+        pytest.param(
+            f"schema_version: {LINEAGE_BASELINE_SCHEMA.replace('/v1', '/v0')}\n" + _LAYERED_VALID,
+            "schema_version",
+            id="schema_version",
+        ),
+        pytest.param(
+            _LAYERED_VALID.replace("  line-a:", f"  <<: {{line-a: {_DIGEST_B}}}\n  line-a:", 1),
+            "line-a",
+            id="merge_overlap",
+        ),
+    ],
+)
+def test_a_repeated_baseline_key_is_refused(tmp_path: Path, text: str, key: str) -> None:
+    """A mapping that repeats a key is refused, at any depth, with the line of the repeat.
+
+    YAML would keep each repeated key's last value without a word, and every case
+    here would then load as its last copy alone. A key that a merge key also
+    supplies counts as repeated.
+    """
+    copies = [
+        number
+        for number, line in enumerate(text.splitlines(), 1)
+        if re.match(rf"\s*(?:<<: \{{)?{re.escape(key)}:", line)
+    ]
+    assert len(copies) == 2, copies
+    path = _write(tmp_path, text)
+    with pytest.raises(
+        SelectorLineageError,
+        match=re.escape(f"{path}: line {copies[1]}: the key {key!r} repeats in one mapping"),
+    ):
+        load_lineage_baseline(path)
