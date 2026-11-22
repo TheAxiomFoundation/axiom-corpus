@@ -26,6 +26,7 @@ from axiom_corpus.corpus.releases import (
     ReleaseManifest,
     ReleaseScope,
 )
+from axiom_corpus.corpus.supabase import PREVIEW_ACTIVATION_QUERY
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_SCHEMA_V2,
     RELEASE_OBJECT_SCHEMA_V3,
@@ -2628,6 +2629,175 @@ def test_honest_stored_objects_show_what_the_forgeries_hide(
         assert "incoming frontier '2026-07-26-p1' precedes active '2026-07-28-p2'" in (
             by_name["scope_monotonicity"].evidence
         )
+
+
+def _assert_lookup_failed(results, message: str) -> None:
+    """The provider raised: identity checks pass and every active-state check fails."""
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    by_name = _by_name(results)
+    for check in ("object_identity", "cut_plan_provenance"):
+        assert by_name[check].passed, by_name[check].evidence
+    monotonicity = by_name["scope_monotonicity"]
+    assert (monotonicity.passed, monotonicity.warning, monotonicity.evidence) == (
+        False,
+        False,
+        f"active-state lookup failed: {message}",
+    )
+    for result in results[3:]:
+        assert (result.passed, result.warning, result.evidence) == (
+            False,
+            False,
+            "active-state evidence unavailable",
+        )
+
+
+def test_the_gate_holds_preview_rows_to_the_wrapper_querys_columns() -> None:
+    # tests/test_atomic_release_postgres.py's
+    # test_preview_wrapper_query_matches_the_function_contract runs this query
+    # against the function and checks its five columns, so the gate's list cannot
+    # drift from the function either.
+    selected = PREVIEW_ACTIVATION_QUERY.split("SELECT ", 1)[1].split(" FROM ", 1)[0]
+    assert tuple(column.strip() for column in selected.split(",")) == gate._PREVIEW_COLUMNS
+
+
+_PREVIEW_VARIANTS = {
+    "honest": (lambda row: row, None),
+    "provider_versions": (
+        lambda row: {**row, "current_versions": [P1.version]},
+        "extra ['current_versions'], missing []",
+    ),
+    "provider_base": (
+        lambda row: {**row, "current_base_version": None},
+        "extra ['current_base_version'], missing []",
+    ),
+    "provider_active_time": (
+        lambda row: {**row, "current_published_at": _EARLIER},
+        "extra ['current_published_at'], missing []",
+    ),
+    "provider_incoming_time": (
+        lambda row: {**row, "incoming_published_at": _LATER},
+        "extra ['incoming_published_at'], missing []",
+    ),
+    "unknown_column": (
+        lambda row: {**row, "note": "added on the way"},
+        "extra ['note'], missing []",
+    ),
+    "missing_digest": (
+        lambda row: {key: value for key, value in row.items() if key != "current_content_sha256"},
+        "extra [], missing ['current_content_sha256']",
+    ),
+}
+
+
+@pytest.mark.parametrize("variant", list(_PREVIEW_VARIANTS))
+def test_a_preview_row_outside_the_function_contract_fails_every_state_check(
+    release_repo, monkeypatch, variant: str
+) -> None:
+    # A reaffirming row (changes false) displaces nothing and needs no stored
+    # object, so without the column rule every variant passes all seven checks.
+    root, public, make = release_repo
+    obj, path = make("us-next", [P1])
+    edit, columns = _PREVIEW_VARIANTS[variant]
+    row = edit(
+        {
+            "jurisdiction": "us",
+            "document_class": "statute",
+            "current_release_name": "us-next",
+            "current_content_sha256": obj["content_sha256"],
+            "changes": False,
+        }
+    )
+    queries: list[dict[str, Any]] = []
+    provide = _fake_supabase_provider(monkeypatch, [row], [], queries, public_key=public)
+    results = gate.run_gate(
+        release_object_path=path,
+        release="us-next",
+        content_sha=obj["content_sha256"],
+        repo_root=root,
+        mode="activate",
+        public_key=public,
+        active_state_provider=provide,
+    )
+    assert queries == []
+    if columns is None:
+        assert all(result.passed and not result.warning for result in results), _evidence(results)
+        return
+    _assert_lookup_failed(
+        results,
+        f"active-state preview row 0 does not have the preview function's columns: {columns}",
+    )
+
+
+def test_a_malformed_preview_cannot_supply_version_evidence(release_repo, monkeypatch) -> None:
+    # Round 2 P2-2. The active release serves base B under P1, and the incoming
+    # release drops B (test_honest_stored_objects_show_what_the_forgeries_hide
+    # "base" fails it on base_carry_forward). Here the response row says the
+    # active release has no base and the details response omits that release, so
+    # without the column rule nothing corrects the row and all seven checks pass.
+    _, _, make = release_repo
+    active, _ = make("us-active", [B, P1])
+    obj, path = make("us-next", [P1, P2])
+    row = {
+        **_changed_row(_STATUTE, "us-active", active["content_sha256"]),
+        "current_versions": [B.version, P1.version],
+        "current_base_version": None,
+    }
+    results = _provider_results(
+        release_repo,
+        monkeypatch,
+        "us-next",
+        obj,
+        path,
+        [row],
+        [_signed_detail(obj, published_at=_LATER)],
+    )
+    _assert_lookup_failed(
+        results,
+        "active-state preview row 0 does not have the preview function's columns: "
+        "extra ['current_base_version', 'current_versions'], missing []",
+    )
+
+
+@pytest.mark.parametrize("injected", [False, True])
+def test_a_preview_row_cannot_supply_the_incoming_publication_time(
+    release_repo, monkeypatch, injected: bool
+) -> None:
+    # Identical versions on both sides, so only publication recency decides. The
+    # database returns the active object but not the incoming one, so the gate
+    # has no incoming time and refuses; without the column rule a
+    # response-supplied incoming_published_at survives (the provider sets it only
+    # from a returned detail) and proves recency. The active detail is present,
+    # so only the column rule can refuse the injected row.
+    _, _, make = release_repo
+    active, _ = make("us-active", [P1])
+    obj, path = make("us-next", [P1])
+    row = _changed_row(_STATUTE, "us-active", active["content_sha256"])
+    if injected:
+        row["incoming_published_at"] = _LATER
+    results = _provider_results(
+        release_repo,
+        monkeypatch,
+        "us-next",
+        obj,
+        path,
+        [row],
+        [_signed_detail(active, published_at=_EARLIER)],
+    )
+    if injected:
+        _assert_lookup_failed(
+            results,
+            "active-state preview row 0 does not have the preview function's columns: "
+            "extra ['incoming_published_at'], missing []",
+        )
+        return
+    failed = {result.name: result.evidence for result in results if not result.passed}
+    assert failed == {
+        "scope_monotonicity": (
+            "incoming database publication timestamp is missing; publication evidence: "
+            "corpus.release_objects.created_at; scope_activation_history records activation "
+            "time, not publication time"
+        )
+    }
 
 
 @pytest.mark.parametrize("keys", ["none", "other", "signer"])

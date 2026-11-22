@@ -663,24 +663,41 @@ displaces:
   as a base and the other as a primary scope. Mirror mode runs this check
   too. The threat model's stated limits list this reader among those that
   read the working tree rather than HEAD.
-- The preview adds `current_base_version` to each pair whose active release
-  it reads: that release's base version for the pair, or null when the
-  release serves the pair without a base. It reads the base and the pair's
-  versions from the stored release object, and the publication time from
-  that object's row (`corpus.release_objects.created_at`, which is not
-  signed). It uses a stored object only when the object names the release
-  the row was looked up under, its recomputed content digest is the row's
-  `content_sha256`, and it verifies: the schema, which keeps scope layers to
-  `axiom-corpus/release-object/v4` and requires a v4 object to mark a base
-  scope, the content and selector digests, and the Ed25519 signature. The
-  incoming release's stored object must verify under the current release
-  public key. The stored object of a release that activation displaces may
-  instead verify under a retired key listed in
-  `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`, as prior objects do in safe
-  scope reuse. A stored object that fails any of this fails every
-  active-state check. The preview leaves the field out when the database
-  returns no stored object for the active release, or that object carries no
-  version of the pair.
+- The preview adds `current_base_version` to each pair whose active
+  release it reads: that release's base version for the pair, or null
+  when the release serves the pair without a base. It reads the base and
+  the pair's versions from the stored release object, and the publication
+  time from that object's row (`corpus.release_objects.created_at`, which
+  is not signed). It uses a stored object only when the object names the
+  release the row was looked up under, its recomputed content digest is
+  the row's `content_sha256`, and it verifies: the schema, which keeps
+  scope layers to `axiom-corpus/release-object/v4` and requires a v4
+  object to mark a base scope, the content and selector digests, and the
+  Ed25519 signature. The stored object of a release that activation
+  displaces may verify under the current release public key or under a
+  retired key listed in `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`, as
+  prior objects do in safe scope reuse. A stored object that fails any of
+  this fails every active-state check. The preview looks stored objects
+  up when a row with `changes` true names a release, and asks for the
+  incoming release's stored object too. When the database returns that
+  object, it must verify under the current key alone. The preview
+  function does not need the incoming release to be stored, so the
+  database may return none. The gate then verifies no stored copy of the
+  incoming release, and the rows carry no `incoming_published_at`:
+  `scope_monotonicity` fails each pair whose proof needs publication times
+  and passes a pair whose newest ordered version advances past every
+  active version it drops or changes (a strict advance). `object_identity`
+  verifies the signed object the gate was given under the current key in
+  every case. The preview leaves `current_base_version` out when the
+  database returns no stored object for the active release, or that
+  object carries no version of the pair.
+- The live preview holds each row the database returns to the preview
+  function's five columns: `jurisdiction`, `document_class`,
+  `current_release_name`, `current_content_sha256` and `changes`. A row
+  with any other field, such as `current_versions`, or without one of the
+  five, fails every active-state check, so the database response cannot
+  supply the versions, base or publication times the gate derives from
+  verified stored objects.
 - `base_carry_forward` fails when activation would stop serving the base of a
   release it displaces. A pair passes when its active release serves no base
   there, or when the incoming release selects the same version as the pair's

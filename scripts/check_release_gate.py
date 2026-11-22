@@ -942,6 +942,50 @@ def _active_state_from_file(path: Path) -> ActiveStateProvider:
     return lambda _release_object: rows
 
 
+# corpus.preview_corpus_release_activation's RETURNS TABLE
+# (supabase/migrations/20260718193000_scope_level_activation.sql), in the order
+# PREVIEW_ACTIVATION_QUERY selects them (src/axiom_corpus/corpus/supabase.py).
+# tests/test_atomic_release_postgres.py runs that query against the function and
+# checks these names; tests/test_release_gate.py ties this tuple to the query.
+_PREVIEW_COLUMNS = (
+    "jurisdiction",
+    "document_class",
+    "current_release_name",
+    "current_content_sha256",
+    "changes",
+)
+
+
+def _require_preview_contract(rows: Sequence[object]) -> list[dict[str, Any]]:
+    """Copies of the preview rows, each refused unless it is a row of the function.
+
+    The provider derives current_versions, current_base_version and both
+    publication times itself, from verified stored objects. A row that arrives
+    with one of them, with any other field outside the function's five columns,
+    or without one of the five, did not come from the function. It is refused,
+    not trimmed: a trimmed row could turn a row the checks refuse (a null
+    current_release_name carrying active-release evidence) into one they accept.
+    The Management API callers that run activation and staging hold their rows
+    to exact columns the same way. The provider adds its fields to the copies,
+    never to the response.
+    """
+    checked: list[dict[str, Any]] = []
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            raise ValueError(
+                f"active-state preview row {index} is not an object: {type(row).__name__}"
+            )
+        extra = sorted(set(row) - set(_PREVIEW_COLUMNS))
+        missing = [column for column in _PREVIEW_COLUMNS if column not in row]
+        if extra or missing:
+            raise ValueError(
+                f"active-state preview row {index} does not have the preview function's "
+                f"columns: extra {extra!r}, missing {missing!r}"
+            )
+        checked.append(dict(row))
+    return checked
+
+
 def _supabase_active_state_provider(
     args: argparse.Namespace, public_key: str, legacy_public_keys: Sequence[str] = ()
 ) -> ActiveStateProvider:
@@ -960,26 +1004,27 @@ def _supabase_active_state_provider(
         if database_url:
             # The preview recomputes per-scope evidence; over the Management
             # API's 120 s HTTP proxy that stops fitting around 800 scopes.
-            rows = preview_corpus_release_activation_direct(
+            raw_rows = preview_corpus_release_activation_direct(
                 release_object,
                 database_url=database_url,
                 public_key=public_key,
                 expected_project_ref=args.expected_project_ref or project_ref,
             )
         else:
-            rows = preview_corpus_release_activation(
+            raw_rows = preview_corpus_release_activation(
                 release_object,
                 access_token=access_token,
                 public_key=public_key,
                 supabase_url=args.supabase_url,
                 expected_project_ref=args.expected_project_ref or project_ref,
             )
+        rows = _require_preview_contract(raw_rows)
         for row in rows:
             if row.get("changes") is True:
                 row.setdefault("current_versions", [])
         changing = [row for row in rows if row.get("changes") and row.get("current_release_name")]
         if not changing:
-            return cast(list[dict[str, Any]], rows)
+            return rows
         identities = sorted(
             {
                 (str(row["current_release_name"]), str(row["current_content_sha256"]))
@@ -1066,7 +1111,7 @@ def _supabase_active_state_provider(
             # the pair: an absent key marks missing evidence, which a reader refuses.
             if row["current_versions"]:
                 row["current_base_version"] = active_detail["base_versions"].get(pair)
-        return cast(list[dict[str, Any]], rows)
+        return rows
 
     return provide
 
