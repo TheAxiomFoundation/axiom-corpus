@@ -765,8 +765,10 @@ Known limits of the activation gate:
   signed). A database that names a genuine, validly signed older release as
   active passes verification.
 - The offline `--active-state-file` path is trusted as written: the gate
-  refuses a row that contradicts itself, not a consistent invented one. The
-  activation workflow uses the live preview.
+  applies only the row rules above to it, so a row those rules do not cover
+  passes whether or not it is consistent, for example a row with `changes`
+  true that names the incoming release, or a named release with a null
+  `current_content_sha256`. The activation workflow uses the live preview.
 
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
 scope the target declares or a tracked selector it reads marks. It never opens
