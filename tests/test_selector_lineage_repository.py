@@ -23,9 +23,10 @@ layered selector, so each base case first cuts one into its copy.
 
 A layer conflict has no record. Its remedy addresses only selectors that main
 does not have at the merge bases of HEAD with ``origin/main`` and ``main`` (as
-of the last fetch) and that the baseline does not pin, or asks to undo a change
-to a pinned one; when neither merge base resolves it names no selector.
-Following it leaves every selector main tracks byte for byte.
+of the last fetch), and a pinned one only with an instruction to replace its
+pin, or asks to undo a change to a pinned one; when neither merge base resolves
+it names no selector. Following it leaves every selector main tracks byte for
+byte.
 """
 
 from __future__ import annotations
