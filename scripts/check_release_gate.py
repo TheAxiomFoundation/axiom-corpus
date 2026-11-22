@@ -719,6 +719,11 @@ def _base_carry_forward_check(
                     f"replaced_by {'/'.join(record.replaced_by)!r} is not the incoming base "
                     f"({selected})"
                 )
+            if (*pair, record.replaced) in layers:
+                mismatches.append(
+                    f"{incoming_release} still selects the replaced version "
+                    f"{label}/{record.replaced}"
+                )
             pin = baseline.selector_digests.get(incoming_release)
             signed = content.get("selector_sha256")
             if pin != signed:

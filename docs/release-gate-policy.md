@@ -196,8 +196,9 @@ The activation gate checks bases against what serves. Its
 `base_carry_forward` check, the serving-side counterpart of the dropped base
 rule, fails an activation that stops serving the base of a release it
 displaces, unless the incoming release selects that base unchanged or a
-`base_replacements` entry for the incoming release records that replacement.
-Its `base_only_pair` check fails an activation that would serve a pair from a
+`base_replacements` entry for the incoming release records that replacement
+and the incoming release no longer selects the replaced version. Its
+`base_only_pair` check fails an activation that would serve a pair from a
 base alone over the displaced release's primary scopes; the lineage check has
 no such rule. Both compare the incoming release with the release that serves
 each pair now, which need not be its lineage predecessor, and

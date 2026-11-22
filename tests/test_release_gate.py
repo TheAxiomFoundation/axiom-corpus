@@ -1464,6 +1464,38 @@ def test_a_replacement_recorded_for_another_cut_does_not_clear_this_one(release_
     )
 
 
+def test_a_replacement_cannot_clear_a_replaced_base_kept_as_primary(release_repo) -> None:
+    # The cut records the May base's replacement but still selects the May version,
+    # as a primary scope. A record holds only while the cut no longer selects the
+    # replaced version in either layer, as the lineage check's rule says.
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-restore", B, P1)
+    obj, path = make("us-restore-next", [B_PRIMARY, B_NEW, P1])
+    _write_lineage_baseline(
+        root,
+        selector="us-restore-next",
+        predecessor="us-restore",
+        pair=_STATUTE,
+        replaced=B.version,
+        replaced_by=B_NEW,
+        digest=obj["content"]["selector_sha256"],
+    )
+    rows = [_layered_row(_STATUTE, [B.version, P1.version], B.version, release="us-restore")]
+    results = _activate(release_repo, "us-restore-next", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    result = _by_name(results)["base_carry_forward"]
+    assert (result.passed, result.warning) == (False, False)
+    assert result.evidence == (
+        _stop_serving("us-restore-next", "base us/statute/2026-11-01-us-code", current="us-restore")
+        + " (the recorded replacement differs: us-restore-next still selects the replaced "
+        "version us/statute/2026-04-29)"
+    )
+    # Monotonicity sees a superset whose frontier is the new base, and the cut keeps a
+    # primary scope, so base_only_pair takes its early return.
+    others = [item for item in results if item.name != "base_carry_forward"]
+    assert all(item.passed and not item.warning for item in others), _evidence(others)
+
+
 @pytest.mark.parametrize("allow_regression", [False, True])
 def test_missing_current_base_version_fails_closed(release_repo, allow_regression: bool) -> None:
     _install_active_manifest(release_repo[0], "us-active", B, P1)

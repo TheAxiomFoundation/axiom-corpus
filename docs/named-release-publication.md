@@ -686,7 +686,8 @@ displaces:
   looks up the pair's `base_replacements` entry whose `selector` is the
   incoming release. The pair passes only when the entry's `replaced` is the
   active base, its `replaced_by` is the base scope the incoming release
-  selects for the pair, and the incoming release's `selector_digests` pin
+  selects for the pair, the incoming release no longer selects the `replaced`
+  version in either layer, and the incoming release's `selector_digests` pin
   equals its signed `selector_sha256`. The gate reads the baseline only for a
   pair that needs such an entry.
 - `base_only_pair` fails when the incoming release selects a base and no
@@ -749,6 +750,9 @@ Known limits of the activation gate:
   predecessor, so the lineage check finds no dropped base for it, and an entry
   for it is a baseline error. Activate the cut that records the replacement
   before any later cut.
+- The gate does not check a `base_replacements` entry's `predecessor`, or that
+  predecessor's pin. The lineage check does, in the pull request that adds the
+  cut.
 - The gate verifies the incoming release's stored object under the current
   release public key alone, and a displaced release's stored object under the
   current key or a retired key listed in
