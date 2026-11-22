@@ -202,8 +202,12 @@ and the incoming release no longer selects the replaced version. Its
 base alone over the displaced release's primary scopes; the lineage check has
 no such rule. Both compare the incoming release with the release that serves
 each pair now, which need not be its lineage predecessor, and
-`--allow-regression` softens neither.
-[Successor cuts](named-release-publication.md#successor-cuts) describes both
+`--allow-regression` softens neither. Its `primary_frontier` check compares a
+pair's newest primary scope on each side wherever either side serves a base,
+so a base dated after the primary scopes cannot hide a dropped newest primary
+scope from `scope_monotonicity`; `--allow-regression` softens it as it
+softens `scope_monotonicity`.
+[Successor cuts](named-release-publication.md#successor-cuts) describes these
 checks and their known limits.
 
 The lineage check compares a cut with its own predecessor because that is the claim every cut

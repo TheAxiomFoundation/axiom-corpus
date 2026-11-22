@@ -1203,6 +1203,7 @@ _ACTIVATE_NAMES = [
     "no_orphan",
     "base_carry_forward",
     "base_only_pair",
+    "primary_frontier",
 ]
 
 
@@ -1579,6 +1580,8 @@ def test_base_carry_forward_rejects_malformed_evidence(
     result = _by_name(results)["base_carry_forward"]
     assert (result.passed, result.warning) == (False, False)
     assert result.evidence == message
+    # primary_frontier reads the rows through the same rules.
+    assert _by_name(results)["primary_frontier"].evidence == message
 
 
 def test_unchanged_new_and_uncarried_pairs_are_not_checked(release_repo) -> None:
@@ -1665,7 +1668,19 @@ def test_a_base_only_incoming_pair_is_checked(release_repo) -> None:
     assert result.evidence == _stop_serving("us-base-only", "base us/statute/2026-11-01-us-code")
 
 
-def test_a_carried_base_cannot_hide_a_primary_regression(release_repo) -> None:
+def _primary_regression(
+    label: str = "us/statute",
+    incoming: str = P1.version,
+    active: str = P2.version,
+    current: str = "us-active",
+) -> str:
+    return (
+        f"{label}: incoming primary frontier {incoming!r} precedes active primary frontier "
+        f"{active!r} of {current!r}; neither side's base counts toward its frontier"
+    )
+
+
+def test_an_older_carried_base_cannot_hide_a_primary_regression(release_repo) -> None:
     _install_active_manifest(release_repo[0], "us-active", B, P2)
     rows = [_layered_row(_STATUTE, [B.version, P2.version], B.version)]
     _, _, results = _results(release_repo, "us-behind", [B, P1], rows)
@@ -1676,6 +1691,9 @@ def test_a_carried_base_cannot_hide_a_primary_regression(release_repo) -> None:
         "incoming frontier '2026-07-26-p1' precedes active '2026-07-28-p2'" in monotonicity.evidence
     )
     assert by_name["base_carry_forward"].passed, by_name["base_carry_forward"].evidence
+    frontier = by_name["primary_frontier"]
+    assert (frontier.passed, frontier.warning) == (False, False)
+    assert frontier.evidence == _primary_regression()
 
 
 def test_activate_results_are_named_once_in_order(release_repo) -> None:
@@ -1730,6 +1748,7 @@ def test_provider_failure_fails_every_state_check(release_repo, failure: str) ->
             "no_orphan": "active-state evidence unavailable",
             "base_carry_forward": "active-state evidence unavailable",
             "base_only_pair": "active-state evidence unavailable",
+            "primary_frontier": "active-state evidence unavailable",
         }
     else:
         expected = dict.fromkeys(state, "active-state provider is missing")
@@ -1957,6 +1976,7 @@ def test_base_only_pair_fails_the_cli_under_allow_regression(
         ("no_orphan", "PASS"),
         ("base_carry_forward", "PASS"),
         ("base_only_pair", "FAIL"),
+        ("primary_frontier", "PASS"),
     ]
 
 
@@ -2105,6 +2125,251 @@ def test_a_later_base_only_pair_is_checked_after_an_earlier_one(
     assert result.evidence == "; ".join(expected)
 
 
+# Activation's primary_frontier check: a base dated after a pair's primary scopes
+# must not hide a dropped newest primary scope from scope_monotonicity.
+U = ReleaseScope("us", "statute", "2026-740-es")
+U_R = ReleaseScope("us", "regulation", "2026-740-es")
+
+
+def _newer_base_activation(
+    release_repo, case: str
+) -> tuple[str, dict[str, Any], Path, list[dict[str, Any]]]:
+    """One newer-base cut: it drops P2, keeps P1 and selects the November base."""
+    root, _, make = release_repo
+    active, active_base = {
+        "carried": ([B_NEW, P1, P2], B_NEW.version),
+        "fresh": ([P1, P2], None),
+        "replaced": ([B, P1, P2], B.version),
+    }[case]
+    _install_active_manifest(root, "us-active", *active)
+    name = f"us-{case}"
+    obj, path = make(name, [B_NEW, P1])
+    if case == "replaced":
+        _write_lineage_baseline(
+            root,
+            selector=name,
+            predecessor="us-active",
+            pair=_STATUTE,
+            replaced=B.version,
+            replaced_by=B_NEW,
+            digest=obj["content"]["selector_sha256"],
+        )
+    rows = [_layered_row(_STATUTE, [scope.version for scope in active], active_base)]
+    return name, obj, path, rows
+
+
+def _malformed_key(label: str, version: str) -> str:
+    with pytest.raises(ValueError) as malformed:
+        gate._version_key(version)
+    return f"{label}: {malformed.value}"
+
+
+@pytest.mark.parametrize("allow_regression", [False, True])
+@pytest.mark.parametrize("case", ["carried", "fresh", "replaced"])
+def test_a_newer_base_cannot_hide_a_dropped_newest_primary(
+    release_repo, case: str, allow_regression: bool
+) -> None:
+    # The November base is dated after both primary scopes, so it is the incoming
+    # frontier of scope_monotonicity whether the active release carries it (carried),
+    # serves no base (fresh) or serves the May base the cut records replacing.
+    name, obj, path, rows = _newer_base_activation(release_repo, case)
+    results = _activate(release_repo, name, obj, path, rows, allow_regression=allow_regression)
+    others = [item for item in results if item.name != "primary_frontier"]
+    assert all(item.passed and not item.warning for item in others), _evidence(others)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    frontier = _by_name(results)["primary_frontier"]
+    assert (frontier.passed, frontier.warning) == (allow_regression, allow_regression)
+    assert frontier.evidence == _primary_regression()
+
+
+@pytest.mark.parametrize("flag", [False, True])
+def test_primary_frontier_regression_in_the_cli(
+    release_repo, capsys, monkeypatch, flag: bool
+) -> None:
+    root, public, _ = release_repo
+    name, obj, path, rows = _newer_base_activation(release_repo, "carried")
+    active_path = root / "active-state.json"
+    active_path.write_text(json.dumps(rows))
+    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", public)
+    argv = [
+        "--release-object",
+        str(path),
+        "--release",
+        name,
+        "--content-sha",
+        obj["content_sha256"],
+        "--repo-root",
+        str(root),
+        "--mode",
+        "activate",
+        "--active-state-file",
+        str(active_path),
+    ]
+    exit_code = gate.main(argv + (["--allow-regression"] if flag else []))
+    output = capsys.readouterr().out
+    status = "WARN" if flag else "FAIL"
+    assert re.findall(r"^\| (\w+) \| (PASS|FAIL|WARN) \|", output, re.MULTILINE) == [
+        ("object_identity", "PASS"),
+        ("cut_plan_provenance", "PASS"),
+        ("scope_monotonicity", "PASS"),
+        ("no_orphan", "PASS"),
+        ("base_carry_forward", "PASS"),
+        ("base_only_pair", "PASS"),
+        ("primary_frontier", status),
+    ]
+    assert f"| primary_frontier | {status} |" in output
+    assert exit_code == (0 if flag else 1)
+    acknowledged = f"RELEASE_GATE_REGRESSION_ACKNOWLEDGED={name}"
+    assert (acknowledged in output.splitlines()) is flag
+
+
+@pytest.mark.parametrize("case", ["later_cut", "older_primary_dropped"])
+def test_primary_frontier_passes_kept_and_advanced_primaries(release_repo, case: str) -> None:
+    # later_cut keeps every active primary scope; older_primary_dropped keeps the
+    # newest, so the primary frontiers tie and the per-pair limit remains.
+    active, incoming = {
+        "later_cut": ([B_NEW, P1], [B_NEW, P1, P2]),
+        "older_primary_dropped": ([B_NEW, P1, P2], [B_NEW, P2]),
+    }[case]
+    _install_active_manifest(release_repo[0], "us-active", *active)
+    rows = [_layered_row(_STATUTE, [scope.version for scope in active], B_NEW.version)]
+    _, _, results = _results(release_repo, "us-next", incoming, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
+    assert _by_name(results)["primary_frontier"].evidence == (
+        "1 incoming pair(s): 1 displaced pair(s) have a base on either side; 1 keep or "
+        "advance their newest primary scope and 0 select only a base, which base_only_pair "
+        "checks"
+    )
+
+
+def test_an_omitted_base_with_a_primary_regression_fails_primary_frontier(release_repo) -> None:
+    # The cut selects no base, so only the active side has a base to leave out.
+    _install_active_manifest(release_repo[0], "us-active", B, P2)
+    rows = [_layered_row(_STATUTE, [B.version, P2.version], B.version)]
+    _, _, results = _results(release_repo, "us-omitted", [P1], rows)
+    assert [result.name for result in results if not result.passed] == [
+        "scope_monotonicity",
+        "base_carry_forward",
+        "primary_frontier",
+    ], _evidence(results)
+    frontier = _by_name(results)["primary_frontier"]
+    assert (frontier.passed, frontier.warning) == (False, False)
+    assert frontier.evidence == _primary_regression()
+
+
+@pytest.mark.parametrize(
+    ("case", "allow_regression"),
+    [
+        pytest.param("kept_unordered_regression", False, id="kept_unordered_regression"),
+        pytest.param("only_unordered_kept", False, id="only_unordered_kept-False"),
+        pytest.param("only_unordered_kept", True, id="only_unordered_kept-True"),
+        pytest.param("unordered_only_active", False, id="unordered_only_active"),
+        pytest.param("dropped_unordered", False, id="dropped_unordered"),
+    ],
+)
+def test_primary_frontier_orders_unordered_primaries(
+    release_repo, case: str, allow_regression: bool
+) -> None:
+    # U does not parse as a dated version key. A primary version both sides keep needs
+    # no ordering proof; every other primary version must order.
+    active, incoming = {
+        "kept_unordered_regression": ([B_NEW, U, P2], [B_NEW, U, P1]),
+        "only_unordered_kept": ([B_NEW, U, P1], [B_NEW, U]),
+        "unordered_only_active": ([B_NEW, U], [B_NEW, U, P1]),
+        "dropped_unordered": ([B_NEW, U, P1], [B_NEW, P1]),
+    }[case]
+    _install_active_manifest(release_repo[0], "us-active", *active)
+    rows = [_layered_row(_STATUTE, [scope.version for scope in active], B_NEW.version)]
+    _, _, results = _results(
+        release_repo, "us-next", incoming, rows, allow_regression=allow_regression
+    )
+    assert not any(result.warning for result in results), _evidence(results)
+    failed = [result.name for result in results if not result.passed]
+    if case == "unordered_only_active":
+        # Every active primary version is kept, so the pair needs no ordering proof.
+        assert [result.name for result in results] == _ACTIVATE_NAMES
+        assert failed == [], _evidence(results)
+        assert _by_name(results)["primary_frontier"].evidence == (
+            "1 incoming pair(s): 1 displaced pair(s) have a base on either side; 1 keep or "
+            "advance their newest primary scope and 0 select only a base, which "
+            "base_only_pair checks"
+        )
+        return
+    # scope_monotonicity orders the versions that differ with the base among them, so
+    # the frontiers tie at the base; it fails only when it cannot order U either.
+    expected_failed = ["primary_frontier"]
+    if case == "dropped_unordered":
+        expected_failed.insert(0, "scope_monotonicity")
+    assert failed == expected_failed, _evidence(results)
+    frontier = _by_name(results)["primary_frontier"]
+    assert (frontier.passed, frontier.warning) == (False, False)
+    assert (
+        frontier.evidence
+        == {
+            "kept_unordered_regression": _primary_regression(),
+            "only_unordered_kept": "us/statute: incoming keeps only unordered primary versions "
+            "['2026-740-es'] and drops active primary versions ['2026-07-26-p1']; no ordering "
+            "proof is possible",
+            "dropped_unordered": _malformed_key("us/statute", U.version),
+        }[case]
+    )
+
+
+@pytest.mark.parametrize(
+    "regulation",
+    [
+        "no_base",
+        "base_only",
+        "keeps_all",
+        "null_pointer",
+        "earlier_evidence_failure",
+        "earlier_malformed_key",
+    ],
+)
+def test_a_later_pair_is_checked_after_an_earlier_one_passes_primary_frontier(
+    release_repo, regulation: str
+) -> None:
+    # us/regulation sorts first; us/statute is the carried newer-base regression.
+    active, base, incoming = {
+        "no_base": ([R1], None, [R1]),
+        "base_only": ([BR], BR.version, [BR]),
+        "keeps_all": ([BR, R1], BR.version, [BR, R1]),
+        "null_pointer": ([], None, [R1]),
+        "earlier_evidence_failure": ([BR, U_R, R1], BR.version, [BR, U_R]),
+        "earlier_malformed_key": ([BR, U_R, R1], BR.version, [BR, R1]),
+    }[regulation]
+    regulation_row = (
+        {
+            "jurisdiction": "us",
+            "document_class": "regulation",
+            "changes": True,
+            "current_release_name": None,
+            "current_versions": [],
+        }
+        if regulation == "null_pointer"
+        else _layered_row(_REGULATION, [scope.version for scope in active], base)
+    )
+    statute_row = _layered_row(_STATUTE, [B_NEW.version, P1.version, P2.version], B_NEW.version)
+    _, _, results = _results(
+        release_repo, "us-two-pairs", [*incoming, B_NEW, P1], [regulation_row, statute_row]
+    )
+    result = _by_name(results)["primary_frontier"]
+    assert (result.passed, result.warning) == (False, False)
+    # The evidence names us/statute, so the check went on past us/regulation.
+    expected = [_primary_regression()]
+    if regulation == "earlier_evidence_failure":
+        expected.insert(
+            0,
+            "us/regulation: incoming keeps only unordered primary versions ['2026-740-es'] "
+            "and drops active primary versions ['2026-07-26-r1']; no ordering proof is "
+            "possible",
+        )
+    elif regulation == "earlier_malformed_key":
+        expected.insert(0, _malformed_key("us/regulation", U_R.version))
+    assert result.evidence == "; ".join(expected)
+
+
 def test_an_unreadable_signed_layer_fails_each_layer_check_alone(release_repo) -> None:
     # A tampered object fails identity, and each layer check reports its own error
     # without a second result for the checks in the provider's shared try.
@@ -2124,7 +2389,7 @@ def test_an_unreadable_signed_layer_fails_each_layer_check_alone(release_repo) -
     assert monotonicity.passed, monotonicity.evidence
     assert "active-state lookup failed" not in monotonicity.evidence
     error = "ValueError: scope us/statute/2026-04-29 has an unsupported layer: 'overlay'"
-    for name in ("base_carry_forward", "base_only_pair"):
+    for name in ("base_carry_forward", "base_only_pair", "primary_frontier"):
         assert (by_name[name].passed, by_name[name].evidence) == (
             False,
             f"{name} could not run: {error}",
@@ -2579,6 +2844,7 @@ def test_a_contradictory_offline_preview_fails_the_cli(release_repo, capsys, mon
         ("no_orphan", "PASS"),
         ("base_carry_forward", "FAIL"),
         ("base_only_pair", "PASS"),
+        ("primary_frontier", "FAIL"),
     ]
 
 

@@ -648,7 +648,7 @@ loader reads an absent section as empty.
 **Activation gate.** The activation workflow
 (`.github/workflows/activate-release.yml`) runs
 `scripts/check_release_gate.py --mode activate` in its preview job and again
-before it activates. Three of the gate's checks read scope layers, and its
+before it activates. Four of the gate's checks read scope layers, and its
 active-state preview reports the base of each release that activation
 displaces:
 
@@ -695,30 +695,47 @@ displaces:
   primary scope. The check subtracts only the active base from the active
   versions, so an incoming base that relabels an active primary version fails
   too. It reads no lineage baseline, and no entry waives it.
+- `primary_frontier` fails when activation would move a pair's newest
+  primary scope back, for a pair where the release it displaces serves a
+  base or the incoming release selects one. It leaves each side's base out
+  and compares the newest primary version on each side, ordered as
+  `scope_monotonicity` orders versions. So a base dated after the primary
+  scopes, whether new, carried or a recorded replacement, cannot hide a
+  dropped newest primary scope. A pair passes without an ordering proof when
+  the incoming release still selects every active primary scope there. The
+  check leaves a pair with no base on either side to `scope_monotonicity`,
+  and a pair the incoming release selects only a base for to
+  `base_only_pair`. It compares versions, never publication times. A cut
+  that folds the newest primary scope into a newer base fails this check,
+  and passes only with `--allow-regression`, until the fresh-base follow-up
+  decides otherwise.
 
-Both new checks run in activate mode only, each in a guard of its own: an
-error, such as a lineage baseline that does not load or repeats a mapping key,
-fails that check alone with `<check> could not run`. When the preview lookup
-raises a `KeyError`, `TypeError`, `ValueError` or `RuntimeError`, both report
-`active-state evidence unavailable`. Neither sets a warning, so
-`--allow-regression`, which softens only `scope_monotonicity`, softens neither.
-Both read the preview rows through the same rules and fail closed: each pair
-they check needs exactly one row with a boolean `changes`, and a row that
-displaces a release needs a non-empty `current_versions` list of version
-strings and a `current_base_version` field, whose non-null value must be one
-of `current_versions`. A row with `changes` false (the pair already serves the
-incoming release) displaces nothing and passes. So does a row with a null
-`current_release_name` (no release serves the pair) that carries no evidence
-of an active release: `current_versions` absent or empty, and
-`current_base_version`, `current_content_sha256` and `current_published_at`
-absent or null. A null-name row with any such evidence fails
-`base_carry_forward`, and `base_only_pair` for a base-only pair, because the
+The three new checks run in activate mode only, each in a guard of its own:
+an error, such as a lineage baseline that does not load or repeats a
+mapping key, fails that check alone with `<check> could not run`. When the
+preview lookup raises a `KeyError`, `TypeError`, `ValueError` or
+`RuntimeError`, each reports `active-state evidence unavailable`.
+`base_carry_forward` and `base_only_pair` never set a warning, so
+`--allow-regression` softens neither. It turns a proven `primary_frontier`
+regression into a warning, as it does for `scope_monotonicity`; an evidence
+failure in either check stays a failure. All three read the preview rows
+through the same rules: each pair they check needs exactly one row with a
+boolean `changes`, and a row that displaces a release needs a non-empty
+`current_versions` list of version strings and a `current_base_version`
+field, whose non-null value must be one of `current_versions`. A row with
+`changes` false (the pair already serves the incoming release) displaces
+nothing and passes. So does a row with a null `current_release_name` (no
+release serves the pair) that carries no evidence of an active release:
+`current_versions` absent or empty, and `current_base_version`,
+`current_content_sha256` and `current_published_at` absent or null. A
+null-name row with any such evidence fails `base_carry_forward` and
+`primary_frontier`, and `base_only_pair` for a base-only pair, because the
 preview returns a null name only for a pair that has no active pointer.
 `scope_monotonicity` is unchanged and skips the row. A `base_replacements`
 entry clears `base_carry_forward` only for the cut it names as its
 `selector`. The gate compares the entry's `replaced` with the base of the
-release it displaces, whichever release that is, and never with the bases of
-cuts in between.
+release it displaces, whichever release that is, and never with the bases
+of cuts in between.
 
 A restore cut keeps the active release's primary scopes of a pair and adds a
 base under them. It passes `base_carry_forward` when the active release serves
@@ -728,13 +745,15 @@ frontiers at the newest primary scope, so the check takes its frontier-tie
 branch. Its branch for a cut that keeps every active version applies only when
 none of those versions parses as a dated version key. The tie branch needs
 both releases' publication timestamps and reports a regression when the
-incoming release's is earlier than the active release's.
+incoming release's is earlier than the active release's. `primary_frontier`
+passes the restore, which keeps every active primary scope.
 
 Known limits of the activation gate:
 
-- A new base dated after a pair's primary scopes raises the incoming frontier.
-  A cut that drops the pair's newest primary scope, keeps another and adds
-  such a base can pass every check.
+- A cut that adds a base dated after every version the active release serves
+  for a pair advances `scope_monotonicity`'s frontier there, so that check
+  compares no publication times for the pair: an incoming release published
+  before the active one passes it. `primary_frontier` compares versions only.
 - A cut that keeps the pair's base and newest primary scope and drops another
   primary scope can pass every check. Serving then falls back to the base's
   row for each path that only the dropped scope carried, where the base has
@@ -773,6 +792,9 @@ Known limits of the activation gate:
   passes whether or not it is consistent, for example a row with `changes`
   true that names the incoming release, or a named release with a null
   `current_content_sha256`. The activation workflow uses the live preview.
+- `primary_frontier` checks only pairs where either side serves a base, and
+  leaves base-only incoming pairs to `base_only_pair`. A pair with no base on
+  either side keeps exactly the guarantees `scope_monotonicity` gives it.
 
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
 scope the target declares or a tracked selector it reads marks. It never opens
@@ -1087,8 +1109,8 @@ Later checks enforce what these cannot:
   an unpinned selector, nor a description-only edit of a pinned one.
 - The activation gate (`scripts/check_release_gate.py`; **Activation gate**
   above) compares an incoming release with the release that serves each of
-  its pairs before activation: cut-plan provenance, base carry-forward and
-  base-only pairs.
+  its pairs before activation: cut-plan provenance, base carry-forward,
+  base-only pairs and each layered pair's newest primary scope.
 - Publication refuses a released triple whose artifacts differ from the
   published ones (`scripts/publish_corpus.py:689-696`), so a local rewrite of a
   released base cannot be published.

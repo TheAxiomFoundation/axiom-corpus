@@ -812,6 +812,86 @@ def _base_only_pair_check(
     )
 
 
+def _primary_frontier_check(
+    release_object: Mapping[str, Any],
+    active_rows: list[dict[str, Any]],
+    *,
+    allow_regression: bool,
+) -> CheckResult:
+    """Fail an activation that moves a layered pair's newest primary scope back.
+
+    scope_monotonicity orders every version of a pair, bases included, so a base
+    dated after the primary scopes, whether new, carried or a recorded
+    replacement, can advance its frontier while the newest primary scope leaves.
+    For each pair where the displaced release serves a base or the incoming
+    release selects one, this check leaves both bases out and compares the newest
+    primary versions. A pair the incoming release selects only a base for is
+    base_only_pair's. --allow-regression turns a proven regression into a
+    warning, as it does for scope_monotonicity; an evidence failure stays a
+    failure.
+    """
+    layers = _scope_layers(release_object["content"]["scopes"])
+    incoming_bases = _base_versions(layers)
+    incoming_primaries: dict[Pair, set[str]] = defaultdict(set)
+    for (jurisdiction, document_class, version), layer in layers.items():
+        if layer == LAYER_PRIMARY:
+            incoming_primaries[(jurisdiction, document_class)].add(version)
+    incoming_pairs = sorted({(triple[0], triple[1]) for triple in layers})
+    evidence_failures: list[str] = []
+    regressions: list[str] = []
+    layered = base_only = 0
+    for pair in incoming_pairs:
+        displaced = _displaced_row(pair, active_rows, evidence_failures)
+        if displaced is None:
+            continue
+        current, versions, active_base = displaced
+        if active_base is None and pair not in incoming_bases:
+            continue
+        layered += 1
+        incoming_set = incoming_primaries.get(pair, set())
+        if not incoming_set:
+            base_only += 1
+            continue
+        active_set = {version for version in versions if version != active_base}
+        if active_set <= incoming_set:
+            continue
+        label = "/".join(pair)
+        kept_unordered = {v for v in active_set & incoming_set if not _orders(v)}
+        try:
+            incoming_keys = [_version_key(v) for v in sorted(incoming_set - kept_unordered)]
+            active_keys = [_version_key(v) for v in sorted(active_set - kept_unordered)]
+        except ValueError as exc:
+            evidence_failures.append(f"{label}: {exc}")
+            continue
+        if not incoming_keys:
+            evidence_failures.append(
+                f"{label}: incoming keeps only unordered primary versions "
+                f"{sorted(kept_unordered)!r} and drops active primary versions "
+                f"{sorted(active_set - incoming_set)!r}; no ordering proof is possible"
+            )
+            continue
+        if max(incoming_keys) < max(active_keys):
+            regressions.append(
+                f"{label}: incoming primary frontier {max(incoming_keys)[1]!r} precedes "
+                f"active primary frontier {max(active_keys)[1]!r} of {current!r}; neither "
+                "side's base counts toward its frontier"
+            )
+    failures = evidence_failures + regressions
+    warning = bool(regressions and allow_regression and not evidence_failures)
+    return CheckResult(
+        "primary_frontier",
+        not failures or warning,
+        "; ".join(failures)
+        if failures
+        else (
+            f"{len(incoming_pairs)} incoming pair(s): {layered} displaced pair(s) have a base "
+            f"on either side; {layered - base_only} keep or advance their newest primary scope "
+            f"and {base_only} select only a base, which base_only_pair checks"
+        ),
+        warning=warning,
+    )
+
+
 def _guarded_check(
     name: str,
     active_rows: list[dict[str, Any]] | None,
@@ -1022,6 +1102,7 @@ def run_gate(
                     CheckResult("no_orphan", False, "active-state provider is missing"),
                     CheckResult("base_carry_forward", False, "active-state provider is missing"),
                     CheckResult("base_only_pair", False, "active-state provider is missing"),
+                    CheckResult("primary_frontier", False, "active-state provider is missing"),
                 ]
             )
         else:
@@ -1060,6 +1141,15 @@ def run_gate(
                     "base_only_pair",
                     active_rows,
                     lambda rows: _base_only_pair_check(release_object, rows),
+                )
+            )
+            results.append(
+                _guarded_check(
+                    "primary_frontier",
+                    active_rows,
+                    lambda rows: _primary_frontier_check(
+                        release_object, rows, allow_regression=allow_regression
+                    ),
                 )
             )
     else:
