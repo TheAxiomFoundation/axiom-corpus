@@ -699,6 +699,7 @@ def _commit_selector(repo: Path, name: str) -> None:
         pytest.param("resolves", frozenset({"a"}), id="resolves"),
         pytest.param("local-main-only", frozenset({"a"}), id="local-main-only"),
         pytest.param("stale-origin-main", frozenset({"a", "c"}), id="stale-origin-main"),
+        pytest.param("origin-main-only", frozenset({"a"}), id="origin-main-only"),
         pytest.param("no-main", None, id="no-main"),
     ],
 )
@@ -708,10 +709,14 @@ def test_selectors_at_merge_base_reads_main_or_says_it_cannot(
     """The selectors at the merge bases of HEAD with origin/main and main, or None."""
     repo = tmp_path / "repo"
     repo.mkdir()
-    _git_in(repo, "init", "-q", "-b", "trunk" if layout == "no-main" else "main")
+    _git_in(
+        repo, "init", "-q", "-b", "trunk" if layout in ("no-main", "origin-main-only") else "main"
+    )
     _commit_selector(repo, "a")
     if layout in ("resolves", "stale-origin-main"):
         _git_in(repo, "update-ref", "refs/remotes/origin/main", "main")
+    if layout == "origin-main-only":
+        _git_in(repo, "update-ref", "refs/remotes/origin/main", "trunk")
     if layout == "stale-origin-main":
         _commit_selector(repo, "c")
     _git_in(repo, "checkout", "-q", "-b", "feature")
