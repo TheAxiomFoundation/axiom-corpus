@@ -158,7 +158,11 @@ key (see the gate's known limits under "Successor cuts").
    for only the pairs this release carries — recording each takeover in
    `corpus.scope_activation_history` — and refreshes `current_provision_counts`.
    Any error rolls the transaction back. Preview the takeover first with
-   `activate_release.py --dry-run`.
+   `activate_release.py --dry-run`. Neither `activate_release.py` nor
+   `publish_corpus.py --activate` runs the activation gate
+   (`scripts/check_release_gate.py`), and `--dry-run` prints the preview
+   without the gate's checks. Only the activation workflow below runs the gate
+   in activate mode; see the gate's known limits under "Successor cuts".
 
 Publication retains the exact signed release object as a 30-day GitHub Actions
 artifact. When production credentials are available only to GitHub Actions,
@@ -795,6 +799,25 @@ Known limits of the activation gate:
 - `primary_frontier` checks only pairs where either side serves a base, and
   leaves base-only incoming pairs to `base_only_pair`. A pair with no base on
   either side keeps exactly the guarantees `scope_monotonicity` gives it.
+- Only `.github/workflows/activate-release.yml` runs the gate in activate
+  mode. `.github/workflows/mirror-release.yml` runs only its mirror-mode
+  checks (`--mode mirror`), which read no active state.
+  `scripts/activate_release.py` and `publish_corpus.py --activate` call the
+  activation RPC without it. Either can stop serving a base, serve a pair
+  from its base alone or move a primary scope back, and nothing refuses it.
+  Activate production releases through the workflow.
+- The gate judges serving as its preview read it. The workflow's activate
+  job reruns the gate in its "Revalidate takeover preview with deterministic
+  gate" step, installs the upload schema in the next step and activates in
+  the step after that. The activation RPC repoints each pair the release
+  carries without comparing against the release it displaces. The
+  workflow's concurrency group holds back only other runs of the same
+  workflow. An activation that lands between the rerun and the workflow's
+  own activation, such as a standalone `activate_release.py` run, is
+  therefore never checked. If it installs a cut that serves a base for a
+  pair, and the workflow's cut selects no base there, the workflow's
+  activation stops serving that base although both gate runs passed. Start
+  no other activation while an activation workflow run is open.
 
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
 scope the target declares or a tracked selector it reads marks. It never opens
