@@ -21,9 +21,10 @@ the checkouts that physically hold a target scope's artifacts or either
 selector file, of each checkout the resolver recognises that holds a link on
 those paths as dedup spells them, and on the command line of the working
 directory's checkout. Before it opens any artifact it refuses a link at a
-checkout's guarded place that leads into no checkout, an artifact that
-resolves to another scope's path, an added primary's file with another hard
-link, and an added primary's file that a base it knows reaches through a link
+checkout's guarded place that leads into no checkout, an artifact path that
+does not resolve to a path ending in its own artifact kind, jurisdiction,
+document class and version, an added primary's file with another hard link,
+and an added primary's file that a base it knows reaches through a link
 (``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). A
 checkout it does not read is one of the threat model's stated limits (2, 11
 and 15).
@@ -220,11 +221,12 @@ def deduplicate(
     path in ``holders_of`` (``main()`` passes the working directory), and
     refuses a base of theirs that the target selects as a primary scope.
     Before any artifact is opened it raises ``ValueError`` for a link at a
-    checkout's guarded place that leads into no checkout, an artifact that
-    resolves to another scope's path, an added primary's file with another
-    hard link, and an added primary's file that a base it knows reaches
-    through a link. A checkout it does not read is one of the threat model's
-    stated limits (2, 11 and 15).
+    checkout's guarded place that leads into no checkout, an artifact path
+    that does not resolve to a path ending in its own artifact kind,
+    jurisdiction, document class and version, an added primary's file with
+    another hard link, and an added primary's file that a base it knows
+    reaches through a link. A checkout it does not read is one of the threat
+    model's stated limits (2, 11 and 15).
     """
     canonical_scopes = set(_read_selector(canonical_selector))
     target_scopes = _read_selector(target_selector)

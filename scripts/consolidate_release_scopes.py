@@ -156,10 +156,11 @@ def consolidate_release_scopes(
     ``holders_of`` (``main()`` passes the working directory), and refuses a
     base of theirs the same way. Before anything is fetched it raises
     ``ValueError`` for a link at a checkout's guarded place that leads into
-    no checkout and for an artifact path that resolves to another scope's
-    path (``successors.guard_scope_artifacts``). A checkout it does not read
-    is one of the threat model's stated limits (2, 11 and 15). It writes only
-    a new version, so it compares no base's path with the target it creates
+    no checkout and for an artifact path that does not resolve to a path
+    ending in its own artifact kind, jurisdiction, document class and version
+    (``successors.guard_scope_artifacts``). A checkout it does not read is
+    one of the threat model's stated limits (2, 11 and 15). It writes only a
+    new version, so it compares no base's path with the target it creates
     (stated limit 18).
     """
     if not source_versions:

@@ -12,8 +12,9 @@ script's checkout), of the checkouts that physically hold those three files,
 of each checkout the resolver recognises that holds a link on them as given,
 and of the checkouts holding each path in ``holders_of``. It refuses a scope
 any of them marks as a base, a link at a checkout's guarded place that leads
-into no checkout, any of the three files that resolves to another scope's
-path or has another hard link, and any of the three that a base it knows
+into no checkout, any of the three files that does not resolve to a path
+ending in its own artifact kind, jurisdiction, document class and version or
+that has another hard link, and any of the three that a base it knows
 reaches through a link. A checkout it does not read is one of the threat
 model's stated limits (2, 11 and 15).
 """
