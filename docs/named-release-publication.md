@@ -685,11 +685,12 @@ displaces:
   database may return none. The gate then verifies no stored copy of the
   incoming release, and the rows carry no `incoming_published_at`:
   `scope_monotonicity` fails each pair whose proof needs publication times
-  and passes a pair whose newest ordered version advances past every
-  active version it drops or changes (a strict advance). `object_identity`
-  verifies the signed object the gate was given under the current key in
-  every case. The preview leaves `current_base_version` out when the
-  displaced release's stored object carries no version of the pair.
+  and passes a pair whose newest ordered version is newer than the active
+  release's newest version for the pair, leaving out unordered versions
+  both releases keep (a strict advance). `object_identity` verifies the
+  signed object the gate was given under the current key in every case.
+  The preview leaves `current_base_version` out when the displaced
+  release's stored object carries no version of the pair.
 - The live preview holds each row the database returns to the preview
   function's five columns: `jurisdiction`, `document_class`,
   `current_release_name`, `current_content_sha256` and `changes`. A row
