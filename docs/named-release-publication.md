@@ -138,7 +138,13 @@ for the stored objects of the releases an activation displaces. Newly published
 objects, R2 readback, and activation, including the gate's check of the
 incoming release, must verify with the current public key. Keep every retired
 key needed by a release that can supply an already published scope or that
-still serves a pair. The activation workflow does not yet pass
+still serves a pair. The publisher, and the activation gate in activate mode,
+refuse a retired-key list that includes the current public key or names one
+key twice in different spellings (raw base64 and PEM, for example); the gate
+exits before it runs any check. Publication, and activation once the gate
+steps receive the variable, therefore fail from the moment the variable lists
+the key being retired until the pair is rotated, so rotate the pair right
+after setting the variable. The activation workflow does not yet pass
 `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to its gate steps, so until it does
 the gate refuses an activation that displaces a release signed under a retired
 key (see the gate's known limits under "Successor cuts").

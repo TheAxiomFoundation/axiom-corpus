@@ -16,7 +16,10 @@ from typing import Any
 import pytest
 import yaml
 from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+    Ed25519PrivateKey,
+    Ed25519PublicKey,
+)
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -77,6 +80,15 @@ def _new_key_pair() -> tuple[str, str]:
         )
     ).decode()
     return private_text, public_text
+
+
+def _public_pem(public_key: str) -> str:
+    # As tests/test_publish_corpus.py spells a key as PEM.
+    loaded = Ed25519PublicKey.from_public_bytes(b64decode(public_key))
+    return loaded.public_bytes(
+        serialization.Encoding.PEM,
+        serialization.PublicFormat.SubjectPublicKeyInfo,
+    ).decode()
 
 
 @pytest.fixture
@@ -3070,8 +3082,22 @@ def test_an_incoming_stored_object_signed_under_a_retired_key_is_refused(
         assert (result.passed, result.warning) == (False, False), result.evidence
 
 
+_REFUSED_KEYS = {
+    "not_json": "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS",
+    "not_list": "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS",
+    "duplicate": "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS",
+    "bad_key": "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS",
+    "current_listed": "must not list the current release public key",
+    "current_listed_as_pem": "must not list the current release public key",
+    "current_pem_listed_raw": "must not list the current release public key",
+    "two_spellings": "must list each public key once, in any spelling",
+    "malformed_current": r"AXIOM_CORPUS_RELEASE_PUBLIC_KEY \(or RELEASE_TRUST_ROOT\) is not",
+}
+
+
 @pytest.mark.parametrize(
-    "value", ["unset", "valid", "not_json", "not_list", "duplicate", "bad_key"]
+    "value",
+    ["unset", "valid", "valid_pem", "malformed_current_empty", *_REFUSED_KEYS],
 )
 def test_the_gate_reads_retired_keys_as_the_publisher_does(
     release_repo, monkeypatch, value: str
@@ -3088,16 +3114,28 @@ def test_the_gate_reads_retired_keys_as_the_publisher_does(
         return lambda _release_object: rows
 
     monkeypatch.setattr(gate, "_supabase_active_state_provider", recorder)
-    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", public)
+    current = {
+        "current_pem_listed_raw": _public_pem(public),
+        "malformed_current": "not-a-key",
+        "malformed_current_empty": "not-a-key",
+    }.get(value, public)
+    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", current)
     # The publisher's variable, named literally.
     env = "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS"
     raw = {
         "unset": None,
+        "malformed_current_empty": "[]",
         "valid": json.dumps([retired]),
+        "valid_pem": json.dumps([_public_pem(retired)]),
         "not_json": "not json",
         "not_list": json.dumps("key"),
         "duplicate": json.dumps([retired, retired]),
         "bad_key": json.dumps(["not-a-key"]),
+        "current_listed": json.dumps([retired, public]),
+        "current_listed_as_pem": json.dumps([_public_pem(public)]),
+        "current_pem_listed_raw": json.dumps([public]),
+        "two_spellings": json.dumps([retired, _public_pem(retired)]),
+        "malformed_current": json.dumps([retired]),
     }[value]
     if raw is None:
         monkeypatch.delenv(env, raising=False)
@@ -3115,12 +3153,17 @@ def test_the_gate_reads_retired_keys_as_the_publisher_does(
         "--mode",
         "activate",
     ]
-    if value in ("unset", "valid"):
+    if value in ("unset", "valid", "valid_pem"):
         assert gate.main(argv) == 0
         expected = () if value == "unset" else (canonical_release_public_key(retired),)
         assert recorded == [expected]
+    elif value == "malformed_current_empty":
+        # An empty list leaves nothing to compare, so the malformed current key
+        # reaches object_identity and fails it, as it does with the variable unset.
+        assert gate.main(argv) == 1
+        assert recorded == [()]
     else:
-        with pytest.raises(SystemExit, match=env):
+        with pytest.raises(SystemExit, match=_REFUSED_KEYS[value]):
             gate.main(argv)
         assert recorded == []
 

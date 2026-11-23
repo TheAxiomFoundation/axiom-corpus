@@ -560,8 +560,14 @@ def _require_signed_stored_object(detail: Mapping[str, Any], *, public_keys: Seq
 RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV = "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS"
 
 
-def _legacy_public_keys_from_env() -> tuple[str, ...]:
-    """Retired release public keys, read as the publisher reads them."""
+def _legacy_public_keys_from_env(current_public_key: str) -> tuple[str, ...]:
+    """Retired release public keys, read and checked as the publisher reads them.
+
+    The variable is parsed as publish_corpus._legacy_public_keys_from_env parses
+    it, and then, as publish_corpus._trusted_release_public_keys refuses
+    (publish_corpus.py:883-893), a list that includes the current key or names
+    one key twice in different spellings is refused.
+    """
     raw = os.environ.get(RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV, "")
     if not raw:
         return ()
@@ -581,9 +587,30 @@ def _legacy_public_keys_from_env() -> tuple[str, ...]:
             "of non-empty public keys"
         )
     try:
-        return tuple(canonical_release_public_key(key) for key in payload)
+        legacy = tuple(canonical_release_public_key(key) for key in payload)
     except ReleaseManifestError as exc:
         raise ValueError(f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV}: {exc}") from exc
+    if not legacy:
+        # "[]": nothing to compare, so a malformed current key still reaches
+        # object_identity, as it does with the variable unset.
+        return ()
+    try:
+        current = canonical_release_public_key(current_public_key)
+    except ReleaseManifestError as exc:
+        raise ValueError(
+            f"{RELEASE_OBJECT_PUBLIC_KEY_ENV} (or RELEASE_TRUST_ROOT) is not a release "
+            f"public key: {exc}"
+        ) from exc
+    if current in legacy:
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must not list the current release public key"
+        )
+    if len(set(legacy)) != len(legacy):
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must list each public key once, "
+            "in any spelling"
+        )
+    return legacy
 
 
 # A null current_release_name means no active pointer serves the pair: the preview
@@ -1317,7 +1344,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     provider: ActiveStateProvider | None = None
     if args.mode == "activate":
         try:
-            legacy_public_keys = _legacy_public_keys_from_env()
+            legacy_public_keys = _legacy_public_keys_from_env(public_key)
         except ValueError as exc:
             raise SystemExit(str(exc)) from exc
         provider = (
