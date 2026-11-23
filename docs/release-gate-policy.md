@@ -203,10 +203,12 @@ base alone over the displaced release's primary scopes; the lineage check has
 no such rule. Both compare the incoming release with the release that serves
 each pair now, which need not be its lineage predecessor, and
 `--allow-regression` softens neither. Its `primary_frontier` check compares a
-pair's newest primary scope on each side wherever either side serves a base,
-so a base dated after the primary scopes cannot hide a dropped newest primary
-scope from `scope_monotonicity`; `--allow-regression` softens it as it
-softens `scope_monotonicity`.
+pair's newest primary scope on each side wherever the displaced release
+serves a base or the incoming release selects one, so a base dated after the
+primary scopes cannot hide a dropped newest primary scope from
+`scope_monotonicity`. It leaves a pair the incoming release selects only a
+base for to `base_only_pair`. `--allow-regression` softens it as it softens
+`scope_monotonicity`.
 [Successor cuts](named-release-publication.md#successor-cuts) describes these
 checks and their known limits.
 
