@@ -2388,6 +2388,73 @@ def test_a_later_pair_is_checked_after_an_earlier_one_passes_primary_frontier(
     assert result.evidence == "; ".join(expected)
 
 
+@pytest.mark.parametrize(
+    ("regulation", "statute"),
+    [
+        pytest.param("unordered_kept", "newer_base", id="unordered_kept"),
+        pytest.param("malformed_key", "newer_base", id="malformed_key"),
+        pytest.param("missing_base_field", "newer_base", id="missing_base_field"),
+        pytest.param("malformed_key", "older_base", id="malformed_key-older_base"),
+    ],
+)
+def test_an_evidence_failure_keeps_a_waived_regression_on_another_pair_failing(
+    release_repo, regulation: str, statute: str
+) -> None:
+    # us/regulation sorts first and fails on evidence; us/statute moves its newest
+    # primary scope back, a proven regression that --allow-regression would turn into
+    # a warning if it stood alone.
+    regulation_active, regulation_incoming = {
+        "unordered_kept": ([BR, U_R, R1], [BR, U_R]),
+        "malformed_key": ([BR, U_R, R1], [BR, R1]),
+        "missing_base_field": ([BR, R1], [BR, R1]),
+    }[regulation]
+    statute_base = {"newer_base": B_NEW, "older_base": B}[statute]
+    statute_active = [statute_base, P1, P2]
+    _install_active_manifest(release_repo[0], "us-active", *regulation_active, *statute_active)
+    rows = [
+        _layered_row(
+            _REGULATION,
+            [scope.version for scope in regulation_active],
+            _UNSET if regulation == "missing_base_field" else BR.version,
+        ),
+        _layered_row(_STATUTE, [scope.version for scope in statute_active], statute_base.version),
+    ]
+    _, _, results = _results(
+        release_repo,
+        "us-two-pairs",
+        [*regulation_incoming, statute_base, P1],
+        rows,
+        allow_regression=True,
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    frontier = _by_name(results)["primary_frontier"]
+    assert (frontier.passed, frontier.warning) == (False, False)
+    evidence_failure = {
+        "unordered_kept": "us/regulation: incoming keeps only unordered primary versions "
+        "['2026-740-es'] and drops active primary versions ['2026-07-26-r1']; no ordering "
+        "proof is possible",
+        "malformed_key": _malformed_key("us/regulation", U_R.version),
+        "missing_base_field": "us/regulation: active-state evidence lacks current_base_version",
+    }[regulation]
+    assert frontier.evidence == f"{evidence_failure}; {_primary_regression()}"
+    failed = [result.name for result in results if not result.passed]
+    warned = [result.name for result in results if result.warning]
+    assert (failed, warned) == {
+        ("unordered_kept", "newer_base"): (["primary_frontier"], ["scope_monotonicity"]),
+        ("malformed_key", "newer_base"): (["scope_monotonicity", "primary_frontier"], []),
+        ("missing_base_field", "newer_base"): (["base_carry_forward", "primary_frontier"], []),
+        ("malformed_key", "older_base"): (["scope_monotonicity", "primary_frontier"], []),
+    }[(regulation, statute)], _evidence(results)
+    if statute == "older_base":
+        # The older base leaves scope_monotonicity's statute frontier at the primary
+        # scopes, so it too holds a proven regression beside an evidence failure.
+        monotonicity = _by_name(results)["scope_monotonicity"]
+        assert "malformed version key '2026-740-es'" in monotonicity.evidence
+        assert "incoming frontier '2026-07-26-p1' precedes active '2026-07-28-p2'" in (
+            monotonicity.evidence
+        )
+
+
 def test_an_unreadable_signed_layer_fails_each_layer_check_alone(release_repo) -> None:
     # A tampered object fails identity, and each layer check reports its own error
     # without a second result for the checks in the provider's shared try.
