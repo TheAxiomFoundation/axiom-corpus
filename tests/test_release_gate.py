@@ -58,6 +58,7 @@ B_PRIMARY = ReleaseScope("us", "statute", "2026-04-29")
 B_NEW = ReleaseScope("us", "statute", "2026-11-01-us-code", layer=LAYER_BASE)
 P1 = ReleaseScope("us", "statute", "2026-07-26-p1")
 P2 = ReleaseScope("us", "statute", "2026-07-28-p2")
+P3 = ReleaseScope("us", "statute", "2026-07-30-p3")
 R1 = ReleaseScope("us", "regulation", "2026-07-26-r1")
 BR = ReleaseScope("us", "regulation", "2026-05-01", layer=LAYER_BASE)
 BR_NEW = ReleaseScope("us", "regulation", "2026-11-01-cfr", layer=LAYER_BASE)
@@ -2261,6 +2262,34 @@ def test_primary_frontier_passes_kept_and_advanced_primaries(release_repo, case:
     )
 
 
+def test_a_fold_into_a_newer_base_with_a_newer_primary_passes(release_repo) -> None:
+    # The docs' counter-example to a fold: the active release serves B under P1
+    # and P2; the cut selects B_NEW under P1 and P3, with P3 after P2, and records
+    # the base replacement. It drops P2, yet its newest primary scope moves
+    # forward, so primary_frontier passes without --allow-regression.
+    root, _, make = release_repo
+    _install_active_manifest(root, "us-active", B, P1, P2)
+    obj, path = make("us-next", [B_NEW, P1, P3])
+    _write_lineage_baseline(
+        root,
+        selector="us-next",
+        predecessor="us-active",
+        pair=_STATUTE,
+        replaced=B.version,
+        replaced_by=B_NEW,
+        digest=obj["content"]["selector_sha256"],
+    )
+    rows = [_layered_row(_STATUTE, [B.version, P1.version, P2.version], B.version)]
+    results = _activate(release_repo, "us-next", obj, path, rows)
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
+    assert _by_name(results)["primary_frontier"].evidence == (
+        "1 incoming pair(s): 1 displaced pair(s) have a base on either side; 1 keep or "
+        "advance their newest primary scope and 0 select only a base, which base_only_pair "
+        "checks"
+    )
+
+
 def test_an_omitted_base_with_a_primary_regression_fails_primary_frontier(release_repo) -> None:
     # The cut selects no base, so only the active side has a base to leave out.
     _install_active_manifest(release_repo[0], "us-active", B, P2)
@@ -2872,6 +2901,29 @@ def test_a_preview_row_cannot_supply_the_incoming_publication_time(
             "time, not publication time"
         )
     }
+
+
+def test_a_strict_advance_passes_without_an_incoming_stored_object(
+    release_repo, monkeypatch
+) -> None:
+    # The database returns the displaced object but not the incoming one, so the
+    # rows carry no incoming publication time. The cut advances the pair's newest
+    # version, so scope_monotonicity needs no time and passes.
+    _, _, make = release_repo
+    active, _ = make("us-active", [P1])
+    obj, path = make("us-next", [P1, P2])
+    row = _changed_row(_STATUTE, "us-active", active["content_sha256"])
+    results = _provider_results(
+        release_repo,
+        monkeypatch,
+        "us-next",
+        obj,
+        path,
+        [row],
+        [_signed_detail(active, published_at=_EARLIER)],
+    )
+    assert [result.name for result in results] == _ACTIVATE_NAMES
+    assert all(result.passed and not result.warning for result in results), _evidence(results)
 
 
 def test_a_displaced_release_without_a_stored_object_fails_every_state_check(
