@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-ri
+documents:
+- source_id: us-ri-regulation-260-ricr-40-05-1
+  jurisdiction: us-ri
+  document_class: regulation
+  title: 260-RICR-40-05-1, Unemployment Insurance and Temporary Disability Insurance
+  source_url: https://rules.sos.ri.gov/regulations/part/260-40-05-1
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ri/regulation/260-ricr/40/05/1
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

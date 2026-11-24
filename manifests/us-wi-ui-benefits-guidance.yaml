@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-wi
+documents:
+- source_id: us-wi-guidance-dwd-ui-ucb-19687-p
+  jurisdiction: us-wi
+  document_class: guidance
+  title: DWD publication UCB-19687-P (R. 03/2026)
+  source_url: https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-wi/guidance/dwd/ui/ucb-19687-p
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Workforce Development
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-wi-guidance-dwd-ui-qualifying-wages
+  jurisdiction: us-wi
+  document_class: guidance
+  title: DWD, Qualifying Wages
+  source_url: https://dwd.wisconsin.gov/uiben/qualifying-wages.htm
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-wi/guidance/dwd/ui/qualifying-wages
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Workforce Development
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

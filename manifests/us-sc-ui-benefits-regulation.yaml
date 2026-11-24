@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-sc
+documents:
+- source_id: us-sc-regulation-code-regs-chapter-47
+  jurisdiction: us-sc
+  document_class: regulation
+  title: S.C. Code Regs. chapter 47, Department of Employment and Workforce
+  source_url: https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-sc/regulation/code-regs/chapter-47
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

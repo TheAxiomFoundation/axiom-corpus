@@ -1,0 +1,48 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-dc
+documents:
+- source_id: us-dc-statute-51-101
+  jurisdiction: us-dc
+  document_class: statute
+  title: D.C. Code 51-101, Definitions
+  source_url: https://code.dccouncil.gov/us/dc/council/code/sections/51-101
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-dc/statute/51-101
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-dc-statute-51-107
+  jurisdiction: us-dc
+  document_class: statute
+  title: D.C. Code 51-107, Determination of amount and duration of benefits
+  source_url: https://code.dccouncil.gov/us/dc/council/code/sections/51-107
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-dc/statute/51-107
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-dc-statute-51-109
+  jurisdiction: us-dc
+  document_class: statute
+  title: D.C. Code 51-109, Eligibility for benefits
+  source_url: https://code.dccouncil.gov/us/dc/council/code/sections/51-109
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-dc/statute/51-109
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

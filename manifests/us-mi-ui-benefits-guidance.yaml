@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-mi
+documents:
+- source_id: us-mi-guidance-uia-uia-1901
+  jurisdiction: us-mi
+  document_class: guidance
+  title: 'UIA 1901, Unemployment Benefits in Michigan: A Handbook for Unemployed Workers'
+  source_url: https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-mi/guidance/uia/uia-1901
+  metadata:
+    primary_source: true
+    source_authority: Michigan Unemployment Insurance Agency
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
