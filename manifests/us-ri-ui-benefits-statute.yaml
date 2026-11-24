@@ -1,0 +1,36 @@
+# Unemployment insurance benefits, Rhode Island Employment Security Act, R.I. Gen. Laws chapters 28-42 and 28-44.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-ri-ui-benefits-chapter-28-42
+  jurisdiction: us-ri
+  document_class: statute
+  adapter: rhode-island-general-laws
+  source_url: https://webserver.rilegislature.gov/Statutes/TITLE28/28-42/INDEX.htm
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '28'
+    only_chapter: 28-42
+    workers: 1
+  metadata:
+    program: Unemployment insurance
+    law: Rhode Island Employment Security Act, R.I. Gen. Laws chapters 28-42 and 28-44
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md
+- source_id: us-ri-ui-benefits-chapter-28-44
+  jurisdiction: us-ri
+  document_class: statute
+  adapter: rhode-island-general-laws
+  source_url: https://webserver.rilegislature.gov/Statutes/TITLE28/28-44/INDEX.htm
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '28'
+    only_chapter: 28-44
+    workers: 1
+  metadata:
+    program: Unemployment insurance
+    law: Rhode Island Employment Security Act, R.I. Gen. Laws chapters 28-42 and 28-44
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

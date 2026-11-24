@@ -1,0 +1,21 @@
+# Unemployment insurance benefits, Reemployment Assistance Program Law, Fla. Stat. chapter 443 (Title XXXI).
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-fl-ui-benefits-title-xxxi
+  jurisdiction: us-fl
+  document_class: statute
+  adapter: florida-statutes
+  source_url: https://www.leg.state.fl.us/statutes/
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: XXXI
+    source_year: 2025
+    request_delay_seconds: 0.05
+    timeout_seconds: 60
+  metadata:
+    program: Unemployment insurance
+    law: Reemployment Assistance Program Law, Fla. Stat. chapter 443 (Title XXXI)
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

@@ -1,0 +1,18 @@
+# Unemployment insurance benefits, Nebraska Employment Security Law, Neb. Rev. Stat. 48-601 to 48-683.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-ne-ui-benefits-chapter-48
+  jurisdiction: us-ne
+  document_class: statute
+  adapter: nebraska-revised-statutes
+  source_url: https://nebraskalegislature.gov/laws/browse-chapters.php?chapter=48
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '48'
+  metadata:
+    program: Unemployment insurance
+    law: Nebraska Employment Security Law, Neb. Rev. Stat. 48-601 to 48-683
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

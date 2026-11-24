@@ -1,0 +1,19 @@
+# Unemployment insurance benefits, Minnesota Unemployment Insurance Law, Minn. Stat. chapter 268.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-mn-ui-benefits-chapter-268
+  jurisdiction: us-mn
+  document_class: statute
+  adapter: minnesota-statutes
+  source_url: https://www.revisor.mn.gov/statutes/cite/268
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '268'
+    workers: 4
+  metadata:
+    program: Unemployment insurance
+    law: Minnesota Unemployment Insurance Law, Minn. Stat. chapter 268
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

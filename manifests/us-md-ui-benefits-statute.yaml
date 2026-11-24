@@ -1,0 +1,21 @@
+# Unemployment insurance benefits, Maryland Unemployment Insurance Law, Labor and Employment Article title 8.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-md-ui-benefits-article-gle
+  jurisdiction: us-md
+  document_class: statute
+  adapter: maryland-code
+  source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/Statutes
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_article: gle
+    enactments: false
+    include_constitution: false
+    workers: 4
+  metadata:
+    program: Unemployment insurance
+    law: Maryland Unemployment Insurance Law, Labor and Employment Article title 8
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

@@ -1,0 +1,21 @@
+# Unemployment insurance benefits, Michigan Employment Security Act, MCL 421.1 et seq..
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-mi-ui-benefits-chapter-421
+  jurisdiction: us-mi
+  document_class: statute
+  adapter: michigan-compiled-laws
+  source_url: https://www.legislature.mi.gov/documents/mcl/
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '421'
+    request_delay_seconds: 0.1
+    timeout_seconds: 120
+    workers: 4
+  metadata:
+    program: Unemployment insurance
+    law: Michigan Employment Security Act, MCL 421.1 et seq.
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

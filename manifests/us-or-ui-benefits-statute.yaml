@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, Oregon unemployment insurance law, ORS chapter 657.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-or-ui-benefits-chapter-657
+  jurisdiction: us-or
+  document_class: statute
+  adapter: oregon-ors
+  source_url: https://www.oregonlegislature.gov/bills_laws/ors/ors657.html
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_chapter: '657'
+    source_year: 2025
+    workers: 2
+  metadata:
+    program: Unemployment insurance
+    law: Oregon unemployment insurance law, ORS chapter 657
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md
