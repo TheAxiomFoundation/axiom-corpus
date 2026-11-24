@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-me
+documents:
+- source_id: us-me-guidance-mdol-unemployment-claims-faq
+  jurisdiction: us-me
+  document_class: guidance
+  title: Maine Bureau of Unemployment Compensation, Claimants Frequently Asked Questions
+  source_url: https://www.maine.gov/unemployment/claimsfaq/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-me/guidance/mdol/unemployment/claims-faq
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-me-guidance-mdol-unemployment-me-i-5-ui-guide-2018
+  jurisdiction: us-me
+  document_class: guidance
+  title: Me. I-5, Unemployment Insurance guide (rev. 2/28/2018)
+  source_url: https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2018-02-28'
+  citation_path: us-me/guidance/mdol/unemployment/me-i-5-ui-guide-2018
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

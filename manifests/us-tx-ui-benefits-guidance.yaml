@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-tx
+documents:
+- source_id: us-tx-guidance-twc-unemployment-benefits-handbook
+  jurisdiction: us-tx
+  document_class: guidance
+  title: TWC Unemployment Benefits Handbook, BI-99E/S (09/24)
+  source_url: https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2024-09-01'
+  citation_path: us-tx/guidance/twc/unemployment-benefits-handbook
+  metadata:
+    primary_source: true
+    source_authority: Texas Workforce Commission
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-tx-guidance-twc-unemployment-benefits-eligibility-benefit-amounts
+  jurisdiction: us-tx
+  document_class: guidance
+  title: TWC, Eligibility and Benefit Amounts
+  source_url: https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-tx/guidance/twc/unemployment-benefits/eligibility-benefit-amounts
+  metadata:
+    primary_source: true
+    source_authority: Texas Workforce Commission
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-wa
+documents:
+- source_id: us-wa-guidance-esd-unemployed-workers-handbook-2025-10
+  jurisdiction: us-wa
+  document_class: guidance
+  title: ESD Unemployed Worker's Handbook, October 2025
+  source_url: https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2025-10-01'
+  citation_path: us-wa/guidance/esd/unemployed-workers-handbook-2025-10
+  metadata:
+    primary_source: true
+    source_authority: Washington Employment Security Department
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-wa-guidance-esd-news-2026-06-10
+  jurisdiction: us-wa
+  document_class: guidance
+  title: ESD news release, June 10, 2026
+  source_url: https://esd.wa.gov/node/1254
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-06-10'
+  citation_path: us-wa/guidance/esd/news/2026-06-10
+  metadata:
+    primary_source: true
+    source_authority: Washington Employment Security Department
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

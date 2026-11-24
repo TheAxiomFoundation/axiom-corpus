@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-tx
+documents:
+- source_id: us-tx-regulation-twc-rules-chapter-815
+  jurisdiction: us-tx
+  document_class: regulation
+  title: 40 Tex. Admin. Code chapter 815, Unemployment Insurance (TWC rules compilation)
+  source_url: https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-tx/regulation/twc/rules-chapter-815
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

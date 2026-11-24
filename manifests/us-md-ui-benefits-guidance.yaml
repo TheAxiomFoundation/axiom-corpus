@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-md
+documents:
+- source_id: us-md-guidance-mdol-ui-claimant-pamphlet
+  jurisdiction: us-md
+  document_class: guidance
+  title: Maryland Department of Labor, unemployment insurance claimant pamphlet
+  source_url: https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-md/guidance/mdol/ui-claimant-pamphlet
+  metadata:
+    primary_source: true
+    source_authority: Maryland Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

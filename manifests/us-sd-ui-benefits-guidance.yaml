@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-sd
+documents:
+- source_id: us-sd-guidance-dlr-ra-claimant-handbook
+  jurisdiction: us-sd
+  document_class: guidance
+  title: DLR Reemployment Assistance Claimant Handbook
+  source_url: https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-sd/guidance/dlr/ra-claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: South Dakota Department of Labor and Regulation
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

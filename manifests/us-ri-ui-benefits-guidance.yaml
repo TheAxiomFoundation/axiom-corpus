@@ -1,0 +1,48 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-ri
+documents:
+- source_id: us-ri-guidance-dlt-ui-tdi-quick-reference-2026-07-01
+  jurisdiction: us-ri
+  document_class: guidance
+  title: RI DLT 2026 UI and TDI Quick Reference
+  source_url: https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-07-01'
+  citation_path: us-ri/guidance/dlt/ui-tdi-quick-reference-2026-07-01
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Labor and Training
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ri-guidance-dlt-press-maximum-weekly-benefit-amounts-ui-tdi
+  jurisdiction: us-ri
+  document_class: guidance
+  title: 'RI DLT press release: maximum weekly benefit amounts for unemployment and temporary disability insurance'
+  source_url: https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ri/guidance/dlt/press/maximum-weekly-benefit-amounts-ui-tdi
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Labor and Training
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ri-guidance-dlt-ui-guide
+  jurisdiction: us-ri
+  document_class: guidance
+  title: RI DLT Guide to Filing an Unemployment Insurance Claim
+  source_url: https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ri/guidance/dlt/ui-guide
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Department of Labor and Training
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
