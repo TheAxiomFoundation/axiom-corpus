@@ -71,6 +71,9 @@ the 16 documents that were never ingested.
   that every cut of the line carries. The 21 new notices are recorded content findings and reviewed
   empty nodes of the added scopes.
 
+- `scripts/publish_corpus.py --dry-run` passes and plans 431 scopes, 22,043 artifacts and 179,913
+  provision rows, with no external writes. The base alone plans 117,101 rows.
+
 ## Coordination
 
 Drafts #996 (`us-rulespec-2026-11-14-cms-smd-26-006`) and #980
