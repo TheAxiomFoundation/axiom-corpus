@@ -26,6 +26,7 @@ import json
 import re
 from collections import defaultdict
 from pathlib import Path
+from urllib.parse import urlsplit
 
 REPO = Path(__file__).resolve().parent.parent
 OUTPUT = REPO / "sources/plans/ui-scope-audit-documents.json"
@@ -34,6 +35,28 @@ COMPOUND = re.compile(r"\d+[A-Za-z]?(?:[.:\-–]\d+[A-Za-z]?)+(?:-[A-Z]\b)?")
 SINGLE = re.compile(r"§+\s*(\d+[A-Za-z]?(?:-[A-Z])?)\b|/(\d+[A-Za-z]?)\b")
 USC = re.compile(r"(\d+) U\.S\.C\. §+\s*(\d+[A-Za-z]?)(?:-(\d+))?")
 CFR = re.compile(r"(\d+) C\.F\.R\. part (\d+)")
+
+
+# Citations whose corpus path does not carry the cited number in its last segment.
+OVERRIDES = {
+    ("us-ak", "8 AAC 85"): ["us-ak/regulation/aac/8/85"],
+    ("us-or", "OAR chapter 471, division 30"): ["us-or/regulation/chapter-471/division-30"],
+    ("us-md", "COMAR 09.32.02"): ["us-md/regulation/title-09/subtitle-32/chapter-02"],
+    ("us-il", "56 Ill. Adm. Code Part 2920"): [
+        "us-il/regulation/title-056/chapter-iv/subchapter-g/part-2920"
+    ],
+    ("us-il", "56 Ill. Adm. Code Part 2865"): [
+        "us-il/regulation/title-056/chapter-iv/subchapter-f/part-2865"
+    ],
+}
+# A state code a bare section number belongs to.
+CODE_PREFIX = {"us-ca": "us-ca/statute/uic/"}
+
+
+def address(url: str) -> str:
+    parts = urlsplit(url.strip())
+    host = (parts.hostname or "").removeprefix("www.")
+    return (host + parts.path.rstrip("/") + ("?" + parts.query if parts.query else "")).lower()
 
 
 def norm(text: str) -> str:
@@ -57,7 +80,10 @@ def load_rows(base: Path, jurisdiction: str) -> dict[str, dict]:
                 if not line.strip():
                     continue
                 row = json.loads(line)
-                held = rows.setdefault(row["citation_path"], {"text": 0, "parent": None})
+                held = rows.setdefault(
+                    row["citation_path"], {"text": 0, "parent": None, "url": None}
+                )
+                held["url"] = held["url"] or row.get("source_url")
                 held["text"] = max(held["text"], len((row.get("body") or "").strip()))
                 held["parent"] = held["parent"] or row.get("parent_citation_path")
     return rows
@@ -83,10 +109,23 @@ def with_text(rows: dict[str, dict]) -> set[str]:
 def paths_of(
     document: dict, jurisdiction: str, rows: dict[str, dict], readable: set[str]
 ) -> list[str]:
+    citation = document["citation"]
+    for (state, start), paths in OVERRIDES.items():
+        if state == jurisdiction and citation.startswith(start):
+            return [p for p in paths if p in readable]
+    # The document whose rows name the audit's address: its shortest path with text.
+    wanted_address = address(document["official_url"])
+    by_address = sorted(
+        (
+            p
+            for p, row in rows.items()
+            if row["url"] and address(row["url"]) == wanted_address and p in readable
+        ),
+        key=lambda p: (len(p.split("/")), p),
+    )
     document_class = CLASSES.get(document["class"])
     if not document_class:
-        return []
-    citation = document["citation"]
+        return by_address[:1]
     prefix = f"{jurisdiction}/{document_class}/"
     usc, cfr = USC.search(citation), CFR.search(citation)
     if jurisdiction == "us" and usc:
@@ -100,6 +139,11 @@ def paths_of(
         path = f"us/regulation/{cfr.group(1)}/{cfr.group(2)}"
         return [path] if path in readable else []
     found: list[str] = []
+    code = CODE_PREFIX.get(jurisdiction)
+    if code and document_class == "statute":
+        found = [code + t for t in tokens(citation) if code + t in readable]
+        if found:
+            return found
     for token in tokens(citation):
         wanted = norm(token)
         match = sorted(
@@ -117,7 +161,7 @@ def paths_of(
             match = [p for p in match if set(p[len(prefix) :].lower().split("/")[:-1]) <= words]
         if match and ("-" in wanted or len(match) == 1) and match[0] not in found:
             found.append(match[0])
-    return found
+    return found or by_address[:1]
 
 
 def main() -> None:

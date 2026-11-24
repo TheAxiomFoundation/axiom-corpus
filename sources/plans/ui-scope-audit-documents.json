@@ -10,12 +10,14 @@
   "us",
   "us-ak",
   "us-al",
+  "us-dc",
   "us-de",
   "us-fl",
   "us-hi",
   "us-ia",
   "us-id",
   "us-il",
+  "us-ky",
   "us-md",
   "us-me",
   "us-mi",
@@ -475,10 +477,11 @@
    ],
    "title": "8 AAC 85 (incl. 8 AAC 85.350-85.357, 85.410): Employment Security - regulations (able and available, registration, work search, suitable work)",
    "document_class": "regulation",
-   "urls": [
-    "https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350",
+   "citation_paths": [
+    "us-ak/regulation/aac/8/85"
+   ]
   },
   {
    "id": "us-ak Alaska UI Claimant Handbook",
@@ -488,10 +491,11 @@
    ],
    "title": "Alaska UI Claimant Handbook: Unemployment Insurance Claimant Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://labor.alaska.gov/unemployment/ui-handbook.html"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.alaska.gov/unemployment/ui-handbook.html",
+   "citation_paths": [
+    "us-ak/guidance/dolwd/ui-claimant-handbook"
+   ]
   },
   {
    "id": "us-ak Alaska DOLWD Unemployment Insurance home page alert",
@@ -501,10 +505,11 @@
    ],
    "title": "Alaska DOLWD Unemployment Insurance home page alert: Unemployment Insurance Weekly Benefits Increasing January 3, 2027",
    "document_class": "guidance",
-   "urls": [
-    "https://labor.alaska.gov/unemployment/"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.alaska.gov/unemployment/",
+   "citation_paths": [
+    "us-ak/guidance/dolwd/unemployment-insurance"
+   ]
   },
   {
    "id": "us-al Ala. Code § 25-4-72",
@@ -639,10 +644,11 @@
    ],
    "title": "ADOL/ADOW handbook uc_brr.pdf: Alabama Unemployment Compensation Benefit Rights and Responsibilities: A Handbook for Alabama Unemployment Compensation Claimants",
    "document_class": "guidance",
-   "urls": [
-    "https://labor.alabama.gov/docs/guides/uc_brr.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.alabama.gov/docs/guides/uc_brr.pdf",
+   "citation_paths": [
+    "us-al/guidance/adol/uc-benefit-rights-and-responsibilities"
+   ]
   },
   {
    "id": "us-al ADOL \"Claims and Benefits FAQ\"",
@@ -656,6 +662,103 @@
     "https://labor.alabama.gov/uc/claims.aspx"
    ],
    "citation_paths": []
+  },
+  {
+   "id": "us-dc D.C. Code § 51-107",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "D.C. Code § 51-107: Benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://code.dccouncil.gov/us/dc/council/code/sections/51-107",
+   "citation_paths": [
+    "us-dc/statute/51-107"
+   ]
+  },
+  {
+   "id": "us-dc D.C. Code § 51-109",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "D.C. Code § 51-109: Eligibility for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://code.dccouncil.gov/us/dc/council/code/sections/51-109",
+   "citation_paths": [
+    "us-dc/statute/51-109"
+   ]
+  },
+  {
+   "id": "us-dc D.C. Code § 51-101",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "D.C. Code § 51-101: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://code.dccouncil.gov/us/dc/council/code/sections/51-101",
+   "citation_paths": [
+    "us-dc/statute/51-101"
+   ]
+  },
+  {
+   "id": "us-dc 7 DCMR Chapter 3",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "7 DCMR Chapter 3: Unemployment Compensation",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=7-3"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-dc DOES, Claimant's Rights and Responsibilities (Revised 05/2019)",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "DOES, Claimant's Rights and Responsibilities (Revised 05/2019): Unemployment Compensation Claimant's Rights and Responsibilities",
+   "document_class": "guidance",
+   "urls": [],
+   "official_url": "https://does.dc.gov/sites/default/files/dc/sites/does/publication/attachments/01_03_20_UI%20Claimant%27s%20Rights%20and%20Responsibilities.pdf",
+   "citation_paths": [
+    "us-dc/guidance/does/ui-claimants-rights-and-responsibilities"
+   ]
+  },
+  {
+   "id": "us-dc DOES, Information for Claimants",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "DOES, Information for Claimants: Information for Claimants (Overview of UI Benefits)",
+   "document_class": "guidance",
+   "urls": [],
+   "official_url": "https://unemployment.dc.gov/node/1544711",
+   "citation_paths": [
+    "us-dc/guidance/does/information-for-claimants"
+   ]
+  },
+  {
+   "id": "us-dc DOES, UI Taxes page",
+   "jurisdiction": "US-DC",
+   "programs": [
+    "ui"
+   ],
+   "title": "DOES, UI Taxes page: UI Taxes",
+   "document_class": "guidance",
+   "urls": [],
+   "official_url": "https://www.does.dc.gov/page/ui-taxes",
+   "citation_paths": [
+    "us-dc/guidance/does/ui-taxes"
+   ]
   },
   {
    "id": "us-de 19 Del. C. § 3313",
@@ -707,10 +810,11 @@
    ],
    "title": "19 Del. Admin. Code 1202: Unemployment Insurance Regulations",
    "document_class": "regulation",
-   "urls": [
-    "https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf",
+   "citation_paths": [
+    "us-de/regulation/admin-code/title19/1202"
+   ]
   },
   {
    "id": "us-de Delaware DOL, UI Claimant Handbook (Revised April 2020)",
@@ -720,10 +824,11 @@
    ],
    "title": "Delaware DOL, UI Claimant Handbook (Revised April 2020): Your Guide to Unemployment Insurance Benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf",
+   "citation_paths": [
+    "us-de/guidance/dol/ui-claimant-handbook"
+   ]
   },
   {
    "id": "us-de Delaware DOL, Claimant FAQs",
@@ -802,10 +907,11 @@
    ],
    "title": "Fla. Admin. Code Chapter 73B-11: Unemployment Claims and Benefits; Florida Unemployment Compensation Claims and Benefits",
    "document_class": "regulation",
-   "urls": [
-    "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11",
+   "citation_paths": [
+    "us-fl/regulation/fac/73b-11"
+   ]
   },
   {
    "id": "us-fl FloridaCommerce, Benefit Rights Information Handbook",
@@ -815,10 +921,11 @@
    ],
    "title": "FloridaCommerce, Benefit Rights Information Handbook: Reemployment Assistance Benefit Rights Information Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15",
+   "citation_paths": [
+    "us-fl/guidance/floridacommerce/benefit-rights-information-handbook"
+   ]
   },
   {
    "id": "us-fl FloridaCommerce, Claimant FAQ",
@@ -828,10 +935,11 @@
    ],
    "title": "FloridaCommerce, Claimant FAQ: Claimant FAQ - Reemployment Assistance",
    "document_class": "guidance",
-   "urls": [
-    "https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq",
+   "citation_paths": [
+    "us-fl/guidance/floridacommerce/claimant-faq"
+   ]
   },
   {
    "id": "us-hi Haw. Rev. Stat. § 383-22",
@@ -925,10 +1033,11 @@
    ],
    "title": "Haw. Admin. Rules Title 12, Chapter 5: Administrative Rules (Chapter 5, Title 12) relating to Hawaii Employment Security Law",
    "document_class": "regulation",
-   "urls": [
-    "https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf",
+   "citation_paths": [
+    "us-hi/regulation/har/12/5"
+   ]
   },
   {
    "id": "us-hi DLIR UI Claimant Handbook (Rev. 07/2025, file Rev1.26)",
@@ -938,10 +1047,11 @@
    ],
    "title": "DLIR UI Claimant Handbook (Rev. 07/2025, file Rev1.26): Unemployment Insurance Claimant Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf",
+   "citation_paths": [
+    "us-hi/guidance/dlir/ui-claimant-handbook"
+   ]
   },
   {
    "id": "us-hi DLIR UI Division web page",
@@ -951,10 +1061,11 @@
    ],
    "title": "DLIR UI Division web page: Tax Rate Schedule and Weekly Benefit Amount",
    "document_class": "guidance",
-   "urls": [
-    "https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/",
+   "citation_paths": [
+    "us-hi/guidance/dlir/ui/tax-rate-schedule-and-weekly-benefit-amount"
+   ]
   },
   {
    "id": "us-ia Iowa Code § 96.3",
@@ -1020,10 +1131,11 @@
    ],
    "title": "Iowa Admin. Code 871—Chapter 24: Claims and Benefits",
    "document_class": "regulation",
-   "urls": [
-    "https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf",
+   "citation_paths": [
+    "us-ia/regulation/iac/871/24"
+   ]
   },
   {
    "id": "us-ia IWD announcement, June 30, 2026",
@@ -1033,10 +1145,11 @@
    ],
    "title": "IWD announcement, June 30, 2026: Iowans' Unemployment Benefits to Increase Starting July 5",
    "document_class": "guidance",
-   "urls": [
-    "https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5",
+   "citation_paths": [
+    "us-ia/guidance/iwd/announcement/2026-06-30-unemployment-benefits-increase"
+   ]
   },
   {
    "id": "us-ia IWD Unemployment Insurance Claimant Handbook 2026-2027",
@@ -1046,10 +1159,11 @@
    ],
    "title": "IWD Unemployment Insurance Claimant Handbook 2026-2027: Unemployment Insurance Claimant Handbook 2026-2027",
    "document_class": "guidance",
-   "urls": [
-    "https://workforce.iowa.gov/media/2589/download"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://workforce.iowa.gov/media/2589/download",
+   "citation_paths": [
+    "us-ia/guidance/iwd/ui-claimant-handbook-2026-2027"
+   ]
   },
   {
    "id": "us-id Idaho Code § 72-1367",
@@ -1143,10 +1257,11 @@
    ],
    "title": "IDAPA 09.01.30: Unemployment Insurance Benefits Administration Rules",
    "document_class": "regulation",
-   "urls": [
-    "https://adminrules.idaho.gov/rules/current/09/090130.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://adminrules.idaho.gov/rules/current/09/090130.pdf",
+   "citation_paths": [
+    "us-id/regulation/idapa/09/09.01.30"
+   ]
   },
   {
    "id": "us-id Idaho Department of Labor Administrative Order No. 683 (Nov. 6, 2025)",
@@ -1156,10 +1271,11 @@
    ],
    "title": "Idaho Department of Labor Administrative Order No. 683 (Nov. 6, 2025): Unemployment Insurance Maximum Weekly Benefit Amount 2026",
    "document_class": "guidance",
-   "urls": [
-    "https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf",
+   "citation_paths": [
+    "us-id/guidance/idol/administrative-order-683"
+   ]
   },
   {
    "id": "us-id Idaho Department of Labor fact sheet (March 2026)",
@@ -1169,10 +1285,11 @@
    ],
    "title": "Idaho Department of Labor fact sheet (March 2026): Unemployment insurance (UI) facts",
    "document_class": "guidance",
-   "urls": [
-    "https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf",
+   "citation_paths": [
+    "us-id/guidance/idol/ui-facts-2026-03"
+   ]
   },
   {
    "id": "us-id Idaho Department of Labor web page",
@@ -1182,10 +1299,11 @@
    ],
    "title": "Idaho Department of Labor web page: What are Idaho's unemployment monetary requirements? (Monetary eligibility)",
    "document_class": "guidance",
-   "urls": [
-    "https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/",
+   "citation_paths": [
+    "us-id/guidance/idol/unemployment-benefits/monetary-eligibility"
+   ]
   },
   {
    "id": "us-id Idaho Labor Unemployment Insurance Claimant Guide",
@@ -1195,10 +1313,11 @@
    ],
    "title": "Idaho Labor Unemployment Insurance Claimant Guide: Unemployment Insurance Claimant Guide: Benefits, Rights, Responsibilities and Filing Instructions",
    "document_class": "guidance",
-   "urls": [
-    "https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf",
+   "citation_paths": [
+    "us-id/guidance/idol/ui-claimant-guide"
+   ]
   },
   {
    "id": "us-il 820 ILCS 405/401",
@@ -1334,10 +1453,11 @@
    ],
    "title": "56 Ill. Adm. Code Part 2920: Disqualifying Income and Reduced Benefits",
    "document_class": "regulation",
-   "urls": [
-    "https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920",
+   "citation_paths": [
+    "us-il/regulation/title-056/chapter-iv/subchapter-g/part-2920"
+   ]
   },
   {
    "id": "us-il 56 Ill. Adm. Code Part 2865",
@@ -1347,10 +1467,11 @@
    ],
    "title": "56 Ill. Adm. Code Part 2865: Claimant's Availability for Work, Ability to Work and Active Search for Work",
    "document_class": "regulation",
-   "urls": [
-    "https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865",
+   "citation_paths": [
+    "us-il/regulation/title-056/chapter-iv/subchapter-f/part-2865"
+   ]
   },
   {
    "id": "us-il IDES Table 1 of Weekly Benefit Amounts (form CLI110L)",
@@ -1360,10 +1481,11 @@
    ],
    "title": "IDES Table 1 of Weekly Benefit Amounts (form CLI110L): Table 1 of Weekly Benefit Amounts (benefit years beginning on or after 1/1/2026)",
    "document_class": "guidance",
-   "urls": [
-    "https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf",
+   "citation_paths": [
+    "us-il/guidance/ides/cli110l-table-of-weekly-benefit-amounts"
+   ]
   },
   {
    "id": "us-il IDES Unemployment Insurance Benefit Handbook",
@@ -1377,6 +1499,160 @@
     "https://ides.illinois.gov/unemployment/resources/unemployment-insurance-benefit-handbook.html"
    ],
    "citation_paths": []
+  },
+  {
+   "id": "us-ky KRS 341.380",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "KRS 341.380: Benefits, how paid -- Calculation of amount -- Increase in maximum weekly benefit rate",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53243",
+   "citation_paths": [
+    "us-ky/statute/341.380"
+   ]
+  },
+  {
+   "id": "us-ky KRS 341.385",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "KRS 341.385: Duration of benefits -- Application of classification system -- Extension of benefits -- Additional weeks for job training",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54211",
+   "citation_paths": [
+    "us-ky/statute/341.385"
+   ]
+  },
+  {
+   "id": "us-ky KRS 341.350",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "KRS 341.350: Conditions of qualification for benefits -- Weekly audits to evaluate work search activity compliance",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56868",
+   "citation_paths": [
+    "us-ky/statute/341.350"
+   ]
+  },
+  {
+   "id": "us-ky KRS 341.390",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "KRS 341.390: Deductions from benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=32298",
+   "citation_paths": [
+    "us-ky/statute/341.390"
+   ]
+  },
+  {
+   "id": "us-ky KRS 341.090",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "KRS 341.090: Base period, extended base period, benefit year, and base-period wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=32243",
+   "citation_paths": [
+    "us-ky/statute/341.090"
+   ]
+  },
+  {
+   "id": "us-ky KRS 341.080",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "KRS 341.080: \"Calendar year,\" \"calendar quarter,\" \"week,\" and \"week of unemployment\" defined",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53257",
+   "citation_paths": [
+    "us-ky/statute/341.080"
+   ]
+  },
+  {
+   "id": "us-ky 787 KAR 1:100",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "787 KAR 1:100: Week of unemployment defined",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/kar/titles/787/001/100/",
+   "citation_paths": [
+    "us-ky/regulation/kar/787/1/100"
+   ]
+  },
+  {
+   "id": "us-ky 787 KAR 1:090",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "787 KAR 1:090: Unemployed worker's reporting requirements",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/kar/titles/787/001/090/",
+   "citation_paths": [
+    "us-ky/regulation/kar/787/1/090"
+   ]
+  },
+  {
+   "id": "us-ky 787 KAR 1:320",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "787 KAR 1:320: Priority of deductions from benefits",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://apps.legislature.ky.gov/law/kar/titles/787/001/320/",
+   "citation_paths": [
+    "us-ky/regulation/kar/787/1/320"
+   ]
+  },
+  {
+   "id": "us-ky PAM-UI-400/ES-513 (Rev. 07/26)",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "PAM-UI-400/ES-513 (Rev. 07/26): Claimant Guide: Your Rights & Responsibilities When Claiming Unemployment Insurance Benefits",
+   "document_class": "guidance",
+   "urls": [],
+   "official_url": "https://kcc.ky.gov/career/individuals/Documents/PAM400.pdf",
+   "citation_paths": [
+    "us-ky/guidance/oui/pam-ui-400-claimant-handbook"
+   ]
+  },
+  {
+   "id": "us-ky Kentucky OUI Benefits Calculator page",
+   "jurisdiction": "US-KY",
+   "programs": [
+    "ui"
+   ],
+   "title": "Kentucky OUI Benefits Calculator page: Benefits Calculator",
+   "document_class": "guidance",
+   "urls": [],
+   "official_url": "https://ui.ky.gov/Redesign/ResourcePages/BenefitsCalculator.aspx",
+   "citation_paths": [
+    "us-ky/guidance/oui/benefits-calculator"
+   ]
   },
   {
    "id": "us-md Md. Code, Lab. & Empl. § 8-803",
@@ -1498,10 +1774,11 @@
    ],
    "title": "COMAR 09.32.02: Claims for Benefits",
    "document_class": "regulation",
-   "urls": [
-    "https://regs.maryland.gov/us/md/exec/comar/09.32.02"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://regs.maryland.gov/us/md/exec/comar/09.32.02",
+   "citation_paths": [
+    "us-md/regulation/title-09/subtitle-32/chapter-02"
+   ]
   },
   {
    "id": "us-md Maryland Department of Labor claimant pamphlet",
@@ -1511,10 +1788,11 @@
    ],
    "title": "Maryland Department of Labor claimant pamphlet: Unemployment Insurance in Maryland - A Guide to Reemployment",
    "document_class": "guidance",
-   "urls": [
-    "https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf",
+   "citation_paths": [
+    "us-md/guidance/mdol/ui-claimant-pamphlet"
+   ]
   },
   {
    "id": "us-me 26 M.R.S. § 1191",
@@ -1580,10 +1858,11 @@
    ],
    "title": "12-172 C.M.R. ch. 3: Unemployment Benefits, Intrastate",
    "document_class": "regulation",
-   "urls": [
-    "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc",
+   "citation_paths": [
+    "us-me/regulation/12-172-cmr/3"
+   ]
   },
   {
    "id": "us-me 12-172 C.M.R. ch. 9",
@@ -1593,10 +1872,11 @@
    ],
    "title": "12-172 C.M.R. ch. 9: Able and Available Requirements",
    "document_class": "regulation",
-   "urls": [
-    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc",
+   "citation_paths": [
+    "us-me/regulation/12-172-cmr/9"
+   ]
   },
   {
    "id": "us-me 12-172 C.M.R. ch. 10",
@@ -1606,10 +1886,11 @@
    ],
    "title": "12-172 C.M.R. ch. 10: Work Search Requirements",
    "document_class": "regulation",
-   "urls": [
-    "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx",
+   "citation_paths": [
+    "us-me/regulation/12-172-cmr/10"
+   ]
   },
   {
    "id": "us-me Maine BUC Claimants Frequently Asked Questions",
@@ -1619,10 +1900,11 @@
    ],
    "title": "Maine BUC Claimants Frequently Asked Questions: Claimants Frequently Asked Questions",
    "document_class": "guidance",
-   "urls": [
-    "https://www.maine.gov/unemployment/claimsfaq/"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.maine.gov/unemployment/claimsfaq/",
+   "citation_paths": [
+    "us-me/guidance/mdol/unemployment/claims-faq"
+   ]
   },
   {
    "id": "us-me Me. I-5 (rev. 2/28/2018)",
@@ -1632,10 +1914,11 @@
    ],
    "title": "Me. I-5 (rev. 2/28/2018): Maine's Unemployment Insurance Guide: A Worker's Guide to Maine's Unemployment Program",
    "document_class": "guidance",
-   "urls": [
-    "https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf",
+   "citation_paths": [
+    "us-me/guidance/mdol/unemployment/me-i-5-ui-guide-2018"
+   ]
   },
   {
    "id": "us-mi MCL 421.27",
@@ -1729,10 +2012,11 @@
    ],
    "title": "UIA 1901 (November 2026): Unemployment Benefits in Michigan: A Handbook for Unemployed Workers",
    "document_class": "guidance",
-   "urls": [
-    "https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf",
+   "citation_paths": [
+    "us-mi/guidance/uia/uia-1901"
+   ]
   },
   {
    "id": "us-mi UIA web page",
@@ -1824,10 +2108,11 @@
    ],
    "title": "DEED-22A / DEED-00590-31 (Rev. 10/2026): Minnesota Unemployment Insurance Information Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://www.uimn.org/assets/22c_tcm1068-193111.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.uimn.org/assets/22c_tcm1068-193111.pdf",
+   "citation_paths": [
+    "us-mn/guidance/deed/ui/information-handbook-deed-22a"
+   ]
   },
   {
    "id": "us-mn UI Minnesota web page",
@@ -1974,10 +2259,11 @@
    ],
    "title": "NDOL Unemployment Insurance Handbook: Unemployment Insurance Handbook for Unemployed Workers in Nebraska",
    "document_class": "guidance",
-   "urls": [
-    "https://dol.nebraska.gov/UIBenefits/UIHandbook"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dol.nebraska.gov/UIBenefits/UIHandbook",
+   "citation_paths": [
+    "us-ne/guidance/ndol/ui-benefits/ui-handbook"
+   ]
   },
   {
    "id": "us-ne NDOL, How Are Benefit Amounts Calculated?",
@@ -1987,10 +2273,11 @@
    ],
    "title": "NDOL, How Are Benefit Amounts Calculated?: How Are Benefit Amounts Calculated?",
    "document_class": "guidance",
-   "urls": [
-    "https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts",
+   "citation_paths": [
+    "us-ne/guidance/ndol/ui-benefits/benefit-amounts"
+   ]
   },
   {
    "id": "us-nj N.J.S.A. 43:21-3",
@@ -2082,10 +2369,11 @@
    ],
    "title": "LWD web page: How we calculate benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://www.nj.gov/labor/myunemployment/before/about/calculator/"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/before/about/calculator/",
+   "citation_paths": [
+    "us-nj/guidance/lwd/myunemployment/how-we-calculate-benefits"
+   ]
   },
   {
    "id": "us-nj LWD web page (https://www.nj.gov/labor/myunemployment/before/about/who/)",
@@ -2095,10 +2383,11 @@
    ],
    "title": "LWD web page: Who is eligible for benefits?",
    "document_class": "guidance",
-   "urls": [
-    "https://www.nj.gov/labor/myunemployment/before/about/who/"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/before/about/who/",
+   "citation_paths": [
+    "us-nj/guidance/lwd/myunemployment/who-is-eligible"
+   ]
   },
   {
    "id": "us-nj LWD web page (https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml)",
@@ -2121,10 +2410,11 @@
    ],
    "title": "LWD web page: How to claim dependency benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml",
+   "citation_paths": [
+    "us-nj/guidance/lwd/myunemployment/dependency-benefits"
+   ]
   },
   {
    "id": "us-nj LWD PR-94 (7/2026)",
@@ -2147,10 +2437,11 @@
    ],
    "title": "LWD press release 2025-12-29: NJDOL announces new benefit rates for 2026",
    "document_class": "guidance",
-   "urls": [
-    "https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml",
+   "citation_paths": [
+    "us-nj/guidance/lwd/press/2025-12-29-new-benefit-rates-2026"
+   ]
   },
   {
    "id": "us-ny N.Y. Labor Law § 590",
@@ -2266,10 +2557,11 @@
    ],
    "title": "NYS DOL P832 (2/26): How Your Weekly Unemployment Insurance Benefit Payment Is Calculated",
    "document_class": "guidance",
-   "urls": [
-    "https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf",
+   "citation_paths": [
+    "us-ny/guidance/dol/p832-how-your-weekly-ui-benefits-are-calculated-2-26"
+   ]
   },
   {
    "id": "us-ny NYS DOL web page (https://dol.ny.gov/mbr)",
@@ -2318,10 +2610,11 @@
    ],
    "title": "Governor of New York news release 2025-10-08: Governor Hochul and Labor Leaders Announce Maximum Weekly Benefit Increase for Unemployed Workers",
    "document_class": "guidance",
-   "urls": [
-    "https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers",
+   "citation_paths": [
+    "us-ny/guidance/governor/news/2025-10-08-maximum-weekly-benefit-increase"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 2-104",
@@ -2370,10 +2663,11 @@
    ],
    "title": "40 O.S. § 1-231: Limitations on duration of benefits",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 2-207",
@@ -2383,10 +2677,11 @@
    ],
    "title": "40 O.S. § 2-207: Wage requirement during base period",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 1-201",
@@ -2396,10 +2691,11 @@
    ],
    "title": "40 O.S. § 1-201: General definitions",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 1-202.1",
@@ -2422,10 +2718,11 @@
    ],
    "title": "40 O.S. § 1-217: Unemployed",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 1-223",
@@ -2435,10 +2732,11 @@
    ],
    "title": "40 O.S. § 1-223: Taxable wages - conditional factors and percentages",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 3-113",
@@ -2448,10 +2746,11 @@
    ],
    "title": "40 O.S. § 3-113: Conditional factors",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok 40 O.S. § 2-202",
@@ -2500,10 +2799,11 @@
    ],
    "title": "40 O.S. § 2-411: Retirement payments",
    "document_class": "statute",
-   "urls": [
-    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf",
+   "citation_paths": [
+    "us-ok/statute/title-40-pdf"
+   ]
   },
   {
    "id": "us-ok OESC OES-339 (Rev. 06-3-2026)",
@@ -2513,10 +2813,11 @@
    ],
    "title": "OESC OES-339 (Rev. 06-3-2026): Claimant Handbook: A Guide to Unemployment Benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf",
+   "citation_paths": [
+    "us-ok/guidance/oesc/oes-339-claimant-handbook"
+   ]
   },
   {
    "id": "us-ok OESC \"Important Numbers for 2026\"",
@@ -2526,10 +2827,11 @@
    ],
    "title": "OESC \"Important Numbers for 2026\": Important Numbers for 2026",
    "document_class": "guidance",
-   "urls": [
-    "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf",
+   "citation_paths": [
+    "us-ok/guidance/oesc/employer-important-numbers/2026"
+   ]
   },
   {
    "id": "us-ok OESC web page",
@@ -2664,10 +2966,11 @@
    ],
    "title": "OAR chapter 471, division 30: Unemployment Insurance Benefits and Claims",
    "document_class": "regulation",
-   "urls": [
-    "https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337",
+   "citation_paths": [
+    "us-or/regulation/chapter-471/division-30"
+   ]
   },
   {
    "id": "us-or Oregon Employment Department press release 2026-05-29",
@@ -2677,10 +2980,11 @@
    ],
    "title": "Oregon Employment Department press release 2026-05-29: Minimum and Maximum Weekly Benefit Amounts to Increase for New Unemployment Insurance and Paid Leave Oregon Claims",
    "document_class": "guidance",
-   "urls": [
-    "https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf",
+   "citation_paths": [
+    "us-or/guidance/oed/press/2026-05-29-minimum-maximum-weekly-benefit-amounts"
+   ]
   },
   {
    "id": "us-or Oregon Employment Department UI Glossary",
@@ -2690,10 +2994,11 @@
    ],
    "title": "Oregon Employment Department UI Glossary: Glossary - Oregon Unemployment Insurance",
    "document_class": "guidance",
-   "urls": [
-    "https://unemployment.oregon.gov/glossary"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://unemployment.oregon.gov/glossary",
+   "citation_paths": [
+    "us-or/guidance/oed/unemployment/glossary"
+   ]
   },
   {
    "id": "us-or Oregon Employment Department UI PUB 350",
@@ -2703,10 +3008,11 @@
    ],
    "title": "Oregon Employment Department UI PUB 350: Unemployment Insurance Claimant Handbook: A guide to your benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf",
+   "citation_paths": [
+    "us-or/guidance/oed/ui-pub-350-claimant-handbook"
+   ]
   },
   {
    "id": "us-pa UC Law § 404 (43 P.S. § 804)",
@@ -2716,10 +3022,11 @@
    ],
    "title": "UC Law § 404 (43 P.S. § 804): Rate and Amount of Compensation",
    "document_class": "statute",
-   "urls": [
-    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf",
+   "citation_paths": [
+    "us-pa/guidance/dli/uc-law"
+   ]
   },
   {
    "id": "us-pa UC Law § 401 (43 P.S. § 801)",
@@ -2729,10 +3036,11 @@
    ],
    "title": "UC Law § 401 (43 P.S. § 801): Qualifications Required to Secure Compensation",
    "document_class": "statute",
-   "urls": [
-    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf",
+   "citation_paths": [
+    "us-pa/guidance/dli/uc-law"
+   ]
   },
   {
    "id": "us-pa UC Law § 4 (43 P.S. § 753)",
@@ -2742,10 +3050,11 @@
    ],
    "title": "UC Law § 4 (43 P.S. § 753): Definitions",
    "document_class": "statute",
-   "urls": [
-    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf",
+   "citation_paths": [
+    "us-pa/guidance/dli/uc-law"
+   ]
   },
   {
    "id": "us-pa 34 Pa. Code ch. 65",
@@ -2794,10 +3103,11 @@
    ],
    "title": "DLI UCP-1 (REV 11-26): Pennsylvania Unemployment Compensation Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf",
+   "citation_paths": [
+    "us-pa/guidance/dli/ucp-1-claimant-handbook"
+   ]
   },
   {
    "id": "us-pa DLI web page",
@@ -2974,10 +3284,11 @@
    ],
    "title": "260-RICR-40-05-1: Unemployment Insurance and Temporary Disability Insurance Programs",
    "document_class": "regulation",
-   "urls": [
-    "https://rules.sos.ri.gov/regulations/part/260-40-05-1"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://rules.sos.ri.gov/regulations/part/260-40-05-1",
+   "citation_paths": [
+    "us-ri/regulation/260-ricr/40/05/1"
+   ]
   },
   {
    "id": "us-ri RI DLT 2026 UI and TDI Quick Reference",
@@ -2987,10 +3298,11 @@
    ],
    "title": "RI DLT 2026 UI and TDI Quick Reference: 2026 UI and TDI Quick Reference (Effective July 1, 2026)",
    "document_class": "guidance",
-   "urls": [
-    "https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf",
+   "citation_paths": [
+    "us-ri/guidance/dlt/ui-tdi-quick-reference-2026-07-01"
+   ]
   },
   {
    "id": "us-ri RI DLT press release",
@@ -3000,10 +3312,11 @@
    ],
    "title": "RI DLT press release: Maximum Weekly Benefit Amounts for Unemployment and Temporary Disability Insurance",
    "document_class": "guidance",
-   "urls": [
-    "https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4",
+   "citation_paths": [
+    "us-ri/guidance/dlt/press/maximum-weekly-benefit-amounts-ui-tdi"
+   ]
   },
   {
    "id": "us-ri RI DLT Guide to Filing an Unemployment Insurance Claim",
@@ -3013,10 +3326,11 @@
    ],
    "title": "RI DLT Guide to Filing an Unemployment Insurance Claim: Guide to Filing an Unemployment Insurance Claim",
    "document_class": "guidance",
-   "urls": [
-    "https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf",
+   "citation_paths": [
+    "us-ri/guidance/dlt/ui-guide"
+   ]
   },
   {
    "id": "us-sc S.C. Code § 41-35-40",
@@ -3194,10 +3508,11 @@
    ],
    "title": "S.C. Code Regs. 47-104: Work Search",
    "document_class": "regulation",
-   "urls": [
-    "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf",
+   "citation_paths": [
+    "us-sc/regulation/code-regs/chapter-47"
+   ]
   },
   {
    "id": "us-sc S.C. Code Regs. 47-49",
@@ -3207,10 +3522,11 @@
    ],
    "title": "S.C. Code Regs. 47-49: Pension Reductions From Unemployment Benefits",
    "document_class": "regulation",
-   "urls": [
-    "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf",
+   "citation_paths": [
+    "us-sc/regulation/code-regs/chapter-47"
+   ]
   },
   {
    "id": "us-sc S.C. Code Regs. 47-20, 47-21",
@@ -3220,10 +3536,11 @@
    ],
    "title": "S.C. Code Regs. 47-20, 47-21: Types of Unemployment; Filing Claims for Benefits and Registration for Work",
    "document_class": "regulation",
-   "urls": [
-    "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf",
+   "citation_paths": [
+    "us-sc/regulation/code-regs/chapter-47"
+   ]
   },
   {
    "id": "us-sc DEW Claimant Handbook (as of 9/3/2025)",
@@ -3233,10 +3550,11 @@
    ],
    "title": "DEW Claimant Handbook (as of 9/3/2025): Claimant Handbook: A Reference for Unemployment Insurance Benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf",
+   "citation_paths": [
+    "us-sc/guidance/dew/claimant-handbook-2025-09-03"
+   ]
   },
   {
    "id": "us-sc DEW web page: Weekly Benefit Amount",
@@ -3246,10 +3564,11 @@
    ],
    "title": "DEW web page: Weekly Benefit Amount: Weekly Benefit Amount",
    "document_class": "guidance",
-   "urls": [
-    "https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount",
+   "citation_paths": [
+    "us-sc/guidance/dew/weekly-benefit-amount"
+   ]
   },
   {
    "id": "us-sd SDCL 61-6-2",
@@ -3383,10 +3702,11 @@
    ],
    "title": "DLR Claimant Handbook: Claimant Handbook: A Guide to Reemployment Assistance Benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf",
+   "citation_paths": [
+    "us-sd/guidance/dlr/ra-claimant-handbook"
+   ]
   },
   {
    "id": "us-sd DLR web page: Wage Requirements - Benefit Amount",
@@ -3577,10 +3897,11 @@
    ],
    "title": "40 Tex. Admin. Code ch. 815, subch. B (§§ 815.20-815.28): Unemployment Insurance: Benefits, Claims, and Appeals (incl. § 815.28 Work Search Requirements)",
    "document_class": "regulation",
-   "urls": [
-    "https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf",
+   "citation_paths": [
+    "us-tx/regulation/twc/rules-chapter-815"
+   ]
   },
   {
    "id": "us-tx TWC Unemployment Benefits Handbook, BI-99E/S (09/24)",
@@ -3590,10 +3911,11 @@
    ],
    "title": "TWC Unemployment Benefits Handbook, BI-99E/S (09/24): Unemployment Benefits Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf",
+   "citation_paths": [
+    "us-tx/guidance/twc/unemployment-benefits-handbook"
+   ]
   },
   {
    "id": "us-tx TWC web page: Eligibility & Benefit Amounts",
@@ -3603,10 +3925,11 @@
    ],
    "title": "TWC web page: Eligibility & Benefit Amounts: Eligibility & Benefit Amounts",
    "document_class": "guidance",
-   "urls": [
-    "https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts",
+   "citation_paths": [
+    "us-tx/guidance/twc/unemployment-benefits/eligibility-benefit-amounts"
+   ]
   },
   {
    "id": "us-ut Utah Code § 35A-4-401",
@@ -3698,10 +4021,11 @@
    ],
    "title": "DWS Benefit Schedule, January 2026 (form 04-13-0126): Unemployment Insurance Benefit Schedule (Benefit Calculation)",
    "document_class": "guidance",
-   "urls": [
-    "https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf",
+   "citation_paths": [
+    "us-ut/guidance/dws/ui/benefit-calculation"
+   ]
   },
   {
    "id": "us-ut DWS Claimant Guide (form 04-02-0926)",
@@ -3711,10 +4035,11 @@
    ],
    "title": "DWS Claimant Guide (form 04-02-0926): Claimant Guide: Unemployment Benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf",
+   "citation_paths": [
+    "us-ut/guidance/dws/ui/claimant-guide"
+   ]
   },
   {
    "id": "us-ut DWS web page",
@@ -3835,10 +4160,11 @@
    ],
    "title": "WAC 192-190: Deductions from unemployment benefits",
    "document_class": "regulation",
-   "urls": [
-    "https://app.leg.wa.gov/WAC/default.aspx?cite=192-190"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/WAC/default.aspx?cite=192-190",
+   "citation_paths": [
+    "us-wa/regulation/192/192-190"
+   ]
   },
   {
    "id": "us-wa WAC 192-170",
@@ -3848,10 +4174,11 @@
    ],
    "title": "WAC 192-170: Availability for work",
    "document_class": "regulation",
-   "urls": [
-    "https://app.leg.wa.gov/WAC/default.aspx?cite=192-170"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/WAC/default.aspx?cite=192-170",
+   "citation_paths": [
+    "us-wa/regulation/192/192-170"
+   ]
   },
   {
    "id": "us-wa WAC 192-180",
@@ -3861,10 +4188,11 @@
    ],
    "title": "WAC 192-180: Job search requirements",
    "document_class": "regulation",
-   "urls": [
-    "https://app.leg.wa.gov/WAC/default.aspx?cite=192-180"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/WAC/default.aspx?cite=192-180",
+   "citation_paths": [
+    "us-wa/regulation/192/192-180"
+   ]
   },
   {
    "id": "us-wa ESD Unemployed Worker's Handbook, October 2025",
@@ -3874,10 +4202,11 @@
    ],
    "title": "ESD Unemployed Worker's Handbook, October 2025: Unemployed Worker's Handbook",
    "document_class": "guidance",
-   "urls": [
-    "https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline",
+   "citation_paths": [
+    "us-wa/guidance/esd/unemployed-workers-handbook-2025-10"
+   ]
   },
   {
    "id": "us-wa ESD news release, June 10, 2026",
@@ -3887,10 +4216,11 @@
    ],
    "title": "ESD news release, June 10, 2026: New average annual wage estimates adjust unemployment insurance and paid leave benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://esd.wa.gov/node/1254"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://esd.wa.gov/node/1254",
+   "citation_paths": [
+    "us-wa/guidance/esd/news/2026-06-10"
+   ]
   },
   {
    "id": "us-wi Wis. Stat. § 108.05",
@@ -3956,10 +4286,11 @@
    ],
    "title": "Wis. Admin. Code ch. DWD 128: Ability to Work and Availability for Work",
    "document_class": "regulation",
-   "urls": [
-    "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128",
+   "citation_paths": [
+    "us-wi/regulation/dwd/128"
+   ]
   },
   {
    "id": "us-wi Wis. Admin. Code ch. DWD 129",
@@ -3969,10 +4300,11 @@
    ],
    "title": "Wis. Admin. Code ch. DWD 129: Benefit Claiming Procedures",
    "document_class": "regulation",
-   "urls": [
-    "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129",
+   "citation_paths": [
+    "us-wi/regulation/dwd/129"
+   ]
   },
   {
    "id": "us-wi Wis. Admin. Code ch. DWD 127",
@@ -3982,10 +4314,11 @@
    ],
    "title": "Wis. Admin. Code ch. DWD 127: Work Search and Reemployment Services",
    "document_class": "regulation",
-   "urls": [
-    "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127",
+   "citation_paths": [
+    "us-wi/regulation/dwd/127"
+   ]
   },
   {
    "id": "us-wi DWD publication UCB-10-P",
@@ -4008,10 +4341,11 @@
    ],
    "title": "DWD publication UCB-19687-P (R. 03/2026): How to Apply for Unemployment Insurance Benefits",
    "document_class": "guidance",
-   "urls": [
-    "https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf",
+   "citation_paths": [
+    "us-wi/guidance/dwd/ui/ucb-19687-p"
+   ]
   },
   {
    "id": "us-wi DWD web page",
@@ -4021,10 +4355,11 @@
    ],
    "title": "DWD web page: Qualifying Wages - Wisconsin Unemployment Insurance",
    "document_class": "guidance",
-   "urls": [
-    "https://dwd.wisconsin.gov/uiben/qualifying-wages.htm"
-   ],
-   "citation_paths": []
+   "urls": [],
+   "official_url": "https://dwd.wisconsin.gov/uiben/qualifying-wages.htm",
+   "citation_paths": [
+    "us-wi/guidance/dwd/ui/qualifying-wages"
+   ]
   }
  ]
 }
