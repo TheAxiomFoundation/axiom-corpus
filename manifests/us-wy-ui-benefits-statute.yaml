@@ -1,0 +1,27 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-wy
+documents:
+- source_id: us-wy-statute-title-27-chapter-3
+  jurisdiction: us-wy
+  document_class: statute
+  title: 'Wyoming Statutes Title 27, Chapter 3: Unemployment Compensation'
+  source_url: https://wyoleg.gov/statutes/compress/title27.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-05-08'
+  citation_path: us-wy/statute/title-27/chapter-3
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>27-3-\d+)\.\s+(?P<heading>\S.*)$
+    heading_continuation_pattern: ^(?P<heading>[a-z"].*)$
+    page_windows:
+    - start_page: 13
+      end_page: 107
+      start_at_pattern: ^CHAPTER 3 - UNEMPLOYMENT COMPENSATION
+      stop_at_pattern: '^CHAPTER 4 - '

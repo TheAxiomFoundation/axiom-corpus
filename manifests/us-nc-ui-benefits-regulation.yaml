@@ -1,0 +1,21 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-nc
+documents:
+- source_id: us-nc-regulation-04-ncac-24b
+  jurisdiction: us-nc
+  document_class: regulation
+  title: '04 NCAC 24B, Division of Employment Security: Benefits'
+  source_url: http://reports.oah.state.nc.us/ncac/title%2004%20-%20commerce/chapter%2024%20-%20employment%20security/subchapter%20b/subchapter%20b%20rules.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/regulation/04-ncac/24b
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    segmentation: labeled_sections
+    section_label_pattern: ^04 NCAC 24B \.(?P<label>\d{4})\s*$

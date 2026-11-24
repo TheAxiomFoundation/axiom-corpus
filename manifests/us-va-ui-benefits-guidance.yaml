@@ -1,0 +1,35 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-va
+documents:
+- source_id: us-va-guidance-vec-claimant-handbook
+  jurisdiction: us-va
+  document_class: guidance
+  title: 'VEC Claimant Handbook: A Guide to Unemployment Benefits (revised March 2023)'
+  source_url: https://www.vec.virginia.gov/sites/default/files/documents/VEC%20Claimant%20Handbook%20updated%2012.11.23.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2023-03-01'
+  citation_path: us-va/guidance/vec/claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: Virginia Employment Commission
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-va-guidance-vec-news-2026-06-25-unemployment-benefits-increasing-in-july
+  jurisdiction: us-va
+  document_class: guidance
+  title: Virginia Unemployment Benefits Increasing in July
+  source_url: https://vec.virginia.gov/node/442
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-06-25'
+  citation_path: us-va/guidance/vec/news/2026-06-25-unemployment-benefits-increasing-in-july
+  metadata:
+    primary_source: true
+    source_authority: Virginia Employment Commission
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article
