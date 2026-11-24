@@ -1,0 +1,52 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-ms
+documents:
+- source_id: us-ms-guidance-mdes-ui-claimant-handbook
+  jurisdiction: us-ms
+  document_class: guidance
+  title: UI Claimant Handbook
+  source_url: https://mdes.ms.gov/unemployment-claims/benefit-information/ui-claimant-handbook/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ms/guidance/mdes/ui-claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Employment Security
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: '#content'
+- source_id: us-ms-guidance-mdes-benefit-eligibility-requirements
+  jurisdiction: us-ms
+  document_class: guidance
+  title: Benefit Eligibility Requirements
+  source_url: https://mdes.ms.gov/unemployment-claims/benefit-information/benefit-eligibility-requirements/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ms/guidance/mdes/benefit-eligibility-requirements
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Employment Security
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: '#content'
+- source_id: us-ms-guidance-mdes-form-ui-505-a
+  jurisdiction: us-ms
+  document_class: guidance
+  title: 'Form UI-505.A (R-7/2009): Table of Weekly Benefit Amounts and Maximum Amounts'
+  source_url: https://mdes.ms.gov/media/7140/Benefit_Chart1.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2009-07-01'
+  citation_path: us-ms/guidance/mdes/form-ui-505-a
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Employment Security
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

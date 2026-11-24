@@ -1,0 +1,56 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-nc
+documents:
+- source_id: us-nc-guidance-des-benefit-rights-and-responsibilities
+  jurisdiction: us-nc
+  document_class: guidance
+  title: Benefit Rights and Responsibilities
+  source_url: https://www.des.nc.gov/documents/downloads/benefit-rights-and-responsibilities/open
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/guidance/des/benefit-rights-and-responsibilities
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Division of Employment Security
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-nc-guidance-des-faqs-ui
+  jurisdiction: us-nc
+  document_class: guidance
+  title: Unemployment Benefits FAQs
+  source_url: https://www.des.nc.gov/need-help/faqs/ui
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/guidance/des/faqs/ui
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Division of Employment Security
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article
+    html_keep_default_drop_selectors:
+    - header
+- source_id: us-nc-guidance-des-am-i-eligible-unemployment
+  jurisdiction: us-nc
+  document_class: guidance
+  title: Am I Eligible for Unemployment
+  source_url: https://www.des.nc.gov/am-i-eligible-unemployment
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/guidance/des/am-i-eligible-unemployment
+  metadata:
+    primary_source: true
+    source_authority: North Carolina Division of Employment Security
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article
+    html_keep_default_drop_selectors:
+    - header

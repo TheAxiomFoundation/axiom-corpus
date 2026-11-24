@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-ms
+documents:
+- source_id: us-ms-statute-session-laws-2013-hb-932
+  jurisdiction: us-ms
+  document_class: statute
+  title: 'Mississippi Legislature 2013 Regular Session: House Bill 932 (As Sent to Governor)'
+  source_url: https://billstatus.ls.state.ms.us/documents/2013/html/HB/0900-0999/HB0932SG.htm
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2013-03-06'
+  citation_path: us-ms/statute/session-laws/2013/hb-932
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ms-statute-session-laws-2023-sb-2810
+  jurisdiction: us-ms
+  document_class: statute
+  title: 'Mississippi Legislature 2023 Regular Session: Senate Bill 2810 (As Sent to Governor)'
+  source_url: https://billstatus.ls.state.ms.us/documents/2023/html/SB/2800-2899/SB2810SG.htm
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2023-04-17'
+  citation_path: us-ms/statute/session-laws/2023/sb-2810
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
