@@ -1,0 +1,221 @@
+# Arizona DES Cash and Nutrition Assistance Policy Manual pages that the Arizona SNAP
+# screener cites and the corpus does not hold (FAA3, FAA4, FAA6).
+#
+# dbmefaapolicy.azdes.gov answers unattended clients with a Cloudflare challenge.
+# Each page was saved by a person in an ordinary browser ("Save Page As, Webpage,
+# HTML Only"), the same capture method as us-az/manual/2026-07-17-faa5-recovery
+# (axiom-corpus #383). No automated fetch and no browser impersonation was used.
+# local_path is relative to this file and names the saved copy; rows record the
+# official source_url, never the path. A provenance sidecar per file (url, sha256,
+# fetched_at, fetch_method) is kept under the scope's sources/.../provenance/.
+#
+# source_as_of is the capture date, set on the command line (--source-as-of).
+# expression_date is kept only where the page carries its own "last revised" or
+# change-index date; otherwise it defaults to the capture date.
+#
+# Version is set on the command line; this key is documentation only:
+version: YYYY-MM-DD-az-des-snap-screener-pages
+documents:
+- source_id: az-des-faa6-self-employment-deduction-current
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/self-employment-expense-deduction-current
+  title: Arizona DES FAA6 Self-Employment Expense Deduction
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/Self-Employment_Expense_Deduction.html
+  local_path: ../../../capture/html/az-des-faa6-self-employment-deduction-current.html
+  source_format: html
+  expression_date: '2026-06-29'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_standard
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA6
+    program: cash_and_nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    source_access_note: DES FAA6 change index dates the new 55% standard to 06/29/2026;
+      the page distinguishes verified and budgeted self-employment income and excludes
+      farming from the standard deduction.
+- source_id: az-des-faa6-na-200-percent-fpl-standard
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/na-200-percent-fpl-standard
+  title: Arizona DES FAA6 NA 200 Percent of Federal Poverty Level
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_200__of_the_Federal_Poverty_Level.html
+  local_path: ../../../capture/html/az-des-faa6-na-200-percent-fpl-standard.html
+  source_format: html
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_standard_table
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA6
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: The page distinguishes 200% ECE and reporting limits effective
+      2026-03-01 from overpayment compromise effective 2025-10-01 and carries dated
+      effective-date tables; expression date records capture.
+- source_id: az-des-faa6-na-gross-monthly-income-standard
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/na-gross-monthly-income-standard
+  title: Arizona DES FAA6 NA Gross Monthly Income Eligibility Standard
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Gross_Monthly_Income_Eligibility_Standard.html
+  local_path: ../../../capture/html/az-des-faa6-na-gross-monthly-income-standard.html
+  source_format: html
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_standard_table
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA6
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: Page contains separate effective-date tables (2025-10-01 and
+      2026-10-01 at the 2026-10-04 check); expression date records capture.
+- source_id: az-des-faa6-na-net-monthly-income-standard
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/na-net-monthly-income-standard
+  title: Arizona DES FAA6 NA Net Monthly Income Eligibility Standard
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Net_Monthly_Income_Eligibility_Standard_(.html
+  local_path: ../../../capture/html/az-des-faa6-na-net-monthly-income-standard.html
+  source_format: html
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_standard_table
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA6
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: Page contains separate effective-date tables (2025-10-01 and
+      2026-10-01 at the 2026-10-04 check); expression date records capture.
+- source_id: az-des-faa6-na-elderly-disability-standard
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/na-elderly-disability-standard
+  title: Arizona DES FAA6 NA Elderly or Disability Eligibility Standard
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Elderly_or_Disability_Eligibility_Standar.html
+  local_path: ../../../capture/html/az-des-faa6-na-elderly-disability-standard.html
+  source_format: html
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_standard_table
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA6
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: Page contains separate effective-date tables (2025-10-01 and
+      2026-10-01 at the 2026-10-04 check); expression date records capture.
+- source_id: az-des-faa6-maximum-na-resource-limit
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/maximum-na-resource-limit
+  title: Arizona DES FAA6 Maximum Nutrition Assistance Resource Limit
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/Maximum_NA_Resource_Limit.html
+  local_path: ../../../capture/html/az-des-faa6-maximum-na-resource-limit.html
+  source_format: html
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_standard_table
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA6
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: The table has effective-date sections (2024-10-01 and
+      2026-10-01 at the 2026-10-04 check); expression date records capture, not
+      commencement.
+- source_id: az-des-faa4-income-eligibility-requirements
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa4/income-eligibility-requirements
+  title: Arizona DES FAA4 Income Eligibility Requirements
+  source_url: https://dbmefaapolicy.azdes.gov/FAA4/Income_Eligibility_Requirements.html
+  local_path: ../../../capture/html/az-des-faa4-income-eligibility-requirements.html
+  source_format: html
+  expression_date: '2026-09-28'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_section
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA4
+    program: cash_and_nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+- source_id: az-des-faa4-na-resources
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa4/na-resources
+  title: Arizona DES FAA4 Nutrition Assistance Resources
+  source_url: https://dbmefaapolicy.azdes.gov/FAA4/NA_Resources.html
+  local_path: ../../../capture/html/az-des-faa4-na-resources.html
+  source_format: html
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_section
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA4
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: The page lacks a last-revised marker; the expression date
+      records capture, not commencement.
+- source_id: az-des-faa3-na-qualified-noncitizens
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa3/na-qualified-noncitizens
+  title: Arizona DES FAA3 Nutrition Assistance Qualified Noncitizens
+  source_url: https://dbmefaapolicy.azdes.gov/FAA3/NA_Qualified_Noncitizens.html
+  local_path: ../../../capture/html/az-des-faa3-na-qualified-noncitizens.html
+  source_format: html
+  expression_date: '2026-02-17'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_section
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA3
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    effective_date_note: Page said last revised 02/17/2026 and effective 03/01/2026 at
+      the 2026-10-04 check.
+- source_id: az-des-faa3-arizona-residency
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa3/arizona-residency
+  title: Arizona DES FAA3 Arizona Residency
+  source_url: https://dbmefaapolicy.azdes.gov/FAA3/Arizona_Residency.html
+  local_path: ../../../capture/html/az-des-faa3-arizona-residency.html
+  source_format: html
+  expression_date: '2026-09-28'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_section
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA3
+    program: cash_and_nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    effective_date_note: Page said last revised 09/28/2026 at the 2026-10-04 check.
+- source_id: az-des-faa3-residents-of-institutions-for-na
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa3/residents-of-institutions-for-na
+  title: Arizona DES FAA3 Residents of Institutions for Nutrition Assistance
+  source_url: https://dbmefaapolicy.azdes.gov/FAA3/Residents_of_Institutions_for_NA.html
+  local_path: ../../../capture/html/az-des-faa3-residents-of-institutions-for-na.html
+  source_format: html
+  expression_date: '2025-10-27'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_section
+    policy_manual: Family Assistance Administration Cash and Nutrition Assistance Policy Manual
+    manual_chapter: FAA3
+    program: nutrition_assistance
+    capture_method: person, browser save (Webpage, HTML Only)
+    effective_date_note: Page said last revised 10/27/2025 and effective 09/02/2025 at
+      the 2026-10-04 check.

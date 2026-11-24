@@ -1,0 +1,33 @@
+# Arizona DES FAA2 urgent bulletin for the 2026 ABAWD geographic waiver, which the
+# Arizona SNAP screener cites and the corpus does not hold.
+#
+# dbmefaapolicy.azdes.gov answers unattended clients with a Cloudflare challenge.
+# The PDF was saved by a person in an ordinary browser (the file itself, unchanged),
+# the same person-capture practice as us-az/manual/2026-07-17-faa5-recovery
+# (axiom-corpus #383). No automated fetch and no browser impersonation was used.
+# local_path is relative to this file; rows record the official source_url. A
+# provenance sidecar is kept under the scope's sources/.../provenance/.
+#
+# source_as_of is the capture date, set on the command line (--source-as-of).
+#
+# Version is set on the command line; this key is documentation only:
+version: YYYY-MM-DD-az-des-snap-screener-pages
+documents:
+- source_id: az-des-2026-abawd-geographic-waiver-bulletin
+  jurisdiction: us-az
+  document_class: policy
+  citation_path: us-az/policy/des/faa2/2026-abawd-geographic-waiver-bulletin
+  title: Arizona DES urgent bulletin, 2026 ABAWD geographic waiver
+  source_url: https://dbmefaapolicy.azdes.gov/FAA2/baggage/Urgent%20Bulletin%20%2803-30-2026%29%20-%202026%20ABAWD%20Geographic%20Waiver.pdf
+  local_path: ../../../capture/html/az-des-2026-abawd-geographic-waiver-bulletin.pdf
+  source_format: pdf
+  expression_date: '2026-03-30'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: urgent_policy_bulletin
+    program: nutrition_assistance
+    capture_method: person, browser save (PDF file)
+    source_access_note: DES implements the FNS-approved limited-area ABAWD waiver for
+      benefit month 03/2026 onward (FNS approval of 2026-03-12, waiver period
+      2026-03-01 through 2027-02-28).
