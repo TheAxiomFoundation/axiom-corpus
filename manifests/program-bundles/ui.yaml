@@ -38,12 +38,12 @@ tiers:
     reference_count: 93
     plan: sources/plans/ui-scope-audit-documents.json
     plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@a9a977bc:tools/encoding-forecast/ui-scope-audit.json
-    plan_documents: 460
+    plan_documents: 506
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
       federal: 23
-      state: 425
+      state: 459
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
@@ -59,7 +59,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 23
-      state: 429
+      state: 466
 layers:
 - jurisdiction: us
   screener:
@@ -1195,8 +1195,97 @@ layers:
     - screener
     scope: in
 - jurisdiction: us-ar
-  screener: []
-  full: []
+  screener:
+  - key: http://www.lexisnexis.com/hottopics/arcode/
+    name: 'Ark. Code Ann. § 11-10-502: Weekly benefit amount'
+    layer: state
+    citation_path: null
+    source_url: http://www.lexisnexis.com/hottopics/arcode/
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://codeofarrules.arkansas.gov/Rules/Rule?levelType=part&titleID=11&chapterID=260&subChapterID=326&partID=1270
+    name: '11 CAR pt. 1, Subpart 1 (11 CAR §§ 1-101 to 1-110): Division of Workforce Services Rules - Unemployment
+      Insurance Benefits and Claimants'
+    layer: state
+    citation_path: null
+    source_url: https://codeofarrules.arkansas.gov/Rules/Rule?levelType=part&titleID=11&chapterID=260&subChapterID=326&partID=1270
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ar/guidance/adws/ui-handbook-2026
+    name: Your Unemployment Insurance Information Handbook (January 2026)
+    layer: state
+    citation_path: us-ar/guidance/adws/ui-handbook-2026
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ar/statute/session-laws/2023r
+    name: us-ar/statute/session-laws/2023r
+    layer: state
+    citation_path: us-ar/statute/session-laws/2023r
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-ar/statute/session-laws/2023r/act-196
+      references: 1
+      part: Benefit amount
+  full:
+  - key: http://www.lexisnexis.com/hottopics/arcode/
+    name: 'Ark. Code Ann. § 11-10-502: Weekly benefit amount'
+    layer: state
+    citation_path: null
+    source_url: http://www.lexisnexis.com/hottopics/arcode/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://codeofarrules.arkansas.gov/Rules/Rule?levelType=part&titleID=11&chapterID=260&subChapterID=326&partID=1270
+    name: '11 CAR pt. 1, Subpart 1 (11 CAR §§ 1-101 to 1-110): Division of Workforce Services Rules - Unemployment
+      Insurance Benefits and Claimants'
+    layer: state
+    citation_path: null
+    source_url: https://codeofarrules.arkansas.gov/Rules/Rule?levelType=part&titleID=11&chapterID=260&subChapterID=326&partID=1270
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ar/guidance/adws/ui-handbook-2026
+    name: Your Unemployment Insurance Information Handbook (January 2026)
+    layer: state
+    citation_path: us-ar/guidance/adws/ui-handbook-2026
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    - manifests/us-ar-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ar/statute/session-laws/2023r
+    name: us-ar/statute/session-laws/2023r
+    layer: state
+    citation_path: us-ar/statute/session-laws/2023r
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ar/statute/session-laws/2023r/act-196
+    name: Arkansas Act 196 of the 2023 Regular Session
+    layer: state
+    citation_path: us-ar/statute/session-laws/2023r/act-196
+    source_url: https://www.arkleg.state.ar.us/Acts/FTPDocument?path=%2FACTS%2F2023R%2FPublic%2F&file=196.pdf&ddBienniumSession=2023%2F2023R
+    sources:
+    - manifests/us-ar-ui-benefits-statute.yaml
+    manifest: manifests/us-ar-ui-benefits-statute.yaml
+    scope: in
+    part: Other
 - jurisdiction: us-ca
   screener:
   - key: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEFD69BD05B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
@@ -4434,8 +4523,166 @@ layers:
     - screener
     scope: in
 - jurisdiction: us-ms
-  screener: []
-  full: []
+  screener:
+  - key: https://billstatus.ls.state.ms.us/documents/2025/html/HB/1500-1599/HB1577IN.htm
+    name: 'Miss. Code Ann. § 71-5-503: Weekly benefit amount'
+    layer: state
+    citation_path: null
+    source_url: https://billstatus.ls.state.ms.us/documents/2025/html/HB/1500-1599/HB1577IN.htm
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ms/guidance/mdes/benefit-eligibility-requirements
+    name: Benefit Eligibility Requirements
+    layer: state
+    citation_path: us-ms/guidance/mdes/benefit-eligibility-requirements
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ms/guidance/mdes/form-ui-505-a
+    name: 'Form UI-505.A (R-7/2009): Table of Weekly Benefit Amounts and Maximum Amounts'
+    layer: state
+    citation_path: us-ms/guidance/mdes/form-ui-505-a
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ms/guidance/mdes/ui-claimant-handbook
+    name: UI Claimant Handbook
+    layer: state
+    citation_path: us-ms/guidance/mdes/ui-claimant-handbook
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-ms/regulation/mdes/part-101
+    name: '20 Miss. Admin. Code Pt. 101: Regulations of the Mississippi Department of Employment Security'
+    layer: state
+    citation_path: us-ms/regulation/mdes/part-101
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ms/statute/session-laws/2013
+    name: us-ms/statute/session-laws/2013
+    layer: state
+    citation_path: us-ms/statute/session-laws/2013
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-ms/statute/session-laws/2013/hb-932
+      references: 1
+      part: Benefit amount
+  - key: us-ms/statute/session-laws/2023
+    name: us-ms/statute/session-laws/2023
+    layer: state
+    citation_path: us-ms/statute/session-laws/2023
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ms/statute/session-laws/2023/sb-2810
+      references: 3
+      part: Household and eligibility
+  full:
+  - key: https://billstatus.ls.state.ms.us/documents/2025/html/HB/1500-1599/HB1577IN.htm
+    name: 'Miss. Code Ann. § 71-5-503: Weekly benefit amount'
+    layer: state
+    citation_path: null
+    source_url: https://billstatus.ls.state.ms.us/documents/2025/html/HB/1500-1599/HB1577IN.htm
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/guidance/mdes/benefit-eligibility-requirements
+    name: Benefit Eligibility Requirements
+    layer: state
+    citation_path: us-ms/guidance/mdes/benefit-eligibility-requirements
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-ms-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ms/guidance/mdes/form-ui-505-a
+    name: 'Form UI-505.A (R-7/2009): Table of Weekly Benefit Amounts and Maximum Amounts'
+    layer: state
+    citation_path: us-ms/guidance/mdes/form-ui-505-a
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-ms-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ms/guidance/mdes/ui-claimant-handbook
+    name: UI Claimant Handbook
+    layer: state
+    citation_path: us-ms/guidance/mdes/ui-claimant-handbook
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-ms-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ms/regulation/mdes/part-101
+    name: '20 Miss. Admin. Code Pt. 101: Regulations of the Mississippi Department of Employment Security'
+    layer: state
+    citation_path: us-ms/regulation/mdes/part-101
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-ms-ui-benefits-regulation.yaml
+    scope: in
+  - key: us-ms/statute/session-laws/2013
+    name: us-ms/statute/session-laws/2013
+    layer: state
+    citation_path: us-ms/statute/session-laws/2013
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/statute/session-laws/2023
+    name: us-ms/statute/session-laws/2023
+    layer: state
+    citation_path: us-ms/statute/session-laws/2023
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ms/statute/session-laws/2013/hb-932
+    name: 'Mississippi Legislature 2013 Regular Session: House Bill 932 (As Sent to Governor)'
+    layer: state
+    citation_path: us-ms/statute/session-laws/2013/hb-932
+    source_url: https://billstatus.ls.state.ms.us/documents/2013/html/HB/0900-0999/HB0932SG.htm
+    sources:
+    - manifests/us-ms-ui-benefits-statute.yaml
+    manifest: manifests/us-ms-ui-benefits-statute.yaml
+    scope: in
+    part: Other
+  - key: us-ms/statute/session-laws/2023/sb-2810
+    name: 'Mississippi Legislature 2023 Regular Session: Senate Bill 2810 (As Sent to Governor)'
+    layer: state
+    citation_path: us-ms/statute/session-laws/2023/sb-2810
+    source_url: https://billstatus.ls.state.ms.us/documents/2023/html/SB/2800-2899/SB2810SG.htm
+    sources:
+    - manifests/us-ms-ui-benefits-statute.yaml
+    manifest: manifests/us-ms-ui-benefits-statute.yaml
+    scope: in
+    part: Other
 - jurisdiction: us-mo
   screener: []
   full: []
@@ -6045,8 +6292,217 @@ layers:
     - screener
     scope: in
 - jurisdiction: us-nc
-  screener: []
-  full: []
+  screener:
+  - key: us-nc/guidance/des/am-i-eligible-unemployment
+    name: Am I Eligible for Unemployment
+    layer: state
+    citation_path: us-nc/guidance/des/am-i-eligible-unemployment
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/guidance/des/benefit-rights-and-responsibilities
+    name: Benefit Rights and Responsibilities
+    layer: state
+    citation_path: us-nc/guidance/des/benefit-rights-and-responsibilities
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/guidance/des/faqs/ui
+    name: Unemployment Benefits FAQs
+    layer: state
+    citation_path: us-nc/guidance/des/faqs/ui
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/regulation/04-ncac/24b
+    name: '04 NCAC 24B, Division of Employment Security: Benefits'
+    layer: state
+    citation_path: us-nc/regulation/04-ncac/24b
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/statute/96/96-1
+    name: N.C. Gen. Stat. § 96-1. Title and definitions
+    layer: state
+    citation_path: us-nc/statute/96/96-1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-nc/statute/96/96-14.1
+    name: N.C. Gen. Stat. § 96-14.1. Unemployment benefits
+    layer: state
+    citation_path: us-nc/statute/96/96-14.1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/statute/96/96-14.13
+    name: N.C. Gen. Stat. § 96-14.13. Limitation on benefits due to lump sum payments
+    layer: state
+    citation_path: us-nc/statute/96/96-14.13
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/statute/96/96-14.2
+    name: N.C. Gen. Stat. § 96-14.2. Weekly benefit amount
+    layer: state
+    citation_path: us-nc/statute/96/96-14.2
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/statute/96/96-14.3
+    name: N.C. Gen. Stat. § 96-14.3. Duration of benefits
+    layer: state
+    citation_path: us-nc/statute/96/96-14.3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nc/statute/96/96-14.9
+    name: N.C. Gen. Stat. § 96-14.9. Weekly certification
+    layer: state
+    citation_path: us-nc/statute/96/96-14.9
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-nc/statute/96/96-15.01
+    name: N.C. Gen. Stat. § 96-15.01. Establishing a benefit year
+    layer: state
+    citation_path: us-nc/statute/96/96-15.01
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: us-nc/guidance/des/am-i-eligible-unemployment
+    name: Am I Eligible for Unemployment
+    layer: state
+    citation_path: us-nc/guidance/des/am-i-eligible-unemployment
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-nc/guidance/des/benefit-rights-and-responsibilities
+    name: Benefit Rights and Responsibilities
+    layer: state
+    citation_path: us-nc/guidance/des/benefit-rights-and-responsibilities
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-nc/guidance/des/faqs/ui
+    name: Unemployment Benefits FAQs
+    layer: state
+    citation_path: us-nc/guidance/des/faqs/ui
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-nc/regulation/04-ncac/24b
+    name: '04 NCAC 24B, Division of Employment Security: Benefits'
+    layer: state
+    citation_path: us-nc/regulation/04-ncac/24b
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-regulation.yaml
+    scope: in
+  - key: us-nc/statute/96/96-1
+    name: N.C. Gen. Stat. § 96-1. Title and definitions
+    layer: state
+    citation_path: us-nc/statute/96/96-1
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
+  - key: us-nc/statute/96/96-14.1
+    name: N.C. Gen. Stat. § 96-14.1. Unemployment benefits
+    layer: state
+    citation_path: us-nc/statute/96/96-14.1
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
+  - key: us-nc/statute/96/96-14.13
+    name: N.C. Gen. Stat. § 96-14.13. Limitation on benefits due to lump sum payments
+    layer: state
+    citation_path: us-nc/statute/96/96-14.13
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
+  - key: us-nc/statute/96/96-14.2
+    name: N.C. Gen. Stat. § 96-14.2. Weekly benefit amount
+    layer: state
+    citation_path: us-nc/statute/96/96-14.2
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
+  - key: us-nc/statute/96/96-14.3
+    name: N.C. Gen. Stat. § 96-14.3. Duration of benefits
+    layer: state
+    citation_path: us-nc/statute/96/96-14.3
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
+  - key: us-nc/statute/96/96-14.9
+    name: N.C. Gen. Stat. § 96-14.9. Weekly certification
+    layer: state
+    citation_path: us-nc/statute/96/96-14.9
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
+  - key: us-nc/statute/96/96-15.01
+    name: N.C. Gen. Stat. § 96-15.01. Establishing a benefit year
+    layer: state
+    citation_path: us-nc/statute/96/96-15.01
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-nc-ui-benefits-statute.yaml
+    scope: in
 - jurisdiction: us-nd
   screener: []
   full: []
@@ -8464,8 +8920,196 @@ layers:
     - manifests/us-vt-ui-benefits-statute.yaml
     scope: in
 - jurisdiction: us-va
-  screener: []
-  full: []
+  screener:
+  - key: us-va/guidance/vec/claimant-handbook
+    name: 'VEC Claimant Handbook: A Guide to Unemployment Benefits (revised March 2023)'
+    layer: state
+    citation_path: us-va/guidance/vec/claimant-handbook
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-va/guidance/vec/news/2026-06-25-unemployment-benefits-increasing-in-july
+    name: Virginia Unemployment Benefits Increasing in July
+    layer: state
+    citation_path: us-va/guidance/vec/news/2026-06-25-unemployment-benefits-increasing-in-july
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-va/regulation/title-16/agency-5/chapter-60/section-10
+    name: us-va/regulation/title-16/agency-5/chapter-60/section-10
+    layer: state
+    citation_path: us-va/regulation/title-16/agency-5/chapter-60/section-10
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-va/regulation/title-16/agency-5/chapter-60/section-20
+    name: us-va/regulation/title-16/agency-5/chapter-60/section-20
+    layer: state
+    citation_path: us-va/regulation/title-16/agency-5/chapter-60/section-20
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-va/statute/60.2/60.2-204
+    name: Va. Code § 60.2-204. Base period
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-204
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-va/statute/60.2/60.2-602
+    name: Va. Code § 60.2-602. Weekly benefit amount
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-602
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-va/statute/60.2/60.2-603
+    name: Va. Code § 60.2-603. Weekly benefit for unemployment; income disregard
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-603
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Deductions
+  - key: us-va/statute/60.2/60.2-604
+    name: Va. Code § 60.2-604. Reduction of benefit amount by amount of pension
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-604
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-va/statute/60.2/60.2-607
+    name: Va. Code § 60.2-607. Maximum total benefit amounts
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-607
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-va/statute/60.2/60.2-612
+    name: Va. Code § 60.2-612. Benefit eligibility conditions
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-612
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: us-va/guidance/vec/claimant-handbook
+    name: 'VEC Claimant Handbook: A Guide to Unemployment Benefits (revised March 2023)'
+    layer: state
+    citation_path: us-va/guidance/vec/claimant-handbook
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-va/guidance/vec/news/2026-06-25-unemployment-benefits-increasing-in-july
+    name: Virginia Unemployment Benefits Increasing in July
+    layer: state
+    citation_path: us-va/guidance/vec/news/2026-06-25-unemployment-benefits-increasing-in-july
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-va/regulation/title-16/agency-5/chapter-60/section-10
+    name: us-va/regulation/title-16/agency-5/chapter-60/section-10
+    layer: state
+    citation_path: us-va/regulation/title-16/agency-5/chapter-60/section-10
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-va/regulation/title-16/agency-5/chapter-60/section-20
+    name: us-va/regulation/title-16/agency-5/chapter-60/section-20
+    layer: state
+    citation_path: us-va/regulation/title-16/agency-5/chapter-60/section-20
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-va/statute/60.2/60.2-204
+    name: Va. Code § 60.2-204. Base period
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-204
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-statute.yaml
+    scope: in
+  - key: us-va/statute/60.2/60.2-602
+    name: Va. Code § 60.2-602. Weekly benefit amount
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-602
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-statute.yaml
+    scope: in
+  - key: us-va/statute/60.2/60.2-603
+    name: Va. Code § 60.2-603. Weekly benefit for unemployment; income disregard
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-603
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-statute.yaml
+    scope: in
+  - key: us-va/statute/60.2/60.2-604
+    name: Va. Code § 60.2-604. Reduction of benefit amount by amount of pension
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-604
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-statute.yaml
+    scope: in
+  - key: us-va/statute/60.2/60.2-607
+    name: Va. Code § 60.2-607. Maximum total benefit amounts
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-607
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-statute.yaml
+    scope: in
+  - key: us-va/statute/60.2/60.2-612
+    name: Va. Code § 60.2-612. Benefit eligibility conditions
+    layer: state
+    citation_path: us-va/statute/60.2/60.2-612
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-va-ui-benefits-statute.yaml
+    scope: in
 - jurisdiction: us-wa
   screener:
   - key: us-wa/guidance/esd/news/2026-06-10
@@ -8922,5 +9566,58 @@ layers:
     - screener
     scope: in
 - jurisdiction: us-wy
-  screener: []
-  full: []
+  screener:
+  - key: https://dws.wyo.gov/?p=2862
+    name: 'DWS Unemployment Insurance web page: What is Unemployment Insurance? (claimant information page)'
+    layer: state
+    citation_path: null
+    source_url: https://dws.wyo.gov/?p=2862
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-wy/statute/title-27/chapter-3
+    name: 'Wyoming Statutes Title 27, Chapter 3: Unemployment Compensation'
+    layer: state
+    citation_path: us-wy/statute/title-27/chapter-3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-wy/statute/title-27/chapter-3/27-3-102
+      references: 1
+      part: Other
+    - path: us-wy/statute/title-27/chapter-3/27-3-303
+      references: 1
+      part: Benefit amount
+    - path: us-wy/statute/title-27/chapter-3/27-3-304
+      references: 1
+      part: Benefit amount
+    - path: us-wy/statute/title-27/chapter-3/27-3-306
+      references: 1
+      part: Household and eligibility
+    - path: us-wy/statute/title-27/chapter-3/27-3-313
+      references: 1
+      part: Other
+  full:
+  - key: https://dws.wyo.gov/?p=2862
+    name: 'DWS Unemployment Insurance web page: What is Unemployment Insurance? (claimant information page)'
+    layer: state
+    citation_path: null
+    source_url: https://dws.wyo.gov/?p=2862
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-wy/statute/title-27/chapter-3
+    name: 'Wyoming Statutes Title 27, Chapter 3: Unemployment Compensation'
+    layer: state
+    citation_path: us-wy/statute/title-27/chapter-3
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-wy-ui-benefits-statute.yaml
+    scope: in
