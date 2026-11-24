@@ -109,11 +109,14 @@ stays installed for the pull request's tests.
 - every job in every workflow under `.github/workflows/` that runs this
   project's code or Python installs it through the script first, including
   inline code that imports only third-party packages;
-- every install form the pattern names counts as an install: `pip`, `pip3`
-  or `pipx` followed by `install`, `uv pip install`, `uv sync`, `uv add`,
-  `uv tool install`, `uv run --with` (also `--with=`, with intervening
-  options), `uvx`, and `uv tool run` in a `run:` block. Ordinary `uv run`
-  without `--with` stays allowed. The test reads commands; it catches
+- every install form counts as an install in a step's `run:` block or
+  `shell:`: `pip`, `pip3` or `pipx` followed by `install`, `uv pip install`,
+  `uv sync`, `uv add`, `uv tool install`, `uv tool run`, `uvx`, and `uv run`
+  with `--with`, `-w`, `--with-editable` or `--with-requirements` ahead of the
+  command it runs. Ordinary `uv run` stays allowed, and so does an option after
+  that command, which uv passes on to it. The test splits each block into
+  commands and words as the shell does, and reads each quoted word again as a
+  script, so `bash -c 'uv sync'` fails and so does `echo 'uv sync'`. It catches
   mistakes, not a workflow written to get around it.
 
 ## Changing a dependency
