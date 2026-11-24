@@ -31,7 +31,7 @@ from urllib.parse import urlsplit
 REPO = Path(__file__).resolve().parent.parent
 OUTPUT = REPO / "sources/plans/ui-scope-audit-documents.json"
 CLASSES = {"statute": "statute", "regulation": "regulation"}
-COMPOUND = re.compile(r"\d+[A-Za-z]?(?:[.:\-–]\d+[A-Za-z]?)+(?:-[A-Z]\b)?")
+COMPOUND = re.compile(r"\d+-[A-Z]:\d+[a-z]?|\d+[A-Za-z]?(?:[.:\-–]\d+[A-Za-z]?)+(?:-[A-Z]\b)?")
 SINGLE = re.compile(r"§+\s*(\d+[A-Za-z]?(?:-[A-Z])?)\b|/(\d+[A-Za-z]?)\b")
 USC = re.compile(r"(\d+) U\.S\.C\. §+\s*(\d+[A-Za-z]?)(?:-(\d+))?")
 CFR = re.compile(r"(\d+) C\.F\.R\. part (\d+)")
@@ -39,6 +39,8 @@ CFR = re.compile(r"(\d+) C\.F\.R\. part (\d+)")
 
 # Citations whose corpus path does not carry the cited number in its last segment.
 OVERRIDES = {
+    # Not held: "5-7" also ends a path of 470 IAC, another agency's rules.
+    ("us-in", "646 Ind. Admin. Code"): [],
     ("us-ak", "8 AAC 85"): ["us-ak/regulation/aac/8/85"],
     ("us-or", "OAR chapter 471, division 30"): ["us-or/regulation/chapter-471/division-30"],
     ("us-md", "COMAR 09.32.02"): ["us-md/regulation/title-09/subtitle-32/chapter-02"],
