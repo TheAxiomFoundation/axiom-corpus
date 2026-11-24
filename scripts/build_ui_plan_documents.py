@@ -141,7 +141,8 @@ def paths_of(
     found: list[str] = []
     code = CODE_PREFIX.get(jurisdiction)
     if code and document_class == "statute":
-        found = [code + t for t in tokens(citation) if code + t in readable]
+        numbers = re.findall(r"\d+(?:\.\d+)?", citation.split("§")[-1])
+        found = [code + n for n in numbers if code + n in readable]
         if found:
             return found
     for token in tokens(citation):

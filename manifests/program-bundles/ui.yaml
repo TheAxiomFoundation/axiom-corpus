@@ -38,12 +38,12 @@ tiers:
     reference_count: 93
     plan: sources/plans/ui-scope-audit-documents.json
     plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@a9a977bc:tools/encoding-forecast/ui-scope-audit.json
-    plan_documents: 312
+    plan_documents: 330
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
       federal: 23
-      state: 284
+      state: 302
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
@@ -59,7 +59,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 23
-      state: 291
+      state: 306
 layers:
 - jurisdiction: us
   screener:
@@ -998,38 +998,339 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-ca
-  screener: []
-  full:
+  screener:
+  - key: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEFD69BD05B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    name: 'Cal. Code Regs. tit. 22, Div. 1, Subdiv. 1, Div. 1, Part 1, Ch. 5, Art. 1 (§§ 1252-1, 1253(c)-1, 1253(e)-1,
+      1254-1, 1255.3-1 and others): Article 1. Eligibility and Disqualifications'
+    layer: state
+    citation_path: null
+    source_url: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEFD69BD05B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IF466AB405B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    name: 'Cal. Code Regs. tit. 22, Div. 1, Subdiv. 1, Div. 1, Part 1, Ch. 5, Art. 2 (§§ 1277-1, 1277-2): Article
+      2. Computation (Amount and Duration)'
+    layer: state
+    citation_path: null
+    source_url: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IF466AB405B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us-ca/guidance/edd/de-1275a
     name: EDD DE 1275A, A Guide to Benefits and Employment Services
     layer: state
     citation_path: us-ca/guidance/edd/de-1275a
-    source_url: https://edd.ca.gov/siteassets/files/pdf_pub_ctr/de1275a.pdf
+    source_url: null
     sources:
-    - manifests/us-ca-ui-benefits-guidance.yaml
-    manifest: manifests/us-ca-ui-benefits-guidance.yaml
+    - plan
     scope: in
     part: Benefit amount
   - key: us-ca/guidance/edd/de-8714ab
     name: 'EDD DE 8714AB, Unemployment Insurance Benefits: What You Need to Know'
     layer: state
     citation_path: us-ca/guidance/edd/de-8714ab
-    source_url: https://edd.ca.gov/siteassets/files/pdf_pub_ctr/de8714ab.pdf
+    source_url: null
     sources:
-    - manifests/us-ca-ui-benefits-guidance.yaml
-    manifest: manifests/us-ca-ui-benefits-guidance.yaml
+    - plan
     scope: in
     part: Benefit amount
   - key: us-ca/guidance/edd/unemployment/eligibility
     name: EDD Unemployment Eligibility Requirements
     layer: state
     citation_path: us-ca/guidance/edd/unemployment/eligibility
-    source_url: https://edd.ca.gov/en/unemployment/eligibility/
+    source_url: null
     sources:
-    - manifests/us-ca-ui-benefits-guidance.yaml
-    manifest: manifests/us-ca-ui-benefits-guidance.yaml
+    - plan
     scope: in
     part: Household and eligibility
+  - key: us-ca/statute/uic/1252
+    name: us-ca/statute/uic/1252
+    layer: state
+    citation_path: us-ca/statute/uic/1252
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/uic/1253
+    name: us-ca/statute/uic/1253
+    layer: state
+    citation_path: us-ca/statute/uic/1253
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/statute/uic/1254
+    name: us-ca/statute/uic/1254
+    layer: state
+    citation_path: us-ca/statute/uic/1254
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/uic/1255.3
+    name: us-ca/statute/uic/1255.3
+    layer: state
+    citation_path: us-ca/statute/uic/1255.3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Deductions
+  - key: us-ca/statute/uic/1255.5
+    name: us-ca/statute/uic/1255.5
+    layer: state
+    citation_path: us-ca/statute/uic/1255.5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/statute/uic/1265
+    name: us-ca/statute/uic/1265
+    layer: state
+    citation_path: us-ca/statute/uic/1265
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ca/statute/uic/1265.5
+    name: us-ca/statute/uic/1265.5
+    layer: state
+    citation_path: us-ca/statute/uic/1265.5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ca/statute/uic/1265.6
+    name: us-ca/statute/uic/1265.6
+    layer: state
+    citation_path: us-ca/statute/uic/1265.6
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ca/statute/uic/1275
+    name: us-ca/statute/uic/1275
+    layer: state
+    citation_path: us-ca/statute/uic/1275
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/uic/1276
+    name: us-ca/statute/uic/1276
+    layer: state
+    citation_path: us-ca/statute/uic/1276
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ca/statute/uic/1279
+    name: us-ca/statute/uic/1279
+    layer: state
+    citation_path: us-ca/statute/uic/1279
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ca/statute/uic/1280
+    name: us-ca/statute/uic/1280
+    layer: state
+    citation_path: us-ca/statute/uic/1280
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ca/statute/uic/1281
+    name: us-ca/statute/uic/1281
+    layer: state
+    citation_path: us-ca/statute/uic/1281
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEFD69BD05B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    name: 'Cal. Code Regs. tit. 22, Div. 1, Subdiv. 1, Div. 1, Part 1, Ch. 5, Art. 1 (§§ 1252-1, 1253(c)-1, 1253(e)-1,
+      1254-1, 1255.3-1 and others): Article 1. Eligibility and Disqualifications'
+    layer: state
+    citation_path: null
+    source_url: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEFD69BD05B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IF466AB405B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    name: 'Cal. Code Regs. tit. 22, Div. 1, Subdiv. 1, Div. 1, Part 1, Ch. 5, Art. 2 (§§ 1277-1, 1277-2): Article
+      2. Computation (Amount and Duration)'
+    layer: state
+    citation_path: null
+    source_url: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IF466AB405B6011EC9451000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/guidance/edd/de-1275a
+    name: EDD DE 1275A, A Guide to Benefits and Employment Services
+    layer: state
+    citation_path: us-ca/guidance/edd/de-1275a
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-ca-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ca/guidance/edd/de-8714ab
+    name: 'EDD DE 8714AB, Unemployment Insurance Benefits: What You Need to Know'
+    layer: state
+    citation_path: us-ca/guidance/edd/de-8714ab
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-ca-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ca/guidance/edd/unemployment/eligibility
+    name: EDD Unemployment Eligibility Requirements
+    layer: state
+    citation_path: us-ca/guidance/edd/unemployment/eligibility
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-ca-ui-benefits-guidance.yaml
+    scope: in
+  - key: us-ca/statute/uic/1252
+    name: us-ca/statute/uic/1252
+    layer: state
+    citation_path: us-ca/statute/uic/1252
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1253
+    name: us-ca/statute/uic/1253
+    layer: state
+    citation_path: us-ca/statute/uic/1253
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1254
+    name: us-ca/statute/uic/1254
+    layer: state
+    citation_path: us-ca/statute/uic/1254
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1255.3
+    name: us-ca/statute/uic/1255.3
+    layer: state
+    citation_path: us-ca/statute/uic/1255.3
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1255.5
+    name: us-ca/statute/uic/1255.5
+    layer: state
+    citation_path: us-ca/statute/uic/1255.5
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1265
+    name: us-ca/statute/uic/1265
+    layer: state
+    citation_path: us-ca/statute/uic/1265
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1265.5
+    name: us-ca/statute/uic/1265.5
+    layer: state
+    citation_path: us-ca/statute/uic/1265.5
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1265.6
+    name: us-ca/statute/uic/1265.6
+    layer: state
+    citation_path: us-ca/statute/uic/1265.6
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1275
+    name: us-ca/statute/uic/1275
+    layer: state
+    citation_path: us-ca/statute/uic/1275
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1276
+    name: us-ca/statute/uic/1276
+    layer: state
+    citation_path: us-ca/statute/uic/1276
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1279
+    name: us-ca/statute/uic/1279
+    layer: state
+    citation_path: us-ca/statute/uic/1279
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1280
+    name: us-ca/statute/uic/1280
+    layer: state
+    citation_path: us-ca/statute/uic/1280
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/uic/1281
+    name: us-ca/statute/uic/1281
+    layer: state
+    citation_path: us-ca/statute/uic/1281
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-co
   screener: []
   full: []
