@@ -20,7 +20,11 @@ policyengine_us:
 
 # The plan's document list (snap and medicaid_chip carry addresses), copied
 # from the roadmap so the bundles rebuild without the planning repo.
-plan: sources/plans/m1-plan-documents.json
+plan:
+  - sources/plans/m1-plan-documents.json
+  # Unemployment insurance: the roadmap's UI scope audit, for the jurisdictions an
+  # ingest run has taken (scripts/build_ui_plan_documents.py). Not reviewed by a person.
+  - sources/plans/ui-scope-audit-documents.json
 
 # Plan rows that name whole parts of a code rather than a section: each stands
 # for the current sections of the parts its addresses name (OLRC release points
@@ -107,6 +111,12 @@ host_aliases:
 # What the ingestion waves decided for documents the bundles name by an
 # address or by a path they moved (scripts/apply_wave_decisions.py).
 joins: manifests/program-bundles/joins.yaml
+
+# Addresses that are no source of rules, beyond the ones the waves' decisions record
+# in the joins file.
+not_sources:
+  "https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/July2026.pdf": "Not a source of rules: US DOL summary of state unemployment insurance laws (Significant Provisions); a federal secondary summary, and the state statute is the rule source (wave 6 benefits decision)"
+  "https://oui.doleta.gov/unemploy/statelaws.asp": "Not a source of rules: US DOL summary of state unemployment insurance laws (Comparison of State UI Laws); a federal secondary summary, and the state statute is the rule source (wave 6 benefits decision)"
 
 same_document:
   "https://www.congress.gov/119/bills/hr1/BILLS-119hr1enr.pdf": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf"

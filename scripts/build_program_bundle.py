@@ -922,6 +922,17 @@ def build_program(
             if jur != "us":
                 tier[jur] = [d for d in tier[jur] if d["key"] not in federal_keys]
 
+    # The plan files that name this program's documents (the first file when none
+    # does): one file reads as before, several as a list.
+    files = (plan or {}).get("files")
+    if files:
+        used = [f for f in files if any(d.get("plan_file") == f for d in plan_docs)] or list(files)[
+            :1
+        ]
+        plan_files = used[0] if len(used) == 1 else used
+        plan_source = files[used[0]] if len(used) == 1 else [files[f] for f in used]
+    else:
+        plan_files, plan_source = cfg.get("plan"), (plan or {}).get("source")
     tiers_cfg = cfg["tiers"]
     in_scope = lambda tier: Counter(  # noqa: E731
         "federal" if j == "us" else "state"
@@ -955,8 +966,8 @@ def build_program(
                     "policyengine_us_state_folders": references.get("state_folders"),
                     "references_derived_by": references.get("derived_by"),
                     "reference_count": len(references["references"]),
-                    "plan": cfg.get("plan"),
-                    "plan_source": (plan or {}).get("source"),
+                    "plan": plan_files,
+                    "plan_source": plan_source,
                     "plan_documents": len(plan_docs),
                     "fiscal_year": fiscal_year(day),
                     "outside_the_states": dict(sorted(dropped.items())),
@@ -988,6 +999,25 @@ def build_program(
     }
 
 
+def load_plans(paths: str | list[str] | None) -> dict | None:
+    """The plan's documents: one file, or several read in order (the roadmap's
+    document list, then each program's own document audit). Every document
+    keeps the file that names it."""
+    if not paths:
+        return None
+    paths = [paths] if isinstance(paths, str) else list(paths)
+    plans = {path: json.loads((REPO / path).read_text()) for path in paths}
+    return {
+        "source": plans[paths[0]].get("source"),
+        "files": {path: plan.get("source") for path, plan in plans.items()},
+        "documents": [
+            {**doc, "plan_file": path}
+            for path, plan in plans.items()
+            for doc in plan.get("documents", [])
+        ],
+    }
+
+
 def build(config_path: Path) -> dict[str, dict]:
     cfg = yaml.safe_load(config_path.read_text())
     # The joins file: what the ingestion waves decided for documents the
@@ -1010,7 +1040,7 @@ def build(config_path: Path) -> dict[str, dict]:
         for name, docs in load_manifests().items()
     }
     index = index_manifests(manifests, aliases)
-    plan = json.loads((REPO / cfg["plan"]).read_text()) if cfg.get("plan") else None
+    plan = load_plans(cfg.get("plan"))
     out = {}
     for pid, prog in cfg["programs"].items():
         references = json.loads(
