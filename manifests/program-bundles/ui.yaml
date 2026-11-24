@@ -36,14 +36,14 @@ tiers:
     policyengine_us_state_folders: unemployment_insurance|unemployment_compensation|unemployment
     references_derived_by: scripts/export_policyengine_references.py
     reference_count: 93
-    plan: sources/plans/m1-plan-documents.json
-    plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@c93d4a62bb026df0ec8ba8745ec1fe96295d23b1:docs/strategy/m1-pe-parity-2026-09-29/document-sizing.json
-    plan_documents: 0
+    plan: sources/plans/ui-scope-audit-documents.json
+    plan_source: TheAxiomFoundation/axiom-roadmap-dashboard@a9a977bc:tools/encoding-forecast/ui-scope-audit.json
+    plan_documents: 294
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 1
-      state: 49
+      federal: 23
+      state: 266
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
@@ -58,11 +58,83 @@ tiers:
     state_manifests: unemployment|(^|-)ui(-|$)|uc-|employment-security
     known_sources: 0
     in_scope_by_layer:
-      federal: 1
-      state: 53
+      federal: 23
+      state: 270
 layers:
 - jurisdiction: us
   screener:
+  - key: us/regulation/20/604
+    name: us/regulation/20/604
+    layer: federal
+    citation_path: us/regulation/20/604
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/regulation/20/609
+    name: us/regulation/20/609
+    layer: federal
+    citation_path: us/regulation/20/609
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us/regulation/20/614
+    name: us/regulation/20/614
+    layer: federal
+    citation_path: us/regulation/20/614
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/regulation/20/616
+    name: us/regulation/20/616
+    layer: federal
+    citation_path: us/regulation/20/616
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/26/3304
+    name: 26 USC 3304
+    layer: federal
+    citation_path: us/statute/26/3304
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/3306
+    name: 26 USC 3306
+    layer: federal
+    citation_path: us/statute/26/3306
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/3402
+    name: 26 USC 3402
+    layer: federal
+    citation_path: us/statute/26/3402
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/85
+    name: 26 USC 85
+    layer: federal
+    citation_path: us/statute/26/85
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
   - key: us/statute/29/206
     name: 29 USC 206
     layer: federal
@@ -77,7 +149,229 @@ layers:
     - path: us/statute/29/206/a/1
       references: 1
       part: Benefit amount
+  - key: us/statute/42/503
+    name: 42 USC 503
+    layer: federal
+    citation_path: us/statute/42/503
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us/statute/5/8501
+    name: 5 USC 8501
+    layer: federal
+    citation_path: us/statute/5/8501
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8502
+    name: 5 USC 8502
+    layer: federal
+    citation_path: us/statute/5/8502
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8503
+    name: 5 USC 8503
+    layer: federal
+    citation_path: us/statute/5/8503
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8504
+    name: 5 USC 8504
+    layer: federal
+    citation_path: us/statute/5/8504
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8505
+    name: 5 USC 8505
+    layer: federal
+    citation_path: us/statute/5/8505
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8506
+    name: 5 USC 8506
+    layer: federal
+    citation_path: us/statute/5/8506
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8507
+    name: 5 USC 8507
+    layer: federal
+    citation_path: us/statute/5/8507
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8508
+    name: 5 USC 8508
+    layer: federal
+    citation_path: us/statute/5/8508
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8509
+    name: 5 USC 8509
+    layer: federal
+    citation_path: us/statute/5/8509
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8521
+    name: 5 USC 8521
+    layer: federal
+    citation_path: us/statute/5/8521
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8522
+    name: 5 USC 8522
+    layer: federal
+    citation_path: us/statute/5/8522
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8523
+    name: 5 USC 8523
+    layer: federal
+    citation_path: us/statute/5/8523
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us/statute/5/8525
+    name: 5 USC 8525
+    layer: federal
+    citation_path: us/statute/5/8525
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/July2026.pdf
+    name: 'US DOL "Significant Provisions of State Unemployment Insurance Laws", effective July 2026: Significant
+      Provisions of State Unemployment Insurance Laws'
+    layer: federal
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/July2026.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: US DOL summary of state unemployment insurance laws (Significant Provisions);
+      a federal secondary summary, and the state statute is the rule source (wave 6 benefits decision)'
+    part: Other
+  - key: https://oui.doleta.gov/unemploy/statelaws.asp
+    name: 'US DOL "Comparison of State Unemployment Insurance Laws": Comparison of State Unemployment Insurance
+      Laws (monetary entitlement chapter)'
+    layer: federal
+    citation_path: null
+    source_url: https://oui.doleta.gov/unemploy/statelaws.asp
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: US DOL summary of state unemployment insurance laws (Comparison of State UI
+      Laws); a federal secondary summary, and the state statute is the rule source (wave 6 benefits decision)'
+    part: Other
   full:
+  - key: us/regulation/20/604
+    name: us/regulation/20/604
+    layer: federal
+    citation_path: us/regulation/20/604
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/regulation/20/609
+    name: us/regulation/20/609
+    layer: federal
+    citation_path: us/regulation/20/609
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/regulation/20/614
+    name: us/regulation/20/614
+    layer: federal
+    citation_path: us/regulation/20/614
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/regulation/20/616
+    name: us/regulation/20/616
+    layer: federal
+    citation_path: us/regulation/20/616
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/3304
+    name: 26 USC 3304
+    layer: federal
+    citation_path: us/statute/26/3304
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/3306
+    name: 26 USC 3306
+    layer: federal
+    citation_path: us/statute/26/3306
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/3402
+    name: 26 USC 3402
+    layer: federal
+    citation_path: us/statute/26/3402
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/85
+    name: 26 USC 85
+    layer: federal
+    citation_path: us/statute/26/85
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
   - key: us/statute/29/206
     name: 29 USC 206
     layer: federal
@@ -87,8 +381,143 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/statute/42/503
+    name: 42 USC 503
+    layer: federal
+    citation_path: us/statute/42/503
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8501
+    name: 5 USC 8501
+    layer: federal
+    citation_path: us/statute/5/8501
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8502
+    name: 5 USC 8502
+    layer: federal
+    citation_path: us/statute/5/8502
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8503
+    name: 5 USC 8503
+    layer: federal
+    citation_path: us/statute/5/8503
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8504
+    name: 5 USC 8504
+    layer: federal
+    citation_path: us/statute/5/8504
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8505
+    name: 5 USC 8505
+    layer: federal
+    citation_path: us/statute/5/8505
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8506
+    name: 5 USC 8506
+    layer: federal
+    citation_path: us/statute/5/8506
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8507
+    name: 5 USC 8507
+    layer: federal
+    citation_path: us/statute/5/8507
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8508
+    name: 5 USC 8508
+    layer: federal
+    citation_path: us/statute/5/8508
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8509
+    name: 5 USC 8509
+    layer: federal
+    citation_path: us/statute/5/8509
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8521
+    name: 5 USC 8521
+    layer: federal
+    citation_path: us/statute/5/8521
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8522
+    name: 5 USC 8522
+    layer: federal
+    citation_path: us/statute/5/8522
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8523
+    name: 5 USC 8523
+    layer: federal
+    citation_path: us/statute/5/8523
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/5/8525
+    name: 5 USC 8525
+    layer: federal
+    citation_path: us/statute/5/8525
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-al
   screener:
+  - key: https://labor.alabama.gov/uc/claims.aspx
+    name: 'ADOL "Claims and Benefits FAQ": Claims and Benefits FAQ'
+    layer: state
+    citation_path: null
+    source_url: https://labor.alabama.gov/uc/claims.aspx
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
     name: Alabama Unemployment Compensation Benefit Rights and Responsibilities (claimant handbook)
     layer: state
@@ -96,6 +525,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 4
     scope: in
     part: Benefit amount
@@ -110,6 +540,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -117,6 +548,33 @@ layers:
     - path: us-al/regulation/alabama-administrative-code/480/4/3
       references: 1
       part: Benefit amount
+  - key: us-al/statute/25-4-1
+    name: us-al/statute/25-4-1
+    layer: state
+    citation_path: us-al/statute/25-4-1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-al/statute/25-4-16
+    name: us-al/statute/25-4-16
+    layer: state
+    citation_path: us-al/statute/25-4-16
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-al/statute/25-4-71
+    name: us-al/statute/25-4-71
+    layer: state
+    citation_path: us-al/statute/25-4-71
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
   - key: us-al/statute/25-4-72
     name: us-al/statute/25-4-72
     layer: state
@@ -124,6 +582,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 2
     scope: in
     part: Benefit amount
@@ -138,6 +597,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Deductions
@@ -152,6 +612,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -166,6 +627,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -173,6 +635,15 @@ layers:
     - path: us-al/statute/25-4-77
       references: 1
       part: Household and eligibility
+  - key: us-al/statute/25-4-78
+    name: us-al/statute/25-4-78
+    layer: state
+    citation_path: us-al/statute/25-4-78
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us-al/statute/title-25/chapter-4
     name: us-al/statute/title-25/chapter-4
     layer: state
@@ -225,6 +696,15 @@ layers:
       (also HTTP 403 to the corpus client)'
     part: Benefit amount
   full:
+  - key: https://labor.alabama.gov/uc/claims.aspx
+    name: 'ADOL "Claims and Benefits FAQ": Claims and Benefits FAQ'
+    layer: state
+    citation_path: null
+    source_url: https://labor.alabama.gov/uc/claims.aspx
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
   - key: us-al/guidance/adol/uc-benefit-rights-and-responsibilities
     name: Alabama Unemployment Compensation Benefit Rights and Responsibilities (claimant handbook)
     layer: state
@@ -241,6 +721,33 @@ layers:
     citation_path: us-al/regulation/alabama-administrative-code/480/4/3
     source_url: null
     part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-al/statute/25-4-1
+    name: us-al/statute/25-4-1
+    layer: state
+    citation_path: us-al/statute/25-4-1
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-al/statute/25-4-16
+    name: us-al/statute/25-4-16
+    layer: state
+    citation_path: us-al/statute/25-4-16
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-al/statute/25-4-71
+    name: us-al/statute/25-4-71
+    layer: state
+    citation_path: us-al/statute/25-4-71
+    source_url: null
+    part: Other
     sources:
     - screener
     scope: in
@@ -280,6 +787,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-al/statute/25-4-78
+    name: us-al/statute/25-4-78
+    layer: state
+    citation_path: us-al/statute/25-4-78
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
   - key: us-al/statute/title-25/chapter-4
     name: us-al/statute/title-25/chapter-4
     layer: state
@@ -290,8 +806,192 @@ layers:
     - screener
     scope: in
 - jurisdiction: us-ak
-  screener: []
-  full: []
+  screener:
+  - key: https://labor.alaska.gov/unemployment/
+    name: 'Alaska DOLWD Unemployment Insurance home page alert: Unemployment Insurance Weekly Benefits Increasing
+      January 3, 2027'
+    layer: state
+    citation_path: null
+    source_url: https://labor.alaska.gov/unemployment/
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://labor.alaska.gov/unemployment/ui-handbook.html
+    name: 'Alaska UI Claimant Handbook: Unemployment Insurance Claimant Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://labor.alaska.gov/unemployment/ui-handbook.html
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350
+    name: '8 AAC 85 (incl. 8 AAC 85.350-85.357, 85.410): Employment Security - regulations (able and available,
+      registration, work search, suitable work)'
+    layer: state
+    citation_path: null
+    source_url: https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ak/statute/23.20.350
+    name: us-ak/statute/23.20.350
+    layer: state
+    citation_path: us-ak/statute/23.20.350
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ak/statute/23.20.360
+    name: us-ak/statute/23.20.360
+    layer: state
+    citation_path: us-ak/statute/23.20.360
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ak/statute/23.20.362
+    name: us-ak/statute/23.20.362
+    layer: state
+    citation_path: us-ak/statute/23.20.362
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ak/statute/23.20.375
+    name: us-ak/statute/23.20.375
+    layer: state
+    citation_path: us-ak/statute/23.20.375
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ak/statute/23.20.378
+    name: us-ak/statute/23.20.378
+    layer: state
+    citation_path: us-ak/statute/23.20.378
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ak/statute/23.20.505
+    name: us-ak/statute/23.20.505
+    layer: state
+    citation_path: us-ak/statute/23.20.505
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ak/statute/23.20.520
+    name: us-ak/statute/23.20.520
+    layer: state
+    citation_path: us-ak/statute/23.20.520
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: https://labor.alaska.gov/unemployment/
+    name: 'Alaska DOLWD Unemployment Insurance home page alert: Unemployment Insurance Weekly Benefits Increasing
+      January 3, 2027'
+    layer: state
+    citation_path: null
+    source_url: https://labor.alaska.gov/unemployment/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://labor.alaska.gov/unemployment/ui-handbook.html
+    name: 'Alaska UI Claimant Handbook: Unemployment Insurance Claimant Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://labor.alaska.gov/unemployment/ui-handbook.html
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350
+    name: '8 AAC 85 (incl. 8 AAC 85.350-85.357, 85.410): Employment Security - regulations (able and available,
+      registration, work search, suitable work)'
+    layer: state
+    citation_path: null
+    source_url: https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.350
+    name: us-ak/statute/23.20.350
+    layer: state
+    citation_path: us-ak/statute/23.20.350
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.360
+    name: us-ak/statute/23.20.360
+    layer: state
+    citation_path: us-ak/statute/23.20.360
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.362
+    name: us-ak/statute/23.20.362
+    layer: state
+    citation_path: us-ak/statute/23.20.362
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.375
+    name: us-ak/statute/23.20.375
+    layer: state
+    citation_path: us-ak/statute/23.20.375
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.378
+    name: us-ak/statute/23.20.378
+    layer: state
+    citation_path: us-ak/statute/23.20.378
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.505
+    name: us-ak/statute/23.20.505
+    layer: state
+    citation_path: us-ak/statute/23.20.505
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ak/statute/23.20.520
+    name: us-ak/statute/23.20.520
+    layer: state
+    citation_path: us-ak/statute/23.20.520
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-az
   screener: []
   full: []
@@ -308,32 +1008,886 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-de
-  screener: []
-  full: []
+  screener:
+  - key: https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf
+    name: '19 Del. Admin. Code 1202: Unemployment Insurance Regulations'
+    layer: state
+    citation_path: null
+    source_url: https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://labor.delaware.gov/divisions/unemployment-insurance/claimant-faqs/
+    name: 'Delaware DOL, Claimant FAQs: Claimant FAQs'
+    layer: state
+    citation_path: null
+    source_url: https://labor.delaware.gov/divisions/unemployment-insurance/claimant-faqs/
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf
+    name: 'Delaware DOL, UI Claimant Handbook (Revised April 2020): Your Guide to Unemployment Insurance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-de/statute/19/3302
+    name: us-de/statute/19/3302
+    layer: state
+    citation_path: us-de/statute/19/3302
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-de/statute/19/3313
+    name: us-de/statute/19/3313
+    layer: state
+    citation_path: us-de/statute/19/3313
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-de/statute/19/3315
+    name: us-de/statute/19/3315
+    layer: state
+    citation_path: us-de/statute/19/3315
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf
+    name: '19 Del. Admin. Code 1202: Unemployment Insurance Regulations'
+    layer: state
+    citation_path: null
+    source_url: https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://labor.delaware.gov/divisions/unemployment-insurance/claimant-faqs/
+    name: 'Delaware DOL, Claimant FAQs: Claimant FAQs'
+    layer: state
+    citation_path: null
+    source_url: https://labor.delaware.gov/divisions/unemployment-insurance/claimant-faqs/
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf
+    name: 'Delaware DOL, UI Claimant Handbook (Revised April 2020): Your Guide to Unemployment Insurance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-de/statute/19/3302
+    name: us-de/statute/19/3302
+    layer: state
+    citation_path: us-de/statute/19/3302
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-de/statute/19/3313
+    name: us-de/statute/19/3313
+    layer: state
+    citation_path: us-de/statute/19/3313
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-de/statute/19/3315
+    name: us-de/statute/19/3315
+    layer: state
+    citation_path: us-de/statute/19/3315
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-dc
   screener: []
   full: []
 - jurisdiction: us-fl
-  screener: []
-  full: []
+  screener:
+  - key: https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq
+    name: 'FloridaCommerce, Claimant FAQ: Claimant FAQ - Reemployment Assistance'
+    layer: state
+    citation_path: null
+    source_url: https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15
+    name: 'FloridaCommerce, Benefit Rights Information Handbook: Reemployment Assistance Benefit Rights Information
+      Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11
+    name: 'Fla. Admin. Code Chapter 73B-11: Unemployment Claims and Benefits; Florida Unemployment Compensation
+      Claims and Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-fl/statute/443.036
+    name: us-fl/statute/443.036
+    layer: state
+    citation_path: us-fl/statute/443.036
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-fl/statute/443.091
+    name: us-fl/statute/443.091
+    layer: state
+    citation_path: us-fl/statute/443.091
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-fl/statute/443.101
+    name: us-fl/statute/443.101
+    layer: state
+    citation_path: us-fl/statute/443.101
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-fl/statute/443.111
+    name: us-fl/statute/443.111
+    layer: state
+    citation_path: us-fl/statute/443.111
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq
+    name: 'FloridaCommerce, Claimant FAQ: Claimant FAQ - Reemployment Assistance'
+    layer: state
+    citation_path: null
+    source_url: https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15
+    name: 'FloridaCommerce, Benefit Rights Information Handbook: Reemployment Assistance Benefit Rights Information
+      Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11
+    name: 'Fla. Admin. Code Chapter 73B-11: Unemployment Claims and Benefits; Florida Unemployment Compensation
+      Claims and Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-fl/statute/443.036
+    name: us-fl/statute/443.036
+    layer: state
+    citation_path: us-fl/statute/443.036
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-fl/statute/443.091
+    name: us-fl/statute/443.091
+    layer: state
+    citation_path: us-fl/statute/443.091
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-fl/statute/443.101
+    name: us-fl/statute/443.101
+    layer: state
+    citation_path: us-fl/statute/443.101
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-fl/statute/443.111
+    name: us-fl/statute/443.111
+    layer: state
+    citation_path: us-fl/statute/443.111
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-ga
   screener: []
   full: []
 - jurisdiction: us-hi
-  screener: []
-  full: []
+  screener:
+  - key: https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf
+    name: 'Haw. Admin. Rules Title 12, Chapter 5: Administrative Rules (Chapter 5, Title 12) relating to Hawaii
+      Employment Security Law'
+    layer: state
+    citation_path: null
+    source_url: https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf
+    name: 'DLIR UI Claimant Handbook (Rev. 07/2025, file Rev1.26): Unemployment Insurance Claimant Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/
+    name: 'DLIR UI Division web page: Tax Rate Schedule and Weekly Benefit Amount'
+    layer: state
+    citation_path: null
+    source_url: https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-hi/statute/383-1
+    name: us-hi/statute/383-1
+    layer: state
+    citation_path: us-hi/statute/383-1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-hi/statute/383-22
+    name: us-hi/statute/383-22
+    layer: state
+    citation_path: us-hi/statute/383-22
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-hi/statute/383-23
+    name: us-hi/statute/383-23
+    layer: state
+    citation_path: us-hi/statute/383-23
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-hi/statute/383-23.5
+    name: us-hi/statute/383-23.5
+    layer: state
+    citation_path: us-hi/statute/383-23.5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-hi/statute/383-24
+    name: us-hi/statute/383-24
+    layer: state
+    citation_path: us-hi/statute/383-24
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-hi/statute/383-29
+    name: us-hi/statute/383-29
+    layer: state
+    citation_path: us-hi/statute/383-29
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf
+    name: 'Haw. Admin. Rules Title 12, Chapter 5: Administrative Rules (Chapter 5, Title 12) relating to Hawaii
+      Employment Security Law'
+    layer: state
+    citation_path: null
+    source_url: https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf
+    name: 'DLIR UI Claimant Handbook (Rev. 07/2025, file Rev1.26): Unemployment Insurance Claimant Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/
+    name: 'DLIR UI Division web page: Tax Rate Schedule and Weekly Benefit Amount'
+    layer: state
+    citation_path: null
+    source_url: https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/statute/383-1
+    name: us-hi/statute/383-1
+    layer: state
+    citation_path: us-hi/statute/383-1
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/statute/383-22
+    name: us-hi/statute/383-22
+    layer: state
+    citation_path: us-hi/statute/383-22
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/statute/383-23
+    name: us-hi/statute/383-23
+    layer: state
+    citation_path: us-hi/statute/383-23
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/statute/383-23.5
+    name: us-hi/statute/383-23.5
+    layer: state
+    citation_path: us-hi/statute/383-23.5
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/statute/383-24
+    name: us-hi/statute/383-24
+    layer: state
+    citation_path: us-hi/statute/383-24
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-hi/statute/383-29
+    name: us-hi/statute/383-29
+    layer: state
+    citation_path: us-hi/statute/383-29
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-id
-  screener: []
-  full: []
+  screener:
+  - key: https://adminrules.idaho.gov/rules/current/09/090130.pdf
+    name: 'IDAPA 09.01.30: Unemployment Insurance Benefits Administration Rules'
+    layer: state
+    citation_path: null
+    source_url: https://adminrules.idaho.gov/rules/current/09/090130.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/
+    name: 'Idaho Department of Labor web page: What are Idaho''s unemployment monetary requirements? (Monetary eligibility)'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf
+    name: 'Idaho Department of Labor Administrative Order No. 683 (Nov. 6, 2025): Unemployment Insurance Maximum
+      Weekly Benefit Amount 2026'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf
+    name: 'Idaho Department of Labor fact sheet (March 2026): Unemployment insurance (UI) facts'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf
+    name: 'Idaho Labor Unemployment Insurance Claimant Guide: Unemployment Insurance Claimant Guide: Benefits, Rights,
+      Responsibilities and Filing Instructions'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-id/statute/72-1306
+    name: us-id/statute/72-1306
+    layer: state
+    citation_path: us-id/statute/72-1306
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-id/statute/72-1312
+    name: us-id/statute/72-1312
+    layer: state
+    citation_path: us-id/statute/72-1312
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-id/statute/72-1327A
+    name: us-id/statute/72-1327A
+    layer: state
+    citation_path: us-id/statute/72-1327A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-id/statute/72-1329
+    name: us-id/statute/72-1329
+    layer: state
+    citation_path: us-id/statute/72-1329
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-id/statute/72-1366
+    name: us-id/statute/72-1366
+    layer: state
+    citation_path: us-id/statute/72-1366
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-id/statute/72-1367
+    name: us-id/statute/72-1367
+    layer: state
+    citation_path: us-id/statute/72-1367
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://adminrules.idaho.gov/rules/current/09/090130.pdf
+    name: 'IDAPA 09.01.30: Unemployment Insurance Benefits Administration Rules'
+    layer: state
+    citation_path: null
+    source_url: https://adminrules.idaho.gov/rules/current/09/090130.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/
+    name: 'Idaho Department of Labor web page: What are Idaho''s unemployment monetary requirements? (Monetary eligibility)'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf
+    name: 'Idaho Department of Labor Administrative Order No. 683 (Nov. 6, 2025): Unemployment Insurance Maximum
+      Weekly Benefit Amount 2026'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf
+    name: 'Idaho Department of Labor fact sheet (March 2026): Unemployment insurance (UI) facts'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf
+    name: 'Idaho Labor Unemployment Insurance Claimant Guide: Unemployment Insurance Claimant Guide: Benefits, Rights,
+      Responsibilities and Filing Instructions'
+    layer: state
+    citation_path: null
+    source_url: https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-id/statute/72-1306
+    name: us-id/statute/72-1306
+    layer: state
+    citation_path: us-id/statute/72-1306
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-id/statute/72-1312
+    name: us-id/statute/72-1312
+    layer: state
+    citation_path: us-id/statute/72-1312
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-id/statute/72-1327A
+    name: us-id/statute/72-1327A
+    layer: state
+    citation_path: us-id/statute/72-1327A
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-id/statute/72-1329
+    name: us-id/statute/72-1329
+    layer: state
+    citation_path: us-id/statute/72-1329
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-id/statute/72-1366
+    name: us-id/statute/72-1366
+    layer: state
+    citation_path: us-id/statute/72-1366
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-id/statute/72-1367
+    name: us-id/statute/72-1367
+    layer: state
+    citation_path: us-id/statute/72-1367
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-il
-  screener: []
-  full: []
+  screener:
+  - key: https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf
+    name: 'IDES Table 1 of Weekly Benefit Amounts (form CLI110L): Table 1 of Weekly Benefit Amounts (benefit years
+      beginning on or after 1/1/2026)'
+    layer: state
+    citation_path: null
+    source_url: https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://ides.illinois.gov/unemployment/resources/unemployment-insurance-benefit-handbook.html
+    name: 'IDES Unemployment Insurance Benefit Handbook: Unemployment Insurance Benefit Handbook (web handbook;
+      Benefit Determination chapter)'
+    layer: state
+    citation_path: null
+    source_url: https://ides.illinois.gov/unemployment/resources/unemployment-insurance-benefit-handbook.html
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865
+    name: '56 Ill. Adm. Code Part 2865: Claimant''s Availability for Work, Ability to Work and Active Search for
+      Work'
+    layer: state
+    citation_path: null
+    source_url: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920
+    name: '56 Ill. Adm. Code Part 2920: Disqualifying Income and Reduced Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-il/statute/820/405
+    name: us-il/statute/820/405
+    layer: state
+    citation_path: us-il/statute/820/405
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/statute/820/405/237
+      references: 1
+      part: Other
+    - path: us-il/statute/820/405/239
+      references: 1
+      part: Other
+    - path: us-il/statute/820/405/242
+      references: 1
+      part: Benefit amount
+    - path: us-il/statute/820/405/401
+      references: 1
+      part: Benefit amount
+    - path: us-il/statute/820/405/402
+      references: 1
+      part: Benefit amount
+    - path: us-il/statute/820/405/403
+      references: 1
+      part: Benefit amount
+    - path: us-il/statute/820/405/500
+      references: 1
+      part: Benefit amount
+    - path: us-il/statute/820/405/610
+      references: 1
+      part: Other
+    - path: us-il/statute/820/405/611
+      references: 1
+      part: Other
+  full:
+  - key: https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf
+    name: 'IDES Table 1 of Weekly Benefit Amounts (form CLI110L): Table 1 of Weekly Benefit Amounts (benefit years
+      beginning on or after 1/1/2026)'
+    layer: state
+    citation_path: null
+    source_url: https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://ides.illinois.gov/unemployment/resources/unemployment-insurance-benefit-handbook.html
+    name: 'IDES Unemployment Insurance Benefit Handbook: Unemployment Insurance Benefit Handbook (web handbook;
+      Benefit Determination chapter)'
+    layer: state
+    citation_path: null
+    source_url: https://ides.illinois.gov/unemployment/resources/unemployment-insurance-benefit-handbook.html
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865
+    name: '56 Ill. Adm. Code Part 2865: Claimant''s Availability for Work, Ability to Work and Active Search for
+      Work'
+    layer: state
+    citation_path: null
+    source_url: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920
+    name: '56 Ill. Adm. Code Part 2920: Disqualifying Income and Reduced Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/statute/820/405
+    name: us-il/statute/820/405
+    layer: state
+    citation_path: us-il/statute/820/405
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-in
   screener: []
   full: []
 - jurisdiction: us-ia
-  screener: []
-  full: []
+  screener:
+  - key: https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5
+    name: 'IWD announcement, June 30, 2026: Iowans'' Unemployment Benefits to Increase Starting July 5'
+    layer: state
+    citation_path: null
+    source_url: https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://workforce.iowa.gov/media/2589/download
+    name: 'IWD Unemployment Insurance Claimant Handbook 2026-2027: Unemployment Insurance Claimant Handbook 2026-2027'
+    layer: state
+    citation_path: null
+    source_url: https://workforce.iowa.gov/media/2589/download
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf
+    name: 'Iowa Admin. Code 871—Chapter 24: Claims and Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ia/statute/96.1A
+    name: us-ia/statute/96.1A
+    layer: state
+    citation_path: us-ia/statute/96.1A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ia/statute/96.3
+    name: us-ia/statute/96.3
+    layer: state
+    citation_path: us-ia/statute/96.3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ia/statute/96.4
+    name: us-ia/statute/96.4
+    layer: state
+    citation_path: us-ia/statute/96.4
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ia/statute/96.5
+    name: us-ia/statute/96.5
+    layer: state
+    citation_path: us-ia/statute/96.5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5
+    name: 'IWD announcement, June 30, 2026: Iowans'' Unemployment Benefits to Increase Starting July 5'
+    layer: state
+    citation_path: null
+    source_url: https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://workforce.iowa.gov/media/2589/download
+    name: 'IWD Unemployment Insurance Claimant Handbook 2026-2027: Unemployment Insurance Claimant Handbook 2026-2027'
+    layer: state
+    citation_path: null
+    source_url: https://workforce.iowa.gov/media/2589/download
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf
+    name: 'Iowa Admin. Code 871—Chapter 24: Claims and Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ia/statute/96.1A
+    name: us-ia/statute/96.1A
+    layer: state
+    citation_path: us-ia/statute/96.1A
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ia/statute/96.3
+    name: us-ia/statute/96.3
+    layer: state
+    citation_path: us-ia/statute/96.3
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ia/statute/96.4
+    name: us-ia/statute/96.4
+    layer: state
+    citation_path: us-ia/statute/96.4
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ia/statute/96.5
+    name: us-ia/statute/96.5
+    layer: state
+    citation_path: us-ia/statute/96.5
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-ks
   screener: []
   full: []
@@ -344,20 +1898,634 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-me
-  screener: []
-  full: []
+  screener:
+  - key: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc
+    name: '12-172 C.M.R. ch. 3: Unemployment Benefits, Intrastate'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx
+    name: '12-172 C.M.R. ch. 10: Work Search Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc
+    name: '12-172 C.M.R. ch. 9: Able and Available Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.maine.gov/unemployment/claimsfaq/
+    name: 'Maine BUC Claimants Frequently Asked Questions: Claimants Frequently Asked Questions'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/unemployment/claimsfaq/
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf
+    name: 'Me. I-5 (rev. 2/28/2018): Maine''s Unemployment Insurance Guide: A Worker''s Guide to Maine''s Unemployment
+      Program'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-me/statute/26/1043
+    name: us-me/statute/26/1043
+    layer: state
+    citation_path: us-me/statute/26/1043
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-me/statute/26/1191
+    name: us-me/statute/26/1191
+    layer: state
+    citation_path: us-me/statute/26/1191
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-me/statute/26/1192-A
+    name: us-me/statute/26/1192-A
+    layer: state
+    citation_path: us-me/statute/26/1192-A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-me/statute/26/1193
+    name: us-me/statute/26/1193
+    layer: state
+    citation_path: us-me/statute/26/1193
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc
+    name: '12-172 C.M.R. ch. 3: Unemployment Benefits, Intrastate'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx
+    name: '12-172 C.M.R. ch. 10: Work Search Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc
+    name: '12-172 C.M.R. ch. 9: Able and Available Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.maine.gov/unemployment/claimsfaq/
+    name: 'Maine BUC Claimants Frequently Asked Questions: Claimants Frequently Asked Questions'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/unemployment/claimsfaq/
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf
+    name: 'Me. I-5 (rev. 2/28/2018): Maine''s Unemployment Insurance Guide: A Worker''s Guide to Maine''s Unemployment
+      Program'
+    layer: state
+    citation_path: null
+    source_url: https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-me/statute/26/1043
+    name: us-me/statute/26/1043
+    layer: state
+    citation_path: us-me/statute/26/1043
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-me/statute/26/1191
+    name: us-me/statute/26/1191
+    layer: state
+    citation_path: us-me/statute/26/1191
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-me/statute/26/1192-A
+    name: us-me/statute/26/1192-A
+    layer: state
+    citation_path: us-me/statute/26/1192-A
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-me/statute/26/1193
+    name: us-me/statute/26/1193
+    layer: state
+    citation_path: us-me/statute/26/1193
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-md
-  screener: []
-  full: []
+  screener:
+  - key: https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf
+    name: 'Maryland Department of Labor claimant pamphlet: Unemployment Insurance in Maryland - A Guide to Reemployment'
+    layer: state
+    citation_path: null
+    source_url: https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://regs.maryland.gov/us/md/exec/comar/09.32.02
+    name: 'COMAR 09.32.02: Claims for Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://regs.maryland.gov/us/md/exec/comar/09.32.02
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-md/statute/gle/8-1008
+    name: us-md/statute/gle/8-1008
+    layer: state
+    citation_path: us-md/statute/gle/8-1008
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-md/statute/gle/8-1009
+    name: us-md/statute/gle/8-1009
+    layer: state
+    citation_path: us-md/statute/gle/8-1009
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-md/statute/gle/8-101
+    name: us-md/statute/gle/8-101
+    layer: state
+    citation_path: us-md/statute/gle/8-101
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-md/statute/gle/8-802
+    name: us-md/statute/gle/8-802
+    layer: state
+    citation_path: us-md/statute/gle/8-802
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-md/statute/gle/8-803
+    name: us-md/statute/gle/8-803
+    layer: state
+    citation_path: us-md/statute/gle/8-803
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-md/statute/gle/8-804
+    name: us-md/statute/gle/8-804
+    layer: state
+    citation_path: us-md/statute/gle/8-804
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-md/statute/gle/8-808
+    name: us-md/statute/gle/8-808
+    layer: state
+    citation_path: us-md/statute/gle/8-808
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-md/statute/gle/8-903
+    name: us-md/statute/gle/8-903
+    layer: state
+    citation_path: us-md/statute/gle/8-903
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf
+    name: 'Maryland Department of Labor claimant pamphlet: Unemployment Insurance in Maryland - A Guide to Reemployment'
+    layer: state
+    citation_path: null
+    source_url: https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://regs.maryland.gov/us/md/exec/comar/09.32.02
+    name: 'COMAR 09.32.02: Claims for Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://regs.maryland.gov/us/md/exec/comar/09.32.02
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-1008
+    name: us-md/statute/gle/8-1008
+    layer: state
+    citation_path: us-md/statute/gle/8-1008
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-1009
+    name: us-md/statute/gle/8-1009
+    layer: state
+    citation_path: us-md/statute/gle/8-1009
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-101
+    name: us-md/statute/gle/8-101
+    layer: state
+    citation_path: us-md/statute/gle/8-101
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-802
+    name: us-md/statute/gle/8-802
+    layer: state
+    citation_path: us-md/statute/gle/8-802
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-803
+    name: us-md/statute/gle/8-803
+    layer: state
+    citation_path: us-md/statute/gle/8-803
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-804
+    name: us-md/statute/gle/8-804
+    layer: state
+    citation_path: us-md/statute/gle/8-804
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-808
+    name: us-md/statute/gle/8-808
+    layer: state
+    citation_path: us-md/statute/gle/8-808
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gle/8-903
+    name: us-md/statute/gle/8-903
+    layer: state
+    citation_path: us-md/statute/gle/8-903
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-ma
   screener: []
   full: []
 - jurisdiction: us-mi
-  screener: []
-  full: []
+  screener:
+  - key: https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf
+    name: 'UIA 1901 (November 2026): Unemployment Benefits in Michigan: A Handbook for Unemployed Workers'
+    layer: state
+    citation_path: null
+    source_url: https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.michigan.gov/leo/bureaus-agencies/uia/tools/publications/eligibility-requirements
+    name: 'UIA web page: Eligibility Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://www.michigan.gov/leo/bureaus-agencies/uia/tools/publications/eligibility-requirements
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://www.michigan.gov/leo/news/2025/12/18/unemployment-weekly-benefit-rate-increases-january-1-2026
+    name: 'LEO news release, 2025-12-18: Unemployment weekly benefit rate increases Jan. 1, 2026'
+    layer: state
+    citation_path: null
+    source_url: https://www.michigan.gov/leo/news/2025/12/18/unemployment-weekly-benefit-rate-increases-january-1-2026
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-mi/statute/421.27
+    name: us-mi/statute/421.27
+    layer: state
+    citation_path: us-mi/statute/421.27
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-mi/statute/421.28
+    name: us-mi/statute/421.28
+    layer: state
+    citation_path: us-mi/statute/421.28
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-mi/statute/421.45
+    name: us-mi/statute/421.45
+    layer: state
+    citation_path: us-mi/statute/421.45
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-mi/statute/421.46
+    name: us-mi/statute/421.46
+    layer: state
+    citation_path: us-mi/statute/421.46
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-mi/statute/421.48
+    name: us-mi/statute/421.48
+    layer: state
+    citation_path: us-mi/statute/421.48
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-mi/statute/421.50
+    name: us-mi/statute/421.50
+    layer: state
+    citation_path: us-mi/statute/421.50
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf
+    name: 'UIA 1901 (November 2026): Unemployment Benefits in Michigan: A Handbook for Unemployed Workers'
+    layer: state
+    citation_path: null
+    source_url: https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.michigan.gov/leo/bureaus-agencies/uia/tools/publications/eligibility-requirements
+    name: 'UIA web page: Eligibility Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://www.michigan.gov/leo/bureaus-agencies/uia/tools/publications/eligibility-requirements
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.michigan.gov/leo/news/2025/12/18/unemployment-weekly-benefit-rate-increases-january-1-2026
+    name: 'LEO news release, 2025-12-18: Unemployment weekly benefit rate increases Jan. 1, 2026'
+    layer: state
+    citation_path: null
+    source_url: https://www.michigan.gov/leo/news/2025/12/18/unemployment-weekly-benefit-rate-increases-january-1-2026
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/421.27
+    name: us-mi/statute/421.27
+    layer: state
+    citation_path: us-mi/statute/421.27
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/421.28
+    name: us-mi/statute/421.28
+    layer: state
+    citation_path: us-mi/statute/421.28
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/421.45
+    name: us-mi/statute/421.45
+    layer: state
+    citation_path: us-mi/statute/421.45
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/421.46
+    name: us-mi/statute/421.46
+    layer: state
+    citation_path: us-mi/statute/421.46
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/421.48
+    name: us-mi/statute/421.48
+    layer: state
+    citation_path: us-mi/statute/421.48
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/421.50
+    name: us-mi/statute/421.50
+    layer: state
+    citation_path: us-mi/statute/421.50
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-mn
-  screener: []
-  full: []
+  screener:
+  - key: https://www.uimn.org/applicants/howapply/info-handbook/after-you-apply.jsp
+    name: 'UI Minnesota web page: Information Handbook: After you apply (How much will I receive?)'
+    layer: state
+    citation_path: null
+    source_url: https://www.uimn.org/applicants/howapply/info-handbook/after-you-apply.jsp
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.uimn.org/assets/22c_tcm1068-193111.pdf
+    name: 'DEED-22A / DEED-00590-31 (Rev. 10/2026): Minnesota Unemployment Insurance Information Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://www.uimn.org/assets/22c_tcm1068-193111.pdf
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: us-mn/statute/268.035
+    name: us-mn/statute/268.035
+    layer: state
+    citation_path: us-mn/statute/268.035
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-mn/statute/268.069
+    name: us-mn/statute/268.069
+    layer: state
+    citation_path: us-mn/statute/268.069
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-mn/statute/268.07
+    name: us-mn/statute/268.07
+    layer: state
+    citation_path: us-mn/statute/268.07
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-mn/statute/268.085
+    name: us-mn/statute/268.085
+    layer: state
+    citation_path: us-mn/statute/268.085
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://www.uimn.org/applicants/howapply/info-handbook/after-you-apply.jsp
+    name: 'UI Minnesota web page: Information Handbook: After you apply (How much will I receive?)'
+    layer: state
+    citation_path: null
+    source_url: https://www.uimn.org/applicants/howapply/info-handbook/after-you-apply.jsp
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.uimn.org/assets/22c_tcm1068-193111.pdf
+    name: 'DEED-22A / DEED-00590-31 (Rev. 10/2026): Minnesota Unemployment Insurance Information Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://www.uimn.org/assets/22c_tcm1068-193111.pdf
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/statute/268.035
+    name: us-mn/statute/268.035
+    layer: state
+    citation_path: us-mn/statute/268.035
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/statute/268.069
+    name: us-mn/statute/268.069
+    layer: state
+    citation_path: us-mn/statute/268.069
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/statute/268.07
+    name: us-mn/statute/268.07
+    layer: state
+    citation_path: us-mn/statute/268.07
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/statute/268.085
+    name: us-mn/statute/268.085
+    layer: state
+    citation_path: us-mn/statute/268.085
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-ms
   screener: []
   full: []
@@ -368,8 +2536,188 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-ne
-  screener: []
-  full: []
+  screener:
+  - key: https://dol.nebraska.gov/StatutesAndRegulations/Regulations
+    name: '219 Neb. Admin. Code ch. 4: Claimant''s Availability / Work Search Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://dol.nebraska.gov/StatutesAndRegulations/Regulations
+    sources:
+    - plan
+    scope: in
+    part: Deductions
+  - key: https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts
+    name: 'NDOL, How Are Benefit Amounts Calculated?: How Are Benefit Amounts Calculated?'
+    layer: state
+    citation_path: null
+    source_url: https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dol.nebraska.gov/UIBenefits/UIHandbook
+    name: 'NDOL Unemployment Insurance Handbook: Unemployment Insurance Handbook for Unemployed Workers in Nebraska'
+    layer: state
+    citation_path: null
+    source_url: https://dol.nebraska.gov/UIBenefits/UIHandbook
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ne/statute/48/48-602
+    name: us-ne/statute/48/48-602
+    layer: state
+    citation_path: us-ne/statute/48/48-602
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ne/statute/48/48-624
+    name: us-ne/statute/48/48-624
+    layer: state
+    citation_path: us-ne/statute/48/48-624
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ne/statute/48/48-625
+    name: us-ne/statute/48/48-625
+    layer: state
+    citation_path: us-ne/statute/48/48-625
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ne/statute/48/48-626
+    name: us-ne/statute/48/48-626
+    layer: state
+    citation_path: us-ne/statute/48/48-626
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ne/statute/48/48-627
+    name: us-ne/statute/48/48-627
+    layer: state
+    citation_path: us-ne/statute/48/48-627
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ne/statute/48/48-627.01
+    name: us-ne/statute/48/48-627.01
+    layer: state
+    citation_path: us-ne/statute/48/48-627.01
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-ne/statute/48/48-628.02
+    name: us-ne/statute/48/48-628.02
+    layer: state
+    citation_path: us-ne/statute/48/48-628.02
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://dol.nebraska.gov/StatutesAndRegulations/Regulations
+    name: '219 Neb. Admin. Code ch. 4: Claimant''s Availability / Work Search Requirements'
+    layer: state
+    citation_path: null
+    source_url: https://dol.nebraska.gov/StatutesAndRegulations/Regulations
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts
+    name: 'NDOL, How Are Benefit Amounts Calculated?: How Are Benefit Amounts Calculated?'
+    layer: state
+    citation_path: null
+    source_url: https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.nebraska.gov/UIBenefits/UIHandbook
+    name: 'NDOL Unemployment Insurance Handbook: Unemployment Insurance Handbook for Unemployed Workers in Nebraska'
+    layer: state
+    citation_path: null
+    source_url: https://dol.nebraska.gov/UIBenefits/UIHandbook
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-602
+    name: us-ne/statute/48/48-602
+    layer: state
+    citation_path: us-ne/statute/48/48-602
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-624
+    name: us-ne/statute/48/48-624
+    layer: state
+    citation_path: us-ne/statute/48/48-624
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-625
+    name: us-ne/statute/48/48-625
+    layer: state
+    citation_path: us-ne/statute/48/48-625
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-626
+    name: us-ne/statute/48/48-626
+    layer: state
+    citation_path: us-ne/statute/48/48-626
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-627
+    name: us-ne/statute/48/48-627
+    layer: state
+    citation_path: us-ne/statute/48/48-627
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-627.01
+    name: us-ne/statute/48/48-627.01
+    layer: state
+    citation_path: us-ne/statute/48/48-627.01
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/48/48-628.02
+    name: us-ne/statute/48/48-628.02
+    layer: state
+    citation_path: us-ne/statute/48/48-628.02
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-nv
   screener: []
   full:
@@ -388,6 +2736,33 @@ layers:
   full: []
 - jurisdiction: us-nj
   screener:
+  - key: https://www.nj.gov/labor/myunemployment/assets/pdfs/PR-94.pdf
+    name: 'LWD PR-94 (7/2026): Unemployment Insurance: Your Rights & Responsibilities'
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/PR-94.pdf
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_regs.pdf
+    name: 'N.J.A.C. 12:17: Unemployment Benefit Payments'
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_regs.pdf
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml
+    name: 'LWD web page: How alternate base years are calculated'
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   - key: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
     name: 'Employer Handbook: Unemployment Insurance'
     layer: state
@@ -409,6 +2784,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -437,6 +2813,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -451,6 +2828,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -493,6 +2871,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -515,7 +2894,70 @@ layers:
     - path: us-nj/guidance/lwd/unemployment-compensation-law-compilation
       references: 5
       part: Benefit amount
+  - key: us-nj/statute/43:21-19
+    name: us-nj/statute/43:21-19
+    layer: state
+    citation_path: us-nj/statute/43:21-19
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-nj/statute/43:21-3
+    name: us-nj/statute/43:21-3
+    layer: state
+    citation_path: us-nj/statute/43:21-3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nj/statute/43:21-4
+    name: us-nj/statute/43:21-4
+    layer: state
+    citation_path: us-nj/statute/43:21-4
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-nj/statute/43:21-5a
+    name: us-nj/statute/43:21-5a
+    layer: state
+    citation_path: us-nj/statute/43:21-5a
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   full:
+  - key: https://www.nj.gov/labor/myunemployment/assets/pdfs/PR-94.pdf
+    name: 'LWD PR-94 (7/2026): Unemployment Insurance: Your Rights & Responsibilities'
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/PR-94.pdf
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_regs.pdf
+    name: 'N.J.A.C. 12:17: Unemployment Benefit Payments'
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_regs.pdf
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml
+    name: 'LWD web page: How alternate base years are calculated'
+    layer: state
+    citation_path: null
+    source_url: https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us-nj/guidance/lwd/employer-handbook-unemployment-insurance
     name: 'Employer Handbook: Unemployment Insurance'
     layer: state
@@ -604,11 +3046,130 @@ layers:
     - screener
     - manifests/us-nj-benefits-w6-guidance.yaml
     scope: in
+  - key: us-nj/statute/43:21-19
+    name: us-nj/statute/43:21-19
+    layer: state
+    citation_path: us-nj/statute/43:21-19
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-nj/statute/43:21-3
+    name: us-nj/statute/43:21-3
+    layer: state
+    citation_path: us-nj/statute/43:21-3
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-nj/statute/43:21-4
+    name: us-nj/statute/43:21-4
+    layer: state
+    citation_path: us-nj/statute/43:21-4
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-nj/statute/43:21-5a
+    name: us-nj/statute/43:21-5a
+    layer: state
+    citation_path: us-nj/statute/43:21-5a
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-nm
   screener: []
   full: []
 - jurisdiction: us-ny
   screener:
+  - key: https://dol.ny.gov/mbr
+    name: 'NYS DOL web page: Maximum Benefit Rate'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/mbr
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dol.ny.gov/services/ui/partial
+    name: 'NYS DOL web page: Reporting Earnings While Collecting Unemployment Insurance - Partial Unemployment Insurance
+      Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/services/ui/partial
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dol.ny.gov/unemployment-insurance-claimant-handbook
+    name: 'NYS DOL Claimant Handbook (January 2026): Unemployment Insurance Claimant Handbook: A Guide to Unemployment
+      Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/unemployment-insurance-claimant-handbook
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dol.ny.gov/unemployment-insurance-new-york-codes-rules-and-regulations
+    name: '12 NYCRR Part 473 (and Part 470): Benefits and Claims (Part 470: General Provisions, definitions)'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/unemployment-insurance-new-york-codes-rules-and-regulations
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.nysenate.gov/legislation/laws/LAB/520
+    name: 'N.Y. Labor Law § 520: Base period'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/520
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.nysenate.gov/legislation/laws/LAB/522
+    name: 'N.Y. Labor Law § 522: Total unemployment and partial unemployment'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/522
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.nysenate.gov/legislation/laws/LAB/523
+    name: 'N.Y. Labor Law § 523: Effective week'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/523
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.nysenate.gov/legislation/laws/LAB/591
+    name: 'N.Y. Labor Law § 591: Eligibility for benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/591
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.nysenate.gov/legislation/laws/LAB/600
+    name: 'N.Y. Labor Law § 600: Effect of retirement payments'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/600
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
     name: P803 Partial Unemployment FAQs (10/3/25)
     layer: state
@@ -630,6 +3191,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -688,6 +3250,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -702,6 +3265,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -716,6 +3280,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -808,6 +3373,89 @@ layers:
       rule source'
     part: Benefit amount
   full:
+  - key: https://dol.ny.gov/mbr
+    name: 'NYS DOL web page: Maximum Benefit Rate'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/mbr
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.ny.gov/services/ui/partial
+    name: 'NYS DOL web page: Reporting Earnings While Collecting Unemployment Insurance - Partial Unemployment Insurance
+      Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/services/ui/partial
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.ny.gov/unemployment-insurance-claimant-handbook
+    name: 'NYS DOL Claimant Handbook (January 2026): Unemployment Insurance Claimant Handbook: A Guide to Unemployment
+      Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/unemployment-insurance-claimant-handbook
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dol.ny.gov/unemployment-insurance-new-york-codes-rules-and-regulations
+    name: '12 NYCRR Part 473 (and Part 470): Benefits and Claims (Part 470: General Provisions, definitions)'
+    layer: state
+    citation_path: null
+    source_url: https://dol.ny.gov/unemployment-insurance-new-york-codes-rules-and-regulations
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/520
+    name: 'N.Y. Labor Law § 520: Base period'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/520
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/522
+    name: 'N.Y. Labor Law § 522: Total unemployment and partial unemployment'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/522
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/523
+    name: 'N.Y. Labor Law § 523: Effective week'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/523
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/591
+    name: 'N.Y. Labor Law § 591: Eligibility for benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/591
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.nysenate.gov/legislation/laws/LAB/600
+    name: 'N.Y. Labor Law § 600: Effect of retirement payments'
+    layer: state
+    citation_path: null
+    source_url: https://www.nysenate.gov/legislation/laws/LAB/600
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
   - key: us-ny/guidance/dol/p803-partial-ui-faqs-10-3-25
     name: P803 Partial Unemployment FAQs (10/3/25)
     layer: state
@@ -915,6 +3563,33 @@ layers:
   full: []
 - jurisdiction: us-ok
   screener:
+  - key: https://oklahoma.gov/oesc/employers/tax/contribution-rates.html
+    name: 'OESC web page: Contribution Rates (table of 2027 calculations)'
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/oesc/employers/tax/contribution-rates.html
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=446283
+    name: '40 O.S. § 1-202.1: Extended base period'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=446283
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=447177
+    name: '40 O.S. § 2-205.1: Ability to work and acceptance of employment'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=447177
+    sources:
+    - plan
+    scope: in
+    part: Other
   - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
     name: oscn.net/applications/oscn/DeliverDocument.asp
     layer: state
@@ -922,9 +3597,28 @@ layers:
     source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77171
+    name: '40 O.S. § 2-202: Conditions for eligibility'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77171
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77176
+    name: '40 O.S. § 2-206: Waiting period'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77176
+    sources:
+    - plan
+    scope: in
+    part: Other
   - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77177
     name: oscn.net/applications/oscn/DeliverDocument.asp
     layer: state
@@ -984,9 +3678,10 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
-    part: Benefit amount
+    part: Household and eligibility
     cited:
     - path: us-ok/guidance/oesc/employer-important-numbers/2026
       references: 1
@@ -998,6 +3693,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -1026,6 +3722,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 11
     scope: in
     part: Household and eligibility
@@ -1054,6 +3751,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -1068,6 +3766,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Deductions
@@ -1088,12 +3787,57 @@ layers:
       quarter 2016 to 2021'': a statistical report, not a rule document'
     part: Benefit amount
   full:
+  - key: https://oklahoma.gov/oesc/employers/tax/contribution-rates.html
+    name: 'OESC web page: Contribution Rates (table of 2027 calculations)'
+    layer: state
+    citation_path: null
+    source_url: https://oklahoma.gov/oesc/employers/tax/contribution-rates.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=446283
+    name: '40 O.S. § 1-202.1: Extended base period'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=446283
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=447177
+    name: '40 O.S. § 2-205.1: Ability to work and acceptance of employment'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=447177
+    part: Other
+    sources:
+    - screener
+    scope: in
   - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
     name: oscn.net/applications/oscn/DeliverDocument.asp
     layer: state
     citation_path: null
     source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166
     part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77171
+    name: '40 O.S. § 2-202: Conditions for eligibility'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77171
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77176
+    name: '40 O.S. § 2-206: Waiting period'
+    layer: state
+    citation_path: null
+    source_url: https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77176
+    part: Other
     sources:
     - screener
     scope: in
@@ -1138,7 +3882,7 @@ layers:
     layer: state
     citation_path: us-ok/guidance/oesc/employer-important-numbers/2026
     source_url: null
-    part: Benefit amount
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -1208,10 +3952,265 @@ layers:
     scope: in
     part: Other
 - jurisdiction: us-or
-  screener: []
-  full: []
+  screener:
+  - key: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337
+    name: 'OAR chapter 471, division 30: Unemployment Insurance Benefits and Claims'
+    layer: state
+    citation_path: null
+    source_url: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://unemployment.oregon.gov/glossary
+    name: 'Oregon Employment Department UI Glossary: Glossary - Oregon Unemployment Insurance'
+    layer: state
+    citation_path: null
+    source_url: https://unemployment.oregon.gov/glossary
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf
+    name: 'Oregon Employment Department UI PUB 350: Unemployment Insurance Claimant Handbook: A guide to your benefits'
+    layer: state
+    citation_path: null
+    source_url: https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf
+    name: 'Oregon Employment Department press release 2026-05-29: Minimum and Maximum Weekly Benefit Amounts to
+      Increase for New Unemployment Insurance and Paid Leave Oregon Claims'
+    layer: state
+    citation_path: null
+    source_url: https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-or/statute/657.010
+    name: us-or/statute/657.010
+    layer: state
+    citation_path: us-or/statute/657.010
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-or/statute/657.100
+    name: us-or/statute/657.100
+    layer: state
+    citation_path: us-or/statute/657.100
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-or/statute/657.150
+    name: us-or/statute/657.150
+    layer: state
+    citation_path: us-or/statute/657.150
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-or/statute/657.152
+    name: us-or/statute/657.152
+    layer: state
+    citation_path: us-or/statute/657.152
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-or/statute/657.155
+    name: us-or/statute/657.155
+    layer: state
+    citation_path: us-or/statute/657.155
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-or/statute/657.165
+    name: us-or/statute/657.165
+    layer: state
+    citation_path: us-or/statute/657.165
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-or/statute/657.173
+    name: us-or/statute/657.173
+    layer: state
+    citation_path: us-or/statute/657.173
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-or/statute/657.205
+    name: us-or/statute/657.205
+    layer: state
+    citation_path: us-or/statute/657.205
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Deductions
+  full:
+  - key: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337
+    name: 'OAR chapter 471, division 30: Unemployment Insurance Benefits and Claims'
+    layer: state
+    citation_path: null
+    source_url: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://unemployment.oregon.gov/glossary
+    name: 'Oregon Employment Department UI Glossary: Glossary - Oregon Unemployment Insurance'
+    layer: state
+    citation_path: null
+    source_url: https://unemployment.oregon.gov/glossary
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf
+    name: 'Oregon Employment Department UI PUB 350: Unemployment Insurance Claimant Handbook: A guide to your benefits'
+    layer: state
+    citation_path: null
+    source_url: https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf
+    name: 'Oregon Employment Department press release 2026-05-29: Minimum and Maximum Weekly Benefit Amounts to
+      Increase for New Unemployment Insurance and Paid Leave Oregon Claims'
+    layer: state
+    citation_path: null
+    source_url: https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.010
+    name: us-or/statute/657.010
+    layer: state
+    citation_path: us-or/statute/657.010
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.100
+    name: us-or/statute/657.100
+    layer: state
+    citation_path: us-or/statute/657.100
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.150
+    name: us-or/statute/657.150
+    layer: state
+    citation_path: us-or/statute/657.150
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.152
+    name: us-or/statute/657.152
+    layer: state
+    citation_path: us-or/statute/657.152
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.155
+    name: us-or/statute/657.155
+    layer: state
+    citation_path: us-or/statute/657.155
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.165
+    name: us-or/statute/657.165
+    layer: state
+    citation_path: us-or/statute/657.165
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.173
+    name: us-or/statute/657.173
+    layer: state
+    citation_path: us-or/statute/657.173
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-or/statute/657.205
+    name: us-or/statute/657.205
+    layer: state
+    citation_path: us-or/statute/657.205
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-pa
   screener:
+  - key: https://www.pa.gov/agencies/dli/resources/for-claimants-workers/benefits-information/benefit-guide/eligibility-information
+    name: 'DLI web page: Benefit Guide: Eligibility Information'
+    layer: state
+    citation_path: null
+    source_url: https://www.pa.gov/agencies/dli/resources/for-claimants-workers/benefits-information/benefit-guide/eligibility-information
+    sources:
+    - plan
+    scope: in
+    part: Assets
+  - key: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol56/56-3/88.html
+    name: '56 Pa.B. 448 (2026-01-17): Unemployment Compensation; Table Specified for Determination of Rate and Amount
+      of Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol56/56-3/88.html
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=%2Fsecure%2Fpacode%2Fdata%2F034%2Fchapter65%2Fs65.111.html
+    name: '34 Pa. Code § 65.111: Benefit table'
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=%2Fsecure%2Fpacode%2Fdata%2F034%2Fchapter65%2Fs65.111.html
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=reduce
+    name: '34 Pa. Code ch. 65: Employee Provisions'
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=reduce
+    sources:
+    - plan
+    scope: in
+    part: Other
   - key: us-pa/guidance/dli/uc-law
     name: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
     layer: state
@@ -1219,9 +4218,10 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 9
     scope: in
-    part: Household and eligibility
+    part: Benefit amount
     cited:
     - path: us-pa/guidance/dli/uc-law
       references: 9
@@ -1233,6 +4233,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -1270,12 +4271,49 @@ layers:
       references: 1
       part: Benefit amount
   full:
+  - key: https://www.pa.gov/agencies/dli/resources/for-claimants-workers/benefits-information/benefit-guide/eligibility-information
+    name: 'DLI web page: Benefit Guide: Eligibility Information'
+    layer: state
+    citation_path: null
+    source_url: https://www.pa.gov/agencies/dli/resources/for-claimants-workers/benefits-information/benefit-guide/eligibility-information
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol56/56-3/88.html
+    name: '56 Pa.B. 448 (2026-01-17): Unemployment Compensation; Table Specified for Determination of Rate and Amount
+      of Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol56/56-3/88.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=%2Fsecure%2Fpacode%2Fdata%2F034%2Fchapter65%2Fs65.111.html
+    name: '34 Pa. Code § 65.111: Benefit table'
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=%2Fsecure%2Fpacode%2Fdata%2F034%2Fchapter65%2Fs65.111.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=reduce
+    name: '34 Pa. Code ch. 65: Employee Provisions'
+    layer: state
+    citation_path: null
+    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=reduce
+    part: Other
+    sources:
+    - screener
+    scope: in
   - key: us-pa/guidance/dli/uc-law
     name: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
     layer: state
     citation_path: us-pa/guidance/dli/uc-law
     source_url: null
-    part: Household and eligibility
+    part: Benefit amount
     sources:
     - screener
     - manifests/us-pa-benefits-w6-guidance.yaml
@@ -1311,22 +4349,1059 @@ layers:
     - manifests/us-pa-benefits-w6-rulemaking.yaml
     scope: in
 - jurisdiction: us-ri
-  screener: []
-  full: []
+  screener:
+  - key: https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4
+    name: 'RI DLT press release: Maximum Weekly Benefit Amounts for Unemployment and Temporary Disability Insurance'
+    layer: state
+    citation_path: null
+    source_url: https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf
+    name: 'RI DLT 2026 UI and TDI Quick Reference: 2026 UI and TDI Quick Reference (Effective July 1, 2026)'
+    layer: state
+    citation_path: null
+    source_url: https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf
+    name: 'RI DLT Guide to Filing an Unemployment Insurance Claim: Guide to Filing an Unemployment Insurance Claim'
+    layer: state
+    citation_path: null
+    source_url: https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://rules.sos.ri.gov/regulations/part/260-40-05-1
+    name: '260-RICR-40-05-1: Unemployment Insurance and Temporary Disability Insurance Programs'
+    layer: state
+    citation_path: null
+    source_url: https://rules.sos.ri.gov/regulations/part/260-40-05-1
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-ri/statute/28-42-3
+    name: us-ri/statute/28-42-3
+    layer: state
+    citation_path: us-ri/statute/28-42-3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ri/statute/28-44-11
+    name: us-ri/statute/28-44-11
+    layer: state
+    citation_path: us-ri/statute/28-44-11
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ri/statute/28-44-12
+    name: us-ri/statute/28-44-12
+    layer: state
+    citation_path: us-ri/statute/28-44-12
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ri/statute/28-44-14
+    name: us-ri/statute/28-44-14
+    layer: state
+    citation_path: us-ri/statute/28-44-14
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ri/statute/28-44-19.1
+    name: us-ri/statute/28-44-19.1
+    layer: state
+    citation_path: us-ri/statute/28-44-19.1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ri/statute/28-44-21
+    name: us-ri/statute/28-44-21
+    layer: state
+    citation_path: us-ri/statute/28-44-21
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ri/statute/28-44-59
+    name: us-ri/statute/28-44-59
+    layer: state
+    citation_path: us-ri/statute/28-44-59
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-ri/statute/28-44-6
+    name: us-ri/statute/28-44-6
+    layer: state
+    citation_path: us-ri/statute/28-44-6
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ri/statute/28-44-61
+    name: us-ri/statute/28-44-61
+    layer: state
+    citation_path: us-ri/statute/28-44-61
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ri/statute/28-44-7
+    name: us-ri/statute/28-44-7
+    layer: state
+    citation_path: us-ri/statute/28-44-7
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-ri/statute/28-44-9
+    name: us-ri/statute/28-44-9
+    layer: state
+    citation_path: us-ri/statute/28-44-9
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4
+    name: 'RI DLT press release: Maximum Weekly Benefit Amounts for Unemployment and Temporary Disability Insurance'
+    layer: state
+    citation_path: null
+    source_url: https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf
+    name: 'RI DLT 2026 UI and TDI Quick Reference: 2026 UI and TDI Quick Reference (Effective July 1, 2026)'
+    layer: state
+    citation_path: null
+    source_url: https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf
+    name: 'RI DLT Guide to Filing an Unemployment Insurance Claim: Guide to Filing an Unemployment Insurance Claim'
+    layer: state
+    citation_path: null
+    source_url: https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://rules.sos.ri.gov/regulations/part/260-40-05-1
+    name: '260-RICR-40-05-1: Unemployment Insurance and Temporary Disability Insurance Programs'
+    layer: state
+    citation_path: null
+    source_url: https://rules.sos.ri.gov/regulations/part/260-40-05-1
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-42-3
+    name: us-ri/statute/28-42-3
+    layer: state
+    citation_path: us-ri/statute/28-42-3
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-11
+    name: us-ri/statute/28-44-11
+    layer: state
+    citation_path: us-ri/statute/28-44-11
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-12
+    name: us-ri/statute/28-44-12
+    layer: state
+    citation_path: us-ri/statute/28-44-12
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-14
+    name: us-ri/statute/28-44-14
+    layer: state
+    citation_path: us-ri/statute/28-44-14
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-19.1
+    name: us-ri/statute/28-44-19.1
+    layer: state
+    citation_path: us-ri/statute/28-44-19.1
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-21
+    name: us-ri/statute/28-44-21
+    layer: state
+    citation_path: us-ri/statute/28-44-21
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-59
+    name: us-ri/statute/28-44-59
+    layer: state
+    citation_path: us-ri/statute/28-44-59
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-6
+    name: us-ri/statute/28-44-6
+    layer: state
+    citation_path: us-ri/statute/28-44-6
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-61
+    name: us-ri/statute/28-44-61
+    layer: state
+    citation_path: us-ri/statute/28-44-61
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-7
+    name: us-ri/statute/28-44-7
+    layer: state
+    citation_path: us-ri/statute/28-44-7
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ri/statute/28-44-9
+    name: us-ri/statute/28-44-9
+    layer: state
+    citation_path: us-ri/statute/28-44-9
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-sc
-  screener: []
-  full: []
+  screener:
+  - key: https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount
+    name: 'DEW web page: Weekly Benefit Amount: Weekly Benefit Amount'
+    layer: state
+    citation_path: null
+    source_url: https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf
+    name: 'DEW Claimant Handbook (as of 9/3/2025): Claimant Handbook: A Reference for Unemployment Insurance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf
+    name: 'S.C. Code Regs. 47-104: Work Search'
+    layer: state
+    citation_path: null
+    source_url: https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-27-140
+    name: us-sc/statute/41-27-140
+    layer: state
+    citation_path: us-sc/statute/41-27-140
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-sc/statute/41-27-150
+    name: us-sc/statute/41-27-150
+    layer: state
+    citation_path: us-sc/statute/41-27-150
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-sc/statute/41-27-160
+    name: us-sc/statute/41-27-160
+    layer: state
+    citation_path: us-sc/statute/41-27-160
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-27-310
+    name: us-sc/statute/41-27-310
+    layer: state
+    citation_path: us-sc/statute/41-27-310
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-sc/statute/41-27-360
+    name: us-sc/statute/41-27-360
+    layer: state
+    citation_path: us-sc/statute/41-27-360
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-27-370
+    name: us-sc/statute/41-27-370
+    layer: state
+    citation_path: us-sc/statute/41-27-370
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-sc/statute/41-27-380
+    name: us-sc/statute/41-27-380
+    layer: state
+    citation_path: us-sc/statute/41-27-380
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-27-390
+    name: us-sc/statute/41-27-390
+    layer: state
+    citation_path: us-sc/statute/41-27-390
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-35-110
+    name: us-sc/statute/41-35-110
+    layer: state
+    citation_path: us-sc/statute/41-35-110
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-35-40
+    name: us-sc/statute/41-35-40
+    layer: state
+    citation_path: us-sc/statute/41-35-40
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-35-50
+    name: us-sc/statute/41-35-50
+    layer: state
+    citation_path: us-sc/statute/41-35-50
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sc/statute/41-35-60
+    name: us-sc/statute/41-35-60
+    layer: state
+    citation_path: us-sc/statute/41-35-60
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount
+    name: 'DEW web page: Weekly Benefit Amount: Weekly Benefit Amount'
+    layer: state
+    citation_path: null
+    source_url: https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf
+    name: 'DEW Claimant Handbook (as of 9/3/2025): Claimant Handbook: A Reference for Unemployment Insurance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf
+    name: 'S.C. Code Regs. 47-104: Work Search'
+    layer: state
+    citation_path: null
+    source_url: https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-140
+    name: us-sc/statute/41-27-140
+    layer: state
+    citation_path: us-sc/statute/41-27-140
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-150
+    name: us-sc/statute/41-27-150
+    layer: state
+    citation_path: us-sc/statute/41-27-150
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-160
+    name: us-sc/statute/41-27-160
+    layer: state
+    citation_path: us-sc/statute/41-27-160
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-310
+    name: us-sc/statute/41-27-310
+    layer: state
+    citation_path: us-sc/statute/41-27-310
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-360
+    name: us-sc/statute/41-27-360
+    layer: state
+    citation_path: us-sc/statute/41-27-360
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-370
+    name: us-sc/statute/41-27-370
+    layer: state
+    citation_path: us-sc/statute/41-27-370
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-380
+    name: us-sc/statute/41-27-380
+    layer: state
+    citation_path: us-sc/statute/41-27-380
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-27-390
+    name: us-sc/statute/41-27-390
+    layer: state
+    citation_path: us-sc/statute/41-27-390
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-35-110
+    name: us-sc/statute/41-35-110
+    layer: state
+    citation_path: us-sc/statute/41-35-110
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-35-40
+    name: us-sc/statute/41-35-40
+    layer: state
+    citation_path: us-sc/statute/41-35-40
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-35-50
+    name: us-sc/statute/41-35-50
+    layer: state
+    citation_path: us-sc/statute/41-35-50
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sc/statute/41-35-60
+    name: us-sc/statute/41-35-60
+    layer: state
+    citation_path: us-sc/statute/41-35-60
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-sd
-  screener: []
-  full: []
+  screener:
+  - key: https://dlr.sd.gov/ra/individuals/wage_requirements.aspx
+    name: 'DLR web page: Wage Requirements - Benefit Amount: Wage Requirements - Benefit Amount'
+    layer: state
+    citation_path: null
+    source_url: https://dlr.sd.gov/ra/individuals/wage_requirements.aspx
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf
+    name: 'DLR Claimant Handbook: Claimant Handbook: A Guide to Reemployment Assistance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://sdlegislature.gov/api/Rules/Rule/47:06:04.html?all=true
+    name: 'ARSD 47:06:04: Employee''s Unemployment Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://sdlegislature.gov/api/Rules/Rule/47:06:04.html?all=true
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://sdlegislature.gov/api/Statutes/61-6-1.html?all=true
+    name: 'SDCL 61-6-1: Requirements for eligibility for benefits during week'
+    layer: state
+    citation_path: null
+    source_url: https://sdlegislature.gov/api/Statutes/61-6-1.html?all=true
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sd/statute/61-1-1
+    name: us-sd/statute/61-1-1
+    layer: state
+    citation_path: us-sd/statute/61-1-1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-sd/statute/61-6-2
+    name: us-sd/statute/61-6-2
+    layer: state
+    citation_path: us-sd/statute/61-6-2
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sd/statute/61-6-35
+    name: us-sd/statute/61-6-35
+    layer: state
+    citation_path: us-sd/statute/61-6-35
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sd/statute/61-6-4
+    name: us-sd/statute/61-6-4
+    layer: state
+    citation_path: us-sd/statute/61-6-4
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-sd/statute/61-6-5
+    name: us-sd/statute/61-6-5
+    layer: state
+    citation_path: us-sd/statute/61-6-5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
+  - key: us-sd/statute/61-6-6
+    name: us-sd/statute/61-6-6
+    layer: state
+    citation_path: us-sd/statute/61-6-6
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-sd/statute/61-6-8
+    name: us-sd/statute/61-6-8
+    layer: state
+    citation_path: us-sd/statute/61-6-8
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://dlr.sd.gov/ra/individuals/wage_requirements.aspx
+    name: 'DLR web page: Wage Requirements - Benefit Amount: Wage Requirements - Benefit Amount'
+    layer: state
+    citation_path: null
+    source_url: https://dlr.sd.gov/ra/individuals/wage_requirements.aspx
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf
+    name: 'DLR Claimant Handbook: Claimant Handbook: A Guide to Reemployment Assistance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://sdlegislature.gov/api/Rules/Rule/47:06:04.html?all=true
+    name: 'ARSD 47:06:04: Employee''s Unemployment Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://sdlegislature.gov/api/Rules/Rule/47:06:04.html?all=true
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://sdlegislature.gov/api/Statutes/61-6-1.html?all=true
+    name: 'SDCL 61-6-1: Requirements for eligibility for benefits during week'
+    layer: state
+    citation_path: null
+    source_url: https://sdlegislature.gov/api/Statutes/61-6-1.html?all=true
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-1-1
+    name: us-sd/statute/61-1-1
+    layer: state
+    citation_path: us-sd/statute/61-1-1
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-6-2
+    name: us-sd/statute/61-6-2
+    layer: state
+    citation_path: us-sd/statute/61-6-2
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-6-35
+    name: us-sd/statute/61-6-35
+    layer: state
+    citation_path: us-sd/statute/61-6-35
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-6-4
+    name: us-sd/statute/61-6-4
+    layer: state
+    citation_path: us-sd/statute/61-6-4
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-6-5
+    name: us-sd/statute/61-6-5
+    layer: state
+    citation_path: us-sd/statute/61-6-5
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-6-6
+    name: us-sd/statute/61-6-6
+    layer: state
+    citation_path: us-sd/statute/61-6-6
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-sd/statute/61-6-8
+    name: us-sd/statute/61-6-8
+    layer: state
+    citation_path: us-sd/statute/61-6-8
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-tn
   screener: []
   full: []
 - jurisdiction: us-tx
-  screener: []
-  full: []
+  screener:
+  - key: https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts
+    name: 'TWC web page: Eligibility & Benefit Amounts: Eligibility & Benefit Amounts'
+    layer: state
+    citation_path: null
+    source_url: https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf
+    name: '40 Tex. Admin. Code ch. 815, subch. B (§§ 815.20-815.28): Unemployment Insurance: Benefits, Claims, and
+      Appeals (incl. § 815.28 Work Search Requirements)'
+    layer: state
+    citation_path: null
+    source_url: https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf
+    name: 'TWC Unemployment Benefits Handbook, BI-99E/S (09/24): Unemployment Benefits Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/201.011
+    name: us-tx/statute/la/201.011
+    layer: state
+    citation_path: us-tx/statute/la/201.011
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-tx/statute/la/201.081
+    name: us-tx/statute/la/201.081
+    layer: state
+    citation_path: us-tx/statute/la/201.081
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/statute/la/201.082
+    name: us-tx/statute/la/201.082
+    layer: state
+    citation_path: us-tx/statute/la/201.082
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/statute/la/201.091
+    name: us-tx/statute/la/201.091
+    layer: state
+    citation_path: us-tx/statute/la/201.091
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-tx/statute/la/207.002
+    name: us-tx/statute/la/207.002
+    layer: state
+    citation_path: us-tx/statute/la/207.002
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/207.003
+    name: us-tx/statute/la/207.003
+    layer: state
+    citation_path: us-tx/statute/la/207.003
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/207.004
+    name: us-tx/statute/la/207.004
+    layer: state
+    citation_path: us-tx/statute/la/207.004
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/207.005
+    name: us-tx/statute/la/207.005
+    layer: state
+    citation_path: us-tx/statute/la/207.005
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/207.006
+    name: us-tx/statute/la/207.006
+    layer: state
+    citation_path: us-tx/statute/la/207.006
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/207.021
+    name: us-tx/statute/la/207.021
+    layer: state
+    citation_path: us-tx/statute/la/207.021
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-tx/statute/la/207.049
+    name: us-tx/statute/la/207.049
+    layer: state
+    citation_path: us-tx/statute/la/207.049
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-tx/statute/la/207.050
+    name: us-tx/statute/la/207.050
+    layer: state
+    citation_path: us-tx/statute/la/207.050
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  full:
+  - key: https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts
+    name: 'TWC web page: Eligibility & Benefit Amounts: Eligibility & Benefit Amounts'
+    layer: state
+    citation_path: null
+    source_url: https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf
+    name: '40 Tex. Admin. Code ch. 815, subch. B (§§ 815.20-815.28): Unemployment Insurance: Benefits, Claims, and
+      Appeals (incl. § 815.28 Work Search Requirements)'
+    layer: state
+    citation_path: null
+    source_url: https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf
+    name: 'TWC Unemployment Benefits Handbook, BI-99E/S (09/24): Unemployment Benefits Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/201.011
+    name: us-tx/statute/la/201.011
+    layer: state
+    citation_path: us-tx/statute/la/201.011
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/201.081
+    name: us-tx/statute/la/201.081
+    layer: state
+    citation_path: us-tx/statute/la/201.081
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/201.082
+    name: us-tx/statute/la/201.082
+    layer: state
+    citation_path: us-tx/statute/la/201.082
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/201.091
+    name: us-tx/statute/la/201.091
+    layer: state
+    citation_path: us-tx/statute/la/201.091
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.002
+    name: us-tx/statute/la/207.002
+    layer: state
+    citation_path: us-tx/statute/la/207.002
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.003
+    name: us-tx/statute/la/207.003
+    layer: state
+    citation_path: us-tx/statute/la/207.003
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.004
+    name: us-tx/statute/la/207.004
+    layer: state
+    citation_path: us-tx/statute/la/207.004
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.005
+    name: us-tx/statute/la/207.005
+    layer: state
+    citation_path: us-tx/statute/la/207.005
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.006
+    name: us-tx/statute/la/207.006
+    layer: state
+    citation_path: us-tx/statute/la/207.006
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.021
+    name: us-tx/statute/la/207.021
+    layer: state
+    citation_path: us-tx/statute/la/207.021
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.049
+    name: us-tx/statute/la/207.049
+    layer: state
+    citation_path: us-tx/statute/la/207.049
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-tx/statute/la/207.050
+    name: us-tx/statute/la/207.050
+    layer: state
+    citation_path: us-tx/statute/la/207.050
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-ut
   screener:
+  - key: https://adminrules.utah.gov/public/search/R994-401/Current%20Rules
+    name: 'Utah Admin. Code R994-401: Payment of Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://adminrules.utah.gov/public/search/R994-401/Current%20Rules
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://jobs.utah.gov/ui/FAQ.html
+    name: 'DWS web page: Unemployment Insurance Frequently Asked Questions'
+    layer: state
+    citation_path: null
+    source_url: https://jobs.utah.gov/ui/FAQ.html
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S405.html
+    name: 'Utah Code § 35A-4-405: Ineligibility for benefits'
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S405.html
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us-ut/guidance/dws/ui/benefit-calculation
     name: Unemployment Insurance Benefit Calculation (Utah DWS)
     layer: state
@@ -1334,6 +5409,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 3
     scope: in
     part: Benefit amount
@@ -1348,6 +5424,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 2
     scope: in
     part: Benefit amount
@@ -1376,6 +5453,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -1390,6 +5468,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -1404,6 +5483,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Benefit amount
@@ -1418,6 +5498,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Household and eligibility
@@ -1426,6 +5507,33 @@ layers:
       references: 1
       part: Household and eligibility
   full:
+  - key: https://adminrules.utah.gov/public/search/R994-401/Current%20Rules
+    name: 'Utah Admin. Code R994-401: Payment of Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://adminrules.utah.gov/public/search/R994-401/Current%20Rules
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://jobs.utah.gov/ui/FAQ.html
+    name: 'DWS web page: Unemployment Insurance Frequently Asked Questions'
+    layer: state
+    citation_path: null
+    source_url: https://jobs.utah.gov/ui/FAQ.html
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S405.html
+    name: 'Utah Code § 35A-4-405: Ineligibility for benefits'
+    layer: state
+    citation_path: null
+    source_url: https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S405.html
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
   - key: us-ut/guidance/dws/ui/benefit-calculation
     name: Unemployment Insurance Benefit Calculation (Utah DWS)
     layer: state
@@ -1519,14 +5627,345 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-wa
-  screener: []
-  full: []
+  screener:
+  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=192-170
+    name: 'WAC 192-170: Availability for work'
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=192-170
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=192-180
+    name: 'WAC 192-180: Job search requirements'
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=192-180
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=192-190
+    name: 'WAC 192-190: Deductions from unemployment benefits'
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=192-190
+    sources:
+    - plan
+    scope: in
+    part: Deductions
+  - key: https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline
+    name: 'ESD Unemployed Worker''s Handbook, October 2025: Unemployed Worker''s Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://esd.wa.gov/node/1254
+    name: 'ESD news release, June 10, 2026: New average annual wage estimates adjust unemployment insurance and
+      paid leave benefits'
+    layer: state
+    citation_path: null
+    source_url: https://esd.wa.gov/node/1254
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wa/statute/50/50.04
+    name: us-wa/statute/50/50.04
+    layer: state
+    citation_path: us-wa/statute/50/50.04
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-wa/statute/50/50.04/50.04.020
+      references: 1
+      part: Other
+    - path: us-wa/statute/50/50.04/50.04.030
+      references: 1
+      part: Benefit amount
+    - path: us-wa/statute/50/50.04/50.04.323
+      references: 1
+      part: Benefit amount
+    - path: us-wa/statute/50/50.04/50.04.355
+      references: 1
+      part: Household and eligibility
+  - key: us-wa/statute/50/50.20
+    name: us-wa/statute/50/50.20
+    layer: state
+    citation_path: us-wa/statute/50/50.20
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-wa/statute/50/50.20/50.20.010
+      references: 1
+      part: Benefit amount
+    - path: us-wa/statute/50/50.20/50.20.120
+      references: 1
+      part: Benefit amount
+    - path: us-wa/statute/50/50.20/50.20.130
+      references: 1
+      part: Deductions
+  full:
+  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=192-170
+    name: 'WAC 192-170: Availability for work'
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=192-170
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=192-180
+    name: 'WAC 192-180: Job search requirements'
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=192-180
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://app.leg.wa.gov/WAC/default.aspx?cite=192-190
+    name: 'WAC 192-190: Deductions from unemployment benefits'
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/WAC/default.aspx?cite=192-190
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline
+    name: 'ESD Unemployed Worker''s Handbook, October 2025: Unemployed Worker''s Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://esd.wa.gov/node/1254
+    name: 'ESD news release, June 10, 2026: New average annual wage estimates adjust unemployment insurance and
+      paid leave benefits'
+    layer: state
+    citation_path: null
+    source_url: https://esd.wa.gov/node/1254
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/statute/50/50.04
+    name: us-wa/statute/50/50.04
+    layer: state
+    citation_path: us-wa/statute/50/50.04
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/statute/50/50.20
+    name: us-wa/statute/50/50.20
+    layer: state
+    citation_path: us-wa/statute/50/50.20
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-wv
   screener: []
   full: []
 - jurisdiction: us-wi
-  screener: []
-  full: []
+  screener:
+  - key: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127
+    name: 'Wis. Admin. Code ch. DWD 127: Work Search and Reemployment Services'
+    layer: state
+    citation_path: null
+    source_url: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128
+    name: 'Wis. Admin. Code ch. DWD 128: Ability to Work and Availability for Work'
+    layer: state
+    citation_path: null
+    source_url: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129
+    name: 'Wis. Admin. Code ch. DWD 129: Benefit Claiming Procedures'
+    layer: state
+    citation_path: null
+    source_url: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://dwd.wisconsin.gov/uiben/handbook/
+    name: 'DWD publication UCB-10-P: Unemployment Insurance Claimant Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://dwd.wisconsin.gov/uiben/handbook/
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: https://dwd.wisconsin.gov/uiben/qualifying-wages.htm
+    name: 'DWD web page: Qualifying Wages - Wisconsin Unemployment Insurance'
+    layer: state
+    citation_path: null
+    source_url: https://dwd.wisconsin.gov/uiben/qualifying-wages.htm
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf
+    name: 'DWD publication UCB-19687-P (R. 03/2026): How to Apply for Unemployment Insurance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wi/statute/108.02
+    name: us-wi/statute/108.02
+    layer: state
+    citation_path: us-wi/statute/108.02
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-wi/statute/108.04
+    name: us-wi/statute/108.04
+    layer: state
+    citation_path: us-wi/statute/108.04
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wi/statute/108.05
+    name: us-wi/statute/108.05
+    layer: state
+    citation_path: us-wi/statute/108.05
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wi/statute/108.06
+    name: us-wi/statute/108.06
+    layer: state
+    citation_path: us-wi/statute/108.06
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  full:
+  - key: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127
+    name: 'Wis. Admin. Code ch. DWD 127: Work Search and Reemployment Services'
+    layer: state
+    citation_path: null
+    source_url: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128
+    name: 'Wis. Admin. Code ch. DWD 128: Ability to Work and Availability for Work'
+    layer: state
+    citation_path: null
+    source_url: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129
+    name: 'Wis. Admin. Code ch. DWD 129: Benefit Claiming Procedures'
+    layer: state
+    citation_path: null
+    source_url: https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://dwd.wisconsin.gov/uiben/handbook/
+    name: 'DWD publication UCB-10-P: Unemployment Insurance Claimant Handbook'
+    layer: state
+    citation_path: null
+    source_url: https://dwd.wisconsin.gov/uiben/handbook/
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: https://dwd.wisconsin.gov/uiben/qualifying-wages.htm
+    name: 'DWD web page: Qualifying Wages - Wisconsin Unemployment Insurance'
+    layer: state
+    citation_path: null
+    source_url: https://dwd.wisconsin.gov/uiben/qualifying-wages.htm
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf
+    name: 'DWD publication UCB-19687-P (R. 03/2026): How to Apply for Unemployment Insurance Benefits'
+    layer: state
+    citation_path: null
+    source_url: https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wi/statute/108.02
+    name: us-wi/statute/108.02
+    layer: state
+    citation_path: us-wi/statute/108.02
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-wi/statute/108.04
+    name: us-wi/statute/108.04
+    layer: state
+    citation_path: us-wi/statute/108.04
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wi/statute/108.05
+    name: us-wi/statute/108.05
+    layer: state
+    citation_path: us-wi/statute/108.05
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wi/statute/108.06
+    name: us-wi/statute/108.06
+    layer: state
+    citation_path: us-wi/statute/108.06
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
 - jurisdiction: us-wy
   screener: []
   full: []

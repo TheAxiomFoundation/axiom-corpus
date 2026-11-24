@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import json
 
 import yaml
 
@@ -650,3 +651,58 @@ def test_build_program_follows_a_moved_path(tmp_path, monkeypatch):
     out = bundle.build_program(cfg, "snap", references, None, {}, bundle.index_manifests({}, {}))
     federal = [d["key"] for d in out["layers"][0]["screener"]]
     assert federal == ["us/statute/7/2014-moved"]
+
+
+def _plan_file(tmp_path, name, source, programs, path):
+    (tmp_path / "sources").mkdir(exist_ok=True)
+    document = {
+        "id": path,
+        "jurisdiction": "US",
+        "programs": programs,
+        "title": path,
+        "urls": [],
+        "citation_paths": [path],
+    }
+    payload = {"source": source, "documents": [document]}
+    (tmp_path / "sources" / name).write_text(json.dumps(payload), encoding="utf-8")
+    return f"sources/{name}"
+
+
+def test_load_plans_reads_one_file_or_several_and_keeps_each_documents_file(tmp_path, monkeypatch):
+    config(tmp_path, monkeypatch)
+    roadmap = _plan_file(tmp_path, "roadmap.json", "roadmap@1", ["snap"], "us/statute/7/2014")
+    audit = _plan_file(tmp_path, "audit.json", "audit@2", ["ui"], "us/statute/42/503")
+    assert bundle.load_plans(None) is None
+    one = bundle.load_plans(roadmap)
+    assert one["source"] == "roadmap@1" and [d["plan_file"] for d in one["documents"]] == [roadmap]
+    both = bundle.load_plans([roadmap, audit])
+    assert both["files"] == {roadmap: "roadmap@1", audit: "audit@2"}
+    assert [(d["id"], d["plan_file"]) for d in both["documents"]] == [
+        ("us/statute/7/2014", roadmap),
+        ("us/statute/42/503", audit),
+    ]
+
+
+def test_a_bundle_names_the_plan_file_that_holds_its_documents(tmp_path, monkeypatch):
+    # With two plan files, a program's membership names the file that lists its
+    # documents, so a second file changes no other program's bundle.
+    cfg = config(tmp_path, monkeypatch)
+    roadmap = _plan_file(tmp_path, "roadmap.json", "roadmap@1", ["snap"], "us/statute/7/2014")
+    audit = _plan_file(tmp_path, "audit.json", "audit@2", ["other"], "us/statute/42/503")
+    cfg["plan"] = [roadmap, audit]
+    out = bundle.build_program(
+        cfg,
+        "snap",
+        {"references": []},
+        bundle.load_plans(cfg["plan"]),
+        {},
+        bundle.index_manifests({}, {}),
+    )
+    membership = out["tiers"][0]["membership"]
+    assert (membership["plan"], membership["plan_source"], membership["plan_documents"]) == (
+        roadmap,
+        "roadmap@1",
+        1,
+    )
+    keys = {d["key"] for layer in out["layers"] for d in layer["screener"]}
+    assert "us/statute/7/2014" in keys and "us/statute/42/503" not in keys

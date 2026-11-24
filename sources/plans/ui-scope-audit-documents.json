@@ -1,0 +1,4030 @@
+{
+ "source": "TheAxiomFoundation/axiom-roadmap-dashboard@a9a977bc:tools/encoding-forecast/ui-scope-audit.json",
+ "as_of": "2026-11-24",
+ "status": "AUDIT, NOT REVIEWED BY A PERSON",
+ "programs": [
+  "ui"
+ ],
+ "note": "The UI scope audit's documents (amount of and basic eligibility for regular state unemployment benefits) for the jurisdictions an ingest run has taken. A citation path is kept only where a provisions file held it with text when scripts/build_ui_plan_documents.py ran; every other document is named by its official address.",
+ "jurisdictions": [
+  "us",
+  "us-ak",
+  "us-al",
+  "us-de",
+  "us-fl",
+  "us-hi",
+  "us-ia",
+  "us-id",
+  "us-il",
+  "us-md",
+  "us-me",
+  "us-mi",
+  "us-mn",
+  "us-ne",
+  "us-nj",
+  "us-ny",
+  "us-ok",
+  "us-or",
+  "us-pa",
+  "us-ri",
+  "us-sc",
+  "us-sd",
+  "us-tx",
+  "us-ut",
+  "us-wa",
+  "us-wi"
+ ],
+ "documents": [
+  {
+   "id": "us 26 U.S.C. § 3304",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 U.S.C. § 3304: Approval of State laws",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t26/s3304/",
+   "citation_paths": [
+    "us/statute/26/3304"
+   ]
+  },
+  {
+   "id": "us 42 U.S.C. § 503",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "42 U.S.C. § 503: State laws",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t42/s503/",
+   "citation_paths": [
+    "us/statute/42/503"
+   ]
+  },
+  {
+   "id": "us 26 U.S.C. § 85",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 U.S.C. § 85: Unemployment compensation",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t26/s85/",
+   "citation_paths": [
+    "us/statute/26/85"
+   ]
+  },
+  {
+   "id": "us 26 U.S.C. § 3402(p)(2)",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 U.S.C. § 3402(p)(2): Income tax collected at source: voluntary withholding on certain Federal payments (unemployment compensation)",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t26/s3402/",
+   "citation_paths": [
+    "us/statute/26/3402"
+   ]
+  },
+  {
+   "id": "us 26 U.S.C. § 3306",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 U.S.C. § 3306: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t26/s3306/",
+   "citation_paths": [
+    "us/statute/26/3306"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8501]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8501"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8502]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8502"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8503]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8503"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8504]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8504"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8505]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8505"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8506]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8506"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8507]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8507"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8508]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8508"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8501-8509 (ch. 85, subch. I) [8509]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8501-8509 (ch. 85, subch. I): Unemployment compensation for Federal civilian employees (UCFE): § 8501 Definitions; § 8502 Compensation under State agreement; § 8504 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8502/",
+   "citation_paths": [
+    "us/statute/5/8509"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8521-8525 (ch. 85, subch. II) [8521]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8521-8525 (ch. 85, subch. II): Unemployment compensation for ex-servicemembers (UCX): § 8521 Definitions; application; § 8522 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8521/",
+   "citation_paths": [
+    "us/statute/5/8521"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8521-8525 (ch. 85, subch. II) [8522]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8521-8525 (ch. 85, subch. II): Unemployment compensation for ex-servicemembers (UCX): § 8521 Definitions; application; § 8522 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8521/",
+   "citation_paths": [
+    "us/statute/5/8522"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8521-8525 (ch. 85, subch. II) [8523]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8521-8525 (ch. 85, subch. II): Unemployment compensation for ex-servicemembers (UCX): § 8521 Definitions; application; § 8522 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8521/",
+   "citation_paths": [
+    "us/statute/5/8523"
+   ]
+  },
+  {
+   "id": "us 5 U.S.C. §§ 8521-8525 (ch. 85, subch. II) [8525]",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "5 U.S.C. §§ 8521-8525 (ch. 85, subch. II): Unemployment compensation for ex-servicemembers (UCX): § 8521 Definitions; application; § 8522 Assignment of Federal service and wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://uscode.house.gov/us/usc/t5/s8521/",
+   "citation_paths": [
+    "us/statute/5/8525"
+   ]
+  },
+  {
+   "id": "us 20 C.F.R. part 609",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "20 C.F.R. part 609: Unemployment Compensation for Federal Civilian Employees",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://www.ecfr.gov/current/title-20/chapter-V/part-609",
+   "citation_paths": [
+    "us/regulation/20/609"
+   ]
+  },
+  {
+   "id": "us 20 C.F.R. part 614",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "20 C.F.R. part 614: Unemployment Compensation for Ex-Servicemembers",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://www.ecfr.gov/current/title-20/chapter-V/part-614",
+   "citation_paths": [
+    "us/regulation/20/614"
+   ]
+  },
+  {
+   "id": "us 20 C.F.R. part 604",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "20 C.F.R. part 604: Regulations for Eligibility for Unemployment Compensation",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://www.ecfr.gov/current/title-20/chapter-V/part-604",
+   "citation_paths": [
+    "us/regulation/20/604"
+   ]
+  },
+  {
+   "id": "us 20 C.F.R. part 616",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "20 C.F.R. part 616: Interstate Arrangement for Combining Employment and Wages",
+   "document_class": "regulation",
+   "urls": [],
+   "official_url": "https://www.ecfr.gov/current/title-20/chapter-V/part-616",
+   "citation_paths": [
+    "us/regulation/20/616"
+   ]
+  },
+  {
+   "id": "us US DOL \"Significant Provisions of State Unemployment Insurance Laws\", effective July 2026",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "US DOL \"Significant Provisions of State Unemployment Insurance Laws\", effective July 2026: Significant Provisions of State Unemployment Insurance Laws",
+   "document_class": "guidance",
+   "urls": [
+    "https://oui.doleta.gov/unemploy/content/sigpros/2020-2029/July2026.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us US DOL \"Comparison of State Unemployment Insurance Laws\"",
+   "jurisdiction": "US",
+   "programs": [
+    "ui"
+   ],
+   "title": "US DOL \"Comparison of State Unemployment Insurance Laws\": Comparison of State Unemployment Insurance Laws (monetary entitlement chapter)",
+   "document_class": "guidance",
+   "urls": [
+    "https://oui.doleta.gov/unemploy/statelaws.asp"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ak AS 23.20.350",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.350: Amount of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.350&secEnd=23.20.350",
+   "citation_paths": [
+    "us-ak/statute/23.20.350"
+   ]
+  },
+  {
+   "id": "us-ak AS 23.20.360",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.360: Earnings deducted from weekly benefit amount",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.360&secEnd=23.20.360",
+   "citation_paths": [
+    "us-ak/statute/23.20.360"
+   ]
+  },
+  {
+   "id": "us-ak AS 23.20.362",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.362: Disqualifying or deductible income",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.362&secEnd=23.20.362",
+   "citation_paths": [
+    "us-ak/statute/23.20.362"
+   ]
+  },
+  {
+   "id": "us-ak AS 23.20.375",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.375: Filing requirements",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.375&secEnd=23.20.375",
+   "citation_paths": [
+    "us-ak/statute/23.20.375"
+   ]
+  },
+  {
+   "id": "us-ak AS 23.20.378",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.378: Able to work and available for suitable work",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.378&secEnd=23.20.378",
+   "citation_paths": [
+    "us-ak/statute/23.20.378"
+   ]
+  },
+  {
+   "id": "us-ak AS 23.20.505",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.505: Unemployed defined",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.505&secEnd=23.20.505",
+   "citation_paths": [
+    "us-ak/statute/23.20.505"
+   ]
+  },
+  {
+   "id": "us-ak AS 23.20.520",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "AS 23.20.520: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.akleg.gov/basis/statutes.asp?media=print&secStart=23.20.520&secEnd=23.20.520",
+   "citation_paths": [
+    "us-ak/statute/23.20.520"
+   ]
+  },
+  {
+   "id": "us-ak 8 AAC 85 (incl. 8 AAC 85.350-85.357, 85.410)",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "8 AAC 85 (incl. 8 AAC 85.350-85.357, 85.410): Employment Security - regulations (able and available, registration, work search, suitable work)",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.akleg.gov/basis/aac.asp?media=print&secStart=8.85.350&secEnd=8.85.350"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ak Alaska UI Claimant Handbook",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "Alaska UI Claimant Handbook: Unemployment Insurance Claimant Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.alaska.gov/unemployment/ui-handbook.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ak Alaska DOLWD Unemployment Insurance home page alert",
+   "jurisdiction": "US-AK",
+   "programs": [
+    "ui"
+   ],
+   "title": "Alaska DOLWD Unemployment Insurance home page alert: Unemployment Insurance Weekly Benefits Increasing January 3, 2027",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.alaska.gov/unemployment/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-72",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-72: Individual weekly benefit amount",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-72",
+   "citation_paths": [
+    "us-al/statute/25-4-72"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-73",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-73: Individual weekly benefit payment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-73",
+   "citation_paths": [
+    "us-al/statute/25-4-73"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-74",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-74: Maximum individual benefit entitlement during benefit year",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-74",
+   "citation_paths": [
+    "us-al/statute/25-4-74"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-77",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-77: Benefits eligibility conditions; \"suitable employment\" and jury duty defined",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-77",
+   "citation_paths": [
+    "us-al/statute/25-4-77"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-78",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-78: Disqualifications for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-78",
+   "citation_paths": [
+    "us-al/statute/25-4-78"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-71",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-71: When individuals deemed unemployed",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-71",
+   "citation_paths": [
+    "us-al/statute/25-4-71"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-1",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-1: Base period",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-1",
+   "citation_paths": [
+    "us-al/statute/25-4-1"
+   ]
+  },
+  {
+   "id": "us-al Ala. Code § 25-4-16",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Code § 25-4-16: Wages (definition)",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=25-4-16",
+   "citation_paths": [
+    "us-al/statute/25-4-16"
+   ]
+  },
+  {
+   "id": "us-al Ala. Admin. Code ch. 480-4-3",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Ala. Admin. Code ch. 480-4-3: Benefits (Alabama Department of Workforce Administrative Code)",
+   "document_class": "regulation",
+   "urls": [
+    "https://admincode.legislature.state.al.us/api/chapter/480-4-3"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-al ADOL/ADOW handbook uc_brr.pdf",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "ADOL/ADOW handbook uc_brr.pdf: Alabama Unemployment Compensation Benefit Rights and Responsibilities: A Handbook for Alabama Unemployment Compensation Claimants",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.alabama.gov/docs/guides/uc_brr.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-al ADOL \"Claims and Benefits FAQ\"",
+   "jurisdiction": "US-AL",
+   "programs": [
+    "ui"
+   ],
+   "title": "ADOL \"Claims and Benefits FAQ\": Claims and Benefits FAQ",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.alabama.gov/uc/claims.aspx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-de 19 Del. C. § 3313",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "ui"
+   ],
+   "title": "19 Del. C. § 3313: Wages defined; weekly benefit amount; total annual amount of benefits; child support obligations",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://delcode.delaware.gov/title19/c033/sc02/index.html",
+   "citation_paths": [
+    "us-de/statute/19/3313"
+   ]
+  },
+  {
+   "id": "us-de 19 Del. C. § 3315",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "ui"
+   ],
+   "title": "19 Del. C. § 3315: Eligibility for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://delcode.delaware.gov/title19/c033/sc02/index.html",
+   "citation_paths": [
+    "us-de/statute/19/3315"
+   ]
+  },
+  {
+   "id": "us-de 19 Del. C. § 3302",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "ui"
+   ],
+   "title": "19 Del. C. § 3302: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://delcode.delaware.gov/title19/c033/sc01/index.html",
+   "citation_paths": [
+    "us-de/statute/19/3302"
+   ]
+  },
+  {
+   "id": "us-de 19 Del. Admin. Code 1202",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "ui"
+   ],
+   "title": "19 Del. Admin. Code 1202: Unemployment Insurance Regulations",
+   "document_class": "regulation",
+   "urls": [
+    "https://archive.regulations.delaware.gov/AdminCode/title19/1000/1200/1202.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-de Delaware DOL, UI Claimant Handbook (Revised April 2020)",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Delaware DOL, UI Claimant Handbook (Revised April 2020): Your Guide to Unemployment Insurance Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://laborfiles.delaware.gov/main/dui/handbook/UI%20Claimant%20Handbook.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-de Delaware DOL, Claimant FAQs",
+   "jurisdiction": "US-DE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Delaware DOL, Claimant FAQs: Claimant FAQs",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.delaware.gov/divisions/unemployment-insurance/claimant-faqs/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-fl Fla. Stat. § 443.111",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Fla. Stat. § 443.111: Payment of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0443/Sections/0443.111.html",
+   "citation_paths": [
+    "us-fl/statute/443.111"
+   ]
+  },
+  {
+   "id": "us-fl Fla. Stat. § 443.091",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Fla. Stat. § 443.091: Benefit eligibility conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0443/Sections/0443.091.html",
+   "citation_paths": [
+    "us-fl/statute/443.091"
+   ]
+  },
+  {
+   "id": "us-fl Fla. Stat. § 443.036",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Fla. Stat. § 443.036: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0443/Sections/0443.036.html",
+   "citation_paths": [
+    "us-fl/statute/443.036"
+   ]
+  },
+  {
+   "id": "us-fl Fla. Stat. § 443.101",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Fla. Stat. § 443.101: Disqualification for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0443/Sections/0443.101.html",
+   "citation_paths": [
+    "us-fl/statute/443.101"
+   ]
+  },
+  {
+   "id": "us-fl Fla. Admin. Code Chapter 73B-11",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "Fla. Admin. Code Chapter 73B-11: Unemployment Claims and Benefits; Florida Unemployment Compensation Claims and Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.flrules.org/gateway/ChapterHome.asp?Chapter=73B-11"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-fl FloridaCommerce, Benefit Rights Information Handbook",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "FloridaCommerce, Benefit Rights Information Handbook: Reemployment Assistance Benefit Rights Information Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-fl FloridaCommerce, Claimant FAQ",
+   "jurisdiction": "US-FL",
+   "programs": [
+    "ui"
+   ],
+   "title": "FloridaCommerce, Claimant FAQ: Claimant FAQ - Reemployment Assistance",
+   "document_class": "guidance",
+   "urls": [
+    "https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-hi Haw. Rev. Stat. § 383-22",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Rev. Stat. § 383-22: Weekly benefit amount; computation, minimum and maximum",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol07_Ch0346-0398/HRS0383/HRS_0383-0022.htm",
+   "citation_paths": [
+    "us-hi/statute/383-22"
+   ]
+  },
+  {
+   "id": "us-hi Haw. Rev. Stat. § 383-23",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Rev. Stat. § 383-23: Weekly benefit for unemployment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol07_Ch0346-0398/HRS0383/HRS_0383-0023.htm",
+   "citation_paths": [
+    "us-hi/statute/383-23"
+   ]
+  },
+  {
+   "id": "us-hi Haw. Rev. Stat. § 383-23.5",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Rev. Stat. § 383-23.5: Retirement payments",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol07_Ch0346-0398/HRS0383/HRS_0383-0023_0005.htm",
+   "citation_paths": [
+    "us-hi/statute/383-23.5"
+   ]
+  },
+  {
+   "id": "us-hi Haw. Rev. Stat. § 383-24",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Rev. Stat. § 383-24: Maximum potential benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol07_Ch0346-0398/HRS0383/HRS_0383-0024.htm",
+   "citation_paths": [
+    "us-hi/statute/383-24"
+   ]
+  },
+  {
+   "id": "us-hi Haw. Rev. Stat. § 383-29",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Rev. Stat. § 383-29: Eligibility for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol07_Ch0346-0398/HRS0383/HRS_0383-0029.htm",
+   "citation_paths": [
+    "us-hi/statute/383-29"
+   ]
+  },
+  {
+   "id": "us-hi Haw. Rev. Stat. § 383-1",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Rev. Stat. § 383-1: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol07_Ch0346-0398/HRS0383/HRS_0383-0001.htm",
+   "citation_paths": [
+    "us-hi/statute/383-1"
+   ]
+  },
+  {
+   "id": "us-hi Haw. Admin. Rules Title 12, Chapter 5",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Haw. Admin. Rules Title 12, Chapter 5: Administrative Rules (Chapter 5, Title 12) relating to Hawaii Employment Security Law",
+   "document_class": "regulation",
+   "urls": [
+    "https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-hi DLIR UI Claimant Handbook (Rev. 07/2025, file Rev1.26)",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "DLIR UI Claimant Handbook (Rev. 07/2025, file Rev1.26): Unemployment Insurance Claimant Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-hi DLIR UI Division web page",
+   "jurisdiction": "US-HI",
+   "programs": [
+    "ui"
+   ],
+   "title": "DLIR UI Division web page: Tax Rate Schedule and Weekly Benefit Amount",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ia Iowa Code § 96.3",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "Iowa Code § 96.3: Payment - determination - duration - child support intercept",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legis.iowa.gov/docs/code/96.3.pdf",
+   "citation_paths": [
+    "us-ia/statute/96.3"
+   ]
+  },
+  {
+   "id": "us-ia Iowa Code § 96.4",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "Iowa Code § 96.4: Required findings",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legis.iowa.gov/docs/code/96.4.pdf",
+   "citation_paths": [
+    "us-ia/statute/96.4"
+   ]
+  },
+  {
+   "id": "us-ia Iowa Code § 96.1A",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "Iowa Code § 96.1A: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legis.iowa.gov/docs/code/96.1A.pdf",
+   "citation_paths": [
+    "us-ia/statute/96.1A"
+   ]
+  },
+  {
+   "id": "us-ia Iowa Code § 96.5",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "Iowa Code § 96.5: Causes for disqualification",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legis.iowa.gov/docs/code/96.5.pdf",
+   "citation_paths": [
+    "us-ia/statute/96.5"
+   ]
+  },
+  {
+   "id": "us-ia Iowa Admin. Code 871—Chapter 24",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "Iowa Admin. Code 871—Chapter 24: Claims and Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.legis.iowa.gov/docs/iac/chapter/871.24.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ia IWD announcement, June 30, 2026",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "IWD announcement, June 30, 2026: Iowans' Unemployment Benefits to Increase Starting July 5",
+   "document_class": "guidance",
+   "urls": [
+    "https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ia IWD Unemployment Insurance Claimant Handbook 2026-2027",
+   "jurisdiction": "US-IA",
+   "programs": [
+    "ui"
+   ],
+   "title": "IWD Unemployment Insurance Claimant Handbook 2026-2027: Unemployment Insurance Claimant Handbook 2026-2027",
+   "document_class": "guidance",
+   "urls": [
+    "https://workforce.iowa.gov/media/2589/download"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-id Idaho Code § 72-1367",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Code § 72-1367: Benefit formula",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13/SECT72-1367/",
+   "citation_paths": [
+    "us-id/statute/72-1367"
+   ]
+  },
+  {
+   "id": "us-id Idaho Code § 72-1306",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Code § 72-1306: Base periods",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13/SECT72-1306/",
+   "citation_paths": [
+    "us-id/statute/72-1306"
+   ]
+  },
+  {
+   "id": "us-id Idaho Code § 72-1312",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Code § 72-1312: Compensable week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13/SECT72-1312/",
+   "citation_paths": [
+    "us-id/statute/72-1312"
+   ]
+  },
+  {
+   "id": "us-id Idaho Code § 72-1327A",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Code § 72-1327A: Valid claim",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13/SECT72-1327A/",
+   "citation_paths": [
+    "us-id/statute/72-1327A"
+   ]
+  },
+  {
+   "id": "us-id Idaho Code § 72-1329",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Code § 72-1329: Waiting week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13/SECT72-1329/",
+   "citation_paths": [
+    "us-id/statute/72-1329"
+   ]
+  },
+  {
+   "id": "us-id Idaho Code § 72-1366",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Code § 72-1366: Personal eligibility conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13/SECT72-1366/",
+   "citation_paths": [
+    "us-id/statute/72-1366"
+   ]
+  },
+  {
+   "id": "us-id IDAPA 09.01.30",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "IDAPA 09.01.30: Unemployment Insurance Benefits Administration Rules",
+   "document_class": "regulation",
+   "urls": [
+    "https://adminrules.idaho.gov/rules/current/09/090130.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-id Idaho Department of Labor Administrative Order No. 683 (Nov. 6, 2025)",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Department of Labor Administrative Order No. 683 (Nov. 6, 2025): Unemployment Insurance Maximum Weekly Benefit Amount 2026",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-id Idaho Department of Labor fact sheet (March 2026)",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Department of Labor fact sheet (March 2026): Unemployment insurance (UI) facts",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-id Idaho Department of Labor web page",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Department of Labor web page: What are Idaho's unemployment monetary requirements? (Monetary eligibility)",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-id Idaho Labor Unemployment Insurance Claimant Guide",
+   "jurisdiction": "US-ID",
+   "programs": [
+    "ui"
+   ],
+   "title": "Idaho Labor Unemployment Insurance Claimant Guide: Unemployment Insurance Claimant Guide: Benefits, Rights, Responsibilities and Filing Instructions",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-il 820 ILCS 405/401",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/401: Weekly Benefit Amount - Dependents' Allowances",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K401.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/401"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/237",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/237: Base period",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K237.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/237"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/500",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/500: Eligibility for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K500.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/500"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/403",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/403: Maximum total amount of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K403.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/403"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/402",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/402: Reduced weekly benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K402.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/402"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/239",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/239: Unemployed individual",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K239.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/239"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/242",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/242: Benefit year",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K242.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/242"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/611",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/611: Retirement pay",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K611.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/611"
+   ]
+  },
+  {
+   "id": "us-il 820 ILCS 405/610",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "820 ILCS 405/610: Vacation pay",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/082004050K610.htm",
+   "citation_paths": [
+    "us-il/statute/820/405/610"
+   ]
+  },
+  {
+   "id": "us-il 56 Ill. Adm. Code Part 2920",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "56 Ill. Adm. Code Part 2920: Disqualifying Income and Reduced Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602920"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-il 56 Ill. Adm. Code Part 2865",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "56 Ill. Adm. Code Part 2865: Claimant's Availability for Work, Ability to Work and Active Search for Work",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.ilga.gov/agencies/JCAR/EntirePart?titlepart=05602865"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-il IDES Table 1 of Weekly Benefit Amounts (form CLI110L)",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "IDES Table 1 of Weekly Benefit Amounts (form CLI110L): Table 1 of Weekly Benefit Amounts (benefit years beginning on or after 1/1/2026)",
+   "document_class": "guidance",
+   "urls": [
+    "https://ides.illinois.gov/content/dam/soi/en/web/ides/ides_forms_and_publications/CLI110L.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-il IDES Unemployment Insurance Benefit Handbook",
+   "jurisdiction": "US-IL",
+   "programs": [
+    "ui"
+   ],
+   "title": "IDES Unemployment Insurance Benefit Handbook: Unemployment Insurance Benefit Handbook (web handbook; Benefit Determination chapter)",
+   "document_class": "guidance",
+   "urls": [
+    "https://ides.illinois.gov/unemployment/resources/unemployment-insurance-benefit-handbook.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-803",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-803: Weekly benefit amount",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-803&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-803"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-802",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-802: Wage qualification requirements",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-802&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-802"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-804",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-804: Dependents' allowance",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-804&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-804"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-808",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-808: Maximum benefits in a benefit year",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-808&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-808"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-903",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-903: Able, available and actively seeking work",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-903&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-903"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-1008",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-1008: Retirement payments",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-1008&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-1008"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-1009",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-1009: Dismissal pay or wages in lieu of notice",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-1009&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-1009"
+   ]
+  },
+  {
+   "id": "us-md Md. Code, Lab. & Empl. § 8-101",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Md. Code, Lab. & Empl. § 8-101: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=8-101&enactments=false",
+   "citation_paths": [
+    "us-md/statute/gle/8-101"
+   ]
+  },
+  {
+   "id": "us-md COMAR 09.32.02",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "COMAR 09.32.02: Claims for Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://regs.maryland.gov/us/md/exec/comar/09.32.02"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-md Maryland Department of Labor claimant pamphlet",
+   "jurisdiction": "US-MD",
+   "programs": [
+    "ui"
+   ],
+   "title": "Maryland Department of Labor claimant pamphlet: Unemployment Insurance in Maryland - A Guide to Reemployment",
+   "document_class": "guidance",
+   "urls": [
+    "https://labor.maryland.gov/employment/clmtguide/uiclmtpamphlet.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-me 26 M.R.S. § 1191",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 M.R.S. § 1191: Payment and amounts",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.maine.gov/statutes/26/title26sec1191.html",
+   "citation_paths": [
+    "us-me/statute/26/1191"
+   ]
+  },
+  {
+   "id": "us-me 26 M.R.S. § 1192-A",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 M.R.S. § 1192-A: Eligibility conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.maine.gov/statutes/26/title26sec1192-A.html",
+   "citation_paths": [
+    "us-me/statute/26/1192-A"
+   ]
+  },
+  {
+   "id": "us-me 26 M.R.S. § 1193",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 M.R.S. § 1193: Disqualification",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.maine.gov/statutes/26/title26sec1193.html",
+   "citation_paths": [
+    "us-me/statute/26/1193"
+   ]
+  },
+  {
+   "id": "us-me 26 M.R.S. § 1043",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "26 M.R.S. § 1043: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://legislature.maine.gov/statutes/26/title26sec1043.html",
+   "citation_paths": [
+    "us-me/statute/26/1043"
+   ]
+  },
+  {
+   "id": "us-me 12-172 C.M.R. ch. 3",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "12-172 C.M.R. ch. 3: Unemployment Benefits, Intrastate",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c003.doc"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-me 12-172 C.M.R. ch. 9",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "12-172 C.M.R. ch. 9: Able and Available Requirements",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/inline-files/172c009-2026-183-NSC.doc"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-me 12-172 C.M.R. ch. 10",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "12-172 C.M.R. ch. 10: Work Search Requirements",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.maine.gov/sos/sites/maine.gov.sos/files/content/assets/172c010.docx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-me Maine BUC Claimants Frequently Asked Questions",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "Maine BUC Claimants Frequently Asked Questions: Claimants Frequently Asked Questions",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.maine.gov/unemployment/claimsfaq/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-me Me. I-5 (rev. 2/28/2018)",
+   "jurisdiction": "US-ME",
+   "programs": [
+    "ui"
+   ],
+   "title": "Me. I-5 (rev. 2/28/2018): Maine's Unemployment Insurance Guide: A Worker's Guide to Maine's Unemployment Program",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.maine.gov/unemployment/docs/2018/UIGuide2018.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-mi MCL 421.27",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "MCL 421.27: Payment of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-421-27",
+   "citation_paths": [
+    "us-mi/statute/421.27"
+   ]
+  },
+  {
+   "id": "us-mi MCL 421.46",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "MCL 421.46: Benefit year; wage requirements",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-421-46",
+   "citation_paths": [
+    "us-mi/statute/421.46"
+   ]
+  },
+  {
+   "id": "us-mi MCL 421.45",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "MCL 421.45: Base period",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-421-45",
+   "citation_paths": [
+    "us-mi/statute/421.45"
+   ]
+  },
+  {
+   "id": "us-mi MCL 421.28",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "MCL 421.28: Eligibility conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-421-28",
+   "citation_paths": [
+    "us-mi/statute/421.28"
+   ]
+  },
+  {
+   "id": "us-mi MCL 421.48",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "MCL 421.48: Unemployed individual; remuneration; leave of absence",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-421-48",
+   "citation_paths": [
+    "us-mi/statute/421.48"
+   ]
+  },
+  {
+   "id": "us-mi MCL 421.50",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "MCL 421.50: Week defined",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-421-50",
+   "citation_paths": [
+    "us-mi/statute/421.50"
+   ]
+  },
+  {
+   "id": "us-mi UIA 1901 (November 2026)",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "UIA 1901 (November 2026): Unemployment Benefits in Michigan: A Handbook for Unemployed Workers",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.michigan.gov/-/media/Project/Websites/leo/Documents/UIA/Claimant-Forms/UIA-1901.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-mi UIA web page",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "UIA web page: Eligibility Requirements",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.michigan.gov/leo/bureaus-agencies/uia/tools/publications/eligibility-requirements"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-mi LEO news release, 2025-12-18",
+   "jurisdiction": "US-MI",
+   "programs": [
+    "ui"
+   ],
+   "title": "LEO news release, 2025-12-18: Unemployment weekly benefit rate increases Jan. 1, 2026",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.michigan.gov/leo/news/2025/12/18/unemployment-weekly-benefit-rate-increases-january-1-2026"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-mn Minn. Stat. § 268.07",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "ui"
+   ],
+   "title": "Minn. Stat. § 268.07: Benefit account",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.revisor.mn.gov/statutes/cite/268.07",
+   "citation_paths": [
+    "us-mn/statute/268.07"
+   ]
+  },
+  {
+   "id": "us-mn Minn. Stat. § 268.085",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "ui"
+   ],
+   "title": "Minn. Stat. § 268.085: Eligibility requirements; payments that affect benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.revisor.mn.gov/statutes/cite/268.085",
+   "citation_paths": [
+    "us-mn/statute/268.085"
+   ]
+  },
+  {
+   "id": "us-mn Minn. Stat. § 268.035",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "ui"
+   ],
+   "title": "Minn. Stat. § 268.035: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.revisor.mn.gov/statutes/cite/268.035",
+   "citation_paths": [
+    "us-mn/statute/268.035"
+   ]
+  },
+  {
+   "id": "us-mn Minn. Stat. § 268.069",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "ui"
+   ],
+   "title": "Minn. Stat. § 268.069: Payment of unemployment benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.revisor.mn.gov/statutes/cite/268.069",
+   "citation_paths": [
+    "us-mn/statute/268.069"
+   ]
+  },
+  {
+   "id": "us-mn DEED-22A / DEED-00590-31 (Rev. 10/2026)",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "ui"
+   ],
+   "title": "DEED-22A / DEED-00590-31 (Rev. 10/2026): Minnesota Unemployment Insurance Information Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.uimn.org/assets/22c_tcm1068-193111.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-mn UI Minnesota web page",
+   "jurisdiction": "US-MN",
+   "programs": [
+    "ui"
+   ],
+   "title": "UI Minnesota web page: Information Handbook: After you apply (How much will I receive?)",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.uimn.org/applicants/howapply/info-handbook/after-you-apply.jsp"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-624",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-624: Benefits; weekly benefit amount; calculation",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-624",
+   "citation_paths": [
+    "us-ne/statute/48/48-624"
+   ]
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-625",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-625: Benefits; weekly payment; how computed; suspension; conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-625",
+   "citation_paths": [
+    "us-ne/statute/48/48-625"
+   ]
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-626",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-626: Benefits; maximum annual amount; determination",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-626",
+   "citation_paths": [
+    "us-ne/statute/48/48-626"
+   ]
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-627",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-627: Benefits; eligibility conditions; availability for work; requirements",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-627",
+   "citation_paths": [
+    "us-ne/statute/48/48-627"
+   ]
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-627.01",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-627.01: Benefits; monetary eligibility; earned wages; adjustment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-627.01",
+   "citation_paths": [
+    "us-ne/statute/48/48-627.01"
+   ]
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-628.02",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-628.02: Benefits; disqualification; receipt of other remuneration",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-628.02",
+   "citation_paths": [
+    "us-ne/statute/48/48-628.02"
+   ]
+  },
+  {
+   "id": "us-ne Neb. Rev. Stat. § 48-602",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "Neb. Rev. Stat. § 48-602: Terms, defined",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=48-602",
+   "citation_paths": [
+    "us-ne/statute/48/48-602"
+   ]
+  },
+  {
+   "id": "us-ne 219 Neb. Admin. Code ch. 4",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "219 Neb. Admin. Code ch. 4: Claimant's Availability / Work Search Requirements",
+   "document_class": "regulation",
+   "urls": [
+    "https://dol.nebraska.gov/StatutesAndRegulations/Regulations"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ne 219 Neb. Admin. Code ch. 7",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "219 Neb. Admin. Code ch. 7: Deduction For Retirement Pension",
+   "document_class": "regulation",
+   "urls": [
+    "https://dol.nebraska.gov/StatutesAndRegulations/Regulations"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ne NDOL Unemployment Insurance Handbook",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "NDOL Unemployment Insurance Handbook: Unemployment Insurance Handbook for Unemployed Workers in Nebraska",
+   "document_class": "guidance",
+   "urls": [
+    "https://dol.nebraska.gov/UIBenefits/UIHandbook"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ne NDOL, How Are Benefit Amounts Calculated?",
+   "jurisdiction": "US-NE",
+   "programs": [
+    "ui"
+   ],
+   "title": "NDOL, How Are Benefit Amounts Calculated?: How Are Benefit Amounts Calculated?",
+   "document_class": "guidance",
+   "urls": [
+    "https://dol.nebraska.gov/UIBenefits/UIBenefitsOverview/BenefitAmounts"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj N.J.S.A. 43:21-3",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.J.S.A. 43:21-3: Benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf",
+   "citation_paths": [
+    "us-nj/statute/43:21-3"
+   ]
+  },
+  {
+   "id": "us-nj N.J.S.A. 43:21-4",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.J.S.A. 43:21-4: Benefit eligibility conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf",
+   "citation_paths": [
+    "us-nj/statute/43:21-4"
+   ]
+  },
+  {
+   "id": "us-nj N.J.S.A. 43:21-19",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.J.S.A. 43:21-19: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf",
+   "citation_paths": [
+    "us-nj/statute/43:21-19"
+   ]
+  },
+  {
+   "id": "us-nj N.J.S.A. 43:21-5a",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.J.S.A. 43:21-5a: Reduction by pension amount; rollover, certain; no reduction",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf",
+   "citation_paths": [
+    "us-nj/statute/43:21-5a"
+   ]
+  },
+  {
+   "id": "us-nj N.J.A.C. 12:17",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.J.A.C. 12:17: Unemployment Benefit Payments",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_regs.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj N.J.A.C. 12:15-1.2, 12:15-1.5, 12:15-1.6",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.J.A.C. 12:15-1.2, 12:15-1.5, 12:15-1.6: Maximum weekly benefit rates; Base week; Alternative earnings test",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/assets/pdfs/UI_regs.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj LWD web page (https://www.nj.gov/labor/myunemployment/before/about/calculator/)",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "LWD web page: How we calculate benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/before/about/calculator/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj LWD web page (https://www.nj.gov/labor/myunemployment/before/about/who/)",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "LWD web page: Who is eligible for benefits?",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/before/about/who/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj LWD web page (https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml)",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "LWD web page: How alternate base years are calculated",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/before/about/who/alternatebaseyears.shtml"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj LWD web page (https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml)",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "LWD web page: How to claim dependency benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/before/about/howtoapply/dependencybenefits.shtml"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj LWD PR-94 (7/2026)",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "LWD PR-94 (7/2026): Unemployment Insurance: Your Rights & Responsibilities",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.nj.gov/labor/myunemployment/assets/pdfs/PR-94.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-nj LWD press release 2025-12-29",
+   "jurisdiction": "US-NJ",
+   "programs": [
+    "ui"
+   ],
+   "title": "LWD press release 2025-12-29: NJDOL announces new benefit rates for 2026",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 590",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 590: Rights to benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.nysenate.gov/legislation/laws/LAB/590",
+   "citation_paths": [
+    "us-ny/statute/LAB/590"
+   ]
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 527",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 527: Valid original claim",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.nysenate.gov/legislation/laws/LAB/527",
+   "citation_paths": [
+    "us-ny/statute/LAB/527"
+   ]
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 520",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 520: Base period",
+   "document_class": "statute",
+   "urls": [
+    "https://www.nysenate.gov/legislation/laws/LAB/520"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 522",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 522: Total unemployment and partial unemployment",
+   "document_class": "statute",
+   "urls": [
+    "https://www.nysenate.gov/legislation/laws/LAB/522"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 523",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 523: Effective week",
+   "document_class": "statute",
+   "urls": [
+    "https://www.nysenate.gov/legislation/laws/LAB/523"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 591",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 591: Eligibility for benefits",
+   "document_class": "statute",
+   "urls": [
+    "https://www.nysenate.gov/legislation/laws/LAB/591"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny N.Y. Labor Law § 600",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "N.Y. Labor Law § 600: Effect of retirement payments",
+   "document_class": "statute",
+   "urls": [
+    "https://www.nysenate.gov/legislation/laws/LAB/600"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny 12 NYCRR Part 473 (and Part 470)",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "12 NYCRR Part 473 (and Part 470): Benefits and Claims (Part 470: General Provisions, definitions)",
+   "document_class": "regulation",
+   "urls": [
+    "https://dol.ny.gov/unemployment-insurance-new-york-codes-rules-and-regulations"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny NYS DOL P832 (2/26)",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "NYS DOL P832 (2/26): How Your Weekly Unemployment Insurance Benefit Payment Is Calculated",
+   "document_class": "guidance",
+   "urls": [
+    "https://dol.ny.gov/system/files/documents/2026/03/p832-how-your-weekly-ui-benefits-are-calculated-2-26.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny NYS DOL web page (https://dol.ny.gov/mbr)",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "NYS DOL web page: Maximum Benefit Rate",
+   "document_class": "guidance",
+   "urls": [
+    "https://dol.ny.gov/mbr"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny NYS DOL web page (https://dol.ny.gov/services/ui/partial)",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "NYS DOL web page: Reporting Earnings While Collecting Unemployment Insurance - Partial Unemployment Insurance Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://dol.ny.gov/services/ui/partial"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny NYS DOL Claimant Handbook (January 2026)",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "NYS DOL Claimant Handbook (January 2026): Unemployment Insurance Claimant Handbook: A Guide to Unemployment Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://dol.ny.gov/unemployment-insurance-claimant-handbook"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ny Governor of New York news release 2025-10-08",
+   "jurisdiction": "US-NY",
+   "programs": [
+    "ui"
+   ],
+   "title": "Governor of New York news release 2025-10-08: Governor Hochul and Labor Leaders Announce Maximum Weekly Benefit Increase for Unemployed Workers",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.governor.ny.gov/news/governor-hochul-and-labor-leaders-announce-maximum-weekly-benefit-increase-unemployed-workers"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-104",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-104: Computation of benefit amount",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77164"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-105",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-105: Wages subtracted from benefit amount",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77165"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-106",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-106: Maximum benefit amount",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77166"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 1-231",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 1-231: Limitations on duration of benefits",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-207",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-207: Wage requirement during base period",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 1-201",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 1-201: General definitions",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 1-202.1",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 1-202.1: Extended base period",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=446283"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 1-217",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 1-217: Unemployed",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 1-223",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 1-223: Taxable wages - conditional factors and percentages",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 3-113",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 3-113: Conditional factors",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-202",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-202: Conditions for eligibility",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77171"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-205.1",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-205.1: Ability to work and acceptance of employment",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=447177"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-206",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-206: Waiting period",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=77176"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok 40 O.S. § 2-411",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 O.S. § 2-411: Retirement payments",
+   "document_class": "statute",
+   "urls": [
+    "https://www.oklegislature.gov/OK_Statutes/CompleteTitles/os40.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok OESC OES-339 (Rev. 06-3-2026)",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "OESC OES-339 (Rev. 06-3-2026): Claimant Handbook: A Guide to Unemployment Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-339.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok OESC \"Important Numbers for 2026\"",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "OESC \"Important Numbers for 2026\": Important Numbers for 2026",
+   "document_class": "guidance",
+   "urls": [
+    "https://oklahoma.gov/content/dam/ok/en/oesc/images/misc/Employer-Improtant-Numbers-2026.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ok OESC web page",
+   "jurisdiction": "US-OK",
+   "programs": [
+    "ui"
+   ],
+   "title": "OESC web page: Contribution Rates (table of 2027 calculations)",
+   "document_class": "guidance",
+   "urls": [
+    "https://oklahoma.gov/oesc/employers/tax/contribution-rates.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-or ORS 657.150",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.150: Amount of benefits; length of employment and wages necessary to qualify for benefits; rules",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.150"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.152",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.152: Adjusting benefits to even dollar amounts",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.152"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.155",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.155: Benefit eligibility conditions; rules",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.155"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.165",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.165: Waiting period eligibility, condition, limitation",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.165"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.173",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.173: Alternate base year; rules",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.173"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.205",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.205: Deduction of retirement pay; exceptions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.205"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.010",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.010: General definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.010"
+   ]
+  },
+  {
+   "id": "us-or ORS 657.100",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "ORS 657.100: When individual deemed \"unemployed\"; exclusions; rules",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors657.html",
+   "citation_paths": [
+    "us-or/statute/657.100"
+   ]
+  },
+  {
+   "id": "us-or OAR chapter 471, division 30",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "OAR chapter 471, division 30: Unemployment Insurance Benefits and Claims",
+   "document_class": "regulation",
+   "urls": [
+    "https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=2337"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-or Oregon Employment Department press release 2026-05-29",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "Oregon Employment Department press release 2026-05-29: Minimum and Maximum Weekly Benefit Amounts to Increase for New Unemployment Insurance and Paid Leave Oregon Claims",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-or Oregon Employment Department UI Glossary",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "Oregon Employment Department UI Glossary: Glossary - Oregon Unemployment Insurance",
+   "document_class": "guidance",
+   "urls": [
+    "https://unemployment.oregon.gov/glossary"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-or Oregon Employment Department UI PUB 350",
+   "jurisdiction": "US-OR",
+   "programs": [
+    "ui"
+   ],
+   "title": "Oregon Employment Department UI PUB 350: Unemployment Insurance Claimant Handbook: A guide to your benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa UC Law § 404 (43 P.S. § 804)",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "UC Law § 404 (43 P.S. § 804): Rate and Amount of Compensation",
+   "document_class": "statute",
+   "urls": [
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa UC Law § 401 (43 P.S. § 801)",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "UC Law § 401 (43 P.S. § 801): Qualifications Required to Secure Compensation",
+   "document_class": "statute",
+   "urls": [
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa UC Law § 4 (43 P.S. § 753)",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "UC Law § 4 (43 P.S. § 753): Definitions",
+   "document_class": "statute",
+   "urls": [
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa 34 Pa. Code ch. 65",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "34 Pa. Code ch. 65: Employee Provisions",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=reduce"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa 34 Pa. Code § 65.111",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "34 Pa. Code § 65.111: Benefit table",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.pacodeandbulletin.gov/Display/pacode?file=%2Fsecure%2Fpacode%2Fdata%2F034%2Fchapter65%2Fs65.111.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa 56 Pa.B. 448 (2026-01-17)",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "56 Pa.B. 448 (2026-01-17): Unemployment Compensation; Table Specified for Determination of Rate and Amount of Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.pacodeandbulletin.gov/Display/pabull?file=/secure/pabulletin/data/vol56/56-3/88.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa DLI UCP-1 (REV 11-26)",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "DLI UCP-1 (REV 11-26): Pennsylvania Unemployment Compensation Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-pa DLI web page",
+   "jurisdiction": "US-PA",
+   "programs": [
+    "ui"
+   ],
+   "title": "DLI web page: Benefit Guide: Eligibility Information",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.pa.gov/agencies/dli/resources/for-claimants-workers/benefits-information/benefit-guide/eligibility-information"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-6",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-6: Weekly benefits for total unemployment - Year established - Dependents' allowance",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-6.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-6"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-7",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-7: Partial unemployment benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-7.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-7"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-9",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-9: Duration of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-9.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-9"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-11",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-11: Earnings requirement for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-11.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-11"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-12",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-12: Availability and registration for work",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-12.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-12"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-14",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-14: Waiting period",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-14.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-14"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-19.1",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-19.1: Disqualifying income",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-19.1.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-19.1"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-59",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-59: Severance or dismissal pay allocation",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-59.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-59"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-21",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-21: Vacation periods",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-21.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-21"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-44-61",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-44-61: Holiday pay",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-44/28-44-61.htm",
+   "citation_paths": [
+    "us-ri/statute/28-44-61"
+   ]
+  },
+  {
+   "id": "us-ri R.I. Gen. Laws § 28-42-3",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "R.I. Gen. Laws § 28-42-3: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "http://webserver.rilegislature.gov/Statutes/TITLE28/28-42/28-42-3.htm",
+   "citation_paths": [
+    "us-ri/statute/28-42-3"
+   ]
+  },
+  {
+   "id": "us-ri 260-RICR-40-05-1",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "260-RICR-40-05-1: Unemployment Insurance and Temporary Disability Insurance Programs",
+   "document_class": "regulation",
+   "urls": [
+    "https://rules.sos.ri.gov/regulations/part/260-40-05-1"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ri RI DLT 2026 UI and TDI Quick Reference",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "RI DLT 2026 UI and TDI Quick Reference: 2026 UI and TDI Quick Reference (Effective July 1, 2026)",
+   "document_class": "guidance",
+   "urls": [
+    "https://dlt.ri.gov/sites/g/files/xkgbur571/files/2026-06/7.1.26%20UI%20%26%20TDI%20Quick%20Reference.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ri RI DLT press release",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "RI DLT press release: Maximum Weekly Benefit Amounts for Unemployment and Temporary Disability Insurance",
+   "document_class": "guidance",
+   "urls": [
+    "https://dlt.ri.gov/press-releases/maximum-weekly-benefit-amounts-unemployment-and-temporary-disability-insurance-4"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ri RI DLT Guide to Filing an Unemployment Insurance Claim",
+   "jurisdiction": "US-RI",
+   "programs": [
+    "ui"
+   ],
+   "title": "RI DLT Guide to Filing an Unemployment Insurance Claim: Guide to Filing an Unemployment Insurance Claim",
+   "document_class": "guidance",
+   "urls": [
+    "https://dlt.ri.gov/sites/g/files/xkgbur571/files/documents/pdf/ui/UIGuide.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sc S.C. Code § 41-35-40",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-35-40: Weekly benefit amount; procedure for reconsideration of determinations",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c035.php",
+   "citation_paths": [
+    "us-sc/statute/41-35-40"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-35-50",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-35-50: Maximum potential benefits for year",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c035.php",
+   "citation_paths": [
+    "us-sc/statute/41-35-50"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-35-60",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-35-60: Weekly benefits for partial unemployment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c035.php",
+   "citation_paths": [
+    "us-sc/statute/41-35-60"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-35-110",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-35-110: Conditions of eligibility for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c035.php",
+   "citation_paths": [
+    "us-sc/statute/41-35-110"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-27-310",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-27-310: Insured worker",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-310"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-27-150",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-27-150: Base period",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-150"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-27-140",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-27-140: Average weekly wage",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-140"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code § 41-27-370",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code § 41-27-370: Unemployed",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-370"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390 [41-27-160]",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390: Benefit year; Statewide average weekly wage; Wages; Week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-160"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390 [41-27-360]",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390: Benefit year; Statewide average weekly wage; Wages; Week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-360"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390 [41-27-380]",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390: Benefit year; Statewide average weekly wage; Wages; Week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-380"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390 [41-27-390]",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code §§ 41-27-160, 41-27-360, 41-27-380, 41-27-390: Benefit year; Statewide average weekly wage; Wages; Week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://www.scstatehouse.gov/code/t41c027.php",
+   "citation_paths": [
+    "us-sc/statute/41-27-390"
+   ]
+  },
+  {
+   "id": "us-sc S.C. Code Regs. 47-104",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code Regs. 47-104: Work Search",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sc S.C. Code Regs. 47-49",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code Regs. 47-49: Pension Reductions From Unemployment Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sc S.C. Code Regs. 47-20, 47-21",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "S.C. Code Regs. 47-20, 47-21: Types of Unemployment; Filing Claims for Benefits and Registration for Work",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.scstatehouse.gov/coderegs/Chapter%2047.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sc DEW Claimant Handbook (as of 9/3/2025)",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "DEW Claimant Handbook (as of 9/3/2025): Claimant Handbook: A Reference for Unemployment Insurance Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sc DEW web page: Weekly Benefit Amount",
+   "jurisdiction": "US-SC",
+   "programs": [
+    "ui"
+   ],
+   "title": "DEW web page: Weekly Benefit Amount: Weekly Benefit Amount",
+   "document_class": "guidance",
+   "urls": [
+    "https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sd SDCL 61-6-2",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-2: Computation of weekly benefit amount",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-6-2.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-6-2"
+   ]
+  },
+  {
+   "id": "us-sd SDCL 61-6-4",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-4: Minimum base period and highest quarter wages required for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-6-4.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-6-4"
+   ]
+  },
+  {
+   "id": "us-sd SDCL 61-6-8",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-8: Maximum benefit amount based on base period wages--Trade readjustment payments",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-6-8.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-6-8"
+   ]
+  },
+  {
+   "id": "us-sd SDCL 61-6-5",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-5: Benefits payable for each week of unemployment--Reduction for wages earned or received during week",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-6-5.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-6-5"
+   ]
+  },
+  {
+   "id": "us-sd SDCL 61-6-35",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-35: Benefits not payable for week in which other compensation received",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-6-35.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-6-35"
+   ]
+  },
+  {
+   "id": "us-sd SDCL 61-6-1",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-1: Requirements for eligibility for benefits during week",
+   "document_class": "statute",
+   "urls": [
+    "https://sdlegislature.gov/api/Statutes/61-6-1.html?all=true"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sd SDCL 61-6-6",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-6-6: Eligibility requirements for waiting period",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-6.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-6-6"
+   ]
+  },
+  {
+   "id": "us-sd SDCL 61-1-1",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "SDCL 61-1-1: Definition of terms",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://sdlegislature.gov/api/Statutes/61-1-1.html?all=true",
+   "citation_paths": [
+    "us-sd/statute/61-1-1"
+   ]
+  },
+  {
+   "id": "us-sd ARSD 47:06:04",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "ARSD 47:06:04: Employee's Unemployment Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://sdlegislature.gov/api/Rules/Rule/47:06:04.html?all=true"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sd DLR Claimant Handbook",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "DLR Claimant Handbook: Claimant Handbook: A Guide to Reemployment Assistance Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://dlr.sd.gov/ra/publications/ra-claimant-handbook.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-sd DLR web page: Wage Requirements - Benefit Amount",
+   "jurisdiction": "US-SD",
+   "programs": [
+    "ui"
+   ],
+   "title": "DLR web page: Wage Requirements - Benefit Amount: Wage Requirements - Benefit Amount",
+   "document_class": "guidance",
+   "urls": [
+    "https://dlr.sd.gov/ra/individuals/wage_requirements.aspx"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.002",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.002: Benefits for Total Unemployment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.002"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.003",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.003: Benefits for Partial Unemployment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.003"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.004",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.004: Benefit Wage Credits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.004"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.005",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.005: Maximum Amount of Benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.005"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.006",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.006: Adjustment of Benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.006"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.021",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.021: Benefit Eligibility Conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.021"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.049",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.049: Receipt of Remuneration",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.049"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 207.050",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 207.050: Receipt of Pension or Annuity",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.207.htm",
+   "citation_paths": [
+    "us-tx/statute/la/207.050"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 201.011",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 201.011: General Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.201.htm",
+   "citation_paths": [
+    "us-tx/statute/la/201.011"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code § 201.091",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code § 201.091: Total and Partial Unemployment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.201.htm",
+   "citation_paths": [
+    "us-tx/statute/la/201.091"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code §§ 201.081, 201.082 [201.081]",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code §§ 201.081, 201.082: General Definition of Wages; Exceptions to Wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.201.htm",
+   "citation_paths": [
+    "us-tx/statute/la/201.081"
+   ]
+  },
+  {
+   "id": "us-tx Tex. Lab. Code §§ 201.081, 201.082 [201.082]",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "Tex. Lab. Code §§ 201.081, 201.082: General Definition of Wages; Exceptions to Wages",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://tcss.legis.texas.gov/resources/LA/htm/LA.201.htm",
+   "citation_paths": [
+    "us-tx/statute/la/201.082"
+   ]
+  },
+  {
+   "id": "us-tx 40 Tex. Admin. Code ch. 815, subch. B (§§ 815.20-815.28)",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "40 Tex. Admin. Code ch. 815, subch. B (§§ 815.20-815.28): Unemployment Insurance: Benefits, Claims, and Appeals (incl. § 815.28 Work Search Requirements)",
+   "document_class": "regulation",
+   "urls": [
+    "https://www.twc.texas.gov/sites/default/files/ogc/docs/rules-chapter-815-unemployment-insurance-twc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-tx TWC Unemployment Benefits Handbook, BI-99E/S (09/24)",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "TWC Unemployment Benefits Handbook, BI-99E/S (09/24): Unemployment Benefits Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.twc.texas.gov/sites/default/files/ui/docs/unemployment-benefits-handbook-twc.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-tx TWC web page: Eligibility & Benefit Amounts",
+   "jurisdiction": "US-TX",
+   "programs": [
+    "ui"
+   ],
+   "title": "TWC web page: Eligibility & Benefit Amounts: Eligibility & Benefit Amounts",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.twc.texas.gov/programs/unemployment-benefits/eligibility-benefit-amounts"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ut Utah Code § 35A-4-401",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "Utah Code § 35A-4-401: Benefits -- Weekly benefit amount -- Computation of benefits -- Department to prescribe rules -- Notification of benefits -- Bonuses",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S401.html",
+   "citation_paths": [
+    "us-ut/statute/35a-4-401"
+   ]
+  },
+  {
+   "id": "us-ut Utah Code § 35A-4-403",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "Utah Code § 35A-4-403: Eligibility of individual -- Conditions -- Furnishing reports -- Weeks of employment -- Successive benefit years",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S403.html",
+   "citation_paths": [
+    "us-ut/statute/35a-4-403"
+   ]
+  },
+  {
+   "id": "us-ut Utah Code § 35A-4-201",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "Utah Code § 35A-4-201: General definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S201.html",
+   "citation_paths": [
+    "us-ut/statute/35a-4-201"
+   ]
+  },
+  {
+   "id": "us-ut Utah Code § 35A-4-405",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "Utah Code § 35A-4-405: Ineligibility for benefits",
+   "document_class": "statute",
+   "urls": [
+    "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S405.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ut Utah Code § 35A-4-207",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "Utah Code § 35A-4-207: Unemployment",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://le.utah.gov/xcode/Title35A/Chapter4/35A-4-S207.html",
+   "citation_paths": [
+    "us-ut/statute/35a-4-207"
+   ]
+  },
+  {
+   "id": "us-ut Utah Admin. Code R994-401",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "Utah Admin. Code R994-401: Payment of Benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://adminrules.utah.gov/public/search/R994-401/Current%20Rules"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ut DWS Benefit Schedule, January 2026 (form 04-13-0126)",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "DWS Benefit Schedule, January 2026 (form 04-13-0126): Unemployment Insurance Benefit Schedule (Benefit Calculation)",
+   "document_class": "guidance",
+   "urls": [
+    "https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ut DWS Claimant Guide (form 04-02-0926)",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "DWS Claimant Guide (form 04-02-0926): Claimant Guide: Unemployment Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-ut DWS web page",
+   "jurisdiction": "US-UT",
+   "programs": [
+    "ui"
+   ],
+   "title": "DWS web page: Unemployment Insurance Frequently Asked Questions",
+   "document_class": "guidance",
+   "urls": [
+    "https://jobs.utah.gov/ui/FAQ.html"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wa RCW 50.20.120",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.20.120: Amount of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.20.120",
+   "citation_paths": [
+    "us-wa/statute/50/50.20/50.20.120"
+   ]
+  },
+  {
+   "id": "us-wa RCW 50.20.130",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.20.130: Deduction from weekly benefit amount",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.20.130",
+   "citation_paths": [
+    "us-wa/statute/50/50.20/50.20.130"
+   ]
+  },
+  {
+   "id": "us-wa RCW 50.04.020",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.04.020: Base year—Alternative base year",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.04.020",
+   "citation_paths": [
+    "us-wa/statute/50/50.04/50.04.020"
+   ]
+  },
+  {
+   "id": "us-wa RCW 50.04.030",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.04.030: Benefit year",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.04.030",
+   "citation_paths": [
+    "us-wa/statute/50/50.04/50.04.030"
+   ]
+  },
+  {
+   "id": "us-wa RCW 50.20.010",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.20.010: Benefit eligibility conditions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.20.010",
+   "citation_paths": [
+    "us-wa/statute/50/50.20/50.20.010"
+   ]
+  },
+  {
+   "id": "us-wa RCW 50.04.323",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.04.323: Wages, remuneration—Government or private retirement pension plan payments—Effect upon eligibility—Reduction in benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.04.323",
+   "citation_paths": [
+    "us-wa/statute/50/50.04/50.04.323"
+   ]
+  },
+  {
+   "id": "us-wa RCW 50.04.355",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "RCW 50.04.355: Wages, remuneration—Average annual wage—Average weekly wage—Average annual wage for contributions purposes",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=50.04.355",
+   "citation_paths": [
+    "us-wa/statute/50/50.04/50.04.355"
+   ]
+  },
+  {
+   "id": "us-wa WAC 192-190",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "WAC 192-190: Deductions from unemployment benefits",
+   "document_class": "regulation",
+   "urls": [
+    "https://app.leg.wa.gov/WAC/default.aspx?cite=192-190"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wa WAC 192-170",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "WAC 192-170: Availability for work",
+   "document_class": "regulation",
+   "urls": [
+    "https://app.leg.wa.gov/WAC/default.aspx?cite=192-170"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wa WAC 192-180",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "WAC 192-180: Job search requirements",
+   "document_class": "regulation",
+   "urls": [
+    "https://app.leg.wa.gov/WAC/default.aspx?cite=192-180"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wa ESD Unemployed Worker's Handbook, October 2025",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "ESD Unemployed Worker's Handbook, October 2025: Unemployed Worker's Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://esd.wa.gov/media/pdf/152/en-unemployed-workers-handbookpdf/download?inline"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wa ESD news release, June 10, 2026",
+   "jurisdiction": "US-WA",
+   "programs": [
+    "ui"
+   ],
+   "title": "ESD news release, June 10, 2026: New average annual wage estimates adjust unemployment insurance and paid leave benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://esd.wa.gov/node/1254"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wi Wis. Stat. § 108.05",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Stat. § 108.05: Amount of benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/statutes/statutes/108/05",
+   "citation_paths": [
+    "us-wi/statute/108.05"
+   ]
+  },
+  {
+   "id": "us-wi Wis. Stat. § 108.06",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Stat. § 108.06: Benefit entitlement",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/statutes/statutes/108/06",
+   "citation_paths": [
+    "us-wi/statute/108.06"
+   ]
+  },
+  {
+   "id": "us-wi Wis. Stat. § 108.04",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Stat. § 108.04: Eligibility for benefits",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/statutes/statutes/108/04",
+   "citation_paths": [
+    "us-wi/statute/108.04"
+   ]
+  },
+  {
+   "id": "us-wi Wis. Stat. § 108.02",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Stat. § 108.02: Definitions",
+   "document_class": "statute",
+   "urls": [],
+   "official_url": "https://docs.legis.wisconsin.gov/statutes/statutes/108/02",
+   "citation_paths": [
+    "us-wi/statute/108.02"
+   ]
+  },
+  {
+   "id": "us-wi Wis. Admin. Code ch. DWD 128",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Admin. Code ch. DWD 128: Ability to Work and Availability for Work",
+   "document_class": "regulation",
+   "urls": [
+    "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/128"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wi Wis. Admin. Code ch. DWD 129",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Admin. Code ch. DWD 129: Benefit Claiming Procedures",
+   "document_class": "regulation",
+   "urls": [
+    "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/129"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wi Wis. Admin. Code ch. DWD 127",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "Wis. Admin. Code ch. DWD 127: Work Search and Reemployment Services",
+   "document_class": "regulation",
+   "urls": [
+    "https://docs.legis.wisconsin.gov/code/admin_code/dwd/100_150/127"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wi DWD publication UCB-10-P",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "DWD publication UCB-10-P: Unemployment Insurance Claimant Handbook",
+   "document_class": "guidance",
+   "urls": [
+    "https://dwd.wisconsin.gov/uiben/handbook/"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wi DWD publication UCB-19687-P (R. 03/2026)",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "DWD publication UCB-19687-P (R. 03/2026): How to Apply for Unemployment Insurance Benefits",
+   "document_class": "guidance",
+   "urls": [
+    "https://www.dwd.wisconsin.gov/dwd/publications/ui/ucb-19687-p.pdf"
+   ],
+   "citation_paths": []
+  },
+  {
+   "id": "us-wi DWD web page",
+   "jurisdiction": "US-WI",
+   "programs": [
+    "ui"
+   ],
+   "title": "DWD web page: Qualifying Wages - Wisconsin Unemployment Insurance",
+   "document_class": "guidance",
+   "urls": [
+    "https://dwd.wisconsin.gov/uiben/qualifying-wages.htm"
+   ],
+   "citation_paths": []
+  }
+ ]
+}
