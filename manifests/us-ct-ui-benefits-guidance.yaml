@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-ct
+documents:
+- source_id: us-ct-guidance-ctdol-benefits-booklet-2025
+  jurisdiction: us-ct
+  document_class: guidance
+  title: CTDOL Guide to Unemployment Insurance 2025
+  source_url: https://portal.ct.gov/dolui/benefits-booklet/benefits-booklet---a-guide-to-collecting-benefits-in-connecticut
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ct/guidance/ctdol/benefits-booklet-2025
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ct-guidance-ctdol-unemployment-tax-rate-2026
+  jurisdiction: us-ct
+  document_class: guidance
+  title: CTDOL, Information on Unemployment Tax Rate for Calendar Year 2026
+  source_url: https://portal.ct.gov/dol/divisions/unemployment-insurance-tax/information-on-unemployment-tax-rate-for-calendar-year-2026
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ct/guidance/ctdol/unemployment-tax-rate-2026
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

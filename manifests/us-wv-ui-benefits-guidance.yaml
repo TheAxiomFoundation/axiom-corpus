@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-wv
+documents:
+- source_id: us-wv-guidance-workforce-claimant-handbook-2026-03
+  jurisdiction: us-wv
+  document_class: guidance
+  title: WorkForce West Virginia Claimant Handbook, March 2026
+  source_url: https://workforcewv.org/wp-content/uploads/2026/04/WorkForce-West-Virginia-Claimant-Handbook-Rev.-03.26.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-wv/guidance/workforce/claimant-handbook-2026-03
+  metadata:
+    primary_source: true
+    source_authority: WorkForce West Virginia
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-wv-guidance-workforce-ui-frequently-asked-questions
+  jurisdiction: us-wv
+  document_class: guidance
+  title: WorkForce West Virginia Claimant FAQ
+  source_url: https://workforcewv.org/unemployment-insurance-benefits/unemployment-resources/frequently-asked-questions/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-wv/guidance/workforce/ui-frequently-asked-questions
+  metadata:
+    primary_source: true
+    source_authority: WorkForce West Virginia
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

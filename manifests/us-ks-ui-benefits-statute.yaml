@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, Kansas Employment Security Law, K.S.A. chapter 44 article 7.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-ks-ui-benefits-chapter-44-article-7
+  jurisdiction: us-ks
+  document_class: statute
+  adapter: kansas-statutes
+  source_url: https://ksrevisor.gov/ksa.html
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    base_url: https://ksrevisor.gov/
+    only_title: '44'
+    only_article: '7'
+  metadata:
+    program: Unemployment insurance
+    law: Kansas Employment Security Law, K.S.A. chapter 44 article 7
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

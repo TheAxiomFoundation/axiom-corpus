@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-nm
+documents:
+- source_id: us-nm-guidance-dws-ui-benefits-handbook
+  jurisdiction: us-nm
+  document_class: guidance
+  title: NMDWS Unemployment Insurance Benefits Handbook
+  source_url: https://www.dws.nm.gov/LinkClick.aspx?fileticket=kOvSZNsywwU%3d&tabid=233&portalid=0&language=en-US
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nm/guidance/dws/ui-benefits-handbook
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Department of Workforce Solutions
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

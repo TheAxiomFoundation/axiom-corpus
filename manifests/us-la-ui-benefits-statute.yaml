@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, Louisiana Employment Security Law, La. R.S. title 23.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-la-ui-benefits-title-23
+  jurisdiction: us-la
+  document_class: statute
+  adapter: louisiana-revised-statutes
+  source_url: https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    base_url: https://www.legis.la.gov/Legis/
+    root_folder: '75'
+    only_title: '23'
+  metadata:
+    program: Unemployment insurance
+    law: Louisiana Employment Security Law, La. R.S. title 23
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

@@ -327,6 +327,184 @@ STATES: dict[str, tuple[int, str, list[tuple[str, str, str, dict]]]] = {
             ),
         ],
     ),
+    "az": (
+        3,
+        "Arizona Employment Security Law, A.R.S. title 23 chapter 4",
+        [
+            (
+                "title-23",
+                "arizona-revised-statutes",
+                "https://www.azleg.gov/arsDetail/?title=23",
+                {"only_title": "23"},
+            ),
+        ],
+    ),
+    "co": (
+        3,
+        "Colorado Employment Security Act, C.R.S. title 8 articles 70 and 73",
+        [
+            (
+                "title-8-articles-70-73",
+                "colorado-revised-statutes",
+                "https://olls.info/crs/crs2025-title-08.htm",
+                {"title": "08", "edition": "2025", "only_article": "70,73"},
+            ),
+        ],
+    ),
+    "ct": (
+        3,
+        "Connecticut Unemployment Compensation Act, Conn. Gen. Stat. chapter 567",
+        [
+            (
+                "chapter-567",
+                "connecticut-statutes",
+                "https://www.cga.ct.gov/current/pub/chap_567.htm",
+                {"only_title": "31", "only_chapter": "567"},
+            ),
+        ],
+    ),
+    "in": (
+        3,
+        "Indiana unemployment compensation system, Indiana Code title 22 article 4",
+        [
+            (
+                "title-22",
+                "indiana-code",
+                "https://iga.in.gov/ic/2026/2026-Indiana-Code-html.zip",
+                {"source_year": 2026, "only_title": "22"},
+            ),
+        ],
+    ),
+    "ks": (
+        3,
+        "Kansas Employment Security Law, K.S.A. chapter 44 article 7",
+        [
+            (
+                "chapter-44-article-7",
+                "kansas-statutes",
+                "https://ksrevisor.gov/ksa.html",
+                {"base_url": "https://ksrevisor.gov/", "only_title": "44", "only_article": "7"},
+            ),
+        ],
+    ),
+    "la": (
+        3,
+        "Louisiana Employment Security Law, La. R.S. title 23",
+        [
+            (
+                "title-23",
+                "louisiana-revised-statutes",
+                "https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent",
+                {
+                    "base_url": "https://www.legis.la.gov/Legis/",
+                    "root_folder": "75",
+                    "only_title": "23",
+                },
+            ),
+        ],
+    ),
+    "ma": (
+        3,
+        "Massachusetts Unemployment Insurance Law, M.G.L. chapter 151A",
+        [
+            (
+                "chapter-151a",
+                "massachusetts-general-laws",
+                "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151A",
+                {"only_chapter": "151A", "base_url": "https://malegislature.gov"},
+            ),
+        ],
+    ),
+    "mt": (
+        3,
+        "Montana Unemployment Insurance Law, MCA title 39 chapter 51",
+        [
+            (
+                "title-39",
+                "montana-code",
+                "https://mca.legmt.gov/bills/mca/index.html",
+                {"source_year": 2025, "only_title": "39"},
+            ),
+        ],
+    ),
+    "nh": (
+        3,
+        "New Hampshire Unemployment Compensation Law, RSA chapter 282-A",
+        [
+            (
+                "chapter-282-a",
+                "new-hampshire-rsa",
+                "https://gc.nh.gov/rsa/html/nhtoc.htm",
+                {
+                    "only_title": "XXIII",
+                    "only_chapter": "282-A",
+                    "base_url": "https://gc.nh.gov/rsa/html/",
+                },
+            ),
+        ],
+    ),
+    "nm": (
+        3,
+        "Unemployment Compensation Law, NMSA 1978 chapter 51",
+        [
+            (
+                "chapter-51",
+                "new-mexico-statutes",
+                "https://nmonesource.com/nmos/nmsa/en/nav_date.do",
+                {"only_title": "51"},
+            ),
+        ],
+    ),
+    "nv": (
+        3,
+        "Nevada Unemployment Compensation Law, NRS chapter 612",
+        [
+            (
+                "chapter-612",
+                "nevada-nrs",
+                "https://www.leg.state.nv.us/NRS/",
+                {"source_year": 2025, "only_chapter": "612"},
+            ),
+        ],
+    ),
+    "oh": (
+        3,
+        "Ohio Unemployment Compensation Law, Ohio Revised Code chapter 4141 (title 41)",
+        [
+            (
+                "title-41",
+                "ohio-revised-code",
+                "https://codes.ohio.gov/ohio-revised-code/title-41",
+                {"only_title": "41"},
+            ),
+        ],
+    ),
+    "wv": (
+        3,
+        "West Virginia Unemployment Compensation Law, W. Va. Code chapter 21A articles 1A and 6",
+        [
+            (
+                "chapter-21a-article-1a",
+                "west-virginia-code",
+                "https://code.wvlegislature.gov/21A-1A/",
+                {
+                    "base_url": "https://code.wvlegislature.gov",
+                    "only_chapter": "21A",
+                    "only_article": "1A",
+                },
+            ),
+            (
+                "chapter-21a-article-6",
+                "west-virginia-code",
+                "https://code.wvlegislature.gov/21A-6/",
+                {
+                    "base_url": "https://code.wvlegislature.gov",
+                    "only_chapter": "21A",
+                    "only_article": "6",
+                },
+            ),
+        ],
+    ),
 }
 
 
