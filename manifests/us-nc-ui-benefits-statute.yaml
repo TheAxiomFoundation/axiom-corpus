@@ -1,0 +1,122 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-nc
+documents:
+- source_id: us-nc-statute-96-96-1
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-1. Title and definitions"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-1.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-1
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body
+- source_id: us-nc-statute-96-96-14-1
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-14.1. Unemployment benefits"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-14.1.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-14.1
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body
+- source_id: us-nc-statute-96-96-14-2
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-14.2. Weekly benefit amount"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-14.2.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-14.2
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body
+- source_id: us-nc-statute-96-96-14-3
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-14.3. Duration of benefits"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-14.3.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-14.3
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body
+- source_id: us-nc-statute-96-96-14-9
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-14.9. Weekly certification"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-14.9.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-14.9
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body
+- source_id: us-nc-statute-96-96-14-13
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-14.13. Limitation on benefits due to lump sum payments"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-14.13.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-14.13
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body
+- source_id: us-nc-statute-96-96-15-01
+  jurisdiction: us-nc
+  document_class: statute
+  title: "N.C. Gen. Stat. \xA7 96-15.01. Establishing a benefit year"
+  source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-15.01.html
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-nc/statute/96/96-15.01
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: body

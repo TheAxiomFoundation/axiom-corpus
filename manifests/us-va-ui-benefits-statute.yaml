@@ -1,0 +1,105 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-va
+documents:
+- source_id: us-va-statute-60-2-60-2-204
+  jurisdiction: us-va
+  document_class: statute
+  title: "Va. Code \xA7 60.2-204. Base period"
+  source_url: https://law.lis.virginia.gov/vacode/title60.2/chapter2/section60.2-204/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-va/statute/60.2/60.2-204
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article#vacode section.body
+- source_id: us-va-statute-60-2-60-2-602
+  jurisdiction: us-va
+  document_class: statute
+  title: "Va. Code \xA7 60.2-602. Weekly benefit amount"
+  source_url: https://law.lis.virginia.gov/vacode/title60.2/chapter6/section60.2-602/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-va/statute/60.2/60.2-602
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article#vacode section.body
+- source_id: us-va-statute-60-2-60-2-603
+  jurisdiction: us-va
+  document_class: statute
+  title: "Va. Code \xA7 60.2-603. Weekly benefit for unemployment; income disregard"
+  source_url: https://law.lis.virginia.gov/vacode/title60.2/chapter6/section60.2-603/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-va/statute/60.2/60.2-603
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article#vacode section.body
+- source_id: us-va-statute-60-2-60-2-604
+  jurisdiction: us-va
+  document_class: statute
+  title: "Va. Code \xA7 60.2-604. Reduction of benefit amount by amount of pension"
+  source_url: https://law.lis.virginia.gov/vacode/title60.2/chapter6/section60.2-604/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-va/statute/60.2/60.2-604
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article#vacode section.body
+- source_id: us-va-statute-60-2-60-2-607
+  jurisdiction: us-va
+  document_class: statute
+  title: "Va. Code \xA7 60.2-607. Maximum total benefit amounts"
+  source_url: https://law.lis.virginia.gov/vacode/title60.2/chapter6/section60.2-607/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-va/statute/60.2/60.2-607
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article#vacode section.body
+- source_id: us-va-statute-60-2-60-2-612
+  jurisdiction: us-va
+  document_class: statute
+  title: "Va. Code \xA7 60.2-612. Benefit eligibility conditions"
+  source_url: https://law.lis.virginia.gov/vacode/title60.2/chapter6/section60.2-612/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-va/statute/60.2/60.2-612
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: article#vacode section.body
