@@ -1,0 +1,19 @@
+# Unemployment insurance benefits, Montana Unemployment Insurance Law, MCA title 39 chapter 51.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-mt-ui-benefits-title-39
+  jurisdiction: us-mt
+  document_class: statute
+  adapter: montana-code
+  source_url: https://mca.legmt.gov/bills/mca/index.html
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    source_year: 2025
+    only_title: '39'
+  metadata:
+    program: Unemployment insurance
+    law: Montana Unemployment Insurance Law, MCA title 39 chapter 51
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

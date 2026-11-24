@@ -1,0 +1,19 @@
+# Unemployment insurance benefits, Indiana unemployment compensation system, Indiana Code title 22 article 4.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-in-ui-benefits-title-22
+  jurisdiction: us-in
+  document_class: statute
+  adapter: indiana-code
+  source_url: https://iga.in.gov/ic/2026/2026-Indiana-Code-html.zip
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    source_year: 2026
+    only_title: '22'
+  metadata:
+    program: Unemployment insurance
+    law: Indiana unemployment compensation system, Indiana Code title 22 article 4
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

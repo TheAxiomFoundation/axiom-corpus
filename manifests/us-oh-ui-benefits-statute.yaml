@@ -1,0 +1,18 @@
+# Unemployment insurance benefits, Ohio Unemployment Compensation Law, Ohio Revised Code chapter 4141 (title 41).
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-oh-ui-benefits-title-41
+  jurisdiction: us-oh
+  document_class: statute
+  adapter: ohio-revised-code
+  source_url: https://codes.ohio.gov/ohio-revised-code/title-41
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '41'
+  metadata:
+    program: Unemployment insurance
+    law: Ohio Unemployment Compensation Law, Ohio Revised Code chapter 4141 (title 41)
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

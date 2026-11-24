@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-oh
+documents:
+- source_id: us-oh-guidance-odjfs-qualifying-week-aww-and-wba
+  jurisdiction: us-oh
+  document_class: guidance
+  title: 'ODJFS Ohio Unemployment Program Policy: qualifying week, average weekly wage and weekly benefit amount'
+  source_url: https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/EBS/Programs%20Rules%20and%20Resources/OUIO/Qualifying_Week_AWW_and_WBA_FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-oh/guidance/odjfs/qualifying-week-aww-and-wba
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Job and Family Services
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-oh-guidance-odjfs-how-ohio-uc-benefits-are-calculated
+  jurisdiction: us-oh
+  document_class: guidance
+  title: ODJFS, How Ohio's Unemployment Insurance Benefit Amounts Are Calculated
+  source_url: https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/unemployment/PDF/HowOhioUCBenefitsAreCalculated.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-oh/guidance/odjfs/how-ohio-uc-benefits-are-calculated
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Job and Family Services
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

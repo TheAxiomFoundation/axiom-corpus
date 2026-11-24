@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-mt
+documents:
+- source_id: us-mt-guidance-dli-ui-claimant-handbook
+  jurisdiction: us-mt
+  document_class: guidance
+  title: Montana DLI Unemployment Insurance Claimant Handbook
+  source_url: https://uid.dli.mt.gov/_docs/claims-processing/claimant-handbook.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-mt/guidance/dli/ui-claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Labor and Industry
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-mt-guidance-dli-lmi-state-average-weekly-wage
+  jurisdiction: us-mt
+  document_class: guidance
+  title: Montana DLI Labor Market Information, state average weekly wage
+  source_url: https://lmi.mt.gov/qcewWkWage
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-mt/guidance/dli/lmi/state-average-weekly-wage
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Labor and Industry
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

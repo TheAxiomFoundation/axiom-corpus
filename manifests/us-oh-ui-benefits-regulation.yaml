@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-oh
+documents:
+- source_id: us-oh-regulation-oac-4141-29-07
+  jurisdiction: us-oh
+  document_class: regulation
+  title: Ohio Admin. Code 4141-29-07
+  source_url: https://codes.ohio.gov/ohio-administrative-code/rule-4141-29-07
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-oh/regulation/oac/4141-29-07
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
