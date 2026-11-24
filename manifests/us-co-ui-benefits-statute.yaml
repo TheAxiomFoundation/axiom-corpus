@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, Colorado Employment Security Act, C.R.S. title 8 articles 70 and 73.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-co-ui-benefits-title-8-articles-70-73
+  jurisdiction: us-co
+  document_class: statute
+  adapter: colorado-revised-statutes
+  source_url: https://olls.info/crs/crs2025-title-08.htm
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    title: 08
+    edition: '2025'
+    only_article: 70,73
+  metadata:
+    program: Unemployment insurance
+    law: Colorado Employment Security Act, C.R.S. title 8 articles 70 and 73
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

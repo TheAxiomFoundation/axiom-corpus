@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, New Hampshire Unemployment Compensation Law, RSA chapter 282-A.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-nh-ui-benefits-chapter-282-a
+  jurisdiction: us-nh
+  document_class: statute
+  adapter: new-hampshire-rsa
+  source_url: https://gc.nh.gov/rsa/html/nhtoc.htm
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: XXIII
+    only_chapter: 282-A
+    base_url: https://gc.nh.gov/rsa/html/
+  metadata:
+    program: Unemployment insurance
+    law: New Hampshire Unemployment Compensation Law, RSA chapter 282-A
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

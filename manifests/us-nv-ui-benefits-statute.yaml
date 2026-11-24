@@ -1,0 +1,19 @@
+# Unemployment insurance benefits, Nevada Unemployment Compensation Law, NRS chapter 612.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-nv-ui-benefits-chapter-612
+  jurisdiction: us-nv
+  document_class: statute
+  adapter: nevada-nrs
+  source_url: https://www.leg.state.nv.us/NRS/
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    source_year: 2025
+    only_chapter: '612'
+  metadata:
+    program: Unemployment insurance
+    law: Nevada Unemployment Compensation Law, NRS chapter 612
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

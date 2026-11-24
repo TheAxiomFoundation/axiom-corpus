@@ -1,0 +1,122 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-vt
+documents:
+- source_id: us-vt-statute-21-1301
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1301
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01301
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1301
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail
+- source_id: us-vt-statute-21-1338
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1338
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01338
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1338
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail
+- source_id: us-vt-statute-21-1338a
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1338a
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01338a
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1338a
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail
+- source_id: us-vt-statute-21-1339
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1339
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01339
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1339
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail
+- source_id: us-vt-statute-21-1340
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1340
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01340
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1340
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail
+- source_id: us-vt-statute-21-1343
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1343
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01343
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1343
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail
+- source_id: us-vt-statute-21-1344
+  jurisdiction: us-vt
+  document_class: statute
+  title: 21 V.S.A. 1344
+  source_url: https://legislature.vermont.gov/statutes/section/21/017/01344
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-vt/statute/21-1344
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  extraction:
+    html_content_selector: ul.statutes-detail

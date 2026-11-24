@@ -1,0 +1,19 @@
+# Unemployment insurance benefits, Connecticut Unemployment Compensation Act, Conn. Gen. Stat. chapter 567.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-ct-ui-benefits-chapter-567
+  jurisdiction: us-ct
+  document_class: statute
+  adapter: connecticut-statutes
+  source_url: https://www.cga.ct.gov/current/pub/chap_567.htm
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_title: '31'
+    only_chapter: '567'
+  metadata:
+    program: Unemployment insurance
+    law: Connecticut Unemployment Compensation Act, Conn. Gen. Stat. chapter 567
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

@@ -1,0 +1,36 @@
+# Unemployment insurance benefits, West Virginia Unemployment Compensation Law, W. Va. Code chapter 21A articles 1A and 6.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-wv-ui-benefits-chapter-21a-article-1a
+  jurisdiction: us-wv
+  document_class: statute
+  adapter: west-virginia-code
+  source_url: https://code.wvlegislature.gov/21A-1A/
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    base_url: https://code.wvlegislature.gov
+    only_chapter: 21A
+    only_article: 1A
+  metadata:
+    program: Unemployment insurance
+    law: West Virginia Unemployment Compensation Law, W. Va. Code chapter 21A articles 1A and 6
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md
+- source_id: us-wv-ui-benefits-chapter-21a-article-6
+  jurisdiction: us-wv
+  document_class: statute
+  adapter: west-virginia-code
+  source_url: https://code.wvlegislature.gov/21A-6/
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    base_url: https://code.wvlegislature.gov
+    only_chapter: 21A
+    only_article: '6'
+  metadata:
+    program: Unemployment insurance
+    law: West Virginia Unemployment Compensation Law, W. Va. Code chapter 21A articles 1A and 6
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md
