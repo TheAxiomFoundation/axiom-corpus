@@ -16,7 +16,7 @@ release selectors:
 
 | Group | Documents | Meaning |
 | --- | ---: | --- |
-| Ingested and signed, not selected by the pin | 364 | 363 are in scopes that `us-rulespec-2026-10-13-w7-bundle-gaps-union` selects; one is in a scope only the pin line's newest cut selects |
+| Ingested and signed, not selected by the pin | 364 | All are in scopes that `us-rulespec-2026-10-13-w7-bundle-gaps-union` selects; the pin line's newest cut serves 17 of them |
 | Ingested and locked, no signed ingest manifest | 1 | `us/rulemaking/federal-register/2026-06-03/2026-11094`, in `us/rulemaking/2026-06-03-cms-2454-ifc-types-rule-term-cms-2454-ifc-limit-1` |
 | Bundle names a container or a URL; the text is under other paths | 5 | 42 CFR part 435 subpart D, Alabama title 25 chapter 4, California WIC nodes 16.7.2 and 16.7.3, D.C. Code 4-261.04 |
 | Never ingested (the bundle holds only a URL) | 16 | 1 federal, 15 state |
