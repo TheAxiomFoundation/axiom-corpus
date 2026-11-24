@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import datetime as dt
+import json
 
+import pytest
 import yaml
 
 import scripts.build_program_bundle as bundle
@@ -650,3 +652,197 @@ def test_build_program_follows_a_moved_path(tmp_path, monkeypatch):
     out = bundle.build_program(cfg, "snap", references, None, {}, bundle.index_manifests({}, {}))
     federal = [d["key"] for d in out["layers"][0]["screener"]]
     assert federal == ["us/statute/7/2014-moved"]
+
+
+def _release(tmp_path, rows_by_scope: dict[tuple[str, str, str], list[dict]]) -> None:
+    """A selector named `pin` and the provision file of each of its scopes."""
+    scopes = [{"jurisdiction": j, "document_class": c, "version": v} for j, c, v in rows_by_scope]
+    selectors = tmp_path / "manifests/releases"
+    selectors.mkdir(parents=True)
+    (selectors / "pin.json").write_text(json.dumps({"name": "pin", "scopes": scopes}))
+    for (j, c, v), rows in rows_by_scope.items():
+        provisions = tmp_path / "data/corpus/provisions" / j / c / f"{v}.jsonl"
+        provisions.parent.mkdir(parents=True, exist_ok=True)
+        provisions.write_text("".join(json.dumps(row) + "\n" for row in rows))
+
+
+def test_release_text_paths_hold_each_path_with_a_body_and_every_path_above_it(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(bundle, "REPO", tmp_path)
+    _release(
+        tmp_path,
+        {
+            ("us", "statute", "v1"): [
+                {"citation_path": "us/statute/26", "body": None},
+                {"citation_path": "us/statute/26/101", "body": ""},
+                {"citation_path": "us/statute/26/101/a", "body": "Gross income does not include"},
+                {"citation_path": "us/statute/26/103", "body": "   "},
+                {"citation_path": None, "body": "no path"},
+            ],
+            ("us-az", "manual", "v2"): [{"citation_path": "us-az/manual/faa/1", "body": "text"}],
+        },
+    )
+    # An unselected scope's text is not served, although the corpus holds it.
+    unselected = tmp_path / "data/corpus/provisions/us/statute/other.jsonl"
+    unselected.write_text(json.dumps({"citation_path": "us/statute/26/105", "body": "text"}) + "\n")
+
+    paths = bundle.release_text_paths("pin")
+
+    assert paths == {
+        "us",
+        "us/statute",
+        "us/statute/26",
+        "us/statute/26/101",
+        "us/statute/26/101/a",
+        "us-az",
+        "us-az/manual",
+        "us-az/manual/faa",
+        "us-az/manual/faa/1",
+    }
+
+
+def test_release_text_paths_follow_parent_rows_to_a_container_at_another_path(
+    tmp_path, monkeypatch
+):
+    """42 CFR 435 subpart D holds 435.300 and on, at paths that are not under its own."""
+    monkeypatch.setattr(bundle, "REPO", tmp_path)
+    _release(
+        tmp_path,
+        {
+            ("us", "regulation", "v1"): [
+                {"id": "part", "citation_path": "us/regulation/42/435", "body": None},
+                {
+                    "id": "d",
+                    "parent_id": "part",
+                    "citation_path": "us/regulation/42/435/subpart-D",
+                    "body": None,
+                },
+                {
+                    "id": "e",
+                    "parent_id": "part",
+                    "citation_path": "us/regulation/42/435/subpart-E",
+                    "body": None,
+                },
+                {
+                    "id": "300",
+                    "parent_id": "d",
+                    "citation_path": "us/regulation/42/435/300",
+                    "body": "This subpart specifies",
+                },
+                # A row that names itself as its parent does not loop.
+                {
+                    "id": "x",
+                    "parent_id": "x",
+                    "citation_path": "us/regulation/42/435/4",
+                    "body": "t",
+                },
+            ]
+        },
+    )
+
+    paths = bundle.release_text_paths("pin")
+
+    assert "us/regulation/42/435/subpart-D" in paths
+    assert "us/regulation/42/435/subpart-E" not in paths
+    assert "us/regulation/42/435/4" in paths
+
+
+def test_release_text_paths_name_the_fetch_for_a_scope_that_is_not_in_the_checkout(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(bundle, "REPO", tmp_path)
+    _release(tmp_path, {("us", "statute", "v1"): []})
+    (tmp_path / "data/corpus/provisions/us/statute/v1.jsonl").unlink()
+    with pytest.raises(SystemExit, match="corpus fetch --release pin"):
+        bundle.release_text_paths("pin")
+
+
+def _doc(path: str | None, scope: str = "in") -> dict:
+    return {"key": path or "https://example.gov/x", "citation_path": path, "scope": scope}
+
+
+def test_stamp_release_text_marks_each_document_and_counts_in_scope_ones_by_layer():
+    built = {
+        "tiers": [{"membership": {}}, {"membership": {}}],
+        "layers": [
+            {
+                "jurisdiction": "us",
+                "screener": [_doc("us/statute/26/101"), _doc("us/statute/26/105")],
+                "full": [_doc("us/statute/26/101"), _doc("us/statute/26/101", scope="out")],
+            },
+            {
+                "jurisdiction": "us-az",
+                "screener": [_doc("us-az/manual/faa/1"), _doc(None)],
+                "full": [_doc("us-az/manual/faa/1")],
+            },
+        ],
+    }
+    paths = {"us/statute/26/101", "us-az/manual/faa/1"}
+
+    bundle.stamp_release_text(built, "pin", paths)
+
+    us, az = built["layers"]
+    assert [d["release_text"] for d in us["screener"]] == [True, False]
+    assert [d["release_text"] for d in us["full"]] == [True, True]
+    assert [d["release_text"] for d in az["screener"]] == [True, False]
+    assert built["encoder_release"]["name"] == "pin"
+    assert [t["membership"]["release_text_by_layer"] for t in built["tiers"]] == [
+        {"federal": 1, "state": 1},
+        {"federal": 1, "state": 1},  # the out-of-scope document is marked but not counted
+    ]
+
+
+def _build_snap(tmp_path, monkeypatch, **extra) -> dict:
+    cfg = {**config(tmp_path, monkeypatch), **extra}
+    (tmp_path / "config.yaml").write_text(yaml.safe_dump(cfg))
+    (tmp_path / "refs-snap.json").write_text(
+        json.dumps(
+            {
+                "references": [
+                    {
+                        "url": "https://law.cornell.edu/uscode/text/7/2014#e_6_A",
+                        "citation": "us/statute/7/2014/e/6/A",
+                        "files": ["parameters/gov/usda/snap/income/deductions/x.yaml"],
+                    },
+                    {
+                        "url": "https://law.cornell.edu/uscode/text/7/2015",
+                        "citation": "us/statute/7/2015",
+                        "files": ["parameters/gov/usda/snap/income/deductions/x.yaml"],
+                    },
+                ]
+            }
+        )
+    )
+    monkeypatch.setattr(bundle, "load_manifests", lambda: {})
+    return bundle.build(tmp_path / "config.yaml")["snap"]
+
+
+def test_build_records_release_text_only_when_the_config_names_a_release(tmp_path, monkeypatch):
+    _release(
+        tmp_path,
+        {("us", "statute", "v1"): [{"citation_path": "us/statute/7/2014/e/6", "body": "text"}]},
+    )
+
+    plain = _build_snap(tmp_path, monkeypatch)
+    stamped = _build_snap(tmp_path, monkeypatch, encoder_release="pin")
+
+    assert "encoder_release" not in plain
+    assert all(
+        "release_text" not in doc
+        for layer in plain["layers"]
+        for tier in ("screener", "full")
+        for doc in layer[tier]
+    )
+    federal = {d["key"]: d["release_text"] for d in stamped["layers"][0]["screener"]}
+    assert federal == {"us/statute/7/2014": True, "us/statute/7/2015": False}
+    assert stamped["tiers"][0]["membership"]["release_text_by_layer"] == {"federal": 1, "state": 0}
+    # Nothing else moves: without the stamps, the two builds are the same bundle.
+    for layer in stamped["layers"]:
+        for tier in ("screener", "full"):
+            for doc in layer[tier]:
+                del doc["release_text"]
+    del stamped["encoder_release"]
+    for tier in stamped["tiers"]:
+        del tier["membership"]["release_text_by_layer"]
+    assert stamped == plain
