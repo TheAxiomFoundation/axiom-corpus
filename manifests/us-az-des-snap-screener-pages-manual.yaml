@@ -5,9 +5,11 @@
 # Each page was saved by a person in an ordinary browser ("Save Page As, Webpage,
 # HTML Only"), the same capture method as us-az/manual/2026-07-17-faa5-recovery
 # (axiom-corpus #383). No automated fetch and no browser impersonation was used.
-# local_path is relative to this file and names the saved copy; rows record the
-# official source_url, never the path. A provenance sidecar per file (url, sha256,
-# fetched_at, fetch_method) is kept under the scope's sources/.../provenance/.
+# local_path is relative to this file and names the retained copy where the corpus
+# locks it (sources/<scope>/official-documents/), so `corpus fetch` supplies it on any
+# machine. Rows record the official source_url, never the path. A provenance sidecar
+# per file (url, sha256, fetched_at, fetch_method) sits beside it in provenance/.
+# YYYY-MM-DD is the capture date; it is filled in once, before extraction and signing.
 #
 # source_as_of is the capture date, set on the command line (--source-as-of).
 # expression_date is kept only where the page carries its own "last revised" or
@@ -22,7 +24,7 @@ documents:
   citation_path: us-az/manual/des/faa6/self-employment-expense-deduction-current
   title: Arizona DES FAA6 Self-Employment Expense Deduction
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/Self-Employment_Expense_Deduction.html
-  local_path: ../../../capture/html/az-des-faa6-self-employment-deduction-current.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa6-self-employment-deduction-current.html
   source_format: html
   expression_date: '2026-06-29'
   metadata:
@@ -42,7 +44,7 @@ documents:
   citation_path: us-az/manual/des/faa6/na-200-percent-fpl-standard
   title: Arizona DES FAA6 NA 200 Percent of Federal Poverty Level
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_200__of_the_Federal_Poverty_Level.html
-  local_path: ../../../capture/html/az-des-faa6-na-200-percent-fpl-standard.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa6-na-200-percent-fpl-standard.html
   source_format: html
   metadata:
     primary_source: true
@@ -61,7 +63,7 @@ documents:
   citation_path: us-az/manual/des/faa6/na-gross-monthly-income-standard
   title: Arizona DES FAA6 NA Gross Monthly Income Eligibility Standard
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Gross_Monthly_Income_Eligibility_Standard.html
-  local_path: ../../../capture/html/az-des-faa6-na-gross-monthly-income-standard.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa6-na-gross-monthly-income-standard.html
   source_format: html
   metadata:
     primary_source: true
@@ -79,7 +81,7 @@ documents:
   citation_path: us-az/manual/des/faa6/na-net-monthly-income-standard
   title: Arizona DES FAA6 NA Net Monthly Income Eligibility Standard
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Net_Monthly_Income_Eligibility_Standard_(.html
-  local_path: ../../../capture/html/az-des-faa6-na-net-monthly-income-standard.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa6-na-net-monthly-income-standard.html
   source_format: html
   metadata:
     primary_source: true
@@ -97,7 +99,7 @@ documents:
   citation_path: us-az/manual/des/faa6/na-elderly-disability-standard
   title: Arizona DES FAA6 NA Elderly or Disability Eligibility Standard
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/NA_Elderly_or_Disability_Eligibility_Standar.html
-  local_path: ../../../capture/html/az-des-faa6-na-elderly-disability-standard.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa6-na-elderly-disability-standard.html
   source_format: html
   metadata:
     primary_source: true
@@ -115,7 +117,7 @@ documents:
   citation_path: us-az/manual/des/faa6/maximum-na-resource-limit
   title: Arizona DES FAA6 Maximum Nutrition Assistance Resource Limit
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/Maximum_NA_Resource_Limit.html
-  local_path: ../../../capture/html/az-des-faa6-maximum-na-resource-limit.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa6-maximum-na-resource-limit.html
   source_format: html
   metadata:
     primary_source: true
@@ -134,7 +136,7 @@ documents:
   citation_path: us-az/manual/des/faa4/income-eligibility-requirements
   title: Arizona DES FAA4 Income Eligibility Requirements
   source_url: https://dbmefaapolicy.azdes.gov/FAA4/Income_Eligibility_Requirements.html
-  local_path: ../../../capture/html/az-des-faa4-income-eligibility-requirements.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa4-income-eligibility-requirements.html
   source_format: html
   expression_date: '2026-09-28'
   metadata:
@@ -151,7 +153,7 @@ documents:
   citation_path: us-az/manual/des/faa4/na-resources
   title: Arizona DES FAA4 Nutrition Assistance Resources
   source_url: https://dbmefaapolicy.azdes.gov/FAA4/NA_Resources.html
-  local_path: ../../../capture/html/az-des-faa4-na-resources.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa4-na-resources.html
   source_format: html
   metadata:
     primary_source: true
@@ -169,7 +171,7 @@ documents:
   citation_path: us-az/manual/des/faa3/na-qualified-noncitizens
   title: Arizona DES FAA3 Nutrition Assistance Qualified Noncitizens
   source_url: https://dbmefaapolicy.azdes.gov/FAA3/NA_Qualified_Noncitizens.html
-  local_path: ../../../capture/html/az-des-faa3-na-qualified-noncitizens.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa3-na-qualified-noncitizens.html
   source_format: html
   expression_date: '2026-02-17'
   metadata:
@@ -188,7 +190,7 @@ documents:
   citation_path: us-az/manual/des/faa3/arizona-residency
   title: Arizona DES FAA3 Arizona Residency
   source_url: https://dbmefaapolicy.azdes.gov/FAA3/Arizona_Residency.html
-  local_path: ../../../capture/html/az-des-faa3-arizona-residency.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa3-arizona-residency.html
   source_format: html
   expression_date: '2026-09-28'
   metadata:
@@ -206,7 +208,7 @@ documents:
   citation_path: us-az/manual/des/faa3/residents-of-institutions-for-na
   title: Arizona DES FAA3 Residents of Institutions for Nutrition Assistance
   source_url: https://dbmefaapolicy.azdes.gov/FAA3/Residents_of_Institutions_for_NA.html
-  local_path: ../../../capture/html/az-des-faa3-residents-of-institutions-for-na.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-faa3-residents-of-institutions-for-na.html
   source_format: html
   expression_date: '2025-10-27'
   metadata:

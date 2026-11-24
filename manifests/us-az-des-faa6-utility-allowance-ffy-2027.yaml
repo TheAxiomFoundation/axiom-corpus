@@ -7,8 +7,12 @@
 # dbmefaapolicy.azdes.gov answers unattended clients with a Cloudflare challenge.
 # The page was saved by a person in an ordinary browser ("Save Page As, Webpage,
 # HTML Only"), the same capture method as axiom-corpus #383. No automated fetch and
-# no browser impersonation was used. local_path is relative to this file; rows record
-# the official source_url. A provenance sidecar is kept under sources/.../provenance/.
+# no browser impersonation was used.
+# local_path is relative to this file and names the retained copy where the corpus
+# locks it (sources/<scope>/official-documents/), so `corpus fetch` supplies it on any
+# machine. Rows record the official source_url, never the path. A provenance sidecar
+# per file (url, sha256, fetched_at, fetch_method) sits beside it in provenance/.
+# YYYY-MM-DD is the capture date; it is filled in once, before extraction and signing.
 #
 # Version is set on the command line; this key is documentation only:
 version: YYYY-MM-DD-az-des-faa6-utility-allowance-ffy-2027
@@ -19,7 +23,7 @@ documents:
   citation_path: us-az/manual/des/faa6/utility-allowance-current-amount-ffy-2027
   title: DES FAA6.J Standards, Fees, and Amounts - 09 Utility Allowance Current Amount (FFY 2027)
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
-  local_path: ../../../capture/html/az-des-faa6-utility-allowance-current-amount-ffy-2027.html
+  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-faa6-utility-allowance-ffy-2027/official-documents/az-des-faa6-utility-allowance-current-amount-ffy-2027.html
   source_format: html
   expression_date: '2026-10-01'
   metadata:
