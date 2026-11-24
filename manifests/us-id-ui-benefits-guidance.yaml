@@ -1,0 +1,63 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-id
+documents:
+- source_id: us-id-guidance-idol-administrative-order-683
+  jurisdiction: us-id
+  document_class: guidance
+  title: Idaho Department of Labor Administrative Order No. 683
+  source_url: https://www.labor.idaho.gov/wp-content/uploads/2024/12/AO.683.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-id/guidance/idol/administrative-order-683
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-id-guidance-idol-ui-facts-2026-03
+  jurisdiction: us-id
+  document_class: guidance
+  title: Idaho Department of Labor unemployment insurance fact sheet (March 2026)
+  source_url: https://www.labor.idaho.gov/wp-content/uploads/2026/07/UI-facts.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-id/guidance/idol/ui-facts-2026-03
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-id-guidance-idol-unemployment-benefits-monetary-eligibility
+  jurisdiction: us-id
+  document_class: guidance
+  title: Idaho Department of Labor, Monetary Eligibility
+  source_url: https://www.labor.idaho.gov/unemployment-benefits/monetary-eligibility/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-id/guidance/idol/unemployment-benefits/monetary-eligibility
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-id-guidance-idol-ui-claimant-guide
+  jurisdiction: us-id
+  document_class: guidance
+  title: Idaho Labor Unemployment Insurance Claimant Guide
+  source_url: https://www.labor.idaho.gov/wp-content/uploads/Publications/UIClaimant_Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-id/guidance/idol/ui-claimant-guide
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Labor
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

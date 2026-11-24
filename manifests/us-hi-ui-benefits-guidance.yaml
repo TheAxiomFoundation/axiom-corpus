@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-hi
+documents:
+- source_id: us-hi-guidance-dlir-ui-claimant-handbook
+  jurisdiction: us-hi
+  document_class: guidance
+  title: DLIR UI Claimant Handbook
+  source_url: https://labor.hawaii.gov/ui/files/2026/01/DLIR-UI-Claimant-Handbook-Rev1.26-with-BABEL.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-hi/guidance/dlir/ui-claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Labor and Industrial Relations
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-hi-guidance-dlir-ui-tax-rate-schedule-and-weekly-benefit-amount
+  jurisdiction: us-hi
+  document_class: guidance
+  title: DLIR, Tax Rate Schedule and Weekly Benefit Amount
+  source_url: https://labor.hawaii.gov/ui/tax-rate-schedule-and-weekly-benefit-amount/
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-hi/guidance/dlir/ui/tax-rate-schedule-and-weekly-benefit-amount
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Labor and Industrial Relations
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

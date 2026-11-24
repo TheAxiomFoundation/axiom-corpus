@@ -1,0 +1,93 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-statute-ky
+documents:
+- source_id: us-ky-statute-341-080
+  jurisdiction: us-ky
+  document_class: statute
+  title: KRS 341.080, Calendar year, calendar quarter, week, and week of unemployment defined
+  source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53257
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/statute/341.080
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ky-statute-341-090
+  jurisdiction: us-ky
+  document_class: statute
+  title: KRS 341.090, Base period, extended base period, benefit year, and base-period wages
+  source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=32243
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/statute/341.090
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ky-statute-341-350
+  jurisdiction: us-ky
+  document_class: statute
+  title: KRS 341.350, Conditions of qualification for benefits
+  source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56868
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/statute/341.350
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ky-statute-341-380
+  jurisdiction: us-ky
+  document_class: statute
+  title: KRS 341.380, Benefits, how paid; calculation of amount; increase in maximum weekly benefit rate
+  source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53243
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/statute/341.380
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ky-statute-341-385
+  jurisdiction: us-ky
+  document_class: statute
+  title: KRS 341.385, Duration of benefits
+  source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54211
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/statute/341.385
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ky-statute-341-390
+  jurisdiction: us-ky
+  document_class: statute
+  title: KRS 341.390, Deductions from benefits
+  source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=32298
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/statute/341.390
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

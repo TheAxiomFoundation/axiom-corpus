@@ -1,0 +1,48 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-or
+documents:
+- source_id: us-or-guidance-oed-press-2026-05-29-minimum-maximum-weekly-benefit-amounts
+  jurisdiction: us-or
+  document_class: guidance
+  title: 'Oregon Employment Department press release 2026-05-29: minimum and maximum weekly benefit amounts'
+  source_url: https://www.oregon.gov/employ/NewsAndMedia/Documents/2026-05-29-Minimum-Maximum-Weekly-Benefit-Amounts.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-05-29'
+  citation_path: us-or/guidance/oed/press/2026-05-29-minimum-maximum-weekly-benefit-amounts
+  metadata:
+    primary_source: true
+    source_authority: Oregon Employment Department
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-or-guidance-oed-unemployment-glossary
+  jurisdiction: us-or
+  document_class: guidance
+  title: Oregon Employment Department UI Glossary
+  source_url: https://unemployment.oregon.gov/glossary
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-or/guidance/oed/unemployment/glossary
+  metadata:
+    primary_source: true
+    source_authority: Oregon Employment Department
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-or-guidance-oed-ui-pub-350-claimant-handbook
+  jurisdiction: us-or
+  document_class: guidance
+  title: Oregon Employment Department UI PUB 350, Claimant Handbook
+  source_url: https://unemployment.oregon.gov/uploads/docs/UIPUB350-EN.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-or/guidance/oed/ui-pub-350-claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: Oregon Employment Department
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

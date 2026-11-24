@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-fl
+documents:
+- source_id: us-fl-guidance-floridacommerce-benefit-rights-information-handbook
+  jurisdiction: us-fl
+  document_class: guidance
+  title: FloridaCommerce, Benefit Rights Information Handbook
+  source_url: https://www.floridajobs.org/docs/default-source/reemployment-assistance-center/unemployment/bri/bri_english.pdf?sfvrsn=8e8e78b0_15
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-fl/guidance/floridacommerce/benefit-rights-information-handbook
+  metadata:
+    primary_source: true
+    source_authority: Florida Department of Commerce
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-fl-guidance-floridacommerce-claimant-faq
+  jurisdiction: us-fl
+  document_class: guidance
+  title: FloridaCommerce, Claimant FAQ
+  source_url: https://floridajobs.org/workforce-resources/reemployment-assistance/claimants/claimant-faq
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-fl/guidance/floridacommerce/claimant-faq
+  metadata:
+    primary_source: true
+    source_authority: Florida Department of Commerce
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

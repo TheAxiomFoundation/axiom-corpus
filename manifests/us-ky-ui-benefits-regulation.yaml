@@ -1,0 +1,51 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-ky
+documents:
+- source_id: us-ky-regulation-kar-787-1-090
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 787 KAR 1:090, Unemployed worker's reporting requirements
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/787/001/090/
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/regulation/kar/787/1/090
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/14136/document.engrossed.pdf
+- source_id: us-ky-regulation-kar-787-1-100
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 787 KAR 1:100, Week of unemployment defined
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/787/001/100/
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/regulation/kar/787/1/100
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/14137/document.engrossed.pdf
+- source_id: us-ky-regulation-kar-787-1-320
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 787 KAR 1:320, Priority of deductions from benefits
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/787/001/320/
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ky/regulation/kar/787/1/320
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+  download_url: https://apps.legislature.ky.gov/law/kar/downloads/docs/6839/document.engrossed.pdf

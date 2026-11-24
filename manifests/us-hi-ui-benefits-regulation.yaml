@@ -1,0 +1,18 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-regulation-hi
+documents:
+- source_id: us-hi-regulation-har-12-5
+  jurisdiction: us-hi
+  document_class: regulation
+  title: Haw. Admin. Rules title 12 chapter 5, Unemployment Compensation
+  source_url: https://labor.hawaii.gov/ui/files/2013/01/AdminRuleCh5-Title12.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-hi/regulation/har/12/5
+  metadata:
+    primary_source: true
+    source_authority: official publisher of the code
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

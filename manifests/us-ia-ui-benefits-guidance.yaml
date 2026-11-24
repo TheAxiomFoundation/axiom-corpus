@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-ia
+documents:
+- source_id: us-ia-guidance-iwd-announcement-2026-06-30-unemployment-benefits-increase
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'IWD announcement, June 30, 2026: unemployment benefits increase starting July 5'
+  source_url: https://workforce.iowa.gov/announcement/2026-06-30/iowans-unemployment-benefits-increase-starting-july-5
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-06-30'
+  citation_path: us-ia/guidance/iwd/announcement/2026-06-30-unemployment-benefits-increase
+  metadata:
+    primary_source: true
+    source_authority: Iowa Workforce Development
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-ia-guidance-iwd-ui-claimant-handbook-2026-2027
+  jurisdiction: us-ia
+  document_class: guidance
+  title: IWD Unemployment Insurance Claimant Handbook 2026-2027
+  source_url: https://workforce.iowa.gov/media/2589/download
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-ia/guidance/iwd/ui-claimant-handbook-2026-2027
+  metadata:
+    primary_source: true
+    source_authority: Iowa Workforce Development
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md

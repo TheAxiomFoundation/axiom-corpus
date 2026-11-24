@@ -1,0 +1,33 @@
+# Unemployment insurance benefits. Written by build_ui_benefits_document_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md.
+version: 2026-11-24-ui-benefits-guidance-sc
+documents:
+- source_id: us-sc-guidance-dew-claimant-handbook-2025-09-03
+  jurisdiction: us-sc
+  document_class: guidance
+  title: DEW Claimant Handbook (as of 9/3/2025)
+  source_url: https://dew.sc.gov/sites/dew/files/Documents/ClaimantHandbook_Asof9.3.2025.pdf
+  source_format: pdf
+  source_as_of: '2026-11-24'
+  expression_date: '2025-09-03'
+  citation_path: us-sc/guidance/dew/claimant-handbook-2025-09-03
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Employment and Workforce
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
+- source_id: us-sc-guidance-dew-weekly-benefit-amount
+  jurisdiction: us-sc
+  document_class: guidance
+  title: DEW, Weekly Benefit Amount
+  source_url: https://dew.sc.gov/individuals/how-unemployment-insurance-works/weekly-benefit-amount
+  source_format: html
+  source_as_of: '2026-11-24'
+  expression_date: '2026-11-24'
+  citation_path: us-sc/guidance/dew/weekly-benefit-amount
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Employment and Workforce
+    program: Unemployment insurance
+    discovered_via: axiom-roadmap-dashboard UI scope audit (a9a977bc), not reviewed by a person
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1b.md
