@@ -23,12 +23,14 @@ Every check fails closed with ``UploadRefusedError``.
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import os
 import re
 import stat
 import subprocess
 import tarfile
+import unicodedata
 from collections.abc import Iterable, Mapping
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
@@ -37,6 +39,7 @@ from typing import Any
 
 from axiom_corpus.corpus.content_store import R2ObjectStore, content_key
 from axiom_corpus.corpus.corpus_locks import (
+    LOCK_ROOT,
     LockEntry,
     ScopeKey,
     diff_lock_sets,
@@ -67,8 +70,38 @@ _PR_NUMBER_RE = re.compile(r"[1-9][0-9]{0,8}")
 _CHUNK = 1024 * 1024
 
 
+# Every lock file a pull request may carry has exactly this shape. Anything
+# else under the lock directory refuses the run before its name is printed.
+_SCOPE_PART = r"[a-z0-9][a-z0-9._-]{0,255}"
+_LOCK_PATH_RE = re.compile(
+    re.escape(LOCK_ROOT.as_posix()) + rf"/{_SCOPE_PART}/{_SCOPE_PART}/{_SCOPE_PART}\.json"
+)
+_MAX_MESSAGE = 600
+
+
+def clean_text(text: object, *, limit: int = _MAX_MESSAGE) -> str:
+    """``text`` on one line with no control or format characters.
+
+    Refusal messages quote pull-request data (paths, manifest fields, verifier
+    output). On a runner a line that starts with ``::`` is a workflow command,
+    so nothing from a pull request may start a line or carry a control
+    character into the log or the job summary.
+    """
+    cleaned = "".join(
+        "\ufffd" if unicodedata.category(ch)[0] == "C" or unicodedata.category(ch) in {"Zl", "Zp"}
+        else ch
+        for ch in str(text)
+    )
+    if len(cleaned) > limit:
+        cleaned = cleaned[:limit] + "…"
+    return cleaned
+
+
 class UploadRefusedError(RuntimeError):
     """A check failed; nothing further is read or written."""
+
+    def __init__(self, message: object):
+        super().__init__(clean_text(message))
 
 
 # --------------------------------------------------------------------------- plan
@@ -115,6 +148,44 @@ def _resolve_commit(repo: Path, ref: str) -> str:
     return commit
 
 
+def require_ref_at(repo: Path, ref: str, commit: str) -> None:
+    """Refuse unless ``ref`` resolves to exactly ``commit``."""
+    if not _COMMIT_RE.fullmatch(commit):
+        raise UploadRefusedError("the head must be a full 40-character lowercase commit id")
+    actual = _resolve_commit(repo.resolve(), ref)
+    if actual != commit:
+        raise UploadRefusedError(
+            f"the pull request is at {actual}, not the reviewed {commit}; review the new "
+            "head and dispatch again"
+        )
+
+
+def _require_strict_lock_tree(repo: Path, commit: str) -> None:
+    """Refuse a tree whose lock directory holds anything but canonical lock paths.
+
+    Names are never printed: a path can carry newlines and ``::`` commands.
+    """
+    listed = _git(repo, "ls-tree", "-r", "-z", "--name-only", commit, "--", LOCK_ROOT.as_posix())
+    if listed.returncode != 0:
+        raise UploadRefusedError(f"cannot list the lock files of `{commit}`")
+    bad = 0
+    for raw in listed.stdout.split(b"\0"):
+        if not raw:
+            continue
+        try:
+            path = raw.decode("ascii")
+        except UnicodeDecodeError:
+            bad += 1
+            continue
+        if not _LOCK_PATH_RE.fullmatch(path):
+            bad += 1
+    if bad:
+        raise UploadRefusedError(
+            f"{bad} path(s) under `{LOCK_ROOT.as_posix()}` at the head are not canonical "
+            "lock file paths (<jurisdiction>/<document_class>/<version>.json)"
+        )
+
+
 def build_upload_plan(
     repo: Path,
     *,
@@ -148,6 +219,7 @@ def build_upload_plan(
     if merge_base.returncode != 0 or not _COMMIT_RE.fullmatch(base_commit):
         raise UploadRefusedError(f"`{head_commit}` shares no history with `{base_ref}`")
 
+    _require_strict_lock_tree(repo, head_commit)
     try:
         head_locks = load_locks_at_ref(repo, head_commit)
         base_locks = load_locks_at_ref(repo, base_commit)
@@ -363,15 +435,60 @@ def pack_objects(repo: Path, entries: Iterable[LockEntry], output: Path) -> dict
     }
 
 
+_BLOCK = 512
+_ZERO_BLOCK = bytes(_BLOCK)
+
+
+def _header_member(header: bytes) -> tuple[str, int]:
+    """Name and size of one ustar header block, or refuse.
+
+    Only what ``pack_objects`` writes is accepted: a POSIX ustar header for a
+    regular file whose whole name sits in the name field and whose size is
+    plain octal. PAX and GNU extension headers (long names, sparse maps, size
+    overrides), links, directories and devices are refused, so no header can
+    rename, resize or redirect the member that follows it.
+    """
+    if header[257:263] != b"ustar\0" or header[263:265] != b"00":
+        raise UploadRefusedError("an archive header is not a POSIX ustar header")
+    stored = header[148:156].rstrip(b" \0")
+    expected = sum(header[:148]) + 8 * 0x20 + sum(header[156:])
+    if not re.fullmatch(rb"[0-7]{1,7}", stored) or int(stored, 8) != expected:
+        raise UploadRefusedError("an archive header has a wrong checksum")
+    if header[156:157] not in (b"0", b"\0"):
+        raise UploadRefusedError("an archive member is not a plain regular file")
+    if header[345:500].strip(b"\0") or header[157:257].strip(b"\0"):
+        raise UploadRefusedError("an archive member carries a name prefix or a link target")
+    raw_name = header[:100].split(b"\0", 1)[0]
+    if header[:100][len(raw_name) :].strip(b"\0"):
+        raise UploadRefusedError("an archive member name has bytes after its end")
+    name = raw_name.decode("ascii", errors="replace")
+    if not _SHA256_RE.fullmatch(name):
+        raise UploadRefusedError("an archive member is not named by a lowercase sha256")
+    size_field = header[124:136].rstrip(b" \0")
+    if not re.fullmatch(rb"[0-7]{1,11}", size_field):
+        raise UploadRefusedError(f"archive member {name} has no plain octal size")
+    return name, int(size_field, 8)
+
+
+def _read_exact(handle: Any, count: int) -> bytes:
+    data = handle.read(count)
+    if len(data) != count:
+        raise UploadRefusedError("the archive is truncated")
+    return bytes(data)
+
+
 def stage_archive(archive: Path, plan: UploadPlan, stage_dir: Path) -> dict[str, Path]:
     """Copy the archive's objects into ``stage_dir`` after checking each one.
 
-    The archive is an uncompressed tar read as a stream; nothing is extracted
-    by name. A member is accepted only if it is a plain regular file, its name
-    is exactly the sha256 of an object the plan names, it appears once, its
-    recorded size equals the lock's, and its bytes hash to that sha256. Any
-    other member (another name, a directory, a link, a device, a sparse file)
-    refuses the whole archive. Staged files are named by the plan's sha256.
+    The archive is an uncompressed POSIX ustar file, parsed here block by
+    block; nothing is extracted by name. A member is accepted only if it is a
+    plain regular file, its name is exactly the sha256 of an object the plan
+    names, it appears once, its recorded size equals the lock's, and its bytes
+    hash to that sha256. Anything else refuses the whole archive: another
+    name, a directory, a link, a device, a PAX or GNU extension header, a
+    truncated file, or any non-zero byte after the end-of-archive marker
+    (which is where a second, concatenated archive would sit). Staged files
+    are named by the plan's sha256.
     """
     try:
         archive_stat = archive.lstat()
@@ -386,15 +503,12 @@ def stage_archive(archive: Path, plan: UploadPlan, stage_dir: Path) -> dict[str,
     stage_dir.mkdir(parents=True, exist_ok=False)
     staged: dict[str, Path] = {}
     try:
-        with archive.open("rb") as raw, tarfile.open(fileobj=raw, mode="r|") as stream:
-            for member in stream:
-                name = member.name
-                if not _SHA256_RE.fullmatch(name):
-                    raise UploadRefusedError(
-                        f"archive member {name!r} is not named by a lowercase sha256"
-                    )
-                if member.type not in (tarfile.REGTYPE, tarfile.AREGTYPE) or member.issparse():
-                    raise UploadRefusedError(f"archive member {name} is not a plain regular file")
+        with archive.open("rb") as raw:
+            while True:
+                header = _read_exact(raw, _BLOCK)
+                if header == _ZERO_BLOCK:
+                    break
+                name, size = _header_member(header)
                 planned = plan.objects.get(name)
                 if planned is None:
                     raise UploadRefusedError(
@@ -402,34 +516,42 @@ def stage_archive(archive: Path, plan: UploadPlan, stage_dir: Path) -> dict[str,
                     )
                 if name in staged:
                     raise UploadRefusedError(f"archive member {name} appears twice")
-                if member.size != planned.size:
+                if size != planned.size:
                     raise UploadRefusedError(
-                        f"archive member {name} is {member.size} bytes; its lock entry "
+                        f"archive member {name} is {size} bytes; its lock entry "
                         f"pins {planned.size}"
                     )
-                source = stream.extractfile(member)
-                if source is None:
-                    raise UploadRefusedError(f"archive member {name} has no data")
                 target = stage_dir / planned.sha256
                 digest = hashlib.sha256()
                 remaining = planned.size
                 descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
                 with os.fdopen(descriptor, "wb") as handle:
                     while remaining:
-                        chunk = source.read(min(_CHUNK, remaining))
-                        if not chunk:
-                            break
+                        chunk = _read_exact(raw, min(_CHUNK, remaining))
                         digest.update(chunk)
                         handle.write(chunk)
                         remaining -= len(chunk)
-                if remaining or digest.hexdigest() != planned.sha256:
+                if digest.hexdigest() != planned.sha256:
                     raise UploadRefusedError(
                         f"archive member {name} does not hold the bytes its name and "
                         "lock entry pin"
                     )
+                padding = -planned.size % _BLOCK
+                if _read_exact(raw, padding).strip(b"\0"):
+                    raise UploadRefusedError(f"archive member {name} has non-zero padding")
                 staged[planned.sha256] = target
-    except (tarfile.TarError, EOFError, OSError) as exc:
-        raise UploadRefusedError(f"the archive is not a readable tar: {exc}") from exc
+            # Past the end marker only zero fill may follow.
+            for chunk in iter(lambda: raw.read(_CHUNK), b""):
+                if chunk.strip(b"\0"):
+                    raise UploadRefusedError(
+                        "the archive holds data after its end-of-archive marker"
+                    )
+    except UploadRefusedError:
+        raise
+    except Exception as exc:  # noqa: BLE001 - any failure to parse refuses the archive
+        raise UploadRefusedError(
+            f"the archive could not be read: {type(exc).__name__}: {exc}"
+        ) from exc
     return staged
 
 
@@ -531,7 +653,7 @@ def execute_upload(
             try:
                 return sha256, store.put(staged[sha256], sha256=planned.sha256, size=planned.size)
             except Exception as exc:  # noqa: BLE001 - recorded; the run fails
-                return sha256, f"{type(exc).__name__}: {exc}"
+                return sha256, clean_text(f"{type(exc).__name__}: {exc}")
 
         for sha256, outcome in pool.map(upload, sorted(staged)):
             if isinstance(outcome, str):
@@ -554,7 +676,12 @@ def render_summary(
     """Markdown for the job summary."""
     lines = ["### Corpus object upload", ""]
     if refusal is not None:
-        lines += [f"**Refused. Nothing was written by this step.** {refusal}", ""]
+        lines += [
+            "**Refused. Nothing was written by this step.**",
+            "",
+            f"<pre>{html.escape(clean_text(refusal), quote=True)}</pre>",
+            "",
+        ]
     if plan is not None:
         lines += [
             f"- Pull request head: `{plan.head_commit}`",
@@ -573,7 +700,10 @@ def render_summary(
             f"- Already in R2 with the same bytes: {len(result.already_present)}",
             f"- Failed: {len(result.failed)}",
         ]
-        lines += [f"  - `{sha256}`: {why}" for sha256, why in sorted(result.failed.items())[:20]]
+        lines += [
+            f"  - <code>{sha256}</code>: <code>{html.escape(clean_text(why), quote=True)}</code>"
+            for sha256, why in sorted(result.failed.items())[:20]
+        ]
         lines += ["", "**Every object is in R2.**" if result.ok else "**The upload failed.**"]
     elif refusal is None and verify_only:
         lines += ["", "Verification passed. This step holds no R2 credentials and wrote nothing."]
@@ -651,3 +781,37 @@ def select_staged_asset(releases: object, *, pr_number: str) -> StagedAsset:
         release_id=release_id,
         uploader=login if isinstance(login, str) else "unknown",
     )
+
+
+def require_reviewed_pull_request(
+    pull_request: object, *, repository: str, pr_number: str, head_commit: str
+) -> None:
+    """Refuse unless the pull request is open, from this repository, at ``head_commit``.
+
+    ``pull_request`` is GitHub's JSON for the pull request. Fork-head pull
+    requests already fail this repository's CI by design, and a closed or
+    merged one has nothing left to unblock, so neither is served.
+    """
+    release_tag_for(pr_number)
+    if not _COMMIT_RE.fullmatch(head_commit):
+        raise UploadRefusedError("the head must be a full 40-character lowercase commit id")
+    if not isinstance(pull_request, dict):
+        raise UploadRefusedError("the pull request description is not a JSON object")
+    if str(pull_request.get("number")) != pr_number:
+        raise UploadRefusedError("the pull request description is for another number")
+    if pull_request.get("state") != "open":
+        raise UploadRefusedError(f"pull request #{pr_number} is not open")
+    for side in ("head", "base"):
+        branch = pull_request.get(side)
+        repo = branch.get("repo") if isinstance(branch, dict) else None
+        full_name = repo.get("full_name") if isinstance(repo, dict) else None
+        if full_name != repository:
+            raise UploadRefusedError(
+                f"pull request #{pr_number} has its {side} branch outside {repository}"
+            )
+    head = pull_request["head"]
+    if head.get("sha") != head_commit:
+        raise UploadRefusedError(
+            f"pull request #{pr_number} is not at the reviewed commit {head_commit}; "
+            "review the new head and dispatch again"
+        )

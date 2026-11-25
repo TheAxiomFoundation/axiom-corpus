@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import re
 import subprocess
 import tarfile
 import threading
@@ -28,8 +29,12 @@ from axiom_corpus.corpus.ci_upload import (
     ARCHIVE_ASSET_NAME,
     UploadRefusedError,
     build_upload_plan,
+    clean_text,
     execute_upload,
     pack_objects,
+    render_summary,
+    require_ref_at,
+    require_reviewed_pull_request,
     select_staged_asset,
     stage_archive,
 )
@@ -395,10 +400,13 @@ def test_compressed_or_garbage_archive_is_refused(repo, keys, tmp_path) -> None:
     with tarfile.open(gz, mode="w:gz") as archive:
         info, data = _good_members()[0]
         archive.addfile(info, io.BytesIO(data or b""))
-    _refused(plan, gz, tmp_path, "not a readable tar")
+    _refused(plan, gz, tmp_path, "truncated|not a POSIX ustar header")
     garbage = tmp_path / "garbage.tar"
     garbage.write_bytes(b"\x01" * 2048)
-    _refused(plan, garbage, tmp_path, "not a readable tar")
+    _refused(plan, garbage, tmp_path, "not a POSIX ustar header")
+    empty = tmp_path / "empty.tar"
+    empty.write_bytes(b"")
+    _refused(plan, empty, tmp_path, "truncated")
 
 
 def test_archive_that_is_a_symlink_or_too_large_is_refused(
@@ -729,15 +737,63 @@ def test_cli_select_asset_writes_outputs(tmp_path, capsys) -> None:
     releases = tmp_path / "releases.json"
     releases.write_text(json.dumps([[_release()]]))
     output = tmp_path / "github-output"
-    code = cli_main(
-        ["corpus", "ci-select-asset", "--releases", str(releases), "--pr", "1013",
-         "--github-output", str(output)]
-    )
-    assert code == 0
+    pull_request = tmp_path / "pull-request.json"
+    pull_request.write_text(json.dumps(_pull_request()))
+    arguments = ["corpus", "ci-select-asset", "--releases", str(releases), "--pr", "1013",
+                 "--pull-request", str(pull_request), "--repository", REPOSITORY,
+                 "--head", "a" * 40]
+    assert cli_main([*arguments, "--github-output", str(output)]) == 0
     assert output.read_text() == "asset_id=99\nasset_size=4096\n"
+    pull_request.write_text(json.dumps(_pull_request(state="closed")))
+    assert cli_main(arguments) == 1
+    assert "is not open" in capsys.readouterr().err
+    pull_request.write_text(json.dumps(_pull_request()))
     releases.write_text(json.dumps([_release(draft=False)]))
-    assert cli_main(["corpus", "ci-select-asset", "--releases", str(releases), "--pr", "1013"]) == 1
+    assert cli_main(arguments) == 1
     capsys.readouterr()
+
+
+REPOSITORY = "TheAxiomFoundation/axiom-corpus"
+
+
+def _pull_request(**overrides) -> dict:
+    payload = {
+        "number": 1013,
+        "state": "open",
+        "head": {"sha": "a" * 40, "repo": {"full_name": REPOSITORY}},
+        "base": {"repo": {"full_name": REPOSITORY}},
+    }
+    payload.update(overrides)
+    return payload
+
+
+def _check_pull_request(payload: object, head: str = "a" * 40, number: str = "1013") -> None:
+    require_reviewed_pull_request(
+        payload, repository=REPOSITORY, pr_number=number, head_commit=head
+    )
+
+
+def test_open_same_repository_pull_request_at_the_reviewed_commit_is_accepted() -> None:
+    _check_pull_request(_pull_request())
+
+
+@pytest.mark.parametrize(
+    ("payload", "match"),
+    [
+        (_pull_request(state="closed"), "is not open"),
+        (_pull_request(head={"sha": "a" * 40, "repo": {"full_name": "fork/axiom-corpus"}}),
+         "head branch outside"),
+        (_pull_request(head={"sha": "a" * 40, "repo": None}), "head branch outside"),
+        (_pull_request(base={"repo": {"full_name": "other/repo"}}), "base branch outside"),
+        (_pull_request(head={"sha": "b" * 40, "repo": {"full_name": REPOSITORY}}),
+         "not at the reviewed commit"),
+        (_pull_request(number=7), "another number"),
+        ([], "not a JSON object"),
+    ],
+)
+def test_fork_closed_moved_or_other_pull_requests_are_refused(payload, match: str) -> None:
+    with pytest.raises(UploadRefusedError, match=match):
+        _check_pull_request(payload)
 
 
 # --------------------------------------------------------------------------- workflow shape
@@ -759,7 +815,7 @@ def test_workflow_starts_only_by_dispatch_and_never_from_a_pull_request() -> Non
 
 def test_every_job_runs_only_on_main_of_this_repository() -> None:
     for name, job in _workflow()["jobs"].items():
-        assert job["if"] == (
+        assert job["if"].removeprefix("always() && ") == (
             "github.repository == 'TheAxiomFoundation/axiom-corpus' "
             "&& github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'"
         ), name
@@ -781,7 +837,10 @@ def test_r2_write_credentials_reach_only_the_final_upload_step() -> None:
 
 def test_the_write_token_job_holds_no_r2_credentials_and_the_r2_job_no_write_token() -> None:
     jobs = _workflow()["jobs"]
-    assert jobs["stage"]["permissions"] == {"contents": "write"}
+    assert jobs["stage"]["permissions"] == {"contents": "write", "pull-requests": "read"}
+    assert jobs["cleanup"]["permissions"] == {"actions": "write"}
+    assert "secrets." not in json.dumps(jobs["cleanup"])
+    assert not any("uses" in step for step in jobs["cleanup"]["steps"])
     assert "environment" not in jobs["stage"]
     assert "GH_TOKEN" not in json.dumps(jobs["upload"])
     assert "github.token" not in json.dumps(jobs["upload"])
@@ -789,6 +848,8 @@ def test_the_write_token_job_holds_no_r2_credentials_and_the_r2_job_no_write_tok
 
 def test_checkouts_take_main_and_do_not_persist_credentials() -> None:
     for name, job in _workflow()["jobs"].items():
+        if name == "cleanup":
+            continue
         checkouts = [
             step for step in job["steps"] if str(step.get("uses", "")).startswith("actions/checkout@")
         ]
@@ -811,3 +872,336 @@ def test_dispatch_inputs_never_enter_a_script_as_text() -> None:
             assert "${{ inputs." not in str(step.get("run", "")), step.get("name")
             assert "${{ github.event.inputs." not in str(step.get("run", "")), step.get("name")
 
+
+def test_every_action_is_pinned_to_a_full_commit() -> None:
+    uses = [
+        step["uses"]
+        for job in _workflow()["jobs"].values()
+        for step in job["steps"]
+        if "uses" in step
+    ]
+    assert len(uses) == 6
+    for action in uses:
+        assert re.fullmatch(r"actions/[a-z-]+@[0-9a-f]{40}", action), action
+
+
+def test_the_unverified_run_artifact_is_short_lived_and_deleted() -> None:
+    jobs = _workflow()["jobs"]
+    artifact = next(s for s in jobs["stage"]["steps"] if "upload-artifact" in str(s.get("uses")))
+    assert artifact["with"]["retention-days"] == 1
+    assert jobs["cleanup"]["needs"] == ["stage", "upload"]
+    assert jobs["cleanup"]["if"].startswith("always() && ")
+    assert "-X DELETE" in jobs["cleanup"]["steps"][0]["run"]
+
+
+def test_the_upload_job_checks_the_fetched_head_in_both_steps() -> None:
+    runs = [str(step.get("run", "")) for step in _workflow()["jobs"]["upload"]["steps"]]
+    assert sum("--expect-ref refs/corpus-upload/head" in run for run in runs) == 2
+
+
+# --------------------------------------------------------------------------- review round 1
+
+INJECTION = "v\n::notice title=Corpus upload::Every object is in R2\n::add-mask::main\n"
+
+
+def test_lock_path_with_workflow_commands_is_refused_without_being_printed(
+    repo, keys, tmp_path, monkeypatch, capsys
+) -> None:
+    private, public = keys
+    head = _ingest(repo, private)
+    evil = repo / ".axiom/corpus-locks/us/statute" / f"{INJECTION}.json"
+    evil.parent.mkdir(parents=True)
+    evil.write_text("{}")
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "evil lock name")
+    head = _git(repo, "rev-parse", "HEAD")
+
+    with pytest.raises(UploadRefusedError, match="not canonical lock file paths") as caught:
+        _plan(repo, head, public)
+    assert "\n" not in str(caught.value) and "notice" not in str(caught.value)
+
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY", public)
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    summary = tmp_path / "summary.md"
+    code = cli_main(
+        ["corpus", "ci-upload", "--repo", str(repo), "--base", "main", "--head", head,
+         "--archive", str(_tar(tmp_path, _good_members())), "--verify-only",
+         "--summary", str(summary)]
+    )
+    captured = capsys.readouterr()
+    assert code == 1
+    for text in (captured.out, captured.err, summary.read_text()):
+        assert "::notice" not in text and "::add-mask" not in text
+    lines = captured.out.splitlines()
+    assert re.fullmatch(r"::stop-commands::[0-9a-f]{32}", lines[0])
+    assert lines[-1] == f"::{lines[0].removeprefix('::stop-commands::')}::"
+    assert not any(line.lstrip().startswith("::") for line in lines[1:-1])
+    assert not any(line.lstrip().startswith("::") for line in captured.err.splitlines())
+
+
+@pytest.mark.parametrize(
+    "name",
+    ["data\n::error::x.json", "a/b/c/d.json", "us/statute/v.JSON", "us/statute/.hidden.json",
+     "us/statute/Upper.json", "us/statute/v.json\r"],
+)
+def test_only_canonical_lock_paths_are_accepted_at_the_head(repo, keys, name: str) -> None:
+    private, public = keys
+    _ingest(repo, private)
+    path = repo / ".axiom/corpus-locks" / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("{}")
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "odd lock path")
+    with pytest.raises(UploadRefusedError, match="not canonical lock file paths"):
+        _plan(repo, _git(repo, "rev-parse", "HEAD"), public)
+
+
+def test_refusals_and_summaries_carry_no_control_characters_or_markup() -> None:
+    hostile = "a\n::error::b\r\x1b[31m\u2028\u202e<script>x</script> [l](http://e) `c`"
+    cleaned = clean_text(hostile)
+    assert "\n" not in cleaned and "\r" not in cleaned and "\x1b" not in cleaned
+    assert "\u2028" not in cleaned and "\u202e" not in cleaned
+    assert str(UploadRefusedError(hostile)) == cleaned
+    assert len(clean_text("x" * 5000)) < 700
+
+    result = ci_upload.UploadResult(failed={"f" * 64: hostile})
+    for summary in (
+        render_summary(None, None, None, refusal=hostile),
+        render_summary(None, None, result),
+    ):
+        assert "<script>" not in summary and "&lt;script&gt;" in summary
+        assert all(not line.lstrip().startswith("::") for line in summary.splitlines())
+        assert "\x1b" not in summary and "\r" not in summary
+
+
+def test_manifest_field_with_workflow_commands_cannot_reach_a_line_start(repo, keys) -> None:
+    """Verifier output quotes manifest fields; the refusal stays on one line."""
+    private, public = keys
+    _ingest(repo, private)
+    path = repo / MANIFEST
+    payload = json.loads(path.read_text())
+    payload["schema_version"] = "x\n::add-mask::main"
+    payload["axiom_corpus_git"]["root"] = "\n::notice::forged"
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    _git(repo, "commit", "-q", "-am", "hostile manifest fields")
+    with pytest.raises(UploadRefusedError) as caught:
+        _plan(repo, _git(repo, "rev-parse", "HEAD"), public)
+    assert "\n" not in str(caught.value)
+
+
+@pytest.mark.parametrize(
+    "headers",
+    [
+        {"GNU.sparse.major": "1", "GNU.sparse.minor": "0", "GNU.sparse.name": "x",
+         "GNU.sparse.realsize": "12"},
+        {"size": str(10**12)},
+        {"path": "PLACEHOLDER"},
+        {"comment": "A" * 4096},
+    ],
+)
+def test_pax_extension_headers_are_refused_as_a_refusal_not_a_crash(
+    repo, keys, tmp_path, headers
+) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    data = next(iter(FILES.values()))
+    headers = {k: (_sha(data) if v == "PLACEHOLDER" else v) for k, v in headers.items()}
+    archive = tmp_path / "pax.tar"
+    with tarfile.open(archive, mode="w", format=tarfile.PAX_FORMAT) as handle:
+        info = tarfile.TarInfo(name="innocent" if "path" in headers else _sha(data))
+        info.size = len(data)
+        info.pax_headers = headers
+        handle.addfile(info, io.BytesIO(data))
+    _refused(plan, archive, tmp_path, "not a plain regular file")
+
+
+def test_gnu_long_name_and_gnu_format_headers_are_refused(repo, keys, tmp_path) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    data = next(iter(FILES.values()))
+    archive = tmp_path / "gnu.tar"
+    with tarfile.open(archive, mode="w", format=tarfile.GNU_FORMAT) as handle:
+        info = tarfile.TarInfo(name=_sha(data))
+        info.size = len(data)
+        handle.addfile(info, io.BytesIO(data))
+    _refused(plan, archive, tmp_path, "not a POSIX ustar header")
+
+
+def test_header_with_a_wrong_checksum_or_base256_size_is_refused(repo, keys, tmp_path) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    good = _tar(tmp_path, _good_members()[:1]).read_bytes()
+    flipped = tmp_path / "flipped.tar"
+    flipped.write_bytes(good[:100] + b"\x01" + good[101:])
+    _refused(plan, flipped, tmp_path, "wrong checksum")
+    header = bytearray(good[:512])
+    header[124:136] = b"\x80" + bytes(10) + b"\x0d"
+    header[148:156] = b"        "
+    header[148:156] = f"{sum(header):06o}\0 ".encode("ascii")
+    base256 = tmp_path / "base256.tar"
+    base256.write_bytes(bytes(header) + good[512:])
+    _refused(plan, base256, tmp_path, "no plain octal size")
+
+
+def test_data_after_the_end_of_archive_marker_is_refused(repo, keys, tmp_path) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    good = _tar(tmp_path, _good_members())
+    trailing = tmp_path / "trailing.tar"
+    trailing.write_bytes(good.read_bytes() + b"EVIL" * 1000)
+    _refused(plan, trailing, tmp_path, "after its end-of-archive marker")
+
+    extra = b"hidden second archive"
+    second = _tar(tmp_path, [_member(_sha(extra), extra)])
+    concatenated = tmp_path / "concatenated.tar"
+    concatenated.write_bytes(good.read_bytes() + second.read_bytes())
+    _refused(plan, concatenated, tmp_path, "after its end-of-archive marker")
+
+    padded = tmp_path / "padded.tar"
+    padded.write_bytes(good.read_bytes() + bytes(4096))
+    assert len(stage_archive(padded, plan, tmp_path / "stage-padded")) == len(FILES)
+
+
+def test_truncated_archive_and_non_zero_padding_are_refused(repo, keys, tmp_path) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    good = _tar(tmp_path, _good_members()[:1]).read_bytes()
+    size = len(next(iter(FILES.values())))
+    cut = tmp_path / "cut.tar"
+    cut.write_bytes(good[: 512 + size // 2])
+    _refused(plan, cut, tmp_path, "truncated")
+    no_marker = tmp_path / "no-marker.tar"
+    no_marker.write_bytes(good[:1024])
+    _refused(plan, no_marker, tmp_path, "truncated")
+    dirty = tmp_path / "dirty.tar"
+    dirty.write_bytes(good[: 512 + size] + b"X" + good[512 + size + 1 :])
+    _refused(plan, dirty, tmp_path, "non-zero padding")
+
+
+def test_manifest_signed_on_a_commit_outside_the_head_history_is_refused(repo, keys) -> None:
+    private, public = keys
+    _write_files(repo, FILES)
+    _git(repo, "checkout", "-q", "-b", "elsewhere")
+    (repo / "unrelated.txt").write_text("not in the pull request\n")
+    _git(repo, "add", "unrelated.txt")
+    _git(repo, "commit", "-q", "-m", "side commit")
+    _sign(repo, private)
+    _git(repo, "checkout", "-q", "main")
+    _git(repo, "checkout", "-q", "-B", "ingest")
+    write_lock(repo, lock_from_worktree(repo, SCOPE))
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "ingest with a foreign manifest")
+    with pytest.raises(UploadRefusedError, match="is not an ancestor"):
+        _plan(repo, _git(repo, "rev-parse", "HEAD"), public)
+
+
+def test_invalid_lock_at_the_base_is_refused(repo, keys) -> None:
+    private, public = keys
+    bad = repo / ".axiom/corpus-locks/us/statute/2026-01-01.json"
+    bad.parent.mkdir(parents=True)
+    bad.write_text("{}\n")
+    _git(repo, "add", ".axiom")
+    _git(repo, "commit", "-q", "-m", "broken lock on main")
+    _git(repo, "checkout", "-q", "-B", "ingest")
+    _git(repo, "rm", "-q", ".axiom/corpus-locks/us/statute/2026-01-01.json")
+    _git(repo, "commit", "-q", "-m", "drop the broken lock")
+    head = _ingest(repo, private)
+    with pytest.raises(UploadRefusedError, match="lock files at the base are invalid"):
+        _plan(repo, head, public)
+
+
+def test_one_sha256_with_two_sizes_is_refused(repo, keys) -> None:
+    private, public = keys
+    files = dict(FILES)
+    twin = "data/corpus/sources/us-az/manual/2026-11-24-pages/official/twin.html"
+    files[twin] = FILES["data/corpus/sources/us-az/manual/2026-11-24-pages/official/faa3.html"]
+    _ingest(repo, private, files)
+    lock_file = repo / lock_path_for_scope(SCOPE)
+    size = len(files[twin])
+    lines = lock_file.read_text().splitlines(keepends=True)
+    index = next(i for i, line in enumerate(lines) if twin in line)
+    lines[index] = lines[index].replace(f'"size": {size}', f'"size": {size + 1}')
+    lock_file.write_text("".join(lines))
+    _git(repo, "commit", "-q", "-am", "one sha256, two sizes")
+    with pytest.raises(UploadRefusedError, match="two sizes"):
+        _plan(repo, _git(repo, "rev-parse", "HEAD"), public)
+
+
+class RacingR2(FakeR2):
+    """Another writer creates the object between the absence check and the put."""
+
+    def __init__(self, winner: dict[str, bytes]):
+        super().__init__()
+        self.winner = winner
+
+    def put_object(self, **kwargs):
+        with self._lock:
+            self.objects.setdefault(kwargs["Key"], self.winner.get(kwargs["Key"], b"other writer"))
+        return super().put_object(**kwargs)
+
+
+def test_lost_conditional_write_race_accepts_identical_bytes_only(repo, keys, tmp_path) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    archive = _tar(tmp_path, _good_members())
+    same = RacingR2({content_key(_sha(d)): d for d in FILES.values()})
+    store = R2ObjectStore(bucket="axiom-corpus", client=same, legacy_path_keys=False)
+
+    result = execute_upload(plan, stage_archive(archive, plan, tmp_path / "s1"), store)
+
+    assert result.ok and not result.uploaded and same.puts == []
+    assert len(result.already_present) == len(FILES)
+
+    different = RacingR2({})
+    store = R2ObjectStore(bucket="axiom-corpus", client=different, legacy_path_keys=False)
+    result = execute_upload(plan, stage_archive(archive, plan, tmp_path / "s2"), store)
+
+    assert not result.ok and len(result.failed) == len(FILES) and different.puts == []
+    assert set(different.objects.values()) == {b"other writer"}
+
+
+class CorruptingR2(FakeR2):
+    """Stores other bytes than it was given, as a faulty store would."""
+
+    def put_object(self, **kwargs):
+        body = kwargs["Body"]
+        kwargs["Body"] = BytesIO(body.read()[:-1] + b"?")
+        return super().put_object(**kwargs)
+
+
+def test_readback_that_does_not_match_fails_the_run(repo, keys, tmp_path) -> None:
+    private, public = keys
+    plan = _plan(repo, _ingest(repo, private), public)
+    store = R2ObjectStore(bucket="axiom-corpus", client=CorruptingR2(), legacy_path_keys=False)
+
+    result = execute_upload(
+        plan, stage_archive(_tar(tmp_path, _good_members()), plan, tmp_path / "stage"), store
+    )
+
+    assert not result.ok and len(result.failed) == len(FILES)
+    assert all("readback" in why for why in result.failed.values())
+    assert "The upload failed" in render_summary(plan, {}, result)
+
+
+def test_head_that_moved_since_review_is_refused(repo, keys, tmp_path, monkeypatch, capsys) -> None:
+    private, public = keys
+    reviewed = _ingest(repo, private)
+    (repo / "later.txt").write_text("pushed after review\n")
+    _git(repo, "add", "later.txt")
+    _git(repo, "commit", "-q", "-m", "later push")
+    _git(repo, "update-ref", "refs/corpus-upload/head", "HEAD")
+
+    require_ref_at(repo, "refs/corpus-upload/head", _git(repo, "rev-parse", "HEAD"))
+    with pytest.raises(UploadRefusedError, match="not the reviewed"):
+        require_ref_at(repo, "refs/corpus-upload/head", reviewed)
+    with pytest.raises(UploadRefusedError):
+        require_ref_at(repo, "refs/corpus-upload/absent", reviewed)
+
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY", public)
+    code = cli_main(
+        ["corpus", "ci-upload", "--repo", str(repo), "--base", "main", "--head", reviewed,
+         "--expect-ref", "refs/corpus-upload/head", "--verify-only",
+         "--archive", str(_tar(tmp_path, _good_members()))]
+    )
+    assert code == 1
+    assert "not the reviewed" in capsys.readouterr().err

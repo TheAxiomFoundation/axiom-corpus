@@ -12,6 +12,10 @@ The `Upload signed ingest corpus objects` workflow
 runner instead. `corpus push` keeps working for anyone who holds the
 credentials. See `docs/corpus-storage.md` for the storage model.
 
+**Use this path only for sources that are already public.** The archive is
+not private while a run handles it: see "Who can read the archive" below. For
+any other source, a credential holder runs `corpus push`.
+
 ## Steps
 
 For pull request `<N>`, on its branch, with the ingested files in
@@ -59,15 +63,19 @@ run with the same inputs writes nothing and passes.
 
 ## What the workflow accepts
 
-The workflow has two jobs. Both run only for a `workflow_dispatch` on
+The workflow has three jobs. All run only for a `workflow_dispatch` on
 `refs/heads/main`, so the workflow file and all code are `main`'s.
 
-`stage` lists the repository's releases, requires exactly one tagged
+`stage` first requires pull request `<N>` to be open, to have its head and
+base in this repository, and to be at the `head_sha` the dispatcher gave. A
+fork-head pull request already fails this repository's CI by design, and a
+closed or merged one has nothing left to unblock, so neither is served. It
+then lists the repository's releases, requires exactly one tagged
 `corpus-upload-pr-<N>`, requires it to be a draft holding exactly one asset
 named `corpus-objects.tar` within the size limit, downloads that asset by id
 and passes it on as a run artifact. It does not open the archive. It holds a
-`contents: write` token, because GitHub shows draft releases only to tokens
-with write access, and no R2 credentials.
+`contents: write` token, because GitHub lists draft releases only for tokens
+with push access, a `pull-requests: read` token, and no R2 credentials.
 
 `upload` holds the R2 write credentials in its last step only, and a
 `contents: read` token. It checks out `main`, fetches the pull request's head
@@ -83,14 +91,27 @@ dispatcher gave. `corpus ci-upload` then refuses unless all of this holds:
 | The manifest's Ed25519 signature verifies against `AXIOM_CORPUS_INGEST_PUBLIC_KEY`, with the provenance checks `guard-ingested` applies | `verify_ingest_manifest` |
 | The scope's lock equals the manifest's applied files: same paths, same sha256 | `_require_signed_scope` |
 | At most 5,000 objects and 1.5 GiB per run; the archive is a regular file within the matching limit | `build_upload_plan`, `stage_archive` |
+| Every path under `.axiom/corpus-locks` at the head is a canonical lock path; any other name refuses the run without being printed | `_require_strict_lock_tree` |
+| The fetched pull request ref is at `head_sha` | `require_ref_at` |
 | Every archive member is a plain regular file, named exactly by the sha256 of a planned object, present once, with the lock's size and bytes that hash to that sha256 | `stage_archive` |
 | Every planned object that the archive lacks is already in R2 with exactly the pinned bytes; checked before any write | `execute_upload` |
 
-The archive is an uncompressed tar read as a stream. Nothing is extracted by
-name: a member's name only selects a planned object, and the staged file is
-named from the plan. Any other member (another name, a path with a directory,
-a symlink, a hard link, a directory, a device, a sparse file, a duplicate, a
-file no changed lock entry names) refuses the whole archive.
+The archive is an uncompressed POSIX ustar file. `stage_archive` parses it
+block by block itself and accepts only what `ci-pack` writes: a ustar header
+with a correct checksum, for a regular file, with the whole name in the name
+field and a plain octal size. Nothing is extracted by name: a member's name
+only selects a planned object, and the staged file is named from the plan.
+Anything else refuses the whole archive: another name, a path with a
+directory, a symlink, a hard link, a directory, a device, a PAX or GNU
+extension header (long names, sparse maps, size or path overrides), a
+duplicate, a file no changed lock entry names, a truncated file, non-zero
+padding, or any non-zero byte after the end-of-archive marker, which is where
+a second archive would hide.
+
+Refusal messages quote pull-request data. Every message is reduced to one
+line without control or format characters, the job summary HTML-escapes it,
+and `ci-upload` turns workflow-command processing off (`::stop-commands::`
+with a random token) while it prints its report.
 
 An object's key is `objects/sha256/<xx>/<sha256>`, computed from the lock
 entry's sha256 by `content_key`. Writes go through `R2ObjectStore.put`, the
@@ -101,6 +122,23 @@ is compared and never replaced; if it holds other bytes the run fails.
 The job runs the checks twice: first in a step without R2 credentials, then
 again in the step that writes.
 
+`cleanup` runs last, also after a failure. It holds an `actions: write` token
+and nothing else, and deletes the run artifact.
+
+## Who can read the archive
+
+- The draft release asset: people with write access to the repository, until
+  the ingester deletes the draft.
+- The run artifact that carries the archive from `stage` to `upload`: in a
+  public repository, **any signed-in GitHub user**, from the end of `stage`
+  until `cleanup` deletes it. Its retention is one day, the shortest GitHub
+  allows, in case `cleanup` does not run. At that point the archive is not
+  yet verified.
+- The objects in R2: as for every other corpus object.
+
+The workflow cannot tell whether a source is public. The ingester decides
+that before attaching an archive.
+
 ## Who can start it
 
 `workflow_dispatch` needs write access to the repository (the `Actions:
@@ -109,13 +147,7 @@ the draft release needs write access too. The signature is what authorizes
 the bytes: a dispatcher cannot make the workflow write an object that no
 valid signed manifest names.
 
-This workflow does not change who can reach the R2 write credentials. They
-are repository secrets, so a job of any workflow on any branch can already
-name them; `mirror-release.yml` records the same note. Moving them into
-environments restricted to `main` would close that, for this workflow and the
-release workflows alike.
-
-## Setup
+## Maintainer setup and known limits
 
 A repository admin creates the `corpus-object-upload` environment before the
 first run and restricts it to the `main` branch, as `release-publish` is.
@@ -127,6 +159,26 @@ one approval.
 The workflow uses the existing `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`,
 `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT` and `R2_BUCKET` secrets and the
 `AXIOM_CORPUS_INGEST_PUBLIC_KEY` variable. It needs no new secret.
+
+Known limits, none of which this workflow changes:
+
+- **The `refs/heads/main` conditions are advisory today.** The R2 write
+  credentials are repository secrets. The four existing environments hold no
+  secrets and the repository has no rulesets, so a workflow file on any
+  branch, dispatched by anyone with write access, can name those secrets
+  (`mirror-release.yml` records the same note). The conditions protect this
+  workflow file, not the credentials. Recommendation for the maintainer: move
+  the R2 write secrets into environments restricted to `main`
+  (`corpus-object-upload` here, the release environments for the release
+  workflows) and delete the repository-level copies. Then only `main`'s
+  workflow files can use them.
+- **`stage` needs `contents: write`.** GitHub lists draft releases only for
+  tokens with push access. That job holds no R2 credentials, never opens the
+  archive, and its checkout does not persist the token.
+- **Fork, closed and merged pull requests are refused.** The signature check
+  does not depend on that, but no case needs them.
+- **Actions are pinned by full commit SHA**, with the tag in a comment, as
+  `register-release-object.yml` pins them.
 
 ## Alternatives considered
 

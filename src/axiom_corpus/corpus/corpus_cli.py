@@ -10,6 +10,7 @@ import contextlib
 import json
 import os
 import random
+import secrets
 import subprocess
 import sys
 import tempfile
@@ -212,6 +213,11 @@ def register(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
     ci_select.add_argument("--json", action="store_true")
     ci_select.add_argument("--releases", type=Path, required=True, help="Release list JSON.")
     ci_select.add_argument("--pr", required=True, help="Pull request number.")
+    ci_select.add_argument(
+        "--pull-request", type=Path, required=True, help="Pull request JSON from the GitHub API."
+    )
+    ci_select.add_argument("--repository", required=True, help="owner/name of this repository.")
+    ci_select.add_argument("--head", required=True, help="Reviewed head commit.")
     ci_select.add_argument("--github-output", type=Path, help="Append asset_id and asset_size.")
     ci_select.set_defaults(func=_cmd_ci_select_asset)
 
@@ -228,6 +234,9 @@ def register(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
     common(ci_up)
     ci_up.add_argument("--base", required=True, metavar="REF", help="Trusted base ref.")
     ci_up.add_argument("--head", required=True, metavar="HEAD_COMMIT", help="Full commit id.")
+    ci_up.add_argument(
+        "--expect-ref", metavar="REF", help="Refuse unless REF resolves to HEAD_COMMIT."
+    )
     ci_up.add_argument("--archive", type=Path, required=True)
     ci_up.add_argument(
         "--verify-only",
@@ -1015,10 +1024,16 @@ def _cmd_ci_pack(args: argparse.Namespace) -> int:
 
 def _cmd_ci_select_asset(args: argparse.Namespace) -> int:
     try:
+        ci_upload.require_reviewed_pull_request(
+            json.loads(args.pull_request.read_text(encoding="utf-8")),
+            repository=args.repository,
+            pr_number=args.pr,
+            head_commit=args.head,
+        )
         releases = json.loads(args.releases.read_text(encoding="utf-8"))
         asset = ci_upload.select_staged_asset(releases, pr_number=args.pr)
     except (OSError, ValueError, ci_upload.UploadRefusedError) as exc:
-        print(f"corpus ci-select-asset: {exc}", file=sys.stderr)
+        print(f"corpus ci-select-asset: {ci_upload.clean_text(exc)}", file=sys.stderr)
         return 1
     if args.github_output:
         with args.github_output.open("a", encoding="utf-8") as handle:
@@ -1027,14 +1042,14 @@ def _cmd_ci_select_asset(args: argparse.Namespace) -> int:
         "asset_id": asset.asset_id,
         "asset_size": asset.size,
         "release_id": asset.release_id,
-        "uploader": asset.uploader,
+        "uploader": ci_upload.clean_text(asset.uploader, limit=64),
     }
     _emit(
         args,
         payload,
         [
             f"asset {asset.asset_id} of draft release {asset.release_id}: "
-            f"{asset.size:,} bytes, uploaded by {asset.uploader}"
+            f"{asset.size:,} bytes, uploaded by {payload['uploader']}"
         ],
     )
     return 0
@@ -1046,6 +1061,8 @@ def _cmd_ci_upload(args: argparse.Namespace) -> int:
     refusal: str | None = None
     with tempfile.TemporaryDirectory(prefix="corpus-ci-upload-") as scratch:
         try:
+            if args.expect_ref:
+                ci_upload.require_ref_at(repo, args.expect_ref, args.head)
             plan = ci_upload.build_upload_plan(
                 repo,
                 base_ref=args.base,
@@ -1073,12 +1090,24 @@ def _cmd_ci_upload(args: argparse.Namespace) -> int:
         "ok": ok,
         "refusal": refusal,
         "verify_only": bool(args.verify_only),
-        "head_commit": plan.head_commit if plan else args.head,
+        "head_commit": plan.head_commit if plan else ci_upload.clean_text(args.head, limit=64),
         "scopes": ["/".join(scope) for scope in plan.scopes] if plan else [],
         "objects": len(plan.objects) if plan else 0,
         "result": result.to_mapping() if result else None,
     }
-    _emit(args, payload, summary.splitlines())
-    if refusal is not None:
-        print(f"corpus ci-upload: refused: {refusal}", file=sys.stderr)
+    # On a runner, a line that starts with ``::`` is a workflow command. The
+    # report quotes pull-request data, so command processing is off while it
+    # prints; the token that turns it back on is random and never printed first.
+    on_runner = os.environ.get("GITHUB_ACTIONS") == "true"
+    token = secrets.token_hex(16)
+    if on_runner:
+        print(f"::stop-commands::{token}", flush=True)
+    try:
+        _emit(args, payload, summary.splitlines())
+        if refusal is not None:
+            sys.stdout.flush()
+            print(f"corpus ci-upload: refused: {refusal}", file=sys.stderr, flush=True)
+    finally:
+        if on_runner:
+            print(f"::{token}::", flush=True)
     return 0 if ok else 1
