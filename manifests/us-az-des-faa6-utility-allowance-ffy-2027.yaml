@@ -12,10 +12,10 @@
 # locks it (sources/<scope>/official-documents/), so `corpus fetch` supplies it on any
 # machine. Rows record the official source_url, never the path. A provenance sidecar
 # per file (url, sha256, fetched_at, fetch_method) sits beside it in provenance/.
-# YYYY-MM-DD is the capture date; it is filled in once, before extraction and signing.
+# The scope date 2026-11-24 is the capture date (Chrome saves, 9:01-9:14pm EST).
 #
 # Version is set on the command line; this key is documentation only:
-version: YYYY-MM-DD-az-des-faa6-utility-allowance-ffy-2027
+version: 2026-11-24-az-des-faa6-utility-allowance-ffy-2027
 documents:
 - source_id: az-des-faa6-utility-allowance-current-amount-ffy-2027
   jurisdiction: us-az
@@ -23,7 +23,7 @@ documents:
   citation_path: us-az/manual/des/faa6/utility-allowance-current-amount-ffy-2027
   title: DES FAA6.J Standards, Fees, and Amounts - 09 Utility Allowance Current Amount (FFY 2027)
   source_url: https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
-  local_path: ../data/corpus/sources/us-az/manual/YYYY-MM-DD-az-des-faa6-utility-allowance-ffy-2027/official-documents/az-des-faa6-utility-allowance-current-amount-ffy-2027.html
+  local_path: ../data/corpus/sources/us-az/manual/2026-11-24-az-des-faa6-utility-allowance-ffy-2027/official-documents/az-des-faa6-utility-allowance-current-amount-ffy-2027.html
   source_format: html
   expression_date: '2026-10-01'
   metadata:

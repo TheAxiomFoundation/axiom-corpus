@@ -9,12 +9,12 @@
 # locks it (sources/<scope>/official-documents/), so `corpus fetch` supplies it on any
 # machine. Rows record the official source_url, never the path. A provenance sidecar
 # per file (url, sha256, fetched_at, fetch_method) sits beside it in provenance/.
-# YYYY-MM-DD is the capture date; it is filled in once, before extraction and signing.
+# The scope date 2026-11-24 is the capture date (Chrome saves, 9:01-9:14pm EST).
 #
 # source_as_of is the capture date, set on the command line (--source-as-of).
 #
 # Version is set on the command line; this key is documentation only:
-version: YYYY-MM-DD-az-des-snap-screener-pages
+version: 2026-11-24-az-des-snap-screener-pages
 documents:
 - source_id: az-des-2026-abawd-geographic-waiver-bulletin
   jurisdiction: us-az
@@ -22,7 +22,7 @@ documents:
   citation_path: us-az/policy/des/faa2/2026-abawd-geographic-waiver-bulletin
   title: Arizona DES urgent bulletin, 2026 ABAWD geographic waiver
   source_url: https://dbmefaapolicy.azdes.gov/FAA2/baggage/Urgent%20Bulletin%20%2803-30-2026%29%20-%202026%20ABAWD%20Geographic%20Waiver.pdf
-  local_path: ../data/corpus/sources/us-az/policy/YYYY-MM-DD-az-des-snap-screener-pages/official-documents/az-des-2026-abawd-geographic-waiver-bulletin.pdf
+  local_path: ../data/corpus/sources/us-az/policy/2026-11-24-az-des-snap-screener-pages/official-documents/az-des-2026-abawd-geographic-waiver-bulletin.pdf
   source_format: pdf
   expression_date: '2026-03-30'
   metadata:
