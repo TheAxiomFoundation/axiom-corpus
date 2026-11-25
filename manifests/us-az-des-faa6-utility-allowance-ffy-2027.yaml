@@ -1,0 +1,38 @@
+# Arizona DES FAA6.J.09 Utility Allowance Current Amount, captured for the FFY 2027
+# amounts (effective 10/01/2026). Optional: extract this scope only if the saved page
+# shows the 10/01/2026 amounts. The FFY 2026 capture of the same official URL stays
+# at us-az/manual/des/faa6/utility-allowance-current-amount
+# (manifests/us-az-des-faa6-utility-amounts.yaml), so this capture takes its own path.
+#
+# dbmefaapolicy.azdes.gov answers unattended clients with a Cloudflare challenge.
+# The page was saved by a person in an ordinary browser ("Save Page As, Webpage,
+# HTML Only"), the same capture method as axiom-corpus #383. No automated fetch and
+# no browser impersonation was used.
+# local_path is relative to this file and names the retained copy where the corpus
+# locks it (sources/<scope>/official-documents/), so `corpus fetch` supplies it on any
+# machine. Rows record the official source_url, never the path. A provenance sidecar
+# per file (url, sha256, fetched_at, fetch_method) sits beside it in provenance/.
+# The scope date 2026-11-24 is the capture date (Chrome saves, 9:01-9:14pm EST).
+#
+# Version is set on the command line; this key is documentation only:
+version: 2026-11-24-az-des-faa6-utility-allowance-ffy-2027
+documents:
+- source_id: az-des-faa6-utility-allowance-current-amount-ffy-2027
+  jurisdiction: us-az
+  document_class: manual
+  citation_path: us-az/manual/des/faa6/utility-allowance-current-amount-ffy-2027
+  title: DES FAA6.J Standards, Fees, and Amounts - 09 Utility Allowance Current Amount (FFY 2027)
+  source_url: https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
+  local_path: ../data/corpus/sources/us-az/manual/2026-11-24-az-des-faa6-utility-allowance-ffy-2027/official-documents/az-des-faa6-utility-allowance-current-amount-ffy-2027.html
+  source_format: html
+  expression_date: '2026-10-01'
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Economic Security
+    document_subtype: policy_manual_section
+    document_number: FAA6.J.09
+    program: SNAP
+    topic: fy2027_standard_utility_allowance_amounts
+    capture_method: person, browser save (Webpage, HTML Only)
+    expression_date_note: expression_date is the FFY 2027 effective date the page must
+      show; confirm it on the saved page before extraction.

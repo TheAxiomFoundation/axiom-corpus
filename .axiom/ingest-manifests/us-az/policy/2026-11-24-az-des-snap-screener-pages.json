@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/policy/2026-11-24-az-des-snap-screener-pages.json",
+      "sha256": "efa3e4cf840acd6d1c57d2eb1d8999f8b12042b3614734c65ac6a49deaaa8774"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/policy/2026-11-24-az-des-snap-screener-pages.json",
+      "sha256": "c073560fc5e6def9bebca88dc7cb3c4a4b055ee4330976e011934e67ff81c502"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/policy/2026-11-24-az-des-snap-screener-pages.jsonl",
+      "sha256": "aed270e7a1776126533a99735cf93446c094307d2dda09480c226e4d6d1fa5dc"
+    },
+    {
+      "path": "data/corpus/sources/us-az/policy/2026-11-24-az-des-snap-screener-pages/official-documents/az-des-2026-abawd-geographic-waiver-bulletin.pdf",
+      "sha256": "c4b28a9463462865b56657f32bd617e56cbd498b9c4bade27dd098e3c0247f49"
+    },
+    {
+      "path": "data/corpus/sources/us-az/policy/2026-11-24-az-des-snap-screener-pages/provenance/az-des-2026-abawd-geographic-waiver-bulletin.pdf.json",
+      "sha256": "f56667aff8c5e1095773306f617b132f270b26a7f4d43041347f90a6fb60d327"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dff82310ae7b5ff779ca04b46286ec63c2ab85ac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-24-az-des-snap-screener-pages --manifest manifests/us-az-des-snap-screener-pages-policy.yaml --source-as-of 2026-11-24"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-11-25T04:05:06.841898+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cfUpK3t6R15P1dRS5qasbGRNcamc11QYmILkNrplTUunKyo6MDgAUTTrbKYUeeHaOldhlAA0eRAbp8vhAS7yBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-24-az-des-snap-screener-pages"
+}
