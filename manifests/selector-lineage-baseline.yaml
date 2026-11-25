@@ -77,6 +77,7 @@ selector_digests:
   pe-rulespec-2026-07-22: 93b00b211a313a3e199aa018406c651c0795593526e0094aa5a8e464a288d105
   pe-rulespec-2026-07-24: 2e26ec6702ab8dd63c7ab07399335582444f616886d2bdb4533815c1d734a462
   rw-rulespec-2026-07-16: 1ea93595a8573a85fd459803e13dcc2e2b189f1db4a6951dcb614ee8d8219397
+  tw-rulespec-2026-11-25: 35dace0a224859f1a1829121f458f51a5738cfe24b6f56e2898264c9423c3cd3
   tz-rulespec-2026-07-16: 90db91bbb3ef9c4b8b007914cb0a3a2699abcca039cc20647fca2dd6a8f48365
   tz-znz-rulespec-2026-07-21: ee0dea64bc886e88e8c267cd0c4fbd9d21489c6df811e8dfda587f9d0ac7429f
   ug-rulespec-2026-07-10: 8c06b83cbe077171b8c8568006c6f8352e41718c684054bd46ce5c8f35e2a1b1
@@ -360,6 +361,13 @@ first_cuts:
       - vn-rulespec-2026-07-24-r2
       - zm-rulespec-2026-07-10
       - zm-rulespec-2026-07-12
+  - listed_on: 2026-11-25
+    reason: >-
+      First Taiwan (tw) release: the Statute for Industrial Innovation and its
+      Article 10-1 credit regulation (axiom-corpus#1015). No earlier tw selector
+      exists.
+    selectors:
+      - tw-rulespec-2026-11-25
 
 # Unambiguous prose bases, in selector order; both endpoints are pinned above.
 # A later succession supersedes the historical first-cut claim without removing it.
