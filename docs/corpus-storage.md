@@ -428,6 +428,9 @@ refuses it rather than return a path that does not exist, and
    into the cache, and uploads objects R2 lacks.
 3. One commit carries the signed manifest and the lock file.
 
+An ingester without R2 write credentials signs with `--lock` only and has a
+dispatched workflow upload the objects: see `docs/corpus-ci-upload.md`.
+
 `corpus lock` refuses to drop a locked file that is absent from the worktree,
 because an unfetched file and a deleted one look the same on disk. Signing
 with `--deleted-file` drops exactly the named files; `corpus lock

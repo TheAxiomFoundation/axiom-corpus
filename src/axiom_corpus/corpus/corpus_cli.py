@@ -8,14 +8,18 @@ from __future__ import annotations
 import argparse
 import contextlib
 import json
+import os
 import random
+import secrets
 import subprocess
 import sys
+import tempfile
 from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, NoReturn
 
+from axiom_corpus.corpus import ci_upload
 from axiom_corpus.corpus.content_store import (
     ContentCache,
     ContentStoreError,
@@ -187,6 +191,60 @@ def register(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
         help="Copy the migrated bytes into the content cache from local git objects.",
     )
     migrate.set_defaults(func=_cmd_migrate)
+
+    ci_pack = commands.add_parser(
+        "ci-pack",
+        help="Pack a branch's new locked objects into an archive for the CI upload.",
+        description=(
+            "Write the files of the lock entries HEAD adds or changes since the merge "
+            "base with REF into a tar named by sha256. Needs no credentials. See "
+            "docs/corpus-ci-upload.md."
+        ),
+    )
+    common(ci_pack)
+    ci_pack.add_argument("--changed-since", metavar="REF", default="origin/main")
+    ci_pack.add_argument("--output", type=Path, default=Path(ci_upload.ARCHIVE_ASSET_NAME))
+    ci_pack.set_defaults(func=_cmd_ci_pack)
+
+    ci_select = commands.add_parser(
+        "ci-select-asset",
+        help="Pick a pull request's upload archive from a GitHub release list (CI).",
+    )
+    ci_select.add_argument("--json", action="store_true")
+    ci_select.add_argument("--releases", type=Path, required=True, help="Release list JSON.")
+    ci_select.add_argument("--pr", required=True, help="Pull request number.")
+    ci_select.add_argument(
+        "--pull-request", type=Path, required=True, help="Pull request JSON from the GitHub API."
+    )
+    ci_select.add_argument("--repository", required=True, help="owner/name of this repository.")
+    ci_select.add_argument("--head", required=True, help="Reviewed head commit.")
+    ci_select.add_argument("--github-output", type=Path, help="Append asset_id and asset_size.")
+    ci_select.set_defaults(func=_cmd_ci_select_asset)
+
+    ci_up = commands.add_parser(
+        "ci-upload",
+        help="Verify a pull request's signed lock entries and upload their objects (CI).",
+        description=(
+            "Read the lock files and signed ingest manifests of commit HEAD_COMMIT from "
+            "git, check the archive against them, and upload the objects with "
+            "conditional writes. Reads AXIOM_CORPUS_INGEST_PUBLIC_KEY. See "
+            "docs/corpus-ci-upload.md."
+        ),
+    )
+    common(ci_up)
+    ci_up.add_argument("--base", required=True, metavar="REF", help="Trusted base ref.")
+    ci_up.add_argument("--head", required=True, metavar="HEAD_COMMIT", help="Full commit id.")
+    ci_up.add_argument(
+        "--expect-ref", metavar="REF", help="Refuse unless REF resolves to HEAD_COMMIT."
+    )
+    ci_up.add_argument("--archive", type=Path, required=True)
+    ci_up.add_argument(
+        "--verify-only",
+        action="store_true",
+        help="Run every check, open no R2 store and write nothing.",
+    )
+    ci_up.add_argument("--summary", type=Path, help="Append a Markdown summary to this file.")
+    ci_up.set_defaults(func=_cmd_ci_upload)
 
 
 # --------------------------------------------------------------------------- helpers
@@ -918,3 +976,138 @@ def _seed_from_git(repo: Path, cache: ContentCache, entries: list[LockEntry]) ->
         seeded += 1
     return {"seeded": seeded}
 
+
+# --------------------------------------------------------------------------- CI upload
+
+
+def _cmd_ci_pack(args: argparse.Namespace) -> int:
+    repo = _repo(args)
+    try:
+        merge_base = subprocess.run(
+            ["git", "merge-base", args.changed_since, "HEAD"],
+            cwd=repo,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        head = load_locks_at_ref(repo, "HEAD")
+        base = load_locks_at_ref(repo, merge_base)
+    except (subprocess.CalledProcessError, OSError, ValueError) as exc:
+        print(f"corpus ci-pack: cannot read lock files: {exc}", file=sys.stderr)
+        return 2
+    if head.errors:
+        print(
+            "corpus ci-pack: corpus lock files are invalid: " + "; ".join(head.errors[:5]),
+            file=sys.stderr,
+        )
+        return 2
+    diff = diff_lock_sets(base, head)
+    entries = list(diff.added) + [
+        after for before, after in diff.changed if before.content != after.content
+    ]
+    try:
+        packed = ci_upload.pack_objects(repo, entries, args.output)
+    except ci_upload.UploadRefusedError as exc:
+        print(f"corpus ci-pack: {exc}", file=sys.stderr)
+        return 1
+    _emit(
+        args,
+        packed,
+        [
+            f"packed {packed['objects']} object(s), {packed['object_bytes']:,} bytes, "
+            f"into {packed['archive']}",
+            f"archive sha256 {packed['archive_sha256']} ({packed['archive_bytes']:,} bytes)",
+        ],
+    )
+    return 0
+
+
+def _cmd_ci_select_asset(args: argparse.Namespace) -> int:
+    try:
+        ci_upload.require_reviewed_pull_request(
+            json.loads(args.pull_request.read_text(encoding="utf-8")),
+            repository=args.repository,
+            pr_number=args.pr,
+            head_commit=args.head,
+        )
+        releases = json.loads(args.releases.read_text(encoding="utf-8"))
+        asset = ci_upload.select_staged_asset(releases, pr_number=args.pr)
+    except (OSError, ValueError, ci_upload.UploadRefusedError) as exc:
+        print(f"corpus ci-select-asset: {ci_upload.clean_text(exc)}", file=sys.stderr)
+        return 1
+    if args.github_output:
+        with args.github_output.open("a", encoding="utf-8") as handle:
+            handle.write(f"asset_id={asset.asset_id}\nasset_size={asset.size}\n")
+    payload = {
+        "asset_id": asset.asset_id,
+        "asset_size": asset.size,
+        "release_id": asset.release_id,
+        "uploader": ci_upload.clean_text(asset.uploader, limit=64),
+    }
+    _emit(
+        args,
+        payload,
+        [
+            f"asset {asset.asset_id} of draft release {asset.release_id}: "
+            f"{asset.size:,} bytes, uploaded by {payload['uploader']}"
+        ],
+    )
+    return 0
+
+
+def _cmd_ci_upload(args: argparse.Namespace) -> int:
+    repo = _repo(args)
+    plan = staged = result = None
+    refusal: str | None = None
+    with tempfile.TemporaryDirectory(prefix="corpus-ci-upload-") as scratch:
+        try:
+            if args.expect_ref:
+                ci_upload.require_ref_at(repo, args.expect_ref, args.head)
+            plan = ci_upload.build_upload_plan(
+                repo,
+                base_ref=args.base,
+                head_commit=args.head,
+                public_key=os.environ.get(ci_upload.PUBLIC_KEY_ENV),
+            )
+            staged = ci_upload.stage_archive(args.archive, plan, Path(scratch) / "objects")
+            if not args.verify_only:
+                try:
+                    store = R2ObjectStore.from_environment(workers=8)
+                except RuntimeError as exc:
+                    raise ci_upload.UploadRefusedError(f"cannot open the R2 store: {exc}") from exc
+                store.legacy_path_keys = False
+                result = ci_upload.execute_upload(plan, staged, store)
+        except ci_upload.UploadRefusedError as exc:
+            refusal = str(exc)
+        summary = ci_upload.render_summary(
+            plan, staged, result, refusal=refusal, verify_only=args.verify_only
+        )
+    if args.summary:
+        with args.summary.open("a", encoding="utf-8") as handle:
+            handle.write(summary)
+    ok = refusal is None and (result is None or result.ok)
+    payload: dict[str, Any] = {
+        "ok": ok,
+        "refusal": refusal,
+        "verify_only": bool(args.verify_only),
+        "head_commit": plan.head_commit if plan else ci_upload.clean_text(args.head, limit=64),
+        "scopes": ["/".join(scope) for scope in plan.scopes] if plan else [],
+        "objects": len(plan.objects) if plan else 0,
+        "result": result.to_mapping() if result else None,
+    }
+    # On a runner, a line that starts with ``::`` is a workflow command. The
+    # report quotes pull-request data, so command processing is off while it
+    # prints; the token that turns it back on is random and never printed first.
+    on_runner = os.environ.get("GITHUB_ACTIONS") == "true"
+    token = secrets.token_hex(16)
+    if on_runner:
+        print(f"::stop-commands::{token}", flush=True)
+    try:
+        _emit(args, payload, summary.splitlines())
+        if refusal is not None:
+            sys.stdout.flush()
+            print(f"corpus ci-upload: refused: {refusal}", file=sys.stderr, flush=True)
+    finally:
+        if on_runner:
+            print(f"::{token}::", flush=True)
+    return 0 if ok else 1
