@@ -17,6 +17,8 @@ import csv
 import json
 from pathlib import Path
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 OUT = Path("docs/ingest-runs/2026-10-12-w7-federal-decisions.csv")
 COLUMNS = [
     "id",
@@ -97,12 +99,17 @@ USC_SECTIONS = {
 
 def read_scope(base: Path, scope: str) -> tuple[dict[str, dict], dict]:
     jur, cls, version = scope.split("/", 2)
+    provisions = base / "provisions" / jur / cls / f"{version}.jsonl"
+    coverage_path = base / "coverage" / jur / cls / f"{version}.json"
+    # Fetch the locked files first (no-op without locks); the scopes read
+    # depend on the work order, so this happens here rather than in main().
+    ensure_corpus_paths([provisions.absolute(), coverage_path.absolute()])
     rows: dict[str, dict] = {}
-    with (base / "provisions" / jur / cls / f"{version}.jsonl").open() as f:
+    with provisions.open() as f:
         for line in f:
             row = json.loads(line)
             rows[row["citation_path"]] = row
-    coverage = json.loads((base / "coverage" / jur / cls / f"{version}.json").read_text())
+    coverage = json.loads(coverage_path.read_text())
     return rows, coverage
 
 

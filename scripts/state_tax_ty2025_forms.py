@@ -646,7 +646,12 @@ def build_forms(*, verify_only: bool = False) -> None:
 def _coverage(jurisdiction: str, version: str) -> dict[str, Any] | None:
     import json
 
+    from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
     path = CORPUS_BASE / "coverage" / jurisdiction / "form" / f"{version}.json"
+    # Fetch a locked coverage file first (no-op without locks), or the queue
+    # row would record an unfetched scope as having no coverage.
+    ensure_corpus_paths([path.absolute()])
     if not path.is_file():
         return None
     payload = json.loads(path.read_text())

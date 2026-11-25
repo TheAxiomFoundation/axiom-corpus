@@ -25,6 +25,8 @@ from typing import Any
 import requests
 import yaml
 
+from axiom_corpus.corpus.resolver import require_materialized
+
 ROOT = Path(__file__).resolve().parents[1]
 CORPUS_BASE = Path(os.environ.get("AXIOM_CORPUS_BASE", str(ROOT / "data" / "corpus")))
 SOURCE_AS_OF = "2026-09-10"
@@ -833,6 +835,9 @@ def _coverage_class(jurisdiction: str, version: str | None) -> str | None:
     if version is None:
         return None
     base = CORPUS_BASE / "coverage" / jurisdiction
+    # Coverage files are fetched, not tracked: complete the listed directory
+    # first (no-op without locks), or a locked scope would read as absent.
+    require_materialized([base.absolute()], fetch=True)
     if not base.is_dir():
         return None
     for class_dir in sorted(base.iterdir()):

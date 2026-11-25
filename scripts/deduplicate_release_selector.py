@@ -19,6 +19,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 
 @dataclass(frozen=True, order=True)
 class Scope:
@@ -95,6 +97,10 @@ def _refresh_scope(
     provisions_path = _artifact_path(corpus, "provisions", scope, ".jsonl")
     inventory_path = _artifact_path(corpus, "inventory", scope, ".json")
     coverage_path = _artifact_path(corpus, "coverage", scope, ".json")
+    # Inventory and coverage are read only for scopes that lose rows. The
+    # preflight pass reaches every such scope before --apply writes, so the
+    # fetch (a no-op without locks) always precedes the rewrite.
+    ensure_corpus_paths([inventory_path.absolute(), coverage_path.absolute()])
 
     provision_lines = _read_provision_lines(provisions_path)
     inventory = json.loads(inventory_path.read_text())
@@ -174,6 +180,16 @@ def _refresh_scope(
     }
 
 
+def ensure_corpus_inputs(corpus: Path, target_selector: Path) -> None:
+    """Fetch the provisions of every target scope. Does nothing without locks."""
+    ensure_corpus_paths(
+        [
+            _artifact_path(corpus, "provisions", scope, ".jsonl").absolute()
+            for scope in _read_selector(target_selector)
+        ]
+    )
+
+
 def deduplicate(
     corpus: Path,
     canonical_selector: Path,
@@ -249,6 +265,7 @@ def main() -> int:
     parser.add_argument("--target-selector", type=Path, required=True)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
+    ensure_corpus_inputs(args.corpus, args.target_selector)
     report = deduplicate(
         args.corpus,
         args.canonical_selector,

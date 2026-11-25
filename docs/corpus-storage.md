@@ -281,10 +281,24 @@ separate command (`axiom_corpus.corpus.resolver`):
   `ensure_corpus_inputs()` first in `main()`, which fetches the locked files
   the script reads: its retained sources and any other scope it compares
   against. `scripts/repro/us_hts_rev15_chapter50_edition.py`, added later,
-  still reads its retained source directly, without the helper. An
-  input-root override outside the checkout skips fetching the overridden
-  source files, but the CalFresh and full-schedule scripts still fetch the
-  repository comparison inputs they read from the checkout.
+  does the same. An input-root override outside the checkout skips fetching
+  the overridden source files, but the CalFresh and full-schedule scripts
+  still fetch the repository comparison inputs they read from the checkout.
+- Every other tracked script that reads protected files directly fetches
+  them before its first read, and before any write into the same scope
+  ([axiom-corpus#993](https://github.com/TheAxiomFoundation/axiom-corpus/pull/993)
+  audited all of `scripts/` on 2026-11-13).
+  - Where the files a script reads are known after argument parsing, an
+    `ensure_corpus_inputs()` helper in `main()` fetches them.
+  - Where they depend on the data (a work order, a queue, the tasks a snapshot
+    selects, the scope a batch merges into), the fetch sits next to the read.
+  - A script that calls `release_quality.validate_release` directly fetches
+    the release's scopes first, because validation reads with `exists()` and
+    would report an unfetched scope as missing.
+  - Scripts that only write corpus files, or read through the fetching loaders
+    above, are unchanged. So are scripts that read only tracked manifests,
+    caches outside `data/corpus`, R2 by key or the network.
+  - A new script that reads protected files follows the same pattern.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
   `require_materialized` are the building blocks. Each checks each path in
   the checkout that names it (below), whatever the working directory, and
@@ -578,6 +592,13 @@ Preconditions for the switch:
 - the one-off `scripts/repro/*` reproductions fetch their input scopes
   ([axiom-corpus#770](https://github.com/TheAxiomFoundation/axiom-corpus/pull/770));
 - axiom-encode fetches after checking out a corpus ref (below).
+
+The other scripts under `scripts/` were not a precondition. The switch merged
+on 2026-09-30 ([axiom-corpus#774](https://github.com/TheAxiomFoundation/axiom-corpus/pull/774)),
+and they were wired afterwards
+([axiom-corpus#993](https://github.com/TheAxiomFoundation/axiom-corpus/pull/993)).
+Each of them fails on missing input, or reads an unfetched scope as empty, only
+when someone runs it by hand. CI and the release path do not depend on them.
 
 Open branches that add corpus files merge `main` after the switch and run
 `corpus migrate`, which moves their added files into locks.

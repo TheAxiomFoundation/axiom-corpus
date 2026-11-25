@@ -68,6 +68,7 @@ from axiom_corpus.corpus.content_quality import (
     page_navigation,
 )
 from axiom_corpus.corpus.models import ProvisionRecord
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 CORPUS = Path("data/corpus")
 INGEST_MANIFESTS = Path(".axiom/ingest-manifests")
@@ -339,6 +340,16 @@ def _scan(rows: list[dict[str, Any]]) -> set[tuple[str, str]]:
     return {finding.key() for finding in scanner.findings()}
 
 
+def ensure_corpus_inputs(scopes: Iterable[str]) -> None:
+    """Fetch each scope's provisions, then the sources its rows name. No-op without locks."""
+    provisions = [(CORPUS / "provisions" / f"{scope}.jsonl").absolute() for scope in scopes]
+    ensure_corpus_paths(provisions)
+    sources = sorted(
+        {str(row.get("source_path") or "") for path in provisions for row in _rows(path)} - {""}
+    )
+    ensure_corpus_paths([(CORPUS / source).absolute() for source in sources])
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     parser.add_argument("scopes", nargs="+", help="<jurisdiction>/<class>/<version>")
@@ -347,6 +358,7 @@ def main() -> int:
     if args.out.resolve().is_relative_to(CORPUS.resolve()):
         parser.error("--out must be outside data/corpus")
     args.out.mkdir(parents=True, exist_ok=True)
+    ensure_corpus_inputs(args.scopes)
     index = _index_candidates(args.scopes)
     summaries = []
     with (args.out / "dropped.jsonl").open("w") as dropped_out:

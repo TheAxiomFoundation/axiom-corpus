@@ -19,6 +19,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_w6_federal_manifests as manifests  # noqa: E402
 
@@ -763,7 +765,12 @@ for _u in (
 
 
 class ScopeReader:
-    """Reads a scope's citation paths from disk, or from the git blob its lock file names."""
+    """Reads a scope's citation paths from disk, or from the git blob its lock file names.
+
+    A locked file is fetched before it is read (no-op without locks): only files
+    that moved out of git at the switch carry a ``git_blob``, so without the
+    fetch a later scope would read as absent.
+    """
 
     def __init__(self, base: Path) -> None:
         self.base = base
@@ -775,6 +782,7 @@ class ScopeReader:
             return self.cache[scope]
         jur, cls, version = scope.split("/", 2)
         local = self.base / "provisions" / jur / cls / f"{version}.jsonl"
+        ensure_corpus_paths([local.absolute()])
         text: str | None = None
         if local.exists():
             text = local.read_text(encoding="utf-8")
@@ -819,6 +827,7 @@ class ScopeReader:
     def complete(self, scope: str) -> bool:
         jur, cls, version = scope.split("/", 2)
         coverage = self.base / "coverage" / jur / cls / f"{version}.json"
+        ensure_corpus_paths([coverage.absolute()])
         return coverage.exists() and bool(json.loads(coverage.read_text()).get("complete"))
 
 

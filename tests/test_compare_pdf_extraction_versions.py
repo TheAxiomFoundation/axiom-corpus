@@ -596,6 +596,7 @@ def _sha256(path: Path) -> str:
 def _corpus(root: Path) -> Path:
     """A one-document corpus whose committed rows the extractor reproduces."""
     from axiom_corpus.corpus import documents
+    from axiom_corpus.corpus.corpus_locks import CorpusLock, LockEntry, write_lock
 
     jurisdiction, document_class, version = SCOPE
     pdf = fitz.open()
@@ -644,23 +645,17 @@ def _corpus(root: Path) -> Path:
     provisions_path = provisions / f"{version}.jsonl"
     provisions_path.write_text("".join(json.dumps(item) + "\n" for item in rows))
 
-    lock = root / ".axiom" / "corpus-locks" / jurisdiction / document_class / f"{version}.json"
-    lock.parent.mkdir(parents=True)
-    lock.write_text(
-        json.dumps(
-            {
-                "jurisdiction": jurisdiction,
-                "document_class": document_class,
-                "version": version,
-                "files": [
-                    {"path": f"data/corpus/{SOURCE_PATH}", "sha256": _sha256(pdf_path)},
-                    {
-                        "path": provisions_path.relative_to(root).as_posix(),
-                        "sha256": _sha256(provisions_path),
-                    },
-                ],
-            }
-        )
+    # A real lock: the script's subcommands fetch through the resolver, which
+    # refuses a malformed lock tree.
+    write_lock(
+        root,
+        CorpusLock.from_entries(
+            SCOPE,
+            [
+                LockEntry(path.relative_to(root).as_posix(), _sha256(path), path.stat().st_size)
+                for path in (pdf_path, provisions_path)
+            ],
+        ),
     )
     subprocess.run(["git", "init", "-q", str(root)], check=True)
     subprocess.run(["git", "-C", str(root), "add", "manifests"], check=True)

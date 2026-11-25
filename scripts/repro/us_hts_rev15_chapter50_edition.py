@@ -15,11 +15,21 @@ from pathlib import Path
 from axiom_corpus.corpus import documents
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 from scripts.repro import us_hts_tariff_full_schedule_2026_rev15 as full
 
 VERSION = "2026-10-01-usitc-hts-2026-rev15-chapter50-edition"
 ROOT = "us/statute/hts-2026-rev15/chapter-50"
 SNAPSHOT = full.SNAPSHOTS[0]
+
+
+def ensure_corpus_inputs(retained_source: Path) -> None:
+    """Fetch the retained source if a lock names it; a no-op without lock files.
+
+    The documented input is the locked Revision 15 JSON under
+    ``data/corpus/sources``. A file outside any checkout is read as it is.
+    """
+    ensure_corpus_paths([retained_source.absolute()])
 
 
 def build_scope(base: Path, retained_source: Path) -> dict[str, object]:
@@ -122,4 +132,5 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--retained-source", type=Path, required=True)
     args = parser.parse_args()
+    ensure_corpus_inputs(args.retained_source)
     print(json.dumps(build_scope(args.output, args.retained_source), indent=2))

@@ -36,6 +36,7 @@ from typing import Any
 
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import ProvisionRecord
+from axiom_corpus.corpus.resolver import ensure_corpus_paths, require_materialized
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 JURISDICTION = "be"
@@ -226,6 +227,18 @@ def _write(path: Path, data: bytes) -> Path:
     return path
 
 
+def ensure_corpus_inputs(base: Path) -> None:
+    """Fetch what the promotion reads; a no-op without lock files.
+
+    That is the old and full scopes' provisions and the old scope's inputs
+    directory, which the promotion lists (so a partly fetched one is completed).
+    """
+    ensure_corpus_paths(
+        [_provisions_path(base, version).absolute() for version in (OLD_VERSION, FULL_VERSION)]
+    )
+    require_materialized([_inputs_dir(base, OLD_VERSION).absolute()], fetch=True)
+
+
 def build_promotion(*, base: Path, output_base: Path | None = None) -> list[Path]:
     """Write the new scope's inputs, provisions, inventory and coverage under output_base."""
 
@@ -372,6 +385,7 @@ def main() -> None:
     release.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
     if args.command == "promote":
+        ensure_corpus_inputs(args.base)
         for path in build_promotion(base=args.base, output_base=args.output_base):
             print(path)
     else:

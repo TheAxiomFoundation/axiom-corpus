@@ -44,6 +44,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment, NavigableString
 
 from axiom_corpus.corpus import documents
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 # A word and its labels, one per character: D (deleted), I (inserted) or P
 # (plain), so ``("20056", "PPPDI")`` is a number whose 5 is struck and 6 inserted.
@@ -406,6 +407,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--html", type=Path, required=True)
     parser.add_argument("--source-id", help="Manifest document to use (default: the only one).")
     args = parser.parse_args(argv)
+    # The documented inputs are retained corpus sources; fetch them if locked.
+    ensure_corpus_paths([args.pdf.absolute(), args.html.absolute()])
     entries = yaml.safe_load(args.manifest.read_text())["documents"]
     if args.source_id:
         entries = [entry for entry in entries if entry["source_id"] == args.source_id]

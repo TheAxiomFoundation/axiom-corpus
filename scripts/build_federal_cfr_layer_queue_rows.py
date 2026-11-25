@@ -25,6 +25,8 @@ from typing import Any
 
 import yaml
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 ROOT = Path(__file__).resolve().parents[1]
 RUN_NOTE = "docs/ingest-runs/2026-09-13-federal-cfr-layer.md"
 AS_OF = "2026-09-10"
@@ -183,9 +185,15 @@ def _queue_row(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _coverage_path(base: Path, row: dict[str, Any]) -> Path:
+    return base / "coverage" / "us" / "regulation" / f"{row['version']}.json"
+
+
 def _check_against_corpus(base: Path) -> None:
+    # Coverage files are fetched, not tracked; this does nothing without locks.
+    ensure_corpus_paths([_coverage_path(base, row).absolute() for row in ROWS])
     for row in ROWS:
-        coverage = json.loads((base / "coverage" / "us" / "regulation" / f"{row['version']}.json").read_text())
+        coverage = json.loads(_coverage_path(base, row).read_text())
         if not coverage["complete"] or coverage["provision_count"] != row["units"]:
             raise SystemExit(f"{row['version']}: coverage {coverage['provision_count']} rows, complete={coverage['complete']}; "
                              f"generator says {row['units']}")

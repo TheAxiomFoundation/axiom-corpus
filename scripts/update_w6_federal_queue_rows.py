@@ -20,6 +20,8 @@ from pathlib import Path
 
 import yaml
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 REPO = Path(__file__).resolve().parents[1]
 DECISIONS = REPO / "docs/ingest-runs/2026-10-06-w6-federal-decisions.csv"
 RUN_NOTE = "docs/ingest-runs/2026-10-06-w6-federal.md"
@@ -33,7 +35,9 @@ QUEUES = {
 
 def scope_rows(base: Path, scope: str) -> tuple[int, bool]:
     jur, cls, version = scope.split("/", 2)
-    coverage = json.loads((base / "coverage" / jur / cls / f"{version}.json").read_text())
+    path = base / "coverage" / jur / cls / f"{version}.json"
+    ensure_corpus_paths([path.absolute()])  # fetched, not tracked; no-op without locks
+    coverage = json.loads(path.read_text())
     return int(coverage.get("provision_count") or coverage.get("source_count") or 0), bool(coverage.get("complete"))
 
 

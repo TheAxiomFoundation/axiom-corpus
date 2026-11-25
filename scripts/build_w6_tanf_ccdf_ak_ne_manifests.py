@@ -36,6 +36,8 @@ from typing import Any
 
 import yaml
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_DIR = REPO_ROOT / "manifests"
 DECISIONS_CSV = REPO_ROOT / "docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne-decisions.csv"
@@ -2057,6 +2059,9 @@ def _scope_paths(scope: str, cache: dict[str, set[str]]) -> set[str]:
     if scope not in cache:
         jur, cls, ver = scope.split("/", 2)
         f = CORPUS_ROOT / "provisions" / jur / cls / f"{ver}.jsonl"
+        # A locked file that is not fetched would read as an empty scope. This
+        # does nothing without locks, or where CORPUS_ROOT is no checkout.
+        ensure_corpus_paths([f])
         cache[scope] = (
             {json.loads(line)["citation_path"] for line in f.open()} if f.exists() else set()
         )

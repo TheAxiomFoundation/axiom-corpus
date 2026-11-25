@@ -10,6 +10,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 from axiom_corpus.corpus.releases import ReleaseManifest
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 
 def _source_file(
@@ -36,6 +37,31 @@ def _source_file(
     if not candidate.is_file():
         raise ValueError(f"source snapshot is missing: {source_path}")
     return candidate
+
+
+def ensure_corpus_inputs(repo_root: Path, release_path: Path) -> None:
+    """Fetch each release scope's inventory and sources. Does nothing without locks.
+
+    ``--write`` rewrites the inventories in place, so they are fetched before
+    anything is read or written.
+    """
+    repo_root = repo_root.resolve(strict=True)
+    base = repo_root / "data" / "corpus"
+    ensure_corpus_paths(
+        [
+            path
+            for scope in ReleaseManifest.load(release_path).scopes
+            for path in (
+                base
+                / "inventory"
+                / scope.jurisdiction
+                / scope.document_class
+                / f"{scope.version}.json",
+                base / "sources" / scope.jurisdiction / scope.document_class / scope.version,
+            )
+        ],
+        repo=repo_root,
+    )
 
 
 def bind_inventory_source_hashes(
@@ -117,6 +143,7 @@ def main() -> int:
     parser.add_argument("--release", type=Path, required=True)
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
+    ensure_corpus_inputs(args.repo_root, args.release)
     result = bind_inventory_source_hashes(
         args.repo_root,
         args.release,

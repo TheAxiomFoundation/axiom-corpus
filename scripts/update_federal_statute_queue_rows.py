@@ -18,6 +18,8 @@ from pathlib import Path
 
 import yaml
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_KIND = "federal_statute_uscode_uslm"
 RUN_NOTE = "docs/ingest-runs/2026-09-13-federal-statute-layer.md"
@@ -131,11 +133,29 @@ SCOPES: dict[str, dict[str, object]] = {
 }
 
 
+def _scope_paths(base: Path, version: str) -> tuple[Path, Path]:
+    return (
+        base / "coverage" / "us" / "statute" / f"{version}.json",
+        base / "provisions" / "us" / "statute" / f"{version}.jsonl",
+    )
+
+
+def ensure_corpus_inputs(base: Path, programs: list[str]) -> None:
+    """Fetch the coverage and provisions of each program's scope. No-op without locks."""
+    ensure_corpus_paths(
+        [
+            path.absolute()
+            for program in programs
+            for path in _scope_paths(base, str(SCOPES[program]["version"]))
+        ]
+    )
+
+
 def _scope_counts(base: Path, version: str) -> tuple[int, int]:
-    coverage = json.loads((base / "coverage" / "us" / "statute" / f"{version}.json").read_text())
+    coverage_path, provisions_path = _scope_paths(base, version)
+    coverage = json.loads(coverage_path.read_text())
     if not coverage.get("complete"):
         raise SystemExit(f"{version}: coverage is not complete; refusing to record it")
-    provisions_path = base / "provisions" / "us" / "statute" / f"{version}.jsonl"
     sections = 0
     for line in provisions_path.read_text().splitlines():
         if line.strip() and json.loads(line).get("kind") == "section":
@@ -206,7 +226,9 @@ def main() -> int:
         "--program", action="append", choices=sorted(SCOPES), help="restrict to these programs"
     )
     args = parser.parse_args()
-    for program in args.program or sorted(SCOPES):
+    programs = args.program or sorted(SCOPES)
+    ensure_corpus_inputs(args.base, programs)
+    for program in programs:
         counts = update_queue(program, SCOPES[program], args.base)
         print(f"{program}: {SCOPES[program]['queue']} status_counts={counts}")
     return 0

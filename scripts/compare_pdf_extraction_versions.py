@@ -79,6 +79,8 @@ from typing import Any
 
 import yaml
 
+from axiom_corpus.corpus.resolver import ensure_corpus_paths, require_materialized
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DIGEST_CHARS = 16
 # A document snapshot's block entry.
@@ -560,6 +562,17 @@ def run_snapshot(
     records = _read_jsonl(out_path) if out_path.exists() else []
     done = _finished_keys(records, retry_errors=retry_errors)
     tasks = select_tasks(plan, done=done, kinds=kinds, ocr=ocr)
+    # Fetch the source files the selected tasks read (no-op without locks): a
+    # file that is not fetched would be recorded as a read error.
+    ensure_corpus_paths(
+        [
+            root / "data" / "corpus" / task["source_path"]
+            if task["kind"] == "document"
+            else root / task["path"]
+            for task in tasks
+        ],
+        repo=root,
+    )
     print(f"{versions}: {len(tasks)} task(s) to run, {len(done)} done", file=sys.stderr)
     written = 0
     with out_path.open("a", encoding="utf-8") as out:
@@ -963,6 +976,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     root = args.root.resolve()
     if args.command == "plan":
+        # The plan reads every locked provisions file; fetch any that are absent.
+        require_materialized([root / "data" / "corpus" / "provisions"], repo=root, fetch=True)
         tasks = build_plan(root)
         with args.out.open("w", encoding="utf-8") as handle:
             for task in tasks:
@@ -985,6 +1000,11 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(f"{count} task(s) in {time.monotonic() - started:.0f}s", file=sys.stderr)
         return 0
+    # Compare reads the committed provisions of the plan's document tasks.
+    ensure_corpus_paths(
+        sorted({root / task["provisions_path"] for task in plan if task["kind"] == "document"}),
+        repo=root,
+    )
     report, details = compare(root, plan, _read_jsonl(args.locked), _read_jsonl(args.candidate))
     if args.details:
         with args.details.open("w", encoding="utf-8") as handle:

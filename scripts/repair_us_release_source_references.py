@@ -19,7 +19,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest
-from axiom_corpus.corpus.resolver import require_materialized
+from axiom_corpus.corpus.resolver import ensure_corpus_scopes, require_materialized
 
 REPO = Path(__file__).parents[1]
 BASE = REPO / "data/corpus"
@@ -41,6 +41,9 @@ def _sha256(path: Path) -> str:
 def main() -> int:
     store = CorpusArtifactStore(BASE)
     release = ReleaseManifest.load(SELECTOR)
+    # validate_release reads every scope without fetching: an absent file would
+    # read as a missing-artifact issue, not as a source to repair.
+    ensure_corpus_scopes(release.scope_keys, repo=REPO)
     report = validate_release(BASE, release, max_issues=100_000)
     affected = {
         (issue.jurisdiction, issue.document_class, issue.version)

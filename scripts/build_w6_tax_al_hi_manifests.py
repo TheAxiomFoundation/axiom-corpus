@@ -894,7 +894,11 @@ def _held_paths(scope: str) -> set[str]:
         ).stdout
         lines = text.splitlines()
     else:
-        lines = (CORPUS_BASE / "provisions" / jur / cls / f"{version}.jsonl").read_text().splitlines()
+        from axiom_corpus.corpus.resolver import ensure_corpus_paths
+
+        path = CORPUS_BASE / "provisions" / jur / cls / f"{version}.jsonl"
+        ensure_corpus_paths([path.absolute()])  # fetched, not tracked; no-op without locks
+        lines = path.read_text().splitlines()
     return {json.loads(line)["citation_path"] for line in lines if line.strip()}
 
 

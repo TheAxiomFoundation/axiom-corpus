@@ -1,0 +1,1 @@
+Fetch the locked corpus files that 35 scripts under `scripts/` read directly before they read them, so that on a fresh checkout they no longer fail, or quietly treat an unfetched scope as empty or absent (queue rows recorded with no coverage, a batch merge that drops a locked scope's rows, a release repair that finds nothing to repair).
