@@ -49,7 +49,7 @@ tiers:
       us-vi: 1
     in_scope_by_layer:
       federal: 53
-      state: 73
+      state: 74
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
@@ -9734,25 +9734,30 @@ layers:
     - path: us-az/manual/des/faa5/na-medical-expenses-and-deduction
       references: 1
       part: Deductions
+  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
+    layer: state
+    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+      references: 1
+      part: Deductions
   - key: us-az/manual/des/faa6/utility-allowance-current-amount
     name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
     layer: state
     citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
     source_url: null
     sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: https://dbmefaapolicy.azdes.gov/
-    name: dbmefaapolicy.azdes.gov/
-    layer: state
-    citation_path: null
-    source_url: https://dbmefaapolicy.azdes.gov/
-    sources:
     - policyengine-references
-    references: 2
-    scope: excluded
-    reason: 'Back-year table: not current law'
+    - plan
+    references: 1
+    scope: in
     part: Deductions
   - key: https://www.fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2024.pdf
     name: fns.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2024.pdf
@@ -9810,12 +9815,22 @@ layers:
     - screener
     - manifests/us-az-des-faa5-manual.yaml
     scope: in
+  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
+    layer: state
+    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-az-des-faa5-manual.yaml
+    scope: in
   - key: us-az/manual/des/faa6/utility-allowance-current-amount
     name: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
     layer: state
     citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
     source_url: null
-    part: Benefit amount
+    part: Deductions
     sources:
     - screener
     - manifests/us-az-des-faa6-utility-amounts.yaml
@@ -10506,16 +10521,6 @@ layers:
     layer: state
     citation_path: us-az/manual/des/faa5/na-child-support-expense
     source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Child_Support_Expense.html
-    sources:
-    - manifests/us-az-des-faa5-manual.yaml
-    manifest: manifests/us-az-des-faa5-manual.yaml
-    scope: in
-    part: Deductions
-  - key: us-az/manual/des/faa5/na-utility-expenses-and-allowances
-    name: 'Arizona DES FAA5: D NA Utility Expenses and Allowances'
-    layer: state
-    citation_path: us-az/manual/des/faa5/na-utility-expenses-and-allowances
-    source_url: https://dbmefaapolicy.azdes.gov/FAA5/NA_Utility_Expenses_and_Allowances.html
     sources:
     - manifests/us-az-des-faa5-manual.yaml
     manifest: manifests/us-az-des-faa5-manual.yaml
