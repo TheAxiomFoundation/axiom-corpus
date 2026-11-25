@@ -29,7 +29,10 @@
 # predecessor has as a base, or has as primary a scope that a tracked selector marks as
 # a base, or either selector spells a layer other than "base". A tracked selector is a
 # manifests/releases/*.json file committed at HEAD: one that skip-worktree or a sparse
-# checkout hides from the working tree counts, and an untracked one does not.
+# checkout hides from the working tree counts, and an untracked one does not. A
+# `manifests` or `manifests/releases` that is a symlink, or that holds a `.git` entry (a
+# nested repository or a gitfile), stops the run with one line: through it git would read
+# another repository.
 # The run also stops when either selector misspells a part of a scope or lists a scope
 # twice, and, after the layer checks, when either does not load as a release selector, as
 # validate-release would refuse it in step 4. A base scope enters a release through its

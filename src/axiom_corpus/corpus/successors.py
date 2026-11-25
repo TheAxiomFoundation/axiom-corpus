@@ -10,9 +10,15 @@ reviewed change that this module does not make.
 
 A tracked selector is a ``*.json`` file committed at HEAD under a checkout's
 ``manifests/releases``; any other directory, inside a checkout or not, is read
-from disk as given. ``tracked_selector_texts`` and ``tracked_selector_text``
-read them, so a sparse checkout, a file hidden from disk, an edit, an
-untracked file and a staged one change nothing.
+from disk as given. A selectors directory that is a symlink, whose parent
+directory is one, that is spelled with ``..``, or that holds a ``.git`` entry
+or whose parent directory does raises ``ValueError``, and one at which git
+answers with another toplevel, or cannot run, while a ``.git`` entry sits two
+levels above it raises ``FileNotFoundError``: git would read another
+repository than the checkout's, or none, and the disk would answer for it.
+``tracked_selector_texts`` and ``tracked_selector_text`` read them, so a
+sparse checkout, a file hidden from disk, an edit, an untracked file and a
+staged one change nothing.
 
 ``compose_successor`` checks every requested change against the predecessor
 and raises ``SuccessorError`` for any it refuses. Unless the caller passes
@@ -87,6 +93,9 @@ DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[3] / "manifests" / "rele
 # hook or a shell may export them; the readers here ignore them, so git reads
 # the checkout that holds the directory it runs in.
 _GIT_LOCATION_VARIABLES = ("GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE")
+# Those, and the variable that stops git's search for a repository below a
+# checkout's root, so git fails where it should answer.
+_GIT_IGNORED_VARIABLES = (*_GIT_LOCATION_VARIABLES, "GIT_CEILING_DIRECTORIES")
 _SELECTORS_PATH = "manifests/releases"
 # The artifact files of a scope that a base comparison checks, with their suffixes.
 _BASE_FILES = (("provisions", ".jsonl"), ("inventory", ".json"), ("coverage", ".json"))
@@ -145,13 +154,14 @@ def _selector_files(releases_dir: Path) -> dict[str, Path]:
 
 
 def _git(cwd: Path, *args: str, stdin: bytes | None = None) -> subprocess.CompletedProcess[bytes]:
-    """Run git in ``cwd`` without the inherited ``GIT_*`` location variables.
+    """Run git in ``cwd`` without the inherited ``GIT_*`` location variables or
+    ``GIT_CEILING_DIRECTORIES``.
 
     The output is captured and a non-zero exit is returned, not raised. An
     ``OSError``, such as no ``git`` on ``PATH``, propagates to the caller.
     """
     environment = {
-        key: value for key, value in os.environ.items() if key not in _GIT_LOCATION_VARIABLES
+        key: value for key, value in os.environ.items() if key not in _GIT_IGNORED_VARIABLES
     }
     return subprocess.run(
         ["git", *args], cwd=cwd, env=environment, input=stdin, capture_output=True, check=False
@@ -162,17 +172,60 @@ def _stderr(result: subprocess.CompletedProcess[bytes]) -> str:
     return result.stderr.decode("utf-8", "replace").strip()
 
 
+def _refuse_selector_directory_link(releases_dir: Path) -> None:
+    """Refuse a selector directory spelled with ``..``, one that is a symlink or
+    whose parent directory is one, and one that holds a ``.git`` entry or whose
+    parent directory does.
+
+    git runs in, and the disk shows, the directory a path resolves to, and git
+    answers for the repository the nearest ``.git`` entry names, so a link or a
+    nested repository or gitfile at a checkout's ``manifests`` or
+    ``manifests/releases`` would let another checkout's HEAD, or a directory no
+    HEAD holds, answer for this one. A selectors directory directly in a git
+    working tree's root is refused by the same rule; no command line passes one.
+    Raises ``ValueError``.
+    """
+    probe = releases_dir if releases_dir.is_absolute() else Path.cwd() / releases_dir
+    if ".." in probe.parts:
+        raise ValueError(
+            f"selector directory is spelled with '..': {releases_dir}; spell it as "
+            "<checkout>/manifests/releases"
+        )
+    for place in (probe.parent, probe):
+        if place.is_symlink():
+            raise ValueError(
+                f"selector directory leads through a link: {place} -> "
+                f"{os.path.realpath(place)}; a checkout's tracked selectors are the files "
+                "its own HEAD commits under its own manifests/releases, so make "
+                f"{place.name} a directory of that checkout, not a link"
+            )
+        if os.path.lexists(place / ".git"):
+            raise ValueError(
+                f"selector directory sits at a git entry: {place / '.git'}; git there "
+                "reads the repository that entry names, so pass "
+                "<checkout>/manifests/releases, where only <checkout> holds .git"
+            )
+
+
 def _checkout_of(releases_dir: Path) -> Path | None:
     """Return the checkout whose ``manifests/releases`` ``releases_dir`` is, or None.
 
     The checkout is the git toplevel of the nearest existing directory, and
     ``releases_dir`` must be that toplevel's ``manifests/releases``, as the
     same file or the same realpath. None means "read from disk": a standalone
-    directory, even one inside a checkout, is read as given. When git cannot
-    run in what looks like a checkout's ``manifests/releases`` (a ``.git``
-    entry two levels up), this raises ``FileNotFoundError`` rather than read
-    the disk, which may hide or add selectors.
+    directory, even one inside a checkout, is read as given. It first refuses a
+    ``releases_dir`` reached through a link, spelled with ``..``, or at a
+    ``.git`` entry (``_refuse_selector_directory_link``). When a ``.git`` entry
+    sits two levels above ``releases_dir``, whatever the directory's names, and
+    git cannot run there or answers with a toplevel that does not hold
+    ``releases_dir`` as its ``manifests/releases`` (a ``core.worktree``
+    setting, a bare git directory at ``manifests``, a ``.git/config`` git
+    cannot parse, or a selectors directory two levels below a working tree's
+    root that is not its ``manifests/releases``), it raises
+    ``FileNotFoundError`` rather than read the disk, which may hide or add
+    selectors.
     """
+    _refuse_selector_directory_link(releases_dir)
     probe = releases_dir if releases_dir.is_absolute() else Path.cwd() / releases_dir
     # git runs from the nearest existing directory, found as the resolver finds it.
     start = _existing_ancestor(probe)
@@ -193,9 +246,16 @@ def _checkout_of(releases_dir: Path) -> Path | None:
                     return top
             except OSError:
                 pass
+            if os.path.lexists(probe.parent.parent / ".git"):
+                raise FileNotFoundError(
+                    "selector directory is not the manifests/releases of the toplevel "
+                    f"git names ({top}), while a .git entry sits two levels up at "
+                    f"{probe.parent.parent / '.git'}: {releases_dir}; pass "
+                    "<checkout>/manifests/releases, where git answers with <checkout>"
+                )
             return None
         reason = _stderr(result)
-    if probe.parts[-2:] == ("manifests", "releases") and (probe.parent.parent / ".git").exists():
+    if os.path.lexists(probe.parent.parent / ".git"):
         raise FileNotFoundError(
             f"git cannot read the checkout at {probe.parent.parent}, so its committed "
             f"selectors cannot be listed: {reason}"
@@ -280,7 +340,11 @@ def tracked_selector_texts(releases_dir: Path) -> dict[str, str]:
     ``ValueError``, and a HEAD that cannot be listed or holds no selector
     raises ``FileNotFoundError``. For another directory, one that is missing
     or holds no selector file raises ``FileNotFoundError``, and a ``*.json``
-    entry that is not a file raises ``ValueError``.
+    entry that is not a file raises ``ValueError``. Either raises
+    ``ValueError`` when the directory is reached through a link, spelled with
+    ``..``, or at a ``.git`` entry, and ``FileNotFoundError`` when git answers
+    with a toplevel that does not hold the directory, or cannot run there,
+    while a ``.git`` entry sits two levels above it.
     """
     return _selector_texts(releases_dir)[1]
 
@@ -292,7 +356,11 @@ def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
     this is the file committed at HEAD, None when HEAD has no such file. For
     any other directory it is the file on disk, None when nothing is there.
     An entry that is not a selector file (a committed symlink or directory,
-    or on disk a directory or a dangling link) raises ``ValueError``.
+    or on disk a directory or a dangling link) raises ``ValueError``, as does
+    a directory reached through a link, spelled with ``..``, or at a ``.git``
+    entry. It raises ``FileNotFoundError`` when git answers with a toplevel
+    that does not hold the directory, or cannot run there, while a ``.git``
+    entry sits two levels above it.
     """
     top = _checkout_of(releases_dir)
     if top is None:
@@ -421,15 +489,18 @@ def compose_successor(
     ``predecessor`` itself, or a ``SuccessorError`` says so; a chained cut
     from a cut not yet committed is refused until that cut is committed. It
     raises ``FileNotFoundError`` when the directory is missing or holds no
-    selector, and ``ValueError`` when a selector entry is not a file, so a
-    copy installed outside a checkout must pass ``releases_dir`` or
-    ``tracked``. The default directory decides
-    only what it holds: when it holds the predecessor but lacks a selector the
-    destination tracks, a description that names that selector first still
-    passes, so a cut for another checkout passes that checkout's
-    ``releases_dir``. An explicit ``tracked`` replaces those names and skips
-    the predecessor check, and ``tracked=()`` checks the predecessor's own
-    name alone.
+    selector, or when git answers with a toplevel that does not hold the
+    directory, or cannot run there, while a ``.git`` entry sits two levels
+    above it, and ``ValueError`` when a selector entry is not a file, or when
+    the directory is a symlink, sits in one, is spelled with ``..``, or holds
+    a ``.git`` entry or sits in a directory that does, so a copy installed
+    outside a checkout must pass ``releases_dir`` or ``tracked``. The default
+    directory decides only what it holds: when it holds the predecessor but
+    lacks a selector the destination tracks, a description that names that
+    selector first still passes, so a cut for another checkout passes that
+    checkout's ``releases_dir``. An explicit ``tracked`` replaces those names
+    and skips the predecessor check, and ``tracked=()`` checks the
+    predecessor's own name alone.
 
     A new primary scope, one in ``add`` or a replacement, may not be a scope
     that a tracked selector marks as a base: a scope has one layer across the
@@ -639,7 +710,11 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
     a selector that does not load raises instead of being skipped. A
     directory that is missing or holds no selector raises
     ``FileNotFoundError``, since reading no selector would report no base,
-    and a selector entry that is not a file raises ``ValueError``.
+    as does one at which git answers with a toplevel that does not hold the
+    directory, or cannot run there, while a ``.git`` entry sits two levels
+    above it. A selector entry that is not a file raises ``ValueError``, as
+    does a directory reached through a link, spelled with ``..``, or at a
+    ``.git`` entry.
     """
     bases: set[ScopeKey] = set()
     for name, text in sorted(tracked_selector_texts(releases_dir).items()):
@@ -729,7 +804,14 @@ def guard_scope_artifacts(
     It returns the ``manifests/releases`` of each checkout that
     ``checkouts_holding`` finds for ``paths`` and for each path in
     ``holders_of`` (such as the working directory or a selector file),
-    de-duplicated by realpath and sorted, leaving out ``releases_dir``.
+    de-duplicated by realpath and sorted, leaving out ``releases_dir``. It
+    first refuses ``releases_dir`` and each holder's ``manifests/releases``
+    when either it or its parent directory is a symlink or holds a ``.git``
+    entry, so a holder whose selectors directory links to another checkout's,
+    or holds a nested repository or a gitfile, is refused, not dropped as a
+    duplicate or read at another repository's HEAD. A holder is found by the
+    toplevel git names for the path, so with a ``core.worktree`` setting it is
+    the directory git names (the threat model's stated limit 11).
     Link holders are found by the resolver's rules and the physical holder by
     HEAD; only the paths as given are walked, so a checkout whose own link
     leads into these paths, and a link the resolver does not recognise, are
@@ -769,10 +851,12 @@ def guard_scope_artifacts(
         holders.extend(links)
         if physical_holder is not None:
             holders.append(physical_holder)
+    _refuse_selector_directory_link(releases_dir)
     seen = {os.path.realpath(releases_dir)}
     inventories: list[Path] = []
     for checkout in holders:
         inventory = checkout / "manifests" / "releases"
+        _refuse_selector_directory_link(inventory)
         real = os.path.realpath(inventory)
         if real in seen:
             continue

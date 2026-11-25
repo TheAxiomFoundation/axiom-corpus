@@ -2018,6 +2018,157 @@ def test_stops_with_one_line_when_the_tracked_selectors_cannot_be_read(repo: Pat
     assert _uv_calls() == []
 
 
+# A manifests or manifests/releases through which git would read another repository
+# stops the run with one line; a ceiling at manifests does not stop git there.
+PREDECESSOR_COPY = "docs/ingest-runs/test-rel-1.json"
+UNREADABLE = "cannot read the tracked selectors at HEAD: "
+
+
+def _copy_the_predecessor(repo: Path) -> str:
+    """Commit a byte copy of the predecessor outside manifests/ and return its path."""
+    (repo / PREDECESSOR_COPY).write_bytes((repo / PREDECESSOR).read_bytes())
+    _git(repo, "add", PREDECESSOR_COPY)
+    _git(repo, "commit", "-qm", "Copy the predecessor outside manifests")
+    return PREDECESSOR_COPY
+
+
+def _other_repository(tmp_path: Path) -> Path:
+    """A committed repository on main whose selectors have other names."""
+    other = tmp_path / "other"
+    other.mkdir()
+    _git(other, "init", "-q", "-b", "main")
+    _write_json(other / "manifests/releases/other-rel.json", _selector("other-rel", [RELEASED]))
+    _git(other, "add", "manifests")
+    _git(other, "commit", "-qm", "Other selectors")
+    return other
+
+
+def _track_a_base_the_draft_selects_as_primary(repo: Path) -> None:
+    """The layout of the tracked-base test: test-rel-0 marks BASE, the draft selects it."""
+    predecessor, draft = TRACKED_BASE_REFUSALS["predecessor-lacks-the-base"]
+    for path in EARLIER:
+        earlier = _layered_selector(Path(path).stem, [(BASE, "base"), (RELEASED, None)])
+        _write_json(repo / path, earlier)
+    _git(repo, "add", *EARLIER)  # committed with the two selectors below
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+
+
+def _assert_stopped_with_one_line(
+    repo: Path, result: subprocess.CompletedProcess[str], start: str, line: str
+) -> None:
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr.startswith(line)
+    assert result.stderr.count("\n") == 1
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    assert _uv_calls() == []
+
+
+def test_stops_with_one_line_when_manifests_is_a_link(repo: Path, tmp_path: Path) -> None:
+    """A manifests link to another repository's would make git read that repository's HEAD.
+
+    The sparse pattern hides the checkout's own manifests/, so the tracked tree stays
+    clean beside the link.
+    """
+    predecessor = _copy_the_predecessor(repo)
+    other = _other_repository(tmp_path)
+    start = _cut_release_branch(repo)
+    _git(repo, "config", "sparse.expectFilesOutsideOfPatterns", "true")
+    _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    (repo / "manifests").symlink_to(other / "manifests", target_is_directory=True)
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo, predecessor)
+
+    _assert_stopped_with_one_line(
+        repo, result, start, UNREADABLE + "selector directory leads through a link: "
+    )
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "nested-repo-at-manifests",
+        "nested-repo-at-releases",
+        "gitfile-at-manifests",
+        "ceiling-at-manifests",
+        "core-worktree-redirect",
+    ],
+)
+def test_stops_with_one_line_when_git_would_read_another_repository(
+    repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    """Another repository's git entry at manifests stops the run with one line.
+
+    Under a ceiling at manifests the run reads HEAD and stops at the tracked base, and
+    under a core.worktree setting it moves to the directory git names, as the threat
+    model's Terms say, and stops there.
+    """
+    if layout == "ceiling-at-manifests":
+        _track_a_base_the_draft_selects_as_primary(repo)
+    predecessor = _copy_the_predecessor(repo)
+    other = _other_repository(tmp_path)
+    start = _cut_release_branch(repo)
+    checked = repo
+    if layout == "nested-repo-at-manifests":
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        _git(repo, "init", "-q", "manifests")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "nested-repo-at-releases":
+        _git(repo, "init", "-q", "manifests/releases")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "gitfile-at-manifests":
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        (repo / "manifests").mkdir()
+        (repo / "manifests" / ".git").write_text(f"gitdir: {other / '.git'}\n")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "ceiling-at-manifests":
+        # Exported after every fixture git command; the reader drops it, so HEAD is read.
+        monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(repo / "manifests"))
+        line = TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    else:
+        assert layout == "core-worktree-redirect"
+        assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+        _git(repo, "config", "core.worktree", str(other))
+        # The script moves to the toplevel git names, the other repository, whose own
+        # tracked tree is clean; there it is on main.
+        checked = other
+        line = "on main; cut a release branch from main first\n"
+    other_head = _git(other, "rev-parse", "HEAD")
+    assert _git(checked, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo, predecessor)
+
+    _assert_stopped_with_one_line(repo, result, start, line)
+    assert _git(other, "rev-parse", "HEAD") == other_head
+    assert _git(other, "diff", "--cached", "--name-only") == ""
+
+
+def test_reads_head_in_a_linked_worktree_whose_manifests_are_sparse_excluded(
+    repo: Path, tmp_path: Path
+) -> None:
+    """A linked worktree that hides manifests/ still has its HEAD's selectors read."""
+    _track_a_base_the_draft_selects_as_primary(repo)
+    _set_main_refs(repo, "origin-main")
+    worktree = tmp_path / "worktree"
+    _git(repo, "worktree", "add", "-q", "-b", "release", str(worktree))
+    _git(worktree, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    assert not (worktree / "manifests").exists()
+    predecessor = "docs/ingest-runs/predecessor-copy.json"  # untracked
+    (worktree / predecessor).write_bytes((repo / PREDECESSOR).read_bytes())
+    start = _git(worktree, "rev-parse", "HEAD")
+    assert _git(worktree, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(worktree, predecessor)
+
+    _assert_stopped_with_one_line(
+        worktree, result, start, TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    )
+
+
 NAMED_ONLY = (
     "{predecessor} is not manifests/releases/{named}.json as committed at HEAD, the selector"
     " {draft} names first in its description; pass that file"

@@ -622,6 +622,15 @@ def _repair_argv(
     return events
 
 
+def _swap_for_link(path: Path, target: Path) -> None:
+    """Replace the directory ``path`` with a symlink to ``target``, then forget cached roots."""
+    from axiom_corpus.corpus import resolver
+
+    shutil.rmtree(path)
+    path.symlink_to(target, target_is_directory=True)
+    resolver._repo_root_for_dir.cache_clear()
+
+
 def _relink(path: Path, target: Path, *, hard: bool = False) -> None:
     if path.is_dir() and not path.is_symlink():
         shutil.rmtree(path)
@@ -654,6 +663,8 @@ def _relink(path: Path, target: Path, *, hard: bool = False) -> None:
         "nested-source-symlink",
         "holder-base-links-to-repaired",
         "release-held-by-another-checkout",
+        "repo-releases-link",
+        "repo-manifests-link",
     ],
 )
 def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_marks(
@@ -730,6 +741,19 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
         expected = _exactly(
             "base scopes are carried unchanged and cannot be repaired: us/statute/pv1"
         )
+    elif case in ("repo-releases-link", "repo-manifests-link"):
+        # --repo A commits a selector marking pv1 as a base; on disk A's selector
+        # directory leads to B's, which marks nothing, and --release lies outside.
+        repo = _repair_checkout(make_checkout, "a", bases=(PV1,))
+        b = _repair_checkout(make_checkout, "b", bases=())
+        _write_repair_scopes(repo / "data" / "corpus", repo)
+        link = repo / "manifests"
+        if case == "repo-releases-link":
+            link = link / "releases"
+        _swap_for_link(link, b / link.relative_to(repo))
+        release = tmp_path / "release.json"
+        release.write_text(json.dumps(_payload(_row(PV1))) + "\n")
+        expected = "^" + re.escape(f"selector directory leads through a link: {link} -> ")
     else:
         repo = _repair_checkout(make_checkout, "c")
         corpus = repo / "data" / "corpus"

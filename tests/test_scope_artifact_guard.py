@@ -17,7 +17,10 @@ them.
 
 from __future__ import annotations
 
+import json
 import os
+import re
+import shutil
 from collections.abc import Callable, Mapping
 from pathlib import Path
 from typing import Any
@@ -238,6 +241,150 @@ def test_guard_returns_the_inventories_of_every_holder(
     (tmp_path / "alias").symlink_to(real)
     alias_path = _artifact(tmp_path / "alias", "provisions", B)
     assert guard([alias_path], releases_dir=_releases(c)) == ()
+
+
+# A holder's selector directory, or the caller's, that a link or another git
+# repository answers for is refused, not dropped as a duplicate or read at
+# another repository's HEAD.
+
+LINK_REFUSAL = "^selector directory leads through a link: "
+GIT_ENTRY_REFUSAL = "^selector directory sits at a git entry: "
+
+
+def _swap_for_link(path: Path, target: Path) -> None:
+    """Replace the directory ``path`` with a symlink to ``target``."""
+    shutil.rmtree(path)
+    path.symlink_to(target, target_is_directory=True)
+
+
+def _marking_checkout(make_checkout: MakeCheckout, name: str) -> Path:
+    """A checkout whose committed selector marks ``B`` as a base."""
+    selector = f"{name}-sel"
+    payload = {
+        "name": selector,
+        "scopes": [
+            {"jurisdiction": P[0], "document_class": P[1], "version": P[2]},
+            {"jurisdiction": B[0], "document_class": B[1], "version": B[2], "layer": "base"},
+        ],
+    }
+    return make_checkout(name, {selector: payload})
+
+
+@pytest.mark.parametrize(
+    "layout", ["holder-releases-link", "holder-manifests-link", "releases-dir-link"]
+)
+def test_guard_refuses_a_selector_directory_reached_through_a_link(
+    make_checkout: MakeCheckout, tmp_path: Path, layout: str
+) -> None:
+    a = _checkout(make_checkout, "a")
+    path = _write(_artifact(a / "data" / "corpus", "provisions", B))
+    c = _checkout(make_checkout, "c")
+    if layout == "holder-releases-link":
+        # Without the refusal, A's inventory has C's realpath and is dropped as C's.
+        link = _releases(a)
+        _swap_for_link(link, _releases(c))
+        releases_dir = _releases(c)
+    elif layout == "holder-manifests-link":
+        b = _checkout(make_checkout, "b")
+        link = a / "manifests"
+        _swap_for_link(link, b / "manifests")
+        releases_dir = _releases(c)
+    else:
+        link = tmp_path / "sel"
+        link.symlink_to(_releases(c), target_is_directory=True)
+        releases_dir = link
+    _clear_resolver_cache()
+
+    with pytest.raises(ValueError, match=LINK_REFUSAL + re.escape(f"{link} -> ")):
+        successors.guard_scope_artifacts([path], releases_dir=releases_dir)
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "holder-nested-repo-at-manifests",
+        "holder-nested-repo-at-releases",
+        "holder-gitfile-at-manifests",
+        "releases-dir-core-worktree-redirect",
+        "holder-ceiling-at-manifests",
+        "holder-ceiling-at-checkout",
+    ],
+)
+def test_guard_refuses_a_holder_that_another_git_repository_answers_for(
+    make_checkout: MakeCheckout, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    a = _marking_checkout(make_checkout, "a")
+    other = _checkout(make_checkout, "other")
+    third = _checkout(make_checkout, "third")
+    path = _write(_artifact(a / "data" / "corpus", "provisions", B))
+    releases = _releases(a)
+    releases_dir = _releases(third)
+    holders_of: tuple[Path, ...] = ()
+    ceiling: Path | None = None
+    refusal: tuple[type[Exception], str] | None = None
+    plain = {
+        "name": "plain",
+        "scopes": [{"jurisdiction": P[0], "document_class": P[1], "version": P[2]}],
+    }
+
+    def hide_the_selector_beside_a_plain_one(*, whole_manifests: bool) -> None:
+        if whole_manifests:
+            fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        else:
+            fixture_git(a, "update-index", "--skip-worktree", "manifests/releases/a-sel.json")
+            (releases / "a-sel.json").unlink()
+        _write(releases / "plain.json", json.dumps(plain) + "\n")
+
+    if layout == "holder-nested-repo-at-manifests":
+        hide_the_selector_beside_a_plain_one(whole_manifests=True)
+        fixture_git(a / "manifests", "init", "-q")
+        entry = a / "manifests" / ".git"
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(entry)))
+    elif layout == "holder-nested-repo-at-releases":
+        hide_the_selector_beside_a_plain_one(whole_manifests=False)
+        fixture_git(releases, "init", "-q")
+        entry = releases / ".git"
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(entry)))
+    elif layout == "holder-gitfile-at-manifests":
+        hide_the_selector_beside_a_plain_one(whole_manifests=True)
+        entry = a / "manifests" / ".git"
+        entry.write_text(f"gitdir: {other / '.git'}\n", encoding="utf-8")
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(entry)))
+    elif layout == "releases-dir-core-worktree-redirect":
+        hide_the_selector_beside_a_plain_one(whole_manifests=False)
+        fixture_git(a, "config", "core.worktree", str(other))
+        releases_dir, holders_of = releases, (a,)
+        refusal = (
+            FileNotFoundError,
+            r"^selector directory is not the manifests/releases of the toplevel git names \("
+            + re.escape(str(other))
+            + r"\), while a \.git entry sits two levels up at "
+            + re.escape(str(a / ".git")),
+        )
+    elif layout == "holder-ceiling-at-manifests":
+        ceiling = a / "manifests"
+    else:
+        assert layout == "holder-ceiling-at-checkout"
+        ceiling = a
+    _clear_resolver_cache()
+    if ceiling is not None:
+        # Exported after every fixture git command; git would stop its search there.
+        monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(ceiling))
+
+    def run() -> tuple[frozenset[Any], tuple[Path, ...], list[frozenset[Any]]]:
+        # As each tool does: read releases_dir, guard, then read each inventory.
+        own = successors.tracked_base_scopes(releases_dir)
+        inventories = successors.guard_scope_artifacts(
+            [path], releases_dir=releases_dir, holders_of=holders_of
+        )
+        return own, inventories, [successors.tracked_base_scopes(i) for i in inventories]
+
+    if refusal is None:
+        assert run() == (frozenset(), (releases,), [frozenset({B})])
+        return
+    error, pattern = refusal
+    with pytest.raises(error, match=pattern):
+        run()
 
 
 # A base's file that leads, through a link, to a file the tool rewrites, moves or unlinks.

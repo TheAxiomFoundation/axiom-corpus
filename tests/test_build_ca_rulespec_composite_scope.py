@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import sys
 from collections.abc import Callable, Mapping
 from dataclasses import replace
@@ -411,6 +412,15 @@ def _ca_checkout(make_checkout: MakeCheckout, name: str, *, base: str | None = N
     return make_checkout(name, {selector: {"name": selector, "scopes": _ca_scopes(base=base)}})
 
 
+def _swap_for_link(path: Path, target: Path) -> None:
+    """Replace the directory ``path`` with a symlink to ``target``, then forget cached roots."""
+    from axiom_corpus.corpus import resolver
+
+    shutil.rmtree(path)
+    path.symlink_to(target, target_is_directory=True)
+    resolver._repo_root_for_dir.cache_clear()
+
+
 @pytest.mark.parametrize(
     "case",
     [
@@ -418,6 +428,7 @@ def _ca_checkout(make_checkout: MakeCheckout, name: str, *, base: str | None = N
         "hard-link",
         "tracked-base-links-to-promoted",
         "linked-holders-base-links-to-promoted",
+        "holder-selector-link",
     ],
 )
 def test_promotion_refuses_a_base_a_link_reaches(
@@ -433,6 +444,20 @@ def test_promotion_refuses_a_base_a_link_reaches(
         store = CorpusArtifactStore(a / "data" / "corpus")
         releases, version = a / "manifests" / "releases", "base-v"
         expected = PROMOTION_REFUSAL + "ca/policy/base-v$"
+    elif case == "holder-selector-link":
+        # B, which A's corpus link leads into, physically holds the promoted files
+        # and commits base-v as a base; B's manifests leads to A's.
+        a = _ca_checkout(make_checkout, "a")
+        b = _ca_checkout(make_checkout, "b", base="base-v")
+        _write_program_scope(CorpusArtifactStore(b / "data" / "corpus"), "base-v")
+        (a / "data").mkdir()
+        (a / "data" / "corpus").symlink_to(b / "data" / "corpus")
+        _swap_for_link(b / "manifests", a / "manifests")
+        store = CorpusArtifactStore(a / "data" / "corpus")
+        releases, version = a / "manifests" / "releases", "base-v"
+        expected = "^" + re.escape(
+            f"selector directory leads through a link: {b / 'manifests'} -> "
+        )
     elif case == "hard-link":
         store = CorpusArtifactStore(tmp_path / "corpus")
         _write_program_scope(store, "composite-v")
