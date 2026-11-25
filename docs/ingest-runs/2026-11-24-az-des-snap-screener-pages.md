@@ -114,6 +114,16 @@ hashes as its signed manifest.
 `manifests/release-content-baseline.json`; `--check-baseline` then passed with the two
 `navigation_body` findings above and no other finding.
 
+## Citation-path ratchet
+
+The DES manual pages print no paragraph numbers, so the extractor carries each text block in a
+`block-N` leaf and the bulletin PDF in a `page-1` leaf, as the earlier `us-az/manual/des` FAA5
+scopes do. The 92 rows add 78 paths to the `block_n` irregular family and 1 path to `page_n`,
+which `scripts/validate_citation_paths.py` caps. Main 085e7fe07 measured 105419 `block_n` and
+178888 `page_n` in CI, equal to the baselines. `schema/citation-path.v1.json` raises them to
+105497 and 178889 and records why. The other families and the identity-drift list do not change;
+the 92 paths pass the grammar with no mismatch.
+
 The release selector follows in a later pull request. Merge this pull request with a merge
 commit, not a squash: the signed manifests name commit dff82310a, which must stay an ancestor
 of main.
