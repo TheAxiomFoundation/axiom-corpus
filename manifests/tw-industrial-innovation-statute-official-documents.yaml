@@ -1,0 +1,60 @@
+# Taiwan (tw) pilot capture - Statute for Industrial Innovation
+# (產業創新條例) Article 10-1 investment tax credit for smart machinery,
+# 5G, cyber security, artificial intelligence products or services and
+# energy conservation / carbon reduction, plus its implementing
+# regulation (regulation-class companion:
+# tw-industrial-innovation-regulations-official-documents.yaml). Pilot with an external AI cost calculator (CFO user); one
+# firm-level credit, encoded in rulespec-tw.
+#
+# Source: the Ministry of Justice "Laws & Regulations Database of the
+# Republic of China (Taiwan)" (全國法規資料庫, law.moj.gov.tw), the
+# official consolidated text. The Chinese text is authoritative; the
+# English pages (law.moj.gov.tw/ENG) are unofficial translations and are
+# not captured. Each LawAll.aspx page prints every article as
+# <div class="row"> with the article number in .col-no ("第 10-1 條")
+# and its paragraphs as .law-article > div, so labeled_sections keys
+# each provision by its article number (citation suffix "10-1").
+#
+# 1. 產業創新條例 (pcode J0040051), whole statute; last amended
+#    2026-09-30 (民國 115 年 9 月 30 日) per the database header.
+#    Article 10-1: 5 percent of qualifying spend against the current
+#    year's profit-seeking enterprise income tax, or 3 percent over three
+#    years; 30 percent per-year cap; 50 percent combined cap with other
+#    investment credits; spend band NT$1 million to NT$2 billion
+#    (2025-01-01 to 2029-12-31); case-by-case plan approval.
+# 2. 公司或有限合夥事業投資智慧機械與第五代行動通訊系統與資通安全人工智慧
+#    產品或服務及節能減碳抵減辦法 (pcode J0040062), the MOEA + MOF
+#    implementing regulation under Article 10-1 paragraph 9; last amended
+#    2025-11-27 (民國 114 年 11 月 27 日). Article 8 (order window, two-year
+#    delivery rule, transitional orders up to 2024-12-31), Article 9
+#    (delivery-year spend, 5% / 3% choice, NT$1 billion cap for
+#    transitional orders, non-calendar fiscal-year proration, subsidies
+#    deducted), Article 10 (tax payable definition), Article 11
+#    (50 percent combined cap).
+#
+# Bulk alternative not used: data.gov.tw dataset 18289 (the whole MOJ
+# law XML dump) would capture every Taiwan law; this pilot needs two.
+documents:
+  - source_id: tw-statute-for-industrial-innovation
+    jurisdiction: tw
+    document_class: statute
+    citation_path: tw/statute/j0040051
+    title: 產業創新條例 (Statute for Industrial Innovation) - 全國法規資料庫
+    source_url: 'https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0040051'
+    source_format: html
+    source_as_of: '2026-11-25'
+    expression_date: '2026-09-30'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      html_content_selector: .law-reg-content
+      html_text_selector: '.col-no, .law-article > div'
+      section_label_pattern: '^第\s*(?P<label>\d+(?:-\d+)?)\s*條$'
+    metadata:
+      primary_source: true
+      source_authority: 中華民國 法務部 全國法規資料庫 (Ministry of Justice, Laws & Regulations Database of the Republic of China (Taiwan))
+      publisher: 法務部 (Ministry of Justice)
+      source_family: business-tax/investment-credits/industrial-innovation
+      pcode: J0040051
+      language: zh-Hant

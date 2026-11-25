@@ -1,0 +1,34 @@
+# Taiwan (tw) pilot capture, REGULATION class - companion to
+# tw-industrial-innovation-statute-official-documents.yaml (see its header
+# for the full source notes).
+#
+# 公司或有限合夥事業投資智慧機械與第五代行動通訊系統與資通安全人工智慧產品或服務
+# 及節能減碳抵減辦法 (pcode J0040062), set by the Ministry of Economic Affairs
+# with the Ministry of Finance under Statute for Industrial Innovation
+# Article 10-1 paragraph 9; last amended 2025-11-27 (民國 114 年 11 月 27 日).
+# Captured from law.moj.gov.tw, the official consolidated Chinese text.
+documents:
+  - source_id: tw-smart-investment-credit-regulation
+    jurisdiction: tw
+    document_class: regulation
+    citation_path: tw/regulation/j0040062
+    title: 公司或有限合夥事業投資智慧機械與第五代行動通訊系統與資通安全人工智慧產品或服務及節能減碳抵減辦法 - 全國法規資料庫
+    source_url: 'https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0040062'
+    source_format: html
+    source_as_of: '2026-11-25'
+    expression_date: '2025-11-27'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      html_content_selector: .law-reg-content
+      html_text_selector: '.col-no, .law-article > div'
+      section_label_pattern: '^第\s*(?P<label>\d+(?:-\d+)?)\s*條$'
+    metadata:
+      primary_source: true
+      source_authority: 中華民國 法務部 全國法規資料庫 (Ministry of Justice, Laws & Regulations Database of the Republic of China (Taiwan))
+      publisher: 法務部 (Ministry of Justice)
+      issuing_authority: 經濟部 會同 財政部 (Ministry of Economic Affairs with the Ministry of Finance)
+      source_family: business-tax/investment-credits/industrial-innovation
+      pcode: J0040062
+      language: zh-Hant
