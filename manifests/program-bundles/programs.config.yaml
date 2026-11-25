@@ -82,6 +82,12 @@ exclusions:
   secondary: "Secondary source: not law"
   data_series: "Data series: not law"
   enacting: "Enacting text: the citing file also cites the codified section, which is the document"
+  # A section that only a plan_sections row (a plan row naming whole parts of
+  # a code) brings into Tier 1: no reference cites it, no plan row names it on
+  # its own, and the program's own schema does not name it (CHIP keeps 42
+  # U.S.C. 1397aa-1397mm). It leaves Tier 1 with this reason and stays in the
+  # full bundle. Delete the line to count those sections in Tier 1 again.
+  plan_sections: "Plan-only: definitions or household inputs from another program; not cited by the reference model; counted in the full bundle (Tier 2)"
 secondary_hosts: "(?i)snapscreener|docs\\.google\\.com|benefitswiki|website-files\\.com|policyengine\\.org|github\\.com|state[-_ ]?options|ballotpedia|frac\\.org|liheapch\\.acf\\.gov|cbo\\.gov/publication|taxfoundation|taxpolicycenter|wikipedia|investopedia|nolo\\.com|smartasset|kff\\.org|cbpp\\.org"
 data_series_hosts: "(?i)snapqcdata\\.net|data\\.census\\.gov|data\\.bls\\.gov|fred\\.stlouisfed|cbo\\.gov/data|ers\\.usda\\.gov/data-products|ssa\\.gov/oact/cola|bls\\.gov/cpi"
 # Hosts of federal publishers: a page there is federal, whichever state's

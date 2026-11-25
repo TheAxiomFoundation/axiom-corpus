@@ -18,8 +18,13 @@ one layer per state):
   CFR citation and a federal publisher's page in the federal layer, a state's
   own source in that state's. They group into documents: a code or CFR
   section, a manual page, or the registered document that holds the citation.
+  With a ``plan_sections`` reason in the config's exclusions, a section that
+  only a plan row naming whole parts of a code brings in (no reference cites
+  it, no plan row names it on its own, and the program's own schema does not
+  name it) is excluded with that reason.
 - ``full``: the full document bundle. Every in-scope screener document of the
-  layer; in the federal layer, the program's federal law section by section
+  layer, and the sections the ``plan_sections`` rule excludes from it; in the
+  federal layer, the program's federal law section by section
   (from its needs-closure schema) and its federal guidance manifests; in a
   state's layer, the state's own sources from its manifests for the program,
   and the sources the config knows the corpus does not hold yet.
@@ -422,10 +427,12 @@ CFR_SECTION_TEXT = re.compile(r"(\d+)\s*C\.?\s*F\.?\s*R\.?\s*(?:§+\s*)?(\d+)\.(
 CFR_PART_TEXT = re.compile(r"(\d+)\s*C\.?\s*F\.?\s*R\.?\s*(?:part\s*)?(\d+)(?![.\d])", re.I)
 
 
-def schema_sections(schema: dict) -> list[tuple[str, str, str]]:
+def schema_sections(schema: dict, every_level: bool = False) -> list[tuple[str, str, str]]:
     """(citation path, label, element id) for each federal element of a
     needs-closure schema, whatever its shape: a corpus path, a citation in its
-    text (42 U.S.C. 601, 45 CFR 98.20, 42 CFR 431), or tax code sections."""
+    text (42 U.S.C. 601, 45 CFR 98.20, 42 CFR 431), or tax code sections. With
+    every_level, also the federal law a state-level element cites (42 U.S.C.
+    1397ll, which each state's CHIP plan carries)."""
     elements = list(schema.get("elements") or [])
     for key in (
         "federal_statute_elements",
@@ -435,7 +442,7 @@ def schema_sections(schema: dict) -> list[tuple[str, str, str]]:
         elements += [dict(e, level=e.get("level") or "federal") for e in schema.get(key) or []]
     out: list[tuple[str, str, str]] = []
     for e in elements:
-        if not str(e.get("level", "")).startswith("federal"):
+        if not every_level and not str(e.get("level", "")).startswith("federal"):
             continue
         label = str(e.get("label") or e.get("title") or e.get("name") or "")
         paths: list[str] = []
@@ -465,6 +472,11 @@ class Layer:
         self.parts: dict[str, Counter] = defaultdict(Counter)
         self.cited_parts: dict[str, dict[str, Counter]] = defaultdict(lambda: defaultdict(Counter))
         self.full: dict[str, dict] = {}
+        # Documents a reference cites or a plan row of their own names (with or
+        # without a reason to exclude that citation), and the documents the
+        # plan_sections rule moves from the screener tier to the full bundle.
+        self.named: set[str] = set()
+        self.plan_only: set[str] = set()
 
 
 def document_path(doc: dict) -> str | None:
@@ -576,7 +588,17 @@ def build_program(
             return f"us-{code}"
         return f"us-{states[0]}" if states else "us"
 
-    def add(layer: Layer, source, url, citation, reason, part, name=None, ref_titles=None):
+    def add(
+        layer: Layer,
+        source,
+        url,
+        citation,
+        reason,
+        part,
+        name=None,
+        ref_titles=None,
+        whole_part=False,
+    ):
         text = " ".join([url or "", *(ref_titles or [])])
         if url and not citation and reason is None and secondary.search(url):
             reason = reasons["secondary"]
@@ -609,6 +631,11 @@ def build_program(
         unit = citation and (citation != key or source == "policyengine-references")
         if unit:
             layer.cited_parts[key][citation][part] += 1
+        # Any citation or own plan row keeps a section out of the plan_sections
+        # rule, also one excluded for its own reason (a back-year link): the
+        # rule's reason says that no reference cites the section.
+        if not whole_part:
+            layer.named.add(key)
         if reason is None:
             # A URL is one document with one classification: a source that
             # finds a reason to exclude it outweighs one that does not look.
@@ -679,12 +706,14 @@ def build_program(
             continue
         # A plan row that names whole parts of a code (subparts of 26 U.S.C.
         # chapter 1, a subchapter of 42 U.S.C. chapter 7): one row per section.
+        # The row names the parts, not each section: a section it alone brings
+        # in can leave the screener tier (the plan_sections exclusion).
         sections = plan_sections.get(doc["id"])
         if sections:
             for path in sections:
                 path = moves.get(path, path)
                 part = rule_part(rules, path, None, doc.get("title")) or "Other"
-                add(layers[jur], "plan", None, path, None, part)
+                add(layers[jur], "plan", None, path, None, part, whole_part=True)
             continue
         crosswalk = (overrides.get(jur.removeprefix("us-")) or {}).get("crosswalk") or {}
         usc, cfr = PLAN_USC.match(doc["id"]), PLAN_CFR.match(doc["id"])
@@ -727,9 +756,27 @@ def build_program(
             name=None if citation else doc.get("title") or doc["id"],
         )
 
-    # The screener tier of each layer.
+    # The program's needs-closure schema: its own law, section by section.
+    schema = yaml.safe_load((REPO / prog["schema"]).read_text()) if prog.get("schema") else None
+    only = re.compile(prog["schema_filter"]) if prog.get("schema_filter") else None
+
+    # The screener tier of each layer. A section that only a whole-part plan
+    # row brings in, which no reference cites and no plan row names on its own,
+    # leaves the tier with the configured reason and stays in the full bundle,
+    # unless it is the program's own law (its schema names it, at any level).
+    plan_only_reason = reasons.get("plan_sections")
+    own_law = {
+        document_key(path, [])
+        for path, _, _ in (schema_sections(schema, every_level=True) if schema else [])
+        if not only or only.search(path)
+    }
     screener: dict[str, list[dict]] = {}
     for jur, layer in layers.items():
+        if plan_only_reason:
+            for key, doc in layer.docs.items():
+                if doc["scope"] == "in" and key not in layer.named and key not in own_law:
+                    doc["scope"], doc["reason"] = "excluded", plan_only_reason
+                    layer.plan_only.add(key)
         out = []
         for key, doc in sorted(layer.docs.items(), key=lambda kv: (kv[1]["scope"] != "in", kv[0])):
             doc["part"] = part_of(layer.parts[key])
@@ -777,22 +824,20 @@ def build_program(
             by_key[entry["key"]] = entry
             out.append(entry)
 
-        for doc in screener[jur]:
-            if doc["scope"] == "in":
-                place(
-                    {
-                        k: doc[k]
-                        for k in ("key", "name", "layer", "citation_path", "source_url", "part")
-                    }
-                    | {"sources": ["screener"], "scope": "in"}
-                )
+        plan_only = layers[jur].plan_only
+        for doc in sorted(
+            (d for d in screener[jur] if d["scope"] == "in" or d["key"] in plan_only),
+            key=lambda d: d["key"],
+        ):
+            place(
+                {k: doc[k] for k in ("key", "name", "layer", "citation_path", "source_url", "part")}
+                | {"sources": ["plan" if doc["key"] in plan_only else "screener"], "scope": "in"}
+            )
 
-        if jur == "us" and prog.get("schema"):
-            schema = yaml.safe_load((REPO / prog["schema"]).read_text())
+        if jur == "us" and schema:
             excludes = [
                 (re.compile(e["pattern"]), e["reason"]) for e in prog.get("federal_exclude") or []
             ]
-            only = re.compile(prog["schema_filter"]) if prog.get("schema_filter") else None
             for path, label, element in schema_sections(schema):
                 if only and not only.search(path):
                     continue
@@ -927,6 +972,8 @@ def build_program(
                 tier[jur] = [d for d in tier[jur] if d["key"] not in federal_keys]
 
     tiers_cfg = cfg["tiers"]
+    # The membership rules name the plan_sections exclusion where it excludes something.
+    moved = any(layer.plan_only for layer in layers.values())
     in_scope = lambda tier: Counter(  # noqa: E731
         "federal" if j == "us" else "state"
         for j, docs in tier.items()
@@ -950,7 +997,13 @@ def build_program(
                 "membership": {
                     "rule": "The reference model's citations at the release it was built from (the newest, by "
                     "default) and the plan's documents, each in the layer of the law it names, grouped into "
-                    "documents",
+                    "documents"
+                    + (
+                        "; a section that only a plan row naming whole parts of a code brings in, and that is not "
+                        "the program's own law, is excluded"
+                        if moved
+                        else ""
+                    ),
                     "references": cfg["policyengine_us"]["references"].format(program=pid),
                     "policyengine_us_release": references.get("policyengine_us_release"),
                     "policyengine_us_version": references.get("policyengine_us_version"),
@@ -972,7 +1025,13 @@ def build_program(
                 "title": tiers_cfg["full"]["title"],
                 "definition": tiers_cfg["full"]["definition"],
                 "membership": {
-                    "rule": "Every in-scope document of Tier 1; the federal law of the program, "
+                    "rule": "Every in-scope document of Tier 1"
+                    + (
+                        " and the sections it excludes because only a whole-part plan row brings them in"
+                        if moved
+                        else ""
+                    )
+                    + "; the federal law of the program, "
                     "section by section, from its needs-closure schema, and its federal guidance manifests; "
                     "each state's own sources from its manifests for the program; and the sources the "
                     "config knows the corpus does not hold yet",

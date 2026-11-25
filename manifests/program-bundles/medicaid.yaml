@@ -26,7 +26,8 @@ tiers:
     errors. Federal law in Tier 1 is shared by every state.
   membership:
     rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
-      documents, each in the layer of the law it names, grouped into documents
+      documents, each in the layer of the law it names, grouped into documents; a section that only a plan row naming
+      whole parts of a code brings in, and that is not the program's own law, is excluded
     references: sources/policyengine-us/medicaid-references.json
     policyengine_us_release: latest
     policyengine_us_version: 2.29.11
@@ -43,7 +44,7 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 184
+      federal: 88
       state: 148
 - id: full
   title: Full document bundle
@@ -51,16 +52,17 @@ tiers:
     the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
     A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
-      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
-      the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1 and the sections it excludes because only a whole-part plan row brings
+      them in; the federal law of the program, section by section, from its needs-closure schema, and its federal
+      guidance manifests; each state's own sources from its manifests for the program; and the sources the config
+      knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/medicaid-schema.yaml
     federal_manifests: ^us-(medicaid|cms-annual|cms-iom|hhs-poverty)
     state_manifests: medicaid|ahcccs|medi-cal|masshealth|medical-assistance|msp-income
     known_sources: 0
     in_scope_by_layer:
       federal: 495
-      state: 10533
+      state: 10541
 layers:
 - jurisdiction: us
   screener:
@@ -882,424 +884,10 @@ layers:
     - path: us/rulemaking/federal-register/2026-06-03/2026-11094
       references: 5
       part: Household and eligibility
-  - key: us/statute/26/101
-    name: 26 USC 101
-    layer: federal
-    citation_path: us/statute/26/101
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/102
-    name: 26 USC 102
-    layer: federal
-    citation_path: us/statute/26/102
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/103
-    name: 26 USC 103
-    layer: federal
-    citation_path: us/statute/26/103
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/104
-    name: 26 USC 104
-    layer: federal
-    citation_path: us/statute/26/104
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/105
-    name: 26 USC 105
-    layer: federal
-    citation_path: us/statute/26/105
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/106
-    name: 26 USC 106
-    layer: federal
-    citation_path: us/statute/26/106
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/107
-    name: 26 USC 107
-    layer: federal
-    citation_path: us/statute/26/107
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/108
-    name: 26 USC 108
-    layer: federal
-    citation_path: us/statute/26/108
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/109
-    name: 26 USC 109
-    layer: federal
-    citation_path: us/statute/26/109
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/110
-    name: 26 USC 110
-    layer: federal
-    citation_path: us/statute/26/110
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/111
-    name: 26 USC 111
-    layer: federal
-    citation_path: us/statute/26/111
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/112
-    name: 26 USC 112
-    layer: federal
-    citation_path: us/statute/26/112
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/115
-    name: 26 USC 115
-    layer: federal
-    citation_path: us/statute/26/115
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/117
-    name: 26 USC 117
-    layer: federal
-    citation_path: us/statute/26/117
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/118
-    name: 26 USC 118
-    layer: federal
-    citation_path: us/statute/26/118
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/119
-    name: 26 USC 119
-    layer: federal
-    citation_path: us/statute/26/119
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/121
-    name: 26 USC 121
-    layer: federal
-    citation_path: us/statute/26/121
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/122
-    name: 26 USC 122
-    layer: federal
-    citation_path: us/statute/26/122
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
   - key: us/statute/26/1222
     name: 26 USC 1222
     layer: federal
     citation_path: us/statute/26/1222
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/123
-    name: 26 USC 123
-    layer: federal
-    citation_path: us/statute/26/123
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/125
-    name: 26 USC 125
-    layer: federal
-    citation_path: us/statute/26/125
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/126
-    name: 26 USC 126
-    layer: federal
-    citation_path: us/statute/26/126
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/127
-    name: 26 USC 127
-    layer: federal
-    citation_path: us/statute/26/127
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/128
-    name: 26 USC 128
-    layer: federal
-    citation_path: us/statute/26/128
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/129
-    name: 26 USC 129
-    layer: federal
-    citation_path: us/statute/26/129
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/130
-    name: 26 USC 130
-    layer: federal
-    citation_path: us/statute/26/130
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/131
-    name: 26 USC 131
-    layer: federal
-    citation_path: us/statute/26/131
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/132
-    name: 26 USC 132
-    layer: federal
-    citation_path: us/statute/26/132
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/134
-    name: 26 USC 134
-    layer: federal
-    citation_path: us/statute/26/134
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/135
-    name: 26 USC 135
-    layer: federal
-    citation_path: us/statute/26/135
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/136
-    name: 26 USC 136
-    layer: federal
-    citation_path: us/statute/26/136
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/137
-    name: 26 USC 137
-    layer: federal
-    citation_path: us/statute/26/137
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/138
-    name: 26 USC 138
-    layer: federal
-    citation_path: us/statute/26/138
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139
-    name: 26 USC 139
-    layer: federal
-    citation_path: us/statute/26/139
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139A
-    name: 26 USC 139A
-    layer: federal
-    citation_path: us/statute/26/139A
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139B
-    name: 26 USC 139B
-    layer: federal
-    citation_path: us/statute/26/139B
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139C
-    name: 26 USC 139C
-    layer: federal
-    citation_path: us/statute/26/139C
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139D
-    name: 26 USC 139D
-    layer: federal
-    citation_path: us/statute/26/139D
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139E
-    name: 26 USC 139E
-    layer: federal
-    citation_path: us/statute/26/139E
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139F
-    name: 26 USC 139F
-    layer: federal
-    citation_path: us/statute/26/139F
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139G
-    name: 26 USC 139G
-    layer: federal
-    citation_path: us/statute/26/139G
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139H
-    name: 26 USC 139H
-    layer: federal
-    citation_path: us/statute/26/139H
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139I
-    name: 26 USC 139I
-    layer: federal
-    citation_path: us/statute/26/139I
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139J
-    name: 26 USC 139J
-    layer: federal
-    citation_path: us/statute/26/139J
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139K
-    name: 26 USC 139K
-    layer: federal
-    citation_path: us/statute/26/139K
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/139L
-    name: 26 USC 139L
-    layer: federal
-    citation_path: us/statute/26/139L
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/140
-    name: 26 USC 140
-    layer: federal
-    citation_path: us/statute/26/140
     source_url: null
     sources:
     - plan
@@ -1350,163 +938,10 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
-  - key: us/statute/26/22
-    name: 26 USC 22
-    layer: federal
-    citation_path: us/statute/26/22
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/23
-    name: 26 USC 23
-    layer: federal
-    citation_path: us/statute/26/23
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/24
-    name: 26 USC 24
-    layer: federal
-    citation_path: us/statute/26/24
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25
-    name: 26 USC 25
-    layer: federal
-    citation_path: us/statute/26/25
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25A
-    name: 26 USC 25A
-    layer: federal
-    citation_path: us/statute/26/25A
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25B
-    name: 26 USC 25B
-    layer: federal
-    citation_path: us/statute/26/25B
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25C
-    name: 26 USC 25C
-    layer: federal
-    citation_path: us/statute/26/25C
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25D
-    name: 26 USC 25D
-    layer: federal
-    citation_path: us/statute/26/25D
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25E
-    name: 26 USC 25E
-    layer: federal
-    citation_path: us/statute/26/25E
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/25F
-    name: 26 USC 25F
-    layer: federal
-    citation_path: us/statute/26/25F
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/26
-    name: 26 USC 26
-    layer: federal
-    citation_path: us/statute/26/26
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/31
-    name: 26 USC 31
-    layer: federal
-    citation_path: us/statute/26/31
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/32
-    name: 26 USC 32
-    layer: federal
-    citation_path: us/statute/26/32
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/33
-    name: 26 USC 33
-    layer: federal
-    citation_path: us/statute/26/33
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/34
-    name: 26 USC 34
-    layer: federal
-    citation_path: us/statute/26/34
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
   - key: us/statute/26/3401
     name: 26 USC 3401
     layer: federal
     citation_path: us/statute/26/3401
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/35
-    name: 26 USC 35
-    layer: federal
-    citation_path: us/statute/26/35
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/36
-    name: 26 USC 36
-    layer: federal
-    citation_path: us/statute/26/36
     source_url: null
     sources:
     - plan
@@ -1527,15 +962,6 @@ layers:
     - path: us/statute/26/36B
       references: 1
       part: Income
-  - key: us/statute/26/37
-    name: 26 USC 37
-    layer: federal
-    citation_path: us/statute/26/37
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
   - key: us/statute/26/61
     name: 26 USC 61
     layer: federal
@@ -1765,60 +1191,6 @@ layers:
     - path: us/statute/42/1396u–1
       references: 1
       part: Household and eligibility
-  - key: us/statute/42/1397aa
-    name: 42 USC 1397aa
-    layer: federal
-    citation_path: us/statute/42/1397aa
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397bb
-    name: 42 USC 1397bb
-    layer: federal
-    citation_path: us/statute/42/1397bb
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397cc
-    name: 42 USC 1397cc
-    layer: federal
-    citation_path: us/statute/42/1397cc
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397dd
-    name: 42 USC 1397dd
-    layer: federal
-    citation_path: us/statute/42/1397dd
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397ee
-    name: 42 USC 1397ee
-    layer: federal
-    citation_path: us/statute/42/1397ee
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397ff
-    name: 42 USC 1397ff
-    layer: federal
-    citation_path: us/statute/42/1397ff
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us/statute/42/1397gg
     name: 42 USC 1397gg
     layer: federal
@@ -1834,244 +1206,10 @@ layers:
     - path: us/statute/42/1397gg/e/1/R
       references: 1
       part: Household and eligibility
-  - key: us/statute/42/1397hh
-    name: 42 USC 1397hh
-    layer: federal
-    citation_path: us/statute/42/1397hh
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397ii
-    name: 42 USC 1397ii
-    layer: federal
-    citation_path: us/statute/42/1397ii
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us/statute/42/1397jj
     name: 42 USC 1397jj
     layer: federal
     citation_path: us/statute/42/1397jj
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397kk
-    name: 42 USC 1397kk
-    layer: federal
-    citation_path: us/statute/42/1397kk
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397ll
-    name: 42 USC 1397ll
-    layer: federal
-    citation_path: us/statute/42/1397ll
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397mm
-    name: 42 USC 1397mm
-    layer: federal
-    citation_path: us/statute/42/1397mm
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/601
-    name: 42 USC 601
-    layer: federal
-    citation_path: us/statute/42/601
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/602
-    name: 42 USC 602
-    layer: federal
-    citation_path: us/statute/42/602
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/603
-    name: 42 USC 603
-    layer: federal
-    citation_path: us/statute/42/603
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/604
-    name: 42 USC 604
-    layer: federal
-    citation_path: us/statute/42/604
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/604a
-    name: 42 USC 604a
-    layer: federal
-    citation_path: us/statute/42/604a
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/605
-    name: 42 USC 605
-    layer: federal
-    citation_path: us/statute/42/605
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/606
-    name: 42 USC 606
-    layer: federal
-    citation_path: us/statute/42/606
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/607
-    name: 42 USC 607
-    layer: federal
-    citation_path: us/statute/42/607
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/608
-    name: 42 USC 608
-    layer: federal
-    citation_path: us/statute/42/608
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/608a
-    name: 42 USC 608a
-    layer: federal
-    citation_path: us/statute/42/608a
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/609
-    name: 42 USC 609
-    layer: federal
-    citation_path: us/statute/42/609
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/610
-    name: 42 USC 610
-    layer: federal
-    citation_path: us/statute/42/610
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/611
-    name: 42 USC 611
-    layer: federal
-    citation_path: us/statute/42/611
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/611a
-    name: 42 USC 611a
-    layer: federal
-    citation_path: us/statute/42/611a
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/612
-    name: 42 USC 612
-    layer: federal
-    citation_path: us/statute/42/612
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/613
-    name: 42 USC 613
-    layer: federal
-    citation_path: us/statute/42/613
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/615
-    name: 42 USC 615
-    layer: federal
-    citation_path: us/statute/42/615
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/616
-    name: 42 USC 616
-    layer: federal
-    citation_path: us/statute/42/616
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/617
-    name: 42 USC 617
-    layer: federal
-    citation_path: us/statute/42/617
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/618
-    name: 42 USC 618
-    layer: federal
-    citation_path: us/statute/42/618
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/619
-    name: 42 USC 619
-    layer: federal
-    citation_path: us/statute/42/619
     source_url: null
     sources:
     - plan
@@ -2568,6 +1706,1062 @@ layers:
     reason: 'Not a source of rules: third-party eligibility screener; the address redirects to snapscreener.com
       (a calculator)'
     part: Income
+  - key: us/statute/26/101
+    name: 26 USC 101
+    layer: federal
+    citation_path: us/statute/26/101
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/102
+    name: 26 USC 102
+    layer: federal
+    citation_path: us/statute/26/102
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/103
+    name: 26 USC 103
+    layer: federal
+    citation_path: us/statute/26/103
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/104
+    name: 26 USC 104
+    layer: federal
+    citation_path: us/statute/26/104
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/105
+    name: 26 USC 105
+    layer: federal
+    citation_path: us/statute/26/105
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/106
+    name: 26 USC 106
+    layer: federal
+    citation_path: us/statute/26/106
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/107
+    name: 26 USC 107
+    layer: federal
+    citation_path: us/statute/26/107
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/108
+    name: 26 USC 108
+    layer: federal
+    citation_path: us/statute/26/108
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/109
+    name: 26 USC 109
+    layer: federal
+    citation_path: us/statute/26/109
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/110
+    name: 26 USC 110
+    layer: federal
+    citation_path: us/statute/26/110
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/111
+    name: 26 USC 111
+    layer: federal
+    citation_path: us/statute/26/111
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/112
+    name: 26 USC 112
+    layer: federal
+    citation_path: us/statute/26/112
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/115
+    name: 26 USC 115
+    layer: federal
+    citation_path: us/statute/26/115
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/117
+    name: 26 USC 117
+    layer: federal
+    citation_path: us/statute/26/117
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/118
+    name: 26 USC 118
+    layer: federal
+    citation_path: us/statute/26/118
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/119
+    name: 26 USC 119
+    layer: federal
+    citation_path: us/statute/26/119
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/121
+    name: 26 USC 121
+    layer: federal
+    citation_path: us/statute/26/121
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/122
+    name: 26 USC 122
+    layer: federal
+    citation_path: us/statute/26/122
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/123
+    name: 26 USC 123
+    layer: federal
+    citation_path: us/statute/26/123
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/125
+    name: 26 USC 125
+    layer: federal
+    citation_path: us/statute/26/125
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/126
+    name: 26 USC 126
+    layer: federal
+    citation_path: us/statute/26/126
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/127
+    name: 26 USC 127
+    layer: federal
+    citation_path: us/statute/26/127
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/128
+    name: 26 USC 128
+    layer: federal
+    citation_path: us/statute/26/128
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/129
+    name: 26 USC 129
+    layer: federal
+    citation_path: us/statute/26/129
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/130
+    name: 26 USC 130
+    layer: federal
+    citation_path: us/statute/26/130
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/131
+    name: 26 USC 131
+    layer: federal
+    citation_path: us/statute/26/131
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/132
+    name: 26 USC 132
+    layer: federal
+    citation_path: us/statute/26/132
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/134
+    name: 26 USC 134
+    layer: federal
+    citation_path: us/statute/26/134
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/135
+    name: 26 USC 135
+    layer: federal
+    citation_path: us/statute/26/135
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/136
+    name: 26 USC 136
+    layer: federal
+    citation_path: us/statute/26/136
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/137
+    name: 26 USC 137
+    layer: federal
+    citation_path: us/statute/26/137
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/138
+    name: 26 USC 138
+    layer: federal
+    citation_path: us/statute/26/138
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139
+    name: 26 USC 139
+    layer: federal
+    citation_path: us/statute/26/139
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139A
+    name: 26 USC 139A
+    layer: federal
+    citation_path: us/statute/26/139A
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139B
+    name: 26 USC 139B
+    layer: federal
+    citation_path: us/statute/26/139B
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139C
+    name: 26 USC 139C
+    layer: federal
+    citation_path: us/statute/26/139C
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139D
+    name: 26 USC 139D
+    layer: federal
+    citation_path: us/statute/26/139D
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139E
+    name: 26 USC 139E
+    layer: federal
+    citation_path: us/statute/26/139E
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139F
+    name: 26 USC 139F
+    layer: federal
+    citation_path: us/statute/26/139F
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139G
+    name: 26 USC 139G
+    layer: federal
+    citation_path: us/statute/26/139G
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139H
+    name: 26 USC 139H
+    layer: federal
+    citation_path: us/statute/26/139H
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139I
+    name: 26 USC 139I
+    layer: federal
+    citation_path: us/statute/26/139I
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139J
+    name: 26 USC 139J
+    layer: federal
+    citation_path: us/statute/26/139J
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139K
+    name: 26 USC 139K
+    layer: federal
+    citation_path: us/statute/26/139K
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/139L
+    name: 26 USC 139L
+    layer: federal
+    citation_path: us/statute/26/139L
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/140
+    name: 26 USC 140
+    layer: federal
+    citation_path: us/statute/26/140
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/22
+    name: 26 USC 22
+    layer: federal
+    citation_path: us/statute/26/22
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/23
+    name: 26 USC 23
+    layer: federal
+    citation_path: us/statute/26/23
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/24
+    name: 26 USC 24
+    layer: federal
+    citation_path: us/statute/26/24
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25
+    name: 26 USC 25
+    layer: federal
+    citation_path: us/statute/26/25
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25A
+    name: 26 USC 25A
+    layer: federal
+    citation_path: us/statute/26/25A
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25B
+    name: 26 USC 25B
+    layer: federal
+    citation_path: us/statute/26/25B
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25C
+    name: 26 USC 25C
+    layer: federal
+    citation_path: us/statute/26/25C
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25D
+    name: 26 USC 25D
+    layer: federal
+    citation_path: us/statute/26/25D
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25E
+    name: 26 USC 25E
+    layer: federal
+    citation_path: us/statute/26/25E
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/25F
+    name: 26 USC 25F
+    layer: federal
+    citation_path: us/statute/26/25F
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/26
+    name: 26 USC 26
+    layer: federal
+    citation_path: us/statute/26/26
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/31
+    name: 26 USC 31
+    layer: federal
+    citation_path: us/statute/26/31
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/32
+    name: 26 USC 32
+    layer: federal
+    citation_path: us/statute/26/32
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/33
+    name: 26 USC 33
+    layer: federal
+    citation_path: us/statute/26/33
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/34
+    name: 26 USC 34
+    layer: federal
+    citation_path: us/statute/26/34
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/35
+    name: 26 USC 35
+    layer: federal
+    citation_path: us/statute/26/35
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/36
+    name: 26 USC 36
+    layer: federal
+    citation_path: us/statute/26/36
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/26/37
+    name: 26 USC 37
+    layer: federal
+    citation_path: us/statute/26/37
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Definitions from other programs
+  - key: us/statute/42/1397aa
+    name: 42 USC 1397aa
+    layer: federal
+    citation_path: us/statute/42/1397aa
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397bb
+    name: 42 USC 1397bb
+    layer: federal
+    citation_path: us/statute/42/1397bb
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397cc
+    name: 42 USC 1397cc
+    layer: federal
+    citation_path: us/statute/42/1397cc
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397dd
+    name: 42 USC 1397dd
+    layer: federal
+    citation_path: us/statute/42/1397dd
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397ee
+    name: 42 USC 1397ee
+    layer: federal
+    citation_path: us/statute/42/1397ee
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397ff
+    name: 42 USC 1397ff
+    layer: federal
+    citation_path: us/statute/42/1397ff
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397hh
+    name: 42 USC 1397hh
+    layer: federal
+    citation_path: us/statute/42/1397hh
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397ii
+    name: 42 USC 1397ii
+    layer: federal
+    citation_path: us/statute/42/1397ii
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397kk
+    name: 42 USC 1397kk
+    layer: federal
+    citation_path: us/statute/42/1397kk
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397ll
+    name: 42 USC 1397ll
+    layer: federal
+    citation_path: us/statute/42/1397ll
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/1397mm
+    name: 42 USC 1397mm
+    layer: federal
+    citation_path: us/statute/42/1397mm
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/601
+    name: 42 USC 601
+    layer: federal
+    citation_path: us/statute/42/601
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/602
+    name: 42 USC 602
+    layer: federal
+    citation_path: us/statute/42/602
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/603
+    name: 42 USC 603
+    layer: federal
+    citation_path: us/statute/42/603
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/604
+    name: 42 USC 604
+    layer: federal
+    citation_path: us/statute/42/604
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/604a
+    name: 42 USC 604a
+    layer: federal
+    citation_path: us/statute/42/604a
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/605
+    name: 42 USC 605
+    layer: federal
+    citation_path: us/statute/42/605
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/606
+    name: 42 USC 606
+    layer: federal
+    citation_path: us/statute/42/606
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/607
+    name: 42 USC 607
+    layer: federal
+    citation_path: us/statute/42/607
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/608
+    name: 42 USC 608
+    layer: federal
+    citation_path: us/statute/42/608
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/608a
+    name: 42 USC 608a
+    layer: federal
+    citation_path: us/statute/42/608a
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/609
+    name: 42 USC 609
+    layer: federal
+    citation_path: us/statute/42/609
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/610
+    name: 42 USC 610
+    layer: federal
+    citation_path: us/statute/42/610
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/611
+    name: 42 USC 611
+    layer: federal
+    citation_path: us/statute/42/611
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/611a
+    name: 42 USC 611a
+    layer: federal
+    citation_path: us/statute/42/611a
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/612
+    name: 42 USC 612
+    layer: federal
+    citation_path: us/statute/42/612
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/613
+    name: 42 USC 613
+    layer: federal
+    citation_path: us/statute/42/613
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/615
+    name: 42 USC 615
+    layer: federal
+    citation_path: us/statute/42/615
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/616
+    name: 42 USC 616
+    layer: federal
+    citation_path: us/statute/42/616
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/617
+    name: 42 USC 617
+    layer: federal
+    citation_path: us/statute/42/617
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/618
+    name: 42 USC 618
+    layer: federal
+    citation_path: us/statute/42/618
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
+  - key: us/statute/42/619
+    name: 42 USC 619
+    layer: federal
+    citation_path: us/statute/42/619
+    source_url: null
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Plan-only: definitions or household inputs from another program; not cited by the reference model;
+      counted in the full bundle (Tier 2)'
+    part: Benefit amount
   full:
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
@@ -3140,7 +3334,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/102
     name: 26 USC 102
@@ -3149,7 +3343,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/103
     name: 26 USC 103
@@ -3158,7 +3352,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/104
     name: 26 USC 104
@@ -3167,7 +3361,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/105
     name: 26 USC 105
@@ -3176,7 +3370,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/106
     name: 26 USC 106
@@ -3185,7 +3379,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/107
     name: 26 USC 107
@@ -3194,7 +3388,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/108
     name: 26 USC 108
@@ -3203,7 +3397,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/109
     name: 26 USC 109
@@ -3212,7 +3406,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/110
     name: 26 USC 110
@@ -3221,7 +3415,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/111
     name: 26 USC 111
@@ -3230,7 +3424,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/112
     name: 26 USC 112
@@ -3239,7 +3433,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/115
     name: 26 USC 115
@@ -3248,7 +3442,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/117
     name: 26 USC 117
@@ -3257,7 +3451,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/118
     name: 26 USC 118
@@ -3266,7 +3460,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/119
     name: 26 USC 119
@@ -3275,7 +3469,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/121
     name: 26 USC 121
@@ -3284,7 +3478,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/122
     name: 26 USC 122
@@ -3293,7 +3487,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/1222
     name: 26 USC 1222
@@ -3311,7 +3505,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/125
     name: 26 USC 125
@@ -3320,7 +3514,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/126
     name: 26 USC 126
@@ -3329,7 +3523,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/127
     name: 26 USC 127
@@ -3338,7 +3532,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/128
     name: 26 USC 128
@@ -3347,7 +3541,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/129
     name: 26 USC 129
@@ -3356,7 +3550,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/130
     name: 26 USC 130
@@ -3365,7 +3559,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/131
     name: 26 USC 131
@@ -3374,7 +3568,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/132
     name: 26 USC 132
@@ -3383,7 +3577,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/134
     name: 26 USC 134
@@ -3392,7 +3586,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/135
     name: 26 USC 135
@@ -3401,7 +3595,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/136
     name: 26 USC 136
@@ -3410,7 +3604,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/137
     name: 26 USC 137
@@ -3419,7 +3613,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/138
     name: 26 USC 138
@@ -3428,7 +3622,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139
     name: 26 USC 139
@@ -3437,7 +3631,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139A
     name: 26 USC 139A
@@ -3446,7 +3640,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139B
     name: 26 USC 139B
@@ -3455,7 +3649,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139C
     name: 26 USC 139C
@@ -3464,7 +3658,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139D
     name: 26 USC 139D
@@ -3473,7 +3667,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139E
     name: 26 USC 139E
@@ -3482,7 +3676,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139F
     name: 26 USC 139F
@@ -3491,7 +3685,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139G
     name: 26 USC 139G
@@ -3500,7 +3694,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139H
     name: 26 USC 139H
@@ -3509,7 +3703,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139I
     name: 26 USC 139I
@@ -3518,7 +3712,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139J
     name: 26 USC 139J
@@ -3527,7 +3721,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139K
     name: 26 USC 139K
@@ -3536,7 +3730,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/139L
     name: 26 USC 139L
@@ -3545,7 +3739,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/140
     name: 26 USC 140
@@ -3554,7 +3748,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/1402
     name: 26 USC 1402
@@ -3608,7 +3802,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/23
     name: 26 USC 23
@@ -3617,7 +3811,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/24
     name: 26 USC 24
@@ -3626,7 +3820,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25
     name: 26 USC 25
@@ -3635,7 +3829,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25A
     name: 26 USC 25A
@@ -3644,7 +3838,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25B
     name: 26 USC 25B
@@ -3653,7 +3847,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25C
     name: 26 USC 25C
@@ -3662,7 +3856,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25D
     name: 26 USC 25D
@@ -3671,7 +3865,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25E
     name: 26 USC 25E
@@ -3680,7 +3874,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/25F
     name: 26 USC 25F
@@ -3689,7 +3883,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/26
     name: 26 USC 26
@@ -3698,7 +3892,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/31
     name: 26 USC 31
@@ -3707,7 +3901,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/32
     name: 26 USC 32
@@ -3716,7 +3910,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/33
     name: 26 USC 33
@@ -3725,7 +3919,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/34
     name: 26 USC 34
@@ -3734,7 +3928,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/3401
     name: 26 USC 3401
@@ -3752,7 +3946,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/36
     name: 26 USC 36
@@ -3761,7 +3955,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/36B
     name: 26 USC 36B
@@ -3779,7 +3973,7 @@ layers:
     source_url: null
     part: Definitions from other programs
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/26/61
     name: 26 USC 61
@@ -3920,7 +4114,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397bb
     name: 42 USC 1397bb
@@ -3929,7 +4123,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397cc
     name: 42 USC 1397cc
@@ -3938,7 +4132,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397dd
     name: 42 USC 1397dd
@@ -3947,7 +4141,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397ee
     name: 42 USC 1397ee
@@ -3956,7 +4150,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397ff
     name: 42 USC 1397ff
@@ -3965,7 +4159,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397gg
     name: 42 USC 1397gg
@@ -3983,7 +4177,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397ii
     name: 42 USC 1397ii
@@ -3992,7 +4186,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397jj
     name: 42 USC 1397jj
@@ -4010,7 +4204,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397ll
     name: 42 USC 1397ll
@@ -4019,7 +4213,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/1397mm
     name: 42 USC 1397mm
@@ -4028,7 +4222,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/601
     name: 42 USC 601
@@ -4037,7 +4231,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/602
     name: 42 USC 602
@@ -4046,7 +4240,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/603
     name: 42 USC 603
@@ -4055,7 +4249,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/604
     name: 42 USC 604
@@ -4064,7 +4258,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/604a
     name: 42 USC 604a
@@ -4073,7 +4267,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/605
     name: 42 USC 605
@@ -4082,7 +4276,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/606
     name: 42 USC 606
@@ -4091,7 +4285,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/607
     name: 42 USC 607
@@ -4100,7 +4294,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/608
     name: 42 USC 608
@@ -4109,7 +4303,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/608a
     name: 42 USC 608a
@@ -4118,7 +4312,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/609
     name: 42 USC 609
@@ -4127,7 +4321,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/610
     name: 42 USC 610
@@ -4136,7 +4330,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/611
     name: 42 USC 611
@@ -4145,7 +4339,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/611a
     name: 42 USC 611a
@@ -4154,7 +4348,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/612
     name: 42 USC 612
@@ -4163,7 +4357,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/613
     name: 42 USC 613
@@ -4172,7 +4366,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/615
     name: 42 USC 615
@@ -4181,7 +4375,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/616
     name: 42 USC 616
@@ -4190,7 +4384,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/617
     name: 42 USC 617
@@ -4199,7 +4393,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/618
     name: 42 USC 618
@@ -4208,7 +4402,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/42/619
     name: 42 USC 619
@@ -4217,7 +4411,7 @@ layers:
     source_url: null
     part: Benefit amount
     sources:
-    - screener
+    - plan
     scope: in
   - key: us/statute/8/1611
     name: 8 USC 1611
@@ -7233,6 +7427,28 @@ layers:
     manifest: manifests/us-cms-iom-100-24.yaml
     scope: in
     part: Assets
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2024/federal-register
+    name: Annual Update of the HHS Poverty Guidelines (89 FR 2961, January 17, 2024)
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2024/federal-register
+    source_url: https://www.govinfo.gov/content/pkg/FR-2024-01-17/html/2024-00796.htm
+    sources:
+    - manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    manifest: manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
+  - key: us/guidance/hhs/aspe/poverty-guidelines/2025/federal-register
+    name: Annual Update of the HHS Poverty Guidelines (90 FR 5917, January 17, 2025)
+    layer: federal
+    citation_path: us/guidance/hhs/aspe/poverty-guidelines/2025/federal-register
+    source_url: https://www.govinfo.gov/content/pkg/FR-2025-01-17/html/2025-01377.htm
+    sources:
+    - manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    manifest: manifests/us-hhs-poverty-guidelines-2024-2025.yaml
+    scope: excluded
+    reason: 'Back-year table: not current law'
+    part: Income
 - jurisdiction: us-al
   screener:
   - key: https://www.alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf
@@ -7688,6 +7904,18 @@ layers:
 - jurisdiction: us-ak
   screener: []
   full:
+  - key: us-ak/policy/cms/1115-service-authority/behavioral-health-reform
+    name: 'Alaska section 1115 demonstration "Alaska Behavioral Health Reform": CMS technical correction approval,
+      waiver and expenditure authorities and special terms and conditions, approval period 2024-03-26 to 2028-12-31
+      (2026-03-27)'
+    layer: state
+    citation_path: us-ak/policy/cms/1115-service-authority/behavioral-health-reform
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/ak-bhr-tech-correct-appvl-03272026.pdf
+    sources:
+    - manifests/us-ak-medicaid-1115-service-authority.yaml
+    manifest: manifests/us-ak-medicaid-1115-service-authority.yaml
+    scope: in
+    part: Other
   - key: us-ak/manual/dpa/adltc/500-overview-of-aged-disabled-and-long-term-care-medicaid-500
     name: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 500 Overview of Aged, Disabled
       and Long Term Care Medicaid'
@@ -18121,6 +18349,16 @@ layers:
     manifest: manifests/us-ca-health-w6-manual.yaml
     scope: in
     part: Other
+  - key: us-ca/regulation/10-ccr/2699.200
+    name: 10 CCR § 2699.200. Basis of Eligibility.
+    layer: state
+    citation_path: us-ca/regulation/10-ccr/2699.200
+    source_url: https://govt.westlaw.com/calregs/Document/IEC9BE2315C2F11EC9C68000D3A7C4BC3?viewType=FullText&originationContext=documenttoc&transitionType=CategoryPageItem&contextData=(sc.Default)
+    sources:
+    - manifests/us-ca-medicaid-ccr-sections.yaml
+    manifest: manifests/us-ca-medicaid-ccr-sections.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ca/policy/cms/magi-verification-plan/california-verification-plan-final
     name: California MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
     layer: state
@@ -43520,6 +43758,39 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-id/policy/cms/1115-service-authority/behavioral-health-transformation
+    name: 'Idaho section 1115 demonstration "Idaho Behavioral Health Transformation": CMS amended and restated approval,
+      waiver and expenditure authorities and special terms and conditions (2024-03-29)'
+    layer: state
+    citation_path: us-id/policy/cms/1115-service-authority/behavioral-health-transformation
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/id-behavioral-health-transformation-dmntsn-aprvl-ca-03292024.pdf
+    sources:
+    - manifests/us-id-medicaid-1115-service-authority.yaml
+    manifest: manifests/us-id-medicaid-1115-service-authority.yaml
+    scope: in
+    part: Other
+  - key: us-id/policy/cms/1115-service-authority/behavioral-health-transformation-2025-amendment
+    name: 'Idaho section 1115 demonstration "Idaho Behavioral Health Transformation": CMS amendment approval and
+      Attachment G amendments to the expenditure authorities and special terms and conditions (2025-05-15)'
+    layer: state
+    citation_path: us-id/policy/cms/1115-service-authority/behavioral-health-transformation-2025-amendment
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/id-behavioral-health-transformation-dmntsn-aprvl-amndmnt-ca-05152025.pdf
+    sources:
+    - manifests/us-id-medicaid-1115-service-authority.yaml
+    manifest: manifests/us-id-medicaid-1115-service-authority.yaml
+    scope: in
+    part: Other
+  - key: us-id/policy/cms/1115-service-authority/behavioral-health-transformation-temporary-extension
+    name: 'Idaho section 1115 demonstration "Idaho Behavioral Health Transformation": CMS temporary extension approval
+      through 2027-03-31 (2026-08-28)'
+    layer: state
+    citation_path: us-id/policy/cms/1115-service-authority/behavioral-health-transformation-temporary-extension
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/ID-BHT-ext-apprvl-letter-08282026.pdf
+    sources:
+    - manifests/us-id-medicaid-1115-service-authority.yaml
+    manifest: manifests/us-id-medicaid-1115-service-authority.yaml
+    scope: in
+    part: Other
   - key: us-id/policy/dhw/medicaid/program-income-limits
     name: 'Idaho Department of Health and Welfare: Medicaid Program Income Limits (2026)'
     layer: state
@@ -77349,6 +77620,36 @@ layers:
     manifest: manifests/us-ny-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ny/guidance/nysoh/income-levels/2026-medicaid-child-health-plus-essential-plan
+    name: 2026 Income Levels for Medicaid, Child Health Plus and Essential Plan
+    layer: state
+    citation_path: us-ny/guidance/nysoh/income-levels/2026-medicaid-child-health-plus-essential-plan
+    source_url: https://info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid%2C%20CHPlus%20%26%20EP.pdf
+    sources:
+    - manifests/us-ny-medicaid-income-levels-2026.yaml
+    manifest: manifests/us-ny-medicaid-income-levels-2026.yaml
+    scope: in
+    part: Income
+  - key: us-ny/guidance/nysoh/income-levels/2026-child-health-plus-desk-aid
+    name: 2026 Child Health Plus Desk Aid
+    layer: state
+    citation_path: us-ny/guidance/nysoh/income-levels/2026-child-health-plus-desk-aid
+    source_url: https://info.nystateofhealth.ny.gov/sites/default/files/Child%20Health%20Plus%20Desk%20Aid_2026.pdf
+    sources:
+    - manifests/us-ny-medicaid-income-levels-2026.yaml
+    manifest: manifests/us-ny-medicaid-income-levels-2026.yaml
+    scope: in
+    part: Income
+  - key: us-ny/guidance/nysoh/income-levels/2026-plan-year-qualified-health-plans
+    name: 2025 Income Levels for Qualified Health Plans, 2026 Plan Year
+    layer: state
+    citation_path: us-ny/guidance/nysoh/income-levels/2026-plan-year-qualified-health-plans
+    source_url: https://info.nystateofhealth.ny.gov/sites/default/files/2025%20Income%20Levels%20for%20QHP%202026%20Plan%20Year.pdf
+    sources:
+    - manifests/us-ny-medicaid-income-levels-2026.yaml
+    manifest: manifests/us-ny-medicaid-income-levels-2026.yaml
+    scope: in
+    part: Income
   - key: us-ny/policy/cms/magi-verification-plan/new-york-verification-plan-template-final
     name: New York MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
     layer: state
