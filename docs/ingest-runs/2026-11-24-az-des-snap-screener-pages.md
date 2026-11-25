@@ -95,5 +95,25 @@ uv run axiom-corpus-ingest extract-official-documents --base data/corpus --versi
 ```
 
 The provenance sidecars were placed in each scope's `provenance/` folder after extraction, after
-checking that each sidecar's sha256 equals the extracted file. Signing, locking, upload and the
-release selector follow in later commits.
+checking that each sidecar's sha256 equals the extracted file.
+
+## Signing and locking
+
+Each scope was signed and locked with `sign-ingest-manifest --lock` at commit dff82310a
+(`dirty_tracked: false`, key id `axiom-corpus-ingest-v1`). The three signatures verify against
+the repository's `AXIOM_CORPUS_INGEST_PUBLIC_KEY`, and each lock lists the same files and
+hashes as its signed manifest.
+
+| Scope | Locked files | Bytes | Rows |
+| --- | ---: | ---: | ---: |
+| `us-az/manual/2026-11-24-az-des-snap-screener-pages` | 25 | 756,775 | 88 |
+| `us-az/policy/2026-11-24-az-des-snap-screener-pages` | 5 | 788,586 | 2 |
+| `us-az/manual/2026-11-24-az-des-faa6-utility-allowance-ffy-2027` | 5 | 18,707 | 2 |
+
+`content-check <3 scopes> --update-baseline` added three entries to
+`manifests/release-content-baseline.json`; `--check-baseline` then passed with the two
+`navigation_body` findings above and no other finding.
+
+The release selector follows in a later pull request. Merge this pull request with a merge
+commit, not a squash: the signed manifests name commit dff82310a, which must stay an ancestor
+of main.
