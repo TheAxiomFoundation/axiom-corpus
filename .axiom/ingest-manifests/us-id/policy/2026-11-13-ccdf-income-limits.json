@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/policy/2026-11-13-ccdf-income-limits.json",
+      "sha256": "d8f26737b38f630744a1ed7d7bf651cac9abe2b7074b1d54fcd0642ecb9f009d"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/policy/2026-11-13-ccdf-income-limits.json",
+      "sha256": "87aceb5d0cda609bc0257c240093ac34d60bf7b58ea3c8f402581e05dd2ac7fd"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/policy/2026-11-13-ccdf-income-limits.jsonl",
+      "sha256": "9778a65347fcc195cf1886a757aaeac24087b11a9eebacd40581a72270991518"
+    },
+    {
+      "path": "data/corpus/sources/us-id/policy/2026-11-13-ccdf-income-limits/official-documents/us-id-dhw-ccdf-apply-for-child-care.html",
+      "sha256": "419caac68780e49a38221d8ec87295a764bc664856440173f5e98c7739b3e059"
+    },
+    {
+      "path": "data/corpus/sources/us-id/policy/2026-11-13-ccdf-income-limits/official-documents/us-id-dhw-ccdf-iccp-applications-resume-notice.html",
+      "sha256": "7f927024a95ce1ae1e2dc4094b2b230b90b5a642450371ab537b3852074cb75c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1428e5d2c4a7ac90d2617f4f0218543f96295820",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-13-ccdf-income-limits --manifest manifests/us-id-ccdf-income-limits-2026-11.yaml (run note: docs/ingest-runs/2026-11-13-us-ccdf-income-limits.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "policy",
+  "generated_at": "2026-11-13T20:18:00.583891+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TLWWrFqt2xsgPQMNgqrOEWJXDu+SqA5xhsd3s7kmDBA+aLTDNYmrjkqPzhcy9N3gN0gyGuMCsqTF6NXaTRbXBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-13-ccdf-income-limits"
+}

@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/policy/2026-11-13-ccdf-income-limits.json",
+      "sha256": "5629ba73575cf3a3807f81b29a19016c42ca9d560e9d66f0d8ade1f320dd2e6a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/policy/2026-11-13-ccdf-income-limits.json",
+      "sha256": "73196eed842c5465489a1973fd63705537807fb2529fcb695c48e307f84c4e85"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/policy/2026-11-13-ccdf-income-limits.jsonl",
+      "sha256": "12bdd86daeefb64c86b2c210c7f9672bafdc21cb4e1b73c8b18fa9e78cd5ceaf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-emergency-policy-memorandum-2024-10-01.pdf",
+      "sha256": "9807415cdabf3e6a8d4f6c37b0bfa313411c91064f636729e6dced58f57dad21"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-family-letter-2021-10-21.pdf",
+      "sha256": "273788fe6841a999b00e290b196df5f93119c3288773baf4463439980c31019d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-family-letter-2022-12-19.pdf",
+      "sha256": "0ffbc9e5788b196dfe9b707a264f54395e05d409bdd22898253a1f82d4ba2d83"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-family-letter-2024-07-01.pdf",
+      "sha256": "fcf4c74b36477762107fe2e79e56a896e5713ffdc00ed7bdfdf0fc0bc7c28513"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-family-letter-2024-09-03.pdf",
+      "sha256": "55b20d6bcafee03947d4ab253317dcd2532e76daca125535e1b1bec743c1de69"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-family-letter-2025-10-06.pdf",
+      "sha256": "3350baa45fdf60cbd699d6ceee9c30cfeeaa2bf6f3e4fd14e96d70cd1f854fd3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-family-letter-2026-03-02.pdf",
+      "sha256": "a5d971c7bdd280c767427b523138141bf0c3519a30a8b437e07c261ce2767eb9"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-funding-restrictions-qa-2016.pdf",
+      "sha256": "2ecdb27a65f813a03800581f73c94ce784b2f07bca98819524279680d1a80304"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-policy-webinar-2019-07.pdf",
+      "sha256": "536a5df97377f84a81d929f29ce4c1c9749b252bbc2e1a05296239e24da186ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/policy/2026-11-13-ccdf-income-limits/official-documents/us-ga-decal-caps-provider-letter-2018-06-18.pdf",
+      "sha256": "4500232839a533002799827e5835d99eb34432c69981748066265bf57d118e38"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1428e5d2c4a7ac90d2617f4f0218543f96295820",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-13-ccdf-income-limits --manifest manifests/us-ga-caps-notices-2026-11.yaml (run note: docs/ingest-runs/2026-11-13-us-ccdf-income-limits.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 38,
+    "missing_count": 0,
+    "provision_count": 38,
+    "source_count": 38
+  },
+  "document_class": "policy",
+  "generated_at": "2026-11-13T20:17:46.759299+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+CJm8FPh4/wi6jMCrXParB1gq294EZcFfTfe3thwB1y/YSis7/lhyRjobCUilESXtqQabKNvax8Zyzl4pOZRCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-13-ccdf-income-limits"
+}

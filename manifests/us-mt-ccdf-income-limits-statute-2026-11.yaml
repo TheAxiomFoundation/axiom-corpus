@@ -1,0 +1,26 @@
+version: 2026-11-13-ccdf-income-limits
+documents:
+- source_id: us-mt-statute-52-2-715
+  jurisdiction: us-mt
+  document_class: statute
+  title: MCA 52-2-715, Family income eligibility requirements (Montana Code Annotated 2025)
+  source_url: https://mca.legmt.gov/bills/mca/title_0520/chapter_0020/part_0070/section_0150/0520-0020-0070-0150.html
+  source_format: html
+  source_as_of: '2026-11-13'
+  expression_date: '2026-11-13'
+  citation_path: us-mt/statute/52-2-715
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Montana Legislative Services Division
+    official_publisher: Montana Legislative Services Division
+    document_subtype: statute_section
+    program: best_beginnings_child_care_scholarship
+    federal_program: CCDF
+    source_discovery_group: us-mt/statute/ccdf
+    discovered_via: PolicyEngine/policyengine-us#10670 parity-issue source list (offline checklist); fetched from
+      the official publisher
+    expression_date_basis: 'retrieval date; the page prints the Montana Code Annotated 2025 edition and no date
+      of its own (history: En. Sec. 2, Ch. 773, L. 2023)'
+    code_edition: Montana Code Annotated 2025

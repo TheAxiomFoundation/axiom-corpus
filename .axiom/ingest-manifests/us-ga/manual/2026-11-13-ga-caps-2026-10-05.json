@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-11-13-ga-caps-2026-10-05.json",
+      "sha256": "1284d887e7f52740f782b6c92c296f35a3db1aa0b8b299cef82d312c6d01aa95"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-11-13-ga-caps-2026-10-05.json",
+      "sha256": "8183e197ee34cbe0f94e63a9c51e063f83082b266aa77d2152fa6a8b5e88a91d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-11-13-ga-caps-2026-10-05.jsonl",
+      "sha256": "23e164a5a4839879f912bcdfcd43864ee1618096a9f9b74bfd9ac31ba6ba9aa3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-11-13-ga-caps-2026-10-05/official-documents/ga-decal-caps-appendix-a-income-limits.pdf",
+      "sha256": "83b123ab9b0c1a2862c7b788d501848a3feba2fc5c5efd2c1047a7134706ca94"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-11-13-ga-caps-2026-10-05/official-documents/ga-decal-caps-policy-manual.pdf",
+      "sha256": "24603b1ce662d3c203f241dc4a0e4167f6e476261036497caded92191ac01189"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1428e5d2c4a7ac90d2617f4f0218543f96295820",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-13-ga-caps-2026-10-05 --manifest manifests/us-ga-caps-manual-2026-10-05.yaml (run note: docs/ingest-runs/2026-11-13-us-ccdf-income-limits.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 114,
+    "missing_count": 0,
+    "provision_count": 114,
+    "source_count": 114
+  },
+  "document_class": "manual",
+  "generated_at": "2026-11-13T20:05:25.628540+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "U7JXF80PCHvlVvvfm3YHtxHtWNz4HPAgqot97PexdxzFW6L6mxxjfTsipb1lXo9SxkUPkE9ceDshFMMkhRvuAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-13-ga-caps-2026-10-05"
+}
