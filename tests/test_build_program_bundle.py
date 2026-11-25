@@ -653,7 +653,9 @@ def test_build_program_expands_a_plan_row_that_names_parts_of_a_code(tmp_path, m
 PLAN_ONLY = "Plan-only: not cited by the reference model"
 
 
-def whole_part_plan(tmp_path, monkeypatch, reason: str | None) -> dict:
+def whole_part_plan(
+    tmp_path, monkeypatch, reason: str | None, more_references: list[dict] | None = None
+) -> dict:
     """A bundle whose plan names whole parts of a code (26 U.S.C. 21, 32, 36B
     and 42 U.S.C. 1397ll), one of those sections again on a row of its own, and
     a reference that cites another; the plan_sections reason set or not."""
@@ -698,7 +700,8 @@ def whole_part_plan(tmp_path, monkeypatch, reason: str | None) -> dict:
                 "url": "https://www.law.cornell.edu/uscode/text/26/32#b",
                 "citation": "us/statute/26/32/b",
                 "files": ["parameters/gov/usda/snap/income/x.yaml"],
-            }
+            },
+            *(more_references or []),
         ]
     }
     return bundle.build_program(cfg, "snap", references, plan, {}, bundle.index_manifests({}, {}))
@@ -726,6 +729,29 @@ def test_build_program_moves_a_section_only_a_whole_part_plan_row_brings_in_to_t
     screener_tier, full_tier = out["tiers"]
     assert "whole parts of a code" in screener_tier["membership"]["rule"]
     assert "whole-part plan row" in full_tier["membership"]["rule"]
+
+
+def test_build_program_keeps_a_whole_part_section_a_reference_cites_with_a_reason(
+    tmp_path, monkeypatch
+):
+    # 26 U.S.C. 36B again, now cited by a reference that is excluded for its own
+    # reason (a back-year link). The section is not "not cited by the reference
+    # model", so the rule leaves it in the screener tier, as with the rule off.
+    back_year = {
+        "url": "https://www.law.cornell.edu/uscode/text/26/36B",
+        "citation": "us/statute/26/36B",
+        "titles": ["FY 2024 premium tax credit table"],
+        "files": ["parameters/gov/usda/snap/income/y.yaml"],
+    }
+    for reason in (PLAN_ONLY, None):
+        out = whole_part_plan(tmp_path, monkeypatch, reason, [back_year])
+        federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+        doc = {d["key"]: d for d in federal["screener"]}["us/statute/26/36B"]
+        assert doc["scope"] == "in", reason
+        assert doc["sources"] == ["policyengine-references", "plan"]
+        assert "reason" not in doc
+        full = {d["key"]: d for d in federal["full"]}
+        assert full["us/statute/26/36B"]["sources"] == ["screener"]
 
 
 def test_build_program_keeps_whole_part_sections_in_the_screener_tier_without_the_reason(

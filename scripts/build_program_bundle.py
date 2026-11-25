@@ -472,9 +472,9 @@ class Layer:
         self.parts: dict[str, Counter] = defaultdict(Counter)
         self.cited_parts: dict[str, dict[str, Counter]] = defaultdict(lambda: defaultdict(Counter))
         self.full: dict[str, dict] = {}
-        # Documents a reference or a plan row of their own brings in (with no
-        # reason to exclude them), and the documents the plan_sections rule
-        # moves from the screener tier to the full bundle.
+        # Documents a reference cites or a plan row of their own names (with or
+        # without a reason to exclude that citation), and the documents the
+        # plan_sections rule moves from the screener tier to the full bundle.
         self.named: set[str] = set()
         self.plan_only: set[str] = set()
 
@@ -631,7 +631,10 @@ def build_program(
         unit = citation and (citation != key or source == "policyengine-references")
         if unit:
             layer.cited_parts[key][citation][part] += 1
-        if reason is None and not whole_part:
+        # Any citation or own plan row keeps a section out of the plan_sections
+        # rule, also one excluded for its own reason (a back-year link): the
+        # rule's reason says that no reference cites the section.
+        if not whole_part:
             layer.named.add(key)
         if reason is None:
             # A URL is one document with one classification: a source that
