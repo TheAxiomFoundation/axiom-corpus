@@ -14,9 +14,9 @@ successor
 `us/regulation/2026-06-29-cms-2454-ifc-42-cfr-435-community-engagement-corrected-r2026-07-24-self-contained-r2026-11-26-fr-page-markers`.
 It keeps the same 14 rows and changes only their bodies.
 
-This branch publishes, loads, activates, signs and locks nothing, and it adds or edits no
-tracked selector. The main session does the signing and the selector cut after review (see
-"Signing (TODO)").
+The build publishes, loads, activates, signs and locks nothing, and this branch adds or edits
+no tracked selector. The signed ingest manifest and corpus lock follow review (see "Signing").
+The selector cut is a separate change.
 
 ## Problem
 
@@ -383,19 +383,22 @@ Run on this branch over `075c5cdd8`:
    They follow the MT precedent (`verification_source_paths`). Dropping them would turn the
    eCFR identity test into a scratch-only check.
 
-## Signing (TODO)
+## Signing
 
-Not run in this branch. After review, from a clean tracked tree whose HEAD carries this change:
+After review, from a clean tracked tree whose HEAD carries this change:
 
 ```bash
 uv run --extra dev python scripts/repro/us_cms_2454_435_fr_page_markers.py build --base data/corpus
-AXIOM_CORPUS_INGEST_PRIVATE_KEY="$(agent-secret get agent/axiom-corpus-ingest-private-key)" \
+AXIOM_CORPUS_INGEST_PRIVATE_KEY="$(agent-secret get agent/axiom-corpus-ingest-private-key TheAxiomFoundation/axiom-corpus)" \
 uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
   --repo . --base data/corpus \
   --jurisdiction us --document-class regulation \
   --version 2026-06-29-cms-2454-ifc-42-cfr-435-community-engagement-corrected-r2026-07-24-self-contained-r2026-11-26-fr-page-markers \
-  --command 'uv run --extra dev python scripts/repro/us_cms_2454_435_fr_page_markers.py build --base data/corpus (verification sources: ... fetch --base data/corpus, 2026-11-26T11:49Z; run note: docs/ingest-runs/2026-11-26-us-cms-2454-435-fr-page-markers.md)' \
-  --lock --push
+  --command 'uv run --extra dev python scripts/repro/us_cms_2454_435_fr_page_markers.py build --base data/corpus (verification sources: uv run --extra dev python scripts/repro/us_cms_2454_435_fr_page_markers.py fetch --base data/corpus, 2026-11-26T11:49Z; run note: docs/ingest-runs/2026-11-26-us-cms-2454-435-fr-page-markers.md)' \
+  --reasoning-log docs/ingest-runs/2026-11-26-us-cms-2454-435-fr-page-markers.md \
+  --lock
+uv run --extra dev axiom-corpus-ingest corpus push --dry-run us/regulation/<successor>
+uv run --extra dev axiom-corpus-ingest corpus push --workers 1 us/regulation/<successor>
 ```
 
 Then:
@@ -408,5 +411,6 @@ Then:
 - Run `axiom-corpus-ingest guard-ingested --base-ref origin/main`.
 - Run `axiom-corpus-ingest corpus verify --remote --attest --changed-since origin/main`.
 
-R2 already holds the three retained sources, since their bytes are the base scope's. `--push`
-uploads only the new inventory, provisions, coverage and eCFR objects.
+R2 already holds the three retained sources, since their bytes are the base scope's. The push
+uploads only the new inventory, provisions, coverage and eCFR objects. The dry run lists them
+first.
