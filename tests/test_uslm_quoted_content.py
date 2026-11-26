@@ -3,17 +3,29 @@
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
+from copy import deepcopy
+from pathlib import Path
 
 import pytest
 
 from axiom_corpus.corpus.uslm_quoted_content import (
+    VERIFIED_QUOTATIONS,
     StatutesPage,
     UslmRenderError,
+    _quotation_fingerprint,
+    _render_structural_element,
     last_text_slot,
     local_name,
     page_in_effect,
     render_structural_element,
     structural_label_paths,
+)
+from scripts.repro.us_pl_119_21_1396a_xx_line_structure import (
+    CITATION_PATHS,
+    SOURCE_LEAF,
+    SOURCE_VERSION,
+    _quoted_subsection,
+    render_rows,
 )
 
 NS = "http://schemas.gpo.gov/xml/uslm"
@@ -44,7 +56,7 @@ def _parse() -> tuple[ET.Element, ET.Element, ET.Element]:
 
 def test_renders_one_line_per_descendant_without_markers_or_amendatory_quotes() -> None:
     _document, quoted, subsection = _parse()
-    rendered = render_structural_element(
+    rendered = _render_structural_element(
         subsection, label_path=("zz",), closing_slot=last_text_slot(quoted)
     )
     assert rendered.body.split("\n") == [
@@ -72,7 +84,7 @@ def test_renders_one_line_per_descendant_without_markers_or_amendatory_quotes() 
 
 def test_page_breaks_and_margin_notes_carry_body_offsets() -> None:
     _document, quoted, subsection = _parse()
-    rendered = render_structural_element(
+    rendered = _render_structural_element(
         subsection, label_path=("zz",), closing_slot=last_text_slot(quoted)
     )
     body = rendered.body
@@ -92,7 +104,7 @@ def test_page_breaks_and_margin_notes_carry_body_offsets() -> None:
 def test_a_row_body_leaves_out_its_own_number_heading_and_margin_note() -> None:
     _document, quoted, subsection = _parse()
     paragraph = next(node for node in subsection if local_name(node.tag) == "paragraph")
-    rendered = render_structural_element(
+    rendered = _render_structural_element(
         paragraph, label_path=("zz", "1"), closing_slot=last_text_slot(quoted)
     )
     assert rendered.body.startswith("Except as provided in paragraph (2), a State shall,")
@@ -103,12 +115,12 @@ def test_a_row_body_leaves_out_its_own_number_heading_and_margin_note() -> None:
 
 def test_closing_quote_is_kept_without_a_closing_slot_and_required_with_one() -> None:
     _document, _quoted, subsection = _parse()
-    kept = render_structural_element(subsection, label_path=("zz",))
+    kept = _render_structural_element(subsection, label_path=("zz",))
     assert kept.body.endswith("last clause.\u201d")
     assert not kept.stripped_closing_quote
     chapeau = next(node for node in subsection.iter() if local_name(node.tag) == "chapeau")
     with pytest.raises(UslmRenderError, match="closing quote"):
-        render_structural_element(
+        _render_structural_element(
             subsection, label_path=("zz",), closing_slot=last_text_slot(chapeau)
         )
 
@@ -216,7 +228,7 @@ def test_rejects_what_it_cannot_place(fragment: str, message: str) -> None:
         f'<subsection xmlns="{NS}"><num value="zz">(zz)</num>{fragment}</subsection>'
     )
     with pytest.raises(UslmRenderError, match=message):
-        render_structural_element(element, label_path=("zz",))
+        _render_structural_element(element, label_path=("zz",))
 
 
 def test_page_break_keeps_a_separator_in_the_next_inline_element() -> None:
@@ -224,7 +236,7 @@ def test_page_break_keeps_a_separator_in_the_next_inline_element() -> None:
         f'<paragraph xmlns="{NS}"><content>shall<page identifier="/us/stat/1/2"/>'
         "<ref> pay</ref></content></paragraph>"
     )
-    rendered = render_structural_element(element, label_path=("1",))
+    rendered = _render_structural_element(element, label_path=("1",))
     assert rendered.body == "shall pay"
     assert rendered.page_breaks[0].offset == rendered.body.index("pay")
 
@@ -254,7 +266,7 @@ def test_period_dash_join_requires_only_sidenotes_within_a_heading(
     with pytest.raises(
         UslmRenderError, match=f"<{rejected_tag}> would join text without whitespace"
     ):
-        render_structural_element(element, label_path=("1",))
+        _render_structural_element(element, label_path=("1",))
 
 
 def test_margin_note_between_heading_punctuation_joins_the_punctuation() -> None:
@@ -269,7 +281,7 @@ def test_margin_note_between_heading_punctuation_joins_the_punctuation() -> None
         "State or local laws relating to family and medical leave, but may include the grouping of "
         "employees of a common law employer.</content></clause></subparagraph>"
     )
-    rendered = render_structural_element(element, label_path=("B",))
+    rendered = _render_structural_element(element, label_path=("B",))
     assert rendered.body.startswith(
         "(ii) Substantial and legitimate business reason.— For purposes of clause (i),"
     )
@@ -287,7 +299,7 @@ def test_a_skipped_heading_keeps_its_margin_note_at_the_start_of_the_body() -> N
         "<sidenote><p>Effective date.</p></sidenote><inline>—</inline></heading>"
         "<content>This subsection applies.</content></subsection>"
     )
-    rendered = render_structural_element(element, label_path=("kk",))
+    rendered = _render_structural_element(element, label_path=("kk",))
     assert rendered.body == "This subsection applies."
     assert len(rendered.margin_notes) == 1
     note = rendered.margin_notes[0]
@@ -300,7 +312,7 @@ def test_a_skipped_heading_keeps_its_page_break_at_the_start_of_the_body() -> No
         '<inline><page identifier="/us/stat/139/307">139 STAT. 307</page>rules</inline>.—'
         "</heading><content>The State shall pay.</content></paragraph></subsection>"
     )
-    rendered = render_structural_element(parent[0], label_path=("xx", "1"))
+    rendered = _render_structural_element(parent[0], label_path=("xx", "1"))
     assert rendered.body == "The State shall pay."
     (page,) = rendered.page_breaks
     assert (page.page, page.printed, page.offset) == (
@@ -309,7 +321,7 @@ def test_a_skipped_heading_keeps_its_page_break_at_the_start_of_the_body() -> No
         0,
     )
 
-    ancestor = render_structural_element(parent, label_path=("xx",))
+    ancestor = _render_structural_element(parent, label_path=("xx",))
     (ancestor_page,) = ancestor.page_breaks
     assert ancestor_page.page == page.page
     assert ancestor.body[ancestor_page.offset :].startswith("rules.—")
@@ -335,7 +347,7 @@ def test_validates_the_rows_own_fields_before_omitting_them(fields: str, message
         f"<paragraph>{fields}<content>The State shall pay.</content></paragraph>"
     )
     with pytest.raises(UslmRenderError, match=message):
-        render_structural_element(element, label_path=("1",))
+        _render_structural_element(element, label_path=("1",))
 
 
 def test_margin_note_rejects_text_in_a_paragraph_tail() -> None:
@@ -344,7 +356,7 @@ def test_margin_note_rejects_text_in_a_paragraph_tail() -> None:
         "</sidenote>shall pay.</content></paragraph>"
     )
     with pytest.raises(UslmRenderError, match="margin note text outside <p>"):
-        render_structural_element(element, label_path=("1",))
+        _render_structural_element(element, label_path=("1",))
 
 
 def test_margin_note_preserves_inline_tails_and_all_paragraphs() -> None:
@@ -352,7 +364,7 @@ def test_margin_note_preserves_inline_tails_and_all_paragraphs() -> None:
         "<paragraph><content>The State <sidenote><p>See <ref>section 1</ref> for details.</p>\n"
         "<p>Deadline.</p>\n</sidenote>shall pay.</content></paragraph>"
     )
-    rendered = render_structural_element(element, label_path=("1",))
+    rendered = _render_structural_element(element, label_path=("1",))
     assert rendered.body == "The State shall pay."
     (note,) = rendered.margin_notes
     assert note.notes == ("See section 1 for details.", "Deadline.")
@@ -371,14 +383,14 @@ def test_rejects_markers_nested_inside_marker_metadata(marker: str, tag: str) ->
         f"<paragraph><content>The State {marker}shall pay.</content></paragraph>"
     )
     with pytest.raises(UslmRenderError, match=f"nested marker in <{tag}>"):
-        render_structural_element(element, label_path=("1",))
+        _render_structural_element(element, label_path=("1",))
 
 
 @pytest.mark.parametrize("field", ["num", "heading"])
 def test_omitted_own_fields_still_validate_the_closing_slot(field: str) -> None:
     element = ET.fromstring(f"<paragraph><{field}>Last text.</{field}></paragraph>")
     with pytest.raises(UslmRenderError, match="closing quote"):
-        render_structural_element(element, label_path=("1",), closing_slot=last_text_slot(element))
+        _render_structural_element(element, label_path=("1",), closing_slot=last_text_slot(element))
 
 
 def test_selected_closing_quote_on_a_number_is_stripped() -> None:
@@ -386,11 +398,11 @@ def test_selected_closing_quote_on_a_number_is_stripped() -> None:
         '<subsection><paragraph><num value="1">“(1)”</num></paragraph></subsection>'
     )
     slot = last_text_slot(element)
-    parent = render_structural_element(element, label_path=("xx",), closing_slot=slot)
+    parent = _render_structural_element(element, label_path=("xx",), closing_slot=slot)
     assert parent.body == "(1)"
     assert parent.stripped_open_quotes == 1
     assert parent.stripped_closing_quote
-    row = render_structural_element(element[0], label_path=("xx", "1"), closing_slot=slot)
+    row = _render_structural_element(element[0], label_path=("xx", "1"), closing_slot=slot)
     assert row.body == ""
     assert row.stripped_open_quotes == 0
     assert row.stripped_closing_quote
@@ -402,9 +414,103 @@ def test_space_before_punctuation_is_kept_unless_asked_to_drop_it() -> None:
         '<subparagraph><num value="A">(A)</num><content>of 1986 .</content></subparagraph>'
         "</paragraph>"
     )
-    kept = render_structural_element(element, label_path=("1",))
-    dropped = render_structural_element(
+    kept = _render_structural_element(element, label_path=("1",))
+    dropped = _render_structural_element(
         element, label_path=("1",), drop_space_before_punctuation=True
     )
     assert kept.body == "text—\n(A) of 1986 ."
     assert dropped.body == "text—\n(A) of 1986."
+
+
+@pytest.mark.parametrize("normalize_punctuation", [False, True])
+@pytest.mark.parametrize(
+    ("content", "tag"),
+    [
+        ("1<sup>3</sup>⁄<sub>32</sub>-inch cotton", "sup"),
+        ("H<sub>2</sub>O", "sub"),
+    ],
+)
+def test_refuses_superscripts_and_subscripts(
+    content: str, tag: str, normalize_punctuation: bool
+) -> None:
+    element = ET.fromstring(f'<paragraph xmlns="{NS}"><content>{content}</content></paragraph>')
+    with pytest.raises(UslmRenderError, match=f"unexpected <{tag}> in <content>"):
+        _render_structural_element(
+            element, label_path=("1",), drop_space_before_punctuation=normalize_punctuation
+        )
+
+
+@pytest.fixture(scope="module")
+def retained_uslm() -> bytes:
+    root = Path(__file__).resolve().parents[1]
+    return (root / "data/corpus/sources/us/statute" / SOURCE_VERSION / SOURCE_LEAF).read_bytes()
+
+
+def test_verified_quotation_fingerprint_is_stable_and_all_twelve_rows_render(
+    retained_uslm: bytes,
+) -> None:
+    quotation, _ = _quoted_subsection(ET.fromstring(retained_uslm))
+    reparsed, _ = _quoted_subsection(ET.fromstring(retained_uslm))
+    fingerprint = _quotation_fingerprint(quotation)
+    assert tuple(VERIFIED_QUOTATIONS) == (fingerprint,)
+    assert _quotation_fingerprint(reparsed) == fingerprint
+    reparsed.tail = "Different surrounding amendment text."
+    assert _quotation_fingerprint(reparsed) == fingerprint
+
+    _, rows = render_rows(retained_uslm)
+    assert len(rows) == 12
+    assert tuple(row.citation_path for row in rows) == CITATION_PATHS
+
+
+def test_synthetic_quotation_scope_error_names_the_five_known_patterns() -> None:
+    _document, quotation, subsection = _parse()
+    with pytest.raises(UslmRenderError, match="verified only for the listed quotation") as error:
+        render_structural_element(subsection, quotation=quotation, label_path=("zz",))
+    message = str(error.value)
+    for phrase in (
+        "drop_space_before_punctuation",
+        "(A).25",
+        "5 p.m.— filing",
+        "foreign-namespace <page> or <sidenote>",
+        "<br/>",
+        "page_in_effect",
+    ):
+        assert phrase in message
+
+
+def test_scope_guard_refuses_the_retained_section_10310_quotation(retained_uslm: bytes) -> None:
+    document = ET.fromstring(retained_uslm)
+    amending_element = next(
+        node
+        for node in document.iter()
+        if node.get("identifier") == "/us/pl/119/21/tI/stC/s10310/3/D"
+    )
+    quotation = next(amending_element.iter(f"{{{NS}}}quotedContent"))
+    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
+        render_structural_element(quotation[0], quotation=quotation, label_path=("2",))
+
+
+def test_scope_guard_refuses_a_one_character_change_inside_the_quotation(
+    retained_uslm: bytes,
+) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    chapeau = next(node for node in subsection.iter(f"{{{NS}}}chapeau") if node.text)
+    assert chapeau.text is not None and "Except" in chapeau.text
+    chapeau.text = chapeau.text.replace("Except", "except", 1)
+    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
+        render_structural_element(subsection, quotation=quotation, label_path=("xx",))
+
+
+def test_scope_guard_refuses_an_element_outside_the_verified_quotation(
+    retained_uslm: bytes,
+) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    outside = deepcopy(subsection)
+    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
+        render_structural_element(outside, quotation=quotation, label_path=("xx",))
+
+
+def test_scope_guard_requires_the_quotation_to_be_quoted_content(retained_uslm: bytes) -> None:
+    _quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
+        render_structural_element(subsection, quotation=subsection, label_path=("xx",))

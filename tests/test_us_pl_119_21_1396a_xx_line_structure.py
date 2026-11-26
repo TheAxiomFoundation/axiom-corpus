@@ -21,10 +21,10 @@ from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.uslm_quoted_content import (
     STRUCTURAL_TAGS,
+    _render_structural_element,
     last_text_slot,
     local_name,
     num_value,
-    render_structural_element,
     structural_label_paths,
 )
 from scripts.repro.us_pl_119_21_1396a_xx_line_structure import (
@@ -342,7 +342,7 @@ def test_retained_section_70304_heading_keeps_its_punctuation_and_note_offset() 
     )
     paragraph = next(node for node in quote if num_value(node) == "3")
     subparagraph = next(node for node in paragraph if num_value(node) == "B")
-    rendered = render_structural_element(
+    rendered = _render_structural_element(
         subparagraph, label_path=("3", "B"), closing_slot=last_text_slot(quote)
     )
     (note,) = (note for note in rendered.margin_notes if note.label_path == ("3", "B", "ii"))
@@ -512,7 +512,7 @@ def test_conservation_drops_a_repeated_margin_note_at_its_xml_position() -> None
     row = RowRendering(
         citation_path="us/statute/test/1",
         element=element,
-        rendered=render_structural_element(element, label_path=("1",)),
+        rendered=_render_structural_element(element, label_path=("1",)),
         own_num="",
         own_heading="",
     )

@@ -1,4 +1,7 @@
-"""Render USLM structured text, such as a public law's quoted amendment, one element per line.
+"""Render the USLM quotation inserting 42 U.S.C. 1396a(xx), one element per line.
+
+Verification covers only this quotation from Pub. L. 119-21, section 71119(a).
+:func:`render_structural_element` enforces that scope by fingerprint.
 
 An enrolled public law in USLM prints an amendment it inserts into another law
 as ``<quotedContent>``: the inserted subsection with its paragraphs,
@@ -20,10 +23,10 @@ page markers and margin notes from the text and reports where they stood, as
 character offsets into the body, so a caller can keep them as metadata. It
 anchors markers inside a row's own heading at body offset zero. The only
 unspaced marker removal it permits is a ``<sidenote>`` within a heading between
-a period and an em dash, as in ``reason.—``. It strips the leading open quote
-from each rendered ``<num>`` and, when told which text node ends the quotation,
-the closing quote. Every other character in the body is kept as printed, inner
-quotes included. Text nodes are concatenated as the source has them, and
+a period and an em dash. It strips the leading open quote from each rendered
+``<num>`` and, when told which text node ends the quotation, the closing quote.
+Every other character in the body is kept as printed, inner quotes included.
+Text nodes are concatenated as the source has them, and
 whitespace runs collapse to one space. The parts of a line (the number, the
 heading and the text) are joined with one space. With
 ``drop_space_before_punctuation`` a space the source puts before ``,``, ``.``,
@@ -34,13 +37,25 @@ The renderer validates the row's own number and heading before omitting them.
 Unsupported elements and continuations, text outside text blocks or outside a
 margin note's paragraphs, ambiguous marker boundaries, and missing closing
 quotes raise :class:`UslmRenderError`.
+
+Outside the verified quotation, punctuation normalization can fuse a leading
+decimal with a structural label. A sidenote between a period and an em dash
+can join them mid-heading. Foreign-namespace markers can divert body text into
+metadata, a ``<br/>`` can fuse margin-note lines, and a page marker nested in a
+margin note can affect :func:`page_in_effect` for the next row. The marker guard
+refuses ``Shall pay<page/>.`` even with punctuation normalization. A ``<num>``
+with an inline child also raises.
 """
 
 from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
+from collections.abc import Mapping
+from copy import copy
 from dataclasses import dataclass, field
+from hashlib import sha256
+from types import MappingProxyType
 
 STRUCTURAL_TAGS: tuple[str, ...] = (
     "subsection",
@@ -56,10 +71,18 @@ CLOSE_QUOTE = "”"
 
 _STRUCTURAL = frozenset(STRUCTURAL_TAGS)
 _TEXT_BLOCK_TAGS = frozenset({"chapeau", "content"})
-_INLINE_TAGS = frozenset({"inline", "term", "ref", "date", "i", "b", "sup", "sub", "span"})
+_INLINE_TAGS = frozenset({"inline", "term", "ref", "date", "i", "b", "span"})
 _MARKER_TAGS = frozenset({"page", "sidenote"})
 _STAT_PAGE = re.compile(r"/us/stat/(?P<volume>\d+)/(?P<page>\d+)")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:])")
+
+VERIFIED_QUOTATIONS: Mapping[str, str] = MappingProxyType(
+    {
+        "fa7258db3763d6491cd5c07808d7ef0e3026d55fe7fab52ad84c070d6ddb6217": (
+            "Pub. L. 119-21 sec. 71119(a), inserting 42 U.S.C. 1396a(xx)"
+        ),
+    }
+)
 
 
 class UslmRenderError(ValueError):
@@ -206,14 +229,25 @@ def page_in_effect(document: ET.Element, element: ET.Element) -> StatutesPage | 
     raise UslmRenderError("element is not inside the document")
 
 
+def _quotation_fingerprint(quotation: ET.Element) -> str:
+    """Hash the canonical XML of the quotation alone."""
+    standalone = copy(quotation)
+    standalone.tail = None
+    canonical = ET.canonicalize(
+        ET.tostring(standalone, encoding="unicode"), rewrite_prefixes=True, with_comments=True
+    )
+    return sha256(canonical.encode("utf-8")).hexdigest()
+
+
 def render_structural_element(
     element: ET.Element,
     *,
+    quotation: ET.Element,
     label_path: tuple[str, ...],
     closing_slot: TextSlot | None = None,
     drop_space_before_punctuation: bool = False,
 ) -> RenderedElement:
-    """Render ``element`` as a row body: its text, then one line per descendant element.
+    """Render ``element`` from a verified ``quotation``, one line per structural element.
 
     ``label_path`` is the element's own label path, the start of every
     reported label path. ``closing_slot`` (see :func:`last_text_slot`) names
@@ -221,6 +255,39 @@ def render_structural_element(
     closing quote must end it and is removed. ``drop_space_before_punctuation``
     removes whitespace before ``,``, ``.``, ``;`` and ``:``.
     """
+    if (
+        not isinstance(quotation.tag, str)
+        or local_name(quotation.tag) != "quotedContent"
+        or not any(node is element for node in quotation.iter())
+        or _quotation_fingerprint(quotation) not in VERIFIED_QUOTATIONS
+    ):
+        verified = ", ".join(VERIFIED_QUOTATIONS.values())
+        raise UslmRenderError(
+            f"The renderer is verified only for the listed quotation(s) ({verified}). "
+            "Pass a verified <quotedContent> containing the element. For other quotations, "
+            "drop_space_before_punctuation can fuse a decimal such as .25 with the preceding "
+            "label into (A).25. A margin note between a period and an em dash can join them "
+            "mid-heading (5 p.m.— filing). A foreign-namespace <page> or <sidenote> can divert "
+            "body text into metadata. A <br/> in a margin-note paragraph can fuse its lines. "
+            "A page marker nested in a margin note can set the next row's starting page "
+            "through page_in_effect."
+        )
+    return _render_structural_element(
+        element,
+        label_path=label_path,
+        closing_slot=closing_slot,
+        drop_space_before_punctuation=drop_space_before_punctuation,
+    )
+
+
+def _render_structural_element(
+    element: ET.Element,
+    *,
+    label_path: tuple[str, ...],
+    closing_slot: TextSlot | None = None,
+    drop_space_before_punctuation: bool = False,
+) -> RenderedElement:
+    """Render without the scope guard, for direct use in tests only."""
     tag = local_name(element.tag)
     if tag not in _STRUCTURAL:
         raise UslmRenderError(f"<{tag}> is not a structural element")

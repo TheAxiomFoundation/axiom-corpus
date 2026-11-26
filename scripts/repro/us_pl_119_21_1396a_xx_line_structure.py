@@ -156,6 +156,7 @@ def render_rows(raw: bytes) -> tuple[ET.Element, list[RowRendering]]:
             element=element,
             rendered=render_structural_element(
                 element,
+                quotation=quoted,
                 label_path=label,
                 closing_slot=closing_slot,
                 # As the released builder did: the USLM has "Code of 1986 ." once.

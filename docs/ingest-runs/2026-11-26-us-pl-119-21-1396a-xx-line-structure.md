@@ -66,7 +66,8 @@ publisher traffic.
 ## How the text is read
 
 `axiom_corpus.corpus.uslm_quoted_content.render_structural_element` renders one USLM
-structural element (subsection, paragraph, subparagraph, clause, subclause, item, subitem):
+structural element from the verified quotation. It supports subsection, paragraph,
+subparagraph, clause, subclause, item and subitem elements.
 
 - The row's own `<num>` and `<heading>` are not in its body (the `extract-usc` convention,
   `_BODY_SKIP_TAGS`). The renderer checks for duplicates, children inside the number, and
@@ -78,10 +79,9 @@ structural element (subsection, paragraph, subparagraph, clause, subclause, item
 - `<page>` and `<sidenote>` become metadata. In text blocks and headings, each marker's tail
   stays in the text and its offset points to the next printed character. Markers in the
   row's own heading have body offset zero. The only unspaced join allowed across a marker is
-  `.` followed by `—` across a `<sidenote>` within a heading, as in `reason.—` in
-  § 70304(a)(3)(B)(ii). A page marker at the same boundary raises even if a sidenote is
-  beside it. Each note records the text within its `<p>` children. A nonblank `<p>` tail is
-  outside the paragraph and raises.
+  `.` followed by `—` across a `<sidenote>` within a heading. A page marker at the same
+  boundary raises even if a sidenote is beside it. Each note records the text within its
+  `<p>` children. A nonblank `<p>` tail is outside the paragraph and raises.
 - A leading `“` is stripped from each rendered `<num>`. The closing `”` is stripped from the
   selected last text node of `quotedContent`, which can be text in a number or heading. In
   this quotation it ends (11)(D)(ii). The `.` after the quotation is outside it. The body
@@ -95,12 +95,31 @@ structural element (subsection, paragraph, subparagraph, clause, subclause, item
 `UslmRenderError` covers unsupported structural and inline elements, nonblank text outside a
 text block, ambiguous marker boundaries, nested markers, margin note text outside `<p>`, a
 page identifier outside the `/us/stat/<volume>/<page>` format, and a missing selected closing
-quote.
+quote. It also refuses `<sup>` and `<sub>`, which can carry meaning such as the fraction in
+section 10310(3)(D)'s `1<sup>3</sup>⁄<sub>32</sub>-inch cotton`.
 
 One element is printed run-in: subclause (6)(A)(ii)(I) (`class="inline"`, its number `(I)`
 without a quote) follows `“(ii)` on the printed line. Following the one-element-per-line rule,
 the successor gives `(ii)` a line of its own and starts `(I) provide such individual …` on the
 next. See "Open questions".
+
+## Known limits
+
+The renderer is verified only for Pub. L. 119-21 section 71119(a)'s quotation inserting
+42 U.S.C. 1396a(xx). The public function requires the enclosing `<quotedContent>`, checks
+the requested element's membership by identity, and accepts only the verified quotation's
+canonical XML fingerprint. This makes five failure patterns found outside the verified
+quotation unreachable through the public function.
+
+- With `drop_space_before_punctuation`, `.25` can fuse with a preceding label as `(A).25`.
+- A margin note between a period and an em dash mid-heading can join them as `5 p.m.— filing`.
+- A foreign-namespace `<page>` or `<sidenote>` can divert body text into metadata.
+- A `<br/>` inside a margin-note paragraph can fuse the note's lines.
+- A page marker nested in a margin note can set the next row's starting page through
+  `page_in_effect`.
+
+The marker guard refuses `Shall pay<page/>.` with punctuation normalization enabled.
+The renderer also refuses `<num>` with an inline child.
 
 ## Metadata for pages and margin notes
 
@@ -118,6 +137,11 @@ run proposes two nested keys:
   next printed character. The root has all 11; each paragraph row has its own.
 
 ## Checks the build makes
+
+The build renders only subsection (xx) from section 71119(a)'s quotation and its 11 direct
+paragraphs. Provisions and inventory contain only those 12 rows, and coverage is computed
+from the same 12 citation paths. The retained USLM artifact is a raw byte-for-byte copy of
+the full law.
 
 `scripts/repro/us_pl_119_21_1396a_xx_line_structure.py build` writes nothing unless:
 
@@ -207,6 +231,15 @@ has no page markers in quoted headings. Comparing `833c34ad2` and the round 6 re
 refusals on supported tags, and 44 unsupported-tag rejections in each punctuation mode. The
 comparison included the body, metadata, quote counters, and refusal messages.
 The two focused pytest files passed all 60 tests in one process.
+
+### Round 7 verification
+
+The offline build produced the same four artifact hashes. In a comparison against
+`4986bc143`, the unguarded implementation changed two of 2,579 structural candidates
+in both punctuation modes. It now refuses the superscript and subscript markup in the
+quoted paragraph (2) in section 10310(3)(D) and the quoted subsection (a) in section
+70111(a). The public function rejected all 383 other quotations in the retained law.
+The two focused pytest files passed all 70 tests in one process.
 
 ## Open questions
 
