@@ -666,19 +666,19 @@ link at `data`, `data/corpus` or below on those paths as dedup spells them.
 Before it opens any artifact, it refuses an artifact that resolves to another
 scope's path, an added primary's file that shares its inode with another path, a
 link at those places that leads into no checkout, a path that leads through a
-symlinked file at or below a guarded place, a checkout whose `manifests` or
-`manifests/releases` is a symlink or holds a `.git` entry, and an added
-primary's file that a base it knows reaches through a link. To share a corpus
-kept outside every checkout, make that directory part of an axiom-corpus
-checkout. A checkout outside that list, such as one whose own `data/corpus`
-links into the corpus dedup uses, is not read; the threat model's stated limits
-list such cases. For a citation path both layers of a pair carry, serving picks
-the primary row, so a primary row over a base row is layering, not a duplicate.
-Primary scopes alone compete for a citation path. The target selector must
-carry every canonical scope in the same layer. A canonical base carried as a
-primary scope, or a canonical primary carried as a base, is refused as an
-omitted canonical scope. The report lists the base scopes the run left
-untouched under `untouched_base_scopes`.
+symlinked file at or below a guarded place of a checkout the resolver
+recognises, a checkout whose `manifests` or `manifests/releases` is a symlink or
+holds a `.git` entry, and an added primary's file that a base it knows reaches
+through a link. To share a corpus kept outside every checkout, make that
+directory part of an axiom-corpus checkout. A checkout outside that list, such
+as one whose own `data/corpus` links into the corpus dedup uses, is not read;
+the threat model's stated limits list such cases. For a citation path both
+layers of a pair carry, serving picks the primary row, so a primary row over a
+base row is layering, not a duplicate. Primary scopes alone compete for a
+citation path. The target selector must carry every canonical scope in the same
+layer. A canonical base carried as a primary scope, or a canonical primary
+carried as a base, is refused as an omitted canonical scope. The report lists
+the base scopes the run left untouched under `untouched_base_scopes`.
 
 **Consolidation, composition and repair.** Four scripts write new scope
 versions or rewrite one in place. Each refuses a base scope it knows before it

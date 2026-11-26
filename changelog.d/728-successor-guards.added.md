@@ -32,19 +32,20 @@ that holds a directory link on the paths they use, as they spell them. They
 refuse an artifact path that does not resolve to a path ending in its own
 artifact kind, jurisdiction, document class and version, a rewritten file with
 another hard link, a corpus link into no checkout, and a path through a
-symlinked file at or below a guarded place; dedup, repair and CA promotion also
-refuse to rewrite, move or unlink a file that a base they know reaches through a
-link. Repair refuses a report path that lies at or below a corpus, lock or
-selector place of `--repo`, of the checkout that physically holds it, or of a
-checkout that holds a link at one of its guarded places on the path as spelled,
-wherever that place leads, and one below an entry that is not a directory; one
-that is not a regular file (`/dev/null` included), and one over a file it did
-not write, and never writes the report through a link. The composer refuses to
-rewrite a tracked selector. The CA builder refuses a base in its selector and
-in-place promotion of a base. The signer checks that its predecessor is the
-committed selector the draft names first and, when a merge base with main
-exists, that one of those merge bases has it unchanged; it loads both selectors
-with the selector parser and reports a selector it cannot read in one line. The
-threat model in `docs/named-release-publication.md` defines what these checks
-read and lists what they do not check. See "Successor cuts" in
+symlinked file at or below a guarded place of a checkout the resolver
+recognises; dedup, repair and CA promotion also refuse to rewrite, move or
+unlink a file that a base they know reaches through a link. Repair refuses a
+report path that lies at or below a corpus, lock or selector place of `--repo`,
+of the checkout that physically holds it, or of a checkout that holds a link at
+one of its guarded places on the path as spelled, wherever that place leads, and
+one below an entry that is not a directory; one that is not a regular file
+(`/dev/null` included), and one over a file it did not write, and never writes
+the report through a link. The composer refuses to rewrite a tracked selector.
+The CA builder refuses a base in its selector and in-place promotion of a base.
+The signer checks that its predecessor is the committed selector the draft names
+first and, when a merge base with main exists, that one of those merge bases has
+it unchanged; it loads both selectors with the selector parser and reports a
+selector it cannot read in one line. The threat model in
+`docs/named-release-publication.md` defines what these checks read and lists
+what they do not check. See "Successor cuts" in
 `docs/named-release-publication.md`.

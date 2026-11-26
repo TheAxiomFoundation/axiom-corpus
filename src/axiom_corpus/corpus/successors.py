@@ -46,13 +46,13 @@ comparison against the tracked bases is exact.
 
 ``guard_scope_artifacts`` checks the artifact paths a scope tool reads or
 writes before it opens any: an artifact that resolves to another artifact's
-path, a path through a symlinked file at or below a checkout's guarded place,
-a link at a checkout's guarded place that leads into no checkout, and a
-rewritten file with more than one link are refused. It returns the
-``manifests/releases`` of the checkout that physically holds each path and of
-each checkout holding a link on it as spelled (``checkouts_holding``; the
-threat model's stated limits 11 and 15), other than the caller's own, so the
-tool reads their tracked bases too.
+path, a path through a symlinked file at or below a guarded place of a
+checkout the resolver recognises, a link at a checkout's guarded place that
+leads into no checkout, and a rewritten file with more than one link are
+refused. It returns the ``manifests/releases`` of the checkout that
+physically holds each path and of each checkout holding a link on it as
+spelled (``checkouts_holding``; the threat model's stated limits 11 and 15),
+other than the caller's own, so the tool reads their tracked bases too.
 ``refuse_links_into_bases`` compares the artifact paths of the bases a tool
 knows with the files it rewrites, moves or unlinks, and refuses a base's file
 that leads to one of them through a link (by realpath or by file identity, in
@@ -818,8 +818,8 @@ def guard_scope_artifacts(
        file or directory) differ from its own: a symlink or a directory alias
        makes it another scope's artifact;
     2. when a path, among ``paths`` or ``holders_of``, leads through a
-       symlinked file at or below a checkout's guarded place (raised by
-       ``checkouts_holding``);
+       symlinked file at or below a guarded place of a checkout the resolver
+       recognises (raised by ``checkouts_holding``);
     3. when a path passes a link at a checkout's guarded place and resolves
        into no checkout: no inventory can say what that directory holds, so
        to share a corpus kept elsewhere, make that directory part of an
