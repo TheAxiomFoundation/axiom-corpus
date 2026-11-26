@@ -1863,6 +1863,7 @@ UNREADABLE_SELECTOR_FILES: dict[str, tuple[str, bytes | str | None]] = {
         json.dumps({k: v for k, v in _NAMED_DRAFT.items() if k != "name"}).encode(),
     ),
     "draft-name-not-a-string": ("draft", json.dumps({**_NAMED_DRAFT, "name": 2}).encode()),
+    "draft-name-empty": ("draft", json.dumps({**_NAMED_DRAFT, "name": ""}).encode()),
 }
 
 
@@ -1883,7 +1884,7 @@ def test_stops_with_one_line_when_a_selector_file_cannot_be_read(
     elif isinstance(content, bytes):
         path.write_bytes(content)
     monkeypatch.chdir(repo)  # the script reads the file by the path it was given
-    if case in ("draft-array", "draft-without-name", "draft-name-not-a-string"):
+    if case in ("draft-array", "draft-without-name", "draft-name-not-a-string", "draft-name-empty"):
         line = NOT_A_NAMED_OBJECT.format(path=SELECTOR_FILE)
     else:  # the reader's own error, as the script reads the file
         with pytest.raises((OSError, ValueError)) as error:
