@@ -9,11 +9,11 @@ provision and its matching inventory item, then refreshes that scope's coverage
 report. Any ambiguous collision is rejected.
 
 Base scopes the target declares are never opened and never cut. A target
-that selects, as a primary scope, a scope that a tracked selector marks as a
-base is refused before any artifact is opened. For a citation path that both
-layers carry, serving picks the primary row, so a primary row over a base row
-is layering, not a duplicate: only primary scopes compete for a citation. The
-report lists the base scopes the run left untouched.
+that selects, as a primary scope, a scope that a tracked selector it reads
+marks as a base is refused before any artifact is opened. For a citation path
+that both layers carry, serving picks the primary row, so a primary row over a
+base row is layering, not a duplicate: only primary scopes compete for a
+citation. The report lists the base scopes the run left untouched.
 
 Dedup reads the selectors committed at HEAD of ``releases_dir`` (on the
 command line, the checkout ``resolver.cli_repo`` finds from ``--corpus``), of
@@ -21,13 +21,15 @@ the checkouts that physically hold a target scope's artifacts or either
 selector file, of each checkout the resolver recognises that holds a link on
 those paths as dedup spells them, and on the command line of the working
 directory's checkout. Before it opens any artifact it refuses a link at a
-checkout's guarded place that leads into no checkout, an artifact path that
-does not resolve to a path ending in its own artifact kind, jurisdiction,
-document class and version, an added primary's file with another hard link,
-and an added primary's file that a base it knows reaches through a link
-(``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). A
-checkout it does not read is one of the threat model's stated limits (2, 11
-and 15).
+checkout's guarded place that leads into no checkout, a path through a
+symlinked file at or below a guarded place, a checkout whose ``manifests`` or
+``manifests/releases`` is a symlink or holds a ``.git`` entry, an artifact
+path that does not resolve to a path ending in its own artifact kind,
+jurisdiction, document class and version, an added primary's file with
+another hard link, and an added primary's file that a base it knows reaches
+through a link (``successors.guard_scope_artifacts`` and
+``refuse_links_into_bases``). A checkout it does not read is one of the
+threat model's stated limits (2, 11 and 15).
 
 Released scopes are immutable. Re-version them before using this command.
 """
@@ -334,10 +336,10 @@ def main() -> int:
     parser.add_argument("--target-selector", type=Path, required=True)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
-    # The checkout holding --corpus decides which scopes are bases, as --base does
-    # for compose_scope_versions.py and consolidate_release_scopes.py; the
-    # working directory's checkout, such as a sparse worktree whose branch
-    # commits a new base, is read too.
+    # The checkout resolver.cli_repo finds from --corpus decides which scopes are
+    # bases, as --base does for compose_scope_versions.py and
+    # consolidate_release_scopes.py; the working directory's checkout, such as a
+    # sparse worktree whose branch commits a new base, is read too.
     repo = cli_repo(argparse.Namespace(base=args.corpus))
     if repo is None:
         parser.error(

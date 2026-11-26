@@ -34,7 +34,7 @@ def _refuse_base_scopes(
     versions: tuple[str, ...],
     releases_dir: Path | None,
 ) -> None:
-    """Refuse every named scope that a tracked selector marks as a base.
+    """Refuse every named scope that a tracked selector of ``releases_dir`` marks as a base.
 
     A base scope is carried into every successor unchanged, so this script
     neither reads one as a source nor writes one as its target.
@@ -141,20 +141,21 @@ def consolidate_release_scopes(
     overlays without importing unrelated historical provisions.
 
     A source or target scope that a selector under ``releases_dir`` marks as a
-    base (``layer: base``) is refused before anything is fetched, read or
-    written. ``None`` means the ``manifests/releases`` of the checkout this
-    script belongs to. ``main()`` passes the ``manifests/releases`` of the
-    checkout holding ``--base`` (``resolver.cli_repo``), so a run on another
-    checkout's corpus reads that checkout's selectors. A base is known here
-    only once a tracked selector marks it, so a selector that adds a base
-    must be committed before this script runs on that scope.
+    base (``layer: base``) is refused before any scope artifact is fetched,
+    read or written (the selectors are read first). ``None`` means the
+    ``manifests/releases`` of the checkout this script belongs to. ``main()``
+    passes the ``manifests/releases`` of the checkout ``resolver.cli_repo``
+    finds from ``--base``, so a run on another checkout's corpus reads that
+    checkout's selectors. A base is known here only once a tracked selector
+    marks it, so a selector that adds a base must be committed before this
+    script runs on that scope.
 
     It also reads the selectors committed at HEAD of the checkouts that
     physically hold its source and target artifact paths, of each checkout
     the resolver recognises that holds a link on those paths as spelled
     through ``base``, and of the checkouts holding each path in
     ``holders_of`` (``main()`` passes the working directory), and refuses a
-    base of theirs the same way. Before anything is fetched it raises
+    base of theirs the same way. Before any scope artifact is fetched it raises
     ``ValueError`` for a link at a checkout's guarded place that leads into
     no checkout and for an artifact path that does not resolve to a path
     ending in its own artifact kind, jurisdiction, document class and version
