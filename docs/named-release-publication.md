@@ -554,23 +554,36 @@ is imported from. A tracked selector is one committed at HEAD: when
 selectors committed there, so a file the working tree hides (a sparse checkout,
 `skip-worktree`, an unstaged deletion or edit) still counts as committed, and
 an untracked or only staged file does not. Any other directory, inside a
-checkout or not, is read from disk as given. The directory the names come from
-must hold the predecessor's selector as given, and every `*.json` entry in it
-must be a file. Otherwise the call refuses, and a missing directory or one with
-no selector raises `FileNotFoundError`. A `tracked` argument replaces the
-names: a copy installed outside a checkout must pass it or `releases_dir`, and
-`tracked=()` checks the predecessor's name alone. A name already committed in
-that directory is accepted only for a cut that reproduces the committed file
-byte for byte. Otherwise the composer refuses, because a tracked selector is
-never rewritten. Cut a chain one commit at a time. With the default directory,
-or a `releases_dir` that is a checkout's, a cut whose predecessor's selector is
-not yet committed is refused (`commit the predecessor's selector first`):
-commit `cut1`, then cut `cut2` from it. When a cut adds or replaces a primary
-scope, the composer also reads the tracked base scopes from the same directory,
-unless `tracked_bases` replaces them. The names, the bases and the committed
-file the byte rule compares with are all read when the call runs, from the
-checkout `releases_dir` names, or from the checkout the module is imported
-from. A copy imported from one checkout and used for a cut in another, without
+checkout or not, is read from disk as given, byte for byte, line endings kept,
+unless a rule below refuses it. A `releases_dir` that is a symlink, whose parent
+directory is one (such as a checkout's `manifests` linked to another
+checkout's), that is spelled with `..`, or that holds a `.git` entry or whose
+parent directory does (a nested repository or a gitfile at a checkout's
+`manifests` or `manifests/releases`) raises `ValueError`. One for which git
+names a toplevel that does not hold it as its `manifests/releases`, or in which
+git cannot run, while a `.git` entry sits two levels above it (such as under a
+`core.worktree` setting, or with a bare git directory at `manifests`), raises
+`FileNotFoundError`. In each case git would read another repository than the
+checkout's. These rules also refuse a selectors directory directly in, or two
+levels below, a git working tree's root, such as `<checkout>/scratch-releases`;
+no command line passes one. `GIT_CEILING_DIRECTORIES` is ignored, as `GIT_DIR`
+and `GIT_WORK_TREE` are. The directory the names come from must hold the
+predecessor's selector as given, and every `*.json` entry in it must be a file.
+Otherwise the call refuses, and a missing directory or one with no selector
+raises `FileNotFoundError`. A `tracked` argument replaces the names: a copy
+installed outside a checkout must pass it or `releases_dir`, and `tracked=()`
+checks the predecessor's name alone. A name already committed in that directory
+is accepted only for a cut that reproduces the committed file byte for byte.
+Otherwise the composer refuses, because a tracked selector is never rewritten.
+Cut a chain one commit at a time. With the default directory, or a
+`releases_dir` that is a checkout's, a cut whose predecessor's selector is not
+yet committed is refused (`commit the predecessor's selector first`): commit
+`cut1`, then cut `cut2` from it. When a cut adds or replaces a primary scope,
+the composer also reads the tracked base scopes from the same directory, unless
+`tracked_bases` replaces them. The names, the bases and the committed file the
+byte rule compares with are all read when the call runs, from the checkout
+`releases_dir` names, or from the checkout the module is imported from. A copy
+imported from one checkout and used for a cut in another, without
 `releases_dir`, reads the wrong selectors and compares with the wrong file;
 pass `releases_dir`, or `tracked` (a tracked name with no file to compare with
 is then refused).
@@ -881,19 +894,21 @@ line), of the checkouts that physically hold the two selector files or a target
 scope's artifacts, and of each checkout the resolver recognises that holds a
 link at `data`, `data/corpus` or below on those paths as dedup spells them.
 Before it opens any artifact, it refuses an artifact that resolves to another
-scope's path, an added primary's file that shares its inode with another path,
-a link at those places that leads into no checkout, and an added primary's file
-that a base it knows reaches through a link. To share a corpus kept outside
-every checkout, make that directory part of an axiom-corpus checkout. A
-checkout outside that list, such as one whose own `data/corpus` links into the
-corpus dedup uses, is not read; the threat model's stated limits list such
-cases. For a citation path both layers of a pair carry, serving picks the
-primary row, so a primary row over a base row is layering, not a duplicate.
-Primary scopes alone compete for a citation path. The target selector must
-carry every canonical scope in the same layer. A canonical base carried as a
-primary scope, or a canonical primary carried as a base, is refused as an
-omitted canonical scope. The report lists the base scopes the run left
-untouched under `untouched_base_scopes`.
+scope's path, an added primary's file that shares its inode with another path, a
+link at those places that leads into no checkout, a path that leads through a
+symlinked file at or below a guarded place of a checkout the resolver
+recognises, a checkout whose `manifests` or `manifests/releases` is a symlink or
+holds a `.git` entry, and an added primary's file that a base it knows reaches
+through a link. To share a corpus kept outside every checkout, make that
+directory part of an axiom-corpus checkout. A checkout outside that list, such
+as one whose own `data/corpus` links into the corpus dedup uses, is not read;
+the threat model's stated limits list such cases. For a citation path both
+layers of a pair carry, serving picks the primary row, so a primary row over a
+base row is layering, not a duplicate. Primary scopes alone compete for a
+citation path. The target selector must carry every canonical scope in the same
+layer. A canonical base carried as a primary scope, or a canonical primary
+carried as a base, is refused as an omitted canonical scope. The report lists
+the base scopes the run left untouched under `untouched_base_scopes`.
 
 **Consolidation, composition and repair.** Four scripts write new scope
 versions or rewrite one in place. Each refuses a base scope it knows before it
@@ -918,19 +933,24 @@ writes a new version or moves, rewrites or unlinks an artifact:
   or to write a new scope, that the release selector it repairs or a tracked
   selector it reads marks as a base, and a scope name a selector could not
   spell. It also refuses a repaired scope's new artifact that already exists; a
-  link or a shared file in the sources it moves; and a file or sources
-  directory it would unlink or move that a base it knows reaches through a link
-  (the base's provisions, inventory, coverage, ingest manifest, or a link in
-  its sources). It refuses a `--report` path that resolves into the corpus,
-  lock or selector places of `--repo`, of the checkout that physically holds
-  the path, or of a checkout that holds a link on it; that names an input; that
-  is a link (a dangling one included), a directory, a shared file or anything
-  but a regular file; or that holds a file this script did not write (anything
-  but a previous report). `--report /dev/null` is refused: the report has no
-  "drop" mode. It checks the report path before it reads `--release` or fetches
-  anything, runs the kind and content checks again just before it writes the
-  report, and writes the report to a temporary file that replaces the path, so
-  it never writes through a link. Its rewrites of `--release`,
+  link or a shared file in the sources it moves; and a file or sources directory
+  it would unlink or move that a base it knows reaches through a link, compared
+  by realpath and by file identity in both directions (the base's provisions,
+  inventory, coverage, ingest manifest, its sources directory or a link below
+  it, leading to such a file, into a moved directory, or to a directory that
+  holds one). It refuses a `--report` path that lies at or below a corpus, lock
+  or selector place of `--repo`, of the checkout that physically holds the path,
+  or of a checkout that holds a link at one of its guarded places on the path as
+  spelled, wherever that place leads (a place that does not exist yet and a
+  dangling link at a place included); that lies below an entry that is not a
+  directory; that names an input; that is a link (a dangling one included), a
+  directory, a shared file or anything but a regular file; or that holds a file
+  this script did not write (anything but a previous report).
+  `--report /dev/null` is refused: the report has no "drop" mode. It checks the
+  report path before it reads `--release` or fetches anything, runs the content,
+  place and directory checks again just before it writes the report, before it
+  makes any directory, and writes the report to a temporary file that replaces
+  the path, so it never writes through a link. Its rewrites of `--release`,
   `manifests/**/*.yaml` and `SIGNING-COMMANDS.md` are not guarded. It must read
   the release's scopes to plan the repair, so its scope and artifact refusals
   come after it fetches and reads every scope the release selects, and before
@@ -949,16 +969,19 @@ model). Called as functions, the first two take `releases_dir`, which defaults
 to the script's own checkout. All three read the tracked base scopes with
 `tracked_base_scopes`, which loads every `*.json` selector committed at HEAD in
 that checkout (or, for any other directory, on disk) and stops on one that does
-not load, on an entry that is not a file, and on a directory with no selector.
-Corpus locks carry no layer, so the tracked selectors are the record of which
-scopes are bases. Known limit: a base becomes known to these scripts once a
-tracked selector of a checkout they read marks it. Until then they treat it as
-any other scope. Commit the selector of a cut that adds a base before running
-any of them on that scope. A selector that is only on disk or only staged does
-not count; a selector main committed after your branch point counts only once
-you merge or rebase main; and a checkout these scripts do not read, for example
-a worktree whose `data/corpus` links into the corpus they use, counts only when
-you run them from it or through its link.
+not load, on an entry that is not a file, on a selectors directory that is a
+symlink, sits in one, is spelled with `..`, or holds a `.git` entry or sits in a
+directory that does, on one at which git names another toplevel, or cannot run,
+while a `.git` entry sits two levels above it, and on a directory with no
+selector. Corpus locks carry no layer, so the tracked selectors are the record
+of which scopes are bases. Known limit: a base becomes known to these scripts
+once a tracked selector of a checkout they read marks it. Until then they treat
+it as any other scope. Commit the selector of a cut that adds a base before
+running any of them on that scope. A selector that is only on disk or only
+staged does not count; a selector main committed after your branch point counts
+only once you merge or rebase main; and a checkout these scripts do not read,
+for example a worktree whose `data/corpus` links into the corpus they use,
+counts only when you run them from it or through its link.
 
 **Signing.** `scripts/sign_release_scopes.sh` signs the draft's primary scopes
 that the predecessor lacks. It skips a base scope the predecessor also has as a
@@ -971,6 +994,12 @@ of those merge bases with the same bytes. With no such merge base, only the
 HEAD rule applies, so a predecessor first committed on the release branch
 passes. It exits 1, before it stages, commits or signs anything, when:
 
+- a selector file cannot be read as JSON, or the draft is not a JSON object with
+  a string name (the run reads the draft's name before it stages or signs
+  anything);
+- the checkout's `manifests` or `manifests/releases` is a symlink or holds a
+  `.git` entry (a nested repository or a gitfile): through it git would read
+  another repository;
 - a selector is not a JSON object, has no list of scopes, or gives a scope that
   is not an object;
 - either selector spells a part of a scope in a way a selector cannot, or lists
@@ -986,13 +1015,19 @@ passes. It exits 1, before it stages, commits or signs anything, when:
   (`ReleaseManifest.load`), after the layer checks.
 
 It names every such scope on stderr, one line each. The script reads the
-selectors in the project environment (`uv run python`). A base the draft leaves
-out does not stop the script. The lineage check reports it as a dropped base,
-or as a dropped pair when the cut drops the pair whole. For a base the
-predecessor does not carry, the message says that "a base scope enters through
-its restore manifest". The restore procedure is not documented yet. It lands
-with the restoration work in
-[#728](https://github.com/TheAxiomFoundation/axiom-corpus/issues/728), which
+selectors in the project environment (`uv run python`). It reads a draft's
+description as the selector parser does: a value that is not a string is turned
+into one, as the CI lineage guard reads it. It moves to the toplevel that
+`git rev-parse --show-toplevel` names, with exported `GIT_DIR` and
+`GIT_WORK_TREE` followed, and its own git commands follow them too, while its
+selector reads ignore them. So it reads the HEAD of the checkout it signs only
+when both variables, if exported, name one checkout's `.git` and working tree
+(the threat model's Terms and limit 11). A base the draft leaves out does not
+stop the script. The lineage check reports it as a dropped base, or as a dropped
+pair when the cut drops the pair whole. For a base the predecessor does not
+carry, the message says that "a base scope enters through its restore manifest".
+The restore procedure is not documented yet. It lands with the restoration work
+in [#728](https://github.com/TheAxiomFoundation/axiom-corpus/issues/728), which
 the message cites. `compose_successor`'s `add_base` puts a new base into a
 selector, but a draft that adds a base cannot go through this script.
 
@@ -1013,11 +1048,32 @@ are.
   `manifests/releases/*.json`. The checkout that physically holds a path, and
   the working directory's checkout, are found with
   `git rev-parse --show-toplevel`, with `GIT_DIR`, `GIT_WORK_TREE`,
-  `GIT_COMMON_DIR` and `GIT_INDEX_FILE` ignored; markers on disk play no part.
+  `GIT_COMMON_DIR`, `GIT_INDEX_FILE` and `GIT_CEILING_DIRECTORIES` ignored;
+  markers on disk play no part. The signer is the exception: it moves to the
+  toplevel that `git rev-parse --show-toplevel` prints with the inherited
+  variables, and its own git commands follow them, while its selector reads
+  ignore them. So with `GIT_DIR` and `GIT_WORK_TREE` exported to one checkout's
+  `.git` and working tree, it signs that checkout, by its HEAD; exported
+  otherwise, see limit 11.
 - A *tracked selector* of a checkout is a `*.json` file committed at HEAD under
   its `manifests/releases`. A selectors directory that is not a checkout's
-  `manifests/releases` (a `releases_dir` elsewhere, inside a checkout or not)
-  is read from disk as given.
+  `manifests/releases` (a `releases_dir` elsewhere, inside a checkout or not) is
+  read from disk as given, byte for byte, unless it is refused as follows. A
+  selectors directory is refused when it or its parent directory is a symlink
+  (such as a checkout's `manifests` linked to another checkout's) or holds a
+  `.git` entry (a nested repository or a gitfile), when it is spelled with `..`,
+  and when git names a toplevel that does not hold it as its
+  `manifests/releases`, or cannot run there, while a `.git` entry sits two
+  levels above it, whatever the directory's names (such as under a
+  `core.worktree` setting, with a bare git directory at `manifests`, or with a
+  `.git/config` git cannot parse). Through any of these, git or the disk would
+  answer for another repository than the checkout's. The rule also refuses
+  layouts that would be read correctly: a dangling `manifests` link, a
+  `manifests` link into the checkout's own subdirectory, an outside alias
+  spelled through a link, a selectors directory directly under a top-level link
+  such as macOS's `/tmp`, and one directly in, or two levels below, a git
+  working tree's root that is not its `manifests/releases`. No command line
+  passes such a directory: each passes `<checkout>/manifests/releases`.
 - A checkout's *guarded places* are `data`, `data/corpus`,
   `data/corpus/<artifact class>` and every path below them.
 - *Main*, for the signer and for the layer-conflict remedy, means the merge
@@ -1030,22 +1086,24 @@ checkouts and of no other:
    (dedup) or `--base` (composition, consolidation and the CA builder), by the
    resolver's rules. Through a link the resolver recognises, that is the
    checkout holding the link; otherwise it is the checkout the path resolves
-   into, or the repository an exported `GIT_WORK_TREE` names (limit 11). Repair
-   reads `--repo`. A function caller names the checkout with `releases_dir`;
-   without it, each script reads its own checkout, and the composer the
-   checkout the module is imported from (limit 12). The composer reads only
-   this checkout (or takes `tracked` instead), and the signer only the checkout
-   it runs in.
+   into, or the repository that an exported `GIT_WORK_TREE` or a `core.worktree`
+   setting names (limit 11). Repair reads `--repo`. A function caller names the
+   checkout with `releases_dir`; without it, each script reads its own checkout,
+   and the composer the checkout the module is imported from (limit 12). The
+   composer reads only this checkout (or takes `tracked` instead), and the
+   signer only the checkout it runs in.
 2. On the command line of dedup, consolidation, composition, repair and the CA
    builder, the working directory's checkout.
 3. The checkout that physically holds each of the run's scope artifact paths
    (below), each of dedup's two selector files, and repair's `--release`.
 4. Each checkout that holds a link on one of those paths, or on the working
-   directory, as the tool spells it: a symlink at one of its guarded places
-   that the spelled path passes through. Such a checkout is found by the
+   directory, as the tool spells it: a directory symlink at one of its guarded
+   places that the spelled path passes through. Such a checkout is found by the
    resolver's rules, which recognise a checkout by `src/axiom_corpus` or
    `.axiom/corpus-locks` on disk and follow any inherited `GIT_*` variables
-   (limit 11).
+   (limit 11). A path on which a symlinked file stands at such a guarded place,
+   or comes after a link at one, is refused rather than followed (see "Which
+   artifact paths a tool checks", item 1).
 
 **Which selectors count.** The tracked selectors of those checkouts, and the
 selectors the run itself is given: dedup's canonical and target selectors,
@@ -1054,30 +1112,52 @@ predecessor. A base is known to a tool once one of these marks it.
 
 **Which artifact paths a tool checks.**
 
-1. The run's own scope artifact paths, spelled through the corpus the tool
-   uses: for dedup, the provisions, inventory and coverage of every target
-   scope; for composition and consolidation, the inventory, provisions and
-   sources of each source version and of the target, and the target's coverage;
-   for repair, the coverage, inventory, provisions, sources and ingest manifest
-   of each scope it repairs and of each new scope; for CA promotion, its
-   inventory, provisions and coverage. Each must resolve to a path that ends in
-   its own artifact kind, jurisdiction, document class and version. A link at a
-   guarded place on it must lead into a checkout; to share a corpus kept
-   elsewhere, make that directory part of an axiom-corpus checkout. Each file
-   dedup or CA promotion rewrites in place, and each file in the sources repair
-   moves, must have one link. Repair also refuses a new scope's path that
-   already exists and a symlink in the sources it moves.
-2. For dedup, repair and CA promotion, the artifact paths of every base the
-   tool knows, in the corpus it uses: the base's provisions, inventory and
-   coverage, and for repair also its ingest manifest, its sources directory and
-   every link below it. None may lead, through a symlink, a directory alias or
-   a hard link, to a file or directory the tool rewrites, moves or unlinks.
-3. Repair's `--report` path. Before the fetch, it must not resolve into the
-   corpus, lock or selector places of `--repo`, of the checkout that physically
-   holds it, or of a checkout that holds a link on it; it must not be the
-   `--release` or `--conflicts` file; and it must be absent, or a regular file
-   with one link that holds a previous report of this script. Just before the
-   write the last rule runs again, and the report replaces the path without
+1. The run's own scope artifact paths, spelled through the corpus the tool uses:
+   for dedup, the provisions, inventory and coverage of every target scope; for
+   composition and consolidation, the inventory, provisions and sources of each
+   source version and of the target, and the target's coverage; for repair, the
+   coverage, inventory, provisions, sources and ingest manifest of each scope it
+   repairs and of each new scope; for CA promotion, its inventory, provisions
+   and coverage. Each must resolve to a path that ends in its own artifact kind,
+   jurisdiction, document class and version. A link at a guarded place on it
+   must lead into a checkout; to share a corpus kept elsewhere, make that
+   directory part of an axiom-corpus checkout. Each file dedup or CA promotion
+   rewrites in place, and each file in the sources repair moves (repair rewrites
+   each as it moves it), must have one link. Only these rewritten files are
+   checked for hard links; a tool's source paths are not (limit 8). Repair also
+   refuses a new scope's path that already exists and a symlink in the sources
+   it moves. A path that leads through a symlinked file standing at a guarded
+   place of a checkout the resolver recognises, or reached through a link at
+   one, is refused: placed corpus files are regular files, never symlinks
+   (`docs/corpus-storage.md`). The same holds for the other paths whose
+   checkouts a tool looks up: dedup's selector files and repair's `--release`
+   and `--report`.
+2. For dedup, repair and CA promotion, the artifact paths of every base the tool
+   knows, in the corpus it uses: the base's provisions, inventory and coverage,
+   and for repair also its ingest manifest, its sources directory and every
+   symlink below it. None may lead, through a symlink, a directory alias or a
+   hard link, to a file the tool rewrites or unlinks, or to or into a directory
+   it moves. For repair, a base's sources directory and each symlink below it
+   also may not lead to a directory that holds such a file or directory. Paths
+   are compared by realpath and by the file identity of each existing entry and
+   its ancestors, so a case alias or a firmlink spelling counts too. A symlink
+   below a base's sources that cannot be followed, because it loops or passes
+   through a file, is refused.
+3. Repair's `--report` path. Before the fetch it must not lie at or below a
+   corpus, lock or selector place (`data`, `data/corpus`, each artifact class,
+   `.axiom`, `.axiom/ingest-manifests`, `.axiom/corpus-locks`, `manifests` and
+   `manifests/releases`) of `--repo`, of the checkout that physically holds it,
+   or of a checkout that holds a link at one of its guarded places on it as
+   spelled; limit 14 names the links this rule does not follow. Each place is
+   followed to where it leads, a dangling link and a place that does not exist
+   yet included: the deepest existing entry on that path is compared with the
+   entries on the report's realpath by file identity, and the names below it by
+   name, letter case ignored. The nearest existing entry above the report path
+   must be a directory. The path must not be the `--release` or `--conflicts`
+   file, and it must be absent, or a regular file with one link that holds a
+   previous report of this script. Just before the write the content, place and
+   directory rules run again, in that order, with the roots found afresh and
+   before any directory is made, and the report replaces the path without
    following a link. `/dev/null` is not a regular file, so it is refused: the
    report has no "drop" mode.
 4. The signer's predecessor argument: byte for byte the committed selector the
@@ -1105,8 +1185,10 @@ Each limit lies outside one part of the definition above, named in brackets.
    composer refuses a rewrite under the cut's own name, and only the signer
    compares its predecessor with main; the CI lineage guard sees an edit of a
    pinned selector only.
-8. [Paths] Hard links on paths a tool only reads: the sources of composition
-   and consolidation, and dedup's canonical files and base paths.
+8. [Paths] Hard links on paths a tool does not rewrite. Only the files a tool
+   rewrites are checked for hard links (item 1); its source paths are not: the
+   sources of composition and consolidation, the files repair reads and then
+   unlinks, and dedup's canonical files and base paths.
 9. [Paths] Rewrites outside the scope artifacts: the signer's writes, and
    repair's rewrites of its `--release` selector, `manifests/**/*.yaml` and
    `SIGNING-COMMANDS.md`, which follow links and write into shared files.
@@ -1120,12 +1202,32 @@ Each limit lies outside one part of the definition above, named in brackets.
 11. [Checkouts] A checkout that holds a link but that the resolver does not
     recognise: a sparse checkout without `src/axiom_corpus` and
     `.axiom/corpus-locks`, or any checkout while `GIT_DIR` and `GIT_WORK_TREE`
-    are exported to another repository. Such a link counts as no link, so that
-    checkout's selectors are read only when it is also the working directory's
-    checkout, or the one that physically holds a path the tool reads, its
-    selector files included. On the command line, `cli_repo` then returns the
-    checkout the link leads into, or the repository `GIT_WORK_TREE` names, not
-    the checkout given.
+    are exported to another repository. Such a link, a directory link or a
+    symlinked file, counts as no link: the refusal of a symlinked file ("Which
+    artifact paths a tool checks", item 1) covers only checkouts the resolver
+    recognises. So that checkout's selectors are read only when it is also the
+    working directory's checkout, or the one that physically holds a path the
+    tool reads, its selector files included. On the command line, `cli_repo`
+    then returns the checkout the link leads into, or the repository
+    `GIT_WORK_TREE` names, not the checkout given. Git discovery is likewise
+    taken as git answers. Under a `core.worktree` setting that names another
+    directory, the physical holder of a path, `cli_repo` and the signer take the
+    directory git names. When that directory commits no selector, such as a
+    plain directory, the physical holder is none, `cli_repo` finds no checkout
+    unless markers are on disk there, and the signer reads that directory's
+    selectors from disk. Only a reader given the redirected checkout's own
+    `manifests/releases` refuses the setting. With `GIT_DIR` and `GIT_WORK_TREE`
+    exported to a git directory and a work tree that are not one checkout's, the
+    signer runs its git commands on that git directory but reads the tracked
+    selectors of the work tree's own repository, or the work tree's disk when it
+    holds no `.git` entry. A nested repository at a checkout's guarded place
+    (such as `git init` at `data/corpus`) is the physical holder of the paths
+    below it, or none when it commits no selector, so the guard does not count
+    the checkout around it, though `cli_repo` still finds that checkout by its
+    markers. A checkout in which git cannot run, such as one whose `.git/config`
+    does not parse, is no physical holder, and `cli_repo` does not find it. A
+    mount point or other filesystem redirect at `manifests` is read as git
+    answers there.
 12. [Checkouts] Called as functions, the scope tools default `releases_dir` to
     the script's own checkout, and `compose_successor`, its byte rule included,
     reads the checkout the module is imported from. A caller that works on
@@ -1134,12 +1236,19 @@ Each limit lies outside one part of the definition above, named in brackets.
     builds: one whose selector or predecessor is absent and unpinned is
     skipped. The baseline file's loader requires both pins; in memory, only
     base replacements get the loader's checks.
-14. [Paths] A repair `--report` path that does not exist yet, lies outside
-    every checkout, and is where a link of another checkout leads, or where a
-    link deeper than `data/corpus/<artifact class>` (coverage, inventory,
-    provisions or sources) of `--repo` leads. The report creates a file where
-    that checkout expects an artifact it has not fetched; an existing file is
-    protected by the content rule.
+14. [Paths] A repair `--report` path that does not exist yet and is where a link
+    leads that the place rule in item 3 does not follow: a link below one of
+    those places (such as one deeper than `data/corpus/<artifact class>`, one
+    below `.axiom/ingest-manifests` or `.axiom/corpus-locks`, or a file link in
+    `manifests/releases`) of a checkout the rule reads, or any link of a
+    checkout it does not read, such as the working directory's checkout or
+    another checkout whose own link leads there. A report path spelled through
+    another checkout's linked `.axiom`, `.axiom/corpus-locks` or `manifests` is
+    such a case: none of those is a guarded place, so the link does not make
+    that checkout a root, and only the checkout the link leads into, if any, is
+    checked. The report creates a file where that checkout expects an artifact,
+    a lock, an ingest manifest or a selector it does not have yet; an existing
+    file is protected by the content rule.
 15. [Checkouts, paths] A link held elsewhere that leads into the paths a tool
     uses. A tool knows a base only once a selector it reads marks it, and it
     reads the selectors of the checkouts the definition names. A checkout whose
@@ -1147,10 +1256,14 @@ Each limit lies outside one part of the definition above, named in brackets.
     one of them unless it is the working directory's checkout or holds a
     selector file the tool reads: for example, a worktree whose `data/corpus`
     links to the main checkout's while the tool runs on the main checkout. A
-    tool also compares base artifact paths only in the corpus it uses, so a
-    file elsewhere that links to a file the tool rewrites is not seen. Run the
-    tool from the checkout that commits the base, or through its link; commit
-    and merge a base's selector before others run tools over that corpus.
+    tool also compares base artifact paths only in the corpus it uses, so a file
+    elsewhere that links to a file the tool rewrites is not seen. Likewise, a
+    selector file a tool reads (dedup's two selector files, repair's
+    `--release`) spelled through a checkout's linked `manifests` is held by the
+    checkout the link leads into, so only that checkout's selectors are read on
+    its account, not those of the checkout that holds the link. Run the tool
+    from the checkout that commits the base, or through its link; commit and
+    merge a base's selector before others run tools over that corpus.
 16. [Selectors, other readers] Three other readers of tracked selectors read
     the working tree, not HEAD: `selector_lineage.load_tracked_selectors` (the
     CI lineage guard's reader), `release_policy.selectors_selecting`, and

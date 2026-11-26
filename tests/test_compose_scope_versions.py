@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 import os
+import re
+import shutil
 import sys
 from collections.abc import Callable, Mapping
 from pathlib import Path
@@ -809,6 +811,15 @@ def _sources(checkout: Path) -> CorpusArtifactStore:
     return store
 
 
+def _swap_for_link(path: Path, target: Path) -> None:
+    """Replace the directory ``path`` with a symlink to ``target``, then forget cached roots."""
+    from axiom_corpus.corpus import resolver
+
+    shutil.rmtree(path)
+    path.symlink_to(target, target_is_directory=True)
+    resolver._repo_root_for_dir.cache_clear()
+
+
 @pytest.mark.parametrize(
     "case",
     [
@@ -818,6 +829,8 @@ def _sources(checkout: Path) -> CorpusArtifactStore:
         "sources-link-target",
         "link-outside-checkouts",
         "directory-alias",
+        "holder-selector-link",
+        "source-file-chain",
     ],
 )
 def test_compose_refuses_a_base_or_an_alias_another_path_holds(
@@ -860,6 +873,39 @@ def test_compose_refuses_a_base_or_an_alias_another_path_holds(
         _link(a / "data" / "corpus", shared.root)
         refused = ""
         expected = r"^scope artifact leads through a link outside every axiom-corpus checkout: "
+    elif case == "holder-selector-link":
+        # The target is named after B's committed base, and B's manifests leads to
+        # the manifests of A, whose selectors releases_dir names.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", base="composed-base")
+        _link(a / "data" / "corpus", _sources(b).root)
+        _swap_for_link(b / "manifests", a / "manifests")
+        target_version = "composed-base"
+        refused = ""
+        expected = "^" + re.escape(
+            f"selector directory leads through a link: {b / 'manifests'} -> "
+        )
+    elif case == "source-file-chain":
+        # A source version's provisions in A link to B's, and B's to C's.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b")
+        c = _checkout(make_checkout, "c")
+        stores = [_sources(x) for x in (a, b, c)]
+        for here, there in ((stores[0], stores[1]), (stores[1], stores[2])):
+            link = here.provisions_path("us-example", "statute", "primary-one")
+            link.unlink()
+            link.symlink_to(there.provisions_path("us-example", "statute", "primary-one"))
+        link = stores[0].provisions_path("us-example", "statute", "primary-one")
+        refused = ""
+        expected = (
+            "^"
+            + re.escape(
+                "path leads through a symlinked file at or below a checkout's guarded place: "
+                f"{link} (the link is {link}); corpus files are placed as regular files, "
+                "never symlinks"
+            )
+            + "$"
+        )
     else:
         a = _checkout(make_checkout, "a", base="primary-two")
         store = _sources(a)

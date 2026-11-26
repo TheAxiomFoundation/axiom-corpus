@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -926,7 +927,6 @@ def _clear_resolver_cache() -> None:
         pytest.param("staged-uncommitted", {HEAD_B}, id="staged-uncommitted"),
         pytest.param("cached-removal", {HEAD_B}, id="cached-removal"),
         pytest.param("manifests-excluded", {HEAD_B}, id="manifests-excluded"),
-        pytest.param("standalone-inside-checkout", {HEAD_Q}, id="standalone-inside-checkout"),
         pytest.param("linked-worktree", {HEAD_B}, id="linked-worktree"),
         pytest.param("linked-worktree-removed", {HEAD_B}, id="linked-worktree-removed"),
         pytest.param("deleted-on-the-branch", set(), id="deleted-on-the-branch"),
@@ -972,10 +972,6 @@ def test_tracked_selectors_are_read_as_committed_at_head(
         fixture_git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
         _clear_resolver_cache()
         assert not releases.exists()
-    elif layout == "standalone-inside-checkout":
-        read = repo / "scratch-releases"
-        read.mkdir()
-        _write_payload(read / "scratch.json", _payload("scratch", ((HEAD_Q, True),)))
     elif layout == "linked-worktree":
         fixture_git(repo, "worktree", "add", "-q", "../wt")
         _write_payload(releases / "later.json", _payload("later", ((HEAD_Q, True),)))
@@ -1046,6 +1042,331 @@ def test_tracked_selectors_refuse_what_head_cannot_hold_as_a_selector(
             successors.tracked_base_scopes(releases)
         # A directory in no checkout is read from disk without git.
         assert successors.tracked_base_scopes(plain) == frozenset({HEAD_B})
+
+
+# A selector directory that is a link or sits in one, is spelled with "..", or is
+# one at which git would answer for another repository is refused: git runs in, and
+# the disk shows, the directory a path resolves to, so another checkout's HEAD, or a
+# directory no HEAD holds, would answer for this checkout's tracked selectors.
+
+LINK_B: ScopeKey = ("us", "statute", "b")
+LINK_REFUSAL = "^selector directory leads through a link: "
+DOTDOT_REFUSAL = r"^selector directory is spelled with '\.\.': "
+GIT_ENTRY_REFUSAL = "^selector directory sits at a git entry: "
+
+
+def _swap_for_link(path: Path, target: Path) -> None:
+    """Replace the directory ``path`` with a symlink to ``target``."""
+    shutil.rmtree(path)
+    path.symlink_to(target, target_is_directory=True)
+
+
+def _link_checkouts(make_checkout: Any) -> tuple[Path, Path]:
+    """A commits ``a-sel``, which marks ``us/statute/b`` as a base; B's ``b-sel`` marks none."""
+    a = make_checkout("a", {"a-sel": _payload("a-sel", ((HEAD_P, False), (LINK_B, True)))})
+    b = make_checkout("b", {"b-sel": _payload("b-sel", ((HEAD_P, False),))})
+    return a, b
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "releases-link",
+        "manifests-link",
+        "relative-releases-link",
+        "relative-manifests-link",
+        "chain",
+        "sparse-manifests-link",
+        "plain-dir-in-unrelated-repo",
+        "linked-worktree-to-main",
+        "case-alias",
+        "outside-spelling",
+        "dotdot-releases",
+        "dotdot-manifests",
+        "full",
+        "manifests-excluded-sparse",
+        "relative-from-checkout",
+        "linked-worktree-real",
+    ],
+)
+def test_a_selector_directory_reached_through_a_link_is_refused(
+    make_checkout: Any, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    from tests.conftest import fixture_git
+
+    a, b = _link_checkouts(make_checkout)
+    releases = a / "manifests" / "releases"
+    directory = releases
+    # The link the refusal names; None for a ".." spelling and for a control.
+    link: Path | None = None
+    refusal: str | None = LINK_REFUSAL
+    if layout == "releases-link":
+        _swap_for_link(releases, b / "manifests" / "releases")
+        link = releases
+    elif layout == "manifests-link":
+        _swap_for_link(a / "manifests", b / "manifests")
+        link = a / "manifests"
+    elif layout == "relative-releases-link":
+        _swap_for_link(releases, Path("..") / ".." / "b" / "manifests" / "releases")
+        link = releases
+    elif layout == "relative-manifests-link":
+        _swap_for_link(a / "manifests", Path("..") / "b" / "manifests")
+        link = a / "manifests"
+    elif layout == "chain":
+        c = make_checkout("c", {"c-sel": _payload("c-sel", ((HEAD_P, False),))})
+        _swap_for_link(c / "manifests", b / "manifests")
+        _swap_for_link(a / "manifests", c / "manifests")
+        link = a / "manifests"
+    elif layout == "sparse-manifests-link":
+        fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        assert not (a / "manifests").exists()
+        (a / "manifests").symlink_to(b / "manifests", target_is_directory=True)
+        link = a / "manifests"
+    elif layout == "plain-dir-in-unrelated-repo":
+        unrelated = tmp_path / "unrelated"
+        unrelated.mkdir()
+        (unrelated / "README.md").write_text("Not a checkout.\n", encoding="utf-8")
+        fixture_git(unrelated, "init", "-q", "-b", "main")
+        fixture_git(unrelated, "add", "--", "README.md")
+        fixture_git(unrelated, "commit", "-q", "-m", "Unrelated repository")
+        (unrelated / "selectors").mkdir()
+        _write_payload(unrelated / "selectors" / "x.json", _payload("x", ((HEAD_P, False),)))
+        _swap_for_link(releases, unrelated / "selectors")
+        link = releases
+    elif layout == "linked-worktree-to-main":
+        worktree = tmp_path / "wt"
+        fixture_git(a, "worktree", "add", "-q", str(worktree))
+        _swap_for_link(worktree / "manifests", a / "manifests")
+        directory = worktree / "manifests" / "releases"
+        link = worktree / "manifests"
+    elif layout == "case-alias":
+        _swap_for_link(a / "manifests", b / "manifests")
+        if not os.path.lexists(a / "Manifests"):
+            pytest.skip("the filesystem keeps manifests and Manifests apart")
+        directory = a / "Manifests" / "Releases"
+        link = a / "Manifests"
+    elif layout == "outside-spelling":
+        directory = link = tmp_path / "sel"
+        directory.symlink_to(releases, target_is_directory=True)
+    elif layout == "dotdot-releases":
+        directory = releases / ".." / "releases"
+        refusal = DOTDOT_REFUSAL
+    elif layout == "dotdot-manifests":
+        directory = a / "manifests" / ".." / "manifests" / "releases"
+        refusal = DOTDOT_REFUSAL
+    elif layout == "manifests-excluded-sparse":
+        fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        assert not (a / "manifests").exists()
+        refusal = None
+    elif layout == "relative-from-checkout":
+        monkeypatch.chdir(a)
+        directory = Path("manifests/releases")
+        refusal = None
+    elif layout == "linked-worktree-real":
+        fixture_git(a, "worktree", "add", "-q", str(tmp_path / "wt"))
+        directory = tmp_path / "wt" / "manifests" / "releases"
+        refusal = None
+    else:
+        assert layout == "full"
+        refusal = None
+    _clear_resolver_cache()
+
+    if refusal is None:
+        assert successors.tracked_base_scopes(directory) == frozenset({LINK_B})
+        assert sorted(successors.tracked_selector_texts(directory)) == ["a-sel"]
+        assert successors.tracked_selector_text(directory, "a-sel") is not None
+        return
+    if link is not None:
+        refusal += re.escape(f"{link} -> ")
+    with pytest.raises(ValueError, match=refusal):
+        successors.tracked_base_scopes(directory)
+    with pytest.raises(ValueError, match=refusal):
+        successors.tracked_selector_texts(directory)
+    with pytest.raises(ValueError, match=refusal):
+        successors.tracked_selector_text(directory, "a-sel")
+
+
+def test_compose_successor_refuses_a_releases_dir_reached_through_a_link(
+    make_checkout: Any,
+) -> None:
+    a, b = _link_checkouts(make_checkout)
+    _swap_for_link(a / "manifests", b / "manifests")
+    _clear_resolver_cache()
+    predecessor = ReleaseManifest.load(b / "manifests" / "releases" / "b-sel.json")
+
+    # Through the link, B's HEAD would answer, and B marks no base.
+    with pytest.raises(ValueError, match=LINK_REFUSAL + re.escape(f"{a / 'manifests'} -> ")):
+        compose_successor(
+            predecessor,
+            name="next",
+            description="Successor to b-sel.",
+            add=[LINK_B],
+            releases_dir=a / "manifests" / "releases",
+        )
+
+
+def _toplevel_refusal(top: Path, checkout: Path) -> str:
+    return (
+        r"^selector directory is not the manifests/releases of the toplevel git names \("
+        + re.escape(str(top))
+        + r"\), while a \.git entry sits two levels up at "
+        + re.escape(str(checkout / ".git"))
+    )
+
+
+def _git_fails_refusal(checkout: Path) -> str:
+    return "^git cannot read the checkout at " + re.escape(str(checkout))
+
+
+def _break_git_config(checkout: Path) -> None:
+    """Append a line git cannot parse to the checkout's own configuration."""
+    with (checkout / ".git" / "config").open("a", encoding="utf-8") as config:
+        config.write("[core\n")
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "nested-repo-at-manifests",
+        "nested-repo-at-releases",
+        "gitfile-at-manifests",
+        "core-worktree-redirect",
+        "standalone-inside-checkout",
+        "standalone-two-below-checkout",
+        "ceiling-at-manifests",
+        "bare-at-manifests-case",
+        "broken-config-case",
+        "git-fails-two-below-checkout",
+        "full",
+        "manifests-excluded-sparse",
+        "linked-worktree-real",
+        "linked-worktree-manifests-excluded",
+        "plain-directory",
+        "standalone-three-below-checkout",
+        "git-fails-three-below-checkout",
+    ],
+)
+def test_a_selector_directory_git_would_read_elsewhere_is_refused(
+    make_checkout: Any, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    from tests.conftest import fixture_git
+
+    a = make_checkout("a", HEAD_SELECTORS)
+    other = make_checkout("other", {"plain": _payload("plain", ((HEAD_P, False),))})
+    releases = a / "manifests" / "releases"
+    directory = releases
+    # A refusal (its type and pattern), or what a control reads: the bases and
+    # whether "layered" is there.
+    refusal: tuple[type[Exception], str] | None = None
+    expected: frozenset[ScopeKey] = frozenset({HEAD_B})
+    has_layered = True
+    clean_status = False
+
+    def hide_manifests_beside_a_plain_selector() -> None:
+        fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        releases.mkdir(parents=True)
+        _write_payload(releases / "plain.json", _payload("plain", ((HEAD_P, False),)))
+
+    def hide_layered() -> None:
+        fixture_git(a, "update-index", "--skip-worktree", "manifests/releases/layered.json")
+        (releases / "layered.json").unlink()
+
+    def scratch(path: Path) -> Path:
+        path.mkdir(parents=True)
+        _write_payload(path / "scratch.json", _payload("scratch", ((HEAD_Q, True),)))
+        return path
+
+    if layout == "nested-repo-at-manifests":
+        hide_manifests_beside_a_plain_selector()
+        fixture_git(a / "manifests", "init", "-q")
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(a / "manifests" / ".git")))
+        clean_status = True
+    elif layout == "nested-repo-at-releases":
+        hide_layered()
+        fixture_git(releases, "init", "-q")
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(releases / ".git")))
+        clean_status = True
+    elif layout == "gitfile-at-manifests":
+        hide_manifests_beside_a_plain_selector()
+        (a / "manifests" / ".git").write_text(f"gitdir: {other / '.git'}\n", encoding="utf-8")
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(a / "manifests" / ".git")))
+        clean_status = True
+    elif layout == "core-worktree-redirect":
+        hide_layered()
+        fixture_git(a, "config", "core.worktree", str(other))
+        refusal = (FileNotFoundError, _toplevel_refusal(other, a))
+    elif layout == "standalone-inside-checkout":
+        directory = scratch(a / "scratch-releases")
+        refusal = (ValueError, GIT_ENTRY_REFUSAL + re.escape(str(a / ".git")))
+    elif layout == "standalone-two-below-checkout":
+        directory = scratch(a / "scratch" / "releases")
+        refusal = (FileNotFoundError, _toplevel_refusal(a, a))
+    elif layout == "ceiling-at-manifests":
+        # Exported after every fixture git command; the readers drop it, so HEAD is read.
+        monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(a / "manifests"))
+    elif layout == "bare-at-manifests-case":
+        fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        fixture_git(a, "init", "-q", "--bare", "manifests")
+        releases.mkdir()
+        _write_payload(releases / "plain.json", _payload("plain", ((HEAD_P, False),)))
+        if not os.path.lexists(a / "Manifests"):
+            pytest.skip("the filesystem keeps manifests and Manifests apart")
+        directory = a / "Manifests" / "Releases"
+        refusal = (FileNotFoundError, _git_fails_refusal(a))
+        clean_status = True
+    elif layout == "broken-config-case":
+        hide_layered()
+        if not os.path.lexists(a / "Manifests"):
+            pytest.skip("the filesystem keeps manifests and Manifests apart")
+        _break_git_config(a)
+        directory = a / "Manifests" / "Releases"
+        refusal = (FileNotFoundError, _git_fails_refusal(a))
+    elif layout == "git-fails-two-below-checkout":
+        directory = scratch(a / "scratch" / "releases")
+        _break_git_config(a)
+        refusal = (FileNotFoundError, _git_fails_refusal(a))
+    elif layout == "manifests-excluded-sparse":
+        fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        assert not (a / "manifests").exists()
+    elif layout in {"linked-worktree-real", "linked-worktree-manifests-excluded"}:
+        worktree = tmp_path / "wt"
+        fixture_git(a, "worktree", "add", "-q", str(worktree))
+        directory = worktree / "manifests" / "releases"
+        if layout == "linked-worktree-manifests-excluded":
+            fixture_git(worktree, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+            assert not (worktree / "manifests").exists()
+    elif layout == "plain-directory":
+        directory = tmp_path / "plain"
+        directory.mkdir()
+        _write_payload(directory / "layered.json", HEAD_SELECTORS["layered"])
+    elif layout == "standalone-three-below-checkout":
+        directory = scratch(a / "scratch" / "deeper" / "releases")
+        expected, has_layered = frozenset({HEAD_Q}), False
+    elif layout == "git-fails-three-below-checkout":
+        directory = scratch(a / "scratch" / "deeper" / "releases")
+        _break_git_config(a)
+        expected, has_layered = frozenset({HEAD_Q}), False
+    else:
+        assert layout == "full"
+    if clean_status:
+        assert fixture_git(a, "status", "--porcelain", "--untracked-files=no").stdout == ""
+    _clear_resolver_cache()
+
+    if refusal is not None:
+        error, pattern = refusal
+        with pytest.raises(error, match=pattern):
+            successors.tracked_base_scopes(directory)
+        with pytest.raises(error, match=pattern):
+            successors.tracked_selector_texts(directory)
+        with pytest.raises(error, match=pattern):
+            successors.tracked_selector_text(directory, "layered")
+        return
+    assert successors.tracked_base_scopes(directory) == expected
+    assert ("layered" in successors.tracked_selector_texts(directory)) is has_layered
+    assert (successors.tracked_selector_text(directory, "layered") is not None) is has_layered
+    if layout == "linked-worktree-manifests-excluded":
+        monkeypatch.chdir(tmp_path / "wt")
+        assert successors.tracked_base_scopes(Path("manifests/releases")) == expected
 
 
 def test_the_composer_reads_committed_names_and_bases_in_a_sparse_checkout(
@@ -1147,6 +1468,8 @@ def _byte_rule_selectors() -> tuple[ReleaseManifest, ReleaseManifest]:
         "directory",
         "dangling-link",
         "committed-differs",
+        "crlf",
+        "cr",
     ],
 )
 def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
@@ -1218,6 +1541,10 @@ def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
         (releases / "cut.json").write_text(render_selector(without_base), encoding="utf-8")
         del call["add_base"]
         call["releases_dir"] = releases
+    elif case in ("crlf", "cr"):
+        # The reproducing call, against a file whose line endings differ.
+        ending = "\r\n" if case == "crlf" else "\r"
+        cut_path.write_bytes(cut_text.replace("\n", ending).encode())
 
     if refusal is None:
         successor = compose_successor(root, **call)
@@ -1226,6 +1553,19 @@ def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
     error, message = refusal
     with pytest.raises(error, match=message):
         compose_successor(root, **call)
+
+
+@pytest.mark.parametrize("ending", ["lf", "crlf", "cr"])
+def test_disk_selectors_keep_their_line_endings(tmp_path: Path, ending: str) -> None:
+    directory = tmp_path / "plain"
+    directory.mkdir()
+    newline = {"lf": "\n", "crlf": "\r\n", "cr": "\r"}[ending]
+    text = json.dumps({"name": "x", "scopes": []}, indent=2).replace("\n", newline) + newline
+    (directory / "x.json").write_bytes(text.encode())
+    on_disk = (directory / "x.json").read_bytes().decode("utf-8")
+
+    assert successors.tracked_selector_texts(directory)["x"] == on_disk
+    assert successors.tracked_selector_text(directory, "x") == on_disk
 
 
 def test_the_golden_cut_reproduces_under_the_default_inventory() -> None:

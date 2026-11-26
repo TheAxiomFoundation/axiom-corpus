@@ -10,9 +10,15 @@ reviewed change that this module does not make.
 
 A tracked selector is a ``*.json`` file committed at HEAD under a checkout's
 ``manifests/releases``; any other directory, inside a checkout or not, is read
-from disk as given. ``tracked_selector_texts`` and ``tracked_selector_text``
-read them, so a sparse checkout, a file hidden from disk, an edit, an
-untracked file and a staged one change nothing.
+from disk as given. A selectors directory that is a symlink, whose parent
+directory is one, that is spelled with ``..``, or that holds a ``.git`` entry
+or whose parent directory does raises ``ValueError``, and one at which git
+answers with another toplevel, or cannot run, while a ``.git`` entry sits two
+levels above it raises ``FileNotFoundError``: git would read another
+repository than the checkout's, or none, and the disk would answer for it.
+``tracked_selector_texts`` and ``tracked_selector_text`` read them, so a
+sparse checkout, a file hidden from disk, an edit, an untracked file and a
+staged one change nothing.
 
 ``compose_successor`` checks every requested change against the predecessor
 and raises ``SuccessorError`` for any it refuses. Unless the caller passes
@@ -40,15 +46,17 @@ comparison against the tracked bases is exact.
 
 ``guard_scope_artifacts`` checks the artifact paths a scope tool reads or
 writes before it opens any: an artifact that resolves to another artifact's
-path, a link at a checkout's guarded place that leads into no checkout, and a
-rewritten file with more than one link are refused. It returns the
-``manifests/releases`` of the checkout that physically holds each path and of
-each checkout holding a link on it as spelled (``checkouts_holding``; the
-threat model's stated limits 11 and 15), other than the caller's own, so the
-tool reads their tracked bases too.
+path, a path through a symlinked file at or below a guarded place of a
+checkout the resolver recognises, a link at a checkout's guarded place that
+leads into no checkout, and a rewritten file with more than one link are
+refused. It returns the ``manifests/releases`` of the checkout that
+physically holds each path and of each checkout holding a link on it as
+spelled (``checkouts_holding``; the threat model's stated limits 11 and 15),
+other than the caller's own, so the tool reads their tracked bases too.
 ``refuse_links_into_bases`` compares the artifact paths of the bases a tool
 knows with the files it rewrites, moves or unlinks, and refuses a base's file
-that leads to one of them through a link.
+that leads to one of them through a link (by realpath or by file identity, in
+either direction).
 
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
@@ -87,6 +95,9 @@ DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[3] / "manifests" / "rele
 # hook or a shell may export them; the readers here ignore them, so git reads
 # the checkout that holds the directory it runs in.
 _GIT_LOCATION_VARIABLES = ("GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE")
+# Those, and the variable that stops git's search for a repository below a
+# checkout's root, so git fails where it should answer.
+_GIT_IGNORED_VARIABLES = (*_GIT_LOCATION_VARIABLES, "GIT_CEILING_DIRECTORIES")
 _SELECTORS_PATH = "manifests/releases"
 # The artifact files of a scope that a base comparison checks, with their suffixes.
 _BASE_FILES = (("provisions", ".jsonl"), ("inventory", ".json"), ("coverage", ".json"))
@@ -145,13 +156,14 @@ def _selector_files(releases_dir: Path) -> dict[str, Path]:
 
 
 def _git(cwd: Path, *args: str, stdin: bytes | None = None) -> subprocess.CompletedProcess[bytes]:
-    """Run git in ``cwd`` without the inherited ``GIT_*`` location variables.
+    """Run git in ``cwd`` without the inherited ``GIT_*`` location variables or
+    ``GIT_CEILING_DIRECTORIES``.
 
     The output is captured and a non-zero exit is returned, not raised. An
     ``OSError``, such as no ``git`` on ``PATH``, propagates to the caller.
     """
     environment = {
-        key: value for key, value in os.environ.items() if key not in _GIT_LOCATION_VARIABLES
+        key: value for key, value in os.environ.items() if key not in _GIT_IGNORED_VARIABLES
     }
     return subprocess.run(
         ["git", *args], cwd=cwd, env=environment, input=stdin, capture_output=True, check=False
@@ -162,17 +174,60 @@ def _stderr(result: subprocess.CompletedProcess[bytes]) -> str:
     return result.stderr.decode("utf-8", "replace").strip()
 
 
+def _refuse_selector_directory_link(releases_dir: Path) -> None:
+    """Refuse a selector directory spelled with ``..``, one that is a symlink or
+    whose parent directory is one, and one that holds a ``.git`` entry or whose
+    parent directory does.
+
+    git runs in, and the disk shows, the directory a path resolves to, and git
+    answers for the repository the nearest ``.git`` entry names, so a link or a
+    nested repository or gitfile at a checkout's ``manifests`` or
+    ``manifests/releases`` would let another checkout's HEAD, or a directory no
+    HEAD holds, answer for this one. A selectors directory directly in a git
+    working tree's root is refused by the same rule; no command line passes one.
+    Raises ``ValueError``.
+    """
+    probe = releases_dir if releases_dir.is_absolute() else Path.cwd() / releases_dir
+    if ".." in probe.parts:
+        raise ValueError(
+            f"selector directory is spelled with '..': {releases_dir}; spell it as "
+            "<checkout>/manifests/releases"
+        )
+    for place in (probe.parent, probe):
+        if place.is_symlink():
+            raise ValueError(
+                f"selector directory leads through a link: {place} -> "
+                f"{os.path.realpath(place)}; a checkout's tracked selectors are the files "
+                "its own HEAD commits under its own manifests/releases, so make "
+                f"{place.name} a directory of that checkout, not a link"
+            )
+        if os.path.lexists(place / ".git"):
+            raise ValueError(
+                f"selector directory sits at a git entry: {place / '.git'}; git there "
+                "reads the repository that entry names, so pass "
+                "<checkout>/manifests/releases, where only <checkout> holds .git"
+            )
+
+
 def _checkout_of(releases_dir: Path) -> Path | None:
     """Return the checkout whose ``manifests/releases`` ``releases_dir`` is, or None.
 
     The checkout is the git toplevel of the nearest existing directory, and
     ``releases_dir`` must be that toplevel's ``manifests/releases``, as the
     same file or the same realpath. None means "read from disk": a standalone
-    directory, even one inside a checkout, is read as given. When git cannot
-    run in what looks like a checkout's ``manifests/releases`` (a ``.git``
-    entry two levels up), this raises ``FileNotFoundError`` rather than read
-    the disk, which may hide or add selectors.
+    directory, even one inside a checkout, is read as given. It first refuses a
+    ``releases_dir`` that is a link or sits in one, is spelled with ``..``, or
+    is at a ``.git`` entry (``_refuse_selector_directory_link``). When a
+    ``.git`` entry sits two levels above ``releases_dir``, whatever the
+    directory's names, and git cannot run there or answers with a toplevel that
+    does not hold ``releases_dir`` as its ``manifests/releases`` (a
+    ``core.worktree`` setting, a bare git directory at ``manifests``, a
+    ``.git/config`` git cannot parse, or a selectors directory two levels below
+    a working tree's root that is not its ``manifests/releases``), it raises
+    ``FileNotFoundError`` rather than read the disk, which may hide or add
+    selectors.
     """
+    _refuse_selector_directory_link(releases_dir)
     probe = releases_dir if releases_dir.is_absolute() else Path.cwd() / releases_dir
     # git runs from the nearest existing directory, found as the resolver finds it.
     start = _existing_ancestor(probe)
@@ -193,9 +248,16 @@ def _checkout_of(releases_dir: Path) -> Path | None:
                     return top
             except OSError:
                 pass
+            if os.path.lexists(probe.parent.parent / ".git"):
+                raise FileNotFoundError(
+                    "selector directory is not the manifests/releases of the toplevel "
+                    f"git names ({top}), while a .git entry sits two levels up at "
+                    f"{probe.parent.parent / '.git'}: {releases_dir}; pass "
+                    "<checkout>/manifests/releases, where git answers with <checkout>"
+                )
             return None
         reason = _stderr(result)
-    if probe.parts[-2:] == ("manifests", "releases") and (probe.parent.parent / ".git").exists():
+    if os.path.lexists(probe.parent.parent / ".git"):
         raise FileNotFoundError(
             f"git cannot read the checkout at {probe.parent.parent}, so its committed "
             f"selectors cannot be listed: {reason}"
@@ -255,13 +317,18 @@ def _read_blobs(top: Path, releases_dir: Path, oids: list[str]) -> list[str]:
     return texts
 
 
+def _disk_text(path: Path) -> str:
+    """The file's text as its bytes say it; ``read_text`` would turn CRLF and CR
+    into LF, and the byte rule would then accept a file it does not reproduce."""
+    return path.read_bytes().decode("utf-8")
+
+
 def _selector_texts(releases_dir: Path) -> tuple[Path | None, dict[str, str]]:
     """Return the checkout ``releases_dir`` belongs to (or None) and its selector texts."""
     top = _checkout_of(releases_dir)
     if top is None:
         return None, {
-            name: path.read_text(encoding="utf-8")
-            for name, path in _selector_files(releases_dir).items()
+            name: _disk_text(path) for name, path in _selector_files(releases_dir).items()
         }
     entries = _head_entries(top, releases_dir, f"{_SELECTORS_PATH}/")
     if not entries:
@@ -280,7 +347,11 @@ def tracked_selector_texts(releases_dir: Path) -> dict[str, str]:
     ``ValueError``, and a HEAD that cannot be listed or holds no selector
     raises ``FileNotFoundError``. For another directory, one that is missing
     or holds no selector file raises ``FileNotFoundError``, and a ``*.json``
-    entry that is not a file raises ``ValueError``.
+    entry that is not a file raises ``ValueError``. Either raises
+    ``ValueError`` when the directory is a link or sits in one, is spelled
+    with ``..``, or is at a ``.git`` entry, and ``FileNotFoundError`` when git
+    answers with a toplevel that does not hold the directory, or cannot run
+    there, while a ``.git`` entry sits two levels above it.
     """
     return _selector_texts(releases_dir)[1]
 
@@ -290,9 +361,14 @@ def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
 
     The caller validates ``name``. For a checkout's ``manifests/releases``
     this is the file committed at HEAD, None when HEAD has no such file. For
-    any other directory it is the file on disk, None when nothing is there.
+    any other directory it is the file on disk, its line endings kept, None
+    when nothing is there.
     An entry that is not a selector file (a committed symlink or directory,
-    or on disk a directory or a dangling link) raises ``ValueError``.
+    or on disk a directory or a dangling link) raises ``ValueError``, as does
+    a directory that is a link or sits in one, is spelled with ``..``, or is
+    at a ``.git`` entry. It raises ``FileNotFoundError`` when git answers
+    with a toplevel that does not hold the directory, or cannot run there,
+    while a ``.git`` entry sits two levels above it.
     """
     top = _checkout_of(releases_dir)
     if top is None:
@@ -301,7 +377,7 @@ def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
             return None
         if not path.is_file():
             raise ValueError(f"{path} is not a selector file")
-        return path.read_text(encoding="utf-8")
+        return _disk_text(path)
     entries = _head_entries(top, releases_dir, f"{_SELECTORS_PATH}/{name}.json")
     oids = [oid for stem, oid in entries if stem == name]
     if not oids:
@@ -421,15 +497,18 @@ def compose_successor(
     ``predecessor`` itself, or a ``SuccessorError`` says so; a chained cut
     from a cut not yet committed is refused until that cut is committed. It
     raises ``FileNotFoundError`` when the directory is missing or holds no
-    selector, and ``ValueError`` when a selector entry is not a file, so a
-    copy installed outside a checkout must pass ``releases_dir`` or
-    ``tracked``. The default directory decides
-    only what it holds: when it holds the predecessor but lacks a selector the
-    destination tracks, a description that names that selector first still
-    passes, so a cut for another checkout passes that checkout's
-    ``releases_dir``. An explicit ``tracked`` replaces those names and skips
-    the predecessor check, and ``tracked=()`` checks the predecessor's own
-    name alone.
+    selector, or when git answers with a toplevel that does not hold the
+    directory, or cannot run there, while a ``.git`` entry sits two levels
+    above it, and ``ValueError`` when a selector entry is not a file, or when
+    the directory is a symlink, sits in one, is spelled with ``..``, or holds
+    a ``.git`` entry or sits in a directory that does, so a copy installed
+    outside a checkout must pass ``releases_dir`` or ``tracked``. The default
+    directory decides only what it holds: when it holds the predecessor but
+    lacks a selector the destination tracks, a description that names that
+    selector first still passes, so a cut for another checkout passes that
+    checkout's ``releases_dir``. An explicit ``tracked`` replaces those names
+    and skips the predecessor check, and ``tracked=()`` checks the
+    predecessor's own name alone.
 
     A new primary scope, one in ``add`` or a replacement, may not be a scope
     that a tracked selector marks as a base: a scope has one layer across the
@@ -639,7 +718,11 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
     a selector that does not load raises instead of being skipped. A
     directory that is missing or holds no selector raises
     ``FileNotFoundError``, since reading no selector would report no base,
-    and a selector entry that is not a file raises ``ValueError``.
+    as does one at which git answers with a toplevel that does not hold the
+    directory, or cannot run there, while a ``.git`` entry sits two levels
+    above it. A selector entry that is not a file raises ``ValueError``, as
+    does a directory that is a link or sits in one, is spelled with ``..``,
+    or is at a ``.git`` entry.
     """
     bases: set[ScopeKey] = set()
     for name, text in sorted(tracked_selector_texts(releases_dir).items()):
@@ -662,18 +745,32 @@ def checkouts_holding(
     without ``src/`` and ``.axiom/`` counts, while an unrelated git repository
     and a plain directory do not. A link holder is a checkout at whose guarded
     place (``data``, ``data/corpus``, ``data/corpus/<artifact class>`` or below)
-    ``path``, as spelled, passes a symlink. Link holders share the resolver's
-    link walk and are found by its rules: a checkout it recognises by
-    ``src/axiom_corpus`` or ``.axiom/corpus-locks`` on disk, with any inherited
-    ``GIT_*`` variables followed. Only the path as given is walked, so a
-    checkout whose own link leads to this path, and a link the resolver does
-    not recognise, are not found (the threat model's stated limits 15 and 11).
-    ``memo`` keeps physical holders by directory across calls. An ``OSError``
-    from git, such as no ``git`` on ``PATH``, propagates.
+    ``path``, as spelled, passes a directory symlink. A symlinked file that
+    stands at such a place of a checkout the resolver recognises, or that the
+    path reaches after passing a link at one, raises ``ValueError``: placed
+    corpus files are regular files, never symlinks (``docs/corpus-storage.md``),
+    and the walk stops there, so a checkout further along the link would not
+    be found. A file link at a checkout the resolver does not recognise counts
+    as no link and is followed (the threat model's stated limit 11). Link
+    holders share the resolver's link walk and are found by its rules: a
+    checkout it recognises by ``src/axiom_corpus`` or ``.axiom/corpus-locks``
+    on disk, with any inherited ``GIT_*`` variables followed. Only the path
+    as given is walked, so a checkout whose own link leads to this path, and
+    a link the resolver does not recognise, are not found (the threat model's
+    stated limits 15 and 11). ``memo`` keeps physical holders by directory
+    across calls. An ``OSError`` from git, such as no ``git`` on ``PATH``,
+    propagates.
     """
     spelled = path if path.is_absolute() else Path.cwd() / path
     physical = Path(os.path.realpath(spelled))
-    places, _ = _standing_places(spelled, physical, None)
+    spellings: list[Path] = []
+    places, stands_as_file = _standing_places(spelled, physical, None, spellings=spellings)
+    if stands_as_file:
+        raise ValueError(
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{spelled} (the link is {spellings[-1]}); corpus files are placed as regular "
+            "files, never symlinks"
+        )
     return frozenset(checkout for checkout, _ in places), _physical_holder(physical, memo)
 
 
@@ -720,16 +817,26 @@ def guard_scope_artifacts(
        kind or ``ingest-manifests``, jurisdiction, document class and version
        file or directory) differ from its own: a symlink or a directory alias
        makes it another scope's artifact;
-    2. when a path passes a link at a checkout's guarded place and resolves
+    2. when a path, among ``paths`` or ``holders_of``, leads through a
+       symlinked file at or below a guarded place of a checkout the resolver
+       recognises (raised by ``checkouts_holding``);
+    3. when a path passes a link at a checkout's guarded place and resolves
        into no checkout: no inventory can say what that directory holds, so
        to share a corpus kept elsewhere, make that directory part of an
        axiom-corpus checkout;
-    3. when a rewritten file has more than one link (a hard link).
+    4. when a rewritten file has more than one link (a hard link).
 
     It returns the ``manifests/releases`` of each checkout that
     ``checkouts_holding`` finds for ``paths`` and for each path in
     ``holders_of`` (such as the working directory or a selector file),
-    de-duplicated by realpath and sorted, leaving out ``releases_dir``.
+    de-duplicated by realpath and sorted, leaving out ``releases_dir``. It
+    first refuses ``releases_dir`` and each holder's ``manifests/releases``
+    when either it or its parent directory is a symlink or holds a ``.git``
+    entry, so a holder whose selectors directory links to another checkout's,
+    or holds a nested repository or a gitfile, is refused, not dropped as a
+    duplicate or read at another repository's HEAD. A holder is found by the
+    toplevel git names for the path, so with a ``core.worktree`` setting it is
+    the directory git names (the threat model's stated limit 11).
     Link holders are found by the resolver's rules and the physical holder by
     HEAD; only the paths as given are walked, so a checkout whose own link
     leads into these paths, and a link the resolver does not recognise, are
@@ -769,10 +876,12 @@ def guard_scope_artifacts(
         holders.extend(links)
         if physical_holder is not None:
             holders.append(physical_holder)
+    _refuse_selector_directory_link(releases_dir)
     seen = {os.path.realpath(releases_dir)}
     inventories: list[Path] = []
     for checkout in holders:
         inventory = checkout / "manifests" / "releases"
+        _refuse_selector_directory_link(inventory)
         real = os.path.realpath(inventory)
         if real in seen:
             continue
@@ -807,6 +916,30 @@ def _within(real: str, directory: str) -> bool:
     return real == directory or real.startswith(directory.rstrip(os.sep) + os.sep)
 
 
+def _ancestry(real: str) -> list[os.stat_result]:
+    """The status of ``real`` and of each existing ancestor, nearest first."""
+    statuses: list[os.stat_result] = []
+    for place in (Path(real), *Path(real).parents):
+        try:
+            statuses.append(os.stat(place))
+        except OSError:
+            continue
+    return statuses
+
+
+def _holds(
+    directory: tuple[Path, str, os.stat_result | None],
+    real: str,
+    ancestry: list[os.stat_result],
+) -> bool:
+    """``directory`` is ``real`` or an ancestor of it, by realpath or by file identity."""
+    _, directory_real, directory_status = directory
+    return _within(real, directory_real) or (
+        directory_status is not None
+        and any(os.path.samestat(directory_status, status) for status in ancestry)
+    )
+
+
 def refuse_links_into_bases(
     *,
     corpus: Path,
@@ -829,16 +962,20 @@ def refuse_links_into_bases(
     ``moved`` are the directories it moves; ``ingest_manifests`` is the
     directory of ingest manifests whose files it unlinks, or None. A base's
     file matches a rewritten file when their realpaths are equal or both
-    exist with one status, and a moved directory when its realpath equals or
-    lies under the directory's. With ``moved`` given, a base's sources
-    directory matches a moved directory when its realpath equals, lies under
-    or contains the directory's, or both exist with one status; otherwise each
-    symlink below it is compared with every moved directory (equal or under)
-    and every rewritten file (equal). The first match raises ``ValueError``
-    naming the caller's path, the base and the artifact. It opens no file.
+    exist with one status, and a moved directory when the directory holds it.
+    A directory holds a path when the path's realpath equals or lies under
+    the directory's, or when the directory, as it exists, is the same entry as
+    the path or one of the path's existing ancestors, so a case alias or a
+    firmlink spelling counts. With ``moved`` given, a base's sources
+    directory, and each symlink below it, matches a moved directory when
+    either holds the other, and a rewritten file when it holds that file. A
+    symlink below a base's sources that cannot be followed, one that loops or
+    passes through a file, raises ``ValueError``. The first match raises
+    ``ValueError`` naming the caller's path, the base and the artifact. It
+    opens no file.
     """
-    rewritten_targets = [_link_target(path) for path in rewritten]
-    moved_targets = [_link_target(path) for path in moved]
+    rewritten_targets = [(target, _ancestry(target[1])) for target in map(_link_target, rewritten)]
+    moved_targets = [(target, _ancestry(target[1])) for target in map(_link_target, moved)]
     for key in sorted(set(bases)):
         jurisdiction, document_class, version = key
         files = [
@@ -854,46 +991,55 @@ def refuse_links_into_bases(
             )
         for artifact, base_path in files:
             _, real, status = _link_target(base_path)
-            for target in rewritten_targets:
+            for target, _target_ancestry in rewritten_targets:
                 if _same_entry(real, status, target):
                     raise ValueError(
                         f"{target[0]} is also {_label(key)}'s {artifact} through a link"
                     )
-            for target in moved_targets:
-                if _within(real, target[1]):
-                    raise ValueError(
-                        f"{target[0]} is also {_label(key)}'s {artifact} through a link"
-                    )
+            if moved_targets:
+                ancestry = _ancestry(real)
+                for target, _target_ancestry in moved_targets:
+                    if _holds(target, real, ancestry):
+                        raise ValueError(
+                            f"{target[0]} is also {_label(key)}'s {artifact} through a link"
+                        )
         if not moved_targets:
             continue
         sources = corpus / "sources" / jurisdiction / document_class / version
-        _, sources_real, sources_status = _link_target(sources)
-        for target in moved_targets:
-            if (
-                _within(sources_real, target[1])
-                or _within(target[1], sources_real)
-                or (
-                    sources_status is not None
-                    and target[2] is not None
-                    and os.path.samestat(sources_status, target[2])
-                )
+        sources_target = _link_target(sources)
+        sources_ancestry = _ancestry(sources_target[1])
+        for target, target_ancestry in moved_targets:
+            if _holds(target, sources_target[1], sources_ancestry) or _holds(
+                sources_target, target[1], target_ancestry
             ):
+                raise ValueError(f"{target[0]} is also {_label(key)}'s sources through a link")
+        for target, target_ancestry in rewritten_targets:
+            if _holds(sources_target, target[1], target_ancestry):
                 raise ValueError(f"{target[0]} is also {_label(key)}'s sources through a link")
         if not os.path.isdir(sources):
             continue
         for root, directories, filenames in os.walk(sources, followlinks=False):
-            for entry in (*directories, *filenames):
-                path = os.path.join(root, entry)
+            for name in (*directories, *filenames):
+                path = os.path.join(root, name)
                 if not os.path.islink(path):
                     continue
-                entry_real = os.path.realpath(path)
-                for target in moved_targets:
-                    if _within(entry_real, target[1]):
+                try:
+                    entry = _link_target(Path(path))
+                except OSError as exc:
+                    raise ValueError(
+                        f"{path} is a link below {_label(key)}'s sources that cannot be "
+                        f"followed ({exc.strerror}); a base's sources hold no such link"
+                    ) from None
+                entry_ancestry = _ancestry(entry[1])
+                for target, target_ancestry in moved_targets:
+                    if _holds(target, entry[1], entry_ancestry) or _holds(
+                        entry, target[1], target_ancestry
+                    ):
                         raise ValueError(
                             f"{target[0]} is also {_label(key)}'s sources through a link"
                         )
-                for target in rewritten_targets:
-                    if entry_real == target[1]:
+                for target, target_ancestry in rewritten_targets:
+                    if _holds(entry, target[1], target_ancestry):
                         raise ValueError(
                             f"{target[0]} is also {_label(key)}'s sources through a link"
                         )

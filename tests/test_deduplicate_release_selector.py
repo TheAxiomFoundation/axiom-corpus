@@ -587,6 +587,21 @@ def _exactly(text: str) -> str:
     return "^" + re.escape(text) + "$"
 
 
+def _swap_for_link(path: Path, target: Path) -> None:
+    """Replace the directory ``path`` with a symlink to ``target``."""
+    shutil.rmtree(path)
+    path.symlink_to(target, target_is_directory=True)
+
+
+def _toplevel_refusal(top: Path, checkout: Path) -> str:
+    return (
+        r"^selector directory is not the manifests/releases of the toplevel git names \("
+        + re.escape(str(top))
+        + r"\), while a \.git entry sits two levels up at "
+        + re.escape(str(checkout / ".git"))
+    )
+
+
 @pytest.mark.parametrize(
     "case",
     [
@@ -606,6 +621,14 @@ def _exactly(text: str) -> str:
         "coverage-only-hard-link",
         "tracked-base-links-to-cut-primary",
         "linked-holders-base-links-to-cut-primary",
+        "holder-releases-link",
+        "holder-manifests-link",
+        "holder-nested-repo-at-manifests",
+        "holder-nested-repo-at-releases",
+        "holder-gitfile-at-manifests",
+        "releases-dir-core-worktree-redirect",
+        "file-chain",
+        "file-into-linked-corpus",
     ],
 )
 def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
@@ -617,6 +640,7 @@ def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
     # The draft selects base as a primary scope unless the case says otherwise.
     target_versions = ["canonical", "base"]
     target_bases: tuple[str, ...] = ()
+    error: type[Exception] = ValueError
     if case == "corpus-link":
         a = _checkout(make_checkout, "a")
         b = _checkout(make_checkout, "b", marks_base=True)
@@ -768,6 +792,98 @@ def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
             f"{_scope_files(corpus, 'added')[2]} is also us-example/statute/base's coverage "
             "through a link"
         )
+    elif case in ("holder-releases-link", "holder-manifests-link"):
+        # B physically holds the corpus, spelled through A's link, and marks base;
+        # B's selector directory leads to the one releases_dir names.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        _write_scopes(b / "data" / "corpus")
+        _link(a / "data" / "corpus", b / "data" / "corpus")
+        if case == "holder-releases-link":
+            link = _releases(b)
+            _swap_for_link(link, _releases(a))
+            releases = _releases(a)
+        else:
+            third = _checkout(make_checkout, "third")
+            link = b / "manifests"
+            _swap_for_link(link, third / "manifests")
+            releases = _releases(third)
+        _clear_resolver_cache()
+        corpus = a / "data" / "corpus"
+        expected = "^" + re.escape(f"selector directory leads through a link: {link} -> ")
+    elif case in (
+        "holder-nested-repo-at-manifests",
+        "holder-nested-repo-at-releases",
+        "holder-gitfile-at-manifests",
+    ):
+        # B physically holds the corpus and commits a selector marking base; on
+        # disk its selector is hidden beside a plain one, and another git
+        # repository's entry sits at its manifests or manifests/releases.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        other = _checkout(make_checkout, "other")
+        _write_scopes(b / "data" / "corpus")
+        _link(a / "data" / "corpus", b / "data" / "corpus")
+        if case == "holder-nested-repo-at-releases":
+            fixture_git(b, "update-index", "--skip-worktree", "manifests/releases/b-selector.json")
+            (_releases(b) / "b-selector.json").unlink()
+            fixture_git(_releases(b), "init", "-q")
+            entry = _releases(b) / ".git"
+        else:
+            fixture_git(b, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+            _releases(b).mkdir(parents=True)
+            entry = b / "manifests" / ".git"
+            if case == "holder-nested-repo-at-manifests":
+                fixture_git(b / "manifests", "init", "-q")
+            else:
+                entry.write_text(f"gitdir: {other / '.git'}\n")
+        _write_json(_releases(b) / "plain.json", _selector_payload("plain", marks_base=False))
+        _clear_resolver_cache()
+        corpus, releases = a / "data" / "corpus", _releases(a)
+        expected = "^" + re.escape(f"selector directory sits at a git entry: {entry};")
+    elif case == "releases-dir-core-worktree-redirect":
+        # B commits a selector marking base, hidden beside a plain one, and its
+        # core.worktree names another repository.
+        b = _checkout(make_checkout, "b", marks_base=True)
+        other = _checkout(make_checkout, "other")
+        _write_scopes(b / "data" / "corpus")
+        fixture_git(b, "update-index", "--skip-worktree", "manifests/releases/b-selector.json")
+        (_releases(b) / "b-selector.json").unlink()
+        _write_json(_releases(b) / "plain.json", _selector_payload("plain", marks_base=False))
+        fixture_git(b, "config", "core.worktree", str(other))
+        _clear_resolver_cache()
+        corpus, releases = b / "data" / "corpus", _releases(b)
+        error = FileNotFoundError
+        expected = _toplevel_refusal(other, b)
+    elif case in ("file-chain", "file-into-linked-corpus"):
+        # Only B marks base. A's base files are links to B's spelled paths, which
+        # lead on to C's files: through B's links, or through B's corpus link.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        c = _checkout(make_checkout, "c")
+        a_corpus, b_corpus, c_corpus = (x / "data" / "corpus" for x in (a, b, c))
+        _write_scopes(a_corpus)
+        _write_scopes(c_corpus)
+        if case == "file-chain":
+            _write_scopes(b_corpus)
+            for b_file, c_file in zip(
+                _scope_files(b_corpus, "base"), _scope_files(c_corpus, "base"), strict=True
+            ):
+                _relink(b_file, c_file)
+        else:
+            _link(b_corpus, c_corpus)
+        for a_file, b_file in zip(
+            _scope_files(a_corpus, "base"), _scope_files(b_corpus, "base"), strict=True
+        ):
+            _relink(a_file, b_file)
+        _clear_resolver_cache()
+        corpus, releases = a_corpus, _releases(a)
+        link = _scope_files(a_corpus, "base")[0]
+        expected = _exactly(
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{link} (the link is {link}); corpus files are placed as regular files, "
+            "never symlinks"
+        )
     if target_versions:
         _write_selector(target, target_versions, bases=target_bases)
     before = _bytes_under(tmp_path)
@@ -779,7 +895,7 @@ def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
         return read_text(self, *args, **kwargs)
 
     monkeypatch.setattr(Path, "read_text", recording_read_text)
-    with pytest.raises(ValueError, match=expected):
+    with pytest.raises(error, match=expected):
         deduplicate(corpus, canonical, target, apply=True, releases_dir=releases)
     monkeypatch.undo()
 
@@ -890,3 +1006,56 @@ def test_the_cli_refuses_a_base_the_main_checkout_tracks_through_a_linked_worktr
     assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
     assert _bytes_under(tmp_path) == before
     assert _provision_paths(m / "data" / "corpus", "base") == [X, Y]
+
+
+def test_the_cli_refuses_a_corpus_checkout_whose_manifests_is_a_link(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout
+) -> None:
+    a = _checkout(make_checkout, "a", marks_base=True)
+    b = _checkout(make_checkout, "b")
+    corpus = a / "data" / "corpus"
+    _write_scopes(corpus)
+    # A's HEAD marks base; on disk its manifests leads to B's, which marks nothing.
+    fixture_git(a, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    _link(a / "manifests", b / "manifests")
+    _clear_resolver_cache()
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "base"])
+    before = _bytes_under(tmp_path)
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(sys, "argv", _cli_argv(corpus, canonical, target))
+
+    with pytest.raises(ValueError) as raised:
+        dedup_module.main()
+
+    assert str(raised.value).startswith(
+        f"selector directory leads through a link: {a / 'manifests'} -> "
+    )
+    assert _bytes_under(tmp_path) == before
+    assert _provision_paths(corpus, "base") == [X, Y]
+
+
+def test_the_cli_reads_head_under_a_ceiling_at_manifests(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout
+) -> None:
+    a = _checkout(make_checkout, "a", marks_base=True)
+    corpus = a / "data" / "corpus"
+    _write_scopes(corpus)
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "base"])
+    before = _bytes_under(tmp_path)
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(sys, "argv", _cli_argv(corpus, canonical, target))
+    # Exported after every fixture git command; git would stop its search at A's manifests.
+    monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(a / "manifests"))
+
+    with pytest.raises(ValueError) as raised:
+        dedup_module.main()
+
+    assert str(raised.value) == TRACKED_BASE_REFUSAL.format(target=target)
+    assert _bytes_under(tmp_path) == before
+    assert _provision_paths(corpus, "base") == [X, Y]

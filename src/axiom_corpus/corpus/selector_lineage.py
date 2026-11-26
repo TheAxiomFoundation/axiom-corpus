@@ -511,7 +511,7 @@ def _require_base_replacement(
 ) -> None:
     """Refuse a base replacement record the baseline file could not hold.
 
-    It runs the record's fields through the loader's field helpers, then checks its key,
+    It runs all seven fields through the loader's field helpers, then checks its key,
     pair and replaced base, and, when ``pins`` is given, refuses an endpoint with no entry
     there, as the loader does.
     """
@@ -532,6 +532,8 @@ def _require_base_replacement(
             f"{where}.replaced_by must be a (jurisdiction, document_class, version) tuple "
             f"of strings, not {replaced_by!r}"
         )
+    _iso_date(replacement.listed_on, f"{where}.listed_on")
+    _text(replacement.reason, f"{where}.reason")
     if key != (replacement.selector, replacement.pair):
         raise SelectorLineageError(
             f"{where}: keyed by {key!r}; a base replacement is keyed by its own selector and pair"

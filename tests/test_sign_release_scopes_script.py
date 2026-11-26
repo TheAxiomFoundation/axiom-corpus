@@ -248,10 +248,12 @@ def _default_signals() -> None:
         signal.signal(signum, signal.SIG_DFL)
 
 
-def _run(repo: Path, predecessor: str = PREDECESSOR) -> subprocess.CompletedProcess[str]:
+def _run(
+    repo: Path, predecessor: str = PREDECESSOR, *, draft: str = DRAFT
+) -> subprocess.CompletedProcess[str]:
     # In a session of its own, a simulated Ctrl-C reaches the script, never pytest.
     return subprocess.run(
-        ["bash", str(SCRIPT), DRAFT, predecessor],
+        ["bash", str(SCRIPT), draft, predecessor],
         cwd=repo,
         capture_output=True,
         text=True,
@@ -1841,6 +1843,71 @@ def test_stops_with_one_line_on_a_predecessor_that_is_not_an_object(repo: Path) 
     assert _uv_calls() == []
 
 
+# An untracked file passed in place of the draft or the predecessor.
+SELECTOR_FILE = "docs/ingest-runs/selector-file.json"
+NOT_A_NAMED_OBJECT = "{path} is not a JSON object with a name; a selector is one"
+_NAMED_DRAFT = _draft_with()
+# case: the argument the file is passed as, and what is at its path: bytes, a directory
+# ("directory") or nothing (None)
+UNREADABLE_SELECTOR_FILES: dict[str, tuple[str, bytes | str | None]] = {
+    "predecessor-missing": ("predecessor", None),
+    "predecessor-directory": ("predecessor", "directory"),
+    "predecessor-not-json": ("predecessor", b"not json\n"),
+    "predecessor-not-utf8": ("predecessor", b'\xff{"name": "test-rel-1"}\n'),
+    "draft-missing": ("draft", None),
+    "draft-directory": ("draft", "directory"),
+    "draft-not-json": ("draft", b"not json\n"),
+    "draft-array": ("draft", json.dumps([_NAMED_DRAFT]).encode()),
+    "draft-without-name": (
+        "draft",
+        json.dumps({k: v for k, v in _NAMED_DRAFT.items() if k != "name"}).encode(),
+    ),
+    "draft-name-not-a-string": ("draft", json.dumps({**_NAMED_DRAFT, "name": 2}).encode()),
+    "draft-name-empty": ("draft", json.dumps({**_NAMED_DRAFT, "name": ""}).encode()),
+}
+
+
+@pytest.mark.parametrize("case", UNREADABLE_SELECTOR_FILES)
+def test_stops_with_one_line_when_a_selector_file_cannot_be_read(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    """A selector file not readable as JSON, or a draft with no string name, gets one line.
+
+    The draft's name is read first, so the draft rows stop there; the predecessor rows stop
+    where the project environment loads both selectors. Each stops before step 1.
+    """
+    argument, content = UNREADABLE_SELECTOR_FILES[case]
+    start = _cut_release_branch(repo)
+    path = repo / SELECTOR_FILE
+    if content == "directory":
+        path.mkdir()
+    elif isinstance(content, bytes):
+        path.write_bytes(content)
+    monkeypatch.chdir(repo)  # the script reads the file by the path it was given
+    if case in ("draft-array", "draft-without-name", "draft-name-not-a-string", "draft-name-empty"):
+        line = NOT_A_NAMED_OBJECT.format(path=SELECTOR_FILE)
+    else:  # the reader's own error, as the script reads the file
+        with pytest.raises((OSError, ValueError)) as error:
+            with open(SELECTOR_FILE, encoding="utf-8") as handle:
+                json.load(handle)
+        line = f"cannot read {SELECTOR_FILE} as JSON: {error.value}"
+
+    draft, predecessor = (DRAFT, SELECTOR_FILE)
+    if argument == "draft":
+        draft, predecessor = (SELECTOR_FILE, PREDECESSOR)
+
+    result = _run(repo, predecessor, draft=draft)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == line + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
 def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
     """A base carried as it is is not unreleased: the run commits and signs none of it.
 
@@ -2016,6 +2083,157 @@ def test_stops_with_one_line_when_the_tracked_selectors_cannot_be_read(repo: Pat
     assert _git(repo, "diff", "--cached", "--name-only") == ""
     _assert_resumable(repo)
     assert _uv_calls() == []
+
+
+# A manifests or manifests/releases through which git would read another repository
+# stops the run with one line; a ceiling at manifests does not stop git there.
+PREDECESSOR_COPY = "docs/ingest-runs/test-rel-1.json"
+UNREADABLE = "cannot read the tracked selectors at HEAD: "
+
+
+def _copy_the_predecessor(repo: Path) -> str:
+    """Commit a byte copy of the predecessor outside manifests/ and return its path."""
+    (repo / PREDECESSOR_COPY).write_bytes((repo / PREDECESSOR).read_bytes())
+    _git(repo, "add", PREDECESSOR_COPY)
+    _git(repo, "commit", "-qm", "Copy the predecessor outside manifests")
+    return PREDECESSOR_COPY
+
+
+def _other_repository(tmp_path: Path) -> Path:
+    """A committed repository on main whose selectors have other names."""
+    other = tmp_path / "other"
+    other.mkdir()
+    _git(other, "init", "-q", "-b", "main")
+    _write_json(other / "manifests/releases/other-rel.json", _selector("other-rel", [RELEASED]))
+    _git(other, "add", "manifests")
+    _git(other, "commit", "-qm", "Other selectors")
+    return other
+
+
+def _track_a_base_the_draft_selects_as_primary(repo: Path) -> None:
+    """The layout of the tracked-base test: test-rel-0 marks BASE, the draft selects it."""
+    predecessor, draft = TRACKED_BASE_REFUSALS["predecessor-lacks-the-base"]
+    for path in EARLIER:
+        earlier = _layered_selector(Path(path).stem, [(BASE, "base"), (RELEASED, None)])
+        _write_json(repo / path, earlier)
+    _git(repo, "add", *EARLIER)  # committed with the two selectors below
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+
+
+def _assert_stopped_with_one_line(
+    repo: Path, result: subprocess.CompletedProcess[str], start: str, line: str
+) -> None:
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr.startswith(line)
+    assert result.stderr.count("\n") == 1
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    assert _uv_calls() == []
+
+
+def test_stops_with_one_line_when_manifests_is_a_link(repo: Path, tmp_path: Path) -> None:
+    """A manifests link to another repository's would make git read that repository's HEAD.
+
+    The sparse pattern hides the checkout's own manifests/, so the tracked tree stays
+    clean beside the link.
+    """
+    predecessor = _copy_the_predecessor(repo)
+    other = _other_repository(tmp_path)
+    start = _cut_release_branch(repo)
+    _git(repo, "config", "sparse.expectFilesOutsideOfPatterns", "true")
+    _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    (repo / "manifests").symlink_to(other / "manifests", target_is_directory=True)
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo, predecessor)
+
+    _assert_stopped_with_one_line(
+        repo, result, start, UNREADABLE + "selector directory leads through a link: "
+    )
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "nested-repo-at-manifests",
+        "nested-repo-at-releases",
+        "gitfile-at-manifests",
+        "ceiling-at-manifests",
+        "core-worktree-redirect",
+    ],
+)
+def test_stops_with_one_line_when_git_would_read_another_repository(
+    repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    """Another repository's git entry at manifests stops the run with one line.
+
+    Under a ceiling at manifests the run reads HEAD and stops at the tracked base, and
+    under a core.worktree setting it moves to the directory git names, as the threat
+    model's Terms say, and stops there.
+    """
+    if layout == "ceiling-at-manifests":
+        _track_a_base_the_draft_selects_as_primary(repo)
+    predecessor = _copy_the_predecessor(repo)
+    other = _other_repository(tmp_path)
+    start = _cut_release_branch(repo)
+    checked = repo
+    if layout == "nested-repo-at-manifests":
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        _git(repo, "init", "-q", "manifests")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "nested-repo-at-releases":
+        _git(repo, "init", "-q", "manifests/releases")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "gitfile-at-manifests":
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        (repo / "manifests").mkdir()
+        (repo / "manifests" / ".git").write_text(f"gitdir: {other / '.git'}\n")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "ceiling-at-manifests":
+        # Exported after every fixture git command; the reader drops it, so HEAD is read.
+        monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(repo / "manifests"))
+        line = TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    else:
+        assert layout == "core-worktree-redirect"
+        assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+        _git(repo, "config", "core.worktree", str(other))
+        # The script moves to the toplevel git names, the other repository, whose own
+        # tracked tree is clean; there it is on main.
+        checked = other
+        line = "on main; cut a release branch from main first\n"
+    other_head = _git(other, "rev-parse", "HEAD")
+    assert _git(checked, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo, predecessor)
+
+    _assert_stopped_with_one_line(repo, result, start, line)
+    assert _git(other, "rev-parse", "HEAD") == other_head
+    assert _git(other, "diff", "--cached", "--name-only") == ""
+
+
+def test_reads_head_in_a_linked_worktree_whose_manifests_are_sparse_excluded(
+    repo: Path, tmp_path: Path
+) -> None:
+    """A linked worktree that hides manifests/ still has its HEAD's selectors read."""
+    _track_a_base_the_draft_selects_as_primary(repo)
+    _set_main_refs(repo, "origin-main")
+    worktree = tmp_path / "worktree"
+    _git(repo, "worktree", "add", "-q", "-b", "release", str(worktree))
+    _git(worktree, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    assert not (worktree / "manifests").exists()
+    predecessor = "docs/ingest-runs/predecessor-copy.json"  # untracked
+    (worktree / predecessor).write_bytes((repo / PREDECESSOR).read_bytes())
+    start = _git(worktree, "rev-parse", "HEAD")
+    assert _git(worktree, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(worktree, predecessor)
+
+    _assert_stopped_with_one_line(
+        worktree, result, start, TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    )
 
 
 NAMED_ONLY = (
@@ -2215,6 +2433,33 @@ def test_cuts_when_the_predecessor_is_the_one_the_draft_names(repo: Path, case: 
     _assert_cut(repo, result, start)
     if case == "predecessor-cut-on-the-branch-without-main":
         assert "neither origin/main nor main shares history with HEAD;" in result.stdout
+
+
+@pytest.mark.parametrize(
+    "description", [[DRAFT_DESCRIPTION], 20261117], ids=["list-naming-test-rel-1", "number"]
+)
+def test_reads_a_non_string_description_as_the_parser_does(repo: Path, description: object) -> None:
+    """A description that is not a string is read as its text, as the selector parser reads it.
+
+    The CI lineage guard takes the predecessor from that text, so the list, whose text
+    names test-rel-1 first, cuts the selector as the usual run does. The number names no
+    tracked selector.
+    """
+    _commit_selectors(repo, {DRAFT: _draft_with(description=description)}, "Draft a description")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    if isinstance(description, list):
+        _assert_cut(repo, result, start)
+        return
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == UNNAMED.format(draft=DRAFT) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
 
 
 # Step 2's plan, in the script's own words, run as the script runs it.
