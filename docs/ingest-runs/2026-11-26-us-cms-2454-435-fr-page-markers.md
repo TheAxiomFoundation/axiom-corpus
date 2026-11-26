@@ -84,12 +84,13 @@ four-space indent. Only line breaks are removed or turned into spaces. The funct
 body outside the rule with a `ValueError`:
 
 - a marker that is not alone on its line between blank lines;
-- a tab, or an indent other than 0 or 4 spaces;
+- a tab, a non-LF line separator, or an indent other than 0 or 4 spaces;
 - a blank line anywhere but after the heading, or an indented heading line;
 - a first paragraph at column 0, such as an amendatory `* * * * *` slice;
 - an ordinary wrap whose line ends in neither a space nor a hyphen;
-- a page break right after a dash (`--`). The raw text drops the space before a page break, so
-  whether a space followed the dash cannot be known. None of the 14 rows has one.
+- a page break between a line ending in a dash (`--`) and a column-0 continuation. The raw
+  text drops the space before a page break, so whether a space followed the dash cannot be
+  known. None of the 14 rows has that junction.
 
 The extractor itself is unchanged: `extract_federal_register_cfr_sections` still writes verbatim
 slices, so every existing scope reproduces as before. Wiring the normaliser into the extractor
@@ -177,24 +178,23 @@ The successor bodies have no `[[Page` and no line that starts at column 0 with `
 
 ## Text identity with eCFR
 
-The build checks every body against its section's eCFR XML and fails on any difference. The
-check uses the d2932 comparison: section signs become `Sec.`, em dashes `--`, en dashes `-`,
-curly quotes the Federal Register's ``` `` ```, `''` and `'`, and whitespace collapses. It
-compares heading plus paragraphs (`HEAD`, `P`; the `CITA` note is left out), and it requires the
-body's non-blank lines to equal them one for one. All 14 sections are identical, line for
-paragraph:
+The build checks every body against its section's eCFR XML. For the comparison, it folds
+section signs to `Sec.` and `Sec. Sec.`, em dashes to `--`, GPO opening backtick pairs to
+`“`, and GPO closing apostrophe pairs to `”`. It also collapses whitespace. It compares the
+heading (`HEAD`) and paragraphs (`P`) and skips the citation note (`CITA`). The body's
+nonblank lines match one for one in all 14 sections.
 
 | Section | Compared chars | Lines = eCFR heading + paragraphs |
 | --- | ---: | ---: |
 | 435.550 | 205 | 2 |
 | 435.551 | 719 | 8 |
-| 435.552 | 9,260 | 48 |
+| 435.552 | 9,258 | 48 |
 | 435.553 | 758 | 8 |
-| 435.554 | 8,490 | 39 |
-| 435.555 | 7,884 | 42 |
+| 435.554 | 8,486 | 39 |
+| 435.555 | 7,882 | 42 |
 | 435.556 | 3,321 | 12 |
 | 435.557 | 19,292 | 53 |
-| 435.558 | 8,919 | 41 |
+| 435.558 | 8,917 | 41 |
 | 435.559 | 927 | 4 |
 | 435.560 | 3,191 | 19 |
 | 435.561 | 5,471 | 43 |

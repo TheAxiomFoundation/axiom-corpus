@@ -761,13 +761,21 @@ def _strip_federal_register_tail(body: str) -> str:
 
 FEDERAL_REGISTER_PAGE_MARKER = re.compile(r"\[\[Page \d+\]\]")
 FEDERAL_REGISTER_PARAGRAPH_INDENT = "    "
+_NON_LF_LINE_SEPARATOR = re.compile(r"[\r\v\f\x1c-\x1e\x85\u2028\u2029]")
+
+
+def _reject_non_lf_line_separators(body: str) -> None:
+    """Reject line boundaries that splitlines() recognizes in addition to LF."""
+    match = _NON_LF_LINE_SEPARATOR.search(body)
+    if match:
+        raise ValueError(f"body contains a non-LF line separator: {match[0]!r}")
 
 
 def comparison_text(text: str) -> str:
-    """Fold section signs, dashes, quotes and whitespace for FR and eCFR comparison."""
+    """Fold section signs, em dashes, paired GPO double quotes and whitespace."""
     text = text.replace("§§", "Sec. Sec.").replace("§", "Sec.")
-    text = text.replace("—", "--").replace("–", "-")
-    text = text.replace("“", "``").replace("”", "''").replace("’", "'").replace("‘", "`")
+    text = text.replace("—", "--")
+    text = text.replace("``", "“").replace("''", "”")
     return re.sub(r"\s+", " ", text).strip()
 
 
@@ -775,6 +783,7 @@ def check_federal_register_cfr_paragraphs(
     body: str, expected_ecfr_paragraphs: Sequence[str]
 ) -> None:
     """Require each nonblank body line to match the eCFR heading or paragraph in order."""
+    _reject_non_lf_line_separators(body)
     lines = [comparison_text(line) for line in body.split("\n") if line.strip()]
     paragraphs = [comparison_text(paragraph) for paragraph in expected_ecfr_paragraphs]
     if lines != paragraphs:
@@ -796,13 +805,14 @@ def normalize_federal_register_cfr_section_body(
 
     The expected eCFR paragraphs include the heading first, followed by the
     paragraphs in document order. The output must match them line for paragraph
-    after folding section signs, dashes, quotes and whitespace, or this raises
-    :class:`ValueError`. The folding applies only to the comparison.
+    after folding section signs, em dashes, paired GPO double quotes and
+    whitespace, or this raises :class:`ValueError`. The folding applies only to
+    the comparison.
 
     The input starts with a ``Sec.`` heading at column 0, which may wrap, and
     one blank line before the first paragraph. Paragraphs start with four
-    spaces and continuations start at column 0. Tabs, whitespace-only lines
-    and unsupported indents raise :class:`ValueError`.
+    spaces and continuations start at column 0. Tabs, whitespace-only lines,
+    unsupported indents and non-LF line separators raise :class:`ValueError`.
 
     Each ``[[Page N]]`` marker must be alone between blank lines, with only
     the leading blank line required at the end of the body. Drop the marker
@@ -814,6 +824,7 @@ def normalize_federal_register_cfr_section_body(
     Register typography and spacing apart from these edits.
     """
 
+    _reject_non_lf_line_separators(body)
     lines = body.split("\n")
     kept: list[str] = []
     after_marker: set[int] = set()

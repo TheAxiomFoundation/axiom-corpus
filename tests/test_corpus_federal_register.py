@@ -11,6 +11,7 @@ from hypothesis import strategies as st
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.federal_register import (
     FederalRegisterCfrSectionRef,
+    check_federal_register_cfr_paragraphs,
     extract_federal_register,
     extract_federal_register_cfr_sections,
     normalize_federal_register_cfr_section_body,
@@ -393,6 +394,58 @@ def test_normalizer_drops_page_markers_and_joins_continuation_lines():
 def test_normalizer_is_idempotent():
     once = normalize_federal_register_cfr_section_body(_FR_SECTION, _EXPECTED_ECFR_PARAGRAPHS)
     assert normalize_federal_register_cfr_section_body(once, _EXPECTED_ECFR_PARAGRAPHS) == once
+
+
+@pytest.mark.parametrize(
+    "separator", ["\r", "\x0b", "\x0c", "\x1c", "\x1d", "\x1e", "\x85", "\u2028", "\u2029"]
+)
+def test_non_lf_line_separators_are_rejected_before_and_after_normalization(separator):
+    body = f"Sec.  1.1  H.\n\n    (a) First.{separator}(b) Second."
+    paragraphs = ("§ 1.1 H.", "(a) First. (b) Second.")
+    with pytest.raises(ValueError, match="non-LF line separator"):
+        normalize_federal_register_cfr_section_body(body, paragraphs)
+    with pytest.raises(ValueError, match="non-LF line separator"):
+        check_federal_register_cfr_paragraphs(body, paragraphs)
+
+
+def test_normalizer_accepts_gpo_double_quotes_without_changing_them():
+    body = "Sec.  1.1  H.\n\n    Use code ``A-B''."
+    paragraphs = ("§ 1.1 H.", "Use code “A-B”.")
+    assert normalize_federal_register_cfr_section_body(body, paragraphs) == body
+
+
+@pytest.mark.parametrize(
+    ("raw_paragraph", "ecfr_paragraph"),
+    [
+        ("Use ‘‘this’’ label.", "Use “this” label."),
+        ("Use code ``A-B''.", "Use code “A–B”."),
+        ("Use code ’.", "Use code ”."),
+        ("Use code '.", "Use code ”."),
+        ("Use code ‘.", "Use code “."),
+        ("Use code `.", "Use code “."),
+    ],
+    ids=[
+        "paired-curly-single-quotes",
+        "hyphen-vs-en-dash",
+        "lone-curly-apostrophe",
+        "lone-ascii-apostrophe",
+        "lone-curly-opening-quote",
+        "lone-backtick",
+    ],
+)
+def test_normalizer_refuses_distinct_punctuation(raw_paragraph, ecfr_paragraph):
+    with pytest.raises(ValueError, match="body differs from eCFR"):
+        normalize_federal_register_cfr_section_body(
+            f"Sec.  1.1  H.\n\n    {raw_paragraph}", ("§ 1.1 H.", ecfr_paragraph)
+        )
+
+
+def test_normalizer_accepts_page_break_after_dash_before_indented_paragraph():
+    body = "Sec.  1.1  H.\n\n    (a) Text--\n\n[[Page 3]]\n\n    (b) More."
+    paragraphs = ("§ 1.1 H.", "(a) Text—", "(b) More.")
+    assert normalize_federal_register_cfr_section_body(body, paragraphs) == (
+        "Sec.  1.1  H.\n\n    (a) Text--\n    (b) More."
+    )
 
 
 @pytest.mark.parametrize(
