@@ -28,8 +28,8 @@ number, the heading and the text) are joined with one space. With
 the printed law reads ``Code of 1986.``).
 
 Anything the renderer cannot place raises :class:`UslmRenderError`: an element
-it does not know, text between structural elements, a marker glued to words on
-both sides, or a closing quote that is not there.
+it does not know, text between structural elements, a continuation, a marker
+glued to text on both sides, or a closing quote that is not there.
 """
 
 from __future__ import annotations
@@ -51,7 +51,7 @@ OPEN_QUOTE = "“"
 CLOSE_QUOTE = "”"
 
 _STRUCTURAL = frozenset(STRUCTURAL_TAGS)
-_TEXT_BLOCK_TAGS = frozenset({"chapeau", "content", "continuation"})
+_TEXT_BLOCK_TAGS = frozenset({"chapeau", "content"})
 _INLINE_TAGS = frozenset({"inline", "term", "ref", "date", "i", "b", "sup", "sub", "span"})
 _MARKER_TAGS = frozenset({"page", "sidenote"})
 _STAT_PAGE = re.compile(r"/us/stat/(?P<volume>\d+)/(?P<page>\d+)")
@@ -220,6 +220,8 @@ def render_structural_element(
     tag = local_name(element.tag)
     if tag not in _STRUCTURAL:
         raise UslmRenderError(f"<{tag}> is not a structural element")
+    if any(local_name(node.tag) == "continuation" for node in element.iter()):
+        raise UslmRenderError("cannot place <continuation> in a one-element-per-line body")
     state = _State(
         label=label_path,
         closing_slot=closing_slot,
@@ -271,10 +273,14 @@ def _render_children(element: ET.Element, state: _State, *, own: bool) -> None:
             if not own:
                 parts.append(_num_text(child, state))
         elif tag == "heading":
-            if not own:
+            if own:
+                for note in child.iter():
+                    if local_name(note.tag) == "sidenote":
+                        _mark(note, state)
+            else:
                 parts.append(_inline_text(child, state))
         elif tag in _MARKER_TAGS:
-            _mark(child, state, before="", after=child.tail or "")
+            _mark(child, state)
             if (child.tail or "").strip():
                 raise UslmRenderError(f"text after <{tag}> outside a text block")
             continue
@@ -313,18 +319,30 @@ def _num_text(num: ET.Element, state: _State) -> str:
 
 def _inline_text(element: ET.Element, state: _State) -> str:
     pieces: list[str] = []
-    _append_inline(element, state, pieces)
+    markers: list[tuple[str, int]] = []
+    _append_inline(element, state, pieces, markers)
+    # A marker's next text may come from a sibling or an enclosing inline element.
+    for tag, index in markers:
+        if (
+            0 < index < len(pieces)
+            and not pieces[index - 1][-1].isspace()
+            and not pieces[index][0].isspace()
+        ):
+            raise UslmRenderError(f"<{tag}> splits a word")
     return " ".join("".join(pieces).split())
 
 
-def _append_inline(element: ET.Element, state: _State, pieces: list[str]) -> None:
+def _append_inline(
+    element: ET.Element, state: _State, pieces: list[str], markers: list[tuple[str, int]]
+) -> None:
     _emit(element.text, (element, "text"), state, pieces)
     for child in element:
         tag = local_name(child.tag)
         if tag in _MARKER_TAGS:
-            _mark(child, state, before="".join(pieces), after=child.tail or "")
+            _mark(child, state)
+            markers.append((tag, len(pieces)))
         elif tag in _INLINE_TAGS:
-            _append_inline(child, state, pieces)
+            _append_inline(child, state, pieces, markers)
         else:
             raise UslmRenderError(f"unexpected <{tag}> in <{local_name(element.tag)}>")
         _emit(child.tail, (child, "tail"), state, pieces)
@@ -340,14 +358,13 @@ def _emit(text: str | None, slot: TextSlot, state: _State, pieces: list[str]) ->
             raise UslmRenderError("the quotation's last text does not end with its closing quote")
         text = stripped[: -len(CLOSE_QUOTE)]
         state.closing_stripped = True
-    pieces.append(text)
-    state.non_space += _non_space(text)
+    if text:
+        pieces.append(text)
+        state.non_space += _non_space(text)
 
 
-def _mark(marker: ET.Element, state: _State, *, before: str, after: str) -> None:
+def _mark(marker: ET.Element, state: _State) -> None:
     """Record a page marker or margin note at the current position."""
-    if before and after and not before[-1].isspace() and not after[0].isspace():
-        raise UslmRenderError(f"<{local_name(marker.tag)}> splits a word")
     if local_name(marker.tag) == "page":
         printed = " ".join("".join(marker.itertext()).split())
         state.page_marks.append(

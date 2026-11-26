@@ -31,8 +31,8 @@ for the term ‘<term>applicable individual</term>’, provide—</chapeau>
 <subparagraph><num value="B">“(B) </num><chapeau>another—</chapeau>
 <clause><num value="i">“(i)</num><subclause class="inline"><num value="I">(I) </num><content>run in “quoted” text;</content></subclause>
 <subclause><num value="II">“(II) </num><content>second;<page identifier="/us/stat/139/308">139 STAT. 308</page></content></subclause></clause>
-<clause><num value="ii">“(ii) </num><content>the State’s last clause; and</content></clause></subparagraph>
-<continuation>whichever is later.”</continuation></paragraph></subsection></quotedContent>.</content></section></main>"""
+<clause><num value="ii">“(ii) </num><content>the State’s last clause.”</content></clause></subparagraph>
+</paragraph></subsection></quotedContent>.</content></section></main>"""
 
 
 def _parse() -> tuple[ET.Element, ET.Element, ET.Element]:
@@ -55,8 +55,7 @@ def test_renders_one_line_per_descendant_without_markers_or_amendatory_quotes() 
         "(i)",
         "(I) run in “quoted” text;",
         "(II) second;",
-        "(ii) the State’s last clause; and",
-        "whichever is later.",
+        "(ii) the State’s last clause.",
     ]
     assert rendered.label_paths == (
         ("zz", "1"),
@@ -105,13 +104,12 @@ def test_a_row_body_leaves_out_its_own_number_heading_and_margin_note() -> None:
 def test_closing_quote_is_kept_without_a_closing_slot_and_required_with_one() -> None:
     _document, _quoted, subsection = _parse()
     kept = render_structural_element(subsection, label_path=("zz",))
-    assert kept.body.endswith("last clause; and\nwhichever is later.\u201d")
+    assert kept.body.endswith("last clause.\u201d")
     assert not kept.stripped_closing_quote
-    last_clause = [node for node in subsection.iter() if local_name(node.tag) == "clause"][-1]
-    content = next(node for node in last_clause if local_name(node.tag) == "content")
+    chapeau = next(node for node in subsection.iter() if local_name(node.tag) == "chapeau")
     with pytest.raises(UslmRenderError, match="closing quote"):
         render_structural_element(
-            subsection, label_path=("zz",), closing_slot=last_text_slot(content)
+            subsection, label_path=("zz",), closing_slot=last_text_slot(chapeau)
         )
 
 
@@ -155,6 +153,21 @@ def test_page_in_effect_and_label_paths() -> None:
             "splits a word",
         ),
         (
+            '<paragraph><num value="1">(1)</num><content>shall<page identifier="/us/stat/1/2">'
+            "1 STAT. 2</page><ref>pay</ref></content></paragraph>",
+            "splits a word",
+        ),
+        (
+            '<paragraph><num value="1">(1)</num><content><inline>shall'
+            '<page identifier="/us/stat/1/2"/></inline>pay</content></paragraph>',
+            "splits a word",
+        ),
+        (
+            '<paragraph><num value="1">(1)</num><subparagraph><num value="A">(A)</num>'
+            "<content>First.</content></subparagraph><continuation>Flush.</continuation></paragraph>",
+            "cannot place <continuation>",
+        ),
+        (
             '<paragraph><num value="1">(1)</num><content>a <page identifier="x">x</page> b'
             "</content></paragraph>",
             "page identifier",
@@ -176,6 +189,29 @@ def test_rejects_what_it_cannot_place(fragment: str, message: str) -> None:
     )
     with pytest.raises(UslmRenderError, match=message):
         render_structural_element(element, label_path=("zz",))
+
+
+def test_page_break_keeps_a_separator_in_the_next_inline_element() -> None:
+    element = ET.fromstring(
+        f'<paragraph xmlns="{NS}"><content>shall<page identifier="/us/stat/1/2"/>'
+        "<ref> pay</ref></content></paragraph>"
+    )
+    rendered = render_structural_element(element, label_path=("1",))
+    assert rendered.body == "shall pay"
+    assert rendered.page_breaks[0].offset == rendered.body.index("pay")
+
+
+def test_a_skipped_heading_keeps_its_margin_note_at_the_start_of_the_body() -> None:
+    element = ET.fromstring(
+        f'<subsection xmlns="{NS}"><num value="kk">(kk)</num><heading>Condition<inline>.</inline>'
+        "<sidenote><p>Effective date.</p></sidenote><inline>—</inline></heading>"
+        "<content>This subsection applies.</content></subsection>"
+    )
+    rendered = render_structural_element(element, label_path=("kk",))
+    assert rendered.body == "This subsection applies."
+    assert len(rendered.margin_notes) == 1
+    note = rendered.margin_notes[0]
+    assert (note.notes, note.label_path, note.offset) == (("Effective date.",), ("kk",), 0)
 
 
 def test_space_before_punctuation_is_kept_unless_asked_to_drop_it() -> None:

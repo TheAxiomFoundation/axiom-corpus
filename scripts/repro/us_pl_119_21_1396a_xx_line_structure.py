@@ -17,7 +17,7 @@ subclause, item and subitem starts its own line, and page markers and margin
 notes move from the text to metadata (``statutes_at_large``,
 ``margin_notes``). No publisher traffic: the source bytes are copied byte for
 byte after their SHA-256 is checked against the released inventory. The build
-fails unless every body keeps exactly the released non-space characters, in
+fails unless every body keeps exactly the released word tokens, in
 order, apart from the page markers, margin notes, quotes and own number and
 heading it drops, and unless the label sequence of the quoted subsection equals
 the codified 42 U.S.C. 1396a(xx) of the Office of the Law Revision Counsel's
@@ -36,7 +36,7 @@ import io
 import json
 import xml.etree.ElementTree as ET
 import zipfile
-from collections import Counter
+from collections import deque
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
@@ -168,60 +168,61 @@ def render_rows(raw: bytes) -> tuple[ET.Element, list[RowRendering]]:
     return document, rows
 
 
-def released_removals(row: RowRendering, *, ends_quotation: bool) -> str:
-    """The non-space characters the successor drops from the released body, in order.
-
-    Own number and heading (and a margin note between them), then the page
-    markers, margin notes and descendant open quotes in document order, then
-    the closing quote if the row ends the quotation.
-    """
-    pieces: list[str] = []
+def released_word_edits(element: ET.Element) -> deque[tuple[list[str], list[str]]]:
+    """Find the source-specified edits to released words in document order."""
+    edits: deque[tuple[list[str], list[str]]] = deque()
 
     def visit(node: ET.Element, *, top: bool) -> None:
         for child in node:
             tag = local_name(child.tag)
             if tag in {"num", "heading"} and top:
-                pieces.append(_plain_text(child))
+                edits.append((_plain_text(child).split(), []))
             elif tag == "num":
                 text = _plain_text(child)
                 if text.startswith(OPEN_QUOTE):
-                    pieces.append(OPEN_QUOTE)
-            elif tag in {"page", "sidenote"}:
-                pieces.append(_plain_text(child))
+                    edits.append((text.split(), text.removeprefix(OPEN_QUOTE).split()))
+            elif tag == "page":
+                edits.append((_plain_text(child).split(), []))
+            elif tag == "sidenote":
+                words = " ".join(_plain_text(paragraph) for paragraph in child).split()
+                edits.append((words, []))
             else:
                 visit(child, top=False)
 
-    visit(row.element, top=True)
-    if ends_quotation:
-        pieces.append(CLOSE_QUOTE)
-    return "".join("".join(pieces).split())
-
-
-def deleted_characters(released: str, successor: str) -> str | None:
-    """Characters of ``released`` not in ``successor`` when that is a subsequence; else None.
-
-    Whitespace is ignored on both sides.
-    """
-    left = "".join(released.split())
-    right = "".join(successor.split())
-    deleted: list[str] = []
-    index = 0
-    for char in left:
-        if index < len(right) and char == right[index]:
-            index += 1
-        else:
-            deleted.append(char)
-    return "".join(deleted) if index == len(right) else None
+    visit(element, top=True)
+    return edits
 
 
 def check_conservation(row: RowRendering, released_body: str, *, ends_quotation: bool) -> None:
-    """Fail unless the successor body is the released body minus exactly the dropped text."""
-    deleted = deleted_characters(released_body, row.rendered.body)
-    if deleted is None:
-        raise ValueError(f"{row.citation_path}: successor text is not drawn from the released body")
-    expected = released_removals(row, ends_quotation=ends_quotation)
-    if Counter(deleted) != Counter(expected):
-        raise ValueError(f"{row.citation_path}: successor drops other characters than expected")
+    """Require the released word sequence after the specified source edits."""
+    # The released builder joined USLM text nodes with spaces, including the
+    # opening and closing single quotation marks around terms.
+    released = released_body.strip().replace("‘ ", "‘").replace(" ’", "’")
+    if ends_quotation:
+        if not released.endswith(CLOSE_QUOTE):
+            raise ValueError(f"{row.citation_path}: released body lacks its closing quote")
+        released = released.removesuffix(CLOSE_QUOTE)
+
+    words = released.split()
+    edits = released_word_edits(row.element)
+    expected: list[str] = []
+    index = 0
+    while edits and index < len(words):
+        original, replacement = edits[0]
+        end = index + len(original)
+        if words[index:end] == original:
+            expected.extend(replacement)
+            edits.popleft()
+            index = end
+        else:
+            expected.append(words[index])
+            index += 1
+    expected.extend(words[index:])
+    if edits or expected != row.rendered.body.split():
+        raise ValueError(
+            f"{row.citation_path}: successor word tokens are not drawn from the released body "
+            "after the expected removals"
+        )
 
 
 def olrc_label_paths(zip_bytes: bytes) -> list[tuple[str, ...]]:

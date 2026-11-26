@@ -7,7 +7,7 @@ import re
 import shutil
 import xml.etree.ElementTree as ET
 from collections import Counter
-from dataclasses import fields
+from dataclasses import fields, replace
 from functools import cache
 from pathlib import Path
 
@@ -28,7 +28,9 @@ from scripts.repro.us_pl_119_21_1396a_xx_line_structure import (
     SOURCE_VERSION,
     VERSION,
     build_scope,
+    check_conservation,
     olrc_label_paths,
+    render_rows,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -335,8 +337,8 @@ def test_metadata_records_statutes_pages_and_margin_notes() -> None:
     assert notes[0] == {"notes": ["Deadline."], "label_path": "xx/1", "offset": 4}
     assert body[notes[0]["offset"] :].startswith("In general.— Except as provided")
     by_paragraph: Counter[str] = Counter(note["label_path"].split("/")[1] for note in notes)
-    breaks_by_page = {item["page"] for item in pages["page_breaks"]}
-    seen_pages: set[int] = set()
+    root_break_offsets = {item["identifier"]: item["offset"] for item in pages["page_breaks"]}
+    seen_breaks: set[str] = set()
     for row in rows[1:]:
         assert row.metadata is not None
         label = row.citation_path.rsplit("/", 1)[-1]
@@ -346,11 +348,14 @@ def test_metadata_records_statutes_pages_and_margin_notes() -> None:
         )
         stat = row.metadata["statutes_at_large"]
         assert stat["volume"] == 139 and stat["page_start"] <= stat["page_end"]
-        seen_pages |= {item["page"] for item in stat["page_breaks"]}
         row_body = row.body or ""
         for item in stat["page_breaks"]:
-            assert row_body[item["offset"] :] in body
-    assert seen_pages == breaks_by_page
+            identifier = item["identifier"]
+            assert identifier == f"/us/stat/139/{item['page']}"
+            assert 0 <= item["offset"] < len(row_body), row.citation_path
+            assert body.index(row_body) + item["offset"] == root_break_offsets[identifier]
+            seen_breaks.add(identifier)
+    assert seen_breaks == root_break_offsets.keys()
     assert rows[1].metadata is not None
     assert rows[1].metadata["margin_notes"][0]["offset"] == 0
 
@@ -408,3 +413,15 @@ def test_build_rejects_a_released_body_it_does_not_conserve(tmp_path: Path) -> N
     provisions.write_text(text.replace("1 or more but not more than 3", "1 or more", 1), "utf-8")
     with pytest.raises(ValueError, match="not drawn from the released body"):
         build_scope(base=tmp_path / "out", source_base=source_base, olrc_zip=None)
+
+
+def test_conservation_rejects_fused_words_in_the_rendered_body() -> None:
+    raw = (CORPUS / "sources/us/statute" / SOURCE_VERSION / SOURCE_LEAF).read_bytes()
+    _document, rows = render_rows(raw)
+    root = rows[0]
+    assert "shall provide" in root.rendered.body
+    fused_body = root.rendered.body.replace("shall provide", "shallprovide", 1)
+    fused = replace(root, rendered=replace(root.rendered, body=fused_body))
+
+    with pytest.raises(ValueError, match="word tokens"):
+        check_conservation(fused, _rows(SOURCE_VERSION)[0].body or "", ends_quotation=True)
