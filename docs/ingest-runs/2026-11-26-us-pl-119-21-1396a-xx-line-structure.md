@@ -74,7 +74,10 @@ structural element (subsection, paragraph, subparagraph, clause, subclause, item
   and its chapeau or content, joined with one space. A `<continuation>` raises
   `UslmRenderError`. This quotation has none.
 - `<page>` and `<sidenote>` are dropped from the text, their tails kept. The renderer records
-  where each stood as the body offset of the next printed character.
+  where each stood as the body offset of the next printed character. If removing a marker
+  brings two non-whitespace characters together, the renderer joins them only if the pair is
+  on the allowlist. The sole allowed pair is a period followed by an em dash, as in
+  `reason.—` in § 70304(3)(B)(ii).
 - A leading `“` is stripped from each `<num>`. The closing `”` is stripped from the last text
   node of the `quotedContent` (the end of (11)(D)(ii)); the `.` after the quotation is outside
   it. Every other quote stays as printed: 6 `‘` and 15 `’`.
@@ -84,9 +87,9 @@ structural element (subsection, paragraph, subparagraph, clause, subclause, item
 - `drop_space_before_punctuation` removes a space before `,`, `.`, `;` or `:`, as the released
   builder did. The source has one: `Internal Revenue Code of 1986 .` at the end of (2)(G).
 
-It raises `UslmRenderError` on an element it does not know, text outside a text block, a
-marker glued to words on both sides, a margin note outside `<p>`, a page identifier that is
-not `/us/stat/<volume>/<page>`, or a missing closing quote.
+It raises `UslmRenderError` on an element it does not know, text outside a text block, an
+unspaced marker boundary outside the allowlist, a margin note outside `<p>`, a page identifier
+that does not match `/us/stat/<volume>/<page>`, or a missing closing quote.
 
 One element is printed run-in: subclause (6)(A)(ii)(I) (`class="inline"`, its number `(I)`
 without a quote) follows `“(ii)` on the printed line. Following the one-element-per-line rule,

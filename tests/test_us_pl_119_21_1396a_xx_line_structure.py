@@ -381,7 +381,6 @@ def test_metadata_records_statutes_pages_and_margin_notes() -> None:
         assert item["identifier"] == f"/us/stat/139/{item['page']}"
         assert not body[item["offset"]].isspace()
     notes = root.metadata["margin_notes"]
-    assert [line for note in notes for line in note["notes"]] == list(MARGIN_NOTE_LINES)
     assert notes[0] == {"notes": ["Deadline."], "label_path": "xx/1", "offset": 4}
     assert body[notes[0]["offset"] :].startswith("In general.— Except as provided")
     xml_note_paths = _xml_margin_note_label_paths(_quoted_subsection())
@@ -389,11 +388,15 @@ def test_metadata_records_statutes_pages_and_margin_notes() -> None:
         assert row.metadata is not None
         element = _row_element(row.citation_path)
         row_notes = row.metadata["margin_notes"]
+        xml_notes = [node for node in element.iter() if node in xml_note_paths]
+        assert [note["notes"] for note in row_notes] == [
+            [_text(child) for child in node if local_name(child.tag) == "p"] for node in xml_notes
+        ], row.citation_path
         assert [note["offset"] for note in row_notes] == _xml_margin_note_offsets(
             element, row.body or ""
         ), row.citation_path
         assert [note["label_path"] for note in row_notes] == [
-            xml_note_paths[node] for node in element.iter() if node in xml_note_paths
+            xml_note_paths[node] for node in xml_notes
         ], row.citation_path
     root_break_offsets = {item["identifier"]: item["offset"] for item in pages["page_breaks"]}
     seen_breaks: set[str] = set()

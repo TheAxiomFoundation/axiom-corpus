@@ -177,6 +177,19 @@ def test_page_in_effect_and_label_paths() -> None:
             "<sidenote><p>Definition.</p></sidenote>means</content></paragraph>",
             "would join text without whitespace",
         ),
+        pytest.param(
+            '<paragraph><num value="1">(1)</num><content>under paragraph (2<inline>)</inline>'
+            '<span><page identifier="/us/stat/139/307"/></span>'
+            "<ref>(as in effect in 2026)</ref>.</content></paragraph>",
+            "would join text without whitespace",
+            id="page-between-parentheses",
+        ),
+        pytest.param(
+            '<paragraph><num value="1">(1)</num><content>text,'
+            "<sidenote><p>Note.</p></sidenote>—next</content></paragraph>",
+            "would join text without whitespace",
+            id="margin-note-between-comma-and-em-dash",
+        ),
         (
             '<paragraph><num value="1">(1)</num><subparagraph><num value="A">(A)</num>'
             "<content>First.</content></subparagraph><continuation>Flush.</continuation></paragraph>",

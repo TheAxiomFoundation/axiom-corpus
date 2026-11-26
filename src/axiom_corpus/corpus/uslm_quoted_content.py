@@ -18,19 +18,20 @@ three things in that text that are not part of the inserted law:
 not in its body) with one line per descendant structural element. It drops
 page markers and margin notes from the text and reports where they stood, as
 character offsets into the body, so a caller can keep them as metadata. It
-strips the leading open quote from each ``<num>`` and, when told which text
-node ends the quotation, the closing quote. Every other character is kept as
-printed, inner quotes included. Text nodes are concatenated as the source has
-them, and whitespace runs collapse to one space; the parts of a line (the
-number, the heading and the text) are joined with one space. With
+joins non-whitespace characters across a removed marker only if the pair is
+in the allowlist, which contains the period followed by an em dash in headings
+such as ``reason.—``. It strips the leading open quote from each ``<num>`` and,
+when told which text node ends the quotation, the closing quote. Every other
+character is kept as printed, inner quotes included. Text nodes are concatenated
+as the source has them, and whitespace runs collapse to one space. The parts of
+a line (the number, the heading and the text) are joined with one space. With
 ``drop_space_before_punctuation`` a space the source puts before ``,``, ``.``,
 ``;`` or ``:`` is dropped as well (GPO's USLM prints ``Code of 1986 .`` where
 the printed law reads ``Code of 1986.``).
 
 Anything the renderer cannot place raises :class:`UslmRenderError`: an element
-it does not know, text between structural elements, a continuation, a marker
-between adjacent non-space characters when either is a word character, or a
-missing closing quote.
+it does not know, text between structural elements, a continuation, an unspaced
+marker boundary outside the allowlist, or a missing closing quote.
 """
 
 from __future__ import annotations
@@ -57,7 +58,7 @@ _INLINE_TAGS = frozenset({"inline", "term", "ref", "date", "i", "b", "sup", "sub
 _MARKER_TAGS = frozenset({"page", "sidenote"})
 _STAT_PAGE = re.compile(r"/us/stat/(?P<volume>\d+)/(?P<page>\d+)")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:])")
-_WORD_CHARACTER = re.compile(r"\w")
+_UNSPACED_MARKER_JOIN_PAIRS = frozenset({(".", "—")})
 
 
 class UslmRenderError(ValueError):
@@ -328,8 +329,10 @@ def _inline_text(element: ET.Element, state: _State) -> str:
         if not 0 < index < len(pieces):
             continue
         before, after = pieces[index - 1][-1], pieces[index][0]
-        if not (before.isspace() or after.isspace()) and (
-            _WORD_CHARACTER.fullmatch(before) or _WORD_CHARACTER.fullmatch(after)
+        if (
+            not before.isspace()
+            and not after.isspace()
+            and (before, after) not in _UNSPACED_MARKER_JOIN_PAIRS
         ):
             raise UslmRenderError(f"<{tag}> would join text without whitespace")
     return " ".join("".join(pieces).split())
