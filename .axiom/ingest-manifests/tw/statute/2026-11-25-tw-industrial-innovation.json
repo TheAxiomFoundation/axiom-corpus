@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/tw/statute/2026-11-25-tw-industrial-innovation.json",
+      "sha256": "8dfc67f22cc98583bf962e7e11ab9cfc1716ee8a9ba551d5762418ebf1878318"
+    },
+    {
+      "path": "data/corpus/inventory/tw/statute/2026-11-25-tw-industrial-innovation.json",
+      "sha256": "4050f5bc6c01e922c41a67396a238d1638de47f75229677a81de8df878cefa07"
+    },
+    {
+      "path": "data/corpus/provisions/tw/statute/2026-11-25-tw-industrial-innovation.jsonl",
+      "sha256": "6b8e187c6f8624642474a70dad4af8006a555363d45d4e8b82858902cd8993c4"
+    },
+    {
+      "path": "data/corpus/sources/tw/statute/2026-11-25-tw-industrial-innovation/official-documents/tw-statute-for-industrial-innovation.html",
+      "sha256": "7ba0b3d0e453db2e816215339430156292231611612c9fc7d3be3f5720e69643"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "acab596bd4e44c9cda0fd23cae166c97561dbd25",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-25-tw-industrial-innovation --manifest manifests/tw-industrial-innovation-statute-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 88,
+    "missing_count": 0,
+    "provision_count": 88,
+    "source_count": 88
+  },
+  "document_class": "statute",
+  "generated_at": "2026-11-25T19:43:10.261549+00:00",
+  "jurisdiction": "tw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DootwdhKA1nAbbI6ruCwphBso1hJFfdgzojYGHUSEcoJ9aJgFgAmlcTyDGPNGyLvnWJfkmaBRPH82p0riG/UDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-25-tw-industrial-innovation"
+}

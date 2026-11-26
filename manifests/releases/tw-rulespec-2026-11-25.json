@@ -1,0 +1,17 @@
+{
+  "name": "tw-rulespec-2026-11-25",
+  "description": "Taiwan pilot, first tw release, for supervised RuleSpec-TW encoding of the Statute for Industrial Innovation Article 10-1 investment tax credit (smart machinery, 5G, cyber security, AI products or services, energy conservation and carbon reduction). Two instruments from the Ministry of Justice Laws & Regulations Database (law.moj.gov.tw), the official consolidated Chinese text, captured 2026-11-25: the Statute for Industrial Innovation (產業創新條例, pcode J0040051, last amended 2026-09-30), 87 articles, and the MOEA + MOF implementing regulation 公司或有限合夥事業投資智慧機械與第五代行動通訊系統與資通安全人工智慧產品或服務及節能減碳抵減辦法 (pcode J0040062, last amended 2025-11-27), 21 articles. One provision per article (tw/statute/j0040051/10-1, tw/regulation/j0040062/9), plus one document row per instrument: 88 and 22 rows against 88 and 22 source-inventory entries, 0 missing and 0 extra. The English pages on law.moj.gov.tw are unofficial translations and are not captured. It carries no Ministry of Finance rulings, forms or e-filing schedules.",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "regulation",
+      "jurisdiction": "tw",
+      "version": "2026-11-25-tw-industrial-innovation"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "tw",
+      "version": "2026-11-25-tw-industrial-innovation"
+    }
+  ]
+}

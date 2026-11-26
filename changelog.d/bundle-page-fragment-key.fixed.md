@@ -1,0 +1,1 @@
+Make the program-bundle build read a WebWorks manual page from a link that names it under the host root (`/#page/<chapter>/<page>.html`), not only under `index.html`, so Arizona SNAP's FAA5 utility-expenses page joins its Tier 1 set instead of collapsing to the host root.
