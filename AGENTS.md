@@ -34,6 +34,26 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
 - After an ingest, `sign-ingest-manifest ... --lock --push` writes the scope's
   lock and uploads its new objects; commit the lock with the signed manifest.
   Never `git add -f` corpus files.
+- `--command` is public once signed, so it names no path on your machine:
+  repository files by their repository-relative path (the signer rewrites
+  absolute paths inside the checkout), scratch, cache and tool directories by
+  a placeholder such as `TMPDIR=<scratchpad>` or `<ocr-cache>`, and a
+  parenthetical naming the run note under `docs/ingest-runs/`. The signer
+  refuses any other path under `/Users`, `/home`, `/root`, `/private`, `/tmp`,
+  `/var/folders`, `/var/tmp`, `/Volumes`, `/mnt` or `/media` (in any case,
+  after `-o`, `@` or a `$VAR`/`$1`, and however spelled, quoted or escaped:
+  `//Users`, `/var/../tmp`, `/U\sers`, also inside a command substitution),
+  any `~/`, `$HOME/` or `$TMPDIR/` path,
+  and any `file:` URL, inside the checkout or not. A path inside a source URL
+  argument (its query or fragment) is the URL's and is kept; whitespace, an
+  unquoted `>`, `;` or `&`, or a command substitution ends that exemption. It
+  only rewrites a checkout path where the shell word still names the same file
+  (never where the shell would expand the name; a whole word keeps a slash, as
+  in `./tool`, so it is never looked up as a command), and refuses the rest. It also
+  refuses a manifest with such a path in any field, and
+  `tests/test_ingest_manifest_local_paths.py` fails CI on any that reaches the
+  tree. `.axiom/ingest-manifest-local-paths.yaml` grandfathers the fourteen
+  signed before the guard (axiom-corpus#896); it only shrinks.
 - An ingest you were asked to do includes `corpus push` of its own new objects
   (Max, 2026-09-30). They are content-addressed and write-once under R2
   `objects/sha256/`: an upload never overwrites an object and publishes
