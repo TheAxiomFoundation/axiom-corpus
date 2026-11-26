@@ -4,11 +4,16 @@ import json
 from dataclasses import dataclass
 from urllib.parse import parse_qs, urlparse
 
+import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.federal_register import (
     FederalRegisterCfrSectionRef,
     extract_federal_register,
     extract_federal_register_cfr_sections,
+    normalize_federal_register_cfr_section_body,
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 
@@ -340,3 +345,160 @@ Secretary, Department of Health and Human Services.
         "us/regulation/42/457/344",
         "us/regulation/42/600/320",
     ]
+
+
+_FR_SECTION = (
+    "Sec.  435.999   A heading that wraps onto a second \n"
+    "line.\n"
+    "\n"
+    "    (a) A paragraph wraps at a space and keeps it. It cites Sec.  \n"
+    "435.552, a short-\n"
+    "term rule, and information provided by\n"
+    "\n"
+    "[[Page 39031]]\n"
+    "\n"
+    "the individual under paragraphs \n"
+    "(c)(1)(i)(A) through (C) of this section.\n"
+    "    (b) It meets one of the following:\n"
+    "\n"
+    "[[Page 39032]]\n"
+    "\n"
+    "    (1) The last paragraph.\n"
+    "\n"
+    "[[Page 39033]]"
+)
+
+
+def test_normalizer_drops_page_markers_and_joins_continuation_lines():
+    assert normalize_federal_register_cfr_section_body(_FR_SECTION) == (
+        "Sec.  435.999   A heading that wraps onto a second line.\n"
+        "\n"
+        "    (a) A paragraph wraps at a space and keeps it. It cites Sec.  435.552, a "
+        "short-term rule, and information provided by the individual under paragraphs "
+        "(c)(1)(i)(A) through (C) of this section.\n"
+        "    (b) It meets one of the following:\n"
+        "    (1) The last paragraph."
+    )
+
+
+def test_normalizer_is_idempotent():
+    once = normalize_federal_register_cfr_section_body(_FR_SECTION)
+    assert normalize_federal_register_cfr_section_body(once) == once
+
+
+@pytest.mark.parametrize(
+    ("body", "message"),
+    [
+        ("Sec.  1.1  H.\n\n    (a) Text [[Page 3]] more.", "not alone on its line"),
+        ("Sec.  1.1  H.\n\n    (a) Text \n[[Page 3]]\n\nmore.", "does not follow"),
+        ("Sec.  1.1  H.\n\n    (a) Text\n\n[[Page 3]]\n\n\nmore.", "is not followed"),
+        ("Sec.  1.1  H.\n\n    (a) Text\n\n[[Page 3]]\n", "is not followed"),
+        ("Sec.  1.1  H.\n\n[[Page 3]]\n\n    (a) Text.", "one blank line"),
+        ("Sec.  1.1  H.\n\n    (a) Text.\n\n    (b) Text.", "one blank line"),
+        ("Sec.  1.1  H.\n    (a) Text.", "one blank line"),
+        ("Sec.  1.1  H.\n\n    (a) Text.\n\t(b) Text.", "tab"),
+        ("Sec.  1.1  H.\n\n    (a) Text.\n  (b) Text.", "indented 2 spaces"),
+        ("Sec.  1.1  H.\n\n    (a) Text.\n        (1) Table row", "indented 8 spaces"),
+        ("Sec.  1.1  H.\n    wrapped heading.\n\n    (a) Text.", "heading line 2 is indented"),
+        ("Sec.  1.1  H.\n\n* * * * *\n    (d) Amended text.", "first paragraph starts"),
+        ("Sec.  1.1  H.\n\n    (a) A line ending in a word\nthen column 0.", "neither a space"),
+        ("Sec.  1.1  H.\n\n    (a) The lesser of--\n\n[[Page 3]]\n\n(i) 8 percent.", "dash"),
+    ],
+)
+def test_normalizer_refuses_layouts_outside_the_rule(body, message):
+    with pytest.raises(ValueError, match=message):
+        normalize_federal_register_cfr_section_body(body)
+
+
+_WORDS = st.sampled_from(
+    [
+        "the",
+        "State",
+        "must",
+        "(c)(1)(i)(A)",
+        "through",
+        "(C)",
+        "of",
+        "this",
+        "section.",
+        "Sec.",
+        "435.552",
+        "1902(xx)",
+        "short-term",
+        "unemployment-based",
+        "lesser",
+        "of--",
+        "``inpatient''",
+        "80",
+        "hours;",
+        "(PTC)",
+    ]
+)
+
+
+@st.composite
+def _wrapped_sections(draw):
+    """A section printed as Federal Register raw text, and its one-line-per-paragraph form.
+
+    Each gap between words is one or two spaces. A wrap at a gap leaves the gap at
+    the end of the line; a wrap inside a hyphenated word leaves the hyphen there.
+    A page break may follow any wrap inside a paragraph (the raw text then keeps no
+    trailing space, so only single-space gaps take one), any paragraph, and the end.
+    """
+    pages = iter(range(30_000, 40_000))
+    heading = ["Sec.  435.999  ", *draw(st.lists(_WORDS, min_size=1, max_size=8))]
+    paragraphs = draw(st.lists(st.lists(_WORDS, min_size=1, max_size=30), min_size=1, max_size=5))
+
+    def render(words, *, first, may_break):
+        lines, line, expected = [], first, first
+        for position, word in enumerate(words):
+            if position:
+                gap = draw(st.sampled_from([" ", " ", "  "]))
+                expected += gap
+                if draw(st.booleans()):
+                    # The raw text drops the space before a page break, so a break
+                    # after a dash would hide whether a space followed it.
+                    breakable = may_break and gap == " " and not line.endswith("-")
+                    if breakable and draw(st.booleans()):
+                        lines.append(line)
+                        lines.append(f"\n\n[[Page {next(pages)}]]\n\n")
+                    else:
+                        lines.append(line + gap)
+                        lines.append("\n")
+                    line = ""
+                else:
+                    line += gap
+            expected += word
+            head, hyphen, tail = word.partition("-")
+            if hyphen and head[-1:].isalnum() and tail[:1].isalnum() and draw(st.booleans()):
+                lines.append(line + head + hyphen)
+                if may_break and draw(st.booleans()):
+                    lines.append(f"\n\n[[Page {next(pages)}]]\n\n")
+                else:
+                    lines.append("\n")
+                line = tail
+            else:
+                line += word
+        lines.append(line)
+        return "".join(lines), expected
+
+    raw_heading, expected_heading = render(heading[1:], first=heading[0], may_break=False)
+    raw = [raw_heading, "\n\n"]
+    expected = [expected_heading, "\n\n"]
+    for index, words in enumerate(paragraphs):
+        if index:
+            raw.append(f"\n\n[[Page {next(pages)}]]\n\n" if draw(st.booleans()) else "\n")
+            expected.append("\n")
+        text, flat = render(words, first="    ", may_break=True)
+        raw.append(text)
+        expected.append(flat)
+    if draw(st.booleans()):
+        raw.append(f"\n\n[[Page {next(pages)}]]")
+    return "".join(raw), "".join(expected)
+
+
+@settings(max_examples=400, deadline=None)
+@given(_wrapped_sections())
+def test_normalizer_round_trips_wrapped_sections(case):
+    raw, expected = case
+    assert normalize_federal_register_cfr_section_body(raw) == expected

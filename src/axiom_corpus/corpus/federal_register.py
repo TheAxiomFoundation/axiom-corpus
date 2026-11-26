@@ -759,6 +759,113 @@ def _strip_federal_register_tail(body: str) -> str:
     return re.sub(r"\n</pre>.*\Z", "", body, flags=re.S).strip()
 
 
+FEDERAL_REGISTER_PAGE_MARKER = re.compile(r"\[\[Page \d+\]\]")
+FEDERAL_REGISTER_PARAGRAPH_INDENT = "    "
+
+
+def normalize_federal_register_cfr_section_body(body: str) -> str:
+    """Drop the page markers and hard wraps of a Federal Register CFR section slice.
+
+    The rule. Federal Register raw text (the GPO ``.txt`` rendering that
+    :func:`extract_federal_register_cfr_sections` slices) prints a section as:
+
+    * a heading line starting ``Sec.`` at column 0, which may wrap, then one
+      blank line;
+    * one paragraph after another, each starting on a line indented exactly
+      four spaces, hard-wrapped at about 72 columns with every continuation
+      line at column 0. The line before an ordinary wrap keeps the space it
+      wrapped at (two after ``Sec.``), or ends in the hyphen of a compound
+      word (``short-`` / ``term``);
+    * a printed page break as a ``[[Page N]]`` line with a blank line on each
+      side (only the blank line before it when it ends the slice). It is not
+      text of the regulation, and it can fall inside a sentence: the line
+      before it then keeps no trailing space.
+
+    The normalisation:
+
+    1. Removes each page-marker line with its blank lines.
+    2. Joins each column-0 line onto the line before it by dropping the line
+       break. Only where a page marker stood and the line before ends in a
+       word (neither a space nor a hyphen) does one space take its place.
+
+    The result is the heading on one line, a blank line, then one line per
+    paragraph with its four-space indent, so no wrapped cross-reference such
+    as ``(c)(1)(i)(A) through (C) of this section.`` begins a line. Every
+    other character is kept, ``Sec.`` typography and runs of spaces included;
+    only line breaks are removed or turned into spaces.
+
+    A body outside the rule raises :class:`ValueError` rather than being
+    guessed at: a page marker that is not alone on its line between blank
+    lines, a tab, a line indented other than zero or four spaces, a blank line
+    anywhere but after the heading, an indented heading line, a first
+    paragraph at column 0, an ordinary wrap whose line ends in neither a
+    space nor a hyphen, or a page break right after a dash (``--``), where
+    the raw text cannot show whether a space followed the dash.
+    """
+
+    lines = body.split("\n")
+    kept: list[str] = []
+    after_marker: set[int] = set()
+    index = 0
+    while index < len(lines):
+        line = lines[index]
+        if FEDERAL_REGISTER_PAGE_MARKER.search(line) or "[[Page" in line:
+            if not FEDERAL_REGISTER_PAGE_MARKER.fullmatch(line):
+                raise ValueError(f"page marker is not alone on its line: {line!r}")
+            if len(kept) < 2 or kept[-1] != "" or kept[-2] == "":
+                raise ValueError(f"{line} does not follow a text line and one blank line")
+            following = lines[index + 1 : index + 3]
+            if following and (following[0] != "" or len(following) < 2 or following[1] == ""):
+                raise ValueError(f"{line} is not followed by one blank line and a text line")
+            kept.pop()
+            after_marker.add(len(kept))
+            index += 2
+            continue
+        kept.append(line)
+        index += 1
+
+    blank_lines = [position for position, line in enumerate(kept) if line == ""]
+    if len(blank_lines) != 1 or blank_lines[0] == 0 or blank_lines[0] == len(kept) - 1:
+        raise ValueError(f"expected one blank line, after the heading; found {len(blank_lines)}")
+    heading_end = blank_lines[0]
+    for position, line in enumerate(kept):
+        if line == "":
+            continue
+        if "\t" in line:
+            raise ValueError(f"line {position + 1} holds a tab: {line!r}")
+        indent = len(line) - len(line.lstrip(" "))
+        if indent not in (0, len(FEDERAL_REGISTER_PARAGRAPH_INDENT)):
+            raise ValueError(f"line {position + 1} is indented {indent} spaces: {line!r}")
+        if position < heading_end and indent:
+            raise ValueError(f"heading line {position + 1} is indented: {line!r}")
+    if not kept[heading_end + 1].startswith(FEDERAL_REGISTER_PARAGRAPH_INDENT):
+        raise ValueError(f"first paragraph starts at column 0: {kept[heading_end + 1]!r}")
+
+    joined: list[str] = []
+    for position, line in enumerate(kept):
+        if joined and joined[-1] and line and not line.startswith(" "):
+            previous = joined[-1]
+            at_marker = position in after_marker
+            if previous.endswith("--") and at_marker:
+                raise ValueError(
+                    f"a page break follows a dash, so a space after it is unknown: "
+                    f"{previous[-30:]!r} / {line[:30]!r}"
+                )
+            if previous.endswith((" ", "-")):
+                separator = ""
+            elif at_marker:
+                separator = " "
+            else:
+                raise ValueError(
+                    f"line {position + 1} continues a line that ends in neither a space "
+                    f"nor a hyphen: {previous[-30:]!r} / {line[:30]!r}"
+                )
+            joined[-1] = previous + separator + line
+        else:
+            joined.append(line)
+    return "\n".join(joined)
+
+
 def _federal_register_cfr_part_heading(text: str, title: int, part: int) -> str | None:
     del title
     pattern = re.compile(rf"(?m)^PART\s+{part}--(?P<heading>.+)$")
