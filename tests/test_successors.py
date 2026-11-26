@@ -1468,6 +1468,8 @@ def _byte_rule_selectors() -> tuple[ReleaseManifest, ReleaseManifest]:
         "directory",
         "dangling-link",
         "committed-differs",
+        "crlf",
+        "cr",
     ],
 )
 def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
@@ -1539,6 +1541,10 @@ def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
         (releases / "cut.json").write_text(render_selector(without_base), encoding="utf-8")
         del call["add_base"]
         call["releases_dir"] = releases
+    elif case in ("crlf", "cr"):
+        # The reproducing call, against a file whose line endings differ.
+        ending = "\r\n" if case == "crlf" else "\r"
+        cut_path.write_bytes(cut_text.replace("\n", ending).encode())
 
     if refusal is None:
         successor = compose_successor(root, **call)
@@ -1547,6 +1553,19 @@ def test_a_cut_under_a_tracked_name_must_be_its_committed_file_byte_for_byte(
     error, message = refusal
     with pytest.raises(error, match=message):
         compose_successor(root, **call)
+
+
+@pytest.mark.parametrize("ending", ["lf", "crlf", "cr"])
+def test_disk_selectors_keep_their_line_endings(tmp_path: Path, ending: str) -> None:
+    directory = tmp_path / "plain"
+    directory.mkdir()
+    newline = {"lf": "\n", "crlf": "\r\n", "cr": "\r"}[ending]
+    text = json.dumps({"name": "x", "scopes": []}, indent=2).replace("\n", newline) + newline
+    (directory / "x.json").write_bytes(text.encode())
+    on_disk = (directory / "x.json").read_bytes().decode("utf-8")
+
+    assert successors.tracked_selector_texts(directory)["x"] == on_disk
+    assert successors.tracked_selector_text(directory, "x") == on_disk
 
 
 def test_the_golden_cut_reproduces_under_the_default_inventory() -> None:

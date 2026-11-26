@@ -317,13 +317,18 @@ def _read_blobs(top: Path, releases_dir: Path, oids: list[str]) -> list[str]:
     return texts
 
 
+def _disk_text(path: Path) -> str:
+    """The file's text as its bytes say it; ``read_text`` would turn CRLF and CR
+    into LF, and the byte rule would then accept a file it does not reproduce."""
+    return path.read_bytes().decode("utf-8")
+
+
 def _selector_texts(releases_dir: Path) -> tuple[Path | None, dict[str, str]]:
     """Return the checkout ``releases_dir`` belongs to (or None) and its selector texts."""
     top = _checkout_of(releases_dir)
     if top is None:
         return None, {
-            name: path.read_text(encoding="utf-8")
-            for name, path in _selector_files(releases_dir).items()
+            name: _disk_text(path) for name, path in _selector_files(releases_dir).items()
         }
     entries = _head_entries(top, releases_dir, f"{_SELECTORS_PATH}/")
     if not entries:
@@ -356,7 +361,8 @@ def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
 
     The caller validates ``name``. For a checkout's ``manifests/releases``
     this is the file committed at HEAD, None when HEAD has no such file. For
-    any other directory it is the file on disk, None when nothing is there.
+    any other directory it is the file on disk, its line endings kept, None
+    when nothing is there.
     An entry that is not a selector file (a committed symlink or directory,
     or on disk a directory or a dangling link) raises ``ValueError``, as does
     a directory reached through a link, spelled with ``..``, or at a ``.git``
@@ -371,7 +377,7 @@ def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
             return None
         if not path.is_file():
             raise ValueError(f"{path} is not a selector file")
-        return path.read_text(encoding="utf-8")
+        return _disk_text(path)
     entries = _head_entries(top, releases_dir, f"{_SELECTORS_PATH}/{name}.json")
     oids = [oid for stem, oid in entries if stem == name]
     if not oids:
