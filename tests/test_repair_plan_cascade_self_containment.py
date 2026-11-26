@@ -1506,6 +1506,7 @@ def test_main_refuses_a_report_path_that_holds_another_file(
         "write-time-dangling-axiom",
         "write-time-directory-relinked",
         "write-time-holder-place-relinked",
+        "write-time-holder-appears",
     ],
 )
 def test_the_report_write_refuses_what_appeared_during_the_run(
@@ -1598,6 +1599,24 @@ def test_the_report_write_refuses_what_appeared_during_the_run(
 
         expected = f"report path resolves into .axiom of the checkout {holder}: {report}"
         absent = [report]
+    elif case == "write-time-holder-appears":
+        # The report's directory lies in no checkout at the check; the fetch
+        # turns it into a link to B's .axiom, so B holds the path only at
+        # write time.
+        holder = make_checkout("b", {"us-example-layered": _layered_selector()})
+        (holder / ".axiom" / "notes").mkdir(parents=True)
+        base = _base_coverage(corpus)
+        base_bytes = base.read_bytes()
+        out = tmp_path / "out-z"
+        (out / "notes").mkdir(parents=True)
+        report = out / "notes" / "r.json"
+
+        def fetch() -> None:
+            shutil.rmtree(out)
+            out.symlink_to(holder / ".axiom")
+
+        expected = f"report path resolves into .axiom of the checkout {holder}: {report}"
+        absent = [report, holder / ".axiom" / "notes" / "r.json"]
     else:
         raise AssertionError(case)
     events = _report_argv(monkeypatch, repo, report, fetch=fetch)
