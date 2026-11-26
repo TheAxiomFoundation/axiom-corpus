@@ -1001,6 +1001,57 @@ def _case_insensitive(directory: Path) -> bool:
         probe.rmdir()
 
 
+# A name in NFC and in NFD, built from code points so the source stays ASCII.
+NFC_NAME = "out-caf" + chr(0xE9)
+NFD_NAME = "out-cafe" + chr(0x301)
+FIRMLINK_ROOT = Path("/System/Volumes/Data")
+# The report rule's places, spelled out here so that a place dropped from
+# ``PLACES`` turns its rows red instead of removing them.
+REPORT_PLACES = (
+    "data",
+    "data/corpus",
+    "data/corpus/coverage",
+    "data/corpus/inventory",
+    "data/corpus/provisions",
+    "data/corpus/sources",
+    ".axiom",
+    ".axiom/ingest-manifests",
+    ".axiom/corpus-locks",
+    "manifests",
+    "manifests/releases",
+)
+PLACE_BY_LABEL = {place.replace("/", "-").lstrip("."): place for place in REPORT_PLACES}
+
+
+def _normalization_insensitive(directory: Path) -> bool:
+    probe = directory / NFC_NAME
+    probe.mkdir()
+    try:
+        return (directory / NFD_NAME).exists()
+    finally:
+        probe.rmdir()
+
+
+def _firmlink_spelling(path: Path) -> Path | None:
+    """``path`` spelled through ``/System/Volumes/Data``, when that names the same entry."""
+    real = Path(os.path.realpath(path))
+    spelled = FIRMLINK_ROOT / real.relative_to(real.anchor)
+    try:
+        return spelled if os.path.samefile(spelled, path) else None
+    except OSError:
+        return None
+
+
+def _link_place(path: Path, target: Path) -> None:
+    """Make ``path`` a symlink to ``target``, removing whatever stood there."""
+    if path.is_dir() and not path.is_symlink():
+        shutil.rmtree(path)
+    elif os.path.lexists(path):
+        path.unlink()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.symlink_to(target)
+
+
 @pytest.mark.parametrize(
     "case",
     [
@@ -1023,6 +1074,27 @@ def _case_insensitive(directory: Path) -> bool:
         "lock-place-linked-out",
         "case-variant-absent-place",
         "report-through-guarded-file-link",
+        *(f"dangling-{label}" for label in PLACE_BY_LABEL),
+        "dangling-spelled-through-link",
+        "dangling-relative-target",
+        "dangling-chain",
+        "dangling-target-parents-absent",
+        "dangling-target-case-variant",
+        "dangling-target-nfd",
+        "dangling-target-firmlink",
+        "dangling-place-of-physical-holder",
+        "dangling-class-place-other-checkout",
+        "firmlink-absent-data",
+        "firmlink-absent-axiom",
+        "firmlink-case-absent-data",
+        "upper-root-exact-absent-data",
+        "upper-root-exact-absent-axiom",
+        "upper-root-exact-absent-manifests",
+        *(
+            f"linked-out-{label}"
+            for label in PLACE_BY_LABEL
+            if label not in ("data-corpus-coverage", "axiom-corpus-locks")
+        ),
     ],
 )
 def test_main_refuses_a_report_path_in_a_protected_place(
@@ -1140,6 +1212,97 @@ def test_main_refuses_a_report_path_in_a_protected_place(
             f"{coverage} (the link is {coverage}); corpus files are placed as regular files, "
             "never symlinks"
         )
+    elif case.startswith("dangling-") and case.removeprefix("dangling-") in PLACE_BY_LABEL:
+        # The place is a dangling link out of every checkout, and the report
+        # is spelled where it leads: a file the checkout would read there.
+        place = PLACE_BY_LABEL[case.removeprefix("dangling-")]
+        out = tmp_path / f"out-{REPORT_PLACES.index(place)}"
+        _link_place(repo / place, out)
+        report = out / "us-example" / "regulation" / "base-v.json"
+    elif case in (
+        "dangling-spelled-through-link",
+        "dangling-relative-target",
+        "dangling-chain",
+        "dangling-target-parents-absent",
+        "dangling-target-case-variant",
+        "dangling-target-nfd",
+        "dangling-target-firmlink",
+    ):
+        place = "data/corpus/coverage"
+        outside = tmp_path / "outside-cov"
+        target: Path = outside
+        if case == "dangling-relative-target":
+            target = Path("..", "..", "..", "outside-cov")
+        elif case == "dangling-chain":
+            (tmp_path / "hop").symlink_to(outside)
+            target = tmp_path / "hop"
+        elif case == "dangling-target-parents-absent":
+            outside = target = tmp_path / "a" / "b" / "c"
+        elif case == "dangling-target-case-variant":
+            if not _case_insensitive(tmp_path):
+                pytest.skip("the filesystem tells letter case apart")
+            target = tmp_path / "OUTSIDE-COV"
+        elif case == "dangling-target-nfd":
+            if not _normalization_insensitive(tmp_path):
+                pytest.skip("the filesystem tells NFC and NFD apart")
+            target, outside = tmp_path / NFC_NAME, tmp_path / NFD_NAME
+        elif case == "dangling-target-firmlink":
+            firm = _firmlink_spelling(tmp_path)
+            if firm is None:
+                pytest.skip("no /System/Volumes/Data spelling of the test directory")
+            target = firm / "outside-cov"
+        _link_place(repo / place, target)
+        top = repo / place if case == "dangling-spelled-through-link" else outside
+        report = top / "us-example" / "regulation" / "base-v.json"
+    elif case == "dangling-place-of-physical-holder":
+        # B physically holds the report, and B's .axiom dangles to it.
+        root = make_checkout("b", {"us-example-layered": _layered_selector()})
+        (root / ".axiom").symlink_to(root / "ax-out")
+        report, place = root / "ax-out" / "x.json", ".axiom"
+    elif case == "dangling-class-place-other-checkout":
+        # B holds a link on the report as spelled: B's coverage dangles.
+        root = make_checkout("b", {"us-example-layered": _layered_selector()})
+        (root / "data" / "corpus").mkdir(parents=True)
+        (root / "data" / "corpus" / "coverage").symlink_to(tmp_path / "outside-cov")
+        report, place = _base_coverage(root / "data" / "corpus"), "data/corpus/coverage"
+    elif case in ("firmlink-absent-data", "firmlink-absent-axiom", "firmlink-case-absent-data"):
+        firm = _firmlink_spelling(repo)
+        if firm is None:
+            pytest.skip("no /System/Volumes/Data spelling of the test directory")
+        if case == "firmlink-case-absent-data" and not _case_insensitive(tmp_path):
+            pytest.skip("the filesystem tells letter case apart")
+        place = ".axiom" if case == "firmlink-absent-axiom" else "data"
+        shutil.rmtree(repo / place)
+        if case == "firmlink-absent-axiom":
+            report = firm / ".axiom" / "corpus-locks" / "us-example" / "regulation" / "never.json"
+        else:
+            spelled_data = "DATA" if case == "firmlink-case-absent-data" else "data"
+            report = _base_coverage(firm / spelled_data / "corpus", "never-fetched")
+    elif case.startswith("upper-root-exact-absent-"):
+        # The checkout's path holds capitals, and the place does not exist yet.
+        repo = root = tmp_path / "Upper" / "repo"
+        _write_report_repo(repo)
+        place = {"data": "data", "axiom": ".axiom", "manifests": "manifests"}[
+            case.removeprefix("upper-root-exact-absent-")
+        ]
+        shutil.rmtree(repo / place)
+        if place == "data":
+            report = _base_coverage(repo / "data" / "corpus", "never-fetched")
+        elif place == ".axiom":
+            report = repo / ".axiom" / "corpus-locks" / "us-example" / "regulation" / "never.json"
+        else:
+            report = repo / "manifests" / "releases" / "new-selector.json"
+    elif case.startswith("linked-out-"):
+        # The place links to a directory outside every checkout, and the report
+        # is a new file there.
+        place = PLACE_BY_LABEL[case.removeprefix("linked-out-")]
+        out = tmp_path / f"out-{REPORT_PLACES.index(place)}"
+        if (repo / place).exists():
+            (repo / place).rename(out)
+        else:
+            out.mkdir()
+        (repo / place).symlink_to(out)
+        report = out / "us-example" / "regulation" / "new-v.json"
     else:
         raise AssertionError(case)
     spelled = report if report.is_absolute() else Path.cwd() / report
@@ -1154,6 +1317,17 @@ def test_main_refuses_a_report_path_in_a_protected_place(
     )
     assert events == []
     assert _snapshot(tmp_path) == before
+
+
+# The keys main() writes, spelled out here rather than read from REPORT_KEYS.
+WRITTEN_KEYS = (
+    "assertion",
+    "cascade_parent_paths",
+    "conflict_rows",
+    "rows_added",
+    "scopes_repaired",
+    "scopes_repaired_count",
+)
 
 
 def _main_within(seconds: float, *, fifo: Path | None = None) -> object:
@@ -1251,7 +1425,17 @@ def test_main_refuses_a_report_path_that_is_an_input_or_not_a_plain_file(
 
 
 @pytest.mark.parametrize(
-    "case", ["deep-dir-link", "deep-file-link", "foreign-json", "report-keys-plus-one", "not-json"]
+    "case",
+    [
+        "deep-dir-link",
+        "deep-file-link",
+        "foreign-json",
+        "report-keys-plus-one",
+        "not-json",
+        "empty-object",
+        "report-minus-one",
+        "renamed-key",
+    ],
 )
 def test_main_refuses_a_report_path_that_holds_another_file(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
@@ -1290,6 +1474,16 @@ def test_main_refuses_a_report_path_that_holds_another_file(
     elif case == "not-json":
         report = out / "notes.txt"
         report.write_text("not a report\n")
+    elif case == "empty-object":
+        report = out / "notes.json"
+        report.write_text("{}\n")
+    elif case in ("report-minus-one", "renamed-key"):
+        # Five of the report's six keys, or all six with one renamed.
+        report = out / "report.json"
+        keys = [key for key in WRITTEN_KEYS if key != "rows_added"]
+        if case == "renamed-key":
+            keys.append("rows_removed")
+        report.write_text(json.dumps(dict.fromkeys(keys, 0)) + "\n")
     else:
         raise AssertionError(case)
     events = _report_argv(monkeypatch, repo, report)
@@ -1303,15 +1497,27 @@ def test_main_refuses_a_report_path_that_holds_another_file(
     assert _snapshot(tmp_path) == before
 
 
-@pytest.mark.parametrize("case", ["fetched-through-deep-link", "link-planted-during-fetch"])
+@pytest.mark.parametrize(
+    "case",
+    [
+        "fetched-through-deep-link",
+        "link-planted-during-fetch",
+        "write-time-place-relinked",
+        "write-time-dangling-axiom",
+        "write-time-directory-relinked",
+        "write-time-holder-place-relinked",
+    ],
+)
 def test_the_report_write_refuses_what_appeared_during_the_run(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout, case: str
 ) -> None:
     monkeypatch.chdir(tmp_path)
     repo = tmp_path / "repo"
     _write_report_repo(repo)
     corpus = repo / "data" / "corpus"
     base_bytes = json.dumps({"complete": True, "version": "base-w"}).encode() + b"\n"
+    # Paths that must not exist after the refusal: the report and what its write would make.
+    absent: list[Path] = []
     if case == "fetched-through-deep-link":
         # base-w is unfetched at the check; the fetch writes its coverage
         # through the checkout's link, at the report path.
@@ -1336,6 +1542,62 @@ def test_the_report_write_refuses_what_appeared_during_the_run(
             report.symlink_to(base)
 
         expected = f"report path is a symlink: {report}"
+    elif case == "write-time-place-relinked":
+        # The fetch turns repo's coverage into a link to the report's directory.
+        base = _base_coverage(corpus)
+        base_bytes = base.read_bytes()
+        report = tmp_path / "out-w" / "r.json"
+
+        def fetch() -> None:
+            (corpus / "coverage").rename(report.parent)
+            (corpus / "coverage").symlink_to(report.parent)
+
+        expected = (
+            f"report path resolves into data/corpus/coverage of the checkout {repo}: {report}"
+        )
+        absent = [report]
+    elif case == "write-time-dangling-axiom":
+        # The fetch replaces repo's .axiom with a link to where the report would go.
+        base = _base_coverage(corpus)
+        base_bytes = base.read_bytes()
+        report = tmp_path / "ax-out" / "corpus-locks" / "us-example" / "regulation" / "base-v.json"
+
+        def fetch() -> None:
+            shutil.rmtree(repo / ".axiom")
+            (repo / ".axiom").symlink_to(tmp_path / "ax-out")
+
+        expected = f"report path resolves into .axiom of the checkout {repo}: {report}"
+        absent = [report, tmp_path / "ax-out"]
+    elif case == "write-time-directory-relinked":
+        # The report's directory is a directory at the check; the fetch turns
+        # it into a dangling link.
+        base = _base_coverage(corpus)
+        base_bytes = base.read_bytes()
+        report = tmp_path / "out-d" / "r.json"
+        report.parent.mkdir()
+
+        def fetch() -> None:
+            report.parent.rmdir()
+            report.parent.symlink_to(tmp_path / "gone" / "x")
+
+        expected = f"report path passes through {report.parent}, which is not a directory: {report}"
+        absent = [report, tmp_path / "gone"]
+    elif case == "write-time-holder-place-relinked":
+        # B physically holds the report; the fetch turns B's .axiom into a
+        # link to the report's directory. --repo is repo, not B.
+        holder = make_checkout("b", {"us-example-layered": _layered_selector()})
+        (holder / "notes").mkdir()
+        (holder / ".axiom").mkdir()
+        base = _base_coverage(corpus)
+        base_bytes = base.read_bytes()
+        report = holder / "notes" / "r.json"
+
+        def fetch() -> None:
+            (holder / ".axiom").rmdir()
+            (holder / ".axiom").symlink_to(holder / "notes")
+
+        expected = f"report path resolves into .axiom of the checkout {holder}: {report}"
+        absent = [report]
     else:
         raise AssertionError(case)
     events = _report_argv(monkeypatch, repo, report, fetch=fetch)
@@ -1346,6 +1608,8 @@ def test_the_report_write_refuses_what_appeared_during_the_run(
     assert str(raised.value) == expected
     assert events == ["fetch"]
     assert base.read_bytes() == base_bytes
+    for path in absent:
+        assert not os.path.lexists(path), path
 
 
 def test_main_accepts_a_plain_report_outside_protected_places(
@@ -1366,3 +1630,125 @@ def test_main_accepts_a_plain_report_outside_protected_places(
         assert report.is_file() and not report.is_symlink()
         assert set(json.loads(report.read_text())) == repair_module.REPORT_KEYS
     assert coverage.read_bytes() == base_bytes
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "report-through-dangling-link-outside",
+        "report-through-file-outside",
+        "report-through-dangling-dotdot",
+        "report-through-dangling-link-two-up",
+    ],
+)
+def test_main_refuses_a_report_path_below_something_that_is_not_a_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    entry = tmp_path / "x"
+    if case == "report-through-dangling-link-outside":
+        entry.symlink_to(tmp_path / "nowhere")
+        report = entry / "r.json"
+    elif case == "report-through-file-outside":
+        entry = tmp_path / "plainfile"
+        entry.write_text("x\n")
+        report = entry / "r.json"
+    elif case == "report-through-dangling-dotdot":
+        entry.symlink_to(tmp_path / "nowhere")
+        (tmp_path / "out").mkdir()
+        report = entry / ".." / "out" / "r.json"
+    elif case == "report-through-dangling-link-two-up":
+        entry.symlink_to(tmp_path / "nowhere")
+        report = entry / "y" / "r.json"
+    else:
+        raise AssertionError(case)
+    events = _report_argv(monkeypatch, repo, report)
+    before = _snapshot(tmp_path)
+
+    with pytest.raises(ValueError) as raised:
+        repair_module.main()
+
+    assert str(raised.value) == (
+        f"report path passes through {entry}, which is not a directory: {report}"
+    )
+    assert events == []
+    assert _snapshot(tmp_path) == before
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "control-ancestor-of-dangling-target",
+        "control-sibling-of-place",
+        "control-sibling-of-dangling-target",
+        "control-place-name-elsewhere",
+        "cwd-checkout-link",
+        "deeper-lock-link",
+        "dangling-file-link-in-releases",
+    ],
+)
+def test_main_writes_a_report_beside_a_place_or_where_limit_14_lets_it(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, make_checkout: MakeCheckout, case: str
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    repo = tmp_path / "repo"
+    _write_report_repo(repo)
+    base = _base_coverage(repo / "data" / "corpus")
+    coverage_place = repo / "data" / "corpus" / "coverage"
+    if case in ("control-ancestor-of-dangling-target", "control-sibling-of-dangling-target"):
+        # The coverage place dangles; its files move aside so the base stays readable.
+        coverage_place.rename(tmp_path / "unused-cov")
+        base = tmp_path / "unused-cov" / "us-example" / "regulation" / "base-v.json"
+    base_bytes = base.read_bytes()
+    if case == "control-ancestor-of-dangling-target":
+        # The report is the dangling target's parent, not below the target.
+        coverage_place.symlink_to(tmp_path / "x" / "y")
+        report = tmp_path / "x"
+    elif case == "control-sibling-of-place":
+        report = repo / "data-old" / "r.json"
+    elif case == "control-sibling-of-dangling-target":
+        coverage_place.symlink_to(tmp_path / "outside-cov")
+        report = tmp_path / "outside-cov-2" / "r.json"
+    elif case == "control-place-name-elsewhere":
+        report = tmp_path / "plain" / "data" / "corpus" / "coverage" / "r.json"
+        report.parent.mkdir(parents=True)
+    elif case == "cwd-checkout-link":
+        # Limit 14: the working directory's checkout C is no root, and C's
+        # data/corpus leads to where the report goes.
+        checkout = make_checkout("C", {"us-example-layered": _layered_selector()})
+        shared = tmp_path / "shared"
+        (shared / "coverage" / "us-example" / "regulation").mkdir(parents=True)
+        (checkout / "data").mkdir()
+        (checkout / "data" / "corpus").symlink_to(shared)
+        monkeypatch.chdir(checkout)
+        report = _base_coverage(shared)
+    elif case == "deeper-lock-link":
+        # Limit 14: a link below the lock place is not followed.
+        locks = repo / ".axiom" / "corpus-locks" / "us-example"
+        shutil.rmtree(locks)
+        locks.symlink_to(tmp_path / "out-lk")
+        report = tmp_path / "out-lk" / "regulation" / "base-v.json"
+    elif case == "dangling-file-link-in-releases":
+        # Limit 14: a file link below the selector place is not followed. The
+        # selectors are committed, so the dangling link is read as untracked.
+        fixture_git(repo, "init", "-q", "-b", "main")
+        fixture_git(repo, "add", "--", "manifests")
+        fixture_git(repo, "commit", "-q", "-m", "Fixture checkout")
+        from axiom_corpus.corpus import resolver
+
+        resolver._repo_root_for_dir.cache_clear()
+        (tmp_path / "out").mkdir()
+        (repo / "manifests" / "releases" / "x.json").symlink_to(tmp_path / "out" / "x.json")
+        report = tmp_path / "out" / "x.json"
+    else:
+        raise AssertionError(case)
+    events = _report_argv(monkeypatch, repo, report)
+
+    assert repair_module.main() == 0
+
+    assert events == ["fetch"]
+    assert report.is_file() and not report.is_symlink()
+    assert set(json.loads(report.read_text())) == set(WRITTEN_KEYS)
+    assert base.read_bytes() == base_bytes

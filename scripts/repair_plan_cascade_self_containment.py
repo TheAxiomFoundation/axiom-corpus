@@ -6,36 +6,42 @@ only reads it and fails closed unless every conflict can be assigned either to
 its immutable release scope or to a release scope which owns the legacy parent
 whose replacement would cascade outside the load.
 
-Repair re-versions no base scope. It reads the selectors committed at HEAD of
-``--repo``, of the checkouts that physically hold a path it touches or
-``--release``, of each checkout the resolver recognises that holds a link on
-those paths as repair spells them, and of the working directory's checkout,
-plus the bases ``--release`` itself marks. After it fetches and plans the
-repair, and before its first move, rewrite or unlink, it refuses a scope any
-of them marks as a base, a link at a checkout's guarded place that leads into
-no checkout, a scope artifact path that does not resolve to a path ending in
-its own artifact kind, jurisdiction, document class and version, a new
-scope's path that already exists, a symlink or a file with another hard link
-in the sources it moves, and a file or sources directory it would unlink or
-move that a base it knows reaches through a link
+Repair re-versions no base scope it knows. It reads the selectors committed
+at HEAD of ``--repo``, of the checkouts that physically hold a path it
+touches or ``--release``, of each checkout the resolver recognises that holds
+a link on those paths as repair spells them, and of the working directory's
+checkout, plus the bases ``--release`` itself marks. After it fetches and
+plans the repair, and before its first move, rewrite or unlink, it refuses a
+scope any of them marks as a base, a link at a checkout's guarded place that
+leads into no checkout, a path through a symlinked file at or below such a
+place, a checkout whose ``manifests`` or ``manifests/releases`` is a symlink,
+a scope artifact path that does not resolve to a path ending in its own
+artifact kind, jurisdiction, document class and version, a new scope's path
+that already exists, a symlink or a file with another hard link in the
+sources it moves, and a file or sources directory it would unlink or move
+that a base it knows reaches through a link
 (``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). Its
 rewrites of ``--release``, ``manifests/**/*.yaml`` and ``SIGNING-COMMANDS.md``
 follow links and are not guarded (the threat model's stated limit 9), and a
 checkout it does not read is one of its stated limits (2, 11 and 15).
 
-Before it fetches anything, repair refuses a ``--report`` path that resolves
-into the corpus, lock or selector places (``PLACES``) of ``--repo``, of the
-checkout that physically holds it, or of a checkout that holds a link on it;
-that is the ``--release`` or ``--conflicts`` file; that is a link (a dangling
-one included), a directory, anything but a regular file (``/dev/null``
-included: the report has no "drop" mode) or a file with another hard link;
-or that holds a file this script did not write. The kind and content rules
-run again just before the write, and the report replaces its path without
-following a link. A report path that does not exist yet, lies outside every
-checkout, and is where a link of another checkout leads, or where a link
-deeper than ``data/corpus/<artifact class>`` (coverage, inventory,
-provisions or sources) of ``--repo`` leads, is created there (the threat
-model's stated limit 14).
+Before it fetches anything, repair refuses a ``--report`` path that lies at
+or below a corpus, lock or selector place (``PLACES``) of ``--repo``, of the
+checkout that physically holds it, or of a checkout that holds a link at one
+of its guarded places on the path as spelled. Each place is followed to
+where it leads, a place that does not exist yet and a dangling link at a
+place included. It also refuses a path below an entry that is not a
+directory; the ``--release`` or ``--conflicts`` file; a link (a dangling one
+included), a directory, anything but a regular file (``/dev/null`` included:
+the report has no "drop" mode) or a file with another hard link; and a file
+this script did not write. Just before the write, the content, place and
+directory rules run again, before any directory is made, and the report
+replaces its path without following a link. A report path that does not
+exist yet, where a link leads that the place rule does not follow, is
+created there: a link below a place, or a link of a checkout the rule does
+not read, such as the working directory's, or another checkout's linked
+``.axiom``, ``.axiom/corpus-locks`` or ``manifests`` that the path is spelled
+through (the threat model's stated limit 14).
 """
 
 from __future__ import annotations
@@ -54,6 +60,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.corpus_locks import _caseless, fold_path
 from axiom_corpus.corpus.releases import LAYER_BASE
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.successors import (
@@ -103,6 +110,78 @@ def _write_json(path: Path, value: Any) -> None:
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
 
 
+def _alike(first: str, second: str) -> bool:
+    """One name as a case- or normalization-insensitive filesystem stores it, as
+    ``resolver._spells_place`` compares."""
+    return bool(fold_path(first) == fold_path(second) or _caseless(first) == _caseless(second))
+
+
+def _anchors(path: Path) -> list[tuple[os.stat_result, tuple[str, ...]]]:
+    """Each existing entry on ``path``, deepest first, with the names below it."""
+    found: list[tuple[os.stat_result, tuple[str, ...]]] = []
+    for depth in range(len(path.parts), 0, -1):
+        with contextlib.suppress(OSError):
+            found.append((os.stat(Path(*path.parts[:depth])), path.parts[depth:]))
+    return found
+
+
+def _report_roots(spelled: Path, *, repo: Path) -> list[Path]:
+    """The checkouts whose places a report path must stay out of, once each by realpath.
+
+    They are ``repo``, the checkout that physically holds ``spelled`` and the
+    checkouts that hold a link at one of their guarded places on the path as
+    spelled (``checkouts_holding``), the last sorted.
+    """
+    links, holder = checkouts_holding(spelled)
+    roots: list[Path] = []
+    for root in (repo, holder, *sorted(links)):
+        if root is None:
+            continue
+        if all(os.path.realpath(root) != os.path.realpath(seen) for seen in roots):
+            roots.append(root)
+    return roots
+
+
+def _refuse_report_location(spelled: Path, *, repo: Path) -> None:
+    """Refuse a report path at or below a place in ``PLACES`` of a root, wherever it leads.
+
+    The roots are ``_report_roots``, found afresh on each call. Each place is
+    followed with ``os.path.realpath``, a dangling link and a place that does
+    not exist yet included, and its deepest existing entry is compared with
+    each existing entry on the report's realpath by ``os.path.samestat``; the
+    names below the report's entry must start with the place's remaining
+    names, letter case and normalization ignored (``_alike``).
+    """
+    report_anchors = _anchors(Path(os.path.realpath(spelled)))
+    for root in _report_roots(spelled, repo=repo):
+        for place in PLACES:
+            place_status, place_rest = _anchors(Path(os.path.realpath(root / place)))[0]
+            if any(
+                os.path.samestat(place_status, status)
+                and len(rest) >= len(place_rest)
+                and all(_alike(a, b) for a, b in zip(rest, place_rest, strict=False))
+                for status, rest in report_anchors
+            ):
+                raise ValueError(
+                    f"report path resolves into {place} of the checkout {root}: {spelled}"
+                )
+
+
+def _refuse_report_directory(spelled: Path) -> None:
+    """Refuse a report path whose nearest existing entry above it is not a directory.
+
+    Such an entry, a dangling link or a file, passes the place rule, and the
+    write would then fail with ``FileExistsError`` after the repair.
+    """
+    for entry in spelled.parents:
+        if os.path.lexists(entry):
+            if not os.path.isdir(entry):
+                raise ValueError(
+                    f"report path passes through {entry}, which is not a directory: {spelled}"
+                )
+            return
+
+
 def _refuse_report_destination(
     report: Path, *, repo: Path, inputs: Mapping[str, Path | None]
 ) -> None:
@@ -112,51 +191,24 @@ def _refuse_report_destination(
 
     1. Location: the roots are ``repo``, the checkout that physically holds
        the path (``checkouts_holding``, by git toplevel and HEAD) and each
-       checkout that holds a link on it as spelled (the resolver's rules).
-       For each root and place in ``PLACES``, the path is refused when the
-       place, followed through any link, is the same file as the path's
-       realpath or one of its existing ancestors, or when the realpath lies
-       under the root's realpath and starts with the place's parts, letter
-       case ignored (a place that does not exist yet).
-    2. Inputs: the path is refused when it is an existing ``inputs`` file.
-    3. Target: ``_refuse_report_target``.
+       checkout that holds a link at one of its guarded places on the path as
+       spelled (the resolver's rules). Each place in ``PLACES`` of each root
+       is followed with ``os.path.realpath`` to where it leads, a dangling
+       link and a place that does not exist yet included. The path is
+       refused when the deepest existing entry on that place's path is the
+       same file as an existing entry on the report's realpath, and the names
+       below that entry start with the place's remaining names, letter case
+       and normalization ignored.
+    2. Directory: the nearest existing entry above the path must be a
+       directory.
+    3. Inputs: the path is refused when it is an existing ``inputs`` file.
+    4. Target: ``_refuse_report_target``.
 
     It opens no file but a regular one, and writes nothing.
     """
     spelled = report if report.is_absolute() else Path.cwd() / report
-    physical = Path(os.path.realpath(spelled))
-    links, holder = checkouts_holding(spelled)
-    roots: list[Path] = []
-    for root in (repo, holder, *sorted(links)):
-        if root is None:
-            continue
-        if all(os.path.realpath(root) != os.path.realpath(seen) for seen in roots):
-            roots.append(root)
-    ancestors: list[os.stat_result] = []
-    for ancestor in (physical, *physical.parents):
-        with contextlib.suppress(OSError):
-            ancestors.append(os.stat(ancestor))
-    for root in roots:
-        real_root = Path(os.path.realpath(root))
-        folded_root = tuple(part.casefold() for part in real_root.parts)
-        folded = tuple(part.casefold() for part in physical.parts)
-        relative: tuple[str, ...] | None = (
-            folded[len(folded_root) :] if folded[: len(folded_root)] == folded_root else None
-        )
-        for place in PLACES:
-            place_parts = tuple(place.split("/"))
-            try:
-                place_status: os.stat_result | None = os.stat(root / place)
-            except OSError:
-                place_status = None
-            same = place_status is not None and any(
-                os.path.samestat(place_status, status) for status in ancestors
-            )
-            under = relative is not None and relative[: len(place_parts)] == place_parts
-            if same or under:
-                raise ValueError(
-                    f"report path resolves into {place} of the checkout {root}: {spelled}"
-                )
+    _refuse_report_location(spelled, repo=repo)
+    _refuse_report_directory(spelled)
     for flag, path in inputs.items():
         if path is None or not os.path.exists(spelled) or not os.path.exists(path):
             continue
@@ -194,17 +246,22 @@ def _refuse_report_target(spelled: Path) -> None:
         raise ValueError(f"report path holds a file this script did not write: {spelled}")
 
 
-def _write_report(report: Path, value: Mapping[str, object]) -> None:
+def _write_report(report: Path, value: Mapping[str, object], *, repo: Path) -> None:
     """Write the report without following a link or writing into another file.
 
     The target rules run again first, since the fetch can create a file at the
     report path (a base's artifact, through a link deeper than the protected
-    places) and a link can appear there. The JSON goes to a temporary file in
-    the same directory, which then replaces the path's directory entry.
+    places) and a link can appear there. The place and directory rules run
+    again too, with the roots found afresh, before any directory is made,
+    since the fetch can relink a place of any root or turn a directory on the
+    path into a link. The JSON goes to a temporary file in the same
+    directory, which then replaces the path's directory entry.
     """
     spelled = report if report.is_absolute() else Path.cwd() / report
-    spelled.parent.mkdir(parents=True, exist_ok=True)
     _refuse_report_target(spelled)
+    _refuse_report_location(spelled, repo=repo)
+    _refuse_report_directory(spelled)
+    spelled.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary = tempfile.mkstemp(
         dir=spelled.parent, prefix=f".{spelled.name}.", suffix=".tmp"
     )
@@ -578,7 +635,8 @@ def main() -> int:
     release_path = repo / args.release
     report_path = args.report if args.report.is_absolute() else Path.cwd() / args.report
     # Before the fetch and before any read or write: a report path in a
-    # protected place, on an input or over another file stops the run.
+    # protected place, below an entry that is not a directory, on an input or
+    # over another file stops the run.
     _refuse_report_destination(
         report_path,
         repo=repo,
@@ -807,7 +865,7 @@ def main() -> int:
         "scopes_repaired_count": len(mappings),
         "cascade_parent_paths": cascade_parent_paths,
     }
-    _write_report(report_path, report)
+    _write_report(report_path, report, repo=repo)
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
 
