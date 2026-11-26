@@ -149,6 +149,7 @@ class OregonOrsChapterParse:
     heading: str | None
     source_year: int | None
     provisions: tuple[OregonOrsProvision, ...]
+    former_provisions: bool = False
 
 
 @dataclass(frozen=True)
@@ -291,6 +292,14 @@ def extract_oregon_ors(
         raise ValueError(f"no Oregon ORS chapters selected for filters: {only_title!r}, {only_chapter!r}")
 
     title_by_number = {title.number: title for title in titles}
+    # The run writes a chapter as a provision only once its page lists a
+    # section under it. A chapter whose page the run cannot fetch stays an
+    # inventory gap whose source is the landing page, whose title ranges name
+    # the chapter; a page the run fetched that has no chapter heading or lists
+    # no section stays a gap whose source is that page. Either way coverage
+    # reads incomplete instead of silently losing the chapter. A chapter of
+    # former provisions may list no section (ORS chapter 27), and the run
+    # writes it as before.
     for chapter in chapters:
         if remaining_sections is not None and remaining_sections <= 0:
             break
@@ -299,6 +308,17 @@ def extract_oregon_ors(
         except ValueError as exc:
             skipped_source_count += 1
             errors.append(f"chapter {chapter.chapter}: {exc}")
+            _append_inventory_gap(
+                seen,
+                items,
+                _chapter_gap_item(
+                    chapter,
+                    source_url=_chapter_url(chapter.chapter, fetcher.base_url),
+                    source_path=landing_source_key,
+                    sha256=landing_sha,
+                    source_year=source_year,
+                ),
+            )
             continue
 
         artifact_path = store.source_path(
@@ -311,8 +331,37 @@ def extract_oregon_ors(
         source_paths.append(artifact_path)
         source_key = _state_source_key(jurisdiction, run_id, page.relative_path)
 
-        parsed = parse_oregon_chapter_html(page.data)
+        try:
+            parsed = parse_oregon_chapter_html(page.data)
+        except ValueError as exc:
+            errors.append(f"chapter {chapter.chapter}: {exc}")
+            _append_inventory_gap(
+                seen,
+                items,
+                _chapter_gap_item(
+                    chapter,
+                    source_url=page.source_url,
+                    source_path=source_key,
+                    sha256=sha256,
+                    source_year=source_year,
+                ),
+            )
+            continue
         selected_chapter = _chapter_with_parse_metadata(chapter, parsed, titles)
+        if not parsed.provisions and not parsed.former_provisions:
+            errors.append(f"chapter {selected_chapter.chapter}: no sections listed in chapter page")
+            _append_inventory_gap(
+                seen,
+                items,
+                _chapter_gap_item(
+                    selected_chapter,
+                    source_url=page.source_url,
+                    source_path=source_key,
+                    sha256=sha256,
+                    source_year=parsed.source_year or source_year,
+                ),
+            )
+            continue
 
         title = title_by_number.get(selected_chapter.title_number or "")
         if title is not None and title.citation_path not in seen:
@@ -409,7 +458,7 @@ def extract_oregon_ors(
             else:
                 container_count += 1
 
-    if not items:
+    if not records:
         raise ValueError("no Oregon ORS provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -631,6 +680,7 @@ def parse_oregon_chapter_html(html: str | bytes) -> OregonOrsChapterParse:
         heading=chapter_heading,
         source_year=source_year,
         provisions=tuple(provisions),
+        former_provisions=_is_former_provisions_chapter(texts),
     )
 
 
@@ -778,6 +828,55 @@ def _title_for_chapter(
         if _chapter_in_range(token, title.start_chapter, title.end_chapter):
             return title
     return None
+
+
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected provision whose page yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the run
+    expects the chapter: the landing page, or the chapter's own unusable page.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
+
+
+def _chapter_gap_item(
+    chapter: OregonOrsChapter,
+    *,
+    source_url: str,
+    source_path: str | None,
+    sha256: str | None,
+    source_year: int,
+) -> SourceInventoryItem:
+    """A chapter the run selected but could not read from its page."""
+    parent_citation_path = (
+        _canonical_citation_path(chapter.parent_citation_path)
+        if chapter.parent_citation_path is not None
+        else None
+    )
+    return SourceInventoryItem(
+        citation_path=_canonical_citation_path(chapter.citation_path),
+        source_url=source_url,
+        source_path=source_path,
+        source_format=OREGON_ORS_SOURCE_FORMAT,
+        sha256=sha256,
+        metadata={
+            "kind": "chapter",
+            "chapter": chapter.chapter,
+            "title": chapter.title_number,
+            "source_year": source_year,
+            "parent_citation_path": parent_citation_path,
+            "heading": chapter.heading,
+            "source_id": chapter.source_id,
+        },
+    )
 
 
 def _append_record(
@@ -941,6 +1040,22 @@ def _parse_chapter_heading(texts: Iterable[str]) -> tuple[str, str | None]:
                 text_list[index + 1 :]
             )
     raise ValueError("Oregon ORS chapter page is missing a chapter heading")
+
+
+def _is_former_provisions_chapter(texts: Iterable[str]) -> bool:
+    """Whether the page's own chapter heading marks a chapter of former provisions.
+
+    Reads the same heading line as ``_parse_chapter_heading``: the first line
+    in any of the four heading forms.
+    """
+    for text in texts:
+        if _CHAPTER_RE.match(text) or _CHAPTER_DASH_ONLY_RE.match(text):
+            return False
+        if _FORMER_CHAPTER_RE.match(text):
+            return True
+        if _CHAPTER_NUMBER_ONLY_RE.match(text):
+            return False
+    return False
 
 
 def _next_heading_text(texts: Iterable[str]) -> str | None:
