@@ -112,6 +112,6 @@ not reproduce on a full merge.
    and the protected `activate-release.yml` flow.
 
 Disk: the controller machine had 2 GB free at one point during this pass. Stale worktrees from
-other sessions under `/private/tmp` (`axiom-corpus-1248`, `axiom-corpus-620527`,
+other sessions in the system temporary directory (`axiom-corpus-1248`, `axiom-corpus-620527`,
 `de-kindergeld-closure`, about 29 GB together) and the 15 GB uv cache are the obvious reclaim
 targets before the 2.2 GB data commit.

@@ -12,7 +12,7 @@
 # XML manifestations and are not extractable through this adapter; their bodies
 # were captured from the rendered official page (ops mirror, dk-lane/wave2).
 #
-#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#   UV_CACHE_DIR=<uv-cache> uv run --no-sync \
 #     axiom-corpus-ingest extract-eli-documents --base data/corpus \
 #     --version 2026-08-22-dk-child-benefit-bearing-guidance \
 #     --manifest manifests/dk-child-benefit-bearing-guidance-eli.yaml \

@@ -6,7 +6,7 @@ Work order: `docs/coverage/needs-closure-2026-09-14/wave5/00-common-preamble.md`
 `wave5/ssi-liheap-medicare-extractable.csv` (357 federal, inherited by 51 states from 7 elements; 78 state-level) and the
 219 REVIEW cells of `wave5/ssi-liheap-medicare-review.csv`.
 Branch `discovery/ingest-w5-ssi-liheap-medicare` cut from `main` 9b0641afc in the sparse worktree
-`~/axiom-corpus-worktrees/w5-ssi-liheap-medicare` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
+`<axiom-corpus worktrees>/w5-ssi-liheap-medicare` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
 main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`) with `--source-as-of 2026-09-15`; the
 artifacts stay uncommitted for the controller. Agent timing: worktree read and inputs inventoried 2026-09-15T00:00Z to
 00:10Z; publisher research 00:10Z to 00:22Z (the Part B reading pass ran in parallel as one read-only sub-agent, 00:12Z to
@@ -269,7 +269,7 @@ successor) is selected.
 Rebuild:
 
 ```bash
-cd ~/axiom-corpus-worktrees/w5-ssi-liheap-medicare
+cd <axiom-corpus worktrees>/w5-ssi-liheap-medicare
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 uv run python scripts/build_federal_guidance_layer_manifests.py --only liheap-model-plan,ssi-cfr-416-appendix-k
 uv run python scripts/build_ssi_poms_si_manifests.py --family si-00529

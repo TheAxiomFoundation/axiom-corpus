@@ -5,7 +5,7 @@ Work order: the two state-level chart families the needs-driven closure check le
 (`docs/coverage/needs-closure-2026-09-11/medicare.md` MED-ST-7 with MED-ST-2/3/4 where the chart carries them, 36 states;
 `snap.md` snap_s20, the 25 states whose cell is not PRESENT in `snap-matrix.csv`).
 Branch `discovery/ingest-msp-charts-snap-fy2026` cut from `origin/main` (5c2505ec6) in the sparse worktree
-`~/axiom-corpus-worktrees/msp-snap-charts` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
+`<axiom-corpus worktrees>/msp-snap-charts` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
 checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`, `--source-as-of 2026-09-14`).
 Impact analysis: no library function was modified (the GitNexus tools were not needed); the code change is two new
 generator modules, `scripts/build_msp_snap_state_charts_manifests.py` and `scripts/msp_snap_state_chart_records.py`.

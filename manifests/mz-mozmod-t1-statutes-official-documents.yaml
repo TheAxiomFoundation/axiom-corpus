@@ -53,6 +53,10 @@
 #   lei-20-2013:      e9971b37fe1c1c7355bea7d80101c6f891a74f898bacee214994feea88175b13
 #   br-2009-01-12 3s: fda4c1a0056842dc882013fa422fa77fba5f8fe2d70e205ffa1e00cce30bbacf
 #   lei-3-2012:       1189fa3d8c4aa74ad48e15ac6dbd28e94066e063ed872cc1aa90974756d23e5a
+# Each local_path names that retained copy where the corpus locks it, relative
+# to this manifest (.axiom/corpus-locks/mz/statute/2026-07-23-mz-mozmod-t1-statutes.json
+# records the same sha256s). Fetch them before re-extracting:
+#   uv run axiom-corpus-ingest corpus fetch mz/statute/2026-07-23-mz-mozmod-t1-statutes
 # TLS verification was never disabled at any point.
 documents:
   - source_id: mz-lei-4-2007-proteccao-social
@@ -80,7 +84,7 @@ documents:
     citation_path: mz/statute/lei-2013-20/irps-revisao
     title: Lei 20/2013 de 23 de Setembro (AT print) - revisao do Codigo do IRPS (incl. Art. 65-A)
     source_url: 'https://www.at.gov.mz/por/content/download/1385/10635/version/1/file/Lei+n%C2%BA+20-2013-IRPS.pdf.pdf'
-    local_path: /Users/maxghenis/overnight-encode-20260718/mz-sources/lei-20-2013-irps-real.pdf
+    local_path: ../data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-20-2013-irps-revisao.pdf
     source_format: pdf
     source_as_of: '2026-07-23'
     expression_date: '2013-09-23'
@@ -103,7 +107,7 @@ documents:
     citation_path: mz/statute/lei-2009-5/ispc-imposto-simplificado
     title: Lei 5/2009 de 12 de Janeiro - cria o Imposto Simplificado para Pequenos Contribuintes ISPC (Boletim da Republica I Serie n. 1, 3. Suplemento, paginas 10-11; gazeta hospedada pela AT)
     source_url: 'https://www.at.gov.mz/por/content/download/2130/16304/version/1/file/Lei+n%C2%BA+4+-+2009+de+12+de+janeiro.pdf'
-    local_path: /Users/maxghenis/overnight-encode-20260718/mz-sources/br-2009-01-12-i-serie-1-3sup.pdf
+    local_path: ../data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-5-2009-ispc.pdf
     source_format: pdf
     source_as_of: '2026-07-23'
     expression_date: '2009-01-12'
@@ -130,7 +134,7 @@ documents:
     citation_path: mz/statute/lei-2012-3/iva-revisao
     title: Lei 3/2012 de 23 de Janeiro (AT print) - revisao do Codigo do IVA
     source_url: 'https://www.at.gov.mz/por/content/download/1318/10264/version/1/file/Lei+n%C2%BA+3-2012.pdf'
-    local_path: /Users/maxghenis/overnight-encode-20260718/mz-sources/Lei-n1-3-2012.pdf
+    local_path: ../data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-3-2012-iva-revisao.pdf
     source_format: pdf
     source_as_of: '2026-07-23'
     expression_date: '2012-01-23'

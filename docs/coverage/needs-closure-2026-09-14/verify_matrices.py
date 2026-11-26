@@ -13,8 +13,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 EXTRA = {("us", "regulation", "2026-09-11-title-20-part-416"), ("us", "manual", "2026-09-11-medicare-cms-iom-100-02"),
          ("us", "manual", "2026-09-11-medicare-cms-iom-100-04")}
-ap = argparse.ArgumentParser(); ap.add_argument("--base", default="/Users/pavelmakarchuk/axiom-corpus/data/corpus")
-ap.add_argument("--selector", default="/Users/pavelmakarchuk/axiom-corpus/docs/ingest-runs/2026-09-11-us-rulespec-program-ingestion-union.selector.json")
+ap = argparse.ArgumentParser(); ap.add_argument("--base", default="data/corpus")
+ap.add_argument("--selector", default="docs/ingest-runs/2026-09-11-us-rulespec-program-ingestion-union.selector.json")
 ap.add_argument("--dump", action="store_true"); ap.add_argument("--programs", default="ssi,liheap,medicare")
 a = ap.parse_args()
 sel = {(s["jurisdiction"], s["document_class"], s["version"]) for s in json.load(open(a.selector))["scopes"]} | EXTRA

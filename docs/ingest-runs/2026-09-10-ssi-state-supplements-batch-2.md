@@ -281,7 +281,7 @@ cat "$CERTIFI" data/certs/digicert-global-g2-tls-rsa-sha256-2020-ca1.pem > data/
 cat "$CERTIFI" data/certs/godaddy-secure-certificate-authority-g2.pem > data/certs/img1-scdhhs-gov-ca-bundle.pem
 ```
 
-Rebuild (the generator caches index pages under `~/.axiom/ssi-state-supplement-cache`; the extractor re-fetches
+Rebuild (the generator caches index pages under `<axiom-cache>/ssi-state-supplement-cache`; the extractor re-fetches
 every document; NE and SC need the bundles above, LA and NH use `browser_impersonation` from the manifest):
 
 ```bash

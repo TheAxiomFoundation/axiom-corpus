@@ -10,7 +10,7 @@
 # 2026-08-04-dk-full-parity-tier1 version because amendment discovery filters
 # candidates to the target provision's exact version.
 #
-#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#   UV_CACHE_DIR=<uv-cache> uv run --no-sync \
 #     axiom-corpus-ingest extract-eli-documents --base data/corpus \
 #     --version 2026-08-04-dk-full-parity-tier1-current \
 #     --manifest manifests/dk-full-parity-tier1-eli.yaml

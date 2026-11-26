@@ -1,7 +1,7 @@
 # CCDF FFY 2025-2027 state plans: ACF index relocation repair and blocked-row re-probe (w8)
 
 Date: 2026-10-20. Program: CCDF (`manifests/ccdf-agent-queue.yaml`).
-Worktree `~/axiom-corpus-worktrees/w8-ccdf-index`, branch `discovery/ingest-w8-ccdf-index` cut from main 393127f8b.
+Worktree `<axiom-corpus worktrees>/w8-ccdf-index`, branch `discovery/ingest-w8-ccdf-index` cut from main 393127f8b.
 Extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`); nothing
 under `data/corpus/` is committed, nothing is signed, nothing was pushed.
 
@@ -247,7 +247,7 @@ Checks read from the artifacts, not from the CLI output:
    with both facts recorded and a `ccdf_plan_text_held_elsewhere` family naming the held scope. A reviewer should decide
    whether this row retires into the wave-7 scope. The HTML-page 403 stays recorded because it is real.
 4. **Missouri's block is lifted, but its plan text is already held, so the extraction was withdrawn.** The DESE page
-   now answers 200 and lists the whole plan family, and the Initial Plan is retrievable: its `/media/pdf/...` address
+   now answers 200 and lists the whole plan family, and the Initial Plan is retrievable: its `dese.mo.gov/media/pdf/...` address
    is the publisher's own PDF-viewer page (still `text/html`) and that viewer's file endpoint on the same host answers
    `application/pdf`, 2,756,462 bytes - the Idaho `ElectronicFile.aspx` precedent (retry-2 judgment 4), the publisher's
    own URL, no mirror and no challenge bypassed. I extracted it (42 provisions, coverage complete, 9.48 s), then the
@@ -296,7 +296,7 @@ Checks read from the artifacts, not from the CLI output:
 11. **The coordinator's mid-run corrections were applied and changed nothing in substance.** Point by point:
     - *Judge reachability from the body, not the status line.* Already done for every address. New York's HTTP 200
       carries a 6,653-byte F5/Shape TSPD challenge and an empty body, and was classified blocked on that basis - the
-      same finding the parallel agent reported for `otda.ny.gov`. Missouri's `/media/pdf/...` HTTP 200 is `text/html`,
+      same finding the parallel agent reported for `otda.ny.gov`. Missouri's `dese.mo.gov/media/pdf/...` HTTP 200 is `text/html`,
       not the PDF it names, and was not treated as the file.
     - *Read the body even on an apparent success.* For every 200 the document links were enumerated before the row was
       classified, which is what catches the "No documents found" class of trap: American Samoa's plain-HTTP site

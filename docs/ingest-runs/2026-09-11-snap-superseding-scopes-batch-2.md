@@ -7,7 +7,7 @@ unchanged count; the same six rows gain the same mapping).
 Issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/680 and the hand-off
 `docs/ingest-runs/2026-09-11-program-ingestion-handoff.md` ("Revised editions found during the SNAP
 completion pass ... need superseding scopes; released scopes are immutable").
-Agent: one session from a US network in the sparse worktree `axiom-corpus-worktrees/snap2`, branch
+Agent: one session from a US network in the sparse worktree `<axiom-corpus worktrees>/snap2`, branch
 `discovery/ingest-snap-superseding-2` cut from `origin/discovery/program-ingestion-union`; artifacts written
 to the main checkout's corpus root. started_at 2026-09-11T20:44Z (worktree created), extraction window
 2026-09-11T21:04:09Z-21:09:12Z. Per-state extraction seconds (timer around `extract-official-documents`):

@@ -5,7 +5,7 @@ Work order: top gaps 2 (F06, TY2026 indexed amounts: 30 states REVIEW) and 3 (pa
 chapters: 18 states) of the needs-driven closure check for individual income tax
 (`docs/coverage/needs-closure-2026-09-11/tax.md`, `tax-schema.yaml`, `tax-matrix.csv`).
 Branch `discovery/ingest-state-tax-statute-ty2026` cut from `origin/main` (5c2505ec6) in the sparse
-worktree `~/axiom-corpus-worktrees/tax-statute` (`data/corpus/` excluded, never symlinked); every
+worktree `<axiom-corpus worktrees>/tax-statute` (`data/corpus/` excluded, never symlinked); every
 extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`)
 with `--source-as-of 2026-09-14`. Research of the 30 revenue-department indexes ran on 2026-09-13
 (three parallel read-only probes, curl with the corpus user agent, every URL fetched and read);
@@ -108,7 +108,7 @@ which the release selector rejects; the run id now lowercases the chapter token 
 Released scopes are immutable; the swaps below are what the controller applies to the selector.
 "Colliding paths" are citation paths present in both the released scope and the new scope (a
 selector cannot carry a path twice). "Dangling" are paths cited by rulespec-us (commit c8951033,
-`~/rulespec-us/us-xx`) that exist in neither the new scope nor a kept scope: all of them are
+`<rulespec-us>/us-xx`) that exist in neither the new scope nor a kept scope: all of them are
 sub-section rows of the recovery scopes (`block-N`, `/10`-style subsection splits, the CA
 `wic/11450/a/1/A` paragraph) whose section root is in the new scope; the rules repository re-points
 them to the section root (with anchors for the paragraph) as a follow-up. KY's `us-ky/statute/11/...`

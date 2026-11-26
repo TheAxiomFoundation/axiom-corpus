@@ -4,10 +4,10 @@
 Re-run (read-only over data/corpus; writes only into --out):
 
     python3 docs/coverage/needs-closure-2026-09-11/check_snap_wic.py \
-        --corpus /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+        --corpus data/corpus \
         --selector docs/ingest-runs/2026-09-11-us-rulespec-program-ingestion-union.selector.json \
         --queues manifests \
-        --rulespec /Users/pavelmakarchuk/rulespec-us \
+        --rulespec <rulespec-us> \
         --out docs/coverage/needs-closure-2026-09-11
 
 Outputs per program: <program>-schema.yaml, <program>-matrix.csv, <program>-summary.json and a

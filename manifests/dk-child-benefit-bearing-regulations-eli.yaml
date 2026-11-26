@@ -23,7 +23,7 @@
 # Indledning+Afsnit for the base orders, centered-amendment shape for the
 # amendment orders).  Extract with:
 #
-#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#   UV_CACHE_DIR=<uv-cache> uv run --no-sync \
 #     axiom-corpus-ingest extract-eli-documents --base data/corpus \
 #     --version 2026-08-22-dk-child-benefit-bearing-regulations \
 #     --manifest manifests/dk-child-benefit-bearing-regulations-eli.yaml \

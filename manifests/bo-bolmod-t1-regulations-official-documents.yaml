@@ -21,6 +21,10 @@
 # against the Gaceta Oficial print (DECRETO SUPREMO N 0066 heading,
 # ARTICULO 1 OBJETO). sha256:
 #   ds-0066: 657fd970901c2a50c7bd6802c7a6d7cb52b963c2e15115031afbf1ebb50fb606
+# local_path names that retained copy where the corpus locks it, relative to
+# this manifest (.axiom/corpus-locks/bo/regulation/2026-07-23-bo-bolmod-t1-regulations.json
+# records the same sha256). Fetch it before re-extracting:
+#   uv run axiom-corpus-ingest corpus fetch bo/regulation/2026-07-23-bo-bolmod-t1-regulations
 # TLS verification was never disabled. The minedu DS 28899 fetches
 # directly with verification on.
 documents:
@@ -49,7 +53,7 @@ documents:
     citation_path: bo/regulation/ds-2009-0066/bono-juana-azurduy
     title: Decreto Supremo 0066 de 3 de Abril de 2009 - instituye el Bono Madre Nino-Nina Juana Azurduy (Gaceta Oficial print, hosted by the BJA institution)
     source_url: 'https://www.bja.gob.bo/images/gmapfp/documentsPDF/DECRETO%20SUPREMO%20066%20DE%203%20DE%20ABRIL%20DE%202009%20QUE%20INSTITUYE%20E.pdf'
-    local_path: /Users/maxghenis/overnight-encode-20260718/bo-sources/ds-0066-juana-azurduy.pdf
+    local_path: ../data/corpus/sources/bo/regulation/2026-07-23-bo-bolmod-t1-regulations/official-documents/bo-ds-0066-2009-bono-juana-azurduy.pdf
     source_format: pdf
     source_as_of: '2026-07-23'
     expression_date: '2009-04-03'

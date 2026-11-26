@@ -9,11 +9,11 @@ every row this run did not touch stays byte-identical).
 
 ## Worktree, branch, timing, disk
 
-- Worktree `~/axiom-corpus-worktrees/w8-benefits`, branch `discovery/ingest-w8-benefits` cut from `main` 393127f8b.
+- Worktree `<axiom-corpus worktrees>/w8-benefits`, branch `discovery/ingest-w8-benefits` cut from `main` 393127f8b.
   The one extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`),
   `--source-as-of 2026-10-20 --expression-date 2026-10-20`; artifacts are unsigned and uncommitted. Nothing was
   signed, locked, pushed to R2 or loaded to Supabase; `manifests/releases/` and `manifests/program-bundles/` are
-  untouched. In `~/axiom-corpus` only read-only git commands were run.
+  untouched. In `<axiom-corpus checkout>` only read-only git commands were run.
 - Timing: `started_at` **2026-10-20T18:51:59Z**, `finished_at` **2026-10-20T19:17:33Z**, wall time **25 min 34 s**.
   Measured durations inside that window: Montana ARM 37.79 smoke run (3 rules) 12 s; **Montana ARM 37.79 full
   extraction 12 s** — the only target that produced an extraction, so that is the whole of the per-target extraction

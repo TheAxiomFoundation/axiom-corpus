@@ -112,7 +112,7 @@ signed:
 
 ## Dangling rulespec-us citations
 
-The tax statute note (commit c8951033 of `~/rulespec-us`) lists sub-section rows of the swapped-out recovery scopes that
+The tax statute note (commit c8951033 of `<rulespec-us>`) lists sub-section rows of the swapped-out recovery scopes that
 rulespec-us cites and that exist in neither the new chapter scope nor a kept scope. They are recorded here only; the
 re-point to the section root (with anchors for the CA paragraph) is a rulespec-us follow-up, not a corpus change. Full
 citation paths, confirmed absent from every selected scope of the jurisdiction:

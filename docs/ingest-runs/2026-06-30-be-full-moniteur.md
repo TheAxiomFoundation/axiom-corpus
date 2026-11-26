@@ -29,7 +29,7 @@ uv run --extra dev axiom-corpus-ingest discover-belgian-moniteur \
   --end-date 2026-06-01 \
   --version 2026-06-30-be-full-moniteur-smoke \
   --limit 3 \
-  --manifest-output /tmp/be-full-moniteur-smoke.yaml
+  --manifest-output <scratchpad>/be-full-moniteur-smoke.yaml
 ```
 
 Smoke extraction:
@@ -38,7 +38,7 @@ Smoke extraction:
 uv run --extra dev axiom-corpus-ingest extract-belgian-eli \
   --base data/corpus \
   --version 2026-06-30-be-full-moniteur-smoke \
-  --manifest /tmp/be-full-moniteur-smoke.yaml \
+  --manifest <scratchpad>/be-full-moniteur-smoke.yaml \
   --source-as-of 2026-06-30 \
   --allow-incomplete
 ```

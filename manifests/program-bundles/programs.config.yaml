@@ -4,7 +4,7 @@
 # reviewer can change.
 #
 # Rebuild:
-#   python scripts/export_policyengine_references.py manifests/program-bundles/programs.config.yaml --checkout ~/policyengine-us
+#   python scripts/export_policyengine_references.py manifests/program-bundles/programs.config.yaml --checkout <policyengine-us>
 #   python scripts/build_program_bundle.py manifests/program-bundles/programs.config.yaml
 
 # The day the bundles describe. Its federal fiscal year (October to

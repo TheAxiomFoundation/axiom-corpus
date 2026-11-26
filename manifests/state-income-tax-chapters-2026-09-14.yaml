@@ -20,7 +20,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "40"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.05
       timeout_seconds: 120
       request_attempts: 3
@@ -42,7 +42,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "43"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-az-ars/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-az-ars/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.05
       timeout_seconds: 60
       request_attempts: 3
@@ -65,7 +65,7 @@ sources:
       expression_date: "2026-09-14"
       only_title: "12"
       only_chapter: "229"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ct-cgs/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-ct-cgs/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.1
       timeout_seconds: 90
       request_attempts: 3
@@ -88,7 +88,7 @@ sources:
       expression_date: "2026-09-14"
       only_title: "30"
       only_chapter: "11"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-de-code/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-de-code/2026-09-14-income-tax-chapter
       workers: 4
     metadata:
       source_authority: Delaware General Assembly (Division of Research)
@@ -107,7 +107,7 @@ sources:
       expression_date: "2026-09-14"
       only_title: "63"
       only_chapter: "30"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-id-statutes/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-id-statutes/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.1
       timeout_seconds: 60
       request_attempts: 3
@@ -129,7 +129,7 @@ sources:
       expression_date: "2026-09-14"
       only_article: gtg
       enactments: false
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-md-code/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-md-code/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.05
       timeout_seconds: 60
       request_attempts: 3
@@ -152,7 +152,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "36"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-me-mrs/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-me-mrs/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.1
       timeout_seconds: 60
       request_attempts: 3
@@ -174,7 +174,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "206"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mi-mcl/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-mi-mcl/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.1
       timeout_seconds: 120
       request_attempts: 3
@@ -197,7 +197,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "290"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
       workers: 4
     metadata:
       source_authority: Minnesota Office of the Revisor of Statutes
@@ -215,7 +215,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "77"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ne-revised-statutes/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-ne-revised-statutes/2026-09-14-income-tax-chapter
       workers: 4
     metadata:
       source_authority: Nebraska Legislature
@@ -235,7 +235,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "57"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-oh-orc/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-oh-orc/2026-09-14-income-tax-chapter
     metadata:
       source_authority: Ohio Legislative Service Commission
       source_scope_note: >-
@@ -254,7 +254,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "59"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ut-code/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-ut-code/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.1
       timeout_seconds: 60
       request_attempts: 3
@@ -283,7 +283,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "17b"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-ct-cgs/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-ct-cgs/2026-09-14-income-tax-chapter
       request_delay_seconds: 0.1
       timeout_seconds: 90
       request_attempts: 3
@@ -306,7 +306,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "142G"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
       workers: 4
     metadata:
       source_authority: Minnesota Office of the Revisor of Statutes
@@ -323,7 +323,7 @@ sources:
       source_as_of: "2026-09-14"
       expression_date: "2026-09-14"
       only_title: "256P"
-      download_dir: /Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
+      download_dir: ../data/corpus/downloads/us-mn-statutes/2026-09-14-income-tax-chapter
       workers: 4
     metadata:
       source_authority: Minnesota Office of the Revisor of Statutes

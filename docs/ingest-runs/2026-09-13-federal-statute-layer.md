@@ -4,7 +4,7 @@ Closes the federal STATUTE gaps that `docs/coverage/needs-closure-2026-09-11/` f
 official U.S. Code (Office of the Law Revision Counsel, uscode.house.gov, USLM XML), with the
 `extract-usc` adapter the repository already uses for every `us/statute` scope. One self-contained
 scope per program; every extraction pointed at `--base <axiom-corpus checkout>/data/corpus`
-from the sparse worktree `~/axiom-corpus-worktrees/federal-statute` (branch
+from the sparse worktree `<axiom-corpus worktrees>/federal-statute` (branch
 `discovery/ingest-federal-statute`, cut from `origin/main` at `8dc61300`). Everything under
 `data/corpus` is local and unsigned; nothing under it is committed on this branch. GitNexus MCP
 tools were not available in this session; no adapter code was changed, and the two new scripts have
