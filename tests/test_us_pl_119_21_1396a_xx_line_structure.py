@@ -21,6 +21,7 @@ from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.uslm_quoted_content import (
     STRUCTURAL_TAGS,
+    last_text_slot,
     local_name,
     num_value,
     render_structural_element,
@@ -327,6 +328,26 @@ def test_structure_matches_the_codified_subsection_at_release_point_119_103() ->
     quoted = structural_label_paths(_quoted_subsection(), ("xx",))
     assert len(codified) == 111
     assert codified == quoted
+
+
+def test_retained_section_70304_heading_keeps_its_punctuation_and_note_offset() -> None:
+    document = ET.parse(CORPUS / "sources/us/statute" / VERSION / SOURCE_LEAF)
+    amending_paragraph = next(
+        node
+        for node in document.iter()
+        if node.get("identifier") == "/us/pl/119/21/tVII/stA/ch3/schA/s70304/a/3"
+    )
+    quote = next(
+        node for node in amending_paragraph.iter() if local_name(node.tag) == "quotedContent"
+    )
+    paragraph = next(node for node in quote if num_value(node) == "3")
+    subparagraph = next(node for node in paragraph if num_value(node) == "B")
+    rendered = render_structural_element(
+        subparagraph, label_path=("3", "B"), closing_slot=last_text_slot(quote)
+    )
+    (note,) = (note for note in rendered.margin_notes if note.label_path == ("3", "B", "ii"))
+    assert note.notes == ("Definition.",)
+    assert note.offset == rendered.body.index("reason.—") + len("reason.")
 
 
 def _xml_margin_note_offsets(element: ET.Element, body: str) -> list[int]:

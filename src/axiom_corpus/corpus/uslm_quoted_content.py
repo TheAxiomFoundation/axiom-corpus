@@ -18,20 +18,22 @@ three things in that text that are not part of the inserted law:
 not in its body) with one line per descendant structural element. It drops
 page markers and margin notes from the text and reports where they stood, as
 character offsets into the body, so a caller can keep them as metadata. It
-joins non-whitespace characters across a removed marker only if the pair is
-in the allowlist, which contains the period followed by an em dash in headings
-such as ``reason.—``. It strips the leading open quote from each ``<num>`` and,
-when told which text node ends the quotation, the closing quote. Every other
-character is kept as printed, inner quotes included. Text nodes are concatenated
-as the source has them, and whitespace runs collapse to one space. The parts of
-a line (the number, the heading and the text) are joined with one space. With
+anchors markers inside a row's own heading at body offset zero. The only
+unspaced marker removal it permits is a ``<sidenote>`` within a heading between
+a period and an em dash, as in ``reason.—``. It strips the leading open quote
+from each rendered ``<num>`` and, when told which text node ends the quotation,
+the closing quote. Every other character in the body is kept as printed, inner
+quotes included. Text nodes are concatenated as the source has them, and
+whitespace runs collapse to one space. The parts of a line (the number, the
+heading and the text) are joined with one space. With
 ``drop_space_before_punctuation`` a space the source puts before ``,``, ``.``,
 ``;`` or ``:`` is dropped as well (GPO's USLM prints ``Code of 1986 .`` where
 the printed law reads ``Code of 1986.``).
 
-Anything the renderer cannot place raises :class:`UslmRenderError`: an element
-it does not know, text between structural elements, a continuation, an unspaced
-marker boundary outside the allowlist, or a missing closing quote.
+The renderer validates the row's own number and heading before omitting them.
+Unsupported elements and continuations, text outside text blocks or outside a
+margin note's paragraphs, ambiguous marker boundaries, and missing closing
+quotes raise :class:`UslmRenderError`.
 """
 
 from __future__ import annotations
@@ -58,7 +60,6 @@ _INLINE_TAGS = frozenset({"inline", "term", "ref", "date", "i", "b", "sup", "sub
 _MARKER_TAGS = frozenset({"page", "sidenote"})
 _STAT_PAGE = re.compile(r"/us/stat/(?P<volume>\d+)/(?P<page>\d+)")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:])")
-_UNSPACED_MARKER_JOIN_PAIRS = frozenset({(".", "—")})
 
 
 class UslmRenderError(ValueError):
@@ -260,6 +261,7 @@ def _render_children(element: ET.Element, state: _State, *, own: bool) -> None:
     if (element.text or "").strip():
         raise UslmRenderError(f"text outside a text block in <{local_name(element.tag)}>")
     parts: list[str] = []
+    own_fields: set[str] = set()
     seen_structural = False
 
     def flush() -> None:
@@ -272,18 +274,16 @@ def _render_children(element: ET.Element, state: _State, *, own: bool) -> None:
 
     for child in element:
         tag = local_name(child.tag)
+        if own and tag in {"num", "heading"}:
+            if tag in own_fields:
+                raise UslmRenderError(f"multiple own <{tag}> elements")
+            own_fields.add(tag)
         if tag == "num":
-            if not own:
-                parts.append(_num_text(child, state))
+            parts.append(_num_text(child, state, include_text=not own))
         elif tag == "heading":
-            if own:
-                for note in child.iter():
-                    if local_name(note.tag) == "sidenote":
-                        _mark(note, state)
-            else:
-                parts.append(_inline_text(child, state))
+            parts.append(_inline_text(child, state, include_text=not own))
         elif tag in _MARKER_TAGS:
-            _mark(child, state)
+            _mark(child, state, count=state.non_space)
             if (child.tail or "").strip():
                 raise UslmRenderError(f"text after <{tag}> outside a text block")
             continue
@@ -309,10 +309,13 @@ def _render_children(element: ET.Element, state: _State, *, own: bool) -> None:
     flush()
 
 
-def _num_text(num: ET.Element, state: _State) -> str:
+def _num_text(num: ET.Element, state: _State, *, include_text: bool) -> str:
     if len(num):
         raise UslmRenderError("<num> with child elements")
-    text = " ".join((num.text or "").split())
+    text = _strip_closing_quote(num.text or "", (num, "text"), state)
+    if not include_text:
+        return ""
+    text = " ".join(text.split())
     if text.startswith(OPEN_QUOTE):
         text = text[len(OPEN_QUOTE) :].lstrip()
         state.open_quotes += 1
@@ -320,73 +323,81 @@ def _num_text(num: ET.Element, state: _State) -> str:
     return text
 
 
-def _inline_text(element: ET.Element, state: _State) -> str:
+def _inline_text(element: ET.Element, state: _State, *, include_text: bool = True) -> str:
     pieces: list[str] = []
     markers: list[tuple[str, int]] = []
-    _append_inline(element, state, pieces, markers)
+
+    def emit(text: str | None, slot: TextSlot) -> None:
+        text = _strip_closing_quote(text or "", slot, state)
+        if text:
+            pieces.append(text)
+            if include_text:
+                state.non_space += _non_space(text)
+
+    def visit(node: ET.Element) -> None:
+        emit(node.text, (node, "text"))
+        for child in node:
+            tag = local_name(child.tag)
+            if tag in _MARKER_TAGS:
+                _mark(child, state, count=state.non_space if include_text else 0)
+                markers.append((tag, len(pieces)))
+            elif tag in _INLINE_TAGS:
+                visit(child)
+            else:
+                raise UslmRenderError(f"unexpected <{tag}> in <{local_name(node.tag)}>")
+            emit(child.tail, (child, "tail"))
+
+    visit(element)
+    in_heading = local_name(element.tag) == "heading"
     # A marker's next text may come from a sibling or an enclosing inline element.
     for tag, index in markers:
         if not 0 < index < len(pieces):
             continue
         before, after = pieces[index - 1][-1], pieces[index][0]
-        if (
-            not before.isspace()
-            and not after.isspace()
-            and (before, after) not in _UNSPACED_MARKER_JOIN_PAIRS
-        ):
-            raise UslmRenderError(f"<{tag}> would join text without whitespace")
-    return " ".join("".join(pieces).split())
+        if before.isspace() or after.isspace():
+            continue
+        if in_heading and tag == "sidenote" and (before, after) == (".", "—"):
+            continue
+        raise UslmRenderError(f"<{tag}> would join text without whitespace")
+    return " ".join("".join(pieces).split()) if include_text else ""
 
 
-def _append_inline(
-    element: ET.Element, state: _State, pieces: list[str], markers: list[tuple[str, int]]
-) -> None:
-    _emit(element.text, (element, "text"), state, pieces)
-    for child in element:
-        tag = local_name(child.tag)
-        if tag in _MARKER_TAGS:
-            _mark(child, state)
-            markers.append((tag, len(pieces)))
-        elif tag in _INLINE_TAGS:
-            _append_inline(child, state, pieces, markers)
-        else:
-            raise UslmRenderError(f"unexpected <{tag}> in <{local_name(element.tag)}>")
-        _emit(child.tail, (child, "tail"), state, pieces)
-
-
-def _emit(text: str | None, slot: TextSlot, state: _State, pieces: list[str]) -> None:
-    if not text:
-        return
+def _strip_closing_quote(text: str, slot: TextSlot, state: _State) -> str:
     closing = state.closing_slot
     if closing is not None and slot[0] is closing[0] and slot[1] == closing[1]:
         stripped = text.rstrip()
         if not stripped.endswith(CLOSE_QUOTE):
             raise UslmRenderError("the quotation's last text does not end with its closing quote")
-        text = stripped[: -len(CLOSE_QUOTE)]
         state.closing_stripped = True
-    if text:
-        pieces.append(text)
-        state.non_space += _non_space(text)
+        return stripped[: -len(CLOSE_QUOTE)]
+    return text
 
 
-def _mark(marker: ET.Element, state: _State) -> None:
-    """Record a page marker or margin note at the current position."""
-    if local_name(marker.tag) == "page":
+def _mark(marker: ET.Element, state: _State, *, count: int) -> None:
+    """Record a page marker or margin note at a non-whitespace character count."""
+    tag = local_name(marker.tag)
+    if any(local_name(node.tag) in _MARKER_TAGS for child in marker for node in child.iter()):
+        raise UslmRenderError(f"nested marker in <{tag}>")
+    if tag == "page":
         printed = " ".join("".join(marker.itertext()).split())
         state.page_marks.append(
-            (StatutesPage.from_identifier(marker.get("identifier")), printed, state.non_space)
+            (StatutesPage.from_identifier(marker.get("identifier")), printed, count)
         )
         return
+    if (marker.text or "").strip():
+        raise UslmRenderError("margin note text outside <p>")
     notes: list[str] = []
     for child in marker:
         if local_name(child.tag) != "p":
             raise UslmRenderError(f"unexpected <{local_name(child.tag)}> in <sidenote>")
+        if (child.tail or "").strip():
+            raise UslmRenderError("margin note text outside <p>")
         note = " ".join("".join(child.itertext()).split())
         if note:
             notes.append(note)
-    if (marker.text or "").strip() or not notes:
-        raise UslmRenderError("margin note text outside <p>, or an empty margin note")
-    state.note_marks.append((tuple(notes), state.label, state.non_space))
+    if not notes:
+        raise UslmRenderError("empty margin note")
+    state.note_marks.append((tuple(notes), state.label, count))
 
 
 def _non_space(text: str) -> int:

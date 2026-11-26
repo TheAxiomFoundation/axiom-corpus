@@ -229,6 +229,34 @@ def test_page_break_keeps_a_separator_in_the_next_inline_element() -> None:
     assert rendered.page_breaks[0].offset == rendered.body.index("pay")
 
 
+@pytest.mark.parametrize(
+    ("block", "markers", "rejected_tag"),
+    [
+        pytest.param("content", ("page",), "page", id="page-in-content"),
+        pytest.param("content", ("page", "sidenote"), "page", id="page-then-sidenote"),
+        pytest.param("content", ("sidenote",), "sidenote", id="sidenote-in-content"),
+        pytest.param("heading", ("page",), "page", id="page-in-heading"),
+        pytest.param("heading", ("sidenote", "page"), "page", id="sidenote-then-page-in-heading"),
+    ],
+)
+def test_period_dash_join_requires_only_sidenotes_within_a_heading(
+    block: str, markers: tuple[str, ...], rejected_tag: str
+) -> None:
+    xml = {
+        "page": '<page identifier="/us/stat/139/307"/>',
+        "sidenote": "<sidenote><p>Note.</p></sidenote>",
+    }
+    marker_xml = "".join(xml[tag] for tag in markers)
+    element = ET.fromstring(
+        f"<paragraph><{block}>The deadline is 5 p.m.{marker_xml}— midnight if extended."
+        f"</{block}></paragraph>"
+    )
+    with pytest.raises(
+        UslmRenderError, match=f"<{rejected_tag}> would join text without whitespace"
+    ):
+        render_structural_element(element, label_path=("1",))
+
+
 def test_margin_note_between_heading_punctuation_joins_the_punctuation() -> None:
     # Pub. L. 119-21 sec. 70304(a)(3)(B)(ii) places the note within the heading.
     element = ET.fromstring(
@@ -264,6 +292,108 @@ def test_a_skipped_heading_keeps_its_margin_note_at_the_start_of_the_body() -> N
     assert len(rendered.margin_notes) == 1
     note = rendered.margin_notes[0]
     assert (note.notes, note.label_path, note.offset) == (("Effective date.",), ("kk",), 0)
+
+
+def test_a_skipped_heading_keeps_its_page_break_at_the_start_of_the_body() -> None:
+    parent = ET.fromstring(
+        '<subsection><paragraph><num value="1">“(1) </num><heading>Coverage '
+        '<inline><page identifier="/us/stat/139/307">139 STAT. 307</page>rules</inline>.—'
+        "</heading><content>The State shall pay.</content></paragraph></subsection>"
+    )
+    rendered = render_structural_element(parent[0], label_path=("xx", "1"))
+    assert rendered.body == "The State shall pay."
+    (page,) = rendered.page_breaks
+    assert (page.page, page.printed, page.offset) == (
+        StatutesPage("/us/stat/139/307", 139, 307),
+        "139 STAT. 307",
+        0,
+    )
+
+    ancestor = render_structural_element(parent, label_path=("xx",))
+    (ancestor_page,) = ancestor.page_breaks
+    assert ancestor_page.page == page.page
+    assert ancestor.body[ancestor_page.offset :].startswith("rules.—")
+
+
+@pytest.mark.parametrize(
+    ("fields", "message"),
+    [
+        ("<num>(1) <inline>Additional text</inline></num>", "<num> with child elements"),
+        (
+            "<heading>Coverage <span><table>Additional text</table></span></heading>",
+            "unexpected <table> in <span>",
+        ),
+        ("<num>(1)</num><num>(2)</num>", "multiple own <num>"),
+        (
+            "<heading>Coverage.</heading><heading>Additional rules.</heading>",
+            "multiple own <heading>",
+        ),
+    ],
+)
+def test_validates_the_rows_own_fields_before_omitting_them(fields: str, message: str) -> None:
+    element = ET.fromstring(
+        f"<paragraph>{fields}<content>The State shall pay.</content></paragraph>"
+    )
+    with pytest.raises(UslmRenderError, match=message):
+        render_structural_element(element, label_path=("1",))
+
+
+def test_margin_note_rejects_text_in_a_paragraph_tail() -> None:
+    element = ET.fromstring(
+        "<paragraph><content>The State <sidenote><p>Deadline.</p>Notification."
+        "</sidenote>shall pay.</content></paragraph>"
+    )
+    with pytest.raises(UslmRenderError, match="margin note text outside <p>"):
+        render_structural_element(element, label_path=("1",))
+
+
+def test_margin_note_preserves_inline_tails_and_all_paragraphs() -> None:
+    element = ET.fromstring(
+        "<paragraph><content>The State <sidenote><p>See <ref>section 1</ref> for details.</p>\n"
+        "<p>Deadline.</p>\n</sidenote>shall pay.</content></paragraph>"
+    )
+    rendered = render_structural_element(element, label_path=("1",))
+    assert rendered.body == "The State shall pay."
+    (note,) = rendered.margin_notes
+    assert note.notes == ("See section 1 for details.", "Deadline.")
+    assert rendered.body[note.offset :] == "shall pay."
+
+
+@pytest.mark.parametrize(
+    ("marker", "tag"),
+    [
+        ('<page identifier="/us/stat/139/307"><sidenote><p>Note.</p></sidenote></page>', "page"),
+        ('<sidenote><p>Note.<page identifier="/us/stat/139/307"/></p></sidenote>', "sidenote"),
+    ],
+)
+def test_rejects_markers_nested_inside_marker_metadata(marker: str, tag: str) -> None:
+    element = ET.fromstring(
+        f"<paragraph><content>The State {marker}shall pay.</content></paragraph>"
+    )
+    with pytest.raises(UslmRenderError, match=f"nested marker in <{tag}>"):
+        render_structural_element(element, label_path=("1",))
+
+
+@pytest.mark.parametrize("field", ["num", "heading"])
+def test_omitted_own_fields_still_validate_the_closing_slot(field: str) -> None:
+    element = ET.fromstring(f"<paragraph><{field}>Last text.</{field}></paragraph>")
+    with pytest.raises(UslmRenderError, match="closing quote"):
+        render_structural_element(element, label_path=("1",), closing_slot=last_text_slot(element))
+
+
+def test_selected_closing_quote_on_a_number_is_stripped() -> None:
+    element = ET.fromstring(
+        '<subsection><paragraph><num value="1">“(1)”</num></paragraph></subsection>'
+    )
+    slot = last_text_slot(element)
+    parent = render_structural_element(element, label_path=("xx",), closing_slot=slot)
+    assert parent.body == "(1)"
+    assert parent.stripped_open_quotes == 1
+    assert parent.stripped_closing_quote
+    row = render_structural_element(element[0], label_path=("xx", "1"), closing_slot=slot)
+    assert row.body == ""
+    assert row.stripped_open_quotes == 0
+    assert row.stripped_closing_quote
 
 
 def test_space_before_punctuation_is_kept_unless_asked_to_drop_it() -> None:

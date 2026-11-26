@@ -69,27 +69,33 @@ publisher traffic.
 structural element (subsection, paragraph, subparagraph, clause, subclause, item, subitem):
 
 - The row's own `<num>` and `<heading>` are not in its body (the `extract-usc` convention,
-  `_BODY_SKIP_TAGS`). Its chapeau or content is the first line.
+  `_BODY_SKIP_TAGS`). The renderer checks for duplicates, children inside the number, and
+  unsupported markup inside the heading before omitting them. Its chapeau or content is the
+  first line.
 - Each descendant structural element starts its own line: its number, its heading if any,
   and its chapeau or content, joined with one space. A `<continuation>` raises
   `UslmRenderError`. This quotation has none.
-- `<page>` and `<sidenote>` are dropped from the text, their tails kept. The renderer records
-  where each stood as the body offset of the next printed character. If removing a marker
-  brings two non-whitespace characters together, the renderer joins them only if the pair is
-  on the allowlist. The sole allowed pair is a period followed by an em dash, as in
-  `reason.—` in § 70304(3)(B)(ii).
-- A leading `“` is stripped from each `<num>`. The closing `”` is stripped from the last text
-  node of the `quotedContent` (the end of (11)(D)(ii)); the `.` after the quotation is outside
-  it. Every other quote stays as printed: 6 `‘` and 15 `’`.
+- `<page>` and `<sidenote>` become metadata. In text blocks and headings, each marker's tail
+  stays in the text and its offset points to the next printed character. Markers in the
+  row's own heading have body offset zero. The only unspaced join allowed across a marker is
+  `.` followed by `—` across a `<sidenote>` within a heading, as in `reason.—` in
+  § 70304(a)(3)(B)(ii). A page marker at the same boundary raises even if a sidenote is
+  beside it. Each note records the text within its `<p>` children. A nonblank `<p>` tail is
+  outside the paragraph and raises.
+- A leading `“` is stripped from each rendered `<num>`. The closing `”` is stripped from the
+  selected last text node of `quotedContent`, which can be text in a number or heading. In
+  this quotation it ends (11)(D)(ii). The `.` after the quotation is outside it. The body
+  retains the other quotes as printed, including 6 `‘` and 15 `’`.
 - Text nodes are concatenated as the source has them and whitespace collapses to one space.
   The released builder's space-join had put spaces inside the six quoted terms
   (`‘ applicable individual ’`); the successor prints them as the source does.
 - `drop_space_before_punctuation` removes a space before `,`, `.`, `;` or `:`, as the released
   builder did. The source has one: `Internal Revenue Code of 1986 .` at the end of (2)(G).
 
-It raises `UslmRenderError` on an element it does not know, text outside a text block, an
-unspaced marker boundary outside the allowlist, a margin note outside `<p>`, a page identifier
-that does not match `/us/stat/<volume>/<page>`, or a missing closing quote.
+`UslmRenderError` covers unsupported structural and inline elements, nonblank text outside a
+text block, ambiguous marker boundaries, nested markers, margin note text outside `<p>`, a
+page identifier outside the `/us/stat/<volume>/<page>` format, and a missing selected closing
+quote.
 
 One element is printed run-in: subclause (6)(A)(ii)(I) (`class="inline"`, its number `(I)`
 without a quote) follows `“(ii)` on the printed line. Following the one-element-per-line rule,
@@ -192,6 +198,15 @@ On `origin/main` 075c5cdd8 with this branch's files, with only the released scop
   --ignore-missing-imports` (108 files) and `mypy` on the script: clean.
 - Not run: the whole-repository pytest suite and `validate-release` on a full swapped pin-line
   selector (both need every scope fetched).
+
+### Round 6 verification
+
+The offline build reproduced all four successor artifacts byte for byte. The retained USLM
+has no page markers in quoted headings. Comparing `833c34ad2` and the round 6 renderer across
+384 quotations and 2,579 structural elements yielded the same 2,493 render records, 42
+refusals on supported tags, and 44 unsupported-tag rejections in each punctuation mode. The
+comparison included the body, metadata, quote counters, and refusal messages.
+The two focused pytest files passed all 60 tests in one process.
 
 ## Open questions
 
