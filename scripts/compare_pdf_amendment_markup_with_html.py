@@ -49,7 +49,7 @@ from axiom_corpus.corpus import documents
 # (plain), so ``("20056", "PPPDI")`` is a number whose 5 is struck and 6 inserted.
 Word = tuple[str, str]
 
-_DELIMITER_STATES = {"[-": "D", "-]": None, "{+": "I", "+}": None}
+_RUN_LABELS = {documents._AMENDMENT_DELETED: "D", documents._AMENDMENT_INSERTED: "I"}
 _BLOCK_TAGS = {
     "article",
     "blockquote",
@@ -131,27 +131,45 @@ def html_words(html: bytes) -> list[Word]:
     return _words(chars, states)
 
 
-def marked_text_words(text: str) -> list[Word]:
-    """Label each word of wdiff-marked text."""
+def _marked_text_labels(text: str) -> tuple[list[str], list[str | None]]:
+    """Each character of wdiff-marked text with its label, delimiters removed.
+
+    The delimiters are read as the extraction writes them
+    (``documents._amendment_markup_runs``), so a struck "[" at the end of a run,
+    written ``[-[-]``, is a deleted "[".
+    """
     chars: list[str] = []
     states: list[str | None] = []
-    state: str | None = None
-    index = 0
-    while index < len(text):
-        token = text[index : index + 2]
-        if token in _DELIMITER_STATES:
-            state = _DELIMITER_STATES[token]
-            index += 2
-            continue
-        chars.append(text[index])
-        states.append(state)
-        index += 1
-    return _words(chars, states)
+    for run, state in documents._amendment_markup_runs(text):
+        chars.extend(run)
+        states.extend([None if state is None else _RUN_LABELS[state]] * len(run))
+    return chars, states
+
+
+def marked_text_words(text: str) -> list[Word]:
+    """Label each word of wdiff-marked text."""
+    return _words(*_marked_text_labels(text))
 
 
 def pdf_words(pdf: bytes, extraction: dict[str, Any]) -> list[Word]:
-    blocks = documents._extract_pdf_blocks(pdf, extraction=extraction)
-    return marked_text_words("\n\n".join(block.body for block in blocks))
+    """Label each word of the PDF's pages as the extraction marks them.
+
+    Only a page the extraction marked (its block has ``metadata.amendment_markup``)
+    is read as markup. A page outside the ``amendment_markup`` range is plain
+    text: the extraction does not check it for delimiters, so any it holds are
+    text, not markup.
+    """
+    chars: list[str] = []
+    states: list[str | None] = []
+    for block in documents._extract_pdf_blocks(pdf, extraction=extraction):
+        if "amendment_markup" in block.metadata:
+            block_chars, block_states = _marked_text_labels(block.body)
+        else:
+            block_chars, block_states = list(block.body), [None] * len(block.body)
+        # A page break ends a word.
+        chars.extend(["\n", *block_chars])
+        states.extend([None, *block_states])
+    return _words(chars, states)
 
 
 # Plain words kept on each side of the marked span for the alignment, so a

@@ -503,8 +503,17 @@ such PDFs. Without them extraction is unchanged.
   `typographic_underlines` list. Each marked page row carries
   `metadata.amendment_markup`: the notation and its counts of deleted and
   inserted runs.
-  - Removing the four delimiters gives back exactly the page text extracted
-    without the option. Every marked page is checked against that text.
+  - Removing the delimiters gives back exactly the page text extracted without
+    the option. Every marked page is checked against that text.
+  - Read the delimiters left to right: outside a run only an opener (`[-` or
+    `{+`) is a delimiter, and inside a run only that run's closer (`-]` or
+    `+}`) is, the first one ending the run. Do not remove every occurrence of
+    the four tokens. A struck run that ends in a literal `[` is written
+    `[-[-]`, and an underlined run that ends in `{` is written `{+{+}`.
+    Maryland prints a deletion in brackets and strikes the brackets where an
+    amendment struck it, so 2025 ch. 604 reads
+    `the budget bill [-[-]shall[-] MAY-] specify`: the brackets and "MAY" are
+    struck and "shall" is not.
   - Limit the page range to the amended text, so that ordinary emphasis
     underlines elsewhere are not marked.
   - List in `typographic_underlines` any exact phrase whose underline is
@@ -545,14 +554,39 @@ an error naming the page if the walk and `rawdict` do not line up, or if the
 result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
 `amendment_markup` also fails if a page's own text already contains one of the
 delimiters, if a character is both struck through and underlined, or if
-`start_page` is past the last page.
+`start_page` is past the last page. It fails too if the text spells a delimiter
+once its zero-width characters are dropped (`[`, U+200B, `-`) and both
+characters sit in the same run or the same plain text, so that no written
+delimiter separates them.
 
 The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
 line's stroke width) marks a character when its offset from the text baseline,
 in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
-0.22 (underline). White rules and rules with zero opacity are ignored. So a thin
-table rule drawn 1-2 pt under 10 pt text reads as an underline. Extraction
+0.22 (underline). The classifier ignores white rules, rules with zero opacity,
+and drawings that are glyphs: MuPDF draws some Type 3 glyphs as vector paths and
+reports their characters as hidden text, and the bar of such a hyphen would
+strike the text around it, an underscore underline it. The classifier takes a
+drawing for a glyph when the page's next command, paths without segments aside,
+is hidden text of one character in a font named as only the page's Type 3 fonts
+are, and the drawing lies inside that character's bound and spans at most two of
+its font sizes each way. The bound alone would let a long rule through: a font
+that declares a large box gives each character a bound to match, about 20 font
+sizes wide on some CMS pages. The Type 3 names are the ones
+`_pdf_type3_font_names` gives (the helper the OCR overlay uses), less any name
+another font shares. The classifier reads every font the page can show text in,
+through its resources, forms, tiling patterns, soft masks, Type 3 glyph
+procedures and annotation appearance streams; when it can't read them all, it
+takes no drawing on the page for a glyph. It finds
+each drawing's command by number in `get_bboxlog`, which numbers commands as the
+text trace does; `get_drawings` skips paths without segments, which the bbox log
+bounds with an empty rectangle, and the classifier skips them too. It recognises
+a glyph drawn as several paths only by its last one. Which glyphs MuPDF draws
+this way depends on its version. A file MuPDF does not open as a PDF (a Word
+file saved under a `.pdf` name) has no Type 3 fonts, and the classifier reads no
+fonts there; on a page without a rule it reads no fonts and no text. Hidden text
+still counts: a rule under the text of an OCR layer reads as an underline. A thin
+table rule drawn 1-2 pt under 10 pt text reads as an underline too. Extraction
 warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font
 sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
 underline position, which is not classified. Check every new use against a
@@ -563,6 +597,22 @@ normalizes typographic spelling (hyphen, dash and quote variants), and compares
 the labels character by character in both directions, so labels swapped between
 words or inside a word (a struck and an inserted digit) fail, and so does a word
 that moves and changes label.
+
+Before changing the classifier or the reader, measure the change on every
+fetched PDF with `scripts/sweep_pdf_amendment_markup.py`. It reads every page
+twice, with the extractor at a base git ref and with the working tree, both with
+and without `amendment_markup: true` on every page, and sorts each page into one
+outcome: identical, fixed (the base refuses the page and the working tree marks
+it), marks removed, added or changed, other warnings only, refused, or a changed
+default text. It
+exits 0 only when no page changes in a way that `--allow` does not name, and
+lists every page that is not identical in `details.jsonl`:
+
+```bash
+uv run axiom-corpus-ingest corpus fetch --all
+uv run python scripts/sweep_pdf_amendment_markup.py run \
+  --base-ref origin/main --out-dir ~/.axiom/workspace/amendment-markup-sweep --workers 4
+```
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.
