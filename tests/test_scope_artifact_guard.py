@@ -557,6 +557,7 @@ def _base_corpus(tmp_path: Path) -> tuple[Path, list[Path], Path]:
         "file-into-moved-case-alias",
         "sources-dir-to-case-alias-of-moved-parent",
         "sources-dir-to-rewritten-parent",
+        "sources-dir-to-moved-parent",
         "sources-entry-link-loop",
         "sources-entry-link-through-a-file",
         "sources-entry-to-sibling",
@@ -705,6 +706,13 @@ def test_refuse_links_into_bases(tmp_path: Path, layout: str) -> None:
         )
         arguments = {"rewritten": q_files, "moved": [q_sources]}
         expected = r"q\.jsonl is also us/statute/b's sources through a link"
+    elif layout == "sources-dir-to-moved-parent":
+        regulation_sources = corpus / "sources" / "us" / "regulation"
+        regulation_sources.mkdir(parents=True)
+        (regulation_sources / "b").symlink_to(Path("..") / "statute")
+        bases = {("us", "regulation", "b")}
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/regulation/b's sources through a link"
 
     if expected is None:
         assert successors.refuse_links_into_bases(corpus=corpus, bases=bases, **arguments) is None
