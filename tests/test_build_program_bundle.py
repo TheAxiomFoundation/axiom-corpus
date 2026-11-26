@@ -102,6 +102,86 @@ def test_normalize_url_reads_a_webworks_page_from_its_fragment():
     )
 
 
+def test_normalize_url_reads_a_webworks_page_named_under_the_host_root():
+    page = "https://dbmefaapolicy.azdes.gov/FAA5/NA_Utility_Expenses_and_Allowances.html"
+    fragment = "#page/FAA5/NA_Utility_Expenses_and_Allowances.html"
+    for reader in (
+        "https://dbmefaapolicy.azdes.gov/index.html",
+        "https://dbmefaapolicy.azdes.gov/",
+        "https://dbmefaapolicy.azdes.gov",
+    ):
+        assert bundle.normalize_url(reader + fragment) == page
+        assert bundle.normalize_url(reader + fragment + "/") == page
+    assert (
+        bundle.normalize_url(
+            "https://dbmefaapolicy.azdes.gov/#page/FAA6/Utility_Allowance_Current_Amount.html"
+        )
+        == "https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html"
+    )
+    assert bundle.url_key(
+        bundle.normalize_url("https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html")
+    ) == bundle.url_key("https://dbmefaapolicy.azdes.gov/FAA5/A.html")
+    # A fragment that names no page, and a page-like fragment under another
+    # path, stay the page before the fragment.
+    assert (
+        bundle.normalize_url("https://dbmefaapolicy.azdes.gov/#page/")
+        == "https://dbmefaapolicy.azdes.gov/"
+    )
+    assert (
+        bundle.normalize_url("https://example.gov/manual/#page/FAA5/A.html")
+        == "https://example.gov/manual/"
+    )
+
+
+def test_normalize_url_webworks_page_edge_forms():
+    page = "dbmefaapolicy.azdes.gov/FAA5/A.html"
+    # Scheme: http and https both read; an uppercase scheme reads the same.
+    assert (
+        bundle.normalize_url("http://dbmefaapolicy.azdes.gov/#page/FAA5/A.html") == "http://" + page
+    )
+    assert (
+        bundle.normalize_url("HTTPS://dbmefaapolicy.azdes.gov/#page/FAA5/A.html")
+        == "HTTPS://" + page
+    )
+    assert bundle.url_key(
+        bundle.normalize_url("HTTPS://DBMEFAAPOLICY.AZDES.GOV/#page/FAA5/A.html")
+    ) == bundle.url_key("https://" + page)
+    # A second fragment inside the page fragment is not part of the page.
+    assert (
+        bundle.normalize_url("https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html#sec")
+        == "https://" + page
+    )
+    # Archived and padded links read the page they archive.
+    assert (
+        bundle.normalize_url(
+            "https://web.archive.org/web/2026id_/https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html"
+        )
+        == "https://" + page
+    )
+    assert (
+        bundle.normalize_url("  https://dbmefaapolicy.azdes.gov/#page/FAA5/A.html\n")
+        == "https://" + page
+    )
+    # A query before the fragment, an empty fragment, a fragment that is not a
+    # page, and a reader index under another path keep the page before the fragment.
+    for url, expected in (
+        (
+            "https://dbmefaapolicy.azdes.gov/?x=1#page/FAA5/A.html",
+            "https://dbmefaapolicy.azdes.gov/?x=1",
+        ),
+        ("https://dbmefaapolicy.azdes.gov/#", "https://dbmefaapolicy.azdes.gov/"),
+        ("https://dbmefaapolicy.azdes.gov/#page", "https://dbmefaapolicy.azdes.gov/"),
+        ("https://dbmefaapolicy.azdes.gov/#page//", "https://dbmefaapolicy.azdes.gov/"),
+        ("https://example.gov/#top", "https://example.gov/"),
+        ("https://example.gov/index.html#overview", "https://example.gov/index.html"),
+        (
+            "https://example.gov/manual/index.html#page/X/A.html",
+            "https://example.gov/manual/index.html",
+        ),
+    ):
+        assert bundle.normalize_url(url) == expected
+
+
 def test_fiscal_year_starts_in_october():
     assert bundle.fiscal_year(dt.date(2026, 9, 30)) == 2026
     assert bundle.fiscal_year(dt.date(2026, 10, 1)) == 2027
@@ -200,6 +280,12 @@ def test_schema_sections_read_every_schema_shape():
         "us/regulation/42/431",
     ]
     assert [p for p, _, _ in bundle.schema_sections(tax)] == ["us/statute/26/1", "us/statute/26/32"]
+    # Every level: the federal law a state-level element cites too.
+    assert [p for p, _, _ in bundle.schema_sections(medicaid, every_level=True)] == [
+        "us/statute/42/1396a",
+        "us/regulation/42/431",
+        "us/statute/42/1396a",
+    ]
 
 
 def config(tmp_path, monkeypatch) -> dict:
@@ -562,6 +648,130 @@ def test_build_program_expands_a_plan_row_that_names_parts_of_a_code(tmp_path, m
     keys = {d["key"] for d in federal["screener"]}
     assert {"us/statute/26/21", "us/statute/26/32"} <= keys
     assert not any("subtitle-A" in k for k in keys)
+
+
+PLAN_ONLY = "Plan-only: not cited by the reference model"
+
+
+def whole_part_plan(
+    tmp_path, monkeypatch, reason: str | None, more_references: list[dict] | None = None
+) -> dict:
+    """A bundle whose plan names whole parts of a code (26 U.S.C. 21, 32, 36B
+    and 42 U.S.C. 1397ll), one of those sections again on a row of its own, and
+    a reference that cites another; the plan_sections reason set or not."""
+    cfg = config(tmp_path, monkeypatch)
+    if reason:
+        cfg["exclusions"]["plan_sections"] = reason
+    # The program's own law, at a state level: 42 U.S.C. 1397ll.
+    (tmp_path / "schema.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "elements": [
+                    {
+                        "id": "s1",
+                        "level": "federal_statute",
+                        "citation_path": "us/statute/7/2014/a",
+                    },
+                    {"id": "c1", "level": "state", "federal_citation": "42 U.S.C. 1397ll"},
+                ]
+            }
+        )
+    )
+    cfg["plan_sections"] = {
+        "USC 26 subtitle-A": ["us/statute/26/21", "us/statute/26/32", "us/statute/26/36B"],
+        "USC 42 chapter-7": ["us/statute/42/1397ll"],
+    }
+    plan = {
+        "documents": [
+            {
+                "id": "USC 26 subtitle-A",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "title": "Credits",
+            },
+            {"id": "USC 42 chapter-7", "jurisdiction": "US", "programs": ["snap"], "title": "CHIP"},
+            # A row of its own for 26 U.S.C. 21.
+            {"id": "USC 26 21", "jurisdiction": "US", "programs": ["snap"], "title": "26 USC 21"},
+        ]
+    }
+    references = {
+        "references": [
+            {
+                "url": "https://www.law.cornell.edu/uscode/text/26/32#b",
+                "citation": "us/statute/26/32/b",
+                "files": ["parameters/gov/usda/snap/income/x.yaml"],
+            },
+            *(more_references or []),
+        ]
+    }
+    return bundle.build_program(cfg, "snap", references, plan, {}, bundle.index_manifests({}, {}))
+
+
+def test_build_program_moves_a_section_only_a_whole_part_plan_row_brings_in_to_the_full_bundle(
+    tmp_path, monkeypatch
+):
+    # 26 U.S.C. 36B: only the whole-part row names it, and no reference cites
+    # it. It leaves the screener tier with the configured reason and stays in
+    # the full bundle. 26 U.S.C. 32 (cited), 26 U.S.C. 21 (a row of its own)
+    # and 42 U.S.C. 1397ll (the program's own law) stay in the screener tier.
+    out = whole_part_plan(tmp_path, monkeypatch, PLAN_ONLY)
+    federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+    screener = {d["key"]: d for d in federal["screener"]}
+    assert screener["us/statute/26/36B"]["scope"] == "excluded"
+    assert screener["us/statute/26/36B"]["reason"] == PLAN_ONLY
+    for key in ("us/statute/26/21", "us/statute/26/32", "us/statute/42/1397ll"):
+        assert screener[key]["scope"] == "in", key
+        assert "reason" not in screener[key]
+    full = {d["key"]: d for d in federal["full"]}
+    assert full["us/statute/26/36B"]["scope"] == "in"
+    assert full["us/statute/26/36B"]["sources"] == ["plan"]
+    assert full["us/statute/26/32"]["sources"] == ["screener"]
+    screener_tier, full_tier = out["tiers"]
+    assert "whole parts of a code" in screener_tier["membership"]["rule"]
+    assert "whole-part plan row" in full_tier["membership"]["rule"]
+
+
+def test_build_program_keeps_a_whole_part_section_a_reference_cites_with_a_reason(
+    tmp_path, monkeypatch
+):
+    # 26 U.S.C. 36B again, now cited by a reference that is excluded for its own
+    # reason (a back-year link). The section is not "not cited by the reference
+    # model", so the rule leaves it in the screener tier, as with the rule off.
+    back_year = {
+        "url": "https://www.law.cornell.edu/uscode/text/26/36B",
+        "citation": "us/statute/26/36B",
+        "titles": ["FY 2024 premium tax credit table"],
+        "files": ["parameters/gov/usda/snap/income/y.yaml"],
+    }
+    for reason in (PLAN_ONLY, None):
+        out = whole_part_plan(tmp_path, monkeypatch, reason, [back_year])
+        federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+        doc = {d["key"]: d for d in federal["screener"]}["us/statute/26/36B"]
+        assert doc["scope"] == "in", reason
+        assert doc["sources"] == ["policyengine-references", "plan"]
+        assert "reason" not in doc
+        full = {d["key"]: d for d in federal["full"]}
+        assert full["us/statute/26/36B"]["sources"] == ["screener"]
+
+
+def test_build_program_keeps_whole_part_sections_in_the_screener_tier_without_the_reason(
+    tmp_path, monkeypatch
+):
+    # Without a plan_sections reason, every section of the row stays in the
+    # screener tier, and both tiers hold the same sections as with it.
+    off = whole_part_plan(tmp_path, monkeypatch, None)
+    on = whole_part_plan(tmp_path, monkeypatch, PLAN_ONLY)
+    federal_off = {layer["jurisdiction"]: layer for layer in off["layers"]}["us"]
+    federal_on = {layer["jurisdiction"]: layer for layer in on["layers"]}["us"]
+    screener = {d["key"]: d for d in federal_off["screener"]}
+    assert screener["us/statute/26/36B"]["scope"] == "in"
+    assert off["tiers"][0]["membership"]["in_scope_by_layer"]["federal"] == 4
+    assert on["tiers"][0]["membership"]["in_scope_by_layer"]["federal"] == 3
+    assert [d["key"] for d in federal_off["full"]] == [d["key"] for d in federal_on["full"]]
+    assert off["tiers"][1]["membership"] == on["tiers"][1]["membership"] | {
+        "rule": off["tiers"][1]["membership"]["rule"]
+    }
+    assert "whole parts" not in off["tiers"][0]["membership"]["rule"]
 
 
 def test_build_program_excludes_a_plan_document_the_decisions_rule_out(tmp_path, monkeypatch):

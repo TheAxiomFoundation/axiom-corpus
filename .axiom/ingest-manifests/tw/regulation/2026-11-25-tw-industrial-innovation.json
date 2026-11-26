@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/tw/regulation/2026-11-25-tw-industrial-innovation.json",
+      "sha256": "627e1576ba8ab8269d0b5271dd93a3bceb8104a08714db5196531ad4e5590b53"
+    },
+    {
+      "path": "data/corpus/inventory/tw/regulation/2026-11-25-tw-industrial-innovation.json",
+      "sha256": "3ddcdf413001e7bfc5dde2cc6108048d5408f8507fbb3583252a57605962f3d5"
+    },
+    {
+      "path": "data/corpus/provisions/tw/regulation/2026-11-25-tw-industrial-innovation.jsonl",
+      "sha256": "919228a53ce6e39ab8d073ad8268e6670407ef814f4591b76d1999227f2f317f"
+    },
+    {
+      "path": "data/corpus/sources/tw/regulation/2026-11-25-tw-industrial-innovation/official-documents/tw-smart-investment-credit-regulation.html",
+      "sha256": "77ca56df41327b4a36339ebeb42d6ef794c06a71459aebe41cfbbcedbb87228e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "acab596bd4e44c9cda0fd23cae166c97561dbd25",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-11-25-tw-industrial-innovation --manifest manifests/tw-industrial-innovation-regulations-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-11-25T19:43:40.437189+00:00",
+  "jurisdiction": "tw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3Ixdl+5lV3WGEAUSNnu9X5Ou5IPo5epbMGoGnlwVZ1pnSwmKYSlSotnQ8V0c1KsQoP4x7YgnhMf64thggmqmDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-25-tw-industrial-innovation"
+}
