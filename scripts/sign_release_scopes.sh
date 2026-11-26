@@ -35,13 +35,17 @@
 # another repository.
 # The run also stops when either selector misspells a part of a scope or lists a scope
 # twice, and, after the layer checks, when either does not load as a release selector, as
-# validate-release would refuse it in step 4. A base scope enters a release through its
-# restore manifest (axiom-corpus#728), not this script. Order matters: the signer records
-# HEAD and requires a clean tracked tree, and the signed manifest must describe committed
-# artifact bytes. So: (1) force-add and commit the artifacts, (2) sign every unreleased
-# scope against that commit, (3) commit those scopes' manifests and no others, (4) copy the
-# draft to manifests/releases/<name>.json, deep-validate it against the committed artifacts
-# and commit it.
+# validate-release would refuse it in step 4. A selector file that cannot be read as JSON,
+# and a draft that is not a JSON object with a string name, stop the run with one line
+# before it stages or signs anything. The draft's description is read as the selector
+# parser reads it: a value that is not a string is turned into one, as the CI lineage
+# guard does. A base scope enters a release through its restore manifest
+# (axiom-corpus#728), not this script. Order matters: the signer records HEAD and requires
+# a clean tracked tree, and the signed manifest must describe committed artifact bytes.
+# So: (1) force-add and commit the artifacts, (2) sign every unreleased scope against that
+# commit, (3) commit those scopes' manifests and no others, (4) copy the draft to
+# manifests/releases/<name>.json, deep-validate it against the committed artifacts and
+# commit it.
 #
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
@@ -79,7 +83,21 @@ PREDECESSOR="${2:?predecessor selector path}"
 # On main itself the guard-ingested self-check below would diff an empty main...HEAD range.
 [ "$(git symbolic-ref -q --short HEAD || true)" != main ] || { echo "on main; cut a release branch from main first" >&2; exit 1; }
 
-NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])' "$DRAFT")
+# A draft that cannot be read as JSON, or that is not an object with a string name, stops
+# the run here with one line (set -e ends the script at the failed assignment).
+NAME=$(python3 -c '
+import json, sys
+path = sys.argv[1]
+try:
+    with open(path, encoding="utf-8") as handle:
+        data = json.load(handle)
+except (OSError, ValueError) as exc:
+    sys.exit(f"cannot read {path} as JSON: {exc}")
+name = data.get("name") if isinstance(data, dict) else None
+if not isinstance(name, str) or not name:
+    sys.exit(f"{path} is not a JSON object with a name; a selector is one")
+print(name)
+' "$DRAFT")
 TARGET="manifests/releases/$NAME.json"
 # The name is taken when its selector is on disk or committed at HEAD, hidden or not.
 { [ ! -e "$TARGET" ] && [ -z "$(git ls-tree --full-tree HEAD -- "$TARGET")" ]; } \
@@ -171,7 +189,15 @@ from axiom_corpus.corpus.successors import tracked_selector_texts
 
 draft_path, predecessor_path = sys.argv[1:3]
 main_bases, main_refs = sys.argv[3].split(), sys.argv[4].split()
-selectors = [json.load(open(p)) for p in (draft_path, predecessor_path)]
+# A selector file that cannot be read as JSON gets one line, never a traceback.
+selectors = []
+for path in (draft_path, predecessor_path):
+    try:
+        with open(path, encoding="utf-8") as handle:
+            selectors.append(json.load(handle))
+    except (OSError, ValueError) as exc:
+        print(f"cannot read {path} as JSON: {exc}", file=sys.stderr)
+        sys.exit(1)
 
 # The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
 # a part no selector can spell, such as "2026-05-01 ", would name another scope's files.
@@ -233,11 +259,14 @@ except (OSError, ValueError) as exc:
 # CI lineage guard takes it, byte for byte as HEAD commits it; and, when HEAD has a merge
 # base with main, as one of those merge bases has it. A copy, an older selector, a
 # working-tree edit git does not show, or a selector cut or rewritten on this branch
-# would make the layer report below compare the draft with the wrong scopes.
+# would make the layer report below compare the draft with the wrong scopes. The
+# description is read as the selector parser reads it (releases.ReleaseManifest.loads): a
+# value that is not a string is turned into one, so this takes the predecessor the CI
+# lineage guard takes.
 draft_name, description = selectors[0].get("name"), selectors[0].get("description")
 named = named_predecessor(
     draft_name if isinstance(draft_name, str) else "",
-    description if isinstance(description, str) else None,
+    None if description is None else str(description),
     texts,
 )
 if named is None:

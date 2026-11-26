@@ -248,10 +248,12 @@ def _default_signals() -> None:
         signal.signal(signum, signal.SIG_DFL)
 
 
-def _run(repo: Path, predecessor: str = PREDECESSOR) -> subprocess.CompletedProcess[str]:
+def _run(
+    repo: Path, predecessor: str = PREDECESSOR, *, draft: str = DRAFT
+) -> subprocess.CompletedProcess[str]:
     # In a session of its own, a simulated Ctrl-C reaches the script, never pytest.
     return subprocess.run(
-        ["bash", str(SCRIPT), DRAFT, predecessor],
+        ["bash", str(SCRIPT), draft, predecessor],
         cwd=repo,
         capture_output=True,
         text=True,
@@ -1841,6 +1843,70 @@ def test_stops_with_one_line_on_a_predecessor_that_is_not_an_object(repo: Path) 
     assert _uv_calls() == []
 
 
+# An untracked file passed in place of the draft or the predecessor.
+SELECTOR_FILE = "docs/ingest-runs/selector-file.json"
+NOT_A_NAMED_OBJECT = "{path} is not a JSON object with a name; a selector is one"
+_NAMED_DRAFT = _draft_with()
+# case: the argument the file is passed as, and what is at its path: bytes, a directory
+# ("directory") or nothing (None)
+UNREADABLE_SELECTOR_FILES: dict[str, tuple[str, bytes | str | None]] = {
+    "predecessor-missing": ("predecessor", None),
+    "predecessor-directory": ("predecessor", "directory"),
+    "predecessor-not-json": ("predecessor", b"not json\n"),
+    "predecessor-not-utf8": ("predecessor", b'\xff{"name": "test-rel-1"}\n'),
+    "draft-missing": ("draft", None),
+    "draft-directory": ("draft", "directory"),
+    "draft-not-json": ("draft", b"not json\n"),
+    "draft-array": ("draft", json.dumps([_NAMED_DRAFT]).encode()),
+    "draft-without-name": (
+        "draft",
+        json.dumps({k: v for k, v in _NAMED_DRAFT.items() if k != "name"}).encode(),
+    ),
+    "draft-name-not-a-string": ("draft", json.dumps({**_NAMED_DRAFT, "name": 2}).encode()),
+}
+
+
+@pytest.mark.parametrize("case", UNREADABLE_SELECTOR_FILES)
+def test_stops_with_one_line_when_a_selector_file_cannot_be_read(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    """A selector file not readable as JSON, or a draft with no string name, gets one line.
+
+    The draft's name is read first, so the draft rows stop there; the predecessor rows stop
+    where the project environment loads both selectors. Each stops before step 1.
+    """
+    argument, content = UNREADABLE_SELECTOR_FILES[case]
+    start = _cut_release_branch(repo)
+    path = repo / SELECTOR_FILE
+    if content == "directory":
+        path.mkdir()
+    elif isinstance(content, bytes):
+        path.write_bytes(content)
+    monkeypatch.chdir(repo)  # the script reads the file by the path it was given
+    if case in ("draft-array", "draft-without-name", "draft-name-not-a-string"):
+        line = NOT_A_NAMED_OBJECT.format(path=SELECTOR_FILE)
+    else:  # the reader's own error, as the script reads the file
+        with pytest.raises((OSError, ValueError)) as error:
+            with open(SELECTOR_FILE, encoding="utf-8") as handle:
+                json.load(handle)
+        line = f"cannot read {SELECTOR_FILE} as JSON: {error.value}"
+
+    draft, predecessor = (DRAFT, SELECTOR_FILE)
+    if argument == "draft":
+        draft, predecessor = (SELECTOR_FILE, PREDECESSOR)
+
+    result = _run(repo, predecessor, draft=draft)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == line + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
 def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
     """A base carried as it is is not unreleased: the run commits and signs none of it.
 
@@ -2366,6 +2432,33 @@ def test_cuts_when_the_predecessor_is_the_one_the_draft_names(repo: Path, case: 
     _assert_cut(repo, result, start)
     if case == "predecessor-cut-on-the-branch-without-main":
         assert "neither origin/main nor main shares history with HEAD;" in result.stdout
+
+
+@pytest.mark.parametrize(
+    "description", [[DRAFT_DESCRIPTION], 20261117], ids=["list-naming-test-rel-1", "number"]
+)
+def test_reads_a_non_string_description_as_the_parser_does(repo: Path, description: object) -> None:
+    """A description that is not a string is read as its text, as the selector parser reads it.
+
+    The CI lineage guard takes the predecessor from that text, so the list, whose text
+    names test-rel-1 first, cuts the selector as the usual run does. The number names no
+    tracked selector.
+    """
+    _commit_selectors(repo, {DRAFT: _draft_with(description=description)}, "Draft a description")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    if isinstance(description, list):
+        _assert_cut(repo, result, start)
+        return
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == UNNAMED.format(draft=DRAFT) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
 
 
 # Step 2's plan, in the script's own words, run as the script runs it.
