@@ -216,14 +216,14 @@ def _checkout_of(releases_dir: Path) -> Path | None:
     ``releases_dir`` must be that toplevel's ``manifests/releases``, as the
     same file or the same realpath. None means "read from disk": a standalone
     directory, even one inside a checkout, is read as given. It first refuses a
-    ``releases_dir`` reached through a link, spelled with ``..``, or at a
-    ``.git`` entry (``_refuse_selector_directory_link``). When a ``.git`` entry
-    sits two levels above ``releases_dir``, whatever the directory's names, and
-    git cannot run there or answers with a toplevel that does not hold
-    ``releases_dir`` as its ``manifests/releases`` (a ``core.worktree``
-    setting, a bare git directory at ``manifests``, a ``.git/config`` git
-    cannot parse, or a selectors directory two levels below a working tree's
-    root that is not its ``manifests/releases``), it raises
+    ``releases_dir`` that is a link or sits in one, is spelled with ``..``, or
+    is at a ``.git`` entry (``_refuse_selector_directory_link``). When a
+    ``.git`` entry sits two levels above ``releases_dir``, whatever the
+    directory's names, and git cannot run there or answers with a toplevel that
+    does not hold ``releases_dir`` as its ``manifests/releases`` (a
+    ``core.worktree`` setting, a bare git directory at ``manifests``, a
+    ``.git/config`` git cannot parse, or a selectors directory two levels below
+    a working tree's root that is not its ``manifests/releases``), it raises
     ``FileNotFoundError`` rather than read the disk, which may hide or add
     selectors.
     """
@@ -348,10 +348,10 @@ def tracked_selector_texts(releases_dir: Path) -> dict[str, str]:
     raises ``FileNotFoundError``. For another directory, one that is missing
     or holds no selector file raises ``FileNotFoundError``, and a ``*.json``
     entry that is not a file raises ``ValueError``. Either raises
-    ``ValueError`` when the directory is reached through a link, spelled with
-    ``..``, or at a ``.git`` entry, and ``FileNotFoundError`` when git answers
-    with a toplevel that does not hold the directory, or cannot run there,
-    while a ``.git`` entry sits two levels above it.
+    ``ValueError`` when the directory is a link or sits in one, is spelled
+    with ``..``, or is at a ``.git`` entry, and ``FileNotFoundError`` when git
+    answers with a toplevel that does not hold the directory, or cannot run
+    there, while a ``.git`` entry sits two levels above it.
     """
     return _selector_texts(releases_dir)[1]
 
@@ -365,10 +365,10 @@ def tracked_selector_text(releases_dir: Path, name: str) -> str | None:
     when nothing is there.
     An entry that is not a selector file (a committed symlink or directory,
     or on disk a directory or a dangling link) raises ``ValueError``, as does
-    a directory reached through a link, spelled with ``..``, or at a ``.git``
-    entry. It raises ``FileNotFoundError`` when git answers with a toplevel
-    that does not hold the directory, or cannot run there, while a ``.git``
-    entry sits two levels above it.
+    a directory that is a link or sits in one, is spelled with ``..``, or is
+    at a ``.git`` entry. It raises ``FileNotFoundError`` when git answers
+    with a toplevel that does not hold the directory, or cannot run there,
+    while a ``.git`` entry sits two levels above it.
     """
     top = _checkout_of(releases_dir)
     if top is None:
@@ -721,8 +721,8 @@ def tracked_base_scopes(releases_dir: Path) -> frozenset[ScopeKey]:
     as does one at which git answers with a toplevel that does not hold the
     directory, or cannot run there, while a ``.git`` entry sits two levels
     above it. A selector entry that is not a file raises ``ValueError``, as
-    does a directory reached through a link, spelled with ``..``, or at a
-    ``.git`` entry.
+    does a directory that is a link or sits in one, is spelled with ``..``,
+    or is at a ``.git`` entry.
     """
     bases: set[ScopeKey] = set()
     for name, text in sorted(tracked_selector_texts(releases_dir).items()):

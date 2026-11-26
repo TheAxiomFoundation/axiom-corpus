@@ -21,7 +21,7 @@ CA builder and dedup read the tracked selectors of the checkout
 selector misspells a scope or lists one twice, or when a draft adds a base
 scope, moves a scope between layers, misspells a layer or selects a tracked base
 as a primary scope. Tracked selectors are read as committed at HEAD; a selectors
-directory reached through a link, such as a `manifests` linked to another
+directory that is a link or sits in one, such as a `manifests` linked to another
 checkout's, or one at which git would read another repository (a nested
 repository or a gitfile, or a `core.worktree` setting where the tool is given
 that checkout's own selectors directory; the threat model's limit 11), is

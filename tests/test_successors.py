@@ -1044,10 +1044,10 @@ def test_tracked_selectors_refuse_what_head_cannot_hold_as_a_selector(
         assert successors.tracked_base_scopes(plain) == frozenset({HEAD_B})
 
 
-# A selector directory reached through a link, spelled with "..", or at which git
-# would answer for another repository is refused: git runs in, and the disk shows,
-# the directory a path resolves to, so another checkout's HEAD, or a directory no
-# HEAD holds, would answer for this checkout's tracked selectors.
+# A selector directory that is a link or sits in one, is spelled with "..", or is
+# one at which git would answer for another repository is refused: git runs in, and
+# the disk shows, the directory a path resolves to, so another checkout's HEAD, or a
+# directory no HEAD holds, would answer for this checkout's tracked selectors.
 
 LINK_B: ScopeKey = ("us", "statute", "b")
 LINK_REFUSAL = "^selector directory leads through a link: "
