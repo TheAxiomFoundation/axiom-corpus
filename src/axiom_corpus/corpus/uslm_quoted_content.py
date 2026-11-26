@@ -29,7 +29,7 @@ the printed law reads ``Code of 1986.``).
 
 Anything the renderer cannot place raises :class:`UslmRenderError`: an element
 it does not know, text between structural elements, a continuation, a marker
-glued to text on both sides, or a closing quote that is not there.
+between two word characters, or a missing closing quote.
 """
 
 from __future__ import annotations
@@ -56,6 +56,7 @@ _INLINE_TAGS = frozenset({"inline", "term", "ref", "date", "i", "b", "sup", "sub
 _MARKER_TAGS = frozenset({"page", "sidenote"})
 _STAT_PAGE = re.compile(r"/us/stat/(?P<volume>\d+)/(?P<page>\d+)")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:])")
+_WORD_CHARACTER = re.compile(r"\w")
 
 
 class UslmRenderError(ValueError):
@@ -325,8 +326,8 @@ def _inline_text(element: ET.Element, state: _State) -> str:
     for tag, index in markers:
         if (
             0 < index < len(pieces)
-            and not pieces[index - 1][-1].isspace()
-            and not pieces[index][0].isspace()
+            and _WORD_CHARACTER.fullmatch(pieces[index - 1][-1])
+            and _WORD_CHARACTER.fullmatch(pieces[index][0])
         ):
             raise UslmRenderError(f"<{tag}> splits a word")
     return " ".join("".join(pieces).split())

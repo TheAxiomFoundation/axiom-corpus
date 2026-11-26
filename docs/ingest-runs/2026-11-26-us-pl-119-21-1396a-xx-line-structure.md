@@ -71,8 +71,8 @@ structural element (subsection, paragraph, subparagraph, clause, subclause, item
 - The row's own `<num>` and `<heading>` are not in its body (the `extract-usc` convention,
   `_BODY_SKIP_TAGS`). Its chapeau or content is the first line.
 - Each descendant structural element starts its own line: its number, its heading if any,
-  and its chapeau or content, joined with one space. A `<continuation>` after descendants
-  would start its own line; this quotation has none.
+  and its chapeau or content, joined with one space. A `<continuation>` raises
+  `UslmRenderError`. This quotation has none.
 - `<page>` and `<sidenote>` are dropped from the text, their tails kept. The renderer records
   where each stood as the body offset of the next printed character.
 - A leading `“` is stripped from each `<num>`. The closing `”` is stripped from the last text
@@ -116,10 +116,10 @@ run proposes two nested keys:
   SHA-256 is `762ae9af…`;
 - each row's own number is `“(<label>)` and its heading is the released heading (the released
   root heading leaves out the `.—` that its paragraph headings keep);
-- each body is the released body minus exactly the characters it drops: the non-space
-  characters of the successor are a subsequence of the released ones, and the deleted ones
-  are, as a multiset, the own number and heading, the page markers, the margin notes, the
-  descendant open quotes and the closing quote;
+- each body preserves the released word tokens in order, with the row's own number and
+  heading, page markers, margin notes, descendant open quotes and closing quote removed
+  at their XML positions. The comparison accounts for the spacing inside single quotation
+  marks and rejects changes such as `shall provide` becoming `shallprovide`.
 - the closing quote ends the root and (11) and no other row;
 - the quoted subsection's 111 label paths, in document order, equal those of codified
   42 U.S.C. 1396a(xx) in the OLRC title 42 XML of release point 119-103

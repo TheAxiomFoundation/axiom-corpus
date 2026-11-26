@@ -201,6 +201,23 @@ def test_page_break_keeps_a_separator_in_the_next_inline_element() -> None:
     assert rendered.page_breaks[0].offset == rendered.body.index("pay")
 
 
+def test_margin_note_between_heading_punctuation_joins_the_punctuation() -> None:
+    element = ET.fromstring(
+        f'<subparagraph xmlns="{NS}"><clause><num value="ii">“(ii)</num>'
+        "<heading>Substantial and legitimate business reason<inline>.</inline>"
+        "<sidenote><p>Definition.</p></sidenote><inline>—</inline></heading>"
+        "</clause></subparagraph>"
+    )
+    rendered = render_structural_element(element, label_path=("B",))
+    assert rendered.body == "(ii) Substantial and legitimate business reason.—"
+    (note,) = rendered.margin_notes
+    assert (note.notes, note.label_path, note.offset) == (
+        ("Definition.",),
+        ("B", "ii"),
+        rendered.body.index("—"),
+    )
+
+
 def test_a_skipped_heading_keeps_its_margin_note_at_the_start_of_the_body() -> None:
     element = ET.fromstring(
         f'<subsection xmlns="{NS}"><num value="kk">(kk)</num><heading>Condition<inline>.</inline>'

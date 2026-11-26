@@ -7,8 +7,10 @@ import re
 import shutil
 import xml.etree.ElementTree as ET
 from collections import Counter
+from copy import deepcopy
 from dataclasses import fields, replace
 from functools import cache
+from itertools import accumulate
 from pathlib import Path
 
 import pytest
@@ -17,7 +19,12 @@ from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
-from axiom_corpus.corpus.uslm_quoted_content import local_name, num_value, structural_label_paths
+from axiom_corpus.corpus.uslm_quoted_content import (
+    local_name,
+    num_value,
+    render_structural_element,
+    structural_label_paths,
+)
 from scripts.repro.us_pl_119_21_1396a_xx_line_structure import (
     CITATION_PATHS,
     OLRC_SOURCE_PATH,
@@ -27,6 +34,7 @@ from scripts.repro.us_pl_119_21_1396a_xx_line_structure import (
     SOURCE_SHA256,
     SOURCE_VERSION,
     VERSION,
+    RowRendering,
     build_scope,
     check_conservation,
     olrc_label_paths,
@@ -320,6 +328,27 @@ def test_structure_matches_the_codified_subsection_at_release_point_119_103() ->
     assert codified == quoted
 
 
+def _xml_margin_note_offsets(element: ET.Element, body: str) -> list[int]:
+    # Place a sentinel at each note in a copy of the source, preserving XML tails.
+    marked = deepcopy(element)
+    for child in marked:
+        if local_name(child.tag) in {"num", "heading"}:
+            child.text = "\0" * sum(local_name(node.tag) == "sidenote" for node in child.iter())
+            child[:] = []
+    for node in marked.iter():
+        tag = local_name(node.tag)
+        if tag in {"sidenote", "page"}:
+            node.text = "\0" if tag == "sidenote" else None
+            node[:] = []
+        elif tag == "num":
+            node.text = (node.text or "").lstrip().removeprefix(OPEN)
+
+    parts = "".join("".join(marked.itertext()).split()).removesuffix(CLOSE).split("\0")
+    assert "".join(parts) == "".join(body.split())
+    positions = [match.start() for match in re.finditer(r"\S", body)] + [len(body)]
+    return [positions[count] for count in accumulate(map(len, parts[:-1]))]
+
+
 def test_metadata_records_statutes_pages_and_margin_notes() -> None:
     rows = _rows()
     root = rows[0]
@@ -336,6 +365,11 @@ def test_metadata_records_statutes_pages_and_margin_notes() -> None:
     assert [line for note in notes for line in note["notes"]] == list(MARGIN_NOTE_LINES)
     assert notes[0] == {"notes": ["Deadline."], "label_path": "xx/1", "offset": 4}
     assert body[notes[0]["offset"] :].startswith("In general.— Except as provided")
+    for row in rows:
+        assert row.metadata is not None
+        assert [note["offset"] for note in row.metadata["margin_notes"]] == (
+            _xml_margin_note_offsets(_row_element(row.citation_path), row.body or "")
+        ), row.citation_path
     by_paragraph: Counter[str] = Counter(note["label_path"].split("/")[1] for note in notes)
     root_break_offsets = {item["identifier"]: item["offset"] for item in pages["page_breaks"]}
     seen_breaks: set[str] = set()
@@ -425,3 +459,24 @@ def test_conservation_rejects_fused_words_in_the_rendered_body() -> None:
 
     with pytest.raises(ValueError, match="word tokens"):
         check_conservation(fused, _rows(SOURCE_VERSION)[0].body or "", ends_quotation=True)
+
+
+def test_conservation_drops_a_repeated_margin_note_at_its_xml_position() -> None:
+    element = ET.fromstring(
+        "<paragraph><content>Notice. The State shall pay. "
+        "<sidenote><p>Notice.</p></sidenote>Next.</content></paragraph>"
+    )
+    row = RowRendering(
+        citation_path="us/statute/test/1",
+        element=element,
+        rendered=render_structural_element(element, label_path=("1",)),
+        own_num="",
+        own_heading="",
+    )
+    released = "Notice. The State shall pay. Notice. Next."
+    assert row.rendered.body == "Notice. The State shall pay. Next."
+    check_conservation(row, released, ends_quotation=False)
+
+    wrong = replace(row, rendered=replace(row.rendered, body="The State shall pay. Notice. Next."))
+    with pytest.raises(ValueError, match="word tokens"):
+        check_conservation(wrong, released, ends_quotation=False)

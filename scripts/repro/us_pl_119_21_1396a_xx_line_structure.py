@@ -34,9 +34,10 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import re
 import xml.etree.ElementTree as ET
 import zipfile
-from collections import deque
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
@@ -168,57 +169,39 @@ def render_rows(raw: bytes) -> tuple[ET.Element, list[RowRendering]]:
     return document, rows
 
 
-def released_word_edits(element: ET.Element) -> deque[tuple[list[str], list[str]]]:
-    """Find the source-specified edits to released words in document order."""
-    edits: deque[tuple[list[str], list[str]]] = deque()
-
-    def visit(node: ET.Element, *, top: bool) -> None:
-        for child in node:
-            tag = local_name(child.tag)
-            if tag in {"num", "heading"} and top:
-                edits.append((_plain_text(child).split(), []))
-            elif tag == "num":
-                text = _plain_text(child)
-                if text.startswith(OPEN_QUOTE):
-                    edits.append((text.split(), text.removeprefix(OPEN_QUOTE).split()))
-            elif tag == "page":
-                edits.append((_plain_text(child).split(), []))
-            elif tag == "sidenote":
-                words = " ".join(_plain_text(paragraph) for paragraph in child).split()
-                edits.append((words, []))
+def _retained_text_parts(element: ET.Element, *, own: bool = True) -> Iterator[str]:
+    """Yield the released text slots with the edits applied at their XML positions."""
+    if element.text:
+        yield element.text
+    dropped = {"page", "sidenote", "num", "heading"} if own else {"page", "sidenote"}
+    for child in element:
+        tag = local_name(child.tag)
+        if tag not in dropped:
+            if tag == "num":
+                yield (child.text or "").lstrip().removeprefix(OPEN_QUOTE)
             else:
-                visit(child, top=False)
+                yield from _retained_text_parts(child, own=False)
+        if child.tail:
+            yield child.tail
 
-    visit(element, top=True)
-    return edits
+
+def _released_text(parts: Iterable[str]) -> str:
+    """Apply the released builder's text-node spacing and punctuation rules."""
+    return re.sub(r"\s+([,.;:])", r"\1", " ".join(" ".join(parts).split()))
 
 
 def check_conservation(row: RowRendering, released_body: str, *, ends_quotation: bool) -> None:
     """Require the released word sequence after the specified source edits."""
-    # The released builder joined USLM text nodes with spaces, including the
-    # opening and closing single quotation marks around terms.
-    released = released_body.strip().replace("‘ ", "‘").replace(" ’", "’")
+    released = _released_text(row.element.itertext())
+    expected = _released_text(_retained_text_parts(row.element))
+    # The released builder added spaces inside single quotation marks around terms.
+    expected = expected.replace("‘ ", "‘").replace(" ’", "’")
     if ends_quotation:
-        if not released.endswith(CLOSE_QUOTE):
+        if not released_body.rstrip().endswith(CLOSE_QUOTE):
             raise ValueError(f"{row.citation_path}: released body lacks its closing quote")
-        released = released.removesuffix(CLOSE_QUOTE)
+        expected = expected.removesuffix(CLOSE_QUOTE)
 
-    words = released.split()
-    edits = released_word_edits(row.element)
-    expected: list[str] = []
-    index = 0
-    while edits and index < len(words):
-        original, replacement = edits[0]
-        end = index + len(original)
-        if words[index:end] == original:
-            expected.extend(replacement)
-            edits.popleft()
-            index = end
-        else:
-            expected.append(words[index])
-            index += 1
-    expected.extend(words[index:])
-    if edits or expected != row.rendered.body.split():
+    if released.split() != released_body.split() or expected.split() != row.rendered.body.split():
         raise ValueError(
             f"{row.citation_path}: successor word tokens are not drawn from the released body "
             "after the expected removals"
