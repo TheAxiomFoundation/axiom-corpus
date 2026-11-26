@@ -204,6 +204,18 @@ nonblank lines match one for one in all 14 sections.
 The same check fails on all 14 base bodies, because their lines are hard-wrapped. So it does
 not pass vacuously.
 
+The folds have known limits, and none applies to these 14 sections:
+
+- **Literal punctuation.** A literal `''` or `--` in eCFR would match a GPO closing quote or
+  em dash. The 14 eCFR sections contain no `''`, `--` or backtick, and every `''` in the 14
+  bodies follows its own ``` `` ```.
+- **Section signs.** `§ §` and `§§` fold to the same text. eCFR has no `§ §` here, and each
+  body's count of `Sec. Sec.` equals its section's count of `§§`: 1 in 435.556, 8 in 435.557,
+  4 in 435.558, 2 in 435.559, 5 in 435.560, 1 in 435.561 and 5 in 435.562.
+- **Typography-only refusals.** A future section can fail for typography alone, such as the
+  Federal Register's `[deg]` where eCFR prints `°`, or straight against curly apostrophes.
+  The build then raises rather than guessing.
+
 ## Invariants
 
 `tests/test_us_cms_2454_435_fr_page_markers.py` (29 tests) checks the following:

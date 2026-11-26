@@ -440,6 +440,15 @@ def test_normalizer_refuses_distinct_punctuation(raw_paragraph, ecfr_paragraph):
         )
 
 
+def test_normalizer_and_checker_compare_the_heading():
+    body = "Sec.  1.1  Wrong heading.\n\n    Text."
+    paragraphs = ("§ 1.1 Correct heading.", "Text.")
+    with pytest.raises(ValueError, match="body differs from eCFR"):
+        normalize_federal_register_cfr_section_body(body, paragraphs)
+    with pytest.raises(ValueError, match="body differs from eCFR"):
+        check_federal_register_cfr_paragraphs(body, paragraphs)
+
+
 def test_normalizer_accepts_page_break_after_dash_before_indented_paragraph():
     body = "Sec.  1.1  H.\n\n    (a) Text--\n\n[[Page 3]]\n\n    (b) More."
     paragraphs = ("§ 1.1 H.", "(a) Text—", "(b) More.")
