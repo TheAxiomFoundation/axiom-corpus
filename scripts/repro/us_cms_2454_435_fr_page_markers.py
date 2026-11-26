@@ -223,19 +223,6 @@ def fetch_verification_sources(*, base: Path) -> tuple[Path, ...]:
     return tuple(written)
 
 
-def comparison_text(text: str) -> str:
-    """Fold eCFR and Federal Register typography together and collapse whitespace.
-
-    The d2932 scoping comparison: section signs to ``Sec.``, em dashes to ``--``,
-    en dashes to ``-``, curly quotes to the Federal Register's ````'' and ``'``.
-    """
-
-    text = text.replace("§§", "Sec. Sec.").replace("§", "Sec.")
-    text = text.replace("—", "--").replace("–", "-")
-    text = text.replace("“", "``").replace("”", "''").replace("’", "'").replace("‘", "`")
-    return re.sub(r"\s+", " ", text).strip()
-
-
 def ecfr_paragraphs(content: bytes, section: str) -> list[str]:
     """The heading and paragraphs of one eCFR section, in document order.
 
@@ -249,23 +236,6 @@ def ecfr_paragraphs(content: bytes, section: str) -> list[str]:
     if unexpected:
         raise ValueError(f"eCFR section {section} has elements this check skips: {unexpected}")
     return ["".join(child.itertext()) for child in root if child.tag in ("HEAD", "P")]
-
-
-def check_against_ecfr(body: str, content: bytes, section: str) -> None:
-    """Fail unless the body reads as the eCFR section, one line per paragraph."""
-
-    lines = [comparison_text(line) for line in body.split("\n") if line.strip()]
-    paragraphs = [comparison_text(paragraph) for paragraph in ecfr_paragraphs(content, section)]
-    if lines != paragraphs:
-        mismatches = [
-            (index, mine, theirs)
-            for index, (mine, theirs) in enumerate(zip(lines, paragraphs, strict=False))
-            if mine != theirs
-        ]
-        raise ValueError(
-            f"{section}: body differs from eCFR: {len(lines)} lines vs {len(paragraphs)} "
-            f"paragraphs; first {mismatches[:1]}"
-        )
 
 
 def non_space_text(text: str) -> str:
@@ -344,12 +314,15 @@ def build_scope(*, base: Path, source_base: Path) -> SuccessorScope:
         leaf = _retained_leaf(record.source_path)
         if item.sha256 != RETAINED_SOURCES[leaf]:
             raise ValueError(f"{section}: inventory hash is not its retained source's")
-        normalised = normalize_federal_register_cfr_section_body(body)
+        paragraphs = ecfr_paragraphs(verification[ecfr_leaf(section)], section)
+        try:
+            normalised = normalize_federal_register_cfr_section_body(body, paragraphs)
+        except ValueError as exc:
+            raise ValueError(f"{section}: {exc}") from exc
         if "[[Page" in normalised:
             raise ValueError(f"{section}: a page marker survived")
         if non_space_text(normalised) != non_space_text(FEDERAL_REGISTER_PAGE_MARKER.sub("", body)):
             raise ValueError(f"{section}: normalisation changed a non-space character")
-        check_against_ecfr(normalised, verification[ecfr_leaf(section)], section)
 
         lineage = _lineage(record, section)
         source_path = _source_key(VERSION, leaf)

@@ -15,6 +15,9 @@ import pytest
 from axiom_corpus.corpus.federal_register import (
     FEDERAL_REGISTER_PAGE_MARKER,
     _federal_register_cfr_section_body,
+    check_federal_register_cfr_paragraphs,
+    comparison_text,
+    normalize_federal_register_cfr_section_body,
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -31,9 +34,7 @@ from scripts.repro.us_cms_2454_435_fr_page_markers import (
     VERIFICATION_LEAVES,
     VERSION,
     build_scope,
-    check_against_ecfr,
     citation_path,
-    comparison_text,
     ecfr_leaf,
     ecfr_paragraphs,
     ecfr_provenance_leaf,
@@ -255,17 +256,16 @@ def test_each_line_is_the_heading_or_one_paragraph() -> None:
 def test_body_reads_as_the_ecfr_section_paragraph_for_line(section: str) -> None:
     row = next(record for record in _records() if record.citation_path == citation_path(section))
     content = (NEW_SOURCES / ecfr_leaf(section)).read_bytes()
-    check_against_ecfr(row.body or "", content, section)
-    assert comparison_text(row.body or "") == comparison_text(
-        "\n".join(ecfr_paragraphs(content, section))
-    )
+    paragraphs = ecfr_paragraphs(content, section)
+    check_federal_register_cfr_paragraphs(row.body or "", paragraphs)
+    assert comparison_text(row.body or "") == comparison_text("\n".join(paragraphs))
     base = next(record for record in _base_records() if record.citation_path == row.citation_path)
     # The base already has the eCFR words (the d2932 comparison: markers out,
     # hyphen wraps joined); only its lines differ.
     unwrapped = FEDERAL_REGISTER_PAGE_MARKER.sub("", base.body or "").replace("-\n", "-")
     assert comparison_text(unwrapped) == comparison_text(row.body or "")
     with pytest.raises(ValueError, match="body differs from eCFR"):
-        check_against_ecfr(base.body or "", content, section)
+        check_federal_register_cfr_paragraphs(base.body or "", paragraphs)
 
 
 def test_ecfr_check_catches_a_changed_word() -> None:
@@ -274,7 +274,9 @@ def test_ecfr_check_catches_a_changed_word() -> None:
     changed = content.replace(b"provided by the individual", b"provided by the applicant", 1)
     assert changed != content
     with pytest.raises(ValueError, match="body differs from eCFR"):
-        check_against_ecfr(row.body or "", changed, "435.558")
+        normalize_federal_register_cfr_section_body(
+            row.body or "", ecfr_paragraphs(changed, "435.558")
+        )
 
 
 def test_verification_sources_are_the_ecfr_sections_with_provenance() -> None:

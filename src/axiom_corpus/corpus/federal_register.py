@@ -763,44 +763,55 @@ FEDERAL_REGISTER_PAGE_MARKER = re.compile(r"\[\[Page \d+\]\]")
 FEDERAL_REGISTER_PARAGRAPH_INDENT = "    "
 
 
-def normalize_federal_register_cfr_section_body(body: str) -> str:
-    """Drop the page markers and hard wraps of a Federal Register CFR section slice.
+def comparison_text(text: str) -> str:
+    """Fold section signs, dashes, quotes and whitespace for FR and eCFR comparison."""
+    text = text.replace("§§", "Sec. Sec.").replace("§", "Sec.")
+    text = text.replace("—", "--").replace("–", "-")
+    text = text.replace("“", "``").replace("”", "''").replace("’", "'").replace("‘", "`")
+    return re.sub(r"\s+", " ", text).strip()
 
-    The rule. Federal Register raw text (the GPO ``.txt`` rendering that
-    :func:`extract_federal_register_cfr_sections` slices) prints a section as:
 
-    * a heading line starting ``Sec.`` at column 0, which may wrap, then one
-      blank line;
-    * one paragraph after another, each starting on a line indented exactly
-      four spaces, hard-wrapped at about 72 columns with every continuation
-      line at column 0. The line before an ordinary wrap keeps the space it
-      wrapped at (two after ``Sec.``), or ends in the hyphen of a compound
-      word (``short-`` / ``term``);
-    * a printed page break as a ``[[Page N]]`` line with a blank line on each
-      side (only the blank line before it when it ends the slice). It is not
-      text of the regulation, and it can fall inside a sentence: the line
-      before it then keeps no trailing space.
+def check_federal_register_cfr_paragraphs(
+    body: str, expected_ecfr_paragraphs: Sequence[str]
+) -> None:
+    """Require each nonblank body line to match the eCFR heading or paragraph in order."""
+    lines = [comparison_text(line) for line in body.split("\n") if line.strip()]
+    paragraphs = [comparison_text(paragraph) for paragraph in expected_ecfr_paragraphs]
+    if lines != paragraphs:
+        mismatches = [
+            (index, actual, expected)
+            for index, (actual, expected) in enumerate(zip(lines, paragraphs, strict=False))
+            if actual != expected
+        ]
+        raise ValueError(
+            f"body differs from eCFR: {len(lines)} lines vs {len(paragraphs)} "
+            f"paragraphs; first {mismatches[:1]}"
+        )
 
-    The normalisation:
 
-    1. Removes each page-marker line with its blank lines.
-    2. Joins each column-0 line onto the line before it by dropping the line
-       break. Only where a page marker stood and the line before ends in a
-       word (neither a space nor a hyphen) does one space take its place.
+def normalize_federal_register_cfr_section_body(
+    body: str, expected_ecfr_paragraphs: Sequence[str]
+) -> str:
+    """Drop page markers and hard wraps, then verify the result against eCFR.
 
-    The result is the heading on one line, a blank line, then one line per
-    paragraph with its four-space indent, so no wrapped cross-reference such
-    as ``(c)(1)(i)(A) through (C) of this section.`` begins a line. Every
-    other character is kept, ``Sec.`` typography and runs of spaces included;
-    only line breaks are removed or turned into spaces.
+    The expected eCFR paragraphs include the heading first, followed by the
+    paragraphs in document order. The output must match them line for paragraph
+    after folding section signs, dashes, quotes and whitespace, or this raises
+    :class:`ValueError`. The folding applies only to the comparison.
 
-    A body outside the rule raises :class:`ValueError` rather than being
-    guessed at: a page marker that is not alone on its line between blank
-    lines, a tab, a line indented other than zero or four spaces, a blank line
-    anywhere but after the heading, an indented heading line, a first
-    paragraph at column 0, an ordinary wrap whose line ends in neither a
-    space nor a hyphen, or a page break right after a dash (``--``), where
-    the raw text cannot show whether a space followed the dash.
+    The input starts with a ``Sec.`` heading at column 0, which may wrap, and
+    one blank line before the first paragraph. Paragraphs start with four
+    spaces and continuations start at column 0. Tabs, whitespace-only lines
+    and unsupported indents raise :class:`ValueError`.
+
+    Each ``[[Page N]]`` marker must be alone between blank lines, with only
+    the leading blank line required at the end of the body. Drop the marker
+    and its blank lines. Join continuation lines directly if the preceding
+    line ends in a space or hyphen, or with one inserted space at a page
+    break otherwise. An ordinary wrap without that space or hyphen raises
+    :class:`ValueError`, as does a page break between a line ending in ``--``
+    and a column-0 continuation. The returned body retains the Federal
+    Register typography and spacing apart from these edits.
     """
 
     lines = body.split("\n")
@@ -833,11 +844,15 @@ def normalize_federal_register_cfr_section_body(body: str) -> str:
             continue
         if "\t" in line:
             raise ValueError(f"line {position + 1} holds a tab: {line!r}")
+        if not line.strip():
+            raise ValueError(f"line {position + 1} contains only whitespace: {line!r}")
         indent = len(line) - len(line.lstrip(" "))
         if indent not in (0, len(FEDERAL_REGISTER_PARAGRAPH_INDENT)):
             raise ValueError(f"line {position + 1} is indented {indent} spaces: {line!r}")
         if position < heading_end and indent:
             raise ValueError(f"heading line {position + 1} is indented: {line!r}")
+    if not kept[0].startswith("Sec."):
+        raise ValueError(f"heading does not start with Sec.: {kept[0]!r}")
     if not kept[heading_end + 1].startswith(FEDERAL_REGISTER_PARAGRAPH_INDENT):
         raise ValueError(f"first paragraph starts at column 0: {kept[heading_end + 1]!r}")
 
@@ -863,7 +878,9 @@ def normalize_federal_register_cfr_section_body(body: str) -> str:
             joined[-1] = previous + separator + line
         else:
             joined.append(line)
-    return "\n".join(joined)
+    normalized = "\n".join(joined)
+    check_federal_register_cfr_paragraphs(normalized, expected_ecfr_paragraphs)
+    return normalized
 
 
 def _federal_register_cfr_part_heading(text: str, title: int, part: int) -> str | None:

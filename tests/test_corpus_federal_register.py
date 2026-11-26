@@ -369,21 +369,30 @@ _FR_SECTION = (
 )
 
 
+_NORMALIZED_FR_SECTION = (
+    "Sec.  435.999   A heading that wraps onto a second line.\n"
+    "\n"
+    "    (a) A paragraph wraps at a space and keeps it. It cites Sec.  435.552, a "
+    "short-term rule, and information provided by the individual under paragraphs "
+    "(c)(1)(i)(A) through (C) of this section.\n"
+    "    (b) It meets one of the following:\n"
+    "    (1) The last paragraph."
+)
+_EXPECTED_ECFR_PARAGRAPHS = tuple(
+    line.replace("Sec.", "§").strip() for line in _NORMALIZED_FR_SECTION.splitlines() if line
+)
+
+
 def test_normalizer_drops_page_markers_and_joins_continuation_lines():
-    assert normalize_federal_register_cfr_section_body(_FR_SECTION) == (
-        "Sec.  435.999   A heading that wraps onto a second line.\n"
-        "\n"
-        "    (a) A paragraph wraps at a space and keeps it. It cites Sec.  435.552, a "
-        "short-term rule, and information provided by the individual under paragraphs "
-        "(c)(1)(i)(A) through (C) of this section.\n"
-        "    (b) It meets one of the following:\n"
-        "    (1) The last paragraph."
+    assert (
+        normalize_federal_register_cfr_section_body(_FR_SECTION, _EXPECTED_ECFR_PARAGRAPHS)
+        == _NORMALIZED_FR_SECTION
     )
 
 
 def test_normalizer_is_idempotent():
-    once = normalize_federal_register_cfr_section_body(_FR_SECTION)
-    assert normalize_federal_register_cfr_section_body(once) == once
+    once = normalize_federal_register_cfr_section_body(_FR_SECTION, _EXPECTED_ECFR_PARAGRAPHS)
+    assert normalize_federal_register_cfr_section_body(once, _EXPECTED_ECFR_PARAGRAPHS) == once
 
 
 @pytest.mark.parametrize(
@@ -407,7 +416,43 @@ def test_normalizer_is_idempotent():
 )
 def test_normalizer_refuses_layouts_outside_the_rule(body, message):
     with pytest.raises(ValueError, match=message):
-        normalize_federal_register_cfr_section_body(body)
+        normalize_federal_register_cfr_section_body(body, ("§ 1.1 H.", "(a) Text."))
+
+
+@pytest.mark.parametrize(
+    ("raw_paragraphs", "ecfr_paragraphs"),
+    [
+        ("    (a) First.\n\n[[Page 3]]\n\n(b) Second.", ("(a) First.", "(b) Second.")),
+        ("    (a) First. \n(b) Second.", ("(a) First.", "(b) Second.")),
+        ("    Choose A -\n\n[[Page 3]]\n\nor B.", ("Choose A - or B.",)),
+        ("    The require\n\n[[Page 3]]\n\nment applies.", ("The requirement applies.",)),
+    ],
+    ids=["page-break-paragraph", "ordinary-wrap-paragraph", "standalone-hyphen", "mid-word"],
+)
+def test_normalizer_refuses_joins_that_disagree_with_ecfr(raw_paragraphs, ecfr_paragraphs):
+    with pytest.raises(ValueError, match="body differs from eCFR"):
+        normalize_federal_register_cfr_section_body(
+            f"Sec.  1.1  H.\n\n{raw_paragraphs}", ("§ 1.1 H.", *ecfr_paragraphs)
+        )
+
+
+@pytest.mark.parametrize(
+    ("body", "ecfr_paragraphs", "message"),
+    [
+        ("Appendix A\n\n    Text.", ("Appendix A", "Text."), r"heading does not start with Sec\."),
+        (
+            "Sec.  1.1  H.\n\n    (a) First.\n    \n    (b) Second.",
+            ("§ 1.1 H.", "(a) First.", "(b) Second."),
+            "contains only whitespace",
+        ),
+    ],
+    ids=["appendix-heading", "whitespace-only-line"],
+)
+def test_normalizer_refuses_invalid_layout_even_when_text_matches_ecfr(
+    body, ecfr_paragraphs, message
+):
+    with pytest.raises(ValueError, match=message):
+        normalize_federal_register_cfr_section_body(body, ecfr_paragraphs)
 
 
 _WORDS = st.sampled_from(
@@ -501,4 +546,5 @@ def _wrapped_sections(draw):
 @given(_wrapped_sections())
 def test_normalizer_round_trips_wrapped_sections(case):
     raw, expected = case
-    assert normalize_federal_register_cfr_section_body(raw) == expected
+    paragraphs = [line for line in expected.splitlines() if line]
+    assert normalize_federal_register_cfr_section_body(raw, paragraphs) == expected
