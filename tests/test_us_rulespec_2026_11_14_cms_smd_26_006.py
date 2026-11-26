@@ -23,10 +23,16 @@ CORPUS = ROOT / "data/corpus"
 RELEASE_DIR = ROOT / "manifests/releases"
 
 # Literal, so a change to the reproducer's constants cannot also change what is checked.
-EXPECTED_BASE = "us-rulespec-2026-11-11-cms-w6-federal-guidance"
+EXPECTED_BASE = "us-rulespec-2026-11-24-tier1-source-text"
 EXPECTED_PIN = "us-rulespec-2026-10-29-ecfr-section-text"
 EXPECTED_RELEASE = "us-rulespec-2026-11-14-cms-smd-26-006"
 EXPECTED_ADDED = ("us", "guidance", "2026-11-14-cms-smd-26-006")
+# The two pin scopes the base replaced with consolidated successors that hold every citation path
+# of the scope each one replaces (docs/ingest-runs/2026-11-24-us-rulespec-tier1-source-text.md).
+PIN_SCOPES_THE_BASE_REPLACED = {
+    ("us-co", "statute", "2026-07-19-rulespec-us-co-title-39-consolidated"),
+    ("us-wa", "regulation", "2026-06-25-388-450-r2026-07-15-self-contained"),
+}
 LETTER_PATH = "us/guidance/cms/smd/26-006"
 LETTER_SOURCE_ID = "cms-smd-26-006"
 LETTER_PAGE_CHARACTERS = {
@@ -73,15 +79,17 @@ def test_selector_is_the_base_with_exactly_the_addition() -> None:
     base, release = _keys(EXPECTED_BASE), _keys(EXPECTED_RELEASE)
     assert set(base) - set(release) == set()
     assert set(release) - set(base) == {EXPECTED_ADDED}
-    assert (len(base), len(release)) == (284, 285)
+    assert (len(base), len(release)) == (431, 432)
     assert release == sorted(release)
 
 
-def test_selector_carries_every_scope_of_the_rulespec_us_pin() -> None:
-    """rulespec-us pins an earlier cut of the line; a re-pin to this selector loses none of it."""
+def test_selector_carries_every_scope_of_the_rulespec_us_pin_or_its_successor() -> None:
+    """rulespec-us pins an earlier cut of the line. A re-pin to this selector keeps every pin scope
+    except the two the base replaced, and keeps a version of every pair the pin selects."""
     pin, release = _keys(EXPECTED_PIN), _keys(EXPECTED_RELEASE)
     assert len(pin) == 276
-    assert set(pin) <= set(release)
+    assert set(pin) - set(release) == PIN_SCOPES_THE_BASE_REPLACED
+    assert {key[:2] for key in pin} <= {key[:2] for key in release}
     assert EXPECTED_ADDED not in pin
 
 
@@ -178,7 +186,7 @@ def test_build_release_refuses_a_base_with_a_duplicate_scope(tmp_path: Path) -> 
 
 
 # Other pairs select the added scope's version string, and us/guidance selects other versions, as
-# 16 scopes of the real base do. A refusal that matches on less than the whole scope fails.
+# 85 scopes of the real base do. A refusal that matches on less than the whole scope fails.
 _OTHER_SCOPE = st.fixed_dictionaries(
     {
         "document_class": st.sampled_from(["guidance", "manual", "regulation"]),

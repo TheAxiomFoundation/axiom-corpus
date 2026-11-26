@@ -8,15 +8,13 @@ import json
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-BASE_RELEASE = "us-rulespec-2026-11-11-cms-w6-federal-guidance"
+BASE_RELEASE = "us-rulespec-2026-11-24-tier1-source-text"
 RELEASE = "us-rulespec-2026-11-14-cms-smd-26-006"
-# The base selects 16 other us/guidance versions, so the refusals match the whole scope.
+# The base selects 85 other us/guidance versions, so the refusals match the whole scope.
 ADDED = ("us", "guidance", "2026-11-14-cms-smd-26-006")
 DESCRIPTION = (
     f"Successor to {BASE_RELEASE} on rulespec-us's corpus pin line, whose newest cut that "
-    "selector is: it holds all 276 scopes of rulespec-us's pin, "
-    "us-rulespec-2026-10-29-ecfr-section-text, seven Kansas LIHEAP scopes and the wave-6 "
-    "federal CMS guidance scope. This selector keeps all 284 and adds one signed scope, "
+    "selector is. This selector keeps all 431 of its scopes and adds one signed scope, "
     "us/guidance/2026-11-14-cms-smd-26-006 (docs/ingest-runs/2026-11-14-cms-smd-26-006.md), "
     "which carries CMS State Medicaid Director letter SMD# 26-006 of 2026-11-13, Optional Hold "
     "Harmless Period for Community Engagement Implementation, at us/guidance/cms/smd/26-006. "

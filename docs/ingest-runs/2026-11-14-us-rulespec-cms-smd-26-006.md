@@ -1,22 +1,27 @@
 # us-rulespec-2026-11-14-cms-smd-26-006: release selector
 
-Date: 2026-11-14. `scripts/repro/us_rulespec_2026_11_14_cms_smd_26_006.py` builds the selector
+Date: 2026-11-14; re-cut on 2026-11-26 (see "Re-cut on the 2026-11-24 head"). `scripts/repro/us_rulespec_2026_11_14_cms_smd_26_006.py` builds the selector
 `manifests/releases/us-rulespec-2026-11-14-cms-smd-26-006.json`, and
 `tests/test_us_rulespec_2026_11_14_cms_smd_26_006.py` checks it.
 
 ## What it selects
 
 This selector takes the newest cut of rulespec-us's corpus pin line,
-`us-rulespec-2026-11-11-cms-w6-federal-guidance` (284 scopes), and adds one signed scope,
+`us-rulespec-2026-11-24-tier1-source-text` (431 scopes), and adds one signed scope,
 `us/guidance/2026-11-14-cms-smd-26-006` (`docs/ingest-runs/2026-11-14-cms-smd-26-006.md`, ingested in
 this change; source manifest `manifests/us-cms-smd-26-006-hold-harmless.yaml`). It keeps every scope of
-the base and the line's quality profile, `complete-expression-dates-v1`, so it selects 285.
+the base and the line's quality profile, `complete-expression-dates-v1`, so it selects 432.
 
 rulespec-us `main` pins `us-rulespec-2026-10-29-ecfr-section-text` (276 scopes; `.axiom/toolchain.toml`,
-last changed in `375793cd`, content sha `063457c6…`; checked 2026-11-14). This selector holds all 276
-scopes of that pin, the seven Kansas LIHEAP scopes of `us-rulespec-2026-10-27-ks-liheap`, the wave-6
-federal CMS guidance scope of `us-rulespec-2026-11-11-cms-w6-federal-guidance` and the SMD #26-006
-scope.
+last changed in `375793cd`, content sha `063457c6…`; checked 2026-11-26). This selector holds 274 of
+that pin's 276 scopes. The other two are the ones the base replaced with consolidated successors that
+hold every citation path of the scope each replaces:
+`us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated` and
+`us-wa/regulation/2026-06-25-388-450-r2026-07-15-self-contained`
+(`docs/ingest-runs/2026-11-24-us-rulespec-tier1-source-text.md`). So it keeps a version of every pair the
+pin selects. It also holds the seven Kansas LIHEAP scopes of `us-rulespec-2026-10-27-ks-liheap`, the
+wave-6 federal CMS guidance scope of `us-rulespec-2026-11-11-cms-w6-federal-guidance`, the 149 Tier 1
+source-text scopes of `us-rulespec-2026-11-24-tier1-source-text` and the SMD #26-006 scope.
 
 ## Why
 
@@ -30,11 +35,22 @@ option cannot cite it until rulespec-us pins a release that does.
 ## The base
 
 `axiom_corpus.corpus.selector_lineage.line_heads`, run over the tracked selectors and
-`manifests/selector-lineage-baseline.yaml` at `origin/main` 7242a0229, returns one head for the line
-through the pin, `us-rulespec-2026-11-11-cms-w6-federal-guidance`. Its chain of named predecessors is
-`us-rulespec-2026-10-27-ks-liheap`, then the pin. No open pull request other than #980 adds a selector
-on this line (checked 2026-11-14). The description names the base first, so the lineage check compares
-this cut with it.
+`manifests/selector-lineage-baseline.yaml` of `origin/main` 2d7853283, returns one head for the line
+through the pin, `us-rulespec-2026-11-24-tier1-source-text`. Its chain of named predecessors is
+`us-rulespec-2026-11-11-cms-w6-federal-guidance`, `us-rulespec-2026-10-27-ks-liheap`, then the pin. With
+this selector in place, the same call returns this selector alone. No open pull request other than #980
+adds a selector on this line (checked 2026-11-26). The description names the base first, so the lineage
+check compares this cut with it.
+
+### Re-cut on the 2026-11-24 head
+
+The first cut (2026-11-14) took `us-rulespec-2026-11-11-cms-w6-federal-guidance` as its base and selected
+285 scopes. On 2026-11-24, main gained `us-rulespec-2026-11-24-tier1-source-text`, a second successor
+of that selector, which the lineage check rejects for two unrecorded successors of one selector. So on
+2026-11-26 this change merged `origin/main` (2d7853283) and re-cut the selector on the new head:
+`BASE_RELEASE` is now `us-rulespec-2026-11-24-tier1-source-text`, the description says so, and the test
+expects 431 and 432 scopes. The added scope, its signed ingest manifest and its lock did not change. The
+name keeps its 2026-11-14 date, the day the letter's scope was ingested.
 
 ## The added scope
 
@@ -56,11 +72,12 @@ this cut with it.
   selector picks up no withdrawn scope the base does not already select.
 - It keeps the line's three withdrawn scopes, `us-me`, `us-mi` and `us-mn`
   `statute/2026-07-13-recovery`. Allowances do not carry forward, so `manifests/withdrawn-scopes.yaml`
-  records an exception for this selector on each and pins them to its digest (`e4471a0a…`).
+  records an exception for this selector on each and pins them to its digest (`599c335a…`; the
+2026-11-14 cut's was `e4471a0a…`).
   rulespec-us#1365, which was to re-point the modules citing them, is still closed without a merge
-  (checked 2026-11-14); the first cut in the line after that re-pointing lands drops them.
+  (checked 2026-11-26); the first cut in the line after that re-pointing lands drops them.
 - The lineage tests pass with the selector in place: `tests/test_selector_lineage_repository.py` and
-  `tests/test_selector_lineage_prose_repository.py`, 91 passed.
+  `tests/test_selector_lineage_prose_repository.py`, 91 passed (rerun after the re-cut, 2026-11-26).
 - `tests/test_release_policy_repository.py`: the ledger tests pass (no tracked selector selects a
   withdrawn scope without an allowance, every allowance names a tracked selector that selects the
   scope, grandfathered selectors predate their listing, no entry is listed in the future).
@@ -88,7 +105,7 @@ this cut with it.
 
 Not run on this checkout:
 
-- `validate-release` on the whole selector (285 scopes), on the base and on the pin;
+- `validate-release` on the whole selector (432 scopes), on the base and on the pin;
 - `scripts/publish_corpus.py --release manifests/releases/us-rulespec-2026-11-14-cms-smd-26-006.json
   --dry-run`;
 - the tests that read other scopes' provisions: `test_no_citation_path_of_the_added_scope_is_already_in_the_base`
@@ -96,11 +113,17 @@ Not run on this checkout:
   `test_the_added_scope_validates_alone_with_strict_warnings` in the 2026-11-11 test file. The other 13
   tests of this file and 11 of the 2026-11-11 file pass with `AXIOM_CORPUS_PARTIAL_TESTS=1`.
 
-They need the base's 284 scopes in the worktree (16,104 more locked files, 2.03 GB). Every object is
-already in the local content cache, so a fetch would place APFS clones and download nothing. This run
-did not fetch them: the host stayed below its 100 GB free-disk floor (95 to 99 GB free) with a
-one-minute load above 150 throughout, and the run's rules stop corpus fetches, whole-release validation
-and publication dry runs under either condition. Exact-head CI on a full corpus checkout runs them.
+They need the base's 431 scopes in the worktree. On 2026-11-14 the host stayed below its 100 GB
+free-disk floor (95 to 99 GB free) with a one-minute load above 150, and the run's rules stop corpus
+fetches, whole-release validation and publication dry runs under either condition. On 2026-11-26 the
+host had about 108 GB free, too little headroom above the floor for the base's scopes, so they were not
+fetched then either.
+
+Exact-head CI covers the first two items. Its `test` job fetches every locked scope and runs the whole
+suite. Its `validate-release` job fetches every selected scope and deep-validates every tracked
+selector, this one included. CI does not run the publication dry run. `publish.yml` itself repeats deep
+validation after reading the staged R2 objects back, before it signs, so a defect the dry run would
+show stops publication there.
 
 ## Coordination with #980
 
@@ -109,18 +132,19 @@ Draft #980 cuts `us-rulespec-2026-11-05-mt-arm-37-78-420-successor` from the pin
 check rejects two unrecorded successors of one selector, so the cuts go one after another:
 
 - If this selector merges first, #980 sets its `BASE_RELEASE` to this selector, reruns its reproducer
-  (one Montana scope swapped, so it selects 285), updates its expected count and re-records its
+  (one Montana scope swapped, so it selects 432), updates its expected count and re-records its
   digest and the ME/MI/MN exceptions.
-- If #980 is re-cut on `us-rulespec-2026-11-11-cms-w6-federal-guidance` and merges first, this cut
-  sets its `BASE_RELEASE` to #980's selector and reruns the reproducer. The change is the same one
-  scope added; the count stays 285, and the digest and the three exceptions are re-recorded.
+- If #980 is re-cut on `us-rulespec-2026-11-24-tier1-source-text` and merges first, this cut sets its
+  `BASE_RELEASE` to #980's selector and reruns the reproducer. The change is the same one scope added;
+  the count stays 432, and the digest and the three exceptions are re-recorded.
 
 ## Coordination with rulespec-us#2196
 
-Draft rulespec-us#2196 re-pins rulespec-us to `us-rulespec-2026-11-11-cms-w6-federal-guidance`, this
-selector's base. This selector holds all 284 of that release's scopes and adds only the letter, so
-once it is published a re-pin to it supersedes #2196: the re-pin PR names #2196, and #2196 closes
-unmerged, or is retargeted to this release, whichever Max prefers.
+Draft rulespec-us#2196 re-pins rulespec-us to `us-rulespec-2026-11-11-cms-w6-federal-guidance`, two
+cuts back on this line. This selector holds 282 of that release's 284 scopes and the consolidated
+successors of the other two, so once it is published a re-pin to it supersedes #2196: the re-pin PR
+names #2196, and #2196 closes unmerged. No open rulespec-us pull request re-pins to
+`us-rulespec-2026-11-24-tier1-source-text` (checked 2026-11-26).
 
 ## After merge
 
