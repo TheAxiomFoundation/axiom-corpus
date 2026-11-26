@@ -150,17 +150,32 @@ def test_page_in_effect_and_label_paths() -> None:
         (
             '<paragraph><num value="1">(1)</num><content>wo<page identifier="/us/stat/1/2">'
             "1 STAT. 2</page>rd</content></paragraph>",
-            "splits a word",
+            "would join text without whitespace",
         ),
         (
             '<paragraph><num value="1">(1)</num><content>shall<page identifier="/us/stat/1/2">'
             "1 STAT. 2</page><ref>pay</ref></content></paragraph>",
-            "splits a word",
+            "would join text without whitespace",
         ),
         (
             '<paragraph><num value="1">(1)</num><content><inline>shall'
             '<page identifier="/us/stat/1/2"/></inline>pay</content></paragraph>',
-            "splits a word",
+            "would join text without whitespace",
+        ),
+        (
+            '<paragraph><num value="1">(1)</num><content>under paragraph'
+            '<page identifier="/us/stat/139/307">139 STAT. 307</page>(2).</content></paragraph>',
+            "would join text without whitespace",
+        ),
+        (
+            '<paragraph><num value="1">(1)</num><content>42'
+            '<page identifier="/us/stat/139/307"/>§ 1396a</content></paragraph>',
+            "would join text without whitespace",
+        ),
+        (
+            '<paragraph><num value="1">(1)</num><content>‘<term>State</term>’'
+            "<sidenote><p>Definition.</p></sidenote>means</content></paragraph>",
+            "would join text without whitespace",
         ),
         (
             '<paragraph><num value="1">(1)</num><subparagraph><num value="A">(A)</num>'
@@ -202,14 +217,21 @@ def test_page_break_keeps_a_separator_in_the_next_inline_element() -> None:
 
 
 def test_margin_note_between_heading_punctuation_joins_the_punctuation() -> None:
+    # Pub. L. 119-21 sec. 70304(a)(3)(B)(ii) places the note within the heading.
     element = ET.fromstring(
-        f'<subparagraph xmlns="{NS}"><clause><num value="ii">“(ii)</num>'
+        f'<subparagraph xmlns="{NS}"><clause><num value="ii">“(ii) </num>'
         "<heading>Substantial and legitimate business reason<inline>.</inline>"
         "<sidenote><p>Definition.</p></sidenote><inline>—</inline></heading>"
-        "</clause></subparagraph>"
+        "<content>For purposes of clause (i), the term ‘<term>substantial and legitimate business "
+        "reason</term>’ shall not include the operation of a separate line of business, the rate "
+        "of wages or category of jobs for employees (or any similar basis), or the application of "
+        "State or local laws relating to family and medical leave, but may include the grouping of "
+        "employees of a common law employer.</content></clause></subparagraph>"
     )
     rendered = render_structural_element(element, label_path=("B",))
-    assert rendered.body == "(ii) Substantial and legitimate business reason.—"
+    assert rendered.body.startswith(
+        "(ii) Substantial and legitimate business reason.— For purposes of clause (i),"
+    )
     (note,) = rendered.margin_notes
     assert (note.notes, note.label_path, note.offset) == (
         ("Definition.",),

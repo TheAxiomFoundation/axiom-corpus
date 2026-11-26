@@ -29,7 +29,8 @@ the printed law reads ``Code of 1986.``).
 
 Anything the renderer cannot place raises :class:`UslmRenderError`: an element
 it does not know, text between structural elements, a continuation, a marker
-between two word characters, or a missing closing quote.
+between adjacent non-space characters when either is a word character, or a
+missing closing quote.
 """
 
 from __future__ import annotations
@@ -324,12 +325,13 @@ def _inline_text(element: ET.Element, state: _State) -> str:
     _append_inline(element, state, pieces, markers)
     # A marker's next text may come from a sibling or an enclosing inline element.
     for tag, index in markers:
-        if (
-            0 < index < len(pieces)
-            and _WORD_CHARACTER.fullmatch(pieces[index - 1][-1])
-            and _WORD_CHARACTER.fullmatch(pieces[index][0])
+        if not 0 < index < len(pieces):
+            continue
+        before, after = pieces[index - 1][-1], pieces[index][0]
+        if not (before.isspace() or after.isspace()) and (
+            _WORD_CHARACTER.fullmatch(before) or _WORD_CHARACTER.fullmatch(after)
         ):
-            raise UslmRenderError(f"<{tag}> splits a word")
+            raise UslmRenderError(f"<{tag}> would join text without whitespace")
     return " ".join("".join(pieces).split())
 
 

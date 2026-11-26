@@ -20,6 +20,7 @@ from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.uslm_quoted_content import (
+    STRUCTURAL_TAGS,
     local_name,
     num_value,
     render_structural_element,
@@ -349,6 +350,24 @@ def _xml_margin_note_offsets(element: ET.Element, body: str) -> list[int]:
     return [positions[count] for count in accumulate(map(len, parts[:-1]))]
 
 
+def _xml_margin_note_label_paths(subsection: ET.Element) -> dict[ET.Element, str]:
+    parents = {child: parent for parent in subsection.iter() for child in parent}
+    paths: dict[ET.Element, str] = {}
+    for note in subsection.iter():
+        if local_name(note.tag) != "sidenote":
+            continue
+        labels = []
+        ancestor = parents.get(note)
+        while ancestor is not None:
+            if local_name(ancestor.tag) in STRUCTURAL_TAGS:
+                label = num_value(ancestor)
+                assert label
+                labels.append(label)
+            ancestor = parents.get(ancestor)
+        paths[note] = "/".join(reversed(labels))
+    return paths
+
+
 def test_metadata_records_statutes_pages_and_margin_notes() -> None:
     rows = _rows()
     root = rows[0]
@@ -365,21 +384,21 @@ def test_metadata_records_statutes_pages_and_margin_notes() -> None:
     assert [line for note in notes for line in note["notes"]] == list(MARGIN_NOTE_LINES)
     assert notes[0] == {"notes": ["Deadline."], "label_path": "xx/1", "offset": 4}
     assert body[notes[0]["offset"] :].startswith("In general.— Except as provided")
+    xml_note_paths = _xml_margin_note_label_paths(_quoted_subsection())
     for row in rows:
         assert row.metadata is not None
-        assert [note["offset"] for note in row.metadata["margin_notes"]] == (
-            _xml_margin_note_offsets(_row_element(row.citation_path), row.body or "")
+        element = _row_element(row.citation_path)
+        row_notes = row.metadata["margin_notes"]
+        assert [note["offset"] for note in row_notes] == _xml_margin_note_offsets(
+            element, row.body or ""
         ), row.citation_path
-    by_paragraph: Counter[str] = Counter(note["label_path"].split("/")[1] for note in notes)
+        assert [note["label_path"] for note in row_notes] == [
+            xml_note_paths[node] for node in element.iter() if node in xml_note_paths
+        ], row.citation_path
     root_break_offsets = {item["identifier"]: item["offset"] for item in pages["page_breaks"]}
     seen_breaks: set[str] = set()
     for row in rows[1:]:
         assert row.metadata is not None
-        label = row.citation_path.rsplit("/", 1)[-1]
-        assert len(row.metadata["margin_notes"]) == by_paragraph[label], row.citation_path
-        assert all(
-            note["label_path"].split("/")[1] == label for note in row.metadata["margin_notes"]
-        )
         stat = row.metadata["statutes_at_large"]
         assert stat["volume"] == 139 and stat["page_start"] <= stat["page_end"]
         row_body = row.body or ""
