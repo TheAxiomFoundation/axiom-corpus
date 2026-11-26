@@ -627,6 +627,8 @@ def _toplevel_refusal(top: Path, checkout: Path) -> str:
         "holder-nested-repo-at-releases",
         "holder-gitfile-at-manifests",
         "releases-dir-core-worktree-redirect",
+        "file-chain",
+        "file-into-linked-corpus",
     ],
 )
 def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
@@ -853,6 +855,35 @@ def test_deduplicate_refuses_a_base_or_an_alias_another_path_holds(
         corpus, releases = b / "data" / "corpus", _releases(b)
         error = FileNotFoundError
         expected = _toplevel_refusal(other, b)
+    elif case in ("file-chain", "file-into-linked-corpus"):
+        # Only B marks base. A's base files are links to B's spelled paths, which
+        # lead on to C's files: through B's links, or through B's corpus link.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b", marks_base=True)
+        c = _checkout(make_checkout, "c")
+        a_corpus, b_corpus, c_corpus = (x / "data" / "corpus" for x in (a, b, c))
+        _write_scopes(a_corpus)
+        _write_scopes(c_corpus)
+        if case == "file-chain":
+            _write_scopes(b_corpus)
+            for b_file, c_file in zip(
+                _scope_files(b_corpus, "base"), _scope_files(c_corpus, "base"), strict=True
+            ):
+                _relink(b_file, c_file)
+        else:
+            _link(b_corpus, c_corpus)
+        for a_file, b_file in zip(
+            _scope_files(a_corpus, "base"), _scope_files(b_corpus, "base"), strict=True
+        ):
+            _relink(a_file, b_file)
+        _clear_resolver_cache()
+        corpus, releases = a_corpus, _releases(a)
+        link = _scope_files(a_corpus, "base")[0]
+        expected = _exactly(
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{link} (the link is {link}); corpus files are placed as regular files, "
+            "never symlinks"
+        )
     if target_versions:
         _write_selector(target, target_versions, bases=target_bases)
     before = _bytes_under(tmp_path)

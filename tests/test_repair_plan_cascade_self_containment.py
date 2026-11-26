@@ -665,6 +665,7 @@ def _relink(path: Path, target: Path, *, hard: bool = False) -> None:
         "release-held-by-another-checkout",
         "repo-releases-link",
         "repo-manifests-link",
+        "file-chain-holder-marks-repaired",
     ],
 )
 def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_marks(
@@ -707,8 +708,9 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
             "base scopes are carried unchanged and cannot be repaired: us/statute/pv1"
         )
     elif case == "dangling-destination-link":
-        # pv1-fix's provisions in A is a dangling link to the same path in B,
-        # whose directory exists; writing through it would create B's file.
+        # pv1-fix's provisions in A is a dangling link to the same path in B;
+        # the guard refuses a symlinked file at a guarded place before repair
+        # checks for an existing destination.
         repo = _repair_checkout(make_checkout, "a", bases=())
         b = _repair_checkout(make_checkout, "b", bases=())
         _write_repair_scopes(repo / "data" / "corpus", repo)
@@ -716,7 +718,35 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
         never_created.parent.mkdir(parents=True)
         link = repair_module._scope_paths(repo / "data" / "corpus", PV1_FIX)["provisions"]
         link.symlink_to(never_created)
-        expected = _exactly(f"repaired scope artifact already exists: {link}")
+        expected = _exactly(
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{link} (the link is {link}); corpus files are placed as regular files, "
+            "never symlinks"
+        )
+    elif case == "file-chain-holder-marks-repaired":
+        # Only B marks pv1 as a base. A's pv1 files link to B's, and B's to
+        # C's, which C holds as regular files.
+        repo = _repair_checkout(make_checkout, "a", bases=())
+        b = _repair_checkout(make_checkout, "b", bases=(PV1,))
+        c = _repair_checkout(make_checkout, "c", bases=())
+        corpora = [x / "data" / "corpus" for x in (repo, b, c)]
+        for corpus in corpora:
+            _write_repair_scopes(corpus, repo)
+        for here, there in ((corpora[0], corpora[1]), (corpora[1], corpora[2])):
+            for kind in ("coverage", "inventory", "provisions"):
+                _relink(
+                    repair_module._scope_paths(here, PV1)[kind],
+                    repair_module._scope_paths(there, PV1)[kind],
+                )
+        from axiom_corpus.corpus import resolver
+
+        resolver._repo_root_for_dir.cache_clear()
+        link = repair_module._scope_paths(corpora[0], PV1)["coverage"]
+        expected = _exactly(
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{link} (the link is {link}); corpus files are placed as regular files, "
+            "never symlinks"
+        )
     elif case == "holder-base-links-to-repaired":
         # A's corpus is B's; only B marks bv1, whose provisions lead to pv1's,
         # which repair unlinks.
@@ -986,6 +1016,7 @@ def _case_insensitive(directory: Path) -> bool:
         "class-place-linked-out",
         "lock-place-linked-out",
         "case-variant-absent-place",
+        "report-through-guarded-file-link",
     ],
 )
 def test_main_refuses_a_report_path_in_a_protected_place(
@@ -998,6 +1029,7 @@ def test_main_refuses_a_report_path_in_a_protected_place(
     root, place = repo, "data"
     report: Path
     fetch: Callable[[], None] | None = None
+    expected: str | None = None
     if case == "coverage":
         report = coverage
     elif case == "selector":
@@ -1083,6 +1115,25 @@ def test_main_refuses_a_report_path_in_a_protected_place(
 
         fetch = fetch_scopes
         report = _base_coverage(repo / "Data" / "corpus", "never-fetched")
+    elif case == "report-through-guarded-file-link":
+        # The base's coverage is a link out of the checkout, which the resolver
+        # recognises by its corpus locks at a git toplevel; the report is
+        # spelled through it.
+        fixture_git(repo, "init", "-q", "-b", "main")
+        from axiom_corpus.corpus import resolver
+
+        resolver._repo_root_for_dir.cache_clear()
+        target = tmp_path / "out" / "target.json"
+        target.parent.mkdir()
+        target.write_text(json.dumps({"complete": True, "version": "base-v"}) + "\n")
+        coverage.unlink()
+        coverage.symlink_to(target)
+        report = coverage
+        expected = (
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{coverage} (the link is {coverage}); corpus files are placed as regular files, "
+            "never symlinks"
+        )
     else:
         raise AssertionError(case)
     spelled = report if report.is_absolute() else Path.cwd() / report
@@ -1093,7 +1144,7 @@ def test_main_refuses_a_report_path_in_a_protected_place(
         repair_module.main()
 
     assert str(raised.value) == (
-        f"report path resolves into {place} of the checkout {root}: {spelled}"
+        expected or f"report path resolves into {place} of the checkout {root}: {spelled}"
     )
     assert events == []
     assert _snapshot(tmp_path) == before

@@ -429,6 +429,7 @@ def _swap_for_link(path: Path, target: Path) -> None:
         "tracked-base-links-to-promoted",
         "linked-holders-base-links-to-promoted",
         "holder-selector-link",
+        "file-chain",
     ],
 )
 def test_promotion_refuses_a_base_a_link_reaches(
@@ -457,6 +458,32 @@ def test_promotion_refuses_a_base_a_link_reaches(
         releases, version = a / "manifests" / "releases", "base-v"
         expected = "^" + re.escape(
             f"selector directory leads through a link: {b / 'manifests'} -> "
+        )
+    elif case == "file-chain":
+        # Only B marks base-v as a base. A's files of base-v link to B's, and
+        # B's to C's, which C holds as regular files.
+        a = _ca_checkout(make_checkout, "a")
+        b = _ca_checkout(make_checkout, "b", base="base-v")
+        c = _ca_checkout(make_checkout, "c")
+        held = CorpusArtifactStore(c / "data" / "corpus")
+        _write_program_scope(held, "base-v")
+        stores = [CorpusArtifactStore(x / "data" / "corpus") for x in (a, b)]
+        for here, there in zip(stores, [*stores[1:], held], strict=True):
+            for path_of in (here.inventory_path, here.provisions_path):
+                link = path_of("ca", "policy", "base-v")
+                link.parent.mkdir(parents=True, exist_ok=True)
+                link.symlink_to(Path(there.root, link.relative_to(here.root)))
+        store = stores[0]
+        releases, version = a / "manifests" / "releases", "base-v"
+        inventory = store.inventory_path("ca", "policy", version)
+        expected = (
+            "^"
+            + re.escape(
+                "path leads through a symlinked file at or below a checkout's guarded place: "
+                f"{inventory} (the link is {inventory}); corpus files are placed as regular "
+                "files, never symlinks"
+            )
+            + "$"
         )
     elif case == "hard-link":
         store = CorpusArtifactStore(tmp_path / "corpus")

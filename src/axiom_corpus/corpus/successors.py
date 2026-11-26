@@ -46,7 +46,8 @@ comparison against the tracked bases is exact.
 
 ``guard_scope_artifacts`` checks the artifact paths a scope tool reads or
 writes before it opens any: an artifact that resolves to another artifact's
-path, a link at a checkout's guarded place that leads into no checkout, and a
+path, a path through a symlinked file at or below a checkout's guarded place,
+a link at a checkout's guarded place that leads into no checkout, and a
 rewritten file with more than one link are refused. It returns the
 ``manifests/releases`` of the checkout that physically holds each path and of
 each checkout holding a link on it as spelled (``checkouts_holding``; the
@@ -737,18 +738,32 @@ def checkouts_holding(
     without ``src/`` and ``.axiom/`` counts, while an unrelated git repository
     and a plain directory do not. A link holder is a checkout at whose guarded
     place (``data``, ``data/corpus``, ``data/corpus/<artifact class>`` or below)
-    ``path``, as spelled, passes a symlink. Link holders share the resolver's
-    link walk and are found by its rules: a checkout it recognises by
-    ``src/axiom_corpus`` or ``.axiom/corpus-locks`` on disk, with any inherited
-    ``GIT_*`` variables followed. Only the path as given is walked, so a
-    checkout whose own link leads to this path, and a link the resolver does
-    not recognise, are not found (the threat model's stated limits 15 and 11).
-    ``memo`` keeps physical holders by directory across calls. An ``OSError``
-    from git, such as no ``git`` on ``PATH``, propagates.
+    ``path``, as spelled, passes a directory symlink. A symlinked file that
+    stands at such a place of a checkout the resolver recognises, or that the
+    path reaches after passing a link at one, raises ``ValueError``: placed
+    corpus files are regular files, never symlinks (``docs/corpus-storage.md``),
+    and the walk stops there, so a checkout further along the link would not
+    be found. A file link at a checkout the resolver does not recognise counts
+    as no link and is followed (the threat model's stated limit 11). Link
+    holders share the resolver's link walk and are found by its rules: a
+    checkout it recognises by ``src/axiom_corpus`` or ``.axiom/corpus-locks``
+    on disk, with any inherited ``GIT_*`` variables followed. Only the path
+    as given is walked, so a checkout whose own link leads to this path, and
+    a link the resolver does not recognise, are not found (the threat model's
+    stated limits 15 and 11). ``memo`` keeps physical holders by directory
+    across calls. An ``OSError`` from git, such as no ``git`` on ``PATH``,
+    propagates.
     """
     spelled = path if path.is_absolute() else Path.cwd() / path
     physical = Path(os.path.realpath(spelled))
-    places, _ = _standing_places(spelled, physical, None)
+    spellings: list[Path] = []
+    places, stands_as_file = _standing_places(spelled, physical, None, spellings=spellings)
+    if stands_as_file:
+        raise ValueError(
+            "path leads through a symlinked file at or below a checkout's guarded place: "
+            f"{spelled} (the link is {spellings[-1]}); corpus files are placed as regular "
+            "files, never symlinks"
+        )
     return frozenset(checkout for checkout, _ in places), _physical_holder(physical, memo)
 
 
@@ -795,11 +810,14 @@ def guard_scope_artifacts(
        kind or ``ingest-manifests``, jurisdiction, document class and version
        file or directory) differ from its own: a symlink or a directory alias
        makes it another scope's artifact;
-    2. when a path passes a link at a checkout's guarded place and resolves
+    2. when a path, among ``paths`` or ``holders_of``, leads through a
+       symlinked file at or below a checkout's guarded place (raised by
+       ``checkouts_holding``);
+    3. when a path passes a link at a checkout's guarded place and resolves
        into no checkout: no inventory can say what that directory holds, so
        to share a corpus kept elsewhere, make that directory part of an
        axiom-corpus checkout;
-    3. when a rewritten file has more than one link (a hard link).
+    4. when a rewritten file has more than one link (a hard link).
 
     It returns the ``manifests/releases`` of each checkout that
     ``checkouts_holding`` finds for ``paths`` and for each path in

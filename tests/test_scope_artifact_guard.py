@@ -89,6 +89,8 @@ def _plain_repository(tmp_path: Path) -> Path:
         "sparse-without-markers",
         "git-repo-without-selectors",
         "git-env",
+        "unguarded-file-link",
+        "directory-chain",
     ],
 )
 def test_checkouts_holding(
@@ -148,8 +150,131 @@ def test_checkouts_holding(
         monkeypatch.setenv("GIT_DIR", str(repository / ".git"))
         monkeypatch.setenv("GIT_WORK_TREE", str(repository))
         expected = (frozenset(), b)
+    elif layout == "unguarded-file-link":
+        # A pointer at no guarded place, reached by no guarded link, is followed.
+        path = tmp_path / "pointer.jsonl"
+        path.symlink_to(b_file)
+        expected = (frozenset(), b)
+    elif layout == "directory-chain":
+        # Directory links at two checkouts' guarded places are both link holders.
+        c = _checkout(make_checkout, "c")
+        _write(_artifact(c / "data" / "corpus", "provisions", B))
+        shutil.rmtree(b / "data" / "corpus" / "provisions")
+        (b / "data" / "corpus" / "provisions").symlink_to(c / "data" / "corpus" / "provisions")
+        a_corpus.parent.mkdir()
+        a_corpus.symlink_to(b / "data" / "corpus")
+        expected = (frozenset({a, b}), c)
 
     assert successors.checkouts_holding(path) == expected
+
+
+FILE_LINK_REFUSAL = "path leads through a symlinked file at or below a checkout's guarded place: "
+
+
+def _file_link_refusal(path: Path, link: Path) -> str:
+    return (
+        "^"
+        + re.escape(
+            f"{FILE_LINK_REFUSAL}{path} (the link is {link}); corpus files are placed as "
+            "regular files, never symlinks"
+        )
+        + "$"
+    )
+
+
+def _relink_file(path: Path, target: Path | str) -> None:
+    """Make ``path`` a symlink to ``target``, replacing whatever stands there."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.is_symlink() or path.exists():
+        path.unlink()
+    path.symlink_to(target)
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "direct-file-link",
+        "file-chain",
+        "three-hop",
+        "relative-file-link",
+        "file-into-linked-corpus",
+        "directory-then-file",
+        "pointer-between",
+        "dangling-file-link",
+        "file-link-cycle",
+    ],
+)
+def test_checkouts_holding_refuses_a_path_through_a_symlinked_file(
+    make_checkout: MakeCheckout, tmp_path: Path, layout: str
+) -> None:
+    a, b, c, d = (_checkout(make_checkout, name) for name in "abcd")
+    a_file, b_file, c_file, d_file = (
+        _artifact(checkout / "data" / "corpus", "provisions", B) for checkout in (a, b, c, d)
+    )
+    # The link the walk stops at: A's own file unless the row says otherwise.
+    link = a_file
+    if layout == "direct-file-link":
+        _write(b_file)
+        _relink_file(a_file, b_file)
+    elif layout == "file-chain":
+        _write(c_file)
+        _relink_file(b_file, c_file)
+        _relink_file(a_file, b_file)
+    elif layout == "three-hop":
+        _write(d_file)
+        _relink_file(c_file, d_file)
+        _relink_file(b_file, c_file)
+        _relink_file(a_file, b_file)
+    elif layout == "relative-file-link":
+        _write(b_file)
+        _relink_file(a_file, os.path.relpath(b_file, a_file.parent))
+    elif layout == "file-into-linked-corpus":
+        # A's file names B's spelled path, and B's corpus leads into C's.
+        _write(c_file)
+        (b / "data").mkdir()
+        (b / "data" / "corpus").symlink_to(c / "data" / "corpus")
+        _relink_file(a_file, b_file)
+    elif layout == "directory-then-file":
+        _write(c_file)
+        _relink_file(b_file, c_file)
+        (a / "data").mkdir()
+        (a / "data" / "corpus").symlink_to(b / "data" / "corpus")
+        link = b_file
+    elif layout == "pointer-between":
+        # A's corpus leads to a plain directory, whose file is a pointer into B.
+        shared = tmp_path / "shared"
+        _write(c_file)
+        _relink_file(b_file, c_file)
+        pointer = _artifact(shared, "provisions", B)
+        _relink_file(pointer, b_file)
+        (a / "data").mkdir()
+        (a / "data" / "corpus").symlink_to(shared)
+        link = pointer
+    elif layout == "dangling-file-link":
+        b_file.parent.mkdir(parents=True)
+        _relink_file(a_file, b_file)
+    elif layout == "file-link-cycle":
+        _relink_file(a_file, b_file)
+        _relink_file(b_file, a_file)
+    _clear_resolver_cache()
+
+    with pytest.raises(ValueError, match=_file_link_refusal(a_file, link)):
+        successors.checkouts_holding(a_file)
+
+
+def test_guard_refuses_a_holders_of_path_through_a_symlinked_file(
+    make_checkout: MakeCheckout,
+) -> None:
+    a = _checkout(make_checkout, "a")
+    b = _checkout(make_checkout, "b")
+    plain = _write(_artifact(a / "data" / "corpus", "provisions", P))
+    b_file = _write(_artifact(b / "data" / "corpus", "provisions", B))
+    a_file = _artifact(a / "data" / "corpus", "provisions", B)
+    _relink_file(a_file, b_file)
+    _clear_resolver_cache()
+
+    with pytest.raises(ValueError, match=_file_link_refusal(a_file, a_file)):
+        successors.guard_scope_artifacts([plain], releases_dir=_releases(a), holders_of=(a_file,))
 
 
 @pytest.mark.parametrize("layout", ["file-symlink", "directory-alias", "class-alias"])

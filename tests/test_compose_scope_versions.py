@@ -830,6 +830,7 @@ def _swap_for_link(path: Path, target: Path) -> None:
         "link-outside-checkouts",
         "directory-alias",
         "holder-selector-link",
+        "source-file-chain",
     ],
 )
 def test_compose_refuses_a_base_or_an_alias_another_path_holds(
@@ -883,6 +884,27 @@ def test_compose_refuses_a_base_or_an_alias_another_path_holds(
         refused = ""
         expected = "^" + re.escape(
             f"selector directory leads through a link: {b / 'manifests'} -> "
+        )
+    elif case == "source-file-chain":
+        # A source version's provisions in A link to B's, and B's to C's.
+        a = _checkout(make_checkout, "a")
+        b = _checkout(make_checkout, "b")
+        c = _checkout(make_checkout, "c")
+        stores = [_sources(x) for x in (a, b, c)]
+        for here, there in ((stores[0], stores[1]), (stores[1], stores[2])):
+            link = here.provisions_path("us-example", "statute", "primary-one")
+            link.unlink()
+            link.symlink_to(there.provisions_path("us-example", "statute", "primary-one"))
+        link = stores[0].provisions_path("us-example", "statute", "primary-one")
+        refused = ""
+        expected = (
+            "^"
+            + re.escape(
+                "path leads through a symlinked file at or below a checkout's guarded place: "
+                f"{link} (the link is {link}); corpus files are placed as regular files, "
+                "never symlinks"
+            )
+            + "$"
         )
     else:
         a = _checkout(make_checkout, "a", base="primary-two")
