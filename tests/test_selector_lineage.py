@@ -1447,6 +1447,34 @@ def test_a_base_replacement_record_that_no_longer_holds_is_a_baseline_error(
             r"\.replaced_by must differ from the base it replaces",
             id="replaced-by-the-base-it-replaces",
         ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"listed_on": "not-a-date"},
+            r"\.listed_on must be an ISO date",
+            id="listed-on-not-a-date",
+        ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"listed_on": None},
+            r"\.listed_on must be an ISO date",
+            id="listed-on-none",
+        ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"reason": ""},
+            r"\.reason must be a non-empty string",
+            id="reason-empty",
+        ),
+        pytest.param(
+            [_ECFR, _NEW_US_CODE],
+            ("pin-next", ("us", "statute")),
+            {"reason": "   "},
+            r"\.reason must be a non-empty string",
+            id="reason-blank",
+        ),
     ],
 )
 def test_a_base_replacement_built_in_code_is_held_to_the_files_rules(
