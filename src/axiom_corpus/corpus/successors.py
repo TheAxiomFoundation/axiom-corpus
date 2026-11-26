@@ -55,7 +55,8 @@ threat model's stated limits 11 and 15), other than the caller's own, so the
 tool reads their tracked bases too.
 ``refuse_links_into_bases`` compares the artifact paths of the bases a tool
 knows with the files it rewrites, moves or unlinks, and refuses a base's file
-that leads to one of them through a link.
+that leads to one of them through a link (by realpath or by file identity, in
+either direction).
 
 ``tracked_base_scopes`` reads which scopes are bases from the tracked
 selectors. Corpus locks carry no layer, so the selectors are the only record,
@@ -909,6 +910,30 @@ def _within(real: str, directory: str) -> bool:
     return real == directory or real.startswith(directory.rstrip(os.sep) + os.sep)
 
 
+def _ancestry(real: str) -> list[os.stat_result]:
+    """The status of ``real`` and of each existing ancestor, nearest first."""
+    statuses: list[os.stat_result] = []
+    for place in (Path(real), *Path(real).parents):
+        try:
+            statuses.append(os.stat(place))
+        except OSError:
+            continue
+    return statuses
+
+
+def _holds(
+    directory: tuple[Path, str, os.stat_result | None],
+    real: str,
+    ancestry: list[os.stat_result],
+) -> bool:
+    """``directory`` is ``real`` or an ancestor of it, by realpath or by file identity."""
+    _, directory_real, directory_status = directory
+    return _within(real, directory_real) or (
+        directory_status is not None
+        and any(os.path.samestat(directory_status, status) for status in ancestry)
+    )
+
+
 def refuse_links_into_bases(
     *,
     corpus: Path,
@@ -931,16 +956,20 @@ def refuse_links_into_bases(
     ``moved`` are the directories it moves; ``ingest_manifests`` is the
     directory of ingest manifests whose files it unlinks, or None. A base's
     file matches a rewritten file when their realpaths are equal or both
-    exist with one status, and a moved directory when its realpath equals or
-    lies under the directory's. With ``moved`` given, a base's sources
-    directory matches a moved directory when its realpath equals, lies under
-    or contains the directory's, or both exist with one status; otherwise each
-    symlink below it is compared with every moved directory (equal or under)
-    and every rewritten file (equal). The first match raises ``ValueError``
-    naming the caller's path, the base and the artifact. It opens no file.
+    exist with one status, and a moved directory when the directory holds it.
+    A directory holds a path when the path's realpath equals or lies under
+    the directory's, or when the directory, as it exists, is the same entry as
+    the path or one of the path's existing ancestors, so a case alias or a
+    firmlink spelling counts. With ``moved`` given, a base's sources
+    directory, and each symlink below it, matches a moved directory when
+    either holds the other, and a rewritten file when it holds that file. A
+    symlink below a base's sources that cannot be followed, one that loops or
+    passes through a file, raises ``ValueError``. The first match raises
+    ``ValueError`` naming the caller's path, the base and the artifact. It
+    opens no file.
     """
-    rewritten_targets = [_link_target(path) for path in rewritten]
-    moved_targets = [_link_target(path) for path in moved]
+    rewritten_targets = [(target, _ancestry(target[1])) for target in map(_link_target, rewritten)]
+    moved_targets = [(target, _ancestry(target[1])) for target in map(_link_target, moved)]
     for key in sorted(set(bases)):
         jurisdiction, document_class, version = key
         files = [
@@ -956,46 +985,55 @@ def refuse_links_into_bases(
             )
         for artifact, base_path in files:
             _, real, status = _link_target(base_path)
-            for target in rewritten_targets:
+            for target, _target_ancestry in rewritten_targets:
                 if _same_entry(real, status, target):
                     raise ValueError(
                         f"{target[0]} is also {_label(key)}'s {artifact} through a link"
                     )
-            for target in moved_targets:
-                if _within(real, target[1]):
-                    raise ValueError(
-                        f"{target[0]} is also {_label(key)}'s {artifact} through a link"
-                    )
+            if moved_targets:
+                ancestry = _ancestry(real)
+                for target, _target_ancestry in moved_targets:
+                    if _holds(target, real, ancestry):
+                        raise ValueError(
+                            f"{target[0]} is also {_label(key)}'s {artifact} through a link"
+                        )
         if not moved_targets:
             continue
         sources = corpus / "sources" / jurisdiction / document_class / version
-        _, sources_real, sources_status = _link_target(sources)
-        for target in moved_targets:
-            if (
-                _within(sources_real, target[1])
-                or _within(target[1], sources_real)
-                or (
-                    sources_status is not None
-                    and target[2] is not None
-                    and os.path.samestat(sources_status, target[2])
-                )
+        sources_target = _link_target(sources)
+        sources_ancestry = _ancestry(sources_target[1])
+        for target, target_ancestry in moved_targets:
+            if _holds(target, sources_target[1], sources_ancestry) or _holds(
+                sources_target, target[1], target_ancestry
             ):
+                raise ValueError(f"{target[0]} is also {_label(key)}'s sources through a link")
+        for target, target_ancestry in rewritten_targets:
+            if _holds(sources_target, target[1], target_ancestry):
                 raise ValueError(f"{target[0]} is also {_label(key)}'s sources through a link")
         if not os.path.isdir(sources):
             continue
         for root, directories, filenames in os.walk(sources, followlinks=False):
-            for entry in (*directories, *filenames):
-                path = os.path.join(root, entry)
+            for name in (*directories, *filenames):
+                path = os.path.join(root, name)
                 if not os.path.islink(path):
                     continue
-                entry_real = os.path.realpath(path)
-                for target in moved_targets:
-                    if _within(entry_real, target[1]):
+                try:
+                    entry = _link_target(Path(path))
+                except OSError as exc:
+                    raise ValueError(
+                        f"{path} is a link below {_label(key)}'s sources that cannot be "
+                        f"followed ({exc.strerror}); a base's sources hold no such link"
+                    ) from None
+                entry_ancestry = _ancestry(entry[1])
+                for target, target_ancestry in moved_targets:
+                    if _holds(target, entry[1], entry_ancestry) or _holds(
+                        entry, target[1], target_ancestry
+                    ):
                         raise ValueError(
                             f"{target[0]} is also {_label(key)}'s sources through a link"
                         )
-                for target in rewritten_targets:
-                    if entry_real == target[1]:
+                for target, target_ancestry in rewritten_targets:
+                    if _holds(entry, target[1], target_ancestry):
                         raise ValueError(
                             f"{target[0]} is also {_label(key)}'s sources through a link"
                         )

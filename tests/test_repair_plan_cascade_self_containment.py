@@ -666,6 +666,7 @@ def _relink(path: Path, target: Path, *, hard: bool = False) -> None:
         "repo-releases-link",
         "repo-manifests-link",
         "file-chain-holder-marks-repaired",
+        "tracked-base-sources-entry-to-moved-parent",
     ],
 )
 def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_marks(
@@ -826,6 +827,11 @@ def test_main_refuses_a_repair_through_a_link_or_of_a_base_another_checkout_mark
         elif case == "tracked-base-sources-link":
             # Repair moves pv1's sources, where bv1's sources lead.
             _relink(base["sources"], old["sources"])
+            expected = _exactly(f"{old['sources']} is also us/statute/bv1's sources through a link")
+        elif case == "tracked-base-sources-entry-to-moved-parent":
+            # A link below bv1's sources leads to the directory that holds
+            # pv1's sources, which repair moves.
+            (base["sources"] / "alias").symlink_to(corpus / "sources" / "us" / "statute")
             expected = _exactly(f"{old['sources']} is also us/statute/bv1's sources through a link")
         elif case == "tracked-base-ingest-manifest-link":
             _relink(_manifest_path(repo, BV1), _manifest_path(repo, PV1))

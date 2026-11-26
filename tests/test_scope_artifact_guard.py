@@ -549,6 +549,17 @@ def _base_corpus(tmp_path: Path) -> tuple[Path, list[Path], Path]:
         "plain",
         "base-absent",
         "base-links-to-another-base",
+        "sources-entry-to-moved-parent",
+        "sources-entry-to-rewritten-parent",
+        "sources-entry-case-alias-of-rewritten",
+        "sources-entry-to-hard-link-of-rewritten",
+        "sources-entry-case-alias-of-moved-parent",
+        "file-into-moved-case-alias",
+        "sources-dir-to-case-alias-of-moved-parent",
+        "sources-dir-to-rewritten-parent",
+        "sources-entry-link-loop",
+        "sources-entry-link-through-a-file",
+        "sources-entry-to-sibling",
     ],
 )
 def test_refuse_links_into_bases(tmp_path: Path, layout: str) -> None:
@@ -623,6 +634,77 @@ def test_refuse_links_into_bases(tmp_path: Path, layout: str) -> None:
         _write(_artifact(corpus, "provisions", C))
         _artifact(corpus, "provisions", B).symlink_to(_artifact(corpus, "provisions", C))
         bases = {B, C}
+    elif layout.startswith("sources-entry-"):
+        # A link below b's sources, compared with q's files and q's sources.
+        statute_sources = corpus / "sources" / "us" / "statute"
+        b_sources = statute_sources / "b"
+        b_sources.mkdir()
+        alias = b_sources / "alias"
+        arguments = {"rewritten": q_files, "moved": [q_sources]}
+        moved_refusal = "/q is also us/statute/b's sources through a link"
+        rewritten_refusal = r"q\.jsonl is also us/statute/b's sources through a link"
+        if layout == "sources-entry-to-moved-parent":
+            alias.symlink_to(statute_sources)
+            expected = moved_refusal
+        elif layout == "sources-entry-to-rewritten-parent":
+            alias.symlink_to(corpus / "provisions" / "us" / "statute")
+            expected = rewritten_refusal
+        elif layout == "sources-entry-case-alias-of-rewritten":
+            alias.symlink_to(corpus / "provisions" / "us" / "statute" / "Q.jsonl")
+            if not alias.exists():
+                pytest.skip("the filesystem keeps q and Q apart, so there is no case alias")
+            expected = rewritten_refusal
+        elif layout == "sources-entry-to-hard-link-of-rewritten":
+            hard = tmp_path / "h.jsonl"
+            os.link(q_files[0], hard)
+            alias.symlink_to(hard)
+            expected = rewritten_refusal
+        elif layout == "sources-entry-case-alias-of-moved-parent":
+            alias.symlink_to(corpus / "SOURCES" / "us" / "statute")
+            if not alias.exists():
+                pytest.skip("the filesystem keeps sources and SOURCES apart")
+            arguments = {"moved": [q_sources]}
+            expected = moved_refusal
+        elif layout == "sources-entry-link-loop":
+            loop = b_sources / "loop"
+            loop.symlink_to("loop")
+            arguments = {"moved": [q_sources]}
+            expected = "loop is a link below us/statute/b's sources that cannot be followed \\("
+        elif layout == "sources-entry-link-through-a-file":
+            _write(b_sources / "plainfile.html", "<p>b</p>\n")
+            (b_sources / "through-file").symlink_to(Path("plainfile.html") / "x")
+            arguments = {"moved": [q_sources]}
+            expected = (
+                "through-file is a link below us/statute/b's sources that cannot be followed \\("
+            )
+        elif layout == "sources-entry-to-sibling":
+            _write(statute_sources / "c" / "c.html", "<p>c</p>\n")
+            alias.symlink_to(statute_sources / "c")
+        else:
+            raise AssertionError(layout)
+    elif layout == "file-into-moved-case-alias":
+        _artifact(corpus, "provisions", B).symlink_to(
+            corpus / "sources" / "us" / "statute" / "Q" / "x" / "source.html"
+        )
+        if not _artifact(corpus, "provisions", B).exists():
+            pytest.skip("the filesystem keeps q and Q apart, so there is no case alias")
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/statute/b's provisions through a link"
+    elif layout == "sources-dir-to-case-alias-of-moved-parent":
+        regulation_sources = corpus / "sources" / "us" / "regulation"
+        regulation_sources.mkdir(parents=True)
+        (regulation_sources / "b").symlink_to(corpus / "SOURCES" / "us" / "statute")
+        if not (regulation_sources / "b").exists():
+            pytest.skip("the filesystem keeps sources and SOURCES apart")
+        bases = {("us", "regulation", "b")}
+        arguments = {"moved": [q_sources]}
+        expected = "/q is also us/regulation/b's sources through a link"
+    elif layout == "sources-dir-to-rewritten-parent":
+        (corpus / "sources" / "us" / "statute" / "b").symlink_to(
+            Path("..") / ".." / ".." / "provisions" / "us" / "statute"
+        )
+        arguments = {"rewritten": q_files, "moved": [q_sources]}
+        expected = r"q\.jsonl is also us/statute/b's sources through a link"
 
     if expected is None:
         assert successors.refuse_links_into_bases(corpus=corpus, bases=bases, **arguments) is None
