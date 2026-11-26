@@ -10,7 +10,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BASE_RELEASE = "us-rulespec-2026-11-24-tier1-source-text"
 RELEASE = "us-rulespec-2026-11-14-cms-smd-26-006"
-# The base selects 85 other us/guidance versions, so the refusals match the whole scope.
+# The base selects 19 other us/guidance scopes, so the refusals match the whole scope.
 ADDED = ("us", "guidance", "2026-11-14-cms-smd-26-006")
 DESCRIPTION = (
     f"Successor to {BASE_RELEASE} on rulespec-us's corpus pin line, whose newest cut that "

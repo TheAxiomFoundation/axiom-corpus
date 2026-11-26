@@ -186,7 +186,7 @@ def test_build_release_refuses_a_base_with_a_duplicate_scope(tmp_path: Path) -> 
 
 
 # Other pairs select the added scope's version string, and us/guidance selects other versions, as
-# 85 scopes of the real base do. A refusal that matches on less than the whole scope fails.
+# 19 scopes of the real base do. A refusal that matches on less than the whole scope fails.
 _OTHER_SCOPE = st.fixed_dictionaries(
     {
         "document_class": st.sampled_from(["guidance", "manual", "regulation"]),

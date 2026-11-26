@@ -65,8 +65,10 @@ name keeps its 2026-11-14 date, the day the letter's scope was ingested.
 ## Checks
 
 - The reproducer matches the committed selector byte for byte.
-- The selector equals the base plus the one scope, stays sorted and holds every scope of the pin. The
-  test pins the addition as literals, so a change to the reproducer's constants cannot also change
+- The selector equals the base plus the one scope and stays sorted. It holds 274 of the pin's 276
+  scopes; for the other two (`us-co` title 39 and `us-wa` 388-450), it holds the consolidated
+  successors the base swapped in, which the tier1 run note records as holding every citation path of
+  each with the same body text. The test pins the addition as literals, so a change to the reproducer's constants cannot also change
   what the test checks.
 - A lock file exists for the added scope, and the withdrawn-scope ledger does not list it. The
   selector picks up no withdrawn scope the base does not already select.
@@ -119,9 +121,10 @@ fetches, whole-release validation and publication dry runs under either conditio
 host had about 108 GB free, too little headroom above the floor for the base's scopes, so they were not
 fetched then either.
 
-Exact-head CI covers the first two items. Its `test` job fetches every locked scope and runs the whole
-suite. Its `validate-release` job fetches every selected scope and deep-validates every tracked
-selector, this one included. CI does not run the publication dry run. `publish.yml` itself repeats deep
+Exact-head CI covers the first and third items. Its `validate-release` job fetches every selected
+scope and deep-validates every tracked selector: this one, its base and the pin. Its `test` job fetches
+every locked scope and runs the whole suite, the tests listed above included. CI does not run the
+publication dry run, the second item. `publish.yml` itself repeats deep
 validation after reading the staged R2 objects back, before it signs, so a defect the dry run would
 show stops publication there.
 
@@ -135,8 +138,11 @@ check rejects two unrecorded successors of one selector, so the cuts go one afte
   (one Montana scope swapped, so it selects 432), updates its expected count and re-records its
   digest and the ME/MI/MN exceptions.
 - If #980 is re-cut on `us-rulespec-2026-11-24-tier1-source-text` and merges first, this cut sets its
-  `BASE_RELEASE` to #980's selector and reruns the reproducer. The change is the same one scope added;
-  the count stays 432, and the digest and the three exceptions are re-recorded.
+  `BASE_RELEASE` to #980's selector and reruns the reproducer. The change is the same one scope added,
+  and the count stays 432. The test changes too: `EXPECTED_BASE` names #980's selector,
+  `PIN_SCOPES_THE_BASE_REPLACED` adds the Montana scope #980 swaps out, and the retention counts become
+  273 of the pin's 276 scopes and 281 of the 2026-11-11 release's 284. The digest and the three
+  exceptions are re-recorded.
 
 ## Coordination with rulespec-us#2196
 
