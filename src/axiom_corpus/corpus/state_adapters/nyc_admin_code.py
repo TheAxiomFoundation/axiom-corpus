@@ -70,6 +70,7 @@ def extract_nyc_admin_code(
     records: list[ProvisionRecord] = []
     source_paths: list[Path] = []
     errors: list[str] = []
+    unfetched: list[str] = []
     skipped_source_count = 0
 
     for ordinal, (section, source_url) in enumerate(selected):
@@ -82,76 +83,106 @@ def extract_nyc_admin_code(
                 timeout_seconds=timeout_seconds,
                 session=http,
             )
-            artifact_path = store.source_path(
-                jurisdiction,
-                DocumentClass.STATUTE,
-                run_id,
-                page.relative_path,
-            )
-            sha256 = store.write_bytes(artifact_path, page.data)
-            source_paths.append(artifact_path)
-            source_key = _state_source_key(jurisdiction, run_id, page.relative_path)
+        except (OSError, requests.RequestException) as exc:
+            skipped_source_count += 1
+            errors.append(f"{section}: {exc}")
+            unfetched.append(f"{section}: {exc}")
+            continue
+        artifact_path = store.source_path(
+            jurisdiction,
+            DocumentClass.STATUTE,
+            run_id,
+            page.relative_path,
+        )
+        sha256 = store.write_bytes(artifact_path, page.data)
+        source_paths.append(artifact_path)
+        source_key = _state_source_key(jurisdiction, run_id, page.relative_path)
+        try:
             parsed = parse_nyc_admin_code_section(
                 page.data,
                 section_hint=section,
                 source_url=page.source_url,
             )
-            citation_path = f"us-ny/statute/NYC/{parsed.section}"
-            metadata = {
-                "kind": "section",
-                "law_id": "NYC",
-                "location_id": parsed.section,
-                "display_number": parsed.section,
-                "publisher": "American Legal Publishing Code Library",
-                "source_caveat": "CodeLibrary publishes the NYC Administrative Code online; verify against official legislative history for evidentiary use.",
-            }
+        except ValueError as exc:
+            skipped_source_count += 1
+            errors.append(f"{section}: {exc}")
+            # The unusable page is the recorded source, so coverage reports
+            # the section as missing instead of dropping it from the inventory.
             items.append(
                 SourceInventoryItem(
-                    citation_path=citation_path,
+                    citation_path=f"us-ny/statute/NYC/{section}",
                     source_url=page.source_url,
                     source_path=source_key,
                     source_format=NYC_ADMIN_CODE_SOURCE_FORMAT,
                     sha256=sha256,
-                    metadata=metadata,
-                )
-            )
-            records.append(
-                ProvisionRecord(
-                    jurisdiction=jurisdiction,
-                    document_class=DocumentClass.STATUTE.value,
-                    citation_path=citation_path,
-                    id=deterministic_provision_id(citation_path, run_id),
-                    body=parsed.body,
-                    heading=parsed.heading,
-                    citation_label=f"NYC Administrative Code § {parsed.section}",
-                    version=run_id,
-                    source_url=page.source_url,
-                    source_path=source_key,
-                    source_id=parsed.section,
-                    source_format=NYC_ADMIN_CODE_SOURCE_FORMAT,
-                    source_as_of=source_as_of_text,
-                    expression_date=expression_date_text,
-                    # No us-ny/statute/NYC container row is emitted, so a
-                    # parent link would dangle (missing_parent_citation).
-                    parent_citation_path=None,
-                    level=1,
-                    ordinal=ordinal,
-                    kind="section",
-                    legal_identifier=f"NYC Administrative Code § {parsed.section}",
-                    identifiers={
+                    metadata={
+                        "kind": "section",
                         "law_id": "NYC",
-                        "location_id": parsed.section,
-                        "display_number": parsed.section,
+                        "location_id": section,
+                        "display_number": section,
                     },
-                    metadata=metadata,
                 )
             )
-        except Exception as exc:
-            skipped_source_count += 1
-            errors.append(f"{section}: {exc}")
+            continue
+        citation_path = f"us-ny/statute/NYC/{parsed.section}"
+        metadata = {
+            "kind": "section",
+            "law_id": "NYC",
+            "location_id": parsed.section,
+            "display_number": parsed.section,
+            "publisher": "American Legal Publishing Code Library",
+            "source_caveat": "CodeLibrary publishes the NYC Administrative Code online; verify against official legislative history for evidentiary use.",
+        }
+        items.append(
+            SourceInventoryItem(
+                citation_path=citation_path,
+                source_url=page.source_url,
+                source_path=source_key,
+                source_format=NYC_ADMIN_CODE_SOURCE_FORMAT,
+                sha256=sha256,
+                metadata=metadata,
+            )
+        )
+        records.append(
+            ProvisionRecord(
+                jurisdiction=jurisdiction,
+                document_class=DocumentClass.STATUTE.value,
+                citation_path=citation_path,
+                id=deterministic_provision_id(citation_path, run_id),
+                body=parsed.body,
+                heading=parsed.heading,
+                citation_label=f"NYC Administrative Code § {parsed.section}",
+                version=run_id,
+                source_url=page.source_url,
+                source_path=source_key,
+                source_id=parsed.section,
+                source_format=NYC_ADMIN_CODE_SOURCE_FORMAT,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+                # No us-ny/statute/NYC container row is emitted, so a
+                # parent link would dangle (missing_parent_citation).
+                parent_citation_path=None,
+                level=1,
+                ordinal=ordinal,
+                kind="section",
+                legal_identifier=f"NYC Administrative Code § {parsed.section}",
+                identifiers={
+                    "law_id": "NYC",
+                    "location_id": parsed.section,
+                    "display_number": parsed.section,
+                },
+                metadata=metadata,
+            )
+        )
 
-    if not items:
+    if not records:
         raise ValueError("no NYC Administrative Code provisions extracted")
+    if unfetched:
+        # A targeted run has no listing page to record as a gap's source, so a
+        # requested section that cannot be fetched fails the run.
+        raise ValueError(
+            "NYC Administrative Code sections could not be fetched: " + "; ".join(unfetched[:3])
+        )
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)

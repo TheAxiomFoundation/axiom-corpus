@@ -311,6 +311,11 @@ def extract_montana_code(
         for fetched_section_page in section_pages
     }
 
+    # A section the part page lists stays an inventory gap, sourced from its
+    # own page, when that page was fetched but holds no section content, so
+    # coverage reads incomplete instead of silently losing it. A page that
+    # cannot be fetched at all still stops the run in _fetch_pages.
+    unreadable_section_links: list[_MontanaLink] = []
     for link in section_links:
         selected_section_page = section_page_by_relative.get(link.relative_path)
         if selected_section_page is None:  # pragma: no cover
@@ -326,6 +331,7 @@ def extract_montana_code(
             )
         except ValueError as exc:
             errors.append(f"section {link.source_id}: {exc}")
+            unreadable_section_links.append(link)
             continue
         provisions.append(section)
         ordinal += 1
@@ -376,6 +382,29 @@ def extract_montana_code(
             section_count += 1
         else:
             container_count += 1
+    for link in unreadable_section_links:
+        citation_path = f"us-mt/statute/{link.source_id}"
+        if citation_path in seen:
+            continue
+        seen.add(citation_path)
+        source_path, sha256 = source_pages[link.relative_path]
+        items.append(
+            SourceInventoryItem(
+                citation_path=citation_path,
+                source_url=urljoin(fetcher.base_url, link.relative_path),
+                source_path=source_path,
+                source_format=MONTANA_CODE_SOURCE_FORMAT,
+                sha256=sha256,
+                metadata={
+                    "kind": "section",
+                    "display_number": link.display_number,
+                    "heading": link.heading,
+                    "parent_citation_path": (
+                        f"us-mt/statute/{_section_parent_source_id(link.source_id)}"
+                    ),
+                },
+            )
+        )
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)

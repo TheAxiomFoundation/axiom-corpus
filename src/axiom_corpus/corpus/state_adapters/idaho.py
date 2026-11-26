@@ -448,6 +448,11 @@ def extract_idaho_statutes(
                     errors.append(f"duplicate citation path: {listing.citation_path}")
                     continue
                 selected_listings.append(listing)
+            # A section the chapter page lists stays an inventory gap when its
+            # page cannot be fetched or read, so coverage reads incomplete
+            # instead of silently losing it. A page that could not be fetched
+            # is sourced from the chapter page; a page that was fetched but is
+            # unusable from itself.
             for result in _fetch_idaho_section_results(
                 fetcher,
                 selected_listings,
@@ -457,6 +462,23 @@ def extract_idaho_statutes(
             ):
                 if result.error is not None:
                     errors.append(f"section {result.listing.section}: {result.error}")
+                    gap_source = chapter_recorded
+                    if result.source is not None:
+                        gap_source = _record_source(
+                            store,
+                            jurisdiction=jurisdiction,
+                            run_id=run_id,
+                            source=result.source,
+                        )
+                        source_paths.append(
+                            store.source_path(
+                                jurisdiction,
+                                DocumentClass.STATUTE,
+                                run_id,
+                                result.source.relative_path,
+                            )
+                        )
+                    _append_section_gap(seen, items, result.listing, gap_source)
                     continue
                 assert result.source is not None
                 assert result.section is not None
@@ -786,6 +808,9 @@ def _fetch_one_idaho_section(
 ) -> _IdahoSectionFetchResult:
     try:
         section_source = fetcher.fetch_section(listing)
+    except (requests.RequestException, OSError, ValueError) as exc:
+        return _IdahoSectionFetchResult(listing=listing, error=exc)
+    try:
         transient_source = _RecordedSource(
             source_url=section_source.source_url,
             source_path=source.source_path,
@@ -798,13 +823,13 @@ def _fetch_one_idaho_section(
             source=transient_source,
             expression_date=expression_date,
         )
-        return _IdahoSectionFetchResult(
-            listing=listing,
-            source=section_source,
-            section=section,
-        )
-    except (requests.RequestException, OSError, ValueError) as exc:
-        return _IdahoSectionFetchResult(listing=listing, error=exc)
+    except ValueError as exc:
+        return _IdahoSectionFetchResult(listing=listing, source=section_source, error=exc)
+    return _IdahoSectionFetchResult(
+        listing=listing,
+        source=section_source,
+        section=section,
+    )
 
 
 def _replace_section_source(section: IdahoSection, source: _RecordedSource) -> IdahoSection:
@@ -1011,6 +1036,44 @@ def _section_record(
             "idaho:section": section.listing.section,
         },
         metadata=metadata,
+    )
+
+
+def _append_section_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    listing: IdahoSectionListing,
+    source: _RecordedSource,
+) -> None:
+    """Record a listed section whose page yielded no provision.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the section
+    is expected: the chapter page, or the section's own unusable page.
+    """
+    if listing.citation_path in seen:
+        return
+    seen.add(listing.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=listing.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=source.source_format,
+            sha256=source.sha256,
+            metadata={
+                "kind": "section",
+                "title": listing.title_number,
+                "chapter": listing.chapter,
+                "section": listing.section,
+                "heading": listing.heading,
+                "source_id": listing.source_id,
+                "parent_citation_path": (
+                    f"us-id/statute/title-{listing.title_number}/chapter-{listing.chapter}"
+                ),
+                "target_source_url": listing.source_url,
+            },
+        )
     )
 
 

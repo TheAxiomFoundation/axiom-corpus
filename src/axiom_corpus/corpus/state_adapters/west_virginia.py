@@ -467,6 +467,7 @@ def extract_west_virginia_code(
                 section_source_path = master_source_key
                 section_source_format = master_page.source_format
                 section_sha = master_sha
+            fetch_failed = False
             if parsed is None:
                 try:
                     section_page = fetcher.fetch_section(section.section)
@@ -490,12 +491,31 @@ def extract_west_virginia_code(
                         fallback_section=section.section,
                     )
                 except (requests.RequestException, ValueError) as exc:
+                    fetch_failed = True
                     errors.append(
                         f"chapter {article.chapter} article {article.article}: section fetch failed for "
                         f"{section.section}: {exc}"
                     )
             if parsed is None:
-                errors.append(f"chapter {article.chapter} article {article.article}: missing body for {section.section}")
+                if not fetch_failed:
+                    errors.append(
+                        f"chapter {article.chapter} article {article.article}: missing body for {section.section}"
+                    )
+                # The section page, or the article page when the section page
+                # could not be fetched, is the recorded source, so coverage
+                # reports the section as missing instead of writing it bodiless.
+                seen.add(section.citation_path)
+                _append_section_gap(
+                    items,
+                    section,
+                    source_url=section_source_url,
+                    source_path=section_source_path,
+                    source_format=section_source_format,
+                    sha256=section_sha,
+                )
+                if remaining_sections is not None:
+                    remaining_sections -= 1
+                continue
             seen.add(section.citation_path)
             section_count += 1
             _append_section_record(
@@ -701,6 +721,36 @@ def parse_west_virginia_section_html(
         if section.section == fallback_section:
             return section
     return _retarget_section_body(sections[0], fallback_section)
+
+
+def _append_section_gap(
+    items: list[SourceInventoryItem],
+    section: WestVirginiaSection,
+    *,
+    source_url: str,
+    source_path: str,
+    source_format: str,
+    sha256: str,
+) -> None:
+    """Keep a section with no readable body in the inventory, without a provision."""
+    metadata: dict[str, Any] = {
+        "kind": "section",
+        "chapter": section.chapter,
+        "article": section.article,
+        "section": section.section,
+        "heading": section.heading,
+        "parent_citation_path": section.parent_citation_path,
+    }
+    items.append(
+        SourceInventoryItem(
+            citation_path=section.citation_path,
+            source_url=source_url,
+            source_path=source_path,
+            source_format=source_format,
+            sha256=sha256,
+            metadata={key: value for key, value in metadata.items() if value is not None},
+        )
+    )
 
 
 def _append_section_record(
