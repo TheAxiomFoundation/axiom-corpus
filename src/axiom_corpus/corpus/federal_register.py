@@ -759,6 +759,141 @@ def _strip_federal_register_tail(body: str) -> str:
     return re.sub(r"\n</pre>.*\Z", "", body, flags=re.S).strip()
 
 
+FEDERAL_REGISTER_PAGE_MARKER = re.compile(r"\[\[Page \d+\]\]")
+FEDERAL_REGISTER_PARAGRAPH_INDENT = "    "
+_NON_LF_LINE_SEPARATOR = re.compile(r"[\r\v\f\x1c-\x1e\x85\u2028\u2029]")
+
+
+def _reject_non_lf_line_separators(body: str) -> None:
+    """Reject line boundaries that splitlines() recognizes in addition to LF."""
+    match = _NON_LF_LINE_SEPARATOR.search(body)
+    if match:
+        raise ValueError(f"body contains a non-LF line separator: {match[0]!r}")
+
+
+def comparison_text(text: str) -> str:
+    """Fold section signs, em dashes, paired GPO double quotes and whitespace."""
+    text = text.replace("§§", "Sec. Sec.").replace("§", "Sec.")
+    text = text.replace("—", "--")
+    text = text.replace("``", "“").replace("''", "”")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def check_federal_register_cfr_paragraphs(
+    body: str, expected_ecfr_paragraphs: Sequence[str]
+) -> None:
+    """Require each nonblank body line to match the eCFR heading or paragraph in order."""
+    _reject_non_lf_line_separators(body)
+    lines = [comparison_text(line) for line in body.split("\n") if line.strip()]
+    paragraphs = [comparison_text(paragraph) for paragraph in expected_ecfr_paragraphs]
+    if lines != paragraphs:
+        mismatches = [
+            (index, actual, expected)
+            for index, (actual, expected) in enumerate(zip(lines, paragraphs, strict=False))
+            if actual != expected
+        ]
+        raise ValueError(
+            f"body differs from eCFR: {len(lines)} lines vs {len(paragraphs)} "
+            f"paragraphs; first {mismatches[:1]}"
+        )
+
+
+def normalize_federal_register_cfr_section_body(
+    body: str, expected_ecfr_paragraphs: Sequence[str]
+) -> str:
+    """Drop page markers and hard wraps, then verify the result against eCFR.
+
+    The expected eCFR paragraphs include the heading first, followed by the
+    paragraphs in document order. The output must match them line for paragraph
+    after folding section signs, em dashes, paired GPO double quotes and
+    whitespace, or this raises :class:`ValueError`. The folding applies only to
+    the comparison.
+
+    The input starts with a ``Sec.`` heading at column 0, which may wrap, and
+    one blank line before the first paragraph. Paragraphs start with four
+    spaces and continuations start at column 0. Tabs, whitespace-only lines,
+    unsupported indents and non-LF line separators raise :class:`ValueError`.
+
+    Each ``[[Page N]]`` marker must be alone between blank lines, with only
+    the leading blank line required at the end of the body. Drop the marker
+    and its blank lines. Join continuation lines directly if the preceding
+    line ends in a space or hyphen, or with one inserted space at a page
+    break otherwise. An ordinary wrap without that space or hyphen raises
+    :class:`ValueError`, as does a page break between a line ending in ``--``
+    and a column-0 continuation. The returned body retains the Federal
+    Register typography and spacing apart from these edits.
+    """
+
+    _reject_non_lf_line_separators(body)
+    lines = body.split("\n")
+    kept: list[str] = []
+    after_marker: set[int] = set()
+    index = 0
+    while index < len(lines):
+        line = lines[index]
+        if FEDERAL_REGISTER_PAGE_MARKER.search(line) or "[[Page" in line:
+            if not FEDERAL_REGISTER_PAGE_MARKER.fullmatch(line):
+                raise ValueError(f"page marker is not alone on its line: {line!r}")
+            if len(kept) < 2 or kept[-1] != "" or kept[-2] == "":
+                raise ValueError(f"{line} does not follow a text line and one blank line")
+            following = lines[index + 1 : index + 3]
+            if following and (following[0] != "" or len(following) < 2 or following[1] == ""):
+                raise ValueError(f"{line} is not followed by one blank line and a text line")
+            kept.pop()
+            after_marker.add(len(kept))
+            index += 2
+            continue
+        kept.append(line)
+        index += 1
+
+    blank_lines = [position for position, line in enumerate(kept) if line == ""]
+    if len(blank_lines) != 1 or blank_lines[0] == 0 or blank_lines[0] == len(kept) - 1:
+        raise ValueError(f"expected one blank line, after the heading; found {len(blank_lines)}")
+    heading_end = blank_lines[0]
+    for position, line in enumerate(kept):
+        if line == "":
+            continue
+        if "\t" in line:
+            raise ValueError(f"line {position + 1} holds a tab: {line!r}")
+        if not line.strip():
+            raise ValueError(f"line {position + 1} contains only whitespace: {line!r}")
+        indent = len(line) - len(line.lstrip(" "))
+        if indent not in (0, len(FEDERAL_REGISTER_PARAGRAPH_INDENT)):
+            raise ValueError(f"line {position + 1} is indented {indent} spaces: {line!r}")
+        if position < heading_end and indent:
+            raise ValueError(f"heading line {position + 1} is indented: {line!r}")
+    if not kept[0].startswith("Sec."):
+        raise ValueError(f"heading does not start with Sec.: {kept[0]!r}")
+    if not kept[heading_end + 1].startswith(FEDERAL_REGISTER_PARAGRAPH_INDENT):
+        raise ValueError(f"first paragraph starts at column 0: {kept[heading_end + 1]!r}")
+
+    joined: list[str] = []
+    for position, line in enumerate(kept):
+        if joined and joined[-1] and line and not line.startswith(" "):
+            previous = joined[-1]
+            at_marker = position in after_marker
+            if previous.endswith("--") and at_marker:
+                raise ValueError(
+                    f"a page break follows a dash, so a space after it is unknown: "
+                    f"{previous[-30:]!r} / {line[:30]!r}"
+                )
+            if previous.endswith((" ", "-")):
+                separator = ""
+            elif at_marker:
+                separator = " "
+            else:
+                raise ValueError(
+                    f"line {position + 1} continues a line that ends in neither a space "
+                    f"nor a hyphen: {previous[-30:]!r} / {line[:30]!r}"
+                )
+            joined[-1] = previous + separator + line
+        else:
+            joined.append(line)
+    normalized = "\n".join(joined)
+    check_federal_register_cfr_paragraphs(normalized, expected_ecfr_paragraphs)
+    return normalized
+
+
 def _federal_register_cfr_part_heading(text: str, title: int, part: int) -> str | None:
     del title
     pattern = re.compile(rf"(?m)^PART\s+{part}--(?P<heading>.+)$")
