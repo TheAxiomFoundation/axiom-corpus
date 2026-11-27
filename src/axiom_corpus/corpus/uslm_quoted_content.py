@@ -61,7 +61,7 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 from collections.abc import Iterator, Mapping
-from copy import copy, deepcopy
+from copy import copy
 from dataclasses import dataclass, field
 from hashlib import sha256
 from types import MappingProxyType
@@ -249,14 +249,22 @@ def page_in_effect(document: ET.Element, element: ET.Element) -> StatutesPage | 
     raise UslmRenderError("element is not inside the document")
 
 
-def _quotation_fingerprint(quotation: ET.Element) -> str:
-    """Hash the canonical XML of the quotation alone."""
+def _quotation_xml(quotation: ET.Element) -> str:
+    """The quotation alone, serialized to a plain ``str``."""
     standalone = copy(quotation)
     standalone.tail = None
-    canonical = ET.canonicalize(
-        ET.tostring(standalone, encoding="unicode"), rewrite_prefixes=True, with_comments=True
-    )
+    return ET.tostring(standalone, encoding="unicode")
+
+
+def _xml_fingerprint(xml: str) -> str:
+    """Hash the canonical form of serialized XML."""
+    canonical = ET.canonicalize(xml, rewrite_prefixes=True, with_comments=True)
     return sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def _quotation_fingerprint(quotation: ET.Element) -> str:
+    """Hash the canonical XML of the quotation alone."""
+    return _xml_fingerprint(_quotation_xml(quotation))
 
 
 def render_structural_element(
@@ -280,10 +288,11 @@ def render_structural_element(
     listed fingerprint, ``element`` is one of its listed rows, ``label_path``
     is that row's own label path, ``closing_slot`` is
     ``last_text_slot(quotation)`` and ``drop_space_before_punctuation`` is the
-    recorded value. It renders the matching row of a deep copy of the
-    quotation, the copy it fingerprinted.
+    recorded value. The arguments must be plain ``ET.Element``, ``tuple`` and
+    ``str`` objects, not subclasses. It renders the matching row of a fresh
+    parse of the serialization whose canonical form it fingerprinted.
     """
-    snapshot_element, snapshot_slot, verified = _checked_render(
+    snapshot_element, own_path, snapshot_slot, verified = _checked_render(
         element,
         quotation=quotation,
         label_path=label_path,
@@ -292,7 +301,7 @@ def render_structural_element(
     )
     return _render_structural_element(
         snapshot_element,
-        label_path=tuple(label_path),
+        label_path=own_path,
         closing_slot=snapshot_slot,
         drop_space_before_punctuation=verified.drop_space_before_punctuation,
     )
@@ -343,22 +352,26 @@ def _checked_render(
     label_path: tuple[str, ...],
     closing_slot: TextSlot | None,
     drop_space_before_punctuation: bool,
-) -> tuple[ET.Element, TextSlot, VerifiedQuotation]:
+) -> tuple[ET.Element, tuple[str, ...], TextSlot, VerifiedQuotation]:
     """Check one render against :data:`VERIFIED_QUOTATIONS`; return what to render.
 
-    The returned element and closing slot belong to a deep copy of
-    ``quotation``, whose fingerprint was checked, so later changes to the
-    caller's tree cannot reach the render.
+    The returned element, label path and closing slot come from a fresh parse
+    of the serialization whose canonical form was fingerprinted. Nothing of the
+    caller's tree reaches the render: not its later changes, nor subclassed
+    text, attribute values or tuples.
     """
-    if not isinstance(quotation, ET.Element) or not isinstance(element, ET.Element):
+    if type(quotation) is not ET.Element or type(element) is not ET.Element:
         raise _scope_error("the quotation and the element must be ElementTree elements")
     if not isinstance(quotation.tag, str) or local_name(quotation.tag) != "quotedContent":
         raise _scope_error("the quotation is not a <quotedContent>")
-    snapshot = deepcopy(quotation)
+    # Fingerprint and parse the same plain serialization, so the parsed copy
+    # holds exactly what the fingerprint covers.
     try:
-        fingerprint = _quotation_fingerprint(snapshot)
-    except (SyntaxError, ValueError, TypeError, AttributeError, UnicodeError) as error:
-        raise _scope_error(f"the quotation has no canonical XML ({error})") from error
+        xml = _quotation_xml(quotation)
+        fingerprint = _xml_fingerprint(xml)
+        snapshot = ET.fromstring(xml)
+    except Exception as error:
+        raise _scope_error(f"the quotation has no canonical XML ({error!r})") from error
     verified = VERIFIED_QUOTATIONS.get(fingerprint)
     if verified is None:
         raise _scope_error("the quotation's fingerprint is not listed")
@@ -366,25 +379,41 @@ def _checked_render(
         raise _scope_error(
             f"drop_space_before_punctuation must be {verified.drop_space_before_punctuation}"
         )
-    own_path = next((path for node, path in _structural_nodes(quotation) if node is element), None)
+    # A listed fingerprint has no comments or processing instructions, so the
+    # caller's elements and the parsed ones correspond in document order.
+    caller_nodes = list(quotation.iter())
+    snapshot_nodes = list(snapshot.iter())
+    position = next((index for index, node in enumerate(caller_nodes) if node is element), None)
+    if position is None or len(caller_nodes) != len(snapshot_nodes):
+        raise _scope_error("the element is not a structural element of the quotation")
+    snapshot_element = snapshot_nodes[position]
+    own_path = next(
+        (path for node, path in _structural_nodes(snapshot) if node is snapshot_element), None
+    )
     if own_path is None:
         raise _scope_error("the element is not a structural element of the quotation")
     if own_path not in verified.rows:
         raise _scope_error(f"{own_path} is not a checked row")
-    if not isinstance(label_path, tuple) or label_path != own_path:
-        raise _scope_error(f"label_path {label_path!r} is not the row's own {own_path!r}")
-    quotation_slot = last_text_slot(quotation)
     if (
-        not isinstance(closing_slot, tuple)
+        type(label_path) is not tuple
+        or any(type(part) is not str for part in label_path)
+        or label_path != own_path
+    ):
+        raise _scope_error(f"label_path {label_path!r} is not the row's own {own_path!r}")
+    # Find the slot in the parsed copy, then name the caller's matching node.
+    snapshot_slot = last_text_slot(snapshot)
+    slot_position = next(
+        index for index, node in enumerate(snapshot_nodes) if node is snapshot_slot[0]
+    )
+    if (
+        type(closing_slot) is not tuple
         or len(closing_slot) != 2
-        or closing_slot[0] is not quotation_slot[0]
-        or closing_slot[1] != quotation_slot[1]
+        or closing_slot[0] is not caller_nodes[slot_position]
+        or type(closing_slot[1]) is not str
+        or closing_slot[1] != snapshot_slot[1]
     ):
         raise _scope_error("closing_slot must be last_text_slot(quotation)")
-    matches = [node for node, path in _structural_nodes(snapshot) if path == own_path]
-    if len(matches) != 1:
-        raise _scope_error(f"{own_path} does not name exactly one element of the quotation")
-    return matches[0], last_text_slot(snapshot), verified
+    return snapshot_element, own_path, snapshot_slot, verified
 
 
 def _render_structural_element(

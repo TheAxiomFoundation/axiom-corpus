@@ -624,9 +624,110 @@ def test_scope_guard_renders_from_a_copy_of_the_fingerprinted_quotation(
 ) -> None:
     quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
     arguments = _checked_arguments(quotation, ("xx",))
-    element, slot, verified = _checked_render(subsection, **arguments)
+    element, own_path, slot, verified = _checked_render(subsection, **arguments)
     assert verified is VERIFIED_QUOTATIONS[_quotation_fingerprint(quotation)]
+    assert own_path == ("xx",) and type(own_path) is tuple
     assert element is not subsection
     assert not any(node is element for node in quotation.iter())
     assert slot[0] is not last_text_slot(quotation)[0]
     assert slot[1] == last_text_slot(quotation)[1]
+
+
+def _paragraph(quotation: ET.Element, number: str) -> ET.Element:
+    return next(node for node, path in _structural_nodes(quotation) if path == ("xx", number))
+
+
+def test_scope_guard_compares_label_path_as_a_plain_tuple(retained_uslm: bytes) -> None:
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+
+    class AlwaysEqual(tuple):  # type: ignore[type-arg]
+        def __ne__(self, other: object) -> bool:
+            return False
+
+        def __eq__(self, other: object) -> bool:
+            return True
+
+    class AlwaysEqualText(str):
+        def __ne__(self, other: object) -> bool:
+            return False
+
+    paragraph = _paragraph(quotation, "11")
+    for label_path in (
+        AlwaysEqual(("xx", "10")),
+        ("xx", AlwaysEqualText("10")),
+        ["xx", "11"],
+    ):
+        arguments = _checked_arguments(quotation, ("xx", "11"))
+        arguments["label_path"] = label_path
+        with pytest.raises(UslmRenderError, match="is not the row's own"):
+            render_structural_element(paragraph, **arguments)
+
+
+def test_scope_guard_renders_plain_text_whatever_the_callers_text_objects(
+    retained_uslm: bytes,
+) -> None:
+    _, rows = render_rows(retained_uslm)
+    expected = rows[11].rendered
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    paragraph = _paragraph(quotation, "11")
+    number = next(child for child in paragraph.iter() if local_name(child.tag) == "num")
+    first = next(child for child in number.iter() if child.text)
+
+    class WrongText(str):
+        def split(self, *args: object, **kwargs: object) -> list[str]:  # type: ignore[override]
+            return ["\u201c(Z)"]
+
+        def strip(self, *args: object, **kwargs: object) -> str:  # type: ignore[override]
+            return ""
+
+    first.text = WrongText(first.text or "")
+    rendered = render_structural_element(paragraph, **_checked_arguments(quotation, ("xx", "11")))
+    assert rendered == expected
+
+
+def test_scope_guard_refuses_subclassed_elements(retained_uslm: bytes) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+
+    class Element(ET.Element):
+        pass
+
+    arguments = _checked_arguments(quotation, ("xx",))
+    with pytest.raises(UslmRenderError, match="must be ElementTree elements"):
+        render_structural_element(Element("x"), **arguments)
+
+
+def test_scope_guard_renders_plain_strings_for_qname_attribute_values(
+    retained_uslm: bytes,
+) -> None:
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    page = next(
+        node
+        for node in quotation.iter()
+        if local_name(node.tag) == "page" and node.get("identifier")
+    )
+    page.set("identifier", ET.QName(page.get("identifier") or ""))
+    # The QName serializes to the same canonical XML, so the parsed copy holds
+    # a plain string and the render is the checked one.
+    _, rows = render_rows(retained_uslm)
+    paragraph = _paragraph(quotation, "11")
+    assert (
+        render_structural_element(paragraph, **_checked_arguments(quotation, ("xx", "11")))
+        == rows[11].rendered
+    )
+
+
+def test_scope_guard_renders_the_checked_text_for_parser_equivalent_line_endings(
+    retained_uslm: bytes,
+) -> None:
+    _, rows = render_rows(retained_uslm)
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    tail_node = next(
+        node for node in _paragraph(quotation, "1").iter() if node.tail and "\n" in node.tail
+    )
+    tail_node.tail = (tail_node.tail or "").replace("\n", "\r", 1)
+    assert (
+        render_structural_element(
+            _paragraph(quotation, "1"), **_checked_arguments(quotation, ("xx", "1"))
+        )
+        == rows[1].rendered
+    )

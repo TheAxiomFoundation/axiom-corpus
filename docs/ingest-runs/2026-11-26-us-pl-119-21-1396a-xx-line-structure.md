@@ -107,7 +107,8 @@ next. See "Open questions".
 
 The renderer is verified only for Pub. L. 119-21 section 71119(a)'s quotation inserting
 42 U.S.C. 1396a(xx), and only for the 12 renders the build makes from it. The public
-function raises `UslmRenderError` for any other call. It accepts only:
+function returns only those 12 renders, and any call it refuses raises `UslmRenderError`.
+It accepts only plain `ET.Element`, `tuple` and `str` arguments (no subclasses), and only:
 
 - a `<quotedContent>` whose canonical XML fingerprint is listed in `VERIFIED_QUOTATIONS`;
 - an element that is one of that quotation's listed rows, here subsection (xx) and its
@@ -116,10 +117,14 @@ function raises `UslmRenderError` for any other call. It accepts only:
 - `last_text_slot(quotation)` as `closing_slot`;
 - the recorded `drop_space_before_punctuation`, here `True`.
 
-It renders the matching row of a deep copy of the quotation, the copy it fingerprinted, so a
-change to the caller's tree after the check cannot reach the render. A quotation that has no
-canonical XML (a control character in its text, a non-element) and a comment kept in the tree
-raise `UslmRenderError` too. These checks make five failure patterns found outside the
+It serializes the quotation once, fingerprints the canonical form of that string and renders
+the matching row of a fresh parse of the same string, with the label path and closing slot
+taken from the parse. Nothing of the caller's tree reaches the render: not a later change,
+nor a `str` subclass in its text, a `QName` attribute value or a tuple subclass. A
+quotation whose serialization has the verified canonical form, such as one with a CR where
+the law has an LF (XML parsing reads both as LF), gets the checked render. A quotation
+with no canonical XML (a control character in its text, an unserializable value) and a
+comment kept in the tree raise `UslmRenderError`, as does any exception while serializing. These checks make five failure patterns found outside the
 verified quotation unreachable through the public function.
 
 - With `drop_space_before_punctuation`, `.25` can fuse with a preceding label as `(A).25`.
@@ -264,11 +269,26 @@ inventory `a8098351996d3743…`, coverage `e1bdcc637b006d0d…` and USLM `762ae9
 Of the 112 structural elements in the verified quotation, each passed with its own label
 path, `closing_slot=last_text_slot(quotation)` and `drop_space_before_punctuation=True`,
 exactly (xx) and (xx)(1) to (xx)(11) rendered, and each render equalled the `render_rows`
-row. A sweep of all 384 quotations in the retained law, 2,535 structural elements, each
-called with both punctuation modes, returned those same 12 renders (all with
+row. A sweep of all 384 quotations in the retained law, 2,535 structural elements (the
+elements `_structural_nodes` yields; rounds 6 and 7 also counted the 44 unsupported-tag
+candidates, for 2,579), each called with both punctuation modes, returned those same 12 renders (all with
 `drop_space_before_punctuation=True`) and raised `UslmRenderError` for the other 5,058
 calls. The two focused pytest files passed all 82 tests in one process; ruff, ruff format
 and mypy reported nothing.
+
+### Round 9 verification
+
+Round 8's review (head `3254e48d3`) confirmed all ten checks it was asked to run, and found
+three calls outside them: a tuple subclass whose `__ne__` always returns False passed as
+`label_path` returned paragraph (11) labelled as (10); a `str` subclass whose `split()`
+lies, placed in the text of (11)(A)'s number, returned (11) with `(Z)` for `(A)`; and a
+`QName` attribute value raised `TypeError`. The guard now requires plain types and renders
+a fresh parse of the fingerprinted serialization, with its own label path. The first probe
+raises `UslmRenderError`; the other two, and a CR in place of an LF, return exactly the
+checked (11) and (1) renders. Tests pin each case. The offline build produced the same four
+artifact hashes, the whole-law sweep again returned exactly the 12 checked renders, and the
+two focused pytest files passed all 87 tests in one process; ruff, ruff format and mypy
+reported nothing.
 
 ## Open questions
 
