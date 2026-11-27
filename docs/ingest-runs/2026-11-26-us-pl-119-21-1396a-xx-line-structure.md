@@ -106,10 +106,21 @@ next. See "Open questions".
 ## Known limits
 
 The renderer is verified only for Pub. L. 119-21 section 71119(a)'s quotation inserting
-42 U.S.C. 1396a(xx). The public function requires the enclosing `<quotedContent>`, checks
-the requested element's membership by identity, and accepts only the verified quotation's
-canonical XML fingerprint. This makes five failure patterns found outside the verified
-quotation unreachable through the public function.
+42 U.S.C. 1396a(xx), and only for the 12 renders the build makes from it. The public
+function raises `UslmRenderError` for any other call. It accepts only:
+
+- a `<quotedContent>` whose canonical XML fingerprint is listed in `VERIFIED_QUOTATIONS`;
+- an element that is one of that quotation's listed rows, here subsection (xx) and its
+  paragraphs (1) to (11), checked by identity;
+- the row's own label path as `label_path`;
+- `last_text_slot(quotation)` as `closing_slot`;
+- the recorded `drop_space_before_punctuation`, here `True`.
+
+It renders the matching row of a deep copy of the quotation, the copy it fingerprinted, so a
+change to the caller's tree after the check cannot reach the render. A quotation that has no
+canonical XML (a control character in its text, a non-element) and a comment kept in the tree
+raise `UslmRenderError` too. These checks make five failure patterns found outside the
+verified quotation unreachable through the public function.
 
 - With `drop_space_before_punctuation`, `.25` can fuse with a preceding label as `(A).25`.
 - A margin note between a period and an em dash mid-heading can join them as `5 p.m.— filing`.
@@ -120,6 +131,11 @@ quotation unreachable through the public function.
 
 The marker guard refuses `Shall pay<page/>.` with punctuation normalization enabled.
 The renderer also refuses `<num>` with an inline child.
+
+`page_in_effect` is not a render and has no scope guard. The root and paragraph (1) start
+before the quotation's first page marker, so their `page_start` (139 Stat. 306) comes from a
+marker outside the quotation, which the fingerprint does not cover. The build pins it through
+the SHA-256 of the whole law (`762ae9af…`).
 
 ## Metadata for pages and margin notes
 
@@ -240,6 +256,19 @@ in both punctuation modes. It now refuses the superscript and subscript markup i
 quoted paragraph (2) in section 10310(3)(D) and the quoted subsection (a) in section
 70111(a). The public function rejected all 383 other quotations in the retained law.
 The two focused pytest files passed all 70 tests in one process.
+
+### Round 8 verification
+
+The offline build produced the same four artifact hashes: provisions `0caee250b8429c6d…`,
+inventory `a8098351996d3743…`, coverage `e1bdcc637b006d0d…` and USLM `762ae9af06640f02…`.
+Of the 112 structural elements in the verified quotation, each passed with its own label
+path, `closing_slot=last_text_slot(quotation)` and `drop_space_before_punctuation=True`,
+exactly (xx) and (xx)(1) to (xx)(11) rendered, and each render equalled the `render_rows`
+row. A sweep of all 384 quotations in the retained law, 2,535 structural elements, each
+called with both punctuation modes, returned those same 12 renders (all with
+`drop_space_before_punctuation=True`) and raised `UslmRenderError` for the other 5,058
+calls. The two focused pytest files passed all 82 tests in one process; ruff, ruff format
+and mypy reported nothing.
 
 ## Open questions
 

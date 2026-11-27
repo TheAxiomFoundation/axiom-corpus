@@ -1,7 +1,11 @@
 """Render the USLM quotation inserting 42 U.S.C. 1396a(xx), one element per line.
 
-Verification covers only this quotation from Pub. L. 119-21, section 71119(a).
-:func:`render_structural_element` enforces that scope by fingerprint.
+Verification covers only this quotation from Pub. L. 119-21, section 71119(a),
+and only the 12 renders checked on it: subsection (xx) and its paragraphs (1) to
+(11), each with its own label path, the quotation's closing quote and punctuation
+normalization. :func:`render_structural_element` enforces that scope. It
+accepts the quotation by the fingerprint of its canonical XML and each render
+by its arguments, and it renders from a copy of the fingerprinted quotation.
 
 An enrolled public law in USLM prints an amendment it inserts into another law
 as ``<quotedContent>``: the inserted subsection with its paragraphs,
@@ -45,14 +49,19 @@ metadata, a ``<br/>`` can fuse margin-note lines, and a page marker nested in a
 margin note can affect :func:`page_in_effect` for the next row. The marker guard
 refuses ``Shall pay<page/>.`` even with punctuation normalization. A ``<num>``
 with an inline child also raises.
+
+:func:`page_in_effect` is not a render and has no scope guard. A row that
+starts before the quotation's first page marker takes its starting page from a
+marker outside the quotation, which the fingerprint does not cover; the build
+pins it by the SHA-256 of the whole law.
 """
 
 from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
-from collections.abc import Mapping
-from copy import copy
+from collections.abc import Iterator, Mapping
+from copy import copy, deepcopy
 from dataclasses import dataclass, field
 from hashlib import sha256
 from types import MappingProxyType
@@ -76,10 +85,28 @@ _MARKER_TAGS = frozenset({"page", "sidenote"})
 _STAT_PAGE = re.compile(r"/us/stat/(?P<volume>\d+)/(?P<page>\d+)")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:])")
 
-VERIFIED_QUOTATIONS: Mapping[str, str] = MappingProxyType(
+
+@dataclass(frozen=True)
+class VerifiedQuotation:
+    """A quotation the renderer was checked on, and the renders checked on it.
+
+    ``rows`` holds the label path of each checked element, which is also the
+    ``label_path`` it must be rendered with. Every checked render passes the
+    quotation's last text slot as ``closing_slot`` and the recorded
+    ``drop_space_before_punctuation``.
+    """
+
+    description: str
+    rows: frozenset[tuple[str, ...]]
+    drop_space_before_punctuation: bool
+
+
+VERIFIED_QUOTATIONS: Mapping[str, VerifiedQuotation] = MappingProxyType(
     {
-        "fa7258db3763d6491cd5c07808d7ef0e3026d55fe7fab52ad84c070d6ddb6217": (
-            "Pub. L. 119-21 sec. 71119(a), inserting 42 U.S.C. 1396a(xx)"
+        "fa7258db3763d6491cd5c07808d7ef0e3026d55fe7fab52ad84c070d6ddb6217": VerifiedQuotation(
+            description="Pub. L. 119-21 sec. 71119(a), inserting 42 U.S.C. 1396a(xx)",
+            rows=frozenset({("xx",), *(("xx", str(number)) for number in range(1, 12))}),
+            drop_space_before_punctuation=True,
         ),
     }
 )
@@ -159,7 +186,12 @@ class _State:
 
 
 def local_name(tag: str) -> str:
-    """The tag without its namespace."""
+    """The tag without its namespace.
+
+    A comment or processing instruction kept in the tree has a non-string tag and raises.
+    """
+    if not isinstance(tag, str):
+        raise UslmRenderError(f"a node with a non-string tag ({tag!r}), such as a comment")
     return tag.rsplit("}", 1)[-1]
 
 
@@ -179,19 +211,7 @@ def structural_label_paths(
     Labels come from each ``<num value>``, so a public law's quotation and the
     U.S. Code's codified text of the same subsection compare directly.
     """
-    paths: list[tuple[str, ...]] = []
-    for child in element:
-        tag = local_name(child.tag)
-        if tag in _STRUCTURAL:
-            value = num_value(child)
-            if not value:
-                raise UslmRenderError(f"structural <{tag}> under {prefix} has no num value")
-            path = (*prefix, value)
-            paths.append(path)
-            paths.extend(structural_label_paths(child, path))
-        elif tag not in {"num", "heading"}:
-            paths.extend(structural_label_paths(child, prefix))
-    return paths
+    return [path for _node, path in _structural_nodes(element, prefix)]
 
 
 def last_text_slot(element: ET.Element) -> TextSlot:
@@ -247,37 +267,124 @@ def render_structural_element(
     closing_slot: TextSlot | None = None,
     drop_space_before_punctuation: bool = False,
 ) -> RenderedElement:
-    """Render ``element`` from a verified ``quotation``, one line per structural element.
+    """Render one checked row of a verified ``quotation``, one line per structural element.
 
     ``label_path`` is the element's own label path, the start of every
     reported label path. ``closing_slot`` (see :func:`last_text_slot`) names
     the text node that ends the quotation; if it is inside ``element``, the
     closing quote must end it and is removed. ``drop_space_before_punctuation``
     removes whitespace before ``,``, ``.``, ``;`` and ``:``.
+
+    The call raises :class:`UslmRenderError` unless it is one of the checked
+    renders in :data:`VERIFIED_QUOTATIONS`: the quotation's canonical XML has a
+    listed fingerprint, ``element`` is one of its listed rows, ``label_path``
+    is that row's own label path, ``closing_slot`` is
+    ``last_text_slot(quotation)`` and ``drop_space_before_punctuation`` is the
+    recorded value. It renders the matching row of a deep copy of the
+    quotation, the copy it fingerprinted.
     """
-    if (
-        not isinstance(quotation.tag, str)
-        or local_name(quotation.tag) != "quotedContent"
-        or not any(node is element for node in quotation.iter())
-        or _quotation_fingerprint(quotation) not in VERIFIED_QUOTATIONS
-    ):
-        verified = ", ".join(VERIFIED_QUOTATIONS.values())
-        raise UslmRenderError(
-            f"The renderer is verified only for the listed quotation(s) ({verified}). "
-            "Pass a verified <quotedContent> containing the element. For other quotations, "
-            "drop_space_before_punctuation can fuse a decimal such as .25 with the preceding "
-            "label into (A).25. A margin note between a period and an em dash can join them "
-            "mid-heading (5 p.m.— filing). A foreign-namespace <page> or <sidenote> can divert "
-            "body text into metadata. A <br/> in a margin-note paragraph can fuse its lines. "
-            "A page marker nested in a margin note can set the next row's starting page "
-            "through page_in_effect."
-        )
-    return _render_structural_element(
+    snapshot_element, snapshot_slot, verified = _checked_render(
         element,
+        quotation=quotation,
         label_path=label_path,
         closing_slot=closing_slot,
         drop_space_before_punctuation=drop_space_before_punctuation,
     )
+    return _render_structural_element(
+        snapshot_element,
+        label_path=tuple(label_path),
+        closing_slot=snapshot_slot,
+        drop_space_before_punctuation=verified.drop_space_before_punctuation,
+    )
+
+
+def _scope_error(reason: str) -> UslmRenderError:
+    listed = "; ".join(
+        f"{quotation.description}: {len(quotation.rows)} rows, "
+        f"drop_space_before_punctuation={quotation.drop_space_before_punctuation}"
+        for quotation in VERIFIED_QUOTATIONS.values()
+    )
+    return UslmRenderError(
+        f"The renderer is verified only for the listed quotation(s) ({listed}) and the renders "
+        f"checked on them, and this call is not one: {reason}. Pass a verified <quotedContent>, "
+        "one of its listed rows with that row's own label path, "
+        "closing_slot=last_text_slot(quotation) and the recorded "
+        "drop_space_before_punctuation. For other quotations, "
+        "drop_space_before_punctuation can fuse a decimal such as .25 with the preceding "
+        "label into (A).25. A margin note between a period and an em dash can join them "
+        "mid-heading (5 p.m.— filing). A foreign-namespace <page> or <sidenote> can divert "
+        "body text into metadata. A <br/> in a margin-note paragraph can fuse its lines. "
+        "A page marker nested in a margin note can set the next row's starting page "
+        "through page_in_effect."
+    )
+
+
+def _structural_nodes(
+    element: ET.Element, prefix: tuple[str, ...] = ()
+) -> Iterator[tuple[ET.Element, tuple[str, ...]]]:
+    """Each descendant structural element with its label path, as :func:`structural_label_paths`."""
+    for child in element:
+        tag = local_name(child.tag)
+        if tag in _STRUCTURAL:
+            value = num_value(child)
+            if not value:
+                raise UslmRenderError(f"structural <{tag}> under {prefix} has no num value")
+            path = (*prefix, value)
+            yield child, path
+            yield from _structural_nodes(child, path)
+        elif tag not in {"num", "heading"}:
+            yield from _structural_nodes(child, prefix)
+
+
+def _checked_render(
+    element: ET.Element,
+    *,
+    quotation: ET.Element,
+    label_path: tuple[str, ...],
+    closing_slot: TextSlot | None,
+    drop_space_before_punctuation: bool,
+) -> tuple[ET.Element, TextSlot, VerifiedQuotation]:
+    """Check one render against :data:`VERIFIED_QUOTATIONS`; return what to render.
+
+    The returned element and closing slot belong to a deep copy of
+    ``quotation``, whose fingerprint was checked, so later changes to the
+    caller's tree cannot reach the render.
+    """
+    if not isinstance(quotation, ET.Element) or not isinstance(element, ET.Element):
+        raise _scope_error("the quotation and the element must be ElementTree elements")
+    if not isinstance(quotation.tag, str) or local_name(quotation.tag) != "quotedContent":
+        raise _scope_error("the quotation is not a <quotedContent>")
+    snapshot = deepcopy(quotation)
+    try:
+        fingerprint = _quotation_fingerprint(snapshot)
+    except (SyntaxError, ValueError, TypeError, AttributeError, UnicodeError) as error:
+        raise _scope_error(f"the quotation has no canonical XML ({error})") from error
+    verified = VERIFIED_QUOTATIONS.get(fingerprint)
+    if verified is None:
+        raise _scope_error("the quotation's fingerprint is not listed")
+    if drop_space_before_punctuation is not verified.drop_space_before_punctuation:
+        raise _scope_error(
+            f"drop_space_before_punctuation must be {verified.drop_space_before_punctuation}"
+        )
+    own_path = next((path for node, path in _structural_nodes(quotation) if node is element), None)
+    if own_path is None:
+        raise _scope_error("the element is not a structural element of the quotation")
+    if own_path not in verified.rows:
+        raise _scope_error(f"{own_path} is not a checked row")
+    if not isinstance(label_path, tuple) or label_path != own_path:
+        raise _scope_error(f"label_path {label_path!r} is not the row's own {own_path!r}")
+    quotation_slot = last_text_slot(quotation)
+    if (
+        not isinstance(closing_slot, tuple)
+        or len(closing_slot) != 2
+        or closing_slot[0] is not quotation_slot[0]
+        or closing_slot[1] != quotation_slot[1]
+    ):
+        raise _scope_error("closing_slot must be last_text_slot(quotation)")
+    matches = [node for node, path in _structural_nodes(snapshot) if path == own_path]
+    if len(matches) != 1:
+        raise _scope_error(f"{own_path} does not name exactly one element of the quotation")
+    return matches[0], last_text_slot(snapshot), verified
 
 
 def _render_structural_element(

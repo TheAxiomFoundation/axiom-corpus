@@ -12,10 +12,13 @@ from axiom_corpus.corpus.uslm_quoted_content import (
     VERIFIED_QUOTATIONS,
     StatutesPage,
     UslmRenderError,
+    _checked_render,
     _quotation_fingerprint,
     _render_structural_element,
+    _structural_nodes,
     last_text_slot,
     local_name,
+    num_value,
     page_in_effect,
     render_structural_element,
     structural_label_paths,
@@ -440,6 +443,16 @@ def test_refuses_superscripts_and_subscripts(
         )
 
 
+def _checked_arguments(quotation: ET.Element, label_path: tuple[str, ...]) -> dict[str, object]:
+    """The arguments every checked render passes, for the given row."""
+    return {
+        "quotation": quotation,
+        "label_path": label_path,
+        "closing_slot": last_text_slot(quotation),
+        "drop_space_before_punctuation": True,
+    }
+
+
 @pytest.fixture(scope="module")
 def retained_uslm() -> bytes:
     root = Path(__file__).resolve().parents[1]
@@ -486,8 +499,8 @@ def test_scope_guard_refuses_the_retained_section_10310_quotation(retained_uslm:
         if node.get("identifier") == "/us/pl/119/21/tI/stC/s10310/3/D"
     )
     quotation = next(amending_element.iter(f"{{{NS}}}quotedContent"))
-    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
-        render_structural_element(quotation[0], quotation=quotation, label_path=("2",))
+    with pytest.raises(UslmRenderError, match="fingerprint is not listed"):
+        render_structural_element(quotation[0], **_checked_arguments(quotation, ("2",)))
 
 
 def test_scope_guard_refuses_a_one_character_change_inside_the_quotation(
@@ -497,8 +510,8 @@ def test_scope_guard_refuses_a_one_character_change_inside_the_quotation(
     chapeau = next(node for node in subsection.iter(f"{{{NS}}}chapeau") if node.text)
     assert chapeau.text is not None and "Except" in chapeau.text
     chapeau.text = chapeau.text.replace("Except", "except", 1)
-    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
-        render_structural_element(subsection, quotation=quotation, label_path=("xx",))
+    with pytest.raises(UslmRenderError, match="fingerprint is not listed"):
+        render_structural_element(subsection, **_checked_arguments(quotation, ("xx",)))
 
 
 def test_scope_guard_refuses_an_element_outside_the_verified_quotation(
@@ -506,11 +519,114 @@ def test_scope_guard_refuses_an_element_outside_the_verified_quotation(
 ) -> None:
     quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
     outside = deepcopy(subsection)
-    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
-        render_structural_element(outside, quotation=quotation, label_path=("xx",))
+    with pytest.raises(UslmRenderError, match="not a structural element of the quotation"):
+        render_structural_element(outside, **_checked_arguments(quotation, ("xx",)))
 
 
 def test_scope_guard_requires_the_quotation_to_be_quoted_content(retained_uslm: bytes) -> None:
-    _quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
-    with pytest.raises(UslmRenderError, match="verified only for the listed quotation"):
-        render_structural_element(subsection, quotation=subsection, label_path=("xx",))
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = {**_checked_arguments(quotation, ("xx",)), "quotation": subsection}
+    with pytest.raises(UslmRenderError, match="not a <quotedContent>"):
+        render_structural_element(subsection, **arguments)
+
+
+def test_scope_guard_renders_exactly_the_twelve_checked_rows(retained_uslm: bytes) -> None:
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    nodes = list(_structural_nodes(quotation))
+    assert len(nodes) == 112
+    accepted = []
+    for node, path in nodes:
+        try:
+            rendered = render_structural_element(node, **_checked_arguments(quotation, path))
+        except UslmRenderError as error:
+            assert "is not a checked row" in str(error)
+        else:
+            accepted.append((path, rendered))
+    _, rows = render_rows(retained_uslm)
+    assert [path for path, _rendered in accepted] == [
+        ("xx",),
+        *(("xx", str(number)) for number in range(1, 12)),
+    ]
+    assert [rendered for _path, rendered in accepted] == [row.rendered for row in rows]
+
+
+@pytest.mark.parametrize(
+    ("change", "reason"),
+    [
+        ("label_path", "is not the row's own"),
+        ("closing_slot_none", "closing_slot must be"),
+        ("closing_slot_other", "closing_slot must be"),
+        ("drop_space_false", "drop_space_before_punctuation must be True"),
+        ("drop_space_one", "drop_space_before_punctuation must be True"),
+    ],
+)
+def test_scope_guard_refuses_a_checked_row_with_other_arguments(
+    retained_uslm: bytes, change: str, reason: str
+) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    paragraphs = {
+        num_value(child): child for child in subsection if local_name(child.tag) == "paragraph"
+    }
+    arguments = _checked_arguments(quotation, ("xx", "11"))
+    assert render_structural_element(paragraphs["11"], **arguments).stripped_closing_quote
+    changed: dict[str, object] = {
+        "label_path": {"label_path": ("xx", "10")},
+        "closing_slot_none": {"closing_slot": None},
+        "closing_slot_other": {"closing_slot": last_text_slot(paragraphs["1"])},
+        "drop_space_false": {"drop_space_before_punctuation": False},
+        "drop_space_one": {"drop_space_before_punctuation": 1},
+    }[change]
+    with pytest.raises(UslmRenderError, match=reason):
+        render_structural_element(paragraphs["11"], **{**arguments, **changed})
+
+
+@pytest.mark.parametrize("which", ["quotation_none", "quotation_tree", "element_none"])
+def test_scope_guard_raises_its_own_error_for_non_elements(
+    retained_uslm: bytes, which: str
+) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = _checked_arguments(quotation, ("xx",))
+    element: object = subsection
+    if which == "quotation_none":
+        arguments["quotation"] = None
+    elif which == "quotation_tree":
+        arguments["quotation"] = ET.ElementTree(quotation)
+    else:
+        element = None
+    with pytest.raises(UslmRenderError, match="must be ElementTree elements"):
+        render_structural_element(element, **arguments)  # type: ignore[arg-type]
+
+
+def test_scope_guard_raises_its_own_error_for_a_quotation_without_canonical_xml(
+    retained_uslm: bytes,
+) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = _checked_arguments(quotation, ("xx",))
+    chapeau = next(node for node in subsection.iter(f"{{{NS}}}chapeau") if node.text)
+    assert chapeau.text is not None
+    chapeau.text = "\x0c" + chapeau.text
+    with pytest.raises(UslmRenderError, match="has no canonical XML"):
+        render_structural_element(subsection, **arguments)
+
+
+def test_scope_guard_refuses_a_comment_kept_in_the_quotation(retained_uslm: bytes) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = _checked_arguments(quotation, ("xx",))
+    subsection.insert(2, ET.Comment("note"))
+    with pytest.raises(UslmRenderError, match="fingerprint is not listed"):
+        render_structural_element(subsection, **arguments)
+    with pytest.raises(UslmRenderError, match="non-string tag"):
+        last_text_slot(quotation)
+
+
+def test_scope_guard_renders_from_a_copy_of_the_fingerprinted_quotation(
+    retained_uslm: bytes,
+) -> None:
+    quotation, subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = _checked_arguments(quotation, ("xx",))
+    element, slot, verified = _checked_render(subsection, **arguments)
+    assert verified is VERIFIED_QUOTATIONS[_quotation_fingerprint(quotation)]
+    assert element is not subsection
+    assert not any(node is element for node in quotation.iter())
+    assert slot[0] is not last_text_slot(quotation)[0]
+    assert slot[1] == last_text_slot(quotation)[1]
