@@ -288,17 +288,27 @@ def render_structural_element(
     listed fingerprint, ``element`` is one of its listed rows, ``label_path``
     is that row's own label path, ``closing_slot`` is
     ``last_text_slot(quotation)`` and ``drop_space_before_punctuation`` is the
-    recorded value. The arguments must be plain ``ET.Element``, ``tuple`` and
-    ``str`` objects, not subclasses. It renders the matching row of a fresh
-    parse of the serialization whose canonical form it fingerprinted.
+    recorded value. ``element`` and ``quotation`` must be plain ``ET.Element``
+    objects, ``label_path`` a plain ``tuple`` of plain ``str`` and
+    ``closing_slot`` a plain ``tuple`` whose kind is a plain ``str``. It renders
+    the matching row of a fresh parse of the serialization whose canonical form
+    it fingerprinted. An exception raised by an argument while it is checked
+    becomes :class:`UslmRenderError` too.
     """
-    snapshot_element, own_path, snapshot_slot, verified = _checked_render(
-        element,
-        quotation=quotation,
-        label_path=label_path,
-        closing_slot=closing_slot,
-        drop_space_before_punctuation=drop_space_before_punctuation,
-    )
+    try:
+        snapshot_element, own_path, snapshot_slot, verified = _checked_render(
+            element,
+            quotation=quotation,
+            label_path=label_path,
+            closing_slot=closing_slot,
+            drop_space_before_punctuation=drop_space_before_punctuation,
+        )
+    except UslmRenderError:
+        raise
+    except Exception as error:
+        # A caller's object can raise anything from its own methods. The
+        # message names no argument, since formatting one can raise again.
+        raise _scope_error("an argument raised an exception while it was checked") from error
     return _render_structural_element(
         snapshot_element,
         label_path=own_path,
@@ -358,11 +368,12 @@ def _checked_render(
     The returned element, label path and closing slot come from a fresh parse
     of the serialization whose canonical form was fingerprinted. Nothing of the
     caller's tree reaches the render: not its later changes, nor subclassed
-    text, attribute values or tuples.
+    text, attribute values or tuples. Messages format only values from that
+    parse, never an argument.
     """
     if type(quotation) is not ET.Element or type(element) is not ET.Element:
         raise _scope_error("the quotation and the element must be ElementTree elements")
-    if not isinstance(quotation.tag, str) or local_name(quotation.tag) != "quotedContent":
+    if type(quotation.tag) is not str or local_name(quotation.tag) != "quotedContent":
         raise _scope_error("the quotation is not a <quotedContent>")
     # Fingerprint and parse the same plain serialization, so the parsed copy
     # holds exactly what the fingerprint covers.
@@ -371,7 +382,7 @@ def _checked_render(
         fingerprint = _xml_fingerprint(xml)
         snapshot = ET.fromstring(xml)
     except Exception as error:
-        raise _scope_error(f"the quotation has no canonical XML ({error!r})") from error
+        raise _scope_error("the quotation has no canonical XML") from error
     verified = VERIFIED_QUOTATIONS.get(fingerprint)
     if verified is None:
         raise _scope_error("the quotation's fingerprint is not listed")
@@ -399,7 +410,7 @@ def _checked_render(
         or any(type(part) is not str for part in label_path)
         or label_path != own_path
     ):
-        raise _scope_error(f"label_path {label_path!r} is not the row's own {own_path!r}")
+        raise _scope_error(f"label_path is not the row's own, {own_path!r}")
     # Find the slot in the parsed copy, then name the caller's matching node.
     snapshot_slot = last_text_slot(snapshot)
     slot_position = next(

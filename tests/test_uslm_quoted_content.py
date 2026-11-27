@@ -731,3 +731,69 @@ def test_scope_guard_renders_the_checked_text_for_parser_equivalent_line_endings
         )
         == rows[1].rendered
     )
+
+
+class _RaisingRepr(str):
+    def __repr__(self) -> str:
+        raise RuntimeError("repr")
+
+
+class _RaisingRsplit(str):
+    def rsplit(self, *args: object, **kwargs: object) -> list[str]:  # type: ignore[override]
+        raise RuntimeError("rsplit")
+
+
+class _RaisingReprError(Exception):
+    def __repr__(self) -> str:
+        raise RuntimeError("error repr")
+
+    def __str__(self) -> str:
+        raise RuntimeError("error str")
+
+
+class _RaisingContains(str):
+    def __contains__(self, item: object) -> bool:  # type: ignore[override]
+        raise _RaisingReprError()
+
+
+def test_scope_guard_refuses_unformattable_label_paths(retained_uslm: bytes) -> None:
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    paragraph = _paragraph(quotation, "11")
+    for label_path in (("xx", 10**5000), ("xx", _RaisingRepr("11")), (_RaisingRepr("xx"),)):
+        arguments = _checked_arguments(quotation, ("xx", "11"))
+        arguments["label_path"] = label_path
+        with pytest.raises(UslmRenderError, match="is not the row's own"):
+            render_structural_element(paragraph, **arguments)
+
+
+def test_scope_guard_refuses_a_subclassed_quotation_tag(retained_uslm: bytes) -> None:
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = _checked_arguments(quotation, ("xx", "11"))
+    quotation.tag = _RaisingRsplit(quotation.tag)
+    with pytest.raises(UslmRenderError, match="not a <quotedContent>"):
+        render_structural_element(_paragraph(quotation, "11"), **arguments)
+
+
+def test_scope_guard_refuses_an_attribute_that_raises_while_serializing(
+    retained_uslm: bytes,
+) -> None:
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    arguments = _checked_arguments(quotation, ("xx", "11"))
+    quotation.set("extra", _RaisingContains("value"))
+    with pytest.raises(UslmRenderError, match="has no canonical XML"):
+        render_structural_element(_paragraph(quotation, "11"), **arguments)
+
+
+def test_scope_guard_converts_any_exception_raised_while_checking(
+    retained_uslm: bytes, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from axiom_corpus.corpus import uslm_quoted_content
+
+    def raising(*args: object, **kwargs: object) -> object:
+        raise _RaisingReprError()
+
+    quotation, _subsection = _quoted_subsection(ET.fromstring(retained_uslm))
+    paragraph = _paragraph(quotation, "11")
+    monkeypatch.setattr(uslm_quoted_content, "_structural_nodes", raising)
+    with pytest.raises(UslmRenderError, match="raised an exception while it was checked"):
+        render_structural_element(paragraph, **_checked_arguments(quotation, ("xx", "11")))

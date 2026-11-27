@@ -107,15 +107,21 @@ next. See "Open questions".
 
 The renderer is verified only for Pub. L. 119-21 section 71119(a)'s quotation inserting
 42 U.S.C. 1396a(xx), and only for the 12 renders the build makes from it. The public
-function returns only those 12 renders, and any call it refuses raises `UslmRenderError`.
-It accepts only plain `ET.Element`, `tuple` and `str` arguments (no subclasses), and only:
+function returns only those 12 renders. Every call it refuses raises `UslmRenderError`:
+the checks raise it themselves, and the function converts any other exception raised while
+it checks its arguments (an argument's own `__repr__`, `__contains__` or `rsplit` raising,
+say) into `UslmRenderError`. It accepts only:
 
-- a `<quotedContent>` whose canonical XML fingerprint is listed in `VERIFIED_QUOTATIONS`;
-- an element that is one of that quotation's listed rows, here subsection (xx) and its
-  paragraphs (1) to (11), checked by identity;
-- the row's own label path as `label_path`;
-- `last_text_slot(quotation)` as `closing_slot`;
-- the recorded `drop_space_before_punctuation`, here `True`.
+- as `quotation`, an object of exact type `ET.Element` (no subclass) whose tag is an exact
+  `str` naming `<quotedContent>` and whose canonical XML fingerprint is listed in
+  `VERIFIED_QUOTATIONS`;
+- as `element`, an object of exact type `ET.Element` that is one of that quotation's
+  listed rows, here subsection (xx) and its paragraphs (1) to (11), checked by identity;
+- as `label_path`, an exact `tuple` of exact `str` values equal to the row's own path;
+- as `closing_slot`, `last_text_slot(quotation)`: an exact two-item `tuple` whose node is
+  the quotation's own closing node, matched by identity at its position in the tree, and
+  whose slot name is an exact `str` equal to the recorded one;
+- as `drop_space_before_punctuation`, the recorded value, here `True`.
 
 It serializes the quotation once, fingerprints the canonical form of that string and renders
 the matching row of a fresh parse of the same string, with the label path and closing slot
@@ -124,8 +130,9 @@ nor a `str` subclass in its text, a `QName` attribute value or a tuple subclass.
 quotation whose serialization has the verified canonical form, such as one with a CR where
 the law has an LF (XML parsing reads both as LF), gets the checked render. A quotation
 with no canonical XML (a control character in its text, an unserializable value) and a
-comment kept in the tree raise `UslmRenderError`, as does any exception while serializing. These checks make five failure patterns found outside the
-verified quotation unreachable through the public function.
+comment kept in the tree raise `UslmRenderError`, and so does an exception raised while
+serializing. These checks make five failure patterns found outside the verified quotation
+unreachable through the public function.
 
 - With `drop_space_before_punctuation`, `.25` can fuse with a preceding label as `(A).25`.
 - A margin note between a period and an em dash mid-heading can join them as `5 p.m.— filing`.
@@ -289,6 +296,22 @@ checked (11) and (1) renders. Tests pin each case. The offline build produced th
 artifact hashes, the whole-law sweep again returned exactly the 12 checked renders, and the
 two focused pytest files passed all 87 tests in one process; ruff, ruff format and mypy
 reported nothing.
+
+### Round 10 verification
+
+Round 9's review (head `88253ef79`) found every successful call returned a checked render,
+and four refused calls that leaked an exception other than `UslmRenderError`: a 5,001-digit
+integer in `label_path` (`ValueError` while formatting the refusal), a `str` subclass with a
+raising `__repr__` in `label_path`, a quotation tag of a `str` subclass with a raising
+`rsplit`, and an attribute value whose `__contains__` raised an exception with a raising
+`__repr__`. The refusal for a wrong `label_path` now formats only the row's own path, the
+quotation's tag must be an exact `str`, the serialization refusal no longer formats the
+error, and `render_structural_element` converts any other exception raised while checking
+into `UslmRenderError`. Tests pin each case, and one forces an internal helper to raise to
+pin the conversion. The offline build produced the same four artifact hashes, the
+whole-law sweep again returned exactly the 12 checked renders (the other 5,058 calls
+raised `UslmRenderError`), and the two focused pytest files passed all 91 tests in one
+process; ruff, ruff format and `mypy` on the module reported nothing.
 
 ## Open questions
 
