@@ -141,13 +141,12 @@ key needed by a release that can supply an already published scope or that
 still serves a pair. The publisher, and the activation gate in activate mode,
 refuse a retired-key list that includes the current public key or names one
 key twice in different spellings (raw base64 and PEM, for example); the gate
-exits before it runs any check. Publication, and activation once the gate
-steps receive the variable, therefore fail from the moment the variable lists
-the key being retired until the pair is rotated, so rotate the pair right
-after setting the variable. The activation workflow does not yet pass
-`AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to its gate steps, so until it does
-the gate refuses an activation that displaces a release signed under a retired
-key (see the gate's known limits under "Successor cuts").
+exits before it runs any check. The activation workflow passes
+`AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to both of its gate steps (see the
+gate's known limits under "Successor cuts"). Publication, and activation
+through that workflow, therefore fail from the moment the variable lists the
+retiring key until you rotate the pair, so rotate the pair right after
+setting the variable.
 
 9. Activation is a separate, deliberate step (`scripts/activate_release.py`, or
    `publish_corpus.py --activate`), because it moves serving and can displace
@@ -833,14 +832,12 @@ Known limits of the activation gate:
 - The gate verifies the incoming release's stored object, when the database
   returns one, under the current release public key alone, and a displaced
   release's stored object, which the database must return, under the current
-  key or a retired key listed in
-  `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`. The activation workflow does not
-  pass that variable to its gate steps, so an activation that displaces a
-  release signed under a retired key fails every active-state check until the
-  activation workflow passes `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to both
-  gate steps. A retired key the variable lists authenticates a displaced
-  release's stored object as it authenticates prior objects in safe scope
-  reuse.
+  key or a retired key listed in `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`.
+  The activation workflow passes that variable to both gate steps. An
+  activation that displaces a release signed under a retired key the variable
+  does not list fails every active-state check. A retired key the variable
+  lists authenticates a displaced release's stored object as it authenticates
+  prior objects in safe scope reuse.
 - The gate still trusts the database for which release serves each pair (the
   preview's `current_release_name` and `current_content_sha256`) and for
   publication times (`corpus.release_objects.created_at`, which is not

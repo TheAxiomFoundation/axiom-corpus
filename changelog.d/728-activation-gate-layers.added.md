@@ -33,6 +33,7 @@ neither of the other two. The gate refuses a preview row whose
 `current_release_name` is null but which carries active-release evidence. The
 lineage baseline loader now refuses a mapping that repeats a key or gives the
 merge key (`<<`) twice. Of the workflows, only the activation workflow runs
-the gate's activation checks, and it does not yet pass the retired keys. The
-gate judges serving as its preview read it; see "Activation gate" under
-"Successor cuts" in `docs/named-release-publication.md` for its known limits.
+the gate's activation checks, and it passes the retired keys to both of its
+gate steps. The gate judges serving as its preview read it; see "Activation
+gate" under "Successor cuts" in `docs/named-release-publication.md` for its
+known limits.
