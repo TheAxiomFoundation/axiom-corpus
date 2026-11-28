@@ -1,0 +1,130 @@
+# Tennessee SNAP: DHS rule chapters 1240-01-02, -03, -04, -08, -12 and -14 from the official publisher, one chapter PDF each.
+# Replaces the Cornell LII captures of manifests/us-tn-snap-primary-policy.yaml; see docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md.
+version: 2026-11-11-snap-official-chapters-tn
+documents:
+- source_id: us-tn-rules-1240-01-02-pdf
+  jurisdiction: us-tn
+  document_class: regulation
+  title: 'Rules of the Tennessee Department of Human Services Chapter 1240-01-02: Family Assistance Unit'
+  source_url: https://publications.tnsosfiles.com/rules/1240/1240-01/1240-01-02.20240520.pdf
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2024-05-20'
+  citation_path: us-tn/regulation/1240-01-02-pdf
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    official_publisher: Tennessee Secretary of State, Publications Division
+    document_subtype: administrative_code_chapter_pdf
+    program: SNAP
+    federal_program: SNAP
+    source_discovery_group: us-tn/regulation/snap
+    expression_date_basis: date in the publisher's file name
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-tn/regulation/1240-01/02/NN
+      in us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: us-tn-rules-1240-01-03-pdf
+  jurisdiction: us-tn
+  document_class: regulation
+  title: 'Rules of the Tennessee Department of Human Services Chapter 1240-01-03: Non-Financial Eligibility Requirements'
+  source_url: https://publications.tnsosfiles.com/rules/1240/1240-01/1240-01-03.20240520.pdf
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2024-05-20'
+  citation_path: us-tn/regulation/1240-01-03-pdf
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    official_publisher: Tennessee Secretary of State, Publications Division
+    document_subtype: administrative_code_chapter_pdf
+    program: SNAP
+    federal_program: SNAP
+    source_discovery_group: us-tn/regulation/snap
+    expression_date_basis: date in the publisher's file name
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-tn/regulation/1240-01/03/NN
+      in us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: us-tn-rules-1240-01-04-pdf
+  jurisdiction: us-tn
+  document_class: regulation
+  title: 'Rules of the Tennessee Department of Human Services Chapter 1240-01-04: Financial Eligibility Requirements'
+  source_url: https://publications.tnsosfiles.com/rules/1240/1240-01/1240-01-04.20240520.pdf
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2024-05-20'
+  citation_path: us-tn/regulation/1240-01-04-pdf
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    official_publisher: Tennessee Secretary of State, Publications Division
+    document_subtype: administrative_code_chapter_pdf
+    program: SNAP
+    federal_program: SNAP
+    source_discovery_group: us-tn/regulation/snap
+    expression_date_basis: date in the publisher's file name
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-tn/regulation/1240-01/04/NN
+      in us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: us-tn-rules-1240-01-08-pdf
+  jurisdiction: us-tn
+  document_class: regulation
+  title: 'Rules of the Tennessee Department of Human Services Chapter 1240-01-08: Definitions and Abbreviations'
+  source_url: https://publications.tnsosfiles.com/rules/1240/1240-01/1240-01-08.20101021.pdf
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2010-10-21'
+  citation_path: us-tn/regulation/1240-01-08-pdf
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    official_publisher: Tennessee Secretary of State, Publications Division
+    document_subtype: administrative_code_chapter_pdf
+    program: SNAP
+    federal_program: SNAP
+    source_discovery_group: us-tn/regulation/snap
+    expression_date_basis: date in the publisher's file name
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-tn/regulation/1240-01/08/NN
+      in us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: us-tn-rules-1240-01-12-pdf
+  jurisdiction: us-tn
+  document_class: regulation
+  title: 'Rules of the Tennessee Department of Human Services Chapter 1240-01-12: Rights and Responsibilities'
+  source_url: https://publications.tnsosfiles.com/rules/1240/1240-01/1240-01-12.20240520.pdf
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2024-05-20'
+  citation_path: us-tn/regulation/1240-01-12-pdf
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    official_publisher: Tennessee Secretary of State, Publications Division
+    document_subtype: administrative_code_chapter_pdf
+    program: SNAP
+    federal_program: SNAP
+    source_discovery_group: us-tn/regulation/snap
+    expression_date_basis: date in the publisher's file name
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-tn/regulation/1240-01/12/NN
+      in us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
+- source_id: us-tn-rules-1240-01-14-pdf
+  jurisdiction: us-tn
+  document_class: regulation
+  title: 'Rules of the Tennessee Department of Human Services Chapter 1240-01-14: Application Process'
+  source_url: https://publications.tnsosfiles.com/rules/1240/1240-01/1240-01-14.20260415.pdf
+  source_format: pdf
+  source_as_of: '2026-11-11'
+  expression_date: '2026-04-15'
+  citation_path: us-tn/regulation/1240-01-14-pdf
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services
+    official_publisher: Tennessee Secretary of State, Publications Division
+    document_subtype: administrative_code_chapter_pdf
+    program: SNAP
+    federal_program: SNAP
+    source_discovery_group: us-tn/regulation/snap
+    expression_date_basis: date in the publisher's file name
+    path_note: whole-chapter PDF at page granularity; replaces the Cornell LII captures of the chapter's rules at us-tn/regulation/1240-01/14/NN
+      in us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    run_note: docs/ingest-runs/2026-11-11-snap-official-rules-al-fl-tn.md
