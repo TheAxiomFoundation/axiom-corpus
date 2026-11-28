@@ -106,14 +106,16 @@ load without selector files, and the check verifies their pins. The digest
 excludes descriptions; repository evidence tests also pin the reviewed prose on
 both sides. Two optional sections extend v1, ``successions`` and
 ``base_replacements``: older strict readers reject them rather than silently
-ignoring recorded edges or replacements.
+ignoring recorded edges or replacements. The loader refuses a mapping that
+repeats a key, which YAML would otherwise read as its last value, and a mapping
+that gives the merge key (``<<``) twice.
 """
 
 from __future__ import annotations
 
 import re
 from collections import defaultdict
-from collections.abc import Collection, Iterable, Mapping
+from collections.abc import Collection, Hashable, Iterable, Mapping
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
@@ -1077,6 +1079,48 @@ def _sorted_unique(values: Iterable[Any], where: str) -> None:
         raise SelectorLineageError(f"{where} must be sorted and free of duplicates")
 
 
+_YAML_MERGE_TAG = "tag:yaml.org,2002:merge"
+
+
+class _UniqueKeySafeLoader(yaml.SafeLoader):
+    """yaml.SafeLoader that refuses a mapping repeating a key, at any depth.
+
+    PyYAML keeps a repeated key's last value without a word, so a baseline that
+    repeated a pin, a section or a record field would read as its last copy alone.
+    A repeated merge key (``<<``) is refused too: PyYAML merges every copy, where a
+    reader that keeps only the last copy would see fewer keys.
+    """
+
+    def flatten_mapping(self, node: yaml.MappingNode) -> None:
+        # SafeConstructor deletes each merge key as it merges it, so count them first.
+        # It flattens a merge source, and each mapping in a list of sources, through
+        # this method too, so the count covers them. One merge key with a list of
+        # mappings stays allowed: it repeats no key.
+        merges = [key for key, _value in node.value if key.tag == _YAML_MERGE_TAG]
+        if len(merges) > 1:
+            raise SelectorLineageError(
+                f"line {merges[1].start_mark.line + 1}: the key '<<' repeats in one mapping; "
+                "merge several mappings with one '<<' and a list of them"
+            )
+        super().flatten_mapping(node)
+
+    def construct_mapping(self, node: yaml.MappingNode, deep: bool = False) -> dict[Hashable, Any]:
+        mapping = super().construct_mapping(node, deep=deep)
+        # SafeConstructor has flattened any merge key into node.value, so a key a
+        # merge and an explicit entry both give counts as repeated too.
+        if len(mapping) != len(node.value):
+            seen: set[Hashable] = set()
+            for key_node, _value_node in node.value:
+                key = self.construct_object(key_node, deep=deep)  # type: ignore[no-untyped-call]
+                if key in seen:
+                    raise SelectorLineageError(
+                        f"line {key_node.start_mark.line + 1}: the key {key!r} repeats in one "
+                        "mapping; YAML would keep only its last value"
+                    )
+                seen.add(key)
+        return mapping
+
+
 def load_lineage_baseline(
     path: str | Path, *, selectors: Mapping[str, ReleaseManifest] | None = None
 ) -> LineageBaseline:
@@ -1087,7 +1131,11 @@ def load_lineage_baseline(
     no selector files, as before.
     """
     where = str(path)
-    data = _mapping(yaml.safe_load(Path(path).read_text(encoding="utf-8")), where)
+    try:
+        loaded = yaml.load(Path(path).read_text(encoding="utf-8"), Loader=_UniqueKeySafeLoader)
+    except SelectorLineageError as exc:
+        raise SelectorLineageError(f"{where}: {exc}") from exc
+    data = _mapping(loaded, where)
     _fields(data, _BASELINE_FIELDS, where)
     if data.get("schema_version") != LINEAGE_BASELINE_SCHEMA:
         raise SelectorLineageError(f"{where}: schema_version must be {LINEAGE_BASELINE_SCHEMA}")

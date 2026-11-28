@@ -133,9 +133,20 @@ Key rotation must preserve the retiring public key before replacing the current
 pair. Set `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to a JSON array of retired
 public keys, then rotate `AXIOM_CORPUS_RELEASE_PRIVATE_KEY` and
 `AXIOM_CORPUS_RELEASE_PUBLIC_KEY` together. Legacy keys authenticate only prior
-immutable release objects during safe scope reuse. Newly published objects,
-R2 readback, and activation must verify with the current public key. Keep every
-retired key needed by a release that can supply an already published scope.
+immutable release objects: during safe scope reuse, and in the activation gate,
+for the stored objects of the releases an activation displaces. Newly published
+objects, R2 readback, and activation, including the gate's check of the
+incoming release, must verify with the current public key. Keep every retired
+key needed by a release that can supply an already published scope or that
+still serves a pair. The publisher, and the activation gate in activate mode,
+refuse a retired-key list that includes the current public key or names one
+key twice in different spellings (raw base64 and PEM, for example); the gate
+exits before it runs any check. The activation workflow passes
+`AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to both of its gate steps (see the
+gate's known limits under "Successor cuts"). Publication, and activation
+through that workflow, therefore fail from the moment the variable lists the
+retiring key until you rotate the pair, so rotate the pair right after
+setting the variable.
 
 9. Activation is a separate, deliberate step (`scripts/activate_release.py`, or
    `publish_corpus.py --activate`), because it moves serving and can displace
@@ -152,7 +163,12 @@ retired key needed by a release that can supply an already published scope.
    for only the pairs this release carries — recording each takeover in
    `corpus.scope_activation_history` — and refreshes `current_provision_counts`.
    Any error rolls the transaction back. Preview the takeover first with
-   `activate_release.py --dry-run`.
+   `activate_release.py --dry-run`. Neither `activate_release.py` nor
+   `publish_corpus.py --activate` runs the activation gate
+   (`scripts/check_release_gate.py`), and `--dry-run` prints the preview
+   without the gate's checks. Of the workflows, only the activation workflow
+   below runs the gate in activate mode; see the gate's known limits under
+   "Successor cuts".
 
 Publication retains the exact signed release object as a 30-day GitHub Actions
 artifact. When production credentials are available only to GitHub Actions,
@@ -652,6 +668,217 @@ file, to the same rules: keyed by its own selector and pair, with `replaced_by`
 in that pair. The tracked baseline has no `base_replacements` section, and the
 loader reads an absent section as empty.
 
+**Activation gate.** The activation workflow
+(`.github/workflows/activate-release.yml`) runs
+`scripts/check_release_gate.py --mode activate` in its preview job and again
+before it activates. Four of the gate's checks read scope layers, and its
+active-state preview reports the base of each release that activation
+displaces:
+
+- `cut_plan_provenance` reads each scope's layer from the cut plan,
+  `manifests/releases/<release>.json` as it stands in the working tree of
+  the checkout the gate runs in, parsing each scope as the selector loader
+  does, and from the signed object. It fails on a scope that one side marks
+  as a base and the other as a primary scope. Mirror mode runs this check
+  too. The threat model's stated limits list this reader among those that
+  read the working tree rather than HEAD.
+- The preview adds `current_base_version` to each pair whose active
+  release it reads: that release's base version for the pair, or null
+  when the release serves the pair without a base. It reads the base and
+  the pair's versions from the stored release object, and the publication
+  time from that object's row (`corpus.release_objects.created_at`, which
+  is not signed). It uses a stored object only when the object names the
+  release the row was looked up under, its recomputed content digest is
+  the row's `content_sha256`, and it verifies: the schema, which keeps
+  scope layers to `axiom-corpus/release-object/v4` and requires a v4
+  object to mark a base scope, the content and selector digests, and the
+  Ed25519 signature. The stored object of a release that activation
+  displaces may verify under the current release public key or under a
+  retired key listed in `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`, as
+  prior objects do in safe scope reuse. A stored object that fails any of
+  this fails every active-state check. The preview looks stored objects
+  up when a row with `changes` true names a release, and asks for the
+  incoming release's stored object too. When the database returns that
+  object, it must verify under the current key alone. The preview
+  function does not need the incoming release to be stored, so the
+  database may return none. The gate then verifies no stored copy of the
+  incoming release, and the rows carry no `incoming_published_at`:
+  `scope_monotonicity` fails each pair whose proof needs publication times
+  and passes a pair whose newest ordered version is newer than the active
+  release's newest version for the pair (a strict advance), provided every
+  version that only one of the two releases keeps is ordered; unordered
+  versions both releases keep are left out. `object_identity` verifies the
+  signed object the gate was given under the current key in every case.
+  The preview leaves `current_base_version` out when the displaced
+  release's stored object carries no version of the pair.
+- The live preview holds each row the database returns to the preview
+  function's five columns: `jurisdiction`, `document_class`,
+  `current_release_name`, `current_content_sha256` and `changes`. A row
+  with any other field, such as `current_versions`, or without one of the
+  five, fails every active-state check, so the database response cannot
+  supply the versions, base or publication times the gate derives from
+  verified stored objects. The stored-object lookup must return the
+  stored object of every release a row names as displaced, which
+  `corpus.active_scope_pointer`'s foreign key to `corpus.release_objects`
+  guarantees; a missing one fails every active-state check. Its response
+  must be a list of rows with exactly the query's four columns,
+  `release_name`, `content_sha256`, `published_at` and `release_object`,
+  each naming a release identity the query asked for as two non-empty
+  strings, and none twice. No two rows may share a `release_name` or a
+  `content_sha256`, which the table's primary key and unique constraint
+  rule out. Any other response fails every active-state check.
+- `base_carry_forward` fails when activation would stop serving the base of a
+  release it displaces. A pair passes when its active release serves no base
+  there, or when the incoming release selects the same version as the pair's
+  base scope. A base version that the incoming release selects as a primary
+  scope does not count. Otherwise the gate reads
+  `manifests/selector-lineage-baseline.yaml` from the checkout it runs in and
+  looks up the pair's `base_replacements` entry whose `selector` is the
+  incoming release. The pair passes only when the entry's `replaced` is the
+  active base, its `replaced_by` is the base scope the incoming release
+  selects for the pair, the incoming release no longer selects the `replaced`
+  version in either layer, and the incoming release's `selector_digests` pin
+  equals its signed `selector_sha256`. The gate reads the baseline only for a
+  pair that needs such an entry.
+- `base_only_pair` fails when the incoming release selects a base and no
+  primary scope for a pair, and the release it displaces there serves a
+  primary scope. The check subtracts only the active base from the active
+  versions, so an incoming base that relabels an active primary version fails
+  too. It reads no lineage baseline, and no entry waives it.
+- `primary_frontier` fails when activation would move a pair's newest
+  primary scope back, for a pair where the release it displaces serves a
+  base or the incoming release selects one. It leaves each side's base out
+  and compares the newest primary version on each side, ordered as
+  `scope_monotonicity` orders versions. So a base dated after the primary
+  scopes, whether new, carried or a recorded replacement, cannot hide a
+  dropped newest primary scope. A pair passes without an ordering proof when
+  the incoming release still selects every active primary scope there. The
+  check leaves a pair with no base on either side to `scope_monotonicity`,
+  and a pair the incoming release selects only a base for to
+  `base_only_pair`. It compares versions, never publication times. A cut
+  that folds a pair's newest primary scope into a newer base fails this
+  check, and passes only with `--allow-regression`, when the newest primary
+  scope it still selects there orders before the folded one. A cut that
+  also adds a newer primary scope passes this check without the flag: an
+  active release serving base B under primary scopes P1 and P2, replaced by
+  a cut that selects base B_NEW under P1 and P3, with P3 ordered after P2,
+  moves the newest primary scope forward. That cut still needs a
+  `base_replacements` entry to pass `base_carry_forward`.
+
+The three new checks run in activate mode only, each in a guard of its own:
+an error, such as a lineage baseline that does not load or repeats a
+mapping key, fails that check alone with `<check> could not run`. When the
+preview lookup raises a `KeyError`, `TypeError`, `ValueError` or
+`RuntimeError`, each reports `active-state evidence unavailable`.
+`base_carry_forward` and `base_only_pair` never set a warning, so
+`--allow-regression` softens neither. It turns a proven `primary_frontier`
+regression into a warning, as it does for `scope_monotonicity`; an evidence
+failure in either check stays a failure. All three read the preview rows
+through the same rules: each pair they check needs exactly one row with a
+boolean `changes`, and a row that displaces a release needs a non-empty
+`current_versions` list of version strings and a `current_base_version`
+field, whose non-null value must be one of `current_versions`. A row with
+`changes` false (the pair already serves the incoming release) displaces
+nothing and passes. So does a row with a null `current_release_name` (no
+release serves the pair) that carries no evidence of an active release:
+`current_versions` absent or empty, and `current_base_version`,
+`current_content_sha256` and `current_published_at` absent or null. A
+null-name row with any such evidence fails `base_carry_forward` and
+`primary_frontier`, and `base_only_pair` for a base-only pair, because the
+preview returns a null name only for a pair that has no active pointer.
+`scope_monotonicity` is unchanged: it fails a null-name row that lacks
+`current_versions` or gives a value that is not a list, and skips one whose
+`current_versions` is any list. A `base_replacements`
+entry clears `base_carry_forward` only for the cut it names as its
+`selector`. The gate compares the entry's `replaced` with the base of the
+release it displaces, whichever release that is, and never with the bases
+of cuts in between.
+
+A restore cut keeps the active release's primary scopes of a pair and adds a
+base under them. It passes `base_carry_forward` when the active release serves
+no base for the pair. `scope_monotonicity` orders every signed version of a
+pair, bases included. A base older than every primary scope leaves both
+frontiers at the newest primary scope, so the check takes its frontier-tie
+branch. Its branch for a cut that keeps every active version applies only when
+none of those versions parses as a dated version key. The tie branch needs
+both releases' publication timestamps and reports a regression when the
+incoming release's is earlier than the active release's. `primary_frontier`
+passes the restore, which keeps every active primary scope.
+
+Known limits of the activation gate:
+
+- A cut that adds a base dated after every version the active release serves
+  for a pair advances `scope_monotonicity`'s frontier there, so that check
+  compares no publication times for the pair: an incoming release published
+  before the active one passes it. `primary_frontier` compares versions only.
+- A cut that keeps the pair's base and newest primary scope and drops another
+  primary scope can pass every check. Serving then falls back to the base's
+  row for each path that only the dropped scope carried, where the base has
+  that path. This is the per-pair limit of `scope_monotonicity` that
+  [Selector lineage](release-gate-policy.md#selector-lineage) describes.
+- The gate passes no activation that would serve a pair from its base alone
+  while the active release serves primary scopes there. `base_only_pair` has
+  no override, so a reviewed retirement of a pair's primary scopes cannot pass
+  the gate.
+- Skipping activation of the cut that records a base replacement leaves the
+  old base serving, and a later cut that carries the new base then fails
+  `base_carry_forward`. The later cut carries the new base unchanged from its
+  predecessor, so the lineage check finds no dropped base for it, and an entry
+  for it is a baseline error. Activate the cut that records the replacement
+  before any later cut.
+- The gate does not check a `base_replacements` entry's `predecessor`, or that
+  predecessor's pin. The lineage check does, in the pull request that adds the
+  cut.
+- The gate verifies the incoming release's stored object, when the database
+  returns one, under the current release public key alone, and a displaced
+  release's stored object, which the database must return, under the current
+  key or a retired key listed in `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS`.
+  The activation workflow passes that variable to both gate steps. An
+  activation that displaces a release signed under a retired key the variable
+  does not list fails every active-state check. A retired key the variable
+  lists authenticates a displaced release's stored object as it authenticates
+  prior objects in safe scope reuse.
+- The gate still trusts the database for which release serves each pair (the
+  preview's `current_release_name` and `current_content_sha256`) and for
+  publication times (`corpus.release_objects.created_at`, which is not
+  signed). A database that names a genuine, validly signed older release as
+  active passes verification.
+- The offline `--active-state-file` path is trusted as written: the gate
+  applies only the row rules above to it, not the live preview's column and
+  stored-object rules, so a row those rules do not cover passes whether or
+  not it is consistent, for example a row with `changes` true that names the
+  incoming release, or a named release with a null `current_content_sha256`.
+  For a row with `changes` true and a null `current_release_name`, the three
+  new checks accept `current_versions` absent or `[]`, but
+  `scope_monotonicity` fails the row without the field, so the file must
+  give `current_versions` as `[]` for the gate to pass it. The live preview
+  sets `current_versions` on every row with `changes` true, to `[]` when no
+  release serves the pair. The activation workflow uses the live preview.
+- `primary_frontier` checks only pairs where either side serves a base, and
+  leaves base-only incoming pairs to `base_only_pair`. A pair with no base on
+  either side keeps exactly the guarantees `scope_monotonicity` gives it.
+- Of the workflows, only `.github/workflows/activate-release.yml` runs the
+  gate in activate mode. Run by hand,
+  `scripts/check_release_gate.py --mode activate` reports the same checks and
+  activates nothing. `.github/workflows/mirror-release.yml` runs only its
+  mirror-mode checks (`--mode mirror`), which read no active state.
+  `scripts/activate_release.py` and `publish_corpus.py --activate` call the
+  activation RPC without it. Either can stop serving a base, serve a pair
+  from its base alone or move a primary scope back, and nothing refuses it.
+  Activate production releases through the workflow.
+- The gate judges serving as its preview read it. The workflow's activate
+  job reruns the gate in its "Revalidate takeover preview with deterministic
+  gate" step, installs the upload schema in the next step and activates in
+  the step after that. The activation RPC repoints each pair the release
+  carries without comparing against the release it displaces. The
+  workflow's concurrency group holds back only other runs of the same
+  workflow. An activation that lands between the rerun and the workflow's
+  own activation, such as a standalone `activate_release.py` run, is
+  therefore never checked. If it installs a cut that serves a base for a
+  pair, and the workflow's cut selects no base there, the workflow's
+  activation stops serving that base although both gate runs passed. Start
+  no other activation while an activation workflow run is open.
+
 **Dedup.** `scripts/deduplicate_release_selector.py` leaves alone every base
 scope the target declares or a tracked selector it reads marks. It never opens
 or cuts a base scope the target declares. Before it opens any artifact, it
@@ -1063,9 +1290,12 @@ Later checks enforce what these cannot:
   (the digest leaves out the description,
   `src/axiom_corpus/release/manifest.py:187-196`). It does not see a rewrite of
   an unpinned selector, nor a description-only edit of a pinned one.
-- The activation gate (`scripts/check_release_gate.py`, once #1001 lands)
-  compares an incoming release with the active one before activation: cut-plan
-  provenance, base carry-forward and base-only pairs.
+- The activation gate (`scripts/check_release_gate.py`; **Activation gate**
+  above) checks each scope's layer in the signed object against the cut plan
+  (`cut_plan_provenance`, which mirror mode runs too). Before activation it
+  also compares the incoming release with the release that serves each of
+  its pairs: base carry-forward, base-only pairs and each layered pair's
+  newest primary scope.
 - Publication refuses a released triple whose artifacts differ from the
   published ones (`scripts/publish_corpus.py:689-696`), so a local rewrite of a
   released base cannot be published.

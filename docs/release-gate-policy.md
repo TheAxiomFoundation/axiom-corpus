@@ -192,7 +192,27 @@ select, added to a pair whose predecessor has no base, is not a finding.
 [Successor cuts](named-release-publication.md#successor-cuts) describes the
 composer that carries every base forward.
 
-The check compares a cut with its own predecessor because that is the claim every cut
+The activation gate checks bases against what serves. Its
+`base_carry_forward` check, the serving-side counterpart of the dropped base
+rule, fails an activation that stops serving the base of a release it
+displaces, unless the incoming release selects that base unchanged or a
+`base_replacements` entry for the incoming release records that replacement
+and the incoming release no longer selects the replaced version. Its
+`base_only_pair` check fails an activation that would serve a pair from a
+base alone over the displaced release's primary scopes; the lineage check has
+no such rule. Both compare the incoming release with the release that serves
+each pair now, which need not be its lineage predecessor, and
+`--allow-regression` softens neither. Its `primary_frontier` check compares a
+pair's newest primary scope on each side wherever the displaced release
+serves a base or the incoming release selects one, so a base dated after the
+primary scopes cannot hide a dropped newest primary scope from
+`scope_monotonicity`. It leaves a pair the incoming release selects only a
+base for to `base_only_pair`. `--allow-regression` softens it as it softens
+`scope_monotonicity`.
+[Successor cuts](named-release-publication.md#successor-cuts) describes these
+checks and their known limits.
+
+The lineage check compares a cut with its own predecessor because that is the claim every cut
 already makes ("It preserves every prior scope"), and the check makes it
 mechanical. Other comparisons fail:
 
@@ -315,7 +335,12 @@ entry. The loader requires `selector_digests` in name order and fork entries in
 order of predecessor, then `listed_on`, so a later entry goes right after its
 predecessor's earlier ones. It refuses a second entry for one predecessor on
 the same date, a later entry that repeats a branch an earlier one records, and
-one that adds nothing.
+one that adds nothing. It also refuses a mapping that repeats a key at any
+depth, such as a second pin for one selector, a second section or a record
+field given twice, and names the line, because YAML would keep only the last
+value. A key that a merge key (`<<`) also supplies counts as repeated, and so
+does a second merge key in one mapping, a merged mapping included; one `<<`
+with a list of mappings merges several.
 
 Two optional sections, `successions` and `base_replacements`, extend the
 existing v1 schema: no existing field changes meaning, and older baselines

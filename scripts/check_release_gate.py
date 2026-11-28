@@ -15,6 +15,8 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any, cast
 
+from axiom_corpus.corpus.releases import LAYER_BASE, LAYER_PRIMARY, parse_release_scope
+from axiom_corpus.corpus.selector_lineage import LineageBaseline
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
@@ -25,7 +27,10 @@ from axiom_corpus.corpus.supabase import (
 )
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
+    RELEASE_OBJECT_SCHEMA_V4,
     ReleaseManifestError,
+    ReleaseSignatureMismatchError,
+    canonical_release_public_key,
     verify_release_object,
 )
 
@@ -66,6 +71,45 @@ def _scope_triples(scopes: object) -> set[Scope]:
             raise ValueError(f"duplicate scope triple: {triple!r}")
         triples.add(triple)
     return triples
+
+
+def _scope_layers(scopes: object) -> dict[Scope, str]:
+    """Map each signed scope triple to its layer.
+
+    A primary scope has no ``layer`` key and a base scope spells ``"layer": "base"``,
+    the one encoding release-object verification accepts. Any other layer value and
+    a second base for one pair are refused, as verification refuses them.
+    """
+    _scope_triples(scopes)
+    layers: dict[Scope, str] = {}
+    base_pairs: set[Pair] = set()
+    for scope in cast(list[dict[str, Any]], scopes):
+        triple = cast(
+            Scope,
+            tuple(scope[field] for field in ("jurisdiction", "document_class", "version")),
+        )
+        if "layer" not in scope:
+            layers[triple] = LAYER_PRIMARY
+            continue
+        if scope["layer"] != LAYER_BASE:
+            raise ValueError(
+                f"scope {'/'.join(triple)} has an unsupported layer: {scope['layer']!r}"
+            )
+        pair = (triple[0], triple[1])
+        if pair in base_pairs:
+            raise ValueError(f"more than one base scope for {'/'.join(pair)}")
+        base_pairs.add(pair)
+        layers[triple] = LAYER_BASE
+    return layers
+
+
+def _base_versions(layers: Mapping[Scope, str]) -> dict[Pair, str]:
+    """Return each pair's base version; a pair without a base is absent."""
+    return {
+        (jurisdiction, document_class): version
+        for (jurisdiction, document_class, version), layer in layers.items()
+        if layer == LAYER_BASE
+    }
 
 
 def _version_key(value: str) -> tuple[date, str]:
@@ -177,6 +221,22 @@ def _provenance_check(
             missing = sorted(object_scopes - plan_scopes)
             extra = sorted(plan_scopes - object_scopes)
             failures.append(f"cut-plan scope mismatch (missing={missing!r}, extra={extra!r})")
+        # The plan is a selector, so its layers are read exactly as the selector
+        # loader reads them; the object's scopes also carry row and digest fields.
+        plan_layers = {
+            parsed.key: parsed.layer
+            for parsed in (
+                parse_release_scope(raw, manifest_path=plan_path) for raw in plan["scopes"]
+            )
+        }
+        object_layers = _scope_layers(release_object.get("content", {}).get("scopes"))
+        flips = [
+            f"{'/'.join(triple)}: plan {plan_layers[triple]}, object {object_layers[triple]}"
+            for triple in sorted(plan_scopes & object_scopes)
+            if plan_layers[triple] != object_layers[triple]
+        ]
+        if flips:
+            failures.append(f"cut-plan layer mismatch ({'; '.join(flips)})")
     except (OSError, json.JSONDecodeError, ValueError, AttributeError) as exc:
         failures.append(f"cannot validate cut plan {plan_path}: {exc}")
 
@@ -456,6 +516,424 @@ def _no_orphan_check(active_rows: list[dict[str, Any]], *, repo_root: Path) -> C
     )
 
 
+def _require_signed_stored_object(detail: Mapping[str, Any], *, public_keys: Sequence[str]) -> None:
+    """Refuse a stored release object that is not the signed object of its row.
+
+    The provider looks each release up by (release_name, content_sha256) and
+    reads versions, bases and layers from the object the row holds. That object
+    must name the release, hash to the digest and verify under one of
+    public_keys (schema, including the release-object/v4 base rule; content and
+    selector digests; signature), so no row can report evidence its signed
+    object lacks. Only a signature mismatch moves on to the next key, as
+    publish_corpus._verifies_with_any_key does: every other failure is the same
+    under every key.
+    """
+    name = detail.get("release_name")
+    digest = detail.get("content_sha256")
+    obj = cast(Mapping[str, Any], detail["release_object"])
+    actual = _canonical_content_sha(obj.get("content"))
+    if obj.get("release") != name or actual != digest:
+        raise ValueError(
+            f"stored release object of {name!r} is not the object of its row: it names "
+            f"{obj.get('release')!r} and its content hashes to {actual}, but the row is "
+            f"{name!r} at {digest!r}"
+        )
+    mismatch: ReleaseManifestError | None = None
+    for public_key in public_keys:
+        try:
+            verify_release_object(obj, public_key=public_key)
+        except ReleaseSignatureMismatchError as exc:
+            mismatch = exc
+            continue
+        except (ReleaseManifestError, TypeError, ValueError) as exc:
+            raise ValueError(f"stored release object of {name!r} does not verify: {exc}") from exc
+        return
+    # Reached only when no key verifies, including an empty key set.
+    raise ValueError(
+        f"stored release object of {name!r} does not verify: "
+        f"{mismatch or 'no release public key was given'}"
+    )
+
+
+# The same variable publish.yml passes to the publisher (publish.yml:48), which
+# defines its name at scripts/publish_corpus.py:82.
+RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV = "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS"
+
+
+def _legacy_public_keys_from_env(current_public_key: str) -> tuple[str, ...]:
+    """Retired release public keys, read and checked as the publisher reads them.
+
+    The variable is parsed as publish_corpus._legacy_public_keys_from_env parses
+    it, and then, as publish_corpus._trusted_release_public_keys refuses
+    (publish_corpus.py:883-893), a list that includes the current key or names
+    one key twice in different spellings is refused.
+    """
+    raw = os.environ.get(RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV, "")
+    if not raw:
+        return ()
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must be a JSON array of public keys"
+        ) from exc
+    if (
+        not isinstance(payload, list)
+        or any(not isinstance(key, str) or not key for key in payload)
+        or len(set(payload)) != len(payload)
+    ):
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must be a unique JSON array "
+            "of non-empty public keys"
+        )
+    try:
+        legacy = tuple(canonical_release_public_key(key) for key in payload)
+    except ReleaseManifestError as exc:
+        raise ValueError(f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV}: {exc}") from exc
+    if not legacy:
+        # "[]": nothing to compare, so a malformed current key still reaches
+        # object_identity, as it does with the variable unset.
+        return ()
+    try:
+        current = canonical_release_public_key(current_public_key)
+    except ReleaseManifestError as exc:
+        raise ValueError(
+            f"{RELEASE_OBJECT_PUBLIC_KEY_ENV} (or RELEASE_TRUST_ROOT) is not a release "
+            f"public key: {exc}"
+        ) from exc
+    if current in legacy:
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must not list the current release public key"
+        )
+    if len(set(legacy)) != len(legacy):
+        raise ValueError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must list each public key once, "
+            "in any spelling"
+        )
+    return legacy
+
+
+# A null current_release_name means no active pointer serves the pair: the preview
+# LEFT JOINs the incoming pairs to corpus.active_scope_pointer, whose release_name is
+# NOT NULL (supabase/migrations/20260718193000_scope_level_activation.sql). Such a row
+# names no release, so it carries none of that release's evidence. The live provider
+# projects none onto it: _require_preview_contract refuses a row that brings its own
+# evidence, _stored_details refuses a stored-object row whose release_name or
+# content_sha256 is not a non-empty string, and _require_signed_stored_object binds
+# every stored object to its row's name before the projection.
+_ACTIVE_RELEASE_FIELDS = ("current_base_version", "current_content_sha256", "current_published_at")
+
+
+def _null_pointer_evidence(row: Mapping[str, Any]) -> list[str]:
+    """The active-release evidence a row with a null current_release_name carries."""
+    stray: list[str] = []
+    if "current_versions" in row and row["current_versions"] != []:
+        stray.append(f"current_versions {row['current_versions']!r}")
+    stray.extend(
+        f"{field} {row[field]!r}" for field in _ACTIVE_RELEASE_FIELDS if row.get(field) is not None
+    )
+    return stray
+
+
+def _displaced_row(
+    pair: Pair, rows: Sequence[Mapping[str, Any]], failures: list[str]
+) -> tuple[str, frozenset[str], str | None] | None:
+    """The active release, versions and base that activation displaces for ``pair``.
+
+    None when activation displaces nothing (the pair reaffirms the incoming
+    release or has no active pointer and its row carries no active-release
+    evidence) and when the evidence fails. Every failure is appended to
+    ``failures``; none is skipped.
+    """
+    label = "/".join(pair)
+    matching = [row for row in rows if (row.get("jurisdiction"), row.get("document_class")) == pair]
+    if len(matching) != 1:
+        failures.append(
+            f"{label}: active-state preview has {len(matching)} row(s) for an incoming pair; "
+            "refusing vacuous pass"
+        )
+        return None
+    row = matching[0]
+    changes = row.get("changes")
+    if not isinstance(changes, bool):
+        failures.append(f"{label}: changes must be present and boolean, not {changes!r}")
+        return None
+    if not changes:
+        return None
+    if "current_release_name" not in row:
+        failures.append(f"{label}: active-state evidence lacks current_release_name")
+        return None
+    current = row["current_release_name"]
+    if current is None:
+        stray = _null_pointer_evidence(row)
+        if stray:
+            failures.append(
+                f"{label}: current_release_name is null, so no release serves the pair, but the "
+                f"row carries active-release evidence: {', '.join(stray)}"
+            )
+        return None
+    if not (isinstance(current, str) and current):
+        failures.append(
+            f"{label}: current_release_name must be a non-empty string or null, not {current!r}"
+        )
+        return None
+    versions = row.get("current_versions")
+    if not (
+        isinstance(versions, list)
+        and versions
+        and all(isinstance(version, str) and version for version in versions)
+    ):
+        failures.append(f"{label}: active release {current!r} has no version evidence")
+        return None
+    if "current_base_version" not in row:
+        failures.append(f"{label}: active-state evidence lacks current_base_version")
+        return None
+    base = row["current_base_version"]
+    if base is not None and base not in versions:
+        failures.append(
+            f"{label}: current_base_version {base!r} is not among current_versions "
+            f"{sorted(versions)!r}"
+        )
+        return None
+    return current, frozenset(versions), base
+
+
+def _base_carry_forward_check(
+    release_object: Mapping[str, Any],
+    active_rows: list[dict[str, Any]],
+    *,
+    repo_root: Path,
+) -> CheckResult:
+    """Fail an activation that stops serving the base of a displaced active release.
+
+    A pair passes when its active release serves no base, when the incoming
+    release selects that same version as its base, or when the lineage baseline
+    records the replacement for the incoming release, pinned at its signed
+    selector digest. The baseline is read only for a pair that needs a record.
+    """
+    content = release_object["content"]
+    incoming_release = str(release_object["release"])
+    layers = _scope_layers(content["scopes"])
+    incoming_bases = _base_versions(layers)
+    incoming_pairs = sorted({(triple[0], triple[1]) for triple in layers})
+    failures: list[str] = []
+    baseline: LineageBaseline | None = None
+    based = carried = recorded = 0
+    for pair in incoming_pairs:
+        displaced = _displaced_row(pair, active_rows, failures)
+        if displaced is None:
+            continue
+        current, _versions, active_base = displaced
+        if active_base is None:
+            continue
+        based += 1
+        incoming_base = incoming_bases.get(pair)
+        if incoming_base == active_base:
+            carried += 1
+            continue
+        if baseline is None:
+            baseline = LineageBaseline.load(repo_root)
+        record = baseline.base_replacements.get((incoming_release, pair))
+        label = "/".join(pair)
+        mismatches: list[str] = []
+        if record is not None:
+            if record.replaced != active_base:
+                mismatches.append(
+                    f"replaced {record.replaced!r} is not the active base {active_base!r}"
+                )
+            if incoming_base is None or record.replaced_by != (*pair, incoming_base):
+                selected = "no base" if incoming_base is None else f"{label}/{incoming_base}"
+                mismatches.append(
+                    f"replaced_by {'/'.join(record.replaced_by)!r} is not the incoming base "
+                    f"({selected})"
+                )
+            if (*pair, record.replaced) in layers:
+                mismatches.append(
+                    f"{incoming_release} still selects the replaced version "
+                    f"{label}/{record.replaced}"
+                )
+            pin = baseline.selector_digests.get(incoming_release)
+            signed = content.get("selector_sha256")
+            if pin != signed:
+                mismatches.append(
+                    f"the selector_digests pin {pin!r} is not the signed selector_sha256 {signed!r}"
+                )
+            if not mismatches:
+                recorded += 1
+                continue
+        selects = "no base" if incoming_base is None else f"base {label}/{incoming_base}"
+        message = (
+            f"{label}: activation would stop serving base {label}/{active_base} of "
+            f"{current!r}; {incoming_release} selects {selects} for {label}. Carry the base "
+            "unchanged, or record the replacement under base_replacements in "
+            f"manifests/selector-lineage-baseline.yaml for {incoming_release}"
+        )
+        if mismatches:
+            message += f" (the recorded replacement differs: {', '.join(mismatches)})"
+        failures.append(message)
+    return CheckResult(
+        "base_carry_forward",
+        not failures,
+        "; ".join(failures)
+        if failures
+        else (
+            f"{len(incoming_pairs)} incoming pair(s): {based} displace an active base; "
+            f"{carried} carry it unchanged and {recorded} replace it under a recorded "
+            "base_replacements entry"
+        ),
+    )
+
+
+def _base_only_pair_check(
+    release_object: Mapping[str, Any], active_rows: list[dict[str, Any]]
+) -> CheckResult:
+    """Fail an activation that serves a pair from its base alone over active primaries.
+
+    A pair is base-only when the incoming release selects a base scope for it and
+    no primary scope. Its displaced active release must then serve no primary
+    scope there. Only the active base version is subtracted from the active
+    versions, so an incoming base that relabels an active primary version fails
+    too. The check reads no lineage baseline, and no flag softens it.
+    """
+    content = release_object["content"]
+    incoming_release = str(release_object["release"])
+    layers = _scope_layers(content["scopes"])
+    incoming_bases = _base_versions(layers)
+    incoming_pairs = {(triple[0], triple[1]) for triple in layers}
+    primary_pairs = {
+        (triple[0], triple[1]) for triple, layer in layers.items() if layer == LAYER_PRIMARY
+    }
+    base_only = sorted(set(incoming_bases) - primary_pairs)
+    if not base_only:
+        return CheckResult(
+            "base_only_pair",
+            True,
+            f"all {len(incoming_pairs)} incoming pair(s) select a primary scope",
+        )
+    failures: list[str] = []
+    cleared = 0
+    for pair in base_only:
+        displaced = _displaced_row(pair, active_rows, failures)
+        if displaced is None:
+            cleared += 1
+            continue
+        current, versions, active_base = displaced
+        primaries = sorted(version for version in versions if version != active_base)
+        if not primaries:
+            cleared += 1
+            continue
+        label = "/".join(pair)
+        listed = ", ".join(f"{label}/{version}" for version in primaries)
+        failures.append(
+            f"{label}: activation would serve {label} from base {label}/{incoming_bases[pair]} "
+            f"alone and stop serving primary scope(s) {listed} of {current!r}: "
+            f"{incoming_release} selects no primary scope of {label}. Carry a primary scope "
+            f"of {label}; --allow-regression does not waive this check"
+        )
+    return CheckResult(
+        "base_only_pair",
+        not failures,
+        "; ".join(failures)
+        if failures
+        else f"{len(base_only)} base-only incoming pair(s): {cleared} displace no active "
+        "primary scope",
+    )
+
+
+def _primary_frontier_check(
+    release_object: Mapping[str, Any],
+    active_rows: list[dict[str, Any]],
+    *,
+    allow_regression: bool,
+) -> CheckResult:
+    """Fail an activation that moves a layered pair's newest primary scope back.
+
+    scope_monotonicity orders every version of a pair, bases included, so a base
+    dated after the primary scopes, whether new, carried or a recorded
+    replacement, can advance its frontier while the newest primary scope leaves.
+    For each pair where the displaced release serves a base or the incoming
+    release selects one, this check leaves both bases out and compares the newest
+    primary versions. A pair the incoming release selects only a base for is
+    base_only_pair's. --allow-regression turns a proven regression into a
+    warning, as it does for scope_monotonicity; an evidence failure stays a
+    failure.
+    """
+    layers = _scope_layers(release_object["content"]["scopes"])
+    incoming_bases = _base_versions(layers)
+    incoming_primaries: dict[Pair, set[str]] = defaultdict(set)
+    for (jurisdiction, document_class, version), layer in layers.items():
+        if layer == LAYER_PRIMARY:
+            incoming_primaries[(jurisdiction, document_class)].add(version)
+    incoming_pairs = sorted({(triple[0], triple[1]) for triple in layers})
+    evidence_failures: list[str] = []
+    regressions: list[str] = []
+    layered = base_only = 0
+    for pair in incoming_pairs:
+        displaced = _displaced_row(pair, active_rows, evidence_failures)
+        if displaced is None:
+            continue
+        current, versions, active_base = displaced
+        if active_base is None and pair not in incoming_bases:
+            continue
+        layered += 1
+        incoming_set = incoming_primaries.get(pair, set())
+        if not incoming_set:
+            base_only += 1
+            continue
+        active_set = {version for version in versions if version != active_base}
+        if active_set <= incoming_set:
+            continue
+        label = "/".join(pair)
+        kept_unordered = {v for v in active_set & incoming_set if not _orders(v)}
+        try:
+            incoming_keys = [_version_key(v) for v in sorted(incoming_set - kept_unordered)]
+            active_keys = [_version_key(v) for v in sorted(active_set - kept_unordered)]
+        except ValueError as exc:
+            evidence_failures.append(f"{label}: {exc}")
+            continue
+        if not incoming_keys:
+            evidence_failures.append(
+                f"{label}: incoming keeps only unordered primary versions "
+                f"{sorted(kept_unordered)!r} and drops active primary versions "
+                f"{sorted(active_set - incoming_set)!r}; no ordering proof is possible"
+            )
+            continue
+        if max(incoming_keys) < max(active_keys):
+            regressions.append(
+                f"{label}: incoming primary frontier {max(incoming_keys)[1]!r} precedes "
+                f"active primary frontier {max(active_keys)[1]!r} of {current!r}; neither "
+                "side's base counts toward its frontier"
+            )
+    failures = evidence_failures + regressions
+    warning = bool(regressions and allow_regression and not evidence_failures)
+    return CheckResult(
+        "primary_frontier",
+        not failures or warning,
+        "; ".join(failures)
+        if failures
+        else (
+            f"{len(incoming_pairs)} incoming pair(s): {layered} displaced pair(s) have a base "
+            f"on either side; {layered - base_only} keep or advance their newest primary scope "
+            f"and {base_only} select only a base, which base_only_pair checks"
+        ),
+        warning=warning,
+    )
+
+
+def _guarded_check(
+    name: str,
+    active_rows: list[dict[str, Any]] | None,
+    check: Callable[[list[dict[str, Any]]], CheckResult],
+) -> CheckResult:
+    """Run one active-state check so that any error fails that check alone."""
+    if active_rows is None:
+        return CheckResult(name, False, "active-state evidence unavailable")
+    try:
+        return check(active_rows)
+    except Exception as exc:  # a YAML error is not a ValueError, so catch broadly
+        return CheckResult(name, False, f"{name} could not run: {type(exc).__name__}: {exc}")
+
+
 def _mirror_check(
     release_object_path: Path,
     *,
@@ -492,8 +970,122 @@ def _active_state_from_file(path: Path) -> ActiveStateProvider:
     return lambda _release_object: rows
 
 
+# corpus.preview_corpus_release_activation's RETURNS TABLE
+# (supabase/migrations/20260718193000_scope_level_activation.sql), in the order
+# PREVIEW_ACTIVATION_QUERY selects them (src/axiom_corpus/corpus/supabase.py).
+# tests/test_atomic_release_postgres.py runs that query against the function and
+# checks these names; tests/test_release_gate.py ties this tuple to the query.
+_PREVIEW_COLUMNS = (
+    "jurisdiction",
+    "document_class",
+    "current_release_name",
+    "current_content_sha256",
+    "changes",
+)
+
+
+def _require_preview_contract(rows: Sequence[object]) -> list[dict[str, Any]]:
+    """Copies of the preview rows, each refused unless it is a row of the function.
+
+    The provider derives current_versions, current_base_version and both
+    publication times itself, from verified stored objects. A row that arrives
+    with one of them, with any other field outside the function's five columns,
+    or without one of the five, did not come from the function. It is refused,
+    not trimmed: a trimmed row could turn a row the checks refuse (a null
+    current_release_name carrying active-release evidence) into one they accept.
+    The Management API callers that run activation and staging hold their rows
+    to exact columns the same way. The provider adds its fields to the copies,
+    never to the response.
+    """
+    checked: list[dict[str, Any]] = []
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            raise ValueError(
+                f"active-state preview row {index} is not an object: {type(row).__name__}"
+            )
+        extra = sorted(set(row) - set(_PREVIEW_COLUMNS))
+        missing = [column for column in _PREVIEW_COLUMNS if column not in row]
+        if extra or missing:
+            raise ValueError(
+                f"active-state preview row {index} does not have the preview function's "
+                f"columns: extra {extra!r}, missing {missing!r}"
+            )
+        checked.append(dict(row))
+    return checked
+
+
+# The columns of the stored-object query in _supabase_active_state_provider.
+# corpus.release_objects keys each row by release_name (PRIMARY KEY) and
+# content_sha256 (UNIQUE), and its created_at and release_object are NOT NULL
+# (supabase/migrations/20260710180000_atomic_named_release_activation.sql).
+_DETAIL_COLUMNS = ("release_name", "content_sha256", "published_at", "release_object")
+
+
+def _stored_details(
+    response: object, *, requested: set[tuple[str, str]]
+) -> dict[tuple[str, str], dict[str, Any]]:
+    """Copies of the stored-object rows keyed by identity, refusing any other shape.
+
+    The response must be a JSON array of objects with exactly the query's four
+    columns, each naming, as two non-empty strings, an identity the query asked
+    for, and no identity, release_name or content_sha256 twice. The table and
+    the query's WHERE ... IN guarantee all of this, so a response that breaks it
+    is not the query's. The provider adds its fields to the copies, never to the
+    response.
+    """
+    if not isinstance(response, list):
+        raise ValueError(
+            f"stored release object response is not a JSON array: {type(response).__name__}"
+        )
+    by_identity: dict[tuple[str, str], dict[str, Any]] = {}
+    digest_of: dict[str, str] = {}
+    name_of: dict[str, str] = {}
+    for index, detail in enumerate(response):
+        if not isinstance(detail, dict):
+            raise ValueError(
+                f"stored release object response item {index} is not an object: "
+                f"{type(detail).__name__}"
+            )
+        extra = sorted(set(detail) - set(_DETAIL_COLUMNS))
+        missing = [column for column in _DETAIL_COLUMNS if column not in detail]
+        if extra or missing:
+            raise ValueError(
+                f"stored release object response item {index} does not have the query's "
+                f"columns: extra {extra!r}, missing {missing!r}"
+            )
+        name, digest = detail["release_name"], detail["content_sha256"]
+        if not (isinstance(name, str) and name and isinstance(digest, str) and digest):
+            raise ValueError(
+                f"stored release object of {name!r} has no release identity: release_name "
+                f"and content_sha256 must be non-empty strings, not {name!r} and {digest!r}"
+            )
+        identity = (name, digest)
+        if identity in by_identity:
+            raise ValueError(
+                f"stored release object of {name!r} at {digest!r} appears more than once"
+            )
+        # release_name is the table's primary key and content_sha256 is UNIQUE, so
+        # neither names two rows of one response.
+        if name in digest_of:
+            raise ValueError(
+                f"stored release object of {name!r} at {digest!r} repeats the release_name "
+                f"of the object at {digest_of[name]!r}"
+            )
+        if digest in name_of:
+            raise ValueError(
+                f"stored release object of {name!r} at {digest!r} repeats the content_sha256 "
+                f"of {name_of[digest]!r}"
+            )
+        if identity not in requested:
+            raise ValueError(f"stored release object of {name!r} at {digest!r} was not requested")
+        by_identity[identity] = dict(detail)
+        digest_of[name] = digest
+        name_of[digest] = name
+    return by_identity
+
+
 def _supabase_active_state_provider(
-    args: argparse.Namespace, public_key: str
+    args: argparse.Namespace, public_key: str, legacy_public_keys: Sequence[str] = ()
 ) -> ActiveStateProvider:
     match = _PROJECT_URL_RE.fullmatch(args.supabase_url)
     if match is None:
@@ -510,40 +1102,37 @@ def _supabase_active_state_provider(
         if database_url:
             # The preview recomputes per-scope evidence; over the Management
             # API's 120 s HTTP proxy that stops fitting around 800 scopes.
-            rows = preview_corpus_release_activation_direct(
+            raw_rows = preview_corpus_release_activation_direct(
                 release_object,
                 database_url=database_url,
                 public_key=public_key,
                 expected_project_ref=args.expected_project_ref or project_ref,
             )
         else:
-            rows = preview_corpus_release_activation(
+            raw_rows = preview_corpus_release_activation(
                 release_object,
                 access_token=access_token,
                 public_key=public_key,
                 supabase_url=args.supabase_url,
                 expected_project_ref=args.expected_project_ref or project_ref,
             )
+        rows = _require_preview_contract(raw_rows)
         for row in rows:
             if row.get("changes") is True:
                 row.setdefault("current_versions", [])
         changing = [row for row in rows if row.get("changes") and row.get("current_release_name")]
         if not changing:
-            return cast(list[dict[str, Any]], rows)
-        identities = sorted(
-            {
-                (str(row["current_release_name"]), str(row["current_content_sha256"]))
-                for row in changing
-            }
-            | {
-                (
-                    str(release_object["release"]),
-                    str(release_object["content_sha256"]),
-                )
-            }
+            return rows
+        incoming_identity = (
+            str(release_object["release"]),
+            str(release_object["content_sha256"]),
         )
-        details = cast(
-            list[dict[str, Any]],
+        displaced = {
+            (str(row["current_release_name"]), str(row["current_content_sha256"]))
+            for row in changing
+        }
+        identities = sorted(displaced | {incoming_identity})
+        by_identity = _stored_details(
             _management_api_post_json_with_curl(
                 f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
                 payload={
@@ -562,20 +1151,43 @@ def _supabase_active_state_provider(
                 access_token=access_token,
                 timeout=120,
             ),
+            requested=set(identities),
         )
-        by_identity: dict[tuple[str, str], dict[str, Any]] = {}
-        for detail in details:
-            obj = detail.get("release_object", {})
-            scopes = _scope_triples(obj.get("content", {}).get("scopes"))
-            detail["scopes"] = scopes
-            by_identity[(str(detail["release_name"]), str(detail["content_sha256"]))] = detail
-        for row in rows:
-            incoming_detail = by_identity.get(
-                (
-                    str(release_object["release"]),
-                    str(release_object["content_sha256"]),
+        for detail in by_identity.values():
+            obj = detail.get("release_object")
+            if not isinstance(obj, dict) or not isinstance(obj.get("content"), dict):
+                raise ValueError(
+                    f"stored release object of {detail.get('release_name')!r} "
+                    "is not a JSON object with a content object"
                 )
+            layers = _scope_layers(obj["content"].get("scopes"))
+            base_versions = _base_versions(layers)
+            if base_versions and obj.get("schema_version") != RELEASE_OBJECT_SCHEMA_V4:
+                raise ValueError("only release-object/v4 may sign scope layers")
+            detail["scopes"] = set(layers)
+            detail["base_versions"] = base_versions
+        # Only the signed object of its own row may supply the versions, bases and
+        # publication evidence projected below. The incoming release verifies under
+        # the current key alone; a release it displaces may also verify under a
+        # retired key, as prior objects do in the publisher's safe scope reuse.
+        for identity, detail in by_identity.items():
+            keys = (
+                (public_key,)
+                if identity == incoming_identity
+                else (public_key, *legacy_public_keys)
             )
+            _require_signed_stored_object(detail, public_keys=keys)
+        # corpus.active_scope_pointer references corpus.release_objects by
+        # (release_name, content_sha256), so an honest response holds the stored
+        # object of every release a changing row names.
+        missing = sorted(displaced - set(by_identity))
+        if missing:
+            raise ValueError(
+                "the database returned no stored release object for displaced release(s) "
+                + ", ".join(f"{name!r} at {digest!r}" for name, digest in missing)
+            )
+        incoming_detail = by_identity.get(incoming_identity)
+        for row in rows:
             if incoming_detail is not None:
                 row["incoming_published_at"] = incoming_detail["published_at"]
             identity = (
@@ -584,13 +1196,20 @@ def _supabase_active_state_provider(
             )
             active_detail = by_identity.get(identity)
             if active_detail is None:
+                # Only a row outside `changing` gets here: a null-name row, a
+                # changes-false row whose release was not returned, or a malformed
+                # row the readers refuse.
                 continue
             pair = (str(row["jurisdiction"]), str(row["document_class"]))
             row["current_versions"] = sorted(
                 scope[2] for scope in active_detail["scopes"] if scope[:2] == pair
             )
             row["current_published_at"] = active_detail["published_at"]
-        return cast(list[dict[str, Any]], rows)
+            # No default when the active object is missing or carries no version of
+            # the pair: an absent key marks missing evidence, which a reader refuses.
+            if row["current_versions"]:
+                row["current_base_version"] = active_detail["base_versions"].get(pair)
+        return rows
 
     return provide
 
@@ -624,9 +1243,14 @@ def run_gate(
                 [
                     CheckResult("scope_monotonicity", False, "active-state provider is missing"),
                     CheckResult("no_orphan", False, "active-state provider is missing"),
+                    CheckResult("base_carry_forward", False, "active-state provider is missing"),
+                    CheckResult("base_only_pair", False, "active-state provider is missing"),
+                    CheckResult("primary_frontier", False, "active-state provider is missing"),
                 ]
             )
         else:
+            # Stays None when the provider raises, so the guarded checks below fail.
+            active_rows: list[dict[str, Any]] | None = None
             try:
                 active_rows = active_state_provider(release_object)
                 results.append(
@@ -644,6 +1268,33 @@ def run_gate(
                         CheckResult("no_orphan", False, "active-state evidence unavailable"),
                     ]
                 )
+            # Each later check runs in its own guard, outside the shared try, so its
+            # error fails it alone and never adds a second result for another check.
+            results.append(
+                _guarded_check(
+                    "base_carry_forward",
+                    active_rows,
+                    lambda rows: _base_carry_forward_check(
+                        release_object, rows, repo_root=repo_root
+                    ),
+                )
+            )
+            results.append(
+                _guarded_check(
+                    "base_only_pair",
+                    active_rows,
+                    lambda rows: _base_only_pair_check(release_object, rows),
+                )
+            )
+            results.append(
+                _guarded_check(
+                    "primary_frontier",
+                    active_rows,
+                    lambda rows: _primary_frontier_check(
+                        release_object, rows, allow_regression=allow_regression
+                    ),
+                )
+            )
     else:
         results.append(
             _mirror_check(
@@ -692,10 +1343,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         raise SystemExit(f"{RELEASE_OBJECT_PUBLIC_KEY_ENV} (or RELEASE_TRUST_ROOT) is required")
     provider: ActiveStateProvider | None = None
     if args.mode == "activate":
+        try:
+            legacy_public_keys = _legacy_public_keys_from_env(public_key)
+        except ValueError as exc:
+            raise SystemExit(str(exc)) from exc
         provider = (
             _active_state_from_file(args.active_state_file)
             if args.active_state_file
-            else _supabase_active_state_provider(args, public_key)
+            else _supabase_active_state_provider(
+                args, public_key, legacy_public_keys=legacy_public_keys
+            )
         )
         if args.active_state_output is not None:
             base_provider = provider
