@@ -1,9 +1,11 @@
 """End-to-end runs of scripts/sign_release_scopes.sh in a throwaway git repository.
 
-The script calls ``python3`` and ``uv run axiom-corpus-ingest``. Shims on PATH run both
-with this interpreter, so sign-ingest-manifest, guard-ingested and validate-release are
-the real commands; the ``uv`` shim also logs each subcommand line it runs, and on request
-fails a signing or a validation, or interrupts the run during validation as Ctrl-C does.
+The script calls ``python3``, ``uv run python`` and ``uv run axiom-corpus-ingest``. Shims
+on PATH run all three with this interpreter, so sign-ingest-manifest, guard-ingested and
+validate-release are the real commands; the ``uv`` shim also logs each
+``axiom-corpus-ingest`` subcommand line it runs (``uv run python`` goes unlogged), and on
+request fails a signing or a validation, or interrupts the run during validation as
+Ctrl-C does.
 A commit-msg hook can reject one of the script's commits, or hold it while a test sends
 the script a signal. A ``git`` shim can hold the cleanup while a test sends another, or
 fail the cleanup's first unstage. The resumability tests use these to stop a run at each
@@ -35,6 +37,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from hypothesis import HealthCheck, assume, given, settings
 from hypothesis import strategies as st
 
+from axiom_corpus.corpus import releases
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -46,6 +49,8 @@ RELEASED = "2026-09-01"
 UNRELEASED = ("2026-09-24-a", "2026-09-24-b")
 PREDECESSOR = "manifests/releases/test-rel-1.json"
 DRAFT = "docs/ingest-runs/test-rel-2.selector.json"
+# A draft names its predecessor first in its description, as the CI lineage guard reads it.
+DRAFT_DESCRIPTION = "Successor to test-rel-1."
 TARGET = "manifests/releases/test-rel-2.json"
 MANIFEST_DIR = f".axiom/ingest-manifests/{JURISDICTION}/{DOCUMENT_CLASS}"
 ADD = "Add test-rel-2 artifacts (unsigned data commit)"
@@ -63,6 +68,7 @@ PYTHON3_SHIM = """#!/bin/sh
 exec "@PYTHON@" "$@"
 """
 UV_SHIM = """#!/bin/sh
+if [ "$1" = run ] && [ "$2" = python ]; then shift 2; exec "@PYTHON@" "$@"; fi
 # uv run axiom-corpus-ingest <subcommand> ...: log the call, then run the real CLI.
 [ "$1" = run ] && [ "$2" = axiom-corpus-ingest ] || { echo "unexpected uv call: $*" >&2; exit 97; }
 shift 2
@@ -147,9 +153,10 @@ def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n")
 
 
-def _selector(name: str, versions: list[str]) -> dict:
+def _selector(name: str, versions: list[str], description: str | None = None) -> dict:
     return {
         "name": name,
+        **({} if description is None else {"description": description}),
         "scopes": [
             {"jurisdiction": JURISDICTION, "document_class": DOCUMENT_CLASS, "version": version}
             for version in versions
@@ -241,10 +248,12 @@ def _default_signals() -> None:
         signal.signal(signum, signal.SIG_DFL)
 
 
-def _run(repo: Path) -> subprocess.CompletedProcess[str]:
+def _run(
+    repo: Path, predecessor: str = PREDECESSOR, *, draft: str = DRAFT
+) -> subprocess.CompletedProcess[str]:
     # In a session of its own, a simulated Ctrl-C reaches the script, never pytest.
     return subprocess.run(
-        ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
+        ["bash", str(SCRIPT), draft, predecessor],
         cwd=repo,
         capture_output=True,
         text=True,
@@ -378,7 +387,10 @@ def repo(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
     _git(root, "commit", "-qm", "Initial commit")
     _ingest_pr(root, (RELEASED,))
     _write_json(root / PREDECESSOR, _selector("test-rel-1", [RELEASED]))
-    _write_json(root / DRAFT, _selector("test-rel-2", [RELEASED, *UNRELEASED]))
+    _write_json(
+        root / DRAFT,
+        _selector("test-rel-2", [RELEASED, *UNRELEASED], description=DRAFT_DESCRIPTION),
+    )
     _git(root, "add", PREDECESSOR, DRAFT)
     _git(root, "commit", "-qm", "Track test-rel-1 and the test-rel-2 draft")
     return root
@@ -1385,7 +1397,10 @@ def test_signs_again_a_manifest_signed_with_either_command_form(
 ) -> None:
     kept = UNRELEASED[0]
     version, command = COMMAND_FORMS[form]
-    _write_json(repo / DRAFT, _selector("test-rel-2", [RELEASED, kept, version]))
+    _write_json(
+        repo / DRAFT,
+        _selector("test-rel-2", [RELEASED, kept, version], description=DRAFT_DESCRIPTION),
+    )
     if form == "manifest-yaml":
         (repo / "manifests/test-scope.yaml").write_text(
             f'version: "{version}"\n'
@@ -1448,6 +1463,1003 @@ def test_with_no_main_to_compare_signs_again_only_untracked_manifests(
         assert resigned not in second.stdout
         assert _manifest(repo, fixed).read_bytes() == stale
         assert _signed_versions() == list(UNRELEASED)
+
+
+# A selector's scopes as (version, layer); a layer of None is a primary scope.
+LayeredScopes = list[tuple[str, str | None]]
+# A version older than every other here; its scope is a base wherever a selector says so.
+BASE = "2026-05-01"
+NOT_CARRIED = (
+    "base scope {scope} is not carried from the predecessor; a base scope enters through its"
+    " restore manifest (axiom-corpus#728), not this script"
+)
+MADE_PRIMARY = (
+    "base scope {scope} of the predecessor is primary in the draft; a successor carries a"
+    " base scope unchanged, as a base"
+)
+BAD_LAYER = (
+    "scope {scope} in {path} has layer 'Base'; a selector marks a base scope"
+    ' "layer": "base" and a primary scope with no layer'
+)
+
+
+def _layered_selector(name: str, scopes: LayeredScopes, description: str | None = None) -> dict:
+    selector = _selector(name, [version for version, _ in scopes], description=description)
+    for entry, (_, layer) in zip(selector["scopes"], scopes, strict=True):
+        if layer is not None:
+            entry["layer"] = layer
+    return selector
+
+
+def _track_selectors(repo: Path, predecessor: LayeredScopes, draft: LayeredScopes) -> None:
+    """Rewrite test-rel-1 and the test-rel-2 draft with these scopes, and commit them."""
+    _write_json(repo / PREDECESSOR, _layered_selector("test-rel-1", predecessor))
+    _write_json(repo / DRAFT, _layered_selector("test-rel-2", draft, description=DRAFT_DESCRIPTION))
+    _git(repo, "add", PREDECESSOR, DRAFT)
+    _git(repo, "commit", "-qm", "Layer the selectors")
+
+
+PRIMARIES: LayeredScopes = [(version, None) for version in UNRELEASED]
+# case: (the predecessor's scopes, the draft's, and every line the run stops with)
+BASE_REFUSALS: dict[str, tuple[LayeredScopes, LayeredScopes, list[str]]] = {
+    "draft-adds-a-base": (
+        [(RELEASED, None)],
+        [(BASE, "base"), (RELEASED, None), *PRIMARIES],
+        [NOT_CARRIED.format(scope=_scope(BASE))],
+    ),
+    "draft-has-a-released-primary-as-a-base": (
+        [(RELEASED, None)],
+        [(RELEASED, "base"), *PRIMARIES],
+        [NOT_CARRIED.format(scope=_scope(RELEASED))],
+    ),
+    "draft-has-a-released-base-as-a-primary": (
+        [(RELEASED, "base")],
+        [(RELEASED, None), *PRIMARIES],
+        [MADE_PRIMARY.format(scope=_scope(RELEASED))],
+    ),
+    "draft-misspells-a-layer": (
+        [(RELEASED, None)],
+        [(RELEASED, None), (UNRELEASED[0], None), (UNRELEASED[1], "Base")],
+        [BAD_LAYER.format(scope=_scope(UNRELEASED[1]), path=DRAFT)],
+    ),
+    "predecessor-misspells-a-layer": (
+        [(RELEASED, "Base")],
+        [(RELEASED, None), *PRIMARIES],
+        [BAD_LAYER.format(scope=_scope(RELEASED), path=PREDECESSOR)],
+    ),
+    "every-scope-named": (
+        [(RELEASED, "base")],
+        [(BASE, "base"), (RELEASED, None), (UNRELEASED[0], None), (UNRELEASED[1], "Base")],
+        [
+            BAD_LAYER.format(scope=_scope(UNRELEASED[1]), path=DRAFT),
+            NOT_CARRIED.format(scope=_scope(BASE)),
+            MADE_PRIMARY.format(scope=_scope(RELEASED)),
+        ],
+    ),
+}
+
+
+@pytest.mark.parametrize("case", BASE_REFUSALS)
+def test_stops_before_staging_when_the_draft_does_not_carry_a_base_as_it_is(
+    repo: Path, case: str
+) -> None:
+    """A base scope enters through its restore manifest, never as a scope this script signs.
+
+    Every scope's artifacts are complete and the private key is set, so without the layer
+    check the run would go on to commit and sign the draft's scopes.
+    """
+    predecessor, draft, lines = BASE_REFUSALS[case]
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == "".join(f"{line}\n" for line in lines)
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+    for version in (BASE, *UNRELEASED):
+        assert not _manifest(repo, version).exists()
+
+
+# A selector spells each part of a scope as releases._SCOPE_COMPONENT_RE allows and lists
+# each scope once. Bash reads "2026-05-01 " as 2026-05-01, so a misspelled name can stand
+# for a base scope's files.
+MISSPELLED = (
+    "a scope in {path} has {field} {value!r}; a selector spells each part of a scope as a"
+    " lowercase letter or digit followed by up to 255 lowercase letters, digits, '.', '_'"
+    " or '-'"
+)
+REPEATED = "scope {scope} appears more than once in {path}; a selector selects each scope once"
+RawScopes = list[dict[str, str]]
+
+
+def _raw(
+    version: str,
+    *,
+    jurisdiction: str = JURISDICTION,
+    document_class: str = DOCUMENT_CLASS,
+    layer: str | None = None,
+) -> dict[str, str]:
+    raw = {"jurisdiction": jurisdiction, "document_class": document_class, "version": version}
+    if layer is not None:
+        raw["layer"] = layer
+    return raw
+
+
+def _track_raw_selectors(repo: Path, predecessor: RawScopes, draft: RawScopes) -> None:
+    """Rewrite test-rel-1 and the test-rel-2 draft with these raw scopes, and commit them."""
+    _write_json(repo / PREDECESSOR, {"name": "test-rel-1", "scopes": predecessor})
+    _write_json(
+        repo / DRAFT, {"name": "test-rel-2", "description": DRAFT_DESCRIPTION, "scopes": draft}
+    )
+    _git(repo, "add", PREDECESSOR, DRAFT)
+    _git(repo, "commit", "-qm", "Spell the selectors")
+
+
+CARRIED_BASE: RawScopes = [_raw(BASE, layer="base"), _raw(RELEASED)]
+DRAFT_TAIL: RawScopes = [_raw(RELEASED), *(_raw(version) for version in UNRELEASED)]
+# case: (the predecessor's scopes, the draft's, and every line the run stops with)
+SPELLING_REFUSALS: dict[str, tuple[RawScopes, RawScopes, list[str]]] = {
+    "draft-version-trailing-space": (
+        CARRIED_BASE,
+        [_raw(BASE, layer="base"), _raw(f"{BASE} "), *DRAFT_TAIL],
+        [MISSPELLED.format(path=DRAFT, field="version", value=f"{BASE} ")],
+    ),
+    "draft-jurisdiction-trailing-space": (
+        CARRIED_BASE,
+        [_raw(BASE, layer="base"), _raw(BASE, jurisdiction=f"{JURISDICTION} "), *DRAFT_TAIL],
+        [MISSPELLED.format(path=DRAFT, field="jurisdiction", value=f"{JURISDICTION} ")],
+    ),
+    "draft-document-class-leading-tab": (
+        CARRIED_BASE,
+        [_raw(BASE, layer="base"), _raw(BASE, document_class=f"\t{DOCUMENT_CLASS}"), *DRAFT_TAIL],
+        [MISSPELLED.format(path=DRAFT, field="document_class", value=f"\t{DOCUMENT_CLASS}")],
+    ),
+    "draft-version-trailing-newline": (
+        CARRIED_BASE,
+        [_raw(BASE, layer="base"), _raw(f"{BASE}\n"), *DRAFT_TAIL],
+        [MISSPELLED.format(path=DRAFT, field="version", value=f"{BASE}\n")],
+    ),
+    "predecessor-version-trailing-space": (
+        [_raw(f"{RELEASED} ")],
+        DRAFT_TAIL,
+        [MISSPELLED.format(path=PREDECESSOR, field="version", value=f"{RELEASED} ")],
+    ),
+    "predecessor-lists-a-base-then-the-same-scope-as-primary": (
+        [_raw(BASE, layer="base"), _raw(BASE), _raw(RELEASED)],
+        [_raw(BASE), *DRAFT_TAIL],
+        [REPEATED.format(scope=_scope(BASE), path=PREDECESSOR)],
+    ),
+    # The layer check would read the base and add its own line: the run stops before it.
+    "predecessor-lists-a-scope-as-primary-then-as-a-base": (
+        [_raw(BASE), _raw(BASE, layer="base"), _raw(RELEASED)],
+        [_raw(BASE), *DRAFT_TAIL],
+        [REPEATED.format(scope=_scope(BASE), path=PREDECESSOR)],
+    ),
+    "draft-lists-a-scope-twice": (
+        CARRIED_BASE,
+        [_raw(RELEASED), _raw(UNRELEASED[0]), _raw(UNRELEASED[0]), _raw(UNRELEASED[1])],
+        [REPEATED.format(scope=_scope(UNRELEASED[0]), path=DRAFT)],
+    ),
+    "draft-scope-without-a-version": (
+        CARRIED_BASE,
+        [{"jurisdiction": JURISDICTION, "document_class": DOCUMENT_CLASS}, *DRAFT_TAIL],
+        [MISSPELLED.format(path=DRAFT, field="version", value=None)],
+    ),
+}
+
+
+@pytest.mark.parametrize("case", SPELLING_REFUSALS)
+def test_stops_before_staging_when_a_selector_misspells_or_repeats_a_scope(
+    repo: Path, case: str
+) -> None:
+    """A part a selector cannot spell, or a scope listed twice, stops the run before step 1.
+
+    Without the check, bash would read a misspelled base as the base itself and stage and
+    sign it, and a predecessor listing a base again as primary would let the draft carry
+    it as primary.
+    """
+    predecessor, draft, lines = SPELLING_REFUSALS[case]
+    _track_raw_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == "".join(f"{line}\n" for line in lines)
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+    for version in (BASE, *UNRELEASED):
+        assert not _manifest(repo, version).exists()
+
+
+def test_the_preflight_spells_scope_parts_as_a_selector_does() -> None:
+    match = re.search(r'COMPONENT = re\.compile\(r"(.*?)"\)', SCRIPT.read_text())
+
+    assert match is not None
+    assert match.group(1) == releases._SCOPE_COMPONENT_RE.pattern
+
+
+def _draft_with(**fields: object) -> dict:
+    """The default draft, named first after test-rel-1, with these fields set."""
+    draft = _selector("test-rel-2", [RELEASED, *UNRELEASED], description=DRAFT_DESCRIPTION)
+    return {**draft, **fields}
+
+
+# case: the draft, which the selector parser refuses for one reason
+PARSER_REFUSALS: dict[str, dict] = {
+    "not-a-class": _draft_with(
+        scopes=[
+            _raw(RELEASED),
+            _raw(UNRELEASED[0]),
+            _raw(UNRELEASED[1], document_class="not-a-class"),
+        ]
+    ),
+    "extra-layer-field": _draft_with(
+        scopes=[_raw(RELEASED), _raw(UNRELEASED[0]), {**_raw(UNRELEASED[1]), "Layer": "base"}]
+    ),
+    "bad-name": _draft_with(name="Next Cut"),
+    "top-level-field": _draft_with(notes="cut by hand"),
+    "quality-profile": _draft_with(quality_profile="strict"),
+}
+
+
+@pytest.mark.parametrize("case", PARSER_REFUSALS)
+def test_stops_on_a_draft_the_selector_parser_refuses(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    """A draft validate-release would refuse in step 4 stops the run before step 1.
+
+    The spelling and layer checks pass each of these drafts.
+    """
+    _commit_selectors(repo, {DRAFT: PARSER_REFUSALS[case]}, "Draft the parser refuses")
+    start = _cut_release_branch(repo)
+    monkeypatch.chdir(repo)  # the script loads the draft by the path it was given
+    with pytest.raises(ValueError) as refusal:
+        releases.ReleaseManifest.load(DRAFT)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == f"{DRAFT} does not load as a release selector: {refusal.value}\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+def test_stops_on_a_predecessor_the_selector_parser_refuses(
+    repo: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The predecessor gets the parser load too, after the draft, and stops the run before step 1.
+
+    Main commits test-rel-1 with a top-level field the parser refuses, so the predecessor
+    passes the checks against HEAD and the merge base, and the spelling and layer checks.
+    """
+    selector = {**_selector("test-rel-1", [RELEASED]), "notes": "cut by hand"}
+    _commit_selectors(repo, {PREDECESSOR: selector}, "Predecessor the parser refuses")
+    start = _cut_release_branch(repo)
+    monkeypatch.chdir(repo)  # the script loads the predecessor by the path it was given
+    with pytest.raises(ValueError) as refusal:
+        releases.ReleaseManifest.load(PREDECESSOR)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == (
+        f"{PREDECESSOR} does not load as a release selector: {refusal.value}\n"
+    )
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+# case: the draft, and the one line the run stops with
+MALFORMED_SCOPES: dict[str, tuple[dict, str]] = {
+    "version-list": (
+        _draft_with(
+            scopes=[_raw(RELEASED), _raw(UNRELEASED[0]), {**_raw(UNRELEASED[1]), "version": []}]
+        ),
+        MISSPELLED.format(path=DRAFT, field="version", value=[]),
+    ),
+    "jurisdiction-object": (
+        _draft_with(
+            scopes=[
+                _raw(RELEASED),
+                _raw(UNRELEASED[0]),
+                {**_raw(UNRELEASED[1]), "jurisdiction": {}},
+            ]
+        ),
+        MISSPELLED.format(path=DRAFT, field="jurisdiction", value={}),
+    ),
+    "scope-as-list": (
+        _draft_with(
+            scopes=[
+                _raw(RELEASED),
+                _raw(UNRELEASED[0]),
+                [JURISDICTION, DOCUMENT_CLASS, UNRELEASED[1]],
+            ]
+        ),
+        f"a scope in {DRAFT} is {[JURISDICTION, DOCUMENT_CLASS, UNRELEASED[1]]!r}; a selector"
+        " gives each scope as an object",
+    ),
+    "scopes-not-a-list": (
+        _draft_with(scopes=UNRELEASED[0]),
+        f'{DRAFT} has no list of scopes; a selector lists its scopes under "scopes"',
+    ),
+}
+
+
+@pytest.mark.parametrize("case", MALFORMED_SCOPES)
+def test_stops_with_one_line_on_a_malformed_scope(repo: Path, case: str) -> None:
+    """A scope part that is not a string, or a scope that is not an object, gets one line."""
+    draft, line = MALFORMED_SCOPES[case]
+    _commit_selectors(repo, {DRAFT: draft}, "Draft a malformed scope")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == line + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+def test_stops_with_one_line_on_a_predecessor_that_is_not_an_object(repo: Path) -> None:
+    """A predecessor file holding a JSON array gets the shape line, not the identity line.
+
+    The script reads the draft's name before this check, so only the predecessor argument
+    reaches the line.
+    """
+    start = _cut_release_branch(repo)
+    predecessor = "docs/ingest-runs/pred.json"
+    (repo / predecessor).write_text("[]\n")
+
+    result = _run(repo, predecessor)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == f"{predecessor} is not a JSON object; a selector is one\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+# An untracked file passed in place of the draft or the predecessor.
+SELECTOR_FILE = "docs/ingest-runs/selector-file.json"
+NOT_A_NAMED_OBJECT = "{path} is not a JSON object with a name; a selector is one"
+_NAMED_DRAFT = _draft_with()
+# case: the argument the file is passed as, and what is at its path: bytes, a directory
+# ("directory") or nothing (None)
+UNREADABLE_SELECTOR_FILES: dict[str, tuple[str, bytes | str | None]] = {
+    "predecessor-missing": ("predecessor", None),
+    "predecessor-directory": ("predecessor", "directory"),
+    "predecessor-not-json": ("predecessor", b"not json\n"),
+    "predecessor-not-utf8": ("predecessor", b'\xff{"name": "test-rel-1"}\n'),
+    "draft-missing": ("draft", None),
+    "draft-directory": ("draft", "directory"),
+    "draft-not-json": ("draft", b"not json\n"),
+    "draft-array": ("draft", json.dumps([_NAMED_DRAFT]).encode()),
+    "draft-without-name": (
+        "draft",
+        json.dumps({k: v for k, v in _NAMED_DRAFT.items() if k != "name"}).encode(),
+    ),
+    "draft-name-not-a-string": ("draft", json.dumps({**_NAMED_DRAFT, "name": 2}).encode()),
+    "draft-name-empty": ("draft", json.dumps({**_NAMED_DRAFT, "name": ""}).encode()),
+}
+
+
+@pytest.mark.parametrize("case", UNREADABLE_SELECTOR_FILES)
+def test_stops_with_one_line_when_a_selector_file_cannot_be_read(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, case: str
+) -> None:
+    """A selector file not readable as JSON, or a draft with no string name, gets one line.
+
+    The draft's name is read first, so the draft rows stop there; the predecessor rows stop
+    where the project environment loads both selectors. Each stops before step 1.
+    """
+    argument, content = UNREADABLE_SELECTOR_FILES[case]
+    start = _cut_release_branch(repo)
+    path = repo / SELECTOR_FILE
+    if content == "directory":
+        path.mkdir()
+    elif isinstance(content, bytes):
+        path.write_bytes(content)
+    monkeypatch.chdir(repo)  # the script reads the file by the path it was given
+    if case in ("draft-array", "draft-without-name", "draft-name-not-a-string", "draft-name-empty"):
+        line = NOT_A_NAMED_OBJECT.format(path=SELECTOR_FILE)
+    else:  # the reader's own error, as the script reads the file
+        with pytest.raises((OSError, ValueError)) as error:
+            with open(SELECTOR_FILE, encoding="utf-8") as handle:
+                json.load(handle)
+        line = f"cannot read {SELECTOR_FILE} as JSON: {error.value}"
+
+    draft, predecessor = (DRAFT, SELECTOR_FILE)
+    if argument == "draft":
+        draft, predecessor = (SELECTOR_FILE, PREDECESSOR)
+
+    result = _run(repo, predecessor, draft=draft)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr == line + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+def test_skips_a_base_scope_the_predecessor_has_as_a_base(repo: Path) -> None:
+    """A base carried as it is is not unreleased: the run commits and signs none of it.
+
+    Main commits and signs the base, so that validate-release can read its artifacts.
+    """
+    _ingest_pr(repo, (BASE,))
+    carried: LayeredScopes = [(BASE, "base"), (RELEASED, None)]
+    _track_selectors(repo, carried, [*carried, (UNRELEASED[0], None)])
+    _write_scope(repo, UNRELEASED[0])
+    _set_main_refs(repo, "origin-main")
+    _git(repo, "checkout", "-qb", "release")
+    start = _git(repo, "rev-parse", "HEAD")
+
+    result = _run(repo)
+
+    _assert_cut(repo, result, start)
+    assert "unreleased scopes: 1 (draft test-rel-2)\n" in result.stdout
+    assert _signed_versions() == [UNRELEASED[0]]
+    scope = _scope(UNRELEASED[0])
+    assert _git(repo, "show", "--name-only", "--format=", "HEAD~2").splitlines() == [
+        f"data/corpus/coverage/{scope}.json",
+        f"data/corpus/inventory/{scope}.json",
+        f"data/corpus/provisions/{scope}.jsonl",
+        f"data/corpus/sources/{scope}/source.html",
+    ]
+    assert _git(repo, "show", "--name-only", "--format=", "HEAD~1").splitlines() == [
+        f"{MANIFEST_DIR}/{UNRELEASED[0]}.json"
+    ]
+
+
+# Two earlier cuts still mark BASE as a base. A later cut replaced it with REPLACING, or
+# carries no base, so the predecessor says nothing about BASE.
+REPLACING = "2026-05-02"
+EARLIER = ("manifests/releases/test-rel-0.json", "manifests/releases/test-rel-0a.json")
+TRACKED_BASE = (
+    "base scope {scope} of {path} is primary in the draft; a scope that a tracked selector"
+    ' marks "layer": "base" is selected only as a base, never signed as a primary scope'
+)
+# case: (the predecessor's scopes, the draft's)
+TRACKED_BASE_REFUSALS: dict[str, tuple[LayeredScopes, LayeredScopes]] = {
+    "replaced-base-re-added": (
+        [(REPLACING, "base"), (RELEASED, None)],
+        [(REPLACING, "base"), (RELEASED, None), (BASE, None), *PRIMARIES],
+    ),
+    "predecessor-lacks-the-base": (
+        [(RELEASED, None)],
+        [(RELEASED, None), (BASE, None), *PRIMARIES],
+    ),
+}
+
+
+@pytest.mark.parametrize("case", TRACKED_BASE_REFUSALS)
+def test_stops_before_staging_when_the_draft_selects_a_tracked_base_as_primary(
+    repo: Path, case: str
+) -> None:
+    """A scope that any tracked selector marks as a base is never signed as a primary scope.
+
+    The predecessor does not carry the base, so the comparison with it finds nothing:
+    without the tracked selectors the run would commit and sign the base as unreleased.
+    The line names the first selector, in name order, that marks the scope as a base.
+    """
+    predecessor, draft = TRACKED_BASE_REFUSALS[case]
+    for path in EARLIER:
+        earlier = _layered_selector(Path(path).stem, [(BASE, "base"), (RELEASED, None)])
+        _write_json(repo / path, earlier)
+    _git(repo, "add", *EARLIER)  # committed with the two selectors below
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+    for version in (BASE, *UNRELEASED):
+        assert not _manifest(repo, version).exists()
+
+
+@pytest.mark.parametrize("hide", ["skip-worktree", "sparse"])
+def test_stops_on_a_tracked_base_hidden_from_the_working_tree(repo: Path, hide: str) -> None:
+    """A tracked selector is one committed at HEAD, whether or not the working tree shows it.
+
+    The predecessor lacks the base, and the only selector that marks it is off disk while
+    the tracked tree stays clean. A check of the files on disk would find no tracked base
+    and commit and sign the base as unreleased.
+    """
+    earlier = EARLIER[0]
+    _write_json(
+        repo / earlier, _layered_selector(Path(earlier).stem, [(BASE, "base"), (RELEASED, None)])
+    )
+    _git(repo, "add", earlier)  # committed with the two selectors below
+    _track_selectors(repo, [(RELEASED, None)], [(RELEASED, None), (BASE, None), *PRIMARIES])
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+    start = _cut_release_branch(repo)
+    if hide == "skip-worktree":
+        _git(repo, "update-index", "--skip-worktree", earlier)
+        (repo / earlier).unlink()
+    else:
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", f"!/{earlier}")
+    assert not (repo / earlier).exists()
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == TRACKED_BASE.format(scope=_scope(BASE), path=earlier) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+def test_an_untracked_selector_does_not_stop_the_run(repo: Path) -> None:
+    """A selector file that HEAD does not commit is not a tracked selector."""
+    start = _cut_release_branch(repo)
+    scratch = repo / "manifests/releases/scratch.json"
+    _write_json(scratch, _layered_selector("scratch", [(RELEASED, "base")]))
+
+    result = _run(repo)
+
+    _assert_cut(repo, result, start)
+    assert scratch.exists()
+
+
+def test_stops_when_the_target_is_committed_but_hidden(repo: Path) -> None:
+    """The draft's selector name is taken once HEAD commits it, even off disk."""
+    _write_json(repo / TARGET, _selector("test-rel-2", [RELEASED]))
+    _git(repo, "add", TARGET)
+    _git(repo, "commit", "-qm", "Track test-rel-2")
+    start = _cut_release_branch(repo)
+    _git(repo, "update-index", "--skip-worktree", TARGET)
+    (repo / TARGET).unlink()
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == f"{TARGET} already exists; selectors are immutable\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    assert not (repo / TARGET).exists()
+    assert _uv_calls() == []
+
+
+def test_stops_with_one_line_when_the_tracked_selectors_cannot_be_read(repo: Path) -> None:
+    """A selector entry that HEAD commits as something other than a file stops the run.
+
+    Main commits manifests/releases/alias.json as a symlink to test-rel-1.json. The run
+    prints one line naming it, not a traceback, before step 1.
+    """
+    alias = "manifests/releases/alias.json"
+    os.symlink("test-rel-1.json", repo / alias)
+    _git(repo, "add", alias)
+    _git(repo, "commit", "-qm", "Commit a selector symlink")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr.startswith("cannot read the tracked selectors at HEAD: ")
+    assert result.stderr.endswith(f"{alias} is not a selector file\n")
+    assert result.stderr.count("\n") == 1
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+# A manifests or manifests/releases through which git would read another repository
+# stops the run with one line; a ceiling at manifests does not stop git there.
+PREDECESSOR_COPY = "docs/ingest-runs/test-rel-1.json"
+UNREADABLE = "cannot read the tracked selectors at HEAD: "
+
+
+def _copy_the_predecessor(repo: Path) -> str:
+    """Commit a byte copy of the predecessor outside manifests/ and return its path."""
+    (repo / PREDECESSOR_COPY).write_bytes((repo / PREDECESSOR).read_bytes())
+    _git(repo, "add", PREDECESSOR_COPY)
+    _git(repo, "commit", "-qm", "Copy the predecessor outside manifests")
+    return PREDECESSOR_COPY
+
+
+def _other_repository(tmp_path: Path) -> Path:
+    """A committed repository on main whose selectors have other names."""
+    other = tmp_path / "other"
+    other.mkdir()
+    _git(other, "init", "-q", "-b", "main")
+    _write_json(other / "manifests/releases/other-rel.json", _selector("other-rel", [RELEASED]))
+    _git(other, "add", "manifests")
+    _git(other, "commit", "-qm", "Other selectors")
+    return other
+
+
+def _track_a_base_the_draft_selects_as_primary(repo: Path) -> None:
+    """The layout of the tracked-base test: test-rel-0 marks BASE, the draft selects it."""
+    predecessor, draft = TRACKED_BASE_REFUSALS["predecessor-lacks-the-base"]
+    for path in EARLIER:
+        earlier = _layered_selector(Path(path).stem, [(BASE, "base"), (RELEASED, None)])
+        _write_json(repo / path, earlier)
+    _git(repo, "add", *EARLIER)  # committed with the two selectors below
+    _track_selectors(repo, predecessor, draft)
+    _write_scope(repo, BASE)  # untracked and unsigned, as the unreleased scopes are
+
+
+def _assert_stopped_with_one_line(
+    repo: Path, result: subprocess.CompletedProcess[str], start: str, line: str
+) -> None:
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "Traceback" not in result.stderr
+    assert result.stderr.startswith(line)
+    assert result.stderr.count("\n") == 1
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    assert _uv_calls() == []
+
+
+def test_stops_with_one_line_when_manifests_is_a_link(repo: Path, tmp_path: Path) -> None:
+    """A manifests link to another repository's would make git read that repository's HEAD.
+
+    The sparse pattern hides the checkout's own manifests/, so the tracked tree stays
+    clean beside the link.
+    """
+    predecessor = _copy_the_predecessor(repo)
+    other = _other_repository(tmp_path)
+    start = _cut_release_branch(repo)
+    _git(repo, "config", "sparse.expectFilesOutsideOfPatterns", "true")
+    _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    (repo / "manifests").symlink_to(other / "manifests", target_is_directory=True)
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo, predecessor)
+
+    _assert_stopped_with_one_line(
+        repo, result, start, UNREADABLE + "selector directory leads through a link: "
+    )
+
+
+@pytest.mark.parametrize(
+    "layout",
+    [
+        "nested-repo-at-manifests",
+        "nested-repo-at-releases",
+        "gitfile-at-manifests",
+        "ceiling-at-manifests",
+        "core-worktree-redirect",
+    ],
+)
+def test_stops_with_one_line_when_git_would_read_another_repository(
+    repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, layout: str
+) -> None:
+    """Another repository's git entry at manifests stops the run with one line.
+
+    Under a ceiling at manifests the run reads HEAD and stops at the tracked base, and
+    under a core.worktree setting it moves to the directory git names, as the threat
+    model's Terms say, and stops there.
+    """
+    if layout == "ceiling-at-manifests":
+        _track_a_base_the_draft_selects_as_primary(repo)
+    predecessor = _copy_the_predecessor(repo)
+    other = _other_repository(tmp_path)
+    start = _cut_release_branch(repo)
+    checked = repo
+    if layout == "nested-repo-at-manifests":
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        _git(repo, "init", "-q", "manifests")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "nested-repo-at-releases":
+        _git(repo, "init", "-q", "manifests/releases")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "gitfile-at-manifests":
+        _git(repo, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+        (repo / "manifests").mkdir()
+        (repo / "manifests" / ".git").write_text(f"gitdir: {other / '.git'}\n")
+        line = UNREADABLE + "selector directory sits at a git entry: "
+    elif layout == "ceiling-at-manifests":
+        # Exported after every fixture git command; the reader drops it, so HEAD is read.
+        monkeypatch.setenv("GIT_CEILING_DIRECTORIES", str(repo / "manifests"))
+        line = TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    else:
+        assert layout == "core-worktree-redirect"
+        assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+        _git(repo, "config", "core.worktree", str(other))
+        # The script moves to the toplevel git names, the other repository, whose own
+        # tracked tree is clean; there it is on main.
+        checked = other
+        line = "on main; cut a release branch from main first\n"
+    other_head = _git(other, "rev-parse", "HEAD")
+    assert _git(checked, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(repo, predecessor)
+
+    _assert_stopped_with_one_line(repo, result, start, line)
+    assert _git(other, "rev-parse", "HEAD") == other_head
+    assert _git(other, "diff", "--cached", "--name-only") == ""
+
+
+def test_reads_head_in_a_linked_worktree_whose_manifests_are_sparse_excluded(
+    repo: Path, tmp_path: Path
+) -> None:
+    """A linked worktree that hides manifests/ still has its HEAD's selectors read."""
+    _track_a_base_the_draft_selects_as_primary(repo)
+    _set_main_refs(repo, "origin-main")
+    worktree = tmp_path / "worktree"
+    _git(repo, "worktree", "add", "-q", "-b", "release", str(worktree))
+    _git(worktree, "sparse-checkout", "set", "--no-cone", "/*", "!/manifests/")
+    assert not (worktree / "manifests").exists()
+    predecessor = "docs/ingest-runs/predecessor-copy.json"  # untracked
+    (worktree / predecessor).write_bytes((repo / PREDECESSOR).read_bytes())
+    start = _git(worktree, "rev-parse", "HEAD")
+    assert _git(worktree, "status", "--porcelain", "--untracked-files=no") == ""
+
+    result = _run(worktree, predecessor)
+
+    _assert_stopped_with_one_line(
+        worktree, result, start, TRACKED_BASE.format(scope=_scope(BASE), path=EARLIER[0]) + "\n"
+    )
+
+
+NAMED_ONLY = (
+    "{predecessor} is not manifests/releases/{named}.json as committed at HEAD, the selector"
+    " {draft} names first in its description; pass that file"
+)
+UNNAMED = (
+    "{draft} names no tracked selector in its description; a draft names its predecessor"
+    " first, and this script compares the draft with that selector only"
+)
+NOT_ON_MAIN = (
+    "manifests/releases/{named}.json is not at the merge base of HEAD with {refs}; a draft's"
+    " predecessor is a selector main already tracks, as of the last fetch, so cut the draft"
+    " from one of those, or fetch and merge main first"
+)
+CHANGED_SINCE_MAIN = (
+    "manifests/releases/{named}.json differs from its copy at the merge base of HEAD with"
+    " {refs}; a tracked selector is never rewritten, so cut the draft from it as main has it"
+)
+# The predecessor the draft should have carried BASE from, and the draft that carries it.
+CARRIES_BASE: LayeredScopes = [(BASE, "base"), (RELEASED, None)]
+ADDS_BASE: LayeredScopes = [*CARRIES_BASE, *PRIMARIES]
+# A selector cut on the release branch, after the branch point.
+BRANCH_CUT = "manifests/releases/test-rel-1b.json"
+
+
+def _commit_selectors(repo: Path, selectors: dict[str, dict], message: str) -> None:
+    for path, selector in selectors.items():
+        _write_json(repo / path, selector)
+    _git(repo, "add", *selectors)
+    _git(repo, "commit", "-qm", message)
+
+
+def _cut_on_the_branch(repo: Path) -> None:
+    """Commit test-rel-1b, carrying BASE, and a draft that names it, on the release branch."""
+    _commit_selectors(
+        repo,
+        {
+            BRANCH_CUT: _layered_selector("test-rel-1b", CARRIES_BASE, DRAFT_DESCRIPTION),
+            DRAFT: _layered_selector("test-rel-2", ADDS_BASE, "Successor to test-rel-1b."),
+        },
+        "Cut test-rel-1b on the branch",
+    )
+
+
+# case: the predecessor argument, and the line the run stops with
+PREDECESSOR_REFUSALS = {
+    "untracked-copy": (
+        "docs/ingest-runs/pred-copy.json",
+        NAMED_ONLY.format(
+            predecessor="docs/ingest-runs/pred-copy.json", named="test-rel-1", draft=DRAFT
+        ),
+    ),
+    "older-tracked-selector": (
+        EARLIER[0],
+        NAMED_ONLY.format(predecessor=EARLIER[0], named="test-rel-1", draft=DRAFT),
+    ),
+    "assume-unchanged-edit": (
+        PREDECESSOR,
+        NAMED_ONLY.format(predecessor=PREDECESSOR, named="test-rel-1", draft=DRAFT),
+    ),
+    "unnamed-draft": (PREDECESSOR, UNNAMED.format(draft=DRAFT)),
+    "another-selector-named-first": (
+        PREDECESSOR,
+        NAMED_ONLY.format(predecessor=PREDECESSOR, named="test-rel-0", draft=DRAFT),
+    ),
+    "named-selector-hidden": (
+        PREDECESSOR,
+        NAMED_ONLY.format(predecessor=PREDECESSOR, named="test-rel-0", draft=DRAFT),
+    ),
+    # In the origin-main layout both refs resolve to one commit.
+    "edited-on-the-branch": (
+        PREDECESSOR,
+        CHANGED_SINCE_MAIN.format(named="test-rel-1", refs="origin/main and main"),
+    ),
+    "predecessor-cut-on-the-branch": (
+        BRANCH_CUT,
+        NOT_ON_MAIN.format(named="test-rel-1b", refs="origin/main and main"),
+    ),
+}
+
+
+@pytest.mark.parametrize("case", PREDECESSOR_REFUSALS)
+def test_stops_unless_the_predecessor_is_the_one_the_draft_names(repo: Path, case: str) -> None:
+    """The predecessor argument is the committed selector the draft names first.
+
+    Each passed file but unnamed-draft's carries BASE as a base, so the draft's BASE looks
+    carried and the layer report finds nothing; the selector the draft names, as main has
+    it, lacks it. When HEAD has a merge base with main, that selector must be there,
+    unchanged.
+    """
+    predecessor, line = PREDECESSOR_REFUSALS[case]
+    if case == "unnamed-draft":
+        _commit_selectors(
+            repo,
+            {DRAFT: _layered_selector("test-rel-2", [(RELEASED, None), *PRIMARIES])},
+            "Draft without a description",
+        )
+    elif case in ("another-selector-named-first", "named-selector-hidden"):
+        named_first = "Successor to test-rel-0; replaces test-rel-1."
+        _commit_selectors(
+            repo,
+            {
+                EARLIER[0]: _layered_selector("test-rel-0", [(RELEASED, None)]),
+                PREDECESSOR: _layered_selector("test-rel-1", CARRIES_BASE),
+                DRAFT: _layered_selector("test-rel-2", ADDS_BASE, named_first),
+            },
+            "Name test-rel-0 first",
+        )
+    elif case == "older-tracked-selector":
+        _write_json(repo / EARLIER[0], _layered_selector("test-rel-0", CARRIES_BASE))
+        _git(repo, "add", EARLIER[0])  # committed with the two selectors below
+        _track_selectors(repo, [(RELEASED, None)], ADDS_BASE)
+    elif case != "predecessor-cut-on-the-branch":
+        _track_selectors(repo, [(RELEASED, None)], ADDS_BASE)
+    _cut_release_branch(repo)
+    if case == "untracked-copy":
+        _write_json(repo / predecessor, _layered_selector("test-rel-1", CARRIES_BASE))
+    elif case == "assume-unchanged-edit":
+        _git(repo, "update-index", "--assume-unchanged", PREDECESSOR)
+        _write_json(repo / PREDECESSOR, _layered_selector("test-rel-1", CARRIES_BASE))
+    elif case == "named-selector-hidden":
+        _git(repo, "update-index", "--skip-worktree", EARLIER[0])
+        (repo / EARLIER[0]).unlink()
+    elif case == "edited-on-the-branch":
+        _commit_selectors(
+            repo,
+            {PREDECESSOR: _layered_selector("test-rel-1", CARRIES_BASE)},
+            "Add a base to test-rel-1",
+        )
+    elif case == "predecessor-cut-on-the-branch":
+        _cut_on_the_branch(repo)
+    assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+    head = _git(repo, "rev-parse", "HEAD")
+
+    result = _run(repo, predecessor)
+
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == line + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == head
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        "spelled-with-a-dot",
+        "predecessor-cut-on-the-branch-without-main",
+        "predecessor-on-newer-local-main",
+        "predecessor-on-newer-origin-main",
+    ],
+)
+def test_cuts_when_the_predecessor_is_the_one_the_draft_names(repo: Path, case: str) -> None:
+    """Controls: the named selector, spelled another way, or checked by the HEAD rule alone.
+
+    With no merge base with main, a predecessor first committed on the release branch
+    passes. When origin/main is behind main, the merge base with main counts, and when
+    main is behind origin/main, the merge base with origin/main counts.
+    """
+    predecessor = PREDECESSOR
+    if case == "spelled-with-a-dot":
+        predecessor = f"./{PREDECESSOR}"
+        _cut_release_branch(repo)
+    elif case == "predecessor-cut-on-the-branch-without-main":
+        _ingest_pr(repo, (BASE,))  # main commits and signs the base validate-release reads
+        for version in UNRELEASED:
+            _write_scope(repo, version)
+        _set_main_refs(repo, "no-main")
+        _git(repo, "checkout", "-qb", "release")
+        _cut_on_the_branch(repo)
+        predecessor = BRANCH_CUT
+    elif case == "predecessor-on-newer-local-main":
+        # origin/main still points at main's commit before test-rel-1 was tracked.
+        for version in UNRELEASED:
+            _write_scope(repo, version)
+        _git(repo, "update-ref", "refs/remotes/origin/main", "main~1")
+        assert _git(repo, "ls-tree", "--name-only", "origin/main", "--", PREDECESSOR) == ""
+        assert _git(repo, "ls-tree", "--name-only", "main", "--", PREDECESSOR) == PREDECESSOR
+        _git(repo, "checkout", "-qb", "release")
+    else:
+        # A fetch moved origin/main to main's tip, and the release branch starts there;
+        # local main still points at its commit before test-rel-1 was tracked.
+        for version in UNRELEASED:
+            _write_scope(repo, version)
+        _git(repo, "update-ref", "refs/remotes/origin/main", "main")
+        _git(repo, "checkout", "-qb", "release")
+        _git(repo, "branch", "-f", "main", "main~1")
+        assert _git(repo, "ls-tree", "--name-only", "main", "--", PREDECESSOR) == ""
+        assert _git(repo, "ls-tree", "--name-only", "origin/main", "--", PREDECESSOR) == PREDECESSOR
+    start = _git(repo, "rev-parse", "HEAD")
+
+    result = _run(repo, predecessor)
+
+    _assert_cut(repo, result, start)
+    if case == "predecessor-cut-on-the-branch-without-main":
+        assert "neither origin/main nor main shares history with HEAD;" in result.stdout
+
+
+@pytest.mark.parametrize(
+    "description", [[DRAFT_DESCRIPTION], 20261117], ids=["list-naming-test-rel-1", "number"]
+)
+def test_reads_a_non_string_description_as_the_parser_does(repo: Path, description: object) -> None:
+    """A description that is not a string is read as its text, as the selector parser reads it.
+
+    The CI lineage guard takes the predecessor from that text, so the list, whose text
+    names test-rel-1 first, cuts the selector as the usual run does. The number names no
+    tracked selector.
+    """
+    _commit_selectors(repo, {DRAFT: _draft_with(description=description)}, "Draft a description")
+    start = _cut_release_branch(repo)
+
+    result = _run(repo)
+
+    if isinstance(description, list):
+        _assert_cut(repo, result, start)
+        return
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert result.stderr == UNNAMED.format(draft=DRAFT) + "\n"
+    assert result.stdout == ""
+    assert _git(repo, "rev-parse", "HEAD") == start
+    assert _git(repo, "diff", "--cached", "--name-only") == ""
+    _assert_resumable(repo)
+    assert _uv_calls() == []
 
 
 # Step 2's plan, in the script's own words, run as the script runs it.

@@ -15,12 +15,37 @@
 # or step 2 will sign it again), export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell
 # only (never written to a file); the script checks for it before it stages anything.
 #
-# The unreleased scopes are the draft selector's scopes minus the predecessor's.
-# Order matters: the signer records HEAD and requires a clean tracked tree, and the
-# signed manifest must describe committed artifact bytes. So: (1) force-add and commit
-# the artifacts, (2) sign every unreleased scope against that commit, (3) commit those
-# scopes' manifests and no others, (4) copy the draft to manifests/releases/<name>.json,
-# deep-validate it against the committed artifacts and commit it.
+# The predecessor argument must be the committed file of the selector the draft names first
+# in its description, the selector the CI lineage guard takes
+# (selector_lineage.named_predecessor), byte for byte as HEAD commits it. When HEAD has a
+# merge base with origin/main or main, that selector must also be at one of those merge
+# bases, unchanged: main is read as of the last fetch. With no such merge base, the HEAD
+# rule alone applies, so a predecessor first committed on the release branch passes.
+#
+# The unreleased scopes are the draft selector's primary scopes minus the predecessor's.
+# A base scope ("layer": "base") is never unreleased: the run skips one the predecessor
+# also has as a base, and stops before it stages anything when the draft has a base scope
+# that the predecessor lacks or has as primary, or has as primary a scope that the
+# predecessor has as a base, or has as primary a scope that a tracked selector marks as
+# a base, or either selector spells a layer other than "base". A tracked selector is a
+# manifests/releases/*.json file committed at HEAD: one that skip-worktree or a sparse
+# checkout hides from the working tree counts, and an untracked one does not. A
+# `manifests` or `manifests/releases` that is a symlink, or that holds a `.git` entry (a
+# nested repository or a gitfile), stops the run with one line: through it git would read
+# another repository.
+# The run also stops when either selector misspells a part of a scope or lists a scope
+# twice, and, after the layer checks, when either does not load as a release selector, as
+# validate-release would refuse it in step 4. A selector file that cannot be read as JSON,
+# and a draft that is not a JSON object with a string name, stop the run with one line
+# before it stages or signs anything. The draft's description is read as the selector
+# parser reads it: a value that is not a string is turned into one, as the CI lineage
+# guard does. A base scope enters a release through its restore manifest
+# (axiom-corpus#728), not this script. Order matters: the signer records HEAD and requires
+# a clean tracked tree, and the signed manifest must describe committed artifact bytes.
+# So: (1) force-add and commit the artifacts, (2) sign every unreleased scope against that
+# commit, (3) commit those scopes' manifests and no others, (4) copy the draft to
+# manifests/releases/<name>.json, deep-validate it against the committed artifacts and
+# commit it.
 #
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
@@ -58,11 +83,32 @@ PREDECESSOR="${2:?predecessor selector path}"
 # On main itself the guard-ingested self-check below would diff an empty main...HEAD range.
 [ "$(git symbolic-ref -q --short HEAD || true)" != main ] || { echo "on main; cut a release branch from main first" >&2; exit 1; }
 
-NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])' "$DRAFT")
+# A draft that cannot be read as JSON, or that is not an object with a string name, stops
+# the run here with one line (set -e ends the script at the failed assignment).
+NAME=$(python3 -c '
+import json, sys
+path = sys.argv[1]
+try:
+    with open(path, encoding="utf-8") as handle:
+        data = json.load(handle)
+except (OSError, ValueError) as exc:
+    sys.exit(f"cannot read {path} as JSON: {exc}")
+name = data.get("name") if isinstance(data, dict) else None
+if not isinstance(name, str) or not name:
+    sys.exit(f"{path} is not a JSON object with a name; a selector is one")
+print(name)
+' "$DRAFT")
 TARGET="manifests/releases/$NAME.json"
-[ ! -e "$TARGET" ] || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
+# The name is taken when its selector is on disk or committed at HEAD, hidden or not.
+{ [ ! -e "$TARGET" ] && [ -z "$(git ls-tree --full-tree HEAD -- "$TARGET")" ]; } \
+  || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
 
-# Unreleased scopes: draft minus predecessor, as "jurisdiction document_class version" lines.
+# Unreleased scopes: the draft's primary scopes minus the predecessor's, as
+# "jurisdiction document_class version" lines. The layer is read on both sides (see the
+# header), and a base scope the draft adds, a scope the draft moves between layers, and a
+# tracked base drafted as primary stop the run here; a base the draft leaves out is the
+# lineage check's finding. The check runs in the project environment (uv run python), which
+# reads the tracked selectors at HEAD.
 # (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
 SCOPE_LIST=$(mktemp)
 # From step 1 on, a run that stops before the selector commit undoes what it has not
@@ -119,14 +165,225 @@ trap on_exit EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 trap 'exit 129' HUP
-python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
-import json, sys
-draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
-released = {(s["jurisdiction"], s["document_class"], s["version"]) for s in predecessor}
-for s in sorted(draft, key=lambda s: (s["jurisdiction"], s["document_class"], s["version"])):
-    key = (s["jurisdiction"], s["document_class"], s["version"])
-    if key not in released:
-        print(*key)
+# guard-ingested diffs base...head from their merge base, so with origin/main (or main) as
+# the base it checks every commit this branch adds, as CI does for the PR: this run's zero,
+# one or two commits and any that an earlier, stopped run made. Step 2's plan reads
+# deletions against that merge base (MERGE_BASE), and it takes a manifest at the merge
+# base with either ref (MAIN_BASES) for main's, in case origin/main is behind main. The
+# scope-list check below looks for the predecessor at every merge base in MAIN_BASES and
+# names the refs they came from (MAIN_REFS). These only read refs.
+GUARD_BASE="" MERGE_BASE="" MAIN_BASES="" MAIN_REFS=""
+for ref in origin/main main; do
+  base=$(git merge-base "$ref" HEAD 2>/dev/null) || continue
+  [ -n "$GUARD_BASE" ] || { GUARD_BASE=$ref; MERGE_BASE=$base; }
+  MAIN_BASES="$MAIN_BASES $base"
+  MAIN_REFS="$MAIN_REFS $ref"
+done
+uv run python - "$DRAFT" "$PREDECESSOR" "$MAIN_BASES" "$MAIN_REFS" > "$SCOPE_LIST" <<'PY'
+import json, re, subprocess, sys
+from pathlib import Path
+
+from axiom_corpus.corpus.releases import ReleaseManifest
+from axiom_corpus.corpus.selector_lineage import named_predecessor
+from axiom_corpus.corpus.successors import tracked_selector_texts
+
+draft_path, predecessor_path = sys.argv[1:3]
+main_bases, main_refs = sys.argv[3].split(), sys.argv[4].split()
+# A selector file that cannot be read as JSON gets one line, never a traceback.
+selectors = []
+for path in (draft_path, predecessor_path):
+    try:
+        with open(path, encoding="utf-8") as handle:
+            selectors.append(json.load(handle))
+    except (OSError, ValueError) as exc:
+        print(f"cannot read {path} as JSON: {exc}", file=sys.stderr)
+        sys.exit(1)
+
+# The same as releases._SCOPE_COMPONENT_RE. Bash splits each scope line on whitespace, so
+# a part no selector can spell, such as "2026-05-01 ", would name another scope's files.
+COMPONENT = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
+# One line per problem, never a traceback: a selector that is not an object, scopes that
+# are not a list, a scope that is not an object, a part that is not a string or that no
+# selector can spell, and a scope listed twice.
+spelling, scope_lists = [], []
+for path, selector in zip(sys.argv[1:3], selectors):
+    scopes = selector.get("scopes") if isinstance(selector, dict) else None
+    if not isinstance(selector, dict):
+        spelling.append(f"{path} is not a JSON object; a selector is one")
+    elif not isinstance(scopes, list):
+        spelling.append(f'{path} has no list of scopes; a selector lists its scopes under "scopes"')
+    scopes = scopes if isinstance(scopes, list) else []
+    scope_lists.append(scopes)
+    seen = set()
+    for s in scopes:
+        if not isinstance(s, dict):
+            spelling.append(f"a scope in {path} is {s!r}; a selector gives each scope as an object")
+            continue
+        misspelled = False
+        for field in ("jurisdiction", "document_class", "version"):
+            value = s.get(field)
+            if not (isinstance(value, str) and COMPONENT.fullmatch(value)):
+                misspelled = True
+                spelling.append(
+                    f"a scope in {path} has {field} {value!r}; a selector spells each"
+                    " part of a scope as a lowercase letter or digit followed by up to"
+                    " 255 lowercase letters, digits, '.', '_' or '-'"
+                )
+        # A list or an object as a part cannot go into the set, so a misspelled scope
+        # stays out of the repeat check.
+        if misspelled:
+            continue
+        triple = (s["jurisdiction"], s["document_class"], s["version"])
+        if triple in seen:
+            spelling.append(
+                f"scope {'/'.join(map(str, triple))} appears more than once in {path}; a"
+                " selector selects each scope once"
+            )
+        seen.add(triple)
+# A predecessor that lists a scope twice makes the layer checks below read one layer of
+# it, so the run stops here, before them.
+if spelling:
+    print(*spelling, sep="\n", file=sys.stderr)
+    sys.exit(1)
+draft, predecessor = scope_lists
+
+# The tracked selectors: the *.json files under manifests/releases committed at HEAD. A
+# HEAD whose selectors cannot be listed or read stops the run.
+try:
+    texts = tracked_selector_texts(Path("manifests/releases"))
+except (OSError, ValueError) as exc:
+    print(f"cannot read the tracked selectors at HEAD: {exc}", file=sys.stderr)
+    sys.exit(1)
+
+# The predecessor must be the selector the draft names first in its description, as the
+# CI lineage guard takes it, byte for byte as HEAD commits it; and, when HEAD has a merge
+# base with main, as one of those merge bases has it. A copy, an older selector, a
+# working-tree edit git does not show, or a selector cut or rewritten on this branch
+# would make the layer report below compare the draft with the wrong scopes. The
+# description is read as the selector parser reads it (releases.ReleaseManifest.loads): a
+# value that is not a string is turned into one, so this takes the predecessor the CI
+# lineage guard takes.
+draft_name, description = selectors[0].get("name"), selectors[0].get("description")
+named = named_predecessor(
+    draft_name if isinstance(draft_name, str) else "",
+    None if description is None else str(description),
+    texts,
+)
+if named is None:
+    print(
+        f"{draft_path} names no tracked selector in its description; a draft names its"
+        " predecessor first, and this script compares the draft with that selector only",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+committed = texts[named].encode("utf-8")
+if Path(predecessor_path).read_bytes() != committed:
+    print(
+        f"{predecessor_path} is not manifests/releases/{named}.json as committed at HEAD,"
+        f" the selector {draft_path} names first in its description; pass that file",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+
+
+def git_output(*args):
+    return subprocess.run(["git", *args], capture_output=True, check=True).stdout
+
+
+if main_bases:
+    listed = False
+    for base in main_bases:
+        entry = git_output("ls-tree", "--full-tree", base, "--", f"manifests/releases/{named}.json")
+        if not entry:
+            continue
+        listed = True
+        meta = entry.split(b"\t", 1)[0].split()
+        if meta[1] == b"blob" and git_output("cat-file", "blob", meta[2].decode()) == committed:
+            break
+    else:
+        refs = " and ".join(main_refs)
+        if not listed:
+            print(
+                f"manifests/releases/{named}.json is not at the merge base of HEAD with {refs};"
+                " a draft's predecessor is a selector main already tracks, as of the last"
+                " fetch, so cut the draft from one of those, or fetch and merge main first",
+                file=sys.stderr,
+            )
+        else:
+            print(
+                f"manifests/releases/{named}.json differs from its copy at the merge base of"
+                f" HEAD with {refs}; a tracked selector is never rewritten, so cut the draft"
+                " from it as main has it",
+                file=sys.stderr,
+            )
+        sys.exit(1)
+
+
+def key(s):
+    return (s["jurisdiction"], s["document_class"], s["version"])
+
+
+def is_base(s):
+    # A selector marks a base scope "layer": "base" and a primary scope with no layer.
+    return s.get("layer") == "base"
+
+
+# validate-release rejects any other layer, but only in step 4, after step 1 has
+# committed the scope and step 2 has signed it.
+problems = [
+    f"scope {'/'.join(key(s))} in {path} has layer {s['layer']!r}; a selector marks a"
+    ' base scope "layer": "base" and a primary scope with no layer'
+    for path, scopes in zip(sys.argv[1:3], (draft, predecessor))
+    for s in sorted(scopes, key=key)
+    if "layer" in s and not is_base(s)
+]
+# True for a base scope of the predecessor, False for a primary one.
+released = {key(s): is_base(s) for s in predecessor}
+# Every scope a tracked selector (committed at HEAD) marks as a base, with the first such
+# selector in name order. The predecessor says nothing about a base that an earlier cut
+# replaced or that it never carried, so the comparison with it alone would let the draft
+# sign one as primary. A tracked selector that is not JSON with a list of scopes stops the
+# run.
+tracked_bases = {}
+for name in sorted(texts):
+    for s in json.loads(texts[name])["scopes"]:
+        if is_base(s):
+            tracked_bases.setdefault(key(s), f"manifests/releases/{name}.json")
+unreleased = []
+for s in sorted(draft, key=key):
+    scope, carried = "/".join(key(s)), released.get(key(s))
+    if is_base(s) and not carried:
+        problems.append(
+            f"base scope {scope} is not carried from the predecessor; a base scope enters"
+            " through its restore manifest (axiom-corpus#728), not this script"
+        )
+    elif not is_base(s) and carried:
+        problems.append(
+            f"base scope {scope} of the predecessor is primary in the draft; a successor"
+            " carries a base scope unchanged, as a base"
+        )
+    elif not is_base(s) and key(s) in tracked_bases:
+        problems.append(
+            f"base scope {scope} of {tracked_bases[key(s)]} is primary in the draft; a scope "
+            'that a tracked selector marks "layer": "base" is selected only as a base, '
+            "never signed as a primary scope"
+        )
+    elif key(s) not in released:
+        unreleased.append(key(s))
+if problems:
+    print(*problems, sep="\n", file=sys.stderr)
+    sys.exit(1)
+# validate-release loads the selector with the selector parser, but only in step 4, after
+# step 1 has committed the scopes and step 2 has signed them. Load both now, after the
+# layer report, so its lines still name a misspelled layer first.
+for path in (draft_path, predecessor_path):
+    try:
+        ReleaseManifest.load(Path(path))
+    except (OSError, ValueError) as exc:
+        print(f"{path} does not load as a release selector: {exc}", file=sys.stderr)
+        sys.exit(1)
+for k in unreleased:
+    print(*k)
 PY
 # MANIFESTS holds each scope's signed ingest manifest, where sign-ingest-manifest writes it.
 SCOPES=() MANIFESTS=()
@@ -137,18 +394,6 @@ while IFS= read -r line; do
 done < "$SCOPE_LIST"
 echo "unreleased scopes: ${#SCOPES[@]} (draft $NAME)"
 [ "${#SCOPES[@]}" -gt 0 ] || { echo "nothing to sign" >&2; exit 1; }
-
-# guard-ingested diffs base...head from their merge base, so with origin/main (or main) as
-# the base it checks every commit this branch adds, as CI does for the PR: this run's zero,
-# one or two commits and any that an earlier, stopped run made. Step 2's plan reads
-# deletions against that merge base (MERGE_BASE), and it takes a manifest at the merge
-# base with either ref (MAIN_BASES) for main's, in case origin/main is behind main.
-GUARD_BASE="" MERGE_BASE="" MAIN_BASES=""
-for ref in origin/main main; do
-  base=$(git merge-base "$ref" HEAD 2>/dev/null) || continue
-  [ -n "$GUARD_BASE" ] || { GUARD_BASE=$ref; MERGE_BASE=$base; }
-  MAIN_BASES="$MAIN_BASES $base"
-done
 
 # The command text step 2 signs a scope with is the rebuild command: the manifest that
 # carries the scope's version when one exists, otherwise the run note that records the

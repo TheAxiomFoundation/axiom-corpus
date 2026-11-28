@@ -2,10 +2,35 @@
 """Remove cross-scope citation duplicates from unreleased release additions.
 
 The canonical selector identifies the scopes that retain citation ownership. The
-target selector must contain every canonical scope and may add unreleased scopes.
-When a citation occurs once in a canonical scope and once in an added scope, this
-command removes the added provision and its matching inventory item, then refreshes
-that scope's coverage report. Any ambiguous collision is rejected.
+target selector must contain every canonical scope, each in the same layer, and
+may add unreleased scopes. When a citation occurs once in a canonical primary
+scope and once in an added primary scope, this command removes the added
+provision and its matching inventory item, then refreshes that scope's coverage
+report. Any ambiguous collision is rejected.
+
+Base scopes the target declares are never opened and never cut. A target
+that selects, as a primary scope, a scope that a tracked selector it reads
+marks as a base is refused before any artifact is opened. For a citation path
+that both layers carry, serving picks the primary row, so a primary row over a
+base row is layering, not a duplicate: only primary scopes compete for a
+citation. The report lists the base scopes the run left untouched.
+
+Dedup reads the selectors committed at HEAD of ``releases_dir`` (on the
+command line, the checkout ``resolver.cli_repo`` finds from ``--corpus``), of
+the checkouts that physically hold a target scope's artifacts or either
+selector file, of each checkout the resolver recognises that holds a link on
+those paths as dedup spells them, and on the command line of the working
+directory's checkout. Before it opens any artifact it refuses a link at a
+checkout's guarded place that leads into no checkout, a path through a
+symlinked file at or below a guarded place of a checkout the resolver
+recognises, a checkout whose ``manifests`` or ``manifests/releases`` is a
+symlink or holds a ``.git`` entry, an artifact path that does not resolve to
+a path ending in its own artifact kind, jurisdiction, document class and
+version, an added primary's file with another hard link, and an added
+primary's file that a base it knows reaches through a link
+(``successors.guard_scope_artifacts`` and ``refuse_links_into_bases``). A
+checkout it does not read is one of the threat model's stated limits (2, 11
+and 15).
 
 Released scopes are immutable. Re-version them before using this command.
 """
@@ -15,45 +40,46 @@ from __future__ import annotations
 import argparse
 import json
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from axiom_corpus.corpus.releases import ReleaseScope, parse_release_scope
+from axiom_corpus.corpus.resolver import cli_repo
+from axiom_corpus.corpus.successors import (
+    guard_scope_artifacts,
+    refuse_links_into_bases,
+    refuse_tracked_bases_as_primary,
+    tracked_base_scopes,
+)
 
-@dataclass(frozen=True, order=True)
-class Scope:
-    jurisdiction: str
-    document_class: str
-    version: str
-
-    @classmethod
-    def from_payload(cls, payload: dict[str, Any]) -> Scope:
-        return cls(
-            jurisdiction=str(payload["jurisdiction"]),
-            document_class=str(payload["document_class"]),
-            version=str(payload["version"]),
-        )
-
-    def as_dict(self) -> dict[str, str]:
-        return {
-            "jurisdiction": self.jurisdiction,
-            "document_class": self.document_class,
-            "version": self.version,
-        }
+# The tracked selectors are the only record of which scopes are bases.
+DEFAULT_RELEASES_DIR = Path(__file__).resolve().parents[1] / "manifests" / "releases"
+# The three files of a scope that ``_refresh_scope`` reads and rewrites.
+_ARTIFACTS = (("provisions", ".jsonl"), ("inventory", ".json"), ("coverage", ".json"))
 
 
-def _read_selector(path: Path) -> tuple[Scope, ...]:
+def _read_selector(path: Path) -> tuple[ReleaseScope, ...]:
     payload = json.loads(path.read_text())
     raw_scopes = payload.get("scopes")
     if not isinstance(raw_scopes, list):
         raise ValueError(f"{path}: selector must contain a scopes list")
-    scopes = tuple(Scope.from_payload(scope) for scope in raw_scopes)
-    if len(scopes) != len(set(scopes)):
+    scopes = tuple(parse_release_scope(scope, manifest_path=path) for scope in raw_scopes)
+    if len(scopes) != len({scope.key for scope in scopes}):
         raise ValueError(f"{path}: selector contains duplicate scopes")
     return scopes
 
 
-def _artifact_path(corpus: Path, artifact: str, scope: Scope, suffix: str) -> Path:
+def _scope_order(scope: ReleaseScope) -> tuple[str, str, str, str]:
+    return (*scope.key, scope.layer)
+
+
+def _render(scope: ReleaseScope) -> str:
+    rendered = f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
+    return f"{rendered} (base)" if scope.is_base else rendered
+
+
+def _artifact_path(corpus: Path, artifact: str, scope: ReleaseScope, suffix: str) -> Path:
     return (
         corpus
         / artifact
@@ -87,7 +113,7 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 
 def _refresh_scope(
     corpus: Path,
-    scope: Scope,
+    scope: ReleaseScope,
     removed_paths: set[str],
     *,
     apply: bool,
@@ -167,7 +193,7 @@ def _refresh_scope(
         _write_json(coverage_path, coverage)
 
     return {
-        **scope.as_dict(),
+        **scope.to_selector_mapping(),
         "provision_count": len(retained_paths),
         "removed_count": len(removed_paths),
         "removed_paths": sorted(removed_paths),
@@ -180,18 +206,79 @@ def deduplicate(
     target_selector: Path,
     *,
     apply: bool,
+    releases_dir: Path | None = None,
+    holders_of: Iterable[Path] = (),
 ) -> dict[str, Any]:
+    """Remove from the target's added primary scopes each citation a canonical scope carries.
+
+    ``releases_dir`` names the ``manifests/releases`` directory whose tracked
+    selectors say which scopes are bases; ``None`` means
+    ``DEFAULT_RELEASES_DIR``, that directory in this script's checkout. A
+    target that selects one of those bases as a primary scope raises
+    ``ValueError`` before any artifact is opened.
+
+    It also reads the selectors committed at HEAD of the checkouts that
+    physically hold a target scope's provisions, inventory or coverage or
+    either selector file, of each checkout the resolver recognises that holds
+    a link on those paths as spelled here, and of the checkouts holding each
+    path in ``holders_of`` (``main()`` passes the working directory), and
+    refuses a base of theirs that the target selects as a primary scope.
+    Before any artifact is opened it raises ``ValueError`` for a link at a
+    checkout's guarded place that leads into no checkout, an artifact path
+    that does not resolve to a path ending in its own artifact kind,
+    jurisdiction, document class and version, an added primary's file with
+    another hard link, and an added primary's file that a base it knows
+    reaches through a link. A checkout it does not read is one of the threat
+    model's stated limits (2, 11 and 15).
+    """
     canonical_scopes = set(_read_selector(canonical_selector))
     target_scopes = _read_selector(target_selector)
-    missing = sorted(canonical_scopes - set(target_scopes))
+    # Whole-scope comparison: a canonical scope carried in the other layer is
+    # omitted, not kept.
+    missing = sorted(canonical_scopes - set(target_scopes), key=_scope_order)
     if missing:
         raise ValueError(
-            "target selector omits canonical scopes: "
-            + ", ".join(f"{s.jurisdiction}/{s.document_class}/{s.version}" for s in missing)
+            "target selector omits canonical scopes: " + ", ".join(_render(s) for s in missing)
         )
+    # The canonical scopes are among the target's, so this checks them too.
+    directory = DEFAULT_RELEASES_DIR if releases_dir is None else releases_dir
+    known = set(tracked_base_scopes(directory))
+    refuse_tracked_bases_as_primary(
+        target_scopes, known, selector=f"target selector {target_selector}"
+    )
+    # Only added primary scopes can be cut, so only their files are rewritten.
+    # Base scopes' paths are guarded too, since a base path that links to a
+    # primary file is an alias; the guard and the link check only resolve
+    # paths, so no base scope is opened.
+    rewritten = [
+        _artifact_path(corpus, kind, scope, suffix)
+        for scope in target_scopes
+        if not scope.is_base and scope not in canonical_scopes
+        for kind, suffix in _ARTIFACTS
+    ]
+    paths = [
+        _artifact_path(corpus, kind, scope, suffix)
+        for scope in target_scopes
+        for kind, suffix in _ARTIFACTS
+    ]
+    for inventory in guard_scope_artifacts(
+        paths,
+        releases_dir=directory,
+        rewritten=rewritten,
+        holders_of=(canonical_selector, target_selector, *holders_of),
+    ):
+        extra = tracked_base_scopes(inventory)
+        refuse_tracked_bases_as_primary(
+            target_scopes, extra, selector=f"target selector {target_selector}"
+        )
+        known |= extra
+    refuse_links_into_bases(corpus=corpus, bases=known, rewritten=rewritten)
 
-    carriers: dict[str, list[tuple[Scope, bool]]] = defaultdict(list)
+    base_scopes = sorted((scope for scope in target_scopes if scope.is_base), key=_scope_order)
+    carriers: dict[str, list[tuple[ReleaseScope, bool]]] = defaultdict(list)
     for scope in target_scopes:
+        if scope.is_base:
+            continue
         path = _artifact_path(corpus, "provisions", scope, ".jsonl")
         seen_in_scope: set[str] = set()
         for _, row in _read_provision_lines(path):
@@ -201,7 +288,7 @@ def deduplicate(
             seen_in_scope.add(citation_path)
             carriers[citation_path].append((scope, scope in canonical_scopes))
 
-    removals: dict[Scope, set[str]] = defaultdict(set)
+    removals: dict[ReleaseScope, set[str]] = defaultdict(set)
     inherited_collision_paths: list[str] = []
     for citation_path, matches in sorted(carriers.items()):
         if len(matches) == 1:
@@ -213,21 +300,21 @@ def deduplicate(
             continue
         if len(canonical_matches) != 1 or len(added_matches) != 1:
             rendered = ", ".join(
-                f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
-                f" ({'canonical' if canonical else 'added'})"
+                f"{_render(scope)} ({'canonical' if canonical else 'added'})"
                 for scope, canonical in matches
             )
             raise ValueError(f"ambiguous citation carrier for {citation_path}: {rendered}")
         removals[added_matches[0]].add(citation_path)
 
+    ordered_removals = sorted(removals.items(), key=lambda item: _scope_order(item[0]))
     preflight = [
         _refresh_scope(corpus, scope, removed_paths, apply=False)
-        for scope, removed_paths in sorted(removals.items())
+        for scope, removed_paths in ordered_removals
     ]
     scopes = (
         [
             _refresh_scope(corpus, scope, removed_paths, apply=True)
-            for scope, removed_paths in sorted(removals.items())
+            for scope, removed_paths in ordered_removals
         ]
         if apply
         else preflight
@@ -239,6 +326,7 @@ def deduplicate(
         "inherited_collision_paths": inherited_collision_paths,
         "scope_count": len(scopes),
         "scopes": scopes,
+        "untouched_base_scopes": [scope.to_selector_mapping() for scope in base_scopes],
     }
 
 
@@ -249,11 +337,23 @@ def main() -> int:
     parser.add_argument("--target-selector", type=Path, required=True)
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
+    # The checkout resolver.cli_repo finds from --corpus decides which scopes are
+    # bases, as --base does for compose_scope_versions.py and
+    # consolidate_release_scopes.py; the working directory's checkout, such as a
+    # sparse worktree whose branch commits a new base, is read too.
+    repo = cli_repo(argparse.Namespace(base=args.corpus))
+    if repo is None:
+        parser.error(
+            "neither --corpus nor the working directory is in an axiom-corpus checkout, so no "
+            "tracked selectors say which scopes are bases"
+        )
     report = deduplicate(
         args.corpus,
         args.canonical_selector,
         args.target_selector,
         apply=args.apply,
+        releases_dir=repo / "manifests" / "releases",
+        holders_of=(Path.cwd(),),
     )
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
