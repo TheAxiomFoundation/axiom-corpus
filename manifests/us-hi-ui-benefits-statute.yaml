@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, Hawaii Employment Security Law, HRS chapter 383.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-hi-ui-benefits-chapter-383
+  jurisdiction: us-hi
+  document_class: statute
+  adapter: hawaii-revised-statutes
+  source_url: https://data.capitol.hawaii.gov/hrscurrent/
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_chapter: '383'
+    base_url: https://data.capitol.hawaii.gov/hrscurrent/
+    workers: 4
+  metadata:
+    program: Unemployment insurance
+    law: Hawaii Employment Security Law, HRS chapter 383
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md

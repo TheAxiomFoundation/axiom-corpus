@@ -1,0 +1,20 @@
+# Unemployment insurance benefits, Iowa Employment Security Law, Iowa Code chapter 96.
+# Written by scripts/build_ui_benefits_manifests.py; run note docs/ingest-runs/2026-11-24-ui-benefits-wave1.md.
+version: 2026-11-24-ui-benefits-statute
+sources:
+- source_id: us-ia-ui-benefits-chapter-96
+  jurisdiction: us-ia
+  document_class: statute
+  adapter: iowa-code
+  source_url: https://www.legis.iowa.gov/law/iowaCode?year=2026
+  version: 2026-11-24-ui-benefits-statute
+  options:
+    source_as_of: '2026-11-24'
+    expression_date: '2026-11-24'
+    only_chapter: '96'
+    source_year: 2026
+    workers: 4
+  metadata:
+    program: Unemployment insurance
+    law: Iowa Employment Security Law, Iowa Code chapter 96
+    run_note: docs/ingest-runs/2026-11-24-ui-benefits-wave1.md
