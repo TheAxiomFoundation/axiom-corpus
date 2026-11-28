@@ -34,6 +34,12 @@ law is listed once. The bundles record membership, exclusions and parts only.
 Progress is telemetry the axiom.org collector reads from the served corpus,
 the RuleSpec modules and the encode runs.
 
+When the config names ``encoder_release`` (the corpus release that rulespec-us
+pins), each document also records ``release_text``: whether a scope of that
+release holds text at or under the document's citation path. A document can be
+in the corpus and still be unreadable by the encoder, because a release is a
+selected list of scopes.
+
 Usage::
 
     python scripts/build_program_bundle.py manifests/program-bundles/programs.config.yaml
@@ -1051,6 +1057,70 @@ def build_program(
     }
 
 
+def release_text_paths(release: str) -> set[str]:
+    """Every citation path the named release serves text at or under: each path
+    of a provision row with a body in a scope the selector selects, each path
+    above it, and each row above it by ``parent_id`` (a chapter whose sections
+    sit at flat paths, not under the chapter's own). A document whose path is
+    not here has no text the encoder can read through that release, whatever
+    the corpus holds elsewhere."""
+    selector = REPO / "manifests/releases" / f"{release}.json"
+    paths: set[str] = set()
+    for scope in json.loads(selector.read_text())["scopes"]:
+        provisions = (
+            REPO
+            / "data/corpus/provisions"
+            / scope["jurisdiction"]
+            / scope["document_class"]
+            / f"{scope['version']}.jsonl"
+        )
+        if not provisions.is_file():
+            raise SystemExit(
+                f"{provisions.relative_to(REPO)} is not in this checkout: run "
+                f"`axiom-corpus-ingest corpus fetch --release {release}`"
+            )
+        with provisions.open(encoding="utf-8") as handle:
+            rows = [json.loads(line) for line in handle if line.strip()]
+        parents = {row.get("id"): row for row in rows if row.get("id")}
+        for row in rows:
+            if not row.get("citation_path") or not (row.get("body") or "").strip():
+                continue
+            seen: set[str] = set()
+            above: dict | None = row
+            while above is not None and above.get("id") not in seen:
+                seen.add(above.get("id"))
+                path = above.get("citation_path") or ""
+                while path and path not in paths:
+                    paths.add(path)
+                    path = path.rpartition("/")[0]
+                above = parents.get(above.get("parent_id"))
+    return paths
+
+
+def stamp_release_text(bundle: dict, release: str, paths: set[str]) -> None:
+    """Record on each document whether the release serves its text, and on each
+    tier how many in-scope documents of each layer it serves."""
+    bundle["encoder_release"] = {
+        "name": release,
+        "rule": "release_text is true when a scope the release selects holds a provision row with "
+        "a body at or under the document's citation_path; a document with no citation_path "
+        "is false",
+    }
+    counts: dict[str, Counter] = {tier: Counter() for tier in ("screener", "full")}
+    for layer in bundle["layers"]:
+        for tier in ("screener", "full"):
+            for doc in layer[tier]:
+                doc["release_text"] = (
+                    bool(doc.get("citation_path")) and doc["citation_path"] in paths
+                )
+                if doc["release_text"] and doc.get("scope") == "in":
+                    counts[tier]["federal" if layer["jurisdiction"] == "us" else "state"] += 1
+    for tier, tally in zip(bundle["tiers"], (counts["screener"], counts["full"]), strict=True):
+        tier["membership"]["release_text_by_layer"] = {
+            name: tally.get(name, 0) for name in ("federal", "state")
+        }
+
+
 def build(config_path: Path) -> dict[str, dict]:
     cfg = yaml.safe_load(config_path.read_text())
     # The joins file: what the ingestion waves decided for documents the
@@ -1074,6 +1144,11 @@ def build(config_path: Path) -> dict[str, dict]:
     }
     index = index_manifests(manifests, aliases)
     plan = json.loads((REPO / cfg["plan"]).read_text()) if cfg.get("plan") else None
+    # The release the encoder reads, when the config names one: each document
+    # then records whether that release serves its text.
+    release_paths = (
+        release_text_paths(cfg["encoder_release"]) if cfg.get("encoder_release") else None
+    )
     out = {}
     for pid, prog in cfg["programs"].items():
         references = json.loads(
@@ -1090,6 +1165,8 @@ def build(config_path: Path) -> dict[str, dict]:
                                 f"{pid} {layer['jurisdiction']} {tier}: part {part!r} of {doc['key']} "
                                 "is not in the program's parts"
                             )
+        if release_paths is not None:
+            stamp_release_text(bundle, cfg["encoder_release"], release_paths)
         out[pid] = bundle
     return out
 

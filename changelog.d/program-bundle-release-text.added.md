@@ -1,0 +1,1 @@
+`scripts/build_program_bundle.py` can record, for each program-bundle document, whether the corpus release the encoder reads serves its text: with `encoder_release` set in `programs.config.yaml`, each document gets `release_text` and each tier `release_text_by_layer`. Off by default; the committed bundles do not change.
